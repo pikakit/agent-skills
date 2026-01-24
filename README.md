@@ -1,62 +1,121 @@
-<p align="center">
-  <img src="https://raw.githubusercontent.com/agentskillkit/agent-skills/main/.github/logo.svg" height="96">
-</p>
+# Agent Skills Kit
 
-<h1 align="center">Agent Skills Kit</h1>
+> **AI Agent templates with Skills, Agents, and Workflows**
 
-<p align="center">
-  <strong>Turn any AI agent into a 10x developer</strong>
-</p>
-
-<p align="center">
-  <a href="https://github.com/agentskillkit/agent-skills"><img src="https://img.shields.io/github/stars/agentskillkit/agent-skills?style=flat&colorA=18181b&colorB=7c3aed" alt="stars"></a>
-  <a href="https://github.com/agentskillkit/agent-skills/blob/main/LICENSE"><img src="https://img.shields.io/badge/license-Proprietary-7c3aed?style=flat&colorA=18181b" alt="license"></a>
-  <img src="https://img.shields.io/badge/version-1.0.0-7c3aed?style=flat&colorA=18181b" alt="version">
-</p>
-
-<p align="center">
-  <a href="#install">Install</a> •
-  <a href="#whats-inside">What's Inside</a> •
-  <a href="#self-learning">Self-Learning</a> •
-  <a href="#cli">CLI</a>
-</p>
+[![npm](https://img.shields.io/badge/version-1.0.0-7c3aed?style=flat&colorA=18181b)](https://github.com/agentskillkit/agent-skills)
+[![license](https://img.shields.io/badge/license-Proprietary-7c3aed?style=flat&colorA=18181b)](https://github.com/agentskillkit/agent-skills/blob/main/LICENSE)
 
 ---
 
-## Install
+## Quick Install
 
 ```bash
 npx -y add-skill-kit agentskillkit/agent-skills
 ```
 
-That's it. Your AI agent now has enterprise-grade skills.
+Or install globally:
+
+```bash
+npm install -g add-skill-kit
+add-skill-kit agentskillkit/agent-skills
+```
+
+This installs the `.agent` folder containing all templates into your project.
 
 ---
 
-## What's Inside
+## What's Included
 
-| Component | Count | What it does |
-|-----------|-------|--------------|
-| **Skills** | 40+ | Domain expertise (React, API, Testing, Security...) |
-| **Workflows** | 11 | Slash commands (`/debug`, `/plan`, `/deploy`...) |
-| **Agents** | 20 | Specialist personas (Frontend, Backend, DevOps...) |
+| Component | Count | Description |
+|-----------|-------|-------------|
+| **Agents** | 20 | Specialist AI personas (frontend, backend, security, PM, QA, etc.) |
+| **Skills** | 40+ | Domain-specific knowledge modules |
+| **Workflows** | 11 | Slash command procedures |
 
-### Skill Highlights
+---
+
+## Usage
+
+### Using Agents
+
+**No need to mention agents explicitly!** The system automatically detects and applies the right specialist(s):
 
 ```
-.agent/skills/
-├── react-patterns       # Hooks, composition, performance
-├── api-patterns         # REST, GraphQL, tRPC design
-├── testing-patterns     # Unit, integration, E2E
-├── clean-code           # Pragmatic coding standards
-├── systematic-debugging # 4-phase debug methodology
-├── vulnerability-scanner # OWASP security audit
-└── 34 more...
+You: "Add JWT authentication"
+AI: 🤖 Applying @security-auditor + @backend-specialist...
+
+You: "Fix the dark mode button"
+AI: 🤖 Using @frontend-specialist...
+
+You: "Login returns 500 error"
+AI: 🤖 Using @debugger for systematic analysis...
+```
+
+**How it works:**
+1. Analyzes your request silently
+2. Detects domain(s) automatically (frontend, backend, security, etc.)
+3. Selects the best specialist(s)
+4. Informs you which expertise is being applied
+5. You get specialist-level responses without needing to know the system architecture
+
+**Benefits:**
+- ✅ Zero learning curve - just describe what you need
+- ✅ Always get expert responses
+- ✅ Transparent - shows which agent is being used
+- ✅ Can still override by mentioning agent explicitly
+
+---
+
+### Using Workflows
+
+Invoke workflows with slash commands:
+
+| Command | Description |
+|---------|-------------|
+| `/brainstorm` | Explore options before implementation |
+| `/create` | Create new features or apps |
+| `/debug` | Systematic debugging |
+| `/deploy` | Deploy application |
+| `/enhance` | Improve existing code |
+| `/orchestrate` | Multi-agent coordination |
+| `/plan` | Create task breakdown |
+| `/preview` | Preview changes locally |
+| `/status` | Check project status |
+| `/test` | Generate and run tests |
+| `/ui-ux-pro-max` | Design with 50 styles |
+
+**Example:**
+```
+/brainstorm authentication system
+/create landing page with hero section
+/debug why login fails
 ```
 
 ---
 
-## Self-Learning
+### Using Skills
+
+Skills are loaded automatically based on task context. The AI reads skill descriptions and applies relevant knowledge.
+
+**Available Skills:**
+
+| Skill | Description |
+|-------|-------------|
+| `react-patterns` | Modern React hooks & composition |
+| `api-patterns` | REST, GraphQL, tRPC design |
+| `testing-patterns` | Unit, integration, E2E strategies |
+| `clean-code` | Pragmatic coding standards |
+| `systematic-debugging` | 4-phase debug methodology |
+| `vulnerability-scanner` | OWASP security audit |
+| `nextjs-best-practices` | App Router, Server Components |
+| `database-design` | Schema, indexing, ORM selection |
+| `tailwind-patterns` | Tailwind CSS v4 patterns |
+| `mobile-design` | iOS/Android design thinking |
+| ...and 30+ more | |
+
+---
+
+## Self-Learning Engine
 
 Your agent learns from mistakes and remembers them forever.
 
@@ -74,29 +133,39 @@ npx ag-smart learn --pattern "console\.log" --message "No console.log in product
 
 ---
 
-## CLI
+## CLI Tool
 
-```bash
-# Audit compliance
-npx ag-smart audit
-
-# Teach a lesson
-npx ag-smart learn --pattern "any" --message "Avoid 'any' type in TypeScript"
-
-# Check memory
-npx ag-smart recall src/utils.ts
-```
+| Command | Description |
+|---------|-------------|
+| `ag-smart learn` | Teach the agent a new lesson |
+| `ag-smart audit` | Run compliance check |
+| `ag-smart recall` | Check memory for a file |
 
 ---
 
-## Why This Exists
+## Project Structure
 
-| Problem | Solution |
-|---------|----------|
-| Agents give inconsistent advice | 40 curated, versioned skill modules |
-| No memory between sessions | Self-learning engine persists knowledge |
-| Manual prompt engineering | Pre-built workflows for common tasks |
-| Security blindspots | Built-in vulnerability scanning |
+```
+your-project/
+└── .agent/
+    ├── skills/           # 40+ domain skills
+    │   ├── react-patterns/
+    │   ├── api-patterns/
+    │   ├── testing-patterns/
+    │   └── ...
+    ├── workflows/        # Slash commands
+    │   ├── brainstorm.md
+    │   ├── debug.md
+    │   ├── deploy.md
+    │   └── ...
+    ├── agents/           # Specialist personas
+    │   ├── frontend-specialist.md
+    │   ├── backend-specialist.md
+    │   ├── security-auditor.md
+    │   └── ...
+    ├── knowledge/        # Self-learning memory
+    └── GEMINI.md         # Agent configuration
+```
 
 ---
 
@@ -107,17 +176,14 @@ npx ag-smart recall src/utils.ts
 
 ---
 
-## Install Now
+## Documentation
 
-```bash
-npx -y add-skill-kit agentskillkit/agent-skills
-```
+- [GitHub Repository](https://github.com/agentskillkit/agent-skills)
+- [Issues & Feature Requests](https://github.com/agentskillkit/agent-skills/issues)
 
-<p align="center">
-  <sub>© 2026 Agent Skill Kit. Proprietary License.</sub>
-</p>
+---
 
-<p align="center">
-  <a href="https://github.com/agentskillkit/agent-skills">GitHub</a> •
-  <a href="https://github.com/agentskillkit/agent-skills/issues">Issues</a>
-</p>
+## License
+
+**Proprietary Commercial License**  
+© 2026 Agent Skill Kit. All Rights Reserved.
