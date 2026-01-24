@@ -86,9 +86,14 @@ orchestrator          → Multi-agent coordination
 | `/brainstorm` | Khám phá options trước khi code |
 | `/create` | Tạo features/apps mới |
 | `/debug` | Debug có hệ thống |
-| `/plan` | Lập kế hoạch task |
-| `/test` | Tạo và chạy tests |
 | `/deploy` | Deploy production |
+| `/enhance` | Thêm/cập nhật features |
+| `/orchestrate` | Điều phối multi-agents |
+| `/plan` | Lập kế hoạch task |
+| `/preview` | Quản lý dev server |
+| `/status` | Xem tiến độ project |
+| `/test` | Tạo và chạy tests |
+| `/ui-ux-pro-max` | Thiết kế UI chuyên sâu |
 
 ### 🧠 Self-Learning Engine
 ```bash
