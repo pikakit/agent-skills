@@ -1,12 +1,12 @@
 {
-  "name": "agent-skills-kit",
+  "name": "@agentskillkit/agent-skills",
   "version": "1.0.0",
   "description": "The Premium Agent Skills Kit for Enterprise",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/agentskillskit/agent-skills-kit.git"
+    "url": "git+https://github.com/agentskillkit/agent-skills.git"
   },
-  "homepage": "https://agentskillskit.com",
+  "homepage": "https://github.com/agentskillkit/agent-skills",
   "bin": {
     "agent-skills-kit": "./packages/cli/bin/ag-smart.js",
     "ag-smart": "./packages/cli/bin/ag-smart.js"
@@ -26,7 +26,7 @@
     "agent-skills-kit",
     "enterprise"
   ],
-  "author": "Agent Skills Kit Authors",
+  "author": "agentskillkit <agentskillkit@gmail.com>",
   "license": "UNLICENSED",
   "devDependencies": {
     "eslint": "^9.0.0",

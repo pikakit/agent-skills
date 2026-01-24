@@ -5,14 +5,14 @@
 ## Quick Install
 
 ```bash
-npx agent-skills-kit init
+npx add-skill-kit agentskillkit/agent-skills
 ```
 
 Or install globally:
 
 ```bash
-npm install -g agent-skills-kit
-agent-skills-kit init
+npm install -g add-skill-kit
+add-skill-kit agentskillkit/agent-skills
 ```
 
 This installs the `.agent` folder containing all templates into your project.
@@ -51,9 +51,9 @@ npx ag-smart audit
 
 ## Documentation
 
-- **[Online Docs](https://agentskillskit.com/docs)**
+- **[Online Docs](https://github.com/agentskillkit/agent-skills)**
 
 ## License
 
 **Proprietary Commercial License**
-Copyright (c) 2026 Agent Skills Kit Authors. All Rights Reserved.
+Copyright (c) 2026 Agent Skill Kit Authors. All Rights Reserved.
