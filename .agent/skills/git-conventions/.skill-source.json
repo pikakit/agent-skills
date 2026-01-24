@@ -1,0 +1,8 @@
+{
+  "repo": "dataguruin/agent-skills",
+  "skill": "coinpika-commit-formatter",
+  "ref": null,
+  "checksum": "4f9a77947e3ab0f0a89aba0aaeadfceb926cb7e2a48018a624e34cde383b8d29",
+  "installedAt": "2026-01-24T11:02:40.450Z",
+  "method": "symlink"
+}

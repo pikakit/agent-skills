@@ -1,0 +1,8 @@
+{
+  "repo": "dataguruin/agent-skills",
+  "skill": "coinpika-pr-reviewer",
+  "ref": null,
+  "checksum": "4d1f267a06d8a1a0309732714deff7e3afb2a62d7b350c981abad5a077b40c27",
+  "installedAt": "2026-01-24T11:02:40.755Z",
+  "method": "symlink"
+}

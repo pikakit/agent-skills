@@ -1,0 +1,320 @@
+{
+  "updatedAt": "2026-01-24T12:00:39.464Z",
+  "skills": [
+    {
+      "name": "api-patterns",
+      "rules": [
+        "api-style.md",
+        "auth.md",
+        "documentation.md",
+        "graphql.md",
+        "rate-limiting.md",
+        "response.md",
+        "rest.md",
+        "security-testing.md",
+        "trpc.md",
+        "versioning.md"
+      ],
+      "scripts": [
+        "api_validator.py"
+      ]
+    },
+    {
+      "name": "app-builder",
+      "rules": [],
+      "scripts": []
+    },
+    {
+      "name": "architecture",
+      "rules": [],
+      "scripts": []
+    },
+    {
+      "name": "bash-linux",
+      "rules": [],
+      "scripts": []
+    },
+    {
+      "name": "behavioral-modes",
+      "rules": [],
+      "scripts": []
+    },
+    {
+      "name": "brainstorming",
+      "rules": [],
+      "scripts": []
+    },
+    {
+      "name": "clean-code",
+      "rules": [],
+      "scripts": []
+    },
+    {
+      "name": "code-review-checklist",
+      "rules": [],
+      "scripts": []
+    },
+    {
+      "name": "code-reviewer",
+      "rules": [],
+      "scripts": [
+        "audit_pr.js",
+        "audit_pr.v2.js",
+        "validate_doctrine.js"
+      ]
+    },
+    {
+      "name": "database-design",
+      "rules": [],
+      "scripts": [
+        "schema_validator.py"
+      ]
+    },
+    {
+      "name": "deployment-procedures",
+      "rules": [],
+      "scripts": []
+    },
+    {
+      "name": "documentation-templates",
+      "rules": [],
+      "scripts": []
+    },
+    {
+      "name": "frontend",
+      "rules": [
+        "advanced-event-handler-refs.md",
+        "advanced-init-once.md",
+        "advanced-use-latest.md",
+        "async-api-routes.md",
+        "async-defer-await.md",
+        "async-dependencies.md",
+        "async-parallel.md",
+        "async-suspense-boundaries.md",
+        "bundle-barrel-imports.md",
+        "bundle-conditional.md",
+        "bundle-defer-third-party.md",
+        "bundle-dynamic-imports.md",
+        "bundle-preload.md",
+        "client-event-listeners.md",
+        "client-localstorage-schema.md",
+        "client-passive-event-listeners.md",
+        "client-swr-dedup.md",
+        "js-batch-dom-css.md",
+        "js-cache-function-results.md",
+        "js-cache-property-access.md",
+        "js-cache-storage.md",
+        "js-combine-iterations.md",
+        "js-early-exit.md",
+        "js-hoist-regexp.md",
+        "js-index-maps.md",
+        "js-length-check-first.md",
+        "js-min-max-loop.md",
+        "js-set-map-lookups.md",
+        "js-tosorted-immutable.md",
+        "rendering-activity.md",
+        "rendering-animate-svg-wrapper.md",
+        "rendering-conditional-render.md",
+        "rendering-content-visibility.md",
+        "rendering-hoist-jsx.md",
+        "rendering-hydration-no-flicker.md",
+        "rendering-hydration-suppress-warning.md",
+        "rendering-svg-precision.md",
+        "rendering-usetransition-loading.md",
+        "rerender-defer-reads.md",
+        "rerender-dependencies.md",
+        "rerender-derived-state-no-effect.md",
+        "rerender-derived-state.md",
+        "rerender-functional-setstate.md",
+        "rerender-lazy-state-init.md",
+        "rerender-memo-with-default-value.md",
+        "rerender-memo.md",
+        "rerender-move-effect-to-event.md",
+        "rerender-simple-expression-in-memo.md",
+        "rerender-transitions.md",
+        "rerender-use-ref-transient-values.md",
+        "server-after-nonblocking.md",
+        "server-auth-actions.md",
+        "server-cache-lru.md",
+        "server-cache-react.md",
+        "server-dedup-props.md",
+        "server-parallel-fetching.md",
+        "server-serialization.md",
+        "_sections.md",
+        "_template.md"
+      ],
+      "scripts": []
+    },
+    {
+      "name": "frontend-design",
+      "rules": [
+        "animation-guide.md",
+        "color-system.md",
+        "decision-trees.md",
+        "motion-graphics.md",
+        "typography-system.md",
+        "ux-psychology.md",
+        "visual-effects.md"
+      ],
+      "scripts": [
+        "accessibility_checker.py",
+        "ux_audit.py"
+      ]
+    },
+    {
+      "name": "game-development",
+      "rules": [],
+      "scripts": []
+    },
+    {
+      "name": "geo-fundamentals",
+      "rules": [],
+      "scripts": [
+        "geo_checker.py"
+      ]
+    },
+    {
+      "name": "git-conventions",
+      "rules": [],
+      "scripts": [
+        "format-commit.js"
+      ]
+    },
+    {
+      "name": "governance",
+      "rules": [],
+      "scripts": [
+        "audit_pr.js",
+        "learn.js",
+        "validate_doctrine.js"
+      ]
+    },
+    {
+      "name": "i18n-localization",
+      "rules": [],
+      "scripts": [
+        "i18n_checker.py"
+      ]
+    },
+    {
+      "name": "intelligent-routing",
+      "rules": [],
+      "scripts": []
+    },
+    {
+      "name": "lint-and-validate",
+      "rules": [],
+      "scripts": [
+        "lint_runner.py",
+        "type_coverage.py"
+      ]
+    },
+    {
+      "name": "mcp-builder",
+      "rules": [],
+      "scripts": []
+    },
+    {
+      "name": "mobile-design",
+      "rules": [],
+      "scripts": [
+        "mobile_audit.py"
+      ]
+    },
+    {
+      "name": "nextjs-best-practices",
+      "rules": [],
+      "scripts": []
+    },
+    {
+      "name": "nodejs-best-practices",
+      "rules": [],
+      "scripts": []
+    },
+    {
+      "name": "parallel-agents",
+      "rules": [],
+      "scripts": []
+    },
+    {
+      "name": "performance-profiling",
+      "rules": [],
+      "scripts": [
+        "lighthouse_audit.py"
+      ]
+    },
+    {
+      "name": "plan-writing",
+      "rules": [],
+      "scripts": []
+    },
+    {
+      "name": "powershell-windows",
+      "rules": [],
+      "scripts": []
+    },
+    {
+      "name": "python-patterns",
+      "rules": [],
+      "scripts": []
+    },
+    {
+      "name": "react-patterns",
+      "rules": [],
+      "scripts": []
+    },
+    {
+      "name": "red-team-tactics",
+      "rules": [],
+      "scripts": []
+    },
+    {
+      "name": "seo-fundamentals",
+      "rules": [],
+      "scripts": [
+        "seo_checker.py"
+      ]
+    },
+    {
+      "name": "server-management",
+      "rules": [],
+      "scripts": []
+    },
+    {
+      "name": "systematic-debugging",
+      "rules": [],
+      "scripts": []
+    },
+    {
+      "name": "tailwind-patterns",
+      "rules": [],
+      "scripts": []
+    },
+    {
+      "name": "tdd-workflow",
+      "rules": [],
+      "scripts": []
+    },
+    {
+      "name": "testing-patterns",
+      "rules": [],
+      "scripts": [
+        "test_runner.py"
+      ]
+    },
+    {
+      "name": "vulnerability-scanner",
+      "rules": [],
+      "scripts": [
+        "security_scan.py"
+      ]
+    },
+    {
+      "name": "webapp-testing",
+      "rules": [],
+      "scripts": [
+        "playwright_runner.py"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "repo": "dataguruin/agent-skills",
+  "skill": "coinpika-doctrine-pack",
+  "ref": null,
+  "checksum": "545e1b627f6efb912cc9095a12bc745d999029ad112d7bcd266dd71e79f9bc3b",
+  "installedAt": "2026-01-24T11:02:40.686Z",
+  "method": "symlink"
+}

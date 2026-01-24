@@ -1,0 +1,13 @@
+version: 1
+lessons:
+  - id: L-000
+    category: general
+    trigger: example pattern
+    severity: info
+    correction: example correction
+    reason: This is a placeholder lesson to initialize the structure.
+  - id: LEARN-002
+    pattern: console\.log
+    message: No console logs in production
+    severity: high
+    addedAt: '2026-01-24T11:33:54.048Z'

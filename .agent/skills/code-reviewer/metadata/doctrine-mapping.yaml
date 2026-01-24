@@ -1,0 +1,167 @@
+# Doctrine Mapping
+# Maps file patterns to applicable doctrines for automatic loading
+# Extended to include Doctrine Definitions for Pattern Matching
+
+mappings:
+  # Backend API files
+  "api/**":
+    doctrines:
+      - Law-1  # Truth Ownership
+      - Law-2  # Historical Integrity
+      - Architecture
+      - Performance
+    severity: high
+    
+  "server/**":
+    doctrines:
+      - Law-1
+      - Law-2
+      - Architecture
+    severity: high
+    
+  "lib/**":
+    doctrines:
+      - Law-1
+      - Architecture
+    severity: medium
+
+  # Chart & Visualization
+  "**/chart*":
+    doctrines:
+      - Law-3  # Realtime Ephemerality
+      - Law-4  # Chart Truthfulness
+    severity: critical
+    
+  "**/graph*":
+    doctrines:
+      - Law-3
+      - Law-4
+    severity: critical
+    
+  "**/ohlc*":
+    doctrines:
+      - Law-2
+      - Law-3
+      - Law-4
+    severity: critical
+
+  # Mobile UI
+  "**/mobile/**":
+    doctrines:
+      - Frontend-Mobile
+    severity: high
+    
+  "**/gesture*":
+    doctrines:
+      - Frontend-Mobile
+    severity: high
+    
+  "**/swipe*":
+    doctrines:
+      - Frontend-Mobile
+    severity: high
+
+  # Data files
+  "**/price*":
+    doctrines:
+      - Law-1
+      - Law-2
+    severity: high
+    
+  "**/market*":
+    doctrines:
+      - Law-1
+    severity: medium
+    
+  "**/coin*":
+    doctrines:
+      - Law-1
+      - Performance
+    severity: medium
+
+  # Worker/Background
+  "**/worker*":
+    doctrines:
+      - Performance
+      - Architecture
+    severity: medium
+    
+  "**/cron*":
+    doctrines:
+      - Performance
+      - Architecture
+    severity: medium
+
+# Default for unmatched files
+default:
+  doctrines: []
+  severity: low
+
+# Doctrine Definitions (Regex Patterns)
+definitions:
+  Law-1:
+    name: 'Truth Ownership'
+    description: 'Backend owns truth, frontend only displays'
+    patterns:
+      - "localStorage\\.setItem\\s*\\(\\s*['\"`].*price"
+      - "sessionStorage\\.setItem\\s*\\(\\s*['\"`].*price"
+      - "setState\\s*\\(\\s*\\{[^}]*price[^}]*\\}"
+    severity: 'ERROR'
+    message: 'Frontend must not manage financial truth. Backend owns all price/market data.'
+
+  Law-2:
+    name: 'Historical Integrity'
+    description: 'Historical data is immutable'
+    patterns:
+      - "\\.push\\s*\\([^)]*historical"
+      - "\\.splice\\s*\\([^)]*historical"
+      - "history\\s*\\[\\s*\\d+\\s*\\]\\s*="
+      - "UPDATE\\s+.*history"
+      - "DELETE\\s+.*FROM.*history"
+    severity: 'ERROR'
+    message: 'Historical data must be immutable. Use append-only operations.'
+
+  Law-3:
+    name: 'Realtime Ephemerality'
+    description: 'Realtime data must not persist as historical'
+    patterns:
+      - "chart.*\\.push\\s*\\(\\s*realtimePrice"
+      - "historical.*push.*websocket"
+      - "ws.*message.*history.*push"
+    severity: 'ERROR'
+    message: 'Realtime ticks must not be injected into historical charts.'
+
+  Law-4:
+    name: 'Chart Truthfulness'
+    description: 'Charts show backend-aggregated data only'
+    patterns:
+      - "chart.*data.*=.*fetch\\s*\\(\\s*['\"`]wss?:"
+      - "candlestick.*websocket"
+      - "ohlcv.*realtime"
+    severity: 'ERROR'
+    message: 'Charts must display pre-aggregated backend data, not realtime feeds.'
+
+  Architecture:
+    name: 'Architecture Doctrine'
+    description: 'System boundaries must be respected'
+    patterns:
+      - "fetch\\s*\\(\\s*['\"`]https?:\\/\\/api\\.coingecko"
+      - "fetch\\s*\\(\\s*['\"`]https?:\\/\\/api\\.binance"
+      - "axios\\s*\\.\\s*get\\s*\\(\\s*['\"`]https?:\\/\\/.*external"
+    severity: 'WARNING'
+    message: 'Frontend should not call external APIs directly. Route through backend.'
+
+  Performance:
+    name: 'Performance Doctrine'
+    description: 'Caching and optimization required'
+    patterns:
+      - "fetch\\s*\\([^)]+\\)\\s*(?!.*cache)"
+    severity: 'INFO'
+    message: 'Consider implementing caching for API calls.'
+    
+  Frontend-Mobile:
+    name: 'Mobile UX Standards'
+    description: 'Strict gestures and layout for mobile'
+    patterns: []
+    severity: 'WARNING'
+    message: 'Mobile UI changes require audit'

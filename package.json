@@ -1,0 +1,37 @@
+{
+  "name": "my-agent-skills",
+  "version": "1.0.0",
+  "description": "Universal Self-Learning Agent Skills Core",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/myagentskills/my-agent-skills.git"
+  },
+  "homepage": "https://myagentskills.com",
+  "bin": {
+    "my-agent-skills": "./packages/cli/bin/ag-smart.js",
+    "ag-smart": "./packages/cli/bin/ag-smart.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "checklist": "python .agent/scripts/checklist.py .",
+    "scan:security": "python .agent/skills/vulnerability-scanner/scripts/security_scan.py .",
+    "lint": "python .agent/skills/lint-and-validate/scripts/lint_runner.py .",
+    "learn": "node packages/cli/lib/learn.js"
+  },
+  "keywords": [
+    "ai",
+    "agent",
+    "skills",
+    "self-learning",
+    "my-agent-skills"
+  ],
+  "author": "My Agent Skills",
+  "license": "MIT",
+  "devDependencies": {
+    "eslint": "^9.0.0",
+    "prettier": "^3.0.0"
+  },
+  "dependencies": {
+    "js-yaml": "^4.1.1"
+  }
+}

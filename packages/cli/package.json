@@ -1,0 +1,18 @@
+{
+    "name": "@myagentskills/cli",
+    "version": "1.0.0",
+    "description": "CLI for My Agent Skills",
+    "main": "index.js",
+    "bin": {
+        "my-agent-skills": "./bin/ag-smart.js",
+        "ag-smart": "./bin/ag-smart.js"
+    },
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "dependencies": {
+        "js-yaml": "^4.1.0"
+    },
+    "author": "My Agent Skills",
+    "license": "MIT"
+}
