@@ -41,7 +41,7 @@ Từ ý tưởng đến production trong vài phút:
 ## ⚡ Cài Đặt Ngay (1 Lệnh)
 
 ```bash
-npx add-skill-kit agentskillkit/agent-skills
+npx -y add-skill-kit agentskillkit/agent-skills
 ```
 
 Xong. AI Agent của bạn đã được nâng cấp.
