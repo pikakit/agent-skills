@@ -1,17 +1,22 @@
 {
     "name": "@agentskillskit/cli",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "CLI for Agent Skills Kit",
-    "main": "index.js",
+    "type": "module",
+    "main": "lib/config.js",
     "bin": {
         "agent-skills-kit": "./bin/ag-smart.js",
         "ag-smart": "./bin/ag-smart.js"
     },
     "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1"
+        "test": "vitest run",
+        "test:watch": "vitest"
     },
     "dependencies": {
         "js-yaml": "^4.1.0"
+    },
+    "devDependencies": {
+        "vitest": "^1.6.0"
     },
     "author": "Agent Skills Kit Authors",
     "license": "UNLICENSED"
