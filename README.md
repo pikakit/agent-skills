@@ -1,18 +1,18 @@
-# My Agent Skills
+# Agent Skills Kit
 
-> Universal Self-Learning Agent Skills Core
+> The Premium Agent Skills Kit for Enterprise
 
 ## Quick Install
 
 ```bash
-npx my-agent-skills init
+npx agent-skills-kit init
 ```
 
 Or install globally:
 
 ```bash
-npm install -g my-agent-skills
-my-agent-skills init
+npm install -g agent-skills-kit
+agent-skills-kit init
 ```
 
 This installs the `.agent` folder containing all templates into your project.
@@ -28,7 +28,7 @@ This installs the `.agent` folder containing all templates into your project.
 ## Features
 
 ### 🧠 Adaptive Intelligence (Self-Learning)
-My Agent Skills learns from your codebase and mistakes.
+Agent Skills Kit learns from your codebase and mistakes.
 
 ```bash
 npx ag-smart learn --add --pattern "console\.log" --message "No console logs in production"
@@ -51,8 +51,9 @@ npx ag-smart audit
 
 ## Documentation
 
-- **[Online Docs](https://myagentskills.com/docs)**
+- **[Online Docs](https://agentskillskit.com/docs)**
 
 ## License
 
-MIT © My Agent Skills
+**Proprietary Commercial License**
+Copyright (c) 2026 Agent Skills Kit Authors. All Rights Reserved.

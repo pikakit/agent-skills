@@ -9,6 +9,6 @@ Complete the integration by updating the skill registry and ensuring all new ski
 3. Clean up the `agent-skills` and `.agent` (root) folders if user agrees (will ask via notify_user).
 
 ## 3. Deliverables
-- Fully populated `myagentskills/.agent/skills`.
+- Fully populated `agentskillskit/.agent/skills`.
 - Updated Registry.
 - Zero legacy folders.

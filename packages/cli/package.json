@@ -1,10 +1,10 @@
 {
-    "name": "@myagentskills/cli",
+    "name": "@agentskillskit/cli",
     "version": "1.0.0",
-    "description": "CLI for My Agent Skills",
+    "description": "CLI for Agent Skills Kit",
     "main": "index.js",
     "bin": {
-        "my-agent-skills": "./bin/ag-smart.js",
+        "agent-skills-kit": "./bin/ag-smart.js",
         "ag-smart": "./bin/ag-smart.js"
     },
     "scripts": {
@@ -13,6 +13,6 @@
     "dependencies": {
         "js-yaml": "^4.1.0"
     },
-    "author": "My Agent Skills",
-    "license": "MIT"
+    "author": "Agent Skills Kit Authors",
+    "license": "UNLICENSED"
 }

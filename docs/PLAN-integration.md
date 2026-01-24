@@ -1,7 +1,7 @@
 # Skill Integration Plan
 
 ## 1. Goal
-Integrate remaining valuable skills from CoinPika legacy folders into the new `myagentskills` architecture.
+Integrate remaining valuable skills from CoinPika legacy folders into the new `agentskillskit` architecture.
 
 ## 2. Skills to Migrate
 

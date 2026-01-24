@@ -1,7 +1,7 @@
 # Refactoring Plan: My Agent Skills (Standardization & Maintainability)
 
 ## 1. Goal
-Biến `myagentskills` từ một tập hợp "lai tạp" (Antigravity + Vercel + CoinPika) thành một hệ thống **Nhất quán (Consistent)**, **Module hóa (Modular)** và **Dễ mở rộng (Extensible)**.
+Biến `agentskillskit` từ một tập hợp "lai tạp" (Antigravity + Vercel + CoinPika) thành một hệ thống **Nhất quán (Consistent)**, **Module hóa (Modular)** và **Dễ mở rộng (Extensible)**.
 
 ## 2. Current State (The Problem)
 - **Inconsistent Structure**:

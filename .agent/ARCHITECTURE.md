@@ -1,4 +1,4 @@
-# Antigravity Kit Architecture
+# Agent Skills Kit Architecture
 
 > Comprehensive AI Agent Capability Expansion Toolkit
 

@@ -28,19 +28,19 @@ function run(script, args = []) {
 
 function printHelp() {
     console.log(`
-🤖 My Agent Skills CLI (ag-smart)
+🤖 Agent Skills Kit CLI (ag-smart)
 
 Usage:
   ag-smart <command> [options]
 
 Commands:
-  learn   Teach My Agent Skills a new lesson
+  learn   Teach Agent Skills Kit a new lesson
           Ex: ag-smart learn --add --pattern "var " --message "Use let/const"
 
   recall  Check a file against memory
           Ex: ag-smart recall src/app.js
 
-  audit   Run My Agent Skills compliance audit (Law + Memory + Rules)
+  audit   Run Agent Skills Kit compliance audit (Law + Memory + Rules)
           Ex: ag-smart audit
 
   help    Show this help message

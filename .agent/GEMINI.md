@@ -1,4 +1,4 @@
-# GEMINI.md - My Agent Skills
+# GEMINI.md - Agent Skills Kit
 
 > This file defines how My Agent Skills behaves in this workspace.
 

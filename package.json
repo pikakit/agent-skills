@@ -1,14 +1,14 @@
 {
-  "name": "my-agent-skills",
+  "name": "agent-skills-kit",
   "version": "1.0.0",
-  "description": "Universal Self-Learning Agent Skills Core",
+  "description": "The Premium Agent Skills Kit for Enterprise",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/myagentskills/my-agent-skills.git"
+    "url": "git+https://github.com/agentskillskit/agent-skills-kit.git"
   },
-  "homepage": "https://myagentskills.com",
+  "homepage": "https://agentskillskit.com",
   "bin": {
-    "my-agent-skills": "./packages/cli/bin/ag-smart.js",
+    "agent-skills-kit": "./packages/cli/bin/ag-smart.js",
     "ag-smart": "./packages/cli/bin/ag-smart.js"
   },
   "scripts": {
@@ -23,10 +23,11 @@
     "agent",
     "skills",
     "self-learning",
-    "my-agent-skills"
+    "agent-skills-kit",
+    "enterprise"
   ],
-  "author": "My Agent Skills",
-  "license": "MIT",
+  "author": "Agent Skills Kit Authors",
+  "license": "UNLICENSED",
   "devDependencies": {
     "eslint": "^9.0.0",
     "prettier": "^3.0.0"
