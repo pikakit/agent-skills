@@ -95,13 +95,45 @@ orchestrator          → Multi-agent coordination
 | `/test` | Tạo và chạy tests |
 | `/ui-ux-pro-max` | Thiết kế UI chuyên sâu |
 
-### 🧠 Self-Learning Engine
-```bash
-# AI học từ sai lầm
-npx ag-smart learn --pattern "console\.log" --message "No console.log in production"
+### 🧠 Self-Learning Engine (Production-Ready)
 
-# Từ nay AI sẽ không bao giờ lặp lại lỗi này
+AI không chỉ theo rules - **AI học từ sai lầm của bạn**:
+
+```bash
+# 1. Dạy AI một pattern xấu
+ag-smart learn --add --pattern "console.log" --message "No console.log in production"
+
+# 2. AI tự động detect violations
+ag-smart recall src/
+
+# 3. Xem thống kê
+ag-smart stats
+# 📊 Total Lessons: 5
+# 🎯 Violations Detected: 42
+# 🔥 Most Triggered: [LEARN-002] 20 hits
+
+# 4. Auto-fix violations
+ag-smart fix src/ --eslint
+
+# 5. Real-time monitoring
+ag-smart watch
+
+# 6. Sync hot patterns → SKILL.md
+ag-smart sync-skills
 ```
+
+**9 CLI Commands:**
+| Command | Mô tả |
+|---------|-------|
+| `learn` | Thêm/xóa lessons |
+| `recall` | Scan code tìm violations |
+| `audit` | Full compliance check |
+| `fix` | Auto-fix violations |
+| `watch` | Real-time monitoring |
+| `stats` | Knowledge base dashboard |
+| `install-hooks` | Git pre-commit hook |
+| `lint-learn` | Auto-learn từ ESLint |
+| `sync-skills` | Update SKILL.md tự động |
 
 ---
 

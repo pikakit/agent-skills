@@ -23,7 +23,7 @@ export const LESSONS_PATH = path.join(KNOWLEDGE_DIR, "lessons-learned.yaml");
 export const RULES_DIR = path.join(AGENT_DIR, "rules");
 
 /** CLI version */
-export const VERSION = "1.0.1";
+export const VERSION = "2.0.0";
 
 /** Debug mode */
 export const DEBUG = process.env.DEBUG === "true";
