@@ -20,6 +20,8 @@ import ora from "ora";
 import { KNOWLEDGE_DIR, LESSONS_PATH, DEBUG, cwd, VERSION } from "./config.js";
 import { loadIgnorePatterns, isIgnored } from "./ignore.js";
 import pretty from "./ui/pretty.js";
+import * as p from "@clack/prompts";
+import pc from "picocolors";
 
 // ============================================================================
 // KNOWLEDGE BASE
@@ -259,23 +261,27 @@ Options:
     const { results, ignoredCount } = scanDirectory(target, db);
     const stats = printResults(results);
 
-    // Show branded box header with completed status
-    console.log(pretty.box(
-        `🧠 Agent Skill Kit v${VERSION}\n\n   ${pretty.brand.dim("Memory check completed ✓")}`,
-        { borderColor: "green", padding: { top: 0, bottom: 0, left: 1, right: 1 }, margin: { top: 1, bottom: 0, left: 0, right: 0 } }
-    ));
+    // Show Clack-based summary (consistent with CLI)
+    p.intro(pc.cyan(`🧠 Agent Skill Kit v${VERSION}`));
 
     // Save updated hit counts
     saveKnowledge(db);
 
-    // Show pretty summary
-    pretty.showScanSummary({
-        filesScanned: results.length,
-        ignored: ignoredCount,
-        violations: stats.total,
-        errors: stats.errors,
-        warnings: stats.warnings
-    });
+    // Summary using Clack
+    const summaryLines = [
+        `${pc.green("✓")} ${results.length} file(s) scanned`,
+        `${pc.dim("›")} ${ignoredCount} paths ignored`,
+        stats.total > 0
+            ? `${pc.red("✗")} ${stats.total} violation(s) found`
+            : `${pc.green("✓")} No violations found`
+    ];
+
+    if (stats.total === 0) {
+        summaryLines.push("");
+        summaryLines.push(pc.green("All clear! Your code looks great. 🎉"));
+    }
+
+    p.note(summaryLines.join("\n"), pc.dim("Memory check completed ✓"));
 
     if (stats.errors > 0) {
         process.exit(1);
