@@ -19,7 +19,7 @@ Launch the **Agent Skill Kit Smart CLI** - an interactive terminal interface for
 ### Step 1: Run Interactive CLI
 // turbo
 ```bash
-node packages/cli/bin/ag-smart.js
+agent
 ```
 
 ---

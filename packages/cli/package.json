@@ -5,8 +5,9 @@
     "type": "module",
     "main": "lib/config.js",
     "bin": {
-        "agent-skills-kit": "bin/ag-smart.js",
-        "ag-smart": "bin/ag-smart.js"
+        "agent": "bin/ag-smart.js",
+        "ag-smart": "bin/ag-smart.js",
+        "agent-skills-kit": "bin/ag-smart.js"
     },
     "scripts": {
         "test": "vitest run",
