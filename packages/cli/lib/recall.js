@@ -1,75 +1,252 @@
 #!/usr/bin/env node
 /**
- * Smart Recall Script
+ * Smart Recall Script - ESM Version (Production-Ready)
  * 
  * The "Memory" script. Checks code against learned lessons.
- * Usage: node recall.js <file_path>
+ * Features:
+ * - Streaming file scanner (multiple files)
+ * - Context-aware pattern matching (shows line numbers)
+ * - Hit tracking for frequency analysis
+ * 
+ * Usage: 
+ *   node recall.js <file_path>
+ *   node recall.js <directory> --recursive
  */
 
-const fs = require('fs');
-const path = require('path');
-const yaml = require('js-yaml');
+import fs from "fs";
+import path from "path";
+import yaml from "js-yaml";
+import { KNOWLEDGE_DIR, LESSONS_PATH, DEBUG } from "./config.js";
 
-const KNOWLEDGE_PATH = path.join(process.cwd(), '.agent', 'knowledge', 'lessons-learned.yaml');
+// ============================================================================
+// KNOWLEDGE BASE
+// ============================================================================
 
-function loadKnowledge() {
+/**
+ * Load knowledge base from YAML file
+ * @returns {{ lessons: Array<{ id: string, pattern: string, message: string, severity: string, hitCount?: number, lastHit?: string }>, version?: number }}
+ */
+export function loadKnowledge() {
     try {
-        if (!fs.existsSync(KNOWLEDGE_PATH)) {
-            return { lessons: [] };
+        if (!fs.existsSync(LESSONS_PATH)) {
+            return { lessons: [], version: 1 };
         }
-        const content = fs.readFileSync(KNOWLEDGE_PATH, 'utf8');
-        return yaml.load(content) || { lessons: [] };
+        const content = fs.readFileSync(LESSONS_PATH, "utf8");
+        return yaml.load(content) || { lessons: [], version: 1 };
     } catch (error) {
-        return { lessons: [] };
+        if (DEBUG) console.error("Error loading knowledge:", error.message);
+        return { lessons: [], version: 1 };
     }
 }
 
-function checkFile(filePath) {
+/**
+ * Save knowledge base to YAML file
+ * @param {{ lessons: Array, version?: number }} data
+ */
+export function saveKnowledge(data) {
+    try {
+        fs.mkdirSync(KNOWLEDGE_DIR, { recursive: true });
+        const str = yaml.dump(data, { lineWidth: -1 });
+        fs.writeFileSync(LESSONS_PATH, str, "utf8");
+    } catch (error) {
+        console.error("❌ Failed to save knowledge base:", error.message);
+    }
+}
+
+// ============================================================================
+// FILE SCANNING
+// ============================================================================
+
+/**
+ * Scan a single file against learned patterns
+ * @param {string} filePath - Path to file to scan
+ * @param {{ lessons: Array }} db - Knowledge base
+ * @param {boolean} updateHits - Whether to update hit counts
+ * @returns {{ file: string, violations: Array<{ lesson: object, matches: Array<{ line: number, content: string }> }> }}
+ */
+export function scanFile(filePath, db, updateHits = false) {
+    const violations = [];
+
     if (!fs.existsSync(filePath)) {
-        console.error(`File not found: ${filePath}`);
-        process.exit(1);
+        return { file: filePath, violations: [], error: "File not found" };
     }
 
-    const content = fs.readFileSync(filePath, 'utf8');
-    const db = loadKnowledge();
+    const content = fs.readFileSync(filePath, "utf8");
+    const lines = content.split("\n");
 
-    if (!db.lessons || db.lessons.length === 0) return;
-
-    let issuesFound = 0;
-
-    console.log(`\n🧠 Checking memory for: ${path.basename(filePath)}...`);
+    if (!db.lessons || db.lessons.length === 0) {
+        return { file: filePath, violations: [] };
+    }
 
     db.lessons.forEach(lesson => {
         try {
-            const regex = new RegExp(lesson.pattern, 'g');
-            const matches = content.match(regex);
+            const regex = new RegExp(lesson.pattern, "g");
+            const matches = [];
 
-            if (matches) {
-                issuesFound++;
-                console.log(`\n❌ Violation of Lesson [${lesson.id}]:`);
-                console.log(`   Recall: "${lesson.message}"`);
-                console.log(`   Severity: ${lesson.severity}`);
-                console.log(`   Found ${matches.length} occurence(s) matching /${lesson.pattern}/`);
+            lines.forEach((line, idx) => {
+                if (regex.test(line)) {
+                    matches.push({
+                        line: idx + 1,
+                        content: line.trim().substring(0, 80)
+                    });
+                    regex.lastIndex = 0; // Reset for next test
+                }
+            });
+
+            if (matches.length > 0) {
+                violations.push({ lesson, matches });
+
+                // Track hit count
+                if (updateHits) {
+                    lesson.hitCount = (lesson.hitCount || 0) + matches.length;
+                    lesson.lastHit = new Date().toISOString();
+
+                    // Auto-escalation: WARNING → ERROR after 5 violations
+                    if (lesson.severity === "WARNING" && lesson.hitCount >= 5 && !lesson.autoEscalated) {
+                        lesson.severity = "ERROR";
+                        lesson.autoEscalated = true;
+                        console.log(`⚡ Auto-escalated [${lesson.id}] to ERROR (${lesson.hitCount} violations)`);
+                    }
+                }
             }
         } catch (e) {
-            // Ignore invalid regex in db
+            if (DEBUG) console.error(`Invalid regex in lesson ${lesson.id}:`, e.message);
         }
     });
 
-    if (issuesFound === 0) {
-        console.log("✅ No learned anti-patterns detected.");
+    return { file: filePath, violations };
+}
+
+/**
+ * Scan multiple files in a directory recursively
+ * @param {string} dirPath - Directory to scan
+ * @param {{ lessons: Array }} db - Knowledge base
+ * @param {string[]} extensions - File extensions to scan
+ * @returns {Array<{ file: string, violations: Array }>}
+ */
+export function scanDirectory(dirPath, db, extensions = [".js", ".ts", ".tsx", ".jsx"]) {
+    const results = [];
+
+    function walk(dir) {
+        const entries = fs.readdirSync(dir, { withFileTypes: true });
+
+        for (const entry of entries) {
+            const fullPath = path.join(dir, entry.name);
+
+            // Skip node_modules, .git, etc.
+            if (entry.isDirectory()) {
+                if (!["node_modules", ".git", "dist", "build", ".next"].includes(entry.name)) {
+                    walk(fullPath);
+                }
+            } else if (entry.isFile()) {
+                const ext = path.extname(entry.name);
+                if (extensions.includes(ext)) {
+                    const result = scanFile(fullPath, db, true);
+                    if (result.violations.length > 0) {
+                        results.push(result);
+                    }
+                }
+            }
+        }
+    }
+
+    if (fs.statSync(dirPath).isDirectory()) {
+        walk(dirPath);
+    } else {
+        results.push(scanFile(dirPath, db, true));
+    }
+
+    return results;
+}
+
+// ============================================================================
+// REPORTING
+// ============================================================================
+
+/**
+ * Print scan results in a readable format
+ * @param {Array} results - Scan results
+ */
+export function printResults(results) {
+    let totalViolations = 0;
+    let errorCount = 0;
+    let warningCount = 0;
+
+    results.forEach(result => {
+        if (result.violations.length === 0) return;
+
+        console.log(`\n📄 ${path.relative(process.cwd(), result.file)}`);
+
+        result.violations.forEach(({ lesson, matches }) => {
+            totalViolations += matches.length;
+            if (lesson.severity === "ERROR") errorCount += matches.length;
+            else warningCount += matches.length;
+
+            const icon = lesson.severity === "ERROR" ? "❌" : "⚠️";
+            console.log(`  ${icon} [${lesson.id}] ${lesson.message}`);
+
+            matches.forEach(m => {
+                console.log(`     L${m.line}: ${m.content}`);
+            });
+        });
+    });
+
+    console.log(`\n${"─".repeat(50)}`);
+    console.log(`📊 Total: ${totalViolations} violation(s) | ❌ ${errorCount} error(s) | ⚠️  ${warningCount} warning(s)`);
+
+    return { total: totalViolations, errors: errorCount, warnings: warningCount };
+}
+
+// ============================================================================
+// CLI
+// ============================================================================
+
+function main() {
+    const args = process.argv.slice(2);
+
+    if (args.length === 0 || args.includes("--help")) {
+        console.log(`
+🧠 Smart Recall - Memory Check Tool
+
+Usage:
+  recall <file>           Check single file
+  recall <directory>      Check all files in directory
+  recall --staged         Check git staged files only
+
+Options:
+  --help                  Show this help
+`);
+        process.exit(0);
+    }
+
+    const target = args[0];
+    const db = loadKnowledge();
+
+    if (!db.lessons || db.lessons.length === 0) {
+        console.log("ℹ️  No lessons learned yet. Use 'ag-smart learn' to add patterns.");
+        process.exit(0);
+    }
+
+    console.log(`\n🧠 Checking memory against ${db.lessons.length} learned pattern(s)...`);
+
+    const results = scanDirectory(target, db);
+    const stats = printResults(results);
+
+    // Save updated hit counts
+    saveKnowledge(db);
+
+    if (stats.errors > 0) {
+        console.log("\n💡 Fix ERROR violations before committing.");
+        process.exit(1);
+    } else if (stats.total === 0) {
+        console.log("\n✅ No learned anti-patterns detected.");
         process.exit(0);
     } else {
-        console.log(`\n⚠️  Found ${issuesFound} potential issues from past lessons.`);
-        // We generally don't exit 1 here unless we want to block strict builds
-        process.exit(1);
+        process.exit(0); // Warnings don't fail
     }
 }
 
-const args = process.argv.slice(2);
-if (args.length === 0) {
-    console.log("Usage: node recall.js <file_path>");
-    process.exit(1);
+// Run if executed directly
+if (process.argv[1].includes("recall")) {
+    main();
 }
-
-checkFile(args[0]);

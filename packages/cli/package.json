@@ -19,5 +19,5 @@
         "vitest": "^1.6.0"
     },
     "author": "Agent Skills Kit Authors",
-    "license": "UNLICENSED"
+    "license": "MIT"
 }
