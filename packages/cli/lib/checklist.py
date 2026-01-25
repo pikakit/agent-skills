@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Master Checklist Runner - Agent Skills Kit
+Master Checklist Runner - Agent Skill Kit
 ==========================================
 
 Orchestrates all validation scripts in priority order.
@@ -166,7 +166,7 @@ def print_summary(results: List[dict]):
 
 def main():
     parser = argparse.ArgumentParser(
-        description="Run Agent Skills Kit validation checklist",
+        description="Run Agent Skill Kit validation checklist",
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog="""
 Examples:

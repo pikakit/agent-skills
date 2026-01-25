@@ -50,7 +50,7 @@ function run(script, args = [], baseDir = SCRIPTS_DIR) {
 
 function printHelp() {
     console.log(`
-🤖 Agent Skills Kit CLI v${VERSION}
+🤖 Agent Skill Kit CLI v${VERSION}
 
 Usage: ag-smart <command> [options]
 

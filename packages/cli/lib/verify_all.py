@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Full Verification Suite - Agent Skills Kit
+Full Verification Suite - Agent Skill Kit
 ==========================================
 
 Runs COMPLETE validation including all checks + performance + E2E.
@@ -262,7 +262,7 @@ def print_final_report(results: List[dict], start_time: datetime):
 
 def main():
     parser = argparse.ArgumentParser(
-        description="Run complete Agent Skills Kit verification suite",
+        description="Run complete Agent Skill Kit verification suite",
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog="""
 Examples:

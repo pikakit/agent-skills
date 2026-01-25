@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Session Manager - Agent Skills Kit
+Session Manager - Agent Skill Kit
 =================================
 Analyzes project state, detects tech stack, tracks file statistics, and provides
 a summary of the current session.

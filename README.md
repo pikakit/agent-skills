@@ -1,4 +1,4 @@
-# Agent Skills Kit
+# Agent Skill Kit
 
 > **Biến AI Agent của bạn thành chuyên gia đa lĩnh vực chỉ với 1 dòng lệnh**
 
@@ -65,7 +65,7 @@ Từ ý tưởng đến production trong vài phút:
 
 ## 🏆 Ưu Điểm Vượt Trội (Advantages)
 
-| So Với | Agent Skills Kit | Các Giải Pháp Khác |
+| So Với | Agent Skill Kit | Các Giải Pháp Khác |
 |--------|------------------|-------------------|
 | **Số lượng skills** | 48+ skills | 5-10 skills |
 | **Specialist agents** | 20 agents chuyên biệt | 1-3 agents chung |
@@ -252,13 +252,13 @@ your-project/
 
 ## 🎬 Ví Dụ Thực Tế
 
-**Trước (không có Agent Skills Kit):**
+**Trước (không có Agent Skill Kit):**
 ```
 You: "Thêm authentication cho app"
 AI: [Code cơ bản, thiếu security, không có tests]
 ```
 
-**Sau (với Agent Skills Kit):**
+**Sau (với Agent Skill Kit):**
 ```
 You: "Thêm authentication cho app"
 AI: 🤖 Applying @security-auditor + @backend-specialist...
