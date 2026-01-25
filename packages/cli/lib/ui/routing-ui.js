@@ -243,24 +243,24 @@ export function analyzeAndShowRouting(userRequest) {
         messagePool = ROUTING_MESSAGES.moderate;
     }
 
-    // Select agents based on domains
+    // Select agents based on domains (FAANG-style short names)
     const agentMap = {
-        "security": "security-auditor",
-        "frontend": "frontend-specialist",
-        "backend": "backend-specialist",
-        "mobile": "mobile-developer",
-        "database": "database-architect",
-        "testing": "test-engineer",
-        "debug": "debugger",
-        "performance": "performance-optimizer",
-        "analysis": "code-archaeologist"
+        "security": "security",
+        "frontend": "frontend",
+        "backend": "backend",
+        "mobile": "mobile",
+        "database": "database",
+        "testing": "testing",
+        "debug": "debug",
+        "performance": "perf",
+        "analysis": "analyst"
     };
 
-    let selectedAgents = domains.map(d => agentMap[d] || "orchestrator");
+    let selectedAgents = domains.map(d => agentMap[d] || "lead");
 
-    // If complex or no agents, add orchestrator
+    // If complex or no agents, add lead
     if (complexity === "COMPLEX" || selectedAgents.length === 0) {
-        selectedAgents = ["orchestrator", ...selectedAgents];
+        selectedAgents = ["lead", ...selectedAgents];
     }
 
     // Remove duplicates

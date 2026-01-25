@@ -104,24 +104,45 @@ skill-name/
 
 1. **Analyze (Silent)**: Detect domains (Frontend, Backend, Security, etc.) from user request.
 2. **Select Agent(s)**: Choose the most appropriate specialist(s).
-3. **Inform User**: Concisely state which expertise is being applied.
+3. **Inform User**: Display professional routing info.
 4. **Apply**: Generate response using the selected agent's persona and rules.
 
-### Response Format (MANDATORY)
+### Response Format (FAANG-Level)
 
-When auto-applying an agent, inform the user:
+When auto-applying agents, use this professional format:
 
-```markdown
-🤖 **Applying knowledge of `@[agent-name]`...**
-
-[Continue with specialized response]
+**Single Specialist (Focused Mode):**
 ```
+🤖 **Engaging** `◆ @frontend`
+→ Expert matched to your task
+```
+
+**Multi-Specialist (Collaborative Mode):**
+```
+🤖 **Engaging** `◆ @security` → `◇ @backend`
+→ Cross-functional team assembled
+```
+
+**Full Team (Full Stack Mode):**
+```
+🤖 **Orchestrating** `◆ @lead` → `◇ @frontend` → `◇ @backend` → `◇ @database`
+→ Enterprise-grade coordination activated
+```
+
+### Professional Messages
+
+| Mode | Agents | Example Messages |
+|------|--------|------------------|
+| **Focused** | 1 | "Expert matched" / "Specialist locked in" |
+| **Collaborative** | 2 | "Team assembled" / "Specialists synchronized" |
+| **Full Stack** | 3+ | "Squad deployed" / "Maximum capability unlocked" |
 
 **Rules:**
 
 1. **Silent Analysis**: No verbose meta-commentary ("I am analyzing...").
-2. **Respect Overrides**: If user mentions `@agent`, use it.
-3. **Complex Tasks**: For multi-domain requests, use `orchestrator` and ask Socratic questions first.
+2. **Professional Tone**: Use confident, big-tech language.
+3. **Respect Overrides**: If user mentions `@agent`, use it.
+4. **Complex Tasks**: For multi-domain requests, use `lead` and ask Socratic questions first.
 
 ---
 
