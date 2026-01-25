@@ -233,6 +233,7 @@ export function printResults(results) {
 
 function main() {
     const args = process.argv.slice(2);
+    const jsonMode = args.includes("--json");
 
     if (args.length === 0 || args.includes("--help")) {
         console.log(`
@@ -244,12 +245,13 @@ Usage:
   recall --staged         Check git staged files only
 
 Options:
+  --json                  Output JSON for CI/CD
   --help                  Show this help
 `);
         process.exit(0);
     }
 
-    const target = args[0];
+    const target = args.find(a => !a.startsWith("--")) || ".";
     const db = loadKnowledge();
 
     if (!db.lessons || db.lessons.length === 0) {
@@ -260,6 +262,30 @@ Options:
     // Scan first
     const { results, ignoredCount } = scanDirectory(target, db);
     const stats = printResults(results);
+
+    // JSON output mode for CI/CD
+    if (jsonMode) {
+        const output = {
+            version: VERSION,
+            filesScanned: results.length,
+            ignored: ignoredCount,
+            violations: stats.total,
+            errors: stats.errors,
+            warnings: stats.warnings,
+            passed: stats.errors === 0,
+            details: results.filter(r => r.violations.length > 0).map(r => ({
+                file: r.file,
+                violations: r.violations.map(v => ({
+                    id: v.lesson.id,
+                    severity: v.lesson.severity,
+                    message: v.lesson.message,
+                    matches: v.matches.length
+                }))
+            }))
+        };
+        console.log(JSON.stringify(output, null, 2));
+        process.exit(stats.errors > 0 ? 1 : 0);
+    }
 
     // Show Clack-based summary (consistent with CLI)
     p.intro(pc.cyan(`🧠 Agent Skill Kit v${VERSION}`));
