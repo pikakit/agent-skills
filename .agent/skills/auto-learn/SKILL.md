@@ -1,91 +1,132 @@
 ---
 name: auto-learn
-description: Automatically learn from mistakes in conversation. Detects when user points out errors, analyzes patterns, and adds lessons to lessons-learned.yaml. Use when user says "lỗi", "sai", "mistake", "wrong", "fix this", or indicates AI made an error.
+description: Tự động học từ mistakes trong conversation. Detect khi user chỉ ra lỗi, phân tích pattern, và add vào lessons-learned.yaml mà không cần lệnh thủ công.
+triggers:
+  - mistake detection
+  - error learning
+  - auto learn from conversation
 ---
 
-# Auto-Learn Skill
+# 🧠 Auto-Learn Skill
 
-This skill enables the agent to learn from mistakes during conversation and persist that knowledge for future sessions.
+> **Tự động học từ mistakes - AI càng dùng càng thông minh**
 
-## Goal
+## Khi nào kích hoạt
 
-To automatically detect when the agent makes a mistake, extract the lesson learned, and add it to the knowledge base so the same mistake is never repeated.
+Skill này được kích hoạt khi detect **Mistake Indicators** trong conversation:
 
-## Instructions
+### Trigger Keywords (Vietnamese)
+- "lỗi", "sai", "hỏng", "không đúng", "sửa lại"
+- "lỗi nghiêm trọng", "mistake", "wrong"
+- "đây là lỗi", "bạn làm sai", "không phải vậy"
 
-1. **Detect Mistake Indicators**:
-   - Vietnamese: "lỗi", "sai", "hỏng", "không đúng", "sửa lại", "lỗi nghiêm trọng"
-   - English: "mistake", "wrong", "fix this", "that's incorrect", "you broke"
-   - User explicitly points out wrong output vs expected
-   - User requests revert/rollback
+### Trigger Patterns
+- User chỉ ra output sai so với expected
+- User yêu cầu revert/rollback
+- User nói "fix", "sửa" sau khi AI làm gì đó
 
-2. **Analyze the Mistake**:
-   ```
-   What did I do wrong? (Action)
-   What was the incorrect result? (Mistake)
-   What should I have done instead? (Correction)
-   ```
+---
 
-3. **Extract Lesson Entry**:
-   ```yaml
-   - id: LEARN-{next_number}
-     pattern: {keyword or regex describing the mistake}
-     message: "{Concise description: WRONG action + CORRECT action}"
-     severity: ERROR | WARNING
-     category: file-safety | code-quality | architecture | communication
-     source: auto-conversation
-     addedAt: {ISO timestamp}
-   ```
+## Protocol: Auto-Learn from Mistakes
 
-4. **Add to Knowledge Base**:
-   Append the entry to `.agent/knowledge/lessons-learned.yaml`
+### Step 1: Detect Mistake
 
-5. **Confirm to User**:
-   Say: `📚 Đã học: [LEARN-XXX] - {summary}`
+Khi phát hiện trigger, **NGAY LẬP TỨC** phân tích:
+
+```
+1. Tôi vừa làm gì? (Action)
+2. Kết quả sai như thế nào? (Mistake)
+3. User muốn gì thay vào đó? (Correction)
+```
+
+### Step 2: Extract Lesson
+
+Format lesson entry:
+
+```yaml
+- id: LEARN-{next_number}
+  pattern: {keyword hoặc regex mô tả mistake}
+  message: "{Mô tả ngắn gọn: SAI gì + ĐÚNG là gì}"
+  severity: ERROR | WARNING
+  category: {file-safety | code-quality | architecture | communication}
+  source: auto-conversation
+  addedAt: {ISO timestamp}
+```
+
+### Step 3: Add to Knowledge Base
+
+Append entry vào: `.agent/knowledge/lessons-learned.yaml`
+
+### Step 4: Confirm (Inline)
+
+Thông báo ngắn gọn:
+
+```
+📚 Đã học: [LEARN-XXX] - {message tóm tắt}
+```
+
+---
 
 ## Severity Guidelines
 
-| Severity | When to Use |
-|----------|-------------|
-| **ERROR** | Data loss, file corruption, completely wrong output |
-| **WARNING** | Suboptimal but no direct harm |
+| Severity | Khi nào dùng |
+|----------|--------------|
+| **ERROR** | Data loss, file bị hỏng, output sai hoàn toàn |
+| **WARNING** | Suboptimal nhưng chưa gây hại trực tiếp |
+
+---
 
 ## Category Guidelines
 
-| Category | Examples |
-|----------|----------|
-| `file-safety` | Deleted wrong file, overwrote data |
-| `code-quality` | Code doesn't follow convention |
-| `architecture` | Wrong design decision |
-| `communication` | Misunderstood user request |
-| `branding` | Wrong naming, terminology |
+| Category | Ví dụ |
+|----------|-------|
+| `file-safety` | Xóa file không đúng, overwrite data |
+| `code-quality` | Code không follow convention |
+| `architecture` | Design decision sai |
+| `communication` | Hiểu sai yêu cầu user |
+| `branding` | Naming, terminology không đúng |
 
-## Example
+---
 
-**User**: "Đây là lỗi nghiêm trọng, bạn tạo file mới thay vì rename"
+## Example Lessons
 
-**Agent Response**:
+### Mistake: Tạo file mới thay vì rename
 ```yaml
-# Extracted lesson:
 - id: LEARN-003
   pattern: rebranding
   message: "When rebranding: NEVER create new simplified file. COPY original full content, then edit branding only."
   severity: ERROR
   category: file-safety
 ```
-📚 Đã học: [LEARN-003] - When rebranding: copy original first, don't create new simplified file
 
-## Constraints
+### Mistake: Không so sánh trước khi thay thế
+```yaml
+- id: LEARN-004
+  pattern: replace file
+  message: "Before replacing any file: COMPARE line counts and content. Original 375 lines → New 163 lines = DATA LOSS."
+  severity: ERROR
+  category: file-safety
+```
 
-- **Do NOT** add lesson for every small feedback (only real mistakes)
-- **Do NOT** duplicate existing lessons
-- **Do NOT** add generic lessons like "code better"
-- **MUST** include grep-able pattern
-- **MUST** match severity to actual impact
+---
 
-## Integration
+## Integration với ag-smart
 
-Lessons are automatically used by:
+Lessons được tự động pick up bởi:
 - `ag-smart recall` - scan for violations
-- `ag-smart stats` - display hit counts
+- `ag-smart stats` - hiển thị hit counts
 - `ag-smart watch` - real-time monitoring
+
+---
+
+## DO NOT
+
+- ❌ Add lesson cho mọi feedback nhỏ (chỉ khi thực sự là mistake)
+- ❌ Duplicate lessons đã tồn tại
+- ❌ Add lesson quá generic ("code better")
+
+## DO
+
+- ✅ Add lesson cụ thể, actionable
+- ✅ Include pattern có thể grep được
+- ✅ Severity phù hợp với impact
