@@ -337,7 +337,7 @@ For details, see [scripts/README.md](scripts/README.md)
 | Metric | Value |
 | ------ | ----- |
 | **Total Agents** | 20 |
-| **Total Skills** | 48 |
+| **Total Skills** | 49 |
 | **Total Workflows** | 14 |
 | **Total Scripts** | 4 (master) + 18 (skill-level) |
 | **Coverage** | ~95% web/mobile development |
@@ -349,7 +349,7 @@ For details, see [scripts/README.md](scripts/README.md)
 ### Agents & Skills
 
 - **Masters**: `orchestrator`, `project-planner`, `security-auditor` (Cyber/Audit), `backend-specialist` (API/DB), `frontend-specialist` (UI/UX), `mobile-developer`, `debugger`, `game-developer`
-- **Key Skills**: `clean-code`, `brainstorming`, `app-builder`, `frontend-design`, `mobile-design`, `plan-writing`, `problem-solving`, `context-engineering`, `skill-creator`
+- **Key Skills**: `clean-code`, `brainstorming`, `app-builder`, `frontend-design`, `mobile-design`, `plan-writing`, `problem-solving`, `context-engineering`, `skill-creator`, `auto-learn`
 
 ### Key Scripts
 
