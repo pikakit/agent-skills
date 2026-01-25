@@ -7,11 +7,22 @@ lessons:
     correction: example correction
     reason: This is a placeholder lesson to initialize the structure.
     hitCount: 3716
-    lastHit: '2026-01-25T04:54:35.129Z'
+    lastHit: "2026-01-25T04:54:35.129Z"
   - id: LEARN-002
     pattern: console\.log
     message: No console logs in production
     severity: high
-    addedAt: '2026-01-24T11:33:54.048Z'
+    addedAt: "2026-01-24T11:33:54.048Z"
     hitCount: 201
-    lastHit: '2026-01-25T04:54:35.130Z'
+    lastHit: "2026-01-25T04:54:35.130Z"
+  - id: LEARN-003
+    pattern: rebranding
+    message: "When rebranding/renaming config files: NEVER create new simplified file. Always COPY original (full content) first, then only change branding text. Mistake: created 163-line file to replace 375-line original = data loss."
+    severity: ERROR
+    category: file-safety
+    source: manual
+    hitCount: 0
+    lastHit: null
+    autoEscalated: false
+    addedAt: "2026-01-25T05:37:29.714Z"
+
