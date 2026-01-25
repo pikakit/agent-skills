@@ -236,9 +236,9 @@ ag-smart sync-skills
 
 ```
 your-project/
-├── AGENT_SKILL_KIT.md    # AI behavior configuration
-├── SAFETY_PROTOCOL.md    # Safety rules  
+├── AGENT_SKILL_KIT.md    # AI behavior configuration (copy from .agent/GEMINI.md)
 └── .agent/
+    ├── GEMINI.md      # Original config (source of truth)
     ├── skills/        # 48 domain skills
     ├── agents/        # 20 specialists
     ├── workflows/     # 14 slash commands
