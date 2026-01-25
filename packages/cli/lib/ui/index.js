@@ -1,12 +1,14 @@
 /**
- * Main Menu UI - Interactive CLI interface
+ * Main Menu UI - Interactive CLI interface with custom icons
  */
-import { p, ICONS, showHeader, handleCancel } from "./common.js";
+import { customSelect, pc } from "./custom-select.js";
+import { ICONS, showHeader, handleCancel } from "./common.js";
 
 // Import UI modules
 import { runLearnUI } from "./learn-ui.js";
 import { runStatsUI } from "./stats-ui.js";
 import { runRecallUI } from "./recall-ui.js";
+import * as p from "@clack/prompts";
 
 // ============================================================================
 // MAIN MENU
@@ -18,19 +20,23 @@ import { runRecallUI } from "./recall-ui.js";
 export async function showMainMenu() {
     showHeader();
 
-    const action = await p.select({
+    const action = await customSelect({
         message: "What would you like to do?",
-        options: [
-            { value: "learn", label: "[+]  Learn", hint: "Teach a new pattern" },
-            { value: "recall", label: "[?]  Recall", hint: "Scan for violations" },
-            { value: "stats", label: "[#]  Stats", hint: "View statistics" },
-            { value: "audit", label: "[!]  Audit", hint: "Run compliance check" },
-            { value: "watch", label: "[~]  Watch", hint: "Real-time monitoring" },
-            { value: "exit", label: "[x]  Exit", hint: "Close the CLI" }
+        items: [
+            { value: "learn", label: "Learn", hint: "Teach a new pattern" },
+            { value: "recall", label: "Recall", hint: "Scan for violations" },
+            { value: "stats", label: "Stats", hint: "View statistics" },
+            { value: "audit", label: "Audit", hint: "Run compliance check" },
+            { value: "watch", label: "Watch", hint: "Real-time monitoring" },
+            { value: "exit", label: "Exit", hint: "Close the CLI" }
         ]
     });
 
-    handleCancel(action);
+    // Handle CTRL+C
+    if (action === undefined || action === null) {
+        p.cancel("Operation cancelled.");
+        process.exit(0);
+    }
 
     switch (action) {
         case "learn":
