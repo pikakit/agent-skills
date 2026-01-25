@@ -16,7 +16,8 @@
 import fs from "fs";
 import path from "path";
 import yaml from "js-yaml";
-import { KNOWLEDGE_DIR, LESSONS_PATH, DEBUG } from "./config.js";
+import { KNOWLEDGE_DIR, LESSONS_PATH, DEBUG, cwd } from "./config.js";
+import { loadIgnorePatterns, isIgnored } from "./ignore.js";
 
 // ============================================================================
 // KNOWLEDGE BASE
@@ -138,22 +139,33 @@ export function scanFile(filePath, db, updateHits = false) {
  * @param {string} dirPath - Directory to scan
  * @param {{ lessons: Array }} db - Knowledge base
  * @param {string[]} extensions - File extensions to scan
- * @returns {Array<{ file: string, violations: Array }>}
+ * @returns {{ results: Array<{ file: string, violations: Array }>, ignoredCount: number }}
  */
 export function scanDirectory(dirPath, db, extensions = [".js", ".ts", ".tsx", ".jsx"]) {
     const results = [];
+    const ignorePatterns = loadIgnorePatterns(dirPath);
+    let ignoredCount = 0;
 
     function walk(dir) {
-        const entries = fs.readdirSync(dir, { withFileTypes: true });
+        let entries;
+        try {
+            entries = fs.readdirSync(dir, { withFileTypes: true });
+        } catch (e) {
+            return; // Skip unreadable directories
+        }
 
         for (const entry of entries) {
             const fullPath = path.join(dir, entry.name);
+            const relativePath = path.relative(dirPath, fullPath);
 
-            // Skip node_modules, .git, etc.
+            // Check .agentignore patterns
+            if (isIgnored(relativePath, ignorePatterns)) {
+                ignoredCount++;
+                continue;
+            }
+
             if (entry.isDirectory()) {
-                if (!["node_modules", ".git", "dist", "build", ".next"].includes(entry.name)) {
-                    walk(fullPath);
-                }
+                walk(fullPath);
             } else if (entry.isFile()) {
                 const ext = path.extname(entry.name);
                 if (extensions.includes(ext)) {
@@ -172,7 +184,7 @@ export function scanDirectory(dirPath, db, extensions = [".js", ".ts", ".tsx", "
         results.push(scanFile(dirPath, db, true));
     }
 
-    return results;
+    return { results, ignoredCount };
 }
 
 // ============================================================================
@@ -245,7 +257,12 @@ Options:
 
     console.log(`\n🧠 Checking memory against ${db.lessons.length} learned pattern(s)...`);
 
-    const results = scanDirectory(target, db);
+    const { results, ignoredCount } = scanDirectory(target, db);
+
+    if (ignoredCount > 0) {
+        console.log(`📁 Skipped ${ignoredCount} ignored paths (via .agentignore)`);
+    }
+
     const stats = printResults(results);
 
     // Save updated hit counts

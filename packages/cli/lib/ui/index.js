@@ -9,6 +9,8 @@ import { runLearnUI } from "./learn-ui.js";
 import { runStatsUI } from "./stats-ui.js";
 import { runRecallUI } from "./recall-ui.js";
 import { runSettingsUI } from "./settings-ui.js";
+import { runBackupUI } from "./backup-ui.js";
+import { runExportUI } from "./export-ui.js";
 import * as p from "@clack/prompts";
 
 // ============================================================================
@@ -30,6 +32,8 @@ export async function showMainMenu() {
             { value: "audit", label: "Audit", hint: "Run compliance check" },
             { value: "watch", label: "Watch", hint: "Real-time monitoring" },
             { value: "settings", label: "Settings", hint: "Configure agent behavior" },
+            { value: "backup", label: "Backup", hint: "Backup & restore data" },
+            { value: "export", label: "Export", hint: "Export & import data" },
             { value: "exit", label: "Exit", hint: "Close the CLI" }
         ]
     });
@@ -58,6 +62,12 @@ export async function showMainMenu() {
             break;
         case "settings":
             await runSettingsUI();
+            break;
+        case "backup":
+            await runBackupUI();
+            break;
+        case "export":
+            await runExportUI();
             break;
         case "exit":
             p.outro("Goodbye! 👋");

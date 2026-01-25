@@ -15,6 +15,10 @@ const ITEM_ICONS = {
     audit: "▲",
     watch: "○",
     settings: "⚙",
+    autoLearning: "◆",
+    autoUpdating: "◇",
+    threshold: "▣",
+    back: "◀",
     exit: "×"
 };
 
@@ -25,7 +29,11 @@ const ITEM_COLORS = {
     audit: pc.red,
     watch: pc.magenta,
     settings: pc.cyan,
-    exit: pc.red // Changed to red as requested
+    autoLearning: pc.green,
+    autoUpdating: pc.blue,
+    threshold: pc.yellow,
+    back: pc.gray,
+    exit: pc.red
 };
 
 // ============================================================================
@@ -53,12 +61,11 @@ export async function customSelect(config) {
             const body = items.map((item) => {
                 const isActive = this.value === item.value;
                 const cursor = isActive ? pc.cyan("❯") : " ";
-                const baseIcon = ITEM_ICONS[item.value] || "•";
                 const colorFn = ITEM_COLORS[item.value] || pc.gray;
 
-                // Icon có màu chỉ khi được select, còn lại gray
-                // Pad icon to ensure alignment
-                const iconStr = String(baseIcon).padEnd(2, " ");
+                // ◆ filled khi select (có màu), ◇ outline khi không select (gray)
+                const iconChar = isActive ? "◆" : "◇";
+                const iconStr = iconChar.padEnd(2, " ");
                 const icon = isActive ? colorFn(iconStr) : pc.gray(iconStr);
 
                 const label = isActive ? pc.bold(pc.white(item.label)) : pc.dim(item.label);

@@ -1,0 +1,46 @@
+# Agent Skill Kit Ignore File
+# Patterns here will be excluded from scan
+
+# Dependencies
+node_modules/
+.pnpm/
+bower_components/
+
+# Build outputs
+dist/
+build/
+.next/
+out/
+
+# Version control
+.git/
+.svn/
+
+# IDE and editors
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+logs/
+
+# Test coverage
+coverage/
+.nyc_output/
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+
+# Package files
+*.tgz
+package-lock.json
+yarn.lock
+pnpm-lock.yaml

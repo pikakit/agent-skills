@@ -1,9 +1,10 @@
 /**
  * Settings UI - Toggle Auto-Learning and Auto-Updating
+ * Uses Clack-style icons for consistency
  */
 import * as p from "@clack/prompts";
 import pc from "picocolors";
-import { ICONS } from "./common.js";
+import { customSelect } from "./custom-select.js";
 import {
     loadSettings,
     saveSettings,
@@ -16,41 +17,41 @@ import {
 // ============================================================================
 
 /**
- * Interactive settings menu
+ * Interactive settings menu with Clack icons
  */
 export async function runSettingsUI() {
     while (true) {
         const settings = loadSettings();
 
-        p.intro(`${ICONS.settings || "⚙️"} Settings`);
+        p.intro("Settings (Press ESC to exit)");
 
-        const action = await p.select({
+        const action = await customSelect({
             message: "Configure Agent behavior:",
-            options: [
+            items: [
                 {
                     value: "autoLearning",
-                    label: `🎓 Auto-Learning: ${settings.autoLearning ? pc.green("[ON]") : pc.red("[OFF]")}`,
-                    hint: "Agent learns from your mistakes automatically"
+                    label: `Auto-Learning: ${settings.autoLearning ? pc.green("[ON]") : pc.red("[OFF]")}`,
+                    hint: "Learn from mistakes"
                 },
                 {
                     value: "autoUpdating",
-                    label: `🔄 Auto-Updating: ${settings.autoUpdating ? pc.green("[ON]") : pc.red("[OFF]")}`,
-                    hint: "Agent proposes skill updates when patterns are valuable"
+                    label: `Auto-Updating: ${settings.autoUpdating ? pc.green("[ON]") : pc.red("[OFF]")}`,
+                    hint: "Propose skill updates"
                 },
                 {
                     value: "threshold",
-                    label: `📊 Update Threshold: ${settings.updateThreshold}`,
-                    hint: "Hits needed before proposing update"
+                    label: `Update Threshold: ${settings.updateThreshold}`,
+                    hint: "Hits before update"
                 },
                 {
                     value: "back",
-                    label: "← Back to main menu",
-                    hint: "Return to main menu"
+                    label: "Back to main menu",
+                    hint: "Return"
                 }
             ]
         });
 
-        if (p.isCancel(action) || action === "back") {
+        if (action === undefined || action === null || action === "back") {
             return;
         }
 
@@ -59,7 +60,7 @@ export async function runSettingsUI() {
                 const newValue = toggleAutoLearning();
                 p.note(
                     `Auto-Learning is now ${newValue ? pc.green("ON") : pc.red("OFF")}`,
-                    "🎓 Setting Updated"
+                    "Setting Updated"
                 );
                 break;
             }
@@ -72,12 +73,12 @@ export async function runSettingsUI() {
                         `• Analyze learned lessons\n` +
                         `• Generate update proposals\n` +
                         `• Notify you for approval`,
-                        "🔄 Setting Updated"
+                        "Setting Updated"
                     );
                 } else {
                     p.note(
                         `Auto-Updating is now ${pc.red("OFF")}`,
-                        "🔄 Setting Updated"
+                        "Setting Updated"
                     );
                 }
                 break;
@@ -100,7 +101,7 @@ export async function runSettingsUI() {
                     saveSettings(settings);
                     p.note(
                         `Update threshold set to ${settings.updateThreshold}`,
-                        "📊 Setting Updated"
+                        "Setting Updated"
                     );
                 }
                 break;
