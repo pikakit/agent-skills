@@ -70,7 +70,7 @@ Từ ý tưởng đến production trong vài phút:
 | **Số lượng skills** | 48+ skills | 5-10 skills |
 | **Specialist agents** | 20 agents chuyên biệt | 1-3 agents chung |
 | **Slash commands** | 14 workflows có sẵn | Tự viết |
-| **Cross-platform** | Antigravity, Claude Code (coming) | Single platform |
+| **Cross-platform** | Gemini CLI, Claude Code (coming) | Single platform |
 | **Self-learning** | ✅ Học từ sai lầm | ❌ |
 | **Governance** | ✅ Constitution system | ❌ |
 

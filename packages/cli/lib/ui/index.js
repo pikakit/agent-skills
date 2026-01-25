@@ -14,6 +14,7 @@ import { runExportUI } from "./export-ui.js";
 import { runProposalsUI } from "./proposals-ui.js";
 import { runCompletionUI } from "./completion-ui.js";
 import { runInitUI } from "./init-ui.js";
+import routingUI from "./routing-ui.js";
 import { countPendingProposals } from "../proposals.js";
 import * as p from "@clack/prompts";
 

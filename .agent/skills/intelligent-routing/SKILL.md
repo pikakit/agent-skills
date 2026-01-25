@@ -80,21 +80,55 @@ function analyzeRequest(userMessage) {
 }
 ```
 
-## 4. Response Format
+## 4. Response Format (FAANG-Level)
 
-**When auto-selecting an agent, inform the user concisely:**
+**When auto-selecting agents, display professional routing info:**
 
-```markdown
-🤖 **Applying knowledge of `@security-auditor` + `@backend-specialist`...**
+```
+◇  🤖 Agent Routing ────────────────────────────────╮
+│                                                   │
+│  Agents     ◆ @security-auditor  →  ◇ @backend    │
+│  Domains    security · backend                    │
+│  Mode       ●● Collaborative                      │
+│                                                   │
+│  → Cross-functional team assembled                │
+│                                                   │
+├───────────────────────────────────────────────────╯
+```
 
-[Proceed with specialized response]
+### Complexity Modes
+
+| Mode | Icon | When Used | Message Style |
+|------|------|-----------|---------------|
+| **Focused** | `●` | Single specialist | "Expert matched to your task" |
+| **Collaborative** | `●●` | 2 specialists | "Cross-functional team assembled" |
+| **Full Stack** | `●●●` | 3+ specialists | "Enterprise-grade orchestration" |
+
+### Professional Messages
+
+```javascript
+// Focused (Single agent)
+"Specialist locked in"
+"Expert matched to your task"
+"Precision routing complete"
+
+// Collaborative (2 agents)
+"Cross-functional team assembled"
+"Specialists synchronized"
+"Multi-domain expertise activated"
+
+// Full Stack (3+ agents)
+"Full engineering squad deployed"
+"Maximum capability unlocked"
+"Enterprise-grade orchestration"
 ```
 
 **Benefits:**
 
-- ✅ User sees which expertise is being applied
-- ✅ Transparent decision-making
-- ✅ Still automatic (no /commands needed)
+- ✅ Professional, FAANG-level experience
+- ✅ Clear visual hierarchy with Clack UI
+- ✅ 🤖 branding shows AI assistance
+- ✅ Transparent specialist selection
 
 ## Domain Detection Rules
 
@@ -317,19 +351,65 @@ Show selection reasoning:
 - Reasoning: [why]
 ```
 
+## CLI Integration
+
+### Using routing-ui.js
+
+The routing UI module provides FAANG-level visual feedback:
+
+```javascript
+import { 
+    showRoutingResult,
+    showRoutingInline,
+    showAgentIntro,
+    showAgentOutro,
+    analyzeAndShowRouting
+} from "./ui/routing-ui.js";
+
+// Show routing box
+showRoutingResult({
+    selectedAgents: ["security-auditor", "backend-specialist"],
+    domains: ["security", "backend"],
+    complexity: "MODERATE",
+    reasoning: "Cross-functional team assembled"
+});
+
+// Inline engagement
+showRoutingInline(["orchestrator", "frontend-specialist"]);
+
+// Auto-analyze from request
+analyzeAndShowRouting("Implement secure OAuth2 login");
+```
+
+### Available Functions
+
+| Function | Purpose |
+|----------|---------|
+| `showRoutingResult()` | Full routing box with Clack styling |
+| `showRoutingInline()` | Compact inline display |
+| `showRoutingLog()` | Single-line log message |
+| `showRoutingStep()` | Multi-step flow indicator |
+| `showAgentIntro()` | Agent welcome message |
+| `showAgentOutro()` | Task complete message |
+| `showAgentThinking()` | Processing indicator |
+| `analyzeAndShowRouting()` | Auto-detect and display |
+
+---
+
 ## Summary
 
 **intelligent-routing skill enables:**
 
 ✅ Zero-command operation (no need for `/autopilot`)  
 ✅ Automatic specialist selection based on request analysis  
-✅ Transparent communication of which expertise is being applied  
-✅ Seamless integration with existing workflows  
+✅ FAANG-level professional messaging  
+✅ 🤖 Agent branding for clear AI presence  
+✅ Clack UI integration for beautiful CLI output  
 ✅ Override capability for explicit agent mentions  
 ✅ Fallback to orchestrator for complex tasks
 
-**Result**: User gets specialist-level responses without needing to know the system architecture.
+**Result**: Developers feel supported by world-class AI assistance with transparent, professional routing.
 
 ---
 
-**Next Steps**: Integrate this skill into GEMINI.md TIER 0 rules.
+**Integration**: This skill is integrated into GEMINI.md TIER 0 rules and uses `packages/cli/lib/ui/routing-ui.js` for display.

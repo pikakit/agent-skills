@@ -27,7 +27,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Initial Release
 
-- Initial release of Antigravity Kit
+- Initial release of Agent Skill Kit
 - 19 specialized AI agents
 - 36 domain-specific skills
 - 11 workflow slash commands
