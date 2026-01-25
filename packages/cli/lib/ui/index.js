@@ -11,6 +11,8 @@ import { runRecallUI } from "./recall-ui.js";
 import { runSettingsUI } from "./settings-ui.js";
 import { runBackupUI } from "./backup-ui.js";
 import { runExportUI } from "./export-ui.js";
+import { runProposalsUI } from "./proposals-ui.js";
+import { countPendingProposals } from "../proposals.js";
 import * as p from "@clack/prompts";
 
 // ============================================================================
@@ -34,6 +36,7 @@ export async function showMainMenu() {
             { value: "settings", label: "Settings", hint: "Configure agent behavior" },
             { value: "backup", label: "Backup", hint: "Backup & restore data" },
             { value: "export", label: "Export", hint: "Export & import data" },
+            { value: "proposals", label: "Proposals", hint: "AI agent skill updates" },
             { value: "exit", label: "Exit", hint: "Close the CLI" }
         ]
     });
@@ -68,6 +71,9 @@ export async function showMainMenu() {
             break;
         case "export":
             await runExportUI();
+            break;
+        case "proposals":
+            await runProposalsUI();
             break;
         case "exit":
             p.outro("Goodbye! 👋");
