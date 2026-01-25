@@ -68,7 +68,7 @@ skill-name/
 | Skill | Files | Coverage |
 | ----- | ----- | -------- |
 | `typescript-expert` | 5 | Utility types, tsconfig, cheatsheet |
-| `ui-ux-pro-max` | 27 | 50 styles, 21 palettes, 50 fonts |
+| `studio` | 27 | 50 styles, 21 palettes, 50 fonts |
 | `app-builder` | 20 | Full-stack scaffolding |
 
 ### 2. Enforcement Protocol
