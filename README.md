@@ -236,14 +236,15 @@ ag-smart sync-skills
 
 ```
 your-project/
+├── AGENT_SKILL_KIT.md    # AI behavior configuration
+├── SAFETY_PROTOCOL.md    # Safety rules  
 └── .agent/
-    ├── skills/        # 47+ domain skills
+    ├── skills/        # 48 domain skills
     ├── agents/        # 20 specialists
-    ├── workflows/     # 11 slash commands
+    ├── workflows/     # 14 slash commands
     ├── knowledge/     # Self-learning memory
-    ├── rules/         # Global rules
+    ├── rules/         # Governance rules
     ├── .shared/       # UI/UX Pro Max data
-    ├── GEMINI.md      # Agent configuration
     └── ARCHITECTURE.md
 ```
 
