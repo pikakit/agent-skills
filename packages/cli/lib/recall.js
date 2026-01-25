@@ -18,6 +18,7 @@ import path from "path";
 import yaml from "js-yaml";
 import { KNOWLEDGE_DIR, LESSONS_PATH, DEBUG, cwd } from "./config.js";
 import { loadIgnorePatterns, isIgnored } from "./ignore.js";
+import pretty from "./ui/pretty.js";
 
 // ============================================================================
 // KNOWLEDGE BASE
@@ -255,27 +256,27 @@ Options:
         process.exit(0);
     }
 
-    console.log(`\n🧠 Checking memory against ${db.lessons.length} learned pattern(s)...`);
+    console.log(`\n🧠 Checking ${db.lessons.length} learned pattern(s)...`);
 
     const { results, ignoredCount } = scanDirectory(target, db);
-
-    if (ignoredCount > 0) {
-        console.log(`📁 Skipped ${ignoredCount} ignored paths (via .agentignore)`);
-    }
-
     const stats = printResults(results);
 
     // Save updated hit counts
     saveKnowledge(db);
 
+    // Show pretty summary
+    pretty.showScanSummary({
+        filesScanned: results.length,
+        ignored: ignoredCount,
+        violations: stats.total,
+        errors: stats.errors,
+        warnings: stats.warnings
+    });
+
     if (stats.errors > 0) {
-        console.log("\n💡 Fix ERROR violations before committing.");
         process.exit(1);
-    } else if (stats.total === 0) {
-        console.log("\n✅ No learned anti-patterns detected.");
-        process.exit(0);
     } else {
-        process.exit(0); // Warnings don't fail
+        process.exit(0);
     }
 }
 

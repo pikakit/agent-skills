@@ -16,6 +16,7 @@
     "dependencies": {
         "@clack/core": "^0.5.0",
         "@clack/prompts": "^0.11.0",
+        "boxen": "^8.0.1",
         "js-yaml": "^4.1.0",
         "picocolors": "^1.1.1"
     },
