@@ -11,8 +11,9 @@ import { exportData, importData } from "../export.js";
  * Interactive export/import menu
  */
 export async function runExportUI() {
+    p.intro("Export & Import (Press ESC to exit)");
+
     while (true) {
-        p.intro("Export & Import (Press ESC to exit)");
 
         const action = await p.select({
             message: "What would you like to do?",
@@ -43,10 +44,10 @@ export async function runExportUI() {
                 if (success) {
                     p.note(
                         `Exported to:\n${pc.dim(outputPath)}`,
-                        pc.green("✅ Success")
+                        pc.green("Success")
                     );
                 } else {
-                    p.note("Failed to export", pc.red("❌ Error"));
+                    p.note("Failed to export", pc.red("Error"));
                 }
                 break;
             }
@@ -79,10 +80,10 @@ export async function runExportUI() {
                     p.note(
                         `Imported ${result.lessonsCount} lesson(s)\n` +
                         `Settings: ${result.hasSettings ? "Yes" : "No"}`,
-                        pc.green("✅ Success")
+                        pc.green("Success")
                     );
                 } else {
-                    p.note("Failed to import. Check file exists and is valid JSON.", pc.red("❌ Error"));
+                    p.note("Failed to import. Check file exists and is valid JSON.", pc.red("Error"));
                 }
                 break;
             }

@@ -12,7 +12,7 @@ export async function runInitUI() {
     const projectType = detectProjectType();
 
     p.intro(`Project Initialization`);
-    p.note(`Detected project type: ${pc.cyan(projectType)}`, "🔍 Detection");
+    p.note(`Detected project type: ${pc.cyan(projectType)}`, "Detection");
 
     const confirm = await p.confirm({
         message: `Initialize Agent Skill Kit for this ${projectType} project?`
@@ -41,15 +41,15 @@ export async function runInitUI() {
                 `1. Run ${pc.green("agent learn")} to teach patterns\n` +
                 `2. Run ${pc.green("agent recall .")} to scan code\n` +
                 `3. Add ${pc.yellow("agent-hook")} to pre-commit (optional)`,
-                pc.green("✅ " + result.message)
+                pc.green(result.message)
             );
         } else {
-            p.note(result.message, pc.yellow("⚠️ Skipped"));
+            p.note(result.message, pc.yellow("Skipped"));
         }
 
     } catch (e) {
         s.stop("Failed!");
-        p.note(`Error: ${e.message}`, pc.red("❌ Error"));
+        p.note(`Error: ${e.message}`, pc.red("Error"));
     }
 }
 

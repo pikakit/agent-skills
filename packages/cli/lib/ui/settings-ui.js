@@ -20,10 +20,10 @@ import {
  * Interactive settings menu with Clack icons
  */
 export async function runSettingsUI() {
+    p.intro("Settings (Press ESC to exit)");
+
     while (true) {
         const settings = loadSettings();
-
-        p.intro("Settings (Press ESC to exit)");
 
         const action = await customSelect({
             message: "Configure Agent behavior:",
@@ -62,7 +62,7 @@ export async function runSettingsUI() {
                     `Auto-Learning is now ${newValue ? pc.green("ON") : pc.red("OFF")}`,
                     "Setting Updated"
                 );
-                break;
+                return; // Back to main menu
             }
             case "autoUpdating": {
                 const newValue = toggleAutoUpdating();
@@ -81,7 +81,7 @@ export async function runSettingsUI() {
                         "Setting Updated"
                     );
                 }
-                break;
+                return; // Back to main menu
             }
             case "threshold": {
                 const newThreshold = await p.text({
@@ -104,7 +104,7 @@ export async function runSettingsUI() {
                         "Setting Updated"
                     );
                 }
-                break;
+                return; // Back to main menu
             }
         }
     }

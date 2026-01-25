@@ -42,7 +42,7 @@ export async function runRecallUI() {
 
     try {
         const resolvedPath = path.resolve(targetPath);
-        const results = scanDirectory(resolvedPath, db);
+        const { results } = scanDirectory(resolvedPath, db);
 
         s.stop("Scan complete");
 
@@ -78,7 +78,7 @@ export async function runRecallUI() {
             shownResults.forEach(result => {
                 if (result.violations.length === 0) return;
 
-                content += `📄 ${path.relative(process.cwd(), result.file)}\n`;
+                content += `${path.relative(process.cwd(), result.file)}\n`;
                 result.violations.forEach(({ lesson, matches }) => {
                     const icon = lesson.severity === "ERROR" ? ICONS.error : ICONS.warning;
                     content += `   ${icon} [${lesson.id}] ${lesson.message}\n`;
@@ -107,12 +107,8 @@ export async function runRecallUI() {
         p.cancel(`${ICONS.error} Error: ${e.message}`);
     }
 
-    // Wait for user
-    await p.text({
-        message: "Press Enter to return to menu...",
-        initialValue: "",
-        validate: () => undefined
-    });
+    // Show completion
+    p.outro("Scan complete");
 }
 
 export default runRecallUI;

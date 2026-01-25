@@ -10,18 +10,18 @@ import pc from "picocolors";
 // ============================================================================
 
 const ITEM_ICONS = {
-    routing: "🤖",
+    routing: "◆",
     learn: "◆",
     recall: "◇",
     stats: "▣",
     audit: "▲",
     watch: "○",
-    settings: "⚙",
-    backup: "💾",
-    export: "📤",
-    proposals: "📋",
-    completion: "⌨",
-    init: "🚀",
+    settings: "◇",
+    backup: "◇",
+    export: "◇",
+    proposals: "◇",
+    completion: "◇",
+    init: "◇",
     exit: "×"
 };
 
@@ -53,17 +53,12 @@ const ITEM_COLORS = {
 export async function customSelect(config) {
     const { message, items } = config;
 
-    // Transform items to clack format with icons in label
-    const options = items.map((item) => {
-        const icon = ITEM_ICONS[item.value] || "◇";
-        const colorFn = ITEM_COLORS[item.value] || pc.gray;
-
-        return {
-            value: item.value,
-            label: `${icon} ${item.label}`,
-            hint: item.hint
-        };
-    });
+    // Transform items to clack format - clean labels without icons
+    const options = items.map((item) => ({
+        value: item.value,
+        label: item.label,
+        hint: item.hint
+    }));
 
     const result = await p.select({
         message,

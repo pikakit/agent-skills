@@ -6,20 +6,20 @@ import { loadKnowledge } from "../recall.js";
 import { VERSION } from "../config.js";
 
 // ============================================================================
-// THEME COLORS
+// CLACK SYMBOLS (no emoji for consistency)
 // ============================================================================
 
 export const ICONS = {
-    brain: "🧠",
-    learn: "🎓",
-    recall: "🔍",
-    stats: "📊",
-    audit: "⚖️",
-    watch: "👁️",
-    success: "✅",
-    error: "❌",
-    warning: "⚠️",
-    info: "ℹ️"
+    brain: "◆",
+    learn: "◆",
+    recall: "◇",
+    stats: "▣",
+    audit: "▲",
+    watch: "○",
+    success: "✓",
+    error: "✖",
+    warning: "⚠",
+    info: "●"
 };
 
 // ============================================================================

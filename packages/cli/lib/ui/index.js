@@ -3,6 +3,8 @@
  */
 import { customSelect, pc } from "./custom-select.js";
 import { ICONS, showHeader, handleCancel } from "./common.js";
+import { fileURLToPath } from "url";
+import { dirname, join } from "path";
 
 // Import UI modules
 import { runLearnUI } from "./learn-ui.js";
@@ -14,6 +16,9 @@ import { runExportUI } from "./export-ui.js";
 import { runProposalsUI } from "./proposals-ui.js";
 import { runCompletionUI } from "./completion-ui.js";
 import { runInitUI } from "./init-ui.js";
+import { runWatchUI } from "./watch-ui.js";
+import { runAuditUI } from "./audit-ui.js";
+import { runLessonsUI } from "./lessons-ui.js";
 import routingUI from "./routing-ui.js";
 import { countPendingProposals } from "../proposals.js";
 import * as p from "@clack/prompts";
@@ -31,25 +36,31 @@ export async function showMainMenu() {
     const action = await customSelect({
         message: "What would you like to do?",
         items: [
-            { value: "routing", label: "🤖 Routing", hint: "Test agent routing" },
-            { value: "learn", label: "Learn", hint: "Teach a new pattern" },
-            { value: "recall", label: "Recall", hint: "Scan for violations" },
+            // ─── CORE ───
+            { value: "routing", label: "Routing", hint: "Test agent routing" },
+            { value: "learn", label: "Learn", hint: "Teach pattern" },
+            { value: "lessons", label: "Lessons", hint: "View & manage lessons" },
+            { value: "recall", label: "Recall", hint: "Scan violations" },
+            // ─── ANALYSIS ───
             { value: "stats", label: "Stats", hint: "View statistics" },
-            { value: "audit", label: "Audit", hint: "Run compliance check" },
-            { value: "watch", label: "Watch", hint: "Real-time monitoring" },
-            { value: "settings", label: "Settings", hint: "Configure agent behavior" },
-            { value: "backup", label: "Backup", hint: "Backup & restore data" },
-            { value: "export", label: "Export", hint: "Export & import data" },
-            { value: "proposals", label: "Proposals", hint: "AI agent skill updates" },
-            { value: "completion", label: "Completion", hint: "Shell autocomplete setup" },
-            { value: "init", label: "Init", hint: "Initialize project config" },
-            { value: "exit", label: "Exit", hint: "Close the CLI" }
+            { value: "audit", label: "Audit", hint: "Compliance check" },
+            { value: "watch", label: "Watch", hint: "Real-time monitor" },
+            // ─── DATA ───
+            { value: "backup", label: "Backup", hint: "Backup & restore" },
+            { value: "export", label: "Export", hint: "Export & import" },
+            { value: "proposals", label: "Proposals", hint: "Skill updates" },
+            // ─── CONFIG ───
+            { value: "settings", label: "Settings", hint: "Configure behavior" },
+            { value: "completion", label: "Completion", hint: "Shell autocomplete" },
+            { value: "init", label: "Init", hint: "Initialize project" },
+            // ───────────
+            { value: "exit", label: "Exit", hint: "Close CLI" }
         ]
     });
 
-    // Handle CTRL+C
-    if (action === undefined || action === null) {
-        p.cancel("Operation cancelled.");
+    // Handle CTRL+C using proper isCancel check
+    if (p.isCancel(action)) {
+        p.cancel("Goodbye! 👋");
         process.exit(0);
     }
 
@@ -59,6 +70,9 @@ export async function showMainMenu() {
             break;
         case "learn":
             await runLearnUI();
+            break;
+        case "lessons":
+            await runLessonsUI();
             break;
         case "recall":
             await runRecallUI();
@@ -130,34 +144,6 @@ async function runRoutingUI() {
     });
 }
 
-// ============================================================================
-// PLACEHOLDER UIs (to be implemented)
-// ============================================================================
-
-async function runAuditUI() {
-    p.note("Running audit...", `${ICONS.audit} Audit`);
-
-    // Import and run audit
-    const { spawn } = await import("child_process");
-    const audit = spawn("node", ["lib/audit.js", "."], {
-        cwd: process.cwd(),
-        stdio: "inherit"
-    });
-
-    await new Promise(resolve => audit.on("close", resolve));
-}
-
-async function runWatchUI() {
-    p.note("Starting watcher... (Press CTRL+C to stop)", `${ICONS.watch} Watch`);
-
-    const { spawn } = await import("child_process");
-    const watcher = spawn("node", ["lib/watcher.js", "."], {
-        cwd: process.cwd(),
-        stdio: "inherit"
-    });
-
-    await new Promise(resolve => watcher.on("close", resolve));
-}
 
 // ============================================================================
 // CLI ENTRY

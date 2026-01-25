@@ -1,5 +1,5 @@
 {
-    "name": "@agentskillskit/cli",
+    "name": "agentskillskit-cli",
     "version": "2.4.0",
     "description": "CLI for Agent Skill Kit",
     "type": "module",
@@ -26,5 +26,26 @@
         "vitest": "^1.6.0"
     },
     "author": "Agent Skill Kit Authors",
-    "license": "MIT"
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/agentskillkit/agent-skills.git",
+        "directory": "packages/cli"
+    },
+    "keywords": [
+        "agent",
+        "ai",
+        "skills",
+        "cli",
+        "tooling",
+        "antigravity"
+    ],
+    "files": [
+        "bin",
+        "lib",
+        "README.md"
+    ],
+    "publishConfig": {
+        "access": "public"
+    }
 }

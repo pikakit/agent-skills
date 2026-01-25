@@ -24,8 +24,8 @@ export async function runStatsUI() {
         const errorCount = db.lessons.filter(l => l.severity === "ERROR").length;
         const warningCount = db.lessons.filter(l => l.severity === "WARNING").length;
 
-        content += `📚 Total Lessons: ${db.lessons.length}\n`;
-        content += `🎯 Total Hits: ${totalHits}\n`;
+        content += `Total Lessons: ${db.lessons.length}\n`;
+        content += `Total Hits: ${totalHits}\n`;
         content += `${ICONS.error} ERROR: ${errorCount}  ${ICONS.warning} WARNING: ${warningCount}\n`;
         content += `\n${line(40)}\n\n`;
 
@@ -47,7 +47,7 @@ export async function runStatsUI() {
 
         if (sorted.length > 0) {
             content += `\n${line(40)}\n\n`;
-            content += "🔥 Most Triggered:\n";
+            content += "Most Triggered:\n";
             sorted.forEach((l, i) => {
                 const bar = "█".repeat(Math.min(15, Math.ceil((l.hitCount / (sorted[0].hitCount || 1)) * 15)));
                 content += `  ${i + 1}. [${l.id}] ${l.hitCount} hits\n`;
@@ -58,12 +58,8 @@ export async function runStatsUI() {
 
     p.note(content, `${ICONS.stats} Knowledge Base Statistics`);
 
-    // Wait for user
-    await p.text({
-        message: "Press Enter to return to menu...",
-        initialValue: "",
-        validate: () => undefined
-    });
+    // Show completion
+    p.outro("Stats loaded");
 }
 
 export default runStatsUI;

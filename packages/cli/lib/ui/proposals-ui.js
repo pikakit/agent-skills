@@ -15,15 +15,15 @@ import {
  * Interactive proposals menu
  */
 export async function runProposalsUI() {
+    p.intro("Skill Proposals");
+
     while (true) {
         const qualifying = getQualifyingLessons();
-
-        p.intro(`Skill Proposals (${qualifying.length} pending)`);
 
         if (qualifying.length === 0) {
             p.note(
                 "No lessons have reached the threshold yet.\nKeep using recall to track patterns!",
-                "ℹ️ No Proposals"
+                "No Proposals"
             );
             return;
         }
@@ -75,9 +75,9 @@ export async function runProposalsUI() {
                 try {
                     const clipboard = await import("clipboardy");
                     await clipboard.default.write(markdown);
-                    p.note("Proposal copied! Paste to your AI agent.", pc.green("✅ Copied"));
+                    p.note("Proposal copied! Paste to your AI agent.", pc.green("Copied"));
                 } catch (e) {
-                    p.note(`Could not copy automatically.\nPlease copy the text above manually.`, pc.yellow("⚠️ Manual Copy"));
+                    p.note(`Could not copy automatically.\nPlease copy the text above manually.`, pc.yellow("Manual Copy"));
                 }
                 break;
             }

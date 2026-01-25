@@ -49,7 +49,7 @@ ${COMMANDS.map(c => `        @{ Name = '${c.name}'; Description = '${c.descripti
     }
 }
 
-Write-Host "✅ Agent Skill Kit completion loaded" -ForegroundColor Green
+Write-Host "Agent Skill Kit completion loaded" -ForegroundColor Green
 `;
 }
 
@@ -73,7 +73,7 @@ _agent_completions() {
 
 complete -F _agent_completions agent
 
-echo "✅ Agent Skill Kit completion loaded"
+echo "Agent Skill Kit completion loaded"
 `;
 }
 
@@ -99,7 +99,7 @@ ${COMMANDS.map(c => `        '${c.name}:${c.description}'`).join("\n")}
 
 compdef _agent agent
 
-echo "✅ Agent Skill Kit completion loaded"
+echo "Agent Skill Kit completion loaded"
 `;
 }
 

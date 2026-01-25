@@ -21,7 +21,7 @@ export async function runCompletionUI() {
     const detectedShell = detectShell();
 
     p.intro(`Shell Completion Setup`);
-    p.note(`Detected shell: ${pc.cyan(detectedShell)}`, "🔍 Detection");
+    p.note(`Detected shell: ${pc.cyan(detectedShell)}`, "Detection");
 
     const action = await p.select({
         message: "What would you like to do?",
@@ -60,7 +60,7 @@ export async function runCompletionUI() {
             `• PowerShell: $PROFILE\n` +
             `• Bash: ~/.bashrc\n` +
             `• Zsh: ~/.zshrc`,
-            "📋 Instructions"
+            "Instructions"
         );
         return;
     }
@@ -102,7 +102,7 @@ export async function runCompletionUI() {
                 : "";
 
             if (existing.includes("Agent Skill Kit")) {
-                p.note("Completion already installed!", pc.yellow("⚠️ Skipped"));
+                p.note("Completion already installed!", pc.yellow("Skipped"));
                 return;
             }
 
@@ -113,14 +113,14 @@ export async function runCompletionUI() {
                 `Completion installed to:\n${pc.cyan(profilePath)}\n\n` +
                 `Restart your terminal or run:\n` +
                 (shell === "powershell" ? `. $PROFILE` : `source ${profilePath}`),
-                pc.green("✅ Installed")
+                pc.green("Installed")
             );
 
         } catch (e) {
             p.note(
                 `Could not install automatically.\nError: ${e.message}\n\n` +
                 `Please manually add the script to your shell profile.`,
-                pc.red("❌ Error")
+                pc.red("Error")
             );
         }
     }

@@ -28,7 +28,11 @@ Vừa thêm **7 skills mới** từ ClaudeKit-Skills:
 npx -y add-skill-kit agentskillkit/agent-skills
 ```
 
-Xong. AI Agent của bạn đã được nâng cấp với **48 skills + 20 agents + 14 workflows**.
+Bạn có thể chọn:
+- **Global System**: Cài đặt vào hệ thống, dùng lệnh `agent` ở bất kỳ thư mục nào.
+- **Current Project**: Cài đặt vào `node_modules`, dùng lệnh `npx agent`.
+
+Sau khi cài đặt, gõ lệnh `agent` để mở bảng điều khiển AI Agent thông minh.
 
 ---
 
@@ -217,10 +221,11 @@ ag-smart watch
 ag-smart sync-skills
 ```
 
-**9 CLI Commands:**
+**10 CLI Commands:**
 | Command | Mô tả |
 |---------|-------|
-| `learn` | Thêm/xóa lessons |
+| `lessons` | Quản lý lessons đã học (View/Delete) |
+| `learn` | Thêm/xóa lessons manually |
 | `recall` | Scan code tìm violations |
 | `audit` | Full compliance check |
 | `fix` | Auto-fix violations |
