@@ -13,6 +13,7 @@
         "test:watch": "vitest"
     },
     "dependencies": {
+        "@clack/prompts": "^0.11.0",
         "js-yaml": "^4.1.0"
     },
     "devDependencies": {

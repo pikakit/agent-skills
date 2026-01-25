@@ -145,8 +145,11 @@ switch (COMMAND) {
     case "help":
     case "--help":
     case "-h":
-    case undefined:
         printHelp();
+        break;
+    case undefined:
+        // No command = show interactive Clack menu
+        import("../lib/ui/index.js").then(m => m.showMainMenu()).catch(console.error);
         break;
     default:
         console.log(`❌ Unknown command: ${COMMAND}`);
