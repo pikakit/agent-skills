@@ -79,6 +79,22 @@ export function scanFile(filePath, db, updateHits = false) {
     }
 
     db.lessons.forEach(lesson => {
+        // Skip if no valid pattern
+        if (!lesson.pattern) return;
+
+        // Check excludePaths - skip this lesson for excluded paths
+        if (lesson.excludePaths && Array.isArray(lesson.excludePaths)) {
+            const shouldExclude = lesson.excludePaths.some(excludePattern => {
+                if (excludePattern.startsWith("*.")) {
+                    // Extension pattern like "*.test.js"
+                    return filePath.endsWith(excludePattern.slice(1));
+                }
+                // Path pattern like "packages/cli/"
+                return filePath.includes(excludePattern.replace(/\\/g, "/"));
+            });
+            if (shouldExclude) return;
+        }
+
         try {
             const regex = new RegExp(lesson.pattern, "g");
             const matches = [];

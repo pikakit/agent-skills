@@ -1,28 +1,24 @@
 version: 1
 lessons:
-  - id: L-000
-    category: general
-    trigger: example pattern
-    severity: info
-    correction: example correction
-    reason: This is a placeholder lesson to initialize the structure.
-    hitCount: 3716
-    lastHit: "2026-01-25T04:54:35.129Z"
   - id: LEARN-002
     pattern: console\.log
-    message: No console logs in production
-    severity: high
-    addedAt: "2026-01-24T11:33:54.048Z"
-    hitCount: 201
-    lastHit: "2026-01-25T04:54:35.130Z"
+    message: No console logs in production code
+    severity: WARNING
+    excludePaths:
+      - packages/cli/
+      - bin/
+      - scripts/
+      - "*.test.js"
+    addedAt: '2026-01-24T11:33:54.048Z'
+    hitCount: 337
+    lastHit: '2026-01-25T07:14:17.268Z'
   - id: LEARN-003
     pattern: rebranding
-    message: "When rebranding/renaming config files: NEVER create new simplified file. Always COPY original (full content) first, then only change branding text. Mistake: created 163-line file to replace 375-line original = data loss."
+    message: 'When rebranding: NEVER create new simplified file. COPY original first, then edit branding only.'
     severity: ERROR
     category: file-safety
     source: manual
     hitCount: 0
     lastHit: null
     autoEscalated: false
-    addedAt: "2026-01-25T05:37:29.714Z"
-
+    addedAt: '2026-01-25T05:37:29.714Z'
