@@ -8,18 +8,22 @@ import pc from "picocolors";
 // CUSTOM ICONS
 // ============================================================================
 
-const ICONS = {
-    // Cursor
-    cursor: pc.cyan("❯"),
-    blank: " ",
+const ITEM_ICONS = {
+    learn: "◆",
+    recall: "◇",
+    stats: "▣",
+    audit: "▲",
+    watch: "○",
+    exit: "×"
+};
 
-    // Menu items with colors
-    learn: pc.green("◆"),
-    recall: pc.blue("◇"),
-    stats: pc.yellow("▣"),
-    audit: pc.red("▲"),
-    watch: pc.magenta("○"),
-    exit: pc.gray("×")
+const ITEM_COLORS = {
+    learn: pc.green,
+    recall: pc.blue,
+    stats: pc.yellow,
+    audit: pc.red,
+    watch: pc.magenta,
+    exit: pc.red // Changed to red as requested
 };
 
 // ============================================================================
@@ -35,23 +39,30 @@ export async function customSelect(config) {
     const { message, items } = config;
 
     const prompt = new SelectPrompt({
-        options: items.map((item, i) => ({
+        options: items.map((item) => ({
             value: item.value,
             label: item.label,
             hint: item.hint
         })),
         initialValue: items[0]?.value,
         render() {
-            const header = `${pc.gray("┌")}  ${pc.cyan("🧠")} ${pc.bold(message)}`;
+            const header = `${pc.gray("┌")}  ${pc.cyan("◈")} ${pc.bold(message)}`;
 
             const body = items.map((item) => {
                 const isActive = this.value === item.value;
-                const cursor = isActive ? ICONS.cursor : ICONS.blank;
-                const icon = ICONS[item.value] || pc.gray("•");
+                const cursor = isActive ? pc.cyan("❯") : " ";
+                const baseIcon = ITEM_ICONS[item.value] || "•";
+                const colorFn = ITEM_COLORS[item.value] || pc.gray;
+
+                // Icon có màu chỉ khi được select, còn lại gray
+                // Pad icon to ensure alignment
+                const iconStr = String(baseIcon).padEnd(2, " ");
+                const icon = isActive ? colorFn(iconStr) : pc.gray(iconStr);
+
                 const label = isActive ? pc.bold(pc.white(item.label)) : pc.dim(item.label);
                 const hint = item.hint && isActive ? pc.dim(` (${item.hint})`) : "";
 
-                return `${pc.gray("│")}  ${cursor} ${icon}  ${label}${hint}`;
+                return `${pc.gray("│")}  ${cursor} ${icon} ${label}${hint}`;
             }).join("\n");
 
             const footer = `${pc.gray("└")}`;
@@ -64,4 +75,4 @@ export async function customSelect(config) {
     return result;
 }
 
-export { ICONS, pc, isCancel };
+export { ITEM_ICONS, ITEM_COLORS, pc, isCancel };
