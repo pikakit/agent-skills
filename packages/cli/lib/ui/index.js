@@ -31,6 +31,7 @@ export async function showMainMenu() {
     const action = await customSelect({
         message: "What would you like to do?",
         items: [
+            { value: "routing", label: "🤖 Routing", hint: "Test agent routing" },
             { value: "learn", label: "Learn", hint: "Teach a new pattern" },
             { value: "recall", label: "Recall", hint: "Scan for violations" },
             { value: "stats", label: "Stats", hint: "View statistics" },
@@ -53,6 +54,9 @@ export async function showMainMenu() {
     }
 
     switch (action) {
+        case "routing":
+            await runRoutingUI();
+            break;
         case "learn":
             await runLearnUI();
             break;
@@ -93,6 +97,37 @@ export async function showMainMenu() {
 
     // Return to menu after action
     await showMainMenu();
+}
+
+// ============================================================================
+// ROUTING UI
+// ============================================================================
+
+async function runRoutingUI() {
+    const request = await p.text({
+        message: "Enter a request to test agent routing:",
+        placeholder: "e.g., Fix the login authentication bug",
+        validate: (value) => {
+            if (!value || value.trim().length === 0) {
+                return "Please enter a request";
+            }
+        }
+    });
+
+    if (p.isCancel(request)) {
+        p.cancel("Cancelled");
+        return;
+    }
+
+    // Use routing-ui to analyze and show routing
+    routingUI.analyzeAndShowRouting(request);
+
+    // Wait for user to see result
+    await p.text({
+        message: "Press Enter to continue...",
+        placeholder: "",
+        initialValue: ""
+    });
 }
 
 // ============================================================================
