@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-01-24T12:00:39.464Z",
+  "updatedAt": "2026-01-25T10:06:00.000Z",
   "skills": [
     {
       "name": "api-patterns",
@@ -314,6 +314,53 @@
       "rules": [],
       "scripts": [
         "playwright_runner.py"
+      ]
+    },
+    {
+      "name": "aesthetic",
+      "rules": [],
+      "scripts": []
+    },
+    {
+      "name": "context-engineering",
+      "rules": [],
+      "scripts": [
+        "context_analyzer.py",
+        "compression_evaluator.py"
+      ]
+    },
+    {
+      "name": "debugging",
+      "rules": [],
+      "scripts": []
+    },
+    {
+      "name": "document-skills",
+      "rules": [],
+      "scripts": []
+    },
+    {
+      "name": "mermaidjs-v11",
+      "rules": [],
+      "scripts": []
+    },
+    {
+      "name": "problem-solving",
+      "rules": [],
+      "scripts": []
+    },
+    {
+      "name": "sequential-thinking",
+      "rules": [],
+      "scripts": []
+    },
+    {
+      "name": "skill-creator",
+      "rules": [],
+      "scripts": [
+        "init_skill.py",
+        "package_skill.py",
+        "quick_validate.py"
       ]
     }
   ]

@@ -3,7 +3,32 @@
 > **Biến AI Agent của bạn thành chuyên gia đa lĩnh vực chỉ với 1 dòng lệnh**
 
 [![npm](https://img.shields.io/badge/version-1.0.0-7c3aed?style=flat&colorA=18181b)](https://www.npmjs.com/package/add-skill-kit)
+[![skills](https://img.shields.io/badge/skills-48+-7c3aed?style=flat&colorA=18181b)](https://github.com/agentskillkit/agent-skills)
+[![agents](https://img.shields.io/badge/agents-20-7c3aed?style=flat&colorA=18181b)](https://github.com/agentskillkit/agent-skills)
 [![license](https://img.shields.io/badge/license-MIT-7c3aed?style=flat&colorA=18181b)](LICENSE)
+
+---
+
+## 🎉 NEW [Jan 2025]: 48 Skills + 14 Workflows!
+
+Vừa thêm **7 skills mới** từ ClaudeKit-Skills:
+- **problem-solving** - 6 kỹ thuật tư duy sáng tạo (collision-zone, inversion, scale-game...)
+- **context-engineering** - Tối ưu context window cho AI agents
+- **document-skills** - Xử lý Word, PDF, PowerPoint, Excel
+- **debugging** - 3 frameworks debug chuyên sâu
+- **aesthetic** - Design principles anti-AI-slop
+- **mermaidjs-v11** - Diagram generation
+- **sequential-thinking** - Step-by-step reasoning
+
+---
+
+## ⚡ Cài Đặt Ngay (1 Lệnh)
+
+```bash
+npx -y add-skill-kit agentskillkit/agent-skills
+```
+
+Xong. AI Agent của bạn đã được nâng cấp với **48 skills + 20 agents + 14 workflows**.
 
 ---
 
@@ -17,7 +42,7 @@ Thay vì tự viết prompts, rules, và workflows từ đầu - **cài đặt n
 
 AI của bạn sẽ:
 - **Tự động chọn đúng specialist** - Không cần nhớ phải gọi agent nào
-- **Đưa ra code chất lượng production** - Theo best practices từ 40+ skills
+- **Đưa ra code chất lượng production** - Theo best practices từ 48+ skills
 - **Debug nhanh gấp 5 lần** - Với systematic debugging methodology
 
 ### 💰 Giảm 80% Token Cost
@@ -30,21 +55,11 @@ AI của bạn sẽ:
 
 Từ ý tưởng đến production trong vài phút:
 ```bash
-/brainstorm authentication system
-/plan                              # AI tự tạo plan chi tiết
-/create                            # AI implement theo plan
-/test                              # AI tự viết tests
+/think authentication system
+/architect                         # AI tự tạo plan chi tiết
+/build                             # AI implement theo plan
+/validate                          # AI tự viết tests
 ```
-
----
-
-## ⚡ Cài Đặt Ngay (1 Lệnh)
-
-```bash
-npx -y add-skill-kit agentskillkit/agent-skills
-```
-
-Xong. AI Agent của bạn đã được nâng cấp.
 
 ---
 
@@ -52,50 +67,130 @@ Xong. AI Agent của bạn đã được nâng cấp.
 
 | So Với | Agent Skills Kit | Các Giải Pháp Khác |
 |--------|------------------|-------------------|
-| **Số lượng skills** | 40+ skills | 5-10 skills |
+| **Số lượng skills** | 48+ skills | 5-10 skills |
 | **Specialist agents** | 20 agents chuyên biệt | 1-3 agents chung |
-| **Slash commands** | 11 workflows có sẵn | Tự viết |
+| **Slash commands** | 14 workflows có sẵn | Tự viết |
 | **Cross-platform** | Antigravity, Claude Code (coming) | Single platform |
 | **Self-learning** | ✅ Học từ sai lầm | ❌ |
 | **Governance** | ✅ Constitution system | ❌ |
 
 ---
 
-## 📦 Tính Năng Đầy Đủ (Features)
+## 📚 Skills Catalog (48 Skills)
 
-### 🤖 20 Specialist Agents
+### 🤖 AI & Agent Development
+| Skill | Mô tả |
+|-------|-------|
+| `context-engineering` | Tối ưu context window, memory systems, multi-agent coordination |
+| `sequential-thinking` | Step-by-step reasoning với khả năng revise và branch |
+| `problem-solving` | 6 kỹ thuật: collision-zone, inversion, scale-game, simplification... |
+| `brainstorming` | Socratic questioning protocol |
+
+### 🎨 Frontend & Design
+| Skill | Mô tả |
+|-------|-------|
+| `frontend` | React patterns, performance, hooks, composition |
+| `frontend-design` | Color system, typography, animation, UX psychology |
+| `aesthetic` | Design principles anti-AI-slop, visual excellence |
+| `react-patterns` | Modern React hooks, composition, TypeScript |
+| `nextjs-best-practices` | App Router, Server Components, SSR/SSG |
+| `tailwind-patterns` | Tailwind CSS v4, container queries, design tokens |
+
+### 🔧 Backend & API
+| Skill | Mô tả |
+|-------|-------|
+| `api-patterns` | REST, GraphQL, tRPC, versioning, rate-limiting |
+| `nodejs-best-practices` | Async patterns, security, architecture |
+| `python-patterns` | Type hints, async, project structure |
+| `database-design` | Schema design, indexing, ORM selection |
+
+### 🛡️ Security & Testing
+| Skill | Mô tả |
+|-------|-------|
+| `vulnerability-scanner` | OWASP 2025, supply chain security |
+| `red-team-tactics` | MITRE ATT&CK, detection evasion |
+| `testing-patterns` | Unit, integration, mocking strategies |
+| `webapp-testing` | E2E, Playwright, load testing |
+| `tdd-workflow` | RED-GREEN-REFACTOR cycle |
+
+### 🐛 Debugging
+| Skill | Mô tả |
+|-------|-------|
+| `systematic-debugging` | 4-phase framework, root cause investigation |
+| `debugging/defense-in-depth` | Validate at every layer |
+| `debugging/root-cause-tracing` | Trace backward to original trigger |
+| `debugging/verification-before-completion` | Evidence before claims |
+
+### 📄 Document Processing
+| Skill | Mô tả |
+|-------|-------|
+| `document-skills/docx` | Word documents với tracked changes |
+| `document-skills/pdf` | PDF extraction, creation, merge/split |
+| `document-skills/pptx` | PowerPoint presentations |
+| `document-skills/xlsx` | Excel với formulas, financial modeling |
+
+### 📊 Visualization
+| Skill | Mô tả |
+|-------|-------|
+| `mermaidjs-v11` | 24+ diagram types, flowcharts, sequence, ER... |
+
+### 🌐 DevOps & Infrastructure
+| Skill | Mô tả |
+|-------|-------|
+| `deployment-procedures` | Safe deployment, rollback strategies |
+| `server-management` | Process management, monitoring, scaling |
+| `performance-profiling` | Measurement, analysis, optimization |
+
+### 📖 Documentation & i18n
+| Skill | Mô tả |
+|-------|-------|
+| `documentation-templates` | README, API docs, code comments |
+| `i18n-localization` | Translations, RTL support, locale files |
+| `seo-fundamentals` | Core Web Vitals, E-E-A-T, Google algorithms |
+| `geo-fundamentals` | Generative Engine Optimization for AI search |
+
+---
+
+## 🤖 20 Specialist Agents
+
 ```
 frontend-specialist   → React, Next.js, UI/UX
 backend-specialist    → API, Node.js, databases
 security-auditor      → OWASP, vulnerability scanning
 debugger              → Systematic root cause analysis
 orchestrator          → Multi-agent coordination
-... và 15 agents khác
+project-planner       → 4-phase planning methodology
+mobile-developer      → React Native, Flutter
+game-developer        → Game development patterns
+test-engineer         → Testing strategies
+database-architect    → Schema, optimization
+... và 10 agents khác
 ```
 
-### 📚 40+ Domain Skills
-- **Frontend**: React patterns, Tailwind, Next.js
-- **Backend**: API design, Node.js, databases
-- **Testing**: TDD, Playwright, Jest
-- **Security**: OWASP, vulnerability scanning
-- **DevOps**: Docker, deployment, CI/CD
+---
 
-### ⚡ 11 Slash Commands
+## ⚡ 14 Slash Commands
+
 | Command | Chức năng |
 |---------|-----------|
-| `/brainstorm` | Khám phá options trước khi code |
-| `/create` | Tạo features/apps mới |
-| `/debug` | Debug có hệ thống |
-| `/deploy` | Deploy production |
-| `/enhance` | Thêm/cập nhật features |
-| `/orchestrate` | Điều phối multi-agents |
-| `/plan` | Lập kế hoạch task |
-| `/preview` | Quản lý dev server |
-| `/status` | Xem tiến độ project |
-| `/test` | Tạo và chạy tests |
-| `/ui-ux-pro-max` | Thiết kế UI chuyên sâu |
+| `/think` | Khám phá options trước khi code |
+| `/build` | Tạo features/apps mới |
+| `/diagnose` | Debug có hệ thống với root cause analysis |
+| `/launch` | Launch to production với pre-flight checks |
+| `/chronicle` | Generate documentation (README, API, inline) |
+| `/boost` | Thêm/cập nhật features existing app |
+| `/autopilot` | Điều phối multi-agents tự động |
+| `/architect` | Lập kế hoạch task chi tiết |
+| `/stage` | Quản lý preview/staging server |
+| `/inspect` | Code review với systematic verification |
+| `/forge` | Tạo/validate/package skills mới |
+| `/pulse` | Xem tiến độ và health của project |
+| `/validate` | Tạo và chạy tests |
+| `/studio` | Thiết kế UI với 50+ styles, anti-AI-slop |
 
-### 🧠 Self-Learning Engine (Production-Ready)
+---
+
+## 🧠 Self-Learning Engine (Production-Ready)
 
 AI không chỉ theo rules - **AI học từ sai lầm của bạn**:
 
@@ -142,7 +237,7 @@ ag-smart sync-skills
 ```
 your-project/
 └── .agent/
-    ├── skills/        # 40+ domain skills
+    ├── skills/        # 47+ domain skills
     ├── agents/        # 20 specialists
     ├── workflows/     # 11 slash commands
     ├── knowledge/     # Self-learning memory
@@ -173,6 +268,12 @@ AI: 🤖 Applying @security-auditor + @backend-specialist...
     - Unit tests + integration tests
     - Security audit passed ✅
 ```
+
+---
+
+## 📈 Star History
+
+[![Star History Chart](https://api.star-history.com/svg?repos=agentskillkit/agent-skills&type=Date)](https://star-history.com/#agentskillkit/agent-skills&Date)
 
 ---
 

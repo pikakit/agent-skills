@@ -1,23 +1,23 @@
 ---
-name: my-agent-skills-doctrine-pack
-version: 1.1.0
+name: agent-skills-governance
+version: 1.0.0
 description: >
-  Constitutional governance skill for My Agent Skills. Use when designing system architecture,
-  reviewing pull requests, modifying backend data pipelines, working with charts or financial data,
-  changing mobile UI/scroll/gestures, evaluating risky or breaking changes, or allowing AI agents
-  to propose changes to core systems. Enforces non-negotiable laws for correctness, trust, and durability.
+  Constitutional governance skill for Agent Skills Kit. Use when designing system architecture,
+  reviewing pull requests, modifying backend data pipelines, working with critical data,
+  evaluating risky or breaking changes, or allowing AI agents to propose changes to core systems.
+  Enforces non-negotiable laws for correctness, trust, and durability.
 type: constitutional-skill
 authority: supreme
 enforcement: strict
-tags: constitution, governance, architecture, data-integrity, financial-data, code-review, mobile-ux
-author: MyAgentSkills
+tags: constitution, governance, architecture, data-integrity, code-review
+author: AgentSkillsKit
 ---
 
-# My Agent Skills Doctrine Pack Skill
-**(Supreme Constitutional Skill for My Agent Skills)**
+# Agent Skills Kit Governance
+**(Supreme Constitutional Skill)**
 
 This skill defines the **entire constitutional, doctrinal, and enforcement system**
-governing how My Agent Skills projects are designed, built, reviewed, scaled, and evolved.
+governing how Agent Skills Kit projects are designed, built, reviewed, scaled, and evolved.
 
 This is NOT a feature skill.
 This is NOT advisory guidance.
@@ -35,8 +35,8 @@ This skill MUST be activated when a request involves:
 
 - System architecture or boundaries
 - Data ownership, correctness, or persistence
-- Charts, pricing, or financial data
-- Mobile layout, scroll, swipe, or gestures
+- Critical business logic or calculations
+- UI/UX patterns affecting user experience
 - Performance, caching, or loading behavior
 - Breaking changes or commercial risk
 - Code review or enforcement decisions
@@ -64,12 +64,6 @@ This skill follows **Progressive Disclosure**.
 
 4. `enforcement/*`  
    → Checklists, agent control, playbooks (on-demand)
-
-5. `proposals/*`  
-   → Controlled evolution (v1.1+)
-
-If a lower layer conflicts with a higher layer,  
-the higher layer **always wins**.
 
 ---
 
@@ -103,8 +97,8 @@ Agents MAY:
 - Cite applicable doctrines
 
 Agents MUST NOT:
-- Approve changes
-- Merge code
+- Approve changes without user consent
+- Merge code automatically
 - Introduce new invariants
 - Override architecture
 - Bypass enforcement
@@ -121,23 +115,20 @@ When a violation is detected, the agent MUST:
 3. Explain the systemic risk
 4. Refuse the request or output
 
-Partial compliance or “best effort” responses  
+Partial compliance or "best effort" responses  
 are considered enforcement failures.
 
 ---
 
 ## 6. Learning Constraints
 
-Learning is governed by:
-- `coinpika-learning-engine-doctrine.md`
-
 Agents MAY learn:
 - General reasoning improvements
 - Better architectural judgment
 
 Agents MUST NOT learn:
-- Code style or formatting
-- Naming conventions
+- Code style or formatting overrides
+- Naming convention exceptions
 - Temporary workarounds
 - Project-specific hacks
 
@@ -197,15 +188,12 @@ When using this skill, the agent MUST include the following footer in its respon
 
 ```
 ---
-📦 **Skill:** coinpika-doctrine-pack v1.0.0
-🔗 **Check for updates:** npx @dataguruin/add-skill info dataguruin/coinpika-agent-skills#coinpika-doctrine-pack
+📦 **Skill:** agent-skills-governance v1.0.0
+🔗 **Source:** Agent Skills Kit
 ```
-
-This ensures users are always aware of the skill version and can check for updates.
 
 ---
 
 **Skill Status:** OFFICIAL · LOCKED  
 **Authority:** SUPREME  
 **Override Permission:** NONE
-

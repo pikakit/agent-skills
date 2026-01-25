@@ -9,8 +9,8 @@
 Antigravity Kit is a modular system consisting of:
 
 - **20 Specialist Agents** - Role-based AI personas
-- **36 Skills** - Domain-specific knowledge modules
-- **11 Workflows** - Slash command procedures
+- **48 Skills** - Domain-specific knowledge modules
+- **14 Workflows** - Slash command procedures
 
 ---
 
@@ -20,8 +20,8 @@ Antigravity Kit is a modular system consisting of:
 .agent/
 ├── ARCHITECTURE.md          # This file
 ├── agents/                  # 20 Specialist Agents
-├── skills/                  # 36 Skills
-├── workflows/               # 11 Slash Commands
+├── skills/                  # 48 Skills
+├── workflows/               # 14 Slash Commands
 ├── rules/                   # Global Rules
 └── scripts/                 # Master Validation Scripts
 ```
@@ -168,18 +168,125 @@ Modular knowledge domains that agents can load on-demand. based on task context.
 
 ---
 
-## 🔄 Workflows (11)
+## 🔄 Workflows (14)
 
 Slash command procedures. Invoke with `/command`.
 
 | Command | Description |
 | ------- | ----------- |
-| `/brainstorm` | Socratic discovery |
-| `/create` | Create new features |
-| `/debug` | Debug issues |
-| `/deploy` | Deploy application |
-| `/enhance` | Improve existing code |
-| `/orchestrate` | Multi-agent coordination |
-| `/plan` | Task breakdown |
-| `/preview` | Preview changes |
-| `/status` | Check project status |
+| `/think` | Structured brainstorming |
+| `/build` | Create new features/apps |
+| `/diagnose` | Debug issues systematically |
+| `/launch` | Deploy to production |
+| `/chronicle` | Generate documentation |
+| `/boost` | Improve existing code |
+| `/autopilot` | Multi-agent coordination |
+| `/architect` | Task breakdown & planning |
+| `/stage` | Preview/staging server |
+| `/inspect` | Code review verification |
+| `/forge` | Create/package skills |
+| `/pulse` | Check project status |
+| `/validate` | Run tests |
+| `/studio` | Design with 50+ styles |
+
+---
+
+## 🎯 Skill Loading Protocol
+
+```plaintext
+User Request → Skill Description Match → Load SKILL.md
+                                            ↓
+                                    Read references/
+                                            ↓
+                                    Read scripts/
+```
+
+### Skill Structure
+
+```plaintext
+skill-name/
+├── SKILL.md           # (Required) Metadata & instructions
+├── scripts/           # (Optional) Python/Bash scripts
+├── references/        # (Optional) Templates, docs
+└── assets/            # (Optional) Images, logos
+```
+
+### Enhanced Skills (with scripts/references)
+
+| Skill | Files | Coverage |
+| ----- | ----- | -------- |
+| `typescript-expert` | 5 | Utility types, tsconfig, cheatsheet |
+| `ui-ux-pro-max` | 27 | 50 styles, 21 palettes, 50 fonts |
+| `app-builder` | 20 | Full-stack scaffolding |
+
+---
+
+## 📜 Scripts (2)
+
+Master validation scripts that orchestrate skill-level scripts.
+
+### Master Scripts
+
+| Script | Purpose | When to Use |
+| ------ | ------- | ----------- |
+| `checklist.py` | Priority-based validation (Core checks) | Development, pre-commit |
+| `verify_all.py` | Comprehensive verification (All checks) | Pre-deployment, releases |
+
+### Usage
+
+```bash
+# Quick validation during development
+python .agent/scripts/checklist.py .
+
+# Full verification before deployment
+python .agent/scripts/verify_all.py . --url http://localhost:3000
+```
+
+### What They Check
+
+**checklist.py** (Core checks):
+
+- Security (vulnerabilities, secrets)
+- Code Quality (lint, types)
+- Schema Validation
+- Test Suite
+- UX Audit
+- SEO Check
+
+**verify_all.py** (Full suite):
+
+- Everything in checklist.py PLUS:
+- Lighthouse (Core Web Vitals)
+- Playwright E2E
+- Bundle Analysis
+- Mobile Audit
+- i18n Check
+
+For details, see [scripts/README.md](scripts/README.md)
+
+---
+
+## 📊 Statistics
+
+| Metric | Value |
+| ------ | ----- |
+| **Total Agents** | 20 |
+| **Total Skills** | 48 |
+| **Total Workflows** | 14 |
+| **Total Scripts** | 4 (master) + 18 (skill-level) |
+| **Coverage** | ~95% web/mobile development |
+
+---
+
+## 🔗 Quick Reference
+
+| Need | Agent | Skills |
+| ---- | ----- | ------ |
+| Web App | `frontend-specialist` | react-patterns, nextjs-best-practices |
+| API | `backend-specialist` | api-patterns, nodejs-best-practices |
+| Mobile | `mobile-developer` | mobile-design |
+| Database | `database-architect` | database-design, prisma-expert |
+| Security | `security-auditor` | vulnerability-scanner |
+| Testing | `test-engineer` | testing-patterns, webapp-testing |
+| Debug | `debugger` | systematic-debugging |
+| Plan | `project-planner` | brainstorming, plan-writing |

@@ -220,9 +220,9 @@ User: "Add mobile support to the web app"
 
 ## Integration with Existing Workflows
 
-### With /orchestrate Command
+### With /autopilot Command
 
-- **User types `/orchestrate`**: Explicit orchestration mode
+- **User types `/autopilot`**: Explicit orchestration mode
 - **AI detects complex task**: Auto-invoke orchestrator (same result)
 
 **Difference**: User doesn't need to know the command exists.
@@ -321,7 +321,7 @@ Show selection reasoning:
 
 **intelligent-routing skill enables:**
 
-✅ Zero-command operation (no need for `/orchestrate`)  
+✅ Zero-command operation (no need for `/autopilot`)  
 ✅ Automatic specialist selection based on request analysis  
 ✅ Transparent communication of which expertise is being applied  
 ✅ Seamless integration with existing workflows  
