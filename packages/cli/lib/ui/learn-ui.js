@@ -14,7 +14,7 @@ import { LESSONS_PATH, KNOWLEDGE_DIR } from "../config.js";
  * Interactive learn flow
  */
 export async function runLearnUI() {
-    p.intro(`${ICONS.learn} Learn a New Pattern`);
+    p.intro(`${ICONS.learn} Learn a New Pattern (Press ESC to exit)`);
 
     // Step 1: Pattern input
     const pattern = await p.text({

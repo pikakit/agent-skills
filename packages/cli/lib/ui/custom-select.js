@@ -46,7 +46,7 @@ export async function customSelect(config) {
         })),
         initialValue: items[0]?.value,
         render() {
-            const header = `${pc.gray("┌")}  ${pc.cyan("◈")} ${pc.bold(message)}`;
+            const header = `${pc.gray("┌")}  💬 ${pc.bold(message)}`;
 
             const body = items.map((item) => {
                 const isActive = this.value === item.value;
