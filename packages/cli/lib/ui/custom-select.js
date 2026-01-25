@@ -1,7 +1,8 @@
 /**
- * Custom Select Component - Beautiful icons using @clack/core
+ * Custom Select Component - Using @clack/prompts native select
+ * This fixes the Windows terminal rendering issues with @clack/core
  */
-import { SelectPrompt, isCancel } from "@clack/core";
+import * as p from "@clack/prompts";
 import pc from "picocolors";
 
 // ============================================================================
@@ -9,79 +10,69 @@ import pc from "picocolors";
 // ============================================================================
 
 const ITEM_ICONS = {
+    routing: "🤖",
     learn: "◆",
     recall: "◇",
     stats: "▣",
     audit: "▲",
     watch: "○",
     settings: "⚙",
-    autoLearning: "◆",
-    autoUpdating: "◇",
-    threshold: "▣",
-    back: "◀",
+    backup: "💾",
+    export: "📤",
+    proposals: "📋",
+    completion: "⌨",
+    init: "🚀",
     exit: "×"
 };
 
 const ITEM_COLORS = {
+    routing: pc.cyan,
     learn: pc.green,
     recall: pc.blue,
     stats: pc.yellow,
     audit: pc.red,
     watch: pc.magenta,
     settings: pc.cyan,
-    autoLearning: pc.green,
-    autoUpdating: pc.blue,
-    threshold: pc.yellow,
-    back: pc.gray,
+    backup: pc.gray,
+    export: pc.gray,
+    proposals: pc.yellow,
+    completion: pc.gray,
+    init: pc.green,
     exit: pc.red
 };
 
 // ============================================================================
-// CUSTOM SELECT
+// CUSTOM SELECT - Using native @clack/prompts
 // ============================================================================
 
 /**
- * Custom select with beautiful icons
+ * Custom select with icons - uses native clack select to fix Windows rendering
  * @param {object} config 
  * @returns {Promise<string|symbol>}
  */
 export async function customSelect(config) {
     const { message, items } = config;
 
-    const prompt = new SelectPrompt({
-        options: items.map((item) => ({
+    // Transform items to clack format with icons in label
+    const options = items.map((item) => {
+        const icon = ITEM_ICONS[item.value] || "◇";
+        const colorFn = ITEM_COLORS[item.value] || pc.gray;
+
+        return {
             value: item.value,
-            label: item.label,
+            label: `${icon} ${item.label}`,
             hint: item.hint
-        })),
-        initialValue: items[0]?.value,
-        render() {
-            const header = `${pc.gray("┌")}  💬 ${pc.bold(message)}`;
-
-            const body = items.map((item) => {
-                const isActive = this.value === item.value;
-                const cursor = isActive ? pc.cyan("❯") : " ";
-                const colorFn = ITEM_COLORS[item.value] || pc.gray;
-
-                // ◆ filled khi select (có màu), ◇ outline khi không select (gray)
-                const iconChar = isActive ? "◆" : "◇";
-                const iconStr = iconChar.padEnd(2, " ");
-                const icon = isActive ? colorFn(iconStr) : pc.gray(iconStr);
-
-                const label = isActive ? pc.bold(pc.white(item.label)) : pc.dim(item.label);
-                const hint = item.hint && isActive ? pc.dim(` (${item.hint})`) : "";
-
-                return `${pc.gray("│")}  ${cursor} ${icon} ${label}${hint}`;
-            }).join("\n");
-
-            const footer = `${pc.gray("└")}`;
-
-            return `${header}\n${pc.gray("│")}\n${body}\n${footer}`;
-        }
+        };
     });
 
-    const result = await prompt.prompt();
+    const result = await p.select({
+        message,
+        options,
+        initialValue: items[0]?.value
+    });
+
     return result;
 }
 
-export { ITEM_ICONS, ITEM_COLORS, pc, isCancel };
+export { ITEM_ICONS, ITEM_COLORS, pc };
+export { isCancel } from "@clack/prompts";
