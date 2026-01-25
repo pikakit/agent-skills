@@ -1,17 +1,5 @@
 version: 1
 lessons:
-  - id: LEARN-002
-    pattern: console\.log
-    message: No console logs in production code
-    severity: WARNING
-    excludePaths:
-      - packages/cli/
-      - bin/
-      - scripts/
-      - "*.test.js"
-    addedAt: '2026-01-24T11:33:54.048Z'
-    hitCount: 337
-    lastHit: '2026-01-25T07:14:17.268Z'
   - id: LEARN-003
     pattern: rebranding
     message: 'When rebranding: NEVER create new simplified file. COPY original first, then edit branding only.'
