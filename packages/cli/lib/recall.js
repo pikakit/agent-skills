@@ -16,7 +16,8 @@
 import fs from "fs";
 import path from "path";
 import yaml from "js-yaml";
-import { KNOWLEDGE_DIR, LESSONS_PATH, DEBUG, cwd } from "./config.js";
+import ora from "ora";
+import { KNOWLEDGE_DIR, LESSONS_PATH, DEBUG, cwd, VERSION } from "./config.js";
 import { loadIgnorePatterns, isIgnored } from "./ignore.js";
 import pretty from "./ui/pretty.js";
 
@@ -220,9 +221,7 @@ export function printResults(results) {
         });
     });
 
-    console.log(`\n${"─".repeat(50)}`);
-    console.log(`📊 Total: ${totalViolations} violation(s) | ❌ ${errorCount} error(s) | ⚠️  ${warningCount} warning(s)`);
-
+    // Return stats only - summary is handled by pretty.showScanSummary
     return { total: totalViolations, errors: errorCount, warnings: warningCount };
 }
 
@@ -256,10 +255,15 @@ Options:
         process.exit(0);
     }
 
-    console.log(`\n🧠 Checking ${db.lessons.length} learned pattern(s)...`);
-
+    // Scan first
     const { results, ignoredCount } = scanDirectory(target, db);
     const stats = printResults(results);
+
+    // Show branded box header with completed status
+    console.log(pretty.box(
+        `🧠 Agent Skill Kit v${VERSION}\n\n   ${pretty.brand.dim("Memory check completed ✓")}`,
+        { borderColor: "green", padding: { top: 0, bottom: 0, left: 1, right: 1 }, margin: { top: 1, bottom: 0, left: 0, right: 0 } }
+    ));
 
     // Save updated hit counts
     saveKnowledge(db);

@@ -46,9 +46,9 @@ export function showBrandHeader() {
  * @param {object} options - Box options
  */
 export function box(message, options = {}) {
-    return boxen(message, {
-        padding: 1,
-        margin: 0,
+    return "\n" + boxen(message, {
+        padding: { top: 0, bottom: 0, left: 1, right: 1 },
+        margin: { top: 0, bottom: 1, left: 0, right: 0 },
         borderStyle: "round",
         borderColor: "cyan",
         ...options
@@ -95,32 +95,32 @@ export function showScanSummary(stats) {
     const lines = [];
 
     if (stats.filesScanned !== undefined) {
-        lines.push(`${brand.success("✓")} ${stats.filesScanned} file(s) scanned`);
+        lines.push(`  ${brand.success("✓")} ${stats.filesScanned} file(s) scanned`);
     }
 
     if (stats.ignored > 0) {
-        lines.push(`${brand.dim("›")} ${stats.ignored} paths ignored`);
+        lines.push(`  ${brand.dim("›")} ${stats.ignored} paths ignored`);
     }
 
     if (stats.violations === 0) {
-        lines.push(`${brand.success("✓")} No violations found`);
+        lines.push(`  ${brand.success("✓")} No violations found`);
     } else {
-        lines.push(`${brand.error("✗")} ${stats.violations} violation(s)`);
+        lines.push(`  ${brand.error("✗")} ${stats.violations} violation(s)`);
         if (stats.errors > 0) {
-            lines.push(`  ${brand.error(`  ${stats.errors} error(s)`)}`);
+            lines.push(`    ${brand.error(`${stats.errors} error(s)`)}`);
         }
         if (stats.warnings > 0) {
-            lines.push(`  ${brand.warning(`  ${stats.warnings} warning(s)`)}`);
+            lines.push(`    ${brand.warning(`${stats.warnings} warning(s)`)}`);
         }
     }
 
-    console.log("\n" + lines.join("\n"));
+    console.log(lines.join("\n"));
 
-    // Final message
+    // Final message with spacing
     if (stats.violations === 0) {
-        console.log(`\n${brand.success(brand.bold("All clear!"))} Your code looks great. 🎉\n`);
+        console.log(`\n  ${brand.success(brand.bold("All clear!"))} Your code looks great. 🎉\n`);
     } else {
-        console.log(`\n${brand.warning("Review the issues above before committing.")}\n`);
+        console.log(`\n  ${brand.warning("Review the issues above before committing.")}\n`);
     }
 }
 
