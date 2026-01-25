@@ -71,27 +71,10 @@ export async function runProposalsUI() {
 
         switch (action) {
             case "copy": {
-                // Use native clipboard copy
+                // Use clipboardy for cross-platform clipboard
                 try {
-                    const { exec } = await import("child_process");
-                    const { promisify } = await import("util");
-                    const execAsync = promisify(exec);
-
-                    // Write to temp file and copy on Windows
-                    const fs = await import("fs");
-                    const os = await import("os");
-                    const path = await import("path");
-                    const tempFile = path.join(os.tmpdir(), "proposal.md");
-                    fs.writeFileSync(tempFile, markdown);
-
-                    if (process.platform === "win32") {
-                        await execAsync(`clip < "${tempFile}"`);
-                    } else if (process.platform === "darwin") {
-                        await execAsync(`pbcopy < "${tempFile}"`);
-                    } else {
-                        await execAsync(`xclip -selection clipboard < "${tempFile}"`);
-                    }
-
+                    const clipboard = await import("clipboardy");
+                    await clipboard.default.write(markdown);
                     p.note("Proposal copied! Paste to your AI agent.", pc.green("✅ Copied"));
                 } catch (e) {
                     p.note(`Could not copy automatically.\nPlease copy the text above manually.`, pc.yellow("⚠️ Manual Copy"));
