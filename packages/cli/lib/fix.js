@@ -38,20 +38,79 @@ const FIX_RULES = {
         type: "comment",
         replacement: (line) => `// REMOVED: ${line.trim()}`
     },
+    "console.debug": {
+        type: "comment",
+        replacement: (line) => `// REMOVED: ${line.trim()}`
+    },
+    "console.info": {
+        type: "comment",
+        replacement: (line) => `// REMOVED: ${line.trim()}`
+    },
+
     // var → const
     "\\bvar\\s+": {
         type: "replace",
         replacement: (line) => line.replace(/\bvar\s+/, "const ")
     },
-    // == → ===
+
+    // == → === (loose equality)
     "[^!=]==[^=]": {
         type: "replace",
         replacement: (line) => line.replace(/([^!=])==([^=])/g, "$1===$2")
     },
+
+    // != → !== (loose inequality)
+    "[^!]=!=[^=]": {
+        type: "replace",
+        replacement: (line) => line.replace(/([^!])!=([^=])/g, "$1!==$2")
+    },
+
     // debugger → remove
     "\\bdebugger\\b": {
         type: "remove",
         replacement: () => ""
+    },
+
+    // alert → comment out
+    "\\balert\\(": {
+        type: "comment",
+        replacement: (line) => `// REMOVED: ${line.trim()}`
+    },
+
+    // TODO/FIXME in production → warn only
+    "TODO|FIXME": {
+        type: "comment",
+        replacement: (line) => line // Leave as is, just flag
+    },
+
+    // Empty catch blocks → add comment
+    "catch\\s*\\([^)]*\\)\\s*\\{\\s*\\}": {
+        type: "replace",
+        replacement: (line) => line.replace(/\{\s*\}/, "{ /* Intentionally empty */ }")
+    },
+
+    // Promise without catch → add comment
+    "\\.then\\([^)]*\\)(?!.*\\.catch)": {
+        type: "comment",
+        replacement: (line) => `${line} // TODO: Add .catch()`
+    },
+
+    // Hardcoded localhost → flag
+    "localhost:\\d+": {
+        type: "comment",
+        replacement: (line) => `// REVIEW: ${line.trim()} // Hardcoded URL`
+    },
+
+    // @ts-ignore → flag for review
+    "@ts-ignore": {
+        type: "comment",
+        replacement: (line) => `${line} // TODO: Fix instead of ignoring`
+    },
+
+    // any type in TypeScript → flag
+    ": any": {
+        type: "comment",
+        replacement: (line) => `${line} // TODO: Replace 'any' with proper type`
     }
 };
 

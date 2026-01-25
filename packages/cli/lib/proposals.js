@@ -131,21 +131,51 @@ function guessSkillFromLesson(lesson) {
     const message = (lesson.message || "").toLowerCase();
     const combined = pattern + " " + message;
 
-    // Simple heuristics
-    if (combined.includes("react") || combined.includes("component") || combined.includes("hook")) {
+    // Frontend patterns
+    if (combined.includes("react") || combined.includes("component") || combined.includes("hook") || combined.includes("usestate") || combined.includes("useeffect")) {
         return ".agent/skills/react-patterns/SKILL.md";
     }
-    if (combined.includes("typescript") || combined.includes("type")) {
-        return ".agent/skills/typescript/SKILL.md";
+    if (combined.includes("next") || combined.includes("getserverside") || combined.includes("getstaticprops") || combined.includes("app router")) {
+        return ".agent/skills/nextjs-best-practices/SKILL.md";
     }
-    if (combined.includes("test") || combined.includes("mock")) {
-        return ".agent/skills/testing-patterns/SKILL.md";
-    }
-    if (combined.includes("css") || combined.includes("style")) {
+    if (combined.includes("css") || combined.includes("style") || combined.includes("tailwind") || combined.includes("classname")) {
         return ".agent/skills/frontend-design/SKILL.md";
     }
-    if (combined.includes("api") || combined.includes("fetch") || combined.includes("http")) {
+
+    // Backend patterns
+    if (combined.includes("api") || combined.includes("fetch") || combined.includes("http") || combined.includes("endpoint") || combined.includes("rest")) {
         return ".agent/skills/api-patterns/SKILL.md";
+    }
+    if (combined.includes("database") || combined.includes("sql") || combined.includes("prisma") || combined.includes("query") || combined.includes("schema")) {
+        return ".agent/skills/database-design/SKILL.md";
+    }
+    if (combined.includes("node") || combined.includes("express") || combined.includes("server") || combined.includes("middleware")) {
+        return ".agent/skills/nodejs-best-practices/SKILL.md";
+    }
+
+    // Testing patterns
+    if (combined.includes("test") || combined.includes("mock") || combined.includes("jest") || combined.includes("vitest") || combined.includes("expect")) {
+        return ".agent/skills/testing-patterns/SKILL.md";
+    }
+
+    // TypeScript patterns
+    if (combined.includes("typescript") || combined.includes("type") || combined.includes("interface") || combined.includes("generic") || combined.includes("any")) {
+        return ".agent/skills/typescript-expert/SKILL.md";
+    }
+
+    // Security patterns
+    if (combined.includes("security") || combined.includes("auth") || combined.includes("password") || combined.includes("token") || combined.includes("xss") || combined.includes("injection")) {
+        return ".agent/skills/vulnerability-scanner/SKILL.md";
+    }
+
+    // Performance patterns
+    if (combined.includes("performance") || combined.includes("memo") || combined.includes("lazy") || combined.includes("cache") || combined.includes("optimize")) {
+        return ".agent/skills/performance-profiling/SKILL.md";
+    }
+
+    // Git patterns
+    if (combined.includes("commit") || combined.includes("branch") || combined.includes("merge") || combined.includes("git")) {
+        return ".agent/skills/git-conventions/SKILL.md";
     }
 
     // Default to clean-code for general patterns
