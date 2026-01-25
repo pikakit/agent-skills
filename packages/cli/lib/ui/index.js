@@ -12,6 +12,8 @@ import { runSettingsUI } from "./settings-ui.js";
 import { runBackupUI } from "./backup-ui.js";
 import { runExportUI } from "./export-ui.js";
 import { runProposalsUI } from "./proposals-ui.js";
+import { runCompletionUI } from "./completion-ui.js";
+import { runInitUI } from "./init-ui.js";
 import { countPendingProposals } from "../proposals.js";
 import * as p from "@clack/prompts";
 
@@ -37,6 +39,8 @@ export async function showMainMenu() {
             { value: "backup", label: "Backup", hint: "Backup & restore data" },
             { value: "export", label: "Export", hint: "Export & import data" },
             { value: "proposals", label: "Proposals", hint: "AI agent skill updates" },
+            { value: "completion", label: "Completion", hint: "Shell autocomplete setup" },
+            { value: "init", label: "Init", hint: "Initialize project config" },
             { value: "exit", label: "Exit", hint: "Close the CLI" }
         ]
     });
@@ -74,6 +78,12 @@ export async function showMainMenu() {
             break;
         case "proposals":
             await runProposalsUI();
+            break;
+        case "completion":
+            await runCompletionUI();
+            break;
+        case "init":
+            await runInitUI();
             break;
         case "exit":
             p.outro("Goodbye! 👋");
