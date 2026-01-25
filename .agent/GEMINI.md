@@ -176,6 +176,28 @@ When user's prompt is NOT in English:
 2. What PRINCIPLES must I apply?
 3. How does this DIFFER from generic output?
 
+### 🎓 Auto-Learn Protocol (MANDATORY)
+
+> 🔴 **ALWAYS ACTIVE:** When user indicates a mistake, invoke `@[skills/auto-learn]` immediately.
+
+**Trigger Keywords:**
+- Vietnamese: "lỗi", "sai", "hỏng", "không đúng", "sửa lại", "lỗi nghiêm trọng"
+- English: "mistake", "wrong", "fix this", "that's incorrect", "you broke"
+
+**When triggered, MUST:**
+
+1. **Analyze** - What did I do wrong? What was the correct action?
+2. **Extract** - Create lesson with pattern + message + severity
+3. **Add** - Append to `.agent/knowledge/lessons-learned.yaml`
+4. **Confirm** - Say: `📚 Đã học: [LEARN-XXX] - {summary}`
+
+**Example:**
+```
+User: "Đây là lỗi nghiêm trọng, bạn tạo file mới thay vì rename"
+AI: [Invokes auto-learn, adds LEARN-003, confirms]
+📚 Đã học: [LEARN-003] - When rebranding: copy original first, don't create new simplified file
+```
+
 ---
 
 ## TIER 1: CODE RULES (When Writing Code)

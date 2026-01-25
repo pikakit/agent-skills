@@ -6,7 +6,6 @@ trigger: always_on
 
 > This file defines how the AI behaves in this workspace.
 
-
 ## 🚀 Quick Start
 
 ```mermaid
@@ -44,7 +43,7 @@ graph LR
 Agent activated → Check frontmatter "skills:" → Read SKILL.md (INDEX) → Read specific sections.
 
 - **Selective Reading:** DO NOT read ALL files in a skill folder. Read `SKILL.md` first, then only read sections matching the user's request.
-- **Rule Priority:** P0 (AGENT_SKILL_KIT.md) > P1 (Agent .md) > P2 (SKILL.md). All rules are binding.
+- **Rule Priority:** P0 (GEMINI.md) > P1 (Agent .md) > P2 (SKILL.md). All rules are binding.
 
 ```plaintext
 User Request → Skill Description Match → Load SKILL.md
@@ -176,6 +175,28 @@ When user's prompt is NOT in English:
 1. What is the GOAL of this agent/skill?
 2. What PRINCIPLES must I apply?
 3. How does this DIFFER from generic output?
+
+### 🎓 Auto-Learn Protocol (MANDATORY)
+
+> 🔴 **ALWAYS ACTIVE:** When user indicates a mistake, invoke `@[skills/auto-learn]` immediately.
+
+**Trigger Keywords:**
+- Vietnamese: "lỗi", "sai", "hỏng", "không đúng", "sửa lại", "lỗi nghiêm trọng"
+- English: "mistake", "wrong", "fix this", "that's incorrect", "you broke"
+
+**When triggered, MUST:**
+
+1. **Analyze** - What did I do wrong? What was the correct action?
+2. **Extract** - Create lesson with pattern + message + severity
+3. **Add** - Append to `.agent/knowledge/lessons-learned.yaml`
+4. **Confirm** - Say: `📚 Đã học: [LEARN-XXX] - {summary}`
+
+**Example:**
+```
+User: "Đây là lỗi nghiêm trọng, bạn tạo file mới thay vì rename"
+AI: [Invokes auto-learn, adds LEARN-003, confirms]
+📚 Đã học: [LEARN-003] - When rebranding: copy original first, don't create new simplified file
+```
 
 ---
 
@@ -338,7 +359,7 @@ For details, see [scripts/README.md](scripts/README.md)
 | Metric | Value |
 | ------ | ----- |
 | **Total Agents** | 20 |
-| **Total Skills** | 48 |
+| **Total Skills** | 49 |
 | **Total Workflows** | 14 |
 | **Total Scripts** | 4 (master) + 18 (skill-level) |
 | **Coverage** | ~95% web/mobile development |
@@ -350,7 +371,7 @@ For details, see [scripts/README.md](scripts/README.md)
 ### Agents & Skills
 
 - **Masters**: `orchestrator`, `project-planner`, `security-auditor` (Cyber/Audit), `backend-specialist` (API/DB), `frontend-specialist` (UI/UX), `mobile-developer`, `debugger`, `game-developer`
-- **Key Skills**: `clean-code`, `brainstorming`, `app-builder`, `frontend-design`, `mobile-design`, `plan-writing`, `problem-solving`, `context-engineering`, `skill-creator`
+- **Key Skills**: `clean-code`, `brainstorming`, `app-builder`, `frontend-design`, `mobile-design`, `plan-writing`, `problem-solving`, `context-engineering`, `skill-creator`, `auto-learn`
 
 ### Key Scripts
 
