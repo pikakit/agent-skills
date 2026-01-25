@@ -8,6 +8,7 @@ import { ICONS, showHeader, handleCancel } from "./common.js";
 import { runLearnUI } from "./learn-ui.js";
 import { runStatsUI } from "./stats-ui.js";
 import { runRecallUI } from "./recall-ui.js";
+import { runSettingsUI } from "./settings-ui.js";
 import * as p from "@clack/prompts";
 
 // ============================================================================
@@ -28,6 +29,7 @@ export async function showMainMenu() {
             { value: "stats", label: "Stats", hint: "View statistics" },
             { value: "audit", label: "Audit", hint: "Run compliance check" },
             { value: "watch", label: "Watch", hint: "Real-time monitoring" },
+            { value: "settings", label: "Settings", hint: "Configure agent behavior" },
             { value: "exit", label: "Exit", hint: "Close the CLI" }
         ]
     });
@@ -53,6 +55,9 @@ export async function showMainMenu() {
             break;
         case "watch":
             await runWatchUI();
+            break;
+        case "settings":
+            await runSettingsUI();
             break;
         case "exit":
             p.outro("Goodbye! 👋");

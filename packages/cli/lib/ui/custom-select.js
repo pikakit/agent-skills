@@ -14,6 +14,7 @@ const ITEM_ICONS = {
     stats: "▣",
     audit: "▲",
     watch: "○",
+    settings: "⚙",
     exit: "×"
 };
 
@@ -23,6 +24,7 @@ const ITEM_COLORS = {
     stats: pc.yellow,
     audit: pc.red,
     watch: pc.magenta,
+    settings: pc.cyan,
     exit: pc.red // Changed to red as requested
 };
 

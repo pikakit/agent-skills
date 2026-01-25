@@ -1,0 +1,5 @@
+version: 1
+autoLearning: true
+autoUpdating: false
+updateThreshold: 5
+lastUpdateCheck: null
