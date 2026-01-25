@@ -108,13 +108,13 @@ ${"─".repeat(50)}
 switch (COMMAND) {
     // Core commands (v2 versions)
     case "learn":
-        run("learn.v2.js", ARGS.slice(1));
+        run("learn.js", ARGS.slice(1));
         break;
     case "recall":
-        run("recall.v2.js", ARGS.slice(1));
+        run("recall.js", ARGS.slice(1));
         break;
     case "audit":
-        run("audit.v2.js", ARGS.slice(1));
+        run("audit.js", ARGS.slice(1));
         break;
 
     // Production features

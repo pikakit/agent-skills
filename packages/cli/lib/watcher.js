@@ -13,7 +13,7 @@
 
 import fs from "fs";
 import path from "path";
-import { scanFile, loadKnowledge, saveKnowledge } from "./recall.v2.js";
+import { scanFile, loadKnowledge, saveKnowledge } from "./recall.js";
 import { VERSION } from "./config.js";
 
 // ============================================================================

@@ -10,7 +10,7 @@
  */
 
 import fs from "fs";
-import { loadKnowledge, saveKnowledge } from "../recall.v2.js";
+import { loadKnowledge, saveKnowledge } from "../recall.js";
 
 // ============================================================================
 // ESLINT PARSER

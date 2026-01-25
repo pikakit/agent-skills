@@ -10,7 +10,7 @@
  * Usage: ag-smart stats
  */
 
-import { loadKnowledge } from "./recall.v2.js";
+import { loadKnowledge } from "./recall.js";
 import { VERSION } from "./config.js";
 
 // ============================================================================

@@ -12,7 +12,7 @@
 
 import fs from "fs";
 import path from "path";
-import { loadKnowledge, saveKnowledge } from "./recall.v2.js";
+import { loadKnowledge, saveKnowledge } from "./recall.js";
 import { AGENT_DIR, VERSION } from "./config.js";
 
 // ============================================================================

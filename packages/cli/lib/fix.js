@@ -14,7 +14,7 @@
 
 import fs from "fs";
 import path from "path";
-import { loadKnowledge, saveKnowledge, scanFile, scanDirectory } from "./recall.v2.js";
+import { loadKnowledge, saveKnowledge, scanFile, scanDirectory } from "./recall.js";
 import { VERSION } from "./config.js";
 
 // ============================================================================

@@ -17,7 +17,7 @@
 import fs from "fs";
 import path from "path";
 import { execSync, spawnSync } from "child_process";
-import { loadKnowledge, saveKnowledge } from "./recall.v2.js";
+import { loadKnowledge, saveKnowledge } from "./recall.js";
 import { VERSION } from "./config.js";
 
 // ============================================================================

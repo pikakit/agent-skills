@@ -184,7 +184,7 @@ export async function runCombinedFix(targetPath, options = {}) {
     console.log("\n🧠 Running pattern-based fix...");
     try {
         const { fixDirectory } = await import("./fix.js");
-        const { loadKnowledge } = await import("./recall.v2.js");
+        const { loadKnowledge } = await import("./recall.js");
 
         const db = loadKnowledge();
         const results = fixDirectory(targetPath, db, options.mode || "safe");
