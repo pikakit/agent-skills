@@ -69,7 +69,7 @@ Modular knowledge domains that agents can load on-demand. based on task context.
 | `nextjs-best-practices` | App Router, Server Components |
 | `tailwind-patterns` | Tailwind CSS v4 utilities |
 | `frontend-design` | UI/UX patterns, design systems |
-| `ui-ux-pro-max` | 50 styles, 21 palettes, 50 fonts |
+| `studio` | 50 styles, 21 palettes, 50 fonts |
 
 ### Backend & API
 
@@ -216,7 +216,7 @@ skill-name/
 | Skill | Files | Coverage |
 | ----- | ----- | -------- |
 | `typescript-expert` | 5 | Utility types, tsconfig, cheatsheet |
-| `ui-ux-pro-max` | 27 | 50 styles, 21 palettes, 50 fonts |
+| `studio` | 27 | 50 styles, 21 palettes, 50 fonts |
 | `app-builder` | 20 | Full-stack scaffolding |
 
 ---
