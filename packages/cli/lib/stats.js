@@ -12,6 +12,8 @@
 
 import { loadKnowledge } from "./recall.js";
 import { VERSION } from "./config.js";
+import * as p from "@clack/prompts";
+import pc from "picocolors";
 
 // ============================================================================
 // STATS DISPLAY
@@ -20,74 +22,61 @@ import { VERSION } from "./config.js";
 function displayStats() {
     const db = loadKnowledge();
 
-    console.log(`\n📊 Smart Agent Knowledge Base v${VERSION}\n`);
-    console.log("─".repeat(50));
+    p.intro(pc.cyan(`📊 Smart Agent Knowledge Base v${VERSION}`));
 
     if (!db.lessons || db.lessons.length === 0) {
-        console.log("\nℹ️  No lessons learned yet.");
-        console.log("   Use 'ag-smart learn' to add patterns.\n");
+        p.note("No lessons learned yet.\nUse 'ag-smart learn' to add patterns.", pc.dim("Empty"));
         return;
     }
 
     // Summary
-    console.log(`\n📚 Total Lessons: ${db.lessons.length}`);
-
     const totalHits = db.lessons.reduce((sum, l) => sum + (l.hitCount || 0), 0);
-    console.log(`🎯 Total Violations Detected: ${totalHits}`);
-
     const errorCount = db.lessons.filter(l => l.severity === "ERROR").length;
     const warningCount = db.lessons.filter(l => l.severity === "WARNING").length;
-    console.log(`❌ ERROR patterns: ${errorCount}`);
-    console.log(`⚠️  WARNING patterns: ${warningCount}`);
+
+    const summaryLines = [
+        `📚 Total Lessons: ${pc.bold(db.lessons.length)}`,
+        `🎯 Total Violations: ${pc.bold(totalHits)}`,
+        `${pc.red("❌")} ERROR patterns: ${errorCount}`,
+        `${pc.yellow("⚠️")} WARNING patterns: ${warningCount}`
+    ];
+    p.note(summaryLines.join("\n"), pc.dim("Summary"));
 
     // Most triggered
-    console.log("\n" + "─".repeat(50));
-    console.log("🔥 Most Triggered Patterns:\n");
-
     const sorted = [...db.lessons]
         .filter(l => l.hitCount > 0)
         .sort((a, b) => (b.hitCount || 0) - (a.hitCount || 0))
         .slice(0, 5);
 
-    if (sorted.length === 0) {
-        console.log("   No violations detected yet.\n");
-    } else {
-        sorted.forEach((lesson, idx) => {
-            const bar = "█".repeat(Math.min(20, Math.ceil((lesson.hitCount / (sorted[0].hitCount || 1)) * 20)));
-            console.log(`   ${idx + 1}. [${lesson.id}] ${lesson.hitCount} hits`);
-            console.log(`      ${bar}`);
-            console.log(`      ${lesson.message}`);
-            console.log("");
+    if (sorted.length > 0) {
+        const triggeredLines = sorted.map((lesson, idx) => {
+            const bar = "█".repeat(Math.min(15, Math.ceil((lesson.hitCount / (sorted[0].hitCount || 1)) * 15)));
+            return `${idx + 1}. [${lesson.id}] ${lesson.hitCount} hits\n   ${pc.green(bar)}\n   ${pc.dim(lesson.message)}`;
         });
+        p.note(triggeredLines.join("\n\n"), pc.dim("🔥 Most Triggered"));
     }
 
     // Auto-escalated
     const escalated = db.lessons.filter(l => l.autoEscalated);
     if (escalated.length > 0) {
-        console.log("─".repeat(50));
-        console.log("⚡ Auto-Escalated Patterns:\n");
-        escalated.forEach(l => {
-            console.log(`   [${l.id}] ${l.pattern} → Escalated to ERROR after ${l.hitCount} violations`);
-        });
-        console.log("");
+        const escalatedLines = escalated.map(l =>
+            `[${l.id}] → Escalated after ${l.hitCount} violations`
+        );
+        p.note(escalatedLines.join("\n"), pc.dim("⚡ Auto-Escalated"));
     }
 
     // Recent activity
     const withHits = db.lessons.filter(l => l.lastHit);
     if (withHits.length > 0) {
-        console.log("─".repeat(50));
-        console.log("🕐 Recent Activity:\n");
-
         const recent = [...withHits]
             .sort((a, b) => new Date(b.lastHit) - new Date(a.lastHit))
             .slice(0, 3);
 
-        recent.forEach(l => {
-            const date = new Date(l.lastHit);
-            const timeAgo = getTimeAgo(date);
-            console.log(`   [${l.id}] Last hit: ${timeAgo}`);
+        const recentLines = recent.map(l => {
+            const timeAgo = getTimeAgo(new Date(l.lastHit));
+            return `[${l.id}] Last hit: ${timeAgo}`;
         });
-        console.log("");
+        p.note(recentLines.join("\n"), pc.dim("🕐 Recent Activity"));
     }
 
     // Sources breakdown
@@ -97,13 +86,13 @@ function displayStats() {
         sources[src] = (sources[src] || 0) + 1;
     });
 
-    console.log("─".repeat(50));
-    console.log("📥 Lesson Sources:\n");
-    Object.entries(sources).forEach(([src, count]) => {
+    const sourceLines = Object.entries(sources).map(([src, count]) => {
         const icon = src === "manual" ? "✍️" : src === "eslint" ? "🔧" : "🧪";
-        console.log(`   ${icon} ${src}: ${count}`);
+        return `${icon} ${src}: ${count}`;
     });
-    console.log("");
+    p.note(sourceLines.join("\n"), pc.dim("📥 Lesson Sources"));
+
+    p.outro(pc.green("Stats complete"));
 }
 
 /**
