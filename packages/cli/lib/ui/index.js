@@ -21,12 +21,12 @@ export async function showMainMenu() {
     const action = await p.select({
         message: "What would you like to do?",
         options: [
-            { value: "learn", label: `${ICONS.learn} Learn`, hint: "Teach a new pattern" },
-            { value: "recall", label: `${ICONS.recall} Recall`, hint: "Scan for violations" },
-            { value: "stats", label: `${ICONS.stats} Stats`, hint: "View statistics" },
-            { value: "audit", label: `${ICONS.audit} Audit`, hint: "Run compliance check" },
-            { value: "watch", label: `${ICONS.watch} Watch`, hint: "Real-time monitoring" },
-            { value: "exit", label: "Exit", hint: "Close the CLI" }
+            { value: "learn", label: "[+]  Learn", hint: "Teach a new pattern" },
+            { value: "recall", label: "[?]  Recall", hint: "Scan for violations" },
+            { value: "stats", label: "[#]  Stats", hint: "View statistics" },
+            { value: "audit", label: "[!]  Audit", hint: "Run compliance check" },
+            { value: "watch", label: "[~]  Watch", hint: "Real-time monitoring" },
+            { value: "exit", label: "[x]  Exit", hint: "Close the CLI" }
         ]
     });
 
