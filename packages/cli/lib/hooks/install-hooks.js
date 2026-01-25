@@ -21,7 +21,7 @@ const PRE_COMMIT_HOOK = `#!/bin/sh
 
 echo "🧠 Running Smart Agent memory check..."
 
-# Get staged files
+# Get staged JS/TS files
 STAGED_FILES=$(git diff --cached --name-only --diff-filter=ACM | grep -E "\\.(js|ts|tsx|jsx|mjs)$")
 
 if [ -z "$STAGED_FILES" ]; then
@@ -29,25 +29,19 @@ if [ -z "$STAGED_FILES" ]; then
     exit 0
 fi
 
-# Run recall on each staged file
-HAS_ERRORS=0
+# Count files
+FILE_COUNT=$(echo "$STAGED_FILES" | wc -l | tr -d ' ')
+echo "📁 Checking $FILE_COUNT file(s)..."
 
-for FILE in $STAGED_FILES; do
-    if [ -f "$FILE" ]; then
-        npx ag-smart recall "$FILE" --quiet
-        if [ $? -eq 1 ]; then
-            HAS_ERRORS=1
-        fi
-    fi
-done
+# Run recall ONCE on current directory (uses .agentignore)
+npx ag-smart recall . --quiet 2>/dev/null
+RESULT=$?
 
-if [ $HAS_ERRORS -eq 1 ]; then
+if [ $RESULT -eq 1 ]; then
     echo ""
     echo "⚠️  Violations found. Review above and fix ERROR-level issues."
     echo "   To skip this check: git commit --no-verify"
     echo ""
-    # Only warn, don't block (safe default)
-    exit 0
 fi
 
 echo "✅ Memory check passed."
