@@ -214,13 +214,12 @@ class SmartRebranderV2:
     def create_backup(self) -> Path:
         """Create timestamped backup"""
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-        # Create backup in parent directory to avoid path length issues
-        backup_path = self.root_dir.parent / f"rebrand_backup_{timestamp}"
+        backup_path = self.root_dir / f".rebrand_backup_{timestamp}"
         
         print(f"📦 Creating backup at {backup_path}...")
         
         # Copy only tracked files (ignore .git, node_modules, etc.)
-        important_patterns = ["*.py", "*.md", "*.json", "*.js", "*.ts"]
+        important_patterns = ["*.py", "*.md", "*.json", "*.js", "*.ts", ".agent/**"]
         
         backup_path.mkdir(exist_ok=True)
         files_backed_up = 0
@@ -404,9 +403,9 @@ class SmartRebranderV2:
         print(f"   {self.old_name} → {self.new_name}")
         print(f"   Mode: {'DRY RUN' if dry_run else 'LIVE'}\n")
         
-        # Create backup (skip - rely on git for safety)
-        # if not dry_run:
-        #     self.create_backup()
+        # Create backup (even for dry run, for safety)
+        if not dry_run:
+            self.create_backup()
         
         # Deep scan
         references = self.find_all_references()
