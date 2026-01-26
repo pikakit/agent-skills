@@ -1,8 +1,0 @@
-{
-  "repo": "agentskillkit/agent-skills",
-  "skill": "powershell-windows",
-  "ref": null,
-  "checksum": "21f0f315e850a332a07f97652a36fe8771b3556e56cbde9697427ff3d5b0a64f",
-  "installedAt": "2026-01-26T08:48:28.868Z",
-  "method": "symlink"
-}

@@ -1,8 +1,0 @@
-{
-  "repo": "agentskillkit/agent-skills",
-  "skill": "bash-linux",
-  "ref": null,
-  "checksum": "386d3f9ce7a8a89c67fbc0bf4bd4eadb3504203f445cb2968af93d8ea00b2ca2",
-  "installedAt": "2026-01-26T08:48:27.026Z",
-  "method": "symlink"
-}

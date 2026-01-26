@@ -1,8 +1,0 @@
-{
-  "repo": "agentskillkit/agent-skills",
-  "skill": "mermaidjs-v11",
-  "ref": null,
-  "checksum": "1c67665ee9eec217147aa7f161b5ce4b2d8bf2450355e5651b5c341abbfa7ed0",
-  "installedAt": "2026-01-26T08:48:28.685Z",
-  "method": "symlink"
-}

@@ -1,8 +1,0 @@
-{
-  "repo": "agentskillkit/agent-skills",
-  "skill": "tailwind-patterns",
-  "ref": null,
-  "checksum": "8d5c8c18b932866a7079a72d75146276c9df0058632b4c1c5ca0c36be656028a",
-  "installedAt": "2026-01-26T08:48:29.040Z",
-  "method": "symlink"
-}

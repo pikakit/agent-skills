@@ -1,8 +1,0 @@
-{
-  "repo": "agentskillkit/agent-skills",
-  "skill": "nextjs-best-practices",
-  "ref": null,
-  "checksum": "688a01338c21f8db90287e306efa69a45424bbae81fafe4e8ca504d4f0eed39b",
-  "installedAt": "2026-01-26T08:48:28.792Z",
-  "method": "symlink"
-}

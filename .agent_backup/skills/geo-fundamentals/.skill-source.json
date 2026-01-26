@@ -1,8 +1,0 @@
-{
-  "repo": "agentskillkit/agent-skills",
-  "skill": "geo-fundamentals",
-  "ref": null,
-  "checksum": "d8c7ba0d70626e7a3cc0360ab0c25099d788ead065b1d5254e179807c77d9a81",
-  "installedAt": "2026-01-26T08:48:28.319Z",
-  "method": "symlink"
-}

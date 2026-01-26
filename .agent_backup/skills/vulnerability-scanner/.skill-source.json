@@ -1,8 +1,0 @@
-{
-  "repo": "agentskillkit/agent-skills",
-  "skill": "vulnerability-scanner",
-  "ref": null,
-  "checksum": "8f627ff71b09dbe98bc401c4757b544bfc43afeec93d96ada49efbcb1996803a",
-  "installedAt": "2026-01-26T08:48:29.082Z",
-  "method": "symlink"
-}

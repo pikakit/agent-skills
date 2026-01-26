@@ -1,8 +1,0 @@
-{
-  "repo": "agentskillkit/agent-skills",
-  "skill": "deployment-procedures",
-  "ref": null,
-  "checksum": "501c24cd9fbaa09767e6eed366b3fc56a497e63ce9701d24226d6b149aa28abf",
-  "installedAt": "2026-01-26T08:48:27.270Z",
-  "method": "symlink"
-}
