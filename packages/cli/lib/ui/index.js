@@ -24,46 +24,89 @@ import { countPendingProposals } from "../proposals.js";
 import * as p from "@clack/prompts";
 
 // ============================================================================
-// MAIN MENU
+// MAIN MENU - TWO LEVEL
 // ============================================================================
 
 /**
- * Show main interactive menu
+ * Show main interactive menu (Level 1: Categories)
  */
 export async function showMainMenu() {
     showHeader();
 
-    const action = await customSelect({
+    const category = await customSelect({
         message: "What would you like to do?",
         items: [
-            // ─── CORE ───
-            { value: "routing", label: "Routing", hint: "Test agent routing" },
-            { value: "learn", label: "Learn", hint: "Teach pattern" },
-            { value: "lessons", label: "Lessons", hint: "View & manage lessons" },
-            { value: "recall", label: "Recall", hint: "Scan violations" },
-            // ─── ANALYSIS ───
-            { value: "stats", label: "Stats", hint: "View statistics" },
-            { value: "audit", label: "Audit", hint: "Compliance check" },
-            { value: "watch", label: "Watch", hint: "Real-time monitor" },
-            // ─── DATA ───
-            { value: "backup", label: "Backup", hint: "Backup & restore" },
-            { value: "export", label: "Export", hint: "Export & import" },
-            { value: "proposals", label: "Proposals", hint: "Skill updates" },
-            // ─── CONFIG ───
-            { value: "settings", label: "Settings", hint: "Configure behavior" },
-            { value: "completion", label: "Completion", hint: "Shell autocomplete" },
-            { value: "init", label: "Init", hint: "Initialize project" },
-            // ───────────
+            { value: "core", label: "Core Features", hint: "Routing, Learn, Recall, Lessons" },
+            { value: "analysis", label: "Analysis & Monitor", hint: "Stats, Audit, Watch" },
+            { value: "data", label: "Data Management", hint: "Backup, Export, Proposals" },
+            { value: "config", label: "Configuration", hint: "Settings, Completion, Init" },
             { value: "exit", label: "Exit", hint: "Close CLI" }
         ]
     });
 
-    // Handle CTRL+C using proper isCancel check
-    if (p.isCancel(action)) {
-        p.cancel("Goodbye! 👋");
+    if (p.isCancel(category) || category === "exit") {
+        p.outro("Goodbye! 👋");
         process.exit(0);
     }
 
+    let action;
+
+    // Level 2: Specific actions
+    switch (category) {
+        case "core":
+            action = await customSelect({
+                message: "Core Features",
+                items: [
+                    { value: "routing", label: "Routing", hint: "Test agent routing" },
+                    { value: "learn", label: "Learn", hint: "Teach pattern" },
+                    { value: "lessons", label: "Lessons", hint: "View & manage lessons" },
+                    { value: "recall", label: "Recall", hint: "Scan violations" },
+                    { value: "back", label: "← Back", hint: "Return to categories" }
+                ]
+            });
+            break;
+        case "analysis":
+            action = await customSelect({
+                message: "Analysis & Monitor",
+                items: [
+                    { value: "stats", label: "Stats", hint: "View statistics" },
+                    { value: "audit", label: "Audit", hint: "Compliance check" },
+                    { value: "watch", label: "Watch", hint: "Real-time monitor" },
+                    { value: "back", label: "← Back", hint: "Return to categories" }
+                ]
+            });
+            break;
+        case "data":
+            action = await customSelect({
+                message: "Data Management",
+                items: [
+                    { value: "backup", label: "Backup", hint: "Backup & restore" },
+                    { value: "export", label: "Export", hint: "Export & import" },
+                    { value: "proposals", label: "Proposals", hint: "Skill updates" },
+                    { value: "back", label: "← Back", hint: "Return to categories" }
+                ]
+            });
+            break;
+        case "config":
+            action = await customSelect({
+                message: "Configuration",
+                items: [
+                    { value: "settings", label: "Settings", hint: "Configure behavior" },
+                    { value: "completion", label: "Completion", hint: "Shell autocomplete" },
+                    { value: "init", label: "Init", hint: "Initialize project" },
+                    { value: "back", label: "← Back", hint: "Return to categories" }
+                ]
+            });
+            break;
+    }
+
+    // Handle back or cancel
+    if (p.isCancel(action) || action === "back") {
+        await showMainMenu();
+        return;
+    }
+
+    // Execute action
     switch (action) {
         case "routing":
             await runRoutingUI();
@@ -104,9 +147,6 @@ export async function showMainMenu() {
         case "init":
             await runInitUI();
             break;
-        case "exit":
-            p.outro("Goodbye! 👋");
-            process.exit(0);
     }
 
     // Return to menu after action
