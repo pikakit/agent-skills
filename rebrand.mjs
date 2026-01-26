@@ -90,25 +90,61 @@ class RebrandCLI {
         }
     }
 
+    async detectCurrentBrand() {
+        try {
+            const pkgPath = join(process.cwd(), 'package.json');
+            const content = await readFile(pkgPath, 'utf-8');
+            const pkg = JSON.parse(content);
+
+            // Try to extract brand name from package name or description
+            if (pkg.name) {
+                // Extract from scoped package: @agentskillkit/agent-skills -> Agent Skills
+                const match = pkg.name.match(/[@\/]?([^\/]+)(?:\/([^\/]+))?$/);
+                if (match) {
+                    const name = match[2] || match[1];
+                    // Convert kebab-case to Title Case
+                    return name.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
+                }
+            }
+
+            // Fallback to description
+            if (pkg.description) {
+                const match = pkg.description.match(/^(?:The )?(.+?)(?:\s+for|$)/);
+                if (match) return match[1];
+            }
+
+            return null;
+        } catch {
+            return null;
+        }
+    }
+
     async run() {
         console.clear();
 
         p.intro(color.bgCyan(color.black(' Smart Rebrand v2 ')));
 
+        // Auto-detect current brand
+        const currentBrand = await this.detectCurrentBrand();
+
+        if (currentBrand) {
+            p.note(
+                `Current: ${color.cyan(currentBrand)}\n` +
+                color.dim('Detected from package.json'),
+                'Current Brand'
+            );
+        }
+
         const project = await p.group(
             {
-                oldName: () => p.text({
-                    message: 'Old brand name:',
-                    placeholder: 'Antigravity Kit',
-                    validate: (value) => {
-                        if (!value) return 'Please enter the old name';
-                    },
-                }),
                 newName: () => p.text({
-                    message: 'New brand name:',
+                    message: currentBrand
+                        ? `What would you like to change "${color.cyan(currentBrand)}" to?`
+                        : 'What is the new brand name?',
                     placeholder: 'Agent Skill Kit',
                     validate: (value) => {
-                        if (!value) return 'Please enter the new name';
+                        if (!value) return 'Please enter the new brand name';
+                        if (currentBrand && value === currentBrand) return 'New name must be different from current';
                     },
                 }),
                 mode: () => p.select({
@@ -127,7 +163,14 @@ class RebrandCLI {
             }
         );
 
-        if (project.oldName === project.newName) {
+        const oldName = currentBrand || await p.text({
+            message: 'Could not detect current brand. Please enter manually:',
+            validate: (value) => {
+                if (!value) return 'Please enter the current brand name';
+            },
+        });
+
+        if (oldName === project.newName) {
             p.cancel('Old and new names are identical!');
             process.exit(1);
         }
@@ -135,7 +178,7 @@ class RebrandCLI {
         // Confirm if live mode
         if (project.mode === 'live') {
             const confirmed = await p.confirm({
-                message: `Replace "${project.oldName}" with "${project.newName}" in all files?`,
+                message: `Replace "${oldName}" with "${project.newName}" in all files?`,
                 initialValue: false,
             });
 
@@ -146,7 +189,7 @@ class RebrandCLI {
         }
 
         // Generate variations
-        this.variations = this.generateVariations(project.oldName, project.newName);
+        this.variations = this.generateVariations(oldName, project.newName);
 
         // Scan phase
         const s = p.spinner();
