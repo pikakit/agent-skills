@@ -25,6 +25,7 @@ import subprocess
 import argparse
 from pathlib import Path
 from typing import List, Tuple, Optional
+from datetime import datetime
 
 # ANSI colors for terminal output
 class Colors:
@@ -56,17 +57,17 @@ def print_error(text: str):
 
 # Define priority-ordered checks
 CORE_CHECKS = [
-    ("Security Scan", ".agent/skills/vulnerability-scanner/scripts/security_scan.py", True),
-    ("Lint Check", ".agent/skills/lint-and-validate/scripts/lint_runner.py", True),
-    ("Schema Validation", ".agent/skills/database-design/scripts/schema_validator.py", False),
-    ("Test Runner", ".agent/skills/testing-patterns/scripts/test_runner.py", False),
-    ("UX Audit", ".agent/skills/frontend-design/scripts/ux_audit.py", False),
-    ("SEO Check", ".agent/skills/seo-fundamentals/scripts/seo_checker.py", False),
+    ("Security Scan", ".agent/skills/SecurityScanner/scripts/security_scan.py", True),
+    ("Lint Check", ".agent/skills/CodeQuality/scripts/lint_runner.py", True),
+    ("Schema Validation", ".agent/skills/DataModeler/scripts/schema_validator.py", False),
+    ("Test Runner", ".agent/skills/TestArchitect/scripts/test_runner.py", False),
+    ("UX Audit", ".agent/skills/DesignSystem/scripts/ux_audit.py", False),
+    ("SEO Check", ".agent/skills/SEOOptimizer/scripts/seo_checker.py", False),
 ]
 
 PERFORMANCE_CHECKS = [
-    ("Lighthouse Audit", ".agent/skills/performance-profiling/scripts/lighthouse_audit.py", True),
-    ("Playwright E2E", ".agent/skills/webapp-testing/scripts/playwright_runner.py", False),
+    ("Lighthouse Audit", ".agent/skills/PerfOptimizer/scripts/lighthouse_audit.py", True),
+    ("Playwright E2E", ".agent/skills/E2EAutomation/scripts/playwright_runner.py", False),
 ]
 
 def check_script_exists(script_path: Path) -> bool:
@@ -125,6 +126,30 @@ def run_script(name: str, script_path: Path, project_path: str, url: Optional[st
         print_error(f"{name}: ERROR - {str(e)}")
         return {"name": name, "passed": False, "output": "", "error": str(e), "skipped": False}
 
+
+def format_json_output(results: List[dict], project_path: str, url: Optional[str], start_time: datetime) -> str:
+    """Format results as JSON"""
+    import json
+    
+    total_duration = (datetime.now() - start_time).total_seconds()
+    
+    output = {
+        "version": "3.1.0",
+        "timestamp": datetime.now().isoformat(),
+        "project_path": str(project_path),
+        "url": url,
+        "summary": {
+            "total": len(results),
+            "passed": sum(1 for r in results if r["passed"] and not r.get("skipped")),
+            "failed": sum(1 for r in results if not r["passed"] and not r.get("skipped")),
+            "skipped": sum(1 for r in results if r.get("skipped")),
+            "duration": round(total_duration, 2)
+        },
+        "results": results
+    }
+    
+    return json.dumps(output, indent=2)
+
 def print_summary(results: List[dict]):
     """Print final summary report"""
     print_header("📊 CHECKLIST SUMMARY")
@@ -167,11 +192,14 @@ def main():
 Examples:
   python scripts/checklist.py .                      # Core checks only
   python scripts/checklist.py . --url http://localhost:3000  # Include performance
+  python scripts/checklist.py . --format json        # JSON output for CI/CD
         """
     )
     parser.add_argument("project", help="Project path to validate")
     parser.add_argument("--url", help="URL for performance checks (lighthouse, playwright)")
     parser.add_argument("--skip-performance", action="store_true", help="Skip performance checks even if URL provided")
+    parser.add_argument("--format", choices=["text", "json"], default="text", help="Output format")
+    parser.add_argument("--verbose", "-v", action="store_true", help="Show detailed error messages")
     
     args = parser.parse_args()
     
@@ -181,14 +209,19 @@ Examples:
         print_error(f"Project path does not exist: {project_path}")
         sys.exit(1)
     
-    print_header("🚀 ANTIGRAVITY KIT - MASTER CHECKLIST")
+    start_time = datetime.now()
+    
+    if args.format == "text":
+        print_header("🚀 ANTIGRAVITY KIT - MASTER CHECKLIST")
     print(f"Project: {project_path}")
     print(f"URL: {args.url if args.url else 'Not provided (performance checks skipped)'}")
     
     results = []
     
     # Run core checks
-    print_header("📋 CORE CHECKS")
+    if args.format == "text":
+
+        print_header("📋 CORE CHECKS")
     for name, script_path, required in CORE_CHECKS:
         script = project_path / script_path
         result = run_script(name, script, str(project_path))
@@ -202,14 +235,20 @@ Examples:
     
     # Run performance checks if URL provided
     if args.url and not args.skip_performance:
-        print_header("⚡ PERFORMANCE CHECKS")
+        if args.format == "text":
+
+            print_header("⚡ PERFORMANCE CHECKS")
         for name, script_path, required in PERFORMANCE_CHECKS:
             script = project_path / script_path
             result = run_script(name, script, str(project_path), args.url)
             results.append(result)
     
     # Print summary
-    all_passed = print_summary(results)
+    if args.format == "json":
+        print(format_json_output(results, project_path, args.url, start_time))
+        all_passed = sum(1 for r in results if not r["passed"] and not r.get("skipped")) == 0
+    else:
+        all_passed = print_summary(results)
     
     sys.exit(0 if all_passed else 1)
 
