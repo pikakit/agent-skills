@@ -1,0 +1,8 @@
+{
+  "repo": "agentskillkit/agent-skills",
+  "skill": "game-development",
+  "ref": null,
+  "checksum": "3d381ef04fcf5feebaa5c957a70c46bf9ebb0b1174e777be93a4eb6b71facc7d",
+  "installedAt": "2026-01-26T08:48:28.275Z",
+  "method": "symlink"
+}

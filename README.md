@@ -1,285 +1,436 @@
 # Agent Skill Kit
 
-> **Biến AI Agent của bạn thành chuyên gia đa lĩnh vực chỉ với 1 dòng lệnh**
+> **Transform your AI Agent into a multi-domain expert with one command**
 
-[![npm](https://img.shields.io/badge/version-1.0.0-7c3aed?style=flat&colorA=18181b)](https://www.npmjs.com/package/add-skill-kit)
-[![skills](https://img.shields.io/badge/skills-48+-7c3aed?style=flat&colorA=18181b)](https://github.com/agentskillkit/agent-skills)
+[![npm](https://img.shields.io/badge/version-2.4.0-7c3aed?style=flat&colorA=18181b)](https://www.npmjs.com/package/agentskillskit-cli)
+[![skills](https://img.shields.io/badge/skills-49+-7c3aed?style=flat&colorA=18181b)](https://github.com/agentskillkit/agent-skills)
 [![agents](https://img.shields.io/badge/agents-20-7c3aed?style=flat&colorA=18181b)](https://github.com/agentskillkit/agent-skills)
 [![license](https://img.shields.io/badge/license-MIT-7c3aed?style=flat&colorA=18181b)](LICENSE)
 
 ---
 
-## 🎉 NEW [Jan 2025]: 48 Skills + 14 Workflows!
-
-Vừa thêm **7 skills mới** từ ClaudeKit-Skills:
-- **problem-solving** - 6 kỹ thuật tư duy sáng tạo (collision-zone, inversion, scale-game...)
-- **context-engineering** - Tối ưu context window cho AI agents
-- **document-skills** - Xử lý Word, PDF, PowerPoint, Excel
-- **debugging** - 3 frameworks debug chuyên sâu
-- **aesthetic** - Design principles anti-AI-slop
-- **mermaidjs-v11** - Diagram generation
-- **sequential-thinking** - Step-by-step reasoning
-
----
-
-## ⚡ Cài Đặt Ngay (1 Lệnh)
+## ⚡ Quick Install (1 Command)
 
 ```bash
 npx -y add-skill-kit agentskillkit/agent-skills
 ```
 
-Bạn có thể chọn:
-- **Global System**: Cài đặt vào hệ thống, dùng lệnh `agent` ở bất kỳ thư mục nào.
-- **Current Project**: Cài đặt vào `node_modules`, dùng lệnh `npx agent`.
+**Choose your scope:**
+- **Current Project** → Local `.agent/` folder + `npm run agent`
+- **Global System** → System-wide `~/.gemini/` + `agent` command anywhere
 
-Sau khi cài đặt, gõ lệnh `agent` để mở bảng điều khiển AI Agent thông minh.
+**Then:** Run `agent` to open Smart CLI dashboard, or use `/build`, `/think`, `/validate` workflows.
 
 ---
 
-## 🎯 Lợi Ích Cho Bạn (Benefits)
+## 🎯 What You Get
 
-### ⏱️ Tiết Kiệm 100+ Giờ Setup
+### 🛡️ Safety-First AI
 
-Thay vì tự viết prompts, rules, và workflows từ đầu - **cài đặt ngay và dùng luôn**. Hệ thống đã được tinh chỉnh qua hàng trăm giờ thử nghiệm.
+Built-in **TIER -1 Safety Protocol**:
+- ✅ No accidental file deletion
+- ✅ Versioned outputs (`.v2`, `.new`, `.proposed`)
+- ✅ Rollback guarantee
+- ✅ Human checkpoints for critical changes
 
-### 🧠 AI Agent Thông Minh Hơn 10x
+### 🧠 49 Domain Skills
 
-AI của bạn sẽ:
-- **Tự động chọn đúng specialist** - Không cần nhớ phải gọi agent nào
-- **Đưa ra code chất lượng production** - Theo best practices từ 48+ skills
-- **Debug nhanh gấp 5 lần** - Với systematic debugging methodology
+From **Frontend** to **Security** to **AI Development**:
+```
+aesthetic, api-patterns, app-builder, architecture, auto-learn,
+bash-linux, behavioral-modes, brainstorming, clean-code,
+code-review-checklist, code-reviewer, context-engineering,
+database-design, debugging, deployment-procedures, document-skills,
+documentation-templates, frontend, frontend-design, game-development,
+geo-fundamentals, git-conventions, governance, i18n-localization,
+intelligent-routing, lint-and-validate, mcp-builder, mermaidjs-v11,
+mobile-design, nextjs-best-practices, nodejs-best-practices,
+parallel-agents, performance-profiling, plan-writing,
+powershell-windows, problem-solving, python-patterns, react-patterns,
+red-team-tactics, seo-fundamentals, sequential-thinking,
+server-management, skill-creator, systematic-debugging,
+tailwind-patterns, tdd-workflow, testing-patterns,
+vulnerability-scanner, webapp-testing
+```
 
-### 💰 Giảm 80% Token Cost
+### 🤖 20 Specialist Agents
 
-- **Smart context management** - Chỉ load skill cần thiết
-- **Optimized prompts** - Không token thừa
-- **Reusable workflows** - Không lặp lại instructions
+Auto-selected based on your request:
+- `orchestrator` - Multi-agent coordination
+- `frontend-specialist` - React, Next.js, UI/UX
+- `backend-specialist` - APIs, databases, servers
+- `mobile-developer` - iOS, Android, React Native
+- `security-auditor` - Vulnerability scanning
+- `test-engineer` - Testing automation
+- `debugger` - Systematic debugging
+- And 13 more...
 
-### 🚀 Ship Features Nhanh Hơn
+### 📜 14 Slash Commands (Workflows)
 
-Từ ý tưởng đến production trong vài phút:
 ```bash
-/think authentication system
-/architect                         # AI tự tạo plan chi tiết
-/build                             # AI implement theo plan
-/validate                          # AI tự viết tests
+/think       # Brainstorm 3+ alternatives before coding
+/architect   # Generate detailed plan.md
+/build       # Full-stack implementation
+/validate    # Test automation
+/diagnose    # Root cause debugging
+/launch      # Zero-downtime deployment
+/studio      # UI design with 95+ palettes
+...
 ```
 
 ---
 
-## 🏆 Ưu Điểm Vượt Trội (Advantages)
+## 🚀 Quick Start
 
-| So Với | Agent Skill Kit | Các Giải Pháp Khác |
-|--------|------------------|-------------------|
-| **Số lượng skills** | 48+ skills | 5-10 skills |
-| **Specialist agents** | 20 agents chuyên biệt | 1-3 agents chung |
-| **Slash commands** | 14 workflows có sẵn | Tự viết |
-| **Cross-platform** | Gemini CLI, Claude Code (coming) | Single platform |
-| **Self-learning** | ✅ Học từ sai lầm | ❌ |
-| **Governance** | ✅ Constitution system | ❌ |
+### 1. Install Skills
+
+```bash
+npx -y add-skill-kit agentskillkit/agent-skills
+```
+
+Installer will:
+1. Clone skills from GitHub
+2. Ask scope (Project / Global)
+3. Auto-add `npm run agent` script (local only)
+4. Setup `.agent/` directory
+
+### 2. Run Smart CLI
+
+**Local install:**
+```bash
+npm run agent
+```
+
+**Global install:**
+```bash
+agent
+```
+
+Interactive menu with:
+- Core Features (Routing, Learn, Recall, Lessons)
+- Analysis & Monitor (Stats, Audit, Watch)
+- Data Management (Backup, Export, Proposals)
+- Configuration (Settings, Completion, Init)
+
+### 3. Use Workflows
+
+```bash
+# Plan a feature
+/think authentication system
+/architect
+
+# Build it
+/build
+
+# Test it
+/validate
+```
 
 ---
 
-## 📚 Skills Catalog (48 Skills)
+## 🎨 Features
+
+### Two-Level Menu Navigation
+
+```
+┌ Agent Skill Kit v2.4.0
+│
+◆ What would you like to do?
+│ ● Core Features
+│ ○ Analysis & Monitor
+│ ○ Data Management
+│ ○ Configuration
+│ ○ Exit
+└
+```
+
+Clean, organized, no more endless scrolling.
+
+### Interactive Command Execution
+
+Help menu lets you **execute commands directly**:
+
+```bash
+kit  # Open help
+
+# After viewing commands:
+Execute a command?
+  ● list → Run kit list
+  ○ doctor → Run kit doctor
+  ○ uninstall → Interactive removal
+  ○ ← Back
+```
+
+### Redesigned Uninstall
+
+**`kit uninstall` (no params):**
+```
+What would you like to do?
+  ● Select specific skill
+  ○ Remove all skills (with confirmations)
+  ○ Cancel
+```
+
+**`kit uninstall all` (destructive):**
+```
+AUTOMATIC COMPLETE REMOVAL
+✓ Removed: 49 skills  
+✓ Removed: .agent folder
+✓ Removed: node_modules/
+✓ Removed: package.json
+✓ Complete cleanup done
+```
+
+No questions asked - instant nuclear cleanup for global installs.
+
+### Auto npm Script Injection
+
+For **local installs**, `package.json` gets:
+```json
+{
+  "scripts": {
+    "agent": "agent"
+  }
+}
+```
+
+No more `npx` needed - just `npm run agent`!
+
+### Self-Learning System
+
+AI learns from mistakes:
+
+```bash
+# Teach a pattern
+agent → Learn → Add lesson
+
+# AI automatically detects violations
+agent → Recall → Scan codebase
+
+# View knowledge base
+agent → Lessons → Manage
+```
+
+Lessons stored in `.agent/knowledge/lessons-learned.yaml`.
+
+---
+
+## 📚 Skills Catalog (49)
 
 ### 🤖 AI & Agent Development
-| Skill | Mô tả |
-|-------|-------|
-| `context-engineering` | Tối ưu context window, memory systems, multi-agent coordination |
-| `sequential-thinking` | Step-by-step reasoning với khả năng revise và branch |
-| `problem-solving` | 6 kỹ thuật: collision-zone, inversion, scale-game, simplification... |
-| `brainstorming` | Socratic questioning protocol |
+- `intelligent-routing` - Auto-select specialist agents
+- `context-engineering` - Optimize context window
+- `sequential-thinking` - Step-by-step reasoning
+- `problem-solving` - 6 creative techniques
+- `auto-learn` - Self-learning from mistakes
 
 ### 🎨 Frontend & Design
-| Skill | Mô tả |
-|-------|-------|
-| `frontend` | React patterns, performance, hooks, composition |
-| `frontend-design` | Color system, typography, animation, UX psychology |
-| `aesthetic` | Design principles anti-AI-slop, visual excellence |
-| `react-patterns` | Modern React hooks, composition, TypeScript |
-| `nextjs-best-practices` | App Router, Server Components, SSR/SSG |
-| `tailwind-patterns` | Tailwind CSS v4, container queries, design tokens |
+- `frontend-design` - Color, typography, UX psychology
+- `react-patterns` - Modern hooks, composition
+- `nextjs-best-practices` - App Router, SSR/SSG
+- `tailwind-patterns` - Tailwind CSS v4
+- `aesthetic` - Anti-AI-slop design
 
-### 🔧 Backend & API
-| Skill | Mô tả |
-|-------|-------|
-| `api-patterns` | REST, GraphQL, tRPC, versioning, rate-limiting |
-| `nodejs-best-practices` | Async patterns, security, architecture |
-| `python-patterns` | Type hints, async, project structure |
-| `database-design` | Schema design, indexing, ORM selection |
+### 🔒 Backend & Security
+- `api-patterns` - REST, GraphQL, authentication
+- `database-design` - Schema, migrations, Prisma
+- `nodejs-best-practices` - Express, performance
+- `vulnerability-scanner` - Security audits
+- `red-team-tactics` - Penetration testing
 
-### 🛡️ Security & Testing
-| Skill | Mô tả |
-|-------|-------|
-| `vulnerability-scanner` | OWASP 2025, supply chain security |
-| `red-team-tactics` | MITRE ATT&CK, detection evasion |
-| `testing-patterns` | Unit, integration, mocking strategies |
-| `webapp-testing` | E2E, Playwright, load testing |
-| `tdd-workflow` | RED-GREEN-REFACTOR cycle |
+### 📱 Mobile Development
+- `mobile-design` - Mobile-first patterns
+- `game-development` - Game architecture, optimization
 
-### 🐛 Debugging
-| Skill | Mô tả |
-|-------|-------|
-| `systematic-debugging` | 4-phase framework, root cause investigation |
-| `debugging/defense-in-depth` | Validate at every layer |
-| `debugging/root-cause-tracing` | Trace backward to original trigger |
-| `debugging/verification-before-completion` | Evidence before claims |
+### 🧪 Testing & Quality
+- `testing-patterns` - Unit, integration, E2E
+- `tdd-workflow` - Test-driven development
+- `webapp-testing` - Playwright automation
+- `systematic-debugging` - 4-phase methodology
+- `lint-and-validate` - ESLint, TypeScript, linting
 
-### 📄 Document Processing
-| Skill | Mô tả |
-|-------|-------|
-| `document-skills/docx` | Word documents với tracked changes |
-| `document-skills/pdf` | PDF extraction, creation, merge/split |
-| `document-skills/pptx` | PowerPoint presentations |
-| `document-skills/xlsx` | Excel với formulas, financial modeling |
+### 📊 DevOps & Infrastructure
+- `deployment-procedures` - CI/CD, Docker, K8s
+- `server-management` - Linux, Nginx, monitoring
+- `performance-profiling` - Lighthouse, profiling
 
-### 📊 Visualization
-| Skill | Mô tả |
-|-------|-------|
-| `mermaidjs-v11` | 24+ diagram types, flowcharts, sequence, ER... |
+### 📝 Planning & Documentation
+- `plan-writing` - Structured task planning
+- `brainstorming` - Socratic questioning
+- `document-skills` - Work with Word, PDF, Excel
+- `documentation-templates` - README, API docs
 
-### 🌐 DevOps & Infrastructure
-| Skill | Mô tả |
-|-------|-------|
-| `deployment-procedures` | Safe deployment, rollback strategies |
-| `server-management` | Process management, monitoring, scaling |
-| `performance-profiling` | Measurement, analysis, optimization |
+### 🎯 Specialized
+- `mcp-builder` - Model Context Protocol servers
+- `mermaidjs-v11` - Diagram generation
+- `seo-fundamentals` - SEO, E-E-A-T, Core Web Vitals
+- `i18n-localization` - Internationalization
+- `geo-fundamentals` - Geospatial data
 
-### 📖 Documentation & i18n
-| Skill | Mô tả |
-|-------|-------|
-| `documentation-templates` | README, API docs, code comments |
-| `i18n-localization` | Translations, RTL support, locale files |
-| `seo-fundamentals` | Core Web Vitals, E-E-A-T, Google algorithms |
-| `geo-fundamentals` | Generative Engine Optimization for AI search |
+[See full catalog →](https://github.com/agentskillkit/agent-skills/tree/main/.agent/skills)
 
 ---
 
-## 🤖 20 Specialist Agents
+## 🗂️ Project Structure
 
-```
-frontend-specialist   → React, Next.js, UI/UX
-backend-specialist    → API, Node.js, databases
-security-auditor      → OWASP, vulnerability scanning
-debugger              → Systematic root cause analysis
-orchestrator          → Multi-agent coordination
-project-planner       → 4-phase planning methodology
-mobile-developer      → React Native, Flutter
-game-developer        → Game development patterns
-test-engineer         → Testing strategies
-database-architect    → Schema, optimization
-... và 10 agents khác
-```
-
----
-
-## ⚡ 14 Slash Commands
-
-| Command | Chức năng |
-|---------|-----------|
-| `/think` | Khám phá options trước khi code |
-| `/build` | Tạo features/apps mới |
-| `/diagnose` | Debug có hệ thống với root cause analysis |
-| `/launch` | Launch to production với pre-flight checks |
-| `/chronicle` | Generate documentation (README, API, inline) |
-| `/boost` | Thêm/cập nhật features existing app |
-| `/autopilot` | Điều phối multi-agents tự động |
-| `/architect` | Lập kế hoạch task chi tiết |
-| `/stage` | Quản lý preview/staging server |
-| `/inspect` | Code review với systematic verification |
-| `/forge` | Tạo/validate/package skills mới |
-| `/pulse` | Xem tiến độ và health của project |
-| `/validate` | Tạo và chạy tests |
-| `/studio` | Thiết kế UI với 50+ styles, anti-AI-slop |
-
----
-
-## 🧠 Self-Learning Engine (Production-Ready)
-
-AI không chỉ theo rules - **AI học từ sai lầm của bạn**:
-
-```bash
-# 1. Dạy AI một pattern xấu
-ag-smart learn --add --pattern "console.log" --message "No console.log in production"
-
-# 2. AI tự động detect violations
-ag-smart recall src/
-
-# 3. Xem thống kê
-ag-smart stats
-# 📊 Total Lessons: 5
-# 🎯 Violations Detected: 42
-# 🔥 Most Triggered: [LEARN-002] 20 hits
-
-# 4. Auto-fix violations
-ag-smart fix src/ --eslint
-
-# 5. Real-time monitoring
-ag-smart watch
-
-# 6. Sync hot patterns → SKILL.md
-ag-smart sync-skills
-```
-
-**10 CLI Commands:**
-| Command | Mô tả |
-|---------|-------|
-| `lessons` | Quản lý lessons đã học (View/Delete) |
-| `learn` | Thêm/xóa lessons manually |
-| `recall` | Scan code tìm violations |
-| `audit` | Full compliance check |
-| `fix` | Auto-fix violations |
-| `watch` | Real-time monitoring |
-| `stats` | Knowledge base dashboard |
-| `install-hooks` | Git pre-commit hook |
-| `lint-learn` | Auto-learn từ ESLint |
-| `sync-skills` | Update SKILL.md tự động |
-
----
-
-## 📁 Cấu Trúc Cài Đặt
-
+**Local Install:**
 ```
 your-project/
-├── AGENT_SKILL_KIT.md    # AI behavior configuration (copy from .agent/GEMINI.md)
-└── .agent/
-    ├── GEMINI.md      # Original config (source of truth)
-    ├── skills/        # 48 domain skills
-    ├── agents/        # 20 specialists
-    ├── workflows/     # 14 slash commands
-    ├── knowledge/     # Self-learning memory
-    ├── rules/         # Governance rules
-    ├── .shared/       # UI/UX Pro Max data
-    └── ARCHITECTURE.md
+├── .agent/
+│   ├── GEMINI.md           # AI behavior config
+│   ├── ARCHITECTURE.md     # System overview
+│   ├── skills/             # 49 domain skills
+│   ├── agents/             # 20 specialists
+│   ├── workflows/          # 14 slash commands
+│   ├── knowledge/          # Self-learning memory
+│   │   └── lessons-learned.yaml
+│   └── scripts/            # Validation scripts
+├── node_modules/
+│   └── agentskillskit-cli/
+└── package.json
+    └── "agent": "agent"    # Auto-added script
+```
+
+**Global Install:**
+```
+~/.gemini/
+└── antigravity/
+    ├── skills/             # 49 domain skills
+    ├── agents/             # 20 specialists
+    ├── workflows/          # 14 slash commands
+    └── knowledge/          # Self-learning memory
 ```
 
 ---
 
-## 🎬 Ví Dụ Thực Tế
+## 🛠️ CLI Commands
 
-**Trước (không có Agent Skill Kit):**
-```
-You: "Thêm authentication cho app"
-AI: [Code cơ bản, thiếu security, không có tests]
+### Installer (`kit`)
+
+```bash
+kit agentskillkit/agent-skills  # Install all skills
+kit list                         # List installed skills
+kit uninstall                    # Interactive removal
+kit uninstall all                # Nuclear cleanup
+kit doctor                       # Health check
 ```
 
-**Sau (với Agent Skill Kit):**
+### Smart CLI (`agent` or `npm run agent`)
+
+Interactive dashboard with:
+- **Core Features**: Routing, Learn, Recall, Lessons
+- **Analysis & Monitor**: Stats, Audit, Watch
+- **Data Management**: Backup, Export, Proposals
+- **Configuration**: Settings, Completion, Init
+
+---
+
+## 💡 Examples
+
+### Before Agent Skill Kit
 ```
-You: "Thêm authentication cho app"
-AI: 🤖 Applying @security-auditor + @backend-specialist...
-    - JWT với refresh tokens
-    - Password hashing with bcrypt
+You: "Add authentication"
+AI: [Basic code, no security, no tests]
+```
+
+### After Agent Skill Kit
+```
+You: "Add authentication"
+AI: 🤖 Engaging @security-auditor → @backend-specialist
+    - JWT with refresh tokens
+    - bcrypt password hashing
     - Rate limiting
     - Input validation
-    - Unit tests + integration tests
-    - Security audit passed ✅
+    - Unit + integration tests
+    - Security audit ✅
 ```
 
 ---
 
-## 📈 Star History
+## 🎬 Workflows in Action
 
-[![Star History Chart](https://api.star-history.com/svg?repos=agentskillkit/agent-skills&type=Date)](https://star-history.com/#agentskillkit/agent-skills&Date)
+### `/think` - Ideation
+```bash
+/think payment system
+```
+AI provides 3+ alternatives with trade-offs analysis.
+
+### `/architect` - Planning
+```bash
+/architect
+```
+Creates `implementation_plan.md` with:
+- File-by-file changes
+- Dependencies
+- Verification plan
+
+### `/build` - Implementation
+```bash
+/build
+```
+Multi-agent coordination to implement the plan.
+
+### `/validate` - Testing
+```bash
+/validate
+```
+Auto-generate and run test suite.
+
+---
+
+## 🔧 Advanced Usage
+
+### Manual Skill Installation
+```bash
+kit agentskillkit/agent-skills#react-patterns  # Single skill
+```
+
+### Update Skills
+```bash
+kit update react-patterns
+```
+
+### Backup & Restore
+```bash
+# Backup all skills
+kit backup
+
+# Restore from backup
+kit restore
+```
+
+### Export Skills
+```bash
+# Export to tarball
+kit export skills.tar.gz
+
+# Import from tarball
+kit import skills.tar.gz
+```
+
+---
+
+## 📈 Comparison
+
+| Feature | Agent Skill Kit | Generic AI | Other Solutions |
+|---------|-----------------|------------|-----------------|
+| **Skills** | 49+ domain skills | 0 | 5-10 |
+| **Agents** | 20 specialists | 1 generic | 1-3 |
+| **Workflows** | 14 slash commands | Manual | DIY |
+| **Safety** | TIER -1 Protocol | ❌ | ❌ |
+| **Self-learning** | ✅ Auto-learn | ❌ | ❌ |
+| **Context optimization** | ✅ Smart loading | ❌ | Partial |
+| **Token efficiency** | 80% reduction | Baseline | 30% |
+
+---
+
+## 🌟 Key Principles
+
+1. **Safety > Functionality** - Never break user's code
+2. **Skills over Prompts** - Reusable, modular knowledge
+3. **Auto-routing** - AI chooses the right specialist
+4. **Self-learning** - Improves from mistakes
+5. **Governance** - Constitutional rules system
 
 ---
 
@@ -287,14 +438,16 @@ AI: 🤖 Applying @security-auditor + @backend-specialist...
 
 - [GitHub - agent-skills](https://github.com/agentskillkit/agent-skills)
 - [GitHub - add-skill-kit](https://github.com/agentskillkit/add-skill-kit)
+- [npm - agentskillskit-cli](https://www.npmjs.com/package/agentskillskit-cli)
+- [npm - add-skill-kit](https://www.npmjs.com/package/add-skill-kit)
 - [Issues & Feature Requests](https://github.com/agentskillkit/agent-skills/issues)
 
 ---
 
 ## 📄 License
 
-MIT - Sử dụng tự do cho mọi dự án.
+MIT - Free for all projects.
 
 ---
 
-**⭐ Star repo nếu hữu ích. Cài đặt ngay. Build something great.**
+**⭐ Star the repo • Install now • Build something great**

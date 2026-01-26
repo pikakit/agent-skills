@@ -1,0 +1,8 @@
+{
+  "repo": "agentskillkit/agent-skills",
+  "skill": "aesthetic",
+  "ref": null,
+  "checksum": "3b0b736c04c00d63ed07d8f2215ee98b74c264df376ec7d2ede227e64144ba8a",
+  "installedAt": "2026-01-26T08:48:26.736Z",
+  "method": "symlink"
+}

@@ -1,0 +1,8 @@
+{
+  "repo": "agentskillkit/agent-skills",
+  "skill": "behavioral-modes",
+  "ref": null,
+  "checksum": "e18ca3e02e1b9898c569f3e1cccdda06d7fc04da59bd0304a3714293532a0412",
+  "installedAt": "2026-01-26T08:48:27.033Z",
+  "method": "symlink"
+}

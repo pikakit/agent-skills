@@ -1,0 +1,8 @@
+{
+  "repo": "agentskillkit/agent-skills",
+  "skill": "plan-writing",
+  "ref": null,
+  "checksum": "a44b37179424c7ef99f7827f52738dea9af8ca7605e44e2e3cb815d986593a49",
+  "installedAt": "2026-01-26T08:48:28.859Z",
+  "method": "symlink"
+}

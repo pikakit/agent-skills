@@ -1,0 +1,8 @@
+{
+  "repo": "agentskillkit/agent-skills",
+  "skill": "server-management",
+  "ref": null,
+  "checksum": "22f28c2dcfc1192768876962807e71d4df7d484a41888bc421451e52e483ce76",
+  "installedAt": "2026-01-26T08:48:29.002Z",
+  "method": "symlink"
+}

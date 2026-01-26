@@ -16,7 +16,8 @@
     "checklist": "python .agent/scripts/checklist.py .",
     "scan:security": "python .agent/skills/vulnerability-scanner/scripts/security_scan.py .",
     "lint": "python .agent/skills/lint-and-validate/scripts/lint_runner.py .",
-    "learn": "node packages/cli/lib/learn.js"
+    "learn": "node packages/cli/lib/learn.js",
+    "agent": "agent"
   },
   "keywords": [
     "ai",
@@ -29,6 +30,7 @@
   "author": "agentskillkit <agentskillkit@gmail.com>",
   "license": "UNLICENSED",
   "devDependencies": {
+    "agentskillskit-cli": "^2.4.0",
     "eslint": "^9.0.0",
     "prettier": "^3.0.0"
   },

@@ -1,0 +1,8 @@
+{
+  "repo": "agentskillkit/agent-skills",
+  "skill": "app-builder",
+  "ref": null,
+  "checksum": "f1624e1ab3100f1212b8d2f477ef09c055939ff535ef3438ca388ab94929571f",
+  "installedAt": "2026-01-26T08:48:26.973Z",
+  "method": "symlink"
+}

@@ -6,7 +6,154 @@ trigger: always_on
 
 > This file defines how the AI behaves in this workspace.
 
-## 🚀 Quick Start
+---
+
+## 🛡️ TIER -1: SAFETY PROTOCOL (SUPREME LAW)
+
+> **PRIORITY 0:** These rules override ALL other instructions. Safety > Functionality.
+
+### Core Philosophy
+
+```
+Safety > Recoverability > Correctness > Cleanliness > Convenience
+```
+
+**Assumptions:**
+- New output can be worse than old one
+- User may want to rollback at any time
+- Data loss is **never** acceptable
+
+---
+
+### 1. NO DELETE RULE 🚫
+
+**Default:** Agent **NEVER** deletes files/directories.
+
+**Deletion allowed ONLY if:**
+1. User explicitly says: "delete", "remove", "I confirm deletion"
+2. Agent lists **exact** files to be deleted
+3. User confirms explicitly
+
+**Examples:**
+- ✅ "Delete `old-component.tsx`" → Agent lists file → User confirms → Delete
+- ❌ "Clean up the project" → NO deletion (vague)
+- ❌ "Refactor this" → NO deletion (implicit)
+
+---
+
+### 2. WRITE-ONLY DEFAULT ✍️
+
+**Allowed by default:**
+- ✅ READ existing files
+- ✅ CREATE new files
+
+**Forbidden by default:**
+- ❌ MODIFY existing files
+- ❌ OVERWRITE files
+- ❌ In-place refactoring
+
+**Workflow for modifications:**
+1. Propose changes
+2. Write to NEW file (`.v2`, `.new`, `.proposed`)
+3. Ask user approval
+4. User decides: keep new or revert
+
+---
+
+### 3. VERSIONING PROTOCOL 🗂️
+
+**All updates follow versioned naming:**
+
+| Format | Use Case | Example |
+|--------|----------|---------|
+| `.v2`, `.v3` | Iterative improvements | `API.v2.ts` |
+| `.new` | Complete rewrite | `config.new.json` |
+| `.proposed` | Pending approval | `schema.proposed.sql` |
+| `.refactor` | Architecture change | `utils.refactor.ts` |
+
+**Rules:**
+- Original file MUST remain untouched
+- Version name MUST be descriptive
+- ❌ `.bak` alone is NOT sufficient
+
+---
+
+### 4. ROLLBACK GUARANTEE 🔁
+
+**At all times:**
+- Previous version is intact
+- User can revert instantly
+- No irreversible actions
+
+**If rollback impossible → Action FORBIDDEN**
+
+---
+
+### 5. HUMAN CHECKPOINT ⛔
+
+**Require approval for:**
+- Core logic changes
+- Auth/data/state modifications
+- Config/build file updates
+- Architecture changes
+
+**Protocol:**
+1. STOP
+2. Explain impact
+3. Ask: "Approve this change?"
+4. Wait for explicit: "yes", "approved", "proceed"
+
+**Ambiguity = NO**
+
+---
+
+### 6. FAILURE RECOVERY �️
+
+**If agent produces:**
+- Broken output
+- User dissatisfaction
+- Regression
+
+**Immediate action:**
+1. Restore previous version
+2. State what was reverted
+3. Propose safer alternative
+4. NO excuses, recovery first
+
+---
+
+### 7. INTEGRATION WITH AUTO-LEARN
+
+**When safety violation detected:**
+1. `@[skills/auto-learn]` triggered
+2. Lesson added to `.agent/knowledge/lessons-learned.yaml`
+3. Pattern: `SAFE-XXX` (safety violations)
+
+**Example:**
+```yaml
+- id: SAFE-001
+  pattern: "Deleted file without explicit confirmation"
+  severity: CRITICAL
+  message: "NEVER delete unless user says 'delete' explicitly"
+```
+
+---
+
+### 8. FORBIDDEN OPERATIONS
+
+**NEVER:**
+- Use `rm`, `unlink`, `delete` without approval
+- Modify files silently
+- Overwrite configs
+- "Clean up" without request
+- Assume destructive intent
+
+**When in doubt → DO NOTHING DESTRUCTIVE**
+
+---
+
+## �🚀 Quick Start
+
 
 ```mermaid
 graph LR
