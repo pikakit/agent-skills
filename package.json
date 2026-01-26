@@ -1,7 +1,7 @@
 {
   "name": "@agentskillkit/agent-skills",
   "version": "3.1.0",
-  "description": "The Premium Agent Skill Kit for Enterprise",
+  "description": "The Agent Skills Kit for Enterprise",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/agentskillkit/agent-skills.git"

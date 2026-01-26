@@ -90,6 +90,28 @@ class RebrandCLI {
         }
     }
 
+    async updatePackageJson(oldName, newName) {
+        try {
+            const pkgPath = join(process.cwd(), 'package.json');
+            const content = await readFile(pkgPath, 'utf-8');
+            const pkg = JSON.parse(content);
+
+            // Update description if it contains the old brand name
+            if (pkg.description && pkg.description.includes(oldName)) {
+                pkg.description = pkg.description.replace(oldName, newName);
+
+                // Write back with pretty formatting
+                await writeFile(pkgPath, JSON.stringify(pkg, null, 2) + '\n', 'utf-8');
+                return true;
+            }
+
+            return false;
+        } catch (error) {
+            this.errors.push({ file: 'package.json', error: error.message });
+            return false;
+        }
+    }
+
     async detectCurrentBrand() {
         try {
             const pkgPath = join(process.cwd(), 'package.json');
@@ -236,6 +258,15 @@ class RebrandCLI {
         }
 
         s.stop('Changes applied');
+
+        // Update package.json with new brand name
+        const pkgUpdated = await this.updatePackageJson(oldName, project.newName);
+        if (pkgUpdated) {
+            p.note(
+                `Updated description: "${project.newName}"`,
+                color.green('✓ package.json updated')
+            );
+        }
 
         // Report
         if (this.errors.length > 0) {
