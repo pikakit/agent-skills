@@ -2,58 +2,73 @@
  * Stats UI - Knowledge base statistics display
  */
 import { p, ICONS, getKnowledge, line, VERSION } from "./common.js";
+import { showIntro, showInfoNote, showSuccessNote, createSpinner, theme } from "./clack-helpers.js";
+import { getLearnedPatterns } from "../learn.js";
+import * as p from "@clack/prompts";
 
 // ============================================================================
 // STATS DISPLAY
 // ============================================================================
 
 /**
- * Display formatted statistics
+ * Stats UI - Show knowledge base statistics
  */
 export async function runStatsUI() {
-    const db = getKnowledge();
+    showIntro("📊 Knowledge Base Stats");
 
-    // Build stats content
-    let content = "";
+    const spinner = createSpinner("Loading statistics...");
 
-    if (!db.lessons || db.lessons.length === 0) {
-        content = `${ICONS.info} No lessons learned yet.\n\nUse the Learn command to add patterns.`;
-    } else {
-        // Summary
-        const totalHits = db.lessons.reduce((sum, l) => sum + (l.hitCount || 0), 0);
-        const errorCount = db.lessons.filter(l => l.severity === "ERROR").length;
-        const warningCount = db.lessons.filter(l => l.severity === "WARNING").length;
+    try {
+        const patterns = getLearnedPatterns();
+        const totalPatterns = patterns.length;
 
-        content += `Total Lessons: ${db.lessons.length}\n`;
-        content += `Total Hits: ${totalHits}\n`;
-        content += `${ICONS.error} ERROR: ${errorCount}  ${ICONS.warning} WARNING: ${warningCount}\n`;
-        content += `\n${line(40)}\n\n`;
+        // Calculate stats
+        const severityCount = {};
+        const typeCount = {};
 
-        // Lessons table
-        content += "Lessons:\n";
-        db.lessons.forEach(l => {
-            const icon = l.severity === "ERROR" ? ICONS.error : ICONS.warning;
-            const hits = l.hitCount || 0;
-            const escalated = l.autoEscalated ? " ⚡" : "";
-            content += `  ${icon} [${l.id}] ${l.pattern}\n`;
-            content += `     ${l.message} (${hits} hits)${escalated}\n`;
+        patterns.forEach(pattern => {
+            severityCount[pattern.severity] = (severityCount[pattern.severity] || 0) + 1;
+
+            // Categorize by type
+            const type = pattern.id.split('-')[0];
+            typeCount[type] = (typeCount[type] || 0) + 1;
         });
 
-        // Most triggered
-        const sorted = [...db.lessons]
-            .filter(l => l.hitCount > 0)
-            .sort((a, b) => (b.hitCount || 0) - (a.hitCount || 0))
-            .slice(0, 3);
+        spinner.stopSuccess("Stats loaded");
 
-        if (sorted.length > 0) {
-            content += `\n${line(40)}\n\n`;
-            content += "Most Triggered:\n";
-            sorted.forEach((l, i) => {
-                const bar = "█".repeat(Math.min(15, Math.ceil((l.hitCount / (sorted[0].hitCount || 1)) * 15)));
-                content += `  ${i + 1}. [${l.id}] ${l.hitCount} hits\n`;
-                content += `     ${bar}\n`;
-            });
+        // Display stats
+        const statsContent = [
+            `${theme.primary('Total Patterns:')} ${theme.bold(totalPatterns)}`,
+            '',
+            theme.dim('By Severity:'),
+            ...Object.entries(severityCount).map(([severity, count]) =>
+                `  ${severity}: ${theme.primary(count)}`
+            ),
+            '',
+            theme.dim('By Category:'),
+            ...Object.entries(typeCount).map(([type, count]) =>
+                `  ${type}: ${theme.primary(count)}`
+            )
+        ].join('\n');
+
+        showInfoNote(statsContent, "📊 Statistics");
+
+        if (totalPatterns > 0) {
+            // Show sample patterns
+            const samples = patterns.slice(0, 3);
+            const samplesContent = samples.map(p =>
+                `${theme.primary(p.id)}: ${p.message}`
+            ).join('\n');
+
+            showSuccessNote(
+                `${samplesContent}\n${theme.dim('...')}`,
+                `Recent Patterns (${Math.min(3, totalPatterns)}/${totalPatterns})`
+            );
         }
+
+    } catch (error) {
+        spinner.stopError("Failed to load stats");
+        p.note(theme.error(error.message), theme.error('✗ Error'));
     }
 
     p.note(content, `${ICONS.stats} Knowledge Base Statistics`);

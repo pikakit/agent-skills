@@ -1,8 +1,8 @@
 /**
- * Main Menu UI - Interactive CLI interface with custom icons
+ * Main Menu UI - Interactive CLI interface
  */
-import { customSelect, pc } from "./custom-select.js";
-import { ICONS, showHeader, handleCancel } from "./common.js";
+import { showIntro, showActionMenu, theme } from "./clack-helpers.js";
+
 import { fileURLToPath } from "url";
 import { dirname, join } from "path";
 
@@ -20,43 +20,38 @@ import { runWatchUI } from "./watch-ui.js";
 import { runAuditUI } from "./audit-ui.js";
 import { runLessonsUI } from "./lessons-ui.js";
 import routingUI from "./routing-ui.js";
-import { countPendingProposals } from "../proposals.js";
 import * as p from "@clack/prompts";
+import { VERSION } from "../config.js";
 
 // ============================================================================
-// MAIN MENU - TWO LEVEL
+// MAIN MENU
 // ============================================================================
 
 /**
- * Show main interactive menu (Level 1: Categories)
+ * Show main interactive menu
  */
 export async function showMainMenu() {
-    showHeader();
+    showIntro(`🧠 Agent Skill Kit v${VERSION}`);
 
-    const category = await customSelect({
+    const category = await showActionMenu({
         message: "What would you like to do?",
         items: [
             { value: "core", label: "Core Features", hint: "Routing, Learn, Recall, Lessons" },
             { value: "analysis", label: "Analysis & Monitor", hint: "Stats, Audit, Watch" },
             { value: "data", label: "Data Management", hint: "Backup, Export, Proposals" },
             { value: "config", label: "Configuration", hint: "Settings, Completion, Init" },
-            { value: "exit", label: "Exit", hint: "Close CLI" }
-        ]
+        ],
+        includeExit: true
     });
-
-    if (p.isCancel(category) || category === "exit") {
-        p.outro("Goodbye! 👋");
-        process.exit(0);
-    }
 
     let action;
 
     // Level 2: Specific actions
     switch (category) {
         case "core":
-            action = await customSelect({
+            action = await p.select({
                 message: "Core Features",
-                items: [
+                options: [
                     { value: "routing", label: "Routing", hint: "Test agent routing" },
                     { value: "learn", label: "Learn", hint: "Teach pattern" },
                     { value: "lessons", label: "Lessons", hint: "View & manage lessons" },
@@ -66,9 +61,9 @@ export async function showMainMenu() {
             });
             break;
         case "analysis":
-            action = await customSelect({
+            action = await p.select({
                 message: "Analysis & Monitor",
-                items: [
+                options: [
                     { value: "stats", label: "Stats", hint: "View statistics" },
                     { value: "audit", label: "Audit", hint: "Compliance check" },
                     { value: "watch", label: "Watch", hint: "Real-time monitor" },
@@ -77,9 +72,9 @@ export async function showMainMenu() {
             });
             break;
         case "data":
-            action = await customSelect({
+            action = await p.select({
                 message: "Data Management",
-                items: [
+                options: [
                     { value: "backup", label: "Backup", hint: "Backup & restore" },
                     { value: "export", label: "Export", hint: "Export & import" },
                     { value: "proposals", label: "Proposals", hint: "Skill updates" },
@@ -88,9 +83,9 @@ export async function showMainMenu() {
             });
             break;
         case "config":
-            action = await customSelect({
+            action = await p.select({
                 message: "Configuration",
-                items: [
+                options: [
                     { value: "settings", label: "Settings", hint: "Configure behavior" },
                     { value: "completion", label: "Completion", hint: "Shell autocomplete" },
                     { value: "init", label: "Init", hint: "Initialize project" },
