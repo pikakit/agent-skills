@@ -96,21 +96,19 @@ class RebrandCLI {
             const content = await readFile(pkgPath, 'utf-8');
             const pkg = JSON.parse(content);
 
-            // Try to extract brand name from package name or description
-            if (pkg.name) {
-                // Extract from scoped package: @agentskillkit/agent-skills -> Agent Skills
-                const match = pkg.name.match(/[@\/]?([^\/]+)(?:\/([^\/]+))?$/);
-                if (match) {
-                    const name = match[2] || match[1];
-                    // Convert kebab-case to Title Case
-                    return name.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
-                }
-            }
-
-            // Fallback to description
+            // Priority 1: description (more accurate)
             if (pkg.description) {
                 const match = pkg.description.match(/^(?:The )?(.+?)(?:\s+for|$)/);
                 if (match) return match[1];
+            }
+
+            // Priority 2: package name
+            if (pkg.name) {
+                const match = pkg.name.match(/[@\/]?([^\/]+)(?:\/([^\/]+))?$/);
+                if (match) {
+                    const name = match[2] || match[1];
+                    return name.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
+                }
             }
 
             return null;
