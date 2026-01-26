@@ -155,40 +155,65 @@ class RebrandCLI {
             );
         }
 
-        const project = await p.group(
-            {
-                newName: () => p.text({
-                    message: currentBrand
-                        ? `What would you like to change "${color.cyan(currentBrand)}" to?`
-                        : 'What is the new brand name?',
-                    placeholder: 'Agent Skill Kit',
-                    validate: (value) => {
-                        if (!value) return 'Please enter the new brand name';
-                        if (currentBrand && value === currentBrand) return 'New name must be different from current';
-                    },
-                }),
-                mode: () => p.select({
-                    message: 'Run mode:',
-                    options: [
-                        { value: 'dry-run', label: 'Dry Run (preview only)', hint: 'Safe preview' },
-                        { value: 'live', label: 'Live Mode (apply changes)', hint: 'Make changes' },
-                    ],
-                }),
-            },
-            {
-                onCancel: () => {
-                    p.cancel('Operation cancelled.');
-                    process.exit(0);
-                },
-            }
-        );
+        // Action Menu
+        const action = await p.select({
+            message: 'What would you like to do?',
+            options: [
+                { value: 'rename', label: `Rename "${color.cyan(currentBrand || 'current brand')}"` },
+                { value: 'exit', label: 'Exit' },
+            ],
+        });
 
-        const oldName = currentBrand || await p.text({
-            message: 'Could not detect current brand. Please enter manually:',
+        if (p.isCancel(action) || action === 'exit') {
+            p.cancel('Operation cancelled.');
+            process.exit(0);
+        }
+
+        // New Name Input
+        const newName = await p.text({
+            message: 'Enter new brand name',
+            placeholder: 'e.g. Super Agent Kit',
             validate: (value) => {
-                if (!value) return 'Please enter the current brand name';
+                if (!value) return 'Please enter the new brand name';
+                if (currentBrand && value === currentBrand) return 'New name must be different from current';
             },
         });
+
+        if (p.isCancel(newName)) {
+            p.cancel('Operation cancelled.');
+            process.exit(0);
+        }
+
+        // Run Mode
+        const mode = await p.select({
+            message: 'Run mode:',
+            options: [
+                { value: 'dry-run', label: 'Dry Run (preview only)', hint: 'Safe preview' },
+                { value: 'live', label: 'Live Mode (apply changes)', hint: 'Make changes' },
+            ],
+        });
+
+        if (p.isCancel(mode)) {
+            p.cancel('Operation cancelled.');
+            process.exit(0);
+        }
+
+        const project = { newName, mode, oldName: currentBrand };
+
+        // Fallback if current brand not detected (logic specific handling)
+        let oldName = currentBrand;
+        if (!oldName) {
+            oldName = await p.text({
+                message: 'Could not detect current brand. Please enter manually:',
+                validate: (value) => {
+                    if (!value) return 'Please enter the current brand name';
+                },
+            });
+            if (p.isCancel(oldName)) {
+                p.cancel('Operation cancelled.');
+                process.exit(0);
+            }
+        }
 
         if (oldName === project.newName) {
             p.cancel('Old and new names are identical!');
