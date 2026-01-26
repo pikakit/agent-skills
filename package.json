@@ -9,7 +9,8 @@
   "homepage": "https://github.com/agentskillkit/agent-skills",
   "bin": {
     "agent-skills-kit": "./packages/cli/bin/ag-smart.js",
-    "ag-smart": "./packages/cli/bin/ag-smart.js"
+    "ag-smart": "./packages/cli/bin/ag-smart.js",
+    "rebrand": "./rebrand.mjs"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
