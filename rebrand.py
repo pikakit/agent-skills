@@ -131,13 +131,13 @@ class DeepScanner:
             tree = ast.parse(file_path.read_text(encoding='utf-8'))
             
             for node in ast.walk(tree):
-                # Check string literals
-                if isinstance(node, ast.Str):
+                # Check string literals (using ast.Constant for Python 3.8+)
+                if isinstance(node, ast.Constant) and isinstance(node.value, str):
                     for var_name, (old, new) in self.variations.items():
-                        if old in node.s:
+                        if old in node.value:
                             findings.append({
                                 'type': 'string_literal',
-                                'value': node.s,
+                                'value': node.value,
                                 'line': getattr(node, 'lineno', 0),
                                 'variant': var_name
                             })
@@ -410,7 +410,14 @@ class SmartRebranderV2:
         
         # Deep scan
         references = self.find_all_references()
-        print(f"   Found {len(references)} references across {len(set(r['file'] for r in references))} files\n")
+        num_files = len(set(r['file'] for r in references))
+        
+        if len(references) == 0:
+            print("\n✅ No changes needed - codebase is already clean!")
+            print(f"   Scanned {num_files} files, no '{self.old_name}' references found.\n")
+            return
+        
+        print(f"\n📝 Found {len(references)} references in {num_files} files")
         
         # Apply
         success = self.apply_changes(dry_run)
@@ -428,20 +435,31 @@ class SmartRebranderV2:
         print("📊 REBRAND REPORT")
         print("="*70)
         
-        print(f"\nFiles Modified: {len(self.changes)}")
-        print(f"Errors: {len(self.errors)}")
+        print(f"\n📝 Files Modified: {len(self.changes)}")
         
         if self.errors:
-            print("\n❌ Errors:")
+            print(f"❌ Errors: {len(self.errors)}")
             for err in self.errors[:5]:
-                print(f"   {err['file']}: {err['error']}")
+                print(f"   • {err['file']}: {err['error']}")
+        else:
+            print("✅ No Errors")
+        
+        print("\n" + "="*70)
         
         if dry_run:
-            print("\n⚠️  DRY RUN - No changes applied")
+            print("⚠️  DRY RUN MODE")
+            print("   No files were modified")
+            print("   Run without --dry-run to apply changes")
         else:
-            print("\n✅ Rebrand complete!")
-            if self.backup_dir:
-                print(f"   Backup: {self.backup_dir}")
+            print("✅ REBRAND COMPLETE")
+            print(f"   Successfully updated {len(self.changes)} files")
+            print(f"   '{self.old_name}' → '{self.new_name}'")
+            print("\n💡 Next steps:")
+            print("   1. Review changes: git diff")
+            print("   2. Test your application")
+            print("   3. Commit: git add . && git commit -m 'rebrand: ...'")
+        
+        print("="*70 + "\n")
 
 
 def main():
