@@ -1,0 +1,79 @@
+# CoinPika Commit Formatter Configuration
+# Defines available commit types, scopes, and doctrines.
+
+commitTypes:
+  - value: feat
+    description: New feature or capability
+  - value: fix
+    description: Bug fix
+  - value: refactor
+    description: Code refactor without behavior change
+  - value: perf
+    description: Performance improvement
+  - value: style
+    description: Code style/formatting (no logic change)
+  - value: docs
+    description: Documentation only
+  - value: test
+    description: Adding or updating tests
+  - value: chore
+    description: Build process, dependencies, tooling
+  - value: doctrine
+    description: Constitutional/doctrinal enforcement
+
+scopes:
+  - value: api
+    description: Backend API
+  - value: data
+    description: Data pipeline or persistence
+  - value: chart
+    description: Chart components
+  - value: mobile
+    description: Mobile UI/gestures
+  - value: worker
+    description: Background jobs/workers
+  - value: cache
+    description: Caching layer
+  - value: auth
+    description: Authentication
+  - value: ui
+    description: General UI components
+
+doctrines:
+  - value: Law-1
+    description: Truth Ownership - Backend owns truth
+  - value: Law-2
+    description: Historical Integrity - Data is immutable
+  - value: Law-3
+    description: Realtime Ephemerality - Separate realtime/historical
+  - value: Law-4
+    description: Chart Truthfulness - Charts from backend only
+  - value: Architecture
+    description: System boundaries
+  - value: Performance
+    description: Caching & optimization
+  - value: Frontend-Mobile
+    description: Mobile UX standards
+  - value: Commercial
+    description: Commercial guardrails
+
+# Maps scopes to suggested doctrines
+scopeMapping:
+  api:
+    - Law-1
+    - Architecture
+    - Performance
+  data:
+    - Law-1
+    - Law-2
+    - Architecture
+  chart:
+    - Law-3
+    - Law-4
+  mobile:
+    - Frontend-Mobile
+  worker:
+    - Performance
+    - Architecture
+  cache:
+    - Performance

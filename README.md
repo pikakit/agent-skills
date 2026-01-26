@@ -218,54 +218,54 @@ Lessons stored in `.agent/knowledge/lessons-learned.yaml`.
 ## 📚 Skills Catalog (49)
 
 ### 🤖 AI & Agent Development
-- `intelligent-routing` - Auto-select specialist agents
-- `context-engineering` - Optimize context window
-- `sequential-thinking` - Step-by-step reasoning
-- `problem-solving` - 6 creative techniques
-- `auto-learn` - Self-learning from mistakes
+- `SmartRouter` - Auto-select specialist agents
+- `ContextOptimizer` - Optimize context window
+- `ReasoningEngine` - Step-by-step reasoning
+- `CreativeThinking` - 6 creative techniques
+- `SelfEvolution` - Self-learning from mistakes
 
 ### 🎨 Frontend & Design
-- `frontend-design` - Color, typography, UX psychology
-- `react-patterns` - Modern hooks, composition
-- `nextjs-best-practices` - App Router, SSR/SSG
-- `tailwind-patterns` - Tailwind CSS v4
-- `aesthetic` - Anti-AI-slop design
+- `DesignSystem` - Color, typography, UX psychology
+- `ReactArchitect` - Modern hooks, composition
+- `NextJSPro` - App Router, SSR/SSG
+- `TailwindKit` - Tailwind CSS v4
+- `VisualExcellence` - Anti-AI-slop design
 
 ### 🔒 Backend & Security
-- `api-patterns` - REST, GraphQL, authentication
-- `database-design` - Schema, migrations, Prisma
-- `nodejs-best-practices` - Express, performance
-- `vulnerability-scanner` - Security audits
-- `red-team-tactics` - Penetration testing
+- `APIArchitect` - REST, GraphQL, authentication
+- `DataModeler` - Schema, migrations, Prisma
+- `NodeJSPro` - Express, performance
+- `SecurityScanner` - Security audits
+- `OffensiveSec` - Penetration testing
 
 ### 📱 Mobile Development
-- `mobile-design` - Mobile-first patterns
-- `game-development` - Game architecture, optimization
+- `MobileFirst` - Mobile-first patterns
+- `GameEngine` - Game architecture, optimization
 
 ### 🧪 Testing & Quality
-- `testing-patterns` - Unit, integration, E2E
-- `tdd-workflow` - Test-driven development
-- `webapp-testing` - Playwright automation
-- `systematic-debugging` - 4-phase methodology
-- `lint-and-validate` - ESLint, TypeScript, linting
+- `TestArchitect` - Unit, integration, E2E
+- `TestDrivenDev` - Test-driven development
+- `E2EAutomation` - Playwright automation
+- `DebugPro` - 4-phase methodology
+- `CodeQuality` - ESLint, TypeScript, linting
 
 ### 📊 DevOps & Infrastructure
-- `deployment-procedures` - CI/CD, Docker, K8s
-- `server-management` - Linux, Nginx, monitoring
-- `performance-profiling` - Lighthouse, profiling
+- `CICDPipeline` - CI/CD, Docker, K8s
+- `ServerOps` - Linux, Nginx, monitoring
+- `PerfOptimizer` - Lighthouse, profiling
 
 ### 📝 Planning & Documentation
-- `plan-writing` - Structured task planning
-- `brainstorming` - Socratic questioning
-- `document-skills` - Work with Word, PDF, Excel
-- `documentation-templates` - README, API docs
+- `ProjectPlanner` - Structured task planning
+- `IdeaStorm` - Socratic questioning
+- `DocProcessor` - Work with Word, PDF, Excel
+- `DocTemplates` - README, API docs
 
 ### 🎯 Specialized
-- `mcp-builder` - Model Context Protocol servers
-- `mermaidjs-v11` - Diagram generation
-- `seo-fundamentals` - SEO, E-E-A-T, Core Web Vitals
-- `i18n-localization` - Internationalization
-- `geo-fundamentals` - Geospatial data
+- `MCPServer` - Model Context Protocol servers
+- `DiagramKit` - Diagram generation
+- `SEOOptimizer` - SEO, E-E-A-T, Core Web Vitals
+- `GlobalizationKit` - Internationalization
+- `GeoSpatial` - Geospatial data
 
 [See full catalog →](https://github.com/agentskillkit/agent-skills/tree/main/.agent/skills)
 

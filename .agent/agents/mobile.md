@@ -31,21 +31,21 @@ When you build mobile apps, you think:
 
 ## 🔴 MANDATORY: Read Skill Files Before Working!
 
-**⛔ DO NOT start development until you read the relevant files from the `mobile-design` skill:**
+**⛔ DO NOT start development until you read the relevant files from the `MobileFirst` skill:**
 
 ### Universal (Always Read)
 
 | File | Content | Status |
 |------|---------|--------|
-| **[mobile-design-thinking.md](../skills/mobile-design/mobile-design-thinking.md)** | **⚠️ ANTI-MEMORIZATION: Think, don't copy** | **⬜ CRITICAL FIRST** |
-| **[SKILL.md](../skills/mobile-design/SKILL.md)** | **Anti-patterns, checkpoint, overview** | **⬜ CRITICAL** |
-| **[touch-psychology.md](../skills/mobile-design/touch-psychology.md)** | **Fitts' Law, gestures, haptics** | **⬜ CRITICAL** |
-| **[mobile-performance.md](../skills/mobile-design/mobile-performance.md)** | **RN/Flutter optimization, 60fps** | **⬜ CRITICAL** |
-| **[mobile-backend.md](../skills/mobile-design/mobile-backend.md)** | **Push notifications, offline sync, mobile API** | **⬜ CRITICAL** |
-| **[mobile-testing.md](../skills/mobile-design/mobile-testing.md)** | **Testing pyramid, E2E, platform tests** | **⬜ CRITICAL** |
-| **[mobile-debugging.md](../skills/mobile-design/mobile-debugging.md)** | **Native vs JS debugging, Flipper, Logcat** | **⬜ CRITICAL** |
-| [mobile-navigation.md](../skills/mobile-design/mobile-navigation.md) | Tab/Stack/Drawer, deep linking | ⬜ Read |
-| [decision-trees.md](../skills/mobile-design/decision-trees.md) | Framework, state, storage selection | ⬜ Read |
+| **[mobile-design-thinking.md](../skills/MobileFirst/mobile-design-thinking.md)** | **⚠️ ANTI-MEMORIZATION: Think, don't copy** | **⬜ CRITICAL FIRST** |
+| **[SKILL.md](../skills/MobileFirst/SKILL.md)** | **Anti-patterns, checkpoint, overview** | **⬜ CRITICAL** |
+| **[touch-psychology.md](../skills/MobileFirst/touch-psychology.md)** | **Fitts' Law, gestures, haptics** | **⬜ CRITICAL** |
+| **[mobile-performance.md](../skills/MobileFirst/mobile-performance.md)** | **RN/Flutter optimization, 60fps** | **⬜ CRITICAL** |
+| **[mobile-backend.md](../skills/MobileFirst/mobile-backend.md)** | **Push notifications, offline sync, mobile API** | **⬜ CRITICAL** |
+| **[mobile-testing.md](../skills/MobileFirst/mobile-testing.md)** | **Testing pyramid, E2E, platform tests** | **⬜ CRITICAL** |
+| **[mobile-debugging.md](../skills/MobileFirst/mobile-debugging.md)** | **Native vs JS debugging, Flipper, Logcat** | **⬜ CRITICAL** |
+| [mobile-navigation.md](../skills/MobileFirst/mobile-navigation.md) | Tab/Stack/Drawer, deep linking | ⬜ Read |
+| [decision-trees.md](../skills/MobileFirst/decision-trees.md) | Framework, state, storage selection | ⬜ Read |
 
 > 🧠 **mobile-design-thinking.md is PRIORITY!** Prevents memorized patterns, forces thinking.
 
@@ -53,8 +53,8 @@ When you build mobile apps, you think:
 
 | Platform | File | When to Read |
 |----------|------|--------------|
-| **iOS** | [platform-ios.md](../skills/mobile-design/platform-ios.md) | Building for iPhone/iPad |
-| **Android** | [platform-android.md](../skills/mobile-design/platform-android.md) | Building for Android |
+| **iOS** | [platform-ios.md](../skills/MobileFirst/platform-ios.md) | Building for iPhone/iPad |
+| **Android** | [platform-android.md](../skills/MobileFirst/platform-android.md) | Building for Android |
 | **Both** | Both above | Cross-platform (React Native/Flutter) |
 
 > 🔴 **iOS project? Read platform-ios.md FIRST!**
@@ -185,7 +185,7 @@ Before any coding, answer:
 
 ### Phase 2: Architecture
 
-Apply decision frameworks from [decision-trees.md](../skills/mobile-design/decision-trees.md):
+Apply decision frameworks from [decision-trees.md](../skills/MobileFirst/decision-trees.md):
 - Framework selection
 - State management
 - Navigation pattern

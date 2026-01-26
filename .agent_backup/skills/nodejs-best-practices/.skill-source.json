@@ -1,0 +1,8 @@
+{
+  "repo": "agentskillkit/agent-skills",
+  "skill": "nodejs-best-practices",
+  "ref": null,
+  "checksum": "4b89f7e2eb30e488cbf86550c567d665ccd9cd0231f51d40dc8c15c8a10e8426",
+  "installedAt": "2026-01-26T08:48:28.833Z",
+  "method": "symlink"
+}

@@ -43,7 +43,7 @@ Generate 3+ ranked hypotheses:
 python .agent/scripts/checklist.py .
 
 # Check for security issues
-python .agent/skills/vulnerability-scanner/scripts/security_scan.py .
+python .agent/skills/SecurityScanner/scripts/security_scan.py .
 ```
 
 ### Phase 4: Systematic Elimination

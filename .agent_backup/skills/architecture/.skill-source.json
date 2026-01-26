@@ -1,0 +1,8 @@
+{
+  "repo": "agentskillkit/agent-skills",
+  "skill": "architecture",
+  "ref": null,
+  "checksum": "6bd2972d4a7618c081f2f57d00d490c99425b328fd673d468e234e02c21924ff",
+  "installedAt": "2026-01-26T08:48:27.005Z",
+  "method": "symlink"
+}

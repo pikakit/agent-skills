@@ -27,7 +27,7 @@ python .agent/scripts/session_manager.py info
 ### Step 2: Security Check
 // turbo
 ```bash
-python .agent/skills/vulnerability-scanner/scripts/security_scan.py .
+python .agent/skills/SecurityScanner/scripts/security_scan.py .
 ```
 
 ### Step 3: Dependency Map

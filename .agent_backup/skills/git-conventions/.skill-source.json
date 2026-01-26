@@ -1,0 +1,8 @@
+{
+  "repo": "agentskillkit/agent-skills",
+  "skill": "git-conventions",
+  "ref": null,
+  "checksum": "9f850a7911bf99347199eed6b6b1a106174111413e335f9186dfefd582fb868c",
+  "installedAt": "2026-01-26T08:48:28.406Z",
+  "method": "symlink"
+}

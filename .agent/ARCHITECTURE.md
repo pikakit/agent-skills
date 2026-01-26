@@ -65,26 +65,26 @@ Modular knowledge domains that agents can load on-demand. based on task context.
 
 | Skill | Description |
 | ----- | ----------- |
-| `react-patterns` | React hooks, state, performance |
-| `nextjs-best-practices` | App Router, Server Components |
-| `tailwind-patterns` | Tailwind CSS v4 utilities |
-| `frontend-design` | UI/UX patterns, design systems |
+| `ReactArchitect` | React hooks, state, performance |
+| `NextJSPro` | App Router, Server Components |
+| `TailwindKit` | Tailwind CSS v4 utilities |
+| `DesignSystem` | UI/UX patterns, design systems |
 | `studio` | 50 styles, 21 palettes, 50 fonts |
 
 ### Backend & API
 
 | Skill | Description |
 | ----- | ----------- |
-| `api-patterns` | REST, GraphQL, tRPC |
+| `APIArchitect` | REST, GraphQL, tRPC |
 | `nestjs-expert` | NestJS modules, DI, decorators |
-| `nodejs-best-practices` | Node.js async, modules |
-| `python-patterns` | Python standards, FastAPI |
+| `NodeJSPro` | Node.js async, modules |
+| `PythonPro` | Python standards, FastAPI |
 
 ### Database
 
 | Skill | Description |
 | ----- | ----------- |
-| `database-design` | Schema design, optimization |
+| `DataModeler` | Schema design, optimization |
 | `prisma-expert` | Prisma ORM, migrations |
 
 ### TypeScript/JavaScript
@@ -98,73 +98,73 @@ Modular knowledge domains that agents can load on-demand. based on task context.
 | Skill | Description |
 | ----- | ----------- |
 | `docker-expert` | Containerization, Compose |
-| `deployment-procedures` | CI/CD, deploy workflows |
-| `server-management` | Infrastructure management |
+| `CICDPipeline` | CI/CD, deploy workflows |
+| `ServerOps` | Infrastructure management |
 
 ### Testing & Quality
 
 | Skill | Description |
 | ----- | ----------- |
-| `testing-patterns` | Jest, Vitest, strategies |
-| `webapp-testing` | E2E, Playwright |
-| `tdd-workflow` | Test-driven development |
-| `code-review-checklist` | Code review standards |
-| `lint-and-validate` | Linting, validation |
+| `TestArchitect` | Jest, Vitest, strategies |
+| `E2EAutomation` | E2E, Playwright |
+| `TestDrivenDev` | Test-driven development |
+| `CodeReview` | Code review standards |
+| `CodeQuality` | Linting, validation |
 
 ### Security
 
 | Skill | Description |
 | ----- | ----------- |
-| `vulnerability-scanner` | Security auditing, OWASP |
-| `red-team-tactics` | Offensive security |
+| `SecurityScanner` | Security auditing, OWASP |
+| `OffensiveSec` | Offensive security |
 
 ### Architecture & Planning
 
 | Skill | Description |
 | ----- | ----------- |
-| `app-builder` | Full-stack app scaffolding |
-| `architecture` | System design patterns |
-| `plan-writing` | Task planning, breakdown |
-| `brainstorming` | Socratic questioning |
+| `AppScaffold` | Full-stack app scaffolding |
+| `SystemDesign` | System design patterns |
+| `ProjectPlanner` | Task planning, breakdown |
+| `IdeaStorm` | Socratic questioning |
 
 ### Mobile
 
 | Skill | Description |
 | ----- | ----------- |
-| `mobile-design` | Mobile UI/UX patterns |
+| `MobileFirst` | Mobile UI/UX patterns |
 
 ### Game Development
 
 | Skill | Description |
 | ----- | ----------- |
-| `game-development` | Game logic, mechanics |
+| `GameEngine` | Game logic, mechanics |
 
 ### SEO & Growth
 
 | Skill | Description |
 | ----- | ----------- |
-| `seo-fundamentals` | SEO, E-E-A-T, Core Web Vitals |
-| `geo-fundamentals` | GenAI optimization |
+| `SEOOptimizer` | SEO, E-E-A-T, Core Web Vitals |
+| `GeoSpatial` | GenAI optimization |
 
 ### Shell/CLI
 
 | Skill | Description |
 | ----- | ----------- |
-| `bash-linux` | Linux commands, scripting |
-| `powershell-windows` | Windows PowerShell |
+| `ShellScript` | Linux commands, scripting |
+| `PowerShell` | Windows PowerShell |
 
 ### Other
 
 | Skill | Description |
 | ----- | ----------- |
-| `clean-code` | Coding standards (Global) |
-| `behavioral-modes` | Agent personas |
-| `parallel-agents` | Multi-agent patterns |
-| `mcp-builder` | Model Context Protocol |
-| `documentation-templates` | Doc formats |
-| `i18n-localization` | Internationalization |
-| `performance-profiling` | Web Vitals, optimization |
-| `systematic-debugging` | Troubleshooting |
+| `CodeCraft` | Coding standards (Global) |
+| `AgentModes` | Agent personas |
+| `MultiAgent` | Multi-agent patterns |
+| `MCPServer` | Model Context Protocol |
+| `DocTemplates` | Doc formats |
+| `GlobalizationKit` | Internationalization |
+| `PerfOptimizer` | Web Vitals, optimization |
+| `DebugPro` | Troubleshooting |
 
 ---
 
@@ -217,7 +217,7 @@ skill-name/
 | ----- | ----- | -------- |
 | `typescript-expert` | 5 | Utility types, tsconfig, cheatsheet |
 | `studio` | 27 | 50 styles, 21 palettes, 50 fonts |
-| `app-builder` | 20 | Full-stack scaffolding |
+| `AppScaffold` | 20 | Full-stack scaffolding |
 
 ---
 

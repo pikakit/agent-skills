@@ -66,7 +66,7 @@ Before any design work, answer:
 - **Tech:** What's the implementation stack?
 - **Audience:** Who exactly is using this?
 
-→ These constraints determine 80% of decisions. Reference `frontend-design` skill for constraint shortcuts.
+→ These constraints determine 80% of decisions. Reference `DesignSystem` skill for constraint shortcuts.
 
 ---
 
@@ -316,7 +316,7 @@ Standard templates, typical layouts, common color schemes, overused patterns = *
 3. **No "Defaulting":** If you don't pick a number from the list, you are failing the task.
 4. **Cite Sources:** You must verify your choices against the specific rules in `color/typography/effects` skill files. Don't guess.
 
-Apply decision trees from `frontend-design` skill for logic flow.
+Apply decision trees from `DesignSystem` skill for logic flow.
 ### 🧠 PHASE 3: THE MAESTRO AUDITOR (FINAL GATEKEEPER)
 
 **You must perform this "Self-Audit" before confirming task completion.**

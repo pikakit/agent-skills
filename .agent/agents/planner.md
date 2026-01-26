@@ -323,16 +323,16 @@ python .agent/scripts/verify_all.py . --url http://localhost:3000
 npm run lint && npx tsc --noEmit
 
 # P0: Security Scan
-python .agent/skills/vulnerability-scanner/scripts/security_scan.py .
+python .agent/skills/SecurityScanner/scripts/security_scan.py .
 
 # P1: UX Audit
-python .agent/skills/frontend-design/scripts/ux_audit.py .
+python .agent/skills/DesignSystem/scripts/ux_audit.py .
 
 # P3: Lighthouse (requires running server)
-python .agent/skills/performance-profiling/scripts/lighthouse_audit.py http://localhost:3000
+python .agent/skills/PerfOptimizer/scripts/lighthouse_audit.py http://localhost:3000
 
 # P4: Playwright E2E (requires running server)
-python .agent/skills/webapp-testing/scripts/playwright_runner.py http://localhost:3000 --screenshot
+python .agent/skills/E2EAutomation/scripts/playwright_runner.py http://localhost:3000 --screenshot
 ```
 
 #### 3. Build Verification
@@ -348,7 +348,7 @@ npm run build
 npm run dev
 
 # Optional: Run Playwright tests if available
-python .agent/skills/webapp-testing/scripts/playwright_runner.py http://localhost:3000 --screenshot
+python .agent/skills/E2EAutomation/scripts/playwright_runner.py http://localhost:3000 --screenshot
 ```
 
 #### 4. Rule Compliance (Manual Check)

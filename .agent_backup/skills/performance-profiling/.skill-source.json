@@ -1,0 +1,8 @@
+{
+  "repo": "agentskillkit/agent-skills",
+  "skill": "performance-profiling",
+  "ref": null,
+  "checksum": "bf6c9ba1f011cb21aaaeab6f5987e0f45de5b77c105dccbf2bc0ee7855b5894d",
+  "installedAt": "2026-01-26T08:48:28.854Z",
+  "method": "symlink"
+}

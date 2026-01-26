@@ -29,7 +29,7 @@ Create, validate, and package Agent Skills following best practices. **Uses prog
 ### 1. Create New Skill
 // turbo
 ```bash
-python .agent/skills/skill-creator/scripts/init_skill.py <skill-name> --path .agent/skills/
+python .agent/skills/SkillForge/scripts/init_skill.py <skill-name> --path .agent/skills/
 ```
 
 This creates:
@@ -54,7 +54,7 @@ This creates:
 ### 3. Validate Skill
 // turbo
 ```bash
-python .agent/skills/skill-creator/scripts/quick_validate.py .agent/skills/<skill-name>
+python .agent/skills/SkillForge/scripts/quick_validate.py .agent/skills/<skill-name>
 ```
 
 Checks:
@@ -66,7 +66,7 @@ Checks:
 ### 4. Package for Distribution
 // turbo
 ```bash
-python .agent/skills/skill-creator/scripts/package_skill.py .agent/skills/<skill-name>
+python .agent/skills/SkillForge/scripts/package_skill.py .agent/skills/<skill-name>
 ```
 
 Creates a distributable zip file.
@@ -99,8 +99,8 @@ graph TD
 
 ## Related Skills
 
-- `skill-creator` - Full skill creation guide
-- `context-engineering` - Context optimization principles
+- `SkillForge` - Full skill creation guide
+- `ContextOptimizer` - Context optimization principles
 
 ---
 

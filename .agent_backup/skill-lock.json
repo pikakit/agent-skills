@@ -1,0 +1,28 @@
+{
+  "lockVersion": 1,
+  "generatedAt": "2026-01-26T08:36:31.802Z",
+  "generator": "@dataguruin/add-skill@2.3.1",
+  "skills": {
+    "code-reviewer": {
+      "repo": "dataguruin/agent-skills",
+      "skill": "coinpika-pr-reviewer",
+      "ref": null,
+      "checksum": "sha256:4d1f267a06d8a1a0309732714deff7e3afb2a62d7b350c981abad5a077b40c27",
+      "publisher": null
+    },
+    "git-conventions": {
+      "repo": "dataguruin/agent-skills",
+      "skill": "coinpika-commit-formatter",
+      "ref": null,
+      "checksum": "sha256:4f9a77947e3ab0f0a89aba0aaeadfceb926cb7e2a48018a624e34cde383b8d29",
+      "publisher": null
+    },
+    "governance": {
+      "repo": "dataguruin/agent-skills",
+      "skill": "coinpika-doctrine-pack",
+      "ref": null,
+      "checksum": "sha256:545e1b627f6efb912cc9095a12bc745d999029ad112d7bcd266dd71e79f9bc3b",
+      "publisher": null
+    }
+  }
+}

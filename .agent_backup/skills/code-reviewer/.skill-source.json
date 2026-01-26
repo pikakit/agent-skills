@@ -1,0 +1,8 @@
+{
+  "repo": "agentskillkit/agent-skills",
+  "skill": "code-reviewer",
+  "ref": null,
+  "checksum": "eccfd74d82d3f2ae72776c1eb3528ba840856ef60ff224272c8b1cd981c7a323",
+  "installedAt": "2026-01-26T08:48:27.129Z",
+  "method": "symlink"
+}

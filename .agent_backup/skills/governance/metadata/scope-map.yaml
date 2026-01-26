@@ -1,0 +1,156 @@
+# CoinPika Doctrine Scope Map
+# Maps change scopes to applicable doctrines.
+# Used by agents to automatically determine
+# which doctrines MUST be enforced for a given request.
+
+version: 1.0.0
+status: LOCKED
+authority: SUPREME
+
+scopes:
+
+  architecture:
+    description: >
+      System-level architecture, boundaries, ownership,
+      dependency direction, and scalability decisions.
+    applies:
+      - coinpika-master-constitution
+      - coinpika-architecture-doctrine
+      - coinpika-commercial-guardrails-doctrine
+    examples:
+      - system boundaries
+      - ownership changes
+      - dependency inversion
+      - scalability design
+      - cross-layer coupling
+
+  backend-data:
+    description: >
+      Backend data ingestion, normalization,
+      persistence, caching, and cost control.
+    applies:
+      - coinpika-master-constitution
+      - coinpika-architecture-doctrine
+      - coinpika-backend-data-engine-doctrine
+      - coinpika-chart-data-doctrine
+      - coinpika-performance-doctrine
+    examples:
+      - data ingestion pipelines
+      - cron jobs
+      - caching logic
+      - database schema changes
+      - persistence rules
+
+  charts:
+    description: >
+      Financial chart data, historical truth,
+      aggregation, and visualization integrity.
+    applies:
+      - coinpika-master-constitution
+      - coinpika-architecture-doctrine
+      - coinpika-chart-data-doctrine
+      - coinpika-performance-doctrine
+    examples:
+      - chart rendering
+      - timeframe aggregation
+      - historical price corrections
+      - visualization logic
+
+  frontend-mobile:
+    description: >
+      Mobile layout, scroll ownership,
+      structural hierarchy, and UX invariants.
+    applies:
+      - coinpika-master-constitution
+      - coinpika-architecture-doctrine
+      - coinpika-frontend-mobile-doctrine
+      - coinpika-performance-doctrine
+    examples:
+      - mobile layout changes
+      - header / tab bar structure
+      - scroll containers
+      - sticky behavior
+
+  gestures:
+    description: >
+      Swipe, touch gestures, and navigation interaction.
+    applies:
+      - coinpika-master-constitution
+      - coinpika-architecture-doctrine
+      - coinpika-frontend-mobile-doctrine
+      - coinpika-swipe-tabs-doctrine
+      - coinpika-performance-doctrine
+    examples:
+      - swipe tabs
+      - gesture arbitration
+      - horizontal navigation
+      - touch handling
+
+  performance:
+    description: >
+      Rendering speed, caching behavior,
+      loading states, and perceived performance.
+    applies:
+      - coinpika-master-constitution
+      - coinpika-architecture-doctrine
+      - coinpika-performance-doctrine
+    examples:
+      - loading strategy
+      - cache invalidation
+      - background refresh
+      - render optimization
+
+  commercial-risk:
+    description: >
+      Changes affecting user trust, revenue,
+      legal exposure, or operational safety.
+    applies:
+      - coinpika-master-constitution
+      - coinpika-architecture-doctrine
+      - coinpika-commercial-guardrails-doctrine
+    examples:
+      - breaking changes
+      - migrations
+      - irreversible operations
+      - compliance-impacting changes
+
+  code-review:
+    description: >
+      Review decisions, enforcement,
+      approval or rejection logic.
+    applies:
+      - coinpika-master-constitution
+      - coinpika-architecture-doctrine
+      - coinpika-code-review-doctrine
+    examples:
+      - PR approval
+      - rejection decisions
+      - enforcement escalation
+
+  ai-agents:
+    description: >
+      AI agent behavior, learning,
+      autonomy, and enforcement.
+    applies:
+      - coinpika-master-constitution
+      - coinpika-architecture-doctrine
+      - coinpika-learning-engine-doctrine
+      - coinpika-agent-enforcement-protocol
+    examples:
+      - AI-generated code
+      - automated refactors
+      - agent learning behavior
+      - agent refusal or escalation
+
+default_behavior:
+  rule: conservative
+  description: >
+    If scope cannot be confidently determined,
+    ALL doctrines MUST be applied and
+    explicit human review is required.
+
+failure_mode:
+  rule: reject
+  description: >
+    If scope mapping is ambiguous or incomplete,
+    the change MUST be rejected.

@@ -1,0 +1,41 @@
+# Intent Triggers
+# Defines when coinpika-pr-reviewer skill should activate
+
+triggers:
+  - pattern: "review.*pr"
+    confidence: high
+  - pattern: "check.*pull.*request"
+    confidence: high
+  - pattern: "validate.*changes"
+    confidence: medium
+  - pattern: "doctrine.*compliance"
+    confidence: high
+  - pattern: "constitutional.*check"
+    confidence: high
+  - pattern: "merge.*review"
+    confidence: medium
+  - pattern: "code.*review"
+    confidence: medium
+
+file_patterns:
+  # Files that require review against doctrines
+  high_priority:
+    - "api/**/*.ts"
+    - "api/**/*.js"
+    - "lib/**/*.ts"
+    - "server/**/*.ts"
+    - "**/chart*.tsx"
+    - "**/Chart*.tsx"
+    - "**/price*.ts"
+    - "**/mobile/**/*"
+
+  medium_priority:
+    - "components/**/*.tsx"
+    - "hooks/**/*.ts"
+    - "utils/**/*.ts"
+
+contexts:
+  - "pull_request"
+  - "code_review"
+  - "pre_merge"
+  - "ci_cd"

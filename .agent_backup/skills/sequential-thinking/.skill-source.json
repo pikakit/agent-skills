@@ -1,0 +1,8 @@
+{
+  "repo": "agentskillkit/agent-skills",
+  "skill": "sequential-thinking",
+  "ref": null,
+  "checksum": "57b0e7b470eb5a10b4473b20796a6e22c689dba9bdd3ae26834fa8214dd66025",
+  "installedAt": "2026-01-26T08:48:28.992Z",
+  "method": "symlink"
+}
