@@ -35,6 +35,9 @@
     "prettier": "^3.0.0"
   },
   "dependencies": {
-    "js-yaml": "^4.1.1"
+    "@clack/prompts": "^0.11.0",
+    "glob": "^13.0.0",
+    "js-yaml": "^4.1.1",
+    "picocolors": "^1.1.1"
   }
 }
