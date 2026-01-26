@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Master Checklist Runner - Antigravity Kit
+Master Checklist Runner - Agent Skill Kit
 ==========================================
 
 Orchestrates all validation scripts in priority order.
@@ -186,7 +186,7 @@ def print_summary(results: List[dict]):
 
 def main():
     parser = argparse.ArgumentParser(
-        description="Run Antigravity Kit validation checklist",
+        description="Run Agent Skill Kit validation checklist",
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog="""
 Examples:
@@ -212,7 +212,7 @@ Examples:
     start_time = datetime.now()
     
     if args.format == "text":
-        print_header("🚀 ANTIGRAVITY KIT - MASTER CHECKLIST")
+        print_header("🚀 AGENT SKILL KIT - MASTER CHECKLIST")
     print(f"Project: {project_path}")
     print(f"URL: {args.url if args.url else 'Not provided (performance checks skipped)'}")
     
