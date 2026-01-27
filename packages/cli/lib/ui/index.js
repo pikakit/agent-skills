@@ -33,20 +33,18 @@ import { VERSION } from "../config.js";
 export async function showMainMenu() {
     showIntro(`🧠 Agent Skill Kit v${VERSION}`);
 
-    const category = await showActionMenu({
+    const category = await p.select({
         message: "What would you like to do?",
-        items: [
+        options: [
             { value: "core", label: "Core Features", hint: "Routing, Learn, Recall, Lessons" },
             { value: "analysis", label: "Analysis & Monitor", hint: "Stats, Audit, Watch" },
             { value: "data", label: "Data Management", hint: "Backup, Export, Proposals" },
             { value: "config", label: "Configuration", hint: "Settings, Completion, Init" },
-        ],
-        includeExit: true,
-        allowCancel: false  // Top level - ESC should exit
+            { value: "exit", label: "Exit", hint: "Close CLI" }
+        ]
     });
 
-    // If null returned (shouldn't happen at top level, but just in case)
-    if (category === null) {
+    if (p.isCancel(category) || category === "exit") {
         p.outro("Goodbye! 👋");
         process.exit(0);
     }
