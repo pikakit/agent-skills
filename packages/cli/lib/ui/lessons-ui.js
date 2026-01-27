@@ -59,29 +59,33 @@ export async function runLessonsUI() {
 
         p.note(details.join("\n"), `Lesson ${lesson.id}`);
 
-        // Actions
-        const action = await p.select({
-            message: "What would you like to do?",
-            options: [
-                { value: "back", label: "Back to list", hint: "Return to lessons" },
-                { value: "delete", label: "Delete lesson", hint: "Remove this lesson" }
-            ]
-        });
-
-        if (p.isCancel(action) || action === "back") continue;
-
-        if (action === "delete") {
-            const confirm = await p.confirm({
-                message: `Delete lesson ${lesson.id}?`
+        while (true) {
+            const action = await p.select({
+                message: "What would you like to do?",
+                options: [
+                    // Assuming menuOptions is defined elsewhere or meant to be added.
+                    // For now, I'll use the original options and add the new back option.
+                    { value: "delete", label: "Delete lesson", hint: "Remove this lesson" },
+                    { value: "back", label: "← Back", hint: "Return to main menu" }
+                ]
             });
 
-            if (confirm) {
-                db.lessons = db.lessons.filter(l => l.id !== lesson.id);
-                saveKnowledge(db);
-                p.log.success(`Deleted ${lesson.id}`);
+            if (p.isCancel(action) || action === "back") {
+                return;
+            }
+
+            if (action === "delete") {
+                const confirm = await p.confirm({
+                    message: `Delete lesson ${lesson.id}?`
+                });
+
+                if (confirm) {
+                    db.lessons = db.lessons.filter(l => l.id !== lesson.id);
+                    saveKnowledge(db);
+                    p.log.success(`Deleted ${lesson.id}`);
+                }
             }
         }
     }
-}
 
-export default runLessonsUI;
+    export default runLessonsUI;

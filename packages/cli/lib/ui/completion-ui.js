@@ -18,17 +18,14 @@ import {
  * Interactive completion setup
  */
 export async function runCompletionUI() {
-    const detectedShell = detectShell();
-
-    p.intro(`Shell Completion Setup`);
-    p.note(`Detected shell: ${pc.cyan(detectedShell)}`, "Detection");
+    p.intro("Shell Completion (Press ESC to return)");
 
     const action = await p.select({
         message: "What would you like to do?",
         options: [
-            { value: "install", label: "Install completion", hint: "Add to shell profile" },
-            { value: "show", label: "Show script", hint: "Print completion script" },
-            { value: "back", label: "Back", hint: "Return to menu" }
+            { value: "install", label: "Install", hint: "Add shell completions" },
+            { value: "uninstall", label: "Uninstall", hint: "Remove completions" },
+            { value: "back", label: "← Back", hint: "Return to main menu" }
         ]
     });
 

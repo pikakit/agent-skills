@@ -20,43 +20,39 @@ import {
  * Interactive settings menu with Clack icons
  */
 export async function runSettingsUI() {
-    p.intro("Settings (Press ESC to exit)");
+    p.intro("Settings (Press ESC to return)");
 
     while (true) {
-        const settings = loadSettings();
+        const settings = getSettings();
 
-        const action = await customSelect({
+        const action = await p.select({
             message: "Configure Agent behavior:",
-            items: [
+            options: [
                 {
-                    value: "autoLearning",
-                    label: `Auto-Learning: ${settings.autoLearning ? pc.green("[ON]") : pc.red("[OFF]")}`,
+                    value: "autoLearn",
+                    label: `Auto-Learning: ${settings.autoLearning ? pc.green("[ON]") : pc.dim("[OFF]")}`,
                     hint: "Learn from mistakes"
                 },
                 {
-                    value: "autoUpdating",
-                    label: `Auto-Updating: ${settings.autoUpdating ? pc.green("[ON]") : pc.red("[OFF]")}`,
-                    hint: "Propose skill updates"
+                    value: "autoUpdate",
+                    label: `Auto-Updating: ${settings.autoUpdating ? pc.green("[ON]") : pc.dim("[OFF]")}`,
+                    hint: "Update threshold hits"
                 },
                 {
                     value: "threshold",
                     label: `Update Threshold: ${settings.updateThreshold}`,
                     hint: "Hits before update"
                 },
-                {
-                    value: "back",
-                    label: "Back to main menu",
-                    hint: "Return"
-                }
+                { value: "back", label: "← Back", hint: "Return to main menu" }
             ]
         });
 
-        if (action === undefined || action === null || action === "back") {
+        if (p.isCancel(action) || action === "back") {
             return;
         }
 
         switch (action) {
-            case "autoLearning": {
+            case "autoLearn": {
                 const newValue = toggleAutoLearning();
                 p.note(
                     `Auto-Learning is now ${newValue ? pc.green("ON") : pc.red("OFF")}`,
