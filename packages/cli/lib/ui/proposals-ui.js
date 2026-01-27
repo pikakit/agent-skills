@@ -3,7 +3,6 @@
  */
 import * as p from "@clack/prompts";
 import pc from "picocolors";
-import { customSelect } from "./custom-select.js";
 import {
     getQualifyingLessons,
     dismissProposal,
@@ -15,7 +14,7 @@ import {
  * Interactive proposals menu
  */
 export async function runProposalsUI() {
-    p.intro("Skill Proposals");
+    p.intro("Skill Proposals (Press ESC to return)");
 
     while (true) {
         const qualifying = getQualifyingLessons();
@@ -35,14 +34,14 @@ export async function runProposalsUI() {
             hint: `${lesson.hitCount} hits`
         }));
 
-        items.push({ value: "back", label: "Back to main menu", hint: "Return" });
+        items.push({ value: "back", label: "← Back", hint: "Return to main menu" });
 
-        const selected = await customSelect({
+        const selected = await p.select({
             message: "Select a proposal to view:",
-            items
+            options: items
         });
 
-        if (selected === undefined || selected === null || selected === "back") {
+        if (p.isCancel(selected) || selected === "back") {
             return;
         }
 
@@ -63,11 +62,11 @@ export async function runProposalsUI() {
             options: [
                 { value: "copy", label: "Copy to clipboard", hint: "Ready to paste to AI agent" },
                 { value: "dismiss", label: "Dismiss", hint: "Don't show this again" },
-                { value: "back", label: "Back", hint: "Return to proposals" }
+                { value: "back", label: "← Back", hint: "Return to proposals" }
             ]
         });
 
-        if (p.isCancel(action)) continue;
+        if (p.isCancel(action) || action === "back") continue;
 
         switch (action) {
             case "copy": {
