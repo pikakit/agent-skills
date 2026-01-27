@@ -41,8 +41,15 @@ export async function showMainMenu() {
             { value: "data", label: "Data Management", hint: "Backup, Export, Proposals" },
             { value: "config", label: "Configuration", hint: "Settings, Completion, Init" },
         ],
-        includeExit: true
+        includeExit: true,
+        allowCancel: false  // Top level - ESC should exit
     });
+
+    // If null returned (shouldn't happen at top level, but just in case)
+    if (category === null) {
+        p.outro("Goodbye! 👋");
+        process.exit(0);
+    }
 
     let action;
 
@@ -95,9 +102,9 @@ export async function showMainMenu() {
             break;
     }
 
-    // Handle back or cancel
+    // Handle back or cancel (ESC pressed in submenu)
     if (p.isCancel(action) || action === "back") {
-        await showMainMenu();
+        await showMainMenu();  // Loop back to main menu
         return;
     }
 

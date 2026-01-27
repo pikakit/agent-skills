@@ -73,9 +73,10 @@ export function showInfo(message) {
  * @param {string} options.message - Menu message
  * @param {Array} options.items - Menu items {value, label, hint?}
  * @param {boolean} options.includeExit - Include Exit option (default: true)
+ * @param {boolean} options.allowCancel - Allow ESC to return to parent (default: true)
  * @returns {Promise<string|null>} Selected value or null if cancelled
  */
-export async function showActionMenu({ message, items, includeExit = true }) {
+export async function showActionMenu({ message, items, includeExit = true, allowCancel = true }) {
     const menuItems = [...items];
 
     if (includeExit) {
@@ -87,8 +88,19 @@ export async function showActionMenu({ message, items, includeExit = true }) {
         options: menuItems,
     });
 
-    if (p.isCancel(selected) || selected === 'exit') {
-        p.cancel('Operation cancelled.');
+    // Handle cancel - return null to let parent decide
+    if (p.isCancel(selected)) {
+        if (allowCancel) {
+            return null; // Let parent handle navigation
+        } else {
+            p.cancel('Operation cancelled.');
+            process.exit(0);
+        }
+    }
+
+    // Handle explicit exit
+    if (selected === 'exit') {
+        p.cancel('Goodbye! 👋');
         process.exit(0);
     }
 
