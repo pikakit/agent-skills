@@ -1,7 +1,7 @@
 /**
  * Stats UI - Knowledge base statistics display
  */
-import { p, ICONS, getKnowledge, line, VERSION } from "./common.js";
+import { ICONS, getKnowledge, line, VERSION } from "./common.js";
 import { showIntro, showInfoNote, showSuccessNote, createSpinner, theme } from "./clack-helpers.js";
 import { getLearnedPatterns } from "../learn.js";
 import * as p from "@clack/prompts";
