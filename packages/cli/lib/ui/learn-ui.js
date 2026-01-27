@@ -11,7 +11,8 @@ import {
     showErrorNote,
     theme
 } from "./clack-helpers.js";
-import { getKnowledge, saveKnowledge } from "./common.js";
+import { getKnowledge } from "./common.js";
+import { saveKnowledge } from "../recall.js";
 import * as p from "@clack/prompts";
 
 export async function runLearnUI() {

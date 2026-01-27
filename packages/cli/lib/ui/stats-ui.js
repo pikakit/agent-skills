@@ -3,7 +3,6 @@
  */
 import { ICONS, getKnowledge, line, VERSION } from "./common.js";
 import { showIntro, showInfoNote, showSuccessNote, createSpinner, theme } from "./clack-helpers.js";
-import { getLearnedPatterns } from "../learn.js";
 import * as p from "@clack/prompts";
 
 // ============================================================================
@@ -19,7 +18,8 @@ export async function runStatsUI() {
     const spinner = createSpinner("Loading statistics...");
 
     try {
-        const patterns = getLearnedPatterns();
+        const db = getKnowledge();
+        const patterns = db.lessons || [];
         const totalPatterns = patterns.length;
 
         // Calculate stats
