@@ -23,7 +23,7 @@ export async function runSettingsUI() {
     p.intro("Settings (Press ESC to return)");
 
     while (true) {
-        const settings = getSettings();
+        const settings = loadSettings();
 
         const action = await p.select({
             message: "Configure Agent behavior:",
