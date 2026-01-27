@@ -16,10 +16,10 @@ export async function runBackupUI() {
         const action = await p.select({
             message: "What would you like to do?",
             options: [
-                { value: "create", label: "Create Backup", hint: "Save current lessons & settings" },
-                { value: "restore", label: "Restore Backup", hint: "Recover from previous backup" },
-                { value: "list", label: "List Backups", hint: "View available backups" },
-                { value: "prune", label: "Prune Old", hint: "Keep only last 5 backups" },
+                { value: "create", label: "💾 Create Backup", hint: "Save current lessons & settings" },
+                { value: "restore", label: "♻️  Restore Backup", hint: "Recover from previous backup" },
+                { value: "list", label: "📋 List Backups", hint: "View available backups" },
+                { value: "prune", label: "🗑️  Prune Old", hint: "Keep only last 5 backups" },
                 { value: "back", label: "← Back", hint: "Return to main menu" }
             ]
         });

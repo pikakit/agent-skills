@@ -1,0 +1,109 @@
+{
+    "version": "4.0.0",
+    "schema_version": "1.0.0",
+    "project": {
+        "root": "/absolute/path/to/project",
+        "name": "agent-skill-kit",
+        "created": "2026-01-20T10:00:00Z",
+        "updated": "2026-01-27T12:20:00Z"
+    },
+    "event_counter": {
+        "total": 5,
+        "mistakes": 3,
+        "improvements": 2,
+        "since_last_improve": 5
+    },
+    "self_improve": {
+        "enabled": true,
+        "trigger_threshold": 5,
+        "apply_immediately": true,
+        "notify_user": true,
+        "history": [
+            {
+                "cycle_number": 1,
+                "triggered_at": "2026-01-27T12:15:00Z",
+                "event_count_trigger": 5,
+                "changes": {
+                    "mistakes_kept": 2,
+                    "mistakes_refined": 1,
+                    "mistakes_added": 0,
+                    "mistakes_deprecated": 0,
+                    "improvements_kept": 1,
+                    "improvements_refined": 0,
+                    "improvements_added": 2,
+                    "improvements_deprecated": 0
+                },
+                "skill_code_improved": true,
+                "applied_to_source": true
+            }
+        ],
+        "last_improved": "2026-01-27T12:15:00Z",
+        "improve_count": 1,
+        "next_trigger_at_event": 10
+    },
+    "files": {
+        "mistakes": "mistakes.yaml",
+        "improvements": "improvements.yaml",
+        "versions_dir": "versions/"
+    },
+    "versions": {
+        "mistakes": {
+            "current": 1,
+            "history": [
+                {
+                    "version": 1,
+                    "date": "2026-01-27T12:00:00Z",
+                    "file": "versions/mistakes-v1.yaml",
+                    "change_summary": "Initial split from project.yaml"
+                }
+            ]
+        },
+        "improvements": {
+            "current": 1,
+            "history": [
+                {
+                    "version": 1,
+                    "date": "2026-01-27T12:00:00Z",
+                    "file": "versions/improvements-v1.yaml",
+                    "change_summary": "Initial creation"
+                }
+            ]
+        }
+    },
+    "migration": {
+        "from_version": "3.0.0",
+        "migrated": true,
+        "migration_date": "2026-01-27T12:00:00Z",
+        "source_file": "lessons/project.yaml",
+        "lessons_count": 5,
+        "split_result": {
+            "mistakes": 3,
+            "improvements": 2
+        }
+    },
+    "statistics": {
+        "total_learnings": 5,
+        "active_learnings": 5,
+        "deprecated_learnings": 0,
+        "application_rate": 2.5,
+        "hit_rate": 0.4,
+        "top_categories": [
+            "code-quality",
+            "architecture",
+            "input-handling"
+        ],
+        "top_tags": [
+            "esc-key",
+            "menu",
+            "async",
+            "validation"
+        ]
+    },
+    "config": {
+        "auto_track_events": true,
+        "auto_trigger_improve": true,
+        "require_user_approval": false,
+        "backup_before_improve": true,
+        "max_history_versions": 10
+    }
+}

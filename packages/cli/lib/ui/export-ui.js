@@ -11,7 +11,7 @@ import { exportData, importData } from "../export.js";
  * Interactive export/import menu
  */
 export async function runExportUI() {
-    p.intro("Export & Import (Press ESC to return)");
+    p.intro("Export & Import (Press ESC to exit)");
 
     while (true) {
 

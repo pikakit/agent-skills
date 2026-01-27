@@ -14,8 +14,6 @@ export const ICONS = {
     learn: "◆",
     recall: "◇",
     stats: "▣",
-    audit: "▲",
-    watch: "○",
     success: "✓",
     error: "✖",
     warning: "⚠",

@@ -1,0 +1,95 @@
+{
+  "signals": [
+    {
+      "id": "signal_1769525178448_5j9rm6qpy",
+      "lessonId": "IMPROVE-004",
+      "reason": "hitCountThreshold",
+      "confidence": 0.9,
+      "status": "approved",
+      "metadata": {
+        "triggerEvent": "violation",
+        "file": "packages\\cli\\bin\\ag-smart.js",
+        "matchCount": 1,
+        "timestamp": 1769525178448
+      },
+      "createdAt": 1769525178448,
+      "resolvedAt": 1769525427874
+    },
+    {
+      "id": "signal_1769525178481_oq7wd9hkn",
+      "lessonId": "MISTAKE-003",
+      "reason": "hitCountThreshold",
+      "confidence": 0.9,
+      "status": "rejected",
+      "metadata": {
+        "triggerEvent": "violation",
+        "file": "packages\\cli\\lib\\cognitive-lesson.js",
+        "matchCount": 1,
+        "timestamp": 1769525178481
+      },
+      "createdAt": 1769525178481,
+      "resolvedAt": 1769525427875
+    },
+    {
+      "id": "signal_1769525178650_wk7d8qrt6",
+      "lessonId": "MISTAKE-005",
+      "reason": "hitCountThreshold",
+      "confidence": 0.9,
+      "status": "pending",
+      "metadata": {
+        "triggerEvent": "violation",
+        "file": "packages\\cli\\lib\\ui\\custom-select.js",
+        "matchCount": 1,
+        "timestamp": 1769525178650
+      },
+      "createdAt": 1769525178650,
+      "resolvedAt": null
+    },
+    {
+      "id": "signal_1769525178650_ux2kp4vb0",
+      "lessonId": "IMPROVE-005",
+      "reason": "hitCountThreshold",
+      "confidence": 0.9,
+      "status": "pending",
+      "metadata": {
+        "triggerEvent": "violation",
+        "file": "packages\\cli\\lib\\ui\\custom-select.js",
+        "matchCount": 1,
+        "timestamp": 1769525178650
+      },
+      "createdAt": 1769525178650,
+      "resolvedAt": null
+    },
+    {
+      "id": "signal_1769529685337_ya7eswpf0",
+      "lessonId": "IMPROVE-004",
+      "reason": "hitCountThreshold",
+      "confidence": 0.9,
+      "status": "pending",
+      "metadata": {
+        "triggerEvent": "violation",
+        "file": "packages\\cli\\tests\\unit\\skill-formatter.test.js",
+        "matchCount": 1,
+        "timestamp": 1769529685337
+      },
+      "createdAt": 1769529685337,
+      "resolvedAt": null
+    },
+    {
+      "id": "signal_1769529688092_4pu850btf",
+      "lessonId": "MISTAKE-003",
+      "reason": "hitCountThreshold",
+      "confidence": 0.9,
+      "status": "pending",
+      "metadata": {
+        "triggerEvent": "violation",
+        "file": "packages\\cli\\src\\core\\learning\\cognitive-enhancer.js",
+        "matchCount": 1,
+        "timestamp": 1769529688092
+      },
+      "createdAt": 1769529688092,
+      "resolvedAt": null
+    }
+  ],
+  "version": 1
+}

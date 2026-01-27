@@ -2,6 +2,7 @@
  * Main Menu UI - Interactive CLI interface
  */
 import { showIntro, showActionMenu, theme } from "./clack-helpers.js";
+import { loadSettings } from "../settings.js";
 
 import { fileURLToPath } from "url";
 import { dirname, join } from "path";
@@ -10,15 +11,18 @@ import { dirname, join } from "path";
 import { runLearnUI } from "./learn-ui.js";
 import { runStatsUI } from "./stats-ui.js";
 import { runRecallUI } from "./recall-ui.js";
+import { runFixAllUI } from "./fix-all-ui.js";
 import { runSettingsUI } from "./settings-ui.js";
 import { runBackupUI } from "./backup-ui.js";
 import { runExportUI } from "./export-ui.js";
 import { runProposalsUI } from "./proposals-ui.js";
 import { runCompletionUI } from "./completion-ui.js";
 import { runInitUI } from "./init-ui.js";
-import { runWatchUI } from "./watch-ui.js";
-import { runAuditUI } from "./audit-ui.js";
+// Removed: audit-ui and watch-ui (audit redundant with recall, watch kept as CLI-only)
 import { runLessonsUI } from "./lessons-ui.js";
+import { runEvolutionSignalsUI } from "./evolution-signals-ui.js";
+import { runKnowledgeUI } from "./knowledge-ui.js";
+import { runHelpUI } from "./help-ui.js";
 import routingUI from "./routing-ui.js";
 import * as p from "@clack/prompts";
 import { VERSION } from "../config.js";
@@ -34,100 +38,69 @@ export async function showMainMenu() {
     while (true) {
         showIntro(`🧠 Agent Skill Kit v${VERSION}`);
 
-        const category = await p.select({
+        // Load settings to check auto-learning status
+        const settings = loadSettings();
+        const autoLearningEnabled = settings.autoLearn !== false; // Default to true
+
+        // Build menu options dynamically
+        const menuOptions = [
+            // ═════════════════════════════════════════════
+            // 🔍 SCANNING & ACTIONS
+            // ═════════════════════════════════════════════
+            { value: "scanall", label: "🔎 Scan All", hint: "Check & fix violations" },
+
+            // ═════════════════════════════════════════════
+            // 📚 LEARNING & KNOWLEDGE
+            // ═════════════════════════════════════════════
+        ];
+
+        // Only show Learn if auto-learning is OFF
+        if (!autoLearningEnabled) {
+            menuOptions.push({ value: "learn", label: "📝 Learn", hint: "Teach new pattern" });
+        }
+
+        menuOptions.push(
+            { value: "lessons", label: "📚 Lessons", hint: "View & manage" },
+
+            // ═════════════════════════════════════════════
+            // 📊 ANALYTICS
+            // ═════════════════════════════════════════════
+            { value: "stats", label: "💡 Insights", hint: "Stats & signals" },
+
+            // ═════════════════════════════════════════════
+            // ⚙️  SETTINGS & MANAGEMENT
+            // ═════════════════════════════════════════════
+            { value: "settings", label: "⚙️  Settings", hint: "Configure behavior" },
+            { value: "backup", label: "💾 Backup", hint: "Data management" },
+
+            // ═════════════════════════════════════════════
+            { value: "help", label: "📖 Help", hint: "Visual guide" },
+            { value: "exit", label: "👋 Exit" }
+        );
+
+        const action = await p.select({
             message: "What would you like to do?",
-            options: [
-                { value: "core", label: "Core Features", hint: "Routing, Learn, Recall, Lessons" },
-                { value: "analysis", label: "Analysis & Monitor", hint: "Stats, Audit, Watch" },
-                { value: "data", label: "Data Management", hint: "Backup, Export, Proposals" },
-                { value: "config", label: "Configuration", hint: "Settings, Completion, Init" },
-                { value: "exit", label: "Exit", hint: "Close CLI" }
-            ]
+            options: menuOptions
         });
 
-        if (p.isCancel(category) || category === "exit") {
+        if (p.isCancel(action) || action === "exit") {
             p.outro("Goodbye! 👋");
             process.exit(0);
         }
 
-        let action;
-
-        // Level 2: Specific actions
-        switch (category) {
-            case "core":
-                action = await p.select({
-                    message: "Core Features",
-                    options: [
-                        { value: "routing", label: "Routing", hint: "Test agent routing" },
-                        { value: "learn", label: "Learn", hint: "Teach pattern" },
-                        { value: "lessons", label: "Lessons", hint: "View & manage lessons" },
-                        { value: "recall", label: "Recall", hint: "Scan violations" },
-                        { value: "back", label: "← Back", hint: "Return to categories" }
-                    ]
-                });
-                break;
-            case "analysis":
-                action = await p.select({
-                    message: "Analysis & Monitor",
-                    options: [
-                        { value: "stats", label: "Stats", hint: "View statistics" },
-                        { value: "audit", label: "Audit", hint: "Compliance check" },
-                        { value: "watch", label: "Watch", hint: "Real-time monitor" },
-                        { value: "back", label: "← Back", hint: "Return to categories" }
-                    ]
-                });
-                break;
-            case "data":
-                action = await p.select({
-                    message: "Data Management",
-                    options: [
-                        { value: "backup", label: "Backup", hint: "Backup & restore" },
-                        { value: "export", label: "Export", hint: "Export & import" },
-                        { value: "proposals", label: "Proposals", hint: "Skill updates" },
-                        { value: "back", label: "← Back", hint: "Return to categories" }
-                    ]
-                });
-                break;
-            case "config":
-                action = await p.select({
-                    message: "Configuration",
-                    options: [
-                        { value: "settings", label: "Settings", hint: "Configure behavior" },
-                        { value: "completion", label: "Completion", hint: "Shell autocomplete" },
-                        { value: "init", label: "Init", hint: "Initialize project" },
-                        { value: "back", label: "← Back", hint: "Return to categories" }
-                    ]
-                });
-                break;
-        }
-
-        // ESC in submenu acts as "Back" - continue loop to show main menu again
-        if (p.isCancel(action) || action === "back") {
-            continue; // Loop back to start
-        }
-
-        // Execute action
+        // Execute action directly (no submenus)
         switch (action) {
-            case "routing":
-                await runRoutingUI();
-                break;
             case "learn":
                 await runLearnUI();
                 break;
             case "lessons":
                 await runLessonsUI();
                 break;
-            case "recall":
-                await runRecallUI();
+            case "scanall":
+                await runRecallUI(true); // Auto-scan mode with fix option
                 break;
             case "stats":
-                await runStatsUI();
-                break;
-            case "audit":
-                await runAuditUI();
-                break;
-            case "watch":
-                await runWatchUI();
+                await runStatsUI(); // Now includes signals
                 break;
             case "settings":
                 await runSettingsUI();
@@ -135,17 +108,8 @@ export async function showMainMenu() {
             case "backup":
                 await runBackupUI();
                 break;
-            case "export":
-                await runExportUI();
-                break;
-            case "proposals":
-                await runProposalsUI();
-                break;
-            case "completion":
-                await runCompletionUI();
-                break;
-            case "init":
-                await runInitUI();
+            case "help":
+                await runHelpUI();
                 break;
         }
 

@@ -18,7 +18,7 @@ import {
  * Interactive completion setup
  */
 export async function runCompletionUI() {
-    p.intro("Shell Completion (Press ESC to return)");
+    p.intro("Shell Completion (Press ESC to exit)");
 
     const action = await p.select({
         message: "What would you like to do?",

@@ -17,7 +17,11 @@ const DEFAULT_SETTINGS = {
     autoLearning: true,   // ON by default - learn from mistakes
     autoUpdating: false,  // OFF by default - requires user trust
     updateThreshold: 5,   // Hits before proposing update
-    lastUpdateCheck: null
+    lastUpdateCheck: null,
+    apiKeys: {
+        gemini: null,     // Gemini API key for agent coding
+        claude: null,     // Claude API key (alternative)
+    }
 };
 
 /**
@@ -106,6 +110,82 @@ export function initSettings() {
     }
 }
 
+/**
+ * Set API key for a provider
+ * Auto-exports to SelfEvolution for AI-powered optimization
+ * @param {'gemini' | 'claude'} provider - API provider
+ * @param {string} apiKey - The API key
+ * @returns {boolean} Success status
+ */
+export function setApiKey(provider, apiKey) {
+    try {
+        const settings = loadSettings();
+        if (!settings.apiKeys) {
+            settings.apiKeys = { gemini: null, claude: null };
+        }
+        settings.apiKeys[provider] = apiKey;
+        saveSettings(settings);
+
+        // Auto-export to SelfEvolution (async, non-blocking)
+        import('./selfevolution-bridge.js')
+            .then(({ exportApiKeysToSelfEvolution }) => {
+                exportApiKeysToSelfEvolution();
+            })
+            .catch(() => {
+                // Silent fail - SelfEvolution might not be present
+            });
+
+        return true;
+    } catch (e) {
+        console.error(`Failed to set ${provider} API key:`, e.message);
+        return false;
+    }
+}
+
+/**
+ * Get API key for a provider
+ * @param {'gemini' | 'claude'} provider - API provider
+ * @returns {string | null} The API key or null
+ */
+export function getApiKey(provider) {
+    const settings = loadSettings();
+    return settings.apiKeys?.[provider] || null;
+}
+
+/**
+ * Remove API key for a provider
+ * Auto-syncs with SelfEvolution
+ * @param {'gemini' | 'claude'} provider - API provider
+ * @returns {boolean} Success status
+ */
+export function removeApiKey(provider) {
+    try {
+        const settings = loadSettings();
+        if (settings.apiKeys) {
+            settings.apiKeys[provider] = null;
+            saveSettings(settings);
+
+            // Re-export or cleanup if no keys left
+            import('./selfevolution-bridge.js')
+                .then(({ exportApiKeysToSelfEvolution, cleanupSelfEvolutionEnv }) => {
+                    const hasAnyKey = settings.apiKeys.gemini || settings.apiKeys.claude;
+                    if (hasAnyKey) {
+                        exportApiKeysToSelfEvolution();
+                    } else {
+                        cleanupSelfEvolutionEnv();
+                    }
+                })
+                .catch(() => {
+                    // Silent fail
+                });
+        }
+        return true;
+    } catch (e) {
+        console.error(`Failed to remove ${provider} API key:`, e.message);
+        return false;
+    }
+}
+
 export default {
     loadSettings,
     saveSettings,
@@ -115,5 +195,9 @@ export default {
     isAutoUpdatingEnabled,
     getUpdateThreshold,
     initSettings,
+    setApiKey,
+    getApiKey,
+    removeApiKey,
     SETTINGS_PATH
 };
+

@@ -1,0 +1,92 @@
+{
+  "version": "4.0.0",
+  "schema_version": "1.0.0",
+  "project": {
+    "root": "C:\\Users\\sofma\\Desktop\\agent-skill-kit",
+    "name": "agent-skill-kit",
+    "created": "2026-01-27T12:23:35.126929",
+    "updated": "2026-01-27T12:23:35.126929"
+  },
+  "event_counter": {
+    "total": 6,
+    "mistakes": 6,
+    "improvements": 0,
+    "since_last_improve": 0
+  },
+  "self_improve": {
+    "enabled": true,
+    "trigger_threshold": 5,
+    "apply_immediately": true,
+    "notify_user": true,
+    "history": [
+      {
+        "cycle_number": 1,
+        "triggered_at": "2026-01-27T12:30:27.037018",
+        "event_count_trigger": 1,
+        "changes": {
+          "mistakes_kept": 0,
+          "mistakes_refined": 5,
+          "mistakes_added": 0,
+          "mistakes_deprecated": 0,
+          "improvements_kept": 0,
+          "improvements_refined": 0,
+          "improvements_added": 0,
+          "improvements_deprecated": 0
+        },
+        "skill_code_improved": true,
+        "applied_to_source": true
+      }
+    ],
+    "last_improved": "2026-01-27T12:30:27.038599",
+    "improve_count": 1,
+    "next_trigger_at_event": 11
+  },
+  "files": {
+    "mistakes": "mistakes.yaml",
+    "improvements": "improvements.yaml",
+    "versions_dir": "versions/"
+  },
+  "versions": {
+    "mistakes": {
+      "current": 1,
+      "history": [
+        {
+          "version": 1,
+          "date": "2026-01-27T12:23:35.126929",
+          "file": "versions/mistakes-v1.yaml",
+          "change_summary": "Initial split from project.yaml"
+        }
+      ]
+    },
+    "improvements": {
+      "current": 1,
+      "history": [
+        {
+          "version": 1,
+          "date": "2026-01-27T12:23:35.126929",
+          "file": "versions/improvements-v1.yaml",
+          "change_summary": "Initial creation"
+        }
+      ]
+    }
+  },
+  "migration": {
+    "from_version": "3.0.0",
+    "migrated": true,
+    "migration_date": "2026-01-27T12:23:35.126929",
+    "source_file": "project.yaml",
+    "lessons_count": 5,
+    "split_result": {
+      "mistakes": 5,
+      "improvements": 0
+    }
+  },
+  "config": {
+    "auto_track_events": true,
+    "auto_trigger_improve": true,
+    "require_user_approval": false,
+    "backup_before_improve": true,
+    "max_history_versions": 10
+  },
+  "updated": "2026-01-27T12:30:27.039313"
+}

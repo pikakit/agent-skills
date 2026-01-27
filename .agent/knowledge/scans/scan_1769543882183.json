@@ -1,0 +1,13 @@
+{
+  "scanId": "scan_1769543882183",
+  "timestamp": 1769543882183,
+  "projectPath": "C:\\Users\\sofma\\Desktop\\agent-skill-kit",
+  "totalIssues": 0,
+  "summary": {
+    "errors": 0,
+    "warnings": 0,
+    "filesScanned": 0,
+    "ignoredFiles": 5
+  },
+  "issues": []
+}

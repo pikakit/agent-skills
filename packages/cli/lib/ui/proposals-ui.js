@@ -14,7 +14,7 @@ import {
  * Interactive proposals menu
  */
 export async function runProposalsUI() {
-    p.intro("Skill Proposals (Press ESC to return)");
+    p.intro("Skill Proposals (Press ESC to exit)");
 
     while (true) {
         const qualifying = getQualifyingLessons();

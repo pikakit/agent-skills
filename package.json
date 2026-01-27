@@ -1,6 +1,6 @@
 {
   "name": "@agentskillkit/agent-skills",
-  "version": "3.1.0",
+  "version": "3.2.0",
   "description": "The Agent Skills Kit for Enterprise",
   "repository": {
     "type": "git",
@@ -9,12 +9,14 @@
   "homepage": "https://github.com/agentskillkit/agent-skills",
   "bin": {
     "agent-skills-kit": "./packages/cli/bin/ag-smart.js",
-    "ag-smart": "./packages/cli/bin/ag-smart.js",
-    "rebrand": "./rebrand.mjs"
+    "ag-smart": "./packages/cli/bin/ag-smart.js"
   },
+  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "rebrand": "node rebrand.mjs",
+    "test": "node packages/cli/tests/integration/signal-detector.test.js",
+    "test:integration": "node packages/cli/tests/integration/gemini-export.test.js",
+    "example:violations": "node packages/cli/examples/demo-violations.js",
+    "rebrand": "node scripts/rebrand/index.mjs",
     "checklist": "python .agent/scripts/checklist.py .",
     "scan:security": "python .agent/skills/vulnerability-scanner/scripts/security_scan.py .",
     "lint": "python .agent/skills/lint-and-validate/scripts/lint_runner.py .",

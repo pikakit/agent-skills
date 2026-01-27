@@ -10,3 +10,49 @@ lessons:
     lastHit: null
     autoEscalated: false
     addedAt: '2026-01-25T05:37:29.714Z'
+    excludePaths:
+      - '**/examples/**'
+      - '**/demo*.js'
+      - '**/test*.js'
+  - id: LEARN-005
+    pattern: customSelect
+    message: NEVER use customSelect - conflicts with Clack ESC handling. Always use p.select() + p.isCancel() for consistent navigation
+    severity: ERROR
+    category: code-quality
+    source: auto-conversation
+    hitCount: 22
+    lastHit: '2026-01-27T06:58:14.173Z'
+    autoEscalated: false
+    addedAt: '2026-01-27T08:47:00.000Z'
+    excludePaths:
+      - '**/examples/**'
+      - '**/demo*.js'
+      - '**/custom-select.js'
+    autoFix:
+      type: "regex-replace"
+      find: "customSelect"
+      replace: "p.select"
+  - id: LEARN-006
+    pattern: function\s+\w+Menu.*\{[\s\S]*\1\(
+    message: Avoid recursive menu calls - causes state issues and bugs. Use while(true) loop for menu navigation instead
+    severity: WARNING
+    category: architecture
+    source: auto-conversation
+    hitCount: 0
+    lastHit: null
+    autoEscalated: false
+    addedAt: '2026-01-27T08:47:00.000Z'
+  - id: LEARN-007
+    pattern: p\.select.*===\s*(null|undefined)
+    message: After p.select(), use p.isCancel() not null/undefined check. Null check does NOT detect ESC key properly
+    severity: ERROR
+    category: code-quality
+    source: auto-conversation
+    hitCount: 0
+    lastHit: null
+    autoEscalated: false
+    addedAt: '2026-01-27T08:47:00.000Z'
+    autoFix:
+      type: "regex-replace"
+      find: "===\\s*(null|undefined)"
+      replace: "p.isCancel($VAR)"
