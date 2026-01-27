@@ -36,7 +36,7 @@ export async function runBackupUI() {
                         `Backup created:\n${pc.dim(result.path)}`,
                         pc.green("Success")
                     );
-                    return; // Return to main menu
+                    break; // Continue to show menu again
                 } else {
                     p.note("Failed to create backup", pc.red("Error"));
                 }

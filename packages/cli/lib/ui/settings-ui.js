@@ -58,9 +58,9 @@ export async function runSettingsUI() {
                     `Auto-Learning is now ${newValue ? pc.green("ON") : pc.red("OFF")}`,
                     "Setting Updated"
                 );
-                return; // Back to main menu
+                break; // Continue loop to show menu again
             }
-            case "autoUpdating": {
+            case "autoUpdate": {
                 const newValue = toggleAutoUpdating();
                 if (newValue) {
                     p.note(
@@ -77,7 +77,7 @@ export async function runSettingsUI() {
                         "Setting Updated"
                     );
                 }
-                return; // Back to main menu
+                break; // Continue loop
             }
             case "threshold": {
                 const newThreshold = await p.text({
@@ -100,7 +100,7 @@ export async function runSettingsUI() {
                         "Setting Updated"
                     );
                 }
-                return; // Back to main menu
+                break; // Continue loop
             }
         }
     }
