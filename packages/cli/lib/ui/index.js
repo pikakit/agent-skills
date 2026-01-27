@@ -100,9 +100,9 @@ export async function showMainMenu() {
             break;
     }
 
-    // Handle back or cancel (ESC pressed in submenu)
+    // ESC in submenu acts as "Back" - loop back to main menu
     if (p.isCancel(action) || action === "back") {
-        await showMainMenu();  // Loop back to main menu
+        await showMainMenu();
         return;
     }
 
