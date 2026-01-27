@@ -11,16 +11,16 @@ import { exportData, importData } from "../export.js";
  * Interactive export/import menu
  */
 export async function runExportUI() {
-    p.intro("Export & Import (Press ESC to exit)");
+    p.intro("Export & Import (Press ESC to return)");
 
     while (true) {
 
         const action = await p.select({
             message: "What would you like to do?",
             options: [
-                { value: "export", label: "Export", hint: "Save lessons & settings to JSON" },
-                { value: "import", label: "Import", hint: "Load from JSON file" },
-                { value: "back", label: "Back", hint: "Return to main menu" }
+                { value: "export", label: "Export", hint: "Export lessons to file" },
+                { value: "import", label: "Import", hint: "Import lessons from file" },
+                { value: "back", label: "← Back", hint: "Return to main menu" }
             ]
         });
 

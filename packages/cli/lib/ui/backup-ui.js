@@ -3,29 +3,28 @@
  */
 import * as p from "@clack/prompts";
 import pc from "picocolors";
-import { customSelect } from "./custom-select.js";
 import { createBackup, listBackups, restoreBackup, pruneBackups } from "../backup.js";
 
 /**
  * Interactive backup/restore menu
  */
 export async function runBackupUI() {
-    p.intro("Backup & Restore (Press ESC to exit)");
+    p.intro("Backup & Restore (Press ESC to return)");
 
     while (true) {
 
-        const action = await customSelect({
+        const action = await p.select({
             message: "What would you like to do?",
-            items: [
+            options: [
                 { value: "create", label: "Create Backup", hint: "Save current lessons & settings" },
                 { value: "restore", label: "Restore Backup", hint: "Recover from previous backup" },
                 { value: "list", label: "List Backups", hint: "View available backups" },
                 { value: "prune", label: "Prune Old", hint: "Keep only last 5 backups" },
-                { value: "back", label: "Back to main menu", hint: "Return" }
+                { value: "back", label: "← Back", hint: "Return to main menu" }
             ]
         });
 
-        if (action === undefined || action === null || action === "back") {
+        if (p.isCancel(action) || action === "back") {
             return;
         }
 
