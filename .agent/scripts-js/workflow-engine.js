@@ -4,11 +4,15 @@
  * Parse and execute .agent/workflows/*.md files
  * 
  * Usage:
- *   npm run workflow:list                           # List all workflows
- *   npm run workflow:run build "Create todo app"   # Run workflow with args
- *   npm run workflow:run build "args" --turbo      # Auto-execute turbo steps
- *   npm run workflow:run build "args" --dry-run    # Show what would execute
- *   npm run workflow:run build "args" --phase 2    # Run specific phase
+ *   npm run workflow:list                              # List all workflows
+ *   npm run workflow:run build "Create todo app"      # Run workflow with args
+ *   npm run workflow:run build "args" --turbo         # Auto-execute turbo steps
+ *   npm run workflow:run build "args" --dry-run       # Show what would execute
+ *   npm run workflow:run build "args" --auto-accept   # Auto-accept policy-allowed commands
+ *   npm run workflow:run build "args" --phase 2       # Run specific phase
+ * 
+ * Environment:
+ *   CI=true                                            # Enable auto-accept in CI
  */
 
 import { readdir, readFile } from 'fs/promises';
@@ -17,6 +21,7 @@ import { fileURLToPath } from 'url';
 import { spawn } from 'child_process';
 import { createInterface } from 'readline';
 import matter from 'gray-matter';
+import { loadPolicy, shouldAutoAccept, validateAnnotations, logDecision } from './execution-policy.js';
 
 // ESM __dirname equivalent
 const __filename = fileURLToPath(import.meta.url);
@@ -57,6 +62,7 @@ function parseWorkflow(content, args = '') {
   let codeBlockLang = '';
   let codeBlockContent = [];
   let turboNext = false;
+  let currentAnnotations = [];
   
   for (let i = 0; i < lines.length; i++) {
     const line = lines[i];
@@ -118,6 +124,15 @@ function parseWorkflow(content, args = '') {
       continue;
     }
     
+    // Detect @annotations (e.g., @auto @safe)
+    if (line.trim().startsWith('@') && !inCodeBlock) {
+      const annotations = line.match(/@(\w+)/g)?.map(a => a.slice(1)) || [];
+      if (annotations.length > 0) {
+        currentAnnotations = [...currentAnnotations, ...annotations];
+      }
+      continue;
+    }
+    
     // Detect code blocks
     if (line.startsWith('```')) {
       if (!inCodeBlock) {
@@ -133,10 +148,12 @@ function parseWorkflow(content, args = '') {
             lang: codeBlockLang,
             code: codeBlockContent.join('\n'),
             turbo: turboNext || currentPhase.turboAll,
+            annotations: [...currentAnnotations],
             lineNumber: i - codeBlockContent.length
           });
         }
         turboNext = false;
+        currentAnnotations = [];
         codeBlockLang = '';
         codeBlockContent = [];
       }
@@ -226,7 +243,7 @@ async function confirm(message) {
  * Execute a single phase
  */
 async function executePhase(phase, options = {}) {
-  const { turbo = false, dryRun = false, interactive = true } = options;
+  const { turbo = false, dryRun = false, interactive = true, policy = null, autoAcceptFlag = false } = options;
   
   console.log(`\n${colors.bold}${colors.magenta}## Phase ${phase.number}: ${phase.title}${colors.reset}\n`);
   
@@ -242,15 +259,54 @@ async function executePhase(phase, options = {}) {
   
   // Execute code blocks
   for (const block of phase.codeBlocks) {
-    const shouldAutoRun = turbo && block.turbo;
+    const annotations = block.annotations || [];
+    const isTurboMarked = turbo && block.turbo;
+    
+    // Evaluate policy-based auto-accept
+    const policyResult = shouldAutoAccept(block.code, annotations, policy);
+    
+    // Log the decision
+    if (policy) {
+      logDecision(block.code, policyResult, policy);
+    }
+    
+    // Validate annotations
+    if (annotations.length > 0 && policy) {
+      validateAnnotations(annotations, policy);
+    }
+    
+    // Show annotations if present
+    if (annotations.length > 0) {
+      console.log(`${colors.dim}Annotations: @${annotations.join(' @')}${colors.reset}`);
+    }
     
     console.log(`${colors.blue}Command:${colors.reset}`);
     console.log(`${colors.cyan}  ${block.code.split('\n').join('\n  ')}${colors.reset}\n`);
     
-    if (shouldAutoRun) {
-      console.log(`${colors.green}[TURBO] Auto-executing...${colors.reset}\n`);
+    // Determine execution mode
+    const shouldAutoExecute = 
+      autoAcceptFlag ||                           // --auto-accept flag
+      (process.env.CI === 'true') ||              // CI environment
+      isTurboMarked ||                            // // turbo annotation
+      policyResult.allowed;                       // Policy allows
+    
+    // Handle blocked commands (deny list)
+    if (policyResult.blocked && !dryRun) {
+      console.log(`${colors.red}[BLOCKED] Command denied by policy${colors.reset}`);
+      console.log(`${colors.dim}  Reason: ${policyResult.reason}${colors.reset}\n`);
+      continue;
+    }
+    
+    if (shouldAutoExecute && !dryRun) {
+      const mode = autoAcceptFlag ? 'AUTO-ACCEPT' : 
+                   process.env.CI === 'true' ? 'CI' :
+                   isTurboMarked ? 'TURBO' : 'POLICY';
+      console.log(`${colors.green}[${mode}] Auto-executing...${colors.reset}\n`);
       await executeCommand(block.code, { dryRun });
     } else if (interactive && !dryRun) {
+      if (policyResult.reason && !policyResult.allowed) {
+        console.log(`${colors.yellow}[PROMPT] ${policyResult.reason}${colors.reset}`);
+      }
       const shouldExecute = await confirm('Execute this command?');
       if (shouldExecute) {
         await executeCommand(block.code, { dryRun });
@@ -271,7 +327,11 @@ async function executePhase(phase, options = {}) {
  * Execute entire workflow
  */
 async function executeWorkflow(workflowName, args, options = {}) {
-  const { turbo = false, dryRun = false, phase: targetPhase = null } = options;
+  const { turbo = false, dryRun = false, phase: targetPhase = null, autoAccept = false } = options;
+  
+  // Load execution policy
+  const policy = await loadPolicy();
+  const autoAcceptFlag = autoAccept || process.env.CI === 'true';
   
   // Load workflow
   const filepath = join(WORKFLOWS_DIR, workflowName.replace(/^\//, '') + '.md');
@@ -301,6 +361,12 @@ async function executeWorkflow(workflowName, args, options = {}) {
   if (turbo) {
     console.log(`${colors.green}[TURBO MODE] Turbo-marked commands will auto-execute${colors.reset}`);
   }
+  if (autoAcceptFlag) {
+    console.log(`${colors.green}[AUTO-ACCEPT] Policy-authorized commands will auto-execute${colors.reset}`);
+  }
+  if (policy?.autoAccept?.enabled) {
+    console.log(`${colors.dim}Policy: ${policy.autoAccept.requiredAnnotations?.join(', ') || 'default'}${colors.reset}`);
+  }
   
   // Execute phases
   const phasesToRun = targetPhase !== null
@@ -319,7 +385,7 @@ async function executeWorkflow(workflowName, args, options = {}) {
   }
   
   for (const phase of phasesToRun) {
-    await executePhase(phase, { turbo, dryRun, interactive: !dryRun });
+    await executePhase(phase, { turbo, dryRun, interactive: !dryRun, policy, autoAcceptFlag });
   }
   
   console.log(`\n${colors.bold}${colors.green}============================================${colors.reset}`);
@@ -397,6 +463,7 @@ async function main() {
   // Parse options
   const turbo = args.includes('--turbo');
   const dryRun = args.includes('--dry-run');
+  const autoAccept = args.includes('--auto-accept');
   const list = args.includes('--list') || args[0] === 'list';
   const show = args.includes('--show');
   const phaseIndex = args.indexOf('--phase');
@@ -423,7 +490,7 @@ async function main() {
   }
   
   // Execute workflow
-  await executeWorkflow(workflowName, userArgs, { turbo, dryRun, phase: targetPhase });
+  await executeWorkflow(workflowName, userArgs, { turbo, dryRun, phase: targetPhase, autoAccept });
 }
 
 // Run

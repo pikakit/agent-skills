@@ -1,0 +1,72 @@
+{
+  "$comment": "Execution Policy Schema v1.0 - Agent Skill Kit",
+  "version": "1.0",
+  "description": "Execution policy for workflow auto-accept authorization",
+  
+  "autoAccept": {
+    "enabled": true,
+    "defaultMode": "prompt",
+    "requireAnnotation": true,
+    "requiredAnnotations": ["auto", "safe"],
+    
+    "allow": [
+      "npm run",
+      "pnpm run",
+      "yarn run",
+      "node ",
+      "echo ",
+      "cat ",
+      "type ",
+      "git status",
+      "git log",
+      "git diff",
+      "git branch",
+      "ls ",
+      "dir ",
+      "pwd",
+      "cd ",
+      "python --version",
+      "python3 --version",
+      "node --version",
+      "npm --version"
+    ],
+    
+    "deny": [
+      "rm -rf",
+      "rm -r",
+      "rmdir",
+      "del /f",
+      "del /s",
+      "format",
+      "shutdown",
+      "reboot",
+      "git push",
+      "git reset --hard",
+      "git clean -fd",
+      "npm publish",
+      "npm unpublish",
+      "drop database",
+      "truncate table",
+      "delete from",
+      "> /dev/null",
+      "| rm",
+      "&& rm"
+    ]
+  },
+  
+  "phaseGate": {
+    "requirePlanApproval": true,
+    "allowedModes": ["dry-run", "turbo", "auto-accept"]
+  },
+  
+  "annotations": {
+    "recognized": ["auto", "safe", "confirm", "ci", "readonly", "interactive"],
+    "warnOnUnknown": true
+  },
+  
+  "logging": {
+    "logAutoAccept": true,
+    "logBlocked": true,
+    "logPolicyDrift": true
+  }
+}

@@ -29,21 +29,30 @@ Manage preview servers for local development. **Health monitoring and port confl
 ## Workflow
 
 ### Start Server
+
+@auto @safe
 // turbo
+
 ```bash
 node .agent/scripts-js/auto_preview.js start
 # OR: npm run preview:start
 ```
 
 ### Stop Server
+
+@auto @safe
 // turbo
+
 ```bash
 node .agent/scripts-js/auto_preview.js stop
 # OR: npm run preview:stop
 ```
 
 ### Check Status
+
+@auto @safe
 // turbo
+
 ```bash
 node .agent/scripts-js/auto_preview.js status
 # OR: npm run preview:status
@@ -54,16 +63,18 @@ node .agent/scripts-js/auto_preview.js status
 ## Output Examples
 
 ### Start Success
+
 ```markdown
 🚀 Starting preview...
-   Port: 3000
-   Type: Next.js
+Port: 3000
+Type: Next.js
 
 ✅ Preview ready!
-   URL: http://localhost:3000
+URL: http://localhost:3000
 ```
 
 ### Status Check
+
 ```markdown
 === Preview Status ===
 
@@ -74,10 +85,12 @@ node .agent/scripts-js/auto_preview.js status
 ```
 
 ### Port Conflict
+
 ```markdown
 ⚠️ Port 3000 is in use.
 
 Options:
+
 1. Start on port 3001
 2. Close app on 3000
 3. Specify different port
@@ -109,12 +122,13 @@ graph LR
     style B fill:#eab308
 ```
 
-| After /stage | Run | Purpose |
-|--------------|-----|---------|
-| Preview running | `/validate` | Test app |
-| Ready to deploy | `/launch` | Production |
+| After /stage    | Run         | Purpose    |
+| --------------- | ----------- | ---------- |
+| Preview running | `/validate` | Test app   |
+| Ready to deploy | `/launch`   | Production |
 
 **Handoff to /validate:**
+
 ```markdown
 Preview running at localhost:3000. Run /validate to test.
 ```
