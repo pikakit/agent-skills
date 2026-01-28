@@ -28,6 +28,39 @@ Antigravity Kit is a modular system consisting of:
 
 ---
 
+## 🔄 Hybrid Runtime Architecture
+
+### 2-Tier Design
+
+Agent Skills Kit uses a **hybrid architecture** combining JavaScript and Python:
+
+```
+┌──────────────────────────────────┐
+│ TIER 1: Master Scripts (JS)      │
+│ - Orchestration & workflow       │
+│ - User-facing CLI commands       │
+│ - Project management             │
+└──────────────┬───────────────────┘
+               │ child_process.spawn()
+               ↓
+┌──────────────────────────────────┐
+│ TIER 2: Skill Scripts (Python)   │
+│ - Specialized validation (34)    │
+│ - Security scanning              │
+│ - Performance auditing           │
+│ - E2E testing automation         │
+└──────────────────────────────────┘
+```
+
+### Runtime Requirements
+
+- **Node.js 18+** - Required for all operations
+- **Python 3.8+** - Required for skill validation scripts
+
+See [PYTHON_STRATEGY.md](../PYTHON_STRATEGY.md) for architecture rationale.
+
+---
+
 ## 🤖 Agents (20)
 
 Specialist AI personas for different domains.
