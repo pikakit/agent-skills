@@ -85,14 +85,37 @@ allowed-tools: Bash(git:*) Bash(jq:*) Read
 
 ### `name` Field (Required)
 
-| Rule        | Constraint                | Example                                       |
-| ----------- | ------------------------- | --------------------------------------------- |
-| Length      | 1-64 characters           | ✅ `pdf-processing`                           |
-| Case        | **Lowercase only**        | ❌ `PDF-Processing`                           |
-| Characters  | `a-z`, `0-9`, `-` only    | ❌ `pdf_processing`                           |
-| Start/End   | Cannot start/end with `-` | ❌ `-pdf`, `pdf-`                             |
-| Consecutive | No `--`                   | ❌ `pdf--processing`                          |
-| Match       | Must match directory name | ✅ `pdf-processing/` → `name: pdf-processing` |
+| Rule        | Constraint                    | Example                                       |
+| ----------- | ----------------------------- | --------------------------------------------- |
+| Length      | 1-64 characters               | ✅ `pdf-processing`                           |
+| Case        | **Lowercase only**            | ❌ `PDF-Processing`                           |
+| Characters  | Unicode letters, numbers, `-` | ❌ `pdf_processing` (underscore invalid)      |
+| Start/End   | Cannot start/end with `-`     | ❌ `-pdf`, `pdf-`                             |
+| Consecutive | No `--`                       | ❌ `pdf--processing`                          |
+| Match       | Must match directory name     | ✅ `pdf-processing/` → `name: pdf-processing` |
+
+#### i18n Support
+
+Skill names support **internationalization** with Unicode characters:
+
+```yaml
+# ✅ Valid - Chinese characters
+name: 技能
+name: 处理工具
+
+# ✅ Valid - Russian characters
+name: навык
+name: мой-навык
+
+# ✅ Valid - Accented characters
+name: café-processor
+
+# ❌ Invalid - uppercase not allowed (any language)
+name: НАВЫК  # Russian uppercase
+name: 技能大写  # Must be lowercase equivalent
+```
+
+> **Note:** Names are **NFKC normalized** before validation. This means `café` (precomposed) and `cafe\u0301` (decomposed with combining accent) are treated as identical.
 
 ### `description` Field (Required)
 
@@ -248,39 +271,52 @@ When injecting skills into agent system prompts, use XML format:
 ```bash
 # Install
 pip install skills-ref
-
-# Validate a skill
-skills-ref validate ./my-skill
-
-# Generate XML for prompts
-skills-ref to-prompt ./skill1 ./skill2
 ```
 
-### CLI Commands
+#### CLI Commands
+
+| Command                                   | Purpose                           | Exit Code              |
+| ----------------------------------------- | --------------------------------- | ---------------------- |
+| `skills-ref validate <path>`              | Validate SKILL.md format          | 0 = valid, 1 = errors  |
+| `skills-ref read-properties <path>`       | Parse frontmatter to JSON         | 0 = success, 1 = error |
+| `skills-ref to-prompt <path1> <path2>...` | Generate `<available_skills>` XML | 0 = success, 1 = error |
+
+**Examples:**
 
 ```bash
-# List errors only
+# Validate a skill
 skills-ref validate ./my-skill
+# Output: Valid skill: ./my-skill
 
-# Returns exit code 0 if valid, 1 if errors
+# Read properties as JSON
+skills-ref read-properties ./my-skill
+# Output: {"name": "my-skill", "description": "..."}
+
+# Generate XML for multiple skills
+skills-ref to-prompt ./skill1 ./skill2 ./skill3
+# Output: <available_skills>...</available_skills>
 ```
+
+> **Tip:** You can pass a SKILL.md file path directly; the tool will use its parent directory.
 
 ---
 
 ## 📊 Compliance Checklist
 
-| #   | Check | Requirement                                  |
-| --- | ----- | -------------------------------------------- |
-| 1   | ☐     | `SKILL.md` or `skill.md` exists in directory |
-| 2   | ☐     | File starts with `---` (YAML frontmatter)    |
-| 3   | ☐     | `name` field present and non-empty           |
-| 4   | ☐     | `name` is kebab-case, 1-64 chars, lowercase  |
-| 5   | ☐     | `name` matches directory name exactly        |
-| 6   | ☐     | No consecutive hyphens (`--`) in name        |
-| 7   | ☐     | `description` field present, 1-1024 chars    |
-| 8   | ☐     | Only allowed frontmatter fields used         |
-| 9   | ☐     | `metadata` values are strings (quoted)       |
-| 10  | ☐     | SKILL.md < 500 lines                         |
+| #   | Check | Requirement                                                |
+| --- | ----- | ---------------------------------------------------------- |
+| 1   | ☐     | `SKILL.md` or `skill.md` exists in directory               |
+| 2   | ☐     | File starts with `---` (YAML frontmatter)                  |
+| 3   | ☐     | `name` field present and non-empty                         |
+| 4   | ☐     | `name` is lowercase (any Unicode script)                   |
+| 5   | ☐     | `name` is 1-64 characters                                  |
+| 6   | ☐     | `name` matches directory name exactly (NFKC normalized)    |
+| 7   | ☐     | No underscores (`_`) or consecutive hyphens (`--`) in name |
+| 8   | ☐     | `description` field present, 1-1024 chars                  |
+| 9   | ☐     | Only 6 allowed frontmatter fields used                     |
+| 10  | ☐     | `metadata` values are strings (quoted)                     |
+| 11  | ☐     | `compatibility` field < 500 chars (if present)             |
+| 12  | ☐     | SKILL.md < 500 lines recommended                           |
 
 ---
 

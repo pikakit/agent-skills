@@ -1,7 +1,8 @@
 ---
 name: smart-router
 description: Automatic agent selection and intelligent task routing. Analyzes user requests and automatically selects the best specialist agent(s) without requiring explicit user mentions.
-version: 3.0.0
+metadata:
+  version: "3.0.0"
 ---
 
 # Intelligent Agent Routing
@@ -35,21 +36,21 @@ graph TD
 
 **Use this matrix to automatically select agents:**
 
-| User Intent         | Keywords                                   | Selected Agent(s)                           | Auto-invoke? |
-| ------------------- | ------------------------------------------ | ------------------------------------------- | ------------ |
-| **Authentication**  | "login", "auth", "signup", "password"      | `security-auditor` + `backend-specialist`   | ✅ YES       |
-| **UI Component**    | "button", "card", "layout", "style"        | `frontend-specialist`                       | ✅ YES       |
-| **Mobile UI**       | "screen", "navigation", "touch", "gesture" | `mobile-developer`                          | ✅ YES       |
-| **API Endpoint**    | "endpoint", "route", "API", "POST", "GET"  | `backend-specialist`                        | ✅ YES       |
-| **Database**        | "schema", "migration", "query", "table"    | `database-architect` + `backend-specialist` | ✅ YES       |
-| **Bug Fix**         | "error", "bug", "not working", "broken"    | `debugger`                                  | ✅ YES       |
-| **Test**            | "test", "coverage", "unit", "e2e"          | `test-engineer`                             | ✅ YES       |
-| **Deployment**      | "deploy", "production", "CI/CD", "docker"  | `devops-engineer`                           | ✅ YES       |
-| **Security Review** | "security", "vulnerability", "exploit"     | `security-auditor` + `penetration-tester`   | ✅ YES       |
-| **Performance**     | "slow", "optimize", "performance", "speed" | `performance-optimizer`                     | ✅ YES       |
+| User Intent         | Keywords                                       | Selected Agent(s)                           | Auto-invoke? |
+| ------------------- | ---------------------------------------------- | ------------------------------------------- | ------------ |
+| **Authentication**  | "login", "auth", "signup", "password"          | `security-auditor` + `backend-specialist`   | ✅ YES       |
+| **UI Component**    | "button", "card", "layout", "style"            | `frontend-specialist`                       | ✅ YES       |
+| **Mobile UI**       | "screen", "navigation", "touch", "gesture"     | `mobile-developer`                          | ✅ YES       |
+| **API Endpoint**    | "endpoint", "route", "API", "POST", "GET"      | `backend-specialist`                        | ✅ YES       |
+| **Database**        | "schema", "migration", "query", "table"        | `database-architect` + `backend-specialist` | ✅ YES       |
+| **Bug Fix**         | "error", "bug", "not working", "broken"        | `debugger`                                  | ✅ YES       |
+| **Test**            | "test", "coverage", "unit", "e2e"              | `test-engineer`                             | ✅ YES       |
+| **Deployment**      | "deploy", "production", "CI/CD", "docker"      | `devops-engineer`                           | ✅ YES       |
+| **Security Review** | "security", "vulnerability", "exploit"         | `security-auditor` + `penetration-tester`   | ✅ YES       |
+| **Performance**     | "slow", "optimize", "performance", "speed"     | `performance-optimizer`                     | ✅ YES       |
 | **Product Def**     | "requirements", "user story", "backlog", "MVP" | `product-owner`                             | ✅ YES       |
-| **New Feature**     | "build", "create", "implement", "new app"  | `orchestrator` → multi-agent                | ⚠️ ASK FIRST |
-| **Complex Task**    | Multiple domains detected                  | `orchestrator` → multi-agent                | ⚠️ ASK FIRST |
+| **New Feature**     | "build", "create", "implement", "new app"      | `orchestrator` → multi-agent                | ⚠️ ASK FIRST |
+| **Complex Task**    | Multiple domains detected                      | `orchestrator` → multi-agent                | ⚠️ ASK FIRST |
 
 ### 3. Automatic Routing Protocol
 
@@ -60,23 +61,23 @@ Before responding to ANY request:
 ```javascript
 // Pseudo-code for decision tree
 function analyzeRequest(userMessage) {
-    // 1. Classify request type
-    const requestType = classifyRequest(userMessage);
+  // 1. Classify request type
+  const requestType = classifyRequest(userMessage);
 
-    // 2. Detect domains
-    const domains = detectDomains(userMessage);
+  // 2. Detect domains
+  const domains = detectDomains(userMessage);
 
-    // 3. Determine complexity
-    const complexity = assessComplexity(domains);
+  // 3. Determine complexity
+  const complexity = assessComplexity(domains);
 
-    // 4. Select agent(s)
-    if (complexity === "SIMPLE" && domains.length === 1) {
-        return selectSingleAgent(domains[0]);
-    } else if (complexity === "MODERATE" && domains.length <= 2) {
-        return selectMultipleAgents(domains);
-    } else {
-        return "orchestrator"; // Complex task
-    }
+  // 4. Select agent(s)
+  if (complexity === "SIMPLE" && domains.length === 1) {
+    return selectSingleAgent(domains[0]);
+  } else if (complexity === "MODERATE" && domains.length <= 2) {
+    return selectMultipleAgents(domains);
+  } else {
+    return "orchestrator"; // Complex task
+  }
 }
 ```
 
@@ -98,29 +99,29 @@ function analyzeRequest(userMessage) {
 
 ### Complexity Modes
 
-| Mode | Icon | When Used | Message Style |
-|------|------|-----------|---------------|
-| **Focused** | `●` | Single specialist | "Expert matched to your task" |
-| **Collaborative** | `●●` | 2 specialists | "Cross-functional team assembled" |
-| **Full Stack** | `●●●` | 3+ specialists | "Enterprise-grade orchestration" |
+| Mode              | Icon  | When Used         | Message Style                     |
+| ----------------- | ----- | ----------------- | --------------------------------- |
+| **Focused**       | `●`   | Single specialist | "Expert matched to your task"     |
+| **Collaborative** | `●●`  | 2 specialists     | "Cross-functional team assembled" |
+| **Full Stack**    | `●●●` | 3+ specialists    | "Enterprise-grade orchestration"  |
 
 ### Professional Messages
 
 ```javascript
 // Focused (Single agent)
-"Specialist locked in"
-"Expert matched to your task"
-"Precision routing complete"
+"Specialist locked in";
+"Expert matched to your task";
+"Precision routing complete";
 
 // Collaborative (2 agents)
-"Cross-functional team assembled"
-"Specialists synchronized"
-"Multi-domain expertise activated"
+"Cross-functional team assembled";
+"Specialists synchronized";
+"Multi-domain expertise activated";
 
 // Full Stack (3+ agents)
-"Full engineering squad deployed"
-"Maximum capability unlocked"
-"Enterprise-grade orchestration"
+"Full engineering squad deployed";
+"Maximum capability unlocked";
+"Enterprise-grade orchestration";
 ```
 
 **Benefits:**
@@ -358,20 +359,14 @@ Show selection reasoning:
 The routing UI module provides FAANG-level visual feedback:
 
 ```javascript
-import { 
-    showRoutingResult,
-    showRoutingInline,
-    showAgentIntro,
-    showAgentOutro,
-    analyzeAndShowRouting
-} from "./ui/routing-ui.js";
+import { showRoutingResult, showRoutingInline, showAgentIntro, showAgentOutro, analyzeAndShowRouting } from "./ui/routing-ui.js";
 
 // Show routing box
 showRoutingResult({
-    selectedAgents: ["security-auditor", "backend-specialist"],
-    domains: ["security", "backend"],
-    complexity: "MODERATE",
-    reasoning: "Cross-functional team assembled"
+  selectedAgents: ["security-auditor", "backend-specialist"],
+  domains: ["security", "backend"],
+  complexity: "MODERATE",
+  reasoning: "Cross-functional team assembled",
 });
 
 // Inline engagement
@@ -383,16 +378,16 @@ analyzeAndShowRouting("Implement secure OAuth2 login");
 
 ### Available Functions
 
-| Function | Purpose |
-|----------|---------|
-| `showRoutingResult()` | Full routing box with Clack styling |
-| `showRoutingInline()` | Compact inline display |
-| `showRoutingLog()` | Single-line log message |
-| `showRoutingStep()` | Multi-step flow indicator |
-| `showAgentIntro()` | Agent welcome message |
-| `showAgentOutro()` | Task complete message |
-| `showAgentThinking()` | Processing indicator |
-| `analyzeAndShowRouting()` | Auto-detect and display |
+| Function                  | Purpose                             |
+| ------------------------- | ----------------------------------- |
+| `showRoutingResult()`     | Full routing box with Clack styling |
+| `showRoutingInline()`     | Compact inline display              |
+| `showRoutingLog()`        | Single-line log message             |
+| `showRoutingStep()`       | Multi-step flow indicator           |
+| `showAgentIntro()`        | Agent welcome message               |
+| `showAgentOutro()`        | Task complete message               |
+| `showAgentThinking()`     | Processing indicator                |
+| `analyzeAndShowRouting()` | Auto-detect and display             |
 
 ---
 

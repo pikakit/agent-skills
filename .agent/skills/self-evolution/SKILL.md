@@ -1,22 +1,9 @@
 ---
 name: self-evolution
 description: Self-improving project-scoped learning system. Automatically categorizes mistakes/improvements, tracks events, triggers self-improvement cycles, and applies learnings proactively. v4.0 with smart categorization and version control.
-version: 4.0.0
-scripts:
-  - scripts/auto_learn_v4.py - Main v4.0 learning pipeline
-  - scripts/categorize_learning.py - Smart mistake/improvement categorization
-  - scripts/api_key_resolver.py - Intelligent API key detection
-  - scripts/event_tracker.py - Event counting and threshold detection
-  - scripts/self_improve.py - Self-improvement cycle orchestrator
-  - scripts/analyze_learnings.py - AI-powered learning analysis
-  - scripts/version_manager.py - Version control and rollback
-  - scripts/query_lessons.py - Proactive lesson querying
-  - scripts/learning_status.py - Status display and UI
-  - scripts/migrate_v3_to_v4.py - Migration from v3.0
-  - scripts/extract_lesson.py - AI-powered lesson extraction
-  - scripts/detect_triggers.py - Mistake trigger detection
-  - scripts/project_utils.py - Path helpers and version detection
-status: production
+metadata:
+  version: "4.0.0"
+  status: "production"
 ---
 
 # SelfEvolution v4.0 - Self-Improving Learning System
@@ -28,6 +15,7 @@ status: production
 ---
 
 <!-- OVERVIEW_START -->
+
 ## 📊 Current Learning Status
 
 **Knowledge Base Version**: Mistakes v2 | Improvements v2
@@ -40,19 +28,19 @@ status: production
 ### 🔴 Recent Mistakes Learned
 
 1. **MISTAKE-005** (v2): When rebranding: NEVER create new simplified file. Preserve original ...
-   *Added: 2026-01-27 12:23*
+   _Added: 2026-01-27 12:23_
 2. **MISTAKE-002** (v2): Before import: verify function exists in target module (missing impor...
-   *Added: 2026-01-27 12:23*
+   _Added: 2026-01-27 12:23_
 3. **MISTAKE-003** (v2): Fix incorrect import paths. Check file structure first
-   *Added: 2026-01-27 12:23*
+   _Added: 2026-01-27 12:23_
 4. **MISTAKE-001** (v2): Check target file existence before operations
-   *Added: 2026-01-27 12:23*
+   _Added: 2026-01-27 12:23_
 5. **MISTAKE-004** (v2): Read context before action (theme.cyan missing → theme has no cyan)
-   *Added: 2026-01-27 12:23*
+   _Added: 2026-01-27 12:23_
 
 ### 🟢 Recent Improvements Learned
 
-*No improvements recorded yet. Share best practices to build knowledge!*
+_No improvements recorded yet. Share best practices to build knowledge!_
 
 ---
 
@@ -148,22 +136,20 @@ python self_improve.py --force
 ## 📖 Core Concept: PREVENT > DETECT
 
 **Old Way (v3.0)**:
+
 1. Agent makes mistake
 2. User reports error
 3. Lesson learned
 4. (Repeat same mistake later)
 
 **New Way (v4.0)**:
+
 1. Query lessons BEFORE coding
 2. Agent recalls relevant patterns
 3. Applies learning proactively
 4. Mistake prevented ✅
 
-**Plus Self-Improvement**:
-5. After 5 new learnings → auto-analyze
-6. Refine existing lessons
-7. Update knowledge base
-8. Better prevention next time
+**Plus Self-Improvement**: 5. After 5 new learnings → auto-analyze 6. Refine existing lessons 7. Update knowledge base 8. Better prevention next time
 
 ---
 
@@ -172,10 +158,12 @@ python self_improve.py --force
 ### 1. Detection Phase
 
 **Trigger Keywords**:
+
 - Vietnamese: lỗi, sai, hỏng, không đúng, sửa lại, bug
 - English: error, wrong, broken, fix this, mistake
 
 **Auto-Detection**:
+
 ```python
 from detect_triggers import detect_mistake_trigger
 
@@ -186,6 +174,7 @@ trigger = detect_mistake_trigger("Lỗi nghiêm trọng: xóa nhầm file")
 ### 2. Extraction Phase
 
 **Manual Mode** (No AI):
+
 ```python
 # Uses user message as-is
 lesson = {
@@ -196,6 +185,7 @@ lesson = {
 ```
 
 **AI Mode** (Auto-extraction):
+
 ```python
 from extract_lesson import extract_lesson_with_ai
 
@@ -214,6 +204,7 @@ lesson = extract_lesson_with_ai(
 ### 3. Categorization Phase
 
 **Smart Algorithm** (5 rules, 90%+ accuracy):
+
 ```python
 from categorize_learning import categorize_learning
 
@@ -231,6 +222,7 @@ category = categorize_learning(
 ```
 
 **Rules**:
+
 1. Explicit keywords (lỗi, error) → MISTAKE (90%)
 2. Improvement keywords (tốt hơn, better) → IMPROVEMENT (85%)
 3. Severity (critical, nghiêm trọng) → MISTAKE (80%)
@@ -240,6 +232,7 @@ category = categorize_learning(
 ### 4. Storage Phase
 
 **Dual File System**:
+
 ```yaml
 # mistakes.yaml
 mistakes:
@@ -270,6 +263,7 @@ improvements:
 ### 5. Event Tracking Phase
 
 **Auto-Increment**:
+
 ```python
 from event_tracker import increment_event, check_threshold
 
@@ -281,6 +275,7 @@ if check_threshold():
 ```
 
 **Meta.json**:
+
 ```json
 {
   "event_counter": {
@@ -299,6 +294,7 @@ if check_threshold():
 ### 6. Self-Improve Cycle (Auto @ 5 events)
 
 **5-Step Process**:
+
 ```python
 from self_improve import run_self_improve_cycle
 
@@ -327,6 +323,7 @@ result = run_self_improve_cycle()
 ### 7. Query Phase (PROACTIVE)
 
 **Before Coding**:
+
 ```python
 from query_lessons import query_relevant_lessons
 
@@ -346,6 +343,7 @@ lessons = query_relevant_lessons(
 ```
 
 **Agent Integration**:
+
 ```python
 # In GEMINI.md Auto-Learn Protocol
 # Before ANY file modification:
@@ -362,6 +360,7 @@ lessons = query_relevant_lessons(
 **Priority Order** (automatic):
 
 1. **Agent Session** 🤖
+
    ```bash
    # If agent is coding with GEMINI_API_KEY set
    # → Scripts auto-detect and use it
@@ -369,12 +368,14 @@ lessons = query_relevant_lessons(
    ```
 
 2. **Project .env** 📁
+
    ```bash
    # .agent/skills/SelfEvolution/.env
    GEMINI_API_KEY=your_key_here
    ```
 
 3. **Cached** 💾
+
    ```bash
    # Stored at ~/.selfevolution_cache/api_key.txt
    # Reused across projects
@@ -387,6 +388,7 @@ lessons = query_relevant_lessons(
    ```
 
 **Test Resolution**:
+
 ```bash
 python api_key_resolver.py --test
 # Shows: Source, API key (masked), validation status
@@ -397,10 +399,11 @@ python api_key_resolver.py --test
 ## 📊 Version Control
 
 **Automatic Versioning**:
+
 ```yaml
 # Every refinement creates new version
 - id: MISTAKE-001
-  version: 2  # Bumped from 1
+  version: 2 # Bumped from 1
   lesson: "Refined lesson text"
   previous_versions: [1]
   changelog:
@@ -413,6 +416,7 @@ python api_key_resolver.py --test
 ```
 
 **Version Snapshots**:
+
 ```bash
 # Saved at: .agent/skills/SelfEvolution/lessons/versions/
 mistakes-v1.yaml  # Original
@@ -421,6 +425,7 @@ mistakes-v3.yaml  # After 2nd improve cycle
 ```
 
 **Rollback**:
+
 ```bash
 # List versions
 python version_manager.py list mistakes
@@ -439,17 +444,20 @@ python version_manager.py rollback mistakes 1
 ### In GEMINI.md
 
 **Already Integrated** ✅:
+
 ```markdown
 ## 🎓 Auto-Learn Protocol (MANDATORY)
 
-> 🔴 **ALWAYS ACTIVE:** When user indicates a mistake, 
+> 🔴 **ALWAYS ACTIVE:** When user indicates a mistake,
 > invoke `@[skills/SelfEvolution]` immediately.
 
 **Trigger Keywords:**
+
 - Vietnamese: "lỗi", "sai", "hỏng", "không đúng", "sửa lại"
 - English: "mistake", "wrong", "fix this", "that's incorrect"
 
 **When triggered, MUST:**
+
 1. Analyze - What did I do wrong?
 2. Extract - Create lesson with pattern + message
 3. Add - Append to knowledge base
@@ -459,6 +467,7 @@ python version_manager.py rollback mistakes 1
 ### Usage in Agent Code
 
 **Pattern 1: Auto-Learn on User Feedback**
+
 ```python
 # When user says "lỗi" or "wrong"
 if detect_mistake_trigger(user_message)['detected']:
@@ -467,16 +476,17 @@ if detect_mistake_trigger(user_message)['detected']:
         ai_context=conversation_context,
         use_ai=True  # Use agent's API key
     )
-    
+
     if result['success']:
         print(f"📚 Đã học: {result['lesson_id']} - {result['message']}")
-        
+
         if result['threshold_reached']:
             print("⚡ Running self-improve cycle...")
             run_self_improve_cycle()
 ```
 
 **Pattern 2: Proactive Query Before Coding**
+
 ```python
 # Before modifying files
 from query_lessons import query_relevant_lessons
@@ -492,6 +502,7 @@ if lessons:
 ```
 
 **Pattern 3: Periodic Status Check**
+
 ```python
 # After significant work
 from event_tracker import get_statistics
@@ -557,6 +568,7 @@ if stats['since_last_improve'] >= stats['threshold']:
 **Status**: ✅ Certified for Production
 
 **Test Results**:
+
 - Integration tests: 6/6 passed (100%)
 - Categorization: 8/8 test cases passed
 - Event tracking: Verified
@@ -564,6 +576,7 @@ if stats['since_last_improve'] >= stats['threshold']:
 - API key resolution: All 4 tiers working
 
 **Documentation**:
+
 - ✅ SKILL.md (this file)
 - ✅ scripts/README.md
 - ✅ docs/categorization_algorithm.md
@@ -571,6 +584,7 @@ if stats['since_last_improve'] >= stats['threshold']:
 - ✅ Implementation plan
 
 **Migration**:
+
 - v3.0 → v4.0: Automatic
 - Backward compatible: v3.0 files preserved
 - Rollback: Supported
@@ -606,6 +620,7 @@ if stats['since_last_improve'] >= stats['threshold']:
    - Force: `python self_improve.py --force`
 
 **Debugging**:
+
 ```bash
 # Check version
 python project_utils.py

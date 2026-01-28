@@ -1,8 +1,9 @@
 ---
 name: git-workflow
-version: 3.0.0
 description: Enforce Conventional Commits and traceability between code and requirements.
 allowed-tools: Read, Write, Edit, Glob, Grep, Bash
+metadata:
+  version: "3.0.0"
 ---
 
 # Git Conventions
@@ -11,15 +12,15 @@ allowed-tools: Read, Write, Edit, Glob, Grep, Bash
 
 ## 📚 Atomic Rules (Knowledge)
 
-| Rule | Description |
-|------|-------------|
-| [rules/commit-format.md](rules/commit-format.md) | Conventional Commits structure |
-| [rules/traceability.md](rules/traceability.md) | Linking commits to requirements/docs |
+| Rule                                             | Description                          |
+| ------------------------------------------------ | ------------------------------------ |
+| [rules/commit-format.md](rules/commit-format.md) | Conventional Commits structure       |
+| [rules/traceability.md](rules/traceability.md)   | Linking commits to requirements/docs |
 
 ## 🔧 Scripts (Execution)
 
-| Script | Purpose |
-|--------|---------|
+| Script                  | Purpose                       |
+| ----------------------- | ----------------------------- |
 | `scripts/commit_msg.py` | Commit message hook validator |
 
 ## ⚠️ Critical Anti-Patterns

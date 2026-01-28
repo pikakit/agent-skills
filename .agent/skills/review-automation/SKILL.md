@@ -1,8 +1,9 @@
 ---
 name: review-automation
-version: 3.0.0
 description: Automated Code Review and PR validation.
 allowed-tools: Read, Write, Edit, Glob, Grep, Bash
+metadata:
+  version: "3.0.0"
 ---
 
 # Code Reviewer
@@ -13,16 +14,16 @@ allowed-tools: Read, Write, Edit, Glob, Grep, Bash
 
 This skill uses the **My Agent Skills Doctrine Pack** to validate changes.
 
-| Component | Responsibility |
-|-----------|----------------|
-| **Constitution** | Supreme non-negotiable laws |
-| **Doctrines** | Architecture, Data, UI specific rules |
+| Component        | Responsibility                        |
+| ---------------- | ------------------------------------- |
+| **Constitution** | Supreme non-negotiable laws           |
+| **Doctrines**    | Architecture, Data, UI specific rules |
 
 ## 🔧 Scripts (Execution)
 
-| Script | Purpose |
-|--------|---------|
-| `scripts/review.js` | Automated PR Reviewer |
+| Script                | Purpose               |
+| --------------------- | --------------------- |
+| `scripts/review.js`   | Automated PR Reviewer |
 | `scripts/validate.js` | Single file validator |
 
 ## ⚠️ Critical Checks

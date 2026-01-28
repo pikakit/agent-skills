@@ -1,19 +1,21 @@
 ---
 name: code-constitution-skills-governance
-version: 3.0.0
 description: >
   Constitutional governance skill for Agent Skills Kit. Use when designing system architecture,
   reviewing pull requests, modifying backend data pipelines, working with critical data,
   evaluating risky or breaking changes, or allowing AI agents to propose changes to core systems.
   Enforces non-negotiable laws for correctness, trust, and durability.
-type: constitutional-skill
-authority: supreme
-enforcement: strict
-tags: constitution, governance, architecture, data-integrity, code-review
-author: AgentSkillsKit
+metadata:
+  version: "3.0.0"
+  type: "constitutional-skill"
+  authority: "supreme"
+  enforcement: "strict"
+  tags: "constitution, governance, architecture, data-integrity, code-review"
+  author: "AgentSkillsKit"
 ---
 
 # Agent Skills Kit Governance
+
 **(Supreme Constitutional Skill)**
 
 This skill defines the **entire constitutional, doctrinal, and enforcement system**
@@ -72,6 +74,7 @@ This skill follows **Progressive Disclosure**.
 This skill has **SUPREME AUTHORITY**.
 
 It overrides:
+
 - All other skills
 - Framework defaults
 - Tooling heuristics
@@ -91,12 +94,14 @@ All agents using this skill MUST operate in:
 - **TRUST_LEVEL = ZERO**
 
 Agents MAY:
+
 - Propose implementations
 - Explain trade-offs
 - Identify risks
 - Cite applicable doctrines
 
 Agents MUST NOT:
+
 - Approve changes without user consent
 - Merge code automatically
 - Introduce new invariants
@@ -123,10 +128,12 @@ are considered enforcement failures.
 ## 6. Learning Constraints
 
 Agents MAY learn:
+
 - General reasoning improvements
 - Better architectural judgment
 
 Agents MUST NOT learn:
+
 - Code style or formatting overrides
 - Naming convention exceptions
 - Temporary workarounds
@@ -141,6 +148,7 @@ All learning is subordinate to the Constitution.
 This skill is **LOCKED**.
 
 Changes require:
+
 - An approved Change Proposal
 - Explicit version bump
 - Constitutional review
@@ -153,11 +161,13 @@ is a governance violation.
 ## 8. Failure Handling
 
 If an agent:
+
 - Produces unsafe output
 - Violates doctrine repeatedly
 - Shows unpredictable drift
 
 Then:
+
 - Output MUST be rejected
 - Agent MUST be restricted or disabled
 - Past outputs MAY require audit
@@ -169,11 +179,13 @@ Safety overrides productivity.
 ## Final Enforcement Principle
 
 Agents exist to:
+
 - Reduce human load
 - Increase consistency
 - Surface risks early
 
 Agents do NOT exist to:
+
 - Replace architectural judgment
 - Accelerate unsafe change
 - Bypass review or law

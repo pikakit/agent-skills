@@ -1,12 +1,14 @@
 ---
 name: web-core
-version: 3.0.0
 description: Comprehensive React and Next.js best practices, performance optimization, and architectural patterns.
 allowed-tools: Read, Write, Edit, Glob, Grep, Bash
-tags: react, nextjs, performance, server-components, client-components
+metadata:
+  version: "3.0.0"
+  tags: "react, nextjs, performance, server-components, client-components"
 ---
 
 # Frontend Engineering Skill
+
 **(Based on Vercel React Best Practices)**
 
 > **Philosophy:** Performance is a feature. Waterfalls are the enemy.
@@ -21,14 +23,14 @@ This skill contains **60+ detailed engineering rules** covering:
 4. **Client Performance**: Event listeners, re-renders.
 5. **Rendering**: Hydration, suspense, transitions.
 
-| Category | Description |
-|----------|-------------|
-| [rules/async-*.md](rules/) | Async patterns & waterfalls |
-| [rules/bundle-*.md](rules/) | Bundle size optimization |
-| [rules/server-*.md](rules/) | Server Components & Actions |
-| [rules/client-*.md](rules/) | Client hooks & events |
-| [rules/rendering-*.md](rules/) | Rendering strategies |
-| [rules/js-*.md](rules/) | JavaScript micro-optimizations |
+| Category                        | Description                    |
+| ------------------------------- | ------------------------------ |
+| [rules/async-\*.md](rules/)     | Async patterns & waterfalls    |
+| [rules/bundle-\*.md](rules/)    | Bundle size optimization       |
+| [rules/server-\*.md](rules/)    | Server Components & Actions    |
+| [rules/client-\*.md](rules/)    | Client hooks & events          |
+| [rules/rendering-\*.md](rules/) | Rendering strategies           |
+| [rules/js-\*.md](rules/)        | JavaScript micro-optimizations |
 
 ## ⚠️ Critical Anti-Patterns
 
