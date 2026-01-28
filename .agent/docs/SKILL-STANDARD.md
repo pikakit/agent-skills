@@ -328,3 +328,130 @@ skills-ref to-prompt ./skill1 ./skill2 ./skill3
 | Example Skills         | [github.com/anthropics/skills](https://github.com/anthropics/skills)                                                       |
 | Reference Library      | [github.com/agentskills/agentskills/skills-ref](https://github.com/agentskills/agentskills/tree/main/skills-ref)           |
 | Best Practices         | [platform.claude.com/.../best-practices](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/best-practices) |
+| Vercel Labs Examples   | [github.com/vercel-labs/agent-skills](https://github.com/vercel-labs/agent-skills)                                         |
+
+---
+
+## 🏆 Best Practices (from Vercel Labs)
+
+> Patterns from production-grade skill implementations at Vercel.
+
+### 1. Trigger Phrases in Description
+
+Include explicit trigger phrases to improve agent matching:
+
+```yaml
+# ✅ Excellent - includes trigger phrases
+description: >
+  React and Next.js performance optimization guidelines.
+  Triggers on tasks involving React components, Next.js pages,
+  data fetching, bundle optimization, or performance improvements.
+
+# ❌ Weak - no trigger phrases
+description: React best practices guide.
+```
+
+### 2. Rule File Organization
+
+For large skills (>300 lines), split into individual rule files:
+
+```
+skill-name/
+├── SKILL.md            # Index (~100-150 lines)
+├── AGENTS.md           # Compiled full version (optional)
+├── rules/
+│   ├── _template.md    # Rule template for consistency
+│   ├── _sections.md    # Section definitions
+│   ├── async-parallel.md
+│   ├── bundle-imports.md
+│   └── server-cache.md
+```
+
+### 3. Priority Prefix System
+
+Use prefixes to categorize rules by impact:
+
+| Prefix      | Impact      | Example                |
+| ----------- | ----------- | ---------------------- |
+| `async-`    | CRITICAL    | `async-parallel.md`    |
+| `bundle-`   | CRITICAL    | `bundle-imports.md`    |
+| `server-`   | HIGH        | `server-cache.md`      |
+| `client-`   | MEDIUM-HIGH | `client-dedup.md`      |
+| `rerender-` | MEDIUM      | `rerender-memo.md`     |
+| `js-`       | LOW-MEDIUM  | `js-early-exit.md`     |
+| `advanced-` | LOW         | `advanced-patterns.md` |
+
+### 4. Rule File Template
+
+Each rule file should follow this format:
+
+````yaml
+---
+title: Rule Title Here
+impact: MEDIUM
+impactDescription: 20-50% improvement
+tags: async, performance
+---
+## Rule Title Here
+
+Brief explanation of why this matters.
+
+**Incorrect (what's wrong):**
+
+```typescript
+// Bad code
+````
+
+**Correct (what's right):**
+
+```typescript
+// Good code
+```
+
+Reference: [Link to docs](https://example.com)
+
+```
+
+### 5. AGENTS.md Pattern
+
+For skills with many rules, provide a compiled `AGENTS.md`:
+
+- Contains ALL rules expanded inline
+- Used by agents that prefer single-file context
+- Auto-generated from individual rule files
+
+```
+
+skill-name/
+├── SKILL.md # Index with Quick Reference
+├── AGENTS.md # Full compiled version (~3000 lines)
+└── rules/ # Individual rule files
+
+```
+
+### 6. Context Efficiency Guidelines
+
+From Vercel's AGENTS.md:
+
+| Guideline                        | Recommendation              |
+| -------------------------------- | --------------------------- |
+| Keep SKILL.md under 500 lines    | Put details in rule files   |
+| Write specific descriptions      | Helps agent matching        |
+| Use progressive disclosure       | Reference files on-demand   |
+| Prefer scripts over inline code  | Script output only in context |
+| File references one level deep   | Avoid nested reference chains |
+
+---
+
+## 📐 Metrics Summary
+
+| Metric                    | Limit/Target          |
+| ------------------------- | --------------------- |
+| `name` length             | 1-64 chars            |
+| `description` length      | 1-1024 chars          |
+| `compatibility` length    | ≤500 chars            |
+| Discovery tokens          | ~50-100 per skill     |
+| SKILL.md lines            | <500 (recommend <150) |
+| Rule file lines           | ~30-50 each           |
+| Allowed frontmatter fields| 6 only                |
+```
