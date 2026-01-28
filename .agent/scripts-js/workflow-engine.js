@@ -73,11 +73,28 @@ function parseWorkflow(content, args = '') {
         phases.push(currentPhase);
       }
       
-      // Start new phase
-      const title = phaseMatch 
-        ? phaseMatch[3] || `${phaseMatch[1]} ${phaseMatch[2]}` 
-        : (sectionMatch ? sectionMatch[1] : subsectionMatch[1]);
-      const number = phaseMatch ? parseInt(phaseMatch[2]) : phases.length + 1;
+      // Extract title and determine phase number
+      let title, number;
+      
+      if (phaseMatch) {
+        // Direct ## Phase N: format
+        title = phaseMatch[3] || `${phaseMatch[1]} ${phaseMatch[2]}`;
+        number = parseInt(phaseMatch[2]);
+      } else {
+        // Section or subsection - check if title contains "Phase N:" pattern
+        const rawTitle = sectionMatch ? sectionMatch[1] : subsectionMatch[1];
+        const embeddedPhase = rawTitle.match(/^Phase\s+(\d+):?\s*(.*)$/i);
+        
+        if (embeddedPhase) {
+          // Title like "Phase 1: Requirements Discovery"
+          number = parseInt(embeddedPhase[1]);
+          title = embeddedPhase[2] || `Phase ${embeddedPhase[1]}`;
+        } else {
+          // Regular section title
+          number = phases.length + 1;
+          title = rawTitle;
+        }
+      }
       
       currentPhase = {
         number,
@@ -271,9 +288,9 @@ async function executeWorkflow(workflowName, args, options = {}) {
   // Parse workflow
   const workflow = parseWorkflow(content, args);
   
-  console.log(`\n${colors.bold}${colors.cyan}═══════════════════════════════════════════${colors.reset}`);
-  console.log(`${colors.bold}${colors.cyan} 🚀 Workflow: /${workflowName}${colors.reset}`);
-  console.log(`${colors.bold}${colors.cyan}═══════════════════════════════════════════${colors.reset}`);
+  console.log(`\n${colors.bold}${colors.cyan}============================================${colors.reset}`);
+  console.log(`${colors.bold}${colors.cyan} >> Workflow: /${workflowName}${colors.reset}`);
+  console.log(`${colors.bold}${colors.cyan}============================================${colors.reset}`);
   console.log(`${colors.dim}${workflow.metadata.description}${colors.reset}`);
   console.log(`${colors.dim}Arguments: ${args || '(none)'}${colors.reset}`);
   console.log(`${colors.dim}Phases: ${workflow.phases.length}${colors.reset}`);
@@ -305,9 +322,9 @@ async function executeWorkflow(workflowName, args, options = {}) {
     await executePhase(phase, { turbo, dryRun, interactive: !dryRun });
   }
   
-  console.log(`\n${colors.bold}${colors.green}═══════════════════════════════════════════${colors.reset}`);
-  console.log(`${colors.bold}${colors.green} ✅ Workflow Complete${colors.reset}`);
-  console.log(`${colors.bold}${colors.green}═══════════════════════════════════════════${colors.reset}\n`);
+  console.log(`\n${colors.bold}${colors.green}============================================${colors.reset}`);
+  console.log(`${colors.bold}${colors.green} [OK] Workflow Complete${colors.reset}`);
+  console.log(`${colors.bold}${colors.green}============================================${colors.reset}\n`);
   
   return true;
 }

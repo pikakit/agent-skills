@@ -18,8 +18,9 @@ Ship production-ready applications from natural language descriptions. **Coordin
 
 ### Phase 1: Requirements Discovery
 
-// turbo
 Ask these questions if not answered:
+
+// turbo
 
 ```
 1. What TYPE of app? (web/mobile/api/cli)

@@ -17,6 +17,7 @@ Systematic debugging using scientific method. **Form hypotheses, gather evidence
 ## 🔴 MANDATORY: 5-Phase Investigation
 
 ### Phase 1: Symptom Collection
+
 ```
 GATHER:
 □ Exact error message (copy/paste)
@@ -28,16 +29,19 @@ GATHER:
 ```
 
 ### Phase 2: Hypothesis Formation
+
 Generate 3+ ranked hypotheses:
 
-| # | Hypothesis | Likelihood | Test Method |
-|---|------------|------------|-------------|
-| 1 | [Most likely cause] | 70% | [How to verify] |
-| 2 | [Second possibility] | 20% | [How to verify] |
-| 3 | [Edge case] | 10% | [How to verify] |
+| #   | Hypothesis           | Likelihood | Test Method     |
+| --- | -------------------- | ---------- | --------------- |
+| 1   | [Most likely cause]  | 70%        | [How to verify] |
+| 2   | [Second possibility] | 20%        | [How to verify] |
+| 3   | [Edge case]          | 10%        | [How to verify] |
 
 ### Phase 3: Evidence Gathering
+
 // turbo
+
 ```bash
 # Run code analysis
 node .agent/scripts-js/checklist.js .
@@ -50,6 +54,7 @@ python .agent/skills/SecurityScanner/scripts/security_scan.py .
 ### Phase 4: Systematic Elimination
 
 For each hypothesis:
+
 1. Define the TEST
 2. Predict the OUTCOME if hypothesis is true
 3. Run the test
@@ -60,12 +65,15 @@ For each hypothesis:
 
 ```markdown
 ## Root Cause Confirmed
+
 [Clear explanation]
 
 ## Fix Applied
+
 [Code changes with before/after]
 
 ## Prevention Measures
+
 - [ ] Add test case for this scenario
 - [ ] Add input validation
 - [ ] Update documentation
@@ -76,35 +84,38 @@ For each hypothesis:
 
 ## Output Format
 
-```markdown
+````markdown
 ## 🔍 Diagnosis: [Issue Title]
 
 ### Symptom
+
 > [User's description of the problem]
 
 ### Environment
-| Aspect | Value |
-|--------|-------|
-| File | `src/services/auth.ts` |
-| Line | 42 |
-| Environment | Development |
-| Last Working | 2 commits ago |
+
+| Aspect       | Value                  |
+| ------------ | ---------------------- |
+| File         | `src/services/auth.ts` |
+| Line         | 42                     |
+| Environment  | Development            |
+| Last Working | 2 commits ago          |
 
 ---
 
 ### Hypotheses
 
-| # | Hypothesis | Likelihood | Status |
-|---|------------|------------|--------|
-| 1 | Null reference in user object | 70% | ✅ CONFIRMED |
-| 2 | API timeout | 20% | ❌ Eliminated |
-| 3 | Cache stale data | 10% | ⏳ Not tested |
+| #   | Hypothesis                    | Likelihood | Status        |
+| --- | ----------------------------- | ---------- | ------------- |
+| 1   | Null reference in user object | 70%        | ✅ CONFIRMED  |
+| 2   | API timeout                   | 20%        | ❌ Eliminated |
+| 3   | Cache stale data              | 10%        | ⏳ Not tested |
 
 ---
 
 ### Investigation Log
 
 **Testing H1: Null reference**
+
 - Test: Add console.log before line 42
 - Prediction: user.id will be undefined
 - Result: ✅ user was null when not logged in
@@ -113,6 +124,7 @@ For each hypothesis:
 ---
 
 ### Root Cause
+
 🎯 **user object is null when accessing protected route without auth**
 
 The `getUser()` function returns null for unauthenticated requests, but the code assumes it always returns a user object.
@@ -125,12 +137,13 @@ The `getUser()` function returns null for unauthenticated requests, but the code
 // ❌ Before
 const userId = user.id;
 
-// ✅ After  
+// ✅ After
 if (!user) {
-  throw new AuthError('User not authenticated');
+  throw new AuthError("User not authenticated");
 }
 const userId = user.id;
 ```
+````
 
 ---
 
@@ -144,11 +157,14 @@ const userId = user.id;
 ---
 
 ### Verification
-// turbo
+
 Run tests to confirm fix:
+// turbo
+
 ```bash
 npm test -- --grep "auth"
 ```
+
 ```
 
 ---
@@ -156,12 +172,14 @@ npm test -- --grep "auth"
 ## Examples
 
 ```
+
 /diagnose login returns 401 even with correct credentials
 /diagnose form data not saving to database
 /diagnose page crashes on mobile Safari
 /diagnose API response is 10x slower since yesterday
 /diagnose deployment fails on Vercel
-```
+
+````
 
 ---
 
@@ -194,15 +212,16 @@ graph LR
     A["/diagnose"] --> B["/validate"]
     B --> C["/launch"]
     style A fill:#ef4444
-```
+````
 
-| After /diagnose | Run | Purpose |
-|-----------------|-----|---------|
-| Bug fixed | `/validate` | Verify fix |
-| Need tests | `/validate` | Add test case |
-| Ready | `/launch` | Deploy fix |
+| After /diagnose | Run         | Purpose       |
+| --------------- | ----------- | ------------- |
+| Bug fixed       | `/validate` | Verify fix    |
+| Need tests      | `/validate` | Add test case |
+| Ready           | `/launch`   | Deploy fix    |
 
 **Handoff to /validate:**
+
 ```markdown
 Bug fixed. Run /validate to verify the fix works.
 ```
