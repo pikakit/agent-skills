@@ -1,55 +1,56 @@
-# Python Scripts Requirements
+# Python Scripts Reference
 
-This document lists the Python dependencies required for running the validation scripts in `.agent/skills/*/scripts/`.
+This document lists Python scripts used in **skill-level** validation tools.
+
+> **Note:** Master scripts (checklist, verify_all, etc.) have been migrated to JavaScript. See `.agent/scripts-js/`.
 
 ## Required Python Version
 
 - **Python 3.8+** recommended
 
-## Installation
+## Skill-Level Scripts
 
-Most scripts use only Python standard library. However, some may require additional packages:
+These scripts remain in Python for specialized tooling:
+
+| Script                 | Skill                 | Purpose                |
+| ---------------------- | --------------------- | ---------------------- |
+| `security_scan.py`     | vulnerability-scanner | OWASP security audit   |
+| `lint_runner.py`       | lint-and-validate     | Run linting tools      |
+| `schema_validator.py`  | database-design       | Validate DB schemas    |
+| `ux_audit.py`          | frontend-design       | UX accessibility check |
+| `seo_checker.py`       | seo-fundamentals      | SEO validation         |
+| `lighthouse_audit.py`  | performance-profiling | Web performance audit  |
+| `playwright_runner.py` | webapp-testing        | E2E test runner        |
+| `test_runner.py`       | testing-patterns      | Test suite runner      |
+
+## Usage
 
 ```bash
-# Install common dependencies
+# Via npm scripts
+npm run scan:security
+npm run lint
+
+# Direct execution
+python .agent/skills/SecurityScanner/scripts/security_scan.py .
+```
+
+## Installation
+
+Most scripts use Python standard library. For specific dependencies:
+
+```bash
 pip install pyyaml requests
 ```
 
-## Available Scripts
+## Master Scripts (JavaScript)
 
-| Script | Location | Description |
-|--------|----------|-------------|
-| `security_scan.py` | vulnerability-scanner | OWASP security audit |
-| `lint_runner.py` | lint-and-validate | Run linting tools |
-| `schema_validator.py` | database-design | Validate DB schemas |
-| `ux_audit.py` | frontend-design | UX accessibility check |
-| `seo_checker.py` | seo-fundamentals | SEO validation |
-| `lighthouse_audit.py` | performance-profiling | Web performance audit |
-| `playwright_runner.py` | webapp-testing | E2E test runner |
-| `mobile_audit.py` | mobile-design | Mobile UI validation |
-| `i18n_checker.py` | i18n-localization | Translation check |
-| `geo_checker.py` | geo-fundamentals | GenAI optimization |
-| `api_validator.py` | api-patterns | API contract validation |
-| `test_runner.py` | testing-patterns | Test suite runner |
-| `type_coverage.py` | lint-and-validate | TypeScript coverage |
-| `accessibility_checker.py` | frontend-design | A11y audit |
-
-## Running Scripts
+For master validation scripts, use:
 
 ```bash
-# Run from project root
-python .agent/skills/vulnerability-scanner/scripts/security_scan.py .
-
-# Or use npm scripts
-npm run scan:security
-npm run lint
-npm run checklist
+npm run checklist      # Quick validation
+npm run verify <URL>   # Full verification
+npm run preview:start  # Dev server
+npm run session:status # Project info
 ```
 
-## Troubleshooting
-
-If a script fails with import errors, ensure you have the required dependencies:
-
-```bash
-pip install -r requirements.txt  # If available in script directory
-```
+See [MIGRATION.md](../MIGRATION.md) for details.
