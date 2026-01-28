@@ -62,6 +62,63 @@ See [PYTHON_STRATEGY.md](../PYTHON_STRATEGY.md) for architecture rationale.
 
 ---
 
+## 🎨 Studio (Design System Generator)
+
+**Location:** `.agent/studio/`
+
+Studio provides AI-powered design system generation using BM25 search across curated design databases.
+
+### Purpose
+
+Generate high-quality UI/UX code by searching 24 CSV databases containing:
+
+- 50+ design styles (Minimalism, Glassmorphism, Brutalism...)
+- 95+ color palettes (SaaS, E-commerce, Fintech...)
+- 60+ font pairings (Google Fonts combinations)
+- 12 framework-specific guidelines (React, Vue, SwiftUI...)
+
+### Components
+
+| Component       | Purpose               | Files                                |
+| --------------- | --------------------- | ------------------------------------ |
+| **data/**       | Design knowledge base | 24 CSV files (241 KB)                |
+| **scripts-js/** | BM25 search engine    | core.js, design_system.js, search.js |
+
+### Usage
+
+```bash
+# Search design guidelines
+npm run studio:search "minimalist dashboard"
+
+# Generate design system
+npm run studio:design
+
+# Stack-specific search
+node .agent/studio/scripts-js/search.js "layout" --stack nextjs
+```
+
+### Data Domains (11)
+
+- **style** - Design styles (styles.csv)
+- **color** - Color palettes (colors.csv)
+- **typography** - Font pairings (typography.csv)
+- **ux** - UX guidelines (ux-guidelines.csv)
+- **icons** - Icon libraries (icons.csv)
+- **chart** - Data visualization (charts.csv)
+- **landing** - Landing patterns (landing.csv)
+- **product** - Product-specific (products.csv)
+- **prompt** - AI prompts (prompts.csv)
+- **react** - React performance (react-performance.csv)
+- **web** - Web interface (web-interface.csv)
+
+### Supported Stacks (12)
+
+Next.js, React, Vue, Nuxt, Svelte, SwiftUI, React Native, Flutter, HTML/Tailwind, shadcn/ui, Jetpack Compose, Nuxt UI
+
+See [STUDIO_MIGRATION.md](../STUDIO_MIGRATION.md) for migration details.
+
+---
+
 ## 🤖 Agents (20)
 
 Specialist AI personas for different domains.
@@ -255,30 +312,52 @@ skill-name/
 
 ---
 
-## 📜 Scripts (4)
+## 📜 Scripts (Runtime - JavaScript)
 
-Master validation scripts that orchestrate skill-level scripts.
+**Location:** `.agent/scripts-js/`
 
-### Master Scripts
+Master validation scripts orchestrating skill-level validators (Python).
 
-| Script          | Purpose                                 | When to Use              |
-| --------------- | --------------------------------------- | ------------------------ |
-| `checklist.js`  | Priority-based validation (Core checks) | Development, pre-commit  |
-| `verify_all.js` | Comprehensive verification (All checks) | Pre-deployment, releases |
+### Architecture (2-Tier Hybrid)
+
+```mermaid
+graph LR
+    User[User] --> Master[Master Scripts<br/>JavaScript]
+    Master --> Skills[Skill Scripts<br/>Python]
+    Master --> Output[Validation Report]
+    Skills --> Output
+```
+
+**Why Hybrid:**
+
+- Master scripts: JavaScript (cross-platform, npm integration)
+- Skill scripts: Python (34 scripts for specialized validation)
+- See [PYTHON_STRATEGY.md](../PYTHON_STRATEGY.md)
+
+### Master Scripts (4)
+
+| Script               | Purpose                                 | When to Use              |
+| -------------------- | --------------------------------------- | ------------------------ |
+| `checklist.js`       | Priority-based validation (Core checks) | Development, pre-commit  |
+| `verify_all.js`      | Comprehensive verification (All checks) | Pre-deployment, releases |
+| `auto_preview.js`    | Dev server management                   | Local development        |
+| `session_manager.js` | Multi-session coordination              | Complex workflows        |
 
 ### Usage
 
 ```bash
-# Quick validation during development (recommended)
-npm run checklist:js .
+# Quick validation
+npm run checklist
+# OR: node .agent/scripts-js/checklist.js .
 
-# Full verification before deployment (recommended)
+# Full verification before deploy
 npm run verify http://localhost:3000
+# OR: node .agent/scripts-js/verify_all.js . --url http://localhost:3000
 ```
 
 ### What They Check
 
-**checklist.py** (Core checks):
+**checklist.js** (Core checks):
 
 - Security (vulnerabilities, secrets)
 - Code Quality (lint, types)
@@ -287,16 +366,25 @@ npm run verify http://localhost:3000
 - UX Audit
 - SEO Check
 
-**verify_all.py** (Full suite):
+**verify_all.js** (Full suite):
 
-- Everything in checklist.py PLUS:
+- Everything in checklist.js PLUS:
 - Lighthouse (Core Web Vitals)
 - Playwright E2E
 - Bundle Analysis
 - Mobile Audit
 - i18n Check
 
-For details, see [scripts/README.md](scripts/README.md)
+### Migration History
+
+**v3.2.0 (January 2026):**
+
+- ✅ Python → JavaScript master scripts
+- ✅ 4 new JS scripts (checklist, verify_all, auto_preview, session_manager)
+- ✅ Legacy Python archived to `scripts-legacy/`
+- ✅ Python skill scripts retained (34 specialized validators)
+
+See [MIGRATION.md](../MIGRATION.md) for details.
 
 ---
 
@@ -324,3 +412,44 @@ For details, see [scripts/README.md](scripts/README.md)
 | Testing  | `test-engineer`       | testing-patterns, webapp-testing      |
 | Debug    | `debugger`            | systematic-debugging                  |
 | Plan     | `project-planner`     | brainstorming, plan-writing           |
+
+---
+
+## 📅 Architecture Evolution
+
+### v3.2.0 (January 2026)
+
+**Major Changes:**
+
+- **Python → JavaScript Migration:** Master scripts rewritten in JS
+- **Hybrid Architecture:** 2-tier system (JS master + Python skills)
+- **Studio Rename:** `.agent/.shared/studio` → `.agent/studio`
+
+**Rationale:**
+
+- Cross-platform compatibility (Windows, macOS, Linux)
+- npm ecosystem integration
+- Faster execution (Node.js async I/O)
+- Maintain Python for specialized validators
+
+**Files Affected:**
+
+- Added: 4 JavaScript master scripts (~1,000 LOC)
+- Added: 14 JavaScript Studio scripts (~1,400 LOC)
+- Archived: 4 Python master scripts to `scripts-legacy/`
+- Retained: 34 Python skill scripts
+
+**Documentation:**
+
+- [MIGRATION.md](../MIGRATION.md) - Migration guide
+- [PYTHON_STRATEGY.md](../PYTHON_STRATEGY.md) - Hybrid rationale
+- [STUDIO_MIGRATION.md](../STUDIO_MIGRATION.md) - Studio migration
+- [CHANGELOG.md](../CHANGELOG.md) - Release notes
+
+### v3.1.0 (December 2025)
+
+**Changes:**
+
+- Added SelfEvolution v4.0 (auto-learning system)
+- Enhanced agent routing (SmartRouter skill)
+- 49 skills total
