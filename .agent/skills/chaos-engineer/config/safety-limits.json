@@ -1,0 +1,34 @@
+{
+  "$comment": "Chaos Engineering Safety Configuration",
+  "safety": {
+    "enabled": true,
+    "maxDuration": 300000,
+    "maxCpuPercent": 90,
+    "maxMemoryMB": 1024,
+    "excludeEnvironments": ["production", "prod"],
+    "requireConfirmation": true,
+    "autoStopOnError": true,
+    "alertOnStart": true
+  },
+  "emergencyStop": {
+    "signal": "SIGTERM",
+    "timeout": 5000,
+    "cleanupRequired": true
+  },
+  "experiments": {
+    "latency": {
+      "maxDelay": 5000,
+      "defaultDelay": 500
+    },
+    "network": {
+      "maxRate": 100,
+      "defaultRate": 50
+    },
+    "cpu": {
+      "maxPercent": 90
+    },
+    "memory": {
+      "maxMB": 1024
+    }
+  }
+}
