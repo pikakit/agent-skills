@@ -99,6 +99,12 @@ ${"─".repeat(50)}
   metrics        🆕 Knowledge metrics dashboard
                  ag-smart metrics [--json]
 
+  validate        Schema validation for knowledge files
+                 ag-smart validate [--fix] [--json]
+
+  retention       Retention policy runner
+                 ag-smart retention [--dry-run] [--apply] [--status]
+
 ${"─".repeat(50)}
 
 📖 HELP:
@@ -147,6 +153,12 @@ switch (COMMAND) {
         break;
     case "metrics":
         run("knowledge-metrics.js", ARGS.slice(1));
+        break;
+    case "validate":
+        run("knowledge-validator.js", ARGS.slice(1));
+        break;
+    case "retention":
+        run("knowledge-retention.js", ARGS.slice(1));
         break;
 
     // Meta
