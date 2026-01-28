@@ -353,12 +353,13 @@ export function scanFile(filePath, db, updateHits = false) {
  * @param {string} dirPath - Directory to scan
  * @param {{ lessons: Array }} db - Knowledge base
  * @param {string[]} extensions - File extensions to scan
- * @returns {{ results: Array<{ file: string, violations: Array }>, ignoredCount: number }}
+ * @returns {{ results: Array<{ file: string, violations: Array }>, ignoredCount: number, totalScanned: number }}
  */
 export function scanDirectory(dirPath, db, extensions = [".js", ".ts", ".tsx", ".jsx"]) {
     const results = [];
     const ignorePatterns = loadIgnorePatterns(dirPath);
     let ignoredCount = 0;
+    let totalScanned = 0;
 
     function walk(dir) {
         let entries;
@@ -383,6 +384,7 @@ export function scanDirectory(dirPath, db, extensions = [".js", ".ts", ".tsx", "
             } else if (entry.isFile()) {
                 const ext = path.extname(entry.name);
                 if (extensions.includes(ext)) {
+                    totalScanned++;
                     const result = scanFile(fullPath, db, true);
                     if (result.violations.length > 0) {
                         results.push(result);
@@ -395,10 +397,11 @@ export function scanDirectory(dirPath, db, extensions = [".js", ".ts", ".tsx", "
     if (fs.statSync(dirPath).isDirectory()) {
         walk(dirPath);
     } else {
+        totalScanned++;
         results.push(scanFile(dirPath, db, true));
     }
 
-    return { results, ignoredCount };
+    return { results, ignoredCount, totalScanned };
 }
 
 // ============================================================================
@@ -470,14 +473,14 @@ Options:
     }
 
     // Scan first
-    const { results, ignoredCount } = scanDirectory(target, db);
+    const { results, ignoredCount, totalScanned } = scanDirectory(target, db);
     const stats = printResults(results);
 
     // JSON output mode for CI/CD
     if (jsonMode) {
         const output = {
             version: VERSION,
-            filesScanned: results.length,
+            filesScanned: totalScanned,
             ignored: ignoredCount,
             violations: stats.total,
             errors: stats.errors,
@@ -505,7 +508,7 @@ Options:
 
     // Summary using Clack
     const summaryLines = [
-        `${pc.green("✓")} ${results.length} file(s) scanned`,
+        `${pc.green("✓")} ${totalScanned} file(s) scanned`,
         `${pc.dim("›")} ${ignoredCount} paths ignored`,
         stats.total > 0
             ? `${pc.red("✗")} ${stats.total} violation(s) found`
@@ -551,7 +554,7 @@ function sanitizeFilename(filepath) {
  */
 export function scanDirectoryStructured(targetPath, db) {
     // Run standard scan
-    const { results, ignoredCount } = scanDirectory(targetPath, db);
+    const { results, ignoredCount, totalScanned } = scanDirectory(targetPath, db);
 
     // Generate structured issues with unique IDs
     const issues = [];
@@ -584,7 +587,7 @@ export function scanDirectoryStructured(targetPath, db) {
         summary: {
             errors: issues.filter(i => i.severity === 'ERROR').length,
             warnings: issues.filter(i => i.severity !== 'ERROR').length,
-            filesScanned: results.length,
+            filesScanned: totalScanned,
             ignoredFiles: ignoredCount
         },
         issues
