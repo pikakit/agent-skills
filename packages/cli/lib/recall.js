@@ -18,6 +18,7 @@ import path from "path";
 import yaml from "js-yaml";
 import ora from "ora";
 import { KNOWLEDGE_DIR, LESSONS_PATH, DEBUG, cwd, VERSION } from "./config.js";
+import { icons, safeText } from "./icons.js";
 import { loadIgnorePatterns, isIgnored } from "./ignore.js";
 import pretty from "./ui/pretty.js";
 import * as p from "@clack/prompts";
@@ -501,26 +502,26 @@ Options:
     }
 
     // Show Clack-based summary (consistent with CLI)
-    p.intro(pc.cyan(`🧠 Agent Skill Kit v${VERSION}`));
+    p.intro(pc.cyan(`${icons.brain} Agent Skill Kit v${VERSION}`));
 
     // Save updated hit counts
     saveKnowledge(db);
 
     // Summary using Clack
     const summaryLines = [
-        `${pc.green("[OK]")} ${totalScanned} file(s) scanned`,
-        `${pc.dim(">")} ${ignoredCount} paths ignored`,
+        `${pc.green("✓")} ${totalScanned} file(s) scanned`,
+        `${pc.dim("›")} ${ignoredCount} paths ignored`,
         stats.total > 0
-            ? `${pc.red("[X]")} ${stats.total} violation(s) found`
-            : `${pc.green("[OK]")} No violations found`
+            ? `${pc.red("✗")} ${stats.total} violation(s) found`
+            : `${pc.green("✓")} No violations found`
     ];
 
     if (stats.total === 0) {
         summaryLines.push("");
-        summaryLines.push(pc.green("All clear! Your code looks great."));
+        summaryLines.push(pc.green(`All clear! Your code looks great. ${icons.party}`));
     }
 
-    p.note(summaryLines.join("\n"), pc.dim("Memory check completed"));
+    p.note(summaryLines.join("\n"), pc.dim("Memory check completed ✓"));
 
     if (stats.errors > 0) {
         process.exit(1);

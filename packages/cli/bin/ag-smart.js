@@ -19,6 +19,11 @@ import path from "path";
 import { fileURLToPath } from "url";
 import { VERSION } from "../lib/config.js";
 
+// Fix UTF-8 output on Windows PowerShell/Console
+if (process.platform === "win32" && process.stdout.isTTY) {
+    process.stdout.setDefaultEncoding("utf8");
+}
+
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ARGS = process.argv.slice(2);
 const COMMAND = ARGS[0];
