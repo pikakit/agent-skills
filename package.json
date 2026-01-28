@@ -15,9 +15,21 @@
   "scripts": {
     "test": "node packages/cli/tests/integration/signal-detector.test.js",
     "test:integration": "node packages/cli/tests/integration/gemini-export.test.js",
+    "test:scripts": "vitest run tests/scripts",
     "example:violations": "node packages/cli/examples/demo-violations.js",
     "rebrand": "node scripts/rebrand/index.mjs",
-    "checklist": "python .agent/scripts/checklist.py .",
+    "checklist": "node .agent/scripts-js/checklist.js .",
+    "verify": "node .agent/scripts-js/verify_all.js . --url",
+    "preview:start": "node .agent/scripts-js/auto_preview.js start",
+    "preview:stop": "node .agent/scripts-js/auto_preview.js stop",
+    "preview:status": "node .agent/scripts-js/auto_preview.js status",
+    "session:status": "node .agent/scripts-js/session_manager.js status .",
+    "session:info": "node .agent/scripts-js/session_manager.js info .",
+    "studio:search": "node .agent/studio/scripts-js/search.js",
+    "studio:design": "node .agent/studio/scripts-js/search.js --design-system",
+    "test:studio": "vitest run tests/scripts/css-templates.test.js tests/scripts/component-specs.test.js tests/scripts/format-master-md.test.js tests/scripts/page-type-detector.test.js tests/scripts/intelligent-overrides.test.js tests/scripts/page-override-formatter.test.js tests/scripts/css-validator.test.js tests/scripts/search-cache.test.js tests/scripts/config-loader.test.js tests/scripts/integration/studio-integration.test.js",
+    "test:unit": "vitest run tests/scripts --exclude tests/scripts/integration/*",
+    "test:all": "npm run test && npm run test:integration && npm run test:studio",
     "scan:security": "python .agent/skills/vulnerability-scanner/scripts/security_scan.py .",
     "lint": "python .agent/skills/lint-and-validate/scripts/lint_runner.py .",
     "learn": "node packages/cli/lib/learn.js",
@@ -34,12 +46,15 @@
   "author": "agentskillkit <agentskillkit@gmail.com>",
   "license": "UNLICENSED",
   "devDependencies": {
-    "agentskillskit-cli": "^2.4.0",
+    "agentskillskit-cli": "file:packages/cli",
     "eslint": "^9.0.0",
-    "prettier": "^3.0.0"
+    "prettier": "^3.0.0",
+    "vitest": "^1.6.1"
   },
   "dependencies": {
     "@clack/prompts": "^0.11.0",
+    "css-tree": "^3.1.0",
+    "csv-parse": "^6.1.0",
     "glob": "^13.0.0",
     "js-yaml": "^4.1.1",
     "picocolors": "^1.1.1"

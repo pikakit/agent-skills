@@ -17,8 +17,10 @@ Ship production-ready applications from natural language descriptions. **Coordin
 ## 🔴 MANDATORY: Build Pipeline
 
 ### Phase 1: Requirements Discovery
+
 // turbo
 Ask these questions if not answered:
+
 ```
 1. What TYPE of app? (web/mobile/api/cli)
 2. Who are the USERS? (consumers/business/developers)
@@ -31,19 +33,21 @@ Ask these questions if not answered:
 
 **AI-Powered Stack Recommendation:**
 
-| App Type | Recommended Stack | Agents Invoked |
-|----------|-------------------|----------------|
-| **Web SaaS** | Next.js + Prisma + PostgreSQL | frontend, backend, database |
-| **E-commerce** | Next.js + Stripe + Supabase | frontend, backend, security |
-| **Mobile** | React Native + Expo + Firebase | mobile, backend, test |
-| **API** | Hono + Prisma + Railway | backend, database, devops |
-| **Dashboard** | Next.js + Tremor + Chart.js | frontend, backend |
+| App Type       | Recommended Stack              | Agents Invoked              |
+| -------------- | ------------------------------ | --------------------------- |
+| **Web SaaS**   | Next.js + Prisma + PostgreSQL  | frontend, backend, database |
+| **E-commerce** | Next.js + Stripe + Supabase    | frontend, backend, security |
+| **Mobile**     | React Native + Expo + Firebase | mobile, backend, test       |
+| **API**        | Hono + Prisma + Railway        | backend, database, devops   |
+| **Dashboard**  | Next.js + Tremor + Chart.js    | frontend, backend           |
 
 ### Phase 3: Project Scaffolding
+
 // turbo
+
 ```bash
 # Auto-detect and scaffold
-python .agent/scripts/session_manager.py create --name "$PROJECT_NAME" --stack "$STACK"
+npm run session:status
 ```
 
 ### Phase 4: Multi-Agent Build
@@ -69,9 +73,11 @@ graph TD
 ```
 
 ### Phase 5: Preview & Iterate
+
 // turbo
+
 ```bash
-python .agent/scripts/auto_preview.py start
+npm run preview:start
 ```
 
 ---
@@ -82,35 +88,38 @@ python .agent/scripts/auto_preview.py start
 ## 🏗️ Building: [App Name]
 
 ### Stack Decision
-| Layer | Choice | Reason |
-|-------|--------|--------|
-| Frontend | Next.js 15 | SSR, App Router, Vercel deploy |
-| Backend | Hono + Prisma | Type-safe, edge-ready |
-| Database | PostgreSQL | Relational, Supabase hosting |
-| Auth | Clerk | Fast integration, social login |
-| Styling | Tailwind + shadcn/ui | Rapid UI development |
+
+| Layer    | Choice               | Reason                         |
+| -------- | -------------------- | ------------------------------ |
+| Frontend | Next.js 15           | SSR, App Router, Vercel deploy |
+| Backend  | Hono + Prisma        | Type-safe, edge-ready          |
+| Database | PostgreSQL           | Relational, Supabase hosting   |
+| Auth     | Clerk                | Fast integration, social login |
+| Styling  | Tailwind + shadcn/ui | Rapid UI development           |
 
 ### Agent Coordination
 
-| Agent | Task | Status |
-|-------|------|--------|
-| `database-architect` | Schema design | ✅ Complete |
-| `backend-specialist` | API routes | 🔄 In progress |
-| `frontend-specialist` | UI components | ⏳ Waiting |
-| `test-engineer` | E2E tests | ⏳ Waiting |
+| Agent                 | Task          | Status         |
+| --------------------- | ------------- | -------------- |
+| `database-architect`  | Schema design | ✅ Complete    |
+| `backend-specialist`  | API routes    | 🔄 In progress |
+| `frontend-specialist` | UI components | ⏳ Waiting     |
+| `test-engineer`       | E2E tests     | ⏳ Waiting     |
 
 ### Files Created
 ```
+
 src/
 ├── app/
-│   ├── page.tsx
-│   ├── layout.tsx
-│   └── api/
+│ ├── page.tsx
+│ ├── layout.tsx
+│ └── api/
 ├── components/
 ├── lib/
 ├── prisma/
-│   └── schema.prisma
+│ └── schema.prisma
 └── tests/
+
 ```
 
 ### Preview
@@ -142,14 +151,14 @@ src/
 
 If user doesn't specify, use these:
 
-| Aspect | Default |
-|--------|---------|
-| Framework | Next.js 15 |
-| Styling | Tailwind + shadcn/ui |
-| Database | PostgreSQL (Supabase) |
-| Auth | Clerk |
-| Deployment | Vercel |
-| Testing | Vitest + Playwright |
+| Aspect     | Default               |
+| ---------- | --------------------- |
+| Framework  | Next.js 15            |
+| Styling    | Tailwind + shadcn/ui  |
+| Database   | PostgreSQL (Supabase) |
+| Auth       | Clerk                 |
+| Deployment | Vercel                |
+| Testing    | Vitest + Playwright   |
 
 ---
 
@@ -178,14 +187,15 @@ graph LR
     style B fill:#10b981
 ```
 
-| After /build | Run | Purpose |
-|--------------|-----|---------|
-| Build complete | `/validate` | Run tests |
-| Needs testing | `/stage` | Start preview server |
-| Ready to deploy | `/launch` | Deploy to production |
-| Found bugs | `/diagnose` | Debug issues |
+| After /build    | Run         | Purpose              |
+| --------------- | ----------- | -------------------- |
+| Build complete  | `/validate` | Run tests            |
+| Needs testing   | `/stage`    | Start preview server |
+| Ready to deploy | `/launch`   | Deploy to production |
+| Found bugs      | `/diagnose` | Debug issues         |
 
 **Handoff to /validate:**
+
 ```markdown
 Build complete. Preview running at http://localhost:3000
 Run /validate to generate and execute tests.

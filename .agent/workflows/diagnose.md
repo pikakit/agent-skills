@@ -40,9 +40,10 @@ Generate 3+ ranked hypotheses:
 // turbo
 ```bash
 # Run code analysis
-python .agent/scripts/checklist.py .
+node .agent/scripts-js/checklist.js .
+# OR: npm run checklist:js .
 
-# Check for security issues
+# Check for security issues (Python skill script - still valid)
 python .agent/skills/SecurityScanner/scripts/security_scan.py .
 ```
 

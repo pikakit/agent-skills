@@ -1,5 +1,123 @@
-# Ignore
+# Agent Skill Kit - Gitignore v2.0 (2025)
+# Comprehensive patterns for modern JS/TS development
+
+# ============================================================
+# Dependencies & Package Managers
+# ============================================================
 node_modules/
+.pnpm-store/
+.yarn/
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
+bower_components/
+jspm_packages/
+
+# ============================================================
+# Build Outputs & Distribution
+# ============================================================
+dist/
+build/
+out/
+.next/
+.nuxt/
+.output/
+.vercel/
+.netlify/
+.cache/
+.parcel-cache/
+.turbo/
+*.tsbuildinfo
+.webpack/
+
+# ============================================================
+# Testing & Coverage
+# ============================================================
+coverage/
+.nyc_output/
+*.lcov
+.vitest/
+playwright-report/
+test-results/
+
+# ============================================================
+# Environment Variables & Secrets
+# ============================================================
+.env
+.env.local
+.env.*.local
+.env.development
+.env.test
+.env.production
+
+# ============================================================
+# Logs
+# ============================================================
+*.log
+logs/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# ============================================================
+# IDEs & Editors
+# ============================================================
+.vscode/
+!.vscode/extensions.json
+.idea/
+*.swp
+*.swo
+*~
+*.sublime-workspace
+*.code-workspace
+
+# ============================================================
+# Operating System
+# ============================================================
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+Desktop.ini
+
+# ============================================================
+# Temporary Files
+# ============================================================
+tmp/
+temp/
+*.tmp
 .temp_ag_kit/
-antigravity-doc
-tests
+
+# ============================================================
+# Python (Legacy Support)
+# ============================================================
+__pycache__/
+*.py[cod]
+*.so
+.Python
+venv/
+ENV/
+.pytest_cache/
+
+# ============================================================
+# Archives & Binaries
+# ============================================================
+*.zip
+*.tar.gz
+*.rar
+
+# ============================================================
+# Agent Skill Kit Specific
+# ============================================================
+.gemini/
+brain/
+artifacts/
+antigravity-doc/
+rebrand_backup_*/

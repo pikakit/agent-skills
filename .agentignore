@@ -1,46 +1,154 @@
-# Agent Skill Kit Ignore File
-# Patterns here will be excluded from scan
+# Agent Skill Kit - Comprehensive Ignore Patterns v2.0
+# Updated: 2025 - Optimized for JS/TS Projects
 
-# Dependencies
+# ============================================================
+# Dependencies & Package Managers
+# ============================================================
 node_modules/
-.pnpm/
+.pnpm-store/
+.yarn/
+!.yarn/releases
+!.yarn/plugins
 bower_components/
+jspm_packages/
 
-# Build outputs
+# ============================================================
+# Build & Distribution
+# ============================================================
 dist/
 build/
-.next/
 out/
+.next/
+.nuxt/
+.output/
+.vercel/
+.netlify/
+.cache/
+*.tsbuildinfo
 
-# Version control
+# ============================================================
+# AI & Brain Artifacts (Agent Skill Kit specific)
+# ============================================================
+.gemini/
+brain/
+artifacts/
+.temp_ag_kit/
+
+# ============================================================
+# Version Control
+# ============================================================
 .git/
 .svn/
+.hg/
 
-# IDE and editors
+# ============================================================
+# IDEs & Editors
+# ============================================================
 .vscode/
 .idea/
 *.swp
 *.swo
+*~
+.project
+.classpath
+.settings/
+*.sublime-workspace
+*.code-workspace
 
-# OS files
+# ============================================================
+# Operating System
+# ============================================================
 .DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
 Thumbs.db
+Desktop.ini
 
+# ============================================================
 # Logs
+# ============================================================
 *.log
 logs/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
 
-# Test coverage
+# ============================================================
+# Testing & Coverage
+# ============================================================
 coverage/
 .nyc_output/
+*.lcov
+.coverage
+htmlcov/
+.pytest_cache/
+.vitest/
 
-# Temporary files
+# ============================================================
+# Environment & Secrets
+# ============================================================
+.env
+.env.local
+.env.*.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# ============================================================
+# Temporary & Cache
+# ============================================================
 tmp/
 temp/
 *.tmp
+.cache/
+.parcel-cache/
+.turbo/
+.webpack/
 
-# Package files
-*.tgz
+# ============================================================
+# Package Lock Files
+# ============================================================
 package-lock.json
 yarn.lock
 pnpm-lock.yaml
+
+# ============================================================
+# Archives & Binaries
+# ============================================================
+*.zip
+*.tar.gz
+*.rar
+*.exe
+*.dmg
+*.app
+*.deb
+*.rpm
+
+# ============================================================
+# Python (Legacy - minimal support)
+# ============================================================
+__pycache__/
+*.py[cod]
+*.so
+.Python
+venv/
+ENV/
+
+# ============================================================
+# Documentation Build
+# ============================================================
+docs/_build/
+docs/.vuepress/dist/
+
+# ============================================================
+# Misc
+# ============================================================
+*.backup
+*.bak
+*.orig
+.vagrant/

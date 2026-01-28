@@ -2,12 +2,12 @@ lessons:
   - id: LEARN-001
     pattern: TODO
     message: Please
-    severity: WARNING
+    severity: ERROR
     category: code-quality
     source: manual
-    hitCount: 0
-    lastHit: null
-    autoEscalated: false
+    hitCount: 24
+    lastHit: '2026-01-27T20:06:57.996Z'
+    autoEscalated: true
     addedAt: '2026-01-24T20:54:57.262Z'
   - id: LEARN-002
     pattern: console.log
@@ -15,18 +15,18 @@ lessons:
     severity: ERROR
     category: general
     source: manual
-    hitCount: 20
-    lastHit: '2026-01-24T21:02:58.265Z'
+    hitCount: 1235
+    lastHit: '2026-01-27T20:06:58.004Z'
     autoEscalated: false
     addedAt: '2026-01-24T20:59:54.591Z'
   - id: LEARN-003
     pattern: var\s+
     message: Use
-    severity: WARNING
+    severity: ERROR
     category: general
     source: manual
-    hitCount: 0
-    lastHit: null
-    autoEscalated: false
+    hitCount: 12
+    lastHit: '2026-01-27T20:06:57.991Z'
+    autoEscalated: true
     addedAt: '2026-01-24T21:17:40.051Z'
 version: 1

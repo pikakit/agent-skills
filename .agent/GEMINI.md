@@ -19,6 +19,7 @@ Safety > Recoverability > Correctness > Cleanliness > Convenience
 ```
 
 **Assumptions:**
+
 - New output can be worse than old one
 - User may want to rollback at any time
 - Data loss is **never** acceptable
@@ -30,11 +31,13 @@ Safety > Recoverability > Correctness > Cleanliness > Convenience
 **Default:** Agent **NEVER** deletes files/directories.
 
 **Deletion allowed ONLY if:**
+
 1. User explicitly says: "delete", "remove", "I confirm deletion"
 2. Agent lists **exact** files to be deleted
 3. User confirms explicitly
 
 **Examples:**
+
 - ✅ "Delete `old-component.tsx`" → Agent lists file → User confirms → Delete
 - ❌ "Clean up the project" → NO deletion (vague)
 - ❌ "Refactor this" → NO deletion (implicit)
@@ -44,15 +47,18 @@ Safety > Recoverability > Correctness > Cleanliness > Convenience
 ### 2. WRITE-ONLY DEFAULT ✍️
 
 **Allowed by default:**
+
 - ✅ READ existing files
 - ✅ CREATE new files
 
 **Forbidden by default:**
+
 - ❌ MODIFY existing files
 - ❌ OVERWRITE files
 - ❌ In-place refactoring
 
 **Workflow for modifications:**
+
 1. Propose changes
 2. Write to NEW file (`.v2`, `.new`, `.proposed`)
 3. Ask user approval
@@ -64,14 +70,15 @@ Safety > Recoverability > Correctness > Cleanliness > Convenience
 
 **All updates follow versioned naming:**
 
-| Format | Use Case | Example |
-|--------|----------|---------|
-| `.v2`, `.v3` | Iterative improvements | `API.v2.ts` |
-| `.new` | Complete rewrite | `config.new.json` |
-| `.proposed` | Pending approval | `schema.proposed.sql` |
-| `.refactor` | Architecture change | `utils.refactor.ts` |
+| Format       | Use Case               | Example               |
+| ------------ | ---------------------- | --------------------- |
+| `.v2`, `.v3` | Iterative improvements | `API.v2.ts`           |
+| `.new`       | Complete rewrite       | `config.new.json`     |
+| `.proposed`  | Pending approval       | `schema.proposed.sql` |
+| `.refactor`  | Architecture change    | `utils.refactor.ts`   |
 
 **Rules:**
+
 - Original file MUST remain untouched
 - Version name MUST be descriptive
 - ❌ `.bak` alone is NOT sufficient
@@ -81,6 +88,7 @@ Safety > Recoverability > Correctness > Cleanliness > Convenience
 ### 4. ROLLBACK GUARANTEE 🔁
 
 **At all times:**
+
 - Previous version is intact
 - User can revert instantly
 - No irreversible actions
@@ -92,12 +100,14 @@ Safety > Recoverability > Correctness > Cleanliness > Convenience
 ### 5. HUMAN CHECKPOINT ⛔
 
 **Require approval for:**
+
 - Core logic changes
 - Auth/data/state modifications
 - Config/build file updates
 - Architecture changes
 
 **Protocol:**
+
 1. STOP
 2. Explain impact
 3. Ask: "Approve this change?"
@@ -110,11 +120,13 @@ Safety > Recoverability > Correctness > Cleanliness > Convenience
 ### 6. FAILURE RECOVERY �️
 
 **If agent produces:**
+
 - Broken output
 - User dissatisfaction
 - Regression
 
 **Immediate action:**
+
 1. Restore previous version
 2. State what was reverted
 3. Propose safer alternative
@@ -125,11 +137,13 @@ Safety > Recoverability > Correctness > Cleanliness > Convenience
 ### 7. INTEGRATION WITH AUTO-LEARN
 
 **When safety violation detected:**
+
 1. `@[skills/SelfEvolution]` triggered
 2. Lesson added to `.agent/knowledge/lessons-learned.yaml`
 3. Pattern: `SAFE-XXX` (safety violations)
 
 **Example:**
+
 ```yaml
 - id: SAFE-001
   pattern: "Deleted file without explicit confirmation"
@@ -142,6 +156,7 @@ Safety > Recoverability > Correctness > Cleanliness > Convenience
 ### 8. FORBIDDEN OPERATIONS
 
 **NEVER:**
+
 - Use `rm`, `unlink`, `delete` without approval
 - Modify files silently
 - Overwrite configs
@@ -154,7 +169,6 @@ Safety > Recoverability > Correctness > Cleanliness > Convenience
 
 ## �🚀 Quick Start
 
-
 ```mermaid
 graph LR
     A[User Request] --> B{Classify}
@@ -166,14 +180,14 @@ graph LR
 
 ### Essential Workflows
 
-| Need | Run | Purpose |
-|------|-----|---------|
-| Brainstorm | `/think` | Explore options before coding |
-| Plan | `/architect` | Create detailed blueprint |
-| Build | `/build` | Implement features |
-| Test | `/validate` | Run tests |
-| Deploy | `/launch` | Ship to production |
-| Full Auto | `/autopilot` | All above in one command |
+| Need       | Run          | Purpose                       |
+| ---------- | ------------ | ----------------------------- |
+| Brainstorm | `/think`     | Explore options before coding |
+| Plan       | `/architect` | Create detailed blueprint     |
+| Build      | `/build`     | Implement features            |
+| Test       | `/validate`  | Run tests                     |
+| Deploy     | `/launch`    | Ship to production            |
+| Full Auto  | `/autopilot` | All above in one command      |
 
 ---
 
@@ -212,11 +226,11 @@ skill-name/
 
 ### Enhanced Skills (with scripts/references)
 
-| Skill | Files | Coverage |
-| ----- | ----- | -------- |
-| `typescript-expert` | 5 | Utility types, tsconfig, cheatsheet |
-| `studio` | 27 | 50 styles, 21 palettes, 50 fonts |
-| `AppScaffold` | 20 | Full-stack scaffolding |
+| Skill               | Files | Coverage                            |
+| ------------------- | ----- | ----------------------------------- |
+| `typescript-expert` | 5     | Utility types, tsconfig, cheatsheet |
+| `studio`            | 27    | 50 styles, 21 palettes, 50 fonts    |
+| `AppScaffold`       | 20    | Full-stack scaffolding              |
 
 ### 2. Enforcement Protocol
 
@@ -259,18 +273,21 @@ skill-name/
 When auto-applying agents, use this professional format:
 
 **Single Specialist (Focused Mode):**
+
 ```
 🤖 **Engaging** `◆ @frontend`
 → Expert matched to your task
 ```
 
 **Multi-Specialist (Collaborative Mode):**
+
 ```
 🤖 **Engaging** `◆ @security` → `◇ @backend`
 → Cross-functional team assembled
 ```
 
 **Full Team (Full Stack Mode):**
+
 ```
 🤖 **Orchestrating** `◆ @lead` → `◇ @frontend` → `◇ @backend` → `◇ @database`
 → Enterprise-grade coordination activated
@@ -278,11 +295,11 @@ When auto-applying agents, use this professional format:
 
 ### Professional Messages
 
-| Mode | Agents | Example Messages |
-|------|--------|------------------|
-| **Focused** | 1 | "Expert matched" / "Specialist locked in" |
-| **Collaborative** | 2 | "Team assembled" / "Specialists synchronized" |
-| **Full Stack** | 3+ | "Squad deployed" / "Maximum capability unlocked" |
+| Mode              | Agents | Example Messages                                 |
+| ----------------- | ------ | ------------------------------------------------ |
+| **Focused**       | 1      | "Expert matched" / "Specialist locked in"        |
+| **Collaborative** | 2      | "Team assembled" / "Specialists synchronized"    |
+| **Full Stack**    | 3+     | "Squad deployed" / "Maximum capability unlocked" |
 
 **Rules:**
 
@@ -349,6 +366,7 @@ When user's prompt is NOT in English:
 > 🔴 **ALWAYS ACTIVE:** When user indicates a mistake, invoke `@[skills/SelfEvolution]` immediately.
 
 **Trigger Keywords:**
+
 - Vietnamese: "lỗi", "sai", "hỏng", "không đúng", "sửa lại", "lỗi nghiêm trọng"
 - English: "mistake", "wrong", "fix this", "that's incorrect", "you broke"
 
@@ -360,6 +378,7 @@ When user's prompt is NOT in English:
 4. **Confirm** - Say: `📚 Đã học: [LEARN-XXX] - {summary}`
 
 **Example:**
+
 ```
 User: "Đây là lỗi nghiêm trọng, bạn tạo file mới thay vì rename"
 AI: [Invokes auto-learn, adds LEARN-003, confirms]
@@ -403,10 +422,10 @@ AI: [Invokes auto-learn, adds LEARN-003, confirms]
 
 **Trigger:** When the user says "final checks", "run all tests", or similar phrases.
 
-| Task Stage       | Command                                            | Purpose                        |
-| ---------------- | -------------------------------------------------- | ------------------------------ |
-| **Manual Audit** | `python .agent/scripts/checklist.py .`             | Priority-based project audit   |
-| **Pre-Deploy**   | `python .agent/scripts/checklist.py . --url <URL>` | Full Suite + Performance + E2E |
+| Task Stage       | Command                                                                        | Purpose                        |
+| ---------------- | ------------------------------------------------------------------------------ | ------------------------------ |
+| **Manual Audit** | `npm run checklist:js .` or `node .agent/scripts-js/checklist.js .`            | Priority-based project audit   |
+| **Pre-Deploy**   | `npm run verify <URL>` or `node .agent/scripts-js/verify_all.js . --url <URL>` | Full Suite + Performance + E2E |
 
 **Priority Execution Order:**
 
@@ -459,8 +478,8 @@ AI: [Invokes auto-learn, adds LEARN-003, confirms]
 
 > **Design rules are in the specialist agents, NOT here.**
 
-| Task         | Read                                  |
-| ------------ | ------------------------------------- |
+| Task         | Read                                   |
+| ------------ | -------------------------------------- |
 | Web UI/UX    | `.agent/agents/frontend-specialist.md` |
 | Mobile UI/UX | `.agent/agents/mobile-developer.md`    |
 
@@ -481,26 +500,30 @@ Master validation scripts that orchestrate skill-level scripts.
 
 ### Master Scripts
 
-| Script | Purpose | When to Use |
-| ------ | ------- | ----------- |
-| `checklist.py` | Priority-based validation (Core checks) | Development, pre-commit |
-| `verify_all.py` | Comprehensive verification (All checks) | Pre-deployment, releases |
-| `auto_preview.py` | Auto preview server management | Local development |
-| `session_manager.py` | Session state management | Multi-session workflows |
+| Script               | Purpose                                 | When to Use              |
+| -------------------- | --------------------------------------- | ------------------------ |
+| `checklist.js`       | Priority-based validation (Core checks) | Development, pre-commit  |
+| `verify_all.js`      | Comprehensive verification (All checks) | Pre-deployment, releases |
+| `auto_preview.js`    | Auto preview server management          | Local development        |
+| `session_manager.js` | Session state management                | Multi-session workflows  |
+
+> **Note:** Python versions archived to `.agent/scripts-legacy/`. JavaScript versions are now the default.
 
 ### Usage
 
 ```bash
 # Quick validation during development
-python .agent/scripts/checklist.py .
+npm run checklist
+# OR: node .agent/scripts-js/checklist.js .
 
 # Full verification before deployment
-python .agent/scripts/verify_all.py . --url http://localhost:3000
+npm run verify http://localhost:3000
+# OR: node .agent/scripts-js/verify_all.js . --url http://localhost:3000
 ```
 
 ### What They Check
 
-**checklist.py** (Core checks):
+**checklist.js** (Core checks):
 
 - Security (vulnerabilities, secrets)
 - Code Quality (lint, types)
@@ -524,13 +547,13 @@ For details, see [scripts/README.md](scripts/README.md)
 
 ## 📊 Statistics
 
-| Metric | Value |
-| ------ | ----- |
-| **Total Agents** | 20 |
-| **Total Skills** | 49 |
-| **Total Workflows** | 14 |
-| **Total Scripts** | 4 (master) + 18 (skill-level) |
-| **Coverage** | ~95% web/mobile development |
+| Metric              | Value                         |
+| ------------------- | ----------------------------- |
+| **Total Agents**    | 20                            |
+| **Total Skills**    | 49                            |
+| **Total Workflows** | 14                            |
+| **Total Scripts**   | 4 (master) + 18 (skill-level) |
+| **Coverage**        | ~95% web/mobile development   |
 
 ---
 
@@ -543,22 +566,22 @@ For details, see [scripts/README.md](scripts/README.md)
 
 ### Key Scripts
 
-- **Verify**: `.agent/scripts/verify_all.py`, `.agent/scripts/checklist.py`
+- **Verify**: `.agent/scripts-js/verify_all.js`, `.agent/scripts-js/checklist.js`
 - **Scanners**: `security_scan.py`, `dependency_analyzer.py`
 - **Audits**: `ux_audit.py`, `mobile_audit.py`, `lighthouse_audit.py`, `seo_checker.py`
 - **Test**: `playwright_runner.py`, `test_runner.py`
 
 ### Quick Agent Reference
 
-| Need | Agent | Skills |
-| ---- | ----- | ------ |
-| Web App | `frontend-specialist` | react-patterns, nextjs-best-practices |
-| API | `backend-specialist` | api-patterns, nodejs-best-practices |
-| Mobile | `mobile-developer` | mobile-design |
-| Database | `database-architect` | database-design, prisma-expert |
-| Security | `security-auditor` | vulnerability-scanner |
-| Testing | `test-engineer` | testing-patterns, webapp-testing |
-| Debug | `debugger` | systematic-debugging |
-| Plan | `project-planner` | brainstorming, plan-writing |
+| Need     | Agent                 | Skills                                |
+| -------- | --------------------- | ------------------------------------- |
+| Web App  | `frontend-specialist` | react-patterns, nextjs-best-practices |
+| API      | `backend-specialist`  | api-patterns, nodejs-best-practices   |
+| Mobile   | `mobile-developer`    | mobile-design                         |
+| Database | `database-architect`  | database-design, prisma-expert        |
+| Security | `security-auditor`    | vulnerability-scanner                 |
+| Testing  | `test-engineer`       | testing-patterns, webapp-testing      |
+| Debug    | `debugger`            | systematic-debugging                  |
+| Plan     | `project-planner`     | brainstorming, plan-writing           |
 
 ---

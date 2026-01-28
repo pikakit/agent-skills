@@ -19,18 +19,23 @@ Add features or upgrades to existing applications. **Analyzes current architectu
 Before ANY change:
 
 ### Step 1: Project Analysis
+
 // turbo
+
 ```bash
-python .agent/scripts/session_manager.py info
+npm run session:info
 ```
 
 ### Step 2: Security Check
+
 // turbo
+
 ```bash
-python .agent/skills/SecurityScanner/scripts/security_scan.py .
+npm run scan:security
 ```
 
 ### Step 3: Dependency Map
+
 ```
 Identify:
 □ Direct dependencies (what this file imports)
@@ -43,27 +48,27 @@ Identify:
 
 ## Impact Classification
 
-| Change Size | Criteria | Action Required |
-|-------------|----------|-----------------|
-| **Small** | 1-3 files, no deps | Proceed directly |
-| **Medium** | 4-10 files, minor deps | Show plan, get approval |
-| **Large** | 10+ files, breaking changes | Create PLAN.md first |
+| Change Size | Criteria                    | Action Required         |
+| ----------- | --------------------------- | ----------------------- |
+| **Small**   | 1-3 files, no deps          | Proceed directly        |
+| **Medium**  | 4-10 files, minor deps      | Show plan, get approval |
+| **Large**   | 10+ files, breaking changes | Create PLAN.md first    |
 
 ---
 
 ## Output Format
 
-```markdown
+````markdown
 ## 🚀 Boost: [Feature Name]
 
 ### Impact Assessment
 
-| Metric | Value |
-|--------|-------|
-| Files Created | 5 |
-| Files Modified | 3 |
-| Tests Affected | 2 |
-| Breaking Changes | None |
+| Metric           | Value |
+| ---------------- | ----- |
+| Files Created    | 5     |
+| Files Modified   | 3     |
+| Tests Affected   | 2     |
+| Breaking Changes | None  |
 
 ### Dependency Analysis
 
@@ -74,20 +79,23 @@ graph LR
     B --> D[database]
     C --> E[jwt]
 ```
+````
 
 ### Changes Required
 
-| File | Change | Risk |
-|------|--------|------|
-| `src/services/user.ts` | Add method | Low |
-| `src/routes/api.ts` | New endpoint | Low |
-| `prisma/schema.prisma` | Add field | Medium |
+| File                   | Change       | Risk   |
+| ---------------------- | ------------ | ------ |
+| `src/services/user.ts` | Add method   | Low    |
+| `src/routes/api.ts`    | New endpoint | Low    |
+| `prisma/schema.prisma` | Add field    | Medium |
 
 ### Approval Required?
+
 ⚠️ **Medium change** - 8 files affected
 
 Proceed? (y/n)
-```
+
+````
 
 ---
 
@@ -115,7 +123,7 @@ Proceed? (y/n)
 
 ### Preview
 Hot reload applied - refresh to see changes.
-```
+````
 
 ---
 
@@ -151,13 +159,14 @@ graph LR
     style A fill:#f59e0b
 ```
 
-| After /boost | Run | Purpose |
-|--------------|-----|---------|
-| Feature added | `/validate` | Test changes |
-| Ready to deploy | `/launch` | Deploy |
-| Found issues | `/diagnose` | Debug |
+| After /boost    | Run         | Purpose      |
+| --------------- | ----------- | ------------ |
+| Feature added   | `/validate` | Test changes |
+| Ready to deploy | `/launch`   | Deploy       |
+| Found issues    | `/diagnose` | Debug        |
 
 **Handoff to /validate:**
+
 ```markdown
 Feature added. Run /validate to test changes.
 ```

@@ -31,19 +31,22 @@ Manage preview servers for local development. **Health monitoring and port confl
 ### Start Server
 // turbo
 ```bash
-python .agent/scripts/auto_preview.py start
+node .agent/scripts-js/auto_preview.js start
+# OR: npm run preview:start
 ```
 
 ### Stop Server
 // turbo
 ```bash
-python .agent/scripts/auto_preview.py stop
+node .agent/scripts-js/auto_preview.js stop
+# OR: npm run preview:stop
 ```
 
 ### Check Status
 // turbo
 ```bash
-python .agent/scripts/auto_preview.py status
+node .agent/scripts-js/auto_preview.js status
+# OR: npm run preview:status
 ```
 
 ---

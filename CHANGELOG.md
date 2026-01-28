@@ -49,6 +49,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Architecture Decision:** Python skill scripts (34 scripts) remain for specialized validation
   - 2-tier hybrid: JavaScript master scripts + Python skill tools
   - See [PYTHON_STRATEGY.md](PYTHON_STRATEGY.md) for rationale
+- **Refactoring:** Renamed `.agent/.shared/studio` to `.agent/studio` for consistency
+  - Updated 16 files (tests, configs, documentation)
+  - All 143 studio tests passing
 
 ### 📝 Documentation
 

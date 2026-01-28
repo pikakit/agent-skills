@@ -30,13 +30,15 @@ Display real-time project status including agent progress, file statistics, and 
 ### Get Status
 // turbo
 ```bash
-python .agent/scripts/session_manager.py status
+node .agent/scripts-js/session_manager.js status
+# OR: npm run session:status
 ```
 
 ### Check Preview
 // turbo
 ```bash
-python .agent/scripts/auto_preview.py status
+node .agent/scripts-js/auto_preview.js status
+# OR: npm run preview:status
 ```
 
 ---

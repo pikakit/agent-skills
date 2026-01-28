@@ -1,0 +1,35 @@
+{
+  "signals": [
+    {
+      "id": "signal_1769544264056_g58ukficx",
+      "lessonId": "LEARN-002",
+      "reason": "hitCountThreshold",
+      "confidence": 0.9,
+      "status": "pending",
+      "metadata": {
+        "triggerEvent": "violation",
+        "file": "tests\\unit\\skill-formatter.test.js",
+        "matchCount": 16,
+        "timestamp": 1769544264056
+      },
+      "createdAt": 1769544264056,
+      "resolvedAt": null
+    },
+    {
+      "id": "signal_1769544269667_bwrn9zszb",
+      "lessonId": "LEARN-001",
+      "reason": "hitCountThreshold",
+      "confidence": 0.9,
+      "status": "pending",
+      "metadata": {
+        "triggerEvent": "violation",
+        "file": "lib\\ui\\lessons-ui.js",
+        "matchCount": 1,
+        "timestamp": 1769544417996
+      },
+      "createdAt": 1769544269667,
+      "resolvedAt": null
+    }
+  ],
+  "version": 1
+}

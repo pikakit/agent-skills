@@ -8,24 +8,36 @@ npx -y add-skill-kit agentskillkit/agent-skills
 
 Trình cài đặt sẽ hỏi bạn chọn phạm vi cài đặt: **Local** hoặc **Global**.
 
+> **✨ v3.2.0 Update:** Tất cả master scripts đã migrate sang JavaScript. Zero Python dependency!
+>
+> - `npm run checklist` - Quick validation
+> - `npm run verify <URL>` - Full verification
+> - `npm run preview:start` - Dev server
+>
+> Xem [MIGRATION.md](MIGRATION.md) để biết thêm chi tiết.
+
 ---
 
 ## 🔹 Local (Current Project)
 
 ### Skills
+
 - Cài vào `.agent/skills/` trong dự án hiện tại
 - Chỉ dự án này sử dụng được
 
 ### CLI Tools
+
 - `npm run agent` - Smart CLI (auto-added to package.json)
 - `npx kit` - Installer (if installed as dependency)
 
 ### Phù hợp khi:
+
 - Bạn muốn cô lập skills theo từng project
 - Tránh ảnh hưởng đến các dự án khác
 - Làm việc với team (skills được commit vào git)
 
 ### Cấu trúc thư mục sau khi cài:
+
 ```
 your-project/
 ├── .agent/
@@ -45,19 +57,23 @@ your-project/
 ## 🔹 Global (System-wide)
 
 ### Skills
+
 - Cài vào `~/.gemini/antigravity/skills/`
 - Tất cả projects trên máy đều sử dụng được
 
 ### CLI Tools
+
 - `agent` - Smart CLI (nếu chọn cài global)
 - `kit` - Installer (cần cài riêng: `npm install -g add-skill-kit`)
 
 ### Phù hợp khi:
+
 - Bạn làm việc với nhiều dự án
 - Muốn dùng chung một bộ skills
 - Làm việc cá nhân (không cần commit skills vào git)
 
 ### Cấu trúc thư mục sau khi cài:
+
 ```
 ~/.gemini/
 └── antigravity/
@@ -74,6 +90,7 @@ your-project/
 ## 🛠️ Sử Dụng Sau Khi Cài Đặt
 
 ### Nếu chọn Local:
+
 ```bash
 # Sử dụng Smart CLI
 npx agent
@@ -85,6 +102,7 @@ npx kit uninstall all
 ```
 
 ### Nếu chọn Global:
+
 ```bash
 # Sử dụng Smart CLI
 agent
@@ -100,6 +118,7 @@ kit uninstall all
 ## 🔄 Chuyển Đổi Giữa Local và Global
 
 ### Từ Local → Global:
+
 ```bash
 # 1. Gỡ bỏ Local
 npx kit uninstall all
@@ -110,6 +129,7 @@ npx -y add-skill-kit agentskillkit/agent-skills
 ```
 
 ### Từ Global → Local:
+
 ```bash
 # 1. Gỡ bỏ Global
 kit uninstall all --global
@@ -123,20 +143,21 @@ npx -y add-skill-kit agentskillkit/agent-skills
 
 ## 📋 So Sánh Chi Tiết
 
-| Tiêu chí | Local | Global |
-|----------|-------|--------|
-| **Skills path** | `.agent/skills/` | `~/.gemini/antigravity/skills/` |
-| **Dùng cho** | 1 project | Tất cả projects |
-| **Git tracking** | ✅ Có thể commit | ❌ Không |
-| **Team sharing** | ✅ Dễ dàng | ❌ Khó |
-| **CLI command** | `npx agent` | `agent` |
-| **Disk space** | Nhiều hơn (mỗi project 1 bản) | Tiết kiệm (1 bản duy nhất) |
+| Tiêu chí         | Local                         | Global                          |
+| ---------------- | ----------------------------- | ------------------------------- |
+| **Skills path**  | `.agent/skills/`              | `~/.gemini/antigravity/skills/` |
+| **Dùng cho**     | 1 project                     | Tất cả projects                 |
+| **Git tracking** | ✅ Có thể commit              | ❌ Không                        |
+| **Team sharing** | ✅ Dễ dàng                    | ❌ Khó                          |
+| **CLI command**  | `npx agent`                   | `agent`                         |
+| **Disk space**   | Nhiều hơn (mỗi project 1 bản) | Tiết kiệm (1 bản duy nhất)      |
 
 ---
 
 ## 🆘 Troubleshooting
 
 ### Lỗi: `agent` not found
+
 ```bash
 # Nếu cài Local:
 npx agent  # Thêm npx ở đầu
@@ -147,6 +168,7 @@ agent
 ```
 
 ### Lỗi: `kit` not found
+
 ```bash
 # Kit là công cụ riêng, cần cài:
 npm install -g add-skill-kit
@@ -154,6 +176,7 @@ kit
 ```
 
 ### Kiểm tra skills đã cài:
+
 ```bash
 # Local
 ls .agent/skills/
