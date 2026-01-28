@@ -1,8 +1,0 @@
-{
-  "repo": "agentskillkit/agent-skills",
-  "skill": "testing-patterns",
-  "ref": null,
-  "checksum": "14ecbe21828b4eb68f68a031f38c02c52e91a22f100934e3d286928f1617b246",
-  "installedAt": "2026-01-26T08:48:29.062Z",
-  "method": "symlink"
-}

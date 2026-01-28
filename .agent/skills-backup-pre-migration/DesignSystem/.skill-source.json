@@ -1,8 +1,0 @@
-{
-  "repo": "agentskillkit/agent-skills",
-  "skill": "frontend-design",
-  "ref": null,
-  "checksum": "db4d8115c437f67cbec8a3e1daed9df4fd518d14e34870d9786e1c524a6a77c1",
-  "installedAt": "2026-01-26T08:48:28.214Z",
-  "method": "symlink"
-}

@@ -1,8 +1,0 @@
-{
-  "repo": "agentskillkit/agent-skills",
-  "skill": "python-patterns",
-  "ref": null,
-  "checksum": "62a7513b417d6a22fbc0575e401261e606e2ce9ec0ab4650435bc1b3bdac6087",
-  "installedAt": "2026-01-26T08:48:28.940Z",
-  "method": "symlink"
-}

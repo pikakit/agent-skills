@@ -1,8 +1,0 @@
-{
-  "repo": "agentskillkit/agent-skills",
-  "skill": "lint-and-validate",
-  "ref": null,
-  "checksum": "283b9b0aedeac7832ee3aae365992151c913923064e8ba7581c95b7ee7c080ec",
-  "installedAt": "2026-01-26T08:48:28.643Z",
-  "method": "symlink"
-}

@@ -1,8 +1,0 @@
-{
-  "repo": "agentskillkit/agent-skills",
-  "skill": "mcp-builder",
-  "ref": null,
-  "checksum": "94177008dc8319736bd16b5b8d22b06ecb5e944eed1a20553636b5b378db1bb7",
-  "installedAt": "2026-01-26T08:48:28.651Z",
-  "method": "symlink"
-}

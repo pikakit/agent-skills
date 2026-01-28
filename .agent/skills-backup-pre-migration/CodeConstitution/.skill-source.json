@@ -1,8 +1,0 @@
-{
-  "repo": "agentskillkit/agent-skills",
-  "skill": "governance",
-  "ref": null,
-  "checksum": "1cfe0b9e39d45b1a264d1ee27475af78a71234ce8ddf4fc999d79c2b00b6c8f4",
-  "installedAt": "2026-01-26T08:48:28.597Z",
-  "method": "symlink"
-}

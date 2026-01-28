@@ -1,8 +1,0 @@
-{
-  "repo": "agentskillkit/agent-skills",
-  "skill": "clean-code",
-  "ref": null,
-  "checksum": "0eec53f2632f6b2643542f13185401c20eefcff6961c1c3ea32c9c0482b7e498",
-  "installedAt": "2026-01-26T08:48:27.057Z",
-  "method": "symlink"
-}
