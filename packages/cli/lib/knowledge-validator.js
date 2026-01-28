@@ -230,19 +230,19 @@ export function autoFix(filename) {
  */
 function displayResults(validation) {
     console.log(`
-📋 Knowledge Schema Validation
-${'─'.repeat(50)}
+[i] Knowledge Schema Validation
+${'-'.repeat(50)}
 `);
 
     for (const result of validation.results) {
         if (result.skipped) {
-            console.log(`⏭️  ${result.file} - Skipped (not found)`);
+            console.log(`[SKIP] ${result.file} - Skipped (not found)`);
         } else if (result.noSchema) {
-            console.log(`📄 ${result.file} - No schema (skipped)`);
+            console.log(`[--] ${result.file} - No schema (skipped)`);
         } else if (result.valid) {
-            console.log(`✅ ${result.file} - Valid`);
+            console.log(`[OK] ${result.file} - Valid`);
         } else {
-            console.log(`❌ ${result.file} - Invalid`);
+            console.log(`[X] ${result.file} - Invalid`);
             for (const err of result.errors) {
                 console.log(`   └─ ${err.path}: ${err.message}`);
             }
@@ -250,12 +250,12 @@ ${'─'.repeat(50)}
     }
 
     console.log(`
-${'─'.repeat(50)}
-📊 Summary: ${validation.summary.valid}/${validation.summary.total} valid
+${'-'.repeat(50)}
+[STATS] Summary: ${validation.summary.valid}/${validation.summary.total} valid
 `);
 
     if (validation.summary.invalid > 0) {
-        console.log('💡 Tip: Run with --fix to auto-fix common issues\n');
+        console.log('[TIP] Run with --fix to auto-fix common issues\n');
     }
 }
 
@@ -268,7 +268,7 @@ async function main() {
     const fixMode = args.includes('--fix');
     
     if (fixMode) {
-        console.log('🔧 Auto-fixing knowledge files...\n');
+        console.log('[FIX] Auto-fixing knowledge files...\n');
         
         const files = ['mistakes.yaml', 'improvements.yaml', 'evolution-signals.json', 'settings.yaml'];
         let totalChanges = 0;
@@ -276,16 +276,16 @@ async function main() {
         for (const file of files) {
             const result = autoFix(file);
             if (result.fixed) {
-                console.log(`✅ Fixed ${file}:`);
+                console.log(`[OK] Fixed ${file}:`);
                 result.changes.forEach(c => console.log(`   └─ ${c}`));
                 totalChanges += result.changes.length;
             }
         }
         
         if (totalChanges === 0) {
-            console.log('✨ No issues to fix!\n');
+            console.log('[OK] No issues to fix!\n');
         } else {
-            console.log(`\n🔧 Made ${totalChanges} fixes. Re-validating...\n`);
+            console.log(`\n[FIX] Made ${totalChanges} fixes. Re-validating...\n`);
         }
     }
     

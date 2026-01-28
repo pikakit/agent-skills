@@ -508,19 +508,19 @@ Options:
 
     // Summary using Clack
     const summaryLines = [
-        `${pc.green("✓")} ${totalScanned} file(s) scanned`,
-        `${pc.dim("›")} ${ignoredCount} paths ignored`,
+        `${pc.green("[OK]")} ${totalScanned} file(s) scanned`,
+        `${pc.dim(">")} ${ignoredCount} paths ignored`,
         stats.total > 0
-            ? `${pc.red("✗")} ${stats.total} violation(s) found`
-            : `${pc.green("✓")} No violations found`
+            ? `${pc.red("[X]")} ${stats.total} violation(s) found`
+            : `${pc.green("[OK]")} No violations found`
     ];
 
     if (stats.total === 0) {
         summaryLines.push("");
-        summaryLines.push(pc.green("All clear! Your code looks great. 🎉"));
+        summaryLines.push(pc.green("All clear! Your code looks great."));
     }
 
-    p.note(summaryLines.join("\n"), pc.dim("Memory check completed ✓"));
+    p.note(summaryLines.join("\n"), pc.dim("Memory check completed"));
 
     if (stats.errors > 0) {
         process.exit(1);
