@@ -22,6 +22,7 @@ import { spawn } from 'child_process';
 import { createInterface } from 'readline';
 import matter from 'gray-matter';
 import { loadPolicy, shouldAutoAccept, validateAnnotations, logDecision } from './execution-policy.js';
+import { logExecution } from './execution-history.js';
 
 // ESM __dirname equivalent
 const __filename = fileURLToPath(import.meta.url);
@@ -243,7 +244,7 @@ async function confirm(message) {
  * Execute a single phase
  */
 async function executePhase(phase, options = {}) {
-  const { turbo = false, dryRun = false, interactive = true, policy = null, autoAcceptFlag = false } = options;
+  const { turbo = false, dryRun = false, interactive = true, policy = null, autoAcceptFlag = false, workflowName = 'unknown' } = options;
   
   console.log(`\n${colors.bold}${colors.magenta}## Phase ${phase.number}: ${phase.title}${colors.reset}\n`);
   
@@ -294,6 +295,18 @@ async function executePhase(phase, options = {}) {
     if (policyResult.blocked && !dryRun) {
       console.log(`${colors.red}[BLOCKED] Command denied by policy${colors.reset}`);
       console.log(`${colors.dim}  Reason: ${policyResult.reason}${colors.reset}\n`);
+      
+      // Log to history
+      await logExecution({
+        command: block.code,
+        workflow: workflowName,
+        phase: phase.number,
+        decision: 'blocked',
+        reason: policyResult.reason,
+        annotations,
+        severity: policyResult.severity
+      }, policy);
+      
       continue;
     }
     
@@ -303,6 +316,17 @@ async function executePhase(phase, options = {}) {
                    isTurboMarked ? 'TURBO' : 'POLICY';
       console.log(`${colors.green}[${mode}] Auto-executing...${colors.reset}\n`);
       await executeCommand(block.code, { dryRun });
+      
+      // Log to history
+      await logExecution({
+        command: block.code,
+        workflow: workflowName,
+        phase: phase.number,
+        decision: 'auto-accept',
+        reason: `${mode}: ${policyResult.reason}`,
+        annotations
+      }, policy);
+      
     } else if (interactive && !dryRun) {
       if (policyResult.reason && !policyResult.allowed) {
         console.log(`${colors.yellow}[PROMPT] ${policyResult.reason}${colors.reset}`);
@@ -310,8 +334,29 @@ async function executePhase(phase, options = {}) {
       const shouldExecute = await confirm('Execute this command?');
       if (shouldExecute) {
         await executeCommand(block.code, { dryRun });
+        
+        // Log to history
+        await logExecution({
+          command: block.code,
+          workflow: workflowName,
+          phase: phase.number,
+          decision: 'prompted',
+          reason: 'User confirmed',
+          annotations
+        }, policy);
+        
       } else {
         console.log(`${colors.yellow}Skipped${colors.reset}`);
+        
+        // Log to history
+        await logExecution({
+          command: block.code,
+          workflow: workflowName,
+          phase: phase.number,
+          decision: 'skipped',
+          reason: 'User declined',
+          annotations
+        }, policy);
       }
     } else if (dryRun) {
       await executeCommand(block.code, { dryRun: true });
@@ -385,7 +430,7 @@ async function executeWorkflow(workflowName, args, options = {}) {
   }
   
   for (const phase of phasesToRun) {
-    await executePhase(phase, { turbo, dryRun, interactive: !dryRun, policy, autoAcceptFlag });
+    await executePhase(phase, { turbo, dryRun, interactive: !dryRun, policy, autoAcceptFlag, workflowName });
   }
   
   console.log(`\n${colors.bold}${colors.green}============================================${colors.reset}`);

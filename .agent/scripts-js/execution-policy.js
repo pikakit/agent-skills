@@ -87,13 +87,67 @@ export function clearPolicyCache() {
 }
 
 /**
+ * Match a command against a pattern object
+ * 
+ * @param {string} cmd - Normalized command string
+ * @param {Object|string} pattern - Pattern object or legacy string
+ * @returns {Object} { matched: boolean, pattern: string, type: string }
+ */
+function matchPattern(cmd, pattern) {
+  // Legacy string format (backward compatibility)
+  if (typeof pattern === 'string') {
+    const matched = cmd.includes(pattern.toLowerCase());
+    return { matched, pattern, type: 'contains' };
+  }
+  
+  const patternStr = pattern.pattern;
+  const type = pattern.type || 'contains';
+  
+  try {
+    switch (type) {
+      case 'regex':
+        // Add timeout protection for ReDoS
+        const regex = new RegExp(patternStr, 'i');
+        const matched = regex.test(cmd);
+        return { matched, pattern: patternStr, type };
+        
+      case 'prefix':
+        return { 
+          matched: cmd.startsWith(patternStr.toLowerCase()), 
+          pattern: patternStr, 
+          type 
+        };
+        
+      case 'exact':
+        return { 
+          matched: cmd === patternStr.toLowerCase(), 
+          pattern: patternStr, 
+          type 
+        };
+        
+      case 'contains':
+      default:
+        return { 
+          matched: cmd.includes(patternStr.toLowerCase()), 
+          pattern: patternStr, 
+          type 
+        };
+    }
+  } catch (err) {
+    // Invalid regex - treat as not matched
+    console.warn(`${colors.yellow}[POLICY] Invalid pattern: ${patternStr}${colors.reset}`);
+    return { matched: false, pattern: patternStr, type, error: err.message };
+  }
+}
+
+/**
  * Check if a command should be auto-accepted
  * 
  * @param {string} command - Command to evaluate
  * @param {string[]} annotations - Annotations from workflow (e.g., ['auto', 'safe'])
  * @param {Object} policy - Loaded policy object
  * @param {Object} options - Additional options
- * @returns {Object} { allowed: boolean, reason: string, driftWarnings: string[] }
+ * @returns {Object} { allowed: boolean, reason: string, driftWarnings: string[], severity?: string }
  */
 export function shouldAutoAccept(command, annotations = [], policy = null, options = {}) {
   const driftWarnings = [];
@@ -155,22 +209,55 @@ export function shouldAutoAccept(command, annotations = [], policy = null, optio
   // Normalize command for matching
   const normalizedCmd = command.toLowerCase().trim();
   
-  // Check deny list first (SAFETY FIRST)
-  const denyList = policy.autoAccept.deny || [];
-  for (const pattern of denyList) {
-    if (normalizedCmd.includes(pattern.toLowerCase())) {
+  // Check deny patterns first (SAFETY FIRST)
+  // Priority: denyPatterns (new) > deny (legacy)
+  const denyPatterns = policy.autoAccept.denyPatterns || [];
+  const denyLegacy = policy.autoAccept.deny || [];
+  
+  for (const pattern of denyPatterns) {
+    const result = matchPattern(normalizedCmd, pattern);
+    if (result.matched) {
       return { 
         allowed: false, 
-        reason: `Command matches deny pattern: "${pattern}"`,
+        reason: `Command matches deny pattern [${result.type}]: "${result.pattern}"`,
+        driftWarnings,
+        blocked: true,
+        severity: pattern.severity || 'high'
+      };
+    }
+  }
+  
+  // Legacy deny list
+  for (const pattern of denyLegacy) {
+    const result = matchPattern(normalizedCmd, pattern);
+    if (result.matched) {
+      return { 
+        allowed: false, 
+        reason: `Command matches deny pattern: "${result.pattern}"`,
         driftWarnings,
         blocked: true
       };
     }
   }
   
-  // Check allow list
-  const allowList = policy.autoAccept.allow || [];
-  for (const pattern of allowList) {
+  // Check allow patterns
+  // Priority: allowPatterns (new) > allow (legacy)
+  const allowPatterns = policy.autoAccept.allowPatterns || [];
+  const allowLegacy = policy.autoAccept.allow || [];
+  
+  for (const pattern of allowPatterns) {
+    const result = matchPattern(normalizedCmd, pattern);
+    if (result.matched) {
+      return { 
+        allowed: true, 
+        reason: `Matches allow pattern [${result.type}]: "${result.pattern}"`,
+        driftWarnings 
+      };
+    }
+  }
+  
+  // Legacy allow list
+  for (const pattern of allowLegacy) {
     if (normalizedCmd.startsWith(pattern.toLowerCase())) {
       return { 
         allowed: true, 
@@ -195,13 +282,22 @@ export function shouldAutoAccept(command, annotations = [], policy = null, optio
  * @param {string[]} annotations - Annotations to validate
  * @param {Object} policy - Loaded policy object
  * @returns {Object} { valid: boolean, unknown: string[] }
+ * @throws {Error} If strictMode enabled and unknown annotations found
  */
 export function validateAnnotations(annotations, policy) {
   const recognized = policy?.annotations?.recognized || ['auto', 'safe', 'confirm', 'ci'];
   const unknown = annotations.filter(a => !recognized.includes(a));
   
-  if (unknown.length > 0 && policy?.annotations?.warnOnUnknown) {
-    console.warn(`${colors.yellow}[POLICY] Unknown annotations: ${unknown.join(', ')}${colors.reset}`);
+  if (unknown.length > 0) {
+    // Strict mode: throw error
+    if (policy?.annotations?.strictMode) {
+      throw new Error(`[STRICT MODE] Unknown annotations not allowed: ${unknown.join(', ')}`);
+    }
+    
+    // Warn mode: log warning
+    if (policy?.annotations?.warnOnUnknown) {
+      console.warn(`${colors.yellow}[POLICY] Unknown annotations: ${unknown.join(', ')}${colors.reset}`);
+    }
   }
   
   return {
