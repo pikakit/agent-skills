@@ -138,7 +138,7 @@ Safety > Recoverability > Correctness > Cleanliness > Convenience
 
 **When safety violation detected:**
 
-1. `@[skills/SelfEvolution]` triggered
+1. `@[skills/self-evolution]` triggered
 2. Lesson added to `.agent/knowledge/lessons-learned.yaml`
 3. Pattern: `SAFE-XXX` (safety violations)
 
@@ -195,7 +195,7 @@ graph LR
 
 > **MANDATORY:** You MUST read the appropriate agent file and its skills BEFORE performing any implementation. This is the highest priority rule.
 
-> **NON-NEGOTIABLE:** The rules defined in `skills/CodeConstitution` are the SUPREME LAW.
+> **NON-NEGOTIABLE:** The rules defined in `skills/code-constitution` are the SUPREME LAW.
 > If any other skill (e.g., React Best Practices) conflicts with the Constitution, the Constitution WINS.
 > All code must pass the Doctrine Checks before being committed.
 
@@ -259,7 +259,7 @@ skill-name/
 
 **ALWAYS ACTIVE: Before responding to ANY request, automatically analyze and select the best agent(s).**
 
-> 🔴 **MANDATORY:** You MUST follow the protocol defined in `@[skills/SmartRouter]`.
+> 🔴 **MANDATORY:** You MUST follow the protocol defined in `@[skills/smart-router]`.
 
 ### Auto-Selection Protocol
 
@@ -322,7 +322,7 @@ When user's prompt is NOT in English:
 
 ### 🧹 Clean Code (Global Mandatory)
 
-**ALL code MUST follow `@[skills/CodeCraft]` rules. No exceptions.**
+**ALL code MUST follow `@[skills/code-craft]` rules. No exceptions.**
 
 - **Code**: Concise, direct, no over-engineering. Self-documenting.
 - **Testing**: Mandatory. Pyramid (Unit > Int > E2E) + AAA Pattern.
@@ -363,7 +363,7 @@ When user's prompt is NOT in English:
 
 ### 🎓 Auto-Learn Protocol (MANDATORY)
 
-> 🔴 **ALWAYS ACTIVE:** When user indicates a mistake, invoke `@[skills/SelfEvolution]` immediately.
+> 🔴 **ALWAYS ACTIVE:** When user indicates a mistake, invoke `@[skills/self-evolution]` immediately.
 
 **Trigger Keywords:**
 
@@ -416,7 +416,7 @@ AI: [Invokes auto-learn, adds LEARN-003, confirms]
 1. **Never Assume:** If even 1% is unclear, ASK.
 2. **Handle Spec-heavy Requests:** When user gives a list (Answers 1, 2, 3...), do NOT skip the gate. Instead, ask about **Trade-offs** or **Edge Cases** (e.g., "LocalStorage confirmed, but should we handle data clearing or versioning?") before starting.
 3. **Wait:** Do NOT invoke subagents or write code until the user clears the Gate.
-4. **Reference:** Full protocol in `@[skills/IdeaStorm]`.
+4. **Reference:** Full protocol in `@[skills/idea-storm]`.
 
 ### 🏁 Final Checklist Protocol
 

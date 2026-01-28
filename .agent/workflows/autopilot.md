@@ -129,8 +129,8 @@ graph TD
 ### Phase 3: Verification
 // turbo
 ```bash
-python .agent/skills/SecurityScanner/scripts/security_scan.py .
-python .agent/skills/CodeQuality/scripts/lint_runner.py .
+python .agent/skills/security-scanner/scripts/security_scan.py .
+python .agent/skills/code-quality/scripts/lint_runner.py .
 ```
 
 ---

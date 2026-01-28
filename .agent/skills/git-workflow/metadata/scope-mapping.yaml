@@ -1,0 +1,83 @@
+# Scope to Doctrine Mapping
+# Maps commit scopes to suggested doctrine tags
+
+scopes:
+  api:
+    description: Backend API changes
+    doctrines:
+      - Law-1
+      - Architecture
+      - Performance
+    examples:
+      - "feat(api): add caching layer [doctrine: Performance]"
+      - "fix(api): correct price calculation [doctrine: Law-1]"
+
+  data:
+    description: Data pipeline or persistence
+    doctrines:
+      - Law-1
+      - Law-2
+      - Architecture
+    examples:
+      - "feat(data): implement append-only history [doctrine: Law-2]"
+      - "refactor(data): separate realtime buffer [doctrine: Law-3]"
+
+  chart:
+    description: Chart and visualization components
+    doctrines:
+      - Law-3
+      - Law-4
+    examples:
+      - "fix(chart): remove realtime injection [doctrine: Law-3, Law-4]"
+      - "refactor(chart): load from historical API [doctrine: Law-4]"
+
+  mobile:
+    description: Mobile UI and gestures
+    doctrines:
+      - Frontend-Mobile
+    examples:
+      - "feat(mobile): implement swipe tabs [doctrine: Frontend-Mobile]"
+      - "fix(mobile): restore native scroll [doctrine: Frontend-Mobile]"
+
+  worker:
+    description: Background jobs and workers
+    doctrines:
+      - Performance
+      - Architecture
+    examples:
+      - "feat(worker): add price aggregation job [doctrine: Performance]"
+
+  cache:
+    description: Caching layer
+    doctrines:
+      - Performance
+    examples:
+      - "feat(cache): implement Redis caching [doctrine: Performance]"
+
+  auth:
+    description: Authentication
+    doctrines:
+      - Architecture
+    examples:
+      - "feat(auth): add JWT validation [doctrine: Architecture]"
+
+  ui:
+    description: General UI components
+    doctrines: []
+    examples:
+      - "feat(ui): add loading skeleton"
+      - "fix(ui): correct button alignment"
+
+# Types that require doctrine tags
+types_requiring_doctrine:
+  - feat
+  - fix
+  - refactor
+  - perf
+
+# Types that don't need doctrine tags
+types_exempt:
+  - docs
+  - style
+  - test
+  - chore

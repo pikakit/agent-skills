@@ -1,0 +1,9 @@
+version: 1
+scope: project
+event_count: 0
+last_improved: null
+improvements: []
+metadata:
+  total_improvements: 0
+  active_improvements: 0
+  deprecated_improvements: 0

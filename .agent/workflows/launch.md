@@ -19,7 +19,7 @@ Production deployment with automated pre-flight checks, security scanning, and r
 ### Gate 1: Code Quality
 // turbo
 ```bash
-python .agent/skills/CodeQuality/scripts/lint_runner.py .
+python .agent/skills/code-quality/scripts/lint_runner.py .
 ```
 
 | Check | Command | Required |
@@ -32,7 +32,7 @@ python .agent/skills/CodeQuality/scripts/lint_runner.py .
 ### Gate 2: Security
 // turbo
 ```bash
-python .agent/skills/SecurityScanner/scripts/security_scan.py .
+python .agent/skills/security-scanner/scripts/security_scan.py .
 ```
 
 | Check | Status |

@@ -54,7 +54,7 @@ npm test
 ### Layer 3: Security Check
 // turbo
 ```bash
-python .agent/skills/SecurityScanner/scripts/security_scan.py .
+python .agent/skills/security-scanner/scripts/security_scan.py .
 ```
 
 | Check | Required |

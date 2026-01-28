@@ -1,0 +1,8 @@
+{
+  "repo": "agentskillkit/agent-skills",
+  "skill": "auto-learn",
+  "ref": null,
+  "checksum": "eec798819f9da3b471570f399ed32ebc66aadfa71f4d61182ea9c0182ba30bc1",
+  "installedAt": "2026-01-26T08:48:27.012Z",
+  "method": "symlink"
+}

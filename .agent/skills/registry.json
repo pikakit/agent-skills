@@ -2,7 +2,7 @@
   "updatedAt": "2026-01-25T10:06:00.000Z",
   "skills": [
     {
-      "name": "APIArchitect",
+      "name": "api-architect",
       "rules": [
         "api-style.md",
         "auth.md",
@@ -20,42 +20,42 @@
       ]
     },
     {
-      "name": "AppScaffold",
+      "name": "app-scaffold",
       "rules": [],
       "scripts": []
     },
     {
-      "name": "SystemDesign",
+      "name": "system-design",
       "rules": [],
       "scripts": []
     },
     {
-      "name": "ShellScript",
+      "name": "shell-script",
       "rules": [],
       "scripts": []
     },
     {
-      "name": "AgentModes",
+      "name": "agent-modes",
       "rules": [],
       "scripts": []
     },
     {
-      "name": "IdeaStorm",
+      "name": "idea-storm",
       "rules": [],
       "scripts": []
     },
     {
-      "name": "CodeCraft",
+      "name": "code-craft",
       "rules": [],
       "scripts": []
     },
     {
-      "name": "CodeReview",
+      "name": "code-review",
       "rules": [],
       "scripts": []
     },
     {
-      "name": "ReviewAutomation",
+      "name": "review-automation",
       "rules": [],
       "scripts": [
         "audit_pr.js",
@@ -64,24 +64,24 @@
       ]
     },
     {
-      "name": "DataModeler",
+      "name": "data-modeler",
       "rules": [],
       "scripts": [
         "schema_validator.py"
       ]
     },
     {
-      "name": "CICDPipeline",
+      "name": "cicd-pipeline",
       "rules": [],
       "scripts": []
     },
     {
-      "name": "DocTemplates",
+      "name": "doc-templates",
       "rules": [],
       "scripts": []
     },
     {
-      "name": "WebCore",
+      "name": "web-core",
       "rules": [
         "advanced-event-handler-refs.md",
         "advanced-init-once.md",
@@ -146,7 +146,7 @@
       "scripts": []
     },
     {
-      "name": "DesignSystem",
+      "name": "design-system",
       "rules": [
         "animation-guide.md",
         "color-system.md",
@@ -162,26 +162,26 @@
       ]
     },
     {
-      "name": "GameEngine",
+      "name": "game-engine",
       "rules": [],
       "scripts": []
     },
     {
-      "name": "GeoSpatial",
+      "name": "geo-spatial",
       "rules": [],
       "scripts": [
         "geo_checker.py"
       ]
     },
     {
-      "name": "GitWorkflow",
+      "name": "git-workflow",
       "rules": [],
       "scripts": [
         "format-commit.js"
       ]
     },
     {
-      "name": "CodeConstitution",
+      "name": "code-constitution",
       "rules": [],
       "scripts": [
         "audit_pr.js",
@@ -190,19 +190,19 @@
       ]
     },
     {
-      "name": "GlobalizationKit",
+      "name": "globalization-kit",
       "rules": [],
       "scripts": [
         "i18n_checker.py"
       ]
     },
     {
-      "name": "SmartRouter",
+      "name": "smart-router",
       "rules": [],
       "scripts": []
     },
     {
-      "name": "CodeQuality",
+      "name": "code-quality",
       "rules": [],
       "scripts": [
         "lint_runner.py",
@@ -210,119 +210,119 @@
       ]
     },
     {
-      "name": "MCPServer",
+      "name": "mcp-server",
       "rules": [],
       "scripts": []
     },
     {
-      "name": "MobileFirst",
+      "name": "mobile-first",
       "rules": [],
       "scripts": [
         "mobile_audit.py"
       ]
     },
     {
-      "name": "NextJSPro",
+      "name": "nextjs-pro",
       "rules": [],
       "scripts": []
     },
     {
-      "name": "NodeJSPro",
+      "name": "nodejs-pro",
       "rules": [],
       "scripts": []
     },
     {
-      "name": "MultiAgent",
+      "name": "multi-agent",
       "rules": [],
       "scripts": []
     },
     {
-      "name": "PerfOptimizer",
+      "name": "perf-optimizer",
       "rules": [],
       "scripts": [
         "lighthouse_audit.py"
       ]
     },
     {
-      "name": "ProjectPlanner",
+      "name": "project-planner",
       "rules": [],
       "scripts": []
     },
     {
-      "name": "PowerShell",
+      "name": "powershell",
       "rules": [],
       "scripts": []
     },
     {
-      "name": "PythonPro",
+      "name": "python-pro",
       "rules": [],
       "scripts": []
     },
     {
-      "name": "ReactArchitect",
+      "name": "react-architect",
       "rules": [],
       "scripts": []
     },
     {
-      "name": "OffensiveSec",
+      "name": "offensive-sec",
       "rules": [],
       "scripts": []
     },
     {
-      "name": "SEOOptimizer",
+      "name": "seo-optimizer",
       "rules": [],
       "scripts": [
         "seo_checker.py"
       ]
     },
     {
-      "name": "ServerOps",
+      "name": "server-ops",
       "rules": [],
       "scripts": []
     },
     {
-      "name": "DebugPro",
+      "name": "debug-pro",
       "rules": [],
       "scripts": []
     },
     {
-      "name": "TailwindKit",
+      "name": "tailwind-kit",
       "rules": [],
       "scripts": []
     },
     {
-      "name": "TestDrivenDev",
+      "name": "test-driven-dev",
       "rules": [],
       "scripts": []
     },
     {
-      "name": "TestArchitect",
+      "name": "test-architect",
       "rules": [],
       "scripts": [
         "test_runner.py"
       ]
     },
     {
-      "name": "SecurityScanner",
+      "name": "security-scanner",
       "rules": [],
       "scripts": [
         "security_scan.py"
       ]
     },
     {
-      "name": "E2EAutomation",
+      "name": "e2e-automation",
       "rules": [],
       "scripts": [
         "playwright_runner.py"
       ]
     },
     {
-      "name": "VisualExcellence",
+      "name": "visual-excellence",
       "rules": [],
       "scripts": []
     },
     {
-      "name": "ContextOptimizer",
+      "name": "context-optimizer",
       "rules": [],
       "scripts": [
         "context_analyzer.py",
@@ -330,32 +330,32 @@
       ]
     },
     {
-      "name": "DebugToolkit",
+      "name": "debug-toolkit",
       "rules": [],
       "scripts": []
     },
     {
-      "name": "DocProcessor",
+      "name": "doc-processor",
       "rules": [],
       "scripts": []
     },
     {
-      "name": "DiagramKit",
+      "name": "diagram-kit",
       "rules": [],
       "scripts": []
     },
     {
-      "name": "CreativeThinking",
+      "name": "creative-thinking",
       "rules": [],
       "scripts": []
     },
     {
-      "name": "ReasoningEngine",
+      "name": "reasoning-engine",
       "rules": [],
       "scripts": []
     },
     {
-      "name": "SkillForge",
+      "name": "skill-forge",
       "rules": [],
       "scripts": [
         "init_skill.py",

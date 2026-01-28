@@ -48,7 +48,7 @@ node .agent/scripts-js/checklist.js .
 # OR: npm run checklist:js .
 
 # Check for security issues (Python skill script - still valid)
-python .agent/skills/SecurityScanner/scripts/security_scan.py .
+python .agent/skills/security-scanner/scripts/security_scan.py .
 ```
 
 ### Phase 4: Systematic Elimination

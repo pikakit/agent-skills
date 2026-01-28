@@ -1,0 +1,8 @@
+{
+  "repo": "agentskillkit/agent-skills",
+  "skill": "red-team-tactics",
+  "ref": null,
+  "checksum": "d31da9c314654508935745c3e8a7b597f98ed0efc8947eb330b897bcf133d0d9",
+  "installedAt": "2026-01-26T08:48:28.956Z",
+  "method": "symlink"
+}

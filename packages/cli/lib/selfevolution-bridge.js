@@ -14,7 +14,7 @@ import { spawn } from 'child_process';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const PROJECT_ROOT = path.resolve(__dirname, '../../..');
-const SELFEVOLUTION_DIR = path.join(PROJECT_ROOT, '.agent/skills/SelfEvolution');
+const SELFEVOLUTION_DIR = path.join(PROJECT_ROOT, '.agent/skills/self-evolution');
 
 /**
  * Export API keys from Settings to SelfEvolution .env file

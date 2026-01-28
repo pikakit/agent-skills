@@ -1,0 +1,8 @@
+{
+  "repo": "agentskillkit/agent-skills",
+  "skill": "context-engineering",
+  "ref": null,
+  "checksum": "962f9b16b8991d10a921ed970eef532a0fd2d7346a4500685ed3b6fbcc517bdb",
+  "installedAt": "2026-01-26T08:48:27.192Z",
+  "method": "symlink"
+}

@@ -1,0 +1,96 @@
+# Python Dependencies
+
+## Minimum Requirements
+
+- **Python Version:** 3.8+
+- **pip:** Latest version recommended
+
+## Installation
+
+```bash
+# Install all Python dependencies for skill scripts
+pip install -r .agent/skills/requirements.txt
+
+# Or via npm
+npm run install:python-deps
+```
+
+## Core Dependencies
+
+### Security Scanning
+- `bandit>=1.7.5` - Python AST-based security linter
+- `safety>=2.3.0` - Checks Python dependencies for known vulnerabilities
+
+### Testing & Automation
+- `playwright>=1.40.0` - End-to-end browser testing
+- `pytest>=7.4.0` - Python testing framework
+
+### Code Quality
+- `pylint>=3.0.0` - Python code static checker
+- `mypy>=1.7.0` - Static type checker for Python
+
+### Data Processing
+- `pyyaml>=6.0` - YAML parser and emitter
+- `requests>=2.31.0` - HTTP library
+
+## Optional Dependencies
+
+Some skill scripts may require additional packages:
+
+```bash
+# Performance auditing (Lighthouse wrapper)
+npm install -g lighthouse
+
+# Accessibility testing
+pip install axe-selenium
+
+# ML/Data analysis (for SelfEvolution)
+pip install pandas scikit-learn
+```
+
+## Verification
+
+```bash
+# Verify Python installation
+python --version  # Should be 3.8+
+
+# Test critical scripts
+python .agent/skills/SecurityScanner/scripts/security_scan.py --help
+python .agent/skills/DesignSystem/scripts/ux_audit.py --help
+python .agent/skills/PerfOptimizer/scripts/lighthouse_audit.py --help
+```
+
+## Usage in CI/CD
+
+GitHub Actions example:
+
+```yaml
+- name: Setup Python
+  uses: actions/setup-python@v4
+  with:
+    python-version: '3.11'
+    
+- name: Install Python dependencies
+  run: pip install -r .agent/skills/requirements.txt
+  
+- name: Run skill validation
+  run: npm run verify http://localhost:3000
+```
+
+## Maintenance
+
+Update dependencies regularly:
+
+```bash
+# Update all packages
+pip install --upgrade -r .agent/skills/requirements.txt
+
+# Check for security vulnerabilities
+pip-audit
+```
+
+## See Also
+
+- [PYTHON_STRATEGY.md](../PYTHON_STRATEGY.md) - Architecture decision
+- [MIGRATION.md](../MIGRATION.md) - Migration history
+- [PYTHON_SCRIPTS.md](PYTHON_SCRIPTS.md) - Script reference

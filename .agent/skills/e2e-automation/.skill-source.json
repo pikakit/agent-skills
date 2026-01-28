@@ -1,0 +1,8 @@
+{
+  "repo": "agentskillkit/agent-skills",
+  "skill": "webapp-testing",
+  "ref": null,
+  "checksum": "bf631e2fefab36fb55a8fbf0cdb824a67555388bcc5da217be01dbe4687514db",
+  "installedAt": "2026-01-26T08:48:29.099Z",
+  "method": "symlink"
+}

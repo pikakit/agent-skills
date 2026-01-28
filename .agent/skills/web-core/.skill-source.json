@@ -1,0 +1,8 @@
+{
+  "repo": "agentskillkit/agent-skills",
+  "skill": "frontend",
+  "ref": null,
+  "checksum": "5b59330532b4865a77a7ed6b115f5601bd80dcd6670c075c508f20b121245baa",
+  "installedAt": "2026-01-26T08:48:28.153Z",
+  "method": "symlink"
+}

@@ -1,0 +1,8 @@
+{
+  "repo": "agentskillkit/agent-skills",
+  "skill": "systematic-debugging",
+  "ref": null,
+  "checksum": "c42aa72962ab4db456381df21bb71c71c3b45223f7a42dfd6f0d948ac8350da0",
+  "installedAt": "2026-01-26T08:48:29.034Z",
+  "method": "symlink"
+}

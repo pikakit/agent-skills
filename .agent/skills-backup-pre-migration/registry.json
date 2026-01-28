@@ -1,0 +1,367 @@
+{
+  "updatedAt": "2026-01-25T10:06:00.000Z",
+  "skills": [
+    {
+      "name": "APIArchitect",
+      "rules": [
+        "api-style.md",
+        "auth.md",
+        "documentation.md",
+        "graphql.md",
+        "rate-limiting.md",
+        "response.md",
+        "rest.md",
+        "security-testing.md",
+        "trpc.md",
+        "versioning.md"
+      ],
+      "scripts": [
+        "api_validator.py"
+      ]
+    },
+    {
+      "name": "AppScaffold",
+      "rules": [],
+      "scripts": []
+    },
+    {
+      "name": "SystemDesign",
+      "rules": [],
+      "scripts": []
+    },
+    {
+      "name": "ShellScript",
+      "rules": [],
+      "scripts": []
+    },
+    {
+      "name": "AgentModes",
+      "rules": [],
+      "scripts": []
+    },
+    {
+      "name": "IdeaStorm",
+      "rules": [],
+      "scripts": []
+    },
+    {
+      "name": "CodeCraft",
+      "rules": [],
+      "scripts": []
+    },
+    {
+      "name": "CodeReview",
+      "rules": [],
+      "scripts": []
+    },
+    {
+      "name": "ReviewAutomation",
+      "rules": [],
+      "scripts": [
+        "audit_pr.js",
+        "audit_pr.v2.js",
+        "validate_doctrine.js"
+      ]
+    },
+    {
+      "name": "DataModeler",
+      "rules": [],
+      "scripts": [
+        "schema_validator.py"
+      ]
+    },
+    {
+      "name": "CICDPipeline",
+      "rules": [],
+      "scripts": []
+    },
+    {
+      "name": "DocTemplates",
+      "rules": [],
+      "scripts": []
+    },
+    {
+      "name": "WebCore",
+      "rules": [
+        "advanced-event-handler-refs.md",
+        "advanced-init-once.md",
+        "advanced-use-latest.md",
+        "async-api-routes.md",
+        "async-defer-await.md",
+        "async-dependencies.md",
+        "async-parallel.md",
+        "async-suspense-boundaries.md",
+        "bundle-barrel-imports.md",
+        "bundle-conditional.md",
+        "bundle-defer-third-party.md",
+        "bundle-dynamic-imports.md",
+        "bundle-preload.md",
+        "client-event-listeners.md",
+        "client-localstorage-schema.md",
+        "client-passive-event-listeners.md",
+        "client-swr-dedup.md",
+        "js-batch-dom-css.md",
+        "js-cache-function-results.md",
+        "js-cache-property-access.md",
+        "js-cache-storage.md",
+        "js-combine-iterations.md",
+        "js-early-exit.md",
+        "js-hoist-regexp.md",
+        "js-index-maps.md",
+        "js-length-check-first.md",
+        "js-min-max-loop.md",
+        "js-set-map-lookups.md",
+        "js-tosorted-immutable.md",
+        "rendering-activity.md",
+        "rendering-animate-svg-wrapper.md",
+        "rendering-conditional-render.md",
+        "rendering-content-visibility.md",
+        "rendering-hoist-jsx.md",
+        "rendering-hydration-no-flicker.md",
+        "rendering-hydration-suppress-warning.md",
+        "rendering-svg-precision.md",
+        "rendering-usetransition-loading.md",
+        "rerender-defer-reads.md",
+        "rerender-dependencies.md",
+        "rerender-derived-state-no-effect.md",
+        "rerender-derived-state.md",
+        "rerender-functional-setstate.md",
+        "rerender-lazy-state-init.md",
+        "rerender-memo-with-default-value.md",
+        "rerender-memo.md",
+        "rerender-move-effect-to-event.md",
+        "rerender-simple-expression-in-memo.md",
+        "rerender-transitions.md",
+        "rerender-use-ref-transient-values.md",
+        "server-after-nonblocking.md",
+        "server-auth-actions.md",
+        "server-cache-lru.md",
+        "server-cache-react.md",
+        "server-dedup-props.md",
+        "server-parallel-fetching.md",
+        "server-serialization.md",
+        "_sections.md",
+        "_template.md"
+      ],
+      "scripts": []
+    },
+    {
+      "name": "DesignSystem",
+      "rules": [
+        "animation-guide.md",
+        "color-system.md",
+        "decision-trees.md",
+        "motion-graphics.md",
+        "typography-system.md",
+        "ux-psychology.md",
+        "visual-effects.md"
+      ],
+      "scripts": [
+        "accessibility_checker.py",
+        "ux_audit.py"
+      ]
+    },
+    {
+      "name": "GameEngine",
+      "rules": [],
+      "scripts": []
+    },
+    {
+      "name": "GeoSpatial",
+      "rules": [],
+      "scripts": [
+        "geo_checker.py"
+      ]
+    },
+    {
+      "name": "GitWorkflow",
+      "rules": [],
+      "scripts": [
+        "format-commit.js"
+      ]
+    },
+    {
+      "name": "CodeConstitution",
+      "rules": [],
+      "scripts": [
+        "audit_pr.js",
+        "learn.js",
+        "validate_doctrine.js"
+      ]
+    },
+    {
+      "name": "GlobalizationKit",
+      "rules": [],
+      "scripts": [
+        "i18n_checker.py"
+      ]
+    },
+    {
+      "name": "SmartRouter",
+      "rules": [],
+      "scripts": []
+    },
+    {
+      "name": "CodeQuality",
+      "rules": [],
+      "scripts": [
+        "lint_runner.py",
+        "type_coverage.py"
+      ]
+    },
+    {
+      "name": "MCPServer",
+      "rules": [],
+      "scripts": []
+    },
+    {
+      "name": "MobileFirst",
+      "rules": [],
+      "scripts": [
+        "mobile_audit.py"
+      ]
+    },
+    {
+      "name": "NextJSPro",
+      "rules": [],
+      "scripts": []
+    },
+    {
+      "name": "NodeJSPro",
+      "rules": [],
+      "scripts": []
+    },
+    {
+      "name": "MultiAgent",
+      "rules": [],
+      "scripts": []
+    },
+    {
+      "name": "PerfOptimizer",
+      "rules": [],
+      "scripts": [
+        "lighthouse_audit.py"
+      ]
+    },
+    {
+      "name": "ProjectPlanner",
+      "rules": [],
+      "scripts": []
+    },
+    {
+      "name": "PowerShell",
+      "rules": [],
+      "scripts": []
+    },
+    {
+      "name": "PythonPro",
+      "rules": [],
+      "scripts": []
+    },
+    {
+      "name": "ReactArchitect",
+      "rules": [],
+      "scripts": []
+    },
+    {
+      "name": "OffensiveSec",
+      "rules": [],
+      "scripts": []
+    },
+    {
+      "name": "SEOOptimizer",
+      "rules": [],
+      "scripts": [
+        "seo_checker.py"
+      ]
+    },
+    {
+      "name": "ServerOps",
+      "rules": [],
+      "scripts": []
+    },
+    {
+      "name": "DebugPro",
+      "rules": [],
+      "scripts": []
+    },
+    {
+      "name": "TailwindKit",
+      "rules": [],
+      "scripts": []
+    },
+    {
+      "name": "TestDrivenDev",
+      "rules": [],
+      "scripts": []
+    },
+    {
+      "name": "TestArchitect",
+      "rules": [],
+      "scripts": [
+        "test_runner.py"
+      ]
+    },
+    {
+      "name": "SecurityScanner",
+      "rules": [],
+      "scripts": [
+        "security_scan.py"
+      ]
+    },
+    {
+      "name": "E2EAutomation",
+      "rules": [],
+      "scripts": [
+        "playwright_runner.py"
+      ]
+    },
+    {
+      "name": "VisualExcellence",
+      "rules": [],
+      "scripts": []
+    },
+    {
+      "name": "ContextOptimizer",
+      "rules": [],
+      "scripts": [
+        "context_analyzer.py",
+        "compression_evaluator.py"
+      ]
+    },
+    {
+      "name": "DebugToolkit",
+      "rules": [],
+      "scripts": []
+    },
+    {
+      "name": "DocProcessor",
+      "rules": [],
+      "scripts": []
+    },
+    {
+      "name": "DiagramKit",
+      "rules": [],
+      "scripts": []
+    },
+    {
+      "name": "CreativeThinking",
+      "rules": [],
+      "scripts": []
+    },
+    {
+      "name": "ReasoningEngine",
+      "rules": [],
+      "scripts": []
+    },
+    {
+      "name": "SkillForge",
+      "rules": [],
+      "scripts": [
+        "init_skill.py",
+        "package_skill.py",
+        "quick_validate.py"
+      ]
+    }
+  ]
+}
