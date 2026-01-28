@@ -1,0 +1,218 @@
+# Knowledge Taxonomy v1.0
+# Hierarchical category tree for lesson classification
+# Based on industry standards: CWE, OWASP, SonarQube rules
+
+version: 1
+lastUpdated: "2026-01-28T10:00:00Z"
+
+# Root categories with severity weights (1-10)
+# Higher weight = more critical violations
+
+categories:
+  # ===========================================
+  # SECURITY (Weight: 10) - Highest priority
+  # ===========================================
+  - id: security
+    name: Security
+    parent: null
+    severityWeight: 10
+    description: Security vulnerabilities and risks
+    color: "#dc2626" # red-600
+    children:
+      - id: xss
+        name: Cross-Site Scripting (XSS)
+        severityWeight: 10
+        cweId: CWE-79
+
+      - id: injection
+        name: Injection Attacks
+        severityWeight: 10
+        cweId: CWE-94
+
+      - id: auth
+        name: Authentication Issues
+        severityWeight: 9
+        cweId: CWE-287
+
+      - id: secrets
+        name: Hardcoded Secrets
+        severityWeight: 10
+        cweId: CWE-798
+
+      - id: data-exposure
+        name: Sensitive Data Exposure
+        severityWeight: 8
+        cweId: CWE-200
+
+  # ===========================================
+  # CODE QUALITY (Weight: 5)
+  # ===========================================
+  - id: code-quality
+    name: Code Quality
+    parent: null
+    severityWeight: 5
+    description: Code maintainability and readability
+    color: "#f59e0b" # amber-500
+    children:
+      - id: naming
+        name: Naming Conventions
+        severityWeight: 3
+
+      - id: complexity
+        name: Cyclomatic Complexity
+        severityWeight: 5
+
+      - id: duplication
+        name: Code Duplication
+        severityWeight: 4
+
+      - id: dead-code
+        name: Unreachable Code
+        severityWeight: 4
+
+  # ===========================================
+  # ARCHITECTURE (Weight: 7)
+  # ===========================================
+  - id: architecture
+    name: Architecture
+    parent: null
+    severityWeight: 7
+    description: Structural and design patterns
+    color: "#8b5cf6" # violet-500
+    children:
+      - id: coupling
+        name: Tight Coupling
+        severityWeight: 6
+
+      - id: dependency
+        name: Dependency Management
+        severityWeight: 5
+
+      - id: solid
+        name: SOLID Violations
+        severityWeight: 7
+
+      - id: patterns
+        name: Anti-Patterns
+        severityWeight: 6
+
+  # ===========================================
+  # PERFORMANCE (Weight: 6)
+  # ===========================================
+  - id: performance
+    name: Performance
+    parent: null
+    severityWeight: 6
+    description: Runtime efficiency issues
+    color: "#06b6d4" # cyan-500
+    children:
+      - id: memory
+        name: Memory Leaks
+        severityWeight: 8
+
+      - id: algorithm
+        name: Inefficient Algorithms
+        severityWeight: 6
+
+      - id: blocking
+        name: Blocking Operations
+        severityWeight: 7
+
+      - id: bundle-size
+        name: Bundle Size
+        severityWeight: 5
+
+  # ===========================================
+  # UX (Weight: 4)
+  # ===========================================
+  - id: ux
+    name: User Experience
+    parent: null
+    severityWeight: 4
+    description: User interface and experience issues
+    color: "#10b981" # emerald-500
+    children:
+      - id: accessibility
+        name: Accessibility (a11y)
+        severityWeight: 6
+
+      - id: usability
+        name: Usability Issues
+        severityWeight: 4
+
+      - id: responsiveness
+        name: Responsiveness
+        severityWeight: 5
+
+  # ===========================================
+  # FILE SAFETY (Weight: 8)
+  # ===========================================
+  - id: file-safety
+    name: File Safety
+    parent: null
+    severityWeight: 8
+    description: File handling and data integrity
+    color: "#ef4444" # red-500
+    children:
+      - id: overwrite
+        name: Unsafe Overwrite
+        severityWeight: 9
+
+      - id: deletion
+        name: Unsafe Deletion
+        severityWeight: 9
+
+      - id: backup
+        name: Missing Backup
+        severityWeight: 7
+
+  # ===========================================
+  # FRAMEWORK-SPECIFIC (Weight: 5)
+  # ===========================================
+  - id: framework
+    name: Framework Patterns
+    parent: null
+    severityWeight: 5
+    description: Framework-specific best practices
+    color: "#6366f1" # indigo-500
+    children:
+      - id: react
+        name: React Patterns
+        severityWeight: 5
+
+      - id: nextjs
+        name: Next.js Patterns
+        severityWeight: 5
+
+      - id: nodejs
+        name: Node.js Patterns
+        severityWeight: 5
+
+      - id: clack-framework
+        name: Clack CLI Patterns
+        severityWeight: 4
+
+  # ===========================================
+  # CLI NAVIGATION (Weight: 4)
+  # ===========================================
+  - id: cli-navigation
+    name: CLI Navigation
+    parent: null
+    severityWeight: 4
+    description: Command-line interface patterns
+    color: "#64748b" # slate-500
+    children:
+      - id: escape-handling
+        name: ESC Key Handling
+        severityWeight: 5
+
+      - id: menu-structure
+        name: Menu Structure
+        severityWeight: 3
+
+# Tag aliases for backward compatibility
+aliases:
+  rebranding: file-safety
+  code-quality: code-quality
+  cli-navigation: cli-navigation
+  clack-framework: framework/clack-framework

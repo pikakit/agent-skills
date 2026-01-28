@@ -1,0 +1,66 @@
+{
+  "version": 1,
+  "lastUpdated": "2026-01-28T10:56:22.843Z",
+  "kpis": {
+    "totalLessons": 6,
+    "totalMistakes": 3,
+    "totalImprovements": 3,
+    "activePatterns": 3,
+    "totalHits": 569,
+    "avgConfidence": 0.62,
+    "escalationRate": 0,
+    "fixRate": 0.33,
+    "staleLessons": 0
+  },
+  "trends": {
+    "hitsLast7Days": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      569
+    ],
+    "newLessonsLast30Days": 0
+  },
+  "topViolations": [
+    {
+      "id": "MISTAKE-005",
+      "pattern": "customSelect",
+      "hitCount": 206,
+      "severity": "ERROR"
+    },
+    {
+      "id": "MISTAKE-003",
+      "pattern": "rebranding",
+      "hitCount": 179,
+      "severity": "ERROR"
+    },
+    {
+      "id": "MISTAKE-006",
+      "pattern": "function\\s+\\w+Menu.*\\{[\\s\\S]*\\1\\(",
+      "hitCount": 0,
+      "severity": "WARNING"
+    }
+  ],
+  "breakdown": {
+    "bySeverity": {
+      "ERROR": 2,
+      "WARNING": 1,
+      "INFO": 3
+    },
+    "byMaturity": {
+      "stable": 3,
+      "learning": 3,
+      "deprecated": 0
+    }
+  },
+  "index": {
+    "totalLessons": 6,
+    "totalMistakes": 3,
+    "totalImprovements": 3,
+    "totalPatterns": 8,
+    "totalTags": 7
+  }
+}

@@ -93,6 +93,12 @@ ${"─".repeat(50)}
   sync-skills    🆕 Sync hot patterns to SKILL.md
                  ag-smart sync-skills
 
+  index          🆕 Knowledge index management
+                 ag-smart index --rebuild | --status
+
+  metrics        🆕 Knowledge metrics dashboard
+                 ag-smart metrics [--json]
+
 ${"─".repeat(50)}
 
 📖 HELP:
@@ -135,6 +141,12 @@ switch (COMMAND) {
         break;
     case "sync-skills":
         run("skill-learn.js", ARGS.slice(1));
+        break;
+    case "index":
+        run("knowledge-index.js", ARGS.slice(1));
+        break;
+    case "metrics":
+        run("knowledge-metrics.js", ARGS.slice(1));
         break;
 
     // Meta

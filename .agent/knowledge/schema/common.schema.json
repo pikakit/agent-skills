@@ -1,0 +1,140 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://agentskillkit.com/schemas/common.schema.json",
+  "title": "Common Definitions",
+  "description": "Shared definitions for Agent Skill Kit knowledge schemas",
+  
+  "definitions": {
+    "lessonId": {
+      "type": "string",
+      "pattern": "^(LEARN|MISTAKE|IMPROVE)-\\d{3,}$",
+      "description": "Unique lesson identifier"
+    },
+    
+    "severity": {
+      "type": "string",
+      "enum": ["ERROR", "WARNING", "INFO"],
+      "description": "Severity level of the lesson"
+    },
+    
+    "pattern": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Regex pattern to match in code"
+    },
+    
+    "message": {
+      "type": "string",
+      "minLength": 5,
+      "maxLength": 500,
+      "description": "Human-readable explanation"
+    },
+    
+    "hitCount": {
+      "type": "integer",
+      "minimum": 0,
+      "default": 0,
+      "description": "Number of times pattern was matched"
+    },
+    
+    "timestamp": {
+      "type": ["string", "null"],
+      "format": "date-time",
+      "description": "ISO 8601 timestamp"
+    },
+    
+    "excludePaths": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "default": [],
+      "description": "Glob patterns for files to exclude"
+    },
+    
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "default": [],
+      "description": "Categorization tags"
+    },
+    
+    "intent": {
+      "type": "string",
+      "enum": ["prevent", "warn", "optimize"],
+      "description": "Purpose of the lesson"
+    },
+    
+    "patternType": {
+      "type": "string",
+      "enum": ["general", "structure", "dependency", "security", "performance", "quality"],
+      "default": "general"
+    },
+    
+    "context": {
+      "type": "object",
+      "properties": {
+        "appliesTo": {
+          "type": "object",
+          "properties": {
+            "scope": {
+              "type": "string",
+              "enum": ["global", "local"],
+              "default": "local"
+            },
+            "appliesTo": {
+              "type": "array",
+              "items": { "type": "string" }
+            }
+          }
+        },
+        "scope": {
+          "type": "string",
+          "enum": ["global", "local"],
+          "default": "local"
+        }
+      }
+    },
+    
+    "cognitive": {
+      "type": "object",
+      "properties": {
+        "maturity": {
+          "type": "string",
+          "enum": ["learning", "stable", "deprecated"],
+          "default": "learning"
+        },
+        "confidence": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "default": 0.3
+        }
+      },
+      "required": ["maturity", "confidence"]
+    },
+    
+    "autoFix": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": ["replace", "regex-replace", "comment-warning", "insert", "delete"]
+        },
+        "find": { "type": "string" },
+        "replace": { "type": "string" },
+        "search": { "type": "string" },
+        "comment": { "type": "string" },
+        "content": { "type": "string" },
+        "position": {
+          "type": "string",
+          "enum": ["before", "after"]
+        }
+      },
+      "required": ["type"]
+    }
+  }
+}
