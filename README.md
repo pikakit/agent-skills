@@ -5,9 +5,9 @@
 [![npm](https://img.shields.io/badge/version-3.2.0-7c3aed?style=flat&colorA=18181b)](https://www.npmjs.com/package/agentskillskit-cli)
 [![Tests](https://github.com/agentskillkit/agent-skills/workflows/Tests/badge.svg)](https://github.com/agentskillkit/agent-skills/actions/workflows/test.yml)
 [![Lint](https://github.com/agentskillkit/agent-skills/workflows/Lint/badge.svg)](https://github.com/agentskillkit/agent-skills/actions/workflows/lint.yml)
-[![skills](https://img.shields.io/badge/skills-70-7c3aed?style=flat&colorA=18181b)](https://github.com/agentskillkit/agent-skills)
+[![skills](https://img.shields.io/badge/skills-45-7c3aed?style=flat&colorA=18181b)](https://github.com/agentskillkit/agent-skills)
 [![agents](https://img.shields.io/badge/agents-25-7c3aed?style=flat&colorA=18181b)](https://github.com/agentskillkit/agent-skills)
-[![workflows](https://img.shields.io/badge/workflows-18-7c3aed?style=flat&colorA=18181b)](https://github.com/agentskillkit/agent-skills)
+[![workflows](https://img.shields.io/badge/workflows-24-7c3aed?style=flat&colorA=18181b)](https://github.com/agentskillkit/agent-skills)
 [![license](https://img.shields.io/badge/license-MIT-7c3aed?style=flat&colorA=18181b)](LICENSE)
 
 ---
@@ -593,7 +593,7 @@ skill-name/
 | Mobile | `mobile-developer` | mobile-first |
 | Performance | `performance-optimizer` | perf-optimizer |
 | Planning | `project-planner` | idea-storm, project-planner |
-| Debug | `debugger` | debugging-mastery |
+| Debug | `debugger` | debug-pro |
 
 ### Agent Selection Matrix
 
@@ -674,7 +674,7 @@ Verdict: "Deploy with current coverage (85%),
 
 ---
 
-## 📜 Workflows Reference (18)
+## 📜 Workflows Reference (24)
 
 | Command | Description | Agents Used | Est. Time |
 |---------|-------------|-------------|-----------|
@@ -736,70 +736,97 @@ Verdict: "Deploy with current coverage (85%),
 
 ---
 
-## 🧩 Skills Catalog (51)
+## 🧩 Skills Catalog (45)
 
-### AI & Agent Development
+### 🏗️ Architecture & Planning
 
 | Skill | Description |
 |-------|-------------|
-| `smart-router` | Auto-select specialist agents |
+| `app-scaffold` | Full-stack app scaffolding |
+| `project-planner` | Task planning, breakdown |
+| `idea-storm` | Socratic questioning, brainstorming |
+| `system-design` | System design patterns |
 | `lifecycle-orchestrator` | End-to-end task management |
-| `auto-learner` | Learn from failures automatically |
-| `input-validator` | Validate requests before routing |
-| `requirement-extractor` | Extract structured requirements |
 
-### Frontend & Design
+### 🎨 Frontend & UI
 
 | Skill | Description |
 |-------|-------------|
-| `studio` | 50 styles, 97 palettes, 57 fonts |
 | `react-architect` | React hooks, state, performance |
 | `nextjs-pro` | App Router, Server Components |
 | `tailwind-kit` | Tailwind CSS v4 utilities |
+| `design-system` | UI/UX patterns |
+| `studio` | 50 styles, 95+ palettes, 60+ fonts |
+| `web-core` | Core web fundamentals |
 
-### Backend & API
+### ⚙️ Backend & API
 
 | Skill | Description |
 |-------|-------------|
 | `api-architect` | REST, GraphQL, tRPC |
 | `nodejs-pro` | Node.js async patterns |
+| `python-pro` | Python standards, FastAPI |
 | `data-modeler` | Schema design, Prisma |
-| `cache-optimizer` | Redis, CDN, caching strategies |
-| `database-tuner` | Query optimization, N+1 fixes |
+| `mcp-server` | Model Context Protocol |
 
-### Testing & Quality
-
-| Skill | Description |
-|-------|-------------|
-| `test-architect` | Jest, Vitest, strategies |
-| `e2e-automation` | Playwright automation |
-| `debugging-mastery` | 4-phase methodology |
-| `integration-tester` | Contract testing, API validation |
-| `load-tester` | k6/Artillery performance tests |
-
-### Security
+### 🔐 Security
 
 | Skill | Description |
 |-------|-------------|
 | `security-scanner` | OWASP, vulnerability detection |
-| `chaos-engineer` | Resilience testing |
+| `offensive-sec` | Offensive security, pentesting |
+| `code-constitution` | Core code rules (SUPREME LAW) |
 
-### Observability
+### 🧪 Testing & Quality
 
 | Skill | Description |
 |-------|-------------|
-| `observability` | OpenTelemetry setup |
-| `logging` | Structured logging, aggregation |
-| `metrics` | Prometheus, Golden Signals |
-| `tracing` | Distributed tracing |
-| `incident-response` | Alerts, runbooks, post-mortems |
+| `test-architect` | Jest, Vitest, strategies |
+| `test-driven-dev` | TDD methodology |
+| `e2e-automation` | Playwright automation |
+| `code-quality` | Linting, validation |
+| `code-review` | Code review standards |
+| `problem-checker` | IDE problem detection |
 
-### DevOps
+### 🐛 Debugging & Recovery
+
+| Skill | Description |
+|-------|-------------|
+| `debug-pro` | 4-phase debugging + frameworks |
+| `state-rollback` | Save/restore checkpoints |
+| `perf-optimizer` | Web Vitals, optimization |
+
+### 🤖 AI & Agents
+
+| Skill | Description |
+|-------|-------------|
+| `agent-patterns` | Multi-agent design patterns |
+| `auto-learner` | Learning from failures |
+| `self-evolution` | Knowledge evolution |
+| `execution-reporter` | Agent routing transparency |
+| `skill-forge` | Create new skills |
+
+### ☁️ DevOps & Infra
 
 | Skill | Description |
 |-------|-------------|
 | `cicd-pipeline` | CI/CD, Docker, K8s |
-| `feature-flags` | A/B testing, gradual rollouts |
+| `server-ops` | Infrastructure management |
+| `gitops` | ArgoCD/Flux GitOps |
+| `observability` | OpenTelemetry, monitoring |
+
+### 📱 Specialized
+
+| Skill | Description |
+|-------|-------------|
+| `mobile-first` | Mobile UI/UX patterns |
+| `game-engine` | Game logic, mechanics |
+| `seo-optimizer` | SEO, E-E-A-T |
+| `geo-spatial` | GenAI/GEO optimization |
+| `shell-script` | Linux commands, scripting |
+| `typescript-expert` | Type-level programming |
+| `doc-templates` | Documentation formats |
+| `code-craft` | Coding standards (Global) |
 
 [See full catalog →](https://github.com/agentskillkit/agent-skills/tree/main/.agent/skills)
 
