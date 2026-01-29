@@ -9,8 +9,8 @@
 Agent Skills Kit is a modular system consisting of:
 
 - **25 Specialist Agents** - Role-based AI personas (20 domain + 5 meta)
-- **50 Skills** - Domain-specific knowledge modules
-- **18 Workflows** - Slash command procedures
+- **45 Skills** - Domain-specific knowledge modules
+- **24 Workflows** - Slash command procedures
 - **5 Workflow Chains** - Multi-skill execution sequences
 
 ---
@@ -26,7 +26,7 @@ Agent Skills Kit is a modular system consisting of:
 ├── docs/                    # Additional documentation
 ├── knowledge/               # Learning patterns & lessons
 ├── scripts-js/              # Master Validation Scripts (JS)
-├── skills/                  # 50 Skills + registry.json
+├── skills/                  # 45 Skills + registry.json
 ├── studio/                  # Studio design system tools
 └── workflows/               # 18 Slash Commands
 ```
@@ -165,7 +165,7 @@ Specialist AI personas for different domains.
 
 ---
 
-## 🧩 Skills (50)
+## 🧩 Skills (45)
 
 Modular knowledge domains that agents can load on-demand. based on task context.
 
@@ -434,8 +434,8 @@ See [MIGRATION.md](../MIGRATION.md) for details.
 | Metric              | Value                         |
 | ------------------- | ----------------------------- |
 | **Total Agents**    | 20                            |
-| **Total Skills**    | 50                            |
-| **Total Workflows** | 18                            |
+| **Total Skills**    | 45                            |
+| **Total Workflows** | 24                            |
 | **Total Scripts**   | 4 (master) + 34 (skill-level) |
 | **Coverage**        | ~95% web/mobile development   |
 

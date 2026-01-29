@@ -4,7 +4,7 @@ trigger: always_on
 
 # 🤖 Agent Skill Kit — FAANG-Grade AI Operating System
 
-> **v3.2.0** | 70 Skills • 25 Agents • 18 Workflows | [github.com/agentskillkit](https://github.com/agentskillkit/agent-skills)
+> **v3.2.0** | 45 Skills • 25 Agents • 24 Workflows | [github.com/agentskillkit](https://github.com/agentskillkit/agent-skills)
 
 **This file is the Supreme Law for AI behavior in this workspace.**
 
