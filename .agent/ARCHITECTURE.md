@@ -131,7 +131,7 @@ Specialist AI personas for different domains.
 
 | Agent                  | Focus                    | Skills Used                       |
 | ---------------------- | ------------------------ | --------------------------------- |
-| `lead-orchestrator`    | Strategic coordination   | multi-agent, agent-modes          |
+| `lead-orchestrator`    | Strategic coordination   | agent-patterns, code-craft        |
 | `runtime-orchestrator` | Runtime control          | lifecycle-orchestrator, code-craft |
 | `assessor`             | Risk analysis            | code-review, project-planner      |
 | `recovery`             | State rollback           | state-rollback, code-craft        |
@@ -142,7 +142,7 @@ Specialist AI personas for different domains.
 
 | Agent                    | Focus                      | Skills Used                                     |
 | ------------------------ | -------------------------- | ----------------------------------------------- |
-| `orchestrator`           | Multi-agent coordination   | multi-agent, agent-modes, code-craft            |
+| `orchestrator`           | Multi-agent coordination   | agent-patterns, code-craft                      |
 | `project-planner`        | Discovery, task planning   | idea-storm, project-planner, system-design      |
 | `frontend-specialist`    | Web UI/UX                  | design-system, react-architect, tailwind-kit    |
 | `backend-specialist`     | API, business logic        | api-architect, nodejs-pro, data-modeler         |
@@ -153,7 +153,7 @@ Specialist AI personas for different domains.
 | `security-auditor`       | Security compliance        | security-scanner, offensive-sec, api-architect  |
 | `penetration-tester`     | Offensive security         | offensive-sec, security-scanner                 |
 | `test-engineer`          | Testing strategies         | test-architect, test-driven-dev, e2e-automation |
-| `debugger`               | Root cause analysis        | debugging-mastery, code-craft               |
+| `debugger`               | Root cause analysis        | debug-pro, code-craft                       |
 | `performance-optimizer`  | Speed, Web Vitals          | perf-optimizer, code-craft                      |
 | `seo-specialist`         | Ranking, visibility        | seo-optimizer, geo-spatial                      |
 | `documentation-writer`   | Manuals, docs              | doc-templates, code-craft                       |
@@ -266,17 +266,15 @@ Modular knowledge domains that agents can load on-demand. based on task context.
 | Skill              | Description               |
 | ------------------ | ------------------------- |
 | `CodeCraft`        | Coding standards (Global) |
-| `AgentModes`       | Agent personas            |
-| `MultiAgent`       | Multi-agent patterns      |
+| `AgentPatterns`    | Agent patterns (consolidated) |
 | `MCPServer`        | Model Context Protocol    |
 | `DocTemplates`     | Doc formats               |
-| `GlobalizationKit` | Internationalization      |
 | `PerfOptimizer`    | Web Vitals, optimization  |
-| `DebuggingMastery`   | Unified debugging (4-phase + frameworks) |
+| `DebugPro`         | Unified debugging (4-phase + frameworks) |
 
 ---
 
-## 🔄 Workflows (18)
+## 🔄 Workflows (24)
 
 Slash command procedures. Invoke with `/command`.
 
