@@ -1,8 +1,0 @@
-{
-  "repo": "agentskillkit/agent-skills",
-  "skill": "parallel-agents",
-  "ref": null,
-  "checksum": "d9cf68cef2085e836c7500d08fa051e5d908252f3f91a65b18ce6fba406559e1",
-  "installedAt": "2026-01-26T08:48:28.840Z",
-  "method": "symlink"
-}

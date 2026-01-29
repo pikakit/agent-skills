@@ -1,8 +1,0 @@
-{
-  "repo": "agentskillkit/agent-skills",
-  "skill": "document-skills",
-  "ref": null,
-  "checksum": "c3ebc14dfd2b051d10546e0a6c328b4c08a0bb511f78f868788f012ab7122426",
-  "installedAt": "2026-01-26T08:48:27.895Z",
-  "method": "symlink"
-}

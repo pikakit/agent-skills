@@ -1,8 +1,0 @@
-{
-  "repo": "agentskillkit/agent-skills",
-  "skill": "intelligent-routing",
-  "ref": null,
-  "checksum": "4b66fcb3c62021910e06479e5072c69e699aed178c5d43a782053999f15cfc6e",
-  "installedAt": "2026-01-26T08:48:28.621Z",
-  "method": "symlink"
-}
