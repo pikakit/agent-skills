@@ -1,16 +1,38 @@
-AGENT SKILLS KIT - PROPRIETARY COMMERCIAL LICENSE
+AGENT SKILL KIT - PROPRIETARY COMMERCIAL LICENSE
+================================================================================
 
-Copyright (c) 2026 Agent Skill Kit Authors. All Rights Reserved.
+Copyright (c) 2026 AgentSkillKit. All Rights Reserved.
 
-NOTICE: All information contained herein is, and remains the property of the Agent Skill Kit Authors. The intellectual and technical concepts contained herein are proprietary to the Agent Skill Kit Authors and may be covered by U.S. and Foreign Patents, patents in process, and are protected by trade secret or copyright law.
+NOTICE: All information contained herein is, and remains the property of
+AgentSkillKit. The intellectual and technical concepts contained herein are
+proprietary to AgentSkillKit and may be covered by U.S. and Foreign Patents,
+patents in process, and are protected by trade secret or copyright law.
+
+================================================================================
 
 1. NO REDISTRIBUTION
-Dissemination of this information or reproduction of this material is strictly forbidden unless prior written permission is obtained from the legal owners.
+
+   Dissemination of this information or reproduction of this material is
+   strictly forbidden unless prior written permission is obtained from
+   AgentSkillKit.
 
 2. COMMERCIAL USE ONLY
-This software is licensed for commercial use only by authorized entities. Any unauthorized use, copying, modification, or distribution is a violation of international copyright laws.
+
+   This software is licensed for commercial use only by authorized entities.
+   Any unauthorized use, copying, modification, or distribution is a violation
+   of international copyright laws.
 
 3. NO WARRANTY
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
 
-For licensing inquiries, please contact: license@agentskillskit.com
+   THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+   IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+   FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+   AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+   LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+   FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+   DEALINGS IN THE SOFTWARE.
+
+================================================================================
+
+For licensing inquiries: agentskillkit@gmail.com
+Repository: https://github.com/agentskillkit/agent-skills

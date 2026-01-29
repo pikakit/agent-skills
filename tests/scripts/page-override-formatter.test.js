@@ -5,11 +5,11 @@
  */
 
 import { describe, test, expect, vi, beforeEach } from 'vitest';
-import { formatPageOverrideMd } from '../../.agent/studio/scripts-js/utils/page-override-formatter.js';
-import * as intelligentOverridesModule from '../../.agent/studio/scripts-js/utils/intelligent-overrides.js';
+import { formatPageOverrideMd } from '../../.agent/skills/studio/scripts-js/utils/page-override-formatter.js';
+import * as intelligentOverridesModule from '../../.agent/skills/studio/scripts-js/utils/intelligent-overrides.js';
 
 // Mock generateIntelligentOverrides
-vi.mock('../../.agent/studio/scripts-js/utils/intelligent-overrides.js', () => ({
+vi.mock('../../.agent/skills/studio/scripts-js/utils/intelligent-overrides.js', () => ({
     generateIntelligentOverrides: vi.fn()
 }));
 

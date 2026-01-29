@@ -14,6 +14,25 @@ Activate structured ideation mode for architecture decisions, feature planning, 
 
 ---
 
+## 🤖 Meta-Agents Integration
+
+| Phase | Agent | Action |
+| ----- | ----- | ------ |
+| **Decision Conflict** | `critic` | Arbitrate when options are too close |
+| **Risk Assessment** | `assessor` | Evaluate risk of each option |
+| **Pattern Learning** | `learner` | Learn from past decisions |
+
+```
+Flow:
+generate options → assessor.evaluate(each)
+       ↓
+scores too close? → critic.arbitrate()
+       ↓
+decision made → learner.log(decision, context)
+```
+
+---
+
 ## 🔴 MANDATORY: Decision Framework
 
 When `/think` is triggered:

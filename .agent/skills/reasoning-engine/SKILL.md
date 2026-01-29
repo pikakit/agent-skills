@@ -1,7 +1,15 @@
 ---
 name: reasoning-engine
-description: Use when complex problems require systematic step-by-step reasoning with ability to revise thoughts, branch into alternative approaches, or dynamically adjust scope. Ideal for multi-stage analysis, design planning, problem decomposition, or tasks with initially unclear scope.
+description: >-
+  Use when complex problems require systematic step-by-step reasoning with ability to revise thoughts,
+  branch into alternative approaches, or dynamically adjust scope.
+  Triggers on: reasoning, step-by-step, complex problem, analysis, decomposition.
+  Coordinates with: creative-thinking, project-planner, debug-toolkit.
 license: MIT
+metadata:
+  category: "planning"
+  success_metrics: "problem decomposed, reasoning chain complete"
+  coordinates_with: "creative-thinking, project-planner, debug-toolkit"
 ---
 
 # Sequential Thinking
@@ -19,6 +27,7 @@ Enables structured problem-solving through iterative reasoning with revision and
 ## When to Use
 
 Use `mcp__reasoning__sequentialthinking` when:
+
 - Problem requires multiple interconnected reasoning steps
 - Initial scope or approach is uncertain
 - Need to filter through complexity to find core issues
@@ -81,6 +90,7 @@ The MCP tool `mcp__reasoning__sequentialthinking` accepts these parameters:
 ## Advanced Features
 
 For revision patterns, branching strategies, and complex workflows, see:
+
 - [Advanced Usage](references/advanced.md) - Revision and branching patterns
 - [Examples](references/examples.md) - Real-world use cases
 

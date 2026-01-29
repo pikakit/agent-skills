@@ -1,34 +1,50 @@
 {
   "signals": [
     {
-      "id": "signal_1769544264056_g58ukficx",
+      "id": "signal_1738148400000_console_log",
       "lessonId": "LEARN-002",
       "reason": "hitCountThreshold",
-      "confidence": 0.9,
+      "confidence": 0.95,
       "status": "pending",
       "metadata": {
         "triggerEvent": "violation",
-        "file": "tests\\unit\\skill-formatter.test.js",
+        "file": "lib/ui/lessons-ui.js",
         "matchCount": 16,
-        "timestamp": 1769544264056
+        "timestamp": 1738148400000
       },
-      "createdAt": 1769544264056,
+      "createdAt": 1738148400000,
       "resolvedAt": null
     },
     {
-      "id": "signal_1769544269667_bwrn9zszb",
+      "id": "signal_1738148400000_todo_comments",
       "lessonId": "LEARN-001",
       "reason": "hitCountThreshold",
       "confidence": 0.9,
       "status": "pending",
       "metadata": {
         "triggerEvent": "violation",
-        "file": "lib\\ui\\lessons-ui.js",
-        "matchCount": 1,
-        "timestamp": 1769544417996
+        "file": "lib/knowledge-validator.js",
+        "matchCount": 3,
+        "timestamp": 1738148400000
       },
-      "createdAt": 1769544269667,
+      "createdAt": 1738148400000,
       "resolvedAt": null
+    },
+    {
+      "id": "signal_1738148400000_var_usage",
+      "lessonId": "LEARN-003",
+      "reason": "autoEscalation",
+      "confidence": 0.85,
+      "status": "resolved",
+      "metadata": {
+        "triggerEvent": "violation",
+        "file": "tests/integration/signal-detector.test.js",
+        "matchCount": 2,
+        "timestamp": 1738148400000,
+        "resolution": "Pattern refactored to use const"
+      },
+      "createdAt": 1738148400000,
+      "resolvedAt": 1738148500000
     }
   ],
   "version": 1

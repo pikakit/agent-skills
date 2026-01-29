@@ -5,7 +5,7 @@
  */
 
 import { describe, test, expect, beforeEach } from 'vitest';
-import { formatMasterMd } from '../../.agent/studio/scripts-js/design_system.js';
+import { formatMasterMd } from '../../.agent/skills/studio/scripts-js/design_system.js';
 
 describe('formatMasterMd - Integration Test', () => {
     let mockDesignSystem;

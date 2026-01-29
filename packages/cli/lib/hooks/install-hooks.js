@@ -16,7 +16,7 @@ import { VERSION } from "../config.js";
 // ============================================================================
 
 const PRE_COMMIT_HOOK = `#!/bin/sh
-# Smart Agent Pre-Commit Hook v${VERSION}
+# Agent Skill Kit Pre-Commit Hook v${VERSION}
 
 # Get staged JS/TS files
 STAGED_FILES=$(git diff --cached --name-only --diff-filter=ACM | grep -E "\\\\.(js|ts|tsx|jsx|mjs)$")
@@ -56,7 +56,7 @@ function findGitDir() {
  * Install git hooks
  */
 function installHooks() {
-    console.log(`\n🔧 Smart Agent Hooks Installer v${VERSION}\n`);
+    console.log(`\n🔧 Agent Skill Kit Hooks Installer v${VERSION}\n`);
 
     const gitDir = findGitDir();
 
@@ -133,7 +133,7 @@ const args = process.argv.slice(2);
 
 if (args.includes("--help")) {
     console.log(`
-🔧 Smart Agent Hooks Installer
+🔧 Agent Skill Kit Hooks Installer
 
 Usage:
   ag-smart install-hooks           Install git hooks

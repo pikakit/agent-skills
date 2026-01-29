@@ -1,8 +1,8 @@
 // Test new architecture directly
-import { SignalRepository } from './packages/cli/src/data/repositories/signal-repository.js';
-import { JsonStorage } from './packages/cli/src/data/storage/json-storage.js';
-import { SignalDetector } from './packages/cli/src/core/evolution/signal-detector.js';
-import { KNOWLEDGE_DIR } from './packages/cli/lib/config.js';
+import { SignalRepository } from '../../src/data/repositories/signal-repository.js';
+import { JsonStorage } from '../../src/data/storage/json-storage.js';
+import { SignalDetector } from '../../src/core/evolution/signal-detector.js';
+import { KNOWLEDGE_DIR } from '../../lib/config.js';
 
 console.log('📊 Testing New Architecture\n');
 

@@ -1,5 +1,6 @@
 ---
 description: Full-stack application factory. From idea to deployed app with multi-agent coordination.
+chain: build-web-app
 ---
 
 # /build - Application Factory
@@ -16,7 +17,25 @@ Ship production-ready applications from natural language descriptions. **Coordin
 
 ## 🔴 MANDATORY: Build Pipeline
 
+### Phase 0: Risk Assessment & Safety (NEW)
+
+> **Before building, invoke meta-agents:**
+
+| Step | Agent | Action |
+| ---- | ----- | ------ |
+| 1 | `assessor` | Evaluate risk level of requested changes |
+| 2 | `recovery` | Save current state (if existing project) |
+
+```
+IF risk_level == CRITICAL:
+  → Require explicit user approval
+  → Prepare rollback plan
+ELSE:
+  → Proceed with Phase 1
+```
+
 ### Phase 1: Requirements Discovery
+
 
 Ask these questions if not answered:
 
@@ -163,10 +182,39 @@ If user doesn't specify, use these:
 
 ---
 
+## ⛔ MANDATORY: Problem Verification Before Completion
+
+> **CRITICAL:** This check MUST be performed before any `notify_user` or task completion.
+
+### Check @[current_problems]
+
+```
+1. Read @[current_problems] from IDE
+2. If errors/warnings > 0:
+   a. Auto-fix: imports, types, lint errors
+   b. Re-check @[current_problems]
+   c. If still > 0 → STOP → Notify user
+3. If count = 0 → Proceed to Quality Gates
+```
+
+### Auto-Fixable
+
+| Type            | Fix                  |
+| --------------- | -------------------- |
+| Missing import  | Add import statement |
+| JSX namespace   | Import from 'react'  |
+| Unused variable | Remove or prefix `_` |
+| Lint errors     | Run eslint --fix     |
+
+> **Rule:** Never mark complete with errors in `@[current_problems]`.
+
+---
+
 ## Quality Gates
 
 Before marking complete, verify:
 
+- [ ] `@[current_problems]` shows 0 errors ← **CHECK THIS FIRST**
 - [ ] All files compile without errors
 - [ ] Database schema is valid
 - [ ] API endpoints respond correctly

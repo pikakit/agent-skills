@@ -1,5 +1,6 @@
 ---
 description: Feature enhancer for existing apps. Iterative upgrades with dependency awareness.
+chain: build-web-app
 ---
 
 # /boost - Feature Enhancer
@@ -11,6 +12,31 @@ $ARGUMENTS
 ## Purpose
 
 Add features or upgrades to existing applications. **Analyzes current architecture before making changes to prevent conflicts.**
+
+---
+
+## 🤖 Meta-Agents Integration
+
+| Phase | Agent | Action |
+| ----- | ----- | ------ |
+| **Pre-Change** | `assessor` | Evaluate impact and risk level |
+| **Pre-Change** | `recovery` | Save affected files state |
+| **On Conflict** | `critic` | Resolve breaking change decisions |
+| **On Failure** | `recovery` | Restore to pre-boost state |
+| **Post-Boost** | `learner` | Log patterns for future boosts |
+
+```
+Flow:
+assessor → risk level?
+   ↓
+CRITICAL → require approval → recovery.save()
+MEDIUM → recovery.save() → proceed
+LOW → proceed directly
+   ↓
+execute boost → test → success?
+   ↓ NO
+recovery.restore() → learner.log()
+```
 
 ---
 

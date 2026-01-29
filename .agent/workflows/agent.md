@@ -14,6 +14,15 @@ Launch the **Agent Skill Kit Smart CLI** - an interactive terminal interface for
 
 ---
 
+## 🤖 Meta-Agents Integration
+
+| Phase | Agent | Action |
+| ----- | ----- | ------ |
+| **Pattern Learning** | `learner` | Store and recall anti-patterns |
+| **Audit** | `assessor` | Evaluate code compliance |
+
+---
+
 ## 🔴 MANDATORY: Launch Protocol
 
 ### Step 1: Run Interactive CLI

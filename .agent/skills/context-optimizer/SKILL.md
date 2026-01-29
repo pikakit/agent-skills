@@ -1,14 +1,15 @@
 ---
 name: context-optimizer
 description: >-
-  Master context engineering for AI agent systems. Use when designing agent architectures,
-  debugging context failures, optimizing token usage, implementing memory systems,
-  building multi-agent coordination, evaluating agent performance, or developing
-  LLM-powered pipelines. Covers context fundamentals, degradation patterns, optimization
-  techniques (compaction, masking, caching), compression strategies, memory architectures,
-  multi-agent patterns, LLM-as-Judge evaluation, tool design, and project development.
+  Master context engineering for AI agent systems. Covers context fundamentals, degradation patterns,
+  optimization techniques (compaction, masking, caching), memory architectures, and multi-agent coordination.
+  Triggers on: context, token usage, memory system, agent performance, LLM pipeline.
+  Coordinates with: smart-router, multi-agent, reasoning-engine.
 metadata:
   version: "3.0.0"
+  category: "core"
+  success_metrics: "token usage reduced, context degradation avoided"
+  coordinates_with: "smart-router, multi-agent, reasoning-engine"
 ---
 
 # Context Engineering

@@ -156,7 +156,7 @@ function listLessons(category = null) {
         lessons = lessons.filter(l => l.category === category);
     }
 
-    console.log(`\n🧠 Smart Agent Knowledge Base (${lessons.length} lesson(s))\n`);
+    console.log(`\n🧠 Agent Skill Kit Knowledge Base (${lessons.length} lesson(s))\n`);
     console.log("─".repeat(60));
 
     lessons.forEach(l => {

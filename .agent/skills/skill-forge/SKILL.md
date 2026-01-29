@@ -1,7 +1,15 @@
 ---
 name: skill-forge
-description: Guide for creating effective skills. This skill should be used when users want to create a new skill (or update an existing skill) that extends Claude's capabilities with specialized knowledge, workflows, or tool integrations.
+description: >-
+  Guide for creating effective skills. This skill should be used when users want to create a new skill
+  (or update an existing skill) that extends Claude's capabilities.
+  Triggers on: create skill, new skill, update skill, skill development.
+  Coordinates with: project-planner, code-craft.
 license: Complete terms in LICENSE.txt
+metadata:
+  category: "planning"
+  success_metrics: "skill created, validation passed, packaged"
+  coordinates_with: "project-planner, code-craft"
 ---
 
 # Skill Creator
@@ -51,7 +59,7 @@ skill-name/
 - **Referenced scripts**:
   - Prefer nodejs or python scripts instead of bash script, because bash scripts are not well-supported on Windows.
   - If you're going to write python scripts, make sure you have `requirements.txt`
-  - Make sure scripts respect `.env` file follow this order: `process.env` > `.claude/skills/${SKILL}/.env` > `.claude/skills/.env` > `.claude/.env` 
+  - Make sure scripts respect `.env` file follow this order: `process.env` > `.claude/skills/${SKILL}/.env` > `.claude/skills/.env` > `.claude/.env`
   - Create `.env.example` file to show the required environment variables.
   - Always write tests for these scripts.
 
@@ -102,9 +110,9 @@ Skills use a three-level loading system to manage context efficiently:
 
 1. **Metadata (name + description)** - Always in context (~100 words)
 2. **SKILL.md body** - When skill triggers (<5k words)
-3. **Bundled resources** - As needed by Claude (Unlimited*)
+3. **Bundled resources** - As needed by Claude (Unlimited\*)
 
-*Unlimited because scripts can be executed without reading into context window.
+\*Unlimited because scripts can be executed without reading into context window.
 
 ## Skill Creation Process
 
@@ -225,12 +233,14 @@ If validation fails, the script will report the errors and exit without creating
 After testing the skill, users may request improvements. Often this happens right after using the skill, with fresh context of how the skill performed.
 
 **Iteration workflow:**
+
 1. Use the skill on real tasks
 2. Notice struggles or inefficiencies
 3. Identify how SKILL.md or bundled resources should be updated
 4. Implement changes and test again
 
 ## References
+
 - [Agent Skills](https://docs.claude.com/en/docs/claude-code/skills.md)
 - [Agent Skills Spec](.claude/skills/agent_skills_spec.md)
 - [Agent Skills Overview](https://docs.claude.com/en/docs/agents-and-tools/agent-skills/overview.md)

@@ -2,7 +2,7 @@
  * Unit Tests - CSV Loader Utility
  */
 import { describe, it, expect } from 'vitest';
-import { tokenize, buildDocument, extractColumns } from '../../.agent/studio/scripts-js/utils/text-utils.js';
+import { tokenize, buildDocument, extractColumns } from '../../.agent/skills/studio/scripts-js/utils/text-utils.js';
 
 describe('Text Utils - Tokenization', () => {
     describe('tokenize()', () => {
@@ -18,7 +18,7 @@ describe('Text Utils - Tokenization', () => {
 
         it('should filter words <= 2 characters', () => {
             const result = tokenize('I am ok to go');
-            expect(result).toEqual(['you']); // 'I', 'am', 'ok', 'to', 'go' all <=2
+            expect(result).toEqual([]); // 'I', 'am', 'ok', 'to', 'go' all <=2 chars
         });
 
         it('should handle empty/null input', () => {

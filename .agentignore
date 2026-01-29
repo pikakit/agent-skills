@@ -1,5 +1,5 @@
-# Agent Skill Kit - Comprehensive Ignore Patterns v2.0
-# Updated: 2025 - Optimized for JS/TS Projects
+# Agent Skill Kit - Comprehensive Ignore Patterns v3.0
+# Updated: 2026 - FAANG Standards
 
 # ============================================================
 # Dependencies & Package Managers
@@ -112,10 +112,11 @@ temp/
 
 # ============================================================
 # Package Lock Files
+# IMPORTANT: Keep lock files for reproducible builds (FAANG standard)
 # ============================================================
-package-lock.json
-yarn.lock
-pnpm-lock.yaml
+# package-lock.json  ← DO NOT IGNORE (removed)
+yarn.lock             ← Only if using npm
+pnpm-lock.yaml        ← Only if using npm
 
 # ============================================================
 # Archives & Binaries
@@ -130,7 +131,7 @@ pnpm-lock.yaml
 *.rpm
 
 # ============================================================
-# Python (Legacy - minimal support)
+# Python (Skill Scripts Support)
 # ============================================================
 __pycache__/
 *.py[cod]

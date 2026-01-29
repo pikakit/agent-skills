@@ -1,6 +1,14 @@
 ---
 name: feature-flags
-description: LaunchDarkly-style feature flag management for A/B testing and gradual rollouts. Control features without code deploys.
+description: >-
+  LaunchDarkly-style feature flag management for A/B testing and gradual rollouts.
+  Control features without code deploys. Support kill switches and percentage rollouts.
+  Triggers on: feature flag, A/B test, rollout, toggle, kill switch, experiment.
+  Coordinates with: cicd-pipeline, perf-optimizer.
+metadata:
+  category: "devops"
+  success_metrics: "flags configured, rollout controlled"
+  coordinates_with: "cicd-pipeline, perf-optimizer"
 ---
 
 # Feature Flags Skill

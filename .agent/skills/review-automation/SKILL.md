@@ -1,9 +1,15 @@
 ---
 name: review-automation
-description: Automated Code Review and PR validation.
+description: >-
+  Automated Code Review and PR validation. Runs automated checks on code changes.
+  Triggers on: automate review, PR check, validate PR, automated audit.
+  Coordinates with: code-review, code-constitution, git-workflow.
 allowed-tools: Read, Write, Edit, Glob, Grep, Bash
 metadata:
   version: "3.0.0"
+  category: "devops"
+  success_metrics: "all checks pass, no blocking issues"
+  coordinates_with: "code-review, code-constitution, git-workflow"
 ---
 
 # Code Reviewer

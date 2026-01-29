@@ -1,9 +1,15 @@
 ---
 name: doc-processor
-description: Process and create office documents - Word (docx), PDF, PowerPoint (pptx), and Excel (xlsx). Includes templates, scripts, and automation workflows.
+description: >-
+  Process and create office documents - Word (docx), PDF, PowerPoint (pptx), and Excel (xlsx).
+  Includes templates, scripts, and automation workflows for document processing.
+  Triggers on: document, Word, PDF, Excel, PowerPoint, docx, xlsx, pptx.
+  Coordinates with: doc-templates, diagram-kit.
 metadata:
-  when_to_use: "when creating, editing, or processing office documents programmatically"
   version: "3.0.0"
+  category: "specialized"
+  success_metrics: "document generated, format valid"
+  coordinates_with: "doc-templates, diagram-kit"
 ---
 
 # Document Skills

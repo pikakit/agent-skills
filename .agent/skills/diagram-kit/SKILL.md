@@ -1,6 +1,14 @@
 ---
 name: diagram-kit
-description: Create diagrams and visualizations using Mermaid.js v11 syntax. Use when generating flowcharts, sequence diagrams, class diagrams, state diagrams, ER diagrams, Gantt charts, user journeys, timelines, architecture diagrams, or any of 24+ diagram types. Supports JavaScript API integration, CLI rendering to SVG/PNG/PDF, theming, configuration, and accessibility features. Essential for documentation, technical diagrams, project planning, system architecture, and visual communication.
+description: >-
+  Create diagrams and visualizations using Mermaid.js v11 syntax. Flowcharts, sequence diagrams,
+  ER diagrams, architecture diagrams, and 24+ diagram types.
+  Triggers on: diagram, mermaid, flowchart, sequence diagram, architecture diagram.
+  Coordinates with: doc-processor, system-design.
+metadata:
+  category: "specialized"
+  success_metrics: "diagram generated, syntax valid"
+  coordinates_with: "doc-processor, system-design"
 ---
 
 # Mermaid.js v11
@@ -12,12 +20,14 @@ Create text-based diagrams using Mermaid.js v11 declarative syntax. Convert code
 ## Quick Start
 
 **Basic Diagram Structure:**
+
 ```
 {diagram-type}
   {diagram-content}
 ```
 
 **Common Diagram Types:**
+
 - `flowchart` - Process flows, decision trees
 - `sequenceDiagram` - Actor interactions, API flows
 - `classDiagram` - OOP structures, data models
@@ -31,6 +41,7 @@ See `references/diagram-types.md` for all 24+ types with syntax.
 ## Creating Diagrams
 
 **Inline Markdown Code Blocks:**
+
 ````markdown
 ```mermaid
 flowchart TD
@@ -41,6 +52,7 @@ flowchart TD
 ````
 
 **Configuration via Frontmatter:**
+
 ````markdown
 ```mermaid
 ---
@@ -56,6 +68,7 @@ flowchart LR
 ## CLI Usage
 
 Convert `.mmd` files to images:
+
 ```bash
 # Installation
 npm install -g @mermaid-js/mermaid-cli
@@ -75,13 +88,16 @@ See `references/cli-usage.md` for Docker, batch processing, and advanced workflo
 ## JavaScript Integration
 
 **HTML Embedding:**
+
 ```html
 <pre class="mermaid">
   flowchart TD
     A[Client] --> B[Server]
 </pre>
 <script src="https://cdn.jsdelivr.net/npm/mermaid@latest/dist/mermaid.min.js"></script>
-<script>mermaid.initialize({ startOnLoad: true });</script>
+<script>
+  mermaid.initialize({ startOnLoad: true });
+</script>
 ```
 
 See `references/integration.md` for Node.js API and advanced integration patterns.
@@ -89,6 +105,7 @@ See `references/integration.md` for Node.js API and advanced integration pattern
 ## Configuration & Theming
 
 **Common Options:**
+
 - `theme`: "default", "dark", "forest", "neutral", "base"
 - `look`: "classic", "handDrawn"
 - `fontFamily`: Custom font specification
@@ -99,6 +116,7 @@ See `references/configuration.md` for complete config options, theming, and cust
 ## Practical Patterns
 
 Load `references/examples.md` for:
+
 - Architecture diagrams
 - API documentation flows
 - Database schemas

@@ -13,7 +13,7 @@ import {
     validateCss,
     validateCssWithContext,
     validateMarkdownCss
-} from '../../.agent/studio/scripts-js/utils/css-validator.js';
+} from '../../.agent/skills/studio/scripts-js/utils/css-validator.js';
 
 describe('CSS Validator', () => {
     describe('validateCss', () => {

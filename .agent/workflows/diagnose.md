@@ -1,5 +1,6 @@
 ---
 description: Root cause detective. Hypothesis-driven debugging with evidence-based verification.
+chain: debug-complex
 ---
 
 # /diagnose - Root Cause Detective
@@ -11,6 +12,27 @@ $ARGUMENTS
 ## Purpose
 
 Systematic debugging using scientific method. **Form hypotheses, gather evidence, eliminate possibilities until root cause is found.**
+
+---
+
+## 🤖 Meta-Agents Integration
+
+| Phase | Agent | Action |
+| ----- | ----- | ------ |
+| **Pre-Debug** | `recovery` | Save state before debugging changes |
+| **Hypothesis** | `learner` | Check past bug patterns for similar issues |
+| **Investigation** | `assessor` | Evaluate fix risk before applying |
+| **Post-Fix** | `learner` | Log root cause for future reference |
+| **On Failure** | `recovery` | Restore if debugging makes things worse |
+
+```
+Flow:
+recovery.save() → learner.check(past_bugs)
+       ↓
+hypotheses → test → found? → assessor.evaluate(fix)
+       ↓
+apply fix → learner.log(root_cause, fix)
+```
 
 ---
 

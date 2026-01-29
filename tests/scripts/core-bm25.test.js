@@ -3,7 +3,7 @@
  * Compare JavaScript implementation with Python behavior
  */
 import { describe, it, expect } from 'vitest';
-import { BM25, detectDomain, CSV_CONFIG, STACK_CONFIG, AVAILABLE_STACKS } from '../../.agent/studio/scripts-js/core.js';
+import { BM25, detectDomain, CSV_CONFIG, STACK_CONFIG, AVAILABLE_STACKS } from '../../.agent/skills/studio/scripts-js/core.js';
 
 describe('BM25 Search Engine', () => {
     describe('BM25 Class', () => {

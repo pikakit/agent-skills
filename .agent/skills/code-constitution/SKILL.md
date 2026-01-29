@@ -1,17 +1,19 @@
 ---
 name: code-constitution-skills-governance
-description: >
-  Constitutional governance skill for Agent Skills Kit. Use when designing system architecture,
-  reviewing pull requests, modifying backend data pipelines, working with critical data,
-  evaluating risky or breaking changes, or allowing AI agents to propose changes to core systems.
-  Enforces non-negotiable laws for correctness, trust, and durability.
+description: >-
+  Constitutional governance for Agent Skills Kit. Enforces non-negotiable laws for correctness, 
+  trust, and durability. Use when designing system architecture, reviewing pull requests, 
+  modifying backend data pipelines, or evaluating risky/breaking changes.
+  Triggers on: architecture review, critical data, breaking change, governance, doctrine.
+  Coordinates with: code-review, review-automation, security-scanner.
 metadata:
   version: "3.0.0"
   type: "constitutional-skill"
   authority: "supreme"
   enforcement: "strict"
-  tags: "constitution, governance, architecture, data-integrity, code-review"
-  author: "AgentSkillsKit"
+  category: "core"
+  success_metrics: "doctrine validation passed, no constitutional violations"
+  coordinates_with: "code-review, review-automation, security-scanner"
 ---
 
 # Agent Skills Kit Governance

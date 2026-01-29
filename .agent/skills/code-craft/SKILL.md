@@ -1,10 +1,17 @@
 ---
 name: code-craft
-description: Pragmatic coding standards - concise, direct, no over-engineering, no unnecessary comments
+description: >-
+  Pragmatic coding standards - concise, direct, no over-engineering.
+  Use when writing production code, reviewing code quality, or establishing coding standards.
+  Triggers on: code style, clean code, best practices, naming conventions, SRP, DRY, KISS.
+  Coordinates with: code-review, test-architect, code-quality.
 allowed-tools: Read, Write, Edit
 metadata:
   version: "3.0.0"
   priority: "CRITICAL"
+  category: "core"
+  success_metrics: "lint errors = 0, code review approved"
+  coordinates_with: "code-review, test-architect, code-quality"
 ---
 
 # Clean Code - Pragmatic AI Coding Standards

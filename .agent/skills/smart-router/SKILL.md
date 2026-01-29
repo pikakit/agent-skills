@@ -1,8 +1,15 @@
 ---
 name: smart-router
-description: Automatic agent selection and intelligent task routing. Analyzes user requests and automatically selects the best specialist agent(s) without requiring explicit user mentions.
+description: >-
+  Automatic agent selection and intelligent task routing. Analyzes user requests and 
+  selects the best specialist agent(s) without requiring explicit mentions.
+  Triggers on: route, select agent, which skill, task analysis, multi-domain request.
+  Coordinates with: all skills (orchestrator role).
 metadata:
   version: "3.0.0"
+  category: "core"
+  success_metrics: "correct skill selection, task completion rate >95%"
+  coordinates_with: "all-skills"
 ---
 
 # Intelligent Agent Routing

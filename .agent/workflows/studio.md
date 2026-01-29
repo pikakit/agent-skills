@@ -10,6 +10,28 @@ description: AI-powered design intelligence with 50+ styles, 95+ color palettes,
 
 Comprehensive design guide for web and mobile applications. Contains 50+ styles, 97 color palettes, 57 font pairings, 99 UX guidelines, and 25 chart types across 9 technology stacks. Searchable database with priority-based recommendations.
 
+## 🤖 Meta-Agents Integration
+
+| Phase | Agent | Action |
+| ----- | ----- | ------ |
+| **Design Planning** | `learner` | Analyze past successful design patterns |
+| **Style Selection** | `critic` | Arbitrate conflicting design choices |
+| **Post-Design** | `learner` | Log design decisions for future reference |
+| **Accessibility** | `assessor` | Evaluate accessibility and UX risks |
+
+```
+Flow:
+learner.analyze(past_designs) → recommendations
+       ↓
+style conflict? → critic.arbitrate(style_a vs style_b)
+       ↓
+design complete → assessor.evaluate(accessibility)
+       ↓
+pass → learner.log(design_patterns)
+```
+
+---
+
 ## Prerequisites
 
 Check if Python is installed:
@@ -54,7 +76,7 @@ Extract key information from user request:
 **Always start with `--design-system`** to get comprehensive recommendations with reasoning:
 
 ```bash
-node .agent/studio/scripts-js/search.js "<product_type> <industry> <keywords>" --design-system [-p "Project Name"]
+node .agent/skills/studio/scripts-js/search.js "<product_type> <industry> <keywords>" --design-system [-p "Project Name"]
 ```
 
 This command:
@@ -65,7 +87,7 @@ This command:
 
 **Example:**
 ```bash
-node .agent/studio/scripts-js/search.js "beauty spa wellness service" --design-system -p "Serenity Spa"
+node .agent/skills/studio/scripts-js/search.js "beauty spa wellness service" --design-system -p "Serenity Spa"
 ```
 
 ### Step 2b: Persist Design System (Master + Overrides Pattern)
@@ -73,7 +95,7 @@ node .agent/studio/scripts-js/search.js "beauty spa wellness service" --design-s
 To save the design system for hierarchical retrieval across sessions, add `--persist`:
 
 ```bash
-node .agent/studio/scripts-js/search.js "<query>" --design-system --persist -p "Project Name"
+node .agent/skills/studio/scripts-js/search.js "<query>" --design-system --persist -p "Project Name"
 ```
 
 This creates:
@@ -82,7 +104,7 @@ This creates:
 
 **With page-specific override:**
 ```bash
-node .agent/studio/scripts-js/search.js "<query>" --design-system --persist -p "Project Name" --page "dashboard"
+node .agent/skills/studio/scripts-js/search.js "<query>" --design-system --persist -p "Project Name" --page "dashboard"
 ```
 
 This also creates:
@@ -98,7 +120,7 @@ This also creates:
 After getting the design system, use domain searches to get additional details:
 
 ```bash
-node .agent/studio/scripts-js/search.js "<keyword>" --domain <domain> [-n <max_results>]
+node .agent/skills/studio/scripts-js/search.js "<keyword>" --domain <domain> [-n <max_results>]
 ```
 
 **When to use detailed searches:**
@@ -116,7 +138,7 @@ node .agent/studio/scripts-js/search.js "<keyword>" --domain <domain> [-n <max_r
 Get implementation-specific best practices. If user doesn't specify a stack, **default to `html-tailwind`**.
 
 ```bash
-node .agent/studio/scripts-js/search.js "<keyword>" --stack html-tailwind
+node .agent/skills/studio/scripts-js/search.js "<keyword>" --stack html-tailwind
 ```
 
 Available stacks: `html-tailwind`, `react`, `nextjs`, `vue`, `svelte`, `swiftui`, `react-native`, `flutter`, `shadcn`, `jetpack-compose`
@@ -170,7 +192,7 @@ Available stacks: `html-tailwind`, `react`, `nextjs`, `vue`, `svelte`, `swiftui`
 ### Step 2: Generate Design System (REQUIRED)
 
 ```bash
-node .agent/studio/scripts-js/search.js "beauty spa wellness service elegant" --design-system -p "Serenity Spa"
+node .agent/skills/studio/scripts-js/search.js "beauty spa wellness service elegant" --design-system -p "Serenity Spa"
 ```
 
 **Output:** Complete design system with pattern, style, colors, typography, effects, and anti-patterns.
@@ -179,16 +201,16 @@ node .agent/studio/scripts-js/search.js "beauty spa wellness service elegant" --
 
 ```bash
 # Get UX guidelines for animation and accessibility
-node .agent/studio/scripts-js/search.js "animation accessibility" --domain ux
+node .agent/skills/studio/scripts-js/search.js "animation accessibility" --domain ux
 
 # Get alternative typography options if needed
-node .agent/studio/scripts-js/search.js "elegant luxury serif" --domain typography
+node .agent/skills/studio/scripts-js/search.js "elegant luxury serif" --domain typography
 ```
 
 ### Step 4: Stack Guidelines
 
 ```bash
-node .agent/studio/scripts-js/search.js "layout responsive form" --stack html-tailwind
+node .agent/skills/studio/scripts-js/search.js "layout responsive form" --stack html-tailwind
 ```
 
 **Then:** Synthesize design system + detailed searches and implement the design.
@@ -201,10 +223,10 @@ The `--design-system` flag supports two output formats:
 
 ```bash
 # ASCII box (default) - best for terminal display
-node .agent/studio/scripts-js/search.js "fintech crypto" --design-system
+node .agent/skills/studio/scripts-js/search.js "fintech crypto" --design-system
 
 # Markdown - best for documentation
-node .agent/studio/scripts-js/search.js "fintech crypto" --design-system -f markdown
+node .agent/skills/studio/scripts-js/search.js "fintech crypto" --design-system -f markdown
 ```
 
 ---

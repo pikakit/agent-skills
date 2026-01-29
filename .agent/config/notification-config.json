@@ -1,0 +1,43 @@
+{
+    "notifications": {
+        "enabled": true,
+        "verbosity": "normal",
+        "display": {
+            "agentRouting": true,
+            "skillLoading": true,
+            "scriptExecution": false,
+            "taskCompletion": true
+        },
+        "format": "box"
+    },
+    "verbosityLevels": {
+        "minimal": {
+            "agentRouting": true,
+            "skillLoading": false,
+            "scriptExecution": false,
+            "taskCompletion": true
+        },
+        "normal": {
+            "agentRouting": true,
+            "skillLoading": true,
+            "scriptExecution": false,
+            "taskCompletion": true
+        },
+        "verbose": {
+            "agentRouting": true,
+            "skillLoading": true,
+            "scriptExecution": true,
+            "taskCompletion": true
+        }
+    },
+    "logging": {
+        "enabled": false,
+        "path": ".agent/logs/execution-history.jsonl",
+        "retention": "7d"
+    },
+    "formatting": {
+        "boxStyle": "unicode",
+        "useColors": true,
+        "showTimestamps": false
+    }
+}

@@ -1,0 +1,93 @@
+{
+  "executions": [
+    {
+      "taskId": "AP-mkz2oo4q-caqwdc",
+      "metadata": {
+        "task": "build todo app",
+        "domains": [
+          "frontend",
+          "backend"
+        ],
+        "complexity": "standard",
+        "riskLevel": "LOW"
+      },
+      "timestamp": "2026-01-29T06:28:03.650Z",
+      "startTime": "2026-01-29T06:28:03.243Z",
+      "endTime": "2026-01-29T06:28:03.650Z",
+      "metrics": {
+        "totalDuration": 407,
+        "averagePhaseTime": 101.75,
+        "humanInterventions": 0,
+        "approvalPrompts": 0,
+        "autonomousCompletionRate": 100,
+        "autoFixRate": 100,
+        "firstTimeSuccess": true,
+        "errorRate": 0,
+        "retryCount": 0,
+        "agentDecisionDepth": 0,
+        "skillReuseRatio": 0,
+        "totalPhases": 4,
+        "successfulPhases": 4,
+        "failedPhases": 0,
+        "totalErrors": 0,
+        "autoFixedErrors": 0,
+        "uniqueSkillsUsed": 0,
+        "totalSkillInvocations": 0,
+        "checkpointsCreated": 0
+      },
+      "phases": [
+        {
+          "name": "planning",
+          "duration": 266.88180360724414,
+          "status": "success",
+          "timestamp": 1769668083343
+        },
+        {
+          "name": "setup",
+          "duration": 244.5966061183591,
+          "status": "success",
+          "timestamp": 1769668083445
+        },
+        {
+          "name": "execution",
+          "duration": 225.43868534311258,
+          "status": "success",
+          "timestamp": 1769668083549
+        },
+        {
+          "name": "verification",
+          "duration": 215.13346533909908,
+          "status": "success",
+          "timestamp": 1769668083649
+        }
+      ],
+      "errors": [],
+      "interventions": [],
+      "agentInvocations": [],
+      "skillInvocations": [],
+      "checkpoints": []
+    }
+  ],
+  "baseline": {
+    "totalDuration": 407,
+    "averagePhaseTime": 101.75,
+    "humanInterventions": 0,
+    "approvalPrompts": 0,
+    "autonomousCompletionRate": 100,
+    "autoFixRate": 100,
+    "firstTimeSuccess": true,
+    "errorRate": 0,
+    "retryCount": 0,
+    "agentDecisionDepth": 0,
+    "skillReuseRatio": 0,
+    "totalPhases": 4,
+    "successfulPhases": 4,
+    "failedPhases": 0,
+    "totalErrors": 0,
+    "autoFixedErrors": 0,
+    "uniqueSkillsUsed": 0,
+    "totalSkillInvocations": 0,
+    "checkpointsCreated": 0
+  },
+  "baselineTimestamp": "2026-01-29T06:28:03.650Z"
+}

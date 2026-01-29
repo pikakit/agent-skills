@@ -14,6 +14,16 @@ Display real-time project status including agent progress, file statistics, and 
 
 ---
 
+## 🤖 Meta-Agents Integration
+
+| Phase | Agent | Action |
+| ----- | ----- | ------ |
+| **Status Collection** | `orchestrator` | Aggregate status from all running agents |
+| **Health Analysis** | `assessor` | Evaluate project health risks |
+| **Trend Learning** | `learner` | Track metrics over time for trend analysis |
+
+---
+
 ## What It Shows
 
 | Section          | Information                                   |

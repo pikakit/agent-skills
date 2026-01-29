@@ -14,6 +14,16 @@ Manage preview servers for local development. **Health monitoring and port confl
 
 ---
 
+## 🤖 Meta-Agents Integration
+
+| Phase | Agent | Action |
+| ----- | ----- | ------ |
+| **Pre-Start** | `recovery` | Save current server state |
+| **Port Conflict** | `assessor` | Evaluate best port resolution |
+| **On Failure** | `recovery` | Restore previous server state |
+
+---
+
 ## Sub-commands
 
 ```

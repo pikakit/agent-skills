@@ -11,7 +11,7 @@ import {
     clearSearchCache,
     getCacheStats,
     searchCache
-} from '../../.agent/studio/scripts-js/utils/search-cache.js';
+} from '../../.agent/skills/studio/scripts-js/utils/search-cache.js';
 
 describe('Search Cache', () => {
     beforeEach(() => {

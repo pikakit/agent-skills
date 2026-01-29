@@ -24,6 +24,7 @@ import pretty from "./ui/pretty.js";
 import * as p from "@clack/prompts";
 import pc from "picocolors";
 import { checkEvolutionThreshold, queueEvolutionSignal } from "./evolution-signal.js";
+import { isAutoUpdatingEnabled, getUpdateThreshold } from "./settings.js";
 
 // ============================================================================
 // PERCEPTION LAYER - Cognitive Enhancements
@@ -316,7 +317,7 @@ export function scanFile(filePath, db, updateHits = false) {
                     lesson.lastHit = new Date().toISOString();
 
                     // Check evolution threshold (Phase 2: Signal Layer)
-                    const threshold = 10; // TODO: Get from settings
+                    const threshold = getUpdateThreshold(); // Get from settings
                     const evolutionCheck = checkEvolutionThreshold(lesson, threshold);
 
                     if (evolutionCheck.ready) {
@@ -333,11 +334,12 @@ export function scanFile(filePath, db, updateHits = false) {
                         }
                     }
 
-                    // Auto-escalation: WARNING → ERROR after 5 violations
-                    if (lesson.severity === "WARNING" && lesson.hitCount >= 5 && !lesson.autoEscalated) {
+                    // Auto-escalation: WARNING → ERROR after threshold violations
+                    // ONLY if Auto-Updating is ENABLED in settings
+                    if (isAutoUpdatingEnabled() && lesson.severity === "WARNING" && lesson.hitCount >= threshold && !lesson.autoEscalated) {
                         lesson.severity = "ERROR";
                         lesson.autoEscalated = true;
-                        console.log(`⚡ Auto-escalated [${lesson.id}] to ERROR (${lesson.hitCount} violations)`);
+                        console.log(`⚡ Auto-escalated [${lesson.id}] to ERROR (${lesson.hitCount} hits, threshold: ${threshold})`);
                     }
                 }
             }

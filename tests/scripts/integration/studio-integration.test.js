@@ -9,9 +9,9 @@
  */
 
 import { describe, test, expect } from 'vitest';
-import { search, detectDomain, searchStack } from '../../../.agent/studio/scripts-js/core.js';
-import { formatMasterMd } from '../../../.agent/studio/scripts-js/design_system.js';
-import { detectPageType } from '../../../.agent/studio/scripts-js/utils/page-type-detector.js';
+import { search, detectDomain, searchStack } from '../../../.agent/skills/studio/scripts-js/core.js';
+import { formatMasterMd } from '../../../.agent/skills/studio/scripts-js/design_system.js';
+import { detectPageType } from '../../../.agent/skills/studio/scripts-js/utils/page-type-detector.js';
 
 // Timeout for integration tests
 const INTEGRATION_TIMEOUT = 10000;

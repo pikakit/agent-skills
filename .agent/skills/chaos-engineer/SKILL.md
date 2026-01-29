@@ -1,6 +1,13 @@
 ---
 name: chaos-engineer
-description: Netflix-style chaos engineering for resilience testing. Inject failures safely to verify system robustness.
+description: >-
+  Netflix-style chaos engineering for resilience testing. Inject failures safely to verify system robustness.
+  Triggers on: chaos, resilience, failure injection, fault tolerance, disaster recovery.
+  Coordinates with: perf-optimizer, security-scanner, cicd-pipeline.
+metadata:
+  category: "testing"
+  success_metrics: "failure scenarios tested, recovery verified"
+  coordinates_with: "perf-optimizer, security-scanner, cicd-pipeline"
 ---
 
 # Chaos Engineering Skill

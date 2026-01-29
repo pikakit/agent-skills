@@ -11,7 +11,7 @@ import {
     generateInputSpecs,
     generateModalSpecs,
     generateComponentSpecs
-} from '../../.agent/studio/scripts-js/utils/component-specs.js';
+} from '../../.agent/skills/studio/scripts-js/utils/component-specs.js';
 
 describe('Component Spec Generators', () => {
     const mockColors = {

@@ -14,6 +14,25 @@ Generate comprehensive documentation automatically. **Analyzes code structure an
 
 ---
 
+## 🤖 Meta-Agents Integration
+
+| Phase | Agent | Action |
+| ----- | ----- | ------ |
+| **Pre-Generation** | `assessor` | Evaluate documentation scope |
+| **Pattern Learning** | `learner` | Learn from existing doc patterns |
+| **Post-Generation** | `learner` | Log documentation templates for reuse |
+
+```
+Flow:
+assessor.evaluate(scope) → file count, complexity
+       ↓
+learner.analyze(existing_docs) → patterns
+       ↓
+generate → learner.log(templates)
+```
+
+---
+
 ## Sub-commands
 
 ```

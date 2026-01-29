@@ -14,6 +14,16 @@ Create, validate, and package Agent Skills following best practices. **Uses prog
 
 ---
 
+## 🤖 Meta-Agents Integration
+
+| Phase | Agent | Action |
+| ----- | ----- | ------ |
+| **Pre-Create** | `learner` | Analyze existing skill patterns |
+| **Validation** | `assessor` | Evaluate skill quality and completeness |
+| **Post-Create** | `learner` | Log new skill patterns for future reference |
+
+---
+
 ## Sub-commands
 
 ```

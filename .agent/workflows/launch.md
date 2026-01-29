@@ -1,5 +1,6 @@
 ---
 description: Zero-downtime release pipeline. Security scan, build verification, and health checks included.
+chain: deploy-production
 ---
 
 # /launch - Zero-Downtime Release
@@ -11,6 +12,26 @@ $ARGUMENTS
 ## Purpose
 
 Production deployment with automated pre-flight checks, security scanning, and rollback capability. **Never deploy without verification.**
+
+---
+
+## 🤖 Meta-Agents Integration
+
+| Phase | Agent | Action |
+| ----- | ----- | ------ |
+| **Pre-Deploy** | `assessor` | Evaluate deployment risk level |
+| **Pre-Deploy** | `recovery` | Save state via `state_manager.js` |
+| **On Failure** | `recovery` | Auto-rollback to saved state |
+| **Post-Deploy** | `learner` | Extract lessons from any issues |
+
+```
+Flow:
+assessor → recovery.save() → deploy → health check
+                                          ↓
+                               fail? → recovery.restore()
+                                          ↓
+                                      learner.log()
+```
 
 ---
 

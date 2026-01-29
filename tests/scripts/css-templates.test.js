@@ -11,7 +11,7 @@ import {
     generateShadowDepths,
     generateBorderRadiusScale,
     generateTokenSystem
-} from '../../.agent/studio/scripts-js/utils/css-templates.js';
+} from '../../.agent/skills/studio/scripts-js/utils/css-templates.js';
 
 describe('CSS Template Generators', () => {
     describe('generateColorVars', () => {

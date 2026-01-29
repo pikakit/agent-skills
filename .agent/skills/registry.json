@@ -1,8 +1,58 @@
 {
-  "updatedAt": "2026-01-25T10:06:00.000Z",
+  "updatedAt": "2026-01-29T09:16:35.102Z",
+  "version": "2.0.0",
   "skills": [
     {
+      "name": "execution-reporter",
+      "category": "core",
+      "triggers": [
+        "task start",
+        "agent routing",
+        "skill loading",
+        "task completion"
+      ],
+      "coordinates_with": [
+        "smart-router",
+        "lifecycle-orchestrator",
+        "auto-learner"
+      ],
+      "success_metrics": "notification displayed, audit logged"
+    },
+    {
+      "name": "agent-modes",
+      "category": "core",
+      "triggers": [
+        "mode",
+        "brainstorm",
+        "implement",
+        "debug",
+        "review",
+        "teach",
+        "ship"
+      ],
+      "coordinates_with": [
+        "smart-router",
+        "context-optimizer"
+      ],
+      "success_metrics": "correct mode selected, behavior adapted"
+    },
+    {
       "name": "api-architect",
+      "category": "architecture",
+      "triggers": [
+        "API design",
+        "REST",
+        "GraphQL",
+        "tRPC",
+        "endpoint",
+        "versioning"
+      ],
+      "coordinates_with": [
+        "data-modeler",
+        "security-scanner",
+        "web-core"
+      ],
+      "success_metrics": "API documentation complete, endpoints validated",
       "rules": [
         "api-style.md",
         "auth.md",
@@ -21,42 +71,650 @@
     },
     {
       "name": "app-scaffold",
-      "rules": [],
-      "scripts": []
+      "category": "core",
+      "triggers": [
+        "build app",
+        "create project",
+        "new application",
+        "scaffold",
+        "full-stack"
+      ],
+      "coordinates_with": [
+        "project-planner",
+        "code-craft",
+        "test-architect",
+        "design-system"
+      ],
+      "success_metrics": "project structure created, dependencies installed"
     },
     {
-      "name": "system-design",
-      "rules": [],
-      "scripts": []
+      "name": "chaos-engineer",
+      "category": "devops",
+      "triggers": [
+        "chaos",
+        "resilience",
+        "failure injection",
+        "fault tolerance",
+        "disaster recovery"
+      ],
+      "coordinates_with": [
+        "perf-optimizer",
+        "security-scanner",
+        "cicd-pipeline"
+      ],
+      "success_metrics": "resilience tested, failure scenarios documented"
     },
     {
-      "name": "shell-script",
-      "rules": [],
-      "scripts": []
+      "name": "cicd-pipeline",
+      "category": "devops",
+      "triggers": [
+        "deploy",
+        "deployment",
+        "CI/CD",
+        "pipeline",
+        "rollback",
+        "release"
+      ],
+      "coordinates_with": [
+        "git-workflow",
+        "security-scanner",
+        "feature-flags"
+      ],
+      "success_metrics": "pipeline passing, deployment successful"
     },
     {
-      "name": "agent-modes",
-      "rules": [],
-      "scripts": []
-    },
-    {
-      "name": "idea-storm",
-      "rules": [],
-      "scripts": []
+      "name": "code-constitution",
+      "category": "core",
+      "triggers": [
+        "architecture review",
+        "critical data",
+        "breaking change",
+        "governance",
+        "doctrine"
+      ],
+      "coordinates_with": [
+        "code-review",
+        "review-automation",
+        "security-scanner"
+      ],
+      "success_metrics": "doctrine checks pass, no governance violations",
+      "scripts": [
+        "audit_pr.js",
+        "learn.js",
+        "validate_doctrine.js"
+      ]
     },
     {
       "name": "code-craft",
-      "rules": [],
-      "scripts": []
+      "category": "core",
+      "triggers": [
+        "code style",
+        "clean code",
+        "best practices",
+        "naming conventions",
+        "SRP",
+        "DRY",
+        "KISS"
+      ],
+      "coordinates_with": [
+        "code-review",
+        "test-architect",
+        "code-quality"
+      ],
+      "success_metrics": "code adheres to standards, no linting errors"
+    },
+    {
+      "name": "code-quality",
+      "category": "core",
+      "triggers": [
+        "lint",
+        "format",
+        "check",
+        "validate",
+        "types",
+        "static analysis"
+      ],
+      "coordinates_with": [
+        "code-craft",
+        "code-review",
+        "test-architect"
+      ],
+      "success_metrics": "lint passes, type coverage maintained",
+      "scripts": [
+        "lint_runner.py",
+        "type_coverage.py"
+      ]
     },
     {
       "name": "code-review",
-      "rules": [],
-      "scripts": []
+      "category": "core",
+      "triggers": [
+        "review",
+        "PR",
+        "pull request",
+        "audit",
+        "code quality",
+        "security check"
+      ],
+      "coordinates_with": [
+        "code-craft",
+        "security-scanner",
+        "test-architect"
+      ],
+      "success_metrics": "all blocking issues resolved, security verified"
+    },
+    {
+      "name": "context-optimizer",
+      "category": "core",
+      "triggers": [
+        "context",
+        "token usage",
+        "memory system",
+        "agent performance",
+        "LLM pipeline"
+      ],
+      "coordinates_with": [
+        "smart-router",
+        "multi-agent",
+        "reasoning-engine"
+      ],
+      "success_metrics": "context optimized, token usage reduced",
+      "scripts": [
+        "context_analyzer.py",
+        "compression_evaluator.py"
+      ]
+    },
+    {
+      "name": "creative-thinking",
+      "category": "core",
+      "triggers": [
+        "stuck",
+        "innovation",
+        "creative solution",
+        "brainstorm",
+        "alternative approach"
+      ],
+      "coordinates_with": [
+        "idea-storm",
+        "reasoning-engine",
+        "project-planner"
+      ],
+      "success_metrics": "multiple alternatives generated, solution found"
+    },
+    {
+      "name": "data-modeler",
+      "category": "architecture",
+      "triggers": [
+        "database",
+        "schema",
+        "Prisma",
+        "Drizzle",
+        "SQL",
+        "migration",
+        "indexing"
+      ],
+      "coordinates_with": [
+        "api-architect",
+        "security-scanner",
+        "nodejs-pro"
+      ],
+      "success_metrics": "schema validated, migrations applied",
+      "scripts": [
+        "schema_validator.py"
+      ]
+    },
+    {
+      "name": "debug-pro",
+      "category": "core",
+      "triggers": [
+        "debug",
+        "bug",
+        "error",
+        "crash",
+        "exception",
+        "root cause"
+      ],
+      "coordinates_with": [
+        "debug-toolkit",
+        "test-architect"
+      ],
+      "success_metrics": "bug fixed, root cause identified"
+    },
+    {
+      "name": "debug-toolkit",
+      "category": "core",
+      "triggers": [
+        "debug",
+        "bug",
+        "error",
+        "root cause",
+        "investigation",
+        "fix not working"
+      ],
+      "coordinates_with": [
+        "test-architect",
+        "code-review",
+        "code-quality"
+      ],
+      "success_metrics": "issue resolved, verification complete"
+    },
+    {
+      "name": "design-system",
+      "category": "architecture",
+      "triggers": [
+        "design",
+        "UI",
+        "UX",
+        "color palette",
+        "typography",
+        "component design"
+      ],
+      "coordinates_with": [
+        "web-core",
+        "tailwind-kit",
+        "visual-excellence"
+      ],
+      "success_metrics": "design system consistent, components documented",
+      "rules": [
+        "animation-guide.md",
+        "color-system.md",
+        "decision-trees.md",
+        "motion-graphics.md",
+        "typography-system.md",
+        "ux-psychology.md",
+        "visual-effects.md"
+      ],
+      "scripts": [
+        "accessibility_checker.py",
+        "ux_audit.py"
+      ]
+    },
+    {
+      "name": "diagram-kit",
+      "category": "specialized",
+      "triggers": [
+        "diagram",
+        "mermaid",
+        "flowchart",
+        "sequence diagram",
+        "architecture diagram"
+      ],
+      "coordinates_with": [
+        "doc-processor",
+        "system-design"
+      ],
+      "success_metrics": "diagram generated, syntax valid"
+    },
+    {
+      "name": "doc-processor",
+      "category": "specialized",
+      "triggers": [
+        "document",
+        "Word",
+        "PDF",
+        "Excel",
+        "PowerPoint",
+        "docx",
+        "xlsx",
+        "pptx"
+      ],
+      "coordinates_with": [
+        "doc-templates",
+        "diagram-kit"
+      ],
+      "success_metrics": "document processed, format correct"
+    },
+    {
+      "name": "doc-templates",
+      "category": "specialized",
+      "triggers": [
+        "template",
+        "README",
+        "documentation",
+        "API docs",
+        "changelog"
+      ],
+      "coordinates_with": [
+        "doc-processor",
+        "project-planner"
+      ],
+      "success_metrics": "template applied, documentation complete"
+    },
+    {
+      "name": "e2e-automation",
+      "category": "testing",
+      "triggers": [
+        "E2E test",
+        "Playwright",
+        "browser test",
+        "visual testing",
+        "automation"
+      ],
+      "coordinates_with": [
+        "test-architect",
+        "perf-optimizer",
+        "cicd-pipeline"
+      ],
+      "success_metrics": "E2E tests pass, coverage adequate",
+      "scripts": [
+        "playwright_runner.py"
+      ]
+    },
+    {
+      "name": "feature-flags",
+      "category": "devops",
+      "triggers": [
+        "feature flag",
+        "A/B test",
+        "rollout",
+        "toggle",
+        "kill switch",
+        "experiment"
+      ],
+      "coordinates_with": [
+        "cicd-pipeline",
+        "perf-optimizer"
+      ],
+      "success_metrics": "flags configured, rollout controlled"
+    },
+    {
+      "name": "game-engine",
+      "category": "framework",
+      "triggers": [
+        "game",
+        "Unity",
+        "Godot",
+        "Phaser",
+        "game engine",
+        "2D",
+        "3D"
+      ],
+      "coordinates_with": [
+        "perf-optimizer",
+        "mobile-first"
+      ],
+      "success_metrics": "game runs, no crashes"
+    },
+    {
+      "name": "geo-spatial",
+      "category": "specialized",
+      "triggers": [
+        "GEO",
+        "AI search",
+        "citations",
+        "Perplexity",
+        "AI visibility"
+      ],
+      "coordinates_with": [
+        "seo-optimizer",
+        "web-core"
+      ],
+      "success_metrics": "AI citation rate improved, content structured",
+      "scripts": [
+        "geo_checker.py"
+      ]
+    },
+    {
+      "name": "git-workflow",
+      "category": "devops",
+      "triggers": [
+        "git",
+        "commit",
+        "branch",
+        "merge",
+        "PR",
+        "conventional commits"
+      ],
+      "coordinates_with": [
+        "code-review",
+        "review-automation",
+        "cicd-pipeline"
+      ],
+      "success_metrics": "commits follow convention, history traceable",
+      "scripts": [
+        "format-commit.js"
+      ]
+    },
+    {
+      "name": "globalization-kit",
+      "category": "specialized",
+      "triggers": [
+        "i18n",
+        "l10n",
+        "translation",
+        "localization",
+        "internationalization",
+        "language"
+      ],
+      "coordinates_with": [
+        "web-core",
+        "mobile-first"
+      ],
+      "success_metrics": "translations complete, RTL handled",
+      "scripts": [
+        "i18n_checker.py"
+      ]
+    },
+    {
+      "name": "idea-storm",
+      "category": "core",
+      "triggers": [
+        "brainstorm",
+        "understand requirements",
+        "clarify",
+        "unclear",
+        "complex request"
+      ],
+      "coordinates_with": [
+        "project-planner",
+        "creative-thinking",
+        "app-scaffold"
+      ],
+      "success_metrics": "requirements clear, approach defined"
+    },
+    {
+      "name": "mcp-server",
+      "category": "framework",
+      "triggers": [
+        "MCP",
+        "Model Context Protocol",
+        "server",
+        "integration"
+      ],
+      "coordinates_with": [
+        "api-architect",
+        "context-optimizer"
+      ],
+      "success_metrics": "MCP server running, tools connected"
+    },
+    {
+      "name": "mobile-first",
+      "category": "framework",
+      "triggers": [
+        "mobile",
+        "responsive",
+        "touch",
+        "React Native",
+        "Flutter"
+      ],
+      "coordinates_with": [
+        "design-system",
+        "perf-optimizer"
+      ],
+      "success_metrics": "mobile audit passed, responsive design",
+      "scripts": [
+        "mobile_audit.py"
+      ]
+    },
+    {
+      "name": "multi-agent",
+      "category": "core",
+      "triggers": [
+        "orchestrate",
+        "multiple agents",
+        "coordination",
+        "parallel",
+        "comprehensive analysis"
+      ],
+      "coordinates_with": [
+        "smart-router",
+        "context-optimizer",
+        "project-planner"
+      ],
+      "success_metrics": "agents coordinated, tasks completed"
+    },
+    {
+      "name": "nextjs-pro",
+      "category": "framework",
+      "triggers": [
+        "Next.js",
+        "App Router",
+        "RSC",
+        "server actions",
+        "SSR",
+        "SSG"
+      ],
+      "coordinates_with": [
+        "web-core",
+        "react-architect"
+      ],
+      "success_metrics": "build passes, pages render"
+    },
+    {
+      "name": "nodejs-pro",
+      "category": "framework",
+      "triggers": [
+        "Node.js",
+        "Express",
+        "backend",
+        "server",
+        "API"
+      ],
+      "coordinates_with": [
+        "api-architect",
+        "data-modeler"
+      ],
+      "success_metrics": "server runs, no memory leaks"
+    },
+    {
+      "name": "offensive-sec",
+      "category": "devops",
+      "triggers": [
+        "pentest",
+        "red team",
+        "exploit",
+        "vulnerability",
+        "hacking"
+      ],
+      "coordinates_with": [
+        "security-scanner",
+        "code-review"
+      ],
+      "success_metrics": "vulnerabilities found, report complete"
+    },
+    {
+      "name": "perf-optimizer",
+      "category": "devops",
+      "triggers": [
+        "performance",
+        "slow",
+        "optimize",
+        "Lighthouse",
+        "bundle size",
+        "Core Web Vitals"
+      ],
+      "coordinates_with": [
+        "web-core",
+        "feature-flags",
+        "e2e-automation"
+      ],
+      "success_metrics": "Core Web Vitals pass, performance improved",
+      "scripts": [
+        "lighthouse_audit.py"
+      ]
+    },
+    {
+      "name": "project-planner",
+      "category": "core",
+      "triggers": [
+        "plan",
+        "breakdown",
+        "tasks",
+        "implementation strategy",
+        "project scope"
+      ],
+      "coordinates_with": [
+        "app-scaffold",
+        "code-craft",
+        "test-architect"
+      ],
+      "success_metrics": "plan created, tasks prioritized"
+    },
+    {
+      "name": "python-pro",
+      "category": "framework",
+      "triggers": [
+        "Python",
+        "pip",
+        "FastAPI",
+        "Django",
+        "Flask"
+      ],
+      "coordinates_with": [
+        "test-architect",
+        "api-architect"
+      ],
+      "success_metrics": "tests pass, type hints complete"
+    },
+    {
+      "name": "react-architect",
+      "category": "architecture",
+      "triggers": [
+        "React",
+        "component",
+        "hooks",
+        "state management",
+        "Redux",
+        "Zustand"
+      ],
+      "coordinates_with": [
+        "web-core",
+        "design-system"
+      ],
+      "success_metrics": "components render, no prop drilling"
+    },
+    {
+      "name": "reasoning-engine",
+      "category": "core",
+      "triggers": [
+        "reasoning",
+        "step-by-step",
+        "complex problem",
+        "analysis",
+        "decomposition"
+      ],
+      "coordinates_with": [
+        "creative-thinking",
+        "project-planner",
+        "debug-toolkit"
+      ],
+      "success_metrics": "problem solved, reasoning documented"
     },
     {
       "name": "review-automation",
-      "rules": [],
+      "category": "devops",
+      "triggers": [
+        "automate review",
+        "PR check",
+        "validate PR",
+        "automated audit"
+      ],
+      "coordinates_with": [
+        "code-review",
+        "code-constitution",
+        "git-workflow"
+      ],
+      "success_metrics": "all checks pass, no blocking issues",
       "scripts": [
         "audit_pr.js",
         "audit_pr.v2.js",
@@ -64,24 +722,231 @@
       ]
     },
     {
-      "name": "data-modeler",
-      "rules": [],
+      "name": "security-scanner",
+      "category": "devops",
+      "triggers": [
+        "security",
+        "vulnerability",
+        "OWASP",
+        "pentest",
+        "threat modeling"
+      ],
+      "coordinates_with": [
+        "code-review",
+        "cicd-pipeline",
+        "api-architect"
+      ],
+      "success_metrics": "no critical vulnerabilities, scan complete",
       "scripts": [
-        "schema_validator.py"
+        "security_scan.py"
       ]
     },
     {
-      "name": "cicd-pipeline",
-      "rules": [],
-      "scripts": []
+      "name": "self-evolution",
+      "category": "specialized",
+      "triggers": [
+        "mistake",
+        "learn",
+        "improve",
+        "lesson",
+        "feedback",
+        "wrong",
+        "fix this"
+      ],
+      "coordinates_with": [
+        "code-review",
+        "code-constitution",
+        "smart-router"
+      ],
+      "success_metrics": "lesson learned, pattern improved"
     },
     {
-      "name": "doc-templates",
-      "rules": [],
-      "scripts": []
+      "name": "seo-optimizer",
+      "category": "specialized",
+      "triggers": [
+        "SEO",
+        "meta tags",
+        "sitemap",
+        "search ranking",
+        "OpenGraph"
+      ],
+      "coordinates_with": [
+        "web-core",
+        "perf-optimizer"
+      ],
+      "success_metrics": "SEO score improved, meta tags complete",
+      "scripts": [
+        "seo_checker.py"
+      ]
+    },
+    {
+      "name": "server-ops",
+      "category": "devops",
+      "triggers": [
+        "server",
+        "DevOps",
+        "infrastructure",
+        "deployment",
+        "hosting"
+      ],
+      "coordinates_with": [
+        "cicd-pipeline",
+        "security-scanner"
+      ],
+      "success_metrics": "server running, uptime maintained"
+    },
+    {
+      "name": "shell-script",
+      "category": "framework",
+      "triggers": [
+        "shell",
+        "bash",
+        "script",
+        "automation",
+        "CLI"
+      ],
+      "coordinates_with": [
+        "cicd-pipeline",
+        "server-ops"
+      ],
+      "success_metrics": "script runs, no errors"
+    },
+    {
+      "name": "skill-forge",
+      "category": "specialized",
+      "triggers": [
+        "create skill",
+        "new skill",
+        "update skill",
+        "skill development"
+      ],
+      "coordinates_with": [
+        "project-planner",
+        "code-craft"
+      ],
+      "success_metrics": "skill created, validated",
+      "scripts": [
+        "init_skill.py",
+        "package_skill.py",
+        "quick_validate.py"
+      ]
+    },
+    {
+      "name": "smart-router",
+      "category": "core",
+      "triggers": [
+        "route",
+        "select agent",
+        "which skill",
+        "task analysis",
+        "multi-domain request"
+      ],
+      "coordinates_with": [
+        "agent-modes",
+        "context-optimizer",
+        "multi-agent"
+      ],
+      "success_metrics": "correct skill selected, task routed"
+    },
+    {
+      "name": "system-design",
+      "category": "architecture",
+      "triggers": [
+        "architecture",
+        "system design",
+        "scalability",
+        "microservices"
+      ],
+      "coordinates_with": [
+        "api-architect",
+        "data-modeler"
+      ],
+      "success_metrics": "architecture documented, scalability validated"
+    },
+    {
+      "name": "tailwind-kit",
+      "category": "architecture",
+      "triggers": [
+        "Tailwind",
+        "CSS",
+        "styling",
+        "utility classes"
+      ],
+      "coordinates_with": [
+        "design-system",
+        "web-core"
+      ],
+      "success_metrics": "styles applied, design consistent"
+    },
+    {
+      "name": "test-architect",
+      "category": "testing",
+      "triggers": [
+        "test",
+        "testing",
+        "unit test",
+        "coverage",
+        "mocking",
+        "AAA pattern"
+      ],
+      "coordinates_with": [
+        "code-craft",
+        "code-quality",
+        "e2e-automation"
+      ],
+      "success_metrics": "tests pass, coverage adequate",
+      "scripts": [
+        "test_runner.py"
+      ]
+    },
+    {
+      "name": "test-driven-dev",
+      "category": "testing",
+      "triggers": [
+        "TDD",
+        "test first",
+        "red-green-refactor"
+      ],
+      "coordinates_with": [
+        "test-architect",
+        "code-craft"
+      ],
+      "success_metrics": "tests written before code, coverage high"
+    },
+    {
+      "name": "visual-excellence",
+      "category": "architecture",
+      "triggers": [
+        "visual",
+        "aesthetic",
+        "design quality",
+        "polish"
+      ],
+      "coordinates_with": [
+        "design-system",
+        "tailwind-kit"
+      ],
+      "success_metrics": "design polished, visual consistency"
     },
     {
       "name": "web-core",
+      "category": "framework",
+      "triggers": [
+        "React",
+        "Next.js",
+        "frontend",
+        "component",
+        "performance",
+        "SSR",
+        "SSG",
+        "RSC"
+      ],
+      "coordinates_with": [
+        "design-system",
+        "tailwind-kit",
+        "test-architect"
+      ],
+      "success_metrics": "Core Web Vitals pass, no performance regressions",
       "rules": [
         "advanced-event-handler-refs.md",
         "advanced-init-once.md",
@@ -99,269 +964,398 @@
         "client-event-listeners.md",
         "client-localstorage-schema.md",
         "client-passive-event-listeners.md",
-        "client-swr-dedup.md",
-        "js-batch-dom-css.md",
-        "js-cache-function-results.md",
-        "js-cache-property-access.md",
-        "js-cache-storage.md",
-        "js-combine-iterations.md",
-        "js-early-exit.md",
-        "js-hoist-regexp.md",
-        "js-index-maps.md",
-        "js-length-check-first.md",
-        "js-min-max-loop.md",
-        "js-set-map-lookups.md",
-        "js-tosorted-immutable.md",
-        "rendering-activity.md",
-        "rendering-animate-svg-wrapper.md",
-        "rendering-conditional-render.md",
-        "rendering-content-visibility.md",
-        "rendering-hoist-jsx.md",
-        "rendering-hydration-no-flicker.md",
-        "rendering-hydration-suppress-warning.md",
-        "rendering-svg-precision.md",
-        "rendering-usetransition-loading.md",
-        "rerender-defer-reads.md",
-        "rerender-dependencies.md",
-        "rerender-derived-state-no-effect.md",
-        "rerender-derived-state.md",
-        "rerender-functional-setstate.md",
-        "rerender-lazy-state-init.md",
-        "rerender-memo-with-default-value.md",
-        "rerender-memo.md",
-        "rerender-move-effect-to-event.md",
-        "rerender-simple-expression-in-memo.md",
-        "rerender-transitions.md",
-        "rerender-use-ref-transient-values.md",
-        "server-after-nonblocking.md",
-        "server-auth-actions.md",
-        "server-cache-lru.md",
-        "server-cache-react.md",
-        "server-dedup-props.md",
-        "server-parallel-fetching.md",
-        "server-serialization.md",
-        "_sections.md",
-        "_template.md"
+        "client-swr-dedup.md"
+      ]
+    },
+    {
+      "name": "problem-checker",
+      "category": "core",
+      "triggers": [
+        "before notify_user",
+        "before task completion",
+        "IDE errors",
+        "check problems"
       ],
-      "scripts": []
-    },
-    {
-      "name": "design-system",
-      "rules": [
-        "animation-guide.md",
-        "color-system.md",
-        "decision-trees.md",
-        "motion-graphics.md",
-        "typography-system.md",
-        "ux-psychology.md",
-        "visual-effects.md"
+      "coordinates_with": [
+        "code-quality",
+        "auto-learner",
+        "self-evolution"
       ],
+      "success_metrics": "IDE errors = 0, auto-fix success rate > 80%",
       "scripts": [
-        "accessibility_checker.py",
-        "ux_audit.py"
+        "check_problems.js"
       ]
     },
     {
-      "name": "game-engine",
-      "rules": [],
-      "scripts": []
-    },
-    {
-      "name": "geo-spatial",
-      "rules": [],
+      "name": "auto-learner",
+      "category": "core",
+      "triggers": [
+        "task failure",
+        "user complaint",
+        "mistake detected",
+        "error pattern"
+      ],
+      "coordinates_with": [
+        "problem-checker",
+        "self-evolution",
+        "code-constitution"
+      ],
+      "success_metrics": "lessons extracted, patterns improved",
       "scripts": [
-        "geo_checker.py"
+        "learn_from_failure.js"
       ]
     },
     {
-      "name": "git-workflow",
-      "rules": [],
+      "name": "state-rollback",
+      "category": "core",
+      "triggers": [
+        "before risky operations",
+        "rollback",
+        "undo",
+        "restore state"
+      ],
+      "coordinates_with": [
+        "code-craft",
+        "app-scaffold",
+        "problem-checker"
+      ],
+      "success_metrics": "state saved, restore successful",
       "scripts": [
-        "format-commit.js"
+        "state_manager.js"
       ]
     },
     {
-      "name": "code-constitution",
-      "rules": [],
+      "name": "input-validator",
+      "category": "core",
+      "triggers": [
+        "every incoming request",
+        "before smart-router"
+      ],
+      "coordinates_with": [
+        "smart-router",
+        "idea-storm"
+      ],
+      "success_metrics": "request validated, confidence > 80%"
+    },
+    {
+      "name": "lifecycle-orchestrator",
+      "category": "core",
+      "triggers": [
+        "complex multi-phase",
+        "autopilot",
+        "full lifecycle"
+      ],
+      "coordinates_with": [
+        "smart-router",
+        "multi-agent",
+        "problem-checker"
+      ],
+      "success_metrics": "all phases complete, no failures"
+    },
+    {
+      "name": "integration-tester",
+      "category": "testing",
+      "triggers": [
+        "after build",
+        "before deploy",
+        "API changes",
+        "cross-service"
+      ],
+      "coordinates_with": [
+        "test-architect",
+        "e2e-automation",
+        "api-architect"
+      ],
+      "success_metrics": "all contracts valid, integrations pass"
+    },
+    {
+      "name": "requirement-extractor",
+      "category": "core",
+      "triggers": [
+        "after idea-storm",
+        "before project-planner",
+        "complex feature"
+      ],
+      "coordinates_with": [
+        "idea-storm",
+        "project-planner"
+      ],
+      "success_metrics": "structured requirements, no ambiguity"
+    },
+    {
+      "name": "api-doc-builder",
+      "category": "documentation",
+      "triggers": [
+        "API docs",
+        "Swagger",
+        "OpenAPI",
+        "Postman"
+      ],
+      "coordinates_with": [
+        "doc-generator",
+        "api-architect"
+      ],
+      "success_metrics": "API documentation generated"
+    },
+    {
+      "name": "architecture-diagrammer",
+      "category": "documentation",
+      "triggers": [
+        "diagram",
+        "architecture",
+        "C4",
+        "Mermaid",
+        "flowchart"
+      ],
+      "coordinates_with": [
+        "doc-generator",
+        "diagram-kit"
+      ],
+      "success_metrics": "diagrams generated"
+    },
+    {
+      "name": "cache-optimizer",
+      "category": "performance",
+      "triggers": [
+        "cache",
+        "Redis",
+        "CDN",
+        "caching strategy"
+      ],
+      "coordinates_with": [
+        "perf-optimizer",
+        "database-tuner"
+      ],
+      "success_metrics": "cache configured, hit rate >80%"
+    },
+    {
+      "name": "database-tuner",
+      "category": "performance",
+      "triggers": [
+        "slow query",
+        "database optimization",
+        "N+1",
+        "index"
+      ],
+      "coordinates_with": [
+        "perf-optimizer",
+        "cache-optimizer",
+        "data-modeler"
+      ],
+      "success_metrics": "queries optimized, indexes added"
+    },
+    {
+      "name": "doc-generator",
+      "category": "documentation",
+      "triggers": [
+        "document",
+        "README",
+        "docs",
+        "documentation"
+      ],
+      "coordinates_with": [
+        "api-doc-builder",
+        "architecture-diagrammer"
+      ],
+      "success_metrics": "documentation complete"
+    },
+    {
+      "name": "incident-response",
+      "category": "observability",
+      "triggers": [
+        "alerts",
+        "incident response",
+        "PagerDuty",
+        "runbooks"
+      ],
+      "coordinates_with": [
+        "logging",
+        "metrics",
+        "observability"
+      ],
+      "success_metrics": "alerts configured, runbooks created"
+    },
+    {
+      "name": "load-tester",
+      "category": "testing",
+      "triggers": [
+        "load test",
+        "k6",
+        "Artillery",
+        "stress test"
+      ],
+      "coordinates_with": [
+        "perf-optimizer",
+        "database-tuner"
+      ],
+      "success_metrics": "load tests passing, benchmarks recorded"
+    },
+    {
+      "name": "logging",
+      "category": "observability",
+      "triggers": [
+        "logging",
+        "logs",
+        "structured logging",
+        "Pino"
+      ],
+      "coordinates_with": [
+        "observability",
+        "metrics",
+        "tracing"
+      ],
+      "success_metrics": "structured logging configured"
+    },
+    {
+      "name": "metrics",
+      "category": "observability",
+      "triggers": [
+        "metrics",
+        "Prometheus",
+        "monitoring",
+        "Golden Signals"
+      ],
+      "coordinates_with": [
+        "observability",
+        "logging",
+        "incident-response"
+      ],
+      "success_metrics": "metrics exported, dashboards created"
+    },
+    {
+      "name": "observability",
+      "category": "observability",
+      "triggers": [
+        "monitoring",
+        "observability",
+        "OpenTelemetry",
+        "telemetry"
+      ],
+      "coordinates_with": [
+        "logging",
+        "metrics",
+        "tracing",
+        "incident-response"
+      ],
+      "success_metrics": "observability stack configured"
+    },
+    {
+      "name": "studio",
+      "category": "design",
+      "triggers": [
+        "design system",
+        "UI design",
+        "color palette",
+        "typography"
+      ],
+      "coordinates_with": [
+        "frontend-specialist",
+        "design-system"
+      ],
+      "success_metrics": "design system generated",
       "scripts": [
-        "audit_pr.js",
-        "learn.js",
-        "validate_doctrine.js"
+        "search.js",
+        "design_system.js"
       ]
     },
     {
-      "name": "globalization-kit",
-      "rules": [],
-      "scripts": [
-        "i18n_checker.py"
-      ]
+      "name": "tracing",
+      "category": "observability",
+      "triggers": [
+        "tracing",
+        "distributed tracing",
+        "APM",
+        "spans"
+      ],
+      "coordinates_with": [
+        "observability",
+        "logging",
+        "metrics"
+      ],
+      "success_metrics": "traces configured, spans visible"
     },
     {
-      "name": "smart-router",
-      "rules": [],
-      "scripts": []
+      "name": "typescript-expert",
+      "category": "framework",
+      "triggers": [
+        "TypeScript",
+        "type-level programming",
+        "tsconfig",
+        "monorepo",
+        "type gymnastics",
+        "build performance"
+      ],
+      "coordinates_with": [
+        "nodejs-pro",
+        "react-architect"
+      ],
+      "success_metrics": "type errors resolved, build optimized"
     },
     {
-      "name": "code-quality",
-      "rules": [],
-      "scripts": [
-        "lint_runner.py",
-        "type_coverage.py"
-      ]
+      "name": "agent-patterns",
+      "category": "core",
+      "triggers": [
+        "AI agent",
+        "autonomous agent",
+        "tool use",
+        "function calling",
+        "ReAct loop",
+        "agent architecture"
+      ],
+      "coordinates_with": [
+        "multi-agent",
+        "mcp-server"
+      ],
+      "success_metrics": "agent pattern implemented, tools integrated"
     },
     {
-      "name": "mcp-server",
-      "rules": [],
-      "scripts": []
+      "name": "react-best-practices",
+      "category": "frontend",
+      "triggers": [
+        "React performance",
+        "Next.js optimization",
+        "bundle size",
+        "re-render",
+        "Vercel patterns"
+      ],
+      "coordinates_with": [
+        "react-architect",
+        "nextjs-pro",
+        "frontend-specialist"
+      ],
+      "success_metrics": "performance rules applied, bundle optimized"
     },
     {
-      "name": "mobile-first",
-      "rules": [],
-      "scripts": [
-        "mobile_audit.py"
-      ]
+      "name": "workflow-patterns",
+      "category": "architecture",
+      "triggers": [
+        "Temporal",
+        "Saga pattern",
+        "distributed transactions",
+        "workflow orchestration",
+        "long-running processes"
+      ],
+      "coordinates_with": [
+        "system-design",
+        "backend"
+      ],
+      "success_metrics": "workflow designed, saga implemented"
     },
     {
-      "name": "nextjs-pro",
-      "rules": [],
-      "scripts": []
-    },
-    {
-      "name": "nodejs-pro",
-      "rules": [],
-      "scripts": []
-    },
-    {
-      "name": "multi-agent",
-      "rules": [],
-      "scripts": []
-    },
-    {
-      "name": "perf-optimizer",
-      "rules": [],
-      "scripts": [
-        "lighthouse_audit.py"
-      ]
-    },
-    {
-      "name": "project-planner",
-      "rules": [],
-      "scripts": []
-    },
-    {
-      "name": "powershell",
-      "rules": [],
-      "scripts": []
-    },
-    {
-      "name": "python-pro",
-      "rules": [],
-      "scripts": []
-    },
-    {
-      "name": "react-architect",
-      "rules": [],
-      "scripts": []
-    },
-    {
-      "name": "offensive-sec",
-      "rules": [],
-      "scripts": []
-    },
-    {
-      "name": "seo-optimizer",
-      "rules": [],
-      "scripts": [
-        "seo_checker.py"
-      ]
-    },
-    {
-      "name": "server-ops",
-      "rules": [],
-      "scripts": []
-    },
-    {
-      "name": "debug-pro",
-      "rules": [],
-      "scripts": []
-    },
-    {
-      "name": "tailwind-kit",
-      "rules": [],
-      "scripts": []
-    },
-    {
-      "name": "test-driven-dev",
-      "rules": [],
-      "scripts": []
-    },
-    {
-      "name": "test-architect",
-      "rules": [],
-      "scripts": [
-        "test_runner.py"
-      ]
-    },
-    {
-      "name": "security-scanner",
-      "rules": [],
-      "scripts": [
-        "security_scan.py"
-      ]
-    },
-    {
-      "name": "e2e-automation",
-      "rules": [],
-      "scripts": [
-        "playwright_runner.py"
-      ]
-    },
-    {
-      "name": "visual-excellence",
-      "rules": [],
-      "scripts": []
-    },
-    {
-      "name": "context-optimizer",
-      "rules": [],
-      "scripts": [
-        "context_analyzer.py",
-        "compression_evaluator.py"
-      ]
-    },
-    {
-      "name": "debug-toolkit",
-      "rules": [],
-      "scripts": []
-    },
-    {
-      "name": "doc-processor",
-      "rules": [],
-      "scripts": []
-    },
-    {
-      "name": "diagram-kit",
-      "rules": [],
-      "scripts": []
-    },
-    {
-      "name": "creative-thinking",
-      "rules": [],
-      "scripts": []
-    },
-    {
-      "name": "reasoning-engine",
-      "rules": [],
-      "scripts": []
-    },
-    {
-      "name": "skill-forge",
-      "rules": [],
-      "scripts": [
-        "init_skill.py",
-        "package_skill.py",
-        "quick_validate.py"
-      ]
+      "name": "gitops",
+      "category": "devops",
+      "triggers": [
+        "GitOps",
+        "ArgoCD",
+        "Flux",
+        "Kubernetes deployment",
+        "declarative infrastructure"
+      ],
+      "coordinates_with": [
+        "server-ops",
+        "cicd-pipeline"
+      ],
+      "success_metrics": "GitOps workflow configured, sync working"
     }
   ]
 }

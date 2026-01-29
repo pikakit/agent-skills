@@ -7,6 +7,19 @@
     "url": "git+https://github.com/agentskillkit/agent-skills.git"
   },
   "homepage": "https://github.com/agentskillkit/agent-skills",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "files": [
+    ".agent",
+    "docs",
+    "packages",
+    "scripts",
+    "tests",
+    "README.md",
+    "CHANGELOG.md",
+    "LICENSE"
+  ],
   "bin": {
     "agent-skills-kit": "./packages/cli/bin/ag-smart.js",
     "ag-smart": "./packages/cli/bin/ag-smart.js"
@@ -25,8 +38,8 @@
     "preview:status": "node .agent/scripts-js/auto_preview.js status",
     "session:status": "node .agent/scripts-js/session_manager.js status .",
     "session:info": "node .agent/scripts-js/session_manager.js info .",
-    "studio:search": "node .agent/studio/scripts-js/search.js",
-    "studio:design": "node .agent/studio/scripts-js/search.js --design-system",
+    "studio:search": "node .agent/skills/studio/scripts-js/search.js",
+    "studio:design": "node .agent/skills/studio/scripts-js/search.js --design-system",
     "test:studio": "vitest run tests/scripts/css-templates.test.js tests/scripts/component-specs.test.js tests/scripts/format-master-md.test.js tests/scripts/page-type-detector.test.js tests/scripts/intelligent-overrides.test.js tests/scripts/page-override-formatter.test.js tests/scripts/css-validator.test.js tests/scripts/search-cache.test.js tests/scripts/config-loader.test.js tests/scripts/integration/studio-integration.test.js",
     "test:unit": "vitest run tests/scripts --exclude tests/scripts/integration/*",
     "test:all": "npm run test && npm run test:integration && npm run test:studio",
@@ -49,11 +62,12 @@
   "author": "agentskillkit <agentskillkit@gmail.com>",
   "license": "UNLICENSED",
   "devDependencies": {
+    "@vitest/coverage-v8": "^4.0.18",
     "agentskillskit-cli": "file:packages/cli",
     "eslint": "^9.0.0",
     "gray-matter": "^4.0.3",
     "prettier": "^3.0.0",
-    "vitest": "^1.6.1"
+    "vitest": "^4.0.18"
   },
   "dependencies": {
     "@clack/prompts": "^0.11.0",

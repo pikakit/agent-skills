@@ -5,7 +5,7 @@
  */
 
 import { describe, test, expect } from 'vitest';
-import { detectPageType } from '../../.agent/studio/scripts-js/utils/page-type-detector.js';
+import { detectPageType } from '../../.agent/skills/studio/scripts-js/utils/page-type-detector.js';
 
 describe('Page Type Detection', () => {
     describe('detectPageType - keyword matching', () => {

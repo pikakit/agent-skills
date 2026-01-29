@@ -1,10 +1,15 @@
 ---
 name: web-core
-description: Comprehensive React and Next.js best practices, performance optimization, and architectural patterns.
+description: >-
+  Comprehensive React and Next.js best practices, performance optimization, and architectural patterns.
+  Triggers on: React, Next.js, frontend, component, performance, SSR, SSG, RSC.
+  Coordinates with: design-system, tailwind-kit, test-architect.
 allowed-tools: Read, Write, Edit, Glob, Grep, Bash
 metadata:
   version: "3.0.0"
-  tags: "react, nextjs, performance, server-components, client-components"
+  category: "framework"
+  success_metrics: "Core Web Vitals pass, no performance regressions"
+  coordinates_with: "design-system, tailwind-kit, test-architect"
 ---
 
 # Frontend Engineering Skill

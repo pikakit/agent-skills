@@ -1,6 +1,7 @@
 {
-  "$comment": "Execution Policy Schema v1.1 - Agent Skill Kit",
+  "$comment": "Execution Policy Schema v1.1 - Agent Skill Kit v3.3.0",
   "version": "1.1",
+  "codebaseVersion": "3.3.0",
   "description": "Execution policy for workflow auto-accept authorization",
   
   "autoAccept": {
@@ -43,7 +44,12 @@
       { "pattern": "eval\\(", "type": "regex", "severity": "critical" },
       { "pattern": "> /dev/null", "type": "contains", "severity": "medium" },
       { "pattern": "| rm", "type": "contains", "severity": "critical" },
-      { "pattern": "&& rm", "type": "contains", "severity": "critical" }
+      { "pattern": "&& rm", "type": "contains", "severity": "critical" },
+      { "pattern": "Remove-Item -Recurse", "type": "contains", "severity": "critical", "description": "PowerShell recursive delete" },
+      { "pattern": "Remove-Item -Force", "type": "contains", "severity": "high" },
+      { "pattern": "Clear-RecycleBin", "type": "prefix", "severity": "high" },
+      { "pattern": "Stop-Computer", "type": "prefix", "severity": "critical" },
+      { "pattern": "Restart-Computer", "type": "prefix", "severity": "critical" }
     ],
     
     "allow": [

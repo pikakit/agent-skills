@@ -43,16 +43,7 @@ export async function showMainMenu() {
         const autoLearningEnabled = settings.autoLearn !== false; // Default to true
 
         // Build menu options dynamically
-        const menuOptions = [
-            // ═════════════════════════════════════════════
-            // 🔍 SCANNING & ACTIONS
-            // ═════════════════════════════════════════════
-            { value: "scanall", label: "🔎 Scan All", hint: "Check & fix violations" },
-
-            // ═════════════════════════════════════════════
-            // 📚 LEARNING & KNOWLEDGE
-            // ═════════════════════════════════════════════
-        ];
+        const menuOptions = [];
 
         // Only show Learn if auto-learning is OFF
         if (!autoLearningEnabled) {
@@ -72,9 +63,6 @@ export async function showMainMenu() {
             // ═════════════════════════════════════════════
             { value: "settings", label: "⚙️  Settings", hint: "Configure behavior" },
             { value: "backup", label: "💾 Backup", hint: "Data management" },
-
-            // ═════════════════════════════════════════════
-            { value: "help", label: "📖 Help", hint: "Visual guide" },
             { value: "exit", label: "👋 Exit" }
         );
 
@@ -96,9 +84,7 @@ export async function showMainMenu() {
             case "lessons":
                 await runLessonsUI();
                 break;
-            case "scanall":
-                await runRecallUI(true); // Auto-scan mode with fix option
-                break;
+
             case "stats":
                 await runStatsUI(); // Now includes signals
                 break;

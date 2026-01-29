@@ -6,11 +6,12 @@
 
 ## 📋 Overview
 
-Antigravity Kit is a modular system consisting of:
+Agent Skills Kit is a modular system consisting of:
 
-- **20 Specialist Agents** - Role-based AI personas
-- **48 Skills** - Domain-specific knowledge modules
-- **14 Workflows** - Slash command procedures
+- **25 Specialist Agents** - Role-based AI personas (20 domain + 5 meta)
+- **50 Skills** - Domain-specific knowledge modules
+- **18 Workflows** - Slash command procedures
+- **5 Workflow Chains** - Multi-skill execution sequences
 
 ---
 
@@ -19,12 +20,15 @@ Antigravity Kit is a modular system consisting of:
 ```plaintext
 .agent/
 ├── ARCHITECTURE.md          # This file
+├── GEMINI.md                # Global AI rules & protocols
 ├── agents/                  # 20 Specialist Agents
-├── skills/                  # 48 Skills
+├── config/                  # Configuration files
+├── docs/                    # Additional documentation
+├── knowledge/               # Learning patterns & lessons
+├── scripts-js/              # Master Validation Scripts (JS)
+├── skills/                  # 50 Skills + registry.json
 ├── studio/                  # Studio design system tools
-├── workflows/               # 14 Slash Commands
-├── rules/                   # Global Rules
-└── scripts/                 # Master Validation Scripts
+└── workflows/               # 18 Slash Commands
 ```
 
 ---
@@ -64,7 +68,7 @@ See [PYTHON_STRATEGY.md](../PYTHON_STRATEGY.md) for architecture rationale.
 
 ## 🎨 Studio (Design System Generator)
 
-**Location:** `.agent/studio/`
+**Location:** `.agent/skills/studio/`
 
 Studio provides AI-powered design system generation using BM25 search across curated design databases.
 
@@ -94,7 +98,7 @@ npm run studio:search "minimalist dashboard"
 npm run studio:design
 
 # Stack-specific search
-node .agent/studio/scripts-js/search.js "layout" --stack nextjs
+node .agent/skills/studio/scripts-js/search.js "layout" --stack nextjs
 ```
 
 ### Data Domains (11)
@@ -119,36 +123,49 @@ See [STUDIO_MIGRATION.md](../STUDIO_MIGRATION.md) for migration details.
 
 ---
 
-## 🤖 Agents (20)
+## 🤖 Agents (25)
 
 Specialist AI personas for different domains.
 
-| Agent                    | Focus                      | Skills Used                                          |
-| ------------------------ | -------------------------- | ---------------------------------------------------- |
-| `orchestrator`           | Multi-agent coordination   | parallel-agents, behavioral-modes                    |
-| `project-planner`        | Discovery, task planning   | brainstorming, plan-writing, architecture            |
-| `frontend-specialist`    | Web UI/UX                  | frontend-design, react-patterns, tailwind-patterns   |
-| `backend-specialist`     | API, business logic        | api-patterns, nodejs-best-practices, database-design |
-| `database-architect`     | Schema, SQL                | database-design, prisma-expert                       |
-| `mobile-developer`       | iOS, Android, RN           | mobile-design                                        |
-| `game-developer`         | Game logic, mechanics      | game-development                                     |
-| `devops-engineer`        | CI/CD, Docker              | deployment-procedures, docker-expert                 |
-| `security-auditor`       | Security compliance        | vulnerability-scanner, red-team-tactics              |
-| `penetration-tester`     | Offensive security         | red-team-tactics                                     |
-| `test-engineer`          | Testing strategies         | testing-patterns, tdd-workflow, webapp-testing       |
-| `debugger`               | Root cause analysis        | systematic-debugging                                 |
-| `performance-optimizer`  | Speed, Web Vitals          | performance-profiling                                |
-| `seo-specialist`         | Ranking, visibility        | seo-fundamentals, geo-fundamentals                   |
-| `documentation-writer`   | Manuals, docs              | documentation-templates                              |
-| `product-manager`        | Requirements, user stories | plan-writing, brainstorming                          |
-| `product-owner`          | Strategy, backlog, MVP     | plan-writing, brainstorming                          |
-| `qa-automation-engineer` | E2E testing, CI pipelines  | webapp-testing, testing-patterns                     |
-| `code-archaeologist`     | Legacy code, refactoring   | clean-code, code-review-checklist                    |
-| `explorer-agent`         | Codebase analysis          | -                                                    |
+### Meta-Agents (Runtime Control)
+
+| Agent                  | Focus                    | Skills Used                       |
+| ---------------------- | ------------------------ | --------------------------------- |
+| `lead-orchestrator`    | Strategic coordination   | multi-agent, agent-modes          |
+| `runtime-orchestrator` | Runtime control          | lifecycle-orchestrator, code-craft |
+| `assessor`             | Risk analysis            | code-review, project-planner      |
+| `recovery`             | State rollback           | state-rollback, code-craft        |
+| `critic`               | Conflict resolution      | code-review, code-quality         |
+| `learner`              | Continuous improvement   | auto-learner, self-evolution      |
+
+### Domain Agents (20)
+
+| Agent                    | Focus                      | Skills Used                                     |
+| ------------------------ | -------------------------- | ----------------------------------------------- |
+| `orchestrator`           | Multi-agent coordination   | multi-agent, agent-modes, code-craft            |
+| `project-planner`        | Discovery, task planning   | idea-storm, project-planner, system-design      |
+| `frontend-specialist`    | Web UI/UX                  | design-system, react-architect, tailwind-kit    |
+| `backend-specialist`     | API, business logic        | api-architect, nodejs-pro, data-modeler         |
+| `database-architect`     | Schema, SQL                | data-modeler, code-craft                        |
+| `mobile-developer`       | iOS, Android, RN           | mobile-first, code-craft                        |
+| `game-developer`         | Game logic, mechanics      | game-engine, code-craft                         |
+| `devops-engineer`        | CI/CD, Docker              | cicd-pipeline, server-ops, shell-script         |
+| `security-auditor`       | Security compliance        | security-scanner, offensive-sec, api-architect  |
+| `penetration-tester`     | Offensive security         | offensive-sec, security-scanner                 |
+| `test-engineer`          | Testing strategies         | test-architect, test-driven-dev, e2e-automation |
+| `debugger`               | Root cause analysis        | debugging-mastery, code-craft               |
+| `performance-optimizer`  | Speed, Web Vitals          | perf-optimizer, code-craft                      |
+| `seo-specialist`         | Ranking, visibility        | seo-optimizer, geo-spatial                      |
+| `documentation-writer`   | Manuals, docs              | doc-templates, code-craft                       |
+| `product-manager`        | Requirements, user stories | project-planner, idea-storm                     |
+| `product-owner`          | Strategy, backlog, MVP     | project-planner, idea-storm                     |
+| `qa-automation-engineer` | E2E testing, CI pipelines  | e2e-automation, test-architect                  |
+| `code-archaeologist`     | Legacy code, refactoring   | code-craft, code-review                         |
+| `explorer-agent`         | Codebase analysis          | system-design, debug-pro                        |
 
 ---
 
-## 🧩 Skills (36)
+## 🧩 Skills (50)
 
 Modular knowledge domains that agents can load on-demand. based on task context.
 
@@ -255,30 +272,48 @@ Modular knowledge domains that agents can load on-demand. based on task context.
 | `DocTemplates`     | Doc formats               |
 | `GlobalizationKit` | Internationalization      |
 | `PerfOptimizer`    | Web Vitals, optimization  |
-| `DebugPro`         | Troubleshooting           |
+| `DebuggingMastery`   | Unified debugging (4-phase + frameworks) |
 
 ---
 
-## 🔄 Workflows (14)
+## 🔄 Workflows (18)
 
 Slash command procedures. Invoke with `/command`.
 
-| Command      | Description                 |
-| ------------ | --------------------------- |
-| `/think`     | Structured brainstorming    |
-| `/build`     | Create new features/apps    |
-| `/diagnose`  | Debug issues systematically |
-| `/launch`    | Deploy to production        |
-| `/chronicle` | Generate documentation      |
-| `/boost`     | Improve existing code       |
-| `/autopilot` | Multi-agent coordination    |
-| `/architect` | Task breakdown & planning   |
-| `/stage`     | Preview/staging server      |
-| `/inspect`   | Code review verification    |
-| `/forge`     | Create/package skills       |
-| `/pulse`     | Check project status        |
-| `/validate`  | Run tests                   |
-| `/studio`    | Design with 50+ styles      |
+| Command                | Description                 | Chain             |
+| ---------------------- | --------------------------- | ----------------- |
+| `/build`               | Create new features/apps    | build-web-app     |
+| `/boost`               | Improve existing code       | build-web-app     |
+| `/autopilot`           | Multi-agent coordination    | build-web-app     |
+| `/launch`              | Deploy to production        | deploy-production |
+| `/diagnose`            | Debug issues systematically | debug-complex     |
+| `/inspect`             | Code review verification    | security-audit    |
+| `/think`               | Structured brainstorming    | -                 |
+| `/architect`           | Task breakdown & planning   | -                 |
+| `/validate`            | Run tests                   | -                 |
+| `/chronicle`           | Generate documentation      | -                 |
+| `/stage`               | Preview/staging server      | -                 |
+| `/forge`               | Create/package skills       | -                 |
+| `/pulse`               | Check project status        | -                 |
+| `/studio`              | Design with 50+ styles      | -                 |
+| `/flags`               | Feature flag management     | -                 |
+| `/api`                 | API design & implementation | api-development   |
+| `/agent`               | Agent CLI interface         | -                 |
+| `/auto-accept-process` | Autonomous workflow         | -                 |
+
+---
+
+## 🔗 Workflow Chains (5)
+
+Multi-skill execution sequences defined in `registry.json`.
+
+| Chain               | Description                 | Skills                                                                                           | Workflows                  |
+| ------------------- | --------------------------- | ------------------------------------------------------------------------------------------------ | -------------------------- |
+| `build-web-app`     | Full-stack development      | app-scaffold, project-planner, web-core, design-system, tailwind-kit, test-architect, code-craft | /build, /boost, /autopilot |
+| `deploy-production` | Production deployment       | cicd-pipeline, security-scanner, perf-optimizer, e2e-automation, feature-flags                   | /launch                    |
+| `debug-complex`     | Deep debugging              | debug-pro, debug-toolkit, reasoning-engine, test-architect                                       | /diagnose                  |
+| `security-audit`    | Security review             | security-scanner, code-review, offensive-sec, cicd-pipeline                                      | /inspect                   |
+| `api-development`   | API design & implementation | api-architect, data-modeler, nodejs-pro, test-architect, security-scanner                        | -                          |
 
 ---
 
@@ -334,14 +369,20 @@ graph LR
 - Skill scripts: Python (34 scripts for specialized validation)
 - See [PYTHON_STRATEGY.md](../PYTHON_STRATEGY.md)
 
-### Master Scripts (4)
+### Master Scripts (10)
 
-| Script               | Purpose                                 | When to Use              |
-| -------------------- | --------------------------------------- | ------------------------ |
-| `checklist.js`       | Priority-based validation (Core checks) | Development, pre-commit  |
-| `verify_all.js`      | Comprehensive verification (All checks) | Pre-deployment, releases |
-| `auto_preview.js`    | Dev server management                   | Local development        |
-| `session_manager.js` | Multi-session coordination              | Complex workflows        |
+| Script                    | Purpose                                 | When to Use              |
+| ------------------------- | --------------------------------------- | ------------------------ |
+| `checklist.js`            | Priority-based validation (Core checks) | Development, pre-commit  |
+| `verify_all.js`           | Comprehensive verification (All checks) | Pre-deployment, releases |
+| `auto_preview.js`         | Dev server management                   | Local development        |
+| `session_manager.js`      | Multi-session coordination              | Complex workflows        |
+| `autopilot-runner.js`     | Full autopilot integration              | /autopilot execution     |
+| `autopilot-metrics.js`    | Metrics collection (11 metrics)         | Performance tracking     |
+| `preflight-assessment.js` | Risk evaluation before execution        | Pre-flight checks        |
+| `adaptive-workflow.js`    | Workflow optimization engine            | Step skipping/parallel   |
+| `metrics-dashboard.js`    | Metrics visualization & SLO status      | Reporting                |
+| `skill-validator.js`      | Skill standard compliance checker       | Skill audits             |
 
 ### Usage
 
@@ -393,9 +434,9 @@ See [MIGRATION.md](../MIGRATION.md) for details.
 | Metric              | Value                         |
 | ------------------- | ----------------------------- |
 | **Total Agents**    | 20                            |
-| **Total Skills**    | 48                            |
-| **Total Workflows** | 14                            |
-| **Total Scripts**   | 4 (master) + 18 (skill-level) |
+| **Total Skills**    | 50                            |
+| **Total Workflows** | 18                            |
+| **Total Scripts**   | 4 (master) + 34 (skill-level) |
 | **Coverage**        | ~95% web/mobile development   |
 
 ---
@@ -417,13 +458,68 @@ See [MIGRATION.md](../MIGRATION.md) for details.
 
 ## 📅 Architecture Evolution
 
+### v3.3.0 (January 2026)
+
+**Major Changes:**
+
+- **Rebrand Script v4.0:** Production-grade rebrand tool with 5x performance boost
+  - Parallel batch processing (50 files/batch)
+  - Stream processing for large files (>1MB)
+  - Git-based backup/rollback mechanism
+  - Auto-discover package.json files
+  - Word boundary matching for precision
+- **Execution Policy v1.1:** Enhanced with PowerShell deny patterns
+  - Added `codebaseVersion` tracking
+  - 5 new Windows-specific safety rules
+  - Critical commands blocked (Remove-Item -Recurse, etc.)
+- **CLI Package Updates:** v3.3.0 alignment
+  - Updated branding across all CLI files
+  - Enhanced demo data quality
+  - Vitest 4.x upgrade
+
+**Files Added:**
+
+- `scripts/rebrand/v4.mjs` - Enhanced rebrand tool (700+ LOC)
+- `scripts/rebrand/README.md` - Comprehensive usage guide
+- `.agent/config/execution-policy.json` - v1.1 with codebaseVersion
+
+**Documentation:**
+
+- [rebrand/README.md](../scripts/rebrand/README.md) - Rebrand tool guide
+- [CHANGELOG.md](../CHANGELOG.md#330) - v3.3.0 release notes
+
+**Workflow Chains v2.0 (FAANG Upgrade):**
+
+All 5 workflow chains upgraded to schema v2.0 with enterprise-grade features:
+
+- **Error Handling**: Retry policies (0-2 retries), fail-fast strategies, fallback chains
+- **Dependency Management**: DAG execution, parallel processing (1-3 concurrent), explicit skill dependencies
+- **Success Criteria**: Required and optional metrics with automated verification scripts
+- **Versioning**: Semantic versioning (v1.0.0), schema versioning (v2.0), changelog tracking
+
+Chains upgraded:
+
+- `build-web-app`: 7 skills, DAG execution, 3 parallel max
+- `security-audit`: 4 skills, DAG execution, 2 parallel max
+- `debug-complex`: 4 skills, sequential execution
+- `deploy-production`: 5 skills, DAG execution, zero retries (production safety)
+- `api-development`: 5 skills, sequential execution
+
+FAANG Compliance: 64% → 90%+ (P0 features complete)
+
+**Files Modified:**
+
+- `.agent/skills/registry.json` - All 5 chains upgraded (+480 lines)
+- `.agent/WORKFLOW_CHAINS.md` - Schema v2.0 documentation
+- `.agent/workflows/api.md` - New /api workflow
+
 ### v3.2.0 (January 2026)
 
 **Major Changes:**
 
 - **Python → JavaScript Migration:** Master scripts rewritten in JS
 - **Hybrid Architecture:** 2-tier system (JS master + Python skills)
-- **Studio Rename:** `.agent/.shared/studio` → `.agent/studio`
+- **Studio Rename:** `.agent/.shared/studio` → `.agent/skills/studio`
 
 **Rationale:**
 

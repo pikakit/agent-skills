@@ -1,12 +1,27 @@
-// Demo file - contains violations
-import { something } from './nonexistent.js';  // IMPROVE-004 will catch this!
-import { another } from '../fake-module.js';   // This too!
+/**
+ * Demo Violations File - Agent Skill Kit CLI Testing
+ * 
+ * Purpose: This file intentionally contains code violations to test
+ * the CLI's violation detection system (self-evolution signals).
+ * 
+ * Expected Violations:
+ * - IMPROVE-004: Missing import resolution
+ * - MISTAKE-005: Undefined function usage
+ * - MISTAKE-006: Recursive call pattern
+ */
 
+// IMPROVE-004: Import from non-existent file
+import { something } from './nonexistent.js';
+import { another } from '../fake-module.js';
+
+// MISTAKE-006: Recursive call without base case
 function testMenu() {
-    // Some code
-    testMenu();  // Recursive call - MISTAKE-006 might catch
+    console.log("Testing recursive pattern");
+    testMenu(); // This will be detected
 }
 
-const data = customSelect();  // MISTAKE-005 will catch this!
+// MISTAKE-005: Undefined function call
+const data = customSelect();
 
-console.log("Testing violations");
+console.log("CLI Violation Detection Test");
+console.log("This file is used by: npm run example:violations");

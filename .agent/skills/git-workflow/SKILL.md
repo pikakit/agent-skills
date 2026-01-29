@@ -1,9 +1,15 @@
 ---
 name: git-workflow
-description: Enforce Conventional Commits and traceability between code and requirements.
+description: >-
+  Enforce Conventional Commits and traceability between code and requirements.
+  Triggers on: git, commit, branch, merge, PR, conventional commits.
+  Coordinates with: code-review, review-automation, cicd-pipeline.
 allowed-tools: Read, Write, Edit, Glob, Grep, Bash
 metadata:
   version: "3.0.0"
+  category: "devops"
+  success_metrics: "commits follow convention, history traceable"
+  coordinates_with: "code-review, review-automation, cicd-pipeline"
 ---
 
 # Git Conventions

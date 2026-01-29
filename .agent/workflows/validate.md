@@ -1,5 +1,5 @@
 ---
-description: Test automation suite. Generate, execute, and analyze test coverage with AAA pattern.
+description: Test automation with Vitest/Playwright. Generate, execute, and analyze coverage with AAA pattern.
 ---
 
 # /validate - Test Automation Suite
@@ -11,6 +11,26 @@ $ARGUMENTS
 ## Purpose
 
 Generate comprehensive tests, execute test suites, and analyze coverage. **Follows AAA pattern (Arrange-Act-Assert) with edge case detection.**
+
+---
+
+## 🤖 Meta-Agents Integration
+
+| Phase | Agent | Action |
+| ----- | ----- | ------ |
+| **Test Generation** | `learner` | Analyze existing test patterns for consistency |
+| **Pre-Test** | `recovery` | Save test state before execution |
+| **Post-Test** | `learner` | Log common failure patterns |
+| **On Failure** | `assessor` | Evaluate test failure severity |
+
+```
+Flow:
+learner.analyze(existing_tests) → generate tests
+       ↓
+recovery.save() → run tests
+       ↓
+failures? → assessor.evaluate(severity) → learner.log(patterns)
+```
 
 ---
 

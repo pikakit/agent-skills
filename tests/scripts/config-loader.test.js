@@ -14,7 +14,7 @@ import {
     validateConfig,
     mergePatterns,
     getExampleConfig
-} from '../../.agent/studio/scripts-js/utils/config-loader.js';
+} from '../../.agent/skills/studio/scripts-js/utils/config-loader.js';
 
 describe('Config Loader', () => {
     const testDir = join(tmpdir(), 'studio-config-test-' + Date.now());

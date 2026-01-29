@@ -1,14 +1,17 @@
 #!/usr/bin/env node
 /**
- * Extract and export Antigravity API key
- * Usage: npm run export-key
+ * Extract and export Gemini API key
+ * Usage: node scripts/export-key.js
+ * 
+ * @deprecated This script is for debugging OAuth/API key issues.
+ * CLI should use its own API key configuration via interactive menu.
  */
 
 import fs from 'fs';
 import path from 'path';
 import os from 'os';
 
-console.log('🔍 Searching for Antigravity API credentials...\n');
+console.log('🔍 Searching for Gemini API credentials...\n');
 
 // Method 1: Check oauth_creds.json
 const oauthPath = path.join(os.homedir(), '.gemini', 'oauth_creds.json');
@@ -29,21 +32,23 @@ if (fs.existsSync(oauthPath)) {
             }
 
             if (!isValid) {
-                console.log('\n⚠️  Token expired! Antigravity is using a newer token in-memory.');
-                console.log('   This file is not auto-updated by Antigravity.\n');
+                console.log('\n⚠️  Token expired! Using newer token in-memory.');
+                console.log('   This file is not auto-updated.\n');
             }
         }
     } catch (e) {
         console.log(`✗ Failed to read OAuth credentials: ${e.message}`);
     }
+} else {
+    console.log(`✗ OAuth credentials not found at ${oauthPath}`);
 }
 
-// Method 2: Check for API key in Antigravity settings
+// Method 2: Check for API key in settings
 const settingsPath = path.join(os.homedir(), '.gemini', 'settings.json');
 if (fs.existsSync(settingsPath)) {
     try {
         const settings = JSON.parse(fs.readFileSync(settingsPath, 'utf8'));
-        console.log(`\n✓ Found Antigravity settings in ${settingsPath}`);
+        console.log(`\n✓ Found settings in ${settingsPath}`);
 
         // Check if there's an API key field
         if (settings.apiKey || settings.gemini?.apiKey) {
@@ -58,16 +63,18 @@ if (fs.existsSync(settingsPath)) {
     } catch (e) {
         console.log(`✗ Failed to read settings: ${e.message}`);
     }
+} else {
+    console.log(`\n✗ Settings not found at ${settingsPath}`);
 }
 
 // Final recommendation
 console.log('\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
 console.log('📌 RECOMMENDATION:');
 console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n');
-console.log('Antigravity uses OAuth (not permanent API keys).');
-console.log('OAuth tokens expire and are not auto-exported to subprocesses.\n');
-console.log('For CLI to use AI features, you need a permanent API key:\n');
-console.log('1. Get API key from: https://aistudio.google.com/apikey');
-console.log('2. Configure in CLI: agent → Settings → Gemini API Key');
-console.log('3. It will auto-export to SelfEvolution for AI optimization\n');
+console.log('Agent Skill Kit CLI uses independent API key configuration.\n');
+console.log('For CLI AI features, configure via interactive menu:\n');
+console.log('1. Run: ag-smart (no arguments)');
+console.log('2. Select: Settings → Configure Gemini API Key');
+console.log('3. Get key from: https://aistudio.google.com/apikey\n');
+console.log('The CLI stores its own API key separate from IDE settings.');
 console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n');

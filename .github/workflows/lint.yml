@@ -41,8 +41,8 @@ jobs:
       # Studio Scripts Linting
       - name: Lint Studio scripts
         run: |
-          echo "🔍 Linting Studio scripts (.agent/.shared/studio/scripts-js)..."
-          npx eslint .agent/.shared/studio/scripts-js --ext .js
+          echo "🔍 Linting Studio scripts (.agent/studio/scripts-js)..."
+          npx eslint .agent/studio/scripts-js --ext .js
         continue-on-error: true
 
       # Formatting Check

@@ -1,9 +1,15 @@
 ---
 name: creative-thinking
-description: Creative problem-solving techniques for breaking through stuck points - includes collision-zone thinking, inversion, pattern recognition, and simplification
+description: >-
+  Creative problem-solving techniques for breaking through stuck points.
+  Includes collision-zone thinking, inversion, pattern recognition, and simplification.
+  Triggers on: stuck, innovation, creative solution, brainstorm, alternative approach.
+  Coordinates with: idea-storm, reasoning-engine, project-planner.
 metadata:
-  when_to_use: "when stuck on a problem, need innovation beyond conventional approaches, or want to find elegant solutions"
   version: "3.0.0"
+  category: "core"
+  success_metrics: "new approach found, problem unblocked"
+  coordinates_with: "idea-storm, reasoning-engine, project-planner"
 ---
 
 # Problem-Solving Skills

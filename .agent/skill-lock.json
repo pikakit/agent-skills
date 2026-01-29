@@ -1,0 +1,343 @@
+{
+  "lockVersion": 1,
+  "generatedAt": "2026-01-29T15:35:49.173Z",
+  "generator": "@dataguruin/add-skill@3.2.0",
+  "skills": {
+    "agent-modes": {
+      "repo": "agentskillkit/agent-skills",
+      "skill": "behavioral-modes",
+      "ref": null,
+      "checksum": "sha256:e18ca3e02e1b9898c569f3e1cccdda06d7fc04da59bd0304a3714293532a0412",
+      "publisher": null
+    },
+    "api-architect": {
+      "repo": "agentskillkit/agent-skills",
+      "skill": "api-patterns",
+      "ref": null,
+      "checksum": "sha256:c5b8554719225e5d316066afcb34f8f3e9a84a08b43376d02ac2d49171ee5733",
+      "publisher": null
+    },
+    "app-scaffold": {
+      "repo": "agentskillkit/agent-skills",
+      "skill": "app-builder",
+      "ref": null,
+      "checksum": "sha256:f1624e1ab3100f1212b8d2f477ef09c055939ff535ef3438ca388ab94929571f",
+      "publisher": null
+    },
+    "cicd-pipeline": {
+      "repo": "agentskillkit/agent-skills",
+      "skill": "deployment-procedures",
+      "ref": null,
+      "checksum": "sha256:501c24cd9fbaa09767e6eed366b3fc56a497e63ce9701d24226d6b149aa28abf",
+      "publisher": null
+    },
+    "code-constitution": {
+      "repo": "agentskillkit/agent-skills",
+      "skill": "governance",
+      "ref": null,
+      "checksum": "sha256:1cfe0b9e39d45b1a264d1ee27475af78a71234ce8ddf4fc999d79c2b00b6c8f4",
+      "publisher": null
+    },
+    "code-craft": {
+      "repo": "agentskillkit/agent-skills",
+      "skill": "clean-code",
+      "ref": null,
+      "checksum": "sha256:0eec53f2632f6b2643542f13185401c20eefcff6961c1c3ea32c9c0482b7e498",
+      "publisher": null
+    },
+    "code-quality": {
+      "repo": "agentskillkit/agent-skills",
+      "skill": "lint-and-validate",
+      "ref": null,
+      "checksum": "sha256:283b9b0aedeac7832ee3aae365992151c913923064e8ba7581c95b7ee7c080ec",
+      "publisher": null
+    },
+    "code-review": {
+      "repo": "agentskillkit/agent-skills",
+      "skill": "code-review-checklist",
+      "ref": null,
+      "checksum": "sha256:678ed9bab570d6ab843765eb91f338d6b5ec6e657cdae5029a8a239d25cd7722",
+      "publisher": null
+    },
+    "context-optimizer": {
+      "repo": "agentskillkit/agent-skills",
+      "skill": "context-engineering",
+      "ref": null,
+      "checksum": "sha256:962f9b16b8991d10a921ed970eef532a0fd2d7346a4500685ed3b6fbcc517bdb",
+      "publisher": null
+    },
+    "creative-thinking": {
+      "repo": "agentskillkit/agent-skills",
+      "skill": "problem-solving",
+      "ref": null,
+      "checksum": "sha256:7a66a5b3244cc7704486c79fe5800669aaccff987dde0f8c8de84750a6f6bee5",
+      "publisher": null
+    },
+    "data-modeler": {
+      "repo": "agentskillkit/agent-skills",
+      "skill": "database-design",
+      "ref": null,
+      "checksum": "sha256:63dc0fa65f00cb84b4085e7c2ed97efd34e683fa69f0a3624ac2a17abcccffb3",
+      "publisher": null
+    },
+    "debug-pro": {
+      "repo": "agentskillkit/agent-skills",
+      "skill": "systematic-debugging",
+      "ref": null,
+      "checksum": "sha256:c42aa72962ab4db456381df21bb71c71c3b45223f7a42dfd6f0d948ac8350da0",
+      "publisher": null
+    },
+    "debug-toolkit": {
+      "repo": "agentskillkit/agent-skills",
+      "skill": "debugging",
+      "ref": null,
+      "checksum": "sha256:54164843a7324216014c484af14421f5ba4a4c825f2ea9c9b41566e5b5dec839",
+      "publisher": null
+    },
+    "design-system": {
+      "repo": "agentskillkit/agent-skills",
+      "skill": "frontend-design",
+      "ref": null,
+      "checksum": "sha256:db4d8115c437f67cbec8a3e1daed9df4fd518d14e34870d9786e1c524a6a77c1",
+      "publisher": null
+    },
+    "diagram-kit": {
+      "repo": "agentskillkit/agent-skills",
+      "skill": "mermaidjs-v11",
+      "ref": null,
+      "checksum": "sha256:1c67665ee9eec217147aa7f161b5ce4b2d8bf2450355e5651b5c341abbfa7ed0",
+      "publisher": null
+    },
+    "doc-processor": {
+      "repo": "agentskillkit/agent-skills",
+      "skill": "document-skills",
+      "ref": null,
+      "checksum": "sha256:c3ebc14dfd2b051d10546e0a6c328b4c08a0bb511f78f868788f012ab7122426",
+      "publisher": null
+    },
+    "doc-templates": {
+      "repo": "agentskillkit/agent-skills",
+      "skill": "documentation-templates",
+      "ref": null,
+      "checksum": "sha256:8bbfd704f1e0fba65cb7b2f2884f1e84110d5a4faf578eda98c65f3d8fec0e4c",
+      "publisher": null
+    },
+    "e2e-automation": {
+      "repo": "agentskillkit/agent-skills",
+      "skill": "webapp-testing",
+      "ref": null,
+      "checksum": "sha256:bf631e2fefab36fb55a8fbf0cdb824a67555388bcc5da217be01dbe4687514db",
+      "publisher": null
+    },
+    "game-engine": {
+      "repo": "agentskillkit/agent-skills",
+      "skill": "game-development",
+      "ref": null,
+      "checksum": "sha256:3d381ef04fcf5feebaa5c957a70c46bf9ebb0b1174e777be93a4eb6b71facc7d",
+      "publisher": null
+    },
+    "geo-spatial": {
+      "repo": "agentskillkit/agent-skills",
+      "skill": "geo-fundamentals",
+      "ref": null,
+      "checksum": "sha256:d8c7ba0d70626e7a3cc0360ab0c25099d788ead065b1d5254e179807c77d9a81",
+      "publisher": null
+    },
+    "git-workflow": {
+      "repo": "agentskillkit/agent-skills",
+      "skill": "git-conventions",
+      "ref": null,
+      "checksum": "sha256:9f850a7911bf99347199eed6b6b1a106174111413e335f9186dfefd582fb868c",
+      "publisher": null
+    },
+    "globalization-kit": {
+      "repo": "agentskillkit/agent-skills",
+      "skill": "i18n-localization",
+      "ref": null,
+      "checksum": "sha256:cfe81bc3b3480fdda20de329cd0ab99364a7b96579dbe3f2d8df051f5ed5b9b1",
+      "publisher": null
+    },
+    "idea-storm": {
+      "repo": "agentskillkit/agent-skills",
+      "skill": "brainstorming",
+      "ref": null,
+      "checksum": "sha256:9166290e3c0af460970814a262965310e2d954366249912c9ca83cf88175a8da",
+      "publisher": null
+    },
+    "mcp-server": {
+      "repo": "agentskillkit/agent-skills",
+      "skill": "mcp-builder",
+      "ref": null,
+      "checksum": "sha256:94177008dc8319736bd16b5b8d22b06ecb5e944eed1a20553636b5b378db1bb7",
+      "publisher": null
+    },
+    "mobile-first": {
+      "repo": "agentskillkit/agent-skills",
+      "skill": "mobile-design",
+      "ref": null,
+      "checksum": "sha256:bcc40ea24ad952638e9b083ba539af6fa3daf847599c1c3f067aa37076b0931a",
+      "publisher": null
+    },
+    "multi-agent": {
+      "repo": "agentskillkit/agent-skills",
+      "skill": "parallel-agents",
+      "ref": null,
+      "checksum": "sha256:d9cf68cef2085e836c7500d08fa051e5d908252f3f91a65b18ce6fba406559e1",
+      "publisher": null
+    },
+    "nextjs-pro": {
+      "repo": "agentskillkit/agent-skills",
+      "skill": "nextjs-best-practices",
+      "ref": null,
+      "checksum": "sha256:688a01338c21f8db90287e306efa69a45424bbae81fafe4e8ca504d4f0eed39b",
+      "publisher": null
+    },
+    "nodejs-pro": {
+      "repo": "agentskillkit/agent-skills",
+      "skill": "nodejs-best-practices",
+      "ref": null,
+      "checksum": "sha256:4b89f7e2eb30e488cbf86550c567d665ccd9cd0231f51d40dc8c15c8a10e8426",
+      "publisher": null
+    },
+    "offensive-sec": {
+      "repo": "agentskillkit/agent-skills",
+      "skill": "red-team-tactics",
+      "ref": null,
+      "checksum": "sha256:d31da9c314654508935745c3e8a7b597f98ed0efc8947eb330b897bcf133d0d9",
+      "publisher": null
+    },
+    "perf-optimizer": {
+      "repo": "agentskillkit/agent-skills",
+      "skill": "performance-profiling",
+      "ref": null,
+      "checksum": "sha256:bf6c9ba1f011cb21aaaeab6f5987e0f45de5b77c105dccbf2bc0ee7855b5894d",
+      "publisher": null
+    },
+    "project-planner": {
+      "repo": "agentskillkit/agent-skills",
+      "skill": "plan-writing",
+      "ref": null,
+      "checksum": "sha256:a44b37179424c7ef99f7827f52738dea9af8ca7605e44e2e3cb815d986593a49",
+      "publisher": null
+    },
+    "python-pro": {
+      "repo": "agentskillkit/agent-skills",
+      "skill": "python-patterns",
+      "ref": null,
+      "checksum": "sha256:62a7513b417d6a22fbc0575e401261e606e2ce9ec0ab4650435bc1b3bdac6087",
+      "publisher": null
+    },
+    "react-architect": {
+      "repo": "agentskillkit/agent-skills",
+      "skill": "react-patterns",
+      "ref": null,
+      "checksum": "sha256:a1eaf2f804d4b6217ab29fafd50dd4fda7ac58e1a3ba9d3eb57ba835ca6bb073",
+      "publisher": null
+    },
+    "reasoning-engine": {
+      "repo": "agentskillkit/agent-skills",
+      "skill": "sequential-thinking",
+      "ref": null,
+      "checksum": "sha256:57b0e7b470eb5a10b4473b20796a6e22c689dba9bdd3ae26834fa8214dd66025",
+      "publisher": null
+    },
+    "review-automation": {
+      "repo": "agentskillkit/agent-skills",
+      "skill": "code-reviewer",
+      "ref": null,
+      "checksum": "sha256:eccfd74d82d3f2ae72776c1eb3528ba840856ef60ff224272c8b1cd981c7a323",
+      "publisher": null
+    },
+    "security-scanner": {
+      "repo": "agentskillkit/agent-skills",
+      "skill": "vulnerability-scanner",
+      "ref": null,
+      "checksum": "sha256:8f627ff71b09dbe98bc401c4757b544bfc43afeec93d96ada49efbcb1996803a",
+      "publisher": null
+    },
+    "self-evolution": {
+      "repo": "agentskillkit/agent-skills",
+      "skill": "auto-learn",
+      "ref": null,
+      "checksum": "sha256:eec798819f9da3b471570f399ed32ebc66aadfa71f4d61182ea9c0182ba30bc1",
+      "publisher": null
+    },
+    "seo-optimizer": {
+      "repo": "agentskillkit/agent-skills",
+      "skill": "seo-fundamentals",
+      "ref": null,
+      "checksum": "sha256:4818cdc8da4bee37be693050e7fd82ccc22778006457a7150858db08a12ebba5",
+      "publisher": null
+    },
+    "server-ops": {
+      "repo": "agentskillkit/agent-skills",
+      "skill": "server-management",
+      "ref": null,
+      "checksum": "sha256:22f28c2dcfc1192768876962807e71d4df7d484a41888bc421451e52e483ce76",
+      "publisher": null
+    },
+    "shell-script": {
+      "repo": "agentskillkit/agent-skills",
+      "skill": "bash-linux",
+      "ref": null,
+      "checksum": "sha256:386d3f9ce7a8a89c67fbc0bf4bd4eadb3504203f445cb2968af93d8ea00b2ca2",
+      "publisher": null
+    },
+    "skill-forge": {
+      "repo": "agentskillkit/agent-skills",
+      "skill": "skill-creator",
+      "ref": null,
+      "checksum": "sha256:4de84cac9f34d2b0578cb0bfa41bb30edfe480772e06d5faea7750f704e8fd39",
+      "publisher": null
+    },
+    "smart-router": {
+      "repo": "agentskillkit/agent-skills",
+      "skill": "intelligent-routing",
+      "ref": null,
+      "checksum": "sha256:4b66fcb3c62021910e06479e5072c69e699aed178c5d43a782053999f15cfc6e",
+      "publisher": null
+    },
+    "system-design": {
+      "repo": "agentskillkit/agent-skills",
+      "skill": "architecture",
+      "ref": null,
+      "checksum": "sha256:6bd2972d4a7618c081f2f57d00d490c99425b328fd673d468e234e02c21924ff",
+      "publisher": null
+    },
+    "tailwind-kit": {
+      "repo": "agentskillkit/agent-skills",
+      "skill": "tailwind-patterns",
+      "ref": null,
+      "checksum": "sha256:8d5c8c18b932866a7079a72d75146276c9df0058632b4c1c5ca0c36be656028a",
+      "publisher": null
+    },
+    "test-architect": {
+      "repo": "agentskillkit/agent-skills",
+      "skill": "testing-patterns",
+      "ref": null,
+      "checksum": "sha256:14ecbe21828b4eb68f68a031f38c02c52e91a22f100934e3d286928f1617b246",
+      "publisher": null
+    },
+    "test-driven-dev": {
+      "repo": "agentskillkit/agent-skills",
+      "skill": "tdd-workflow",
+      "ref": null,
+      "checksum": "sha256:7f9b9a29fec0a4c838442e8e514486070f1e71309ebc9884934d508997f9cb3e",
+      "publisher": null
+    },
+    "visual-excellence": {
+      "repo": "agentskillkit/agent-skills",
+      "skill": "aesthetic",
+      "ref": null,
+      "checksum": "sha256:3b0b736c04c00d63ed07d8f2215ee98b74c264df376ec7d2ede227e64144ba8a",
+      "publisher": null
+    },
+    "web-core": {
+      "repo": "agentskillkit/agent-skills",
+      "skill": "frontend",
+      "ref": null,
+      "checksum": "sha256:5b59330532b4865a77a7ed6b115f5601bd80dcd6670c075c508f20b121245baa",
+      "publisher": null
+    }
+  }
+}

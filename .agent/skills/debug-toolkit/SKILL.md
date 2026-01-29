@@ -1,9 +1,15 @@
 ---
 name: debug-toolkit
-description: Advanced debugging frameworks including defense-in-depth validation, root-cause tracing, and verification protocols. Use when debugging complex issues, validating at multiple layers, or ensuring completion claims.
+description: >-
+  Advanced debugging frameworks including defense-in-depth validation, root-cause tracing,
+  and verification protocols. Use when debugging complex issues or validating completion claims.
+  Triggers on: debug, bug, error, root cause, investigation, fix not working.
+  Coordinates with: test-architect, code-review, code-quality.
 metadata:
-  when_to_use: "when debugging, need systematic root cause analysis, or before claiming task completion"
   version: "3.0.0"
+  category: "core"
+  success_metrics: "root cause identified, fix verified, issue resolved"
+  coordinates_with: "test-architect, code-review, code-quality"
 ---
 
 # Debugging Skills

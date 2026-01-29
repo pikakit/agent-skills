@@ -5,11 +5,11 @@
  */
 
 import { describe, test, expect, vi, beforeEach } from 'vitest';
-import { generateIntelligentOverrides } from '../../.agent/studio/scripts-js/utils/intelligent-overrides.js';
-import * as coreModule from '../../.agent/studio/scripts-js/core.js';
+import { generateIntelligentOverrides } from '../../.agent/skills/studio/scripts-js/utils/intelligent-overrides.js';
+import * as coreModule from '../../.agent/skills/studio/scripts-js/core.js';
 
 // Mock the search function
-vi.mock('../../.agent/studio/scripts-js/core.js', () => ({
+vi.mock('../../.agent/skills/studio/scripts-js/core.js', () => ({
     search: vi.fn()
 }));
 

@@ -14,6 +14,28 @@ Manage feature flags for A/B testing, gradual rollouts, and kill switches. **Tog
 
 ---
 
+## 🤖 Meta-Agents Integration
+
+| Phase | Agent | Action |
+| ----- | ----- | ------ |
+| **Rollout Planning** | `assessor` | Evaluate risk of feature rollout |
+| **State Backup** | `recovery` | Save flag state before changes |
+| **A/B Learning** | `learner` | Learn from rollout success/failure patterns |
+| **On Issues** | `recovery` | Quick rollback via kill switch |
+
+```
+Flow:
+assessor.evaluate(rollout_risk) → safe %?
+       ↓
+recovery.save(flag_state) → enable flag
+       ↓
+monitor → issues? → recovery.restore() → learner.log()
+       ↓
+success → learner.log(pattern)
+```
+
+---
+
 ## Commands
 
 | Command                              | Action                        |

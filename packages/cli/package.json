@@ -1,13 +1,14 @@
 {
     "name": "agentskillskit-cli",
-    "version": "3.2.0",
+    "version": "3.3.0",
     "description": "CLI for Agent Skill Kit",
     "type": "module",
+    "engines": {
+        "node": ">=18.0.0"
+    },
     "main": "lib/config.js",
     "bin": {
-        "agent": "bin/ag-smart.js",
-        "ag-smart": "bin/ag-smart.js",
-        "agent-skills-kit": "bin/ag-smart.js"
+        "agent": "bin/agent.js"
     },
     "scripts": {
         "test": "vitest run",
@@ -23,7 +24,7 @@
         "picocolors": "^1.1.1"
     },
     "devDependencies": {
-        "vitest": "^1.6.0"
+        "vitest": "^4.0.18"
     },
     "author": "Agent Skill Kit Authors",
     "license": "MIT",

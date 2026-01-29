@@ -14,6 +14,98 @@ Create comprehensive project plans with task breakdown, architecture decisions, 
 
 ---
 
+## 🛠️ Architecture Tools
+
+### 1. Diagram Generator
+
+Generate architecture diagrams with Mermaid:
+
+```mermaid
+# Context Diagram (C4 Level 1)
+graph TD
+    User[👤 User] --> App[📱 Application]
+    App --> DB[(🗄️ Database)]
+    App --> API[🌐 External API]
+```
+
+```mermaid
+# Container Diagram (C4 Level 2)
+graph TD
+    subgraph Frontend
+        Web[Next.js App]
+        Mobile[React Native]
+    end
+    subgraph Backend
+        API[API Gateway]
+        Auth[Auth Service]
+        Core[Core Service]
+    end
+    subgraph Data
+        DB[(PostgreSQL)]
+        Cache[(Redis)]
+    end
+    Web --> API
+    Mobile --> API
+    API --> Auth
+    API --> Core
+    Core --> DB
+    Core --> Cache
+```
+
+### 2. Dependency Analyzer
+
+Check project dependencies:
+```bash
+# NPM projects
+npx depcheck
+npx npm-check-updates
+
+# Visualize dependencies
+npx dependency-cruiser src --output-type dot | dot -T svg > deps.svg
+```
+
+### 3. Architecture Decision Records (ADR)
+
+Generate ADR template:
+```markdown
+# ADR-001: [Decision Title]
+
+## Status
+Proposed | Accepted | Deprecated | Superseded
+
+## Context
+What is the issue that we're seeing that is motivating this decision?
+
+## Decision
+What is the change that we're proposing and/or doing?
+
+## Consequences
+What becomes easier or more difficult because of this change?
+```
+
+---
+
+## 🤖 Meta-Agents Integration
+
+| Phase | Agent | Action |
+| ----- | ----- | ------ |
+| **Risk Evaluation** | `assessor` | Evaluate architecture risk before approval |
+| **Execution Planning** | `orchestrator` | Plan parallel vs sequential execution |
+| **Pattern Learning** | `learner` | Learn from past architecture decisions |
+
+```
+Flow:
+create plan → assessor.evaluate(plan)
+       ↓
+risk level? → add mitigations to plan
+       ↓
+orchestrator.plan(execution_order)
+       ↓
+handoff to /build with execution plan
+```
+
+---
+
 ## 🔴 MANDATORY: 4-Phase Planning
 
 ### Phase 1: Requirements Discovery
@@ -51,6 +143,37 @@ Level 4: Subtasks (atomic units)
 | API routes | backend-specialist | Schema | 2h |
 | UI components | frontend-specialist | API | 3h |
 | Tests | test-engineer | All | 1h |
+
+---
+
+## 📐 Architecture Patterns Reference
+
+### Recommended Patterns
+
+| Pattern | When to Use | Complexity |
+|---------|-------------|------------|
+| **Monolith** | MVP, small team, fast iteration | Low |
+| **Microservices** | Large team, independent scaling | High |
+| **Serverless** | Event-driven, variable load | Medium |
+| **Modular Monolith** | Growing team, future split | Medium |
+
+### Data Patterns
+
+| Pattern | Use Case |
+|---------|----------|
+| **Repository** | Clean data access layer |
+| **CQRS** | Read/write optimization |
+| **Event Sourcing** | Audit trail, complex domain |
+| **Saga** | Distributed transactions |
+
+### Security Patterns
+
+| Pattern | Implementation |
+|---------|----------------|
+| **Authentication** | JWT, OAuth2, Session |
+| **Authorization** | RBAC, ABAC, PBAC |
+| **API Security** | Rate limiting, CORS, CSP |
+| **Data Protection** | Encryption at rest, TLS |
 
 ---
 
@@ -126,41 +249,31 @@ After plan approval:
 
 ---
 
-## Naming Convention
+## 🔧 Tech Stack Quick Reference
 
-| Request | Generated File |
-|---------|----------------|
-| `/architect e-commerce app` | `docs/PLAN-ecommerce-app.md` |
-| `/architect user dashboard` | `docs/PLAN-user-dashboard.md` |
-| `/architect mobile API` | `docs/PLAN-mobile-api.md` |
+### Frontend
+| Stack | Best For | Learning Curve |
+|-------|----------|----------------|
+| Next.js | Full-stack, SEO | Medium |
+| Vite + React | SPA, fast build | Low |
+| Remix | Forms, nested routes | Medium |
+| Astro | Content sites | Low |
 
-Rules:
-- Lowercase
-- Hyphen-separated
-- Max 30 characters
-- No special characters
+### Backend
+| Stack | Best For | Language |
+|-------|----------|----------|
+| Hono | Edge, lightweight | TypeScript |
+| Express | Flexibility, ecosystem | JavaScript |
+| FastAPI | ML, async, docs | Python |
+| NestJS | Enterprise, structure | TypeScript |
 
----
-
-## Examples
-
-```
-/architect SaaS analytics dashboard
-/architect e-commerce with payments
-/architect mobile app backend
-/architect real-time chat system
-/architect portfolio website
-```
-
----
-
-## Key Principles
-
-1. **No code** - plan only, build later
-2. **User approval** - get sign-off before building
-3. **Realistic estimates** - include buffer time
-4. **Clear dependencies** - order tasks correctly
-5. **Verifiable** - each task has completion criteria
+### Database
+| Type | Options | Use Case |
+|------|---------|----------|
+| SQL | PostgreSQL, Supabase | Structured data |
+| NoSQL | MongoDB, Firebase | Flexible schema |
+| Graph | Neo4j | Relationships |
+| Vector | Pinecone, pgvector | AI/embeddings |
 
 ---
 
@@ -191,10 +304,3 @@ Next steps:
 | Need changes | Edit PLAN.md | Modify plan |
 | Complex project | `/autopilot` | Full orchestration |
 
-**Handoff to /build:**
-```markdown
-Plan approved. Run /build with context:
-- PLAN: docs/PLAN-{slug}.md
-- Stack: [selected stack]
-- Priority: [first epic]
-```

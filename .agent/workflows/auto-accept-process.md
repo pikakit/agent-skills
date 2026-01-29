@@ -1,5 +1,5 @@
 ---
-description: Framework để Agent tự chạy từ đầu đến cuối với auto-accept. User chỉ cần approve PLAN.md một lần.
+description: Autonomous agent execution framework. User approves PLAN.md once, agent runs end-to-end automatically.
 ---
 
 # Auto-Accept Agent Workflow
@@ -15,6 +15,31 @@ User Request → PLAN.md (1 lần approve) → Agent chạy tự động → Don
 ```
 
 **Thay vì:** User phải approve từng command, từng file edit.
+
+---
+
+## 🤖 Meta-Agents Integration
+
+| Phase | Agent | Action |
+| ----- | ----- | ------ |
+| **Pre-Execution** | `assessor` | Evaluate auto-execution risk level |
+| **Pre-Execution** | `recovery` | Save state before auto-run |
+| **During Execution** | `orchestrator` | Control parallel execution, retry |
+| **On Failure** | `recovery` | Auto-rollback to saved state |
+| **Post-Execution** | `learner` | Learn from execution patterns |
+
+```
+Flow:
+PLAN.md approved → assessor.evaluate(risk)
+       ↓
+recovery.save() → orchestrator.execute(phases)
+       ↓
+each phase → auto-accept if in allowPatterns
+       ↓
+failure? → recovery.restore() → learner.log()
+       ↓
+success → learner.log(patterns)
+```
 
 ---
 

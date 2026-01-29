@@ -1,9 +1,16 @@
 ---
 name: self-evolution
-description: Self-improving project-scoped learning system. Automatically categorizes mistakes/improvements, tracks events, triggers self-improvement cycles, and applies learnings proactively. v4.0 with smart categorization and version control.
+description: >-
+  Self-improving project-scoped learning system. Automatically categorizes mistakes/improvements,
+  tracks events, triggers self-improvement cycles, and applies learnings proactively.
+  Triggers on: mistake, learn, improve, lesson, feedback, wrong, fix this.
+  Coordinates with: code-review, code-constitution, smart-router.
 metadata:
   version: "4.0.0"
   status: "production"
+  category: "core"
+  success_metrics: "lessons captured, patterns identified, future errors prevented"
+  coordinates_with: "code-review, code-constitution, smart-router"
 ---
 
 # SelfEvolution v4.0 - Self-Improving Learning System

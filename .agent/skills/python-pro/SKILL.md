@@ -1,6 +1,14 @@
 ---
 name: python-pro
-description: Python development principles and decision-making. Framework selection (FastAPI/Django/Flask), async patterns, type hints, project structure. Use when building Python APIs, backend services, or scripts. Teaches thinking, not copying.
+description: >-
+  Python development principles and decision-making. Framework selection (FastAPI/Django/Flask),
+  async patterns, type hints, project structure.
+  Triggers on: Python, pip, FastAPI, Django, Flask.
+  Coordinates with: test-architect, api-architect.
+metadata:
+  category: "framework"
+  success_metrics: "tests pass, type hints complete"
+  coordinates_with: "test-architect, api-architect"
 ---
 
 # Python Patterns
@@ -18,15 +26,15 @@ This skill teaches **decision-making principles**, not fixed code to copy.
 
 ## Quick References
 
-| Topic | Reference |
-|-------|-----------|
-| Framework Selection | [framework-selection.md](./references/framework-selection.md) |
-| Async Patterns | [async-patterns.md](./references/async-patterns.md) |
-| Type Hints | [type-hints.md](./references/type-hints.md) |
-| Project Structure | [project-structure.md](./references/project-structure.md) |
-| FastAPI Best Practices | [fastapi-patterns.md](./references/fastapi-patterns.md) |
-| Django Best Practices | [django-patterns.md](./references/django-patterns.md) |
-| Testing Strategy | [testing-patterns.md](./references/testing-patterns.md) |
+| Topic                  | Reference                                                     |
+| ---------------------- | ------------------------------------------------------------- |
+| Framework Selection    | [framework-selection.md](./references/framework-selection.md) |
+| Async Patterns         | [async-patterns.md](./references/async-patterns.md)           |
+| Type Hints             | [type-hints.md](./references/type-hints.md)                   |
+| Project Structure      | [project-structure.md](./references/project-structure.md)     |
+| FastAPI Best Practices | [fastapi-patterns.md](./references/fastapi-patterns.md)       |
+| Django Best Practices  | [django-patterns.md](./references/django-patterns.md)         |
+| Testing Strategy       | [testing-patterns.md](./references/testing-patterns.md)       |
 
 ## Framework Decision Tree
 
@@ -66,12 +74,14 @@ Before implementing:
 ## Anti-Patterns
 
 ### ❌ DON'T:
+
 - Default to Django for simple APIs
 - Use sync libraries in async code
 - Skip type hints for public APIs
 - Put business logic in routes/views
 
 ### ✅ DO:
+
 - Choose framework based on context
 - Ask about async requirements
 - Use Pydantic for validation

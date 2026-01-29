@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Lint Learn - Auto-Learn from ESLint Output
+ * Lint Learn - Auto-Learn from ESLint Output (CLI v3.3.0)
  * 
  * Parses ESLint JSON output and creates lessons automatically.
  * 

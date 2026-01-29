@@ -3,7 +3,9 @@
 > **Transform your AI Agent into a FAANG-level engineering team with one command**
 
 [![npm](https://img.shields.io/badge/version-3.2.0-7c3aed?style=flat&colorA=18181b)](https://www.npmjs.com/package/agentskillskit-cli)
-[![skills](https://img.shields.io/badge/skills-51+-7c3aed?style=flat&colorA=18181b)](https://github.com/agentskillkit/agent-skills)
+[![Tests](https://github.com/agentskillkit/agent-skills/workflows/Tests/badge.svg)](https://github.com/agentskillkit/agent-skills/actions/workflows/test.yml)
+[![Lint](https://github.com/agentskillkit/agent-skills/workflows/Lint/badge.svg)](https://github.com/agentskillkit/agent-skills/actions/workflows/lint.yml)
+[![skills](https://img.shields.io/badge/skills-70-7c3aed?style=flat&colorA=18181b)](https://github.com/agentskillkit/agent-skills)
 [![agents](https://img.shields.io/badge/agents-25-7c3aed?style=flat&colorA=18181b)](https://github.com/agentskillkit/agent-skills)
 [![workflows](https://img.shields.io/badge/workflows-18-7c3aed?style=flat&colorA=18181b)](https://github.com/agentskillkit/agent-skills)
 [![license](https://img.shields.io/badge/license-MIT-7c3aed?style=flat&colorA=18181b)](LICENSE)
