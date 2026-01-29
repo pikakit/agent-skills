@@ -1,4 +1,4 @@
----
+﻿---
 description: Run k6/Artillery load tests with realistic scenarios. Measure throughput, latency, and error rates.
 ---
 
@@ -6,16 +6,16 @@ description: Run k6/Artillery load tests with realistic scenarios. Measure throu
 
 Run load tests to validate application can handle production scale.
 
-## 🎯 Purpose
+## ðŸŽ¯ Purpose
 
-This workflow uses the **load-tester** skill to:
+This workflow uses the **perf-optimizer** skill to:
 
 - Run realistic load tests (k6/Artillery)
 - Measure performance under load
 - Identify bottlenecks at scale
 - Generate performance reports
 
-## 🤖 Meta-Agents Integration
+## ðŸ¤– Meta-Agents Integration
 
 | Phase | Agent | Action |
 | ----- | ----- | ------ |
@@ -26,22 +26,22 @@ This workflow uses the **load-tester** skill to:
 
 ```
 Flow:
-recovery.save(baseline) → orchestrator.run(load_test)
-       ↓
-results → learner.log(bottlenecks)
-       ↓
-assessor.evaluate(production_risk) → go/no-go
+recovery.save(baseline) â†’ orchestrator.run(load_test)
+       â†“
+results â†’ learner.log(bottlenecks)
+       â†“
+assessor.evaluate(production_risk) â†’ go/no-go
 ```
 
 ---
 
-## 🔗 Chain: performance-audit (load-tester skill only)
+## ðŸ”— Chain: performance-audit (perf-optimizer skill only)
 
 **Skills Loaded (1):**
 
-- `load-tester` - k6/Artillery load testing, performance benchmarking
+- `perf-optimizer` - k6/Artillery load testing, performance benchmarking
 
-## 📖 Usage
+## ðŸ“– Usage
 
 ```bash
 /benchmark <description>
@@ -60,18 +60,18 @@ assessor.evaluate(production_risk) → go/no-go
 /benchmark production checkout flow
 ```
 
-## 🔄 Workflow Steps
+## ðŸ”„ Workflow Steps
 
 This workflow automatically:
 
 1. **Generate Load Test Script**
    - Realistic user scenarios
-   - Staged ramp-up (100 → 1K → 5K → 10K users)
+   - Staged ramp-up (100 â†’ 1K â†’ 5K â†’ 10K users)
    - Performance thresholds
 
 2. **Run Load Test**
    - Execute k6/Artillery
-   - Monitor metrics in real-time
+   - Monitor observability in real-time
    - Capture bottlenecks
 
 3. **Analyze Results**
@@ -85,23 +85,23 @@ This workflow automatically:
    - Bottleneck identification
    - Recommendations
 
-## ✅ Success Criteria
+## âœ… Success Criteria
 
 After running `/benchmark`, you will have:
 
-✓ **Load Test Completed** - At target scale
-✓ **Metrics Captured** - Latency, errors, throughput
-✓ **Bottlenecks Identified** - Database, memory, network
-✓ **Report Generated** - HTML + JSON results
+âœ“ **Load Test Completed** - At target scale
+âœ“ **observability Captured** - Latency, errors, throughput
+âœ“ **Bottlenecks Identified** - Database, memory, network
+âœ“ **Report Generated** - HTML + JSON results
 
-## 📊 Load Test Scenarios
+## ðŸ“Š Load Test Scenarios
 
 ### Spike Test
 
 Rapid increase to validate burst handling
 
 ```
-100 users → 10,000 users (1 minute)
+100 users â†’ 10,000 users (1 minute)
 ```
 
 ### Soak Test
@@ -120,7 +120,7 @@ Find breaking point
 Incrementally increase until failure
 ```
 
-## 🎨 Performance Metrics
+## ðŸŽ¨ Performance observability
 
 | Metric          | Measured        | Target     |
 | --------------- | --------------- | ---------- |
@@ -129,13 +129,13 @@ Incrementally increase until failure
 | **Throughput**  | Requests/sec    | 1,000+ rps |
 | **Max Users**   | Concurrent      | 10,000+    |
 
-## 🔍 Related Workflows
+## ðŸ” Related Workflows
 
 - `/optimize` - Auto-optimize before benchmarking
 - `/monitor` - Setup monitoring for production
 - `/launch` - Deploy after validation
 
-## 💡 Tips
+## ðŸ’¡ Tips
 
 **When to use `/benchmark`:**
 
@@ -151,60 +151,60 @@ Incrementally increase until failure
 - Monitor infrastructure during test
 - Run multiple times for consistency
 
-## 📚 Example Output
+## ðŸ“š Example Output
 
 ```bash
 You: "/benchmark my-api 10K users"
 
-Agent: Loading performance-audit chain (load-tester only)
-       ↓
+Agent: Loading performance-audit chain (perf-optimizer only)
+       â†“
 
-[1/1] 🧪 Running Load Test...
+[1/1] ðŸ§ª Running Load Test...
 
    Scenario: Ramp to 10,000 concurrent users
    Duration: 16 minutes
    Tool: k6
 
-   ✅ Test complete!
+   âœ… Test complete!
 
-📊 Results:
+ðŸ“Š Results:
 
    Requests:
-   ✅ Total: 1,245,000
-   ✅ Success: 1,242,500 (99.8%)
-   ❌ Failed: 2,500 (0.2%)
+   âœ… Total: 1,245,000
+   âœ… Success: 1,242,500 (99.8%)
+   âŒ Failed: 2,500 (0.2%)
 
    Response Time:
-   ✅ p50: 85ms
-   ✅ p95: 180ms
-   ⚠️ p99: 450ms
-   ✅ Max: 1.2s
+   âœ… p50: 85ms
+   âœ… p95: 180ms
+   âš ï¸ p99: 450ms
+   âœ… Max: 1.2s
 
    Throughput:
-   ✅ 4,150 requests/sec
-   ✅ 15 GB data received
+   âœ… 4,150 requests/sec
+   âœ… 15 GB data received
 
    Errors:
-   ✅ Error rate: 0.2% (target: <1% ✓)
-   ⚠️ Timeout errors: 1,500 (database)
+   âœ… Error rate: 0.2% (target: <1% âœ“)
+   âš ï¸ Timeout errors: 1,500 (database)
 
-🎯 Bottlenecks Detected:
-   ❌ Database connections maxed (20/20)
-   ⚠️ Memory usage: 90%
-   ✅ CPU usage: 45%
+ðŸŽ¯ Bottlenecks Detected:
+   âŒ Database connections maxed (20/20)
+   âš ï¸ Memory usage: 90%
+   âœ… CPU usage: 45%
 
-💡 Recommendations:
-   1. Increase DB pool: 20 → 50
-   2. Add horizontal scaling (2 → 4 instances)
+ðŸ’¡ Recommendations:
+   1. Increase DB pool: 20 â†’ 50
+   2. Add horizontal scaling (2 â†’ 4 instances)
    3. Implement request queuing
 
-✅ Benchmark complete!
+âœ… Benchmark complete!
 
    Report: performance-report.html
    Raw data: results.json
 ```
 
-## 🚨 Common Bottlenecks
+## ðŸš¨ Common Bottlenecks
 
 | Symptom              | Cause                     | Fix                  |
 | -------------------- | ------------------------- | -------------------- |
@@ -216,5 +216,6 @@ Agent: Loading performance-audit chain (load-tester only)
 ---
 
 **Version:** 1.0.0  
-**Chain:** performance-audit (load-tester)  
+**Chain:** performance-audit (perf-optimizer)  
 **Added:** v3.5.0 (FAANG upgrade - Phase 2)
+

@@ -1,11 +1,11 @@
----
-description: Autonomous multi-agent coordination. 3+ specialists working in parallel with verification.
+﻿---
+description: Autonomous agent-patterns coordination. 3+ specialists working in parallel with verification.
 chain: build-web-app
 ---
 
 // turbo-all
 
-# /autopilot - Multi-Agent Command Center
+# /autopilot - agent-patterns Command Center
 
 $ARGUMENTS
 
@@ -17,12 +17,12 @@ Coordinate 3+ specialist agents for complex tasks. **Like having a senior engine
 
 ---
 
-## 🔴 CRITICAL: Minimum 3 Agents
+## ðŸ”´ CRITICAL: Minimum 3 Agents
 
 > **AUTOPILOT = MINIMUM 3 DIFFERENT SPECIALISTS**
 >
-> If fewer than 3 agents → NOT autopilot, just delegation.
-> Single agent work → Use direct command instead.
+> If fewer than 3 agents â†’ NOT autopilot, just delegation.
+> Single agent work â†’ Use direct command instead.
 
 ---
 
@@ -30,10 +30,10 @@ Coordinate 3+ specialist agents for complex tasks. **Like having a senior engine
 
 | Current Mode | Task Type | Action                                                       |
 | ------------ | --------- | ------------------------------------------------------------ |
-| **plan**     | Any       | ✅ Proceed with planning-first approach                      |
-| **edit**     | Simple    | ✅ Proceed directly                                          |
-| **edit**     | Complex   | ⚠️ Ask: "This requires planning. Switch to plan mode?"       |
-| **ask**      | Any       | ⚠️ Ask: "Ready to orchestrate. Switch to edit or plan mode?" |
+| **plan**     | Any       | âœ… Proceed with planning-first approach                      |
+| **edit**     | Simple    | âœ… Proceed directly                                          |
+| **edit**     | Complex   | âš ï¸ Ask: "This requires planning. Switch to plan mode?"       |
+| **ask**      | Any       | âš ï¸ Ask: "Ready to orchestrate. Switch to edit or plan mode?" |
 
 ---
 
@@ -42,17 +42,17 @@ Coordinate 3+ specialist agents for complex tasks. **Like having a senior engine
 Before selecting agents, identify ALL domains:
 
 ```
-□ Security     → security-auditor
-□ Backend/API  → backend-specialist
-□ Frontend/UI  → frontend-specialist
-□ Database     → database-architect
-□ Testing      → test-engineer
-□ DevOps       → devops-engineer
-□ Mobile       → mobile-developer
-□ Performance  → performance-optimizer
-□ SEO          → seo-specialist
-□ Planning     → project-planner
-□ Debug        → debugger
+â–¡ Security     â†’ security-auditor
+â–¡ Backend/API  â†’ backend-specialist
+â–¡ Frontend/UI  â†’ frontend-specialist
+â–¡ Database     â†’ database-architect
+â–¡ Testing      â†’ test-engineer
+â–¡ DevOps       â†’ devops-engineer
+â–¡ Mobile       â†’ mobile-developer
+â–¡ Performance  â†’ performance-optimizer
+â–¡ SEO          â†’ seo-specialist
+â–¡ Planning     â†’ project-planner
+â–¡ Debug        â†’ debugger
 ```
 
 ---
@@ -99,24 +99,24 @@ Before selecting agents, identify ALL domains:
 | `critic`      | Arbitration| Resolve QA vs Execution conflicts |
 | `learner`     | Learning   | After failures, extract lessons |
 
-## 🤖 Meta-Agents Integration
+## ðŸ¤– Meta-Agents Integration
 
 ```
 Flow:
-orchestrator.init() → assessor.evaluate(plan)
-       ↓
-recovery.save() → execute phases in parallel
-       ↓
-conflict? → critic.arbitrate()
-       ↓
-failure? → recovery.restore() → learner.log()
-       ↓
-success → learner.log(patterns)
+orchestrator.init() â†’ assessor.evaluate(plan)
+       â†“
+recovery.save() â†’ execute phases in parallel
+       â†“
+conflict? â†’ critic.arbitrate()
+       â†“
+failure? â†’ recovery.restore() â†’ learner.log()
+       â†“
+success â†’ learner.log(patterns)
 ```
 
 ---
 
-## 🔒 MANDATORY: Meta-Agent Hooks
+## ðŸ”’ MANDATORY: Meta-Agent Hooks
 
 > **ENFORCEMENT:** These hooks are REQUIRED for every autopilot execution.
 > Failure to invoke meta-agents = incomplete autopilot workflow.
@@ -134,9 +134,9 @@ success → learner.log(patterns)
    - Risk Level: LOW / MEDIUM / HIGH / CRITICAL
    - Impact Scope: [files, services affected]
    - Mitigation Recommendations
-3. If CRITICAL → Require explicit user confirmation
-4. If HIGH → Log warning, proceed with extra checkpoints
-5. If LOW/MEDIUM → Proceed normally
+3. If CRITICAL â†’ Require explicit user confirmation
+4. If HIGH â†’ Log warning, proceed with extra checkpoints
+5. If LOW/MEDIUM â†’ Proceed normally
 ```
 
 **Invocation Template:**
@@ -228,8 +228,8 @@ Use the critic agent to resolve conflict:
    - Record what worked well
    - Update best practices
 
-3. METRICS INTEGRATION:
-   - Log execution metrics from AutopilotMetrics
+3. observability INTEGRATION:
+   - Log execution observability from AutopilotMetrics
    - Compare to baseline
    - Track improvement trends
 ```
@@ -265,7 +265,7 @@ Before completing autopilot, verify:
 - [ ] **recovery** saved checkpoint before risky operations
 - [ ] **critic** resolved any agent conflicts
 - [ ] **learner** will log outcome (pending completion)
-- [ ] **metrics** are being collected (AutopilotMetrics)
+- [ ] **observability** are being collected (AutopilotMetrics)
 ```
 
 > **VIOLATION:** Skipping meta-agent hooks = Autopilot incomplete.
@@ -285,13 +285,13 @@ Before completing autopilot, verify:
 | 1    | `project-planner` | Create PLAN.md                |
 | 2    | `explorer-agent`  | Codebase discovery (optional) |
 
-> 🔴 **NO OTHER AGENTS during planning!**
+> ðŸ”´ **NO OTHER AGENTS during planning!**
 
-**⛔ CHECKPOINT: User approval required before Phase 2**
+**â›” CHECKPOINT: User approval required before Phase 2**
 
 ---
 
-## 🎨 Design System (Required for UI Apps)
+## ðŸŽ¨ Design System (Required for UI Apps)
 
 > **CRITICAL:** Generate design system BEFORE building UI components.
 
@@ -328,9 +328,9 @@ Use the generated design system to define:
 
 ### Anti-Patterns to Avoid
 
-| ❌ Don't                   | ✅ Do                             |
+| âŒ Don't                   | âœ… Do                             |
 | -------------------------- | --------------------------------- |
-| Use emoji as icons (🎨 🚀) | Use SVG icons (Lucide, Heroicons) |
+| Use emoji as icons (ðŸŽ¨ ðŸš€) | Use SVG icons (Lucide, Heroicons) |
 | Generic purple gradients   | Use curated color palette         |
 | Random font choices        | Use recommended font pairing      |
 | Scale transforms on hover  | Use opacity/color transitions     |
@@ -375,7 +375,7 @@ python .agent/skills/code-quality/scripts/lint_runner.py .
 
 ---
 
-## 🚀 Auto-Execution Policy
+## ðŸš€ Auto-Execution Policy
 
 **This workflow runs in CONTINUOUS EXECUTION MODE.**
 
@@ -409,7 +409,7 @@ When invoking ANY sub-agent, include:
 **TASK:** [Specific task for this agent]
 ```
 
-> ⚠️ **VIOLATION:** Invoking agent without context = wrong assumptions!
+> âš ï¸ **VIOLATION:** Invoking agent without context = wrong assumptions!
 
 ---
 
@@ -420,7 +420,7 @@ When invoking commands during autopilot:
 ```javascript
 run_command({
   CommandLine: "npm install ...",
-  SafeToAutoRun: true, // ✅ REQUIRED in autopilot mode
+  SafeToAutoRun: true, // âœ… REQUIRED in autopilot mode
   WaitMsBeforeAsync: 10000,
   Cwd: "...",
 });
@@ -428,13 +428,13 @@ run_command({
 
 **Rules:**
 
-- ✅ **Always set `SafeToAutoRun: true`** after plan approval
-- ❌ **Never use `SafeToAutoRun: false`** in autopilot execution
-- 📋 **Reference:** See Auto-Execution Policy above
+- âœ… **Always set `SafeToAutoRun: true`** after plan approval
+- âŒ **Never use `SafeToAutoRun: false`** in autopilot execution
+- ðŸ“‹ **Reference:** See Auto-Execution Policy above
 
 ---
 
-## 📦 Scaffold Scripts (Minimize Accept Prompts)
+## ðŸ“¦ Scaffold Scripts (Minimize Accept Prompts)
 
 Pre-approved scripts bundle multiple commands to reduce Accept prompts.
 
@@ -442,15 +442,15 @@ Pre-approved scripts bundle multiple commands to reduce Accept prompts.
 
 | Script               | Purpose                                   | Saves         |
 | -------------------- | ----------------------------------------- | ------------- |
-| `scaffold-nextjs.js` | Create Next.js project + deps + structure | 3+ → 1 prompt |
+| `scaffold-nextjs.js` | Create Next.js project + deps + structure | 3+ â†’ 1 prompt |
 
 ### Usage
 
 ```bash
 # Instead of multiple npx/npm commands (3+ Accept prompts):
-npx create-next-app...  # ← Accept
-npm install zustand...  # ← Accept
-npm run dev...          # ← Accept
+npx create-next-app...  # â† Accept
+npm install zustand...  # â† Accept
+npm run dev...          # â† Accept
 
 # Use scaffold script (1 Accept prompt):
 node .agent/scripts-js/scaffold-nextjs.js my-app --deps zustand,framer-motion --start
@@ -476,17 +476,17 @@ node .agent/scripts-js/scaffold-nextjs.js weather-app --port 3001 --start
 
 **Result:**
 
-- ✅ Next.js 15 + TypeScript + Tailwind
-- ✅ Auto-created: components/, lib/, hooks/, types/
-- ✅ Dev server running on port 3001
-- ✅ Only 1 Accept prompt!
+- âœ… Next.js 15 + TypeScript + Tailwind
+- âœ… Auto-created: components/, lib/, hooks/, types/
+- âœ… Dev server running on port 3001
+- âœ… Only 1 Accept prompt!
 
 ---
 
 ## Output Format
 
 ```markdown
-## 🎼 Autopilot Report
+## ðŸŽ¼ Autopilot Report
 
 ### Mission
 
@@ -496,19 +496,19 @@ node .agent/scripts-js/scaffold-nextjs.js weather-app --port 3001 --start
 
 | Agent                 | Task           | Duration | Status      |
 | --------------------- | -------------- | -------- | ----------- |
-| `project-planner`     | Task breakdown | 2m       | ✅ Complete |
-| `database-architect`  | Schema design  | 3m       | ✅ Complete |
-| `backend-specialist`  | API routes     | 5m       | ✅ Complete |
-| `frontend-specialist` | UI components  | 7m       | ✅ Complete |
-| `test-engineer`       | E2E tests      | 4m       | ✅ Complete |
+| `project-planner`     | Task breakdown | 2m       | âœ… Complete |
+| `database-architect`  | Schema design  | 3m       | âœ… Complete |
+| `backend-specialist`  | API routes     | 5m       | âœ… Complete |
+| `frontend-specialist` | UI components  | 7m       | âœ… Complete |
+| `test-engineer`       | E2E tests      | 4m       | âœ… Complete |
 
 ### Verification Results
 
 | Script           | Result                |
 | ---------------- | --------------------- |
-| security_scan.py | ✅ No vulnerabilities |
-| lint_runner.py   | ✅ No errors          |
-| Tests            | ✅ 28/28 passed       |
+| security_scan.py | âœ… No vulnerabilities |
+| lint_runner.py   | âœ… No errors          |
+| Tests            | âœ… 28/28 passed       |
 
 ### Deliverables
 
@@ -528,7 +528,7 @@ Total execution time: [Z] minutes.
 
 ### Preview
 
-🌐 http://localhost:3000
+ðŸŒ http://localhost:3000
 
 ### Next Steps
 
@@ -551,7 +551,7 @@ Total execution time: [Z] minutes.
 
 ---
 
-## ⛔ MANDATORY: Problem Verification Before Completion
+## â›” MANDATORY: Problem Verification Before Completion
 
 > **CRITICAL:** This check MUST be performed before ANY `notify_user` call or task completion.
 
@@ -561,8 +561,8 @@ Total execution time: [Z] minutes.
 Before marking task complete:
 1. Read @[current_problems] from IDE
 2. Count errors and warnings
-3. If count > 0 → DO NOT COMPLETE → Go to Step 2
-4. If count = 0 → Proceed to Exit Gate
+3. If count > 0 â†’ DO NOT COMPLETE â†’ Go to Step 2
+4. If count = 0 â†’ Proceed to Exit Gate
 ```
 
 ### Step 2: Auto-Fix Protocol
@@ -623,12 +623,12 @@ Before completing, verify ALL criteria:
 
 | Check               | Target | How to Verify               |
 | ------------------- | ------ | --------------------------- |
-| **Agent Count**     | ≥3     | Count unique agents invoked |
+| **Agent Count**     | â‰¥3     | Count unique agents invoked |
 | **IDE Problems**    | 0      | Check `@[current_problems]` |
 | **Security Scan**   | Pass   | `security_scan.py` output   |
 | **Preview Running** | Yes    | `npm run dev` active        |
 
-### Quality Metrics
+### Quality observability
 
 | Metric             | Target           | How to Measure     |
 | ------------------ | ---------------- | ------------------ |
@@ -641,36 +641,36 @@ Before completing, verify ALL criteria:
 
 ```
 IDE Problems > 0?
-├── YES → Auto-fix if possible, else notify user
-└── NO → Continue
+â”œâ”€â”€ YES â†’ Auto-fix if possible, else notify user
+â””â”€â”€ NO â†’ Continue
 
 Security Scan failed?
-├── YES → Block completion, notify user
-└── NO → Continue
+â”œâ”€â”€ YES â†’ Block completion, notify user
+â””â”€â”€ NO â†’ Continue
 
 All planned deliverables complete?
-├── YES → Generate report, notify user
-└── NO → Continue execution
+â”œâ”€â”€ YES â†’ Generate report, notify user
+â””â”€â”€ NO â†’ Continue execution
 ```
 
-> **Rule:** If ANY check fails → DO NOT mark complete. Fix or escalate.
+> **Rule:** If ANY check fails â†’ DO NOT mark complete. Fix or escalate.
 
 ---
 
-## 📊 Performance Benchmarks
+## ðŸ“Š Performance Benchmarks
 
 ### Real-World Baseline (TodoList Execution)
 
 | Phase     | Operation          | Actual Time | Target    | Status        |
 | --------- | ------------------ | ----------- | --------- | ------------- |
-| Setup     | Project creation   | 23s         | <60s      | ✅ Pass       |
-| Setup     | Dependency install | 11s         | <45s      | ✅ Pass       |
-| Build     | Types/Store        | ~5s         | <10s      | ✅ Pass       |
-| Build     | Components (5)     | ~30s        | <60s      | ✅ Pass       |
-| Build     | Pages/Layout       | ~10s        | <20s      | ✅ Pass       |
-| Verify    | Problem check      | <2s         | <5s       | ✅ Pass       |
-| Verify    | Auto-fix           | <5s         | <10s      | ✅ Pass       |
-| **Total** | **End-to-end**     | **~8min**   | **<5min** | ⚠️ Exceeded\* |
+| Setup     | Project creation   | 23s         | <60s      | âœ… Pass       |
+| Setup     | Dependency install | 11s         | <45s      | âœ… Pass       |
+| Build     | Types/Store        | ~5s         | <10s      | âœ… Pass       |
+| Build     | Components (5)     | ~30s        | <60s      | âœ… Pass       |
+| Build     | Pages/Layout       | ~10s        | <20s      | âœ… Pass       |
+| Verify    | Problem check      | <2s         | <5s       | âœ… Pass       |
+| Verify    | Auto-fix           | <5s         | <10s      | âœ… Pass       |
+| **Total** | **End-to-end**     | **~8min**   | **<5min** | âš ï¸ Exceeded\* |
 
 _\*Exceeded due to user approval prompts. After turbo-all fix, expect <5min._
 
@@ -687,21 +687,21 @@ _\*Exceeded due to user approval prompts. After turbo-all fix, expect <5min._
 
 ```
 Typical autopilot execution:
-┌─────────────────────────────────────────────┐
-│ Phase 1: Planning (15-20%)                  │
-│ ████████░░░░░░░░░░░░░░░░░░░░░░░░░░ (~1min) │
-├─────────────────────────────────────────────┤
-│ Phase 2: Execution (60-70%)                 │
-│ ████████████████████████████░░░░░░ (~3min) │
-├─────────────────────────────────────────────┤
-│ Phase 3: Verification (15-20%)              │
-│ ████████░░░░░░░░░░░░░░░░░░░░░░░░░░ (~1min) │
-└─────────────────────────────────────────────┘
+â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
+â”‚ Phase 1: Planning (15-20%)                  â”‚
+â”‚ â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–‘â–‘â–‘â–‘â–‘â–‘â–‘â–‘â–‘â–‘â–‘â–‘â–‘â–‘â–‘â–‘â–‘â–‘â–‘â–‘â–‘â–‘â–‘â–‘â–‘â–‘ (~1min) â”‚
+â”œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¤
+â”‚ Phase 2: Execution (60-70%)                 â”‚
+â”‚ â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–‘â–‘â–‘â–‘â–‘â–‘ (~3min) â”‚
+â”œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¤
+â”‚ Phase 3: Verification (15-20%)              â”‚
+â”‚ â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–‘â–‘â–‘â–‘â–‘â–‘â–‘â–‘â–‘â–‘â–‘â–‘â–‘â–‘â–‘â–‘â–‘â–‘â–‘â–‘â–‘â–‘â–‘â–‘â–‘â–‘ (~1min) â”‚
+â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
 ```
 
 ---
 
-## 💰 Cost Estimation
+## ðŸ’° Cost Estimation
 
 ### Formula
 
@@ -726,7 +726,7 @@ function estimateAutopilotCost(complexity, agents) {
 
 // Example: Standard app with 4 agents
 estimateAutopilotCost("standard", 4);
-// → { optimistic: 4, likely: 7, pessimistic: 10 } minutes
+// â†’ { optimistic: 4, likely: 7, pessimistic: 10 } minutes
 ```
 
 ### Quick Reference Table
@@ -747,50 +747,50 @@ estimateAutopilotCost("standard", 4);
 
 ---
 
-## 🎛️ Monitoring Dashboard
+## ðŸŽ›ï¸ Monitoring Dashboard
 
 ### Real-Time View (Conceptual)
 
 ```
-┌──────────────────────────────────────────────────────┐
-│ 🎼 AUTOPILOT: FAANG TodoList                         │
-│ Status: 🔄 Phase 2/3 - Building                      │
-│ Elapsed: 2m 34s / ~5m estimated                      │
-│ Progress: ████████████████░░░░░░░░░░ 65%             │
-└──────────────────────────────────────────────────────┘
+â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
+â”‚ ðŸŽ¼ AUTOPILOT: FAANG TodoList                         â”‚
+â”‚ Status: ðŸ”„ Phase 2/3 - Building                      â”‚
+â”‚ Elapsed: 2m 34s / ~5m estimated                      â”‚
+â”‚ Progress: â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–‘â–‘â–‘â–‘â–‘â–‘â–‘â–‘â–‘â–‘ 65%             â”‚
+â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
 
-┌─────────────────────────┬────────────────────────────┐
-│ 📋 PHASE PROGRESS       │ 👥 AGENT STATUS            │
-├─────────────────────────┼────────────────────────────┤
-│ ✅ Phase 1: Planning    │ ✅ project-planner (1m 12s)│
-│    └─ 1m 12s            │ 🔄 frontend-specialist     │
-│ 🔄 Phase 2: Execution   │    └─ active (45s)         │
-│    └─ 1m 22s / ~3m      │ ⏳ backend-specialist      │
-│ ⏳ Phase 3: Verification │ ⏳ test-engineer           │
-│    └─ Not started        │                            │
-└─────────────────────────┴────────────────────────────┘
+â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¬â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
+â”‚ ðŸ“‹ PHASE PROGRESS       â”‚ ðŸ‘¥ AGENT STATUS            â”‚
+â”œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¼â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¤
+â”‚ âœ… Phase 1: Planning    â”‚ âœ… project-planner (1m 12s)â”‚
+â”‚    â””â”€ 1m 12s            â”‚ ðŸ”„ frontend-specialist     â”‚
+â”‚ ðŸ”„ Phase 2: Execution   â”‚    â””â”€ active (45s)         â”‚
+â”‚    â””â”€ 1m 22s / ~3m      â”‚ â³ backend-specialist      â”‚
+â”‚ â³ Phase 3: Verification â”‚ â³ test-engineer           â”‚
+â”‚    â””â”€ Not started        â”‚                            â”‚
+â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”´â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
 
-┌──────────────────────────────────────────────────────┐
-│ 📊 QUALITY METRICS                                   │
-├──────────────────────────────────────────────────────┤
-│ IDE Problems:  2 → 0 (auto-fixed)       ✅           │
-│ Security Scan: Pending                  ⏳           │
-│ Lint Check:    Pending                  ⏳           │
-│ Type Check:    0 errors                 ✅           │
-│ Success Rate:  95% (historical)         📈           │
-└──────────────────────────────────────────────────────┘
+â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
+â”‚ ðŸ“Š QUALITY observability                                   â”‚
+â”œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¤
+â”‚ IDE Problems:  2 â†’ 0 (auto-fixed)       âœ…           â”‚
+â”‚ Security Scan: Pending                  â³           â”‚
+â”‚ Lint Check:    Pending                  â³           â”‚
+â”‚ Type Check:    0 errors                 âœ…           â”‚
+â”‚ Success Rate:  95% (historical)         ðŸ“ˆ           â”‚
+â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
 
-┌──────────────────────────────────────────────────────┐
-│ 💾 RESOURCE USAGE                                    │
-├──────────────────────────────────────────────────────┤
-│ Memory: ████████░░░░░░░░ 234 MB / 500 MB             │
-│ Disk:   ████░░░░░░░░░░░░░ 1.2 GB / 2 GB              │
-│ Files:  11 created, 0 modified, 0 deleted            │
-│ Agents: 2/4 active, 2 queued                         │
-└──────────────────────────────────────────────────────┘
+â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
+â”‚ ðŸ’¾ RESOURCE USAGE                                    â”‚
+â”œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¤
+â”‚ Memory: â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–‘â–‘â–‘â–‘â–‘â–‘â–‘â–‘ 234 MB / 500 MB             â”‚
+â”‚ Disk:   â–ˆâ–ˆâ–ˆâ–ˆâ–‘â–‘â–‘â–‘â–‘â–‘â–‘â–‘â–‘â–‘â–‘â–‘â–‘ 1.2 GB / 2 GB              â”‚
+â”‚ Files:  11 created, 0 modified, 0 deleted            â”‚
+â”‚ Agents: 2/4 active, 2 queued                         â”‚
+â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
 ```
 
-### Metrics to Track
+### observability to Track
 
 | Metric         | Update Frequency | Visibility    |
 | -------------- | ---------------- | ------------- |
@@ -802,7 +802,7 @@ estimateAutopilotCost("standard", 4);
 
 ---
 
-## 🔧 Troubleshooting Guide
+## ðŸ”§ Troubleshooting Guide
 
 ### Common Issues & Solutions
 
@@ -829,7 +829,7 @@ When autopilot fails or produces unexpected results:
 - [ ] Review PLAN.md for missed requirements
 - [ ] Check if all agents were invoked
 - [ ] Verify preview server is running
-- [ ] Review final report for metrics
+- [ ] Review final report for observability
 ```
 
 ### Recovery Procedures
@@ -856,7 +856,7 @@ When autopilot fails or produces unexpected results:
 
 ---
 
-## 🔗 Workflow Chain
+## ðŸ”— Workflow Chain
 
 ```mermaid
 graph LR
@@ -876,27 +876,27 @@ graph LR
 
 ---
 
-## 📊 Final Metrics Report Template
+## ðŸ“Š Final observability Report Template
 
 Include this in every autopilot completion:
 
 ```markdown
-## 📊 Execution Metrics
+## ðŸ“Š Execution observability
 
 | Metric            | Target | Actual | Status |
 | ----------------- | ------ | ------ | ------ |
-| Agents invoked    | ≥3     | [X]    | ✅/❌  |
-| IDE problems      | 0      | [X]    | ✅/❌  |
-| Phase transitions | <2s    | [X]s   | ✅/❌  |
-| Total execution   | <5min  | [X]m   | ✅/❌  |
-| Files created     | [plan] | [X]    | ✅/❌  |
-| Auto-fix rate     | >85%   | [X]%   | ✅/❌  |
+| Agents invoked    | â‰¥3     | [X]    | âœ…/âŒ  |
+| IDE problems      | 0      | [X]    | âœ…/âŒ  |
+| Phase transitions | <2s    | [X]s   | âœ…/âŒ  |
+| Total execution   | <5min  | [X]m   | âœ…/âŒ  |
+| Files created     | [plan] | [X]    | âœ…/âŒ  |
+| Auto-fix rate     | >85%   | [X]%   | âœ…/âŒ  |
 
 ### SLO Compliance
 
-- ✅ First-time success: YES/NO
-- ✅ Zero manual fixes needed: YES/NO
-- ✅ All deliverables complete: YES/NO
+- âœ… First-time success: YES/NO
+- âœ… Zero manual fixes needed: YES/NO
+- âœ… All deliverables complete: YES/NO
 ```
 
 ---
@@ -906,7 +906,7 @@ Include this in every autopilot completion:
 ```markdown
 Autopilot complete. All agents finished. Preview running at localhost:3000.
 
-See metrics report above for quality verification.
+See observability report above for quality verification.
 ```
 
 ---
@@ -914,3 +914,4 @@ See metrics report above for quality verification.
 **Version:** 2.0.0  
 **Policy Reference:** `.agent/CONTINUOUS_EXECUTION_POLICY.md`  
 **Applies to:** All autopilot executions
+

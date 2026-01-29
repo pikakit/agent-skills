@@ -1,4 +1,4 @@
----
+﻿---
 description: Feature flag management for A/B testing and gradual rollouts. Control features without code deploys.
 ---
 
@@ -14,7 +14,7 @@ Manage feature flags for A/B testing, gradual rollouts, and kill switches. **Tog
 
 ---
 
-## 🤖 Meta-Agents Integration
+## ðŸ¤– Meta-Agents Integration
 
 | Phase | Agent | Action |
 | ----- | ----- | ------ |
@@ -25,13 +25,13 @@ Manage feature flags for A/B testing, gradual rollouts, and kill switches. **Tog
 
 ```
 Flow:
-assessor.evaluate(rollout_risk) → safe %?
-       ↓
-recovery.save(flag_state) → enable flag
-       ↓
-monitor → issues? → recovery.restore() → learner.log()
-       ↓
-success → learner.log(pattern)
+assessor.evaluate(rollout_risk) â†’ safe %?
+       â†“
+recovery.save(flag_state) â†’ enable flag
+       â†“
+monitor â†’ issues? â†’ recovery.restore() â†’ learner.log()
+       â†“
+success â†’ learner.log(pattern)
 ```
 
 ---
@@ -58,7 +58,7 @@ success → learner.log(pattern)
 // turbo
 
 ```bash
-node .agent/skills/feature-flags/scripts/flag-manager.js init
+node .agent/skills/cicd-pipeline/scripts/flag-manager.js init
 ```
 
 ### 2. List Flags
@@ -66,20 +66,20 @@ node .agent/skills/feature-flags/scripts/flag-manager.js init
 // turbo
 
 ```bash
-node .agent/skills/feature-flags/scripts/flag-manager.js list
+node .agent/skills/cicd-pipeline/scripts/flag-manager.js list
 ```
 
 ### 3. Enable/Disable
 
 ```bash
-node .agent/skills/feature-flags/scripts/flag-manager.js enable new-checkout
-node .agent/skills/feature-flags/scripts/flag-manager.js disable maintenance-mode
+node .agent/skills/cicd-pipeline/scripts/flag-manager.js enable new-checkout
+node .agent/skills/cicd-pipeline/scripts/flag-manager.js disable maintenance-mode
 ```
 
 ### 4. Gradual Rollout
 
 ```bash
-node .agent/skills/feature-flags/scripts/flag-manager.js set new-feature --percentage 25
+node .agent/skills/cicd-pipeline/scripts/flag-manager.js set new-feature --percentage 25
 ```
 
 ---
@@ -139,10 +139,11 @@ File: `.featureflags.json`
 
 ---
 
-## 🔗 Related
+## ðŸ”— Related
 
 | Workflow    | Purpose           |
 | ----------- | ----------------- |
 | `/launch`   | Deploy with flags |
 | `/validate` | Test flag states  |
 | `/diagnose` | Debug flag issues |
+

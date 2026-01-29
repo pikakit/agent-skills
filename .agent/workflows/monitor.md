@@ -1,22 +1,22 @@
----
+﻿---
 description: Production observability with OpenTelemetry, Prometheus/Grafana dashboards, and PagerDuty alerting
 ---
 
 # Monitoring Setup Workflow
 
-Comprehensive production monitoring with observability, logging, metrics collection, distributed tracing, and incident response.
+Comprehensive production monitoring with observability, observability, observability collection, distributed observability, and incident response.
 
-## 🎯 Purpose
+## ðŸŽ¯ Purpose
 
 This workflow uses the **monitoring-production** chain to setup:
 
 - OpenTelemetry observability foundation
-- Structured logging with cloud aggregation
-- Prometheus metrics and dashboards
-- Distributed tracing (APM)
+- Structured observability with cloud aggregation
+- Prometheus observability and dashboards
+- Distributed observability (APM)
 - Alerting and incident response
 
-## 🤖 Meta-Agents Integration
+## ðŸ¤– Meta-Agents Integration
 
 | Phase | Agent | Action |
 | ----- | ----- | ------ |
@@ -26,17 +26,17 @@ This workflow uses the **monitoring-production** chain to setup:
 
 ---
 
-## 🔗 Chain: monitoring-production
+## ðŸ”— Chain: monitoring-production
 
 **Skills Loaded (5):**
 
 - `observability` - OpenTelemetry SDK, provider integration (Datadog, Sentry, New Relic)
-- `logging` - Structured logging (Pino/Winston), PII masking, log aggregation
-- `metrics` - Prometheus metrics, Golden Signals (latency, traffic, errors, saturation)
-- `tracing` - Distributed tracing, custom spans, context propagation
-- `incident-response` - Alert rules, Slack/PagerDuty integration, runbooks
+- `observability` - Structured observability (Pino/Winston), PII masking, log aggregation
+- `observability` - Prometheus observability, Golden Signals (latency, traffic, errors, saturation)
+- `observability` - Distributed observability, custom spans, context propagation
+- `observability` - Alert rules, Slack/PagerDuty integration, runbooks
 
-## 📖 Usage
+## ðŸ“– Usage
 
 ```bash
 /monitor <description>
@@ -57,10 +57,10 @@ Requirements:
 - Datadog APM
 - Error rate alerts
 - Slack notifications
-- Custom business metrics
+- Custom business observability
 ```
 
-## 🔄 Workflow Steps
+## ðŸ”„ Workflow Steps
 
 This workflow automatically:
 
@@ -70,20 +70,20 @@ This workflow automatically:
    - Setup auto-instrumentation
    - Configure resource attributes
 
-2. **Structured Logging**
+2. **Structured observability**
    - Setup Pino/Winston logger
    - JSON-formatted logs
    - PII redaction (email, phone, SSN)
    - Cloud aggregation (Datadog Logs, CloudWatch, Loki)
-   - Correlation IDs for request tracing
+   - Correlation IDs for request observability
 
-3. **Metrics Collection**
-   - Expose Prometheus `/metrics` endpoint
+3. **observability Collection**
+   - Expose Prometheus `/observability` endpoint
    - Golden Signals (latency, traffic, errors, saturation)
-   - Custom business metrics
+   - Custom business observability
    - Create Grafana/Datadog dashboards
 
-4. **Distributed Tracing** (Optional)
+4. **Distributed observability** (Optional)
    - Enable auto-instrumentation (HTTP, DB, Redis)
    - Custom span creation
    - Trace context propagation (W3C)
@@ -97,7 +97,7 @@ This workflow automatically:
    - Generate runbooks for common issues
    - Post-mortem templates
 
-## 🎨 Supported Platforms
+## ðŸŽ¨ Supported Platforms
 
 ### Observability Providers
 
@@ -114,28 +114,28 @@ This workflow automatically:
 - **Grafana Loki**
 - **Elasticsearch**
 
-### Metrics Platforms
+### observability Platforms
 
 - **Prometheus** + Grafana
-- **Datadog Metrics**
-- **New Relic Metrics**
-- **CloudWatch Metrics**
+- **Datadog observability**
+- **New Relic observability**
+- **CloudWatch observability**
 
-## ✅ Success Criteria
+## âœ… Success Criteria
 
 After running `/monitor`, you will have:
 
-✓ **Observability SDK** - OpenTelemetry initialized
-✓ **Structured Logs** - JSON logs with PII masking
-✓ **Metrics Endpoint** - `/metrics` exposing Prometheus format
-✓ **Dashboards** - Pre-configured with Golden Signals
-✓ **Alerts** - At least 3 critical alerts (error rate, latency, health check)
-✓ **Notifications** - Slack/PagerDuty integration working
-✓ **Runbooks** - Documentation for incident response
+âœ“ **Observability SDK** - OpenTelemetry initialized
+âœ“ **Structured Logs** - JSON logs with PII masking
+âœ“ **observability Endpoint** - `/observability` exposing Prometheus format
+âœ“ **Dashboards** - Pre-configured with Golden Signals
+âœ“ **Alerts** - At least 3 critical alerts (error rate, latency, health check)
+âœ“ **Notifications** - Slack/PagerDuty integration working
+âœ“ **Runbooks** - Documentation for incident response
 
-## 📊 What Gets Monitored
+## ðŸ“Š What Gets Monitored
 
-### Application Metrics
+### Application observability
 
 - HTTP request rate (requests/sec)
 - Response time (p50, p95, p99)
@@ -144,35 +144,35 @@ After running `/monitor`, you will have:
 - Database query performance
 - Cache hit rate
 
-### Infrastructure Metrics
+### Infrastructure observability
 
 - CPU usage
 - Memory usage
 - Disk usage
 - Network I/O
 
-### Business Metrics
+### Business observability
 
 - User signups
 - Orders processed
 - Revenue (if applicable)
 - Custom KPIs
 
-## 🔍 Related Workflows
+## ðŸ” Related Workflows
 
 - `/optimize` - Performance profiling and optimization
 - `/alert` - Configure additional alert rules
 - `/launch` - Deploy with monitoring pre-configured
 - `/diagnose` - Debug issues using monitoring data
 
-## 💡 Tips
+## ðŸ’¡ Tips
 
 **When to use `/monitor`:**
 
 - After deploying to production
 - When setting up new services
 - After incidents (to prevent recurrence)
-- Regulatory compliance (audit logging)
+- Regulatory compliance (audit observability)
 
 **Golden Signals are mandatory:**
 
@@ -189,71 +189,71 @@ After running `/monitor`, you will have:
 - Use PII masking for GDPR/CCPA compliance
 - Sample traces in production (10%) to save costs
 
-## 📚 Example Output
+## ðŸ“š Example Output
 
 ```bash
 You: "/monitor my-production-app"
 
 Agent: Loading monitoring-production chain
-       ↓
-Skills: observability, logging, metrics, tracing, incident-response
-       ↓
+       â†“
+Skills: observability, observability, observability, observability, observability
+       â†“
 
-[1/5] 🔧 Observability Setup
-   ✅ OpenTelemetry SDK initialized
-   ✅ Service: my-production-app
-   ✅ Environment: production
-   ✅ Datadog exporter configured
-   ✅ Auto-instrumentation: HTTP, Prisma, Redis
+[1/5] ðŸ”§ Observability Setup
+   âœ… OpenTelemetry SDK initialized
+   âœ… Service: my-production-app
+   âœ… Environment: production
+   âœ… Datadog exporter configured
+   âœ… Auto-instrumentation: HTTP, Prisma, Redis
 
-[2/5] 📝 Logging
-   ✅ Structured logging with Pino
-   ✅ Log levels: error, warn, info, debug
-   ✅ PII redaction: password, creditCard, ssn, email, phone
-   ✅ Logs aggregated to Datadog
-   ✅ Correlation IDs enabled
+[2/5] ðŸ“ observability
+   âœ… Structured observability with Pino
+   âœ… Log levels: error, warn, info, debug
+   âœ… PII redaction: password, creditCard, ssn, email, phone
+   âœ… Logs aggregated to Datadog
+   âœ… Correlation IDs enabled
 
-[3/5] 📊 Metrics
-   ✅ Prometheus metrics exposed at /metrics
-   ✅ Golden Signals configured:
+[3/5] ðŸ“Š observability
+   âœ… Prometheus observability exposed at /observability
+   âœ… Golden Signals configured:
       - Latency: p50, p95, p99
       - Traffic: requests/sec
       - Errors: error rate
       - Saturation: CPU, memory
-   ✅ Custom metrics: 12 configured
-   ✅ Dashboard created in Datadog
+   âœ… Custom observability: 12 configured
+   âœ… Dashboard created in Datadog
 
-[4/5] 🔍 Distributed Tracing (optional)
-   ✅ Automatic instrumentation: HTTP, Prisma, Redis
-   ✅ Sampling rate: 10% (production)
-   ✅ Trace context propagation enabled
-   ✅ Traces visible in Datadog APM
+[4/5] ðŸ” Distributed observability (optional)
+   âœ… Automatic instrumentation: HTTP, Prisma, Redis
+   âœ… Sampling rate: 10% (production)
+   âœ… Trace context propagation enabled
+   âœ… Traces visible in Datadog APM
 
-[5/5] 🚨 Incident Response
-   ✅ Alert rules configured: 5 critical, 8 high
-   ✅ Slack webhook: #oncall
-   ✅ PagerDuty integration: production-alerts
-   ✅ Runbooks generated: 5 playbooks
-   ✅ Post-mortem template created
+[5/5] ðŸš¨ Incident Response
+   âœ… Alert rules configured: 5 critical, 8 high
+   âœ… Slack webhook: #oncall
+   âœ… PagerDuty integration: production-alerts
+   âœ… Runbooks generated: 5 playbooks
+   âœ… Post-mortem template created
 
-✅ Monitoring Complete!
+âœ… Monitoring Complete!
 
-📊 Dashboard: https://app.datadoghq.com/dashboard/my-app
-📝 Logs: https://app.datadoghq.com/logs?service=my-app
-🔍 Traces: https://app.datadoghq.com/apm/services/my-app
-🚨 Alerts: https://app.datadoghq.com/monitors
+ðŸ“Š Dashboard: https://app.datadoghq.com/dashboard/my-app
+ðŸ“ Logs: https://app.datadoghq.com/logs?service=my-app
+ðŸ” Traces: https://app.datadoghq.com/apm/services/my-app
+ðŸš¨ Alerts: https://app.datadoghq.com/monitors
 
 Created:
-✓ lib/observability/setup.ts
-✓ lib/logger.ts
-✓ lib/metrics.ts
-✓ .env (with required variables)
-✓ docs/runbooks/ (5 playbooks)
-✓ alerts.yml (13 alert rules)
-✓ README-MONITORING.md
+âœ“ lib/observability/setup.ts
+âœ“ lib/logger.ts
+âœ“ lib/observability.ts
+âœ“ .env (with required variables)
+âœ“ docs/runbooks/ (5 playbooks)
+âœ“ alerts.yml (13 alert rules)
+âœ“ README-MONITORING.md
 ```
 
-## 🚨 Alert Examples
+## ðŸš¨ Alert Examples
 
 The workflow configures these critical alerts by default:
 
@@ -265,7 +265,7 @@ The workflow configures these critical alerts by default:
 | Memory Usage        | >90%          | High     | Slack             |
 | Database Timeout    | >3 in 5min    | High     | Slack             |
 
-## 📖 Runbooks Generated
+## ðŸ“– Runbooks Generated
 
 The workflow creates runbooks for:
 
@@ -280,3 +280,4 @@ The workflow creates runbooks for:
 **Version:** 1.0.0  
 **Chain:** monitoring-production  
 **Added:** v3.4.0 (FAANG upgrade)
+

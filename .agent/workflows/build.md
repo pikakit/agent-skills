@@ -1,5 +1,5 @@
----
-description: Full-stack application factory. From idea to deployed app with multi-agent coordination.
+﻿---
+description: Full-stack application factory. From idea to deployed app with agent-patterns coordination.
 chain: build-web-app
 ---
 
@@ -15,7 +15,7 @@ Ship production-ready applications from natural language descriptions. **Coordin
 
 ---
 
-## 🔴 MANDATORY: Build Pipeline
+## ðŸ”´ MANDATORY: Build Pipeline
 
 ### Phase 0: Risk Assessment & Safety (NEW)
 
@@ -28,10 +28,10 @@ Ship production-ready applications from natural language descriptions. **Coordin
 
 ```
 IF risk_level == CRITICAL:
-  → Require explicit user approval
-  → Prepare rollback plan
+  â†’ Require explicit user approval
+  â†’ Prepare rollback plan
 ELSE:
-  → Proceed with Phase 1
+  â†’ Proceed with Phase 1
 ```
 
 ### Phase 1: Requirements Discovery
@@ -70,7 +70,7 @@ Ask these questions if not answered:
 npm run session:status
 ```
 
-### Phase 4: Multi-Agent Build
+### Phase 4: agent-patterns Build
 
 ```mermaid
 graph TD
@@ -105,7 +105,7 @@ npm run preview:start
 ## Output Format
 
 ```markdown
-## 🏗️ Building: [App Name]
+## ðŸ—ï¸ Building: [App Name]
 
 ### Stack Decision
 
@@ -121,30 +121,30 @@ npm run preview:start
 
 | Agent                 | Task          | Status         |
 | --------------------- | ------------- | -------------- |
-| `database-architect`  | Schema design | ✅ Complete    |
-| `backend-specialist`  | API routes    | 🔄 In progress |
-| `frontend-specialist` | UI components | ⏳ Waiting     |
-| `test-engineer`       | E2E tests     | ⏳ Waiting     |
+| `database-architect`  | Schema design | âœ… Complete    |
+| `backend-specialist`  | API routes    | ðŸ”„ In progress |
+| `frontend-specialist` | UI components | â³ Waiting     |
+| `test-engineer`       | E2E tests     | â³ Waiting     |
 
 ### Files Created
 ```
 
 src/
-├── app/
-│ ├── page.tsx
-│ ├── layout.tsx
-│ └── api/
-├── components/
-├── lib/
-├── prisma/
-│ └── schema.prisma
-└── tests/
+â”œâ”€â”€ app/
+â”‚ â”œâ”€â”€ page.tsx
+â”‚ â”œâ”€â”€ layout.tsx
+â”‚ â””â”€â”€ api/
+â”œâ”€â”€ components/
+â”œâ”€â”€ lib/
+â”œâ”€â”€ prisma/
+â”‚ â””â”€â”€ schema.prisma
+â””â”€â”€ tests/
 
 ```
 
 ### Preview
-🌐 **URL:** http://localhost:3000
-📊 **Status:** Running
+ðŸŒ **URL:** http://localhost:3000
+ðŸ“Š **Status:** Running
 
 ### Next Steps
 - [ ] Review the code
@@ -182,7 +182,7 @@ If user doesn't specify, use these:
 
 ---
 
-## ⛔ MANDATORY: Problem Verification Before Completion
+## â›” MANDATORY: Problem Verification Before Completion
 
 > **CRITICAL:** This check MUST be performed before any `notify_user` or task completion.
 
@@ -193,8 +193,8 @@ If user doesn't specify, use these:
 2. If errors/warnings > 0:
    a. Auto-fix: imports, types, lint errors
    b. Re-check @[current_problems]
-   c. If still > 0 → STOP → Notify user
-3. If count = 0 → Proceed to Quality Gates
+   c. If still > 0 â†’ STOP â†’ Notify user
+3. If count = 0 â†’ Proceed to Quality Gates
 ```
 
 ### Auto-Fixable
@@ -214,7 +214,7 @@ If user doesn't specify, use these:
 
 Before marking complete, verify:
 
-- [ ] `@[current_problems]` shows 0 errors ← **CHECK THIS FIRST**
+- [ ] `@[current_problems]` shows 0 errors â† **CHECK THIS FIRST**
 - [ ] All files compile without errors
 - [ ] Database schema is valid
 - [ ] API endpoints respond correctly
@@ -226,7 +226,7 @@ Before marking complete, verify:
 
 ---
 
-## 🔗 Workflow Chain
+## ðŸ”— Workflow Chain
 
 ```mermaid
 graph LR
@@ -249,3 +249,4 @@ graph LR
 Build complete. Preview running at http://localhost:3000
 Run /validate to generate and execute tests.
 ```
+

@@ -1,4 +1,4 @@
----
+﻿---
 description: Project health dashboard. Agent status, file stats, and real-time progress tracking.
 ---
 
@@ -14,13 +14,13 @@ Display real-time project status including agent progress, file statistics, and 
 
 ---
 
-## 🤖 Meta-Agents Integration
+## ðŸ¤– Meta-Agents Integration
 
 | Phase | Agent | Action |
 | ----- | ----- | ------ |
 | **Status Collection** | `orchestrator` | Aggregate status from all running agents |
 | **Health Analysis** | `assessor` | Evaluate project health risks |
-| **Trend Learning** | `learner` | Track metrics over time for trend analysis |
+| **Trend Learning** | `learner` | Track observability over time for trend analysis |
 
 ---
 
@@ -57,22 +57,22 @@ node .agent/scripts-js/auto_preview.js status
 
 ---
 
-## 📊 METRICS DASHBOARD (FAANG+)
+## ðŸ“Š observability DASHBOARD (FAANG+)
 
-### Collect Metrics
+### Collect observability
 
 // turbo
 
 ```bash
-node .agent/scripts-js/metrics-collector.js collect
+node .agent/scripts-js/observability-collector.js collect
 ```
 
-### Show Current Metrics
+### Show Current observability
 
 // turbo
 
 ```bash
-node .agent/scripts-js/metrics-collector.js show
+node .agent/scripts-js/observability-collector.js show
 ```
 
 ### Show 7-Day Trends
@@ -80,24 +80,24 @@ node .agent/scripts-js/metrics-collector.js show
 // turbo
 
 ```bash
-node .agent/scripts-js/metrics-collector.js trends
+node .agent/scripts-js/observability-collector.js trends
 ```
 
 ### Dashboard Output
 
 ```
-┌─────────────────────────────────────────┐
-│  📊 Project Metrics Dashboard           │
-├─────────────────────────────────────────┤
-│  Build Time:    2.3s (↓ 15%)           │
-│  Bundle Size:   245KB (stable)          │
-│  Source Files:  142                     │
-│  Test Coverage: 87% (↑ 3%)             │
-│  Lighthouse:    92/100                  │
-│  Security:      0 vulnerabilities       │
-├─────────────────────────────────────────┤
-│  7-Day Trend: ▁▂▃▄▅▆▇█                  │
-└─────────────────────────────────────────┘
+â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
+â”‚  ðŸ“Š Project observability Dashboard           â”‚
+â”œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¤
+â”‚  Build Time:    2.3s (â†“ 15%)           â”‚
+â”‚  Bundle Size:   245KB (stable)          â”‚
+â”‚  Source Files:  142                     â”‚
+â”‚  Test Coverage: 87% (â†‘ 3%)             â”‚
+â”‚  Lighthouse:    92/100                  â”‚
+â”‚  Security:      0 vulnerabilities       â”‚
+â”œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¤
+â”‚  7-Day Trend: â–â–‚â–ƒâ–„â–…â–†â–‡â–ˆ                  â”‚
+â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
 ```
 
 ### KPI Thresholds
@@ -114,43 +114,43 @@ node .agent/scripts-js/metrics-collector.js trends
 ```markdown
 === Project Status ===
 
-📁 Project: my-ecommerce
-📂 Path: C:/projects/my-ecommerce
-🏷️ Type: nextjs-ecommerce
-📊 Status: active
+ðŸ“ Project: my-ecommerce
+ðŸ“‚ Path: C:/projects/my-ecommerce
+ðŸ·ï¸ Type: nextjs-ecommerce
+ðŸ“Š Status: active
 
-🔧 Tech Stack:
+ðŸ”§ Tech Stack:
 Framework: next.js
 Database: postgresql
 Auth: clerk
 Payment: stripe
 
-✅ Features (5):
-• product-listing
-• cart
-• checkout
-• user-auth
-• order-history
+âœ… Features (5):
+â€¢ product-listing
+â€¢ cart
+â€¢ checkout
+â€¢ user-auth
+â€¢ order-history
 
-⏳ Pending (2):
-• admin-panel
-• email-notifications
+â³ Pending (2):
+â€¢ admin-panel
+â€¢ email-notifications
 
-📄 Files: 73 created, 12 modified
+ðŸ“„ Files: 73 created, 12 modified
 
 === Agent Status ===
 
 | Agent               | Task   | Status      |
 | ------------------- | ------ | ----------- |
-| database-architect  | Schema | ✅ Complete |
-| backend-specialist  | API    | ✅ Complete |
-| frontend-specialist | UI     | 🔄 60%      |
-| test-engineer       | Tests  | ⏳ Waiting  |
+| database-architect  | Schema | âœ… Complete |
+| backend-specialist  | API    | âœ… Complete |
+| frontend-specialist | UI     | ðŸ”„ 60%      |
+| test-engineer       | Tests  | â³ Waiting  |
 
 === Preview ===
 
-🌐 URL: http://localhost:3000
-💚 Health: OK
+ðŸŒ URL: http://localhost:3000
+ðŸ’š Health: OK
 ```
 
 ---
@@ -163,11 +163,11 @@ Payment: stripe
 
 ---
 
-## 🔗 Workflow Chain
+## ðŸ”— Workflow Chain
 
 ```mermaid
 graph LR
-    A["/pulse"] --> B["📊 Status"]
+    A["/pulse"] --> B["ðŸ“Š Status"]
     style A fill:#22c55e
 ```
 
@@ -182,3 +182,4 @@ graph LR
 ```markdown
 Status: 5 features complete, preview running at localhost:3000
 ```
+

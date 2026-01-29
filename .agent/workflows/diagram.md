@@ -1,4 +1,4 @@
----
+﻿---
 description: Auto-generate C4, Mermaid, and ER diagrams from codebase. Keep architecture docs in sync with code.
 ---
 
@@ -6,16 +6,16 @@ description: Auto-generate C4, Mermaid, and ER diagrams from codebase. Keep arch
 
 Create and update architecture diagrams from code.
 
-## 🎯 Purpose
+## ðŸŽ¯ Purpose
 
-This workflow uses the **architecture-diagrammer** skill to:
+This workflow uses the **system-design** skill to:
 
 - Generate C4 diagrams (Context, Container)
 - Create sequence diagrams
 - Generate ER diagrams from Prisma schema
 - Update diagrams when code changes
 
-## 🤖 Meta-Agents Integration
+## ðŸ¤– Meta-Agents Integration
 
 | Phase | Agent | Action |
 | ----- | ----- | ------ |
@@ -24,13 +24,13 @@ This workflow uses the **architecture-diagrammer** skill to:
 
 ---
 
-## 🔗 Chain: documentation (architecture-diagrammer skill only)
+## ðŸ”— Chain: documentation (system-design skill only)
 
 **Skills Loaded (1):**
 
-- `architecture-diagrammer` - C4, Mermaid, ER diagrams
+- `system-design` - C4, Mermaid, ER diagrams
 
-## 📖 Usage
+## ðŸ“– Usage
 
 ```bash
 /diagram <scope>
@@ -49,7 +49,7 @@ This workflow uses the **architecture-diagrammer** skill to:
 /diagram c4-context
 ```
 
-## 🔄 Workflow Steps
+## ðŸ”„ Workflow Steps
 
 1. **Analyze Codebase**
    - Scan project structure
@@ -67,13 +67,13 @@ This workflow uses the **architecture-diagrammer** skill to:
    - `docs/diagrams/container.mmd`
    - `docs/diagrams/er.mmd`
 
-## ✅ Success Criteria
+## âœ… Success Criteria
 
-✓ **Diagrams Created** - C4, sequence, ER  
-✓ **Auto-update** - Synced with code  
-✓ **Mermaid Format** - Renderable in GitHub/docs
+âœ“ **Diagrams Created** - C4, sequence, ER  
+âœ“ **Auto-update** - Synced with code  
+âœ“ **Mermaid Format** - Renderable in GitHub/docs
 
-## 📊 Diagram Types
+## ðŸ“Š Diagram Types
 
 | Diagram      | Purpose             | Auto-detects      |
 | ------------ | ------------------- | ----------------- |
@@ -82,39 +82,40 @@ This workflow uses the **architecture-diagrammer** skill to:
 | Sequence     | User flows          | API calls         |
 | ER           | Database schema     | Prisma models     |
 
-## 🔍 Related Workflows
+## ðŸ” Related Workflows
 
 - `/chronicle` - Generate all documentation
 - `/build` - Create app first
 - `/api` - Create API then diagram
 
-## 💡 Example Output
+## ðŸ’¡ Example Output
 
 ```bash
 You: "/diagram update"
 
-Agent: Loading architecture-diagrammer
-       ↓
+Agent: Loading system-design
+       â†“
 
-[1/1] 🏗️ Updating Diagrams
+[1/1] ðŸ—ï¸ Updating Diagrams
 
    Scanning codebase...
-   ✅ Detected schema changes (2 new tables)
-   ✅ Updated ER diagram
-   ✅ Updated C4 Container diagram
-   ✅ All diagrams in sync with code
+   âœ… Detected schema changes (2 new tables)
+   âœ… Updated ER diagram
+   âœ… Updated C4 Container diagram
+   âœ… All diagrams in sync with code
 
-📂 Updated: docs/diagrams/
+ðŸ“‚ Updated: docs/diagrams/
    - context.mmd
    - container.mmd
    - er.mmd
    - sequence-auth.mmd
 
-✅ Diagrams updated!
+âœ… Diagrams updated!
 ```
 
 ---
 
 **Version:** 1.0.0  
-**Chain:** documentation (architecture-diagrammer)  
+**Chain:** documentation (system-design)  
 **Added:** v3.6.0 (FAANG upgrade - Phase 3)
+
