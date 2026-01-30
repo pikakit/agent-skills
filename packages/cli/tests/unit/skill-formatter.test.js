@@ -1,7 +1,8 @@
-// Unit Tests for SkillFormatter
+/**
+ * @fileoverview Tests for SkillFormatter functionality
+ */
+import { describe, it, expect } from 'vitest';
 import { SkillFormatter } from '../../src/presentation/formatters/skill-formatter.js';
-
-console.log('🧪 Testing SkillFormatter\n');
 
 // Mock lesson
 const mockLesson = {
@@ -46,61 +47,82 @@ const mockLesson = {
     }
 };
 
-const formatter = new SkillFormatter();
+describe('SkillFormatter - Output Structure', () => {
+    const formatter = new SkillFormatter();
 
-// Test 1: format() returns correct structure
-console.log('Test 1: Format Output Structure');
-const skill = formatter.format(mockLesson);
+    it('should format lesson to skill with correct structure', () => {
+        const skill = formatter.format(mockLesson);
+        
+        expect(skill.name).toBeDefined();
+        expect(skill.filename).toBeDefined();
+        expect(skill.content).toBeDefined();
+        expect(skill.filename.endsWith('.md')).toBe(true);
+    });
+});
 
-console.assert(skill.name, 'Should have name');
-console.assert(skill.filename, 'Should have filename');
-console.assert(skill.content, 'Should have content');
-console.assert(skill.filename.endsWith('.md'), 'Filename should end with .md');
-console.log(`✅ Structure: ${skill.filename}\n`);
+describe('SkillFormatter - Frontmatter', () => {
+    const formatter = new SkillFormatter();
 
-// Test 2: Frontmatter format
-console.log('Test 2: Frontmatter Format');
-const lines = skill.content.split('\n');
-console.assert(lines[0] === '---', 'Should start with ---');
-console.assert(lines.some(l => l.includes('name:')), 'Should have name field');
-console.assert(lines.some(l => l.includes('confidence:')), 'Should have confidence field');
-console.assert(lines.some(l => l.includes('maturity:')), 'Should have maturity field');
-console.log(`✅ Frontmatter valid\n`);
+    it('should have valid frontmatter format', () => {
+        const skill = formatter.format(mockLesson);
+        const lines = skill.content.split('\n');
+        
+        expect(lines[0]).toBe('---');
+        expect(lines.some(l => l.includes('name:'))).toBe(true);
+        expect(lines.some(l => l.includes('confidence:'))).toBe(true);
+        expect(lines.some(l => l.includes('maturity:'))).toBe(true);
+    });
+});
 
-// Test 3: Content sections
-console.log('Test 3: Content Sections');
-console.assert(skill.content.includes('# Test Lesson'), 'Should have title');
-console.assert(skill.content.includes('## 🚫 Anti-Patterns'), 'Should have anti-patterns section');
-console.assert(skill.content.includes('## ✅ Best Practices'), 'Should have best practices section');
-console.assert(skill.content.includes('## 📊 Evolution Status'), 'Should have evolution section');
-console.assert(skill.content.includes('## 🎯 When to Apply'), 'Should have application guide');
-console.assert(skill.content.includes('## 📈 Confidence Metrics'), 'Should have metrics');
-console.log(`✅ All sections present\n`);
+describe('SkillFormatter - Content Sections', () => {
+    const formatter = new SkillFormatter();
 
-// Test 4: Mistake formatting
-console.log('Test 4: Mistake Formatting');
-console.assert(skill.content.includes('MISTAKE-TEST'), 'Should include mistake ID');
-console.assert(skill.content.includes('Avoid bad code'), 'Should include mistake message');
-console.assert(skill.content.includes('Hit Count: 5'), 'Should include hit count');
-console.log(`✅ Mistakes formatted correctly\n`);
+    it('should include all required sections', () => {
+        const skill = formatter.format(mockLesson);
+        
+        expect(skill.content.includes('# Test Lesson')).toBe(true);
+        expect(skill.content.includes('## 🚫 Anti-Patterns')).toBe(true);
+        expect(skill.content.includes('## ✅ Best Practices')).toBe(true);
+        expect(skill.content.includes('## 📊 Evolution Status')).toBe(true);
+        expect(skill.content.includes('## 🎯 When to Apply')).toBe(true);
+        expect(skill.content.includes('## 📈 Confidence Metrics')).toBe(true);
+    });
+});
 
-// Test 5: Improvement formatting
-console.log('Test 5: Improvement Formatting');
-console.assert(skill.content.includes('IMPROVE-TEST'), 'Should include improvement ID');
-console.assert(skill.content.includes('Write good code'), 'Should include improvement message');
-console.assert(skill.content.includes('Applied Count: 10'), 'Should include applied count');
-console.log(`✅ Improvements formatted correctly\n`);
+describe('SkillFormatter - Mistake Formatting', () => {
+    const formatter = new SkillFormatter();
 
-// Test 6: sanitizeName()
-console.log('Test 6: Name Sanitization');
-const sanitized = formatter.sanitizeName('Test Tag-With_Special!Chars');
-console.assert(sanitized === 'test-tag-with-special-chars', 'Should sanitize name');
-console.log(`✅ Name sanitization works\n`);
+    it('should format mistakes correctly', () => {
+        const skill = formatter.format(mockLesson);
+        
+        expect(skill.content.includes('MISTAKE-TEST')).toBe(true);
+        expect(skill.content.includes('Avoid bad code')).toBe(true);
+        expect(skill.content.includes('Hit Count:')).toBe(true);
+    });
+});
 
-// Test 7: calculateTotalHits()
-console.log('Test 7: Total Hits Calculation');
-const totalHits = formatter.calculateTotalHits(mockLesson);
-console.assert(totalHits === 15, 'Should calculate total hits (5 + 10)');
-console.log(`✅ Total hits: ${totalHits}\n`);
+describe('SkillFormatter - Improvement Formatting', () => {
+    const formatter = new SkillFormatter();
 
-console.log('🎉 All SkillFormatter tests passed!');
+    it('should format improvements correctly', () => {
+        const skill = formatter.format(mockLesson);
+        
+        expect(skill.content.includes('IMPROVE-TEST')).toBe(true);
+        expect(skill.content.includes('Write good code')).toBe(true);
+        expect(skill.content.includes('Applied Count:')).toBe(true);
+    });
+});
+
+describe('SkillFormatter - Utilities', () => {
+    const formatter = new SkillFormatter();
+
+    it('should sanitize name correctly', () => {
+        const sanitized = formatter.sanitizeName('Test Tag-With_Special!Chars');
+        expect(sanitized).toBe('test-tag-with-special-chars');
+    });
+
+    it('should calculate total hits correctly', () => {
+        const totalHits = formatter.calculateTotalHits(mockLesson);
+        expect(totalHits).toBe(15); // 5 + 10
+    });
+});

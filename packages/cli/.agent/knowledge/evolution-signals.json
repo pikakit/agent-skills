@@ -1,36 +1,6 @@
 {
   "signals": [
     {
-      "id": "signal_1738148400000_console_log",
-      "lessonId": "LEARN-002",
-      "reason": "hitCountThreshold",
-      "confidence": 0.95,
-      "status": "pending",
-      "metadata": {
-        "triggerEvent": "violation",
-        "file": "lib/ui/lessons-ui.js",
-        "matchCount": 16,
-        "timestamp": 1738148400000
-      },
-      "createdAt": 1738148400000,
-      "resolvedAt": null
-    },
-    {
-      "id": "signal_1738148400000_todo_comments",
-      "lessonId": "LEARN-001",
-      "reason": "hitCountThreshold",
-      "confidence": 0.9,
-      "status": "pending",
-      "metadata": {
-        "triggerEvent": "violation",
-        "file": "lib/knowledge-validator.js",
-        "matchCount": 3,
-        "timestamp": 1738148400000
-      },
-      "createdAt": 1738148400000,
-      "resolvedAt": null
-    },
-    {
       "id": "signal_1738148400000_var_usage",
       "lessonId": "LEARN-003",
       "reason": "autoEscalation",
@@ -45,6 +15,36 @@
       },
       "createdAt": 1738148400000,
       "resolvedAt": 1738148500000
+    },
+    {
+      "id": "signal_1738148400000_console_log",
+      "lessonId": "LEARN-002",
+      "reason": "hitCountThreshold",
+      "confidence": 0.95,
+      "status": "approved",
+      "metadata": {
+        "triggerEvent": "violation",
+        "file": "lib/ui/lessons-ui.js",
+        "matchCount": 16,
+        "timestamp": 1738148400000
+      },
+      "createdAt": 1738148400000,
+      "resolvedAt": 1769801801847
+    },
+    {
+      "id": "signal_1738148400000_todo_comments",
+      "lessonId": "LEARN-001",
+      "reason": "hitCountThreshold",
+      "confidence": 0.9,
+      "status": "approved",
+      "metadata": {
+        "triggerEvent": "violation",
+        "file": "lib/knowledge-validator.js",
+        "matchCount": 3,
+        "timestamp": 1738148400000
+      },
+      "createdAt": 1738148400000,
+      "resolvedAt": 1769802217464
     }
   ],
   "version": 1

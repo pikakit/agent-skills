@@ -1,53 +1,61 @@
-// Test Gemini Integration - Export Skills
-import { LessonRepository } from './packages/cli/src/data/repositories/lesson-repository.js';
-import { YamlStorage } from './packages/cli/src/data/storage/yaml-storage.js';
-import { LearningService } from './packages/cli/src/services/learning-service.js';
-import { SkillFormatter } from './packages/cli/src/presentation/formatters/skill-formatter.js';
-import { ExportService } from './packages/cli/src/services/export-service.js';
-import { KNOWLEDGE_DIR } from './packages/cli/lib/config.js';
+/**
+ * @fileoverview Tests for Gemini Export functionality
+ */
+import { describe, it, expect, beforeAll } from 'vitest';
+import { LessonRepository } from '../../src/data/repositories/lesson-repository.js';
+import { YamlStorage } from '../../src/data/storage/yaml-storage.js';
+import { LearningService } from '../../src/services/learning-service.js';
+import { SkillFormatter } from '../../src/presentation/formatters/skill-formatter.js';
+import { ExportService } from '../../src/services/export-service.js';
+import { KNOWLEDGE_DIR } from '../../lib/config.js';
 import path from 'path';
 
-console.log('🚀 Testing Gemini Skills Export\n');
+describe('Gemini Export - Export Service', () => {
+    let storage;
+    let repository;
+    let learningService;
+    let skillFormatter;
+    let exportService;
 
-// Create instances
-const storage = new YamlStorage(KNOWLEDGE_DIR);
-const repository = new LessonRepository(storage);
-const learningService = new LearningService(repository);
-const skillFormatter = new SkillFormatter();
-const exportService = new ExportService(learningService, skillFormatter);
+    beforeAll(() => {
+        storage = new YamlStorage(KNOWLEDGE_DIR);
+        repository = new LessonRepository(storage);
+        learningService = new LearningService(repository);
+        skillFormatter = new SkillFormatter();
+        exportService = new ExportService(learningService, skillFormatter);
+    });
 
-// 1. Get stats
-console.log('Getting export stats...');
-const stats = await exportService.getExportStats();
+    it('should get export stats', async () => {
+        const stats = await exportService.getExportStats();
+        
+        expect(stats).toBeDefined();
+        expect(typeof stats.total).toBe('number');
+        expect(typeof stats.mature).toBe('number');
+        expect(typeof stats.learning).toBe('number');
+        expect(typeof stats.raw).toBe('number');
+        expect(typeof stats.exportable).toBe('number');
+    });
 
-console.log('\n📊 Export Statistics:');
-console.log(`  Total lessons: ${stats.total}`);
-console.log(`  Mature/Ideal: ${stats.mature}`);
-console.log(`  Learning: ${stats.learning}`);
-console.log(`  Raw: ${stats.raw}`);
-console.log(`  Exportable: ${stats.exportable}\n`);
+    it('should preview mature skills', async () => {
+        const preview = await exportService.previewMatureSkills(0.8);
+        
+        expect(Array.isArray(preview)).toBe(true);
+        preview.forEach(skill => {
+            expect(skill.id).toBeDefined();
+            expect(skill.title).toBeDefined();
+            expect(skill.state).toBeDefined();
+            expect(typeof skill.confidence).toBe('number');
+            expect(skill.filename).toBeDefined();
+        });
+    });
 
-// 2. Preview mature skills
-console.log('Previewing mature skills...');
-const preview = await exportService.previewMatureSkills(0.8);
-
-console.log(`\n✅ Found ${preview.length} exportable skills:\n`);
-preview.forEach(skill => {
-    console.log(`📄 ${skill.id}: ${skill.title}`);
-    console.log(`   State: ${skill.state} (${(skill.confidence * 100).toFixed(0)}%)`);
-    console.log(`   File: ${skill.filename}\n`);
+    it('should export mature skills to directory', async () => {
+        const outputDir = path.join(process.cwd(), '.agent/skills-test');
+        const exported = await exportService.exportMatureSkills(outputDir, 0.8);
+        
+        expect(Array.isArray(exported)).toBe(true);
+        exported.forEach(skill => {
+            expect(skill.filename).toBeDefined();
+        });
+    });
 });
-
-// 3. Export to test directory
-const outputDir = path.join(process.cwd(), '.agent/skills-test');
-console.log(`Exporting to: ${outputDir}\n`);
-
-const exported = await exportService.exportMatureSkills(outputDir, 0.8);
-
-console.log(`✅ Exported ${exported.length} skills:\n`);
-exported.forEach(skill => {
-    console.log(`  ✓ ${skill.filename}`);
-});
-
-console.log('\n🎉 Export Complete!');
-console.log(`\nCheck files in: ${outputDir}`);

@@ -1,56 +1,63 @@
-// Unit Tests for CognitiveEnhancer
+/**
+ * @fileoverview Tests for CognitiveEnhancer functionality
+ */
+import { describe, it, expect } from 'vitest';
 import { CognitiveEnhancer } from '../../src/core/learning/cognitive-enhancer.js';
 
-console.log('🧪 Testing CognitiveEnhancer\n');
+describe('CognitiveEnhancer - Intent Inference', () => {
+    it('should infer intent from tags', () => {
+        const tags = ['code-quality', 'imports'];
+        const intent = CognitiveEnhancer.inferIntent(tags);
+        
+        expect(intent.goal).toBeDefined();
+        expect(intent.category).toBeDefined();
+        expect(intent.strength).toBeGreaterThanOrEqual(0);
+        expect(intent.strength).toBeLessThanOrEqual(1);
+    });
 
-// Test 1: inferIntent()
-console.log('Test 1: inferIntent()');
-const tags = ['code-quality', 'imports'];
-const intent = CognitiveEnhancer.inferIntent(tags);
+    it('should handle empty tags', () => {
+        const emptyIntent = CognitiveEnhancer.inferIntent([]);
+        expect(emptyIntent.category).toBe('general');
+    });
+});
 
-console.assert(intent.goal, 'Should have goal');
-console.assert(intent.category, 'Should have category');
-console.assert(intent.strength >= 0 && intent.strength <= 1, 'Strength should be 0-1');
-console.log(`✅ Intent: ${intent.goal} (${intent.category})\n`);
+describe('CognitiveEnhancer - Maturity Calculation', () => {
+    it('should calculate maturity for improvements only', () => {
+        const improvements = [{ hitCount: 100, appliedCount: 100 }];
+        const mistakes = [];
+        const intent = { goal: 'test', category: 'quality', strength: 0.9 };
+        const maturity = CognitiveEnhancer.calculateMaturity(mistakes, improvements, intent);
+        
+        expect(maturity.state).toBeDefined();
+        expect(maturity.confidence).toBeGreaterThanOrEqual(0);
+        expect(maturity.confidence).toBeLessThanOrEqual(1);
+        expect(maturity.recommendation).toBeDefined();
+    });
 
-// Test 2: calculateMaturity()
-console.log('Test 2: calculateMaturity()');
-const improvements = [{ hitCount: 100, appliedCount: 100 }];
-const mistakes = [];
-const maturity = CognitiveEnhancer.calculateMaturity(mistakes, improvements, intent);
+    it('should return RAW state for high mistake count', () => {
+        const highMistakes = Array(50).fill({ hitCount: 10 });
+        const intent = { goal: 'test', category: 'quality', strength: 0.9 };
+        const highMaturity = CognitiveEnhancer.calculateMaturity(highMistakes, [], intent);
+        expect(highMaturity.state).toBe('RAW');
+    });
 
-console.assert(maturity.state, 'Should have state');
-console.assert(maturity.confidence >= 0 && maturity.confidence <= 1, 'Confidence should be 0-1');
-console.assert(maturity.recommendation, 'Should have recommendation');
-console.log(`✅ Maturity: ${maturity.state} (${(maturity.confidence * 100).toFixed(0)}%)\n`);
+    it('should return IDEAL state for only improvements', () => {
+        const perfectImprovements = [{ hitCount: 1000, appliedCount: 1000 }];
+        const intent = { goal: 'test', category: 'quality', strength: 0.9 };
+        const perfectMaturity = CognitiveEnhancer.calculateMaturity([], perfectImprovements, intent);
+        expect(perfectMaturity.state).toBe('IDEAL');
+    });
+});
 
-// Test 3: analyzeEvolution()
-console.log('Test 3: analyzeEvolution()');
-const evolution = CognitiveEnhancer.analyzeEvolution(mistakes, improvements, intent);
-
-console.assert(Array.isArray(evolution.signals), 'Should have signals array');
-console.assert(Array.isArray(evolution.missingAreas), 'Should have missingAreas array');
-console.assert(evolution.nextAction, 'Should have nextAction');
-console.log(`✅ Evolution: ${evolution.nextAction}\n`);
-
-// Test 4: Edge cases
-console.log('Test 4: Edge Cases');
-
-// Empty tags
-const emptyIntent = CognitiveEnhancer.inferIntent([]);
-console.assert(emptyIntent.category === 'general', 'Empty tags should default to general');
-console.log(`✅ Empty tags handled\n`);
-
-// High mistake count
-const highMistakes = Array(50).fill({ hitCount: 10 });
-const highMaturity = CognitiveEnhancer.calculateMaturity(highMistakes, [], intent);
-console.assert(highMaturity.state === 'RAW', 'Many mistakes should be RAW');
-console.log(`✅ High mistakes = RAW state\n`);
-
-// Perfect state
-const perfectImprovements = [{ hitCount: 1000, appliedCount: 1000 }];
-const perfectMaturity = CognitiveEnhancer.calculateMaturity([], perfectImprovements, intent);
-console.assert(perfectMaturity.state === 'IDEAL', 'Only improvements should be IDEAL');
-console.log(`✅ Only improvements = IDEAL state\n`);
-
-console.log('🎉 All CognitiveEnhancer tests passed!');
+describe('CognitiveEnhancer - Evolution Analysis', () => {
+    it('should analyze evolution', () => {
+        const improvements = [{ hitCount: 100, appliedCount: 100 }];
+        const mistakes = [];
+        const intent = { goal: 'test', category: 'quality', strength: 0.9 };
+        const evolution = CognitiveEnhancer.analyzeEvolution(mistakes, improvements, intent);
+        
+        expect(Array.isArray(evolution.signals)).toBe(true);
+        expect(Array.isArray(evolution.missingAreas)).toBe(true);
+        expect(evolution.nextAction).toBeDefined();
+    });
+});

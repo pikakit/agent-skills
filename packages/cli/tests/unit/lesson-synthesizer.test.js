@@ -1,7 +1,8 @@
-// Unit Tests for LessonSynthesizer
+/**
+ * @fileoverview Tests for LessonSynthesizer functionality
+ */
+import { describe, it, expect } from 'vitest';
 import { LessonSynthesizer } from '../../src/core/learning/lesson-synthesizer.js';
-
-console.log('🧪 Testing LessonSynthesizer\n');
 
 // Mock data
 const mockMistakes = [
@@ -24,61 +25,58 @@ const mockImprovements = [
     }
 ];
 
-const mockLegacy = [
-    {
-        id: 'LEGACY-001',
-        pattern: 'old',
-        message: 'Old lesson',
-        category: 'general'
-    }
-];
+describe('LessonSynthesizer - Lesson Synthesis', () => {
+    it('should synthesize lessons from mistakes and improvements', () => {
+        // Note: The actual method is 'synthesize', not 'synthesizeLessons'
+        const lessons = LessonSynthesizer.synthesize(mockMistakes, mockImprovements);
+        
+        expect(Array.isArray(lessons)).toBe(true);
+        expect(lessons.length).toBeGreaterThan(0);
+    });
 
-// Test 1: synthesizeLessons()
-console.log('Test 1: synthesizeLessons()');
-const lessons = LessonSynthesizer.synthesizeLessons(mockMistakes, mockImprovements, mockLegacy);
+    it('should have valid lesson structure', () => {
+        const lessons = LessonSynthesizer.synthesize(mockMistakes, mockImprovements);
+        const lesson = lessons[0];
+        
+        expect(lesson.id).toBeDefined();
+        expect(lesson.title).toBeDefined();
+        expect(lesson.tag).toBeDefined();
+        expect(lesson.intent).toBeDefined();
+        expect(lesson.maturity).toBeDefined();
+        expect(Array.isArray(lesson.mistakes)).toBe(true);
+        expect(Array.isArray(lesson.improvements)).toBe(true);
+    });
 
-console.assert(Array.isArray(lessons), 'Should return array');
-console.assert(lessons.length > 0, 'Should have lessons');
-console.log(`✅ Generated ${lessons.length} lesson(s)\n`);
+    it('should group by tags correctly', () => {
+        const lessons = LessonSynthesizer.synthesize(mockMistakes, mockImprovements);
+        const testingLesson = lessons.find(l => l.tag === 'testing');
+        
+        expect(testingLesson).toBeDefined();
+        expect(testingLesson.mistakes.length > 0 || testingLesson.improvements.length > 0).toBe(true);
+    });
 
-// Test 2: Lesson structure
-console.log('Test 2: Lesson Structure');
-const lesson = lessons[0];
+    it('should enhance with cognitive data', () => {
+        const lessons = LessonSynthesizer.synthesize(mockMistakes, mockImprovements);
+        const lesson = lessons[0];
+        
+        expect(lesson.maturity.state).toBeDefined();
+        expect(lesson.maturity.confidence).toBeGreaterThanOrEqual(0);
+        expect(lesson.intent.goal).toBeDefined();
+    });
+});
 
-console.assert(lesson.id, 'Should have ID');
-console.assert(lesson.title, 'Should have title');
-console.assert(lesson.tag, 'Should have tag');
-console.assert(lesson.intent, 'Should have intent');
-console.assert(lesson.maturity, 'Should have maturity');
-console.assert(Array.isArray(lesson.mistakes), 'Should have mistakes array');
-console.assert(Array.isArray(lesson.improvements), 'Should have improvements array');
-console.log(`✅ Lesson structure valid\n`);
+describe('LessonSynthesizer - Edge Cases', () => {
+    it('should handle empty inputs', () => {
+        const emptyLessons = LessonSynthesizer.synthesize([], []);
+        expect(Array.isArray(emptyLessons)).toBe(true);
+    });
+});
 
-// Test 3: Grouping by tags
-console.log('Test 3: Tag Grouping');
-const testingLesson = lessons.find(l => l.tag === 'testing');
-console.assert(testingLesson, 'Should group by testing tag');
-console.assert(testingLesson.mistakes.length > 0 || testingLesson.improvements.length > 0, 'Should have content');
-console.log(`✅ Grouped by tags correctly\n`);
-
-// Test 4: Enhanced with cognitive data
-console.log('Test 4: Cognitive Enhancement');
-console.assert(lesson.maturity.state, 'Should have maturity state');
-console.assert(lesson.maturity.confidence >= 0, 'Should have confidence score');
-console.assert(lesson.intent.goal, 'Should have intent goal');
-console.log(`✅ Enhanced with cognitive data\n`);
-
-// Test 5: Edge cases
-console.log('Test 5: Edge Cases');
-
-// Empty inputs
-const emptyLessons = LessonSynthesizer.synthesizeLessons([], [], []);
-console.assert(Array.isArray(emptyLessons), 'Empty inputs should return array');
-console.log(`✅ Empty inputs handled\n`);
-
-// Only legacy
-const legacyOnly = LessonSynthesizer.synthesizeLessons([], [], mockLegacy);
-console.assert(legacyOnly.length > 0, 'Should include legacy lessons');
-console.log(`✅ Legacy lessons included\n`);
-
-console.log('🎉 All LessonSynthesizer tests passed!');
+describe('LessonSynthesizer - Sorting', () => {
+    it('should sort lessons by maturity', () => {
+        const lessons = LessonSynthesizer.synthesize(mockMistakes, mockImprovements);
+        const sorted = LessonSynthesizer.sortByMaturity(lessons);
+        
+        expect(Array.isArray(sorted)).toBe(true);
+    });
+});
