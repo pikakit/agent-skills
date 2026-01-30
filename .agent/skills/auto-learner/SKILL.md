@@ -100,9 +100,124 @@ graph LR
 
 ## Scripts
 
-| Script | Purpose |
-|--------|---------|
-| `learn_from_failure.js` | Extract lesson from error context |
+| Script | Purpose | Command |
+|--------|---------|---------|
+| `learn_from_failure.js` | Extract lesson from error context | `--pattern "..." --message "..."` |
+| `error_sensor.js` | Auto-detect errors from test/build/lint | `--scan all` |
+| `user_correction_sensor.js` | Detect when user corrects AI code | `--scan` |
+| `pattern_analyzer.js` | Analyze patterns and generate auto-rules | `--analyze` |
+| `pre_execution_check.js` | Prevent known errors before execution | `--check "intent"` |
+| `dashboard_server.js` | Web dashboard for monitoring | `--start` |
+
+### Error Sensor (Phase 1)
+
+Automatically detects errors from multiple sources:
+
+```bash
+# Scan all sources
+node .agent/skills/auto-learner/scripts/error_sensor.js --scan all
+
+# Scan specific source
+node .agent/skills/auto-learner/scripts/error_sensor.js --scan test
+node .agent/skills/auto-learner/scripts/error_sensor.js --scan build
+node .agent/skills/auto-learner/scripts/error_sensor.js --scan lint
+
+# View statistics
+node .agent/skills/auto-learner/scripts/error_sensor.js --stats
+```
+
+**Sensors:**
+- `test`: Parse vitest/jest output for failures
+- `build`: Parse TypeScript compilation errors
+- `lint`: Parse ESLint warnings/errors
+- `pattern`: Scan code for anti-patterns (empty catch, console.error)
+
+### User Correction Sensor (Phase 1)
+
+Detects patterns when user corrects AI-generated code:
+
+```bash
+# Scan uncommitted changes
+node .agent/skills/auto-learner/scripts/user_correction_sensor.js --scan
+
+# View correction statistics
+node .agent/skills/auto-learner/scripts/user_correction_sensor.js --stats
+
+# Get suggested lessons from patterns
+node .agent/skills/auto-learner/scripts/user_correction_sensor.js --suggest
+```
+
+**Detects:**
+- Import path corrections
+- Type annotation fixes
+- Added null checks
+- Async/await corrections
+- Error handling additions
+- Logic/condition fixes
+
+### Pattern Analyzer (Phase 2)
+
+Analyzes collected data to find patterns and generate auto-rules:
+
+```bash
+# Analyze all patterns
+node .agent/skills/auto-learner/scripts/pattern_analyzer.js --analyze
+
+# Generate auto-rules from high-frequency patterns
+node .agent/skills/auto-learner/scripts/pattern_analyzer.js --rules
+
+# Get insights and recommendations
+node .agent/skills/auto-learner/scripts/pattern_analyzer.js --insights
+```
+
+**Features:**
+- Frequency analysis (patterns occurring 3+ times flagged)
+- Auto-rule generation with YAML output
+- Time-based trend analysis
+- Hot directory detection
+
+### Pre-Execution Check (Phase 3)
+
+Prevents known errors before they happen:
+
+```bash
+# Check intent against all rules
+node .agent/skills/auto-learner/scripts/pre_execution_check.js --check "create async function"
+
+# List all active prevention rules
+node .agent/skills/auto-learner/scripts/pre_execution_check.js --list
+
+# Approve an auto-generated rule
+node .agent/skills/auto-learner/scripts/pre_execution_check.js --approve AUTO-IMPORT
+```
+
+**Built-in Rules (7):**
+- TypeScript type safety
+- Async/await usage
+- Error handling
+- Import paths
+- Null safety
+- React component types
+- Test before completion
+
+### Dashboard (Phase 4)
+
+Web-based monitoring dashboard:
+
+```bash
+# Start dashboard server
+node .agent/skills/auto-learner/scripts/dashboard_server.js --start
+
+# Start on custom port
+node .agent/skills/auto-learner/scripts/dashboard_server.js --port 8080
+```
+
+**Dashboard Features:**
+- Error/Correction metrics
+- Pattern distribution charts
+- High-frequency pattern alerts
+- Quick command reference
+- API endpoints for data access
 
 ---
 
