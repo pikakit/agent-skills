@@ -5,8 +5,8 @@
  * Parses ESLint JSON output and creates lessons automatically.
  * 
  * Usage:
- *   npx eslint . --format json | ag-smart lint-learn
- *   npx eslint . --format json > output.json && ag-smart lint-learn output.json
+ *   npx eslint . --format json | agent lint-learn
+ *   npx eslint . --format json > output.json && agent lint-learn output.json
  */
 
 import fs from "fs";
@@ -86,8 +86,8 @@ async function main() {
 🔧 Lint Learn - Auto-Learn from ESLint
 
 Usage:
-  npx eslint . --format json | ag-smart lint-learn
-  ag-smart lint-learn eslint-output.json
+  npx eslint . --format json | agent lint-learn
+  agent lint-learn eslint-output.json
 
 Creates lessons from ESLint violations automatically.
 `);

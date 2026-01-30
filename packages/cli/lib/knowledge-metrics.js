@@ -6,8 +6,8 @@
  * Metrics are collected on-demand or on scan completion.
  * 
  * Usage:
- *   ag-smart metrics           # Show dashboard
- *   ag-smart metrics --json    # JSON output for CI
+ *   agent metrics           # Show dashboard
+ *   agent metrics --json    # JSON output for CI
  */
 
 import fs from 'fs';

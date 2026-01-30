@@ -10,9 +10,9 @@
  * - Source tracking (manual, eslint, test-failure)
  * 
  * Usage:
- *   ag-smart learn --add --pattern "regex" --message "why bad"
- *   ag-smart learn --list
- *   ag-smart learn --remove <id>
+ *   agent learn --add --pattern "regex" --message "why bad"
+ *   agent learn --list
+ *   agent learn --remove <id>
  */
 
 import fs from "fs";
@@ -147,7 +147,7 @@ function listLessons(category = null) {
 
     if (!db.lessons || db.lessons.length === 0) {
         console.log("\nℹ️  No lessons learned yet.");
-        console.log("   Use: ag-smart learn --add --pattern \"pat\" --message \"msg\"\n");
+        console.log("   Use: agent learn --add --pattern \"pat\" --message \"msg\"\n");
         return;
     }
 
@@ -180,9 +180,9 @@ function printHelp() {
 🎓 Smart Learning Tool v${VERSION}
 
 USAGE:
-  ag-smart learn --add --pattern "..." --message "..."
-  ag-smart learn --list [--category <cat>]
-  ag-smart learn --remove <ID>
+  agent learn --add --pattern "..." --message "..."
+  agent learn --list [--category <cat>]
+  agent learn --remove <ID>
 
 OPTIONS:
   --add         Add a new lesson
@@ -195,9 +195,9 @@ OPTIONS:
   --help        Show this help
 
 EXAMPLES:
-  ag-smart learn --add --pattern "console\\.log" --message "No console.log in production" --severity ERROR
-  ag-smart learn --list
-  ag-smart learn --remove LEARN-001
+  agent learn --add --pattern "console\\.log" --message "No console.log in production" --severity ERROR
+  agent learn --list
+  agent learn --remove LEARN-001
 `);
 }
 

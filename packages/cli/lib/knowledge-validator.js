@@ -6,9 +6,9 @@
  * Ensures data integrity and prevents corruption.
  * 
  * Usage:
- *   ag-smart validate               # Validate all knowledge files
- *   ag-smart validate --fix         # Auto-fix minor issues
- *   ag-smart validate --json        # JSON output for CI
+ *   agent validate               # Validate all knowledge files
+ *   agent validate --fix         # Auto-fix minor issues
+ *   agent validate --json        # JSON output for CI
  */
 
 import fs from 'fs';

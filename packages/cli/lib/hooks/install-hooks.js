@@ -4,7 +4,7 @@
  * 
  * Installs pre-commit hook that runs recall on staged files.
  * 
- * Usage: ag-smart install-hooks
+ * Usage: agent install-hooks
  */
 
 import fs from "fs";
@@ -26,7 +26,7 @@ if [ -z "$STAGED_FILES" ]; then
 fi
 
 # Run recall (Clack handles all output)
-npx ag-smart recall . 2>/dev/null
+npx agent recall . 2>/dev/null
 exit $?
 `;
 
@@ -136,8 +136,8 @@ if (args.includes("--help")) {
 🔧 Agent Skill Kit Hooks Installer
 
 Usage:
-  ag-smart install-hooks           Install git hooks
-  ag-smart install-hooks --remove  Remove installed hooks
+  agent install-hooks           Install git hooks
+  agent install-hooks --remove  Remove installed hooks
 
 The pre-commit hook checks staged files against learned
 patterns before each commit.

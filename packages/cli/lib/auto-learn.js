@@ -8,10 +8,10 @@
  * 3. TypeScript errors (runs tsc and parses)
  * 
  * Usage:
- *   ag-smart auto-learn              # Run all
- *   ag-smart auto-learn --eslint     # ESLint only
- *   ag-smart auto-learn --test       # Test failures only
- *   ag-smart auto-learn --typescript # TypeScript only
+ *   agent auto-learn              # Run all
+ *   agent auto-learn --eslint     # ESLint only
+ *   agent auto-learn --test       # Test failures only
+ *   agent auto-learn --typescript # TypeScript only
  */
 
 import fs from "fs";
@@ -297,10 +297,10 @@ if (args.includes("--help")) {
 🧠 Smart Auto-Learn - True Self-Learning Engine
 
 Usage:
-  ag-smart auto-learn              Run all analyzers
-  ag-smart auto-learn --eslint     ESLint only
-  ag-smart auto-learn --typescript TypeScript only
-  ag-smart auto-learn --test       Test failures only
+  agent auto-learn              Run all analyzers
+  agent auto-learn --eslint     ESLint only
+  agent auto-learn --typescript TypeScript only
+  agent auto-learn --test       Test failures only
 
 The engine automatically:
   1. Runs ESLint and learns from violations

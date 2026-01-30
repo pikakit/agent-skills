@@ -7,7 +7,7 @@
  * 
  * This makes the Self-Learning Engine truly "self-learning"!
  * 
- * Usage: ag-smart sync-skills
+ * Usage: agent sync-skills
  */
 
 import fs from "fs";
@@ -280,7 +280,7 @@ if (args.includes("--help")) {
 🔄 Skill Sync - Auto-update SKILL.md
 
 Usage:
-  ag-smart sync-skills
+  agent sync-skills
 
 When patterns reach ${SYNC_THRESHOLD}+ violations, they are automatically
 added to the relevant SKILL.md file as learned rules.

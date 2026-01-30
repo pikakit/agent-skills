@@ -9,7 +9,7 @@
  * - Remove violations (aggressive mode)
  * - Replace patterns (custom fix rules)
  * 
- * Usage: ag-smart fix <file|directory> [--mode safe|aggressive]
+ * Usage: agent fix <file|directory> [--mode safe|aggressive]
  */
 
 import fs from "fs";
@@ -249,7 +249,7 @@ async function main() {
 🔧 Smart Fix v${VERSION} - Auto-fix Violations
 
 Usage:
-  ag-smart fix <file|directory> [options]
+  agent fix <file|directory> [options]
 
 Options:
   --mode safe        Comment out violations (default)
@@ -259,9 +259,9 @@ Options:
   --help             Show this help
 
 Examples:
-  ag-smart fix src/
-  ag-smart fix app.js --mode aggressive
-  ag-smart fix src/ --eslint
+  agent fix src/
+  agent fix app.js --mode aggressive
+  agent fix src/ --eslint
 `);
         process.exit(0);
     }

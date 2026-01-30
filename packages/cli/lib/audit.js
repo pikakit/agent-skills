@@ -7,7 +7,7 @@
  * 2. Constitution Checks (Governance)
  * 3. Real-time Analysis
  * 
- * Usage: ag-smart audit [directory]
+ * Usage: agent audit [directory]
  */
 
 import fs from "fs";
@@ -143,7 +143,7 @@ if (args.includes("--help")) {
 ⚖️  Smart Audit - Compliance Checker
 
 Usage:
-  ag-smart audit [directory]
+  agent audit [directory]
 
 Options:
   --help    Show this help

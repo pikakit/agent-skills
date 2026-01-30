@@ -6,9 +6,9 @@
  * Archives or soft-deletes stale lessons based on policy rules.
  * 
  * Usage:
- *   ag-smart retention --dry-run    # Preview what would be cleaned
- *   ag-smart retention --apply      # Execute cleanup (with confirmation)
- *   ag-smart retention --status     # Show retention policy status
+ *   agent retention --dry-run    # Preview what would be cleaned
+ *   agent retention --apply      # Execute cleanup (with confirmation)
+ *   agent retention --status     # Show retention policy status
  */
 
 import fs from 'fs';

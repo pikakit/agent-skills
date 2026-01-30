@@ -23,9 +23,44 @@ import { runLessonsUI } from "./lessons-ui.js";
 import { runEvolutionSignalsUI } from "./evolution-signals-ui.js";
 import { runKnowledgeUI } from "./knowledge-ui.js";
 import { runHelpUI } from "./help-ui.js";
+import { runDashboardUI } from "./dashboard-ui.js";
 import routingUI from "./routing-ui.js";
 import * as p from "@clack/prompts";
 import { VERSION } from "../config.js";
+import gradient from 'gradient-string';
+
+// ============================================================================
+// ASCII BANNER
+// ============================================================================
+
+const AGENT_BANNER = `
+    _                    _   
+   / \\   __ _  ___ _ __ | |_ 
+  / _ \\ / _\` |/ _ \\ '_ \\| __|
+ / ___ \\ (_| |  __/ | | | |_ 
+/_/   \\_\\__, |\\___|_| |_|\\__|
+        |___/                
+`;
+
+// Custom gradient: white → gray (like PikaKit style)
+const agentGradient = gradient(['#ffffff', '#bbbbbb', '#888888', '#555555']);
+
+function showAgentBanner() {
+    // Extra clear to remove Clack prompt residuals
+    process.stdout.write('\x1B[2J\x1B[0f');
+    console.clear();
+    console.log(''); // Extra space at top
+    const lines = AGENT_BANNER.split('\n').filter(l => l.trim() !== '');
+
+    // Print all lines except last with gradient
+    for (let i = 0; i < lines.length - 1; i++) {
+        console.log(agentGradient(lines[i]));
+    }
+
+    // Last line + version (aligned like PikaKit)
+    console.log(agentGradient(lines[lines.length - 1]) + theme.dim(`  v${VERSION}`));
+    console.log(''); // Empty line to break vertical connector
+}
 
 // ============================================================================
 // MAIN MENU
@@ -36,14 +71,23 @@ import { VERSION } from "../config.js";
  */
 export async function showMainMenu() {
     while (true) {
-        showIntro(`🧠 Agent Skill Kit v${VERSION}`);
+        showAgentBanner();
 
         // Load settings to check auto-learning status
         const settings = loadSettings();
         const autoLearningEnabled = settings.autoLearn !== false; // Default to true
 
         // Build menu options dynamically
-        const menuOptions = [];
+        const menuOptions = [
+            // ═════════════════════════════════════════════
+            // 🔍 SCANNING & ACTIONS
+            // ═════════════════════════════════════════════
+            { value: "scanall", label: "🔎 Scan All", hint: "Check & fix violations" },
+
+            // ═════════════════════════════════════════════
+            // 📚 LEARNING & KNOWLEDGE
+            // ═════════════════════════════════════════════
+        ];
 
         // Only show Learn if auto-learning is OFF
         if (!autoLearningEnabled) {
@@ -63,6 +107,12 @@ export async function showMainMenu() {
             // ═════════════════════════════════════════════
             { value: "settings", label: "⚙️  Settings", hint: "Configure behavior" },
             { value: "backup", label: "💾 Backup", hint: "Data management" },
+
+            // ═════════════════════════════════════════════
+            // 📊 DASHBOARD
+            // ═════════════════════════════════════════════
+            { value: "dashboard", label: "📊 Dashboard", hint: "Web UI & Help" },
+
             { value: "exit", label: "👋 Exit" }
         );
 
@@ -84,7 +134,9 @@ export async function showMainMenu() {
             case "lessons":
                 await runLessonsUI();
                 break;
-
+            case "scanall":
+                await runRecallUI(true); // Auto-scan mode with fix option
+                break;
             case "stats":
                 await runStatsUI(); // Now includes signals
                 break;
@@ -94,8 +146,8 @@ export async function showMainMenu() {
             case "backup":
                 await runBackupUI();
                 break;
-            case "help":
-                await runHelpUI();
+            case "dashboard":
+                await runDashboardUI();
                 break;
         }
 

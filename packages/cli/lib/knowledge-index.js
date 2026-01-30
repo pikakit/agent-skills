@@ -6,8 +6,8 @@
  * Regenerates on-demand when knowledge files change.
  * 
  * Usage:
- *   ag-smart index --rebuild    # Force rebuild index
- *   ag-smart index --status     # Check index freshness
+ *   agent index --rebuild    # Force rebuild index
+ *   agent index --status     # Check index freshness
  */
 
 import fs from 'fs';
@@ -300,8 +300,8 @@ function main() {
 📇 Knowledge Index Manager
 
 Usage:
-  ag-smart index --rebuild    Rebuild index from knowledge files
-  ag-smart index --status     Check if index is fresh or stale
+  agent index --rebuild    Rebuild index from knowledge files
+  agent index --status     Check if index is fresh or stale
 
 The index provides O(1) lookup for:
   - Pattern matching (by keyword)

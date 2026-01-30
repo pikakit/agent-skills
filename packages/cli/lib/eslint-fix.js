@@ -5,7 +5,7 @@
  * Wrapper around ESLint --fix to combine with pattern-based fix.
  * Auto-detects ESLint config and runs fixes.
  * 
- * Usage: ag-smart fix --eslint <path>
+ * Usage: agent fix --eslint <path>
  */
 
 import { execSync, spawnSync } from "child_process";

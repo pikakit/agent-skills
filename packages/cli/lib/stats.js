@@ -7,7 +7,7 @@
  * - Most triggered patterns
  * - Violation trends
  * 
- * Usage: ag-smart stats
+ * Usage: agent stats
  */
 
 import { loadKnowledge } from "./recall.js";
@@ -25,7 +25,7 @@ function displayStats() {
     p.intro(pc.cyan(`📊 Agent Skill Kit Knowledge Base v${VERSION}`));
 
     if (!db.lessons || db.lessons.length === 0) {
-        p.note("No lessons learned yet.\nUse 'ag-smart learn' to add patterns.", pc.dim("Empty"));
+        p.note("No lessons learned yet.\nUse 'agent learn' to add patterns.", pc.dim("Empty"));
         return;
     }
 
@@ -118,7 +118,7 @@ if (args.includes("--help")) {
 📊 Smart Stats - Knowledge Base Statistics
 
 Usage:
-  ag-smart stats
+  agent stats
 
 Shows:
   - Total lessons and violations

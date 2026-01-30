@@ -471,7 +471,7 @@ Options:
     const db = loadKnowledge();
 
     if (!db.lessons || db.lessons.length === 0) {
-        console.log("ℹ️  No lessons learned yet. Use 'ag-smart learn' to add patterns.");
+        console.log("ℹ️  No lessons learned yet. Use 'agent learn' to add patterns.");
         process.exit(0);
     }
 

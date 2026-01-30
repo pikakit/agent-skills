@@ -8,7 +8,7 @@
  * - Pattern frequency tracking
  * - Live feedback on violations
  * 
- * Usage: ag-smart watch [directory]
+ * Usage: agent watch [directory]
  */
 
 import fs from "fs";
@@ -159,7 +159,7 @@ if (args.includes("--help")) {
 👁️  Smart Watcher - Real-Time Monitor
 
 Usage:
-  ag-smart watch [directory]
+  agent watch [directory]
 
 Options:
   --help    Show this help
