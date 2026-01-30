@@ -2,7 +2,7 @@
 
 > **Transform your AI Agent into a FAANG-level engineering team with one command**
 
-[![npm](https://img.shields.io/badge/version-3.2.5-7c3aed?style=flat&colorA=18181b)](https://www.npmjs.com/package/add-skill-kit)
+[![npm](https://img.shields.io/badge/version-1.0.0-7c3aed?style=flat&colorA=18181b)](https://www.npmjs.com/package/pikakit)
 [![skills](https://img.shields.io/badge/skills-49-7c3aed?style=flat&colorA=18181b)](https://github.com/agentskillkit/agent-skills)
 [![agents](https://img.shields.io/badge/agents-25-7c3aed?style=flat&colorA=18181b)](https://github.com/agentskillkit/agent-skills)
 [![workflows](https://img.shields.io/badge/workflows-26-7c3aed?style=flat&colorA=18181b)](https://github.com/agentskillkit/agent-skills)
@@ -14,7 +14,7 @@
 ## ⚡ Quick Install
 
 ```bash
-npx -y add-skill-kit agentskillkit/agent-skills
+npx -y pikakit agentskillkit/agent-skills
 ```
 
 **What gets installed:**
@@ -56,7 +56,7 @@ npx -y add-skill-kit agentskillkit/agent-skills
 ### Step 1: Install
 
 ```bash
-npx -y add-skill-kit agentskillkit/agent-skills
+npx -y pikakit agentskillkit/agent-skills
 ```
 
 **During installation:**
@@ -89,7 +89,7 @@ agent                       # Launch Smart CLI
 
 ## 📦 Complete Installation Contents
 
-When you run `npx -y add-skill-kit agentskillkit/agent-skills`, you get:
+When you run `npx -y pikakit agentskillkit/agent-skills`, you get:
 
 ```
 your-project/
@@ -394,13 +394,14 @@ agent watch                 # Real-time monitoring
 
 ## 📈 Version History
 
-**v3.2.5 (Current)**
+**v1.0.0 (Current - PikaKit)**
+- ✅ Renamed to PikaKit for cross-platform npx support
+- ✅ Works with `npx pikakit` on Windows, macOS, Linux
 - ✅ 100% JavaScript - Zero Python dependencies
 - ✅ 49 skills, 26 workflows, 25 agents
 - ✅ AutoLearn made optional (does not affect core)
-- ✅ Complete installation includes all components
-- ✅ config/, scripts-js/, metrics/ now auto-installed
-- ✅ Policy docs (CONTINUOUS_EXECUTION_POLICY.md, WORKFLOW_CHAINS.md) auto-installed
+
+**v3.2.5**
 
 **v3.2.0**
 - All master scripts migrated to JavaScript
@@ -418,8 +419,8 @@ See [CHANGELOG.md](CHANGELOG.md) for full history.
 ## 🔗 Links
 
 - [GitHub - agent-skills](https://github.com/agentskillkit/agent-skills)
-- [GitHub - add-skill-kit](https://github.com/agentskillkit/add-skill-kit)
-- [npm - add-skill-kit](https://www.npmjs.com/package/add-skill-kit)
+- [GitHub - pikakit](https://github.com/agentskillkit/pikakit)
+- [npm - pikakit](https://www.npmjs.com/package/pikakit)
 - [Issues & Feature Requests](https://github.com/agentskillkit/agent-skills/issues)
 
 ---
@@ -430,7 +431,7 @@ MIT - Free for all projects.
 
 ---
 
-**⚡ Agent Skill Kit v3.2.5**
+**⚡ Agent Skill Kit v1.0.0 (PikaKit)**
 *Composable Skills. Coordinated Agents. Intelligent Execution.*
 
 ---
