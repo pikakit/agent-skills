@@ -3,12 +3,12 @@ name: game-engine
 description: >-
   Game development orchestrator. Routes to platform-specific skills based on project needs.
   Triggers on: game, Unity, Godot, Phaser, game engine, 2D, 3D.
-  Coordinates with: perf-optimizer, mobile-first.
+  Coordinates with: game-development, perf-optimizer, mobile-first.
 allowed-tools: Read, Write, Edit, Glob, Grep, Bash
 metadata:
   category: "framework"
   success_metrics: "game runs, no crashes"
-  coordinates_with: "perf-optimizer, mobile-first"
+  coordinates_with: "game-development, perf-optimizer, mobile-first"
 ---
 
 # Game Development

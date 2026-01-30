@@ -4,11 +4,11 @@ description: >-
   Mobile-first design thinking and decision-making for iOS and Android apps. Touch interaction,
   performance patterns, platform conventions.
   Triggers on: mobile, responsive, touch, React Native, Flutter.
-  Coordinates with: design-system, perf-optimizer.
+  Coordinates with: mobile-developer, mobile-design, mobile-security-coder, design-system, perf-optimizer.
 metadata:
   category: "framework"
   success_metrics: "mobile audit passed, responsive design"
-  coordinates_with: "design-system, perf-optimizer"
+  coordinates_with: "mobile-developer, mobile-design, mobile-security-coder, design-system, perf-optimizer"
 ---
 
 # Mobile Design System
