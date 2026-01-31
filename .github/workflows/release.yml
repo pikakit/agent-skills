@@ -42,7 +42,6 @@ jobs:
     name: Publish CLI to NPM
     runs-on: ubuntu-latest
     needs: release
-    environment: production
     if: ${{ !contains(github.ref, 'alpha') && !contains(github.ref, 'beta') }}
 
     steps:
