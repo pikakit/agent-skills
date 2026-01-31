@@ -1,6 +1,6 @@
 {
-  "name": "@pikakit/agent-skills",
-  "version": "3.2.7",
+  "name": "pikakit-agent-skills",
+  "version": "3.2.8",
   "description": "The PikaKit for Enterprise",
   "repository": {
     "type": "git",
@@ -9,6 +9,9 @@
   "homepage": "https://github.com/pikakit/agent-skills",
   "engines": {
     "node": ">=18.0.0"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "files": [
     ".agent",
