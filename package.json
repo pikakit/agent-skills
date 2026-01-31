@@ -1,12 +1,12 @@
 {
-  "name": "@agentskillkit/agent-skills",
+  "name": "@pikakit/agent-skills",
   "version": "3.2.6",
-  "description": "The Agent Skills Kit for Enterprise",
+  "description": "The PikaKit for Enterprise",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/agentskillkit/agent-skills.git"
+    "url": "git+https://github.com/pikakit/agent-skills.git"
   },
-  "homepage": "https://github.com/agentskillkit/agent-skills",
+  "homepage": "https://github.com/pikakit/agent-skills",
   "engines": {
     "node": ">=18.0.0"
   },
@@ -56,10 +56,10 @@
     "agent",
     "skills",
     "self-learning",
-    "agent-skills-kit",
+    "pikakit",
     "enterprise"
   ],
-  "author": "agentskillkit <agentskillkit@gmail.com>",
+  "author": "pikakit <pikakit@gmail.com>",
   "license": "UNLICENSED",
   "devDependencies": {
     "@vitest/coverage-v8": "^4.0.18",

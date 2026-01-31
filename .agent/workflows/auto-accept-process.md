@@ -272,4 +272,4 @@ Proceed
 
 ---
 
-_Version 1.0 | Agent Skill Kit_
+_Version 1.0 | PikaKit_

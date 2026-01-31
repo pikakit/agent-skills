@@ -1,5 +1,5 @@
 {
-  "$comment": "Execution Policy Schema v1.1 - Agent Skill Kit v3.3.0",
+  "$comment": "Execution Policy Schema v1.1 - PikaKit v3.3.0",
   "version": "1.1",
   "codebaseVersion": "3.3.0",
   "description": "Execution policy for workflow auto-accept authorization",

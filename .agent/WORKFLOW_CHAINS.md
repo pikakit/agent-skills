@@ -680,4 +680,4 @@ Look for agent confirmation:
 
 **Version:** 1.0.0  
 **Last Updated:** 2026-01-29  
-**Maintained by:** Agent Skills Kit Team
+**Maintained by:** PikaKit Team

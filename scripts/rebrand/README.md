@@ -1,6 +1,6 @@
 # Smart Rebrand CLI
 
-> Production-grade brand renaming tool for Agent Skill Kit
+> Production-grade brand renaming tool for PikaKit
 
 Automatically rename your brand across the entire codebase with safety, speed, and precision.
 
@@ -126,11 +126,11 @@ node scripts/rebrand/v4.mjs
 
 | Original          | Variants                       |
 | ----------------- | ------------------------------ |
-| "Agent Skill Kit" | original, lowercase, UPPERCASE |
+| "PikaKit" | original, lowercase, UPPERCASE |
 |                   | agent-skill-kit (kebab)        |
 |                   | agent_skill_kit (snake)        |
-|                   | agentSkillKit (camel)          |
-|                   | AgentSkillKit (pascal)         |
+|                   | pikakit (camel)          |
+|                   | pikakit (pascal)         |
 |                   | AGENT_SKILL_KIT (constant)     |
 
 ---
@@ -140,7 +140,7 @@ node scripts/rebrand/v4.mjs
 ### Example 1: Simple Rebrand
 
 ```bash
-Current brand: "Agent Skill Kit"
+Current brand: "PikaKit"
 New brand: "Super Agent Kit"
 
 Files affected: 42
@@ -192,7 +192,7 @@ All will be updated automatically.
 
    ```
    🏷️ Current Brand
-   Current: Agent Skill Kit
+   Current: PikaKit
    Auto-detected from package.json
    ```
 
@@ -237,7 +237,7 @@ All will be updated automatically.
    ```
    1. Review: git diff
    2. Test: npm test
-   3. Commit: git add . && git commit -m "rebrand: Agent Skill Kit → Super Agent Kit"
+   3. Commit: git add . && git commit -m "rebrand: PikaKit → Super Agent Kit"
    4. Rollback if needed: git checkout rebrand-backup-<timestamp>
    ```
 
@@ -322,7 +322,7 @@ A: Yes, just run twice. Commit after first rebrand.
 A: v4.0 auto-discovers all `**/package.json` files (excluding node_modules).
 
 **Q: Does it handle partial matches?**  
-A: No! v4.0 uses word boundaries. "Agent Skill Kit" matches, but "Agent Skills" doesn't.
+A: No! v4.0 uses word boundaries. "PikaKit" matches, but "Agent Skills" doesn't.
 
 **Q: Can I rebrand just one directory?**  
 A: Not currently. Script scans entire project. Use git to revert unwanted changes.
@@ -368,7 +368,7 @@ git diff         # Detailed
 ```bash
 # Don't rebrand + add features in same commit
 git add scripts/rebrand/
-git commit -m "rebrand: Agent Skill Kit → Super Agent Kit"
+git commit -m "rebrand: PikaKit → Super Agent Kit"
 
 # Then do other changes
 ```
@@ -463,10 +463,10 @@ mv scripts/rebrand/v4.mjs scripts/rebrand/index.mjs
 
 ## 📄 License
 
-Part of Agent Skill Kit - See [LICENSE](../../LICENSE)
+Part of PikaKit - See [LICENSE](../../LICENSE)
 
 ---
 
 **Version:** 4.0.0  
 **Last Updated:** 2026-01-29  
-**Maintained by:** Agent Skill Kit Team
+**Maintained by:** PikaKit Team

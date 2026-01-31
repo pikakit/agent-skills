@@ -1,5 +1,5 @@
 /**
- * @fileoverview Pretty output formatting for Agent Skill Kit
+ * @fileoverview Pretty output formatting for PikaKit
  * Creates branded, friendly CLI messages
  */
 
@@ -24,7 +24,7 @@ const brand = {
 /** Simple ASCII logo */
 const LOGO = `
   ╭─────────────────────────╮
-  │  🧠 Agent Skill Kit     │
+  │  🧠 PikaKit     │
   │     v${VERSION}             │
   ╰─────────────────────────╯
 `;

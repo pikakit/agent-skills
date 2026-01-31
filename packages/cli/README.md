@@ -1,6 +1,6 @@
-# Agent Skill Kit CLI
+# PikaKit CLI
 
-The intelligent CLI engine for Agent Skill Kit, featuring:
+The intelligent CLI engine for PikaKit, featuring:
 - **Routing Engine**: Semantic routing validation
 - **Audit System**: Skill usage auditing and metrics
 - **Interactive Mode**: Smart interactive agent interface
@@ -18,4 +18,4 @@ agent
 ```
 
 ## Documentation
-See the main [Agent Skill Kit](https://github.com/agentskillskit/agent-skills) repository.
+See the main [PikaKit](https://github.com/agentskillskit/agent-skills) repository.

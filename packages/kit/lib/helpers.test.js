@@ -30,23 +30,23 @@ describe("formatDate", () => {
 
 describe("parseSkillSpec", () => {
     it("parses org/repo format", () => {
-        const result = parseSkillSpec("agentskillkit/agent-skills");
-        expect(result.org).toBe("agentskillkit");
+        const result = parseSkillSpec("pikakit/agent-skills");
+        expect(result.org).toBe("pikakit");
         expect(result.repo).toBe("agent-skills");
         expect(result.skill).toBeUndefined();
         expect(result.ref).toBeUndefined();
     });
 
     it("parses org/repo#skill format", () => {
-        const result = parseSkillSpec("agentskillkit/agent-skills#react-patterns");
-        expect(result.org).toBe("agentskillkit");
+        const result = parseSkillSpec("pikakit/agent-skills#react-patterns");
+        expect(result.org).toBe("pikakit");
         expect(result.repo).toBe("agent-skills");
         expect(result.skill).toBe("react-patterns");
     });
 
     it("parses org/repo#skill@ref format", () => {
-        const result = parseSkillSpec("agentskillkit/agent-skills#react-patterns@v1.0.0");
-        expect(result.org).toBe("agentskillkit");
+        const result = parseSkillSpec("pikakit/agent-skills#react-patterns@v1.0.0");
+        expect(result.org).toBe("pikakit");
         expect(result.repo).toBe("agent-skills");
         expect(result.skill).toBe("react-patterns");
         expect(result.ref).toBe("v1.0.0");

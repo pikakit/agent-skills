@@ -1,5 +1,5 @@
 /**
- * @fileoverview Backup and Restore for Agent Skill Kit
+ * @fileoverview Backup and Restore for PikaKit
  * Protects lessons before changes
  */
 

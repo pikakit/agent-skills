@@ -8,7 +8,7 @@
 
 ## 🎯 Executive Summary
 
-Agent Skills Kit uses a **hybrid 2-tier architecture**:
+PikaKit uses a **hybrid 2-tier architecture**:
 
 - **Tier 1 (JavaScript):** Master orchestration scripts
 - **Tier 2 (Python):** Specialized validation tools

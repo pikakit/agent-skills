@@ -15,7 +15,7 @@ export async function runInitUI() {
     p.note(`Detected project type: ${pc.cyan(projectType)}`, "Detection");
 
     const confirm = await p.confirm({
-        message: `Initialize Agent Skill Kit for this ${projectType} project?`
+        message: `Initialize PikaKit for this ${projectType} project?`
     });
 
     if (p.isCancel(confirm) || !confirm) {

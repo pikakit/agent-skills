@@ -1,4 +1,4 @@
-# Project Plan: Agent Skill Kit v2.1.0
+# Project Plan: PikaKit v2.1.0
 
 ## Overview
 

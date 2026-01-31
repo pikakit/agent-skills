@@ -58,7 +58,7 @@ for (let i = 1; i < args.length; i++) {
 const targetDir = path.resolve(process.cwd(), projectName);
 
 console.log('');
-console.log('🚀 Next.js Scaffolder - Agent Skill Kit');
+console.log('🚀 Next.js Scaffolder - PikaKit');
 console.log('========================================');
 console.log(`📁 Project: ${projectName}`);
 console.log(`📍 Path: ${targetDir}`);

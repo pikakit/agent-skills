@@ -29,7 +29,7 @@ export function generatePowerShellCompletion() {
     const commands = COMMANDS.map(c => `'${c.name}'`).join(", ");
 
     return `
-# Agent Skill Kit PowerShell Completion
+# PikaKit PowerShell Completion
 # Add to your $PROFILE
 
 Register-ArgumentCompleter -Native -CommandName agent -ScriptBlock {
@@ -49,7 +49,7 @@ ${COMMANDS.map(c => `        @{ Name = '${c.name}'; Description = '${c.descripti
     }
 }
 
-Write-Host "Agent Skill Kit completion loaded" -ForegroundColor Green
+Write-Host "PikaKit completion loaded" -ForegroundColor Green
 `;
 }
 
@@ -61,7 +61,7 @@ export function generateBashCompletion() {
     const commands = COMMANDS.map(c => c.name).join(" ");
 
     return `
-# Agent Skill Kit Bash Completion
+# PikaKit Bash Completion
 # Add to ~/.bashrc or ~/.bash_completion
 
 _agent_completions() {
@@ -73,7 +73,7 @@ _agent_completions() {
 
 complete -F _agent_completions agent
 
-echo "Agent Skill Kit completion loaded"
+echo "PikaKit completion loaded"
 `;
 }
 
@@ -85,7 +85,7 @@ export function generateZshCompletion() {
     return `
 #compdef agent
 
-# Agent Skill Kit Zsh Completion
+# PikaKit Zsh Completion
 # Add to ~/.zshrc or place in $fpath
 
 _agent() {
@@ -99,7 +99,7 @@ ${COMMANDS.map(c => `        '${c.name}:${c.description}'`).join("\n")}
 
 compdef _agent agent
 
-echo "Agent Skill Kit completion loaded"
+echo "PikaKit completion loaded"
 `;
 }
 

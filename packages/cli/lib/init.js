@@ -89,7 +89,7 @@ export function initProject(options = {}) {
 
     // Create lessons-learned.yaml
     if (!fs.existsSync(LESSONS_PATH)) {
-        const initialLessons = `# Agent Skill Kit - Lessons Learned
+        const initialLessons = `# PikaKit - Lessons Learned
 # Project Type: ${projectType}
 # Created: ${new Date().toISOString()}
 

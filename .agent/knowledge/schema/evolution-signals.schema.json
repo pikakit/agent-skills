@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://agentskillkit.com/schemas/evolution-signals.schema.json",
+  "$id": "https://pikakit.com/schemas/evolution-signals.schema.json",
   "title": "Evolution Signals",
   "description": "Schema for evolution-signals.json - auto-evolution triggers",
   "type": "object",

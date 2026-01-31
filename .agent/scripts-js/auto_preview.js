@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 /**
- * Auto Preview - Agent Skill Kit
+ * Auto Preview - PikaKit
  * ===============================
  * Development server manager (start/stop/status)
  * JavaScript port of auto_preview.py

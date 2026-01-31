@@ -1,6 +1,6 @@
 # Migration Guide
 
-> Python → JavaScript migration for Agent Skill Kit
+> Python → JavaScript migration for PikaKit
 
 ---
 

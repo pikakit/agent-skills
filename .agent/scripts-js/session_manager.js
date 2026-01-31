@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 /**
- * Session Manager - Agent Skill Kit
+ * Session Manager - PikaKit
  * ==================================
  * Analyzes project state, detects tech stack, tracks file statistics,
  * and provides a summary of the current session.

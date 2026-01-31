@@ -55,7 +55,7 @@ function run(script, args = [], baseDir = SCRIPTS_DIR) {
 
 function printHelp() {
     console.log(`
-🤖 Agent Skill Kit CLI v${VERSION}
+🤖 PikaKit CLI v${VERSION}
 
 Usage: ag-smart <command> [options]
 
@@ -117,7 +117,7 @@ ${"─".repeat(50)}
   help, --help   Show this help message
   --version      Show version number
 
-💡 Docs: https://github.com/agentskillkit/agent-skills
+💡 Docs: https://github.com/pikakit/agent-skills
 `);
 }
 

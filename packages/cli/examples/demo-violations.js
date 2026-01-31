@@ -1,5 +1,5 @@
 /**
- * Demo Violations File - Agent Skill Kit CLI Testing
+ * Demo Violations File - PikaKit CLI Testing
  * 
  * Purpose: This file intentionally contains code violations to test
  * the CLI's violation detection system (self-evolution signals).

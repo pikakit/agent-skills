@@ -1,4 +1,4 @@
-# Agent Skill Kit Documentation
+# PikaKit Documentation
 
 > Your ideas, our engineering.
 
@@ -50,7 +50,7 @@ docs/
 
 ## 🚀 Getting Started
 
-1. **Install**: `npx -y add-skill-kit agentskillkit/agent-skills`
+1. **Install**: `npx -y add-skill-kit pikakit/agent-skills`
 2. **Use**: Type `/build your-idea` in your AI editor
 3. **Learn**: Read [Getting Started](getting-started.md)
 

@@ -1,7 +1,7 @@
 ---
 name: code-constitution-skills-governance
 description: >-
-  Constitutional governance for Agent Skills Kit. Enforces non-negotiable laws for correctness, 
+  Constitutional governance for PikaKit. Enforces non-negotiable laws for correctness, 
   trust, and durability. Use when designing system architecture, reviewing pull requests, 
   modifying backend data pipelines, or evaluating risky/breaking changes.
   Triggers on: architecture review, critical data, breaking change, governance, doctrine.
@@ -16,12 +16,12 @@ metadata:
   coordinates_with: "code-review, review-automation, security-scanner"
 ---
 
-# Agent Skills Kit Governance
+# PikaKit Governance
 
 **(Supreme Constitutional Skill)**
 
 This skill defines the **entire constitutional, doctrinal, and enforcement system**
-governing how Agent Skills Kit projects are designed, built, reviewed, scaled, and evolved.
+governing how PikaKit projects are designed, built, reviewed, scaled, and evolved.
 
 This is NOT a feature skill.
 This is NOT advisory guidance.
@@ -203,7 +203,7 @@ When using this skill, the agent MUST include the following footer in its respon
 ```
 ---
 📦 **Skill:** agent-skills-governance v1.0.0
-🔗 **Source:** Agent Skills Kit
+🔗 **Source:** PikaKit
 ```
 
 ---

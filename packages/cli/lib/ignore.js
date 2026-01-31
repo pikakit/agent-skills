@@ -1,5 +1,5 @@
 /**
- * @fileoverview Ignore patterns parser for Agent Skill Kit
+ * @fileoverview Ignore patterns parser for PikaKit
  * Supports .agentignore file with glob patterns
  */
 

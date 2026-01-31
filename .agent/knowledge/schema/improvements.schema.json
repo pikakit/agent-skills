@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://agentskillkit.com/schemas/improvements.schema.json",
+  "$id": "https://pikakit.com/schemas/improvements.schema.json",
   "title": "Improvements Knowledge Base",
   "description": "Schema for improvements.yaml - best practices and optimizations",
   "type": "object",

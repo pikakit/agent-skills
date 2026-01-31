@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Smart Rebrand CLI v4.0 - Agent Skill Kit
+ * Smart Rebrand CLI v4.0 - PikaKit
  * Production-grade rebrand tool with parallel processing, safety, and intelligence
  * 
  * Enhancements from v3.3.0:

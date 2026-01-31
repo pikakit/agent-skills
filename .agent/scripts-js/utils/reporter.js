@@ -1,5 +1,5 @@
 /**
- * Reporter - Agent Skill Kit
+ * Reporter - PikaKit
  * ===========================
  * Result formatting utilities (JSON, summary tables)
  * Replacement for Python report formatting functions

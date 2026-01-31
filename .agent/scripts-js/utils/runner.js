@@ -1,5 +1,5 @@
 /**
- * Script Runner - Agent Skill Kit
+ * Script Runner - PikaKit
  * ================================
  * Replacement for Python subprocess.run()
  * Executes scripts with timeout, output capture, and error handling.

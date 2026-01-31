@@ -22,7 +22,7 @@ import pc from "picocolors";
 function displayStats() {
     const db = loadKnowledge();
 
-    p.intro(pc.cyan(`📊 Agent Skill Kit Knowledge Base v${VERSION}`));
+    p.intro(pc.cyan(`📊 PikaKit Knowledge Base v${VERSION}`));
 
     if (!db.lessons || db.lessons.length === 0) {
         p.note("No lessons learned yet.\nUse 'agent learn' to add patterns.", pc.dim("Empty"));

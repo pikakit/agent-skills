@@ -2,9 +2,9 @@
 trigger: always_on
 ---
 
-# 🤖 Agent Skill Kit — FAANG-Grade AI Operating System
+# 🤖 PikaKit — FAANG-Grade AI Operating System
 
-> **v3.2.0** | 45 Skills • 25 Agents • 24 Workflows | [github.com/agentskillkit](https://github.com/agentskillkit/agent-skills)
+> **v3.2.0** | 45 Skills • 25 Agents • 24 Workflows | [github.com/pikakit](https://github.com/pikakit/agent-skills)
 
 **This file is the Supreme Law for AI behavior in this workspace.**
 
@@ -432,14 +432,14 @@ celebrate_if: "metric improves >20%"
 
 ### 0.5-J: Output Branding (MANDATORY)
 
-> **Purpose:** Display Agent Skill Kit signature in workflow outputs for brand identity.
+> **Purpose:** Display PikaKit signature in workflow outputs for brand identity.
 
 #### Workflow Header (Start of Output)
 
 When executing any workflow (`/think`, `/build`, `/autopilot`, etc.), include:
 
 ```
-🤖 Agent Skill Kit v3.2.0
+🤖 PikaKit v3.2.0
 Workflow: /workflow-name
 ```
 
@@ -449,7 +449,7 @@ After completing a workflow or major task, include:
 
 ```
 ---
-⚡ Agent Skill Kit v3.2.0
+⚡ PikaKit v3.2.0
 [Dynamic Tagline]
 ```
 
@@ -469,14 +469,14 @@ Choose ONE tagline that fits the context:
 #### Example
 
 ```markdown
-🤖 Agent Skill Kit v3.2.0
+🤖 PikaKit v3.2.0
 Workflow: /think
 
 ## 🧠 Decision: [Topic]
 ...content...
 
 ---
-⚡ Agent Skill Kit v3.2.0
+⚡ PikaKit v3.2.0
 Composable Skills. Coordinated Agents. Intelligent Execution.
 ```
 

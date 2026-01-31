@@ -1,7 +1,7 @@
 {
     "name": "agentskillskit-cli",
     "version": "3.3.0",
-    "description": "CLI for Agent Skill Kit",
+    "description": "CLI for PikaKit",
     "type": "module",
     "engines": {
         "node": ">=18.0.0"
@@ -26,11 +26,11 @@
     "devDependencies": {
         "vitest": "^4.0.18"
     },
-    "author": "Agent Skill Kit Authors",
+    "author": "PikaKit Authors",
     "license": "MIT",
     "repository": {
         "type": "git",
-        "url": "https://github.com/agentskillkit/agent-skills.git",
+        "url": "https://github.com/pikakit/agent-skills.git",
         "directory": "packages/cli"
     },
     "keywords": [

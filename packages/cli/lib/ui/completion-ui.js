@@ -98,7 +98,7 @@ export async function runCompletionUI() {
                 ? fs.readFileSync(profilePath, "utf8")
                 : "";
 
-            if (existing.includes("Agent Skill Kit")) {
+            if (existing.includes("PikaKit")) {
                 p.note("Completion already installed!", pc.yellow("Skipped"));
                 return;
             }

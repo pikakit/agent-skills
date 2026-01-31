@@ -28,7 +28,7 @@ export const ICONS = {
  * Show app header
  */
 export function showHeader() {
-    p.intro(`${ICONS.brain} Agent Skill Kit v${VERSION}`);
+    p.intro(`${ICONS.brain} PikaKit v${VERSION}`);
 }
 
 /**

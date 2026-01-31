@@ -1,5 +1,5 @@
 /**
- * @fileoverview Intelligent Routing UI for Agent Skill Kit
+ * @fileoverview Intelligent Routing UI for PikaKit
  * FAANG-level professional agent display with Clack UI
  */
 

@@ -1,12 +1,12 @@
-# Agent Skill Kit
+# PikaKit
 
 > **Transform your AI Agent into a FAANG-level engineering team with one command**
 
 [![npm](https://img.shields.io/badge/version-1.0.0-7c3aed?style=flat&colorA=18181b)](https://www.npmjs.com/package/pikakit)
-[![skills](https://img.shields.io/badge/skills-49-7c3aed?style=flat&colorA=18181b)](https://github.com/agentskillkit/agent-skills)
-[![agents](https://img.shields.io/badge/agents-25-7c3aed?style=flat&colorA=18181b)](https://github.com/agentskillkit/agent-skills)
-[![workflows](https://img.shields.io/badge/workflows-26-7c3aed?style=flat&colorA=18181b)](https://github.com/agentskillkit/agent-skills)
-[![JavaScript](https://img.shields.io/badge/100%25-JavaScript-F7DF1E?style=flat&colorA=18181b&logo=javascript)](https://github.com/agentskillkit/agent-skills)
+[![skills](https://img.shields.io/badge/skills-49-7c3aed?style=flat&colorA=18181b)](https://github.com/pikakit/agent-skills)
+[![agents](https://img.shields.io/badge/agents-25-7c3aed?style=flat&colorA=18181b)](https://github.com/pikakit/agent-skills)
+[![workflows](https://img.shields.io/badge/workflows-26-7c3aed?style=flat&colorA=18181b)](https://github.com/pikakit/agent-skills)
+[![JavaScript](https://img.shields.io/badge/100%25-JavaScript-F7DF1E?style=flat&colorA=18181b&logo=javascript)](https://github.com/pikakit/agent-skills)
 [![license](https://img.shields.io/badge/license-MIT-7c3aed?style=flat&colorA=18181b)](LICENSE)
 
 ---
@@ -14,7 +14,7 @@
 ## ⚡ Quick Install
 
 ```bash
-npx -y pikakit agentskillkit/agent-skills
+npx -y pikakit pikakit/agent-skills
 ```
 
 **What gets installed:**
@@ -33,7 +33,7 @@ npx -y pikakit agentskillkit/agent-skills
 
 ## 🎯 What Makes This Different
 
-| Feature | Agent Skill Kit | Generic AI | Other Tools |
+| Feature | PikaKit | Generic AI | Other Tools |
 |---------|-----------------|------------|-------------|
 | **Auto-Accept Workflow** | ✅ 1 approval → Full execution | ❌ | ❌ |
 | **Multi-Agent Coordination** | ✅ 25 specialists in parallel | 1 generic | 1-3 |
@@ -56,7 +56,7 @@ npx -y pikakit agentskillkit/agent-skills
 ### Step 1: Install
 
 ```bash
-npx -y pikakit agentskillkit/agent-skills
+npx -y pikakit pikakit/agent-skills
 ```
 
 **During installation:**
@@ -89,7 +89,7 @@ agent                       # Launch Smart CLI
 
 ## 📦 Complete Installation Contents
 
-When you run `npx -y pikakit agentskillkit/agent-skills`, you get:
+When you run `npx -y pikakit pikakit/agent-skills`, you get:
 
 ```
 your-project/
@@ -144,7 +144,7 @@ Traditional AI workflow:
 User → Command → AI asks permission → User approves → AI runs → AI asks again → ...
 ```
 
-Agent Skill Kit with Auto-Accept:
+PikaKit with Auto-Accept:
 ```
 User → /autopilot → PLAN.md → ⛔ ONE APPROVAL → Agent runs ALL → ✅ DONE
 ```
@@ -274,7 +274,7 @@ AUTO-APPROVE: After PLAN.md, proceed automatically.
 | `game-development` | Game logic, mechanics |
 | `typescript-expert` | Type-level programming |
 
-[See full catalog →](https://github.com/agentskillkit/agent-skills/tree/main/.agent/skills)
+[See full catalog →](https://github.com/pikakit/agent-skills/tree/main/.agent/skills)
 
 ---
 
@@ -418,10 +418,10 @@ See [CHANGELOG.md](CHANGELOG.md) for full history.
 
 ## 🔗 Links
 
-- [GitHub - agent-skills](https://github.com/agentskillkit/agent-skills)
-- [GitHub - pikakit](https://github.com/agentskillkit/pikakit)
+- [GitHub - agent-skills](https://github.com/pikakit/agent-skills)
+- [GitHub - pikakit](https://github.com/pikakit/pikakit)
 - [npm - pikakit](https://www.npmjs.com/package/pikakit)
-- [Issues & Feature Requests](https://github.com/agentskillkit/agent-skills/issues)
+- [Issues & Feature Requests](https://github.com/pikakit/agent-skills/issues)
 
 ---
 
@@ -431,7 +431,7 @@ MIT - Free for all projects.
 
 ---
 
-**⚡ Agent Skill Kit v1.0.0 (PikaKit)**
+**⚡ PikaKit v1.0.0 (PikaKit)**
 *Composable Skills. Coordinated Agents. Intelligent Execution.*
 
 ---

@@ -15,7 +15,7 @@
  *   const report = metrics.finalize();
  * 
  * @version 1.0.0
- * @author Agent Skill Kit Team
+ * @author PikaKit Team
  */
 
 import fs from 'fs';

@@ -1,5 +1,5 @@
 /**
- * @fileoverview Export and Import for Agent Skill Kit
+ * @fileoverview Export and Import for PikaKit
  * Share settings between projects
  */
 

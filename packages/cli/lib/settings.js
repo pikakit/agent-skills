@@ -1,5 +1,5 @@
 /**
- * @fileoverview Settings management for Agent Skill Kit
+ * @fileoverview Settings management for PikaKit
  * Handles Auto-Learning and Auto-Updating preferences
  */
 

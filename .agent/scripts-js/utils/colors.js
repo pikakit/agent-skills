@@ -1,5 +1,5 @@
 /**
- * ANSI Color Utilities - Agent Skill Kit
+ * ANSI Color Utilities - PikaKit
  * ======================================
  * Replacement for Python Colors class.
  * Provides terminal color formatting for output.

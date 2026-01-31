@@ -1,10 +1,10 @@
-# Agent Skill Kit - New Architecture
+# PikaKit - New Architecture
 
 > **Status:** 🚧 In Progress - Migrating to FAANG-style layered architecture
 
 ## Overview
 
-This directory contains the new **layered architecture** for Agent Skill Kit, following FAANG best practices for maintainability, testability, and scalability.
+This directory contains the new **layered architecture** for PikaKit, following FAANG best practices for maintainability, testability, and scalability.
 
 ---
 

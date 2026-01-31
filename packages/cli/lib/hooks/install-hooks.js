@@ -16,7 +16,7 @@ import { VERSION } from "../config.js";
 // ============================================================================
 
 const PRE_COMMIT_HOOK = `#!/bin/sh
-# Agent Skill Kit Pre-Commit Hook v${VERSION}
+# PikaKit Pre-Commit Hook v${VERSION}
 
 # Get staged JS/TS files
 STAGED_FILES=$(git diff --cached --name-only --diff-filter=ACM | grep -E "\\\\.(js|ts|tsx|jsx|mjs)$")
@@ -56,7 +56,7 @@ function findGitDir() {
  * Install git hooks
  */
 function installHooks() {
-    console.log(`\n🔧 Agent Skill Kit Hooks Installer v${VERSION}\n`);
+    console.log(`\n🔧 PikaKit Hooks Installer v${VERSION}\n`);
 
     const gitDir = findGitDir();
 
@@ -133,7 +133,7 @@ const args = process.argv.slice(2);
 
 if (args.includes("--help")) {
     console.log(`
-🔧 Agent Skill Kit Hooks Installer
+🔧 PikaKit Hooks Installer
 
 Usage:
   agent install-hooks           Install git hooks

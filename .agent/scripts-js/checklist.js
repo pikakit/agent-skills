@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 /**
- * Checklist - Agent Skill Kit Master Validator
+ * Checklist - PikaKit Master Validator
  * =============================================
  * Priority-based validation orchestrator
  * JavaScript port of checklist.py
@@ -122,7 +122,7 @@ async function main() {
     const startTime = new Date();
 
     if (values.format === 'text') {
-        printHeader('🚀 AGENT SKILL KIT - MASTER CHECKLIST');
+        printHeader('🚀 PikaKit - MASTER CHECKLIST');
     }
 
     console.log(`Project: ${projectPath}`);

@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 /**
- * Full Verification Suite - Agent Skill Kit
+ * Full Verification Suite - PikaKit
  * ==========================================
  * Comprehensive validation with all checks + performance + E2E
  * JavaScript port of verify_all.py
@@ -197,7 +197,7 @@ async function main() {
         process.exit(1);
     }
 
-    printHeader('🚀 AGENT SKILL KIT - FULL VERIFICATION SUITE');
+    printHeader('🚀 PikaKit - FULL VERIFICATION SUITE');
     console.log(`Project: ${projectPath}`);
     console.log(`URL: ${values.url}`);
     console.log(`Started: ${new Date().toLocaleString()}`);

@@ -11,7 +11,7 @@ export async function runHelpUI() {
   // Clear terminal và reset cursor về top-left
   process.stdout.write('\x1Bc'); // Full terminal reset
 
-  p.intro(pc.cyan("📖 Agent Skill Kit - Quick Guide"));
+  p.intro(pc.cyan("📖 PikaKit - Quick Guide"));
 
   console.log(`
 ${pc.bold(pc.yellow("🎯 HOW IT WORKS"))}

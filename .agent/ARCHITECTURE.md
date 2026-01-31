@@ -1,4 +1,4 @@
-# Agent Skills Kit Architecture
+# PikaKit Architecture
 
 > Comprehensive AI Agent Capability Expansion Toolkit
 
@@ -6,7 +6,7 @@
 
 ## 📋 Overview
 
-Agent Skills Kit is a modular system consisting of:
+PikaKit is a modular system consisting of:
 
 - **25 Specialist Agents** - Role-based AI personas (20 domain + 5 meta)
 - **45 Skills** - Domain-specific knowledge modules
@@ -37,7 +37,7 @@ Agent Skills Kit is a modular system consisting of:
 
 ### 2-Tier Design
 
-Agent Skills Kit uses a **hybrid architecture** combining JavaScript and Python:
+PikaKit uses a **hybrid architecture** combining JavaScript and Python:
 
 ```
 ┌──────────────────────────────────┐

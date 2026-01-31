@@ -1,8 +1,8 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://agentskillkit.com/schemas/common.schema.json",
+  "$id": "https://pikakit.com/schemas/common.schema.json",
   "title": "Common Definitions",
-  "description": "Shared definitions for Agent Skill Kit knowledge schemas",
+  "description": "Shared definitions for PikaKit knowledge schemas",
   
   "definitions": {
     "lessonId": {

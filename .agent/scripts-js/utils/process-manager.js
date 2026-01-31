@@ -1,5 +1,5 @@
 /**
- * Process Manager - Agent Skill Kit
+ * Process Manager - PikaKit
  * ==================================
  * Cross-platform process management (PID files, process detection, termination)
  * Replacement for Python os.kill + taskkill

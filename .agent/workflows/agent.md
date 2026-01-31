@@ -10,7 +10,7 @@ $ARGUMENTS
 
 ## Purpose
 
-Launch the **Agent Skill Kit Smart CLI** - an interactive terminal interface for managing learned patterns and memory.
+Launch the **PikaKit Smart CLI** - an interactive terminal interface for managing learned patterns and memory.
 
 ---
 

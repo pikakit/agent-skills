@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Smart Rebrand CLI - Agent Skill Kit v3.3.0
+ * Smart Rebrand CLI - PikaKit v3.3.0
  * Intelligent multi-package rebrand tool with parallel processing
  * 
  * Usage: npm run rebrand

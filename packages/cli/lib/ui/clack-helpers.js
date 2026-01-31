@@ -1,5 +1,5 @@
 /**
- * Clack UI Helpers - Agent Skill Kit
+ * Clack UI Helpers - PikaKit
  * Reusable UI patterns for consistent CLI experience
  */
 

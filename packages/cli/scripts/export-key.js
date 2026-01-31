@@ -71,7 +71,7 @@ if (fs.existsSync(settingsPath)) {
 console.log('\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
 console.log('📌 RECOMMENDATION:');
 console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n');
-console.log('Agent Skill Kit CLI uses independent API key configuration.\n');
+console.log('PikaKit CLI uses independent API key configuration.\n');
 console.log('For CLI AI features, configure via interactive menu:\n');
 console.log('1. Run: ag-smart (no arguments)');
 console.log('2. Select: Settings → Configure Gemini API Key');

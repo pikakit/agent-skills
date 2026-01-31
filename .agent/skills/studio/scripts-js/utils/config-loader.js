@@ -143,7 +143,7 @@ export function mergePatterns(defaultPatterns, customPatterns) {
  */
 export function getExampleConfig() {
     const example = {
-        $schema: 'https://agentskillkit.dev/schemas/studio-config.json',
+        $schema: 'https://pikakit.dev/schemas/studio-config.json',
         customPatterns: [
             {
                 keywords: ['inventory', 'warehouse', 'stock', 'shipment'],

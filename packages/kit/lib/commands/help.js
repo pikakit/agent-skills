@@ -69,11 +69,11 @@ async function showCommands() {
   stepLine();
 
   step(c.cyan("<org/repo>") + c.dim("          Install all skills from repository"));
-  step(c.dim("Example: kit agentskillkit/agent-skills"));
+  step(c.dim("Example: kit pikakit/agent-skills"));
   stepLine();
 
   step(c.cyan("<org/repo#skill>") + c.dim("    Install specific skill"));
-  step(c.dim("Example: kit agentskillkit/agent-skills#react-patterns"));
+  step(c.dim("Example: kit pikakit/agent-skills#react-patterns"));
   stepLine();
 
   step(c.cyan("list") + c.dim("                List installed skills"));
@@ -138,7 +138,7 @@ function showQuickStart() {
   stepLine();
 
   step(c.bold("1. Install skills"));
-  step("   " + c.cyan("kit agentskillkit/agent-skills"));
+  step("   " + c.cyan("kit pikakit/agent-skills"));
   stepLine();
 
   step(c.bold("2. Choose scope"));

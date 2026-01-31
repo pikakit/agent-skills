@@ -1,13 +1,13 @@
-# 📖 Agent Skill Kit - User Guide
+# 📖 PikaKit - User Guide
 
-> **Agent Skill Kit** giúp bạn làm app mà không cần biết code.
+> **PikaKit** giúp bạn làm app mà không cần biết code.
 > Bạn chỉ cần nói ý tưởng, AI sẽ lo phần còn lại.
 
 ---
 
-## 🎯 Agent Skill Kit dùng để làm gì?
+## 🎯 PikaKit dùng để làm gì?
 
-| Bạn muốn... | Agent Skill Kit giúp bạn... |
+| Bạn muốn... | PikaKit giúp bạn... |
 |-------------|-----------------|
 | Làm app mới | Từ ý tưởng → App hoàn chỉnh |
 | Thêm tính năng | Thiết kế → Code → Test tự động |
@@ -16,11 +16,11 @@
 
 ---
 
-## 🗺️ Bản đồ các lệnh Agent Skill Kit
+## 🗺️ Bản đồ các lệnh PikaKit
 
 ```
 ┌─────────────────────────────────────────────────────────────────────────────┐
-│                     AGENT SKILL KIT WORKFLOW MAP                            │
+│                     PikaKit WORKFLOW MAP                            │
 ├─────────────────────────────────────────────────────────────────────────────┤
 │                                                                             │
 │  ╔═══════════════════════════════════════════════════════════════════════╗  │
@@ -333,5 +333,5 @@ Gõ: /forge
 
 ---
 
-*Agent Skill Kit*
+*PikaKit*
 *Your ideas, our engineering.*

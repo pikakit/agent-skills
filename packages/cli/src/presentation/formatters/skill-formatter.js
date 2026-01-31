@@ -224,7 +224,7 @@ export class SkillFormatter {
         return [
             '---',
             '',
-            '*Auto-generated from Agent Skill Kit*  ',
+            '*Auto-generated from PikaKit*  ',
             `*Source: \`.agent/knowledge/mistakes.yaml\` + \`improvements.yaml\`*  `,
             `*Generated: ${timestamp}*`
         ].join('\n');

@@ -45,6 +45,6 @@ This skill applies when:
 
 ---
 
-*Auto-generated from Agent Skill Kit*  
+*Auto-generated from PikaKit*  
 *Source: `.agent/knowledge/mistakes.yaml` + `improvements.yaml`*  
 *Generated: 2026-01-27T15:35:44.394Z*

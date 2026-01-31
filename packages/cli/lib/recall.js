@@ -504,7 +504,7 @@ Options:
     }
 
     // Show Clack-based summary (consistent with CLI)
-    p.intro(pc.cyan(`${icons.brain} Agent Skill Kit v${VERSION}`));
+    p.intro(pc.cyan(`${icons.brain} PikaKit v${VERSION}`));
 
     // Save updated hit counts
     saveKnowledge(db);
