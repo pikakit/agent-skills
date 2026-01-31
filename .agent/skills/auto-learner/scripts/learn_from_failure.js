@@ -203,7 +203,7 @@ if (args.includes('--list') || args.includes('-l')) {
 
     const lesson = addLesson(pattern, message, severity, trigger);
     if (lesson) {
-        console.log(`${colors.green}📚 Đã học: [${lesson.id}] - ${pattern}${colors.reset}`);
+        console.log(`${colors.green}📚 Learned: [${lesson.id}] - ${pattern}${colors.reset}`);
     }
 } else {
     // Show help

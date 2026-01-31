@@ -3,12 +3,12 @@ name: auto-learner
 description: >-
   Automatic learning from failures, mistakes, and user feedback. Extracts lessons
   from task failures, user complaints, and IDE errors. Triggers on: mistake, wrong,
-  lỗi, sai, task failure, IDE errors. Coordinates with: problem-checker, self-evolution.
+  lỗi, sai, task failure, IDE errors. Coordinates with: problem-checker, code-constitution.
 metadata:
   category: "core"
   version: "1.0.0"
   triggers: "task failure, user complaint, mistake detected, IDE errors, lỗi, sai, wrong"
-  coordinates_with: "problem-checker, self-evolution, code-constitution"
+  coordinates_with: "problem-checker, code-constitution"
   success_metrics: "lessons extracted, repeat errors < 5%"
 ---
 
@@ -82,6 +82,41 @@ Save to `.agent/knowledge/lessons-learned.yaml`
 | Workflow errors | `FLOW-XXX` | Skipped problem check |
 | Integration issues | `INT-XXX` | @import order in CSS |
 | Performance | `PERF-XXX` | N+1 query detected |
+
+---
+
+## Skill Validation Requirement
+
+> **MANDATORY:** Any skill created via auto-learning MUST follow the [SKILL_DESIGN_GUIDE.md](file:///docs/SKILL_DESIGN_GUIDE.md)
+
+### Validation Checklist
+
+Before a learned pattern can become a **new skill**, it must pass:
+
+| Check | Requirement | Reference |
+|-------|-------------|-----------|
+| ✅ YAML Frontmatter | name, description, metadata.category, triggers, coordinates_with | SKILL_DESIGN_GUIDE.md §1 |
+| ✅ Purpose Section | Clear 1-2 line purpose statement | SKILL_DESIGN_GUIDE.md §2 |
+| ✅ File Limit | SKILL.md < 200 lines | SKILL_DESIGN_GUIDE.md §3 |
+| ✅ Quick Reference | Commands/examples for immediate use | SKILL_DESIGN_GUIDE.md §4 |
+| ✅ Scripts (if any) | Must be documented with usage examples | SKILL_DESIGN_GUIDE.md §5 |
+
+### Auto-Skill Creation Flow
+
+```mermaid
+graph TD
+    A[Pattern detected 3+ times] --> B[Generate skill draft]
+    B --> C{Validate against SKILL_DESIGN_GUIDE.md}
+    C -->|PASS| D[Create skill folder]
+    C -->|FAIL| E[Log validation errors]
+    E --> F[Fix and retry]
+    D --> G[Register in registry.json]
+    G --> H[Skill active]
+```
+
+### Skill Template Path
+
+When creating new skills, use: `docs/SKILL_DESIGN_GUIDE.md` as the authoritative template.
 
 ---
 
@@ -226,7 +261,7 @@ node .agent/skills/auto-learner/scripts/dashboard_server.js --port 8080
 ### Input: User says "mistake"
 
 ```
-User: "Đây là lỗi nghiêm trọng, bạn đã notify_user mà còn IDE errors"
+User: "This is a critical error, you called notify_user but there are still IDE errors"
 
 auto-learner:
 1. Analyze: Agent completed task with IDE errors
@@ -237,7 +272,7 @@ auto-learner:
    - severity: CRITICAL
    - message: "MUST check @[current_problems] before ANY notify_user"
 4. Store: lessons-learned.yaml
-5. Confirm: "📚 Đã học: [LEARN-001] - Must check problems before completion"
+5. Confirm: "📚 Learned: [LEARN-001] - Must check problems before completion"
 ```
 
 ### Input: TypeScript error after fix
@@ -274,7 +309,7 @@ auto-learner:
 After learning, always confirm:
 
 ```
-📚 Đã học: [LEARN-XXX] - {short summary}
+📚 Learned: [LEARN-XXX] - {short summary}
 ```
 
 This provides feedback that the lesson was stored.

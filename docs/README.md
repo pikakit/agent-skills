@@ -19,6 +19,15 @@
 | [Publishing](guides/publishing.md)                   | npm publishing workflow       |
 | [Versioning](guides/versioning.md)                   | Version management            |
 
+### Design Guides
+
+| Guide                                           | Description                   |
+| ----------------------------------------------- | ----------------------------- |
+| [Workflow Design](WORKFLOW_DESIGN_GUIDE.md)     | Create new workflows          |
+| [Agent Design](AGENT_DESIGN_GUIDE.md)           | Create new agents             |
+| [Skill Design](SKILL_DESIGN_GUIDE.md)           | Create new skills             |
+| [Docs Structure](DOCS_GUIDE.md)                 | Documentation organization    |
+
 ### Reference
 
 | Reference                                       | Description                   |

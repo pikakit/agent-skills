@@ -8,7 +8,7 @@ metadata:
   category: "core"
   version: "1.0.0"
   triggers: "before notify_user, before task completion, after code modification, IDE errors"
-  coordinates_with: "code-quality, auto-learner, self-evolution"
+  coordinates_with: "code-quality, auto-learner"
   success_metrics: "0 IDE errors at completion, auto-fix >80%"
 ---
 

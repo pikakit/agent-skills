@@ -503,25 +503,6 @@
             ]
         },
         {
-            "name": "self-evolution",
-            "category": "specialized",
-            "triggers": [
-                "mistake",
-                "learn",
-                "improve",
-                "lesson",
-                "feedback",
-                "wrong",
-                "fix this"
-            ],
-            "coordinates_with": [
-                "code-review",
-                "code-constitution",
-                "smart-router"
-            ],
-            "success_metrics": "lesson learned, pattern improved"
-        },
-        {
             "name": "seo-optimizer",
             "category": "specialized",
             "triggers": [
@@ -707,8 +688,7 @@
             ],
             "coordinates_with": [
                 "code-quality",
-                "auto-learner",
-                "self-evolution"
+                "auto-learner"
             ],
             "success_metrics": "IDE errors = 0, auto-fix success rate \u003e 80%",
             "scripts": [
@@ -726,7 +706,6 @@
             ],
             "coordinates_with": [
                 "problem-checker",
-                "self-evolution",
                 "code-constitution"
             ],
             "success_metrics": "lessons extracted, patterns improved",

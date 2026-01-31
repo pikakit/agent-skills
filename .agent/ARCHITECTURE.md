@@ -136,7 +136,7 @@ Specialist AI personas for different domains.
 | `assessor`             | Risk analysis            | code-review, project-planner      |
 | `recovery`             | State rollback           | state-rollback, code-craft        |
 | `critic`               | Conflict resolution      | code-review, code-quality         |
-| `learner`              | Continuous improvement   | auto-learner, self-evolution      |
+| `learner`              | Continuous improvement   | auto-learner                      |
 
 ### Domain Agents (20)
 

@@ -46,44 +46,95 @@ Safety > Recoverability > Correctness > Cleanliness > Convenience
 
 ---
 
-### 2. WRITE-ONLY DEFAULT ✍️
+### 2. SAFE MODIFICATION DEFAULT ✍️
 
 **Allowed by default:**
 
 - ✅ READ existing files
 - ✅ CREATE new files
+- ✅ MODIFY existing files (normal development)
+- ✅ REFACTOR code (within same functionality)
 
-**Forbidden by default:**
+**Require explicit approval for:**
 
-- ❌ MODIFY existing files
-- ❌ OVERWRITE files
-- ❌ In-place refactoring
+- ⚠️ Config files (`package.json`, `tsconfig.json`, `.env`)
+- ⚠️ Auth/security related code
+- ⚠️ Database schemas and migrations
+- ⚠️ Breaking API changes
+- ⚠️ Bulk file operations (10+ files)
 
-**Workflow for modifications:**
+**Forbidden without explicit confirmation:**
 
-1. Propose changes
-2. Write to NEW file (`.v2`, `.new`, `.proposed`)
-3. Ask user approval
-4. User decides: keep new or revert
+- ❌ DELETE files/directories (see Rule 1)
+- ❌ OVERWRITE entire files (use incremental edits)
+- ❌ Remove functionality without replacement
 
 ---
 
-### 3. VERSIONING PROTOCOL 🗂️
+### 3. GIT-BASED VERSIONING 🗂️
 
-**All updates follow versioned naming:**
+**Use Git for version control, NOT versioned filenames.**
 
-| Format       | Use Case               | Example               |
-| ------------ | ---------------------- | --------------------- |
-| `.v2`, `.v3` | Iterative improvements | `API.v2.ts`           |
-| `.new`       | Complete rewrite       | `config.new.json`     |
-| `.proposed`  | Pending approval       | `schema.proposed.sql` |
-| `.refactor`  | Architecture change    | `utils.refactor.ts`   |
+| Action | Command | When |
+|--------|---------|------|
+| Before risky change | `git stash` or `git commit -m "checkpoint"` | Multi-file edits, config changes |
+| After successful change | `git commit -m "feat/fix: description"` | Task completion |
+| If something breaks | `git checkout -- <file>` or `git stash pop` | Recovery |
+
+**Commit Message Convention:**
+
+```
+feat: add new feature
+fix: bug fix
+refactor: code restructuring
+docs: documentation
+chore: maintenance
+```
 
 **Rules:**
 
-- Original file MUST remain untouched
-- Version name MUST be descriptive
-- ❌ `.bak` alone is NOT sufficient
+- ✅ Use Git for versioning (native, industry-standard)
+- ✅ Commit before risky operations
+- ❌ Do NOT create `.v2`, `.new`, `.proposed` files
+- ❌ Do NOT rely on `.bak` files
+
+---
+
+### 3.5. GIT WORKFLOW PROTOCOL 🌿
+
+**Branch Strategy:**
+
+| Branch | Purpose | Merge To |
+|--------|---------|----------|
+| `main` | Production-ready code | - |
+| `develop` | Integration branch | `main` |
+| `feature/*` | New features | `develop` |
+| `fix/*` | Bug fixes | `develop` or `main` |
+
+**Before Major Changes:**
+
+```bash
+# 1. Ensure clean state
+git status
+
+# 2. Create checkpoint (if on main/develop)
+git stash  # or
+git commit -m "checkpoint: before [change]"
+
+# 3. For large features, use branch
+git checkout -b feature/feature-name
+```
+
+**Rollback Commands:**
+
+| Scenario | Command |
+|----------|--------|
+| Discard uncommitted changes | `git checkout -- <file>` |
+| Revert last commit (keep changes) | `git reset --soft HEAD~1` |
+| Revert last commit (discard changes) | `git reset --hard HEAD~1` |
+| Recover stashed work | `git stash pop` |
+
+> **Rule:** Git provides better versioning than file naming conventions.
 
 ---
 
@@ -91,7 +142,7 @@ Safety > Recoverability > Correctness > Cleanliness > Convenience
 
 **At all times:**
 
-- Previous version is intact
+- Previous version is intact (via Git)
 - User can revert instantly
 - No irreversible actions
 
@@ -140,7 +191,7 @@ Safety > Recoverability > Correctness > Cleanliness > Convenience
 
 **When safety violation detected:**
 
-1. `@[skills/self-evolution]` triggered
+1. `@[skills/auto-learner]` triggered
 2. Lesson added to `.agent/knowledge/lessons-learned.yaml`
 3. Pattern: `SAFE-XXX` (safety violations)
 
@@ -589,7 +640,7 @@ IDE Problems > 0?
 After learning, always confirm:
 
 ```
-📚 Đã học: [LEARN-XXX] - {short summary}
+📚 Learned: [LEARN-XXX] - {short summary}
 ```
 
 #### Lesson Categories
@@ -601,6 +652,18 @@ After learning, always confirm:
 | Workflow | `FLOW-XXX` | Skipped problem check |
 | Integration | `INT-XXX` | @import order in CSS |
 | Performance | `PERF-XXX` | N+1 query detected |
+
+#### Skill Creation Validation
+
+> 🔴 **MANDATORY:** Skills generated from learned patterns MUST comply with `docs/SKILL_DESIGN_GUIDE.md`
+
+Before promoting a pattern to a skill:
+1. Validate YAML frontmatter (name, description, metadata)
+2. Ensure SKILL.md < 200 lines
+3. Include quick reference commands
+4. Register in `registry.json`
+
+**Reference:** See `@[skills/auto-learner]` → Skill Validation Requirement section
 
 ---
 
@@ -913,11 +976,11 @@ When user's prompt is NOT in English:
 
 ### 🎓 Auto-Learn Protocol (MANDATORY)
 
-> 🔴 **ALWAYS ACTIVE:** When user indicates a mistake, invoke `@[skills/self-evolution]` immediately.
+> 🔴 **ALWAYS ACTIVE:** When user indicates a mistake, invoke `@[skills/auto-learner]` immediately.
 
 **Trigger Keywords:**
 
-- Vietnamese: "lỗi", "sai", "hỏng", "không đúng", "sửa lại", "lỗi nghiêm trọng"
+- Vietnamese: "lỗi", "sai", "hỏng", "không đúng", "sửa lại" (error, wrong, broken, incorrect, fix it)
 - English: "mistake", "wrong", "fix this", "that's incorrect", "you broke"
 
 **When triggered, MUST:**
@@ -925,14 +988,14 @@ When user's prompt is NOT in English:
 1. **Analyze** - What did I do wrong? What was the correct action?
 2. **Extract** - Create lesson with pattern + message + severity
 3. **Add** - Append to `.agent/knowledge/lessons-learned.yaml`
-4. **Confirm** - Say: `📚 Đã học: [LEARN-XXX] - {summary}`
+4. **Confirm** - Say: `📚 Learned: [LEARN-XXX] - {summary}`
 
 **Example:**
 
 ```
-User: "Đây là lỗi nghiêm trọng, bạn tạo file mới thay vì rename"
+User: "This is a critical error, you created a new file instead of renaming"
 AI: [Invokes auto-learn, adds LEARN-003, confirms]
-📚 Đã học: [LEARN-003] - When rebranding: copy original first, don't create new simplified file
+📚 Learned: [LEARN-003] - When rebranding: copy original first, don't create new simplified file
 ```
 
 ### 🔄 Continuous Execution Rule (MANDATORY)
