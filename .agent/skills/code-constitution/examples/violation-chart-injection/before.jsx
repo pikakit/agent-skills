@@ -5,8 +5,8 @@ import { useEffect, useRef } from 'react';
 import { createChart } from 'lightweight-charts';
 
 export function BitcoinChart() {
-    const chartRef = useRef<any>(null);
-    const seriesRef = useRef<any>(null);
+    const chartRef = useRef(null);
+    const seriesRef = useRef(null);
 
     useEffect(() => {
         const chart = createChart(chartRef.current, { width: 600, height: 400 });

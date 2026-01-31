@@ -5,12 +5,12 @@ import { useEffect, useRef, useState } from 'react';
 import { createChart } from 'lightweight-charts';
 
 export function BitcoinChart() {
-    const chartRef = useRef<any>(null);
-    const seriesRef = useRef<any>(null);
+    const chartRef = useRef(null);
+    const seriesRef = useRef(null);
 
     // ✅ SEPARATE state for realtime display
-    const [realtimePrice, setRealtimePrice] = useState<number | null>(null);
-    const [realtimeChange, setRealtimeChange] = useState<number>(0);
+    const [realtimePrice, setRealtimePrice] = useState(null);
+    const [realtimeChange, setRealtimeChange] = useState(0);
 
     useEffect(() => {
         const chart = createChart(chartRef.current, { width: 600, height: 400 });
@@ -74,7 +74,7 @@ export function BitcoinChart() {
 }
 
 // ✅ Backend aggregates realtime into historical at fixed intervals
-// /api/cron/aggregate-bitcoin-price.ts (runs every 5 minutes)
+// /api/cron/aggregate-bitcoin-price.js (runs every 5 minutes)
 export async function aggregateRealtimeToHistory() {
     // ✅ Collect realtime ticks from last 5 minutes
     const realtimeTicks = await redis.lrange('btc:ticks:last5m', 0, -1);

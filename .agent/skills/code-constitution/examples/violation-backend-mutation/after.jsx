@@ -4,7 +4,7 @@
 import { useQuery } from '@tanstack/react-query';
 import { api } from '@/lib/api';
 
-export function CoinPriceCard({ coinId }: { coinId: string }) {
+export function CoinPriceCard({ coinId }) {
     // ✅ Frontend only consumes backend data
     const { data } = useQuery({
         queryKey: ['coin', coinId, 'price'],
@@ -34,8 +34,8 @@ export function CoinPriceCard({ coinId }: { coinId: string }) {
 }
 
 // ✅ Backend API implementation (separate service)
-// /api/coins/[coinId]/price.ts
-export async function GET(req: Request, { params }: { params: { coinId: string } }) {
+// /api/coins/[coinId]/price.js
+export async function GET(req, { params }) {
     // ✅ Backend owns the truth
     const price = await db.coinPrices.findFirst({
         where: { coinId: params.coinId },
