@@ -50,7 +50,7 @@ docs/
 
 ## 🚀 Getting Started
 
-1. **Install**: `npx -y add-skill-kit pikakit/agent-skills`
+1. **Install**: `npx pikakit`
 2. **Use**: Type `/build your-idea` in your AI editor
 3. **Learn**: Read [Getting Started](getting-started.md)
 
