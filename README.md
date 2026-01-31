@@ -3,7 +3,7 @@
 > **Transform your AI Agent into a FAANG-level engineering team with one command**
 
 [![npm](https://img.shields.io/badge/version-1.0.0-7c3aed?style=flat&colorA=18181b)](https://www.npmjs.com/package/pikakit)
-[![skills](https://img.shields.io/badge/skills-49-7c3aed?style=flat&colorA=18181b)](https://github.com/pikakit/agent-skills)
+[![skills](https://img.shields.io/badge/skills-50-7c3aed?style=flat&colorA=18181b)](https://github.com/pikakit/agent-skills)
 [![agents](https://img.shields.io/badge/agents-25-7c3aed?style=flat&colorA=18181b)](https://github.com/pikakit/agent-skills)
 [![workflows](https://img.shields.io/badge/workflows-26-7c3aed?style=flat&colorA=18181b)](https://github.com/pikakit/agent-skills)
 [![JavaScript](https://img.shields.io/badge/100%25-JavaScript-F7DF1E?style=flat&colorA=18181b&logo=javascript)](https://github.com/pikakit/agent-skills)
@@ -21,7 +21,7 @@ npx pikakit
 
 | Component | Count | Description |
 |-----------|-------|-------------|
-| **Skills** | 49 | FAANG-grade coding skills |
+| **Skills** | 50 | FAANG-grade coding skills |
 | **Workflows** | 26 | `/think`, `/build`, `/autopilot`, etc. |
 | **Agents** | 25 | Specialist AI agents |
 | **Rules** | GEMINI.md | AI behavior configuration |
@@ -99,7 +99,7 @@ your-project/
 │   ├── CONTINUOUS_EXECUTION_POLICY.md # Autopilot Rules
 │   ├── WORKFLOW_CHAINS.md             # Workflow Patterns
 │   │
-│   ├── skills/                        # 49 Skills
+│   ├── skills/                        # 50 Skills
 │   │   ├── auto-learner/              # Learn from mistakes
 │   │   ├── react-architect/           # React best practices
 │   │   ├── typescript-expert/         # TypeScript mastery
@@ -195,7 +195,7 @@ AUTO-APPROVE: After PLAN.md, proceed automatically.
 
 ---
 
-## 🧩 Skills Catalog (49)
+## 🧩 Skills Catalog (50)
 
 ### 🏗️ Architecture & Planning
 
@@ -263,6 +263,7 @@ AUTO-APPROVE: After PLAN.md, proceed automatically.
 | `cicd-pipeline` | CI/CD, Docker, K8s |
 | `gitops-workflow` | ArgoCD/Flux GitOps |
 | `observability` | OpenTelemetry, monitoring |
+| `vercel-deploy` | 1-click Vercel deployment |
 
 ### 📱 Specialized
 
@@ -398,7 +399,8 @@ agent watch                 # Real-time monitoring
 - ✅ Renamed to PikaKit for cross-platform npx support
 - ✅ Works with `npx pikakit` on Windows, macOS, Linux
 - ✅ 100% JavaScript - Zero Python dependencies
-- ✅ 49 skills, 26 workflows, 25 agents
+- ✅ 50 skills, 26 workflows, 25 agents
+- ✅ Added vercel-deploy skill (1-click Vercel deployment)
 - ✅ AutoLearn made optional (does not affect core)
 
 **v3.2.5**

@@ -5,6 +5,53 @@ All notable changes to the PikaKit will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.7.0] - 2026-02-01
+
+### 🚀 Vercel Deploy Integration
+
+**New Skill:** `vercel-deploy` (from Vercel Labs)
+
+- **Purpose:** 1-click deployment to Vercel without authentication
+- **Source:** Integrated from [vercel-labs/agent-skills](https://github.com/vercel-labs/agent-skills)
+- **Category:** DevOps
+
+#### Features
+
+1. **No Authentication Required** - Deploy without Vercel account login
+2. **Auto-Framework Detection** - 40+ frameworks supported (Next.js, Vite, Astro, SvelteKit, etc.)
+3. **Claimable Deployments** - Get preview URL + claim ownership later
+4. **One Command Deploy** - `bash deploy.sh [path]`
+
+#### Output
+
+```
+Preview URL: https://skill-deploy-abc123.vercel.app
+Claim URL:   https://vercel.com/claim-deployment?code=...
+```
+
+#### Supported Frameworks (40+)
+
+- **React:** Next.js, Gatsby, Create React App, Remix, React Router
+- **Vue:** Nuxt, Vitepress, Vuepress, Gridsome
+- **Svelte:** SvelteKit, Svelte, Sapper
+- **Other:** Astro, Solid Start, Angular, Ember, Preact, Docusaurus
+- **Backend:** Express, Hono, Fastify, NestJS, Elysia, h3, Nitro
+- **Build Tools:** Vite, Parcel
+
+#### Registry Changes
+
+- Added `vercel-deploy` to registry.json (category: devops)
+- Triggers: `deploy`, `vercel`, `push live`, `production`, `preview`
+- Coordinates with: `cicd-pipeline`, `server-ops`
+
+#### Impact
+
+- **Skills Count:** 49 → 50
+- **Deployment Time:** Complex → 1 command
+- **Developer Experience:** ✅ Instant preview deployments
+
+---
+
 ## [3.6.0] - 2026-01-29
 
 ### 📚 Documentation Chain (FAANG Upgrade - Phase 3 FINAL)

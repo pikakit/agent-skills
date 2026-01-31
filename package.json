@@ -1,7 +1,7 @@
 {
   "name": "pikakit-agent-skills",
-  "version": "3.2.10",
-  "description": "The PikaKit for Enterprise",
+  "version": "3.7.0",
+  "description": "PikaKit Agent Skills - 50 FAANG-grade skills, 26 workflows, 25 agents for AI-powered development",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/pikakit/agent-skills.git"

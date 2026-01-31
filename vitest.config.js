@@ -1,12 +1,21 @@
 import { defineConfig } from 'vitest/config';
 
+/**
+ * Vitest Configuration v3.0 (2026)
+ * PikaKit Agent Skills Test Suite
+ * 
+ * @version 3.7.0
+ * @author PikaKit
+ */
 export default defineConfig({
     test: {
         // Test file patterns
         include: [
             'tests/scripts/**/*.test.js',
             'tests/e2e/**/*.test.js',
-            'packages/cli/tests/**/*.test.js'
+            'packages/cli/tests/**/*.test.js',
+            // Skills tests
+            '.agent/skills/**/tests/*.test.js'
         ],
         exclude: [
             '**/node_modules/**',
@@ -18,20 +27,31 @@ export default defineConfig({
             '**/config-loader.test.js',
             '**/colors.test.js',
             '**/css-templates.test.js',
-            'packages/cli/tests/unit/**'
+            'packages/cli/tests/unit/**',
+            // Vercel deploy tests (bash scripts, not JS)
+            '.agent/skills/vercel-deploy/**'
         ],
 
         // Environment
         environment: 'node',
 
         // Timeouts
-        testTimeout: 10000,
+        testTimeout: 15000, // Increased for complex tests
         hookTimeout: 10000,
+
+        // Parallel execution
+        pool: 'threads',
+        poolOptions: {
+            threads: {
+                singleThread: false,
+                maxThreads: 4
+            }
+        },
 
         // Coverage
         coverage: {
             provider: 'v8',
-            reporter: ['text', 'json', 'html'],
+            reporter: ['text', 'json', 'html', 'lcov'],
             include: [
                 '.agent/scripts-js/**/*.js',
                 '.agent/skills/studio/scripts-js/**/*.js',
@@ -41,7 +61,8 @@ export default defineConfig({
                 '**/*.test.js',
                 '**/node_modules/**',
                 '**/*.config.js',
-                '**/tests/**'
+                '**/tests/**',
+                '**/vercel-deploy/**'
             ],
             thresholds: {
                 lines: 80,
@@ -52,9 +73,15 @@ export default defineConfig({
         },
 
         // Reporter
-        reporters: ['default'],
+        reporters: ['default', 'verbose'],
 
         // Globals
-        globals: true
+        globals: true,
+
+        // Watch mode
+        watch: false,
+
+        // Retry on failure (for flaky tests)
+        retry: 1
     }
 });

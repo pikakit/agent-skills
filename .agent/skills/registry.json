@@ -915,6 +915,25 @@
                 "game-audio",
                 "multiplayer"
             ]
+        },
+        {
+            "name": "vercel-deploy",
+            "category": "devops",
+            "triggers": [
+                "deploy",
+                "vercel",
+                "push live",
+                "production",
+                "preview"
+            ],
+            "coordinates_with": [
+                "cicd-pipeline",
+                "server-ops"
+            ],
+            "success_metrics": "preview URL returned, deployment claimable",
+            "scripts": [
+                "deploy.sh"
+            ]
         }
     ]
 }

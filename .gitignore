@@ -1,4 +1,4 @@
-# Agent Skill Kit - Gitignore v2.0 (2025)
+# Agent Skill Kit - Gitignore v3.0 (2026)
 # Comprehensive patterns for modern JS/TS development
 
 # ============================================================
@@ -121,3 +121,15 @@ brain/
 artifacts/
 antigravity-doc/
 rebrand_backup_*/
+
+# Vercel Deploy (temporary deployment packages)
+*.tgz
+project.tgz
+deployment-*.tgz
+
+# PikaKit CLI
+.pikakit-cache/
+skill-*.lock
+
+# Cloned repos (like vercel-labs/agent-skills)
+agent-skills/
