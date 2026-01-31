@@ -28,13 +28,13 @@ jobs:
           draft: false
           prerelease: ${{ contains(github.ref, 'alpha') || contains(github.ref, 'beta') || contains(github.ref, 'rc') }}
           body: |
-            ## 🚀 Release ${{ steps.version.outputs.VERSION }}
+            ## 🚀 PikaKit Release ${{ steps.version.outputs.VERSION }}
 
-            See [CHANGELOG.md](https://github.com/agentskillkit/agent-skills/blob/main/CHANGELOG.md) for details.
+            See [CHANGELOG.md](https://github.com/pikakit/agent-skills/blob/main/CHANGELOG.md) for details.
 
             ### Quick Install
             ```bash
-            npx -y add-skill-kit agentskillkit/agent-skills
+            npx pikakit
             ```
 
   # Publish to NPM (CLI package)
