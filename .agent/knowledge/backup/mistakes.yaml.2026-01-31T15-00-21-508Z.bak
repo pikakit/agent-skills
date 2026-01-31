@@ -1,0 +1,74 @@
+version: 4
+mistakes:
+  - id: MISTAKE-003
+    pattern: rebranding
+    message: 'When rebranding: NEVER create new simplified file. COPY original first, then edit branding only.'
+    severity: ERROR
+    hitCount: 179
+    lastHit: '2026-01-27T19:36:11.866Z'
+    excludePaths:
+      - '**/examples/**'
+      - '**/demo*.js'
+      - '**/test*.js'
+      - '**/*-lesson.js'
+      - '**/migrate*.js'
+      - '**/cognitive-*.js'
+    tags:
+      - file-safety
+      - rebranding
+    intent: prevent
+    patternType: general
+    context:
+      appliesTo:
+        scope: local
+        appliesTo:
+          - file-safety
+      scope: local
+    cognitive:
+      maturity: stable
+      confidence: 0.95
+  - id: MISTAKE-005
+    pattern: customSelect
+    message: NEVER use customSelect - conflicts with Clack ESC handling.
+    severity: ERROR
+    hitCount: 206
+    lastHit: '2026-01-27T19:54:25.327Z'
+    excludePaths:
+      - '**/examples/**'
+      - '**/demo*.js'
+      - '**/custom-select.js'
+      - '**/learn-ui.js'
+    tags:
+      - code-quality
+      - cli-navigation
+      - clack-framework
+    intent: prevent
+    patternType: general
+    context:
+      appliesTo:
+        scope: local
+        appliesTo: []
+      scope: local
+    cognitive:
+      maturity: stable
+      confidence: 0.95
+  - id: MISTAKE-006
+    pattern: function\s+\w+Menu.*\{[\s\S]*\1\(
+    message: Avoid recursive menu calls - causes state issues and bugs.
+    severity: WARNING
+    hitCount: 0
+    lastHit: null
+    excludePaths: []
+    tags:
+      - architecture
+      - ux
+    intent: warn
+    patternType: structure
+    context:
+      appliesTo:
+        scope: local
+        appliesTo: []
+      scope: local
+    cognitive:
+      maturity: learning
+      confidence: 0.3

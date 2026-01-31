@@ -1,0 +1,75 @@
+version: 6
+createdAt: "2026-01-31T15:00:21.519Z"
+updatedAt: "2026-01-31T15:00:21.519Z"
+lessons:
+  - id: LESSON-001
+    type: mistake
+    pattern: rebranding
+    message: "When rebranding: NEVER create new simplified file. COPY original first, then edit branding only."
+    severity: ERROR
+    intent: prevent
+    confidence: 0.95
+    maturity: stable
+    hitCount: 179
+    lastHit: "2026-01-27T19:36:11.866Z"
+    excludePaths:
+      - "**/examples/**"
+      - "**/demo*.js"
+      - "**/test*.js"
+      - "**/*-lesson.js"
+      - "**/migrate*.js"
+      - "**/cognitive-*.js"
+    tags:
+      - file-safety
+      - rebranding
+    autoFix: null
+  - id: LESSON-002
+    type: mistake
+    pattern: customSelect
+    message: NEVER use customSelect - conflicts with Clack ESC handling.
+    severity: ERROR
+    intent: prevent
+    confidence: 0.95
+    maturity: stable
+    hitCount: 206
+    lastHit: "2026-01-27T19:54:25.327Z"
+    excludePaths:
+      - "**/examples/**"
+      - "**/demo*.js"
+      - "**/custom-select.js"
+      - "**/learn-ui.js"
+    tags:
+      - code-quality
+      - cli-navigation
+      - clack-framework
+    autoFix: null
+  - id: LESSON-003
+    type: mistake
+    pattern: function\s+\w+Menu.*\{[\s\S]*\1\(
+    message: Avoid recursive menu calls - causes state issues and bugs.
+    severity: WARNING
+    intent: prevent
+    confidence: 0.3
+    maturity: learning
+    hitCount: 0
+    lastHit: null
+    excludePaths: []
+    tags:
+      - architecture
+      - ux
+    autoFix: null
+  - id: LESSON-004
+    type: improvement
+    pattern: p\.select.*===\s*(null|undefined)
+    message: After p.select(), use p.isCancel() not null/undefined check. Null check does NOT detect ESC key properly
+    severity: INFO
+    intent: optimize
+    confidence: 0.3
+    maturity: learning
+    hitCount: 0
+    lastHit: null
+    excludePaths: []
+    tags:
+      - code-quality
+      - cli-navigation
+    autoFix: null

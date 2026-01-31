@@ -1,0 +1,68 @@
+version: 4
+improvements:
+  - id: IMPROVE-005
+    pattern: customSelect
+    message: use customSelect - conflicts with Clack ESC handling
+    hitCount: 184
+    lastHit: '2026-01-27T19:54:25.328Z'
+    excludePaths:
+      - '**/examples/**'
+      - '**/demo*.js'
+      - '**/custom-select.js'
+      - '**/learn-ui.js'
+    tags:
+      - code-quality
+      - cli-navigation
+      - clack-framework
+    intent: optimize
+    patternType: general
+    context:
+      appliesTo:
+        scope: local
+        appliesTo: []
+      scope: local
+    cognitive:
+      maturity: stable
+      confidence: 0.95
+    appliedCount: 184
+    lastApplied: '2026-01-27T19:54:25.328Z'
+  - id: IMPROVE-006
+    pattern: function\s+\w+Menu.*\{[\s\S]*\1\(
+    message: Use while(true) loop for menu navigation instead
+    hitCount: 0
+    excludePaths: []
+    tags:
+      - architecture
+      - ux
+    intent: optimize
+    patternType: structure
+    context:
+      appliesTo:
+        scope: local
+        appliesTo: []
+      scope: local
+    cognitive:
+      maturity: learning
+      confidence: 0.3
+    appliedCount: 0
+  - id: IMPROVE-007
+    pattern: p\.select.*===\s*(null|undefined)
+    message: After p.select(), use p.isCancel() not null/undefined check. Null check does NOT detect ESC key properly
+    hitCount: 0
+    lastHit: null
+    excludePaths: []
+    tags:
+      - code-quality
+      - cli-navigation
+    intent: optimize
+    patternType: general
+    context:
+      appliesTo:
+        scope: local
+        appliesTo: []
+      scope: local
+    cognitive:
+      maturity: learning
+      confidence: 0.3
+    appliedCount: 0
+    lastApplied: null
