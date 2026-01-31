@@ -14,7 +14,7 @@
 ## ⚡ Quick Install
 
 ```bash
-npx -y pikakit pikakit-agent-skills
+npx pikakit
 ```
 
 **What gets installed:**
@@ -56,7 +56,7 @@ npx -y pikakit pikakit-agent-skills
 ### Step 1: Install
 
 ```bash
-npx -y pikakit pikakit-agent-skills
+npx pikakit
 ```
 
 **During installation:**
