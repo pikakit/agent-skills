@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Auto-Learn Dashboard</title>
+    <title>AutoLearn v6.0 Dashboard</title>
     <style>
         * {
             margin: 0;
@@ -54,18 +54,19 @@
             border-radius: 20px;
             font-size: 12px;
             font-weight: 600;
-        }
-
-        .status-active {
             background: rgba(0, 255, 136, 0.2);
             color: #00ff88;
         }
 
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 20px;
             margin-bottom: 30px;
+        }
+
+        .grid-2 {
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
         }
 
         .card {
@@ -77,15 +78,15 @@
         }
 
         .card h2 {
-            font-size: 14px;
+            font-size: 12px;
             text-transform: uppercase;
             letter-spacing: 1px;
             color: #888;
-            margin-bottom: 16px;
+            margin-bottom: 12px;
         }
 
         .metric {
-            font-size: 48px;
+            font-size: 36px;
             font-weight: 700;
             background: linear-gradient(135deg, #00d9ff, #00ff88);
             -webkit-background-clip: text;
@@ -94,109 +95,124 @@
         }
 
         .metric-label {
-            font-size: 14px;
+            font-size: 12px;
             color: #888;
+            margin-top: 4px;
+        }
+
+        .metric-status {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 10px;
+            font-weight: 600;
+            margin-left: 8px;
+        }
+
+        .status-good {
+            background: rgba(0, 255, 136, 0.2);
+            color: #00ff88;
+        }
+
+        .status-warning {
+            background: rgba(255, 187, 0, 0.2);
+            color: #ffbb00;
+        }
+
+        .status-critical {
+            background: rgba(255, 68, 68, 0.2);
+            color: #ff4444;
+        }
+
+        .progress-bar {
+            height: 6px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+            overflow: hidden;
             margin-top: 8px;
         }
 
-        .chart-container {
-            height: 200px;
-            margin-top: 20px;
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #00d9ff, #00ff88);
+            border-radius: 3px;
+            transition: width 0.5s ease;
+        }
+
+        .alert-list {
+            list-style: none;
+        }
+
+        .alert-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px;
+            background: rgba(255, 187, 0, 0.1);
+            border-radius: 8px;
+            margin-bottom: 8px;
+            border-left: 3px solid #ffbb00;
+        }
+
+        .alert-item.info {
+            background: rgba(0, 136, 255, 0.1);
+            border-left-color: #0088ff;
+        }
+
+        .skills-list {
+            max-height: 200px;
+            overflow-y: auto;
+        }
+
+        .skill-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .skill-name {
+            font-size: 13px;
+        }
+
+        .skill-confidence {
+            font-size: 12px;
+            color: #00ff88;
+        }
+
+        .ab-test {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px;
+            background: rgba(0, 217, 255, 0.1);
+            border-radius: 8px;
+            margin-bottom: 8px;
         }
 
         .bar-chart {
             display: flex;
             align-items: flex-end;
             gap: 8px;
-            height: 150px;
-            padding-top: 20px;
+            height: 100px;
+            margin-top: 16px;
         }
 
         .bar {
             flex: 1;
             background: linear-gradient(180deg, #00d9ff, #0066ff);
             border-radius: 4px 4px 0 0;
-            min-height: 10px;
-            transition: height 0.3s ease;
+            min-height: 5px;
             position: relative;
-        }
-
-        .bar:hover {
-            opacity: 0.8;
         }
 
         .bar-label {
             position: absolute;
-            bottom: -25px;
+            bottom: -20px;
             left: 50%;
             transform: translateX(-50%);
             font-size: 10px;
             color: #888;
-            white-space: nowrap;
-        }
-
-        .list {
-            list-style: none;
-        }
-
-        .list li {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 12px 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-        }
-
-        .list li:last-child {
-            border-bottom: none;
-        }
-
-        .severity {
-            padding: 4px 8px;
-            border-radius: 4px;
-            font-size: 11px;
-            font-weight: 600;
-        }
-
-        .severity-critical {
-            background: rgba(255, 68, 68, 0.2);
-            color: #ff4444;
-        }
-
-        .severity-high {
-            background: rgba(255, 187, 0, 0.2);
-            color: #ffbb00;
-        }
-
-        .severity-medium {
-            background: rgba(0, 136, 255, 0.2);
-            color: #0088ff;
-        }
-
-        .severity-low {
-            background: rgba(136, 136, 136, 0.2);
-            color: #888;
-        }
-
-        .progress-bar {
-            height: 8px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 4px;
-            overflow: hidden;
-            margin-top: 12px;
-        }
-
-        .progress-fill {
-            height: 100%;
-            background: linear-gradient(90deg, #00d9ff, #00ff88);
-            border-radius: 4px;
-            transition: width 0.5s ease;
-        }
-
-        .actions {
-            display: flex;
-            gap: 10px;
-            margin-top: 20px;
         }
 
         button {
@@ -205,57 +221,14 @@
             border-radius: 8px;
             cursor: pointer;
             font-weight: 600;
+            background: linear-gradient(135deg, #00d9ff, #00ff88);
+            color: #1a1a2e;
             transition: all 0.2s ease;
         }
 
-        .btn-primary {
-            background: linear-gradient(135deg, #00d9ff, #00ff88);
-            color: #1a1a2e;
-        }
-
-        .btn-primary:hover {
+        button:hover {
             transform: translateY(-2px);
             box-shadow: 0 4px 20px rgba(0, 217, 255, 0.3);
-        }
-
-        .btn-secondary {
-            background: rgba(255, 255, 255, 0.1);
-            color: #fff;
-        }
-
-        .btn-secondary:hover {
-            background: rgba(255, 255, 255, 0.2);
-        }
-
-        .insights {
-            background: linear-gradient(135deg, rgba(0, 217, 255, 0.1), rgba(0, 255, 136, 0.1));
-            border: 1px solid rgba(0, 217, 255, 0.3);
-        }
-
-        .insight-item {
-            display: flex;
-            gap: 12px;
-            padding: 16px 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-        }
-
-        .insight-item:last-child {
-            border-bottom: none;
-        }
-
-        .insight-icon {
-            font-size: 24px;
-        }
-
-        .insight-content h3 {
-            font-size: 14px;
-            font-weight: 600;
-            margin-bottom: 4px;
-        }
-
-        .insight-content p {
-            font-size: 13px;
-            color: #888;
         }
 
         .footer {
@@ -265,13 +238,17 @@
             font-size: 13px;
         }
 
+        .loading {
+            opacity: 0.5;
+        }
+
         @media (max-width: 768px) {
             .grid {
-                grid-template-columns: 1fr;
+                grid-template-columns: 1fr 1fr;
             }
 
             .metric {
-                font-size: 36px;
+                font-size: 28px;
             }
         }
     </style>
@@ -280,214 +257,259 @@
 <body>
     <div class="container">
         <header>
-            <h1>🧠 <span>Auto-Learn</span> Dashboard</h1>
-            <span class="status-badge status-active">● FAANG-Grade v2.0</span>
+            <h1>🧠 <span>PikaKit v6.0</span> Dashboard</h1>
+            <span class="status-badge">⚡ PikaKit v6.0</span>
         </header>
 
-        <!-- Metrics -->
+        <!-- Core KPIs -->
         <div class="grid">
             <div class="card">
-                <h2>Total Errors Detected</h2>
-                <div class="metric" id="totalErrors">0</div>
-                <div class="metric-label">From error_sensor.js</div>
-            </div>
-
-            <div class="card">
-                <h2>User Corrections</h2>
-                <div class="metric" id="totalCorrections">0</div>
-                <div class="metric-label">From user_correction_sensor.js</div>
-            </div>
-
-            <div class="card">
-                <h2>Lessons Learned</h2>
-                <div class="metric" id="totalLessons">0</div>
-                <div class="metric-label">Active prevention rules</div>
-            </div>
-
-            <div class="card">
-                <h2>Pattern Match Score</h2>
-                <div class="metric" id="patternScore">0%</div>
-                <div class="metric-label">Repeat error prevention</div>
+                <h2>Task Success Rate</h2>
+                <div class="metric" id="taskSuccessRate">--%</div>
                 <div class="progress-bar">
-                    <div class="progress-fill" id="progressFill" style="width: 0%"></div>
+                    <div class="progress-fill" id="successFill" style="width: 0%"></div>
                 </div>
+            </div>
+
+            <div class="card">
+                <h2>Error Repeat Rate</h2>
+                <div class="metric" id="errorRepeatRate">--%</div>
+                <div class="metric-label">Lower is better</div>
+            </div>
+
+            <div class="card">
+                <h2>First-Time Success</h2>
+                <div class="metric" id="firstTimeSuccess">--%</div>
+                <div class="metric-label">No retries needed</div>
+            </div>
+
+            <div class="card">
+                <h2>Skill Effectiveness</h2>
+                <div class="metric" id="skillEffectiveness">--%</div>
+                <div class="metric-label">Skills that help</div>
             </div>
         </div>
 
-        <!-- Charts -->
+        <!-- Counters -->
         <div class="grid">
             <div class="card">
-                <h2>Error Types Distribution</h2>
-                <div class="bar-chart" id="errorChart">
-                    <!-- Bars will be added dynamically -->
-                </div>
+                <h2>Total Tasks</h2>
+                <div class="metric" id="totalTasks">0</div>
             </div>
 
             <div class="card">
-                <h2>Correction Categories</h2>
-                <div class="bar-chart" id="correctionChart">
-                    <!-- Bars will be added dynamically -->
-                </div>
+                <h2>Patterns Learned</h2>
+                <div class="metric" id="patternsLearned">0</div>
+            </div>
+
+            <div class="card">
+                <h2>Skills Generated</h2>
+                <div class="metric" id="skillsGenerated">0</div>
+            </div>
+
+            <div class="card">
+                <h2>A/B Tests</h2>
+                <div class="metric" id="abTests">0</div>
             </div>
         </div>
 
-        <!-- Rules & Insights -->
-        <div class="grid">
+        <!-- Alerts & Skills -->
+        <div class="grid grid-2">
             <div class="card">
-                <h2>Recent High-Frequency Patterns</h2>
-                <ul class="list" id="patternList">
-                    <li>
-                        <span>No patterns detected yet</span>
-                        <span class="severity severity-low">PENDING</span>
-                    </li>
+                <h2>⚠️ Active Alerts</h2>
+                <ul class="alert-list" id="alertsList">
+                    <li class="alert-item info">No alerts</li>
                 </ul>
-                <div class="actions">
-                    <button class="btn-secondary" onclick="refreshData()">↻ Refresh</button>
-                </div>
             </div>
 
-            <div class="card insights">
-                <h2>💡 AI Insights</h2>
-                <div id="insightsList">
-                    <div class="insight-item">
-                        <span class="insight-icon">📊</span>
-                        <div class="insight-content">
-                            <h3>Run sensors first</h3>
-                            <p>Execute error_sensor.js and user_correction_sensor.js to collect data</p>
-                        </div>
-                    </div>
-                    <div class="insight-item">
-                        <span class="insight-icon">🔍</span>
-                        <div class="insight-content">
-                            <h3>Analyze patterns</h3>
-                            <p>Run pattern_analyzer.js to identify high-frequency issues</p>
-                        </div>
-                    </div>
-                    <div class="insight-item">
-                        <span class="insight-icon">🛡️</span>
-                        <div class="insight-content">
-                            <h3>Enable prevention</h3>
-                            <p>Use pre_execution_check.js before writing code</p>
-                        </div>
+            <div class="card">
+                <h2>🎯 Auto-Generated Skills</h2>
+                <div class="skills-list" id="skillsList">
+                    <div class="skill-item">
+                        <span class="skill-name">No skills yet</span>
+                        <span class="skill-confidence">--</span>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Quick Actions -->
-        <div class="card">
-            <h2>Quick Commands</h2>
-            <div
-                style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px; margin-top: 16px;">
-                <div
-                    style="background: rgba(0,0,0,0.2); padding: 16px; border-radius: 8px; font-family: monospace; font-size: 13px;">
-                    <div style="color: #888; margin-bottom: 8px;">Scan for errors:</div>
-                    <code style="color: #00d9ff;">node error_sensor.js --scan all</code>
+        <!-- A/B Testing & Reinforcement -->
+        <div class="grid grid-2">
+            <div class="card">
+                <h2>🧪 A/B Testing</h2>
+                <div id="abTestsList">
+                    <div class="ab-test">
+                        <span>No active tests</span>
+                    </div>
                 </div>
-                <div
-                    style="background: rgba(0,0,0,0.2); padding: 16px; border-radius: 8px; font-family: monospace; font-size: 13px;">
-                    <div style="color: #888; margin-bottom: 8px;">Detect corrections:</div>
-                    <code style="color: #00d9ff;">node user_correction_sensor.js --scan</code>
-                </div>
-                <div
-                    style="background: rgba(0,0,0,0.2); padding: 16px; border-radius: 8px; font-family: monospace; font-size: 13px;">
-                    <div style="color: #888; margin-bottom: 8px;">Analyze patterns:</div>
-                    <code style="color: #00d9ff;">node pattern_analyzer.js --analyze</code>
-                </div>
-                <div
-                    style="background: rgba(0,0,0,0.2); padding: 16px; border-radius: 8px; font-family: monospace; font-size: 13px;">
-                    <div style="color: #888; margin-bottom: 8px;">Generate rules:</div>
-                    <code style="color: #00d9ff;">node pattern_analyzer.js --rules</code>
+            </div>
+
+            <div class="card">
+                <h2>🔄 Reinforcement Loop</h2>
+                <div style="display: flex; gap: 20px; margin-top: 10px;">
+                    <div>
+                        <div class="metric" id="rewards" style="font-size: 24px;">0</div>
+                        <div class="metric-label">Rewards</div>
+                    </div>
+                    <div>
+                        <div class="metric" id="penalties" style="font-size: 24px;">0</div>
+                        <div class="metric-label">Penalties</div>
+                    </div>
+                    <div>
+                        <div class="metric" id="avgConfidence" style="font-size: 24px;">--</div>
+                        <div class="metric-label">Avg Confidence</div>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <footer>
-            Auto-Learn Dashboard • FAANG-Grade AI Automation System • Built with ❤️
+        <!-- Actions -->
+        <div class="card" style="margin-bottom: 30px;">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+                <h2 style="margin-bottom: 0;">Dashboard Controls</h2>
+                <div style="display: flex; gap: 10px;">
+                    <button onclick="refreshData()">↻ Refresh Data</button>
+                </div>
+            </div>
+        </div>
+
+        <footer class="footer">
+            ⚡ PikaKit v6.0 - Precision Learning Engine!
         </footer>
     </div>
 
     <script>
-        // Sample data - In production, this would load from JSON files
-        const sampleData = {
-            errors: {
-                total: 24,
-                byType: {
-                    'test': 8,
-                    'build': 6,
-                    'lint': 7,
-                    'pattern': 3
-                }
-            },
-            corrections: {
-                total: 15,
-                byCategory: {
-                    'imports': 5,
-                    'types': 4,
-                    'null-safety': 3,
-                    'async': 2,
-                    'other': 1
-                }
-            },
-            lessons: 7,
-            patterns: [
-                { name: 'import_path_fix', count: 5, severity: 'HIGH' },
-                { name: 'type_annotation_fix', count: 4, severity: 'HIGH' },
-                { name: 'null_check_added', count: 3, severity: 'MEDIUM' }
-            ]
-        };
+        const API_BASE = '';
 
-        function updateMetrics(data) {
-            document.getElementById('totalErrors').textContent = data.errors.total;
-            document.getElementById('totalCorrections').textContent = data.corrections.total;
-            document.getElementById('totalLessons').textContent = data.lessons;
-
-            const score = Math.min(95, data.lessons * 10 + 25);
-            document.getElementById('patternScore').textContent = score + '%';
-            document.getElementById('progressFill').style.width = score + '%';
-        }
-
-        function renderBarChart(containerId, data, color = '#00d9ff') {
-            const container = document.getElementById(containerId);
-            container.innerHTML = '';
-
-            const maxValue = Math.max(...Object.values(data));
-
-            for (const [label, value] of Object.entries(data)) {
-                const height = (value / maxValue) * 130 + 10;
-                const bar = document.createElement('div');
-                bar.className = 'bar';
-                bar.style.height = height + 'px';
-                bar.innerHTML = `<span class="bar-label">${label}</span>`;
-                bar.title = `${label}: ${value}`;
-                container.appendChild(bar);
+        async function fetchAPI(endpoint) {
+            try {
+                const res = await fetch(API_BASE + endpoint);
+                return await res.json();
+            } catch (e) {
+                console.error('API Error:', e);
+                return null;
             }
         }
 
-        function renderPatterns(patterns) {
-            const container = document.getElementById('patternList');
-            container.innerHTML = '';
+        async function refreshData() {
+            document.body.classList.add('loading');
 
-            for (const pattern of patterns) {
-                const li = document.createElement('li');
-                li.innerHTML = `
-                    <span>${pattern.name} (${pattern.count}x)</span>
-                    <span class="severity severity-${pattern.severity.toLowerCase()}">${pattern.severity}</span>
-                `;
-                container.appendChild(li);
+            // Fetch all data
+            const [dashboard, alerts, skills, abTesting, reinforcement] = await Promise.all([
+                fetchAPI('/api/dashboard'),
+                fetchAPI('/api/alerts'),
+                fetchAPI('/api/skills'),
+                fetchAPI('/api/ab-testing'),
+                fetchAPI('/api/reinforcement')
+            ]);
+
+            // Update KPIs
+            if (dashboard && dashboard.kpis && dashboard.kpis.kpis) {
+                const kpis = dashboard.kpis.kpis;
+
+                updateMetric('taskSuccessRate', kpis.task_success_rate);
+                updateMetric('errorRepeatRate', kpis.error_repeat_rate);
+                updateMetric('firstTimeSuccess', kpis.first_time_success);
+                updateMetric('skillEffectiveness', kpis.skill_effectiveness);
+
+                // Progress bar
+                const successVal = parseFloat(kpis.task_success_rate?.value) || 0;
+                document.getElementById('successFill').style.width = successVal + '%';
             }
+
+            // Update summary counters
+            if (dashboard && dashboard.summary) {
+                document.getElementById('totalTasks').textContent = dashboard.summary.totalTasks || 0;
+                document.getElementById('patternsLearned').textContent = dashboard.summary.patternsLearned || 0;
+            }
+
+            // Update skills count
+            if (skills && skills.stats) {
+                document.getElementById('skillsGenerated').textContent = skills.stats.total || 0;
+                renderSkills(skills.skills || []);
+            }
+
+            // Update A/B tests
+            if (abTesting) {
+                document.getElementById('abTests').textContent = abTesting.stats?.running || 0;
+                renderABTests(abTesting.active || []);
+            }
+
+            // Update alerts
+            if (alerts && alerts.alerts) {
+                renderAlerts(alerts.alerts);
+            }
+
+            // Update reinforcement
+            if (reinforcement) {
+                document.getElementById('rewards').textContent = reinforcement.totalRewards || 0;
+                document.getElementById('penalties').textContent = reinforcement.totalPenalties || 0;
+                document.getElementById('avgConfidence').textContent =
+                    reinforcement.averageConfidence ? (reinforcement.averageConfidence * 100).toFixed(0) + '%' : '--';
+            }
+
+            document.body.classList.remove('loading');
         }
 
-        function refreshData() {
-            // Simulate loading
-            updateMetrics(sampleData);
-            renderBarChart('errorChart', sampleData.errors.byType);
-            renderBarChart('correctionChart', sampleData.corrections.byCategory);
-            renderPatterns(sampleData.patterns);
+        function updateMetric(id, kpi) {
+            const el = document.getElementById(id);
+            if (!kpi) {
+                el.textContent = '--%';
+                return;
+            }
+            const value = parseFloat(kpi.value).toFixed(1);
+            el.textContent = value + '%';
+        }
+
+        function renderAlerts(alerts) {
+            const container = document.getElementById('alertsList');
+            if (!alerts || alerts.length === 0) {
+                container.innerHTML = '<li class="alert-item info">✅ No alerts - system healthy</li>';
+                return;
+            }
+
+            container.innerHTML = alerts.map(a => `
+                <li class="alert-item ${a.severity === 'info' ? 'info' : ''}">
+                    ${a.severity === 'warning' ? '⚠️' : 'ℹ️'} ${a.message}
+                </li>
+            `).join('');
+        }
+
+        function renderSkills(skills) {
+            const container = document.getElementById('skillsList');
+            if (!skills || skills.length === 0) {
+                container.innerHTML = '<div class="skill-item"><span>No skills generated yet</span></div>';
+                return;
+            }
+
+            container.innerHTML = skills.slice(0, 10).map(s => `
+                <div class="skill-item">
+                    <span class="skill-name">${s.name || s.id}</span>
+                    <span class="skill-confidence">${((s.confidence || 0) * 100).toFixed(0)}%</span>
+                </div>
+            `).join('');
+        }
+
+        function renderABTests(tests) {
+            const container = document.getElementById('abTestsList');
+            if (!tests || tests.length === 0) {
+                container.innerHTML = '<div class="ab-test"><span>No active A/B tests</span></div>';
+                return;
+            }
+
+            container.innerHTML = tests.map(t => `
+                <div class="ab-test">
+                    <span>${t.patternA} vs ${t.patternB}</span>
+                    <span>${t.status}</span>
+                </div>
+            `).join('');
         }
 
         // Initialize
         refreshData();
+
+        // Auto-refresh every 30 seconds
+        setInterval(refreshData, 30000);
     </script>
 </body>
 

@@ -1,12 +1,14 @@
 #!/usr/bin/env node
 /**
- * Dashboard Server - Local web server for Auto-Learn Dashboard
+ * Dashboard Server v6.0 - AutoLearn Precision Learning Engine
  * 
- * Part of FAANG-Grade Auto-Learn System Phase 4
- * 
- * Serves:
- * - Static dashboard HTML
- * - API endpoints for data
+ * Serves real-time metrics from the new v6.0 modules:
+ * - metrics-collector.js (18 KPIs)
+ * - dashboard-data.js (aggregation)
+ * - causality-engine.js (patterns)
+ * - reinforcement.js (loop stats)
+ * - ab-testing.js (experiment stats)
+ * - precision-skill-generator.js (skills)
  * 
  * Usage:
  *   node dashboard_server.js --start
@@ -17,6 +19,14 @@ import fs from 'fs';
 import path from 'path';
 import http from 'http';
 import { fileURLToPath } from 'url';
+
+// Import v6.0 modules
+import { getDashboardData, getSummary, getMetricHistory } from '../lib/metrics-collector.js';
+import { getFullDashboardData, getKeyTrends, generateAlerts, getGaugeWidgets, getCounterWidgets } from '../lib/dashboard-data.js';
+import { getReinforcementStats } from '../lib/reinforcement.js';
+import { getABTestStats, getActiveTests } from '../lib/ab-testing.js';
+import { getSkillStats, loadAutoSkills } from '../lib/precision-skill-generator.js';
+import { loadCausalPatterns } from '../lib/causality-engine.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -45,62 +55,158 @@ function findProjectRoot() {
 }
 
 const projectRoot = findProjectRoot();
-const knowledgePath = path.join(projectRoot, '.agent', 'knowledge');
 const dashboardPath = path.join(__dirname, '..', 'dashboard');
 
-// Load JSON files
-function loadJson(filename) {
-    const filePath = path.join(knowledgePath, filename);
-    try {
-        if (fs.existsSync(filePath)) {
-            return JSON.parse(fs.readFileSync(filePath, 'utf8'));
-        }
-    } catch { }
-    return null;
-}
+// ============================================================================
+// API v6.0 HANDLERS
+// ============================================================================
 
-// API handlers
 const api = {
-    '/api/errors': () => {
-        const data = loadJson('detected-errors.json');
-        return data || { errors: [], totalErrors: 0 };
+    // Full dashboard data (all metrics aggregated)
+    '/api/dashboard': () => {
+        try {
+            return getFullDashboardData();
+        } catch (e) {
+            return { error: e.message, version: '6.0.0' };
+        }
     },
 
-    '/api/corrections': () => {
-        const data = loadJson('user-corrections.json');
-        return data || { corrections: [], totalCorrections: 0 };
+    // KPIs only
+    '/api/kpis': () => {
+        try {
+            return getDashboardData();
+        } catch (e) {
+            return { error: e.message };
+        }
     },
 
-    '/api/lessons': () => {
-        const data = loadJson('lessons-learned.json');
-        return data || { lessons: [] };
-    },
-
-    '/api/patterns': () => {
-        const data = loadJson('patterns.json');
-        return data || { errors: {}, corrections: {}, highFrequency: [] };
-    },
-
+    // Summary stats
     '/api/summary': () => {
-        const errors = loadJson('detected-errors.json');
-        const corrections = loadJson('user-corrections.json');
-        const lessons = loadJson('lessons-learned.json');
-        const patterns = loadJson('patterns.json');
+        try {
+            return getSummary();
+        } catch (e) {
+            return { error: e.message };
+        }
+    },
 
-        return {
-            errors: {
-                total: errors?.errors?.length || 0,
-                byType: patterns?.errors?.byType || {},
-                bySeverity: patterns?.errors?.bySeverity || {}
-            },
-            corrections: {
-                total: corrections?.corrections?.length || 0,
-                byCategory: patterns?.corrections?.byCategory || {}
-            },
-            lessons: lessons?.lessons?.length || 0,
-            highFrequency: patterns?.highFrequency || [],
-            lastUpdated: patterns?.analyzedAt || null
-        };
+    // Trends over time
+    '/api/trends': () => {
+        try {
+            return getKeyTrends();
+        } catch (e) {
+            return { error: e.message };
+        }
+    },
+
+    // Active alerts
+    '/api/alerts': () => {
+        try {
+            return { alerts: generateAlerts() };
+        } catch (e) {
+            return { alerts: [], error: e.message };
+        }
+    },
+
+    // Gauge widget data
+    '/api/gauges': () => {
+        try {
+            return { gauges: getGaugeWidgets() };
+        } catch (e) {
+            return { gauges: [], error: e.message };
+        }
+    },
+
+    // Counter widget data
+    '/api/counters': () => {
+        try {
+            return { counters: getCounterWidgets() };
+        } catch (e) {
+            return { counters: [], error: e.message };
+        }
+    },
+
+    // Reinforcement loop stats
+    '/api/reinforcement': () => {
+        try {
+            return getReinforcementStats();
+        } catch (e) {
+            return { error: e.message };
+        }
+    },
+
+    // A/B testing stats
+    '/api/ab-testing': () => {
+        try {
+            return {
+                stats: getABTestStats(),
+                active: getActiveTests()
+            };
+        } catch (e) {
+            return { error: e.message };
+        }
+    },
+
+    // Auto-generated skills
+    '/api/skills': () => {
+        try {
+            return {
+                stats: getSkillStats(),
+                skills: loadAutoSkills()
+            };
+        } catch (e) {
+            return { error: e.message };
+        }
+    },
+
+    // Causal patterns
+    '/api/patterns': () => {
+        try {
+            const patterns = loadCausalPatterns();
+            return {
+                total: patterns.length,
+                patterns: patterns.slice(0, 20) // Limit to 20 most recent
+            };
+        } catch (e) {
+            return { total: 0, patterns: [], error: e.message };
+        }
+    },
+
+    // Metric history (query param: ?metric=task_success_rate&limit=168)
+    '/api/history': (query) => {
+        try {
+            const metric = query.get('metric') || 'task_success_rate';
+            const limit = parseInt(query.get('limit') || '168', 10);
+            return {
+                metric,
+                history: getMetricHistory(metric, limit)
+            };
+        } catch (e) {
+            return { error: e.message };
+        }
+    }
+};
+
+// ============================================================================
+// LEGACY API COMPATIBILITY (v4.0 endpoints that still work)
+// ============================================================================
+
+const legacyApi = {
+    '/api/errors': () => ({
+        deprecation: 'Use /api/patterns instead',
+        redirect: '/api/patterns'
+    }),
+    '/api/corrections': () => ({
+        deprecation: 'Use /api/patterns instead',
+        redirect: '/api/patterns'
+    }),
+    '/api/lessons': () => {
+        const filePath = path.join(projectRoot, '.agent', 'knowledge', 'lessons-learned.json');
+        try {
+            if (fs.existsSync(filePath)) {
+                return JSON.parse(fs.readFileSync(filePath, 'utf8'));
+            }
+        } catch { }
+        return { lessons: [] };
     }
 };
 
@@ -118,7 +224,9 @@ const mimeTypes = {
 // Create server
 function createServer(port) {
     const server = http.createServer((req, res) => {
-        const url = req.url.split('?')[0];
+        const urlParts = req.url.split('?');
+        const url = urlParts[0];
+        const query = new URLSearchParams(urlParts[1] || '');
 
         // CORS headers for local development
         res.setHeader('Access-Control-Allow-Origin', '*');
@@ -127,14 +235,14 @@ function createServer(port) {
 
         // Handle API requests
         if (url.startsWith('/api/')) {
-            const handler = api[url];
+            const handler = api[url] || legacyApi[url];
             if (handler) {
                 res.setHeader('Content-Type', 'application/json');
                 res.writeHead(200);
-                res.end(JSON.stringify(handler()));
+                res.end(JSON.stringify(handler(query)));
             } else {
                 res.writeHead(404);
-                res.end(JSON.stringify({ error: 'Not found' }));
+                res.end(JSON.stringify({ error: 'Not found', availableEndpoints: Object.keys(api) }));
             }
             return;
         }
@@ -163,17 +271,22 @@ function startServer(port = 3030) {
     const server = createServer(port);
 
     server.listen(port, () => {
-        console.log(`${c.cyan}╔════════════════════════════════════════╗${c.reset}`);
-        console.log(`${c.cyan}║${c.reset}  🧠 Auto-Learn Dashboard Server         ${c.cyan}║${c.reset}`);
-        console.log(`${c.cyan}╚════════════════════════════════════════╝${c.reset}\n`);
+        console.log(`${c.cyan}╔════════════════════════════════════════════════════╗${c.reset}`);
+        console.log(`${c.cyan}║${c.reset}  🧠 AutoLearn v6.0 Dashboard Server                 ${c.cyan}║${c.reset}`);
+        console.log(`${c.cyan}║${c.reset}  ${c.green}Precision Learning Engine${c.reset}                        ${c.cyan}║${c.reset}`);
+        console.log(`${c.cyan}╚════════════════════════════════════════════════════╝${c.reset}\n`);
         console.log(`${c.green}✓ Server running at:${c.reset}`);
         console.log(`  ${c.bold}http://localhost:${port}${c.reset}\n`);
-        console.log(`${c.gray}API Endpoints:${c.reset}`);
-        console.log(`  GET /api/errors       - Detected errors`);
-        console.log(`  GET /api/corrections  - User corrections`);
-        console.log(`  GET /api/lessons      - Lessons learned`);
-        console.log(`  GET /api/patterns     - Pattern analysis`);
-        console.log(`  GET /api/summary      - Dashboard summary\n`);
+        console.log(`${c.gray}API Endpoints (v6.0):${c.reset}`);
+        console.log(`  GET /api/dashboard      - Full dashboard data`);
+        console.log(`  GET /api/kpis           - 18 KPIs`);
+        console.log(`  GET /api/summary        - Summary stats`);
+        console.log(`  GET /api/trends         - Key trends`);
+        console.log(`  GET /api/alerts         - Active alerts`);
+        console.log(`  GET /api/reinforcement  - Reinforcement loop`);
+        console.log(`  GET /api/ab-testing     - A/B experiments`);
+        console.log(`  GET /api/skills         - Auto-generated skills`);
+        console.log(`  GET /api/patterns       - Causal patterns\n`);
         console.log(`${c.yellow}Press Ctrl+C to stop${c.reset}`);
     });
 
@@ -201,19 +314,26 @@ if (args.includes('--start') || args.includes('-s') || args.length === 0 || args
     }
     startServer(port);
 } else if (args.includes('--help') || args.includes('-h')) {
-    console.log(`${c.cyan}dashboard_server - Auto-Learn Dashboard Web Server${c.reset}
+    console.log(`${c.cyan}AutoLearn v6.0 Dashboard Server${c.reset}
 
 ${c.bold}Usage:${c.reset}
   node dashboard_server.js                  Start server (default port 3030)
   node dashboard_server.js --port 8080      Start on custom port
   node dashboard_server.js --help           Show this help
 
-${c.bold}API Endpoints:${c.reset}
-  GET /api/errors       - All detected errors
-  GET /api/corrections  - All user corrections
-  GET /api/lessons      - All lessons learned
-  GET /api/patterns     - Pattern analysis results
-  GET /api/summary      - Dashboard summary data
+${c.bold}API Endpoints (v6.0):${c.reset}
+  GET /api/dashboard      - Full dashboard aggregation
+  GET /api/kpis           - 18 KPIs for Dashboard
+  GET /api/summary        - Summary statistics
+  GET /api/trends         - Week-over-week trends
+  GET /api/alerts         - Active alerts
+  GET /api/gauges         - Gauge widget data
+  GET /api/counters       - Counter widget data
+  GET /api/reinforcement  - Reinforcement loop stats
+  GET /api/ab-testing     - A/B testing experiments
+  GET /api/skills         - Auto-generated skills
+  GET /api/patterns       - Causal patterns
+  GET /api/history?metric=X - Metric history
 
 ${c.bold}Example:${c.reset}
   node dashboard_server.js --port 3030
