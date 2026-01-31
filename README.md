@@ -14,7 +14,7 @@
 ## ⚡ Quick Install
 
 ```bash
-npx -y pikakit pikakit/agent-skills
+npx -y pikakit pikakit-agent-skills
 ```
 
 **What gets installed:**
@@ -56,7 +56,7 @@ npx -y pikakit pikakit/agent-skills
 ### Step 1: Install
 
 ```bash
-npx -y pikakit pikakit/agent-skills
+npx -y pikakit pikakit-agent-skills
 ```
 
 **During installation:**
@@ -89,7 +89,7 @@ agent                       # Launch Smart CLI
 
 ## 📦 Complete Installation Contents
 
-When you run `npx -y pikakit pikakit/agent-skills`, you get:
+When you run `npx -y pikakit pikakit-agent-skills`, you get:
 
 ```
 your-project/
