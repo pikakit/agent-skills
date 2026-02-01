@@ -193,8 +193,8 @@ export async function runRecallUI(autoScan = false) {
         options: [
             { value: ".", label: "Current Directory", hint: "Scan entire project" },
             { value: "packages", label: "packages/", hint: "All monorepo packages" },
-            { value: "packages/cli", label: "packages/cli/", hint: "CLI package only" },
-            { value: "packages/cli/lib", label: "packages/cli/lib/", hint: "Library code" },
+            { value: "packages/agent", label: "packages/agent/", hint: "CLI package only" },
+            { value: "packages/agent/lib", label: "packages/agent/lib/", hint: "Library code" },
             { value: ".agent", label: ".agent/", hint: "Agent configuration" },
             { value: "custom", label: "Custom Path", hint: "Enter manually" }
         ]

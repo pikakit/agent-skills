@@ -2,12 +2,12 @@
 
 > **Transform your AI Agent into a FAANG-level engineering team with one command**
 
-[![npm](https://img.shields.io/badge/version-1.0.0-7c3aed?style=flat&colorA=18181b)](https://www.npmjs.com/package/pikakit)
+[![npm](https://img.shields.io/badge/version-3.7.1-7c3aed?style=flat&colorA=18181b)](https://www.npmjs.com/package/pikakit)
 [![skills](https://img.shields.io/badge/skills-50-7c3aed?style=flat&colorA=18181b)](https://github.com/pikakit/agent-skills)
 [![agents](https://img.shields.io/badge/agents-25-7c3aed?style=flat&colorA=18181b)](https://github.com/pikakit/agent-skills)
-[![workflows](https://img.shields.io/badge/workflows-26-7c3aed?style=flat&colorA=18181b)](https://github.com/pikakit/agent-skills)
+[![workflows](https://img.shields.io/badge/workflows-25-7c3aed?style=flat&colorA=18181b)](https://github.com/pikakit/agent-skills)
 [![JavaScript](https://img.shields.io/badge/100%25-JavaScript-F7DF1E?style=flat&colorA=18181b&logo=javascript)](https://github.com/pikakit/agent-skills)
-[![license](https://img.shields.io/badge/license-MIT-7c3aed?style=flat&colorA=18181b)](LICENSE)
+[![license](https://img.shields.io/badge/license-UNLICENSED-7c3aed?style=flat&colorA=18181b)](LICENSE)
 
 ---
 
@@ -22,7 +22,7 @@ npx pikakit
 | Component | Count | Description |
 |-----------|-------|-------------|
 | **Skills** | 50 | FAANG-grade coding skills |
-| **Workflows** | 26 | `/think`, `/build`, `/autopilot`, etc. |
+| **Workflows** | 25 | `/think`, `/build`, `/autopilot`, etc. |
 | **Agents** | 25 | Specialist AI agents |
 | **Rules** | GEMINI.md | AI behavior configuration |
 | **Scripts** | 25 | JavaScript automation scripts |
@@ -107,7 +107,7 @@ your-project/
 │   │   ├── studio/                    # 50+ design styles
 │   │   └── ...
 │   │
-│   ├── workflows/                     # 26 Workflows
+│   ├── workflows/                     # 25 Workflows
 │   │   ├── think.md                   # /think
 │   │   ├── build.md                   # /build
 │   │   ├── autopilot.md               # /autopilot
@@ -163,7 +163,7 @@ AUTO-APPROVE: After PLAN.md, proceed automatically.
 
 ---
 
-## 📜 Workflows Reference (26)
+## 📜 Workflows Reference (25)
 
 | Command | Description | Agents Used |
 |---------|-------------|-------------|
@@ -395,13 +395,15 @@ agent watch                 # Real-time monitoring
 
 ## 📈 Version History
 
-**v1.0.0 (Current - PikaKit)**
-- ✅ Renamed to PikaKit for cross-platform npx support
-- ✅ Works with `npx pikakit` on Windows, macOS, Linux
-- ✅ 100% JavaScript - Zero Python dependencies
-- ✅ 50 skills, 26 workflows, 25 agents
+**v3.7.1 (Current)**
+- ✅ FAANG-Grade Structure Optimization
+- ✅ Removed duplicate CLI (lib/agent-cli)
+- ✅ Fixed all package counts
+- ✅ 50 skills, 25 workflows, 25 agents
+- ✅ Kit CLI dependencies fixed
+
+**v3.7.0**
 - ✅ Added vercel-deploy skill (1-click Vercel deployment)
-- ✅ AutoLearn made optional (does not affect core)
 
 **v3.2.5**
 
@@ -429,11 +431,11 @@ See [CHANGELOG.md](CHANGELOG.md) for full history.
 
 ## 📄 License
 
-MIT - Free for all projects.
+UNLICENSED - Commercial use only. See [LICENSE](LICENSE) for details.
 
 ---
 
-**⚡ PikaKit v1.0.0 (PikaKit)**
+**⚡ PikaKit v3.7.1**
 *Composable Skills. Coordinated Agents. Intelligent Execution.*
 
 ---

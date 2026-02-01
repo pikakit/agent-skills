@@ -5,6 +5,29 @@ All notable changes to the PikaKit will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.7.1] - 2026-02-01
+
+### 🔧 FAANG-Grade Structure Optimization
+
+**Cleanup & Optimization:**
+
+- **Renamed packages/cli → packages/agent** - Folder name now matches command name
+- **Removed duplicate CLI** - Deleted `lib/agent-cli/` (112 files) - was duplicate of `packages/agent/`
+- **Removed archive folders** - Cleaned `.agent/archive/` and `docs/archive/` (3 files)
+- **Removed dev artifact** - Deleted `.agent/skills-audit-report.md`
+- **Fixed workflow count** - Corrected description from "26 workflows" to "25 workflows"
+- **Renamed devDependency** - Changed `agentskillskit-cli` → `pikakit-cli`
+- **Added missing deps** - Added `kleur`, `boxen`, `ora`, `gradient-string` for packages/kit
+- **Fixed .agentignore syntax** - Corrected invalid arrow symbols in comments
+- **Updated LICENSE** - Rebranded from AgentSkillKit to PikaKit
+
+**Impact:**
+- Package cleaner: 115+ redundant files removed
+- Dependencies: Kit CLI now works correctly
+- Accuracy: All counts verified correct
+
+---
+
 ## [3.7.0] - 2026-02-01
 
 ### 🚀 Vercel Deploy Integration
@@ -503,7 +526,13 @@ All 5 workflow chains upgraded to enterprise-grade v2.0 schema:
 
 ---
 
+[3.7.1]: https://github.com/pikakit/agent-skills/compare/v3.7.0...v3.7.1
+[3.7.0]: https://github.com/pikakit/agent-skills/compare/v3.6.0...v3.7.0
+[3.6.0]: https://github.com/pikakit/agent-skills/compare/v3.5.0...v3.6.0
+[3.5.0]: https://github.com/pikakit/agent-skills/compare/v3.4.0...v3.5.0
+[3.4.0]: https://github.com/pikakit/agent-skills/compare/v3.3.0...v3.4.0
 [3.3.0]: https://github.com/pikakit/agent-skills/compare/v3.2.0...v3.3.0
 [3.2.0]: https://github.com/pikakit/agent-skills/compare/v3.1.0...v3.2.0
 [3.1.0]: https://github.com/pikakit/agent-skills/compare/v3.0.0...v3.1.0
 [3.0.0]: https://github.com/pikakit/agent-skills/releases/tag/v3.0.0
+

@@ -1,6 +1,6 @@
 {
   "name": "pikakit-agent-skills",
-  "version": "3.7.0",
+  "version": "3.7.1",
   "description": "PikaKit Agent Skills - 50 FAANG-grade skills, 25 workflows, 25 agents for AI-powered development",
   "repository": {
     "type": "git",
@@ -23,15 +23,15 @@
     "LICENSE"
   ],
   "bin": {
-    "agent": "./packages/cli/bin/agent.js",
+    "agent": "./packages/agent/bin/agent.js",
     "kit": "./packages/kit/kit.js"
   },
   "type": "module",
   "scripts": {
-    "test": "node packages/cli/tests/integration/signal-detector.test.js",
-    "test:integration": "node packages/cli/tests/integration/gemini-export.test.js",
+    "test": "node packages/agent/tests/integration/signal-detector.test.js",
+    "test:integration": "node packages/agent/tests/integration/gemini-export.test.js",
     "test:scripts": "vitest run tests/scripts",
-    "example:violations": "node packages/cli/examples/demo-violations.js",
+    "example:violations": "node packages/agent/examples/demo-violations.js",
     "rebrand": "node scripts/rebrand/index.mjs",
     "checklist": "node .agent/scripts-js/checklist.js .",
     "verify": "node .agent/scripts-js/verify_all.js . --url",
@@ -47,7 +47,7 @@
     "test:all": "npm run test && npm run test:integration && npm run test:studio",
     "scan:security": "python .agent/skills/vulnerability-scanner/scripts/security_scan.py .",
     "lint": "python .agent/skills/lint-and-validate/scripts/lint_runner.py .",
-    "learn": "node packages/cli/lib/learn.js",
+    "learn": "node packages/agent/lib/learn.js",
     "workflow:validate": "node .agent/scripts-js/workflow-validator.js",
     "workflow:list": "node .agent/scripts-js/workflow-engine.js --list",
     "workflow:run": "node .agent/scripts-js/workflow-engine.js",
@@ -65,7 +65,7 @@
   "license": "UNLICENSED",
   "devDependencies": {
     "@vitest/coverage-v8": "^4.0.18",
-    "pikakit-cli": "file:packages/cli",
+    "pikakit-cli": "file:packages/agent",
     "eslint": "^9.0.0",
     "gray-matter": "^4.0.3",
     "prettier": "^3.0.0",

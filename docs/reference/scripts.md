@@ -53,4 +53,5 @@ npm run preview:start  # Dev server
 npm run session:status # Project info
 ```
 
-See [MIGRATION.md](../MIGRATION.md) for details.
+See [migration.md](../guides/migration.md) for details.
+

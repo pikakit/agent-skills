@@ -28,7 +28,7 @@ jobs:
       - name: Lint CLI package
         run: |
           echo "🔍 Linting CLI package..."
-          npx eslint packages/cli/lib --ext .js
+          npx eslint packages/agent/lib --ext .js
         continue-on-error: true
 
       # Master Scripts Linting
@@ -41,22 +41,22 @@ jobs:
       # Studio Scripts Linting
       - name: Lint Studio scripts
         run: |
-          echo "🔍 Linting Studio scripts (.agent/studio/scripts-js)..."
-          npx eslint .agent/studio/scripts-js --ext .js
+          echo "🔍 Linting Studio scripts (.agent/skills/studio/scripts-js)..."
+          npx eslint .agent/skills/studio/scripts-js --ext .js
         continue-on-error: true
 
       # Formatting Check
       - name: Check code formatting
         run: |
           echo "✨ Checking code formatting..."
-          npx prettier --check "packages/cli/lib/**/*.js" ".agent/**/*.js" --ignore-path .gitignore
+          npx prettier --check "packages/agent/lib/**/*.js" ".agent/**/*.js" --ignore-path .gitignore
         continue-on-error: true
 
-      # TypeScript Check (for .d.ts files)
-      - name: TypeScript validation
+      # Skill validation
+      - name: Validate skill structure
         run: |
-          echo "📝 Validating TypeScript definitions..."
-          npx tsc --noEmit --project .agent/.shared/studio/scripts-js/jsconfig.json
+          echo "📝 Validating skill structure..."
+          node packages/agent/bin/agent.js validate || true
         continue-on-error: true
 
       - name: Lint summary

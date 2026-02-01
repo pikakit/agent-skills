@@ -4,7 +4,7 @@ import { defineConfig } from 'vitest/config';
  * Vitest Configuration v3.0 (2026)
  * PikaKit Agent Skills Test Suite
  * 
- * @version 3.7.0
+ * @version 3.7.1
  * @author PikaKit
  */
 export default defineConfig({
@@ -13,7 +13,7 @@ export default defineConfig({
         include: [
             'tests/scripts/**/*.test.js',
             'tests/e2e/**/*.test.js',
-            'packages/cli/tests/**/*.test.js',
+            'packages/agent/tests/**/*.test.js',
             // Skills tests
             '.agent/skills/**/tests/*.test.js'
         ],
@@ -27,7 +27,7 @@ export default defineConfig({
             '**/config-loader.test.js',
             '**/colors.test.js',
             '**/css-templates.test.js',
-            'packages/cli/tests/unit/**',
+            'packages/agent/tests/unit/**',
             // Vercel deploy tests (bash scripts, not JS)
             '.agent/skills/vercel-deploy/**'
         ],
@@ -55,7 +55,7 @@ export default defineConfig({
             include: [
                 '.agent/scripts-js/**/*.js',
                 '.agent/skills/studio/scripts-js/**/*.js',
-                'packages/cli/lib/**/*.js'
+                'packages/agent/lib/**/*.js'
             ],
             exclude: [
                 '**/*.test.js',

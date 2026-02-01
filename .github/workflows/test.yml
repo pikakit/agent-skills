@@ -52,15 +52,15 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
           cache: "npm"
-          cache-dependency-path: packages/cli/package-lock.json
+          cache-dependency-path: packages/agent/package-lock.json
 
       - name: Install CLI dependencies
         run: npm ci
-        working-directory: packages/cli
+        working-directory: packages/agent
 
       - name: Run CLI tests
         run: npm test
-        working-directory: packages/cli
+        working-directory: packages/agent
 
   # Summary
   test-summary:

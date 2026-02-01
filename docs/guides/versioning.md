@@ -42,4 +42,5 @@ MAJOR.MINOR.PATCH
 
 ---
 
-**Current Version:** 1.0.0
+**Current Version:** 3.7.1
+

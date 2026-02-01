@@ -114,9 +114,9 @@ temp/
 # Package Lock Files
 # IMPORTANT: Keep lock files for reproducible builds (FAANG standard)
 # ============================================================
-# package-lock.json  ← DO NOT IGNORE (removed)
-yarn.lock             ← Only if using npm
-pnpm-lock.yaml        ← Only if using npm
+# package-lock.json  # DO NOT IGNORE (keep for reproducible builds)
+# yarn.lock          # Only ignore if using npm
+# pnpm-lock.yaml     # Only ignore if using npm
 
 # ============================================================
 # Archives & Binaries

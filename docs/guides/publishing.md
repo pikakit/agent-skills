@@ -52,7 +52,7 @@ When releasing a new version:
 - [ ] add-skill-kit published to npm
 - [ ] Test installation:
   ```bash
-  npx add-skill-kit@3.2.0 pikakit/agent-skills
+  npx pikakit
   ```
 
 ---
@@ -78,9 +78,9 @@ Ensure you're logged in to npm with correct account and have 2FA set up.
 
 ## Current Versions
 
-- **agent-skill-kit**: 3.2.0
-- **agentskillskit-cli**: 3.2.0
-- **add-skill-kit**: 3.2.0
+- **agent-skill-kit**: 3.7.1
+- **pikakit-cli**: 3.7.1
+- **pikakit (add-skill-kit)**: 2.0.0
 
 **GitHub Repos:**
 

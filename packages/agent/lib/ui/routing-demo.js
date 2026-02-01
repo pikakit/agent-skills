@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /**
  * Demo: FAANG-level Agent Routing UI
- * Run: node packages/cli/lib/ui/routing-demo.js
+ * Run: node packages/agent/lib/ui/routing-demo.js
  */
 
 import {

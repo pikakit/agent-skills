@@ -54,15 +54,15 @@ jobs:
 
       - name: Install dependencies
         run: npm ci
-        working-directory: packages/cli
+        working-directory: packages/agent
 
       - name: Run tests before publish
         run: npm test
-        working-directory: packages/cli
+        working-directory: packages/agent
 
       - name: Publish to NPM
         run: npm publish --provenance --access public
-        working-directory: packages/cli
+        working-directory: packages/agent
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
