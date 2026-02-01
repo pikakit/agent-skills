@@ -1,5 +1,5 @@
-# Agent Skill Kit - Gitignore v3.7.1 (2026)
-# FAANG-Grade patterns for modern JS/TS development
+# Agent Skill Kit - Gitignore v3.0 (2026)
+# Comprehensive patterns for modern JS/TS development
 
 # ============================================================
 # Dependencies & Package Managers
@@ -41,14 +41,6 @@ coverage/
 .vitest/
 playwright-report/
 test-results/
-
-# ============================================================
-# Linting & Formatting Cache
-# ============================================================
-.eslintcache
-.stylelintcache
-*.pid
-*.seed
 
 # ============================================================
 # Environment Variables & Secrets
