@@ -75,10 +75,14 @@
     "@clack/prompts": "^0.11.0",
     "ajv": "^8.17.1",
     "ajv-formats": "^3.0.1",
+    "boxen": "^8.0.1",
     "css-tree": "^3.1.0",
     "csv-parse": "^6.1.0",
     "glob": "^13.0.0",
+    "gradient-string": "^2.0.2",
     "js-yaml": "^4.1.1",
+    "kleur": "^4.1.5",
+    "ora": "^9.1.0",
     "picocolors": "^1.1.1"
   }
 }
