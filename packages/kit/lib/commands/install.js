@@ -225,7 +225,7 @@ export async function run(spec) {
         }
 
         // REQUIRED SKILLS - Always installed, not shown in selection
-        const REQUIRED_SKILLS = ["auto-learner"];
+        const REQUIRED_SKILLS = ["skill-generator"];
 
         // Filter out required skills from selection list
         const selectableSkills = skillsInRepo.filter(s => !REQUIRED_SKILLS.includes(s.value));
@@ -276,7 +276,7 @@ export async function run(spec) {
     }
 
     // Check for required skills and show info
-    const CORE_REQUIRED = ["auto-learner"];
+    const CORE_REQUIRED = ["skill-generator"];
     const installedRequired = selectedSkills.filter(s => CORE_REQUIRED.includes(s));
 
     stepLine();

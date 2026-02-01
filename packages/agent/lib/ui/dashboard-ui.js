@@ -81,11 +81,13 @@ function findDashboardScript() {
     const possiblePaths = [
         // PRIORITY 1: Bundled with CLI package (always available)
         path.join(cliRoot, "dashboard", "dashboard_server.js"),
-        // PRIORITY 2: Current project paths
-        path.join(process.cwd(), ".agent", "skills", "auto-learner", "scripts", "dashboard_server.js"),
-        path.join(process.cwd(), ".agent", "agentskillskit", ".agent", "skills", "auto-learner", "scripts", "dashboard_server.js"),
+        // PRIORITY 2: Current project paths (skill-generator)
+        path.join(process.cwd(), ".agent", "skills", "skill-generator", "scripts", "dashboard_server.js"),
+        path.join(process.cwd(), ".agent", "agentskillskit", ".agent", "skills", "skill-generator", "scripts", "dashboard_server.js"),
         // PRIORITY 3: Fallback user paths (Windows Desktop)
-        path.join(homeDir, "Desktop", "agent-skill-kit", ".agent", "skills", "auto-learner", "scripts", "dashboard_server.js"),
+        path.join(homeDir, "Desktop", "agent-skill-kit", ".agent", "skills", "skill-generator", "scripts", "dashboard_server.js"),
+        // LEGACY: auto-learner paths (backward compatibility)
+        path.join(process.cwd(), ".agent", "skills", "auto-learner", "scripts", "dashboard_server.js"),
     ];
 
     for (const searchPath of possiblePaths) {
@@ -166,7 +168,7 @@ export async function runDashboardUI() {
 
     if (!scriptPath) {
         p.log.error("Dashboard script not found!");
-        p.log.info("Install auto-learner skill first or check .agent/skills/auto-learner/scripts/");
+        p.log.info("Install skill-generator skill first or check .agent/skills/skill-generator/scripts/");
         return;
     }
 
