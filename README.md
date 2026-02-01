@@ -100,7 +100,7 @@ your-project/
 │   ├── WORKFLOW_CHAINS.md             # Workflow Patterns
 │   │
 │   ├── skills/                        # 50 Skills
-│   │   ├── auto-learner/              # Learn from mistakes
+│   │   ├── skill-generator/           # FAANG-grade skill generation
 │   │   ├── react-architect/           # React best practices
 │   │   ├── typescript-expert/         # TypeScript mastery
 │   │   ├── debug-pro/                 # Advanced debugging
@@ -252,7 +252,7 @@ AUTO-APPROVE: After PLAN.md, proceed automatically.
 | Skill | Description |
 |-------|-------------|
 | `agent-patterns` | Multi-agent design patterns |
-| `auto-learner` | Learning from failures |
+| `skill-generator` | FAANG-grade skill generation |
 | `self-evolution` | Knowledge evolution |
 | `execution-reporter` | Agent routing transparency |
 
@@ -343,7 +343,7 @@ Remove-Item -Recurse
 ### How It Works
 
 ```
-Error Detected → auto-learner skill → Root Cause Analysis → Lesson Extracted
+Error Detected → skill-generator → Root Cause Analysis → Lesson Extracted
                                                                     ↓
 Future Prevention ← Stored in lessons-learned.yaml ← Pattern Documented
 ```

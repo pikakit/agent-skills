@@ -115,7 +115,7 @@ Provide ready-to-copy commands.
 
 ### 5. Core Content (VARIES BY TYPE)
 
-**For Process Skills (debug-pro, auto-learner):**
+**For Process Skills (debug-pro, skill-generator):**
 ```markdown
 ## [N]-Phase Process
 
@@ -322,7 +322,7 @@ For detailed documentation, see:
 
 | Category | Description | Examples |
 |----------|-------------|----------|
-| `core` | Essential functionality | debug-pro, auto-learner, problem-checker |
+| `core` | Essential functionality | debug-pro, skill-generator, problem-checker |
 | `design` | UI/UX and design | studio, design-system |
 | `framework` | Language/Framework expertise | typescript-expert, react-patterns |
 | `testing` | Test automation | test-architect, e2e-automation |
@@ -339,7 +339,7 @@ For detailed documentation, see:
 | **Process** | Multi-phase methodology | debug-pro (4-phase) |
 | **Database** | Searchable data | studio (50+ styles) |
 | **Expert** | Deep domain knowledge | typescript-expert |
-| **Automation** | Scripts & tooling | auto-learner (sensors) |
+| **Automation** | Scripts & tooling | skill-generator |
 | **Hybrid** | Mix of above | mobile-developer |
 
 ---
