@@ -14,6 +14,7 @@ export default defineConfig({
             'tests/scripts/**/*.test.js',
             'tests/e2e/**/*.test.js',
             'packages/agent/tests/**/*.test.js',
+            'packages/kit/lib/**/*.test.js',
             // Skills tests
             '.agent/skills/**/tests/*.test.js'
         ],
@@ -55,7 +56,8 @@ export default defineConfig({
             include: [
                 '.agent/scripts-js/**/*.js',
                 '.agent/skills/studio/scripts-js/**/*.js',
-                'packages/agent/lib/**/*.js'
+                'packages/agent/lib/**/*.js',
+                'packages/kit/lib/**/*.js'
             ],
             exclude: [
                 '**/*.test.js',
