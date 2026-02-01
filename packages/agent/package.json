@@ -1,5 +1,5 @@
 {
-    "name": "pikakit-cli",
+    "name": "pikakit-agent",
     "version": "3.7.1",
     "description": "CLI for PikaKit",
     "type": "module",
