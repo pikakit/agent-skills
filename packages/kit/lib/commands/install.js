@@ -682,43 +682,23 @@ export async function run(spec) {
 
     fs.rmSync(tmp, { recursive: true, force: true });
 
-    // Ask user about AutoLearn installation
-    stepLine();
-    const installAutoLearn = await confirm({
-        message: "Install AutoLearn (enables 'agent' command for learning & self-improvement)?",
-        initialValue: true
-    });
-
-    if (isCancel(installAutoLearn)) {
-        cancel("Installation cancelled");
-        process.exit(0);
-    }
-
     // Install CLI package
     stepLine();
     const cliSpinner = spinner();
     const cliPackage = "add-skill-kit";
 
     if (isGlobal) {
-        if (installAutoLearn) {
-            cliSpinner.start(`Installing CLI globally (${cliPackage})`);
-        } else {
-            cliSpinner.start(`Installing kit CLI globally (${cliPackage})`);
-        }
+        cliSpinner.start(`Installing kit CLI globally (${cliPackage})`);
         try {
             await execAsync(`npm install -g ${cliPackage}`, { timeout: 120000 });
             cliSpinner.stop("CLI installed globally");
-            if (installAutoLearn) {
-                step(c.dim("Commands: agent, kit"));
-            } else {
-                step(c.dim("Command: kit"));
-            }
+            step(c.dim("Command: kit"));
         } catch (e) {
             cliSpinner.stop(c.yellow("Global CLI installation failed"));
             step(c.dim(`Try running manually: npm i -g ${cliPackage}`));
         }
     } else {
-        cliSpinner.start(`Installing Agent CLI locally (${cliPackage})`);
+        cliSpinner.start(`Installing kit CLI locally (${cliPackage})`);
         try {
             await execAsync(`npm install -D ${cliPackage}`, { timeout: 120000 });
             cliSpinner.stop("CLI installed locally");
@@ -730,22 +710,12 @@ export async function run(spec) {
                     const pkg = JSON.parse(fs.readFileSync(pkgPath, "utf-8"));
                     pkg.scripts = pkg.scripts || {};
 
-                    // Always add kit script
                     if (!pkg.scripts.kit) {
                         pkg.scripts.kit = "kit";
                     }
 
-                    // Add agent script only if AutoLearn enabled
-                    if (installAutoLearn && !pkg.scripts.agent) {
-                        pkg.scripts.agent = "agent";
-                    }
-
                     fs.writeFileSync(pkgPath, JSON.stringify(pkg, null, 2) + "\n");
-                    if (installAutoLearn) {
-                        step(c.green("✓ Added npm scripts: 'agent', 'kit'"));
-                    } else {
-                        step(c.green("✓ Added npm script: 'kit'"));
-                    }
+                    step(c.green("✓ Added npm script: 'kit'"));
                 }
             } catch (scriptErr) {
                 step(c.yellow("⚠ Could not add npm scripts automatically"));
@@ -761,19 +731,8 @@ export async function run(spec) {
                 fs.writeFileSync(path.join(projectRoot, "kit.cmd"), kitCmd);
                 fs.writeFileSync(path.join(projectRoot, "kit"), kitSh, { mode: 0o755 });
 
-                if (installAutoLearn) {
-                    // Create agent wrappers only if AutoLearn enabled
-                    const agentCmd = `@echo off\nnode "%~dp0node_modules\\add-skill-kit\\lib\\agent-cli\\bin\\agent.js" %*`;
-                    const agentSh = `#!/bin/sh\nnode "$(dirname "$0")/node_modules/add-skill-kit/lib/agent-cli/bin/agent.js" "$@"`;
-                    fs.writeFileSync(path.join(projectRoot, "agent.cmd"), agentCmd);
-                    fs.writeFileSync(path.join(projectRoot, "agent"), agentSh, { mode: 0o755 });
-
-                    step(c.green("✓ Created wrapper scripts: agent, kit"));
-                    step(c.dim("Run directly: ./agent or ./kit (Unix) | agent or kit (Windows)"));
-                } else {
-                    step(c.green("✓ Created wrapper script: kit"));
-                    step(c.dim("Run directly: ./kit (Unix) | kit (Windows)"));
-                }
+                step(c.green(" Created wrapper script: kit"));
+                step(c.dim("Run directly: ./kit (Unix) | kit (Windows)"));
             } catch (wrapperErr) {
                 step(c.dim("Run: npx kit"));
             }
