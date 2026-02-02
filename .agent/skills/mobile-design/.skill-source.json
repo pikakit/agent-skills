@@ -1,0 +1,12 @@
+{
+  "repo": "pikakit/agent-skills",
+  "ref": null,
+  "skillName": "mobile-design",
+  "checksum": "38b2775becf35af6946ebed22b68e72645b31ca34059c45d5c461b24855ce01a",
+  "installedAt": "2026-02-02T08:22:20.186Z",
+  "method": "symlink",
+  "scope": "project",
+  "agents": [
+    "antigravity"
+  ]
+}

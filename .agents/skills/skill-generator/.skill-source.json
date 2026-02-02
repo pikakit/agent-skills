@@ -1,0 +1,12 @@
+{
+  "repo": "pikakit/agent-skills",
+  "ref": null,
+  "skillName": "skill-generator",
+  "checksum": "26d9d112160f09c1f7aae8c668f917b6e6da6ea1d0b49e865e18c6b4becc2c14",
+  "installedAt": "2026-02-02T08:22:20.946Z",
+  "method": "symlink",
+  "scope": "project",
+  "agents": [
+    "antigravity"
+  ]
+}

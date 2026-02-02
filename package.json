@@ -1,6 +1,6 @@
 {
   "name": "pikakit-agent-skills",
-  "version": "3.7.2",
+  "version": "3.7.3",
   "description": "PikaKit Agent Skills - 50 FAANG-grade skills, 25 workflows, 25 agents for AI-powered development",
   "repository": {
     "type": "git",
@@ -51,7 +51,8 @@
     "workflow:validate": "node .agent/scripts-js/workflow-validator.js",
     "workflow:list": "node .agent/scripts-js/workflow-engine.js --list",
     "workflow:run": "node .agent/scripts-js/workflow-engine.js",
-    "agent": "agent"
+    "agent": "agent",
+    "kit": "kit"
   },
   "keywords": [
     "ai",
@@ -65,9 +66,10 @@
   "license": "UNLICENSED",
   "devDependencies": {
     "@vitest/coverage-v8": "^4.0.18",
-    "pikakit-cli": "file:packages/agent",
+    "add-skill-kit": "^3.2.10",
     "eslint": "^9.0.0",
     "gray-matter": "^4.0.3",
+    "pikakit-cli": "file:packages/agent",
     "prettier": "^3.0.0",
     "vitest": "^4.0.18"
   },

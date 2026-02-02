@@ -1,0 +1,12 @@
+{
+  "repo": "pikakit/agent-skills",
+  "ref": null,
+  "skillName": "problem-checker",
+  "checksum": "4873bcb3781c3b8017ec9761eb3879ef27df6207491f94f776b78746544a1c60",
+  "installedAt": "2026-02-02T08:22:20.826Z",
+  "method": "symlink",
+  "scope": "project",
+  "agents": [
+    "antigravity"
+  ]
+}

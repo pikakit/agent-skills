@@ -1,0 +1,195 @@
+"""
+Improvements YAML Schema for SelfEvolution v4.0
+
+Stores good patterns, optimizations, and effective solutions.
+Purpose: Reinforce and replicate successful coding practices.
+"""
+
+# Example improvements.yaml structure
+
+version: 1
+scope: project
+event_count: 2
+last_improved: null
+
+improvements:
+  - id: IMPROVE-001
+    version: 1
+    scope: input-handling
+    
+    # Core improvement info
+    improvement: Centralized input controller with global key bindings
+    benefit: Consistent UX across all menus, simpler state management, eliminates ESC key bugs
+    context: After fixing multiple ESC handling bugs, centralized all keyboard input
+    
+    # Pattern to apply
+    pattern: |
+      // Centralized Input Controller
+      const inputController = {
+        globalKeys: {
+          ESC: () => handleGlobalESC(),
+          'CTRL+C': () => handleGlobalExit()
+        },
+        
+        registerMenu: (menu) => {
+          menu.on('key', (key) => {
+            if (inputController.globalKeys[key]) {
+              inputController.globalKeys[key]()
+            }
+          })
+        }
+      }
+      
+      // Usage in menu
+      const menu = createMenu()
+      inputController.registerMenu(menu)
+    
+    # When to apply
+    when_to_use: |
+      - When creating new menu components
+      - When handling any keyboard input
+      - When fixing navigation issues
+    
+    # Metrics this improves
+    improves_metrics:
+      - user_experience
+      - code_maintainability
+      - bug_reduction
+    
+    # Categorization
+    category: architecture
+    tags:
+      - input-handling
+      - centralization
+      - design-pattern
+      - state-management
+    
+    # File scope
+    applies_to_files:
+      - "packages/cli/lib/ui/**/*.js"
+    
+    # Lifecycle tracking
+    created: 2026-01-27T12:10:00Z
+    updated: 2026-01-27T12:10:00Z
+    previous_versions: []
+    changelog:
+      - version: 1
+        date: 2026-01-27T12:10:00Z
+        change: "Initial: Centralized input controller pattern"
+    
+    # Metrics
+    appliedCount: 1  # Times this improvement was applied
+    lastApplied: 2026-01-27T12:10:00Z
+    effectiveness_score: null  # 0.0-1.0, calculated after applications
+    
+    # Status
+    status: active  # active | deprecated | superseded
+    superseded_by: null
+    deprecated_at: null
+    deprecated_reason: null
+    
+    # Relationships
+    related_mistakes:
+      - MISTAKE-001  # Mistakes this improvement solves
+      - MISTAKE-004
+    replaces_pattern: null  # Old pattern this replaces
+
+  - id: IMPROVE-002
+    version: 1
+    scope: input-validation
+    improvement: Guard clauses for user input validation
+    benefit: Early return on invalid input, cleaner code flow, better error messages
+    pattern: |
+      // Guard Clause Pattern
+      async function handleUserInput(input) {
+        // Guard: Check cancellation first
+        if (p.isCancel(input)) {
+          p.cancel('Operation cancelled')
+          return
+        }
+        
+        // Guard: Validate input
+        if (!isValid(input)) {
+          showError('Invalid input')
+          return
+        }
+        
+        // Main logic with valid input
+        processInput(input)
+      }
+    when_to_use: |
+      - At start of any function handling user input
+      - Before processing async operations
+      - When validation has multiple criteria
+    category: code-quality
+    tags:
+      - validation
+      - guard-clause
+      - error-handling
+    created: 2026-01-27T12:12:00Z
+    updated: 2026-01-27T12:12:00Z
+    previous_versions: []
+    appliedCount: 2
+    status: active
+    related_mistakes:
+      - MISTAKE-003
+
+  - id: IMPROVE-003
+    version: 1
+    scope: menu-navigation
+    improvement: While-loop menu pattern instead of recursion
+    benefit: Prevents stack overflow, cleaner state management, easier to reason about
+    pattern: |
+      // While-Loop Menu Pattern
+      async function runMenu() {
+        showIntro('Menu Title')
+        
+        while (true) {
+          const action = await showActionMenu({...})
+          
+          // Handle ESC/cancel
+          if (p.isCancel(action)) {
+            return  // Exit to parent
+          }
+          
+          // Execute action
+          switch (action) {
+            case 'option1':
+              await handleOption1()
+              break  // Loop continues, menu redisplays
+            case 'exit':
+              return  // Exit menu
+          }
+          // Loop continues automatically
+        }
+      }
+    when_to_use: |
+      - All menu navigation
+      - Any repeated user interaction
+      - Replace recursive menu calls
+    category: architecture
+    tags:
+      - menu
+      - loop
+      - navigation
+      - anti-recursion
+    created: 2026-01-27T12:15:00Z
+    updated: 2026-01-27T12:15:00Z
+    previous_versions: []
+    appliedCount: 0
+    status: active
+    related_mistakes: []
+
+# Metadata for entire collection
+metadata:
+  total_improvements: 3
+  active_improvements: 3
+  deprecated_improvements: 0
+  total_events: 3
+  avg_effectiveness: null
+  most_common_category: architecture
+  most_common_tags:
+    - input-handling
+    - menu
+    - validation
+  related_to_mistakes: 3

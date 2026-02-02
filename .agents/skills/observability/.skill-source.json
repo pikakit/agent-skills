@@ -1,0 +1,12 @@
+{
+  "repo": "pikakit/agent-skills",
+  "ref": null,
+  "skillName": "observability",
+  "checksum": "4b17d9c3e241576a06ce9d7d78f716402959aa575a74ea1d1e6ac998cefb2e04",
+  "installedAt": "2026-02-02T08:22:19.229Z",
+  "method": "symlink",
+  "scope": "project",
+  "agents": [
+    "antigravity"
+  ]
+}

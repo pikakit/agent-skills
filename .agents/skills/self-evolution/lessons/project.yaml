@@ -1,0 +1,63 @@
+version: 1
+lessons:
+- id: LEARN-003
+  pattern: rebranding
+  message: 'When rebranding: NEVER create new simplified file. COPY original first,
+    then edit branding only.'
+  severity: ERROR
+  category: file-safety
+  source: manual
+  hitCount: 0
+  lastHit: null
+  autoEscalated: false
+  addedAt: '2026-01-25T05:37:29.714Z'
+- id: LEARN-004
+  pattern: import.*from.*["'](\.\/|\.\.\/)
+  message: 'Before import: verify function exists in target module. Common errors:
+    getLearnedPatterns (use db.lessons), saveKnowledge (in recall.js not common.js)'
+  severity: ERROR
+  category: code-quality
+  source: auto-conversation
+  hitCount: 63
+  lastHit: '2026-01-27T02:31:43.692Z'
+  autoEscalated: false
+  addedAt: '2026-01-27T08:47:00.000Z'
+  excludePaths:
+  - '*.test.js'
+  - '*.spec.js'
+- id: LEARN-005
+  pattern: customSelect
+  message: NEVER use customSelect - conflicts with Clack ESC handling. Always use
+    p.select() + p.isCancel() for consistent navigation
+  severity: ERROR
+  category: code-quality
+  source: auto-conversation
+  hitCount: 2
+  lastHit: '2026-01-27T02:31:43.691Z'
+  autoEscalated: false
+  addedAt: '2026-01-27T08:47:00.000Z'
+- id: LEARN-006
+  pattern: function\s+\w+Menu.*\{[\s\S]*\1\(
+  message: Avoid recursive menu calls - causes state issues and bugs. Use while(true)
+    loop for menu navigation instead
+  severity: WARNING
+  category: architecture
+  source: auto-conversation
+  hitCount: 0
+  lastHit: null
+  autoEscalated: false
+  addedAt: '2026-01-27T08:47:00.000Z'
+- id: LEARN-007
+  pattern: p\.select.*===\s*(null|undefined)
+  message: After p.select(), use p.isCancel() not null/undefined check. Null check
+    does NOT detect ESC key properly
+  severity: ERROR
+  category: code-quality
+  source: auto-conversation
+  hitCount: 0
+  lastHit: null
+  autoEscalated: false
+  addedAt: '2026-01-27T08:47:00.000Z'
+scope: project
+migrated_from: global
+migrated_at: '2026-01-27T11:44:00.471195'

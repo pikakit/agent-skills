@@ -1,0 +1,12 @@
+{
+  "repo": "pikakit/agent-skills",
+  "ref": null,
+  "skillName": "typescript-expert",
+  "checksum": "3b59206d44b94daa19c5ab57eec92536857dd97e43e1ee9a9e4fc3fb37ef72a3",
+  "installedAt": "2026-02-02T08:22:19.382Z",
+  "method": "symlink",
+  "scope": "project",
+  "agents": [
+    "antigravity"
+  ]
+}

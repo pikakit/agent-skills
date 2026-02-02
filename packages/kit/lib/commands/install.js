@@ -764,7 +764,7 @@ export async function run(spec) {
     // Install CLI package
     stepLine();
     const cliSpinner = spinner();
-    const cliPackage = "add-skill-kit";
+    const cliPackage = "pikakit";
 
     if (isGlobal) {
         cliSpinner.start(`Installing kit CLI globally (${cliPackage})`);
@@ -805,8 +805,8 @@ export async function run(spec) {
                 const projectRoot = process.cwd();
 
                 // Always create kit wrappers
-                const kitCmd = `@echo off\nnode "%~dp0node_modules\\add-skill-kit\\bin\\kit.js" %*`;
-                const kitSh = `#!/bin/sh\nnode "$(dirname "$0")/node_modules/add-skill-kit/bin/kit.js" "$@"`;
+                const kitCmd = `@echo off\nnode "%~dp0node_modules\\pikakit\\bin\\kit.js" %*`;
+                const kitSh = `#!/bin/sh\nnode "$(dirname "$0")/node_modules/pikakit/bin/kit.js" "$@"`;
                 fs.writeFileSync(path.join(projectRoot, "kit.cmd"), kitCmd);
                 fs.writeFileSync(path.join(projectRoot, "kit"), kitSh, { mode: 0o755 });
 

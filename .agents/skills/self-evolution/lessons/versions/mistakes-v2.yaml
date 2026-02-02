@@ -1,0 +1,164 @@
+version: 2
+scope: project
+event_count: 5
+last_improved: '2026-01-27T12:30:27.024447'
+mistakes:
+- id: MISTAKE-001
+  version: 2
+  scope: general
+  problem: 'Anti-pattern or error: rebranding'
+  lesson: 'When rebranding: NEVER create new simplified file. COPY original first,
+    then edit branding only.'
+  severity: error
+  impact: Code quality degradation
+  category: file-safety
+  tags: []
+  applies_to_files: []
+  created: '2026-01-25T05:37:29.714Z'
+  updated: '2026-01-27T12:30:27.024275'
+  previous_versions:
+  - 1
+  changelog:
+  - version: 1
+    date: '2026-01-27T12:23:35.120849'
+    change: Migrated from v3.0 project.yaml
+  - version: 2
+    date: '2026-01-27T12:30:27.024288'
+    change: Refined during self-improve cycle (hits=0, applied=0)
+  hitCount: 0
+  appliedCount: 0
+  lastHit: null
+  lastApplied: null
+  status: active
+  superseded_by: null
+  deprecated_at: null
+  deprecated_reason: null
+  related_improvements: []
+- id: MISTAKE-002
+  version: 2
+  scope: general
+  problem: 'Anti-pattern or error: import.*from.*["''](\.\/|\.\.\/)'
+  lesson: 'Before import: verify function exists in target module. Common errors:
+    getLearnedPatterns (use db.lessons), saveKnowledge (in recall.js not common.js)'
+  severity: error
+  impact: Code quality degradation
+  category: code-quality
+  tags: []
+  applies_to_files: []
+  created: '2026-01-27T08:47:00.000Z'
+  updated: '2026-01-27T12:30:27.024318'
+  previous_versions:
+  - 1
+  changelog:
+  - version: 1
+    date: '2026-01-27T12:23:35.120899'
+    change: Migrated from v3.0 project.yaml
+  - version: 2
+    date: '2026-01-27T12:30:27.024320'
+    change: Refined during self-improve cycle (hits=63, applied=0)
+  hitCount: 63
+  appliedCount: 0
+  lastHit: '2026-01-27T02:31:43.692Z'
+  lastApplied: null
+  status: active
+  superseded_by: null
+  deprecated_at: null
+  deprecated_reason: null
+  related_improvements: []
+- id: MISTAKE-003
+  version: 2
+  scope: general
+  problem: 'Anti-pattern or error: customSelect'
+  lesson: NEVER use customSelect - conflicts with Clack ESC handling. Always use p.select()
+    + p.isCancel() for consistent navigation
+  severity: error
+  impact: Code quality degradation
+  category: code-quality
+  tags: []
+  applies_to_files: []
+  created: '2026-01-27T08:47:00.000Z'
+  updated: '2026-01-27T12:30:27.024354'
+  previous_versions:
+  - 1
+  changelog:
+  - version: 1
+    date: '2026-01-27T12:23:35.120954'
+    change: Migrated from v3.0 project.yaml
+  - version: 2
+    date: '2026-01-27T12:30:27.024359'
+    change: Refined during self-improve cycle (hits=2, applied=0)
+  hitCount: 2
+  appliedCount: 0
+  lastHit: '2026-01-27T02:31:43.691Z'
+  lastApplied: null
+  status: active
+  superseded_by: null
+  deprecated_at: null
+  deprecated_reason: null
+  related_improvements: []
+- id: MISTAKE-004
+  version: 2
+  scope: general
+  problem: 'Anti-pattern or error: function\s+\w+Menu.*\{[\s\S]*\1\('
+  lesson: Avoid recursive menu calls - causes state issues and bugs. Use while(true)
+    loop for menu navigation instead
+  severity: warning
+  impact: Code quality degradation
+  category: architecture
+  tags: []
+  applies_to_files: []
+  created: '2026-01-27T08:47:00.000Z'
+  updated: '2026-01-27T12:30:27.024401'
+  previous_versions:
+  - 1
+  changelog:
+  - version: 1
+    date: '2026-01-27T12:23:35.120999'
+    change: Migrated from v3.0 project.yaml
+  - version: 2
+    date: '2026-01-27T12:30:27.024405'
+    change: Refined during self-improve cycle (hits=0, applied=0)
+  hitCount: 0
+  appliedCount: 0
+  lastHit: null
+  lastApplied: null
+  status: active
+  superseded_by: null
+  deprecated_at: null
+  deprecated_reason: null
+  related_improvements: []
+- id: MISTAKE-005
+  version: 2
+  scope: general
+  problem: 'Anti-pattern or error: p\.select.*===\s*(null|undefined)'
+  lesson: After p.select(), use p.isCancel() not null/undefined check. Null check
+    does NOT detect ESC key properly
+  severity: error
+  impact: Code quality degradation
+  category: code-quality
+  tags: []
+  applies_to_files: []
+  created: '2026-01-27T08:47:00.000Z'
+  updated: '2026-01-27T12:30:27.024429'
+  previous_versions:
+  - 1
+  changelog:
+  - version: 1
+    date: '2026-01-27T12:23:35.121027'
+    change: Migrated from v3.0 project.yaml
+  - version: 2
+    date: '2026-01-27T12:30:27.024431'
+    change: Refined during self-improve cycle (hits=0, applied=0)
+  hitCount: 0
+  appliedCount: 0
+  lastHit: null
+  lastApplied: null
+  status: active
+  superseded_by: null
+  deprecated_at: null
+  deprecated_reason: null
+  related_improvements: []
+metadata:
+  total_mistakes: 5
+  active_mistakes: 5
+  deprecated_mistakes: 0
