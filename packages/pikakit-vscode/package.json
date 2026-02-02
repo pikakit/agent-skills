@@ -1,0 +1,84 @@
+{
+    "name": "pikakit-skill-generator",
+    "displayName": "PikaKit Skill Generator",
+    "description": "Real-time auto-learning from IDE diagnostics to generate skills automatically",
+    "version": "1.0.0",
+    "publisher": "pikakit",
+    "engines": {
+        "vscode": "^1.85.0"
+    },
+    "categories": [
+        "Other",
+        "Machine Learning"
+    ],
+    "keywords": [
+        "ai",
+        "learning",
+        "skills",
+        "diagnostics",
+        "auto-fix"
+    ],
+    "activationEvents": [
+        "onStartupFinished"
+    ],
+    "main": "./out/extension.js",
+    "contributes": {
+        "commands": [
+            {
+                "command": "pikakit.startLearning",
+                "title": "PikaKit: Start Learning"
+            },
+            {
+                "command": "pikakit.stopLearning",
+                "title": "PikaKit: Stop Learning"
+            },
+            {
+                "command": "pikakit.generateSkill",
+                "title": "PikaKit: Generate Skill from Patterns"
+            },
+            {
+                "command": "pikakit.viewLessons",
+                "title": "PikaKit: View Learned Lessons"
+            },
+            {
+                "command": "pikakit.clearLessons",
+                "title": "PikaKit: Clear All Lessons"
+            }
+        ],
+        "configuration": {
+            "title": "PikaKit Skill Generator",
+            "properties": {
+                "pikakit.autoStart": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Automatically start learning on VS Code startup"
+                },
+                "pikakit.threshold": {
+                    "type": "number",
+                    "default": 3,
+                    "description": "Number of similar errors before generating a skill"
+                },
+                "pikakit.lessonsPath": {
+                    "type": "string",
+                    "default": ".agent/lessons.json",
+                    "description": "Path to lessons storage file"
+                }
+            }
+        }
+    },
+    "scripts": {
+        "vscode:prepublish": "npm run compile",
+        "compile": "tsc -p ./",
+        "watch": "tsc -watch -p ./",
+        "lint": "eslint src --ext ts",
+        "test": "node ./out/test/runTest.js"
+    },
+    "devDependencies": {
+        "@types/node": "^20.10.0",
+        "@types/vscode": "^1.85.0",
+        "@typescript-eslint/eslint-plugin": "^6.13.0",
+        "@typescript-eslint/parser": "^6.13.0",
+        "eslint": "^8.54.0",
+        "typescript": "^5.3.0"
+    }
+}
