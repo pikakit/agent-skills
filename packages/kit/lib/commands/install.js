@@ -615,6 +615,58 @@ export async function run(spec) {
         ss.stop("Installed .shared/ (ui-ux-pro-max data)");
     }
 
+    // Install VS Code Extension (PikaKit Skill Generator) if available
+    const vsixDir = path.join(tmp, "packages", "pikakit-vscode");
+    let extensionInstalled = false;
+
+    if (fs.existsSync(vsixDir)) {
+        stepLine();
+        const es = spinner();
+        es.start("Installing VS Code Extension");
+
+        try {
+            // Check if VSIX already built
+            let vsixPath = null;
+            const files = fs.readdirSync(vsixDir);
+            const vsixFile = files.find(f => f.endsWith(".vsix"));
+
+            if (vsixFile) {
+                vsixPath = path.join(vsixDir, vsixFile);
+            } else {
+                // Build VSIX if needed
+                es.message("Building extension...");
+                await execAsync("npm install", { cwd: vsixDir, timeout: 60000 });
+                await execAsync("npm run compile", { cwd: vsixDir, timeout: 30000 });
+                await execAsync("npx vsce package --allow-missing-repository -o pikakit.vsix", { cwd: vsixDir, timeout: 30000 });
+                vsixPath = path.join(vsixDir, "pikakit.vsix");
+            }
+
+            if (vsixPath && fs.existsSync(vsixPath)) {
+                // Try installing to VS Code
+                try {
+                    await execAsync(`code --install-extension "${vsixPath}"`, { timeout: 30000 });
+                    extensionInstalled = true;
+                    es.stop("Installed PikaKit VS Code Extension");
+                } catch {
+                    // Try Antigravity extensions folder
+                    const antigravityExt = path.join(os.homedir(), ".antigravity", "extensions");
+                    if (fs.existsSync(antigravityExt)) {
+                        const extDest = path.join(antigravityExt, "pikakit.pikakit-skill-generator-1.0.0");
+                        fs.mkdirSync(extDest, { recursive: true });
+                        fs.cpSync(vsixDir, extDest, { recursive: true });
+                        extensionInstalled = true;
+                        es.stop("Installed PikaKit Extension to Antigravity");
+                    } else {
+                        es.stop(c.yellow("VS Code extension not installed (no IDE detected)"));
+                    }
+                }
+            }
+        } catch (err) {
+            es.stop(c.yellow("VS Code extension skipped"));
+            step(c.dim("Install manually: code --install-extension pikakit.vsix"));
+        }
+    }
+
     // Installation complete step
     stepLine();
     step("Installation complete");
@@ -664,6 +716,11 @@ export async function run(spec) {
     // Shared resources summary
     if (sharedInstalled) {
         successContent += `${c.cyan("✓")} ${c.dim(".agent/.shared/ (ui-ux-pro-max data)")}\n`;
+    }
+
+    // VS Code Extension summary
+    if (extensionInstalled) {
+        successContent += `${c.cyan("✓")} ${c.dim("PikaKit VS Code Extension")}\n`;
     }
 
     // Build title
