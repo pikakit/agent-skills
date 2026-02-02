@@ -15,6 +15,32 @@ import { LessonStore } from './lessonStore';
 import { SkillGenerator } from './skillGenerator';
 import { StatusBarManager } from './statusBar';
 
+// Global output channel for logging
+let outputChannel: vscode.OutputChannel;
+
+/**
+ * Log message to output channel
+ */
+function log(message: string, level: 'info' | 'warn' | 'error' = 'info') {
+    const timestamp = new Date().toISOString().slice(11, 19);
+    const prefix = level === 'error' ? '❌' : level === 'warn' ? '⚠️' : 'ℹ️';
+    outputChannel?.appendLine(`[${timestamp}] ${prefix} ${message}`);
+    if (level === 'error') {
+        console.error(`[PikaKit] ${message}`);
+    }
+}
+
+/**
+ * Wrap async function with error handling
+ */
+function withErrorHandling<T>(fn: () => Promise<T>, errorMsg: string): Promise<T | undefined> {
+    return fn().catch(err => {
+        log(`${errorMsg}: ${err.message}`, 'error');
+        vscode.window.showErrorMessage(`PikaKit: ${errorMsg}`);
+        return undefined;
+    });
+}
+
 // Global instances
 let diagnosticListener: DiagnosticListener | null = null;
 let patternAnalyzer: PatternAnalyzer | null = null;
@@ -27,6 +53,11 @@ let isLearning = false;
  * Extension activation
  */
 export function activate(context: vscode.ExtensionContext) {
+    // Initialize output channel first
+    outputChannel = vscode.window.createOutputChannel('PikaKit');
+    context.subscriptions.push(outputChannel);
+
+    log('PikaKit Skill Generator is now active!');
     console.log('PikaKit Skill Generator is now active!');
 
     // Initialize components
