@@ -15,7 +15,7 @@
 ### Local Development
 
 ```bash
-cd packages/pikakit-vscode
+cd packages/pikakit-extension
 npm install
 npm run compile
 ```

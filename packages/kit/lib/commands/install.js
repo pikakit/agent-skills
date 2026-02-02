@@ -616,7 +616,7 @@ export async function run(spec) {
     }
 
     // Install VS Code Extension (PikaKit Skill Generator) if available
-    const vsixDir = path.join(tmp, "packages", "pikakit-vscode");
+    const vsixDir = path.join(tmp, "packages", "pikakit-extension");
     let extensionInstalled = false;
 
     if (fs.existsSync(vsixDir)) {
