@@ -35,6 +35,8 @@ code --install-extension pikakit-skill-generator-1.0.0.vsix
 
 ## Commands
 
+Nhấn `Ctrl+Shift+P` (Windows/Linux) hoặc `Cmd+Shift+P` (macOS) để mở Command Palette, sau đó gõ "PikaKit" để xem các lệnh:
+
 | Command | Description |
 |---------|-------------|
 | `PikaKit: Start Learning` | Bắt đầu listen diagnostics |
