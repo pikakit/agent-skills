@@ -24,6 +24,9 @@ export class DiagnosticListener {
     private debounceTimer: NodeJS.Timeout | null = null;
     private notificationTimer: NodeJS.Timeout | null = null;
     private pendingLessons: { id: string; pattern: string }[] = [];
+    private skillGenerationTimer: NodeJS.Timeout | null = null;
+    private pendingSkills: { filePath: string; category: string; skillName: string; count: number }[] = [];
+    private promptedCategories: Set<string> = new Set(); // Prevent duplicate prompts
 
     constructor(
         patternAnalyzer: PatternAnalyzer,
@@ -219,30 +222,78 @@ export class DiagnosticListener {
      * Try to generate skill when threshold reached
      */
     private async tryGenerateSkill(filePath: string, category: string, pattern: string): Promise<void> {
+        // Prevent duplicate prompts for same category
+        if (this.promptedCategories.has(category)) {
+            return;
+        }
+
         const lessonStore = this.getLessonStore(filePath);
-        const skillGenerator = this.getSkillGenerator(filePath);
         const lessons = lessonStore.getLessonsByCategory(category);
 
         if (lessons.length >= 3) {
             const skillName = this.patternAnalyzer.suggestSkillName(category, lessons);
 
+            // Mark category as prompted
+            this.promptedCategories.add(category);
+
+            // Add to pending skills
+            this.pendingSkills.push({
+                filePath,
+                category,
+                skillName,
+                count: lessons.length
+            });
+
+            // Schedule batched prompt
+            this.scheduleSkillGenerationPrompt();
+        }
+    }
+
+    /**
+     * Schedule a single prompt for all pending skills
+     */
+    private scheduleSkillGenerationPrompt(): void {
+        if (this.skillGenerationTimer) {
+            clearTimeout(this.skillGenerationTimer);
+        }
+
+        // Wait 3 seconds to collect all skill candidates
+        this.skillGenerationTimer = setTimeout(async () => {
+            if (this.pendingSkills.length === 0) return;
+
+            const skills = [...this.pendingSkills];
+            this.pendingSkills = [];
+            this.skillGenerationTimer = null;
+
+            // Build consolidated message
+            const skillList = skills.map(s => `${s.category} (${s.count})`).join(', ');
+            const skillNames = skills.map(s => s.skillName).join('", "');
+
             const result = await vscode.window.showInformationMessage(
-                `🎯 Pattern detected: ${lessons.length} similar ${category} errors. Generate skill "${skillName}"?`,
-                'Generate',
+                `🎯 Patterns detected: ${skillList}. Generate skills "${skillNames}"?`,
+                'Generate All',
                 'Later'
             );
 
-            if (result === 'Generate') {
-                const success = await skillGenerator.generateSkill(skillName, lessons);
-                if (success) {
-                    vscode.window.showInformationMessage(`✅ Generated skill: ${skillName}`);
-                    // Mark lessons as used
-                    for (const lesson of lessons) {
-                        lessonStore.markAsUsed(lesson.id);
+            if (result === 'Generate All') {
+                for (const skill of skills) {
+                    const lessonStore = this.getLessonStore(skill.filePath);
+                    const skillGenerator = this.getSkillGenerator(skill.filePath);
+                    const lessons = lessonStore.getLessonsByCategory(skill.category);
+
+                    const success = await skillGenerator.generateSkill(skill.skillName, lessons);
+                    if (success) {
+                        for (const lesson of lessons) {
+                            lessonStore.markAsUsed(lesson.id);
+                        }
                     }
                 }
+                vscode.window.showInformationMessage(`✅ Generated ${skills.length} skills`);
             }
-        }
+
+            // Clear prompted categories after prompt is handled
+            this.promptedCategories.clear();
+        }, 3000);
     }
 
     /**
