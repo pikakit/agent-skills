@@ -9,12 +9,6 @@ chain: build-web-app
 
 $ARGUMENTS
 
-<!-- 📊 METRICS: Initialize autopilot metrics tracking -->
-// turbo
-```bash
-node .agent/skills/skill-generator/scripts/autopilot-metrics.cjs start "autopilot-run"
-```
-
 ---
 
 ## Purpose
@@ -293,13 +287,7 @@ Before completing autopilot, verify:
 
 > ðŸ”´ **NO OTHER AGENTS during planning!**
 
-**⛔ CHECKPOINT: User approval required before Phase 2**
-
-<!-- 📊 METRICS: Record planning phase completion -->
-// turbo
-```bash
-node .agent/skills/skill-generator/scripts/autopilot-metrics.cjs phase "planning" 60000 success
-```
+**â›” CHECKPOINT: User approval required before Phase 2**
 
 ---
 
@@ -383,14 +371,6 @@ graph TD
 ```bash
 python .agent/skills/security-scanner/scripts/security_scan.py .
 python .agent/skills/code-quality/scripts/lint_runner.py .
-```
-
-<!-- 📊 METRICS: Record execution & verification phases, complete run -->
-// turbo
-```bash
-node .agent/skills/skill-generator/scripts/autopilot-metrics.cjs phase "execution" 120000 success
-node .agent/skills/skill-generator/scripts/autopilot-metrics.cjs phase "verification" 30000 success
-node .agent/skills/skill-generator/scripts/autopilot-metrics.cjs complete
 ```
 
 ---

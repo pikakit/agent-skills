@@ -1,0 +1,97 @@
+{
+  "task_id": "integration-test",
+  "timestamp": "2026-02-02T12:04:03.221Z",
+  "duration_ms": 5042,
+  "metrics": {
+    "speed": {
+      "time_to_completion": 5,
+      "phase_transition_time": 0,
+      "total_phases": 3
+    },
+    "intervention": {
+      "human_interventions": 0,
+      "intervention_reasons": []
+    },
+    "autonomy": {
+      "autonomous_completion_rate": 100,
+      "auto_fix_coverage": 100
+    },
+    "quality": {
+      "first_time_success_rate": 100,
+      "error_count": 0,
+      "retry_count": 0,
+      "ide_problems_at_completion": 0
+    }
+  },
+  "comparison": null,
+  "events": [
+    {
+      "type": "autopilot_start",
+      "data": {
+        "task_id": "integration-test",
+        "timestamp": "2026-02-02T12:03:58.178Z"
+      },
+      "timestamp": "2026-02-02T12:03:58.179Z"
+    },
+    {
+      "type": "phase_complete",
+      "data": {
+        "name": "planning",
+        "duration_ms": 60000,
+        "status": "success",
+        "timestamp": "2026-02-02T12:03:59.583Z"
+      },
+      "timestamp": "2026-02-02T12:03:59.584Z"
+    },
+    {
+      "type": "phase_complete",
+      "data": {
+        "name": "execution",
+        "duration_ms": 120000,
+        "status": "success",
+        "timestamp": "2026-02-02T12:04:00.839Z"
+      },
+      "timestamp": "2026-02-02T12:04:00.840Z"
+    },
+    {
+      "type": "phase_complete",
+      "data": {
+        "name": "verification",
+        "duration_ms": 30000,
+        "status": "success",
+        "timestamp": "2026-02-02T12:04:02.087Z"
+      },
+      "timestamp": "2026-02-02T12:04:02.088Z"
+    },
+    {
+      "type": "autopilot_complete",
+      "data": {
+        "total_duration_ms": 5042,
+        "timestamp": "2026-02-02T12:04:03.220Z"
+      },
+      "timestamp": "2026-02-02T12:04:03.221Z"
+    }
+  ],
+  "phases": [
+    {
+      "name": "planning",
+      "duration_ms": 60000,
+      "status": "success",
+      "timestamp": "2026-02-02T12:03:59.583Z"
+    },
+    {
+      "name": "execution",
+      "duration_ms": 120000,
+      "status": "success",
+      "timestamp": "2026-02-02T12:04:00.839Z"
+    },
+    {
+      "name": "verification",
+      "duration_ms": 30000,
+      "status": "success",
+      "timestamp": "2026-02-02T12:04:02.087Z"
+    }
+  ],
+  "errors": [],
+  "interventions": []
+}

@@ -20,13 +20,41 @@ import path from 'path';
 import http from 'http';
 import { fileURLToPath } from 'url';
 
-// Import v6.0 modules
-import { getDashboardData, getSummary, getMetricHistory } from '../lib/metrics-collector.js';
-import { getFullDashboardData, getKeyTrends, generateAlerts, getGaugeWidgets, getCounterWidgets } from '../lib/dashboard-data.js';
-import { getReinforcementStats } from '../lib/reinforcement.js';
-import { getABTestStats, getActiveTests } from '../lib/ab-testing.js';
-import { getSkillStats, loadAutoSkills } from '../lib/precision-skill-generator.js';
-import { loadCausalPatterns } from '../lib/causality-engine.js';
+// Import v6.0 modules (with fallback for missing modules)
+let getDashboardData, getSummary, getMetricHistory;
+let getFullDashboardData, getKeyTrends, generateAlerts, getGaugeWidgets, getCounterWidgets;
+let getReinforcementStats, getABTestStats, getActiveTests;
+let getSkillStats, loadAutoSkills, loadCausalPatterns;
+
+try {
+    ({ getDashboardData, getSummary, getMetricHistory } = await import('../lib/metrics-collector.js'));
+} catch { getDashboardData = () => ({}); getSummary = () => ({}); getMetricHistory = () => []; }
+
+try {
+    ({ getFullDashboardData, getKeyTrends, generateAlerts, getGaugeWidgets, getCounterWidgets } = await import('../lib/dashboard-data.js'));
+} catch { getFullDashboardData = () => ({}); getKeyTrends = () => ({}); generateAlerts = () => []; getGaugeWidgets = () => []; getCounterWidgets = () => []; }
+
+try {
+    ({ getReinforcementStats } = await import('../lib/reinforcement.js'));
+} catch { getReinforcementStats = () => ({}); }
+
+try {
+    ({ getABTestStats, getActiveTests } = await import('../lib/ab-testing.js'));
+} catch { getABTestStats = () => ({}); getActiveTests = () => []; }
+
+try {
+    ({ getSkillStats, loadAutoSkills } = await import('../lib/precision-skill-generator.js'));
+} catch { getSkillStats = () => ({}); loadAutoSkills = () => []; }
+
+try {
+    ({ loadCausalPatterns } = await import('../lib/causality-engine.js'));
+} catch { loadCausalPatterns = () => []; }
+
+// Import Autopilot Metrics Collector (CommonJS)
+import { createRequire } from 'module';
+const require = createRequire(import.meta.url);
+const { MetricsCollector } = require('../lib/metrics-collector.cjs');
+const autopilotMetrics = new MetricsCollector();
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -183,6 +211,94 @@ const api = {
         } catch (e) {
             return { error: e.message };
         }
+    },
+
+    // =========================================================================
+    // AUTOPILOT METRICS (new)
+    // =========================================================================
+
+    // List all autopilot runs
+    '/api/autopilot/runs': () => {
+        try {
+            const runs = autopilotMetrics.listRuns();
+            return {
+                total: runs.length,
+                runs: runs.slice(0, 20) // Latest 20
+            };
+        } catch (e) {
+            return { total: 0, runs: [], error: e.message };
+        }
+    },
+
+    // Get specific run by ID (query param: ?id=xxx)
+    '/api/autopilot/run': (query) => {
+        try {
+            const runId = query.get('id');
+            if (!runId) {
+                return { error: 'Missing id parameter' };
+            }
+            const run = autopilotMetrics.loadRun(runId);
+            if (!run) {
+                return { error: 'Run not found' };
+            }
+            return run;
+        } catch (e) {
+            return { error: e.message };
+        }
+    },
+
+    // Get latest run metrics
+    '/api/autopilot/latest': () => {
+        try {
+            const runs = autopilotMetrics.listRuns();
+            if (runs.length === 0) {
+                return { error: 'No runs yet' };
+            }
+            return autopilotMetrics.loadRun(runs[0].id);
+        } catch (e) {
+            return { error: e.message };
+        }
+    },
+
+    // Get autopilot summary stats
+    '/api/autopilot/summary': () => {
+        try {
+            const runs = autopilotMetrics.listRuns();
+            if (runs.length === 0) {
+                return {
+                    total_runs: 0,
+                    avg_duration: 0,
+                    avg_interventions: 0,
+                    autonomy_rate: 0
+                };
+            }
+
+            // Calculate averages
+            let totalDuration = 0;
+            let totalInterventions = 0;
+            let totalAutonomyRate = 0;
+            let validRuns = 0;
+
+            for (const runInfo of runs.slice(0, 10)) { // Last 10 runs
+                const run = autopilotMetrics.loadRun(runInfo.id);
+                if (run && run.metrics) {
+                    totalDuration += run.metrics.speed?.time_to_completion || 0;
+                    totalInterventions += run.metrics.intervention?.human_interventions || 0;
+                    totalAutonomyRate += run.metrics.autonomy?.autonomous_completion_rate || 0;
+                    validRuns++;
+                }
+            }
+
+            return {
+                total_runs: runs.length,
+                avg_duration: validRuns > 0 ? Math.round(totalDuration / validRuns) : 0,
+                avg_interventions: validRuns > 0 ? (totalInterventions / validRuns).toFixed(1) : 0,
+                autonomy_rate: validRuns > 0 ? Math.round(totalAutonomyRate / validRuns) : 0,
+                latest_run: runs[0]?.id || null
+            };
+        } catch (e) {
+            return { error: e.message };
+        }
     }
 };
 
@@ -286,7 +402,11 @@ function startServer(port = 3030) {
         console.log(`  GET /api/reinforcement  - Reinforcement loop`);
         console.log(`  GET /api/ab-testing     - A/B experiments`);
         console.log(`  GET /api/skills         - Auto-generated skills`);
-        console.log(`  GET /api/patterns       - Causal patterns\n`);
+        console.log(`  GET /api/patterns       - Causal patterns`);
+        console.log(`${c.gray}Autopilot Metrics:${c.reset}`);
+        console.log(`  GET /api/autopilot/runs    - All runs`);
+        console.log(`  GET /api/autopilot/latest  - Latest run`);
+        console.log(`  GET /api/autopilot/summary - Summary stats\n`);
         console.log(`${c.yellow}Press Ctrl+C to stop${c.reset}`);
     });
 
