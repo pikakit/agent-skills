@@ -22,6 +22,8 @@ export class DiagnosticListener {
     private statusBar: StatusBarManager;
     private processedErrors: Set<string> = new Set();
     private debounceTimer: NodeJS.Timeout | null = null;
+    private notificationTimer: NodeJS.Timeout | null = null;
+    private pendingLessons: { id: string; pattern: string }[] = [];
 
     constructor(
         patternAnalyzer: PatternAnalyzer,
@@ -79,6 +81,42 @@ export class DiagnosticListener {
         this.debounceTimer = setTimeout(() => {
             this.processDiagnostics(e.uris);
         }, 500); // 500ms debounce
+    }
+
+    /**
+     * Schedule a batched notification after collecting multiple lessons
+     */
+    private scheduleBatchNotification(): void {
+        // Clear existing timer if any
+        if (this.notificationTimer) {
+            clearTimeout(this.notificationTimer);
+        }
+
+        // Wait 2 seconds to collect all lessons, then show single notification
+        this.notificationTimer = setTimeout(() => {
+            if (this.pendingLessons.length === 0) return;
+
+            const count = this.pendingLessons.length;
+
+            if (count === 1) {
+                // Single lesson - show detailed message
+                const lesson = this.pendingLessons[0];
+                vscode.window.showInformationMessage(
+                    `📚 Auto-learned: [${lesson.id}] - ${lesson.pattern}...`
+                );
+            } else {
+                // Multiple lessons - show summary
+                const ids = this.pendingLessons.slice(0, 3).map(l => l.id).join(', ');
+                const more = count > 3 ? ` +${count - 3} more` : '';
+                vscode.window.showInformationMessage(
+                    `📚 Auto-learned ${count} patterns: [${ids}]${more}`
+                );
+            }
+
+            // Clear pending lessons
+            this.pendingLessons = [];
+            this.notificationTimer = null;
+        }, 2000); // 2 second batch window
     }
 
     /**
@@ -165,10 +203,9 @@ export class DiagnosticListener {
             lessonStore.addLesson(lesson);
             this.statusBar.updateCount(lessonStore.getAllLessons().length);
 
-            // Show notification
-            vscode.window.showInformationMessage(
-                `📚 Auto-learned: [${lesson.id}] - ${analysis.pattern.substring(0, 50)}...`
-            );
+            // Add to pending lessons for batched notification
+            this.pendingLessons.push({ id: lesson.id, pattern: analysis.pattern.substring(0, 30) });
+            this.scheduleBatchNotification();
         }
 
         // Mark as processed (clear after 10 seconds to allow re-learning if error persists)
