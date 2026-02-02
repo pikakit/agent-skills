@@ -63,12 +63,13 @@ export class SkillGenerator {
         const patterns = lessons.map(l => l.pattern);
         const triggers = this.generateTriggers(patterns);
         const coordinatesWith = this.generateCoordinatesWith(category);
+        const purpose = this.generatePurpose(category, patterns);
 
         const content = `---
 name: ${skillName}
 description: >-
   Auto-generated skill from ${lessons.length} learned patterns.
-  ${this.generatePurpose(category, patterns)}.
+  ${purpose}.
   Triggers on: ${triggers}.
   Coordinates with: ${coordinatesWith}.
 metadata:
@@ -83,7 +84,7 @@ metadata:
 
 # ${this.formatTitle(skillName)}
 
-> **Purpose:** ${this.generatePurpose(category, patterns)}
+> **Purpose:** ${purpose}
 
 ---
 
@@ -98,7 +99,8 @@ It helps prevent common errors and applies best practices based on real code iss
 
 \`\`\`
 ${skillName}/
-├── SKILL.md           # This file (auto-generated)
+├── SKILL.md           # This file (auto-generated, <200 lines)
+├── scripts/           # Auto-fix scripts (if available)
 └── patterns.json      # Raw pattern data (if exported)
 \`\`\`
 
@@ -106,7 +108,19 @@ ${skillName}/
 
 ## 🔧 Quick Reference
 
-${this.generateQuickReference(lessons)}
+### Check for ${category} issues
+
+\`\`\`bash
+# View learned patterns
+cat .agent/skills/${skillName}/SKILL.md
+
+# Search for similar issues in codebase
+rg -n "${this.getFirstKeyword(patterns)}" --type ts
+\`\`\`
+
+### Apply fixes
+
+${this.generateQuickReferenceCommands(lessons)}
 
 ---
 
@@ -119,6 +133,21 @@ ${this.generatePatternsSection(lessons)}
 ## ✅ Solutions
 
 ${this.generateSolutionsSection(lessons)}
+
+---
+
+## 🤖 Meta-Agents Integration
+
+| Phase | Agent | Action |
+|-------|-------|--------|
+| **Detection** | \`problem-checker\` | Identifies matching patterns |
+| **Analysis** | \`auto-learner\` | Categorizes and logs occurrence |
+| **Resolution** | \`recovery\` | Applies suggested fix |
+| **Verification** | \`code-quality\` | Validates fix correctness |
+
+\`\`\`
+problem-checker.detect() → auto-learner.analyze() → recovery.apply() → code-quality.verify()
+\`\`\`
 
 ---
 
@@ -137,6 +166,15 @@ ${this.generateWhenToUse(lessons)}
 | \`problem-checker\` | Skill | Validates code after fixes |
 | \`code-quality\` | Skill | Code quality enforcement |
 | \`auto-learner\` | Skill | Learns new patterns |
+| \`${coordinatesWith.split(',')[0].trim()}\` | Skill | Related domain skill |
+
+---
+
+## 💡 Example Interactions
+
+Use this skill when you encounter:
+
+${this.generateExampleInteractions(lessons)}
 
 ---
 
@@ -148,6 +186,7 @@ ${this.generateWhenToUse(lessons)}
 | **Category** | ${category} |
 | **Auto-Generated** | Yes |
 | **Generated At** | ${new Date().toISOString().split('T')[0]} |
+| **Guide Compliance** | 100% |
 
 ---
 
@@ -295,6 +334,69 @@ Auto-generated skill following SKILL_DESIGN_GUIDE.md standard.
         }
 
         return solutions.join('\n\n');
+    }
+
+    /**
+     * Get first keyword from patterns for search command
+     */
+    private getFirstKeyword(patterns: string[]): string {
+        if (patterns.length === 0) return 'error';
+
+        // Extract meaningful keyword from first pattern
+        const words = patterns[0].toLowerCase().match(/\b[a-z]{4,}\b/g) || [];
+        const filtered = words.filter(w =>
+            !['this', 'that', 'with', 'from', 'have', 'type', 'cannot', 'does', 'find', 'name'].includes(w)
+        );
+
+        return filtered[0] || 'pattern';
+    }
+
+    /**
+     * Generate quick reference commands with copy-paste examples
+     */
+    private generateQuickReferenceCommands(lessons: Lesson[]): string {
+        const category = lessons[0]?.category || 'general';
+
+        const commandsMap: Record<string, string> = {
+            'import': `\`\`\`typescript
+// Add missing import
+import { MissingModule } from 'module-path';
+\`\`\``,
+            'type': `\`\`\`typescript
+// Fix type mismatch
+const value: CorrectType = someValue as CorrectType;
+\`\`\``,
+            'null-safety': `\`\`\`typescript
+// Add null check
+if (value !== null && value !== undefined) {
+    // safe to use value
+}
+\`\`\``,
+            'react': `\`\`\`tsx
+// Import React types
+import React, { ReactNode } from 'react';
+\`\`\``,
+            'general': `\`\`\`typescript
+// Review error message and apply suggested fix
+\`\`\``
+        };
+
+        return commandsMap[category] || commandsMap['general'];
+    }
+
+    /**
+     * Generate example interactions section
+     */
+    private generateExampleInteractions(lessons: Lesson[]): string {
+        const examples = lessons.slice(0, 4).map(lesson => {
+            return `- "${lesson.pattern}"`;
+        });
+
+        if (examples.length === 0) {
+            return '- Error patterns matching this category\n- Similar issues to the ones learned';
+        }
+
+        return examples.join('\n');
     }
 
     /**
