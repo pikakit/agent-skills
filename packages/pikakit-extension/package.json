@@ -4,6 +4,7 @@
     "description": "Real-time auto-learning from IDE diagnostics to generate skills automatically",
     "version": "1.0.0",
     "publisher": "pikakit",
+    "icon": "icon.png",
     "engines": {
         "vscode": "^1.85.0"
     },

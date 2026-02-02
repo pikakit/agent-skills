@@ -17,21 +17,21 @@ import { StatusBarManager } from './statusBar';
 export class DiagnosticListener {
     private disposable: vscode.Disposable | null = null;
     private patternAnalyzer: PatternAnalyzer;
-    private lessonStore: LessonStore;
-    private skillGenerator: SkillGenerator;
+    private getLessonStore: (filePath: string) => LessonStore;
+    private getSkillGenerator: (filePath: string) => SkillGenerator;
     private statusBar: StatusBarManager;
     private processedErrors: Set<string> = new Set();
     private debounceTimer: NodeJS.Timeout | null = null;
 
     constructor(
         patternAnalyzer: PatternAnalyzer,
-        lessonStore: LessonStore,
-        skillGenerator: SkillGenerator,
+        getLessonStore: (filePath: string) => LessonStore,
+        getSkillGenerator: (filePath: string) => SkillGenerator,
         statusBar: StatusBarManager
     ) {
         this.patternAnalyzer = patternAnalyzer;
-        this.lessonStore = lessonStore;
-        this.skillGenerator = skillGenerator;
+        this.getLessonStore = getLessonStore;
+        this.getSkillGenerator = getSkillGenerator;
         this.statusBar = statusBar;
     }
 
@@ -110,13 +110,18 @@ export class DiagnosticListener {
             return; // Already processed
         }
 
+        // Get workspace-specific stores for this file
+        const filePath = uri.fsPath;
+        const lessonStore = this.getLessonStore(filePath);
+        const skillGenerator = this.getSkillGenerator(filePath);
+
         // Extract diagnostic info
         const info: DiagnosticInfo = {
             message: diagnostic.message,
             source: diagnostic.source || 'unknown',
             code: this.getErrorCode(diagnostic),
             severity: 'error',
-            file: uri.fsPath,
+            file: filePath,
             line: diagnostic.range.start.line + 1,
             column: diagnostic.range.start.character + 1
         };
@@ -129,24 +134,24 @@ export class DiagnosticListener {
         }
 
         // Check if similar lesson already exists
-        const existingLesson = this.lessonStore.findSimilar(analysis.pattern);
+        const existingLesson = lessonStore.findSimilar(analysis.pattern);
 
         if (existingLesson) {
             // Increment occurrence count
-            this.lessonStore.incrementOccurrence(existingLesson.id);
-            this.statusBar.updateCount(this.lessonStore.getAllLessons().length);
+            lessonStore.incrementOccurrence(existingLesson.id);
+            this.statusBar.updateCount(lessonStore.getAllLessons().length);
 
             // Check if threshold reached for skill generation
             const config = vscode.workspace.getConfiguration('pikakit');
             const threshold = config.get<number>('threshold', 3);
 
             if (existingLesson.occurrences + 1 >= threshold) {
-                await this.tryGenerateSkill(existingLesson.category, analysis.pattern);
+                await this.tryGenerateSkill(filePath, existingLesson.category, analysis.pattern);
             }
         } else {
             // Create new lesson
             const lesson: Lesson = {
-                id: this.generateLessonId(analysis.category),
+                id: this.generateLessonId(analysis.category, lessonStore),
                 category: analysis.category,
                 pattern: analysis.pattern,
                 context: analysis.context,
@@ -157,8 +162,8 @@ export class DiagnosticListener {
                 autoDetected: true
             };
 
-            this.lessonStore.addLesson(lesson);
-            this.statusBar.updateCount(this.lessonStore.getAllLessons().length);
+            lessonStore.addLesson(lesson);
+            this.statusBar.updateCount(lessonStore.getAllLessons().length);
 
             // Show notification
             vscode.window.showInformationMessage(
@@ -176,8 +181,10 @@ export class DiagnosticListener {
     /**
      * Try to generate skill when threshold reached
      */
-    private async tryGenerateSkill(category: string, pattern: string): Promise<void> {
-        const lessons = this.lessonStore.getLessonsByCategory(category);
+    private async tryGenerateSkill(filePath: string, category: string, pattern: string): Promise<void> {
+        const lessonStore = this.getLessonStore(filePath);
+        const skillGenerator = this.getSkillGenerator(filePath);
+        const lessons = lessonStore.getLessonsByCategory(category);
 
         if (lessons.length >= 3) {
             const skillName = this.patternAnalyzer.suggestSkillName(category, lessons);
@@ -189,12 +196,12 @@ export class DiagnosticListener {
             );
 
             if (result === 'Generate') {
-                const success = await this.skillGenerator.generateSkill(skillName, lessons);
+                const success = await skillGenerator.generateSkill(skillName, lessons);
                 if (success) {
                     vscode.window.showInformationMessage(`✅ Generated skill: ${skillName}`);
                     // Mark lessons as used
                     for (const lesson of lessons) {
-                        this.lessonStore.markAsUsed(lesson.id);
+                        lessonStore.markAsUsed(lesson.id);
                     }
                 }
             }
@@ -221,9 +228,9 @@ export class DiagnosticListener {
     /**
      * Generate lesson ID
      */
-    private generateLessonId(category: string): string {
+    private generateLessonId(category: string, lessonStore: LessonStore): string {
         const prefix = category.toUpperCase().substring(0, 4);
-        const num = String(this.lessonStore.getNextId()).padStart(3, '0');
+        const num = String(lessonStore.getNextId()).padStart(3, '0');
         return `${prefix}-${num}`;
     }
 

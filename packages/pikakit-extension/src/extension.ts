@@ -44,10 +44,52 @@ function withErrorHandling<T>(fn: () => Promise<T>, errorMsg: string): Promise<T
 // Global instances
 let diagnosticListener: DiagnosticListener | null = null;
 let patternAnalyzer: PatternAnalyzer | null = null;
-let lessonStore: LessonStore | null = null;
-let skillGenerator: SkillGenerator | null = null;
 let statusBar: StatusBarManager | null = null;
 let isLearning = false;
+
+// Per-workspace stores (keyed by workspace folder path)
+const lessonStores: Map<string, LessonStore> = new Map();
+const skillGenerators: Map<string, SkillGenerator> = new Map();
+
+/**
+ * Get or create LessonStore for a workspace folder
+ */
+function getLessonStore(workspacePath: string): LessonStore {
+    if (!lessonStores.has(workspacePath)) {
+        lessonStores.set(workspacePath, new LessonStore(workspacePath));
+    }
+    return lessonStores.get(workspacePath)!;
+}
+
+/**
+ * Get or create SkillGenerator for a workspace folder
+ */
+function getSkillGenerator(workspacePath: string): SkillGenerator {
+    if (!skillGenerators.has(workspacePath)) {
+        skillGenerators.set(workspacePath, new SkillGenerator(workspacePath));
+    }
+    return skillGenerators.get(workspacePath)!;
+}
+
+/**
+ * Get workspace folder path for a file
+ */
+function getWorkspaceForFile(filePath: string): string | null {
+    const workspaceFolder = vscode.workspace.getWorkspaceFolder(vscode.Uri.file(filePath));
+    return workspaceFolder?.uri.fsPath || null;
+}
+
+/**
+ * Get current workspace (from active editor or first workspace)
+ */
+function getCurrentWorkspace(): string | null {
+    const activeEditor = vscode.window.activeTextEditor;
+    if (activeEditor) {
+        const ws = getWorkspaceForFile(activeEditor.document.uri.fsPath);
+        if (ws) return ws;
+    }
+    return vscode.workspace.workspaceFolders?.[0]?.uri.fsPath || null;
+}
 
 /**
  * Extension activation
@@ -60,24 +102,37 @@ export function activate(context: vscode.ExtensionContext) {
     log('PikaKit Skill Generator is now active!');
     console.log('PikaKit Skill Generator is now active!');
 
-    // Initialize components
-    const workspaceRoot = vscode.workspace.workspaceFolders?.[0]?.uri.fsPath;
-    if (!workspaceRoot) {
+    // Check if any workspace folder exists
+    if (!vscode.workspace.workspaceFolders || vscode.workspace.workspaceFolders.length === 0) {
         vscode.window.showWarningMessage('PikaKit: No workspace folder found');
         return;
     }
 
-    // Initialize stores and analyzers
-    lessonStore = new LessonStore(workspaceRoot);
+    // Initialize shared components
     patternAnalyzer = new PatternAnalyzer();
-    skillGenerator = new SkillGenerator(workspaceRoot);
     statusBar = new StatusBarManager();
 
-    // Initialize diagnostic listener
+    // Initialize stores for all workspace folders
+    for (const folder of vscode.workspace.workspaceFolders) {
+        lessonStores.set(folder.uri.fsPath, new LessonStore(folder.uri.fsPath));
+        skillGenerators.set(folder.uri.fsPath, new SkillGenerator(folder.uri.fsPath));
+        log(`Initialized stores for: ${folder.name}`);
+    }
+
+    // Get default workspace for diagnostic listener
+    const defaultWorkspace = vscode.workspace.workspaceFolders[0].uri.fsPath;
+
+    // Initialize diagnostic listener with workspace-aware callbacks
     diagnosticListener = new DiagnosticListener(
         patternAnalyzer,
-        lessonStore,
-        skillGenerator,
+        (filePath: string) => {
+            const ws = getWorkspaceForFile(filePath);
+            return getLessonStore(ws || vscode.workspace.workspaceFolders![0].uri.fsPath);
+        },
+        (filePath: string) => {
+            const ws = getWorkspaceForFile(filePath);
+            return getSkillGenerator(ws || vscode.workspace.workspaceFolders![0].uri.fsPath);
+        },
         statusBar
     );
 
@@ -150,10 +205,14 @@ function stopLearning() {
  * Manually trigger skill generation
  */
 async function generateSkillManual() {
-    if (!lessonStore || !skillGenerator) {
-        vscode.window.showErrorMessage('PikaKit: Not initialized');
+    const currentWorkspace = getCurrentWorkspace();
+    if (!currentWorkspace) {
+        vscode.window.showErrorMessage('PikaKit: No workspace folder found');
         return;
     }
+
+    const lessonStore = getLessonStore(currentWorkspace);
+    const skillGenerator = getSkillGenerator(currentWorkspace);
 
     const lessons = lessonStore.getAllLessons();
     if (lessons.length === 0) {
@@ -196,11 +255,13 @@ async function generateSkillManual() {
  * View all learned lessons
  */
 function viewLessons() {
-    if (!lessonStore) {
-        vscode.window.showErrorMessage('PikaKit: Not initialized');
+    const currentWorkspace = getCurrentWorkspace();
+    if (!currentWorkspace) {
+        vscode.window.showErrorMessage('PikaKit: No workspace folder found');
         return;
     }
 
+    const lessonStore = getLessonStore(currentWorkspace);
     const lessons = lessonStore.getAllLessons();
     if (lessons.length === 0) {
         vscode.window.showInformationMessage('PikaKit: No lessons learned yet');
@@ -229,13 +290,20 @@ function viewLessons() {
  * Clear all lessons
  */
 async function clearLessons() {
+    const currentWorkspace = getCurrentWorkspace();
+    if (!currentWorkspace) {
+        vscode.window.showErrorMessage('PikaKit: No workspace folder found');
+        return;
+    }
+
     const confirm = await vscode.window.showWarningMessage(
         'Clear all learned lessons?',
         { modal: true },
         'Yes, clear all'
     );
 
-    if (confirm === 'Yes, clear all' && lessonStore) {
+    if (confirm === 'Yes, clear all') {
+        const lessonStore = getLessonStore(currentWorkspace);
         lessonStore.clear();
         statusBar?.updateCount(0);
         vscode.window.showInformationMessage('🗑️ PikaKit: All lessons cleared');
