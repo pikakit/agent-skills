@@ -1,4 +1,4 @@
-﻿---
+---
 description: Feature flag management for A/B testing and gradual rollouts. Control features without code deploys.
 ---
 
@@ -14,7 +14,7 @@ Manage feature flags for A/B testing, gradual rollouts, and kill switches. **Tog
 
 ---
 
-## ðŸ¤– Meta-Agents Integration
+## 🤖 Meta-Agents Integration
 
 | Phase | Agent | Action |
 | ----- | ----- | ------ |
@@ -25,13 +25,13 @@ Manage feature flags for A/B testing, gradual rollouts, and kill switches. **Tog
 
 ```
 Flow:
-assessor.evaluate(rollout_risk) â†’ safe %?
-       â†“
-recovery.save(flag_state) â†’ enable flag
-       â†“
-monitor â†’ issues? â†’ recovery.restore() â†’ learner.log()
-       â†“
-success â†’ learner.log(pattern)
+assessor.evaluate(rollout_risk) → safe %?
+       ↓
+recovery.save(flag_state) → enable flag
+       ↓
+monitor → issues? → recovery.restore() → learner.log()
+       ↓
+success → learner.log(pattern)
 ```
 
 ---
@@ -139,7 +139,7 @@ File: `.featureflags.json`
 
 ---
 
-## ðŸ”— Related
+## 🔗 Related
 
 | Workflow    | Purpose           |
 | ----------- | ----------------- |
@@ -147,3 +147,61 @@ File: `.featureflags.json`
 | `/validate` | Test flag states  |
 | `/diagnose` | Debug flag issues |
 
+---
+
+## Examples
+
+```
+/flags list
+/flags enable new-checkout
+/flags rollout dark-mode 25
+/flags create payment-v2
+/flags status maintenance-mode
+```
+
+---
+
+## Output Format
+
+```markdown
+## 🚩 Feature Flags Status
+
+### Current Flags
+| Flag | Enabled | Rollout | Groups |
+|------|---------|---------|--------|
+| new-checkout | ✅ | 100% | all |
+| dark-mode | ⏳ | 25% | beta-users |
+
+### Next Steps
+- [ ] Monitor rollout metrics
+- [ ] Increase percentage if stable
+- [ ] Clean up after 100%
+```
+
+---
+
+## 🔗 Workflow Chain
+
+```mermaid
+graph LR
+    A["/build"] --> B["/flags"]
+    B --> C["/launch"]
+    style B fill:#10b981
+```
+
+| After /flags | Run | Purpose |
+|--------------|-----|---------|
+| Ready to deploy | `/launch` | Deploy with flags |
+| Need to test | `/validate` | Test flag states |
+| Issues found | `/diagnose` | Debug flag issues |
+
+**Handoff:**
+```markdown
+✅ Feature flags configured! Use `/launch` to deploy.
+```
+
+---
+
+**Version:** 1.0.0  
+**Chain:** deployment (cicd-pipeline)  
+**Added:** v3.5.0

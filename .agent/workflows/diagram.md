@@ -1,12 +1,14 @@
-﻿---
+---
 description: Auto-generate C4, Mermaid, and ER diagrams from codebase. Keep architecture docs in sync with code.
 ---
 
-# Architecture Diagram Generation
+# /diagram - Architecture Diagrams
 
-Create and update architecture diagrams from code.
+$ARGUMENTS
 
-## ðŸŽ¯ Purpose
+---
+
+## Purpose
 
 This workflow uses the **system-design** skill to:
 
@@ -15,7 +17,7 @@ This workflow uses the **system-design** skill to:
 - Generate ER diagrams from Prisma schema
 - Update diagrams when code changes
 
-## ðŸ¤– Meta-Agents Integration
+## 🤖 Meta-Agents Integration
 
 | Phase | Agent | Action |
 | ----- | ----- | ------ |
@@ -24,19 +26,19 @@ This workflow uses the **system-design** skill to:
 
 ---
 
-## ðŸ”— Chain: documentation (system-design skill only)
+## 🔗 Chain: documentation (system-design skill only)
 
 **Skills Loaded (1):**
 
 - `system-design` - C4, Mermaid, ER diagrams
 
-## ðŸ“– Usage
+## 📖 Usage
 
 ```bash
 /diagram <scope>
 ```
 
-### Examples
+## Examples
 
 ```bash
 # Generate all diagrams
@@ -49,7 +51,7 @@ This workflow uses the **system-design** skill to:
 /diagram c4-context
 ```
 
-## ðŸ”„ Workflow Steps
+## 📁„ Workflow Steps
 
 1. **Analyze Codebase**
    - Scan project structure
@@ -67,13 +69,13 @@ This workflow uses the **system-design** skill to:
    - `docs/diagrams/container.mmd`
    - `docs/diagrams/er.mmd`
 
-## âœ… Success Criteria
+## ✅ Success Criteria
 
-âœ“ **Diagrams Created** - C4, sequence, ER  
-âœ“ **Auto-update** - Synced with code  
-âœ“ **Mermaid Format** - Renderable in GitHub/docs
+✓ **Diagrams Created** - C4, sequence, ER  
+✓ **Auto-update** - Synced with code  
+✓ **Mermaid Format** - Renderable in GitHub/docs
 
-## ðŸ“Š Diagram Types
+## 📊 Diagram Types
 
 | Diagram      | Purpose             | Auto-detects      |
 | ------------ | ------------------- | ----------------- |
@@ -82,35 +84,77 @@ This workflow uses the **system-design** skill to:
 | Sequence     | User flows          | API calls         |
 | ER           | Database schema     | Prisma models     |
 
-## ðŸ” Related Workflows
+## 📁 Related Workflows
 
 - `/chronicle` - Generate all documentation
 - `/build` - Create app first
 - `/api` - Create API then diagram
 
-## ðŸ’¡ Example Output
+## 💡 Example Output
 
 ```bash
 You: "/diagram update"
 
 Agent: Loading system-design
-       â†“
+       ↓
 
 [1/1] ðŸ—ï¸ Updating Diagrams
 
    Scanning codebase...
-   âœ… Detected schema changes (2 new tables)
-   âœ… Updated ER diagram
-   âœ… Updated C4 Container diagram
-   âœ… All diagrams in sync with code
+   ✅ Detected schema changes (2 new tables)
+   ✅ Updated ER diagram
+   ✅ Updated C4 Container diagram
+   ✅ All diagrams in sync with code
 
-ðŸ“‚ Updated: docs/diagrams/
+📂 Updated: docs/diagrams/
    - context.mmd
    - container.mmd
    - er.mmd
    - sequence-auth.mmd
 
-âœ… Diagrams updated!
+✅ Diagrams updated!
+```
+
+---
+
+## Output Format
+
+```markdown
+## 🗂️ Diagrams Generated
+
+### Files Created
+| Diagram | Path |
+|---------|------|
+| C4 Context | docs/diagrams/context.mmd |
+| C4 Container | docs/diagrams/container.mmd |
+| ER | docs/diagrams/er.mmd |
+
+### Next Steps
+- [ ] Review generated diagrams
+- [ ] Add to documentation
+- [ ] Set up auto-update hook
+```
+
+---
+
+## 🔗 Workflow Chain
+
+```mermaid
+graph LR
+    A["/build"] --> B["/diagram"]
+    B --> C["/chronicle"]
+    style B fill:#10b981
+```
+
+| After /diagram | Run | Purpose |
+|----------------|-----|---------|
+| Need full docs | `/chronicle` | Generate all documentation |
+| Need API first | `/api` | Create API then diagram |
+| Building app | `/build` | Create app first |
+
+**Handoff:**
+```markdown
+✅ Diagrams generated! Add to your documentation with /chronicle.
 ```
 
 ---

@@ -1,16 +1,17 @@
 /**
- * Skill Template v1.0 - Production-Ready Skill Generator
+ * Skill Template v1.1 - Production-Ready Skill Generator
  * 
  * Generates SKILL.md and supporting files following SKILL_DESIGN_GUIDE.
- * Creates validated, registrable skills from patterns.
+ * Now supports hierarchical skill structure for auto-learned patterns.
  * 
- * @version 1.0.0
+ * @version 1.1.0
  * @author PikaKit
  */
 
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import hierarchicalSkill from './hierarchical-skill.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -266,12 +267,65 @@ export function createRegistryEntry(skill) {
 }
 
 // ============================================================================
+// HIERARCHICAL SKILL GENERATION (NEW in v1.1)
+// ============================================================================
+
+/**
+ * Generate skill using hierarchical structure (auto-learned)
+ * Instead of creating a new skill folder, merge pattern into auto-learned skill
+ * 
+ * @param {Object} pattern - Source pattern
+ * @param {string} skillsDir - Path to .agent/skills directory
+ * @param {Object} options - Generation options
+ * @returns {Object} Result with merge status
+ */
+export function generateSkillHierarchical(pattern, skillsDir, options = {}) {
+    // Determine category from pattern
+    const category = options.category || hierarchicalSkill.categorizeError(pattern.pattern || pattern.message);
+
+    // Ensure auto-learned structure exists
+    hierarchicalSkill.ensureAutoLearnedExists(skillsDir);
+
+    // Add pattern to category
+    const result = hierarchicalSkill.addPatternToCategory(skillsDir, {
+        pattern: pattern.pattern || pattern.message,
+        fix: pattern.message || pattern.fix,
+        source: pattern.source || 'auto-learn'
+    }, category);
+
+    return {
+        ...result,
+        mode: 'hierarchical',
+        skillName: 'auto-learned',
+        subskill: `${category}-patterns.md`
+    };
+}
+
+/**
+ * Check if hierarchical mode is enabled
+ * @param {string} skillsDir - Path to .agent/skills directory
+ * @returns {boolean} True if hierarchical mode is enabled
+ */
+export function isHierarchicalEnabled(skillsDir) {
+    const config = hierarchicalSkill.loadConfig(skillsDir);
+    return config.autoMerge !== false;
+}
+
+// ============================================================================
 // EXPORTS
 // ============================================================================
 
 export default {
+    // Original functions
     generateSkillFromPattern,
     createSkillFiles,
     createRegistryEntry,
-    SKILL_MD_TEMPLATE
+    SKILL_MD_TEMPLATE,
+    // New hierarchical functions
+    generateSkillHierarchical,
+    isHierarchicalEnabled,
+    // Re-export hierarchical skill utilities
+    categorizeError: hierarchicalSkill.categorizeError,
+    ensureAutoLearnedExists: hierarchicalSkill.ensureAutoLearnedExists,
+    addPatternToCategory: hierarchicalSkill.addPatternToCategory
 };

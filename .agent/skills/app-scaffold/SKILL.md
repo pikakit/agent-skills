@@ -7,7 +7,9 @@ description: >-
   Coordinates with: project-planner, code-craft, test-architect, design-system.
 allowed-tools: Read, Write, Edit, Glob, Grep, Bash, Agent
 metadata:
+  version: "1.0.0"
   category: "architecture"
+  triggers: "build app, create project, new application, scaffold, full-stack"
   success_metrics: "project builds, npm run dev works, all files created"
   coordinates_with: "project-planner, code-craft, test-architect, design-system"
 ---
@@ -15,6 +17,19 @@ metadata:
 # App Builder - Application Building Orchestrator
 
 > Analyzes user's requests, determines tech stack, plans structure, and coordinates agents.
+
+---
+
+## When to Use
+
+| Situation | Approach |
+|-----------|----------|
+| New project | Detect type, choose template |
+| Full-stack app | Use nextjs-fullstack |
+| Mobile app | Use react-native-app |
+| CLI tool | Use cli-tool template |
+
+---
 
 ## 🎯 Selective Reading Rule
 
@@ -81,3 +96,7 @@ App Builder Process:
 5. Report progress
 6. Start preview
 ```
+
+---
+
+ PikaKit v3.2.0

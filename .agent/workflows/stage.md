@@ -122,6 +122,26 @@ Which one? (default: 1)
 
 ---
 
+## Output Format
+
+```markdown
+## 🎭 Stage Status
+
+### Server
+| Component | Status |
+|-----------|--------|
+| URL | localhost:3000 |
+| Type | Next.js |
+| Health | ✅ OK |
+
+### Next Steps
+- [ ] Test in browser
+- [ ] Run validation tests
+- [ ] Deploy when ready
+```
+
+---
+
 ## 🔗 Workflow Chain
 
 ```mermaid

@@ -5,6 +5,9 @@ description: Expert in secure mobile coding practices specializing in input
   PROACTIVELY for mobile security implementations or mobile security code
   reviews.
 metadata:
+  version: "1.0.0"
+  category: "mobile-games"
+  triggers: "mobile security, OWASP MASVS, WebView, biometric, certificate pinning"
   model: sonnet
 ---
 
@@ -176,9 +179,17 @@ Expert mobile security developer with comprehensive knowledge of mobile security
 - "Implement certificate pinning for API communication security"
 - "Configure deep link security with URL validation and parameter sanitization"
 - "Set up root/jailbreak detection with graceful security degradation"
-- "Implement secure cross-platform data sharing between native and WebView"
-- "Create privacy-compliant analytics with data minimization and consent"
-- "Implement secure React Native bridge communication with input validation"
-- "Configure Flutter platform channel security with message validation"
-- "Set up secure Xamarin native interop with assembly protection"
-- "Implement secure Cordova plugin communication with sandboxing"
+
+---
+
+## 🔗 Related
+
+| Item | Type | Purpose |
+|------|------|---------|
+| `mobile-developer` | Skill | Mobile implementation |
+| `security-scanner` | Skill | General security |
+| `mobile-first` | Skill | Mobile orchestrator |
+
+---
+
+⚡ PikaKit v3.2.0

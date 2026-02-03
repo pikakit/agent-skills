@@ -6,7 +6,9 @@ description: >-
   Triggers on: mobile, responsive, touch, React Native, Flutter, iOS, Android.
   Coordinates with: mobile-developer, design-system, perf-optimizer.
 metadata:
-  category: "framework"
+  version: "1.0.0"
+  category: "mobile-games"
+  triggers: "mobile, responsive, touch, React Native, Flutter, iOS, Android"
   success_metrics: "mobile audit passed, responsive design"
   coordinates_with: "mobile-developer, design-system, perf-optimizer"
 ---
@@ -15,6 +17,17 @@ metadata:
 
 > **Philosophy:** Touch-first. Battery-conscious. Platform-respectful. Offline-capable.
 > **Core Principle:** Mobile is NOT a small desktop. THINK mobile constraints, ASK platform choice.
+
+---
+
+## When to Use
+
+| Situation | Approach |
+|-----------|----------|
+| Building mobile app | Use orchestrator routing |
+| React Native / Flutter | Check framework sub-skills |
+| Mobile performance | Run mobile audit |
+| Publishing to stores | Check publishing patterns |
 
 ---
 
@@ -114,3 +127,16 @@ Sub-skills Read: [ List files you've read ]
 
 > **Remember:** Mobile users are impatient, interrupted, using imprecise fingers on small screens. Design for the WORST conditions.
 
+---
+
+## 🔗 Related
+
+| Item | Type | Purpose |
+|------|------|---------|
+| `/mobile` | Workflow | Mobile workflow |
+| `mobile-developer` | Skill | Implementation |
+| `mobile-design` | Skill | Design patterns |
+
+---
+
+⚡ PikaKit v3.2.0

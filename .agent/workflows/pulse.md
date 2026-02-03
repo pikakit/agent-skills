@@ -1,4 +1,4 @@
-﻿---
+---
 description: Project health dashboard. Agent status, file stats, and real-time progress tracking.
 ---
 
@@ -14,7 +14,7 @@ Display real-time project status including agent progress, file statistics, and 
 
 ---
 
-## ðŸ¤– Meta-Agents Integration
+## 🤖 Meta-Agents Integration
 
 | Phase | Agent | Action |
 | ----- | ----- | ------ |
@@ -57,7 +57,7 @@ node .agent/scripts-js/auto_preview.js status
 
 ---
 
-## ðŸ“Š observability DASHBOARD (FAANG+)
+## 📊 observability DASHBOARD (FAANG+)
 
 ### Collect observability
 
@@ -86,18 +86,18 @@ node .agent/scripts-js/observability-collector.js trends
 ### Dashboard Output
 
 ```
-â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
-â”‚  ðŸ“Š Project observability Dashboard           â”‚
-â”œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¤
-â”‚  Build Time:    2.3s (â†“ 15%)           â”‚
-â”‚  Bundle Size:   245KB (stable)          â”‚
-â”‚  Source Files:  142                     â”‚
-â”‚  Test Coverage: 87% (â†‘ 3%)             â”‚
-â”‚  Lighthouse:    92/100                  â”‚
-â”‚  Security:      0 vulnerabilities       â”‚
-â”œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¤
-â”‚  7-Day Trend: â–â–‚â–ƒâ–„â–…â–†â–‡â–ˆ                  â”‚
-â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
+┌─────────────────────────────────────────â”
+│  📊 Project observability Dashboard           │
+├─────────────────────────────────────────┤
+│  Build Time:    2.3s (↓ 15%)           │
+│  Bundle Size:   245KB (stable)          │
+│  Source Files:  142                     │
+│  Test Coverage: 87% (↑ 3%)             │
+│  Lighthouse:    92/100                  │
+│  Security:      0 vulnerabilities       │
+├─────────────────────────────────────────┤
+│  7-Day Trend: â–▂▃▄▅▆▇█                  │
+└─────────────────────────────────────────┘
 ```
 
 ### KPI Thresholds
@@ -115,42 +115,42 @@ node .agent/scripts-js/observability-collector.js trends
 === Project Status ===
 
 ðŸ“ Project: my-ecommerce
-ðŸ“‚ Path: C:/projects/my-ecommerce
+📂 Path: C:/projects/my-ecommerce
 ðŸ·ï¸ Type: nextjs-ecommerce
-ðŸ“Š Status: active
+📊 Status: active
 
-ðŸ”§ Tech Stack:
+📁§ Tech Stack:
 Framework: next.js
 Database: postgresql
 Auth: clerk
 Payment: stripe
 
-âœ… Features (5):
-â€¢ product-listing
-â€¢ cart
-â€¢ checkout
-â€¢ user-auth
-â€¢ order-history
+✅ Features (5):
+•¢ product-listing
+•¢ cart
+•¢ checkout
+•¢ user-auth
+•¢ order-history
 
 â³ Pending (2):
-â€¢ admin-panel
-â€¢ email-notifications
+•¢ admin-panel
+•¢ email-notifications
 
-ðŸ“„ Files: 73 created, 12 modified
+📄 Files: 73 created, 12 modified
 
 === Agent Status ===
 
 | Agent               | Task   | Status      |
 | ------------------- | ------ | ----------- |
-| database-architect  | Schema | âœ… Complete |
-| backend-specialist  | API    | âœ… Complete |
-| frontend-specialist | UI     | ðŸ”„ 60%      |
+| database-architect  | Schema | ✅ Complete |
+| backend-specialist  | API    | ✅ Complete |
+| frontend-specialist | UI     | 📁„ 60%      |
 | test-engineer       | Tests  | â³ Waiting  |
 
 === Preview ===
 
 ðŸŒ URL: http://localhost:3000
-ðŸ’š Health: OK
+💚 Health: OK
 ```
 
 ---
@@ -163,11 +163,31 @@ Payment: stripe
 
 ---
 
-## ðŸ”— Workflow Chain
+## Output Format
+
+```markdown
+## 📊 Project Pulse
+
+### Status Summary
+| Component | Status |
+|-----------|--------|
+| Agents | 3/4 complete |
+| Files | 73 created, 12 modified |
+| Preview | ✅ localhost:3000 |
+
+### Next Steps
+- [ ] Check agent progress
+- [ ] Review preview health
+- [ ] Run tests when ready
+```
+
+---
+
+## 🔗 Workflow Chain
 
 ```mermaid
 graph LR
-    A["/pulse"] --> B["ðŸ“Š Status"]
+    A["/pulse"] --> B["📊 Status"]
     style A fill:#22c55e
 ```
 

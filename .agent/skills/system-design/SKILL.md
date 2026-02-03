@@ -7,7 +7,9 @@ description: >-
   Coordinates with: api-architect, data-modeler.
 allowed-tools: Read, Glob, Grep
 metadata:
+  version: "1.0.0"
   category: "architecture"
+  triggers: "architecture, system design, scalability, microservices, ADR"
   success_metrics: "architecture documented, scalability validated"
   coordinates_with: "api-architect, data-modeler"
 ---
@@ -15,6 +17,19 @@ metadata:
 # Architecture Decision Framework
 
 > "Requirements drive architecture. Trade-offs inform decisions. ADRs capture rationale."
+
+---
+
+## When to Use
+
+| Situation | Approach |
+|-----------|----------|
+| Starting architecture | Read context-discovery.md |
+| Documenting decisions | Use ADR template |
+| Choosing patterns | Check pattern-selection.md |
+| Examples | See examples.md |
+
+---
 
 ## 🎯 Selective Reading Rule
 
@@ -61,3 +76,7 @@ Before finalizing architecture:
 - [ ] Simpler alternatives considered
 - [ ] ADRs written for significant decisions
 - [ ] Team expertise matches chosen patterns
+
+---
+
+ PikaKit v3.2.0

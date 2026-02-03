@@ -2,13 +2,29 @@
 name: vercel-deploy
 description: Deploy applications and websites to Vercel. Use this skill when the user requests deployment actions such as "Deploy my app", "Deploy this to production", "Create a preview deployment", "Deploy and give me the link", or "Push this live". No authentication required - returns preview URL and claimable deployment link.
 metadata:
+  category: "core"
   author: vercel
   version: "1.0.0"
+  triggers: "deploy, vercel, production, preview, push live"
+  success_metrics: "deployment URL returned, site live"
 ---
 
 # Vercel Deploy
 
 Deploy any project to Vercel instantly. No authentication required.
+
+---
+
+## When to Use
+
+| Situation | Approach |
+|-----------|----------|
+| Deploy app | Run deploy script |
+| Preview deployment | Get preview URL |
+| Production deploy | Deploy and claim |
+| Quick demo | Instant deploy |
+
+---
 
 ## How It Works
 
@@ -110,3 +126,17 @@ Deployment failed due to network restrictions. To fix this:
 2. Add *.vercel.com to the allowed domains
 3. Try deploying again
 ```
+
+---
+
+## 🔗 Related
+
+| Item | Type | Purpose |
+|------|------|---------|
+| `cicd-pipeline` | Skill | Deployment |
+| `/launch` | Workflow | Release workflow |
+| `nextjs-pro` | Skill | Next.js apps |
+
+---
+
+⚡ PikaKit v3.2.0

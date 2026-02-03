@@ -1,6 +1,6 @@
 {
-    "name": "pikakit-skill-generator",
-    "displayName": "PikaKit Skill Generator",
+    "name": "pikakit-skill-engine",
+    "displayName": "PikaKit Skill Engine",
     "description": "Real-time auto-learning from IDE diagnostics to generate skills automatically",
     "version": "1.0.0",
     "publisher": "pikakit",
@@ -47,7 +47,7 @@
             }
         ],
         "configuration": {
-            "title": "PikaKit Skill Generator",
+            "title": "PikaKit Skill Engine",
             "properties": {
                 "pikakit.autoStart": {
                     "type": "boolean",

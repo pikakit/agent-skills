@@ -41,6 +41,27 @@ export class SkillGenerator {
             const skillContent = this.generateSkillMd(normalizedName, lessons);
             fs.writeFileSync(path.join(skillDir, 'SKILL.md'), skillContent, 'utf8');
 
+            // Export patterns.json with raw lesson data
+            const patternsJson = {
+                version: "1.0.0",
+                category: lessons[0]?.category || 'general',
+                standardCategory: this.mapToStandardCategory(lessons[0]?.category || 'general'),
+                generatedAt: new Date().toISOString(),
+                patterns: lessons.map(l => ({
+                    id: `${l.category}-${l.occurrences}`,
+                    pattern: l.pattern,
+                    solution: l.solution,
+                    context: l.context,
+                    source: l.source,
+                    occurrences: l.occurrences
+                }))
+            };
+            fs.writeFileSync(
+                path.join(skillDir, 'patterns.json'),
+                JSON.stringify(patternsJson, null, 2),
+                'utf8'
+            );
+
             // Update registry if exists
             await this.updateRegistry(normalizedName, lessons);
 
@@ -59,7 +80,8 @@ export class SkillGenerator {
      * Generate SKILL.md content following SKILL_DESIGN_GUIDE.md
      */
     private generateSkillMd(skillName: string, lessons: Lesson[]): string {
-        const category = lessons[0]?.category || 'general';
+        const rawCategory = lessons[0]?.category || 'general';
+        const category = this.mapToStandardCategory(rawCategory);
         const patterns = lessons.map(l => l.pattern);
         const triggers = this.generateTriggers(patterns);
         const coordinatesWith = this.generateCoordinatesWith(category);
@@ -198,9 +220,45 @@ Auto-generated skill following SKILL_DESIGN_GUIDE.md standard.
     }
 
     /**
-     * Normalize skill name to kebab-case
+     * Map raw categories to standard categories per SKILL_DESIGN_GUIDE.md
+     */
+    private mapToStandardCategory(rawCategory: string): string {
+        const categoryMap: Record<string, string> = {
+            'import': 'core',
+            'type': 'framework',
+            'react': 'framework',
+            'null-safety': 'core',
+            'async': 'core',
+            'code-quality': 'core',
+            'code-style': 'core',
+            'general': 'core'
+        };
+        return categoryMap[rawCategory] || 'core';
+    }
+
+    /**
+     * Normalize skill name to kebab-case with semantic naming
      */
     private normalizeSkillName(name: string): string {
+        // Map to semantic names for better clarity
+        const semanticNames: Record<string, string> = {
+            'import': 'import-resolver',
+            'type': 'type-safety',
+            'react': 'react-patterns',
+            'null-safety': 'null-handler',
+            'async': 'async-patterns',
+            'code-quality': 'quality-enforcer',
+            'code-style': 'style-guide',
+            'general': 'learned-patterns'
+        };
+
+        // Check if name matches a category key
+        const lowerName = name.toLowerCase();
+        if (semanticNames[lowerName]) {
+            return semanticNames[lowerName];
+        }
+
+        // Otherwise, normalize normally
         return name
             .toLowerCase()
             .replace(/[^a-z0-9]+/g, '-')

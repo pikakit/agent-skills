@@ -1,0 +1,72 @@
+{
+    "version": "1.0.0",
+    "lastUpdated": "2026-02-03T00:00:00.000Z",
+    "categories": {
+        "import": {
+            "patternCount": 4,
+            "file": "patterns/import-patterns.md",
+            "patterns": [
+                {
+                    "id": "import-001",
+                    "pattern": "Cannot find name '<identifier>'",
+                    "fix": "Add import for the missing symbol",
+                    "occurrences": 2,
+                    "source": "ts"
+                },
+                {
+                    "id": "import-002",
+                    "pattern": "Cannot find name 'ReactNode'",
+                    "fix": "import { ReactNode } from 'react'",
+                    "occurrences": 1,
+                    "source": "ts"
+                },
+                {
+                    "id": "import-003",
+                    "pattern": "Cannot find name 'div'",
+                    "fix": "Ensure JSX configured or add React import",
+                    "occurrences": 1,
+                    "source": "ts"
+                },
+                {
+                    "id": "import-004",
+                    "pattern": "Cannot find name '<ComponentName>'",
+                    "fix": "Add import for component",
+                    "occurrences": 1,
+                    "source": "ts"
+                }
+            ]
+        },
+        "type": {
+            "patternCount": 3,
+            "file": "patterns/type-patterns.md",
+            "patterns": [
+                {
+                    "id": "type-001",
+                    "pattern": "Property '<name>' does not exist on type '<type>'",
+                    "fix": "Add property to type or use optional chaining",
+                    "occurrences": 2,
+                    "source": "ts"
+                },
+                {
+                    "id": "type-002",
+                    "pattern": "Type 'string' is not assignable to type 'number'",
+                    "fix": "Use parseInt() or Number()",
+                    "occurrences": 1,
+                    "source": "ts"
+                },
+                {
+                    "id": "type-003",
+                    "pattern": "Argument of type '<type1>' is not assignable to parameter of type '<type2>'",
+                    "fix": "Check function signature, convert type",
+                    "occurrences": 1,
+                    "source": "ts"
+                }
+            ]
+        }
+    },
+    "statistics": {
+        "totalPatterns": 7,
+        "totalCategories": 2,
+        "createdAt": "2026-02-03T00:00:00.000Z"
+    }
+}

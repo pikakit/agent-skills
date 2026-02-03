@@ -177,7 +177,7 @@ Level 4: Subtasks (atomic units)
 
 ---
 
-## Output: PLAN.md
+## Output Format
 
 Generated file: `docs/PLAN-{slug}.md`
 
@@ -274,6 +274,18 @@ After plan approval:
 | NoSQL | MongoDB, Firebase | Flexible schema |
 | Graph | Neo4j | Relationships |
 | Vector | Pinecone, pgvector | AI/embeddings |
+
+---
+
+## Examples
+
+```
+/architect e-commerce site with cart and checkout
+/architect REST API for user management
+/architect mobile fitness app with tracking
+/architect SaaS dashboard with analytics
+/architect microservices architecture for fintech
+```
 
 ---
 

@@ -4,20 +4,33 @@ description: >-
   Test-Driven Development workflow principles. RED-GREEN-REFACTOR cycle.
   Triggers on: TDD, test first, red-green-refactor.
   Coordinates with: test-architect, code-craft.
-allowed-tools: Read, Write, Edit, Glob, Grep, Bash
 metadata:
   category: "testing"
-  success_metrics: "tests written before code, coverage high"
+  version: "1.0.0"
+  triggers: "TDD, test first, red-green-refactor, write test"
   coordinates_with: "test-architect, code-craft"
+  success_metrics: "tests written before code, high coverage"
 ---
 
 # TDD Workflow
 
-> Write tests first, code second.
+> **Purpose:** Test-Driven Development - write tests first, code second.
 
 ---
 
-## 1. The TDD Cycle
+## When to Use
+
+| Situation | TDD Value |
+|-----------|-----------|
+| New feature | High |
+| Bug fix | High (test first) |
+| Complex logic | High |
+| Exploratory | Low (spike, then TDD) |
+| UI layout | Low |
+
+---
+
+## The TDD Cycle
 
 ```
 🔴 RED → Write failing test
@@ -31,7 +44,7 @@ metadata:
 
 ---
 
-## 2. The Three Laws of TDD
+## Three Laws of TDD
 
 1. Write production code only to make a failing test pass
 2. Write only enough test to demonstrate failure
@@ -39,118 +52,70 @@ metadata:
 
 ---
 
-## 3. RED Phase Principles
+## RED Phase
 
-### What to Write
-
-| Focus        | Example                         |
-| ------------ | ------------------------------- |
-| Behavior     | "should add two numbers"        |
-| Edge cases   | "should handle empty input"     |
+| Focus | Example |
+|-------|---------|
+| Behavior | "should add two numbers" |
+| Edge cases | "should handle empty input" |
 | Error states | "should throw for invalid data" |
 
-### RED Phase Rules
-
-- Test must fail first
-- Test name describes expected behavior
-- One assertion per test (ideally)
+**Rules:** Test must fail first, one assertion per test.
 
 ---
 
-## 4. GREEN Phase Principles
+## GREEN Phase
 
-### Minimum Code
-
-| Principle           | Meaning                   |
-| ------------------- | ------------------------- |
-| **YAGNI**           | You Aren't Gonna Need It  |
-| **Simplest thing**  | Write the minimum to pass |
-| **No optimization** | Just make it work         |
-
-### GREEN Phase Rules
-
-- Don't write unneeded code
-- Don't optimize yet
-- Pass the test, nothing more
+| Principle | Meaning |
+|-----------|---------|
+| **YAGNI** | You Aren't Gonna Need It |
+| **Simplest** | Write minimum to pass |
+| **No optimization** | Just make it work |
 
 ---
 
-## 5. REFACTOR Phase Principles
+## REFACTOR Phase
 
-### What to Improve
+| Area | Action |
+|------|--------|
+| Duplication | Extract common code |
+| Naming | Make intent clear |
+| Structure | Improve organization |
+| Complexity | Simplify logic |
 
-| Area        | Action               |
-| ----------- | -------------------- |
-| Duplication | Extract common code  |
-| Naming      | Make intent clear    |
-| Structure   | Improve organization |
-| Complexity  | Simplify logic       |
-
-### REFACTOR Rules
-
-- All tests must stay green
-- Small incremental changes
-- Commit after each refactor
+**Rules:** All tests must stay green, small incremental changes.
 
 ---
 
-## 6. AAA Pattern
+## AAA Pattern
 
-Every test follows:
-
-| Step        | Purpose                 |
-| ----------- | ----------------------- |
-| **Arrange** | Set up test data        |
-| **Act**     | Execute code under test |
-| **Assert**  | Verify expected outcome |
+| Step | Purpose |
+|------|---------|
+| **Arrange** | Set up test data |
+| **Act** | Execute code under test |
+| **Assert** | Verify expected outcome |
 
 ---
 
-## 7. When to Use TDD
+## Anti-Patterns
 
-| Scenario      | TDD Value               |
-| ------------- | ----------------------- |
-| New feature   | High                    |
-| Bug fix       | High (write test first) |
-| Complex logic | High                    |
-| Exploratory   | Low (spike, then TDD)   |
-| UI layout     | Low                     |
-
----
-
-## 8. Test Prioritization
-
-| Priority | Test Type   |
-| -------- | ----------- |
-| 1        | Happy path  |
-| 2        | Error cases |
-| 3        | Edge cases  |
-| 4        | Performance |
+| ❌ Don't | ✅ Do |
+|----------|-------|
+| Skip the RED phase | Watch test fail first |
+| Write tests after | Write tests before |
+| Over-engineer initial | Keep it simple |
+| Multiple asserts | One behavior per test |
 
 ---
 
-## 9. Anti-Patterns
+## 🔗 Related
 
-| ❌ Don't              | ✅ Do                 |
-| --------------------- | --------------------- |
-| Skip the RED phase    | Watch test fail first |
-| Write tests after     | Write tests before    |
-| Over-engineer initial | Keep it simple        |
-| Multiple asserts      | One behavior per test |
-| Test implementation   | Test behavior         |
+| Item | Type | Purpose |
+|------|------|---------|
+| `/validate` | Workflow | Run all tests |
+| `test-architect` | Skill | Testing patterns |
+| `code-craft` | Skill | Clean code |
 
 ---
 
-## 10. AI-Augmented TDD
-
-### Multi-Agent Pattern
-
-| Agent   | Role                      |
-| ------- | ------------------------- |
-| Agent A | Write failing tests (RED) |
-| Agent B | Implement to pass (GREEN) |
-| Agent C | Optimize (REFACTOR)       |
-
----
-
-> **Remember:** The test is the specification. If you can't write a test, you don't understand the requirement.
+⚡ PikaKit v3.2.0

@@ -5,6 +5,7 @@ description: >-
   and anti-AI-slop design system generation. Triggers on: design system, UI design,
   color palette, typography, style guide. Coordinates with: frontend-specialist, design-system.
 metadata:
+  version: "1.0.0"
   category: "design"
   triggers: "design system, UI design, color palette, typography, style guide"
   success_metrics: "design system generated, styles matched"
@@ -20,6 +21,17 @@ metadata:
 ## 🎯 Purpose
 
 Generate design systems, color palettes, and typography recommendations based on product type, industry, and style preferences. **Searchable database with priority-based recommendations.**
+
+---
+
+## When to Use
+
+| Situation | Action |
+|-----------|--------|
+| Need color palette | Search colors by industry/mood |
+| Need typography | Search font pairings |
+| Full design system | Use `--design-system` flag |
+| Avoid generic AI look | Follow Anti-AI-Slop rules |
 
 ---
 
@@ -100,8 +112,73 @@ node .agent/skills/studio/scripts-js/search.js "modern tech" --category typograp
 
 ---
 
+## ❌ Anti-AI-Slop Rules
+
+> **Purpose:** Avoid generic designs that are recognizable as "AI-generated".
+
+### Fonts to AVOID
+
+| Don't Use | Use Instead |
+|-----------|-------------|
+| Inter | Playfair Display, Cormorant |
+| Roboto | Syne, Outfit |
+| Arial | Source Sans Pro, Work Sans |
+| System fonts | Fraunces, IBM Plex |
+
+**Why:** These fonts are too common, every AI suggests them → immediately recognizable as AI-generated.
+
+### Colors to AVOID
+
+| Don't Use | Use Instead |
+|-----------|-------------|
+| #FF0000 (pure red) | #DC2626, #EF4444 |
+| #00FF00 (pure green) | #10B981, #059669 |
+| #0000FF (pure blue) | #3B82F6, #2563EB |
+| #800080 (pure purple) | #8B5CF6, #7C3AED |
+
+**Why:** Pure RGB colors look cheap and unprofessional.
+
+### Shadows to AVOID
+
+```css
+/* ❌ Generic AI shadow */
+box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+
+/* ✅ Intentional, dramatic */
+box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25);
+box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06);
+```
+
+### Backgrounds to AVOID
+
+| Don't Use | Use Instead |
+|-----------|-------------|
+| Solid #FFFFFF | Subtle gradients, noise textures |
+| Solid #000000 | Dark gradients, pattern overlays |
+| Plain colors | Gradient meshes, glass effects |
+
+### Animations to AVOID
+
+```css
+/* ❌ Micro-interactions everywhere */
+:hover { transform: scale(1.05); }
+
+/* ✅ One orchestrated page load */
+.hero { animation: fadeInUp 0.6s ease-out; }
+.hero-cta { animation: fadeInUp 0.6s ease-out 0.3s backwards; }
+```
+
+**Rule:** One orchestrated animation > many scattered micro-interactions.
+
+---
+
 ## 📖 References
 
 For detailed documentation, see:
 - `data/` - Raw CSV databases
 - `scripts-js/` - Search implementation
+
+
+---
+
+⚡ PikaKit v3.2.0

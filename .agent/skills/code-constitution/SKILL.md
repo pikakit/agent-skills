@@ -12,6 +12,7 @@ metadata:
   authority: "supreme"
   enforcement: "strict"
   category: "core"
+  triggers: "architecture review, critical data, breaking change, governance, doctrine"
   success_metrics: "doctrine validation passed, no constitutional violations"
   coordinates_with: "code-review, review-automation, security-scanner"
 ---
@@ -30,6 +31,17 @@ This is a **binding constitutional authority**.
 
 If any output violates this skill,  
 the output is **invalid — even if it works**.
+
+---
+
+## When to Use
+
+| Situation | Approach |
+|-----------|----------|
+| Architecture decisions | Load constitution |
+| Breaking changes | Check doctrine |
+| Data modifications | Validate compliance |
+| Agent governance | Follow agent rules |
 
 ---
 
@@ -208,6 +220,20 @@ When using this skill, the agent MUST include the following footer in its respon
 
 ---
 
+## 🔗 Related
+
+| Item | Type | Purpose |
+|------|------|---------|
+| `code-review` | Skill | Code quality |
+| `security-scanner` | Skill | Security |
+| `code-craft` | Skill | Code standards |
+
+---
+
 **Skill Status:** OFFICIAL · LOCKED  
 **Authority:** SUPREME  
 **Override Permission:** NONE
+
+---
+
+⚡ PikaKit v3.2.0

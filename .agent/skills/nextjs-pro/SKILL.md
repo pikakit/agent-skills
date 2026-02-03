@@ -1,210 +1,149 @@
 ---
 name: nextjs-pro
 description: >-
-  Next.js App Router principles. Server Components, data fetching, routing patterns.
-  Triggers on: Next.js, App Router, RSC, server actions, SSR, SSG.
-  Coordinates with: web-core, react-architect.
-allowed-tools: Read, Write, Edit, Glob, Grep
+  Next.js App Router & React performance patterns. Server Components, data fetching,
+  routing, caching, and 60+ optimization rules.
+  Triggers on: Next.js, App Router, RSC, React, frontend, performance, SSR, SSG.
+  Coordinates with: design-system, tailwind-kit, react-architect.
 metadata:
   category: "framework"
-  success_metrics: "build passes, pages render"
-  coordinates_with: "web-core, react-architect"
+  version: "2.0.0"
+  triggers: "Next.js, React, App Router, RSC, frontend, performance"
+  coordinates_with: "design-system, tailwind-kit, react-architect"
+  success_metrics: "Core Web Vitals pass, build passes"
 ---
 
-# Next.js Best Practices
+# Next.js & React Frontend
 
-> Principles for Next.js App Router development.
+> **Purpose:** Modern frontend patterns with Next.js App Router and React performance
 
 ---
 
-## 1. Server vs Client Components
+## When to Use
 
-### Decision Tree
+| Situation | Approach |
+|-----------|----------|
+| Building React frontend | Use App Router patterns |
+| Performance optimization | Check Core Web Vitals |
+| Data fetching | Use Server Components |
+| Routing decisions | See routing rules |
+
+---
+
+## Quick Reference
+
+| Task | Pattern |
+|------|---------|
+| **Server Component** | Default (no directive) |
+| **Client Component** | `'use client'` at top |
+| **Data Fetch** | fetch in Server Component |
+| **ISR** | `revalidate: 60` |
+| **Dynamic** | `cache: 'no-store'` |
+
+---
+
+## Server vs Client Decision
 
 ```
-Does it need...?
-│
-├── useState, useEffect, event handlers
-│   └── Client Component ('use client')
-│
-├── Direct data fetching, no interactivity
-│   └── Server Component (default)
-│
-└── Both?
-    └── Split: Server parent + Client child
+Need useState/useEffect/events?
+├── YES → 'use client'
+└── NO  → Server Component (default)
 ```
 
-### By Default
-
-| Type       | Use                                   |
-| ---------- | ------------------------------------- |
-| **Server** | Data fetching, layout, static content |
-| **Client** | Forms, buttons, interactive UI        |
+| Type | Use For |
+|------|---------|
+| **Server** | Data fetching, layouts, static |
+| **Client** | Forms, buttons, interactive UI |
 
 ---
 
-## 2. Data Fetching Patterns
+## Data Fetching
 
-### Fetch Strategy
-
-| Pattern        | Use                      |
-| -------------- | ------------------------ |
-| **Default**    | Static (cached at build) |
-| **Revalidate** | ISR (time-based refresh) |
-| **No-store**   | Dynamic (every request)  |
-
-### Data Flow
-
-| Source     | Pattern                      |
-| ---------- | ---------------------------- |
-| Database   | Server Component fetch       |
-| API        | fetch with caching           |
-| User input | Client state + server action |
+| Pattern | Cache | Use |
+|---------|-------|-----|
+| Default | Static (build) | Content pages |
+| `revalidate: 60` | ISR | Dynamic but cacheable |
+| `no-store` | None | Real-time data |
 
 ---
 
-## 3. Routing Principles
+## Routing Conventions
 
-### File Conventions
-
-| File            | Purpose        |
-| --------------- | -------------- |
-| `page.tsx`      | Route UI       |
-| `layout.tsx`    | Shared layout  |
-| `loading.tsx`   | Loading state  |
-| `error.tsx`     | Error boundary |
-| `not-found.tsx` | 404 page       |
-
-### Route Organization
-
-| Pattern                 | Use                       |
-| ----------------------- | ------------------------- |
-| Route groups `(name)`   | Organize without URL      |
-| Parallel routes `@slot` | Multiple same-level pages |
-| Intercepting `(.)`      | Modal overlays            |
+| File | Purpose |
+|------|---------|
+| `page.tsx` | Route UI |
+| `layout.tsx` | Shared layout |
+| `loading.tsx` | Loading state |
+| `error.tsx` | Error boundary |
 
 ---
 
-## 4. API Routes
+## Performance Anti-Patterns
 
-### Route Handlers
-
-| Method    | Use         |
-| --------- | ----------- |
-| GET       | Read data   |
-| POST      | Create data |
-| PUT/PATCH | Update data |
-| DELETE    | Remove data |
-
-### Best Practices
-
-- Validate input with Zod
-- Return proper status codes
-- Handle errors gracefully
-- Use Edge runtime when possible
+| ❌ Don't | ✅ Do |
+|---------|-------|
+| `'use client'` everywhere | Server by default |
+| Fetch in client | Fetch in server |
+| Barrel imports (`index.js`) | Direct imports |
+| Nested awaits | Parallel fetch |
+| Skip loading states | Use Suspense |
 
 ---
 
-## 5. Performance Principles
+## Rules Library (60+ Patterns)
 
-### Image Optimization
+Detailed optimization rules in `rules/`:
 
-- Use next/image component
-- Set priority for above-fold
-- Provide blur placeholder
-- Use responsive sizes
+| Category | Files | Focus |
+|----------|-------|-------|
+| `async-*.md` | 5 | Waterfalls, parallel fetch |
+| `bundle-*.md` | 5 | Tree-shaking, lazy loading |
+| `server-*.md` | 8 | RSC, caching, actions |
+| `client-*.md` | 4 | Events, SWR, localStorage |
+| `rendering-*.md` | 10 | Hydration, transitions |
+| `rerender-*.md` | 12 | Memo, state, effects |
+| `js-*.md` | 11 | Micro-optimizations |
 
-### Bundle Optimization
+### Critical Rules
 
-- Dynamic imports for heavy components
-- Route-based code splitting (automatic)
-- Analyze with bundle analyzer
-
----
-
-## 6. Metadata
-
-### Static vs Dynamic
-
-| Type             | Use               |
-| ---------------- | ----------------- |
-| Static export    | Fixed metadata    |
-| generateMetadata | Dynamic per-route |
-
-### Essential Tags
-
-- title (50-60 chars)
-- description (150-160 chars)
-- Open Graph images
-- Canonical URL
+```
+📂 rules/
+├── async-parallel.md          # Parallel data fetching
+├── bundle-barrel-imports.md   # Avoid barrel files
+├── server-auth-actions.md     # Secure server actions
+├── rendering-hydration-*.md   # No hydration flicker
+└── rerender-memo.md           # Proper memoization
+```
 
 ---
 
-## 7. Caching Strategy
-
-### Cache Layers
-
-| Layer      | Control         |
-| ---------- | --------------- |
-| Request    | fetch options   |
-| Data       | revalidate/tags |
-| Full route | route config    |
-
-### Revalidation
-
-| Method     | Use                  |
-| ---------- | -------------------- |
-| Time-based | `revalidate: 60`     |
-| On-demand  | `revalidatePath/Tag` |
-| No cache   | `no-store`           |
-
----
-
-## 8. Server Actions
-
-### Use Cases
-
-- Form submissions
-- Data mutations
-- Revalidation triggers
-
-### Best Practices
-
-- Mark with 'use server'
-- Validate all inputs
-- Return typed responses
-- Handle errors
-
----
-
-## 9. Anti-Patterns
-
-| ❌ Don't                   | ✅ Do             |
-| -------------------------- | ----------------- |
-| 'use client' everywhere    | Server by default |
-| Fetch in client components | Fetch in server   |
-| Skip loading states        | Use loading.tsx   |
-| Ignore error boundaries    | Use error.tsx     |
-| Large client bundles       | Dynamic imports   |
-
----
-
-## 10. Project Structure
+## Project Structure
 
 ```
 app/
-├── (marketing)/     # Route group
+├── (marketing)/
 │   └── page.tsx
 ├── (dashboard)/
-│   ├── layout.tsx   # Dashboard layout
+│   ├── layout.tsx
 │   └── page.tsx
-├── api/
-│   └── [resource]/
-│       └── route.ts
-└── components/
-    └── ui/
+└── api/
+    └── route.ts
 ```
 
 ---
 
-> **Remember:** Server Components are the default for a reason. Start there, add client only when needed.
+> **Philosophy:** Performance is a feature. Waterfalls are the enemy. Server first.
+
+---
+
+## 🔗 Related
+
+| Item | Type | Purpose |
+|------|------|---------|
+| `react-architect` | Skill | React patterns |
+| `tailwind-kit` | Skill | Styling |
+| `perf-optimizer` | Skill | Performance |
+
+---
+
+⚡ PikaKit v3.2.0

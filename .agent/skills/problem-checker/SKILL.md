@@ -5,191 +5,89 @@ description: >-
   @[current_problems] and auto-fixes common issues. Triggers on: before notify_user,
   after code modification, IDE errors. Coordinates with: code-quality, auto-learner.
 metadata:
-  category: "core"
+  category: "evolution"
   version: "1.0.0"
-  triggers: "before notify_user, before task completion, after code modification, IDE errors"
-  coordinates_with: "code-quality, auto-learner"
+  triggers: "before notify_user, IDE errors, after code modification"
+  coordinates_with: "auto-learned, auto-learner"
   success_metrics: "0 IDE errors at completion, auto-fix >80%"
 ---
 
-# problem-checker
+# Problem Checker
 
-> **Purpose:** Check `@[current_problems]` and auto-fix common issues before any task completion
+> **Purpose:** Check `@[current_problems]` and auto-fix before task completion.
 
 ---
 
 ## 🚨 Critical Rule
 
-**NEVER mark a task complete or call `notify_user` with completion if `@[current_problems]` shows errors.**
+**NEVER mark a task complete if `@[current_problems]` shows errors.**
 
 ---
 
-## When to Invoke
+## When to Use
 
-| Trigger | Action |
-|---------|--------|
+| Situation | Action |
+|-----------|--------|
 | Before any `notify_user` | Run full check |
-| After modifying `.ts`, `.tsx`, `.js`, `.jsx` files | Run TypeScript check |
-| After modifying `.css` files | Run CSS validation |
-| User says "check for errors" | Run full check |
+| After modifying `.ts`, `.tsx`, `.js` files | TypeScript check |
+| After modifying `.css` files | CSS validation |
+| User says "check for errors" | Full check |
 
 ---
 
-## Check Protocol
+## 🔧 Quick Reference
 
-### Step 1: Read IDE Problems
+```bash
+# Run TypeScript check
+node .agent/skills/problem-checker/scripts/check_problems.js
 
-```javascript
-// Conceptual - agent reads from IDE context
-const problems = await getIDEProblems();
-// Returns: [{ file, line, message, severity, id }]
-```
-
-### Step 2: Categorize Problems
-
-| Severity | Action | Example |
-|----------|--------|---------|
-| `error` | **MUST FIX** before complete | Cannot find module, Type error |
-| `warning` | Should fix if auto-fixable | Unused variable, Missing import |
-| `info` | Ignore, proceed | Style suggestions |
-
-### Step 3: Auto-Fix Decision Tree
-
-```
-Problem detected?
-├── YES → Is it auto-fixable?
-│         ├── YES → Apply fix → Re-check → Continue
-│         └── NO  → STOP → Escalate to user
-└── NO  → Proceed to completion
+# Check specific file
+npx tsc --noEmit <file>
 ```
 
 ---
 
 ## Auto-Fixable Issues
 
-| Issue Type | Pattern | Fix Method |
-|------------|---------|------------|
-| **Missing import** | `Cannot find name 'X'` | Add `import { X } from 'module'` |
-| **JSX namespace** | `Cannot find namespace 'JSX'` | Import `ReactNode` from 'react' |
-| **Unused variable** | `'x' is declared but never used` | Remove or prefix with `_` |
-| **Missing semicolon** | `';' expected` | Add semicolon |
-| **Wrong quote style** | Quote style mismatch | Run prettier/eslint --fix |
-| **@import order** | `@import must precede` | Move @import to top |
-| **Type assertion** | Simple type mismatch | Add `as Type` assertion |
+| Issue Type | Pattern | Fix |
+|------------|---------|-----|
+| Missing import | `Cannot find name 'X'` | Add import |
+| JSX namespace | `Cannot find namespace 'JSX'` | Import ReactNode |
+| Unused variable | `'x' never used` | Remove or prefix `_` |
+| @import order | `@import must precede` | Move to top |
 
 ---
 
-## Non-Fixable Issues (Escalate)
+## Non-Fixable (Escalate)
 
-| Issue Type | Example | Action |
-|------------|---------|--------|
-| **Logic error** | Wrong business logic | Notify user, explain issue |
-| **Breaking change** | API contract broken | Block completion, explain impact |
-| **Missing dependency** | Package not installed | Ask user to run `npm install` |
-| **Ambiguous fix** | Multiple possible solutions | Ask user for preference |
+| Issue Type | Action |
+|------------|--------|
+| Logic error | Notify user |
+| Breaking change | Block, explain impact |
+| Missing dependency | Ask user to install |
 
 ---
 
-## Implementation Checklist
+## Check Protocol
 
-Before completion, verify:
-
-```markdown
-- [ ] Read `@[current_problems]`
-- [ ] Count: errors=0, warnings=0 (or acceptable)
-- [ ] If errors > 0: auto-fix what's possible
-- [ ] Re-check after auto-fix
-- [ ] If still errors: STOP and notify user
-- [ ] Document any fixes made
+```
+Problem detected?
+├── YES → Auto-fixable?
+│         ├── YES → Fix → Re-check → Continue
+│         └── NO  → STOP → Escalate
+└── NO  → Proceed
 ```
 
 ---
 
-## Integration with Workflows
+## 🔗 Related
 
-### In `/build` and `/autopilot`:
-
-```markdown
-## ⛔ MANDATORY: Problem Verification Before Completion
-
-Before ANY `notify_user`:
-1. Invoke `problem-checker`
-2. Wait for clean result
-3. Only then proceed
-```
-
-### In any code modification:
-
-```javascript
-// After editing file
-await runCommand('npx tsc --noEmit');
-const hasErrors = checkOutput();
-if (hasErrors) {
-  await autoFix(errors);
-  await runCommand('npx tsc --noEmit'); // Re-check
-}
-```
+| Item | Type | Purpose |
+|------|------|---------|
+| `auto-learned` | Skill | Stores learned patterns |
+| `skill-generator` | Skill | Generates from patterns |
+| `/validate` | Workflow | Run all checks |
 
 ---
 
-## Scripts
-
-| Script | Purpose |
-|--------|---------|
-| `check_problems.js` | Run TypeScript check, parse output |
-| `auto_fix.js` | Apply common fixes |
-
----
-
-## Success Metrics
-
-| Metric | Target |
-|--------|--------|
-| IDE errors at completion | **0** |
-| Auto-fix success rate | >80% |
-| Time to fix | <30s per error |
-| Escalation rate | <20% of issues |
-
----
-
-## Example Usage
-
-### Before Task Completion
-
-```
-Agent: About to notify user...
-→ Invoke problem-checker
-→ Found: 2 errors in WeatherCard.tsx
-  - Line 11: Cannot find namespace 'JSX'
-  - Line 15: Cannot find namespace 'JSX'
-→ Auto-fix: Import ReactNode from 'react'
-→ Re-check: 0 errors
-→ Proceed to notify_user
-```
-
-### Escalation Example
-
-```
-Agent: About to notify user...
-→ Invoke problem-checker
-→ Found: 1 error in api.ts
-  - Line 42: Property 'userId' does not exist on type 'Request'
-→ Cannot auto-fix (logic/design decision needed)
-→ STOP: Notify user about issue, ask for guidance
-```
-
----
-
-## Lessons Learned Integration
-
-When a problem is fixed, optionally add to lessons:
-
-```yaml
-- id: LEARN-XXX
-  pattern: "The error pattern"
-  severity: HIGH
-  message: "How to prevent/fix"
-  date: "YYYY-MM-DD"
-```
-
-This connects to `auto-learner` skill for continuous improvement.
+⚡ PikaKit v3.2.0

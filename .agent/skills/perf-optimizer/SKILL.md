@@ -6,9 +6,11 @@ description: >-
   Coordinates with: web-core, feature-flags, e2e-automation.
 allowed-tools: Read, Glob, Grep, Bash
 metadata:
+  version: "1.0.0"
   category: "devops"
+  triggers: "performance, slow, optimize, Lighthouse, bundle, Core Web Vitals"
   success_metrics: "LCP <2.5s, INP <200ms, CLS <0.1"
-  coordinates_with: "web-core, feature-flags, e2e-automation"
+  coordinates_with: "web-core, e2e-automation"
 ---
 
 # Performance Profiling
@@ -21,7 +23,18 @@ metadata:
 
 | Script                        | Purpose                      | Usage                                                    |
 | ----------------------------- | ---------------------------- | -------------------------------------------------------- |
-| `scripts/lighthouse_audit.py` | Lighthouse performance audit | `python scripts/lighthouse_audit.py https://example.com` |
+| `scripts/lighthouse_audit.js` | Lighthouse performance audit | `node scripts/lighthouse_audit.js https://example.com` |
+
+---
+
+## When to Use
+
+| Situation | Approach |
+|-----------|----------|
+| Slow page load | Run Lighthouse audit |
+| Large bundle size | Use bundle analyzer |
+| Runtime issues | DevTools Performance tab |
+| Memory problems | DevTools Memory tab |
 
 ---
 
@@ -148,3 +161,17 @@ metadata:
 ---
 
 > **Remember:** The fastest code is code that doesn't run. Remove before optimizing.
+
+---
+
+## 🔗 Related
+
+| Item | Type | Purpose |
+|------|------|---------|
+| `/optimize` | Workflow | Performance workflow |
+| `e2e-automation` | Skill | Performance testing |
+| `web-core` | Skill | Web fundamentals |
+
+---
+
+⚡ PikaKit v3.2.0

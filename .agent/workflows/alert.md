@@ -1,12 +1,14 @@
-﻿---
+---
 description: Configure alert rules and test incident response. Slack/PagerDuty integration with runbook automation.
 ---
 
-# Alert Configuration Workflow
+# /alert - Alert Configuration
 
-Configure alert rules, test notifications, and setup incident response procedures.
+$ARGUMENTS
 
-## ðŸŽ¯ Purpose
+---
+
+## Purpose
 
 This workflow configures:
 
@@ -16,7 +18,7 @@ This workflow configures:
 - Runbook templates
 - Test alert delivery
 
-## ðŸ¤– Meta-Agents Integration
+## 🤖 Meta-Agents Integration
 
 | Phase | Agent | Action |
 | ----- | ----- | ------ |
@@ -26,22 +28,22 @@ This workflow configures:
 
 ```
 Flow:
-configure alerts â†’ learner.analyze(past_incidents)
-       â†“
-assessor.tune(thresholds) â†’ reduce noise
-       â†“
-incident? â†’ orchestrator.coordinate(runbook)
+configure alerts → learner.analyze(past_incidents)
+       ↓
+assessor.tune(thresholds) → reduce noise
+       ↓
+incident? → orchestrator.coordinate(runbook)
 ```
 
 ---
 
-## ðŸ”— Chain: monitoring-production
+## 🔗 Chain: monitoring-production
 
 **Primary Skill:** `observability`
 
 **Coordinates with:** `observability`, `observability`, `observability`
 
-## ðŸ“– Usage
+## 📖 Usage
 
 ```bash
 /alert <configuration>
@@ -66,7 +68,7 @@ incident? â†’ orchestrator.coordinate(runbook)
 /alert test all notifications
 ```
 
-## ðŸ”„ Workflow Steps
+## 📁„ Workflow Steps
 
 This workflow automatically:
 
@@ -98,7 +100,7 @@ This workflow automatically:
    - Document investigation steps
    - Define escalation procedures
 
-## ðŸŽ¨ Alert Types
+## 🎨 Alert Types
 
 ### Application Alerts (P0 - Critical)
 
@@ -127,18 +129,18 @@ This workflow automatically:
 - SSL Certificate Expiring
 ```
 
-## âœ… Success Criteria
+## ✅ Success Criteria
 
 After running `/alert`, you will have:
 
-âœ“ **Alert Rules** - Configured in your monitoring platform
-âœ“ **Slack Integration** - Test alert delivered successfully
-âœ“ **PagerDuty Integration** - On-call routing configured
-âœ“ **Runbooks** - Documentation for each alert type
-âœ“ **Escalation Policy** - Clear escalation path defined
-âœ“ **Alert Testing** - All channels verified working
+✓ **Alert Rules** - Configured in your monitoring platform
+✓ **Slack Integration** - Test alert delivered successfully
+✓ **PagerDuty Integration** - On-call routing configured
+✓ **Runbooks** - Documentation for each alert type
+✓ **Escalation Policy** - Clear escalation path defined
+✓ **Alert Testing** - All channels verified working
 
-## ðŸ“Š Recommended Thresholds
+## 📊 Recommended Thresholds
 
 ### By Service Type
 
@@ -174,7 +176,7 @@ failure_rate: >5
 | Staging     | >5%             | >1000ms           |
 | Production  | >0.5%           | >200ms            |
 
-## ðŸ” Notification Routing
+## 📁 Notification Routing
 
 ### Severity-Based Routing
 
@@ -188,16 +190,16 @@ failure_rate: >5
 
 **Business Hours (9am-6pm):**
 
-- All alerts â†’ Slack engineering channel
-- P0 alerts â†’ Page on-call engineer
+- All alerts → Slack engineering channel
+- P0 alerts → Page on-call engineer
 
 **Off Hours (6pm-9am, weekends):**
 
-- P0 alerts â†’ Page on-call engineer immediately
-- P1 alerts â†’ Slack only, review next day
-- P2 alerts â†’ Batched daily summary
+- P0 alerts → Page on-call engineer immediately
+- P1 alerts → Slack only, review next day
+- P2 alerts → Batched daily summary
 
-## ðŸ’¡ Tips
+## 💡 Tips
 
 **Alert Fatigue Prevention:**
 
@@ -221,50 +223,50 @@ failure_rate: >5
 - Alerts that auto-resolve in <1 min
 - "Just FYI" alerts (use reports instead)
 
-## ðŸ“š Example Output
+## 📚 Example Output
 
 ```bash
 You: "/alert configure for high-traffic"
 
 Agent: Analyzing application requirements...
-       â†“
+       ↓
 
-[1/4] ðŸŽ¯ Alert Rules Configuration
-   âœ… High Error Rate (>0.5%)
-   âœ… Critical Latency (p95 >300ms)
-   âœ… Database Timeouts
-   âœ… Memory Usage (>85%)
-   âœ… Health Check Failures
-   âœ… Certificate Expiry (30 days)
+[1/4] 🎯 Alert Rules Configuration
+   ✅ High Error Rate (>0.5%)
+   ✅ Critical Latency (p95 >300ms)
+   ✅ Database Timeouts
+   ✅ Memory Usage (>85%)
+   ✅ Health Check Failures
+   ✅ Certificate Expiry (30 days)
 
    Created: alerts.yml (15 rules)
 
-[2/4] ðŸ“¢ Notification Channels
-   âœ… Slack webhook: https://hooks.slack.com/...
-   âœ… Channel: #oncall
-   âœ… PagerDuty service: production-alerts
-   âœ… Escalation: on-call â†’ manager (15min)
-   âœ… Email: oncall@example.com
+[2/4] 📢 Notification Channels
+   ✅ Slack webhook: https://hooks.slack.com/...
+   ✅ Channel: #oncall
+   ✅ PagerDuty service: production-alerts
+   ✅ Escalation: on-call → manager (15min)
+   ✅ Email: oncall@example.com
 
-[3/4] ðŸ§ª Test Alerts
-   âœ… Sent test alert to Slack âœ“
-   âœ… Verified webhook delivery
-   âœ… PagerDuty integration working
-   âœ… Escalation policy tested
+[3/4] 🧪 Test Alerts
+   ✅ Sent test alert to Slack ✓
+   ✅ Verified webhook delivery
+   ✅ PagerDuty integration working
+   ✅ Escalation policy tested
 
-[4/4] ðŸ“– Runbooks Generated
-   âœ… docs/runbooks/high-error-rate.md
-   âœ… docs/runbooks/high-latency.md
-   âœ… docs/runbooks/database-timeout.md
-   âœ… docs/runbooks/memory-leak.md
-   âœ… docs/runbooks/health-check-failure.md
-   âœ… Post-mortem template
+[4/4] 📖 Runbooks Generated
+   ✅ docs/runbooks/high-error-rate.md
+   ✅ docs/runbooks/high-latency.md
+   ✅ docs/runbooks/database-timeout.md
+   ✅ docs/runbooks/memory-leak.md
+   ✅ docs/runbooks/health-check-failure.md
+   ✅ Post-mortem template
 
-âœ… Alerting configured!
+✅ Alerting configured!
 
-ðŸ“Š Alert Dashboard: https://app.datadoghq.com/monitors
-ðŸ”” Slack channel: #oncall
-ðŸ“ž PagerDuty: https://example.pagerduty.com
+📊 Alert Dashboard: https://app.datadoghq.com/monitors
+📁” Slack channel: #oncall
+📞 PagerDuty: https://example.pagerduty.com
 
 Next steps:
 1. Review alerts.yml and adjust thresholds
@@ -273,7 +275,7 @@ Next steps:
 4. Update runbooks with team-specific procedures
 ```
 
-## ðŸš¨ Alert Rule Examples
+## 🚨 Alert Rule Examples
 
 ### High Error Rate
 
@@ -319,11 +321,45 @@ notify:
 runbook: docs/runbooks/database-pool.md
 ```
 
-## ðŸ”— Related Workflows
+## Output Format
 
-- `/monitor` - Setup full monitoring stack first
-- `/diagnose` - Investigate when alerts fire
-- `/launch` - Deploy with alerts pre-configured
+```markdown
+## 🚨 Alert Configuration Complete
+
+### Configuration Summary
+| Aspect | Value |
+|--------|-------|
+| Alert Rules | [X] configured |
+| Channels | Slack + PagerDuty |
+| Runbooks | [X] generated |
+
+### Next Steps
+- [ ] Review alert thresholds
+- [ ] Add team to PagerDuty rotation
+- [ ] Test in staging first
+```
+
+---
+
+## 🔗 Workflow Chain
+
+```mermaid
+graph LR
+    A["/monitor"] --> B["/alert"]
+    B --> C["/diagnose"]
+    style B fill:#10b981
+```
+
+| After /alert | Run | Purpose |
+|--------------|-----|---------|
+| Need monitoring first | `/monitor` | Setup full stack |
+| Alert fires | `/diagnose` | Investigate issue |
+| Ready to ship | `/launch` | Deploy with alerts |
+
+**Handoff:**
+```markdown
+✅ Alerting configured! Run `/launch` when ready to deploy.
+```
 
 ---
 

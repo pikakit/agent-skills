@@ -1,0 +1,21 @@
+{
+  "version": "1.0",
+  "lastUpdated": "2026-02-02T17:13:03.229Z",
+  "lessons": [
+    {
+      "id": "TYPE-001",
+      "category": "type",
+      "pattern": "Property 'scheduleBatchNotification' missing on type 'DiagnosticListener'",
+      "context": "ts file, line 172",
+      "solution": "Add 'scheduleBatchNotification' to type definition or use type assertion",
+      "occurrences": 1,
+      "lastSeen": "2026-02-02",
+      "source": "ts",
+      "autoDetected": true
+    }
+  ],
+  "stats": {
+    "totalLearned": 1,
+    "skillsGenerated": 0
+  }
+}

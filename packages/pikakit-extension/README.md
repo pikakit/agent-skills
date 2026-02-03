@@ -1,14 +1,14 @@
-# PikaKit Skill Generator - VS Code Extension
+# PikaKit Skill Engine - VS Code Extension
 
-> 🤖 Real-time auto-learning từ IDE diagnostics → Generate skills tự động
+> 🤖 Real-time auto-learning from IDE diagnostics → Generate skills automatically
 
 ## Features
 
-- **Real-time Diagnostics** - Listen TypeScript, ESLint errors real-time
-- **Pattern Detection** - Tự động nhận diện patterns từ lỗi lặp lại
-- **Auto-Save Lessons** - Lưu vào `.agent/lessons.json`
-- **Skill Generation** - Tạo SKILL.md khi đủ threshold (≥3 lần)
-- **Status Bar** - Hiển thị trạng thái learning
+- **Real-time Diagnostics** - Listen to TypeScript, ESLint errors in real-time
+- **Pattern Detection** - Auto-detect patterns from repeated errors
+- **Auto-Save Lessons** - Save to `.agent/lessons.json`
+- **Skill Generation** - Generate SKILL.md when threshold is reached (≥3 times)
+- **Status Bar** - Display learning status
 
 ## Installation
 
@@ -20,30 +20,30 @@ npm install
 npm run compile
 ```
 
-Sau đó:
-1. Nhấn F5 trong VS Code
-2. Chọn "Extension Development Host"
-3. Extension sẽ chạy trong VS Code mới
+Then:
+1. Press F5 in VS Code
+2. Select "Extension Development Host"
+3. Extension will run in a new VS Code window
 
-### Install từ VSIX
+### Install from VSIX
 
 ```bash
 npm run vscode:prepublish
 vsce package
-code --install-extension pikakit-skill-generator-1.0.0.vsix
+code --install-extension pikakit-skill-engine-1.0.0.vsix
 ```
 
 ## Commands
 
-Nhấn `Ctrl+Shift+P` (Windows/Linux) hoặc `Cmd+Shift+P` (macOS) để mở Command Palette, sau đó gõ "PikaKit" để xem các lệnh:
+Press `Ctrl+Shift+P` (Windows/Linux) or `Cmd+Shift+P` (macOS) to open Command Palette, then type "PikaKit" to see available commands:
 
 | Command | Description |
 |---------|-------------|
-| `PikaKit: Start Learning` | Bắt đầu listen diagnostics |
-| `PikaKit: Stop Learning` | Dừng learning |
-| `PikaKit: Generate Skill` | Manual generate từ patterns |
-| `PikaKit: View Lessons` | Xem tất cả lessons đã học |
-| `PikaKit: Clear Lessons` | Xóa tất cả lessons |
+| `PikaKit: Start Learning` | Start listening to diagnostics |
+| `PikaKit: Stop Learning` | Stop learning |
+| `PikaKit: Generate Skill` | Manually generate from patterns |
+| `PikaKit: View Lessons` | View all learned lessons |
+| `PikaKit: Clear Lessons` | Clear all lessons |
 
 ## Configuration
 
@@ -58,12 +58,12 @@ Nhấn `Ctrl+Shift+P` (Windows/Linux) hoặc `Cmd+Shift+P` (macOS) để mở Co
 ## How It Works
 
 ```
-1. Code có lỗi TypeScript/ESLint
-2. Extension detect và phân tích
-3. Pattern được save vào lessons.json
-4. Khi pattern lặp lại ≥3 lần
-5. Tự động offer generate skill
-6. Skill mới trong .agent/skills/
+1. TypeScript/ESLint error detected
+2. Extension analyzes the error
+3. Pattern saved to lessons.json
+4. When pattern repeats ≥3 times
+5. Auto-offer to generate skill
+6. New skill created in .agent/skills/
 ```
 
 ## Supported Error Types

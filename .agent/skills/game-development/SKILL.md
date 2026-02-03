@@ -1,6 +1,11 @@
 ---
 name: game-development
 description: Game development orchestrator. Routes to platform-specific skills based on project needs.
+metadata:
+  category: "mobile-games"
+  version: "1.0.0"
+  triggers: "game, game development, Unity, Godot, Phaser, game engine"
+  coordinates_with: "mobile-first, mobile-developer"
 allowed-tools: Read, Write, Edit, Glob, Grep, Bash
 ---
 
@@ -165,3 +170,17 @@ Abstract input into ACTIONS, not raw keys:
 ---
 
 > **Remember:** Great games come from iteration, not perfection. Prototype fast, then polish.
+
+---
+
+## 🔗 Related
+
+| Item | Type | Purpose |
+|------|------|---------|
+| `/game` | Workflow | Game development workflow |
+| `mobile-developer` | Skill | Mobile game builds |
+| `perf-optimizer` | Skill | Game performance |
+
+---
+
+⚡ PikaKit v3.2.0

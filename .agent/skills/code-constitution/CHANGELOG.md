@@ -13,7 +13,7 @@ is considered a **governance violation**.
 ## [v1.1.0] — 2026-01-24  
 ### 🚀 PROGRESSIVE DISCLOSURE COMPLETE
 
-This release completes the **100/100 Antigravity Compatibility Score**.
+This release completes the **100/100 PikaKit Compatibility Score**.
 
 ---
 
@@ -174,23 +174,23 @@ This version is declared **LOCKED**.
 
 ---
 
-### 🧠 Antigravity / Google Skills Integration
+### 🧠 PikaKit Skills Integration
 - Added **SKILL.md** as single entry point
 - Implemented **Progressive Disclosure architecture**
 - Added **metadata/**
   - `precedence.yaml` for authority resolution
   - `scope-map.yaml` for automatic doctrine routing
-- Packaged as **directory-based Antigravity Skill**
+- Packaged as **directory-based PikaKit Skill**
 
 ---
 
 ### 📦 Distribution
 - Published **single bundled ZIP**
-  - `coinpika-doctrine-pack-antigravity.zip`
+  - `coinpika-doctrine-pack-pikakit.zip`
 - Supports:
   - Workspace scope
   - Global scope
-  - Antigravity / Gemini / Claude / GPT agents
+  - PikaKit / Gemini / Claude / GPT agents
 
 ---
 

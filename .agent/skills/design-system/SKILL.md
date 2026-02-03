@@ -6,14 +6,29 @@ description: >-
   Coordinates with: web-core, tailwind-kit, visual-excellence.
 allowed-tools: Read, Write, Edit, Glob, Grep, Bash
 metadata:
+  version: "1.0.0"
   category: "architecture"
+  triggers: "design, UI, UX, color palette, typography, component design"
   success_metrics: "design system documented, UX audit passed"
-  coordinates_with: "web-core, tailwind-kit, visual-excellence"
+  coordinates_with: "web-core, tailwind-kit, studio"
 ---
 
 # Frontend Design System
 
 > **Philosophy:** Every pixel has purpose. Restraint is luxury. User psychology drives decisions.
+
+---
+
+## When to Use
+
+| Situation | Approach |
+|-----------|----------|
+| Color selection | Read color-system.md |
+| Typography | Check typography-system.md |
+| Visual effects | See visual-effects.md |
+| UX psychology | Read ux-psychology.md |
+
+---
 
 ## 📚 Atomic Rules (Knowledge)
 
@@ -31,7 +46,7 @@ metadata:
 
 | Script                | Purpose             |
 | --------------------- | ------------------- |
-| `scripts/ux_audit.py` | UX Pyschology Audit |
+| `scripts/ux_audit.js` | UX Psychology Audit |
 
 ## ⚠️ Critical Anti-Patterns
 
@@ -41,18 +56,32 @@ metadata:
 
 ## 🎨 Studio Integration
 
-**Path:** `.agent/studio/`
+**Path:** `.agent/skills/studio/`
 
 Use Studio for AI-powered design recommendations:
 
 ```bash
 # Generate complete design system
-node .agent/studio/scripts-js/search.js "<query>" --design-system
+node .agent/skills/studio/scripts-js/search.js "<query>" --design-system
 
 # Search specific domain
-node .agent/studio/scripts-js/search.js "<query>" --domain style
+node .agent/skills/studio/scripts-js/search.js "<query>" --domain style
 ```
 
 **Available Domains:** style, color, typography, landing, ux, chart, product
 
 **Recommended Workflow:** Use `/studio` workflow for comprehensive UI design.
+
+---
+
+## 🔗 Related
+
+| Item | Type | Purpose |
+|------|------|---------|
+| `studio` | Skill | AI design |
+| `tailwind-kit` | Skill | Styling |
+| `/studio` | Workflow | Design workflow |
+
+---
+
+⚡ PikaKit v3.2.0

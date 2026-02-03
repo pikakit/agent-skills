@@ -934,6 +934,30 @@
             "scripts": [
                 "deploy.sh"
             ]
+        },
+        {
+            "name": "auto-learned",
+            "category": "core",
+            "triggers": [
+                "auto-learn",
+                "pattern",
+                "learned",
+                "error fix"
+            ],
+            "coordinates_with": [
+                "problem-checker",
+                "skill-generator",
+                "auto-learner"
+            ],
+            "success_metrics": "patterns matched, auto-fixes applied",
+            "hierarchical": true,
+            "sub_skills": [
+                "import-patterns",
+                "type-patterns",
+                "syntax-patterns",
+                "logic-patterns",
+                "style-patterns"
+            ]
         }
     ]
 }

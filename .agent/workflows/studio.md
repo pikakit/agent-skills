@@ -2,13 +2,17 @@
 description: Plan and implement UI with 50+ styles, 95+ color palettes, and anti-AI-slop design intelligence.
 ---
 
----
-description: AI-powered design intelligence with 50+ styles, 95+ color palettes, and automated design system generation
----
-
 # /studio - Design Intelligence
 
-Comprehensive design guide for web and mobile applications. Contains 50+ styles, 97 color palettes, 57 font pairings, 99 UX guidelines, and 25 chart types across 9 technology stacks. Searchable database with priority-based recommendations.
+$ARGUMENTS
+
+---
+
+## Purpose
+
+Comprehensive design guide for web and mobile applications. Contains 50+ styles, 97 color palettes, 57 font pairings, 99 UX guidelines, and 25 chart types across 9 technology stacks. AI-powered design system generation with searchable database and priority-based recommendations.
+
+---
 
 ## 🤖 Meta-Agents Integration
 
@@ -217,7 +221,19 @@ node .agent/skills/studio/scripts-js/search.js "layout responsive form" --stack 
 
 ---
 
-## Output Formats
+## Examples
+
+```
+/studio SaaS dashboard with dark mode
+/studio e-commerce product page elegant
+/studio healthcare portal accessible
+/studio fintech crypto modern
+/studio beauty spa wellness landing page
+```
+
+---
+
+## Output Format
 
 The `--design-system` flag supports two output formats:
 

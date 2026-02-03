@@ -10,6 +10,7 @@ metadata:
   version: "3.0.0"
   priority: "CRITICAL"
   category: "core"
+  triggers: "code style, clean code, best practices, naming conventions, SRP, DRY, KISS"
   success_metrics: "lint errors = 0, code review approved"
   coordinates_with: "code-review, test-architect, code-quality"
 ---
@@ -17,6 +18,17 @@ metadata:
 # Clean Code - Pragmatic AI Coding Standards
 
 > **CRITICAL SKILL** - Be **concise, direct, and solution-focused**.
+
+---
+
+## When to Use
+
+| Situation | Approach |
+|-----------|----------|
+| Writing code | Follow core principles |
+| Naming | Use naming rules |
+| Functions | Follow function rules |
+| Completing task | Run self-check |
 
 ---
 
@@ -210,3 +222,17 @@ File to edit: UserService.ts
 > 🔴 **VIOLATION:** Running script and ignoring output = FAILED task.
 > 🔴 **VIOLATION:** Auto-fixing without asking = Not allowed.
 > 🔴 **Rule:** Always READ output → SUMMARIZE → ASK → then fix.
+
+---
+
+## 🔗 Related
+
+| Item | Type | Purpose |
+|------|------|---------|
+| `code-review` | Skill | Code quality |
+| `test-architect` | Skill | Testing |
+| `code-constitution` | Skill | Governance |
+
+---
+
+⚡ PikaKit v3.2.0

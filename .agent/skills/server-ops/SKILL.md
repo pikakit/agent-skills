@@ -6,7 +6,9 @@ description: >-
   Coordinates with: cicd-pipeline, security-scanner.
 allowed-tools: Read, Write, Edit, Glob, Grep, Bash
 metadata:
+  version: "1.0.0"
   category: "devops"
+  triggers: "server, DevOps, infrastructure, deployment, hosting, PM2"
   success_metrics: "server running, uptime maintained"
   coordinates_with: "cicd-pipeline, security-scanner"
 ---
@@ -15,6 +17,17 @@ metadata:
 
 > Server management principles for production operations.
 > **Learn to THINK, not memorize commands.**
+
+---
+
+## When to Use
+
+| Situation | Approach |
+|-----------|----------|
+| Deploy Node.js app | Use PM2 |
+| Server provisioning | Check platform selection |
+| High CPU/memory | Follow scaling decisions |
+| Server issues | Use troubleshooting priority |
 
 ---
 
@@ -166,3 +179,17 @@ When something's wrong:
 ---
 
 > **Remember:** A well-managed server is boring. That's the goal.
+
+---
+
+## 🔗 Related
+
+| Item | Type | Purpose |
+|------|------|---------|
+| `cicd-pipeline` | Skill | Deployment |
+| `observability` | Skill | Monitoring |
+| `security-scanner` | Skill | Server security |
+
+---
+
+⚡ PikaKit v3.2.0

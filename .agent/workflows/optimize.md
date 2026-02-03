@@ -1,12 +1,14 @@
-﻿---
+---
 description: Performance optimizer with bundle analysis, N+1 query fixes, Redis caching, and k6 load testing
 ---
 
-# Performance Optimization Workflow
+# /optimize - Performance Optimization
 
-Systematic performance optimization: profile, tune database, add caching, validate with load testing.
+$ARGUMENTS
 
-## ðŸŽ¯ Purpose
+---
+
+## Purpose
 
 This workflow uses the **performance-audit** chain to:
 
@@ -15,7 +17,7 @@ This workflow uses the **performance-audit** chain to:
 - Implement caching layers (Redis, CDN)
 - Validate improvements with load testing
 
-## ðŸ¤– Meta-Agents Integration
+## 🤖 Meta-Agents Integration
 
 | Phase | Agent | Action |
 | ----- | ----- | ------ |
@@ -26,16 +28,16 @@ This workflow uses the **performance-audit** chain to:
 
 ```
 Flow:
-recovery.save() â†’ orchestrator.run(optimizations)
-       â†“
-benchmark â†’ worse? â†’ recovery.restore()
-       â†“
-better â†’ learner.log(optimization_patterns)
+recovery.save() → orchestrator.run(optimizations)
+       ↓
+benchmark → worse? → recovery.restore()
+       ↓
+better → learner.log(optimization_patterns)
 ```
 
 ---
 
-## ðŸ”— Chain: performance-audit
+## 🔗 Chain: performance-audit
 
 **Skills Loaded (4):**
 
@@ -44,13 +46,13 @@ better â†’ learner.log(optimization_patterns)
 - `perf-optimizer` - Redis caching, CDN configuration
 - `perf-optimizer` - k6/Artillery load testing, scalability validation
 
-## ðŸ“– Usage
+## 📖 Usage
 
 ```bash
 /optimize <description>
 ```
 
-### Examples
+## Examples
 
 ```bash
 # Basic optimization
@@ -63,7 +65,7 @@ better â†’ learner.log(optimization_patterns)
 /optimize production app (10K+ users)
 ```
 
-## ðŸ”„ Workflow Steps
+## 📁„ Workflow Steps
 
 This workflow automatically:
 
@@ -91,16 +93,16 @@ This workflow automatically:
    - Measure p95 latency, error rate
    - Identify remaining bottlenecks
 
-## âœ… Success Criteria
+## ✅ Success Criteria
 
 After running `/optimize`, you will have:
 
-âœ“ **Bottlenecks Identified** - Slow queries, large bundles
-âœ“ **Performance Improved** - 50%+ latency reduction
-âœ“ **Caching Implemented** - >80% cache hit rate
-âœ“ **Load Test Passed** - Supports target concurrent users
+✓ **Bottlenecks Identified** - Slow queries, large bundles
+✓ **Performance Improved** - 50%+ latency reduction
+✓ **Caching Implemented** - >80% cache hit rate
+✓ **Load Test Passed** - Supports target concurrent users
 
-## ðŸ“Š What Gets Optimized
+## 📊 What Gets Optimized
 
 ### Frontend
 
@@ -121,7 +123,7 @@ After running `/optimize`, you will have:
 - HTTP caching headers
 - Horizontal scaling recommendations
 
-## ðŸŽ¨ Performance Targets
+## 🎨 Performance Targets
 
 | Metric               | Target  | Critical |
 | -------------------- | ------- | -------- |
@@ -130,13 +132,13 @@ After running `/optimize`, you will have:
 | **Cache Hit Rate**   | >80%    | >70%     |
 | **Concurrent Users** | 10,000+ | 5,000+   |
 
-## ðŸ” Related Workflows
+## 📁 Related Workflows
 
 - `/benchmark` - Run load tests only (no optimization)
 - `/monitor` - Setup monitoring after optimization
 - `/launch` - Deploy optimized version
 
-## ðŸ’¡ Tips
+## 💡 Tips
 
 **When to use `/optimize`:**
 
@@ -153,57 +155,57 @@ After running `/optimize`, you will have:
 - Validate with load tests
 - Monitor after deployment
 
-## ðŸ“š Example Output
+## 📚 Example Output
 
 ```bash
 You: "/optimize my-slow-api"
 
 Agent: Loading performance-audit chain
-       â†“
+       ↓
 Skills: perf-optimizer, data-modeler, perf-optimizer, perf-optimizer
-       â†“
+       ↓
 
-[1/4] ðŸ” Performance Profiling
-   âš ï¸ API p95 latency: 850ms (target: <200ms)
+[1/4] 📁 Performance Profiling
+   ⚠ï¸ API p95 latency: 850ms (target: <200ms)
    âŒ Database queries: 15 per request
    âŒ Slow query: users.findMany (2.5s)
-   âš ï¸ No caching detected
+   ⚠ï¸ No caching detected
 
-[2/4] ðŸ—„ï¸ Database Tuning
-   âœ… Added index: idx_users_email
-   âœ… Fixed N+1: user posts (15 queries â†’ 1)
-   âœ… Connection pool: 10 â†’ 20
-   âœ… Query time: 2.5s â†’ 50ms (98% faster)
+[2/4] 🗄ï¸ Database Tuning
+   ✅ Added index: idx_users_email
+   ✅ Fixed N+1: user posts (15 queries → 1)
+   ✅ Connection pool: 10 → 20
+   ✅ Query time: 2.5s → 50ms (98% faster)
 
-[3/4] âš¡ Cache Optimization
-   âœ… Redis configured
-   âœ… Cache-aside pattern implemented
-   âœ… CDN configured for static assets
-   âœ… Cache hit rate: 85%
-   âœ… Database load: 1000 qps â†’ 150 qps
+[3/4] ⚡ Cache Optimization
+   ✅ Redis configured
+   ✅ Cache-aside pattern implemented
+   ✅ CDN configured for static assets
+   ✅ Cache hit rate: 85%
+   ✅ Database load: 1000 qps → 150 qps
 
-[4/4] ðŸ§ª Load Testing
+[4/4] 🧪 Load Testing
    Testing: 5,000 concurrent users
-   âœ… p95 latency: 180ms (target: <200ms âœ“)
-   âœ… Error rate: 0.2% (target: <1% âœ“)
-   âœ… Throughput: 4,150 rps
-   âœ… PASS
+   ✅ p95 latency: 180ms (target: <200ms ✓)
+   ✅ Error rate: 0.2% (target: <1% ✓)
+   ✅ Throughput: 4,150 rps
+   ✅ PASS
 
-ðŸ“Š Performance Improvement:
-   - Latency: 850ms â†’ 180ms (79% faster)
+📊 Performance Improvement:
+   - Latency: 850ms → 180ms (79% faster)
    - Database load: 85% reduction
-   - Supports: 5,000+ users âœ…
+   - Supports: 5,000+ users ✅
 
-âœ… Optimization complete!
+✅ Optimization complete!
 
 Files modified:
-   âœ“ Add indexes to schema
-   âœ“ Redis cache setup (lib/cache/)
-   âœ“ CDN config (next.config.js)
-   âœ“ Load test script (tests/load/)
+   ✓ Add indexes to schema
+   ✓ Redis cache setup (lib/cache/)
+   ✓ CDN config (next.config.js)
+   ✓ Load test script (tests/load/)
 ```
 
-## ðŸš¨ Common Bottlenecks Fixed
+## 🚨 Common Bottlenecks Fixed
 
 | Issue                 | Solution                    | Impact                |
 | --------------------- | --------------------------- | --------------------- |
@@ -211,6 +213,49 @@ Files modified:
 | Missing indexes       | Add indexes on foreign keys | 95%+ faster           |
 | No caching            | Redis + CDN                 | 70% DB load reduction |
 | Small connection pool | Increase to 20-50           | Eliminates timeouts   |
+
+---
+
+## Output Format
+
+```markdown
+## ⚡ Performance Optimization Complete
+
+### Improvements
+| Metric | Before | After | Improvement |
+|--------|--------|-------|-------------|
+| p95 Latency | [X]ms | [Y]ms | [Z]% faster |
+| DB Load | [X] qps | [Y] qps | [Z]% reduction |
+| Cache Hit | 0% | [X]% | New caching |
+
+### Next Steps
+- [ ] Run load test to validate
+- [ ] Monitor in production
+- [ ] Set up alerts for regression
+```
+
+---
+
+## 🔗 Workflow Chain
+
+```mermaid
+graph LR
+    A["/diagnose"] --> B["/optimize"]
+    B --> C["/benchmark"]
+    C --> D["/launch"]
+    style B fill:#10b981
+```
+
+| After /optimize | Run | Purpose |
+|-----------------|-----|---------|
+| Validate results | `/benchmark` | Run load tests |
+| Ready to deploy | `/launch` | Deploy optimized version |
+| Set up monitoring | `/monitor` | Track performance |
+
+**Handoff:**
+```markdown
+✅ Optimization complete! Run `/benchmark` to validate, then `/launch` to deploy.
+```
 
 ---
 

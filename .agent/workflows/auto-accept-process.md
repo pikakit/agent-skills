@@ -2,19 +2,19 @@
 description: Autonomous agent execution framework. User approves PLAN.md once, agent runs end-to-end automatically.
 ---
 
-# Auto-Accept Agent Workflow
+# /auto-accept - Autonomous Execution
 
-> **Mục tiêu:** User request → Agent chạy tự động → Kết quả hoàn chỉnh
+$ARGUMENTS
 
 ---
 
-## 🎯 Core Concept
+## Purpose
 
 ```
-User Request → PLAN.md (1 lần approve) → Agent chạy tự động → Done
+User Request → PLAN.md (approve once) → Agent runs automatically → Done
 ```
 
-**Thay vì:** User phải approve từng command, từng file edit.
+**Instead of:** User having to approve each command, each file edit.
 
 ---
 
@@ -43,22 +43,22 @@ success → learner.log(patterns)
 
 ---
 
-## 📋 Quy Trình 3 Phase
+## 📋 3-Phase Process
 
 ### Phase 1: Planning (1 Checkpoint)
 
 ```markdown
 1. User: "Build feature X"
-2. Agent: Tạo PLAN.md với đầy đủ chi tiết
-3. ⛔ **CHECKPOINT DUY NHẤT**: User approve PLAN.md
-4. User: "Approved" hoặc "Proceed"
+2. Agent: Create PLAN.md with full details
+3. ⛔ **SINGLE CHECKPOINT**: User approves PLAN.md
+4. User: "Approved" or "Proceed"
 ```
 
-**PLAN.md phải có:**
+**PLAN.md must have:**
 
-- [ ] Mục tiêu rõ ràng
-- [ ] Danh sách files sẽ tạo/sửa
-- [ ] Commands sẽ chạy
+- [ ] Clear objectives
+- [ ] List of files to create/edit
+- [ ] Commands to run
 - [ ] Verification steps
 
 ### Phase 2: Execution (Auto-Accept)
@@ -66,9 +66,9 @@ success → learner.log(patterns)
 ```markdown
 // turbo-all ← Magic annotation
 
-5. Agent tạo files (không hỏi)
-6. Agent chạy commands (auto-accept nếu safe)
-7. Agent fix lỗi nếu có
+5. Agent creates files (no prompts)
+6. Agent runs commands (auto-accept if safe)
+7. Agent fixes errors if any
 ```
 
 **Auto-Accept Conditions:**
@@ -85,26 +85,26 @@ success → learner.log(patterns)
 ### Phase 3: Verification (Auto)
 
 ```markdown
-8. Agent chạy tests
-9. Agent chạy lint/security scan
-10. Agent report kết quả
+8. Agent runs tests
+9. Agent runs lint/security scan
+10. Agent reports results
 ```
 
 ---
 
 ## 🔑 Magic Annotations
 
-### Trong Workflow Files
+### In Workflow Files
 
 ```markdown
-// turbo ← Auto-accept STEP tiếp theo
-// turbo-all ← Auto-accept TẤT CẢ steps trong workflow
+// turbo ← Auto-accept NEXT step
+// turbo-all ← Auto-accept ALL steps in workflow
 ```
 
-### Trong Code Blocks
+### In Code Blocks
 
 ````markdown
-// @auto @safe ← Đánh dấu command an toàn
+// @auto @safe ← Mark command as safe
 
 ```bash
 npm run test
@@ -146,20 +146,20 @@ npm run test
 
 ## 📝 Template: User Request Format
 
-**Để trigger auto-accept mode:**
+**To trigger auto-accept mode:**
 
 ```markdown
 /autopilot Build [feature description]
 
-Yêu cầu:
+Requirements:
 
-1. [Chi tiết yêu cầu]
+1. [Detailed requirements]
 2. [Constraints/preferences]
 
 AUTO-APPROVE: After PLAN.md approval, proceed without asking.
 ```
 
-**Hoặc đơn giản:**
+**Or simply:**
 
 ```markdown
 /build [feature] --auto
@@ -180,7 +180,7 @@ AUTO-APPROVE: After PLAN.md approval, proceed without asking.
 └────────┬────────┘
          ▼
 ┌─────────────────┐
-│ ⛔ USER APPROVE │  ← Checkpoint duy nhất
+│ ⛔ USER APPROVE │  ← Single checkpoint
 └────────┬────────┘
          ▼
 ┌─────────────────────────────────────┐
@@ -200,16 +200,27 @@ AUTO-APPROVE: After PLAN.md approval, proceed without asking.
 
 ---
 
-## ✅ Checklist để Enable Auto-Accept
+## ✅ Checklist to Enable Auto-Accept
 
-1. [ ] Workflow file có `// turbo-all` annotation
-2. [ ] Commands nằm trong `allowPatterns` của policy
-3. [ ] User đã approve PLAN.md
-4. [ ] Không có commands trong `denyPatterns`
+1. [ ] Workflow file has `// turbo-all` annotation
+2. [ ] Commands are in policy `allowPatterns`
+3. [ ] User has approved PLAN.md
+4. [ ] No commands in `denyPatterns`
 
 ---
 
-## 🚀 Ví Dụ Thực Tế
+## Examples
+
+```
+/auto-accept build authentication system
+/auto-accept refactor user module --auto
+/auto-accept create REST API with tests
+/autopilot build dashboard --auto-approve
+```
+
+---
+
+## 🚀 Real Example
 
 **User:**
 
@@ -252,7 +263,7 @@ Proceed
 
 ---
 
-## 📁 Files Liên Quan
+## 📁 Related Files
 
 | File                                    | Purpose              |
 | --------------------------------------- | -------------------- |
@@ -265,10 +276,50 @@ Proceed
 
 ## 🛡️ Safety Guarantees
 
-1. **Plan Approval Required**: Không chạy mà không có PLAN.md approved
-2. **Deny List Protected**: Dangerous commands luôn bị block
-3. **Execution History**: Mọi command được log
-4. **Rollback Ready**: Git commits trước mỗi phase
+1. **Plan Approval Required**: Won't run without approved PLAN.md
+2. **Deny List Protected**: Dangerous commands always blocked
+3. **Execution History**: All commands logged
+4. **Rollback Ready**: Git commits before each phase
+
+## Output Format
+
+```markdown
+## 🤖 Auto-Accept Execution Complete
+
+### Execution Summary
+| Phase | Status |
+|-------|--------|
+| Planning | ✅ PLAN.md approved |
+| Execution | ✅ All commands auto-run |
+| Verification | ✅ Tests passed |
+
+### Next Steps
+- [ ] Review final output
+- [ ] Test user flows
+- [ ] Deploy when ready
+```
+
+---
+
+## 🔗 Workflow Chain
+
+```mermaid
+graph LR
+    A["/architect"] --> B["/auto-accept"]
+    B --> C["/launch"]
+    style B fill:#10b981
+```
+
+| After /auto-accept | Run | Purpose |
+|-------------------|-----|---------|
+| Need full orchestration | `/autopilot` | Multi-agent coordination |
+| Ready to deploy | `/launch` | Production deployment |
+| Issues found | `/diagnose` | Debug problems |
+
+**Handoff:**
+```markdown
+✅ Auto-execution complete! All phases finished automatically.
+```
 
 ---
 

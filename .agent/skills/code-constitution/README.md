@@ -1,10 +1,10 @@
 # 🏛️ CoinPika Doctrine Pack v1.0  
-**Supreme Engineering Constitution · Antigravity Skill**
+**Supreme Engineering Constitution · PikaKit Skill**
 
 **Status:** OFFICIAL · LOCKED  
 **Skill Type:** Constitutional Skill (Progressive Disclosure)  
 **Audience:** Engineers · Tech Leads · Reviewers · AI Agents  
-**Platform:** Google Antigravity / Gemini / Claude / GPT
+**Platform:** PikaKit / Gemini / Claude / GPT
 
 ---
 
@@ -30,8 +30,8 @@ CoinPika is a **data-trust financial platform**, not a feature-driven app.
 At scale:
 - Small technical shortcuts become systemic failures
 - UX inconsistency destroys trust
-- Unbounded AI “helpfulness” causes architectural drift
-- Performance regressions hide behind “optimizations”
+- Unbounded AI "helpfulness" causes architectural drift
+- Performance regressions hide behind "optimizations"
 
 This pack exists to prevent:
 - Silent data corruption
@@ -42,15 +42,15 @@ This pack exists to prevent:
 
 ---
 
-## 3. Antigravity Skill Model (Critical)
+## 3. PikaKit Skill Model (Critical)
 
-This pack is implemented as a **single Antigravity Skill** using  
+This pack is implemented as a **single PikaKit Skill** using  
 **Progressive Disclosure**.
 
 ### Progressive Disclosure Mapping
 
-| Antigravity Level | CoinPika Content | When Loaded |
-|------------------|------------------|-------------|
+| PikaKit Level | CoinPika Content | When Loaded |
+|---------------|------------------|-------------|
 | **Level 1 – Metadata** | `SKILL.md`, `metadata/*.yaml` | Always (router) |
 | **Level 2 – Instructions** | `constitution/`, `doctrines/` | When skill is equipped |
 | **Level 3 – Resources** | `enforcement/`, `playbooks/`, `proposals/` | On-demand |
@@ -83,7 +83,7 @@ There are **no exceptions**.
 ## 5. Repository Structure
 
 coinpika-doctrine-pack/
-├── SKILL.md                  # Antigravity entry point (router)
+├── SKILL.md                  # PikaKit entry point (router)
 ├── README.md                 # Onboarding (human + AI)
 ├── VERSION
 ├── CHANGELOG.md
@@ -130,7 +130,7 @@ coinpika-doctrine-pack/
 
 ---
 
-## 6. What’s Inside (High Level)
+## 6. What's Inside (High Level)
 
 ### 👑 Constitution
 - `coinpika-master-constitution.md`  
@@ -206,7 +206,7 @@ This pack applies to:
 
 ---
 
-### For AI / Antigravity Agents
+### For AI / PikaKit Agents
 - Index only `SKILL.md` initially
 - Equip the skill when intent matches
 - Cite doctrines in every non-trivial response
@@ -241,10 +241,14 @@ Not for:
 - Clever hacks
 - Feature-driven architecture
 
-If this pack feels “too strict”,  
+If this pack feels "too strict",  
 it means it is working.
 
 ---
 
 **Welcome to CoinPika.**  
 **Protect the Constitution.**
+
+---
+
+⚡ PikaKit v3.2.0

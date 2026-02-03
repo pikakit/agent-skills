@@ -6,7 +6,9 @@ description: >-
   Triggers on: Python, pip, FastAPI, Django, Flask.
   Coordinates with: test-architect, api-architect.
 metadata:
+  version: "1.0.0"
   category: "framework"
+  triggers: "Python, pip, FastAPI, Django, Flask, async"
   success_metrics: "tests pass, type hints complete"
   coordinates_with: "test-architect, api-architect"
 ---
@@ -15,6 +17,19 @@ metadata:
 
 > Python development principles and decision-making for 2025.
 > **Learn to THINK, not memorize patterns.**
+
+---
+
+## When to Use
+
+| Situation | Approach |
+|-----------|----------|
+| Choosing framework | Use decision tree |
+| API-first project | Consider FastAPI |
+| Full-stack web | Consider Django |
+| Async vs sync | Check decision guide |
+
+---
 
 ## ⚠️ How to Use This Skill
 
@@ -88,3 +103,17 @@ Before implementing:
 - Separate concerns (routes → services → repos)
 
 > **Remember**: Python patterns are about decision-making for YOUR specific context.
+
+---
+
+## 🔗 Related
+
+| Item | Type | Purpose |
+|------|------|---------|
+| `api-architect` | Skill | API design |
+| `test-architect` | Skill | Testing |
+| `data-modeler` | Skill | Database |
+
+---
+
+⚡ PikaKit v3.2.0

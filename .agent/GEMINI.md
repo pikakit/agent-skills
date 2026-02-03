@@ -4,7 +4,7 @@ trigger: always_on
 
 # 🤖 PikaKit — FAANG-Grade AI Operating System
 
-> **v3.2.0** | 45 Skills • 25 Agents • 24 Workflows | [github.com/pikakit](https://github.com/pikakit/agent-skills)
+> **v3.2.0** | 45 Skills • 25 Agents • 23 Workflows | [github.com/pikakit](https://github.com/pikakit/agent-skills)
 
 **This file is the Supreme Law for AI behavior in this workspace.**
 
@@ -1204,7 +1204,7 @@ Task: Build TodoList app
 
 ---
 
-## 📜 Scripts (10)
+## 📜 Scripts (22)
 
 Master validation scripts that orchestrate skill-level scripts.
 
@@ -1266,9 +1266,9 @@ For details, see [scripts-js/README.md](scripts-js/README.md)
 | Metric              | Value                          |
 | ------------------- | ------------------------------ |
 | **Total Agents**    | 25 (20 domain + 5 meta)        |
-| **Total Skills**    | 51                             |
-| **Total Workflows** | 18                             |
-| **Total Scripts**   | 10 (master) + 18 (skill-level) |
+| **Total Skills**    | 45                             |
+| **Total Workflows** | 23                             |
+| **Total Scripts**   | 22 (master)                    |
 | **Coverage**        | ~95% web/mobile development    |
 
 ---

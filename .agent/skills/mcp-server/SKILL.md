@@ -6,14 +6,27 @@ description: >-
   Coordinates with: api-architect, context-optimizer.
 allowed-tools: Read, Write, Edit, Glob, Grep
 metadata:
+  version: "1.0.0"
   category: "framework"
+  triggers: "MCP, Model Context Protocol, server, integration, AI tools"
   success_metrics: "MCP server running, tools connected"
-  coordinates_with: "api-architect, context-optimizer"
+  coordinates_with: "api-architect, mcp-builder"
 ---
 
 # MCP Builder
 
 > Principles for building MCP servers.
+
+---
+
+## When to Use
+
+| Situation | Approach |
+|-----------|----------|
+| Building AI agent tools | Create MCP server |
+| Need tool design patterns | Check tool patterns |
+| Resource management | See resource patterns |
+| MCP architecture | Follow 4-phase process |
 
 ---
 
@@ -181,3 +194,17 @@ my-mcp-server/
 ---
 
 > **Remember:** MCP tools should be simple, focused, and well-documented. The AI relies on descriptions to use them correctly.
+
+---
+
+## 🔗 Related
+
+| Item | Type | Purpose |
+|------|------|---------|
+| `mcp-builder` | Skill | Full build guide |
+| `api-architect` | Skill | API design |
+| `typescript-expert` | Skill | TS implementation |
+
+---
+
+⚡ PikaKit v3.2.0

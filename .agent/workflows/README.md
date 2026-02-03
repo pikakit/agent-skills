@@ -1,28 +1,28 @@
-﻿# Workflow Chains - HÆ°á»›ng Dáº«n Sá»­ Dá»¥ng
+# Workflow Chains - Usage Guide
 
-> 5 workflow chains vá»›i execution modes khÃ¡c nhau cho tá»«ng use case
+> 5 workflow chains with different execution modes for each use case
 
 ---
 
-## ðŸ“š Workflow Chains LÃ  GÃ¬?
+## What Are Workflow Chains?
 
-**Workflow Chain** = Chuá»—i skills Ä‘Æ°á»£c cáº¥u hÃ¬nh sáºµn Ä‘á»ƒ giáº£i quyáº¿t cÃ¡c tÃ¡c vá»¥ phá»©c táº¡p.
+**Workflow Chain** = Pre-configured skill sequences to solve complex tasks.
 
-**Analogy:** Giá»‘ng nhÆ° "combo" trong game - 1 command kÃ­ch hoáº¡t cáº£ chuá»—i hÃ nh Ä‘á»™ng.
+**Analogy:** Like a "combo" in games - 1 command triggers an entire action chain.
 
-**VÃ­ dá»¥:**
+**Example:**
 
 ```bash
 /build todo app
 ```
 
-â†’ Tá»± Ä‘á»™ng cháº¡y 7 skills: `app-scaffold` â†’ `project-planner` â†’ `web-core` â†’ `design-system` â†’ `tailwind-kit` â†’ `test-architect` â†’ `code-craft`
+Automatically runs 7 skills: `app-scaffold` -> `project-planner` -> `web-core` -> `design-system` -> `tailwind-kit` -> `test-architect` -> `code-craft`
 
 ---
 
-## ðŸŽ¯ 5 Workflow Chains
+## 5 Workflow Chains
 
-| Chain                 | Workflows                        | Skills | Má»¥c ÄÃ­ch                     |
+| Chain                 | Workflows                        | Skills | Purpose                      |
 | --------------------- | -------------------------------- | ------ | ---------------------------- |
 | **build-web-app**     | `/build`, `/boost`, `/autopilot` | 7      | Full-stack web development   |
 | **security-audit**    | `/inspect`                       | 4      | Security review & pentesting |
@@ -32,7 +32,7 @@
 
 ---
 
-## ðŸ¤– Meta-Agents (Runtime Control)
+## Meta-Agents (Runtime Control)
 
 All 22 workflows are integrated with **5 meta-agents** for enhanced autonomy:
 
@@ -48,27 +48,27 @@ All 22 workflows are integrated with **5 meta-agents** for enhanced autonomy:
 
 ```
 /launch workflow:
-orchestrator.init() â†’ assessor.evaluate(deployment_risk)
-       â†“
-recovery.save(current_state) â†’ deploy
-       â†“
-health_check_failed? â†’ recovery.restore()
-       â†“
-success â†’ learner.log(deployment_patterns)
+orchestrator.init() -> assessor.evaluate(deployment_risk)
+       |
+recovery.save(current_state) -> deploy
+       |
+health_check_failed? -> recovery.restore()
+       |
+success -> learner.log(deployment_patterns)
 ```
 
 ### Meta-Agent Coverage (22/22 Workflows)
 
-All workflows now include `## ðŸ¤– Meta-Agents Integration` section with:
+All workflows now include `## Meta-Agents Integration` section with:
 - Phase-based agent invocation table
 - Flow diagram showing agent coordination
 - Rollback and learning hooks
 
-## 1ï¸âƒ£ build-web-app Chain
+## 1. build-web-app Chain
 
-> **Má»¥c Ä‘Ã­ch:** XÃ¢y dá»±ng hoáº·c nÃ¢ng cáº¥p á»©ng dá»¥ng web full-stack
+> **Purpose:** Build or upgrade full-stack web applications
 
-### ðŸ”§ Skills (7)
+### Skills (7)
 
 ```mermaid
 graph LR
@@ -82,7 +82,7 @@ graph LR
 
 **Skill Sequence:**
 
-1. `app-scaffold` - Táº¡o cáº¥u trÃºc project
+1. `app-scaffold` - Create project structure
 2. `project-planner` - Plan architecture
 3. `web-core` - Implement core logic
 4. `design-system` - Setup design system
@@ -92,22 +92,22 @@ graph LR
 
 ---
 
-### ðŸš€ 3 Workflows (Execution Modes)
+### 3 Workflows (Execution Modes)
 
-#### `/build` - Interactive Build (Cho NgÆ°á»i Má»›i)
+#### `/build` - Interactive Build (For Beginners)
 
-**Äáº·c Ä‘iá»ƒm:**
+**Features:**
 
-- âœ… User control 100%
-- âœ… Agent há»i 10-15 cÃ¢u
-- âœ… Step-by-step, giáº£i thÃ­ch tá»«ng bÆ°á»›c
-- â±ï¸ 10-15 phÃºt
+- [x] 100% user control
+- [x] Agent asks 10-15 questions
+- [x] Step-by-step with explanations
+- Time: 10-15 minutes
 
-**Khi nÃ o dÃ¹ng:**
+**When to use:**
 
-- Láº§n Ä‘áº§u build app
-- Muá»‘n há»c cÃ¡ch agent lÃ m viá»‡c
-- Cáº§n customize chi tiáº¿t
+- First time building an app
+- Want to learn how the agent works
+- Need detailed customization
 
 **Example:**
 
@@ -115,35 +115,35 @@ graph LR
 /build blog app with authentication
 
 Agent:
-â“ Framework?
+? Framework?
    1. Next.js 15
    2. Vite + React
    3. Remix
-â†’ Báº¡n chá»n: 1
+-> You choose: 1
 
-â“ Database?
+? Database?
    1. PostgreSQL + Prisma
    2. MongoDB
    3. Supabase
-â†’ Báº¡n chá»n: 3
+-> You choose: 3
 
-â“ Styling?
+? Styling?
    1. Tailwind CSS
    2. Styled Components
-â†’ Báº¡n chá»n: 1
+-> You choose: 1
 
 ... (10 more questions)
 
-âœ… Created: blog-app/
-   â”œâ”€â”€ app/ (Next.js 15)
-   â”œâ”€â”€ components/
-   â”œâ”€â”€ lib/supabase/
-   â””â”€â”€ tests/
+[OK] Created: blog-app/
+   |-- app/ (Next.js 15)
+   |-- components/
+   |-- lib/supabase/
+   +-- tests/
 ```
 
 **Output:**
 
-- Next.js 15 vá»›i App Router
+- Next.js 15 with App Router
 - Supabase auth + database
 - Tailwind CSS styling
 - TypeScript setup
@@ -151,20 +151,20 @@ Agent:
 
 ---
 
-#### `/boost` - Enhancement Mode (Cho Project CÃ³ Sáºµn)
+#### `/boost` - Enhancement Mode (For Existing Projects)
 
-**Äáº·c Ä‘iá»ƒm:**
+**Features:**
 
-- âœ… Context-aware (Ä‘á»c code hiá»‡n táº¡i)
-- âœ… Agent há»i 2-3 cÃ¢u xÃ¡c nháº­n
-- âœ… KhÃ´ng phÃ¡ code cÅ©
-- â±ï¸ 5-7 phÃºt
+- [x] Context-aware (reads current code)
+- [x] Agent asks 2-3 confirmation questions
+- [x] Does not break existing code
+- Time: 5-7 minutes
 
-**Khi nÃ o dÃ¹ng:**
+**When to use:**
 
-- ÄÃ£ cÃ³ project
-- ThÃªm features má»›i
-- NÃ¢ng cáº¥p existing code
+- Already have a project
+- Adding new features
+- Upgrading existing code
 
 **Example:**
 
@@ -173,25 +173,25 @@ cd my-existing-blog
 /boost add comment system with moderation
 
 Agent:
-ðŸ” Detected:
+[DETECT] Detected:
    - Framework: Next.js 14
    - Database: Supabase
    - Styling: Tailwind CSS
 
-ðŸ“ Plan:
+[PLAN] Plan:
    1. Add Comment model to Supabase
    2. Create CommentList component
    3. Add moderation API routes
    4. Setup admin panel
 
-â“ Proceed? (Y/n) â†’ Y
+? Proceed? (Y/n) -> Y
 
-âœ… Updated: my-existing-blog/
-   â”œâ”€â”€ lib/supabase/schema.sql (UPDATED)
-   â”œâ”€â”€ components/CommentList.tsx (NEW)
-   â”œâ”€â”€ components/CommentForm.tsx (NEW)
-   â”œâ”€â”€ app/api/comments/ (NEW)
-   â””â”€â”€ app/admin/comments/ (NEW)
+[OK] Updated: my-existing-blog/
+   |-- lib/supabase/schema.sql (UPDATED)
+   |-- components/CommentList.tsx (NEW)
+   |-- components/CommentForm.tsx (NEW)
+   |-- app/api/comments/ (NEW)
+   +-- app/admin/comments/ (NEW)
 ```
 
 **Output:**
@@ -202,18 +202,18 @@ Agent:
 
 ---
 
-#### `/autopilot` - Fully Autonomous (Cho Prototype/Demo)
+#### `/autopilot` - Fully Autonomous (For Prototypes/Demos)
 
-**Äáº·c Ä‘iá»ƒm:**
+**Features:**
 
-- âœ… Zero user input
-- âœ… 3+ agents collaboration
-- âœ… Best practices tá»± Ä‘á»™ng
-- â±ï¸ 3-5 phÃºt
+- [x] Zero user input
+- [x] 3+ agents collaboration
+- [x] Automatic best practices
+- Time: 3-5 minutes
 
-**Khi nÃ o dÃ¹ng:**
+**When to use:**
 
-- Demo nhanh cho client
+- Quick demos for clients
 - Rapid prototyping
 - POC (Proof of Concept)
 
@@ -223,24 +223,24 @@ Agent:
 /autopilot e-commerce with Stripe and admin dashboard
 
 Agent (autonomous):
-[00:00] ðŸ¤– Orchestrator: Planning architecture
-[00:01] ðŸ“ Frontend: Next.js 15 + TypeScript
-[00:02] ðŸ—„ï¸ Backend: tRPC + Prisma
-[00:03] ðŸŽ¨ Design: Tailwind + Shadcn UI
-[00:04] ðŸ’³ Stripe: Payment integration
-[00:05] ðŸ‘¨â€ðŸ’¼ Admin: Dashboard with RBAC
-[00:06] ðŸ§ª Tests: E2E with Playwright
+[00:00] [ORCH] Orchestrator: Planning architecture
+[00:01] [FE] Frontend: Next.js 15 + TypeScript
+[00:02] [BE] Backend: tRPC + Prisma
+[00:03] [UI] Design: Tailwind + Shadcn UI
+[00:04] [PAY] Stripe: Payment integration
+[00:05] [ADMIN] Admin: Dashboard with RBAC
+[00:06] [TEST] Tests: E2E with Playwright
 
-âœ… DONE - Ready to deploy
+[OK] DONE - Ready to deploy
 
 Created: ecommerce-store/
-   â”œâ”€â”€ app/ (Products, Cart, Checkout, Admin)
-   â”œâ”€â”€ server/ (tRPC routers)
-   â”œâ”€â”€ prisma/ (Product, Order, User models)
-   â”œâ”€â”€ components/ (ProductCard, CartItem, etc.)
-   â”œâ”€â”€ lib/stripe/ (Payment processing)
-   â”œâ”€â”€ tests/e2e/ (Full user journey)
-   â””â”€â”€ vercel.json (Deploy config)
+   |-- app/ (Products, Cart, Checkout, Admin)
+   |-- server/ (tRPC routers)
+   |-- prisma/ (Product, Order, User models)
+   |-- components/ (ProductCard, CartItem, etc.)
+   |-- lib/stripe/ (Payment processing)
+   |-- tests/e2e/ (Full user journey)
+   +-- vercel.json (Deploy config)
 ```
 
 **Output:**
@@ -252,7 +252,7 @@ Created: ecommerce-store/
 
 ---
 
-### ðŸ“Š So SÃ¡nh 3 Modes
+### 3 Modes Comparison
 
 | Aspect            | /build    | /boost            | /autopilot |
 | ----------------- | --------- | ----------------- | ---------- |
@@ -265,18 +265,18 @@ Created: ecommerce-store/
 
 ---
 
-## 2ï¸âƒ£ security-audit Chain
+## 2. security-audit Chain
 
-> **Má»¥c Ä‘Ã­ch:** Comprehensive security review
+> **Purpose:** Comprehensive security review
 
-### ðŸ”§ Skills (4)
+### Skills (4)
 
 1. `security-scanner` - Vulnerability scanning
 2. `code-review` - Security-focused code review
 3. `offensive-sec` - Penetration testing
 4. `cicd-pipeline` - CI/CD security integration
 
-### ðŸš€ Workflow
+### Workflow
 
 #### `/inspect` - Security Audit
 
@@ -286,30 +286,30 @@ Created: ecommerce-store/
 /inspect my-web-app
 
 Agent:
-ðŸ” Running security audit...
+[SCAN] Running security audit...
 
-[1/4] ðŸ›¡ï¸ Vulnerability Scan
-   âœ… Dependencies: 0 critical, 2 high
-   âš ï¸ Found: Outdated express 4.17.1
+[1/4] Vulnerability Scan
+   [OK] Dependencies: 0 critical, 2 high
+   [WARN] Found: Outdated express 4.17.1
 
-[2/4] ðŸ‘€ Code Review
-   âŒ SQL injection risk in /api/users
-   âš ï¸ No input validation in auth routes
+[2/4] Code Review
+   [FAIL] SQL injection risk in /api/users
+   [WARN] No input validation in auth routes
 
-[3/4] ðŸŽ¯ Penetration Test
-   âŒ XSS vulnerability in comments
-   âœ… CSRF protection enabled
+[3/4] Penetration Test
+   [FAIL] XSS vulnerability in comments
+   [OK] CSRF protection enabled
 
-[4/4] ðŸ”§ CI/CD Integration
-   âœ… Added security checks to GitHub Actions
+[4/4] CI/CD Integration
+   [OK] Added security checks to GitHub Actions
 
-ðŸ“Š Report:
+[REPORT]:
    - Critical: 1 (SQL injection)
    - High: 3 (XSS, outdated deps)
    - Medium: 5
    - Recommendations: 12
 
-âœ… Generated: security-report.md
+[OK] Generated: security-report.md
 ```
 
 **Use Cases:**
@@ -320,18 +320,18 @@ Agent:
 
 ---
 
-## 3ï¸âƒ£ debug-complex Chain
+## 3. debug-complex Chain
 
-> **Má»¥c Ä‘Ã­ch:** Systematic debugging vá»›i root cause analysis
+> **Purpose:** Systematic debugging with root cause analysis
 
-### ðŸ”§ Skills (4)
+### Skills (4)
 
 1. `debug-pro` - Initial analysis
 2. `debug-pro` - Deep investigation
 3. `idea-storm` - Hypothesis generation
 4. `test-architect` - Fix verification
 
-### ðŸš€ Workflow
+### Workflow
 
 #### `/diagnose` - Deep Debug
 
@@ -341,35 +341,35 @@ Agent:
 /diagnose users can't login after deployment
 
 Agent:
-[1/4] ðŸ” Analysis Phase
-   ðŸ“‹ Symptoms:
+[1/4] Analysis Phase
+   Symptoms:
       - Login fails with 500 error
       - Started after deploy v2.1
       - Only affects production
 
-[2/4] ðŸ› ï¸ Investigation
-   ðŸ”Ž Checked:
-      - âœ… Database connection OK
-      - âœ… API routes accessible
-      - âŒ Environment variables mismatch
+[2/4] Investigation
+   Checked:
+      - [OK] Database connection OK
+      - [OK] API routes accessible
+      - [FAIL] Environment variables mismatch
 
-   ðŸŽ¯ Found: AUTH_SECRET not set in production
+   Found: AUTH_SECRET not set in production
 
-[3/4] ðŸ§  Hypothesis
-   ðŸ’¡ Root Cause:
+[3/4] Hypothesis
+   Root Cause:
       - AUTH_SECRET missing in .env.production
-      - JWT tokens can't be verified
+      - JWT tokens can not be verified
       - Login fails silently
 
-[4/4] âœ… Verification
-   ðŸ§ª Test Plan:
+[4/4] Verification
+   Test Plan:
       1. Add AUTH_SECRET to production
       2. Test login flow
       3. Add monitoring alert
 
-   âœ… Fix applied and verified
+   [OK] Fix applied and verified
 
-ðŸ“ Created: debug-report.md
+[DONE] Created: debug-report.md
    - Root cause
    - Fix applied
    - Prevention suggestions
@@ -383,11 +383,11 @@ Agent:
 
 ---
 
-## 4ï¸âƒ£ deploy-production Chain
+## 4. deploy-production Chain
 
-> **Má»¥c Ä‘Ã­ch:** Safe production deployment vá»›i pre-flight checks
+> **Purpose:** Safe production deployment with pre-flight checks
 
-### ðŸ”§ Skills (5)
+### Skills (5)
 
 1. `security-scanner` - Security pre-check
 2. `perf-optimizer` - Performance optimization
@@ -395,7 +395,7 @@ Agent:
 4. `cicd-pipeline` - Deployment execution
 5. `cicd-pipeline` - Gradual rollout (optional)
 
-### ðŸš€ Workflow
+### Workflow
 
 #### `/launch` - Production Deploy
 
@@ -405,32 +405,32 @@ Agent:
 /launch to production
 
 Agent:
-[1/5] ðŸ›¡ï¸ Security Pre-Check
-   âœ… No critical vulnerabilities
-   âœ… Dependencies up to date
-   âœ… Secrets properly configured
+[1/5] Security Pre-Check
+   [OK] No critical vulnerabilities
+   [OK] Dependencies up to date
+   [OK] Secrets properly configured
 
-[2/5] âš¡ Performance Optimization
-   âœ… Bundle size: 245KB (optimized from 380KB)
-   âœ… Lighthouse score: 95/100
-   âœ… Core Web Vitals: PASS
+[2/5] Performance Optimization
+   [OK] Bundle size: 245KB (optimized from 380KB)
+   [OK] Lighthouse score: 95/100
+   [OK] Core Web Vitals: PASS
 
-[3/5] ðŸ§ª E2E Tests
-   âœ… User flows: 15/15 passed
-   âœ… Payment flow: PASS
-   âœ… Admin panel: PASS
+[3/5] E2E Tests
+   [OK] User flows: 15/15 passed
+   [OK] Payment flow: PASS
+   [OK] Admin panel: PASS
 
-[4/5] ðŸš€ Deployment
-   âœ… Built successfully
-   âœ… Deployed to Vercel
-   âœ… Health check: PASS
-   ðŸŒ Live: https://app.example.com
+[4/5] Deployment
+   [OK] Built successfully
+   [OK] Deployed to Vercel
+   [OK] Health check: PASS
+   [LIVE] https://app.example.com
 
-[5/5] ðŸš© Feature Flags (optional)
-   âœ… New checkout: 10% rollout
-   âœ… Monitoring enabled
+[5/5] Feature Flags (optional)
+   [OK] New checkout: 10% rollout
+   [OK] Monitoring enabled
 
-ðŸ“Š Deployment Summary:
+[SUMMARY]:
    - Version: v2.2.0
    - Deploy time: 3m 42s
    - Status: SUCCESS
@@ -445,11 +445,11 @@ Agent:
 
 ---
 
-## 5ï¸âƒ£ api-development Chain
+## 5. api-development Chain
 
-> **Má»¥c Ä‘Ã­ch:** API design & implementation
+> **Purpose:** API design & implementation
 
-### ðŸ”§ Skills (5)
+### Skills (5)
 
 1. `api-architect` - API design (REST/GraphQL/tRPC)
 2. `data-modeler` - Database schema
@@ -457,7 +457,7 @@ Agent:
 4. `test-architect` - API testing
 5. `security-scanner` - API security
 
-### ðŸš€ Workflow
+### Workflow
 
 #### `/api` - API Development
 
@@ -467,44 +467,44 @@ Agent:
 /api user management with RBAC
 
 Agent:
-[1/5] ðŸ“ API Design
-   âœ… Designed RESTful endpoints:
+[1/5] API Design
+   [OK] Designed RESTful endpoints:
       - POST /api/auth/register
       - POST /api/auth/login
       - GET /api/users (admin only)
       - PATCH /api/users/:id
       - DELETE /api/users/:id
 
-[2/5] ðŸ—„ï¸ Database Schema
-   âœ… Created Prisma models:
+[2/5] Database Schema
+   [OK] Created Prisma models:
       - User (id, email, role, createdAt)
       - Role (id, name, permissions)
       - Session (id, userId, token)
 
-[3/5] ðŸ’» Implementation
-   âœ… Implemented with Express.js
-   âœ… JWT authentication
-   âœ… Role-based middleware
-   âœ… Input validation with Zod
+[3/5] Implementation
+   [OK] Implemented with Express.js
+   [OK] JWT authentication
+   [OK] Role-based middleware
+   [OK] Input validation with Zod
 
-[4/5] ðŸ§ª Testing
-   âœ… Unit tests: 24/24 passed
-   âœ… Integration tests: 12/12 passed
-   âœ… API docs generated (Swagger)
+[4/5] Testing
+   [OK] Unit tests: 24/24 passed
+   [OK] Integration tests: 12/12 passed
+   [OK] API docs generated (Swagger)
 
-[5/5] ðŸ›¡ï¸ Security
-   âœ… Rate limiting enabled
-   âœ… CORS configured
-   âœ… SQL injection prevention
-   âœ… XSS protection
+[5/5] Security
+   [OK] Rate limiting enabled
+   [OK] CORS configured
+   [OK] SQL injection prevention
+   [OK] XSS protection
 
-ðŸ“¦ Created: api/
-   â”œâ”€â”€ routes/
-   â”œâ”€â”€ middleware/
-   â”œâ”€â”€ controllers/
-   â”œâ”€â”€ tests/
-   â”œâ”€â”€ prisma/
-   â””â”€â”€ swagger.yaml
+[DONE] Created: api/
+   |-- routes/
+   |-- middleware/
+   |-- controllers/
+   |-- tests/
+   |-- prisma/
+   +-- swagger.yaml
 ```
 
 **Use Cases:**
@@ -515,30 +515,30 @@ Agent:
 
 ---
 
-## ðŸŽ¯ Chá»n Chain NÃ o?
+## Which Chain to Choose?
 
 ### Decision Tree
 
 ```
-Báº¡n muá»‘n lÃ m gÃ¬?
-â”‚
-â”œâ”€ XÃ¢y web app?
-â”‚  â”œâ”€ New project? â†’ /build
-â”‚  â”œâ”€ Add features? â†’ /boost
-â”‚  â””â”€ Quick demo? â†’ /autopilot
-â”‚
-â”œâ”€ Check security? â†’ /inspect
-â”‚
-â”œâ”€ Debug issue? â†’ /diagnose
-â”‚
-â”œâ”€ Deploy app? â†’ /launch
-â”‚
-â””â”€ Build API? â†’ /api
+What do you want to do?
+|
+|-- Build web app?
+|   |-- New project? -> /build
+|   |-- Add features? -> /boost
+|   +-- Quick demo? -> /autopilot
+|
+|-- Check security? -> /inspect
+|
+|-- Debug issue? -> /diagnose
+|
+|-- Deploy app? -> /launch
+|
++-- Build API? -> /api
 ```
 
 ---
 
-## ðŸ’¡ Best Practices
+## Best Practices
 
 ### 1. Workflow Progression (Recommended)
 
@@ -546,8 +546,8 @@ Báº¡n muá»‘n lÃ m gÃ¬?
 
 ```bash
 /build my-first-app
-â†’ Há»c cÃ¡ch agent work
-â†’ Hiá»ƒu tech decisions
+-> Learn how the agent works
+-> Understand tech decisions
 ```
 
 **Week 2-4:** Development
@@ -557,7 +557,7 @@ cd my-first-app
 /boost add feature 1
 /boost add feature 2
 /boost add feature 3
-â†’ Incremental improvements
+-> Incremental improvements
 ```
 
 **Week 5:** QA & Deploy
@@ -603,18 +603,18 @@ cd my-first-app
 
 ---
 
-## ðŸ”§ Advanced Usage
+## Advanced Usage
 
 ### Chain Customization
 
-Chains cÃ³ thá»ƒ customize qua:
+Chains can be customized via:
 
 **1. Execution Strategy:**
 
 ```json
 {
   "execution": {
-    "strategy": "dag", // or "sequential"
+    "strategy": "dag",
     "parallelism": {
       "enabled": true,
       "maxConcurrent": 3
@@ -647,53 +647,51 @@ Chains cÃ³ thá»ƒ customize qua:
 
 ---
 
-## â“ FAQ
+## FAQ
 
-**Q: /build vs /autopilot - Khi nÃ o dÃ¹ng gÃ¬?**
+**Q: /build vs /autopilot - When to use which?**
 
 A:
+- `/build`: When you want to LEARN and CONTROL
+- `/autopilot`: When you need SPEED and TRUST the agent
 
-- `/build`: Khi báº¡n muá»‘n LEARN vÃ  CONTROL
-- `/autopilot`: Khi báº¡n cáº§n SPEED vÃ  TRUST agent
+**Q: Can /boost be used for non-Next.js projects?**
 
-**Q: /boost cÃ³ thá»ƒ dÃ¹ng cho project khÃ´ng pháº£i Next.js?**
-
-A: CÃ³! Agent detect framework vÃ  adapt:
+A: Yes! The agent detects the framework and adapts:
 
 ```bash
 cd my-vue-app
 /boost add authentication
-â†’ Agent sáº½ dÃ¹ng Vue patterns
+-> Agent will use Vue patterns
 ```
 
-**Q: Chain cÃ³ thá»ƒ cháº¡y parallel khÃ´ng?**
+**Q: Can chains run in parallel?**
 
-A: CÃ³ (tÃ¹y chain):
-
+A: Yes (depends on chain):
 - `build-web-app`: DAG (parallel skills)
 - `deploy-production`: DAG (parallel pre-checks)
 - `debug-complex`: Sequential only
 
-**Q: LÃ m sao rollback khi /launch fail?**
+**Q: How to rollback when /launch fails?**
 
-A: Agent tá»± Ä‘á»™ng:
+A: Agent automatically handles:
 
 ```bash
 /launch
-âŒ Deployment failed
+[FAIL] Deployment failed
 
-ðŸ”™ Rollback options:
+Rollback options:
    1. Auto-rollback to previous version
    2. Manual rollback
    3. Debug and retry
 
-â†’ Choose: 1
-âœ… Rolled back to v2.1.0
+-> Choose: 1
+[OK] Rolled back to v2.1.0
 ```
 
 ---
 
-## ðŸ“š TÃ i Liá»‡u ThÃªm
+## Additional Documentation
 
 - [Workflow Chains Schema v2.0](./workflow-chains-schema-v2.md)
 - [ARCHITECTURE.md](../ARCHITECTURE.md) - System overview
@@ -702,6 +700,5 @@ A: Agent tá»± Ä‘á»™ng:
 ---
 
 **Version:** 1.0.0  
-**Last Updated:** 2026-01-29  
+**Last Updated:** 2026-02-04  
 **Schema:** v2.0 (FAANG-compliant)
-

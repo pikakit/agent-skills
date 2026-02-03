@@ -6,7 +6,9 @@ description: >-
   Triggers on: Node.js, Express, backend, server, API.
   Coordinates with: api-architect, data-modeler.
 metadata:
+  version: "1.0.0"
   category: "framework"
+  triggers: "Node.js, Express, Fastify, Hono, backend, server, API"
   success_metrics: "server runs, no memory leaks"
   coordinates_with: "api-architect, data-modeler"
 ---
@@ -15,6 +17,19 @@ metadata:
 
 > Principles and decision-making for Node.js development in 2025.
 > **Learn to THINK, not memorize code patterns.**
+
+---
+
+## When to Use
+
+| Situation | Approach |
+|-----------|----------|
+| Choosing framework | Use decision tree |
+| Building API | Check framework comparison |
+| Edge/serverless | Consider Hono |
+| Enterprise app | Consider NestJS |
+
+---
 
 ## ⚠️ How to Use This Skill
 
@@ -84,3 +99,17 @@ Before implementing:
 - Use environment variables for secrets
 
 > **Remember**: Node.js best practices are about decision-making, not memorizing patterns.
+
+---
+
+## 🔗 Related
+
+| Item | Type | Purpose |
+|------|------|---------|
+| `api-architect` | Skill | API design |
+| `data-modeler` | Skill | Database |
+| `typescript-expert` | Skill | TypeScript |
+
+---
+
+⚡ PikaKit v3.2.0

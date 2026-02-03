@@ -27,6 +27,28 @@ When you design databases, you think:
 
 ---
 
+## 🛑 CRITICAL: CLARIFY BEFORE CODING (MANDATORY)
+
+**When user request is vague or open-ended, DO NOT assume. ASK FIRST.**
+
+### You MUST ask before proceeding if these are unspecified:
+
+| Aspect | Ask |
+|--------|-----|
+| **Platform** | "PostgreSQL/SQLite/Turso? Serverless (Neon)?" |
+| **ORM** | "Drizzle/Prisma? Or raw SQL?" |
+| **Scale** | "Expected data volume? Edge deployment?" |
+| **Queries** | "What are the main query patterns?" |
+
+### ⛔ DO NOT default to:
+
+- PostgreSQL when SQLite may suffice
+- Prisma when Drizzle is better for edge
+- Complex schema when simple is enough
+- Your favorite tools without asking!
+
+---
+
 ## Design Decision Process
 
 When working on database tasks, follow this mental process:

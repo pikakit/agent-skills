@@ -4,183 +4,118 @@ description: >-
   Testing patterns and principles - unit, integration, E2E, and mocking strategies.
   Use when writing tests, improving coverage, or establishing testing standards.
   Triggers on: test, testing, unit test, coverage, mocking, AAA pattern.
-  Coordinates with: code-craft, code-quality, e2e-automation.
-allowed-tools: Read, Write, Edit, Glob, Grep, Bash
+  Coordinates with: code-craft, e2e-automation, code-review.
 metadata:
   category: "testing"
-  success_metrics: "test coverage >80%, all tests pass, AAA pattern followed"
-  coordinates_with: "code-craft, code-quality, e2e-automation"
+  version: "1.0.0"
+  triggers: "test, unit test, coverage, mocking, AAA, jest, vitest"
+  coordinates_with: "code-craft, e2e-automation, code-review"
+  success_metrics: "test coverage >80%, all tests pass"
 ---
 
-# Testing Patterns
+# Test Architect
 
-> Principles for reliable test suites.
+> **Purpose:** Testing patterns and principles for reliable test suites.
 
 ---
 
-## 1. Testing Pyramid
+## When to Use
+
+| Situation | Approach |
+|-----------|----------|
+| Writing unit tests | AAA pattern, FIRST principles |
+| Need mocking | Stub/Spy/Mock selection |
+| Test organization | Grouping and naming |
+| Coverage gaps | Identify what to test |
+
+---
+
+## Testing Pyramid
 
 ```
-        /\          E2E (Few)
-       /  \         Critical flows
+        /\          E2E (Few) - Critical flows
+       /  \         
       /----\
-     /      \       Integration (Some)
-    /--------\      API, DB queries
-   /          \
-  /------------\    Unit (Many)
-                    Functions, classes
+     /      \       Integration (Some) - API, DB
+    /--------\      
+   /          \     Unit (Many) - Functions, classes
 ```
 
 ---
 
-## 2. AAA Pattern
+## AAA Pattern
 
-| Step        | Purpose                 |
-| ----------- | ----------------------- |
-| **Arrange** | Set up test data        |
-| **Act**     | Execute code under test |
-| **Assert**  | Verify outcome          |
-
----
-
-## 3. Test Type Selection
-
-### When to Use Each
-
-| Type            | Best For              | Speed        |
-| --------------- | --------------------- | ------------ |
-| **Unit**        | Pure functions, logic | Fast (<50ms) |
-| **Integration** | API, DB, services     | Medium       |
-| **E2E**         | Critical user flows   | Slow         |
+| Step | Purpose |
+|------|---------|
+| **Arrange** | Set up test data |
+| **Act** | Execute code under test |
+| **Assert** | Verify outcome |
 
 ---
 
-## 4. Unit Test Principles
+## FIRST Principles
 
-### Good Unit Tests
-
-| Principle     | Meaning                |
-| ------------- | ---------------------- |
-| Fast          | < 100ms each           |
-| Isolated      | No external deps       |
-| Repeatable    | Same result always     |
-| Self-checking | No manual verification |
-| Timely        | Written with code      |
-
-### What to Unit Test
-
-| Test           | Don't Test       |
-| -------------- | ---------------- |
-| Business logic | Framework code   |
-| Edge cases     | Third-party libs |
-| Error handling | Simple getters   |
+| Principle | Meaning |
+|-----------|---------|
+| **F**ast | < 100ms each |
+| **I**solated | No external deps |
+| **R**epeatable | Same result always |
+| **S**elf-checking | No manual verification |
+| **T**imely | Written with code |
 
 ---
 
-## 5. Integration Test Principles
+## Mock Types
 
-### What to Test
-
-| Area              | Focus                 |
-| ----------------- | --------------------- |
-| API endpoints     | Request/response      |
-| Database          | Queries, transactions |
-| External services | Contracts             |
-
-### Setup/Teardown
-
-| Phase       | Action            |
-| ----------- | ----------------- |
-| Before All  | Connect resources |
-| Before Each | Reset state       |
-| After Each  | Clean up          |
-| After All   | Disconnect        |
+| Type | Use |
+|------|-----|
+| **Stub** | Return fixed values |
+| **Spy** | Track calls |
+| **Mock** | Set expectations |
+| **Fake** | Simplified implementation |
 
 ---
 
-## 6. Mocking Principles
+## What to Mock
 
-### When to Mock
-
-| Mock            | Don't Mock          |
-| --------------- | ------------------- |
-| External APIs   | The code under test |
-| Database (unit) | Simple dependencies |
-| Time/random     | Pure functions      |
-| Network         | In-memory stores    |
-
-### Mock Types
-
-| Type | Use                       |
-| ---- | ------------------------- |
-| Stub | Return fixed values       |
-| Spy  | Track calls               |
-| Mock | Set expectations          |
-| Fake | Simplified implementation |
+| ✅ Mock | ❌ Don't Mock |
+|---------|---------------|
+| External APIs | Code under test |
+| Database (unit) | Pure functions |
+| Time/random | Simple dependencies |
+| Network | In-memory stores |
 
 ---
 
-## 7. Test Organization
+## Test Naming
 
-### Naming
-
-| Pattern         | Example                       |
-| --------------- | ----------------------------- |
+| Pattern | Example |
+|---------|---------|
 | Should behavior | "should return error when..." |
-| When condition  | "when user not found..."      |
-| Given-when-then | "given X, when Y, then Z"     |
-
-### Grouping
-
-| Level      | Use                 |
-| ---------- | ------------------- |
-| describe   | Group related tests |
-| it/test    | Individual case     |
-| beforeEach | Common setup        |
+| When condition | "when user not found..." |
+| Given-when-then | "given X, when Y, then Z" |
 
 ---
 
-## 8. Test Data
+## Anti-Patterns
 
-### Strategies
-
-| Approach  | Use                    |
-| --------- | ---------------------- |
-| Factories | Generate test data     |
-| Fixtures  | Predefined datasets    |
-| Builders  | Fluent object creation |
-
-### Principles
-
-- Use realistic data
-- Randomize non-essential values (faker)
-- Share common fixtures
-- Keep data minimal
+| ❌ Don't | ✅ Do |
+|----------|-------|
+| Test implementation | Test behavior |
+| Duplicate test code | Use factories |
+| Complex test setup | Simplify or split |
+| Skip cleanup | Reset state |
 
 ---
 
-## 9. Best Practices
+## 🔗 Related
 
-| Practice            | Why                  |
-| ------------------- | -------------------- |
-| One assert per test | Clear failure reason |
-| Independent tests   | No order dependency  |
-| Fast tests          | Run frequently       |
-| Descriptive names   | Self-documenting     |
-| Clean up            | Avoid side effects   |
+| Item | Type | Purpose |
+|------|------|---------|
+| `/validate` | Workflow | Run all tests |
+| `e2e-automation` | Skill | Browser testing |
+| `test-driven-dev` | Skill | TDD workflow |
 
 ---
 
-## 10. Anti-Patterns
-
-| ❌ Don't            | ✅ Do             |
-| ------------------- | ----------------- |
-| Test implementation | Test behavior     |
-| Duplicate test code | Use factories     |
-| Complex test setup  | Simplify or split |
-| Ignore flaky tests  | Fix root cause    |
-| Skip cleanup        | Reset state       |
-
----
-
-> **Remember:** Tests are documentation. If someone can't understand what the code does from the tests, rewrite them.
+⚡ PikaKit v3.2.0

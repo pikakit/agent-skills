@@ -1,125 +1,142 @@
 ---
 name: code-review
 description: >-
-  Code review guidelines covering code quality, security, and best practices.
-  Use when reviewing PRs, auditing code, or establishing review standards.
-  Triggers on: review, PR, pull request, audit, code quality, security check.
+  Code review and quality control covering linting, static analysis, security, and best practices.
+  Use when reviewing PRs, validating code quality, or running automated checks.
+  Triggers on: review, PR, lint, format, validate, types, audit, security check.
   Coordinates with: code-craft, security-scanner, test-architect.
-allowed-tools: Read, Glob, Grep
+allowed-tools: Read, Glob, Grep, Bash
 metadata:
   category: "core"
-  success_metrics: "all blocking issues resolved, security verified"
+  version: "1.0.0"
+  triggers: "review, PR, lint, format, validate, types, audit, security check"
+  success_metrics: "lint passes, tsc passes, all blocking issues resolved"
   coordinates_with: "code-craft, security-scanner, test-architect"
 ---
 
-# Code Review Checklist
+# Code Review & Quality
 
-## Quick Review Checklist
+> **Purpose:** Comprehensive code validation - from automated linting to human review.
+
+---
+
+## When to Use
+
+| Situation | Approach |
+|-----------|----------|
+| Reviewing PRs | Follow review checklist |
+| Running lint | Use lint_runner.js |
+| Type coverage | Use type_coverage.js |
+| Security check | Use security-scanner |
+
+---
+
+## Quick Reference
+
+| Task | Command |
+|------|---------|
+| **Lint (Node)** | `npm run lint` or `npx eslint "path" --fix` |
+| **Types (TS)** | `npx tsc --noEmit` |
+| **Lint (Python)** | `ruff check "path" --fix` |
+| **Security (Node)** | `npm audit --audit-level=high` |
+| **Security (Python)** | `bandit -r "path" -ll` |
+
+---
+
+## Part 1: Automated Quality Checks
+
+### The Quality Loop (MANDATORY)
+
+1. **Write/Edit Code**
+2. **Run Audit:** `npm run lint && npx tsc --noEmit`
+3. **Analyze Report**
+4. **Fix & Repeat** - No code committed until checks pass
+
+### Error Handling
+
+- **Lint fails:** Fix style/syntax issues immediately
+- **tsc fails:** Correct type mismatches before proceeding
+- **No config:** Check for `.eslintrc`, `tsconfig.json`, suggest creating one
+
+---
+
+## Part 2: Review Checklist
 
 ### Correctness
-
 - [ ] Code does what it's supposed to do
 - [ ] Edge cases handled
 - [ ] Error handling in place
-- [ ] No obvious bugs
 
 ### Security
-
 - [ ] Input validated and sanitized
-- [ ] No SQL/NoSQL injection vulnerabilities
-- [ ] No XSS or CSRF vulnerabilities
-- [ ] No hardcoded secrets or sensitive credentials
-- [ ] **AI-Specific:** Protection against Prompt Injection (if applicable)
-- [ ] **AI-Specific:** Outputs are sanitized before being used in critical sinks
+- [ ] No SQL/XSS/CSRF vulnerabilities
+- [ ] No hardcoded secrets
+- [ ] AI outputs sanitized (if applicable)
 
 ### Performance
-
 - [ ] No N+1 queries
 - [ ] No unnecessary loops
 - [ ] Appropriate caching
-- [ ] Bundle size impact considered
 
 ### Code Quality
-
 - [ ] Clear naming
 - [ ] DRY - no duplicate code
 - [ ] SOLID principles followed
-- [ ] Appropriate abstraction level
 
 ### Testing
-
 - [ ] Unit tests for new code
 - [ ] Edge cases tested
-- [ ] Tests readable and maintainable
 
-### Documentation
-
-- [ ] Complex logic commented
-- [ ] Public APIs documented
-- [ ] README updated if needed
-
-## AI & LLM Review Patterns (2025)
-
-### Logic & Hallucinations
-
-- [ ] **Chain of Thought:** Does the logic follow a verifiable path?
-- [ ] **Edge Cases:** Did the AI account for empty states, timeouts, and partial failures?
-- [ ] **External State:** Is the code making safe assumptions about file systems or networks?
-
-### Prompt Engineering Review
-
-```markdown
-// ❌ Vague prompt in code
-const response = await ai.generate(userInput);
-
-// ✅ Structured & Safe prompt
-const response = await ai.generate({
-system: "You are a specialized parser...",
-input: sanitize(userInput),
-schema: ResponseSchema
-});
-```
+---
 
 ## Anti-Patterns to Flag
 
 ```typescript
-// ❌ Magic numbers
-if (status === 3) { ... }
+// ❌ Magic numbers → ✅ Named constants
+if (status === 3) {} → if (status === Status.ACTIVE) {}
 
-// ✅ Named constants
-if (status === Status.ACTIVE) { ... }
+// ❌ Deep nesting → ✅ Early returns
+if (a) { if (b) { if (c) {} } }
+→ if (!a) return; if (!b) return; if (!c) return;
 
-// ❌ Deep nesting
-if (a) { if (b) { if (c) { ... } } }
-
-// ✅ Early returns
-if (!a) return;
-if (!b) return;
-if (!c) return;
-// do work
-
-// ❌ Long functions (100+ lines)
-// ✅ Small, focused functions
-
-// ❌ any type
-const data: any = ...
-
-// ✅ Proper types
-const data: UserData = ...
+// ❌ any type → ✅ Proper types
+const data: any = ... → const data: UserData = ...
 ```
+
+---
 
 ## Review Comments Guide
 
 ```
-// Blocking issues use 🔴
-🔴 BLOCKING: SQL injection vulnerability here
-
-// Important suggestions use 🟡
-🟡 SUGGESTION: Consider using useMemo for performance
-
-// Minor nits use 🟢
-🟢 NIT: Prefer const over let for immutable variable
-
-// Questions use ❓
-❓ QUESTION: What happens if user is null here?
+🔴 BLOCKING: SQL injection vulnerability
+🟡 SUGGESTION: Consider useMemo for performance
+🟢 NIT: Prefer const over let
+❓ QUESTION: What if user is null here?
 ```
+
+---
+
+## Scripts
+
+| Script | Purpose |
+|--------|---------|
+| `scripts/lint_runner.js` | Unified lint check |
+| `scripts/type_coverage.js` | Type coverage analysis |
+
+---
+
+**Strict Rule:** No code should be committed without passing automated checks.
+
+---
+
+## 🔗 Related
+
+| Item | Type | Purpose |
+|------|------|---------|
+| `code-craft` | Skill | Code standards |
+| `security-scanner` | Skill | Security |
+| `test-architect` | Skill | Testing |
+
+---
+
+⚡ PikaKit v3.2.0

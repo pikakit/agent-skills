@@ -7,7 +7,9 @@ description: >-
   Coordinates with: cicd-pipeline, server-ops.
 allowed-tools: Read, Write, Edit, Glob, Grep, Bash
 metadata:
+  version: "1.0.0"
   category: "framework"
+  triggers: "shell, bash, script, automation, CLI, Linux, macOS"
   success_metrics: "script runs, no errors"
   coordinates_with: "cicd-pipeline, server-ops"
 ---
@@ -15,6 +17,17 @@ metadata:
 # Bash Linux Patterns
 
 > Essential patterns for Bash on Linux/macOS.
+
+---
+
+## When to Use
+
+| Situation | Approach |
+|-----------|----------|
+| Automation scripts | Use script template |
+| File operations | Check file commands |
+| Process management | See process section |
+| Text processing | Use grep/sed/awk |
 
 ---
 
@@ -205,3 +218,16 @@ trap cleanup EXIT
 ---
 
 > **Remember:** Bash is text-based. Use `&&` for success chains, `set -e` for safety, and quote your variables!
+
+---
+
+## 🔗 Related
+
+| Item | Type | Purpose |
+|------|------|---------|
+| `cicd-pipeline` | Skill | CI/CD scripts |
+| `server-ops` | Skill | Server management |
+
+---
+
+⚡ PikaKit v3.2.0

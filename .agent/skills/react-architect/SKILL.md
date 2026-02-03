@@ -6,14 +6,27 @@ description: >-
   Coordinates with: web-core, design-system.
 allowed-tools: Read, Write, Edit, Glob, Grep
 metadata:
+  version: "1.0.0"
   category: "architecture"
+  triggers: "React, component, hooks, state management, Redux, Zustand"
   success_metrics: "components render, no prop drilling"
-  coordinates_with: "web-core, design-system"
+  coordinates_with: "web-core, design-system, nextjs-pro"
 ---
 
 # React Patterns
 
 > Principles for building production-ready React applications.
+
+---
+
+## When to Use
+
+| Situation | Approach |
+|-----------|----------|
+| Component design | Check component types |
+| State management | Use selection guide |
+| Hooks patterns | See hook patterns |
+| Performance | Follow optimization order |
 
 ---
 
@@ -203,3 +216,17 @@ metadata:
 ---
 
 > **Remember:** React is about composition. Build small, combine thoughtfully.
+
+---
+
+## 🔗 Related
+
+| Item | Type | Purpose |
+|------|------|---------|
+| `nextjs-pro` | Skill | Next.js patterns |
+| `typescript-expert` | Skill | TypeScript |
+| `design-system` | Skill | UI design |
+
+---
+
+⚡ PikaKit v3.2.0

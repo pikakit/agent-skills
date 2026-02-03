@@ -2,11 +2,13 @@
 description: REST/GraphQL/tRPC API builder with OpenAPI docs, Prisma ORM, and comprehensive testing
 ---
 
-# API Development Workflow
+# /api - API Development
 
-Build production-ready APIs with comprehensive design, implementation, and testing.
+$ARGUMENTS
 
-## 🎯 Purpose
+---
+
+## Purpose
 
 This workflow uses the **api-development** chain to create well-architected APIs with:
 
@@ -200,6 +202,47 @@ Creates:
 ✓ API documentation (OpenAPI)
 ✓ Postman collection
 ✓ README with setup instructions
+```
+
+## Output Format
+
+```markdown
+## 🎯 API Development Complete
+
+### Deliverables
+| Item | Status |
+|------|--------|
+| Routes | [X] endpoints |
+| Tests | [X] passing |
+| Docs | OpenAPI generated |
+
+### Next Steps
+- [ ] Review generated code
+- [ ] Run integration tests
+- [ ] Deploy to staging
+```
+
+---
+
+## 🔗 Workflow Chain
+
+```mermaid
+graph LR
+    A["/architect"] --> B["/api"]
+    B --> C["/validate"]
+    C --> D["/launch"]
+    style B fill:#10b981
+```
+
+| After /api | Run | Purpose |
+|------------|-----|---------|
+| Need tests | `/validate` | Run API tests |
+| Ready to deploy | `/launch` | Deploy to production |
+| Need frontend | `/build` | Full-stack app |
+
+**Handoff:**
+```markdown
+✅ API built! Run `/validate` to test, then `/launch` to deploy.
 ```
 
 ---

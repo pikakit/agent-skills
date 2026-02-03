@@ -2,9 +2,28 @@
 description: Mobile app development workflow with React Native/Flutter/Native. Full lifecycle from requirements to app store.
 ---
 
-# Mobile Development Workflow
+# /mobile - Mobile App Development
 
-> **This workflow orchestrates mobile app development from concept to app store submission.**
+$ARGUMENTS
+
+---
+
+## Purpose
+
+This workflow orchestrates mobile app development from concept to app store submission. Supports React Native, Flutter, and native iOS/Android development with full lifecycle management.
+
+---
+
+## 🤖 Meta-Agents Integration
+
+| Phase | Agent | Action |
+| ----- | ----- | ------ |
+| **Requirements** | `assessor` | Evaluate platform and framework risks |
+| **State Save** | `recovery` | Save checkpoints before major changes |
+| **Implementation** | `orchestrator` | Coordinate parallel tasks |
+| **Post-Build** | `learner` | Log mobile patterns for reuse |
+
+---
 
 ## Phase 1: Requirements Clarification
 
@@ -104,3 +123,65 @@ description: Mobile app development workflow with React Native/Flutter/Native. F
 ---
 
 > **Remember:** Mobile users are impatient, interrupted, using imprecise fingers on small screens. Design for the WORST conditions.
+
+---
+
+## Examples
+
+```
+/mobile iOS fitness app with React Native
+/mobile cross-platform e-commerce app with Flutter
+/mobile native Android banking app
+/mobile tablet-optimized dashboard
+/mobile offline-first notes app
+```
+
+---
+
+## Output Format
+
+```markdown
+## 📱 Mobile App Development Complete
+
+### Deliverables
+| Item | Status |
+|------|--------|
+| App Build | ✅ iOS + Android |
+| Security | ✅ Keychain/Keystore |
+| Offline | ✅ Sync enabled |
+
+### Next Steps
+- [ ] Submit to TestFlight/Play Console
+- [ ] Complete store listing
+- [ ] Configure analytics
+```
+
+---
+
+## 🔗 Workflow Chain
+
+```mermaid
+graph LR
+    A["/architect"] --> B["/mobile"]
+    B --> C["/validate"]
+    C --> D["/launch"]
+    style B fill:#10b981
+```
+
+| After /mobile | Run | Purpose |
+|---------------|-----|---------|
+| Need testing | `/validate` | Run mobile tests |
+| Ready to ship | `/launch` | App store submission |
+| Performance issues | `/optimize` | Fix bottlenecks |
+
+**Handoff:**
+```markdown
+✅ Mobile app built! Run `/validate` to test, then `/launch` to submit.
+```
+
+---
+
+**Version:** 1.0.0  
+**Chain:** mobile-development  
+**Added:** v3.6.0
+

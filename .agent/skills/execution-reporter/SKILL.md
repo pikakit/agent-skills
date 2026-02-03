@@ -3,106 +3,87 @@ name: execution-reporter
 description: >-
   Display agent routing, skill loading, and execution context at task start.
   Provides transparency and audit trail for agent operations.
+  Triggers on: every task start, agent routing, skill loading, task completion.
+  Coordinates with: smart-router, lifecycle-orchestrator, auto-learner.
 metadata:
   category: "core"
-  version: "1.0.0"
-  triggers:
-    - every task start
-    - agent routing
-    - skill loading
-    - task completion
-  coordinates_with:
-    - smart-router
-    - lifecycle-orchestrator
-    - auto-learner
+  version: "2.0.0"
+  triggers: "task start, agent routing, skill loading, task completion"
+  coordinates_with: "smart-router, lifecycle-orchestrator, auto-learner"
+  success_metrics: "100% task visibility, clear audit trail"
 ---
 
 # Execution Reporter
 
-Display agent routing, skill loading, and execution context. Provides transparency for users to understand which agents and skills are handling their requests.
+> **Purpose:** Transparent agent operations with PikaKit branding
 
 ---
 
 ## When to Use
 
-This skill is **automatically invoked** by the agent system at:
-
-1. **Task Start** - Display which agent and skills are engaged
-2. **Skill Invocation** - When a skill executes a script
-3. **Task Completion** - Summary of resources used
+| Situation | Approach |
+|-----------|----------|
+| Task start | Show execution context |
+| Multi-agent work | Track skill loading |
+| Task completion | Include footer |
+| Complex tasks | Full template |
 
 ---
 
-## Output Formats
+## Quick Reference
 
-### 1. Task Start Notification (MANDATORY)
+| Event | Template |
+|-------|----------|
+| Task Start | `🤖 PikaKit • @agent → skill1, skill2` |
+| Script Run | `⚡ skill-name • running script.py` |
+| Task Complete | `✅ Done • 3 files • 2.5s` |
 
-Display immediately when starting any non-trivial task:
+---
 
-```
-┌─────────────────────────────────────────────────────────────────────────────┐
-│  🤖 AGENT ROUTING                                                           │
-├─────────────────────────────────────────────────────────────────────────────┤
-│  Task: {task_description}                                                   │
-│                                                                             │
-│  ◆ Primary: @{agent_name}                                                   │
-│  ◇ Skills loaded:                                                           │
-│    • {skill_1} ({skill_description})                                        │
-│    • {skill_2} ({skill_description})                                        │
-│                                                                             │
-│  📋 Workflow: {workflow_name}                                               │
-└─────────────────────────────────────────────────────────────────────────────┘
-```
+## Output Templates
 
-### 2. Compact Format (For Simple Tasks)
-
-For quick tasks, use one-liner:
+### 1. Task Start (MANDATORY)
 
 ```
-🤖 **Engaging** `◆ @{agent_name}` → Skills: {skill_1}, {skill_2}
+┌─────────────────────────────────────────────────────────────────┐
+│  🤖 PikaKit v3.2.0                                              │
+├─────────────────────────────────────────────────────────────────┤
+│  📋 Task: {task_description}                                    │
+│                                                                 │
+│  ◆ Agent: @{agent_name}                                         │
+│  ◇ Skills: {skill_1}, {skill_2}                                 │
+│  📂 Workflow: /{workflow_name}                                  │
+└─────────────────────────────────────────────────────────────────┘
 ```
 
-### 3. Skill Invocation Notification
-
-When skill executes a script or significant action:
+### 2. Compact (Simple Tasks)
 
 ```
-┌─────────────────────────────────────────────────────────────────────────────┐
-│  🎨 SKILL INVOKED: {skill_name}                                             │
-├─────────────────────────────────────────────────────────────────────────────┤
-│  Action: {what_skill_is_doing}                                              │
-│  Script: {script_name}                                                      │
-│  Command: {full_command}                                                    │
-└─────────────────────────────────────────────────────────────────────────────┘
+🤖 PikaKit • @{agent} → {skill_1}, {skill_2}
 ```
 
-### 4. Task Complete Notification
-
-At end of task:
+### 3. Task Complete
 
 ```
-┌─────────────────────────────────────────────────────────────────────────────┐
-│  ✅ TASK COMPLETE                                                           │
-├─────────────────────────────────────────────────────────────────────────────┤
-│  Agent: @{agent_name}                                                       │
-│  Skills used: {skill_list}                                                  │
-│  Duration: {time}                                                           │
-│  Deliverables: {count} files                                                │
-│                                                                             │
-│  📦 Files created/modified:                                                 │
-│    • {file_1}                                                               │
-│    • {file_2}                                                               │
-└─────────────────────────────────────────────────────────────────────────────┘
+┌─────────────────────────────────────────────────────────────────┐
+│  ✅ Task Complete                                               │
+├─────────────────────────────────────────────────────────────────┤
+│  Agent: @{agent_name}                                           │
+│  Skills: {skill_list}                                           │
+│  Duration: {time}s                                              │
+│  Files: {count} created/modified                                │
+├─────────────────────────────────────────────────────────────────┤
+│  ⚡ PikaKit v3.2.0                                              │
+│  Precision-Orchestrated Agents and Workflows.                   │
+└─────────────────────────────────────────────────────────────────┘
 ```
 
 ---
 
 ## Verbosity Levels
 
-Controlled by `.agent/config/notification-config.json`:
-
-| Level | Agent Routing | Skills | Scripts | Completion |
-|-------|---------------|--------|---------|------------|
+| Level | Routing | Skills | Scripts | Complete |
+|-------|---------|--------|---------|----------|
 | `minimal` | ✅ | ❌ | ❌ | ✅ |
 | `normal` | ✅ | ✅ | ❌ | ✅ |
 | `verbose` | ✅ | ✅ | ✅ | ✅ |
@@ -111,7 +92,7 @@ Controlled by `.agent/config/notification-config.json`:
 
 ---
 
-## Config File Reference
+## Config
 
 Location: `.agent/config/notification-config.json`
 
@@ -124,72 +105,48 @@ Location: `.agent/config/notification-config.json`
 }
 ```
 
-**Enable/Disable:**
-- `enabled: true` → Show notifications
-- `enabled: false` → Silent mode (no notifications)
-
----
-
-## Integration with Other Skills
-
-| Skill | Integration |
-|-------|-------------|
-| `smart-router` | Receives agent selection to display |
-| `lifecycle-orchestrator` | Hooks into task lifecycle |
-| `auto-learner` | Logs notification triggers for learning |
-
 ---
 
 ## Examples
 
-### Example 1: Design Task
-
+### Design Task
 ```
-┌─────────────────────────────────────────────────────────────────────────────┐
-│  🤖 AGENT ROUTING                                                           │
-├─────────────────────────────────────────────────────────────────────────────┤
-│  Task: Design fintech dashboard                                             │
-│                                                                             │
-│  ◆ Primary: @frontend-specialist                                            │
-│  ◇ Skills loaded:                                                           │
-│    • studio (design system generation)                                      │
-│    • code-craft (clean code standards)                                      │
-│                                                                             │
-│  📋 Workflow: /studio                                                       │
-└─────────────────────────────────────────────────────────────────────────────┘
+🤖 PikaKit v3.2.0
+📋 Task: Design fintech dashboard
+◆ Agent: @frontend-specialist
+◇ Skills: studio, code-craft
+📂 Workflow: /studio
 ```
 
-### Example 2: Build Task
-
+### Multi-Agent Task
 ```
-🤖 **Engaging** `◆ @frontend-specialist` → Skills: react-architect, nextjs-pro
-📋 Workflow: /build
-```
-
-### Example 3: Multi-Agent Task
-
-```
-┌─────────────────────────────────────────────────────────────────────────────┐
-│  🤖 AGENT ROUTING                                                           │
-├─────────────────────────────────────────────────────────────────────────────┤
-│  Task: Build full-stack app with authentication                             │
-│                                                                             │
-│  ◆ Lead: @orchestrator                                                      │
-│  ◇ Specialists:                                                             │
-│    • @frontend-specialist (UI/UX)                                           │
-│    • @backend-specialist (API)                                              │
-│    • @security-auditor (Auth)                                               │
-│                                                                             │
-│  📋 Workflow: /autopilot                                                    │
-└─────────────────────────────────────────────────────────────────────────────┘
+🤖 PikaKit v3.2.0
+📋 Task: Build full-stack app
+◆ Lead: @orchestrator
+◇ Specialists: @frontend, @backend, @security
+📂 Workflow: /autopilot
 ```
 
 ---
 
 ## Rules
 
-1. **ALWAYS display** Task Start notification for complex tasks (>3 tool calls expected)
-2. **Use compact format** for simple tasks (1-2 tool calls)
-3. **Log to audit file** if logging enabled in config
-4. **Respect verbosity** settings from config file
-5. **Never spam** - one notification per phase, not per tool call
+1. **Complex tasks** (>3 tools) → Full template
+2. **Simple tasks** (1-2 tools) → Compact format
+3. **One notification per phase** - never spam
+4. **Always include PikaKit branding** in headers/footers
+
+---
+
+## 🔗 Related
+
+| Item | Type | Purpose |
+|------|------|---------|
+| `lifecycle-orchestrator` | Skill | Task lifecycle |
+| `problem-checker` | Skill | Error check |
+| `/pulse` | Workflow | Status dashboard |
+
+---
+
+⚡ PikaKit v3.2.0
+Precision-Orchestrated Agents and Workflows.

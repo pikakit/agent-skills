@@ -2,9 +2,28 @@
 description: Game development workflow with platform-specific routing. From concept to polished game.
 ---
 
-# Game Development Workflow
+# /game - Game Development
 
-> **This workflow orchestrates game development with routing to specialized sub-skills.**
+$ARGUMENTS
+
+---
+
+## Purpose
+
+This workflow orchestrates game development with routing to specialized sub-skills. From concept to polished, optimized game across web, mobile, PC, or VR/AR platforms.
+
+---
+
+## 🤖 Meta-Agents Integration
+
+| Phase | Agent | Action |
+| ----- | ----- | ------ |
+| **Design** | `assessor` | Evaluate scope and platform risks |
+| **State Save** | `recovery` | Save checkpoints before major changes |
+| **Optimization** | `orchestrator` | Coordinate parallel optimization tasks |
+| **Post-Build** | `learner` | Log game patterns for reuse |
+
+---
 
 ## Phase 1: Requirements Clarification
 
@@ -140,3 +159,65 @@ description: Game development workflow with platform-specific routing. From conc
 ---
 
 > **Remember:** Great games come from iteration, not perfection. Prototype fast, then polish.
+
+---
+
+## Examples
+
+```
+/game 2D platformer for web browser
+/game mobile puzzle game with Unity
+/game 3D RPG with multiplayer support
+/game VR fitness app for Oculus
+/game casual clicker game
+```
+
+---
+
+## Output Format
+
+```markdown
+## 🎮 Game Development Complete
+
+### Deliverables
+| Item | Status |
+|------|--------|
+| Core Game Loop | ✅ |
+| Platform Build | ✅ |
+| Performance | 60 FPS |
+
+### Next Steps
+- [ ] Playtesting
+- [ ] Polish and juice
+- [ ] Store submission
+```
+
+---
+
+## 🔗 Workflow Chain
+
+```mermaid
+graph LR
+    A["/think"] --> B["/game"]
+    B --> C["/validate"]
+    C --> D["/launch"]
+    style B fill:#10b981
+```
+
+| After /game | Run | Purpose |
+|-------------|-----|---------|
+| Need testing | `/validate` | Run game tests |
+| Ready to ship | `/launch` | Deploy/publish |
+| Performance issues | `/optimize` | Fix bottlenecks |
+
+**Handoff:**
+```markdown
+✅ Game built! Run `/validate` to test, then `/launch` to publish.
+```
+
+---
+
+**Version:** 1.0.0  
+**Chain:** game-development  
+**Added:** v3.6.0
+

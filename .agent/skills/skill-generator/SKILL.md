@@ -6,7 +6,7 @@ description: >-
   Triggers on: generate skill, create skill, pattern to skill, learn.
   Coordinates with: problem-checker, code-constitution.
 metadata:
-  category: "core"
+  category: "evolution"
   version: "1.0.0"
   triggers: "generate skill, create skill, pattern to skill, auto-generate"
   coordinates_with: "problem-checker, code-constitution"
@@ -16,6 +16,17 @@ metadata:
 # skill-generator
 
 > **Purpose:** Generate production-ready skills from patterns with validation
+
+---
+
+## When to Use
+
+| Situation | Action |
+|-----------|--------|
+| High-confidence pattern detected | Generate candidate skill |
+| 3+ occurrences of same fix | Consider skill generation |
+| Need to codify learned pattern | Use `--from-pattern` |
+| Validate new skill | Use `validate` command |
 
 ---
 

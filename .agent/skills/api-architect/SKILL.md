@@ -7,7 +7,9 @@ description: >-
   Coordinates with: data-modeler, security-scanner, web-core.
 allowed-tools: Read, Write, Edit, Glob, Grep
 metadata:
+  version: "1.0.0"
   category: "architecture"
+  triggers: "API design, REST, GraphQL, tRPC, endpoint, versioning"
   success_metrics: "API documented, endpoints tested, versioning defined"
   coordinates_with: "data-modeler, security-scanner, web-core"
 ---
@@ -16,6 +18,19 @@ metadata:
 
 > API design principles and decision-making for 2025.
 > **Learn to THINK, not copy fixed patterns.**
+
+---
+
+## When to Use
+
+| Situation | Approach |
+|-----------|----------|
+| Choosing API type | Check decision tree |
+| Designing REST API | Read rest.md |
+| Response format | Check response.md |
+| Auth requirements | Read auth.md |
+
+---
 
 ## 🎯 Selective Reading Rule
 
@@ -87,4 +102,8 @@ Before designing an API:
 
 | Script                     | Purpose                 | Command                                          |
 | -------------------------- | ----------------------- | ------------------------------------------------ |
-| `scripts/api_validator.py` | API endpoint validation | `python scripts/api_validator.py <project_path>` |
+| `scripts/api_validator.js` | API endpoint validation | `node scripts/api_validator.js <project_path>` |
+
+---
+
+ PikaKit v3.2.0

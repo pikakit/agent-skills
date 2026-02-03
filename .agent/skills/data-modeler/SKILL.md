@@ -6,7 +6,9 @@ description: >-
   Coordinates with: api-architect, security-scanner, nodejs-pro.
 allowed-tools: Read, Write, Edit, Glob, Grep
 metadata:
+  version: "1.0.0"
   category: "architecture"
+  triggers: "database, schema, Prisma, Drizzle, SQL, migration, indexing"
   success_metrics: "schema validated, indexes optimized, migrations safe"
   coordinates_with: "api-architect, security-scanner, nodejs-pro"
 ---
@@ -14,6 +16,19 @@ metadata:
 # Database Design
 
 > **Learn to THINK, not copy SQL patterns.**
+
+---
+
+## When to Use
+
+| Situation | Approach |
+|-----------|----------|
+| Choosing database | Read database-selection.md |
+| Choosing ORM | Read orm-selection.md |
+| Schema design | Check schema-design.md |
+| Performance tuning | Read indexing.md |
+
+---
 
 ## 🎯 Selective Reading Rule
 
@@ -57,3 +72,17 @@ Before designing schema:
 ❌ Use SELECT \* in production
 ❌ Store JSON when structured data is better
 ❌ Ignore N+1 queries
+
+---
+
+## 🔗 Related
+
+| Item | Type | Purpose |
+|------|------|---------|
+| `api-architect` | Skill | API design |
+| `nodejs-pro` | Skill | Backend |
+| `python-pro` | Skill | Python backend |
+
+---
+
+⚡ PikaKit v3.2.0

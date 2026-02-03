@@ -4,245 +4,137 @@ description: >-
   Production deployment principles and decision-making. Safe deployment workflows, rollback strategies.
   Triggers on: deploy, deployment, CI/CD, pipeline, rollback, release.
   Coordinates with: git-workflow, security-scanner, feature-flags.
-allowed-tools: Read, Glob, Grep, Bash
 metadata:
   category: "devops"
-  success_metrics: "deployment successful, zero downtime, rollback plan ready"
+  version: "2.0.0"
+  triggers: "deploy, CI/CD, pipeline, rollback, release"
   coordinates_with: "git-workflow, security-scanner, feature-flags"
+  success_metrics: "zero downtime, rollback ready"
 ---
 
-# Deployment Procedures
+# CI/CD Pipeline
 
-> Deployment principles and decision-making for safe production releases.
-> **Learn to THINK, not memorize scripts.**
-
----
-
-## ⚠️ How to Use This Skill
-
-This skill teaches **deployment principles**, not bash scripts to copy.
-
-- Every deployment is unique
-- Understand the WHY behind each step
-- Adapt procedures to your platform
+> **Purpose:** Safe production deployment with rollback capability
 
 ---
 
-## 1. Platform Selection
+## Quick Reference
 
-### Decision Tree
+| Task | Action |
+|------|--------|
+| **Pre-deploy** | Tests ✅ Build ✅ Env ✅ Backup ✅ |
+| **Deploy** | Monitor actively during deploy |
+| **Post-deploy** | Verify health, logs, key flows |
+| **Rollback** | Speed > perfection, fix later |
+
+---
+
+## When to Use
+
+| Situation | Approach |
+|-----------|----------|
+| Deploying new feature | Follow 5-phase |
+| Production issue | Rollback first |
+| Platform choice | Check selection guide |
+| Scheduled release | Use pre-deploy checklist |
+
+---
+
+## 5-Phase Deployment
 
 ```
-What are you deploying?
-│
-├── Static site / JAMstack
-│   └── Vercel, Netlify, Cloudflare Pages
-│
-├── Simple web app
-│   ├── Managed → Railway, Render, Fly.io
-│   └── Control → VPS + PM2/Docker
-│
-├── Microservices
-│   └── Container orchestration
-│
-└── Serverless
-    └── Edge functions, Lambda
+1. PREPARE → Tests, build, env vars
+2. BACKUP  → Save current state
+3. DEPLOY  → Execute with monitoring
+4. VERIFY  → Health check, logs
+5. CONFIRM → All good or rollback
 ```
-
-### Each Platform Has Different Procedures
-
-| Platform           | Deployment Method          |
-| ------------------ | -------------------------- |
-| **Vercel/Netlify** | Git push, auto-deploy      |
-| **Railway/Render** | Git push or CLI            |
-| **VPS + PM2**      | SSH + manual steps         |
-| **Docker**         | Image push + orchestration |
-| **Kubernetes**     | kubectl apply              |
 
 ---
 
-## 2. Pre-Deployment Principles
+## Platform Selection
 
-### The 4 Verification Categories
+| Type | Platform |
+|------|----------|
+| Static/JAMstack | Vercel, Netlify, Cloudflare |
+| Web app | Railway, Render, Fly.io |
+| VPS | PM2, Docker |
+| Microservices | Kubernetes |
 
-| Category         | What to Check                          |
-| ---------------- | -------------------------------------- |
-| **Code Quality** | Tests passing, linting clean, reviewed |
-| **Build**        | Production build works, no warnings    |
-| **Environment**  | Env vars set, secrets current          |
-| **Safety**       | Backup done, rollback plan ready       |
+---
 
-### Pre-Deployment Checklist
+## Pre-Deployment Checklist
 
 - [ ] All tests passing
-- [ ] Code reviewed and approved
-- [ ] Production build successful
-- [ ] Environment variables verified
-- [ ] Database migrations ready (if any)
-- [ ] Rollback plan documented
+- [ ] Code reviewed
+- [ ] Production build OK
+- [ ] Env vars verified
+- [ ] Rollback plan ready
 - [ ] Team notified
-- [ ] Monitoring ready
 
 ---
 
-## 3. Deployment Workflow Principles
+## Rollback Strategy
 
-### The 5-Phase Process
-
-```
-1. PREPARE
-   └── Verify code, build, env vars
-
-2. BACKUP
-   └── Save current state before changing
-
-3. DEPLOY
-   └── Execute with monitoring open
-
-4. VERIFY
-   └── Health check, logs, key flows
-
-5. CONFIRM or ROLLBACK
-   └── All good? Confirm. Issues? Rollback.
-```
-
-### Phase Principles
-
-| Phase       | Principle                        |
-| ----------- | -------------------------------- |
-| **Prepare** | Never deploy untested code       |
-| **Backup**  | Can't rollback without backup    |
-| **Deploy**  | Watch it happen, don't walk away |
-| **Verify**  | Trust but verify                 |
-| **Confirm** | Have rollback trigger ready      |
-
----
-
-## 4. Post-Deployment Verification
-
-### What to Verify
-
-| Check               | Why                       |
-| ------------------- | ------------------------- |
-| **Health endpoint** | Service is running        |
-| **Error logs**      | No new errors             |
-| **Key user flows**  | Critical features work    |
-| **Performance**     | Response times acceptable |
-
-### Verification Window
-
-- **First 5 minutes**: Active monitoring
-- **15 minutes**: Confirm stable
-- **1 hour**: Final verification
-- **Next day**: Review metrics
-
----
-
-## 5. Rollback Principles
+| Platform | Method |
+|----------|--------|
+| Vercel/Netlify | Redeploy previous commit |
+| Railway/Render | Dashboard rollback |
+| VPS + PM2 | Restore backup |
+| Docker | Previous image tag |
+| Kubernetes | `kubectl rollout undo` |
 
 ### When to Rollback
 
-| Symptom                   | Action               |
-| ------------------------- | -------------------- |
-| Service down              | Rollback immediately |
-| Critical errors           | Rollback             |
-| Performance >50% degraded | Consider rollback    |
-| Minor issues              | Fix forward if quick |
-
-### Rollback Strategy by Platform
-
-| Platform           | Rollback Method          |
-| ------------------ | ------------------------ |
-| **Vercel/Netlify** | Redeploy previous commit |
-| **Railway/Render** | Rollback in dashboard    |
-| **VPS + PM2**      | Restore backup, restart  |
-| **Docker**         | Previous image tag       |
-| **K8s**            | kubectl rollout undo     |
-
-### Rollback Principles
-
-1. **Speed over perfection**: Rollback first, debug later
-2. **Don't compound errors**: One rollback, not multiple changes
-3. **Communicate**: Tell team what happened
-4. **Post-mortem**: Understand why after stable
+| Symptom | Action |
+|---------|--------|
+| Service down | Rollback immediately |
+| Critical errors | Rollback |
+| 50% perf degradation | Consider rollback |
+| Minor issues | Fix forward if quick |
 
 ---
 
-## 6. Zero-Downtime Deployment
+## Zero-Downtime Strategies
 
-### Strategies
-
-| Strategy       | How It Works                        |
-| -------------- | ----------------------------------- |
-| **Rolling**    | Replace instances one by one        |
-| **Blue-Green** | Switch traffic between environments |
-| **Canary**     | Gradual traffic shift               |
-
-### Selection Principles
-
-| Scenario         | Strategy                        |
-| ---------------- | ------------------------------- |
-| Standard release | Rolling                         |
-| High-risk change | Blue-green (easy rollback)      |
-| Need validation  | Canary (test with real traffic) |
+| Strategy | Use When |
+|----------|----------|
+| **Rolling** | Standard release |
+| **Blue-Green** | High-risk change |
+| **Canary** | Need real traffic validation |
 
 ---
 
-## 7. Emergency Procedures
+## Anti-Patterns
 
-### Service Down Priority
-
-1. **Assess**: What's the symptom?
-2. **Quick fix**: Restart if unclear
-3. **Rollback**: If restart doesn't help
-4. **Investigate**: After stable
-
-### Investigation Order
-
-| Check            | Common Issues      |
-| ---------------- | ------------------ |
-| **Logs**         | Errors, exceptions |
-| **Resources**    | Disk full, memory  |
-| **Network**      | DNS, firewall      |
-| **Dependencies** | Database, APIs     |
-
----
-
-## 8. Anti-Patterns
-
-| ❌ Don't                 | ✅ Do                |
-| ------------------------ | -------------------- |
-| Deploy on Friday         | Deploy early in week |
-| Rush deployment          | Follow the process   |
-| Skip staging             | Always test first    |
-| Deploy without backup    | Backup before deploy |
-| Walk away after deploy   | Monitor for 15+ min  |
+| ❌ Don't | ✅ Do |
+|---------|-------|
+| Deploy Friday | Deploy early in week |
+| Skip staging | Always test first |
+| Walk away after deploy | Monitor 15+ min |
 | Multiple changes at once | One change at a time |
 
 ---
 
-## 9. Decision Checklist
+## 🔗 Related
 
-Before deploying:
-
-- [ ] **Platform-appropriate procedure?**
-- [ ] **Backup strategy ready?**
-- [ ] **Rollback plan documented?**
-- [ ] **Monitoring configured?**
-- [ ] **Team notified?**
-- [ ] **Time to monitor after?**
+| Item | Type | Purpose |
+|------|------|---------|
+| `/launch` | Workflow | Deployment workflow |
+| `security-scanner` | Skill | Pre-deploy scan |
+| `gitops` | Skill | GitOps deployment |
 
 ---
 
-## 10. Best Practices
+## References
 
-1. **Small, frequent deploys** over big releases
-2. **Feature flags** for risky changes
-3. **Automate** repetitive steps
-4. **Document** every deployment
-5. **Review** what went wrong after issues
-6. **Test rollback** before you need it
+- [references/deployment-platforms.md](references/deployment-platforms.md)
+- [references/emergency-procedures.md](references/emergency-procedures.md)
 
 ---
 
-> **Remember:** Every deployment is a risk. Minimize risk through preparation, not speed.
+> **Remember:** Every deployment is a risk. Minimize risk through preparation.
+
+---
+
+⚡ PikaKit v3.2.0

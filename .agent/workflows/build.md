@@ -1,4 +1,4 @@
-﻿---
+---
 description: Full-stack application factory. From idea to deployed app with agent-patterns coordination.
 chain: build-web-app
 ---
@@ -15,7 +15,7 @@ Ship production-ready applications from natural language descriptions. **Coordin
 
 ---
 
-## ðŸ”´ MANDATORY: Build Pipeline
+## 🔴 MANDATORY: Build Pipeline
 
 ### Phase 0: Risk Assessment & Safety (NEW)
 
@@ -28,10 +28,10 @@ Ship production-ready applications from natural language descriptions. **Coordin
 
 ```
 IF risk_level == CRITICAL:
-  â†’ Require explicit user approval
-  â†’ Prepare rollback plan
+  → Require explicit user approval
+  → Prepare rollback plan
 ELSE:
-  â†’ Proceed with Phase 1
+  → Proceed with Phase 1
 ```
 
 ### Phase 1: Requirements Discovery
@@ -121,8 +121,8 @@ npm run preview:start
 
 | Agent                 | Task          | Status         |
 | --------------------- | ------------- | -------------- |
-| `database-architect`  | Schema design | âœ… Complete    |
-| `backend-specialist`  | API routes    | ðŸ”„ In progress |
+| `database-architect`  | Schema design | ✅ Complete    |
+| `backend-specialist`  | API routes    | 📁„ In progress |
 | `frontend-specialist` | UI components | â³ Waiting     |
 | `test-engineer`       | E2E tests     | â³ Waiting     |
 
@@ -130,21 +130,21 @@ npm run preview:start
 ```
 
 src/
-â”œâ”€â”€ app/
-â”‚ â”œâ”€â”€ page.tsx
-â”‚ â”œâ”€â”€ layout.tsx
-â”‚ â””â”€â”€ api/
-â”œâ”€â”€ components/
-â”œâ”€â”€ lib/
-â”œâ”€â”€ prisma/
-â”‚ â””â”€â”€ schema.prisma
-â””â”€â”€ tests/
+├── app/
+│ ├── page.tsx
+│ ├── layout.tsx
+│ └── api/
+├── components/
+├── lib/
+├── prisma/
+│ └── schema.prisma
+└── tests/
 
 ```
 
 ### Preview
 ðŸŒ **URL:** http://localhost:3000
-ðŸ“Š **Status:** Running
+📊 **Status:** Running
 
 ### Next Steps
 - [ ] Review the code
@@ -182,7 +182,7 @@ If user doesn't specify, use these:
 
 ---
 
-## â›” MANDATORY: Problem Verification Before Completion
+## ⛔ MANDATORY: Problem Verification Before Completion
 
 > **CRITICAL:** This check MUST be performed before any `notify_user` or task completion.
 
@@ -193,8 +193,8 @@ If user doesn't specify, use these:
 2. If errors/warnings > 0:
    a. Auto-fix: imports, types, lint errors
    b. Re-check @[current_problems]
-   c. If still > 0 â†’ STOP â†’ Notify user
-3. If count = 0 â†’ Proceed to Quality Gates
+   c. If still > 0 → STOP → Notify user
+3. If count = 0 → Proceed to Quality Gates
 ```
 
 ### Auto-Fixable
@@ -226,7 +226,7 @@ Before marking complete, verify:
 
 ---
 
-## ðŸ”— Workflow Chain
+## 🔗 Workflow Chain
 
 ```mermaid
 graph LR
