@@ -95,6 +95,14 @@ metadata:
 
 ---
 
+## 📑 Content Map
+
+| File | Description |
+|------|-------------|
+| `references/architecture-debate.md` | 8-phase debate process, YAGNI/KISS/DRY |
+
+---
+
 ## 🔗 Related
 
 | Item | Type | Purpose |

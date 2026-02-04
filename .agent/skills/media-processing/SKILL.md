@@ -113,6 +113,17 @@ npm install -g rmbg-cli
 
 ---
 
+## Troubleshooting
+
+| Problem | Solution |
+|---------|----------|
+| FFmpeg not found | Install: `brew install ffmpeg` (macOS) or `apt install ffmpeg` |
+| ImageMagick policy error | Edit `/etc/ImageMagick-6/policy.xml` to allow operations |
+| Output file too large | Increase compression, reduce resolution |
+| RMBG quality issues | Use higher resolution source, try different models |
+
+---
+
 ## 🔗 Related
 
 | Item | Type | Purpose |

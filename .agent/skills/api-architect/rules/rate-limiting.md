@@ -29,3 +29,25 @@ Include in headers:
 ├── X-RateLimit-Reset (when limit resets)
 └── Return 429 when exceeded
 ```
+
+## Redis Implementation Pattern
+
+```typescript
+// Sliding window with Redis
+const key = `ratelimit:${userId}:${endpoint}`;
+const current = await redis.incr(key);
+if (current === 1) {
+  await redis.expire(key, windowSeconds);
+}
+if (current > maxRequests) {
+  throw new RateLimitError();
+}
+```
+
+**Recommended Limits:**
+| Endpoint Type | Limit | Window |
+|---------------|-------|--------|
+| Public API | 100 | 1 min |
+| Authenticated | 1000 | 1 min |
+| Auth endpoints | 5 | 15 min |
+| File uploads | 10 | 1 hour |

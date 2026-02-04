@@ -9,16 +9,32 @@
 ```mermaid
 graph TD
     A[YAML Frontmatter] --> B[Title & Purpose]
-    B --> C[Skill Structure]
-    C --> D[Quick Reference]
-    D --> E[Core Content]
-    E --> F[Integration]
-    F --> G[Examples]
+    B --> C[Prerequisites]
+    C --> D[When to Use]
+    D --> E[Quick Reference]
+    E --> F[Core Content]
+    F --> G[Troubleshooting]
+    G --> H[Related]
 ```
 
 ---
 
-## Standard Structure
+## Directory Structure
+
+```
+skill-name/
+├── SKILL.md           # Entry point (<200 lines)
+├── references/        # Detailed documentation
+├── scripts/           # Executable JS/Python
+├── data/              # CSV/JSON data files
+└── assets/            # Images, templates
+```
+
+**200-Line Rule:** Keep SKILL.md concise, move details to `references/`.
+
+---
+
+## Standard Sections
 
 ### 1. YAML Frontmatter (REQUIRED)
 
@@ -26,29 +42,23 @@ graph TD
 ---
 name: skill-name
 description: >-
-  Multi-line description of what the skill does.
-  Include trigger keywords and coordination info.
-  Triggers on: keyword1, keyword2.
-  Coordinates with: other-skill, another-skill.
+  What this skill does. Triggers on: keywords.
+  Coordinates with: other-skills.
 metadata:
-  category: "core|design|framework|testing|devops"
+  category: "core|design|framework|testing|devops|ai|tools"
   version: "1.0.0"
-  triggers: "comma, separated, keywords"
+  triggers: "keyword1, keyword2"
   coordinates_with: "skill1, skill2"
   success_metrics: "metric1, metric2"
 ---
 ```
-
-**Key Fields:**
 
 | Field | Required | Description |
 |-------|----------|-------------|
 | `name` | ✅ | kebab-case identifier |
 | `description` | ✅ | Multi-line with triggers |
 | `metadata.category` | ✅ | Skill category |
-| `metadata.version` | ⭐ | SemVer version |
 | `metadata.triggers` | ⭐ | Activation keywords |
-| `metadata.coordinates_with` | ⭐ | Related skills |
 
 ---
 
@@ -57,141 +67,33 @@ metadata:
 ```markdown
 # Skill Name
 
-> **Purpose:** Brief one-line summary of what this skill does
+> Brief one-line summary of what this skill does.
 
 ---
-
-## 🎯 Purpose
-
-[One paragraph explaining what the skill does and its key differentiator.]
 ```
 
 ---
 
-### 3. Skill Structure (RECOMMENDED)
+### 3. Prerequisites (RECOMMENDED)
 
 ```markdown
-## 📂 Skill Structure
+## Prerequisites
 
-\```
-skill-name/
-├── SKILL.md           # This file (entry point, <200 lines)
-├── references/        # Detailed documentation (on-demand)
-├── scripts/           # Executable JS scripts
-├── scripts-js/        # JavaScript implementation
-├── data/              # CSV/JSON data files
-└── assets/            # Images, templates
-\```
+**Installation:**
+```bash
+npm install dependency
 ```
 
-**200-Line Rule:**
-- SKILL.md should be <200 lines
-- Move detailed docs to `references/`
-- Move code to `scripts/` or `scripts-js/`
+**API Access:**
+- API key from [provider](https://example.com)
+- OR environment variable `API_KEY`
+```
+
+Document dependencies, API keys, and setup requirements.
 
 ---
 
-### 4. Quick Reference (REQUIRED)
-
-```markdown
-## 🔧 Quick Reference
-
-### [Primary Action]
-
-\```bash
-node .agent/skills/skill-name/scripts/main.js "<query>" [--options]
-\```
-
-### [Secondary Action]
-
-\```bash
-node .agent/skills/skill-name/scripts/other.js --flag
-\```
-```
-
-Provide ready-to-copy commands.
-
----
-
-### 5. Core Content (VARIES BY TYPE)
-
-**For Process Skills (debug-pro, skill-generator):**
-```markdown
-## [N]-Phase Process
-
-### Phase 1: [Name]
-**Goal:** [What this phase accomplishes]
-[Steps, checklists, templates]
-
-### Phase 2: [Name]
-**Goal:** [What this phase accomplishes]
-[Steps, checklists, templates]
-```
-
-**For Database Skills (studio):**
-```markdown
-## 📊 Database Contents
-
-| Category | Count | Description |
-|----------|-------|-------------|
-| **[Type]** | N | Brief description |
-```
-
-**For Expert Skills (typescript-expert, mobile-developer):**
-```markdown
-## Capabilities
-
-### [Area 1]
-- Capability bullet points
-- Specific tools and versions
-
-### [Area 2]
-- More capabilities
-```
-
----
-
-### 6. Scripts Section (FOR SKILLS WITH SCRIPTS)
-
-```markdown
-## Scripts
-
-| Script | Purpose | Command |
-|--------|---------|---------|
-| `script_name.js` | What it does | `--flag "value"` |
-| `other_script.js` | What it does | `--option` |
-
-### [Script Name]
-
-\```bash
-# Usage
-node .agent/skills/skill-name/scripts/script_name.js --help
-
-# Example
-node .agent/skills/skill-name/scripts/script_name.js --scan all
-\```
-```
-
----
-
-### 7. Meta-Agents Integration (RECOMMENDED)
-
-```markdown
-## 🤖 Meta-Agents Integration
-
-| Phase | Agent | Action |
-| ----- | ----- | ------ |
-| **[Phase]** | `agent` | What they do |
-| **[Phase]** | `agent` | What they do |
-
-\```
-Flow diagram showing integration
-\```
-```
-
----
-
-### 8. When to Use (REQUIRED)
+### 4. When to Use (REQUIRED)
 
 ```markdown
 ## When to Use
@@ -199,33 +101,144 @@ Flow diagram showing integration
 | Situation | Approach |
 |-----------|----------|
 | [Trigger condition] | [What to do] |
-| [Another trigger] | [What to do] |
+| [Another trigger] | [Reference file] |
 ```
 
 ---
 
-### 9. Integration/Related
+### 5. Quick Reference (REQUIRED)
+
+```markdown
+## Quick Start
+
+```bash
+node .agent/skills/skill-name/scripts/main.js --option
+```
+```
+
+Provide ready-to-copy commands.
+
+---
+
+### 6. Core Content (VARIES BY TYPE)
+
+**Process Skills:**
+```markdown
+## [N]-Phase Process
+
+### Phase 1: [Name]
+**Goal:** [What this phase accomplishes]
+```
+
+**Database Skills:**
+```markdown
+## Database Contents
+
+| Category | Count | Description |
+|----------|-------|-------------|
+| Type | N | Brief |
+```
+
+**Expert Skills:**
+```markdown
+## Capabilities
+
+| Area | Description |
+|------|-------------|
+| [Domain] | What it handles |
+```
+
+---
+
+### 7. Content Map (FOR MULTI-FILE SKILLS)
+
+```markdown
+## 📑 Content Map
+
+| File | Description | When to Read |
+|------|-------------|--------------|
+| `references/api.md` | API patterns | API design |
+| `references/deploy.md` | Deployment | Production |
+```
+
+---
+
+### 8. Troubleshooting (RECOMMENDED)
+
+```markdown
+## Troubleshooting
+
+| Problem | Solution |
+|---------|----------|
+| Port in use | Auto-increments |
+| API error | Check API key |
+```
+
+---
+
+### 9. Related (REQUIRED)
 
 ```markdown
 ## 🔗 Related
 
 | Item | Type | Purpose |
 |------|------|---------|
-| `/workflow` | Workflow | User-facing command |
-| `agent-name` | Agent | Uses this skill |
-| `other-skill` | Skill | Companion skill |
+| `/workflow` | Workflow | Command |
+| `skill-name` | Skill | Companion |
 ```
 
 ---
 
-### 10. Example Interactions (OPTIONAL)
+## Activation Patterns
 
-```markdown
-## Example Interactions
+Skills activate through:
 
-- "Task description that would invoke this skill"
-- "Another example task"
+| Trigger Type | Example |
+|--------------|---------|
+| **Keywords** | "Midjourney", "deploy", "debug" |
+| **Task Type** | "Build API", "Optimize performance" |
+| **Explicit** | "Use skill-name to..." |
+
+**In SKILL.md:**
+```yaml
+metadata:
+  triggers: "keyword1, keyword2, framework-name"
 ```
+
+**In description:**
+```yaml
+description: >-
+  What this skill does.
+  Triggers on: keyword1, keyword2.
+```
+
+---
+
+## Skill Categories
+
+| Category | Description | Examples |
+|----------|-------------|----------|
+| `core` | Essential functionality | debug-pro, problem-checker |
+| `design` | UI/UX and design | studio, design-system |
+| `framework` | Language expertise | typescript-expert, nextjs-pro |
+| `testing` | Test automation | test-architect, e2e-automation |
+| `devops` | Deployment/Ops | cicd-pipeline, server-ops |
+| `ai` | AI/ML tools | ai-artist, google-adk-python |
+| `tools` | Utility servers | plans-kanban, markdown-novel-viewer |
+| `mobile` | Mobile dev | mobile-developer, mobile-design |
+| `security` | Security practices | security-scanner |
+
+---
+
+## Skill Types
+
+| Type | Characteristics | Examples |
+|------|-----------------|----------|
+| **Process** | Multi-phase methodology | debug-pro (4-phase) |
+| **Database** | Searchable data | studio (50+ styles) |
+| **Expert** | Domain knowledge | typescript-expert |
+| **Server** | HTTP background service | plans-kanban, markdown-novel-viewer |
+| **Automation** | Scripts & tooling | skill-generator |
 
 ---
 
@@ -247,48 +260,13 @@ metadata:
 
 # Skill Name
 
-> **Purpose:** One-line summary
+> Brief one-line summary.
 
 ---
 
-## 🎯 Purpose
+## Prerequisites
 
-[Detailed purpose paragraph.]
-
----
-
-## 📂 Skill Structure
-
-\```
-skill-name/
-├── SKILL.md
-├── scripts/
-└── references/
-\```
-
----
-
-## 🔧 Quick Reference
-
-### [Action]
-
-\```bash
-node .agent/skills/skill-name/scripts/main.js "<query>"
-\```
-
----
-
-## Core Content
-
-### [Section based on skill type]
-
----
-
-## 🤖 Meta-Agents Integration
-
-| Phase | Agent | Action |
-| ----- | ----- | ------ |
-| **[Phase]** | `agent` | Action |
+**Required:** dependency-name
 
 ---
 
@@ -300,47 +278,38 @@ node .agent/skills/skill-name/scripts/main.js "<query>"
 
 ---
 
+## Quick Start
+
+\```bash
+node .agent/skills/skill-name/scripts/main.js
+\```
+
+---
+
+## Core Content
+
+[Based on skill type]
+
+---
+
+## Troubleshooting
+
+| Problem | Solution |
+|---------|----------|
+| [Issue] | [Fix] |
+
+---
+
 ## 🔗 Related
 
 | Item | Type | Purpose |
 |------|------|---------|
 | `/workflow` | Workflow | Command |
-| `agent` | Agent | Uses skill |
 
 ---
 
-## 📖 References
-
-For detailed documentation, see:
-- `references/` - Detailed docs
-- `scripts/` - Implementation
+⚡ PikaKit v3.2.0
 ```
-
----
-
-## Skill Categories
-
-| Category | Description | Examples |
-|----------|-------------|----------|
-| `core` | Essential functionality | debug-pro, skill-generator, problem-checker |
-| `design` | UI/UX and design | studio, design-system |
-| `framework` | Language/Framework expertise | typescript-expert, react-patterns |
-| `testing` | Test automation | test-architect, e2e-automation |
-| `devops` | Deployment/Operations | gitops, observability |
-| `mobile` | Mobile development | mobile-developer, mobile-design |
-| `security` | Security practices | security-audit, mobile-security |
-
----
-
-## Skill Types
-
-| Type | Characteristics | Examples |
-|------|-----------------|----------|
-| **Process** | Multi-phase methodology | debug-pro (4-phase) |
-| **Database** | Searchable data | studio (50+ styles) |
-| **Expert** | Deep domain knowledge | typescript-expert |
-| **Automation** | Scripts & tooling | skill-generator |
-| **Hybrid** | Mix of above | mobile-developer |
 
 ---
 
@@ -350,14 +319,15 @@ Before publishing a skill:
 
 - [ ] Frontmatter complete (name, description, metadata)
 - [ ] SKILL.md is <200 lines
-- [ ] Purpose section is clear
+- [ ] Prerequisites documented
+- [ ] When to Use section included
 - [ ] Quick Reference has copy-paste commands
 - [ ] Core content matches skill type
-- [ ] Meta-agents integration if applicable
-- [ ] When to Use section included
-- [ ] Related section links workflows/agents
-- [ ] Scripts documented with examples
+- [ ] Troubleshooting for common issues
+- [ ] Related section links workflows/skills
 - [ ] Detailed docs in `references/` if needed
+- [ ] Scripts documented with examples
+- [ ] Registered in `registry.json`
 
 ---
 

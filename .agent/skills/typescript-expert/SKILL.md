@@ -128,6 +128,18 @@ For detailed patterns and debugging:
 
 ---
 
+## Troubleshooting
+
+| Problem | Solution |
+|---------|----------|
+| Type error with generics | Add explicit type annotations |
+| `any` type spreading | Enable `noImplicitAny` in tsconfig |
+| Module resolution fails | Check `moduleResolution: "bundler"` in TS 5+ |
+| Slow type checking | Use project references, exclude node_modules |
+| ESM/CJS mismatch | Set `"type": "module"` in package.json |
+
+---
+
 ## 🔗 Related
 
 | Item | Type | Purpose |

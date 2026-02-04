@@ -19,6 +19,25 @@ Apply immediate, targeted fixes for known errors, lint issues, or test failures.
 
 ---
 
+## Workflow Modes
+
+| Mode | When | Behavior |
+|------|------|----------|
+| **--auto** (default) | Simple/moderate | Auto-approve if score ≥9.5 |
+| **--review** | Critical/production | Pause for approval |
+| **--quick** | Type/lint errors | Fast debug → fix cycle |
+
+---
+
+## Complexity Routing
+
+| Level | Indicators | Action |
+|-------|------------|--------|
+| **Simple** | Single file, clear error | Quick workflow |
+| **Moderate** | Multi-file, unclear cause | Standard workflow |
+| **Complex** | System-wide impact | Invoke `debug-pro` first |
+| **Parallel** | 2+ independent issues | Fix in parallel |
+
 ## 🤖 Meta-Agents Integration
 
 | Phase | Agent | Action |

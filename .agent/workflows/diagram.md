@@ -90,6 +90,33 @@ This workflow uses the **system-design** skill to:
 - `/build` - Create app first
 - `/api` - Create API then diagram
 
+---
+
+## 🧜 Mermaid Quick Reference
+
+### CLI Export
+
+```bash
+# Install
+npm install -g @mermaid-js/mermaid-cli
+
+# Convert to image
+mmdc -i diagram.mmd -o diagram.svg
+mmdc -i diagram.mmd -o diagram.png -t dark -b transparent
+```
+
+### Themes
+
+`default` | `dark` | `forest` | `neutral` | `base`
+
+```mermaid
+---
+theme: dark
+---
+flowchart LR
+    A --> B
+```
+
 ## 💡 Example Output
 
 ```bash

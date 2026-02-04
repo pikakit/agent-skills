@@ -197,6 +197,18 @@ my-mcp-server/
 
 ---
 
+## Troubleshooting
+
+| Problem | Solution |
+|---------|----------|
+| Connection refused | Check server is running, port is correct |
+| Tool not found | Verify tool name matches registration |
+| Schema validation error | Check tool input/output matches schema |
+| Timeout on long operations | Increase client timeout, add progress reporting |
+| CORS error (web clients) | Add appropriate CORS headers |
+
+---
+
 ## 🔗 Related
 
 | Item | Type | Purpose |

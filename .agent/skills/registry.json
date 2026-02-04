@@ -958,6 +958,330 @@
                 "logic-patterns",
                 "style-patterns"
             ]
+        },
+        {
+            "name": "payment-patterns",
+            "category": "integration",
+            "triggers": [
+                "payment",
+                "SePay",
+                "Polar",
+                "VietQR",
+                "subscription",
+                "checkout",
+                "webhook"
+            ],
+            "coordinates_with": [
+                "api-architect",
+                "security-scanner"
+            ],
+            "success_metrics": "webhook verified, idempotent, subscription handled",
+            "references": [
+                "sepay/overview.md",
+                "sepay/sdk.md",
+                "sepay/webhooks.md",
+                "polar/overview.md",
+                "polar/products.md",
+                "polar/checkouts.md",
+                "polar/webhooks.md",
+                "polar/benefits.md"
+            ],
+            "scripts": [
+                "sepay-webhook-verify.js",
+                "polar-webhook-verify.js"
+            ]
+        },
+        {
+            "name": "ai-artist",
+            "category": "ai",
+            "triggers": [
+                "prompt",
+                "AI prompt",
+                "image generation",
+                "Midjourney",
+                "DALL-E",
+                "Stable Diffusion",
+                "Flux"
+            ],
+            "coordinates_with": [
+                "studio",
+                "media-processing"
+            ],
+            "success_metrics": "prompt produces desired output, minimal iterations",
+            "references": [
+                "image-prompts.md",
+                "model-syntax.md",
+                "domain-marketing.md",
+                "domain-code.md"
+            ]
+        },
+        {
+            "name": "google-adk-python",
+            "category": "ai",
+            "triggers": [
+                "Google ADK",
+                "agent development",
+                "multi-agent",
+                "agent orchestration",
+                "workflow automation"
+            ],
+            "coordinates_with": [
+                "python-pro",
+                "api-architect"
+            ],
+            "success_metrics": "agent runs, tools execute, deployment successful",
+            "references": [
+                "multi-agent.md",
+                "tools.md",
+                "deployment.md"
+            ]
+        },
+        {
+            "name": "plans-kanban",
+            "category": "tools",
+            "triggers": [
+                "kanban",
+                "dashboard",
+                "plan progress",
+                "timeline",
+                "gantt"
+            ],
+            "coordinates_with": [
+                "project-planner",
+                "lifecycle-orchestrator"
+            ],
+            "success_metrics": "server starts, dashboard renders, plans displayed",
+            "scripts": [
+                "server.cjs"
+            ]
+        },
+        {
+            "name": "markdown-novel-viewer",
+            "category": "tools",
+            "triggers": [
+                "preview",
+                "markdown viewer",
+                "view plans",
+                "documentation",
+                "mermaid"
+            ],
+            "coordinates_with": [
+                "plans-kanban",
+                "doc-templates"
+            ],
+            "success_metrics": "server starts, markdown renders, mermaid works",
+            "scripts": [
+                "server.cjs"
+            ]
+        },
+        {
+            "name": "frontend-design",
+            "category": "design",
+            "triggers": [
+                "frontend design",
+                "UI design",
+                "landing page",
+                "design from screenshot",
+                "anti-generic"
+            ],
+            "coordinates_with": [
+                "design-system",
+                "studio",
+                "ai-artist"
+            ],
+            "success_metrics": "distinctive design, no generic aesthetics"
+        },
+        {
+            "name": "frontend-development",
+            "category": "framework",
+            "triggers": [
+                "React",
+                "TypeScript",
+                "TanStack Query",
+                "MUI",
+                "useSuspenseQuery",
+                "component"
+            ],
+            "coordinates_with": [
+                "frontend-design",
+                "react-architect",
+                "typescript-expert"
+            ],
+            "success_metrics": "no early returns, useSuspenseQuery used"
+        },
+        {
+            "name": "mcp-management",
+            "category": "framework",
+            "triggers": [
+                "MCP tools",
+                "server discovery",
+                "tool execution",
+                "multi-server"
+            ],
+            "coordinates_with": [
+                "mcp-builder",
+                "mcp-server"
+            ],
+            "success_metrics": "tools discovered, execution successful"
+        },
+        {
+            "name": "agent-browser",
+            "category": "testing",
+            "triggers": [
+                "browser automation",
+                "web testing",
+                "scraping",
+                "UI verification"
+            ],
+            "coordinates_with": [
+                "e2e-automation",
+                "chrome-devtools",
+                "test-architect"
+            ],
+            "success_metrics": "test passes, context efficient"
+        },
+        {
+            "name": "chrome-devtools",
+            "category": "testing",
+            "triggers": [
+                "screenshot",
+                "browser",
+                "puppeteer",
+                "devtools",
+                "performance"
+            ],
+            "coordinates_with": [
+                "agent-browser",
+                "e2e-automation",
+                "perf-optimizer"
+            ],
+            "success_metrics": "screenshot captured, JSON output"
+        },
+        {
+            "name": "context-engineering",
+            "category": "architecture",
+            "triggers": [
+                "context usage",
+                "token limit",
+                "agent architecture",
+                "memory system"
+            ],
+            "coordinates_with": [
+                "lifecycle-orchestrator",
+                "system-design"
+            ],
+            "success_metrics": "token usage <70%, quality maintained"
+        },
+        {
+            "name": "copywriting",
+            "category": "marketing",
+            "triggers": [
+                "copywriting",
+                "headlines",
+                "landing page",
+                "email",
+                "marketing"
+            ],
+            "coordinates_with": [
+                "seo-optimizer",
+                "studio"
+            ],
+            "success_metrics": "conversion-focused, formulas applied"
+        },
+        {
+            "name": "git-workflow",
+            "category": "devops",
+            "triggers": [
+                "git",
+                "commit",
+                "push",
+                "PR",
+                "merge"
+            ],
+            "coordinates_with": [
+                "cicd-pipeline",
+                "code-review"
+            ],
+            "success_metrics": "clean history, no secrets"
+        },
+        {
+            "name": "knowledge-graph",
+            "category": "architecture",
+            "triggers": [
+                "find usages",
+                "code graph",
+                "semantic search",
+                "impact analysis"
+            ],
+            "coordinates_with": [
+                "code-review",
+                "system-design"
+            ],
+            "success_metrics": "precise references found"
+        },
+        {
+            "name": "remotion",
+            "category": "media",
+            "triggers": [
+                "Remotion",
+                "video creation",
+                "programmatic video",
+                "React animation"
+            ],
+            "coordinates_with": [
+                "react-architect",
+                "media-processing"
+            ],
+            "success_metrics": "video renders, animations smooth"
+        },
+        {
+            "name": "scout",
+            "category": "development",
+            "triggers": [
+                "find files",
+                "locate",
+                "codebase structure",
+                "explore",
+                "search"
+            ],
+            "coordinates_with": [
+                "knowledge-graph",
+                "code-review"
+            ],
+            "success_metrics": "files found, structure understood"
+        },
+        {
+            "name": "shader",
+            "category": "graphics",
+            "triggers": [
+                "shader",
+                "GLSL",
+                "procedural",
+                "texture",
+                "visual effect"
+            ],
+            "coordinates_with": [
+                "game-development",
+                "media-processing"
+            ],
+            "success_metrics": "shader compiles, visuals render"
+        },
+        {
+            "name": "web-design-guidelines",
+            "category": "quality",
+            "triggers": [
+                "UI review",
+                "accessibility",
+                "design audit",
+                "UX",
+                "WCAG"
+            ],
+            "coordinates_with": [
+                "design-system",
+                "frontend-design",
+                "code-review"
+            ],
+            "success_metrics": "violations found, actionable fixes"
         }
     ]
 }

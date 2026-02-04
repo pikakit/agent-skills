@@ -10,13 +10,20 @@
 docs/
 ├── README.md              # Index/navigation hub
 ├── getting-started.md     # User guide (scenarios, commands)
+├── workflows.md           # Workflows overview
+├── skills-overview.md     # Skills catalog (45+ skills)
 ├── guides/                # How-to guides (tutorials)
+│   ├── greenfield-projects.md
 │   ├── feature-development.md
 │   ├── building-rest-api.md
+│   ├── implementing-authentication.md
+│   ├── integrating-payments.md
 │   ├── documentation-workflow.md
 │   ├── debugging-workflow.md
 │   ├── refactoring-code.md
+│   ├── optimizing-performance.md
 │   ├── code-review.md
+│   ├── gitlab-knowledge-graph.md
 │   ├── context-engineering.md
 │   ├── migration.md
 │   ├── publishing.md

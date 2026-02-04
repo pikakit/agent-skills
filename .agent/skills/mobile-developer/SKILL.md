@@ -153,6 +153,18 @@ metadata:
 
 ---
 
+## Troubleshooting
+
+| Problem | Solution |
+|---------|----------|
+| Build fails on iOS | Run `pod install --repo-update` |
+| Android Gradle error | Check Gradle version, sync project |
+| Hot reload not working | Restart Metro/Flutter, clear cache |
+| Native module linking | Run `npx react-native link` or `flutter pub get` |
+| App store rejection | Check guidelines, test on real devices |
+
+---
+
 ## 🔗 Related
 
 | Item | Type | Purpose |

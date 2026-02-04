@@ -15,6 +15,17 @@ Deploy any project to Vercel instantly. No authentication required.
 
 ---
 
+## Prerequisites
+
+**Required:**
+- Bash shell (Linux/macOS/WSL)
+- `tar` and `curl` commands available
+
+**Optional (for claiming deployments):**
+- Vercel account at [vercel.com](https://vercel.com)
+
+---
+
 ## When to Use
 
 | Situation | Approach |

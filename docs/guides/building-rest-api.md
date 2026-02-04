@@ -1,6 +1,6 @@
 ---
 title: Building a REST API
-description: Build production-ready REST APIs with PikaKit - from design to deployment
+description: Built production-ready REST APIs with PikaKit - from design to deployment
 section: guides
 category: workflows
 order: 8
@@ -14,7 +14,7 @@ Learn how to build production-ready REST APIs with **PikaKit** - from API design
 
 - **Goal**: Build a complete REST API with CRUD operations, auth, and docs.
 - **Time**: 30-60 minutes (vs 6-12 hours manually).
-- **Agents Used**: `project-planner`, `backend-specialist`, `test-engineer`, `code-review`.
+- **Agents Used**: `project-planner`, `backend-specialist`, `test-engineer`, `code-review`, `docs-manager`.
 - **Workflows**: `/plan`, `/build`, `/cook`, `/validate`, `/chronicle`.
 
 ## Prerequisites
@@ -22,6 +22,7 @@ Learn how to build production-ready REST APIs with **PikaKit** - from API design
 - Clear API requirements.
 - Database choice (PostgreSQL, MySQL, MongoDB, etc.).
 - Node.js 18+ or Python 3.9+ installed.
+- Postman or similar API testing tool.
 
 ## API Development Phases
 
@@ -63,6 +64,7 @@ Create the initial project structure using the Application Factory (`/build`):
 2.  **Database**: Sets up Prisma schema and migrations.
 3.  **Auth**: Implements JWT middleware and password hashing.
 4.  **Tests**: Sets up initial testing framework.
+5.  **Docs**: Configures Swagger/OpenAPI bootstrapping.
 
 ### Step 3: Configure Environment
 
@@ -76,10 +78,10 @@ Add specialized endpoints using Tactical Workflow (`/cook`):
 /cook "add task filtering by status, priority, and due date"
 ```
 
-**Implementation**:
-- Adds filtering logic to services.
-- Updates validation middleware.
-- Adds specific unit tests for filtering.
+**Implementation Details**:
+- **Logic**: Adds query parameter parsing and filter logic in service.
+- **Validation**: Updates Joi/Zod schemas for query params.
+- **Tests**: Adds unit tests for filtering scenarios.
 
 ### Step 5: Add Search Functionality
 
@@ -87,7 +89,50 @@ Add specialized endpoints using Tactical Workflow (`/cook`):
 /cook "implement full-text search for tasks and projects"
 ```
 
-### Step 6: Testing
+**What happens**:
+- Adds search indexes to database schema.
+- Implements full-text search query logic.
+- Creates `GET /api/search` endpoint with relevance scoring.
+
+### Step 6: Add Pagination
+
+```bash
+/cook "add pagination to all list endpoints"
+```
+
+**Implementation**:
+- Query params: `page` (default 1), `limit` (default 20).
+- Response format:
+  ```json
+  {
+    "data": [...],
+    "pagination": {
+      "page": 1,
+      "limit": 20,
+      "total": 156,
+      "totalPages": 8
+    }
+  }
+  ```
+
+### Step 7: Implement Advanced Features
+
+#### Rate Limiting
+```bash
+/cook "add rate limiting per user with Redis"
+```
+
+#### File Uploads
+```bash
+/cook "add file attachment support for tasks using S3"
+```
+
+#### Real-time Updates
+```bash
+/cook "add WebSocket support for real-time task updates"
+```
+
+### Step 8: Testing
 
 Run comprehensive test suite via `/validate`:
 
@@ -96,11 +141,11 @@ Run comprehensive test suite via `/validate`:
 ```
 
 **Checks**:
-- Unit Tests (Services, Utils).
-- Integration Tests (API Endpoints).
-- Security Checks (Auth flows).
+- Unit Tests (Services, Validators).
+- Integration Tests (API Endpoints, Database).
+- E2E Tests (Full User Flow).
 
-### Step 7: Documentation
+### Step 9: Documentation
 
 Generate comprehensive API documentation (Swagger/OpenAPI):
 
@@ -111,14 +156,35 @@ Generate comprehensive API documentation (Swagger/OpenAPI):
 **Result**:
 - `docs/openapi.yaml` generated.
 - `README.md` updated with API usage examples.
-- Swagger UI setup.
+- Swagger UI accessible at `/api-docs`.
 
-### Step 8: Deploy
+### Step 10: Manual API Testing
+
+Verify endpoints with curl or Postman:
+
+```bash
+# Register user
+curl -X POST http://localhost:3000/api/auth/register \
+  -H "Content-Type: application/json" \
+  -d '{"email": "john@example.com", "password": "SecurePass123!"}'
+
+# Create task
+curl -X POST http://localhost:3000/api/tasks \
+  -H "Authorization: Bearer <TOKEN>" \
+  -H "Content-Type: application/json" \
+  -d '{"title": "Design Mockup", "priority": "high"}'
+```
+
+### Step 11: Deploy
 
 Deploy to production using `/launch` (or specific deploy skill):
 
 ```bash
+# Option 1: Vercel/Railway/Heroku
 /launch
+
+# Option 2: Docker
+/cook "create production Docker setup with nginx reverse proxy"
 ```
 
 ## Complete Example: Blog API
@@ -135,10 +201,10 @@ Deploy to production using `/launch` (or specific deploy skill):
 
 ## Best Practices
 
-1.  **RESTful Design**: Use standard HTTP methods (GET, POST, PUT, DELETE) and status codes (200, 201, 400, 401, 404).
+1.  **RESTful Design**: Use standard HTTP methods and status codes.
 2.  **Validation**: Always validate input using middleware (Zod, Joi).
 3.  **Error Handling**: Use centralized error handling to ensure consistent responses.
-4.  **Security**: Never commit `.env` files. Use `/inspect` to check for secrets.
+4.  **Security**: Use `/inspect` to check for secrets and vulnerabilities.
 
 ## Next Steps
 

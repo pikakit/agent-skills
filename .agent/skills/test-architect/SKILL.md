@@ -41,6 +41,14 @@ metadata:
    /          \     Unit (Many) - Functions, classes
 ```
 
+### Strategy Selection
+
+| Model | Structure | Best For |
+|-------|-----------|----------|
+| **Pyramid** | Unit 70% > Int 20% > E2E 10% | Monoliths |
+| **Trophy** | Integration-heavy | Modern SPAs |
+| **Honeycomb** | Contract-centric | Microservices |
+
 ---
 
 ## AAA Pattern

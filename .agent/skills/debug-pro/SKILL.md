@@ -101,6 +101,18 @@ metadata:
 
 ---
 
+## 🚩 Red Flags
+
+**STOP and follow 4-phase if thinking:**
+
+- "Quick fix for now, investigate later"
+- "Just try changing X and see"
+- "It's probably X, let me fix that"
+- "Should work now" / "Seems fixed"
+- "Tests pass, we're done"
+
+**All mean:** Return to Phase 1.
+
 ## References
 
 - [references/advanced-frameworks.md](references/advanced-frameworks.md)

@@ -30,6 +30,24 @@ Include:
 | **Cursor** | Large datasets | Can't jump to page |
 | **Keyset** | Performance critical | Requires sortable key |
 
+### Standard Pagination Response Format
+
+```json
+{
+  "data": [...],
+  "pagination": {
+    "page": 1,
+    "limit": 20,
+    "total": 156,
+    "totalPages": 8
+  }
+}
+```
+
+**Query Parameters:**
+- `page` (default: 1) - Current page number
+- `limit` (default: 20, max: 100) - Items per page
+
 ### Selection Questions
 
 1. How large is the dataset?

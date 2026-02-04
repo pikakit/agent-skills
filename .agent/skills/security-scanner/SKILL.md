@@ -34,6 +34,7 @@ metadata:
 | New dependencies | Check supply chain |
 | Code review | Check for high-risk patterns |
 | Secret detection | Scan for exposed secrets |
+| Auth implementation | Read `auth-patterns.md` |
 
 ---
 

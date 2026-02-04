@@ -180,52 +180,31 @@ Each question must be:
 
 ---
 
-## Quick Reference
+## 📑 Content Map
 
-### Python Setup
-
-```bash
-pip install fastmcp pydantic
-```
-
-```python
-from mcp import FastMCP
-from pydantic import BaseModel, Field
-
-mcp = FastMCP("my-server")
-
-@mcp.tool()
-async def my_tool(param: str) -> str:
-    """Tool description."""
-    return result
-```
-
-### TypeScript Setup
-
-```bash
-npm install @modelcontextprotocol/sdk zod
-```
-
-```typescript
-import { Server } from "@modelcontextprotocol/sdk/server"
-import { z } from "zod"
-
-const server = new Server({
-  name: "my-server",
-  version: "1.0.0",
-})
-```
-
----
-
-## References
-
-- [references/python-implementation.md](references/python-implementation.md) - Python details
-- [references/typescript-implementation.md](references/typescript-implementation.md) - TypeScript details
+| File | Description | When to Read |
+|------|-------------|--------------|
+| `references/quickstart.md` | Python/TypeScript setup | Getting started |
+| `references/python-implementation.md` | Python FastMCP details | Python development |
+| `references/typescript-implementation.md` | TypeScript MCP SDK | TypeScript development |
+| `references/best-practices.md` | Tool design, errors, pagination | Design decisions |
+| `references/evaluation.md` | 10-question test framework | Testing server |
 
 ---
 
 > **Rule:** Good MCP server = AI agents can perform real tasks. Design for workflows, not endpoints.
+
+---
+
+## Troubleshooting
+
+| Problem | Solution |
+|---------|----------|
+| Build fails on TypeScript | Check tsconfig.json, run `tsc --noEmit` |
+| Tool not appearing | Verify exported and registered in server |
+| Python import error | Run `pip install -e .` for local package |
+| Client can't connect | Check stdio vs HTTP transport configuration |
+| Test failures | Ensure mock client matches expected schema |
 
 ---
 

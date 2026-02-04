@@ -1,0 +1,76 @@
+# ARIA Snapshot Format
+
+> YAML accessibility tree with refs for interaction.
+
+---
+
+## Format
+
+```yaml
+- banner:
+  - link "Hacker News" [ref=e1]
+    /url: https://news.ycombinator.com
+  - navigation:
+    - link "new" [ref=e2]
+    - link "past" [ref=e3]
+- main:
+  - list:
+    - listitem:
+      - link "Show HN: My project" [ref=e8]
+      - text: "128 points by user 3 hours ago"
+- contentinfo:
+  - link "Guidelines" [ref=e20]
+```
+
+---
+
+## Notation
+
+| Notation | Meaning |
+|----------|---------|
+| `[ref=eN]` | Stable ID for interaction |
+| `[checked]` | Checkbox/radio selected |
+| `[disabled]` | Element inactive |
+| `[expanded]` | Accordion/dropdown open |
+| `/url:` | Link destination |
+| `/placeholder:` | Input placeholder |
+| `[level=N]` | Heading level |
+
+---
+
+## Roles
+
+| Role | Element |
+|------|---------|
+| `banner` | Header |
+| `navigation` | Nav menu |
+| `main` | Main content |
+| `contentinfo` | Footer |
+| `link` | Anchor |
+| `button` | Button |
+| `textbox` | Input |
+| `checkbox` | Checkbox |
+| `listitem` | List item |
+| `heading` | H1-H6 |
+
+---
+
+## Interact by Ref
+
+```bash
+# Click
+node select-ref.js --ref e1 --action click
+
+# Fill
+node select-ref.js --ref e5 --action fill --value "text"
+
+# Get text
+node select-ref.js --ref e8 --action text
+
+# Screenshot
+node select-ref.js --ref e1 --action screenshot --output ./element.png
+```
+
+---
+
+⚡ PikaKit v3.2.0

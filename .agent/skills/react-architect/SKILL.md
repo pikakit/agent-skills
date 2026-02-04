@@ -129,6 +129,30 @@ metadata:
 
 ## 6. Performance Principles
 
+### Priority Categories (Vercel Engineering)
+
+| Priority | Category | Impact |
+|----------|----------|--------|
+| 1 | Eliminating Waterfalls | CRITICAL |
+| 2 | Bundle Size | CRITICAL |
+| 3 | Server Performance | HIGH |
+| 4 | Client Data Fetching | MEDIUM-HIGH |
+| 5 | Re-render Optimization | MEDIUM |
+
+### Critical: Waterfalls
+
+- Move `await` into branches where used
+- Use `Promise.all()` for independent ops
+- Start promises early, await late
+- Use Suspense to stream
+
+### Critical: Bundle Size
+
+- Import directly, avoid barrel files
+- Use `next/dynamic` for heavy components
+- Load analytics after hydration
+- Preload on hover for perceived speed
+
 ### When to Optimize
 
 | Signal           | Action        |

@@ -20,6 +20,21 @@ Rapidly implement specific features, components, or logic based on clear instruc
 
 ---
 
+## Workflow Modes
+
+| Mode | Research | Testing | Review Gates | Use When |
+|------|----------|---------|--------------|----------|
+| **interactive** (default) | ✓ | ✓ | User approval | Standard features |
+| **--auto** | ✓ | ✓ | Auto if score≥9.5 | Trusted autonomous |
+| **--fast** | ✗ | ✓ | User approval | Quick prototypes |
+| **--no-test** | ✓ | ✗ | User approval | Experimental code |
+
+```bash
+/cook "add user auth"              # interactive (default)
+/cook "implement notifications" --fast
+/cook path/to/plan.md --auto
+```
+
 ## 🤖 Meta-Agents Integration
 
 | Phase | Agent | Action |

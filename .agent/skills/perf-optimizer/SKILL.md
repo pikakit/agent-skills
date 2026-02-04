@@ -35,6 +35,7 @@ metadata:
 | Large bundle size | Use bundle analyzer |
 | Runtime issues | DevTools Performance tab |
 | Memory problems | DevTools Memory tab |
+| N+1 queries, caching | Read `backend-patterns.md` |
 
 ---
 

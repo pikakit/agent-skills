@@ -125,6 +125,17 @@ For detailed setup and code examples:
 
 ---
 
+## Troubleshooting
+
+| Problem | Solution |
+|---------|----------|
+| No traces appearing | Check OTEL_EXPORTER_OTLP_ENDPOINT is set |
+| High cardinality metrics | Reduce label values, use histograms |
+| Missing spans | Verify instrumentation is auto-loaded |
+| Prometheus scrape fails | Check /metrics endpoint, firewall rules |
+
+---
+
 ## 🔗 Related
 
 | Item | Type | Purpose |
