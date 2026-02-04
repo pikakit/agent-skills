@@ -3,8 +3,7 @@ name: mcp-server
 description: >-
   MCP (Model Context Protocol) server building principles. Tool design, resource patterns, best practices.
   Triggers on: MCP, Model Context Protocol, server, integration.
-  Coordinates with: api-architect, context-optimizer.
-allowed-tools: Read, Write, Edit, Glob, Grep
+  Coordinates with: api-architect, mcp-builder.
 metadata:
   version: "1.0.0"
   category: "framework"
@@ -13,7 +12,7 @@ metadata:
   coordinates_with: "api-architect, mcp-builder"
 ---
 
-# MCP Builder
+# MCP Server Principles
 
 > Principles for building MCP servers.
 
@@ -25,18 +24,13 @@ metadata:
 |-----------|----------|
 | Building AI agent tools | Create MCP server |
 | Need tool design patterns | Check tool patterns |
-| Resource management | See resource patterns |
-| MCP architecture | Follow 4-phase process |
+| Full build process | Use `mcp-builder` skill |
 
 ---
 
 ## 1. MCP Overview
 
-### What is MCP?
-
-Model Context Protocol - standard for connecting AI systems with external tools and data sources.
-
-### Core Concepts
+Model Context Protocol - standard for connecting AI systems with external tools and data.
 
 | Concept       | Purpose                      |
 | ------------- | ---------------------------- |
@@ -48,19 +42,14 @@ Model Context Protocol - standard for connecting AI systems with external tools 
 
 ## 2. Server Architecture
 
-### Project Structure
-
 ```
 my-mcp-server/
-├── src/
-│   └── index.ts      # Main entry
+├── src/index.ts    # Main entry
 ├── package.json
 └── tsconfig.json
 ```
 
-### Transport Types
-
-| Type          | Use                      |
+| Transport     | Use                      |
 | ------------- | ------------------------ |
 | **Stdio**     | Local, CLI-based         |
 | **SSE**       | Web-based, streaming     |
@@ -68,9 +57,7 @@ my-mcp-server/
 
 ---
 
-## 3. Tool Design Principles
-
-### Good Tool Design
+## 3. Tool Design
 
 | Principle         | Description                                |
 | ----------------- | ------------------------------------------ |
@@ -79,40 +66,19 @@ my-mcp-server/
 | Validated input   | Schema with types and descriptions         |
 | Structured output | Predictable response format                |
 
-### Input Schema Design
-
-| Field       | Required?             |
-| ----------- | --------------------- |
-| Type        | Yes - object          |
-| Properties  | Define each param     |
-| Required    | List mandatory params |
-| Description | Human-readable        |
-
 ---
 
 ## 4. Resource Patterns
 
-### Resource Types
-
-| Type     | Use                       |
-| -------- | ------------------------- |
-| Static   | Fixed data (config, docs) |
-| Dynamic  | Generated on request      |
-| Template | URI with parameters       |
-
-### URI Patterns
-
-| Pattern       | Example             |
-| ------------- | ------------------- |
-| Fixed         | `docs://readme`     |
-| Parameterized | `users://{userId}`  |
-| Collection    | `files://project/*` |
+| Type     | Use                       | URI Example         |
+| -------- | ------------------------- | ------------------- |
+| Static   | Fixed data (config, docs) | `docs://readme`     |
+| Dynamic  | Generated on request      | `users://{userId}`  |
+| Template | URI with parameters       | `files://project/*` |
 
 ---
 
 ## 5. Error Handling
-
-### Error Types
 
 | Situation      | Response                   |
 | -------------- | -------------------------- |
@@ -120,80 +86,23 @@ my-mcp-server/
 | Not found      | Clear "not found"          |
 | Server error   | Generic error, log details |
 
-### Best Practices
+---
 
-- Return structured errors
-- Don't expose internal details
-- Log for debugging
-- Provide actionable messages
+## 6. Security & Config
+
+- Validate all tool inputs, sanitize user data
+- Use environment variables for API keys
+- Don't log secrets, validate permissions
 
 ---
 
-## 6. Multimodal Handling
-
-### Supported Types
-
-| Type   | Encoding           |
-| ------ | ------------------ |
-| Text   | Plain text         |
-| Images | Base64 + MIME type |
-| Files  | Base64 + MIME type |
-
----
-
-## 7. Security Principles
-
-### Input Validation
-
-- Validate all tool inputs
-- Sanitize user-provided data
-- Limit resource access
-
-### API Keys
-
-- Use environment variables
-- Don't log secrets
-- Validate permissions
-
----
-
-## 8. Configuration
-
-### Claude Desktop Config
-
-| Field   | Purpose               |
-| ------- | --------------------- |
-| command | Executable to run     |
-| args    | Command arguments     |
-| env     | Environment variables |
-
----
-
-## 9. Testing
-
-### Test Categories
-
-| Type        | Focus             |
-| ----------- | ----------------- |
-| Unit        | Tool logic        |
-| Integration | Full server       |
-| Contract    | Schema validation |
-
----
-
-## 10. Best Practices Checklist
+## 7. Best Practices Checklist
 
 - [ ] Clear, action-oriented tool names
 - [ ] Complete input schemas with descriptions
 - [ ] Structured JSON output
 - [ ] Error handling for all cases
-- [ ] Input validation
 - [ ] Environment-based configuration
-- [ ] Logging for debugging
-
----
-
-> **Remember:** MCP tools should be simple, focused, and well-documented. The AI relies on descriptions to use them correctly.
 
 ---
 
@@ -201,11 +110,9 @@ my-mcp-server/
 
 | Problem | Solution |
 |---------|----------|
-| Connection refused | Check server is running, port is correct |
-| Tool not found | Verify tool name matches registration |
-| Schema validation error | Check tool input/output matches schema |
-| Timeout on long operations | Increase client timeout, add progress reporting |
-| CORS error (web clients) | Add appropriate CORS headers |
+| Connection refused | Check server is running |
+| Tool not found | Verify tool name matches |
+| Schema validation error | Check input/output schema |
 
 ---
 

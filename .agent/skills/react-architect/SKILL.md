@@ -3,14 +3,13 @@ name: react-architect
 description: >-
   Modern React patterns and principles. Hooks, composition, performance, TypeScript best practices.
   Triggers on: React, component, hooks, state management, Redux, Zustand.
-  Coordinates with: web-core, design-system.
-allowed-tools: Read, Write, Edit, Glob, Grep
+  Coordinates with: nextjs-pro, design-system.
 metadata:
   version: "1.0.0"
   category: "architecture"
   triggers: "React, component, hooks, state management, Redux, Zustand"
   success_metrics: "components render, no prop drilling"
-  coordinates_with: "web-core, design-system, nextjs-pro"
+  coordinates_with: "nextjs-pro, design-system, typescript-expert"
 ---
 
 # React Patterns
@@ -26,7 +25,7 @@ metadata:
 | Component design | Check component types |
 | State management | Use selection guide |
 | Hooks patterns | See hook patterns |
-| Performance | Follow optimization order |
+| Performance | See `references/patterns.md` |
 
 ---
 
@@ -90,70 +89,7 @@ metadata:
 
 ---
 
-## 4. React 19 Patterns
-
-### New Hooks
-
-| Hook               | Purpose                  |
-| ------------------ | ------------------------ |
-| **useActionState** | Form submission state    |
-| **useOptimistic**  | Optimistic UI updates    |
-| **use**            | Read resources in render |
-
-### Compiler Benefits
-
-- Automatic memoization
-- Less manual useMemo/useCallback
-- Focus on pure components
-
----
-
-## 5. Composition Patterns
-
-### Compound Components
-
-- Parent provides context
-- Children consume context
-- Flexible slot-based composition
-- Example: Tabs, Accordion, Dropdown
-
-### Render Props vs Hooks
-
-| Use Case           | Prefer                 |
-| ------------------ | ---------------------- |
-| Reusable logic     | Custom hook            |
-| Render flexibility | Render props           |
-| Cross-cutting      | Higher-order component |
-
----
-
-## 6. Performance Principles
-
-### Priority Categories (Vercel Engineering)
-
-| Priority | Category | Impact |
-|----------|----------|--------|
-| 1 | Eliminating Waterfalls | CRITICAL |
-| 2 | Bundle Size | CRITICAL |
-| 3 | Server Performance | HIGH |
-| 4 | Client Data Fetching | MEDIUM-HIGH |
-| 5 | Re-render Optimization | MEDIUM |
-
-### Critical: Waterfalls
-
-- Move `await` into branches where used
-- Use `Promise.all()` for independent ops
-- Start promises early, await late
-- Use Suspense to stream
-
-### Critical: Bundle Size
-
-- Import directly, avoid barrel files
-- Use `next/dynamic` for heavy components
-- Load analytics after hydration
-- Preload on hover for perceived speed
-
-### When to Optimize
+## 4. Performance Quick Tips
 
 | Signal           | Action        |
 | ---------------- | ------------- |
@@ -162,80 +98,15 @@ metadata:
 | Expensive calc   | useMemo       |
 | Stable callbacks | useCallback   |
 
-### Optimization Order
-
-1. Check if actually slow
-2. Profile with DevTools
-3. Identify bottleneck
-4. Apply targeted fix
+> For priority categories and deep dive, see `references/patterns.md`
 
 ---
 
-## 7. Error Handling
+## 📑 Content Map
 
-### Error Boundary Usage
-
-| Scope     | Placement              |
-| --------- | ---------------------- |
-| App-wide  | Root level             |
-| Feature   | Route/feature level    |
-| Component | Around risky component |
-
-### Error Recovery
-
-- Show fallback UI
-- Log error
-- Offer retry option
-- Preserve user data
-
----
-
-## 8. TypeScript Patterns
-
-### Props Typing
-
-| Pattern   | Use                 |
-| --------- | ------------------- |
-| Interface | Component props     |
-| Type      | Unions, complex     |
-| Generic   | Reusable components |
-
-### Common Types
-
-| Need          | Type               |
-| ------------- | ------------------ |
-| Children      | ReactNode          |
-| Event handler | MouseEventHandler  |
-| Ref           | RefObject<Element> |
-
----
-
-## 9. Testing Principles
-
-| Level       | Focus                 |
-| ----------- | --------------------- |
-| Unit        | Pure functions, hooks |
-| Integration | Component behavior    |
-| E2E         | User flows            |
-
-### Test Priorities
-
-- User-visible behavior
-- Edge cases
-- Error states
-- Accessibility
-
----
-
-## 10. Anti-Patterns
-
-| ❌ Don't                 | ✅ Do             |
-| ------------------------ | ----------------- |
-| Prop drilling deep       | Use context       |
-| Giant components         | Split smaller     |
-| useEffect for everything | Server components |
-| Premature optimization   | Profile first     |
-| Index as key             | Stable unique ID  |
+| File | Description | When to Read |
+|------|-------------|--------------|
+| `references/patterns.md` | React 19, Composition, Performance, TypeScript, Testing, Anti-Patterns | Advanced patterns |
 
 ---
 
