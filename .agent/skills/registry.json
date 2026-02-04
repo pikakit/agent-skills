@@ -1,4 +1,4 @@
-﻿{
+{
     "updatedAt": "2026-01-30T01:34:27.498Z",
     "version": "2.0.0",
     "skills": [
@@ -12,9 +12,7 @@
                 "task completion"
             ],
             "coordinates_with": [
-                "smart-router",
-                "lifecycle-orchestrator",
-                "auto-learner"
+                "lifecycle-orchestrator"
             ],
             "success_metrics": "notification displayed, audit logged"
         },
@@ -82,8 +80,7 @@
             ],
             "coordinates_with": [
                 "git-workflow",
-                "security-scanner",
-                "feature-flags"
+                "security-scanner"
             ],
             "success_metrics": "pipeline passing, deployment successful"
         },
@@ -99,7 +96,6 @@
             ],
             "coordinates_with": [
                 "code-review",
-                "review-automation",
                 "security-scanner"
             ],
             "success_metrics": "doctrine checks pass, no governance violations",
@@ -179,7 +175,6 @@
                 "root cause"
             ],
             "coordinates_with": [
-                "debug-toolkit",
                 "test-architect"
             ],
             "success_metrics": "bug fixed, root cause identified"
@@ -197,8 +192,7 @@
             ],
             "coordinates_with": [
                 "react-architect",
-                "tailwind-kit",
-                "visual-excellence"
+                "tailwind-kit"
             ],
             "success_metrics": "design system consistent, components documented",
             "rules": [
@@ -226,7 +220,6 @@
                 "changelog"
             ],
             "coordinates_with": [
-                "doc-processor",
                 "project-planner"
             ],
             "success_metrics": "template applied, documentation complete"
@@ -282,7 +275,6 @@
             ],
             "coordinates_with": [
                 "project-planner",
-                "creative-thinking",
                 "app-scaffold"
             ],
             "success_metrics": "requirements clear, approach defined"
@@ -368,7 +360,6 @@
             ],
             "coordinates_with": [
                 "frontend-development",
-                "feature-flags",
                 "e2e-automation"
             ],
             "success_metrics": "Core Web Vitals pass, performance improved",
@@ -575,7 +566,7 @@
                 "code-review",
                 "auto-learned"
             ],
-            "success_metrics": "IDE errors = 0, auto-fix success rate \u003e 80%",
+            "success_metrics": "IDE errors = 0, auto-fix success rate > 80%",
             "scripts": [
                 "check_problems.js"
             ]
@@ -589,8 +580,6 @@
                 "full lifecycle"
             ],
             "coordinates_with": [
-                "smart-router",
-                "multi-agent",
                 "problem-checker"
             ],
             "success_metrics": "all phases complete, no failures"
@@ -604,12 +593,7 @@
                 "OpenTelemetry",
                 "telemetry"
             ],
-            "coordinates_with": [
-                "logging",
-                "metrics",
-                "tracing",
-                "incident-response"
-            ],
+            "coordinates_with": [],
             "success_metrics": "observability stack configured"
         },
         {
@@ -622,7 +606,6 @@
                 "typography"
             ],
             "coordinates_with": [
-                "frontend-specialist",
                 "design-system"
             ],
             "success_metrics": "design system generated",
@@ -730,7 +713,6 @@
                 "game AI"
             ],
             "coordinates_with": [
-                "game-engine",
                 "perf-optimizer",
                 "mobile-developer"
             ],
@@ -776,9 +758,7 @@
                 "error fix"
             ],
             "coordinates_with": [
-                "problem-checker",
-                "skill-generator",
-                "auto-learner"
+                "problem-checker"
             ],
             "success_metrics": "patterns matched, auto-fixes applied",
             "hierarchical": true,
@@ -835,8 +815,7 @@
                 "Flux"
             ],
             "coordinates_with": [
-                "studio",
-                "media-processing"
+                "studio"
             ],
             "success_metrics": "prompt produces desired output, minimal iterations",
             "references": [
@@ -1076,8 +1055,7 @@
                 "React animation"
             ],
             "coordinates_with": [
-                "react-architect",
-                "media-processing"
+                "react-architect"
             ],
             "success_metrics": "video renders, animations smooth"
         },
@@ -1108,8 +1086,7 @@
                 "visual effect"
             ],
             "coordinates_with": [
-                "game-development",
-                "media-processing"
+                "game-development"
             ],
             "success_metrics": "shader compiles, visuals render"
         },
