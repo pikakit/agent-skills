@@ -11,6 +11,10 @@ Follow these guides to build, maintain, and scale your applications with AI agen
 Complete workflow for planning and implementing features 10x faster.
 - **Key Workflows**: `/plan`, `/cook`, `/validate`.
 
+**[Building a REST API](./building-rest-api.md)**
+From design to deployment with automated scaffolding.
+- **Key Workflows**: `/plan`, `/build`, `/cook`.
+
 ### 2. Maintain & Document
 **[Documentation Workflow](./documentation-workflow.md)**
 Keep your docs in sync with your code automatically.

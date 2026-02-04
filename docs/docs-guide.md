@@ -12,6 +12,7 @@ docs/
 ├── getting-started.md     # User guide (scenarios, commands)
 ├── guides/                # How-to guides (tutorials)
 │   ├── feature-development.md
+│   ├── building-rest-api.md
 │   ├── documentation-workflow.md
 │   ├── debugging-workflow.md
 │   ├── refactoring-code.md
