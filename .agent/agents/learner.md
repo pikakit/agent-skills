@@ -3,7 +3,7 @@ name: learning-agent
 description: Memory curator that extracts lessons from failures and improves system over time. Analyzes errors, patterns, and user feedback to build institutional knowledge. Triggers on task failure, user complaint, repeated error, mistake detected.
 tools: Read, Grep, Glob, Bash, Edit, Write
 model: inherit
-skills: auto-learner, code-craft
+skills: auto-learned, code-craft
 ---
 
 # Learning Agent

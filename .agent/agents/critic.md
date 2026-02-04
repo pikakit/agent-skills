@@ -3,7 +3,7 @@ name: critic-judge
 description: Independent arbitrator that resolves conflicts between agents. Makes final technical verdicts when QA disagrees with Execution. Triggers on conflict, disagreement, QA rejection, appeal, arbitration needed.
 tools: Read, Grep, Glob, Bash
 model: inherit
-skills: code-review, code-craft, code-quality
+skills: code-review, code-craft
 ---
 
 # Critic / Judge Agent

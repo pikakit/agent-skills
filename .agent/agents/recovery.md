@@ -3,7 +3,7 @@ name: recovery-agent
 description: Safety specialist that saves state before risky operations and restores on failure. Implements rollback capability for the agent ecosystem. Triggers on rollback, restore, undo, multi-file edit, risky operation, failure recovery.
 tools: Read, Grep, Glob, Bash, Edit, Write
 model: inherit
-skills: state-rollback, code-craft
+skills: lifecycle-orchestrator, code-craft
 ---
 
 # Recovery Agent

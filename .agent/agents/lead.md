@@ -7,7 +7,7 @@ description: >-
   DISTINCT FROM runtime-orchestrator which handles execution mechanics.
 tools: Read, Grep, Glob, Bash, Write, Edit, Agent
 model: inherit
-skills: code-craft, agent-patterns, project-planner, idea-storm, system-design, code-quality, shell-script
+skills: code-craft, project-planner, idea-storm, system-design, code-review, shell-script
 ---
 
 # Lead Orchestrator - Strategic Multi-Agent Coordination
