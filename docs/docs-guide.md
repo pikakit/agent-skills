@@ -11,6 +11,10 @@ docs/
 ├── README.md              # Index/navigation hub
 ├── getting-started.md     # User guide (scenarios, commands)
 ├── guides/                # How-to guides (tutorials)
+│   ├── feature-development.md
+│   ├── documentation-workflow.md
+│   ├── debugging-workflow.md
+│   ├── code-review.md
 │   ├── context-engineering.md
 │   ├── migration.md
 │   ├── publishing.md

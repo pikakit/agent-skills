@@ -205,6 +205,31 @@ npm test -- --grep "auth"
 
 ---
 
+## 🔍 Advanced Diagnostics
+
+### Security Assessment
+```bash
+/diagnose "potential XSS vulnerability in comment system"
+```
+- **Audit:** Input sanitization, Content Security Policy (CSP)
+- **Check:** OWASP Top 10 vulnerabilities
+
+### Performance Profiling
+```bash
+/diagnose "slow API response times in user endpoints"
+```
+- **Audit:** Database query performance (N+1 problems)
+- **Check:** Memory usage and extensive logging
+
+### System Health
+```bash
+/diagnose "comprehensive system health check"
+```
+- **Audit:** Full stack analysis (Frontend -> API -> DB)
+- **Check:** Resource utilization and error rates
+
+---
+
 ## Key Principles
 
 1. **Never guess** - hypothesize and test

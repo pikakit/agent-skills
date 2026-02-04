@@ -79,6 +79,36 @@ Flow diagram (text or mermaid)
 
 ---
 
+## 2️⃣ security-audit Chain
+
+> **Purpose:** Comprehensive security review
+
+### 🔧 Skills (4)
+
+1. `security-scanner` - Vulnerability scanning
+2. `code-review` - Security-focused code review
+3. `offensive-sec` - Penetration testing
+4. `cicd-pipeline` - CI/CD security integration
+
+---
+
+## ⚡ Task-Oriented Workflows (Tactical Layer)
+
+> **Purpose:** High-speed execution for specific tasks. Bypasses deep planning.
+
+| Workflow | Use Case |
+| :--- | :--- |
+| **`/cook`** | **Implementer:** Execute instructions directly. |
+| **`/fix`** | **Mechanic:** Repair specific errors. |
+
+**Characteristics:**
+- **Input:** Specific instruction or error (not broad goals)
+- **Scope:** Single file/component
+- **Overhead:** Minimal (few meta-agents)
+- **Speed:** < 2 mins
+
+---
+
 ### 4. Phases/Protocol (CORE)
 
 ```markdown

@@ -133,6 +133,9 @@ your-project/
 
 ---
 
+
+---
+
 ## 🤖 Auto-Accept Workflow (Zero Interruption)
 
 > **User approves PLAN.md once → Agent executes everything automatically**
@@ -192,6 +195,8 @@ AUTO-APPROVE: After PLAN.md, proceed automatically.
 | `/boost` | Enhance existing code | varies |
 | `/auto-accept-process` | Autonomous workflow | all |
 | `/agent` | Smart CLI dashboard | - |
+| `/cook` | **Technical:** Direct implementation | code-craft |
+| `/fix` | **Technical:** Quick error remediation | debug-pro |
 
 ---
 
