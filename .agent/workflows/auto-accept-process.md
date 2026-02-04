@@ -2,7 +2,7 @@
 description: Autonomous agent execution framework. User approves PLAN.md once, agent runs end-to-end automatically.
 ---
 
-# /auto-accept - Autonomous Execution
+# /auto-accept-process - Autonomous Execution
 
 $ARGUMENTS
 

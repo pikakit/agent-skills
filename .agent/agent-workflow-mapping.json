@@ -1,0 +1,198 @@
+{
+    "$comment": "Agent-Workflow Mapping for PikaKit v3.2.0",
+    "version": "1.0.0",
+    "lastUpdated": "2026-02-05",
+    "description": "Maps workflow agent references to actual agent file names",
+    "workflow_to_agent": {
+        "backend-specialist": {
+            "agentFile": "backend.md",
+            "domain": "Server",
+            "aliases": [
+                "backend"
+            ]
+        },
+        "frontend-specialist": {
+            "agentFile": "frontend.md",
+            "domain": "UI/UX",
+            "aliases": [
+                "frontend"
+            ]
+        },
+        "database-architect": {
+            "agentFile": "database.md",
+            "domain": "Data",
+            "aliases": [
+                "database"
+            ]
+        },
+        "test-engineer": {
+            "agentFile": "testing.md",
+            "domain": "Testing",
+            "aliases": [
+                "testing",
+                "qa",
+                "test-architect"
+            ]
+        },
+        "devops-engineer": {
+            "agentFile": "devops.md",
+            "domain": "Ops",
+            "aliases": [
+                "devops"
+            ]
+        },
+        "security-auditor": {
+            "agentFile": "security.md",
+            "domain": "Security",
+            "aliases": [
+                "security"
+            ]
+        },
+        "seo-specialist": {
+            "agentFile": "seo.md",
+            "domain": "SEO",
+            "aliases": [
+                "seo"
+            ]
+        },
+        "mobile-developer": {
+            "agentFile": "mobile.md",
+            "domain": "Mobile",
+            "aliases": [
+                "mobile"
+            ]
+        },
+        "performance-optimizer": {
+            "agentFile": "perf.md",
+            "domain": "Performance",
+            "aliases": [
+                "perf",
+                "performance"
+            ]
+        },
+        "project-planner": {
+            "agentFile": "planner.md",
+            "domain": "Planning",
+            "aliases": [
+                "planner"
+            ]
+        },
+        "explorer-agent": {
+            "agentFile": "explorer.md",
+            "domain": "Discovery",
+            "aliases": [
+                "explorer"
+            ]
+        },
+        "documentation-writer": {
+            "agentFile": "docs.md",
+            "domain": "Docs",
+            "aliases": [
+                "docs"
+            ]
+        },
+        "debugger": {
+            "agentFile": "debug.md",
+            "domain": "Debug",
+            "aliases": [
+                "debug"
+            ]
+        },
+        "penetration-tester": {
+            "agentFile": "pentest.md",
+            "domain": "Security",
+            "aliases": [
+                "pentest"
+            ]
+        },
+        "game-developer": {
+            "agentFile": "gamedev.md",
+            "domain": "Game",
+            "aliases": [
+                "gamedev"
+            ]
+        },
+        "api-architect": {
+            "agentFile": "backend.md",
+            "domain": "API",
+            "aliases": [
+                "api"
+            ],
+            "note": "Maps to backend agent for API design tasks"
+        },
+        "test-architect": {
+            "agentFile": "testing.md",
+            "domain": "Testing",
+            "aliases": [
+                "test"
+            ],
+            "note": "Maps to testing agent for test architecture"
+        }
+    },
+    "meta_agents": {
+        "orchestrator": {
+            "agentFile": "orchestrator.md",
+            "role": "Runtime Control",
+            "invokedBy": [
+                "/autopilot",
+                "complex workflows"
+            ]
+        },
+        "assessor": {
+            "agentFile": "assessor.md",
+            "role": "Risk Evaluation",
+            "invokedBy": [
+                "risky operations"
+            ]
+        },
+        "recovery": {
+            "agentFile": "recovery.md",
+            "role": "State Management",
+            "invokedBy": [
+                "checkpoint/rollback"
+            ]
+        },
+        "critic": {
+            "agentFile": "critic.md",
+            "role": "Conflict Resolution",
+            "invokedBy": [
+                "agent disagreements"
+            ]
+        },
+        "learner": {
+            "agentFile": "learner.md",
+            "role": "Learning",
+            "invokedBy": [
+                "success/failure logging"
+            ]
+        }
+    },
+    "other_agents": {
+        "lead": {
+            "agentFile": "lead.md",
+            "role": "Strategic Coordinator"
+        },
+        "analyst": {
+            "agentFile": "analyst.md",
+            "role": "Data Analysis"
+        },
+        "pm": {
+            "agentFile": "pm.md",
+            "role": "Project Management"
+        },
+        "po": {
+            "agentFile": "po.md",
+            "role": "Product Owner"
+        },
+        "qa": {
+            "agentFile": "qa.md",
+            "role": "Quality Assurance"
+        }
+    },
+    "validation": {
+        "totalAgents": 25,
+        "workflowReferencedAgents": 15,
+        "metaAgents": 5,
+        "otherAgents": 5
+    }
+}

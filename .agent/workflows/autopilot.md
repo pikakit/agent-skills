@@ -3,8 +3,6 @@ description: Autonomous agent-patterns coordination. 3+ specialists working in p
 chain: build-web-app
 ---
 
-// turbo-all
-
 # /autopilot - agent-patterns Command Center
 
 $ARGUMENTS
