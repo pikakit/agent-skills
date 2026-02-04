@@ -19,15 +19,19 @@ Systematic code review with multi-layer validation. **Prevents false completion 
 
 | Phase | Agent | Action |
 | ----- | ----- | ------ |
-| **Pre-Review** | `assessor` | Evaluate review scope and risk |
-| **Conflict** | `critic` | Arbitrate build vs security trade-offs |
-| **Post-Review** | `learner` | Log common issues for faster detection |
+| **Security** | `security-auditor` | **PRIORITY 0:** Check for hardcoded secrets & known vulns |
+| **Quality** | `code-review` | Check linting, types, and complexity |
+| **Adherence** | `assessor` | Verify against project coding standards |
 
 ```
 Flow:
-assessor.evaluate(scope) → review layers
+security.scan() → criticals? → BLOCK
        ↓
-issue conflict? → critic.arbitrate(security vs speed)
+code.review() → quality check
+       ↓
+report.generate()
+```
+critic.arbitrate(security vs speed)
        ↓
 complete → learner.log(patterns)
 ```

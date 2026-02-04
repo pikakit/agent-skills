@@ -8,12 +8,13 @@ order: 5
 
 # Debugging & Fixing Workflow
 
-A systematic approach to debugging, root cause analysis, and remediation using **PikaKit's** specialized agents (`/diagnose` and `/fix`).
+Learn how to systematically investigate, fix, and verify bug fixes using **PikaKit's** debugging workflow - from log analysis to production deployment.
 
 ## Overview
 
-- **Goal**: Identify root causes and apply targeted fixes.
-- **Agents Used**: `debugger`, `security-auditor`, `code-craft`, `test-engineer`.
+- **Goal**: Debug and fix issues systematically with root cause analysis.
+- **Time**: 5-20 minutes (vs 1-4 hours manually).
+- **Agents Used**: `debug-pro`, `test-engineer`, `security-auditor`.
 - **Workflows**: `/diagnose`, `/fix`, `/validate`.
 
 ## When to Use This Workflow
@@ -23,125 +24,158 @@ A systematic approach to debugging, root cause analysis, and remediation using *
 - **Performance Issues**: Slow endpoints or memory leaks.
 - **Security Vulnerabilities**: Potential exploits.
 
-## Step-by-Step Guide
+## Choosing the Right Approach
 
-### 1. Initial Investigation (`/diagnose`)
+PikaKit adapts to different debugging scenarios based on your input command:
 
-Start by gathering evidence and forming hypotheses.
+| Scenario | Command Pattern | Complexity | Time |
+|----------|-----------------|------------|------|
+| **Quick Fix** | `/fix --quick "..."` | Low | 2-5 min |
+| **Complex Bug** | `/fix "..."` | High | 10-20 min |
+| **Log Analysis** | `/fix "analyze log file..."` | Medium | 5-15 min |
+| **UI/Visual** | `/fix "button misaligned..."` | Low-Medium | 3-10 min |
+| **CI Failure** | `/fix "GitHub action failed..."` | Medium | 5-15 min |
+
+## Step-by-Step Workflow
+
+### Step 1: Reproduce the Bug
+
+Before fixing, confirm you can reproduce the issue.
 
 ```bash
-/diagnose "Login button not working in production"
+# Example: Bug report "Users can't login"
+curl -X POST http://localhost:3000/api/auth/login ...
+# Expected: 200 OK
+# Actual: 401 Unauthorized
+```
+
+### Step 2: Choose Debugging Strategy
+
+#### Option A: Quick Fix (`/fix --quick`)
+
+For simple, isolated bugs where the cause is obvious.
+
+```bash
+/fix --quick "users getting 401 on login with valid credentials"
+```
+
+**What happens**: Agent skips deep analysis, locates the file, identifies the logical error (e.g., wrong comparison operator), and applies the patch immediately.
+
+#### Option B: Complex Fix (`/fix`)
+
+For bugs requiring investigation across multiple files.
+
+```bash
+/fix "memory leak in WebSocket connections causing server crashes"
 ```
 
 **What happens**:
-- **Debugger Agent** collects logs and stack traces.
-- **Learner Agent** checks if this error pattern has been seen before.
-- **Output**: A report with reproduction steps and initial hypotheses.
+1.  **Investigation**: Analyzes event listeners and connection cleanup.
+2.  **Planning**: Creates a fix plan.
+3.  **Implementation**: Adds cleanup handlers and connection pooling.
+4.  **Verification**: Runs stress tests.
 
-### 2. Deep Analysis
+#### Option C: Production Log Analysis (`/diagnose`)
 
-For complex issues, requesting a deep dive triggers advanced auditing.
-
-```bash
-/diagnose "analyze authentication flow for session issues"
-```
-
-**Advanced Checks**:
-- **Security**: Vulnerability assessment (`security-scanner`).
-- **Data**: Database consistency verification.
-- **Logic**: Execution flow tracing.
-
-### 3. Implementation (`/fix`)
-
-Once the root cause is known (or if the error is obvious), use the Mechanic (`/fix`) to apply the solution.
+For bugs discovered in logs without clear reproduction.
 
 ```bash
-/fix "session timeout causing login issues"
+/diagnose "analyze production logs to identify auth failures"
 ```
 
-**Types of Fixes Applied**:
-- **Code Logic**: Modifying conditional logic or algorithms.
-- **Configuration**: Updating `.env` or config files.
-- **Security Patch**: Sanitizing inputs or updating deps.
-
-**Example Fix**:
-```typescript
-// ❌ Before
-const session = await getSession();
-
-// ✅ After (Fix applied by agent)
-const session = await getSession();
-if (!session || session.isExpired()) {
-  throw new AuthError("Session invalid");
-}
+*Followed by:*
+```bash
+/fix "implement token expiry validation based on diagnosis"
 ```
 
-### 4. Verification (`/validate`)
+#### Option D: UI Bug Fix (`/fix`)
 
-Never assume a fix works. Verify it.
+For visual or layout issues.
+
+```bash
+/fix "checkout button misaligned on mobile devices"
+```
+
+**What happens**: Agent identifies the component (`Button.css`), adds media queries, and verifies responsive layout.
+
+#### Option E: CI/CD Fix (`/fix`)
+
+For build or deployment failures.
+
+```bash
+/fix "failing GitHub Actions for test suite"
+```
+
+**What happens**: Agent parses CI logs, identifies missing dependencies or config errors, and updates `package.json` or YAML configs.
+
+### Step 3: Verify the Fix (`/validate`)
+
+Always verify fixes thoroughly.
 
 ```bash
 /validate
 ```
 
-**Checks performed**:
-- **Unit Tests**: Verifies the specific fix.
-- **Regression**: Ensures no related features broke.
-- **Security Check**: Confirms no new vulnerabilities were introduced.
+**What happens**:
+- Runs the specific test case for the bug.
+- Runs the full regression suite.
+- Checks for security regressions.
 
-### 5. Deployment
+### Step 4: Document the Fix (`/chronicle`)
 
-If validation passes, you are ready to ship.
+Update documentation to reflect the change.
 
 ```bash
-/launch
+/chronicle
 ```
 
-## Real Example: Production Auth Issue
+## Real Example: E-Commerce Cart Bug
 
-**Scenario:** Users getting logged out randomly.
+**Bug Report**: "Shopping cart duplicating items on page refresh"
 
-1.  **Investigate:**
+1.  **Investigate & Fix**:
     ```bash
-    /diagnose "users getting logged out randomly after 5 mins"
+    /fix "shopping cart duplicating items on page refresh"
     ```
-    *Finding: Session timeout config set to 5m instead of 24h.*
+    *Root Cause: Cart stored in both localStorage and DB, merging incorrectly on load.*
 
-2.  **Fix:**
-    ```bash
-    /fix "update session timeout to 24h"
-    ```
-    *Action: Updated `auth.config.ts`.*
+2.  **Implementation**:
+    - **src/store/cart.js**: Added deduplication logic.
+    - **tests/cart/sync.test.js**: Added duplicate detection tests.
 
-3.  **Verify:**
+3.  **Verification**:
     ```bash
     /validate
     ```
-    *Result: Config validated, tests passed.*
+    *Result: 15 new tests passed, 0 regressions.*
 
-## Specialized Debugging
+## Troubleshooting
 
-### CI/CD Failures
+### Issue: Can't Reproduce Bug
+**Solution**: Use logs as the source of truth.
 ```bash
-/fix "failing GitHub Actions for test suite"
+/diagnose "analyze production error logs"
 ```
 
-### Type Errors
+### Issue: Fix Breaks Other Features
+**Solution**: Revert and analyze dependencies.
 ```bash
-/fix "TypeScript errors in user service"
+/fix "revert last change and fix login without breaking logout"
 ```
 
-### Performance
+### Issue: Root Cause Unclear
+**Solution**: Use `/diagnose` before `/fix`.
 ```bash
-/diagnose "slow API response times"
+/diagnose "detailed description of symptoms"
 ```
 
 ## Best Practices
 
-1.  **Be Specific**: `/fix "login error"` is worse than `/fix "login 500 error on POST /api/auth"`.
-2.  **Validate**: Always run `/validate` after `/fix`.
-3.  **Prevent**: If `/diagnose` helps you find a bug, ask it to "add a test case to prevent recurrence".
+1.  **Reproduce First**: Never fix what you can't reproduce.
+2.  **Specific Prompts**: The more specific your description, the faster the fix.
+3.  **Quick vs Deep**: Use `--quick` for typos/lints; use standard `/fix` for logic.
+4.  **Always Validate**: Run `/validate` before committing.
 
 ---
 
-**Key Takeaway**: Use `/diagnose` to find the *Why*, and `/fix` to handle the *How*.
+**Key Takeaway**: PikaKit's debugging workflow turns hours of manual investigation into minutes of automated resolution.
