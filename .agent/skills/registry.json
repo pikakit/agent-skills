@@ -129,28 +129,6 @@
             "success_metrics": "code adheres to standards, no linting errors"
         },
         {
-            "name": "code-quality",
-            "category": "core",
-            "triggers": [
-                "lint",
-                "format",
-                "check",
-                "validate",
-                "types",
-                "static analysis"
-            ],
-            "coordinates_with": [
-                "code-craft",
-                "code-review",
-                "test-architect"
-            ],
-            "success_metrics": "lint passes, type coverage maintained",
-            "scripts": [
-                "lint_runner.py",
-                "type_coverage.py"
-            ]
-        },
-        {
             "name": "code-review",
             "category": "core",
             "triggers": [
@@ -275,24 +253,6 @@
             ]
         },
         {
-            "name": "game-engine",
-            "category": "framework",
-            "triggers": [
-                "game",
-                "Unity",
-                "Godot",
-                "Phaser",
-                "game engine",
-                "2D",
-                "3D"
-            ],
-            "coordinates_with": [
-                "perf-optimizer",
-                "mobile-first"
-            ],
-            "success_metrics": "game runs, no crashes"
-        },
-        {
             "name": "geo-spatial",
             "category": "specialized",
             "triggers": [
@@ -327,21 +287,6 @@
                 "app-scaffold"
             ],
             "success_metrics": "requirements clear, approach defined"
-        },
-        {
-            "name": "mcp-server",
-            "category": "framework",
-            "triggers": [
-                "MCP",
-                "Model Context Protocol",
-                "server",
-                "integration"
-            ],
-            "coordinates_with": [
-                "api-architect",
-                "context-optimizer"
-            ],
-            "success_metrics": "MCP server running, tools connected"
         },
         {
             "name": "mobile-first",
@@ -554,26 +499,6 @@
             "success_metrics": "script runs, no errors"
         },
         {
-            "name": "skill-forge",
-            "category": "specialized",
-            "triggers": [
-                "create skill",
-                "new skill",
-                "update skill",
-                "skill development"
-            ],
-            "coordinates_with": [
-                "project-planner",
-                "code-craft"
-            ],
-            "success_metrics": "skill created, validated",
-            "scripts": [
-                "init_skill.py",
-                "package_skill.py",
-                "quick_validate.py"
-            ]
-        },
-        {
             "name": "system-design",
             "category": "architecture",
             "triggers": [
@@ -639,45 +564,6 @@
             "success_metrics": "tests written before code, coverage high"
         },
         {
-            "name": "web-core",
-            "category": "framework",
-            "triggers": [
-                "React",
-                "Next.js",
-                "frontend",
-                "component",
-                "performance",
-                "SSR",
-                "SSG",
-                "RSC"
-            ],
-            "coordinates_with": [
-                "design-system",
-                "tailwind-kit",
-                "test-architect"
-            ],
-            "success_metrics": "Core Web Vitals pass, no performance regressions",
-            "rules": [
-                "advanced-event-handler-refs.md",
-                "advanced-init-once.md",
-                "advanced-use-latest.md",
-                "async-api-routes.md",
-                "async-defer-await.md",
-                "async-dependencies.md",
-                "async-parallel.md",
-                "async-suspense-boundaries.md",
-                "bundle-barrel-imports.md",
-                "bundle-conditional.md",
-                "bundle-defer-third-party.md",
-                "bundle-dynamic-imports.md",
-                "bundle-preload.md",
-                "client-event-listeners.md",
-                "client-localstorage-schema.md",
-                "client-passive-event-listeners.md",
-                "client-swr-dedup.md"
-            ]
-        },
-        {
             "name": "problem-checker",
             "category": "core",
             "triggers": [
@@ -693,43 +579,6 @@
             "success_metrics": "IDE errors = 0, auto-fix success rate \u003e 80%",
             "scripts": [
                 "check_problems.js"
-            ]
-        },
-        {
-            "name": "auto-learner",
-            "category": "core",
-            "triggers": [
-                "task failure",
-                "user complaint",
-                "mistake detected",
-                "error pattern"
-            ],
-            "coordinates_with": [
-                "problem-checker",
-                "code-constitution"
-            ],
-            "success_metrics": "lessons extracted, patterns improved",
-            "scripts": [
-                "learn_from_failure.js"
-            ]
-        },
-        {
-            "name": "state-rollback",
-            "category": "core",
-            "triggers": [
-                "before risky operations",
-                "rollback",
-                "undo",
-                "restore state"
-            ],
-            "coordinates_with": [
-                "code-craft",
-                "app-scaffold",
-                "problem-checker"
-            ],
-            "success_metrics": "state saved, restore successful",
-            "scripts": [
-                "state_manager.js"
             ]
         },
         {
@@ -799,23 +648,6 @@
                 "react-architect"
             ],
             "success_metrics": "type errors resolved, build optimized"
-        },
-        {
-            "name": "agent-patterns",
-            "category": "core",
-            "triggers": [
-                "AI agent",
-                "autonomous agent",
-                "tool use",
-                "function calling",
-                "ReAct loop",
-                "agent architecture"
-            ],
-            "coordinates_with": [
-                "multi-agent",
-                "mcp-server"
-            ],
-            "success_metrics": "agent pattern implemented, tools integrated"
         },
         {
             "name": "gitops",
@@ -1110,6 +942,23 @@
             "success_metrics": "no early returns, useSuspenseQuery used"
         },
         {
+            "name": "mcp-builder",
+            "category": "framework",
+            "triggers": [
+                "build MCP",
+                "create MCP server",
+                "MCP development",
+                "MCP",
+                "Model Context Protocol",
+                "agent tools"
+            ],
+            "coordinates_with": [
+                "api-architect",
+                "typescript-expert"
+            ],
+            "success_metrics": "MCP server functional, evaluations pass"
+        },
+        {
             "name": "mcp-management",
             "category": "framework",
             "triggers": [
@@ -1119,8 +968,7 @@
                 "multi-server"
             ],
             "coordinates_with": [
-                "mcp-builder",
-                "mcp-server"
+                "mcp-builder"
             ],
             "success_metrics": "tools discovered, execution successful"
         },
