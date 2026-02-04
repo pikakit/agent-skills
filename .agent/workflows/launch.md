@@ -42,7 +42,7 @@ assessor → recovery.save() → deploy → health check
 // turbo
 
 ```bash
-python .agent/skills/code-quality/scripts/lint_runner.py .
+python .agent/skills/code-review/scripts/lint_runner.py .
 ```
 
 | Check      | Command            | Required |

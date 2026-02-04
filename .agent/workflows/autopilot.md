@@ -382,7 +382,7 @@ graph TD
 
 ```bash
 python .agent/skills/security-scanner/scripts/security_scan.py .
-python .agent/skills/code-quality/scripts/lint_runner.py .
+python .agent/skills/code-review/scripts/lint_runner.py .
 ```
 
 <!-- 📊 METRICS: Record execution & verification phases, complete run -->
