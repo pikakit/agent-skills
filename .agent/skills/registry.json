@@ -32,7 +32,7 @@
             "coordinates_with": [
                 "data-modeler",
                 "security-scanner",
-                "web-core"
+                "frontend-development"
             ],
             "success_metrics": "API documentation complete, endpoints validated",
             "rules": [
@@ -123,8 +123,7 @@
             ],
             "coordinates_with": [
                 "code-review",
-                "test-architect",
-                "code-quality"
+                "test-architect"
             ],
             "success_metrics": "code adheres to standards, no linting errors"
         },
@@ -197,7 +196,7 @@
                 "component design"
             ],
             "coordinates_with": [
-                "web-core",
+                "react-architect",
                 "tailwind-kit",
                 "visual-excellence"
             ],
@@ -264,7 +263,7 @@
             ],
             "coordinates_with": [
                 "seo-optimizer",
-                "web-core"
+                "frontend-development"
             ],
             "success_metrics": "AI citation rate improved, content structured",
             "scripts": [
@@ -319,8 +318,8 @@
                 "SSG"
             ],
             "coordinates_with": [
-                "web-core",
-                "react-architect"
+                "react-architect",
+                "frontend-development"
             ],
             "success_metrics": "build passes, pages render"
         },
@@ -368,7 +367,7 @@
                 "Core Web Vitals"
             ],
             "coordinates_with": [
-                "web-core",
+                "frontend-development",
                 "feature-flags",
                 "e2e-automation"
             ],
@@ -422,7 +421,7 @@
                 "Zustand"
             ],
             "coordinates_with": [
-                "web-core",
+                "nextjs-pro",
                 "design-system"
             ],
             "success_metrics": "components render, no prop drilling"
@@ -458,7 +457,7 @@
                 "OpenGraph"
             ],
             "coordinates_with": [
-                "web-core",
+                "frontend-development",
                 "perf-optimizer"
             ],
             "success_metrics": "SEO score improved, meta tags complete",
@@ -524,7 +523,7 @@
             ],
             "coordinates_with": [
                 "design-system",
-                "web-core"
+                "react-architect"
             ],
             "success_metrics": "styles applied, design consistent"
         },
@@ -541,7 +540,7 @@
             ],
             "coordinates_with": [
                 "code-craft",
-                "code-quality",
+                "code-review",
                 "e2e-automation"
             ],
             "success_metrics": "tests pass, coverage adequate",
@@ -573,8 +572,8 @@
                 "check problems"
             ],
             "coordinates_with": [
-                "code-quality",
-                "auto-learner"
+                "code-review",
+                "auto-learned"
             ],
             "success_metrics": "IDE errors = 0, auto-fix success rate \u003e 80%",
             "scripts": [
