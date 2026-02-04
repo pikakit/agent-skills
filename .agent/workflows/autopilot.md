@@ -381,7 +381,7 @@ graph TD
 // turbo
 
 ```bash
-python .agent/skills/security-scanner/scripts/security_scan.py .
+node .agent/skills/security-scanner/scripts/security_scan.js .
 python .agent/skills/code-review/scripts/lint_runner.py .
 ```
 
