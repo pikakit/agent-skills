@@ -97,7 +97,7 @@ This workflow orchestrates mobile app development from concept to app store subm
 
 11. **Run mobile audit script:**
     ```bash
-    python .agent/skills/mobile-design/scripts/mobile_audit.py <project_path>
+    node .agent/skills/mobile-design/scripts/mobile_audit.js <project_path>
     ```
 
 12. **Test checklist:**

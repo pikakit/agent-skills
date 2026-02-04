@@ -382,7 +382,7 @@ graph TD
 
 ```bash
 node .agent/skills/security-scanner/scripts/security_scan.js .
-python .agent/skills/code-review/scripts/lint_runner.py .
+node .agent/skills/code-review/scripts/lint_runner.js .
 ```
 
 <!-- 📊 METRICS: Record execution & verification phases, complete run -->
