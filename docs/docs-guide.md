@@ -14,6 +14,7 @@ docs/
 │   ├── feature-development.md
 │   ├── documentation-workflow.md
 │   ├── debugging-workflow.md
+│   ├── refactoring-code.md
 │   ├── code-review.md
 │   ├── context-engineering.md
 │   ├── migration.md

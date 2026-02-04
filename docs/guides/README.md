@@ -21,7 +21,12 @@ Keep your docs in sync with your code automatically.
 Systematic root cause analysis and targeted remediation.
 - **Key Workflows**: `/diagnose`, `/fix`.
 
-### 4. Review & Secure
+### 4. Refactor & Improve
+**[Refactoring Code](./refactoring-code.md)**
+Improve code quality without breaking functionality.
+- **Key Workflows**: `/inspect`, `/plan`, `/cook`, `/validate`.
+
+### 5. Review & Secure
 **[Code Review & Security](./code-review.md)**
 Automated inspection for code quality and vulnerabilities.
 - **Key Workflows**: `/inspect`.
