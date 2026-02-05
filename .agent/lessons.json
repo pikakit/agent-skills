@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "lastUpdated": "2026-02-02T17:13:03.229Z",
+  "lastUpdated": "2026-02-05T16:51:29.431Z",
   "lessons": [
     {
       "id": "TYPE-001",
@@ -12,10 +12,87 @@
       "lastSeen": "2026-02-02",
       "source": "ts",
       "autoDetected": true
+    },
+    {
+      "id": "IMPO-002",
+      "category": "import",
+      "pattern": "Module not found: vscode",
+      "context": "ts file, line 8",
+      "solution": "Install package: npm install vscode",
+      "occurrences": 6,
+      "lastSeen": "2026-02-05",
+      "source": "ts",
+      "autoDetected": true
+    },
+    {
+      "id": "TYPE-003",
+      "category": "typescript",
+      "pattern": "Cannot find namespace '<identifier>'.",
+      "context": "ts file, line 11",
+      "solution": "See error message for details",
+      "occurrences": 1,
+      "lastSeen": "2026-02-05",
+      "source": "ts",
+      "autoDetected": true
+    },
+    {
+      "id": "IMPO-004",
+      "category": "import",
+      "pattern": "Import missing: setInterval",
+      "context": "ts file, line 87",
+      "solution": "Add import for 'setInterval'",
+      "occurrences": 7,
+      "lastSeen": "2026-02-05",
+      "source": "ts",
+      "autoDetected": true
+    },
+    {
+      "id": "IMPO-005",
+      "category": "import",
+      "pattern": "Import missing: clearInterval",
+      "context": "ts file, line 111",
+      "solution": "Add import for 'clearInterval'",
+      "occurrences": 4,
+      "lastSeen": "2026-02-05",
+      "source": "ts",
+      "autoDetected": true
+    },
+    {
+      "id": "IMPO-006",
+      "category": "import",
+      "pattern": "Import missing: console",
+      "context": "ts file, line 30",
+      "solution": "Add import for 'console'",
+      "occurrences": 6,
+      "lastSeen": "2026-02-05",
+      "source": "ts",
+      "autoDetected": true
+    },
+    {
+      "id": "IMPO-007",
+      "category": "import",
+      "pattern": "Import missing: config",
+      "context": "ts file, line 165",
+      "solution": "Add import for 'config'",
+      "occurrences": 1,
+      "lastSeen": "2026-02-05",
+      "source": "ts",
+      "autoDetected": true
+    },
+    {
+      "id": "TYPE-008",
+      "category": "type",
+      "pattern": "Cannot find type definition file for '<identifier>'.\n  The file is in the program because:\n    Entry",
+      "context": "json file, line 1",
+      "solution": "See error message for details",
+      "occurrences": 1,
+      "lastSeen": "2026-02-05",
+      "source": "ts",
+      "autoDetected": true
     }
   ],
   "stats": {
-    "totalLearned": 1,
+    "totalLearned": 8,
     "skillsGenerated": 0
   }
 }

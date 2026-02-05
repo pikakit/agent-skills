@@ -14,6 +14,7 @@ import { PatternAnalyzer } from './patternAnalyzer';
 import { LessonStore } from './lessonStore';
 import { SkillGenerator } from './skillGenerator';
 import { StatusBarManager } from './statusBar';
+import { initAutoAccept, disposeAutoAccept } from './autoAccept';
 
 // Global output channel for logging
 let outputChannel: vscode.OutputChannel;
@@ -165,6 +166,9 @@ export function activate(context: vscode.ExtensionContext) {
     if (config.get<boolean>('autoStart', true)) {
         startLearning();
     }
+
+    // Initialize Auto Accept feature
+    initAutoAccept(context);
 }
 
 /**
@@ -317,5 +321,6 @@ export function deactivate() {
     if (diagnosticListener) {
         diagnosticListener.stop();
     }
+    disposeAutoAccept();
     console.log('PikaKit Skill Generator deactivated');
 }

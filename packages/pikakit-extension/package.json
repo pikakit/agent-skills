@@ -44,6 +44,17 @@
             {
                 "command": "pikakit.clearLessons",
                 "title": "PikaKit: Clear All Lessons"
+            },
+            {
+                "command": "pikakit.toggleAutoAccept",
+                "title": "PikaKit: Toggle Auto-Accept"
+            }
+        ],
+        "keybindings": [
+            {
+                "command": "pikakit.toggleAutoAccept",
+                "key": "ctrl+alt+shift+a",
+                "mac": "cmd+alt+shift+a"
             }
         ],
         "configuration": {
@@ -63,6 +74,11 @@
                     "type": "string",
                     "default": ".agent/lessons.json",
                     "description": "Path to lessons storage file"
+                },
+                "pikakit.autoAcceptEnabled": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "Enable auto-accept for Antigravity agent steps (terminal commands, file saves, code edits)"
                 }
             }
         }
