@@ -1,4 +1,4 @@
-# PikaKit Skill Engine - VS Code Extension
+# PikaKit Engine - VS Code Extension
 
 > 🤖 Real-time auto-learning from IDE diagnostics → Generate skills automatically
 

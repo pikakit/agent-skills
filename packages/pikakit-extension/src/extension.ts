@@ -184,7 +184,7 @@ function startLearning() {
         diagnosticListener.start();
         isLearning = true;
         statusBar?.setLearning(true);
-        vscode.window.showInformationMessage('📚 PikaKit: Started learning from diagnostics');
+        vscode.window.showInformationMessage('📚 PikaKit Engine online. Learning initialized.');
     }
 }
 
