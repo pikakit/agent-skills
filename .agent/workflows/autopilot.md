@@ -878,7 +878,7 @@ When autopilot fails or produces unexpected results:
 
 ```mermaid
 graph LR
-    A["/autopilot"] --> B["/architect"]
+    A["/autopilot"] --> B["/plan"]
     A --> C["/build"]
     A --> D["/validate"]
     A --> E["/launch"]
@@ -887,7 +887,7 @@ graph LR
 
 | /autopilot integrates | Purpose          |
 | --------------------- | ---------------- |
-| `/architect`          | Planning phase   |
+| `/plan`               | Planning phase   |
 | `/build`              | Building phase   |
 | `/validate`           | Testing phase    |
 | `/launch`             | Deployment phase |
@@ -933,7 +933,7 @@ See observability report above for quality verification.
 
 ```mermaid
 graph LR
-    A["/think"] --> B["/architect"]
+    A["/think"] --> B["/plan"]
     B --> C["/autopilot"]
     C --> D["/launch"]
     style C fill:#10b981

@@ -230,7 +230,7 @@ Before marking complete, verify:
 
 ```mermaid
 graph LR
-    A["/architect"] --> B["/build"]
+    A[\"/plan\"] --> B[\"/build\"]
     B --> C["/validate"]
     C --> D["/launch"]
     style B fill:#10b981

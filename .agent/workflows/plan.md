@@ -1,5 +1,5 @@
 ---
-description: Create detailed implementation plans. Alias for /architect.
+description: Blueprint generator. Task breakdown, tech stack selection, and PLAN.md creation (no code).
 ---
 
 # /plan - Project Blueprint

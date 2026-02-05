@@ -175,18 +175,18 @@ Proceed with Option A? (y/n)
 
 ```mermaid
 graph LR
-    A["/think"] --> B["/architect"]
+    A["/think"] --> B["/plan"]
     B --> C["/build"]
     style A fill:#10b981
 ```
 
 | After /think | Run | Purpose |
 |--------------|-----|---------|
-| Decision made | `/architect` | Create detailed implementation plan |
+| Decision made | `/plan` | Create detailed implementation plan |
 | Need more research | `/think` again | Explore deeper |
 | Complex task | `/autopilot` | Let AI coordinate everything |
 
-**Handoff to /architect:**
+**Handoff to /plan:**
 ```markdown
-User approved Option A. Run /architect to create implementation plan.
+User approved Option A. Run /plan to create implementation plan.
 ```

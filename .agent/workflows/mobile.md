@@ -162,7 +162,7 @@ This workflow orchestrates mobile app development from concept to app store subm
 
 ```mermaid
 graph LR
-    A["/architect"] --> B["/mobile"]
+    A["/plan"] --> B["/mobile"]
     B --> C["/validate"]
     C --> D["/launch"]
     style B fill:#10b981
