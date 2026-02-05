@@ -192,7 +192,7 @@ npm outdated
 ### Create Update Plan
 
 ```bash
-/architect "update all dependencies to latest stable versions"
+/plan "update all dependencies to latest stable versions"
 ```
 
 **Generated plan includes:**
@@ -444,7 +444,7 @@ const getUserOrders = async (userId) => {
 ### Add TypeScript (Optional)
 
 ```bash
-/architect "migrate project to TypeScript"
+/plan "migrate project to TypeScript"
 ```
 
 Review the plan, then implement:
@@ -636,7 +636,7 @@ npm run test:coverage
 cat docs/technical-debt.md
 
 # Plan improvements
-/architect "next month's improvements"
+/plan "next month's improvements"
 
 # Update dependencies
 /cook "Update dependencies as planned"
@@ -646,7 +646,7 @@ cat docs/technical-debt.md
 
 ```bash
 # 1. Plan feature
-/architect "new feature description"
+/plan "new feature description"
 
 # 2. Implement
 /cook "Implement [new feature description] as planned"
@@ -687,7 +687,7 @@ Prioritize:
 ### "Breaking changes in dependencies"
 
 ```bash
-/architect "migrate from package X v1 to v2"
+/plan "migrate from package X v1 to v2"
 /cook "Migrate from package X v1 to v2 as planned"
 /validate  # Comprehensive testing
 ```

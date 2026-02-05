@@ -26,7 +26,7 @@
 │  ╔═══════════════════════════════════════════════════════════════════════╗  │
 │  ║                      🌟 DISCOVER & PLAN                               ║  │
 │  ╠═══════════════════════════════════════════════════════════════════════╣  │
-│  ║  /think       │  /architect   │  /pulse       │  /agent               ║  │
+│  ║  /think       │  /plan        │  /pulse       │  /agent               ║  │
 │  ║  Brainstorm   │  Blueprint    │  Health check │  Smart CLI            ║  │
 │  ╚═══════════════════════════════════════════════════════════════════════╝  │
 │                              │                                              │
@@ -97,7 +97,7 @@
 │          │                                                                  │
 │          ▼                                                                  │
 │   ┌─────────────────────────────────────────────────────────────────────┐   │
-│   │ STEP 2: /architect (Create detailed plan)                           │   │
+│   │ STEP 2: /plan (Create detailed plan)                                 │   │
 │   │                                                                     │   │
 │   │ AI will:                                                            │   │
 │   │ • Analyze task breakdown                                            │   │
@@ -163,7 +163,7 @@
 
 ### Summary
 ```
-/think → /architect → /build → /studio → /validate → /launch
+/think → /plan → /build → /studio → /validate → /launch
 ```
 
 ---
@@ -289,7 +289,7 @@
 | Command | When to Use | Output |
 |---------|-------------|--------|
 | `/think` | Have an idea, need analysis | 3+ alternatives with trade-offs |
-| `/architect` | Need detailed blueprint | PLAN.md (no code) |
+| `/plan` | Need detailed blueprint | PLAN.md (no code) |
 | `/build` | Create new app from scratch | Full-stack application |
 | `/boost` | Add features to existing app | Iterative upgrades |
 | `/studio` | Design beautiful UI | 50+ styles, anti-AI-slop |
@@ -309,7 +309,7 @@
 ## 💡 Pro Tips
 
 1. **Starting fresh:** Use `/think` to explore options before committing
-2. **Need a plan:** Use `/architect` for blueprint before coding
+2. **Need a plan:** Use `/plan` for blueprint before coding
 3. **Want speed:** Use `/autopilot` for AI to handle everything
 4. **Before release:** `/validate` + `/inspect` + `/launch`
 5. **Just describe:** AI automatically selects the right agent

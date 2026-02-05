@@ -79,7 +79,7 @@ agent                       # Launch Smart CLI
 
 ```bash
 /think authentication system    # Brainstorm 3+ approaches
-/architect                      # Generate detailed plan
+/plan                           # Generate detailed plan
 /build                          # Implement with multi-agent
 /autopilot                      # Full autonomous execution
 /validate                       # Run tests automatically
@@ -171,7 +171,7 @@ AUTO-APPROVE: After PLAN.md, proceed automatically.
 | Command | Description | Agents Used |
 |---------|-------------|-------------|
 | `/think` | Brainstorm 3+ approaches | project-planner |
-| `/architect` | Generate detailed plan.md | project-planner, explorer |
+| `/plan` | Generate detailed plan.md | project-planner, explorer |
 | `/build` | Full-stack implementation | 3-7 agents |
 | `/autopilot` | Multi-agent auto-execution | 3+ agents |
 | `/validate` | Run test suite | test-engineer |
