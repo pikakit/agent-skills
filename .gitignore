@@ -133,3 +133,21 @@ skill-*.lock
 
 # Cloned repos (like vercel-labs/agent-skills)
 agent-skills/
+
+# ============================================================
+# PikaKit Install Artifacts (avoid accidental commit)
+# ============================================================
+# Wrapper scripts created by pikakit install
+kit
+kit.cmd
+agent
+agent.cmd
+
+# Skill source tracking (created during install)
+.agent/skills/*/.skill-source.json
+
+# Agents symlinks (created by pikakit)
+.agents/
+
+# Knowledge folder (created by pikakit CLI)
+.agent/knowledge/

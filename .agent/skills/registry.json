@@ -885,6 +885,27 @@
             ]
         },
         {
+            "name": "mermaid-editor",
+            "category": "tools",
+            "triggers": [
+                "mermaid",
+                "diagram editor",
+                "mmd",
+                "flowchart editor",
+                "sequence diagram",
+                "class diagram"
+            ],
+            "coordinates_with": [
+                "system-design",
+                "doc-templates",
+                "markdown-novel-viewer"
+            ],
+            "success_metrics": "editor starts, diagrams render, export works",
+            "scripts": [
+                "editor-server.cjs"
+            ]
+        },
+        {
             "name": "frontend-design",
             "category": "design",
             "triggers": [

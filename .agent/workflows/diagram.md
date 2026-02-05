@@ -28,9 +28,10 @@ This workflow uses the **system-design** skill to:
 
 ## 🔗 Chain: documentation (system-design skill only)
 
-**Skills Loaded (1):**
+**Skills Loaded (2):**
 
 - `system-design` - C4, Mermaid, ER diagrams
+- `mermaid-editor` - Live diagram editor with preview
 
 ## 📖 Usage
 
@@ -51,7 +52,7 @@ This workflow uses the **system-design** skill to:
 /diagram c4-context
 ```
 
-## 📁„ Workflow Steps
+## 📁 Workflow Steps
 
 1. **Analyze Codebase**
    - Scan project structure
@@ -84,7 +85,7 @@ This workflow uses the **system-design** skill to:
 | Sequence     | User flows          | API calls         |
 | ER           | Database schema     | Prisma models     |
 
-## 📁 Related Workflows
+## 📁  Related Workflows
 
 - `/chronicle` - Generate all documentation
 - `/build` - Create app first
@@ -125,7 +126,7 @@ You: "/diagram update"
 Agent: Loading system-design
        ↓
 
-[1/1] ðŸ—ï¸ Updating Diagrams
+[1/1] 🏗️ Updating Diagrams
 
    Scanning codebase...
    ✅ Detected schema changes (2 new tables)
@@ -189,4 +190,3 @@ graph LR
 **Version:** 1.0.0  
 **Chain:** documentation (system-design)  
 **Added:** v3.6.0 (FAANG upgrade - Phase 3)
-

@@ -1,0 +1,56 @@
+graph TB
+    subgraph User_Layer["👤 User Layer"]
+        User([User])
+        Cmd["Terminal Command<br>/workflow"]
+    end
+
+    subgraph Workflow_Layer["🔄 Workflow Layer"]
+        direction LR
+        W_Build["/build"]
+        W_Diagram["/diagram"]
+        W_Launch["/launch"]
+        W_Think["/think"]
+        
+        note_wf["Workflows = WHAT to do<br>Orchestrate phases & steps"]
+    end
+
+    subgraph Skill_Layer["🛠️ Skill Layer"]
+        direction LR
+        S_System["system-design"]
+        S_Mermaid["mermaid-editor"]
+        S_React["react-architect"]
+        S_Test["test-architect"]
+        S_Code["code-craft"]
+        
+        note_sk["Skills = HOW to do it<br>Knowledge, patterns, scripts"]
+    end
+
+    subgraph Skill_Components["📦 Skill Components"]
+        SKILL_MD["SKILL.md<br>(Documentation)"]
+        Scripts["scripts/<br>(Executables)"]
+        References["references/<br>(Templates)"]
+    end
+
+    %% Relationships
+    User --> Cmd
+    Cmd --> Workflow_Layer
+
+    W_Diagram -->|"loads"| S_System
+    W_Diagram -->|"loads"| S_Mermaid
+    W_Build -->|"loads"| S_React
+    W_Build -->|"loads"| S_Code
+    W_Launch -->|"loads"| S_Test
+
+    S_Mermaid --> Skill_Components
+    S_System --> Skill_Components
+
+    %% Styling
+    classDef user fill:#f0f9ff,stroke:#0ea5e9,color:#0c4a6e
+    classDef workflow fill:#dbeafe,stroke:#3b82f6,color:#1e40af
+    classDef skill fill:#d1fae5,stroke:#10b981,color:#064e3b
+    classDef component fill:#fef3c7,stroke:#f59e0b,color:#78350f
+
+    class User,Cmd user
+    class W_Build,W_Diagram,W_Launch,W_Think,note_wf workflow
+    class S_System,S_Mermaid,S_React,S_Test,S_Code,note_sk skill
+    class SKILL_MD,Scripts,References component
