@@ -96,7 +96,7 @@ One sentence: What are we building/fixing?
 
 | Item | Type | Purpose |
 |------|------|---------|
-| `/architect` | Workflow | Architecture planning |
+| `/plan` | Workflow | Architecture planning |
 | `idea-storm` | Skill | Requirements gathering |
 | `app-scaffold` | Skill | Project setup |
 
