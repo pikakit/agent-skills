@@ -78,7 +78,7 @@
                 "pikakit.autoAcceptEnabled": {
                     "type": "boolean",
                     "default": false,
-                    "description": "Enable auto-accept for Antigravity agent steps (terminal commands, file saves, code edits)"
+                    "description": "Enable auto-accept and auto-run for Antigravity agent (terminal commands, file saves, code edits, proposed commands)"
                 }
             }
         }

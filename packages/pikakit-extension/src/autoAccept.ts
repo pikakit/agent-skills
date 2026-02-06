@@ -100,6 +100,20 @@ function startLoop() {
         } catch (e) {
             // Silently ignore - command may not be available
         }
+
+        // Auto-run proposed terminal commands (Run button)
+        try {
+            await vscode.commands.executeCommand('antigravity.terminal.run');
+        } catch (e) {
+            // Silently ignore - command may not be available
+        }
+
+        // Try execute code command
+        try {
+            await vscode.commands.executeCommand('antigravity.executeCode');
+        } catch (e) {
+            // Silently ignore - command may not be available
+        }
     }, 500); // Poll every 500ms
 }
 
