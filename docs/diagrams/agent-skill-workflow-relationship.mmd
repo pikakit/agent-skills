@@ -1,0 +1,321 @@
+---
+theme: dark
+---
+graph TB
+    %% ═══════════════════════════════════════
+    %% WORKFLOWS (Top Layer)
+    %% ═══════════════════════════════════════
+
+    subgraph WF["🔄 WORKFLOWS (27)"]
+        direction LR
+        subgraph WF_BUILD["Build & Deploy"]
+            w_build["/build"]
+            w_cook["/cook"]
+            w_boost["/boost"]
+            w_launch["/launch"]
+            w_stage["/stage"]
+            w_flags["/flags"]
+        end
+        subgraph WF_PLAN["Plan & Think"]
+            w_think["/think"]
+            w_plan["/plan"]
+            w_autopilot["/autopilot"]
+            w_auto_accept["/auto-accept"]
+        end
+        subgraph WF_TEST["Test & Quality"]
+            w_validate["/validate"]
+            w_inspect["/inspect"]
+            w_diagnose["/diagnose"]
+            w_fix["/fix"]
+            w_benchmark["/benchmark"]
+        end
+        subgraph WF_OPS["Ops & Monitor"]
+            w_optimize["/optimize"]
+            w_monitor["/monitor"]
+            w_alert["/alert"]
+            w_pulse["/pulse"]
+        end
+        subgraph WF_DOCS["Docs & Design"]
+            w_chronicle["/chronicle"]
+            w_diagram["/diagram"]
+            w_studio["/studio"]
+        end
+        subgraph WF_SPECIAL["Specialized"]
+            w_api["/api"]
+            w_game["/game"]
+            w_mobile["/mobile"]
+        end
+    end
+
+    %% ═══════════════════════════════════════
+    %% AGENTS (Middle Layer)
+    %% ═══════════════════════════════════════
+
+    subgraph AG["🤖 AGENTS (25)"]
+        direction LR
+        subgraph AG_CORE["Core Agents"]
+            a_lead["lead"]
+            a_planner["planner"]
+            a_orchestrator["orchestrator"]
+            a_recovery["recovery"]
+        end
+        subgraph AG_DEV["Development Agents"]
+            a_frontend["frontend"]
+            a_backend["backend"]
+            a_database["database"]
+            a_mobile["mobile"]
+            a_gamedev["gamedev"]
+        end
+        subgraph AG_QA["Quality Agents"]
+            a_testing["testing"]
+            a_qa["qa"]
+            a_debug["debug"]
+            a_critic["critic"]
+        end
+        subgraph AG_OPS["Ops Agents"]
+            a_devops["devops"]
+            a_security["security"]
+            a_pentest["pentest"]
+            a_perf["perf"]
+        end
+        subgraph AG_BIZ["Business Agents"]
+            a_pm["pm"]
+            a_po["po"]
+            a_analyst["analyst"]
+            a_assessor["assessor"]
+            a_docs["docs"]
+            a_seo["seo"]
+            a_explorer["explorer"]
+            a_learner["learner"]
+        end
+    end
+
+    %% ═══════════════════════════════════════
+    %% SKILLS (Bottom Layer - grouped)
+    %% ═══════════════════════════════════════
+
+    subgraph SK["⚡ SKILLS (65 top-level)"]
+        direction LR
+        subgraph SK_CORE["Core"]
+            s_code_craft(["code-craft"])
+            s_code_review(["code-review"])
+            s_debug_pro(["debug-pro"])
+            s_project_planner(["project-planner"])
+            s_idea_storm(["idea-storm"])
+            s_system_design(["system-design"])
+        end
+        subgraph SK_WEB["Web & Frontend"]
+            s_react(["react-architect"])
+            s_nextjs(["nextjs-pro"])
+            s_tailwind(["tailwind-kit"])
+            s_design_system(["design-system"])
+            s_frontend_design(["frontend-design"])
+            s_studio(["studio"])
+        end
+        subgraph SK_BACK["Backend & Data"]
+            s_nodejs(["nodejs-pro"])
+            s_python(["python-pro"])
+            s_api(["api-architect"])
+            s_data(["data-modeler"])
+            s_mcp_builder(["mcp-builder"])
+            s_ts_expert(["typescript-expert"])
+        end
+        subgraph SK_TEST["Testing"]
+            s_test_arch(["test-architect"])
+            s_tdd(["test-driven-dev"])
+            s_e2e(["e2e-automation"])
+        end
+        subgraph SK_OPS["DevOps & Security"]
+            s_cicd(["cicd-pipeline"])
+            s_server(["server-ops"])
+            s_shell(["shell-script"])
+            s_gitops(["gitops"])
+            s_security(["security-scanner"])
+            s_offensive(["offensive-sec"])
+            s_observability(["observability"])
+        end
+        subgraph SK_PERF["Performance"]
+            s_perf(["perf-optimizer"])
+        end
+        subgraph SK_MOBILE["Mobile & Game"]
+            s_mobile_first(["mobile-first"])
+            s_game_dev(["game-development"])
+        end
+        subgraph SK_AI["AI & Learning"]
+            s_auto_learned(["auto-learned"])
+            s_lifecycle(["lifecycle-orchestrator"])
+        end
+        subgraph SK_DOCS["Documentation"]
+            s_doc_templates(["doc-templates"])
+            s_seo(["seo-optimizer"])
+            s_geo(["geo-spatial"])
+            s_mermaid(["mermaid-editor"])
+        end
+    end
+
+    %% ═══════════════════════════════════════
+    %% WORKFLOW → SKILL (direct references)
+    %% ═══════════════════════════════════════
+
+    w_api -.-> s_api
+    w_api -.-> s_data
+    w_api -.-> s_nodejs
+    w_api -.-> s_test_arch
+    w_api -.-> s_security
+    w_diagram -.-> s_system_design
+    w_diagram -.-> s_mermaid
+    w_optimize -.-> s_perf
+    w_optimize -.-> s_data
+    w_monitor -.-> s_observability
+    w_benchmark -.-> s_perf
+    w_game -.-> s_game_dev
+    w_mobile -.-> s_mobile_first
+
+    %% ═══════════════════════════════════════
+    %% AGENT → SKILL (from frontmatter)
+    %% ═══════════════════════════════════════
+
+    a_lead --> s_code_craft
+    a_lead --> s_project_planner
+    a_lead --> s_idea_storm
+    a_lead --> s_system_design
+    a_lead --> s_code_review
+    a_lead --> s_shell
+
+    a_planner --> s_code_craft
+    a_planner --> s_project_planner
+    a_planner --> s_idea_storm
+
+    a_frontend --> s_code_craft
+    a_frontend --> s_react
+    a_frontend --> s_nextjs
+    a_frontend --> s_tailwind
+    a_frontend --> s_design_system
+    a_frontend --> s_code_review
+
+    a_backend --> s_code_craft
+    a_backend --> s_nodejs
+    a_backend --> s_python
+    a_backend --> s_api
+    a_backend --> s_data
+    a_backend --> s_mcp_builder
+    a_backend --> s_code_review
+    a_backend --> s_shell
+    a_backend --> s_ts_expert
+
+    a_testing --> s_code_craft
+    a_testing --> s_test_arch
+    a_testing --> s_tdd
+    a_testing --> s_e2e
+    a_testing --> s_code_review
+
+    a_qa --> s_e2e
+    a_qa --> s_test_arch
+    a_qa --> s_code_craft
+    a_qa --> s_code_review
+
+    a_debug --> s_code_craft
+    a_debug --> s_debug_pro
+
+    a_devops --> s_code_craft
+    a_devops --> s_cicd
+    a_devops --> s_server
+    a_devops --> s_shell
+    a_devops --> s_gitops
+
+    a_security --> s_code_craft
+    a_security --> s_security
+    a_security --> s_offensive
+    a_security --> s_api
+
+    a_pentest --> s_code_craft
+    a_pentest --> s_security
+    a_pentest --> s_offensive
+    a_pentest --> s_api
+
+    a_perf --> s_code_craft
+    a_perf --> s_perf
+
+    a_mobile --> s_code_craft
+    a_mobile --> s_mobile_first
+
+    a_gamedev --> s_code_craft
+    a_gamedev --> s_game_dev
+
+    a_database --> s_code_craft
+    a_database --> s_data
+
+    a_docs --> s_code_craft
+    a_docs --> s_doc_templates
+
+    a_seo --> s_code_craft
+    a_seo --> s_seo
+    a_seo --> s_geo
+
+    a_pm --> s_project_planner
+    a_pm --> s_idea_storm
+    a_pm --> s_code_craft
+
+    a_po --> s_project_planner
+    a_po --> s_idea_storm
+    a_po --> s_code_craft
+
+    a_analyst --> s_code_craft
+    a_analyst --> s_code_review
+
+    a_assessor --> s_code_review
+    a_assessor --> s_project_planner
+    a_assessor --> s_code_craft
+
+    a_critic --> s_code_review
+    a_critic --> s_code_craft
+
+    a_orchestrator --> s_lifecycle
+    a_orchestrator --> s_code_craft
+
+    a_recovery --> s_lifecycle
+    a_recovery --> s_code_craft
+
+    a_explorer --> s_code_craft
+    a_explorer --> s_system_design
+    a_explorer --> s_project_planner
+    a_explorer --> s_idea_storm
+    a_explorer --> s_debug_pro
+
+    a_learner --> s_auto_learned
+    a_learner --> s_code_craft
+
+    %% ═══════════════════════════════════════
+    %% WORKFLOW → AGENT (implicit routing)
+    %% ═══════════════════════════════════════
+
+    w_build ==> a_lead
+    w_autopilot ==> a_orchestrator
+    w_diagnose ==> a_debug
+    w_fix ==> a_debug
+    w_validate ==> a_testing
+    w_inspect ==> a_security
+    w_launch ==> a_devops
+    w_chronicle ==> a_docs
+    w_plan ==> a_planner
+    w_think ==> a_explorer
+    w_studio ==> a_frontend
+    w_game ==> a_gamedev
+    w_mobile ==> a_mobile
+    w_api ==> a_backend
+    w_optimize ==> a_perf
+    w_monitor ==> a_devops
+
+    %% ═══════════════════════════════════════
+    %% STYLES
+    %% ═══════════════════════════════════════
+
+    classDef workflow fill:#10b981,stroke:#059669,color:#fff
+    classDef agent fill:#6366f1,stroke:#4f46e5,color:#fff
+    classDef skill fill:#f59e0b,stroke:#d97706,color:#000
+    classDef core_skill fill:#ef4444,stroke:#dc2626,color:#fff
+
+    class w_build,w_cook,w_boost,w_launch,w_stage,w_flags,w_think,w_plan,w_autopilot,w_auto_accept,w_validate,w_inspect,w_diagnose,w_fix,w_benchmark,w_optimize,w_monitor,w_alert,w_pulse,w_chronicle,w_diagram,w_studio,w_api,w_game,w_mobile workflow
+    class a_lead,a_planner,a_orchestrator,a_recovery,a_frontend,a_backend,a_database,a_mobile,a_gamedev,a_testing,a_qa,a_debug,a_critic,a_devops,a_security,a_pentest,a_perf,a_pm,a_po,a_analyst,a_assessor,a_docs,a_seo,a_explorer,a_learner agent
+    class s_react,s_nextjs,s_tailwind,s_design_system,s_frontend_design,s_studio,s_nodejs,s_python,s_api,s_data,s_mcp_builder,s_ts_expert,s_test_arch,s_tdd,s_e2e,s_cicd,s_server,s_shell,s_gitops,s_security,s_offensive,s_observability,s_perf,s_mobile_first,s_game_dev,s_auto_learned,s_lifecycle,s_doc_templates,s_seo,s_geo,s_mermaid skill
+    class s_code_craft,s_code_review,s_debug_pro,s_project_planner,s_idea_storm,s_system_design core_skill

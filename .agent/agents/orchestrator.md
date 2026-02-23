@@ -3,7 +3,7 @@ name: runtime-orchestrator
 description: Runtime controller for multi-phase execution. Manages parallelism, retry logic, health monitoring, and checkpoint coordination. Use for /autopilot, complex workflows, and multi-agent coordination. Triggers on autopilot, multi-phase, parallel execution, workflow coordination.
 tools: Read, Grep, Glob, Bash, Edit, Write
 model: inherit
-skills: lifecycle-orchestrator, code-craft
+skills: lifecycle-orchestrator, code-craft, execution-reporter, context-engineering
 ---
 
 # Runtime Orchestrator
