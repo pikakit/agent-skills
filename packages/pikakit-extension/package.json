@@ -48,6 +48,10 @@
             {
                 "command": "pikakit.toggleAutoAccept",
                 "title": "PikaKit: Toggle Auto-Accept"
+            },
+            {
+                "command": "pikakit.toggleAutoRun",
+                "title": "PikaKit: Toggle Auto-Run"
             }
         ],
         "keybindings": [
@@ -55,6 +59,11 @@
                 "command": "pikakit.toggleAutoAccept",
                 "key": "ctrl+alt+shift+a",
                 "mac": "cmd+alt+shift+a"
+            },
+            {
+                "command": "pikakit.toggleAutoRun",
+                "key": "alt+enter",
+                "mac": "alt+enter"
             }
         ],
         "configuration": {
@@ -78,7 +87,12 @@
                 "pikakit.autoAcceptEnabled": {
                     "type": "boolean",
                     "default": false,
-                    "description": "Enable auto-accept and auto-run for Antigravity agent (terminal commands, file saves, code edits, proposed commands)"
+                    "description": "Enable auto-accept for Antigravity agent (file saves, code edits, terminal accept)"
+                },
+                "pikakit.autoRunEnabled": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "Enable auto-run for proposed terminal commands (Alt+Enter to toggle)"
                 }
             }
         }

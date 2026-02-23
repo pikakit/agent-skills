@@ -1,145 +1,215 @@
 /**
- * PikaKit Auto Accept Module
+ * PikaKit Auto Accept & Auto Run Module
  * 
- * Automatically accepts Antigravity agent steps (code edits, file saves, terminal commands).
- * Based on analysis of antigravity-auto-accept extension.
+ * Auto-Accept: Automatically accepts Antigravity agent steps (code edits, file saves, terminal accept).
+ * Auto-Run: Automatically runs proposed terminal commands.
+ * 
+ * These are independent toggles:
+ *   - Auto-Accept: Ctrl+Alt+Shift+A
+ *   - Auto-Run: Alt+Enter
  */
 
 import * as vscode from 'vscode';
 
-let enabled = false;
-let interval: ReturnType<typeof setInterval> | null = null;
-let statusBarItem: vscode.StatusBarItem;
+// ═══════════════════════════════════════
+// AUTO-ACCEPT
+// ═══════════════════════════════════════
+
+let acceptEnabled = false;
+let acceptInterval: ReturnType<typeof setInterval> | null = null;
+let acceptStatusBar: vscode.StatusBarItem;
 
 /**
  * Initialize Auto Accept feature
  */
 export function initAutoAccept(context: vscode.ExtensionContext) {
-    // Create status bar item (right-aligned, high priority to appear first)
-    statusBarItem = vscode.window.createStatusBarItem(
+    acceptStatusBar = vscode.window.createStatusBarItem(
         vscode.StatusBarAlignment.Right,
         10000
     );
-    statusBarItem.command = 'pikakit.toggleAutoAccept';
-    context.subscriptions.push(statusBarItem);
+    acceptStatusBar.command = 'pikakit.toggleAutoAccept';
+    context.subscriptions.push(acceptStatusBar);
 
-    // Register toggle command
     context.subscriptions.push(
-        vscode.commands.registerCommand('pikakit.toggleAutoAccept', toggle)
+        vscode.commands.registerCommand('pikakit.toggleAutoAccept', toggleAccept)
     );
 
-    // Load saved state from configuration
     const config = vscode.workspace.getConfiguration('pikakit');
-    enabled = config.get('autoAcceptEnabled', false);
+    acceptEnabled = config.get('autoAcceptEnabled', false);
 
-    updateUI();
+    updateAcceptUI();
 
-    if (enabled) {
-        startLoop();
+    if (acceptEnabled) {
+        startAcceptLoop();
     }
 }
 
-/**
- * Toggle Auto Accept on/off
- */
-function toggle() {
-    enabled = !enabled;
+function toggleAccept() {
+    acceptEnabled = !acceptEnabled;
 
-    // Save state to configuration
     const config = vscode.workspace.getConfiguration('pikakit');
-    config.update('autoAcceptEnabled', enabled, vscode.ConfigurationTarget.Global);
+    config.update('autoAcceptEnabled', acceptEnabled, vscode.ConfigurationTarget.Global);
 
-    updateUI();
+    updateAcceptUI();
 
-    if (enabled) {
-        startLoop();
+    if (acceptEnabled) {
+        startAcceptLoop();
         vscode.window.showInformationMessage('PikaKit Auto-Accept: ON ✅');
     } else {
-        stopLoop();
+        stopAcceptLoop();
         vscode.window.showInformationMessage('PikaKit Auto-Accept: OFF 🛑');
     }
 }
 
-/**
- * Update status bar UI based on current state
- */
-function updateUI() {
-    if (!statusBarItem) return;
+function updateAcceptUI() {
+    if (!acceptStatusBar) return;
 
-    if (enabled) {
-        statusBarItem.text = "$(check) Auto-Accept";
-        statusBarItem.tooltip = "PikaKit Auto-Accept is ON (Click to disable)";
-        statusBarItem.backgroundColor = undefined;
+    if (acceptEnabled) {
+        acceptStatusBar.text = "$(check) Auto-Accept";
+        acceptStatusBar.tooltip = "PikaKit Auto-Accept is ON (Click to disable)";
+        acceptStatusBar.backgroundColor = undefined;
     } else {
-        statusBarItem.text = "$(circle-slash) Auto-Accept";
-        statusBarItem.tooltip = "PikaKit Auto-Accept is OFF (Click to enable)";
-        statusBarItem.backgroundColor = new vscode.ThemeColor('statusBarItem.warningBackground');
+        acceptStatusBar.text = "$(circle-slash) Auto-Accept";
+        acceptStatusBar.tooltip = "PikaKit Auto-Accept is OFF (Click to enable)";
+        acceptStatusBar.backgroundColor = new vscode.ThemeColor('statusBarItem.warningBackground');
     }
-    statusBarItem.show();
+    acceptStatusBar.show();
 }
 
-/**
- * Start the auto-accept polling loop
- */
-function startLoop() {
-    if (interval) return; // Already running
+function startAcceptLoop() {
+    if (acceptInterval) return;
 
-    interval = setInterval(async () => {
-        if (!enabled) return;
+    acceptInterval = setInterval(async () => {
+        if (!acceptEnabled) return;
 
-        // Accept agent steps (code edits, file saves)
         try {
             await vscode.commands.executeCommand('antigravity.agent.acceptAgentStep');
-        } catch (e) {
-            // Silently ignore - command may not be available
-        }
+        } catch (e) { /* command may not be available */ }
 
-        // Accept terminal commands
         try {
             await vscode.commands.executeCommand('antigravity.terminal.accept');
-        } catch (e) {
-            // Silently ignore - command may not be available
-        }
+        } catch (e) { /* command may not be available */ }
 
-        // Auto-run proposed terminal commands (Run button)
-        try {
-            await vscode.commands.executeCommand('antigravity.terminal.run');
-        } catch (e) {
-            // Silently ignore - command may not be available
-        }
-
-        // Try execute code command
         try {
             await vscode.commands.executeCommand('antigravity.executeCode');
-        } catch (e) {
-            // Silently ignore - command may not be available
-        }
-    }, 500); // Poll every 500ms
+        } catch (e) { /* command may not be available */ }
+    }, 500);
 }
 
-/**
- * Stop the auto-accept polling loop
- */
-function stopLoop() {
-    if (interval) {
-        clearInterval(interval);
-        interval = null;
+function stopAcceptLoop() {
+    if (acceptInterval) {
+        clearInterval(acceptInterval);
+        acceptInterval = null;
     }
 }
 
-/**
- * Check if Auto Accept is currently enabled
- */
 export function isAutoAcceptEnabled(): boolean {
-    return enabled;
+    return acceptEnabled;
 }
 
+// ═══════════════════════════════════════
+// AUTO-RUN (Alt+Enter)
+// ═══════════════════════════════════════
+
+let runEnabled = false;
+let runInterval: ReturnType<typeof setInterval> | null = null;
+let runStatusBar: vscode.StatusBarItem;
+
 /**
- * Dispose Auto Accept resources
+ * Initialize Auto Run feature (independent from Auto Accept)
  */
-export function disposeAutoAccept() {
-    stopLoop();
-    if (statusBarItem) {
-        statusBarItem.dispose();
+export function initAutoRun(context: vscode.ExtensionContext) {
+    runStatusBar = vscode.window.createStatusBarItem(
+        vscode.StatusBarAlignment.Right,
+        9999 // Right after Auto-Accept
+    );
+    runStatusBar.command = 'pikakit.toggleAutoRun';
+    context.subscriptions.push(runStatusBar);
+
+    context.subscriptions.push(
+        vscode.commands.registerCommand('pikakit.toggleAutoRun', toggleRun)
+    );
+
+    const config = vscode.workspace.getConfiguration('pikakit');
+    runEnabled = config.get('autoRunEnabled', false);
+
+    updateRunUI();
+
+    if (runEnabled) {
+        startRunLoop();
     }
 }
+
+function toggleRun() {
+    runEnabled = !runEnabled;
+
+    const config = vscode.workspace.getConfiguration('pikakit');
+    config.update('autoRunEnabled', runEnabled, vscode.ConfigurationTarget.Global);
+
+    updateRunUI();
+
+    if (runEnabled) {
+        startRunLoop();
+        vscode.window.showInformationMessage('PikaKit Auto-Run: ON ⚡ (Alt+Enter to toggle)');
+    } else {
+        stopRunLoop();
+        vscode.window.showInformationMessage('PikaKit Auto-Run: OFF 🛑 (Alt+Enter to toggle)');
+    }
+}
+
+function updateRunUI() {
+    if (!runStatusBar) return;
+
+    if (runEnabled) {
+        runStatusBar.text = "$(play) Auto-Run";
+        runStatusBar.tooltip = "PikaKit Auto-Run is ON — proposed commands run automatically (Alt+Enter to toggle)";
+        runStatusBar.backgroundColor = undefined;
+    } else {
+        runStatusBar.text = "$(debug-pause) Auto-Run";
+        runStatusBar.tooltip = "PikaKit Auto-Run is OFF (Alt+Enter to toggle)";
+        runStatusBar.backgroundColor = new vscode.ThemeColor('statusBarItem.warningBackground');
+    }
+    runStatusBar.show();
+}
+
+function startRunLoop() {
+    if (runInterval) return;
+
+    runInterval = setInterval(async () => {
+        if (!runEnabled) return;
+
+        try {
+            await vscode.commands.executeCommand('antigravity.terminal.run');
+        } catch (e) { /* command may not be available */ }
+    }, 500);
+}
+
+function stopRunLoop() {
+    if (runInterval) {
+        clearInterval(runInterval);
+        runInterval = null;
+    }
+}
+
+export function isAutoRunEnabled(): boolean {
+    return runEnabled;
+}
+
+// ═══════════════════════════════════════
+// DISPOSE
+// ═══════════════════════════════════════
+
+export function disposeAutoAccept() {
+    stopAcceptLoop();
+    if (acceptStatusBar) {
+        acceptStatusBar.dispose();
+    }
+}
+
+export function disposeAutoRun() {
+    stopRunLoop();
+    if (runStatusBar) {
+        runStatusBar.dispose();
+    }
+}
+
