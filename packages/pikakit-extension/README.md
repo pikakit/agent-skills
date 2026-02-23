@@ -8,34 +8,50 @@
 - **Pattern Detection** - Auto-detect patterns from repeated errors
 - **Auto-Save Lessons** - Save to `.agent/lessons.json`
 - **Skill Generation** - Generate SKILL.md when threshold is reached (≥3 times)
-- **Status Bar** - Display learning status
+- **Auto-Accept** - Automatically accept Antigravity agent steps (edits, saves, terminal)
+- **Auto-Run** - Automatically run proposed terminal commands
+- **Status Bar** - Display learning status + Auto-Accept/Auto-Run toggles
+
+## Keyboard Shortcuts
+
+| Shortcut | Action | Description |
+|----------|--------|-------------|
+| `Ctrl+Shift+Enter` | Toggle Auto-Accept | Auto-accept code edits, file saves, terminal commands |
+| `Alt+Enter` | Toggle Auto-Run | Auto-run proposed terminal commands |
+
+> On macOS: `Cmd+Shift+Enter` and `Alt+Enter`
 
 ## Installation
+
+### Via PikaKit CLI (recommended)
+
+```bash
+npx pikakit
+```
+
+The extension is installed automatically during skill installation.
+
+### Install from VSIX
+
+```bash
+cd packages/pikakit-extension
+npm install && npm run compile
+npx @vscode/vsce package --allow-missing-repository
+code --install-extension pikakit-engine-1.1.0.vsix
+```
 
 ### Local Development
 
 ```bash
 cd packages/pikakit-extension
-npm install
-npm run compile
+npm install && npm run compile
 ```
 
-Then:
-1. Press F5 in VS Code
-2. Select "Extension Development Host"
-3. Extension will run in a new VS Code window
-
-### Install from VSIX
-
-```bash
-npm run vscode:prepublish
-vsce package
-code --install-extension pikakit-skill-engine-1.0.0.vsix
-```
+Press F5 → "Extension Development Host" → Extension runs in new window.
 
 ## Commands
 
-Press `Ctrl+Shift+P` (Windows/Linux) or `Cmd+Shift+P` (macOS) to open Command Palette, then type "PikaKit" to see available commands:
+Press `Ctrl+Shift+P` → type "PikaKit":
 
 | Command | Description |
 |---------|-------------|
@@ -44,16 +60,18 @@ Press `Ctrl+Shift+P` (Windows/Linux) or `Cmd+Shift+P` (macOS) to open Command Pa
 | `PikaKit: Generate Skill` | Manually generate from patterns |
 | `PikaKit: View Lessons` | View all learned lessons |
 | `PikaKit: Clear Lessons` | Clear all lessons |
+| `PikaKit: Toggle Auto-Accept` | Toggle auto-accept (Ctrl+Shift+Enter) |
+| `PikaKit: Toggle Auto-Run` | Toggle auto-run (Alt+Enter) |
 
 ## Configuration
 
-```json
-{
-    "pikakit.autoStart": true,
-    "pikakit.threshold": 3,
-    "pikakit.lessonsPath": ".agent/lessons.json"
-}
-```
+| Setting | Default | Description |
+|---------|---------|-------------|
+| `pikakit.autoStart` | `true` | Auto-start learning on VS Code startup |
+| `pikakit.threshold` | `3` | Error count before generating a skill |
+| `pikakit.lessonsPath` | `.agent/lessons.json` | Path to lessons storage |
+| `pikakit.autoAcceptEnabled` | `false` | Enable Auto-Accept on startup |
+| `pikakit.autoRunEnabled` | `false` | Enable Auto-Run on startup |
 
 ## How It Works
 
@@ -66,6 +84,15 @@ Press `Ctrl+Shift+P` (Windows/Linux) or `Cmd+Shift+P` (macOS) to open Command Pa
 6. New skill created in .agent/skills/
 ```
 
+## Status Bar
+
+| Icon | State | Action |
+|------|-------|--------|
+| `$(check) Auto-Accept` | ON | Click or Ctrl+Shift+Enter to toggle |
+| `$(circle-slash) Auto-Accept` | OFF | Click or Ctrl+Shift+Enter to toggle |
+| `$(play) Auto-Run` | ON | Click or Alt+Enter to toggle |
+| `$(debug-pause) Auto-Run` | OFF | Click or Alt+Enter to toggle |
+
 ## Supported Error Types
 
 - TypeScript: Cannot find name, Property does not exist, Type mismatch
@@ -75,4 +102,4 @@ Press `Ctrl+Shift+P` (Windows/Linux) or `Cmd+Shift+P` (macOS) to open Command Pa
 
 ---
 
-⚡ PikaKit v3.2.0
+⚡ PikaKit Engine v1.1.0
