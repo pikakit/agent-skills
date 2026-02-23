@@ -2,6 +2,10 @@
 name: multiplayer
 description: Multiplayer game development principles. Architecture, networking, synchronization.
 allowed-tools: Read, Write, Edit, Glob, Grep, Bash
+metadata:
+  category: "game-development"
+  version: "1.0.0"
+  triggers: "multiplayer, networking, netcode, lobby, matchmaking"
 ---
 
 # Multiplayer Game Development

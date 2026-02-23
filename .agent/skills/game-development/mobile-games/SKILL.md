@@ -2,6 +2,10 @@
 name: mobile-games
 description: Mobile game development principles. Touch input, battery, performance, app stores.
 allowed-tools: Read, Write, Edit, Glob, Grep
+metadata:
+  category: "game-development"
+  version: "1.0.0"
+  triggers: "mobile game, touch input, app store, iOS game, Android game"
 ---
 
 # Mobile Game Development

@@ -48,177 +48,27 @@ node .agent/skills/mermaid-editor/scripts/editor-server.cjs --stop
 
 ## Diagram Types
 
-### 1. Flowchart
+9 diagram types supported — see reference for full syntax and examples:
 
-```mermaid
-flowchart LR
-    A[Start] --> B{Decision}
-    B -->|Yes| C[Action]
-    B -->|No| D[End]
-```
-
-**Node shapes:** `[rect]` `(round)` `{diamond}` `[[db]]` `[(cylinder)]` `((circle))`
-
-**Arrows:** `-->` `-.->` `==>` `--text-->` `-->|label|`
-
----
-
-### 2. Sequence Diagram
-
-```mermaid
-sequenceDiagram
-    participant A as Alice
-    participant B as Bob
-    A->>B: Hello
-    B-->>A: Hi back
-    A->>+B: Activate
-    B-->>-A: Deactivate
-```
-
-**Arrows:** `->>` `-->>` `-x` `-)` 
-
-**Notes:** `Note right of A: Text` `Note over A,B: Text`
+| # | Type | Keyword |
+|---|------|---------|
+| 1 | Flowchart | `flowchart LR` |
+| 2 | Sequence | `sequenceDiagram` |
+| 3 | Class | `classDiagram` |
+| 4 | State | `stateDiagram-v2` |
+| 5 | ER | `erDiagram` |
+| 6 | Gantt | `gantt` |
+| 7 | Pie | `pie` |
+| 8 | Mindmap | `mindmap` |
+| 9 | Timeline | `timeline` |
 
 ---
 
-### 3. Class Diagram
+## 📑 Content Map
 
-```mermaid
-classDiagram
-    class Animal {
-        +String name
-        +eat()
-    }
-    class Dog {
-        +bark()
-    }
-    Animal <|-- Dog
-```
-
-**Relations:** `<|--` `*--` `o--` `-->` `..>` `..|>`
-
-**Visibility:** `+public` `-private` `#protected` `~package`
-
----
-
-### 4. State Diagram
-
-```mermaid
-stateDiagram-v2
-    [*] --> Idle
-    Idle --> Running : start
-    Running --> Idle : stop
-    Running --> [*] : crash
-```
-
-**Syntax:** `[*]` start/end, `-->` transition, `: label`
-
----
-
-### 5. Entity Relationship (ER)
-
-```mermaid
-erDiagram
-    USER ||--o{ ORDER : places
-    ORDER ||--|{ ITEM : contains
-    USER {
-        int id PK
-        string name
-    }
-```
-
-**Cardinality:** `||` one, `o{` zero or more, `|{` one or more
-
----
-
-### 6. Gantt Chart
-
-```mermaid
-gantt
-    title Project Timeline
-    dateFormat YYYY-MM-DD
-    section Phase 1
-    Task A :a1, 2024-01-01, 30d
-    Task B :after a1, 20d
-```
-
----
-
-### 7. Pie Chart
-
-```mermaid
-pie title Market Share
-    "Chrome" : 65
-    "Firefox" : 15
-    "Safari" : 12
-    "Edge" : 8
-```
-
----
-
-### 8. Mindmap
-
-```mermaid
-mindmap
-  root((Topic))
-    Branch 1
-      Leaf A
-      Leaf B
-    Branch 2
-      Leaf C
-```
-
----
-
-### 9. Timeline
-
-```mermaid
-timeline
-    title History
-    2020 : Event A
-    2021 : Event B
-         : Event C
-    2022 : Event D
-```
-
----
-
-## Best Practices
-
-| Practice | Example |
-|----------|---------|
-| Quote special chars | `id["Label (info)"]` |
-| Use subgraphs | Group related nodes |
-| Add direction | `flowchart LR` (left-right) |
-| Theme setting | `%%{init: {'theme':'dark'}}%%` |
-
----
-
-## CLI Export (mmdc)
-
-```bash
-# Install
-npm install -g @mermaid-js/mermaid-cli
-
-# Export
-mmdc -i diagram.mmd -o diagram.svg
-mmdc -i diagram.mmd -o diagram.png -t dark -b transparent
-
-# Batch export
-mmdc -i "*.mmd" -o output/
-```
-
----
-
-## Themes
-
-`default` | `dark` | `forest` | `neutral` | `base`
-
-```mermaid
-%%{init: {'theme':'forest'}}%%
-flowchart LR
-    A --> B
-```
+| File | Description | When to Read |
+|------|-------------|--------------|
+| `references/diagram-reference.md` | Full syntax + examples for all 9 types, best practices, CLI export, themes | When writing specific diagram syntax |
 
 ---
 
@@ -233,3 +83,4 @@ flowchart LR
 ---
 
 ⚡ PikaKit v3.2.0
+

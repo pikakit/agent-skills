@@ -2,6 +2,10 @@
 name: vr-ar
 description: VR/AR development principles. Comfort, interaction, performance requirements.
 allowed-tools: Read, Write, Edit, Glob, Grep
+metadata:
+  category: "game-development"
+  version: "1.0.0"
+  triggers: "VR, AR, virtual reality, augmented reality, XR"
 ---
 
 # VR/AR Development

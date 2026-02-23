@@ -4,6 +4,10 @@ description: Validate at every layer data passes through to make bugs impossible
 when_to_use: when invalid data causes failures deep in execution, requiring validation at multiple system layers
 version: 1.1.0
 languages: all
+metadata:
+  category: "core"
+  version: "1.0.0"
+  triggers: "defense in depth, multi-layer validation, code review layers"
 ---
 
 # Defense-in-Depth Validation

@@ -2,6 +2,10 @@
 name: 3d-games
 description: 3D game development principles. Rendering, shaders, physics, cameras.
 allowed-tools: Read, Write, Edit, Glob, Grep
+metadata:
+  category: "game-development"
+  version: "1.0.0"
+  triggers: "3D game, rendering, shaders, meshes, cameras"
 ---
 
 # 3D Game Development

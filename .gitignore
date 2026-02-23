@@ -156,6 +156,7 @@ agent.cmd
 # Build Artifacts (VS Code extensions)
 # ============================================================
 *.vsix
+/icon.png
 
 # ============================================================
 # Runtime Data (metrics runs)
