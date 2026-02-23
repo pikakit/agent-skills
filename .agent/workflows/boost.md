@@ -178,6 +178,12 @@ Hot reload applied - refresh to see changes.
 
 ## 🔗 Workflow Chain
 
+**Skills Loaded (3):**
+
+- `code-craft` - Pragmatic coding standards
+- `code-review` - Quality control and best practices
+- `perf-optimizer` - Performance profiling and optimization
+
 ```mermaid
 graph LR
     A["/boost"] --> B["/validate"]

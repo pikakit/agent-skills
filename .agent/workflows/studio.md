@@ -337,6 +337,12 @@ Before delivering UI code, verify these items:
 
 ## 🔗 Workflow Chain
 
+**Skills Loaded (3):**
+
+- `studio` - 50+ styles, 97 color palettes, 57 font pairings
+- `design-system` - Color theory, typography, visual effects
+- `frontend-design` - Anti-AI-slop aesthetics and bold design
+
 ```mermaid
 graph LR
     A["/studio"] --> B["/build"]

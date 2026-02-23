@@ -115,6 +115,11 @@ npm run lint
 
 ## 🔗 Workflow Chain
 
+**Skills Loaded (2):**
+
+- `code-craft` - Pragmatic coding standards
+- `project-planner` - Task breakdown and planning
+
 ```mermaid
 graph LR
     A["/plan"] --> B["/cook"]

@@ -144,6 +144,11 @@ Which one? (default: 1)
 
 ## 🔗 Workflow Chain
 
+**Skills Loaded (2):**
+
+- `server-ops` - Process management and health monitoring
+- `shell-script` - Development server scripting
+
 ```mermaid
 graph LR
     A["/build"] --> B["/stage"]

@@ -254,6 +254,11 @@ npm test -- --grep "auth"
 
 ## 🔗 Workflow Chain
 
+**Skills Loaded (2):**
+
+- `debug-pro` - Systematic 4-phase debugging methodology
+- `code-review` - Code quality validation
+
 ```mermaid
 graph LR
     A["/diagnose"] --> B["/validate"]

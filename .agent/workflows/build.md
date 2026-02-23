@@ -228,6 +228,13 @@ Before marking complete, verify:
 
 ## 🔗 Workflow Chain
 
+**Skills Loaded (4):**
+
+- `app-scaffold` - Full-stack scaffolding from natural language
+- `code-craft` - Coding standards and best practices
+- `design-system` - UI/UX design tokens and components
+- `test-architect` - Testing strategies and coverage
+
 ```mermaid
 graph LR
     A[\"/plan\"] --> B[\"/build\"]

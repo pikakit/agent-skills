@@ -39,6 +39,11 @@ incident? → orchestrator.coordinate(runbook)
 
 ## 🔗 Chain: monitoring-production
 
+**Skills Loaded (2):**
+
+- `observability` - Alert rules, Slack/PagerDuty integration, runbooks
+- `server-ops` - Server health monitoring and incident response
+
 **Primary Skill:** `observability`
 
 **Coordinates with:** `observability`, `observability`, `observability`

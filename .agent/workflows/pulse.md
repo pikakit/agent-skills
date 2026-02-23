@@ -185,6 +185,11 @@ Payment: stripe
 
 ## 🔗 Workflow Chain
 
+**Skills Loaded (2):**
+
+- `execution-reporter` - Agent status and progress tracking
+- `project-planner` - Task breakdown visualization
+
 ```mermaid
 graph LR
     A["/pulse"] --> B["📊 Status"]

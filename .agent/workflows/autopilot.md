@@ -876,6 +876,12 @@ When autopilot fails or produces unexpected results:
 
 ## 🔗 Workflow Chain
 
+**Skills Loaded (3):**
+
+- `lifecycle-orchestrator` - Multi-phase execution with rollback
+- `execution-reporter` - Agent routing and skill loading transparency
+- `context-engineering` - Token optimization and agent architecture
+
 ```mermaid
 graph LR
     A["/autopilot"] --> B["/plan"]
@@ -930,6 +936,12 @@ See observability report above for quality verification.
 ---
 
 ## 🔗 Workflow Chain
+
+**Skills Loaded (3):**
+
+- `lifecycle-orchestrator` - Multi-phase execution with rollback
+- `execution-reporter` - Agent routing and skill loading transparency
+- `context-engineering` - Token optimization and agent architecture
 
 ```mermaid
 graph LR

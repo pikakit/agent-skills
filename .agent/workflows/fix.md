@@ -140,6 +140,11 @@ If verification passes:
 
 ## 🔗 Workflow Chain
 
+**Skills Loaded (2):**
+
+- `debug-pro` - Root cause analysis and defense-in-depth
+- `test-architect` - Regression test creation
+
 ```mermaid
 graph LR
     A["/diagnose"] --> B["/fix"]

@@ -303,6 +303,11 @@ Proceed
 
 ## 🔗 Workflow Chain
 
+**Skills Loaded (2):**
+
+- `lifecycle-orchestrator` - End-to-end task lifecycle with checkpoint/restore
+- `execution-reporter` - Execution context display and audit trail
+
 ```mermaid
 graph LR
     A["/architect"] --> B["/auto-accept"]

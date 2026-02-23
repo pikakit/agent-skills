@@ -226,6 +226,12 @@ File: tests/services/auth.test.ts:28
 
 ## 🔗 Workflow Chain
 
+**Skills Loaded (3):**
+
+- `test-architect` - Unit, integration, E2E testing patterns
+- `e2e-automation` - Playwright browser testing
+- `code-review` - Automated quality checks
+
 ```mermaid
 graph LR
     A["/build"] --> B["/validate"]

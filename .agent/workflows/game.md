@@ -196,6 +196,11 @@ This workflow orchestrates game development with routing to specialized sub-skil
 
 ## 🔗 Workflow Chain
 
+**Skills Loaded (2):**
+
+- `game-development` - Game orchestrator with 10 sub-skills
+- `shader` - GLSL fragment shaders for visual effects
+
 ```mermaid
 graph LR
     A["/think"] --> B["/game"]

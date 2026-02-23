@@ -207,6 +207,12 @@ npm run build && npm test
 
 ## 🔗 Workflow Chain
 
+**Skills Loaded (3):**
+
+- `security-scanner` - OWASP 2025, vulnerability analysis
+- `code-review` - Multi-layer code validation
+- `offensive-sec` - Red team tactics, MITRE ATT&CK
+
 ```mermaid
 graph LR
     A["/inspect"] --> B["/build"]

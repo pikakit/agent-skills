@@ -182,6 +182,11 @@ File: `.featureflags.json`
 
 ## 🔗 Workflow Chain
 
+**Skills Loaded (2):**
+
+- `cicd-pipeline` - Feature flag deployment strategies
+- `server-ops` - Gradual rollout management
+
 ```mermaid
 graph LR
     A["/build"] --> B["/flags"]

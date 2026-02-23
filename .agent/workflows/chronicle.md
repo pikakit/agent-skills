@@ -173,6 +173,11 @@ export async function createUser(data: CreateUserInput): Promise<User> {
 
 ## 🔗 Workflow Chain
 
+**Skills Loaded (2):**
+
+- `doc-templates` - README, API docs, code comments templates
+- `markdown-novel-viewer` - Markdown preview with Mermaid rendering
+
 ```mermaid
 graph LR
     A["/launch"] --> B["/chronicle"]

@@ -160,6 +160,12 @@ This workflow orchestrates mobile app development from concept to app store subm
 
 ## 🔗 Workflow Chain
 
+**Skills Loaded (3):**
+
+- `mobile-first` - Mobile development orchestrator
+- `mobile-developer` - React Native, Flutter, native development
+- `mobile-design` - Touch interaction and platform conventions
+
 ```mermaid
 graph LR
     A["/plan"] --> B["/mobile"]

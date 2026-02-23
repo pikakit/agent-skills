@@ -328,6 +328,12 @@ Production is still running v2.0.5.
 
 ## 🔗 Workflow Chain
 
+**Skills Loaded (3):**
+
+- `cicd-pipeline` - Safe deployment workflows, rollback strategies
+- `server-ops` - Server management and scaling
+- `security-scanner` - Pre-deploy security validation
+
 ```mermaid
 graph LR
     A["/validate"] --> B["/launch"]

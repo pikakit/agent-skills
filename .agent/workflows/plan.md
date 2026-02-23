@@ -291,6 +291,12 @@ After plan approval:
 
 ## 🔗 Workflow Chain
 
+**Skills Loaded (3):**
+
+- `project-planner` - Task breakdown and dependency planning
+- `idea-storm` - Socratic questioning and requirements clarification
+- `system-design` - Architecture decision-making
+
 ```mermaid
 graph LR
     A["/think"] --> B["/plan"]

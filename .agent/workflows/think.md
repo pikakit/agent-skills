@@ -173,6 +173,12 @@ Proceed with Option A? (y/n)
 
 ## 🔗 Workflow Chain
 
+**Skills Loaded (3):**
+
+- `idea-storm` - Socratic questioning and brainstorming
+- `system-design` - Trade-off evaluation and ADR
+- `project-planner` - Task breakdown and feasibility
+
 ```mermaid
 graph LR
     A["/think"] --> B["/plan"]
