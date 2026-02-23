@@ -151,3 +151,13 @@ agent.cmd
 
 # Knowledge folder (created by pikakit CLI)
 .agent/knowledge/
+
+# ============================================================
+# Build Artifacts (VS Code extensions)
+# ============================================================
+*.vsix
+
+# ============================================================
+# Runtime Data (metrics runs)
+# ============================================================
+.agent/metrics/runs/

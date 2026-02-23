@@ -17,13 +17,11 @@
     ".agent",
     "docs",
     "packages",
-    "tests",
     "README.md",
     "CHANGELOG.md",
     "LICENSE"
   ],
   "bin": {
-    "agent": "./packages/agent/bin/agent.js",
     "kit": "./packages/kit/kit.js"
   },
   "type": "module",
