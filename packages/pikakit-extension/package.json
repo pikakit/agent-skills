@@ -2,7 +2,7 @@
     "name": "pikakit-engine",
     "displayName": "PikaKit Engine",
     "description": "Real-time auto-learning from IDE diagnostics to generate skills automatically",
-    "version": "1.0.1",
+    "version": "1.1.0",
     "publisher": "pikakit",
     "icon": "icon.png",
     "engines": {
