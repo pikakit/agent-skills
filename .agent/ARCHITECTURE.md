@@ -8,7 +8,7 @@
 
 PikaKit is a modular system consisting of:
 
-- **25 Specialist Agents** - Role-based AI personas (20 domain + 5 meta)
+- **26 Specialist Agents** - Role-based AI personas (21 domain + 5 meta)
 - **45 Skills** - Domain-specific knowledge modules
 - **24 Workflows** - Slash command procedures
 - **5 Workflow Chains** - Multi-skill execution sequences
@@ -138,7 +138,7 @@ Specialist AI personas for different domains.
 | `critic`               | Conflict resolution      | code-review, code-quality         |
 | `learner`              | Continuous improvement   | auto-learner                      |
 
-### Domain Agents (20)
+### Domain Agents (21)
 
 | Agent                    | Focus                      | Skills Used                                     |
 | ------------------------ | -------------------------- | ----------------------------------------------- |
@@ -162,6 +162,7 @@ Specialist AI personas for different domains.
 | `qa-automation-engineer` | E2E testing, CI pipelines  | e2e-automation, test-architect                  |
 | `code-archaeologist`     | Legacy code, refactoring   | code-craft, code-review                         |
 | `explorer-agent`         | Codebase analysis          | system-design, debug-pro                        |
+| `api-designer`           | API design, schemas        | api-architect, data-modeler, auth-patterns      |
 
 ---
 
@@ -431,7 +432,7 @@ See [MIGRATION.md](../MIGRATION.md) for details.
 
 | Metric              | Value                         |
 | ------------------- | ----------------------------- |
-| **Total Agents**    | 20                            |
+| **Total Agents**    | 21                            |
 | **Total Skills**    | 45                            |
 | **Total Workflows** | 24                            |
 | **Total Scripts**   | 4 (master) + 34 (skill-level) |

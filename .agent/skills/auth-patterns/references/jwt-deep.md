@@ -70,25 +70,25 @@ Header.Payload.Signature
 
 ```
 ┌──────────────┐     ┌──────────────┐     ┌──────────────┐
-│    Client     │     │  Auth Server  │     │   Resource    │
+│    Client    │     │  Auth Server │     │   Resource   │
 └──────┬───────┘     └──────┬───────┘     └──────┬───────┘
-       │  Login             │                     │
-       │───────────────────>│                     │
-       │  Access (15min)    │                     │
-       │  + Refresh (7d)    │                     │
-       │<───────────────────│                     │
-       │                    │                     │
-       │  API call + Access Token                 │
-       │─────────────────────────────────────────>│
-       │  Response                                │
-       │<─────────────────────────────────────────│
-       │                    │                     │
-       │  (Access expired)  │                     │
-       │  Refresh request   │                     │
-       │───────────────────>│                     │
-       │  New Access        │                     │
-       │  + New Refresh     │ (rotation!)         │
-       │<───────────────────│                     │
+       │  Login             │                    │
+       │───────────────────>│                    │
+       │  Access (15min)    │                    │
+       │  + Refresh (7d)    │                    │
+       │<───────────────────│                    │
+       │                    │                    │
+       │  API call + Access Token                │
+       │────────────────────────────────────────>│
+       │  Response                               │
+       │<────────────────────────────────────────│
+       │                    │                    │
+       │  (Access expired)  │                    │
+       │  Refresh request   │                    │
+       │───────────────────>│                    │
+       │  New Access        │                    │
+       │  + New Refresh     │ (rotation!)        │
+       │<───────────────────│                    │
 ```
 
 ### Implementation
