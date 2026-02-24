@@ -10,184 +10,204 @@ $ARGUMENTS
 
 ## Purpose
 
-This workflow orchestrates mobile app development from concept to app store submission. Supports React Native, Flutter, and native iOS/Android development with full lifecycle management.
+Orchestrates mobile app development from concept to app store. Supports React Native, Flutter, and native iOS/Android. Includes push notifications, deep linking, offline sync, CI/CD pipeline, and analytics.
 
 ---
 
 ## 🤖 Meta-Agents Integration
 
 | Phase | Agent | Action |
-| ----- | ----- | ------ |
+|-------|-------|--------|
 | **Requirements** | `assessor` | Evaluate platform and framework risks |
-| **State Save** | `recovery` | Save checkpoints before major changes |
+| **Checkpoint** | `recovery` | Save state before major changes |
 | **Implementation** | `orchestrator` | Coordinate parallel tasks |
 | **Post-Build** | `learner` | Log mobile patterns for reuse |
 
 ---
 
-## Phase 1: Requirements Clarification
+## Phase 1: Requirements
 
-1. **Ask critical questions BEFORE any design:**
-   - Platform: iOS, Android, or both?
-   - Framework: React Native, Flutter, or native?
-   - Navigation: Tabs, drawer, or stack-based?
-   - Offline: Does this need to work offline?
-   - Devices: Phone only or tablet too?
+1. **Ask critical questions:**
 
-2. **Calculate MFRI (Mobile Feasibility Risk Index):**
-   - Read `mobile-design/SKILL.md` → Apply MFRI formula
-   - If MFRI < 3 → Redesign before implementation
+   | Question | Options | Impact |
+   |----------|---------|--------|
+   | Platform? | iOS / Android / Both | Build pipeline |
+   | Framework? | React Native / Flutter / Native | Architecture |
+   | Navigation? | Tabs / Drawer / Stack | UX pattern |
+   | Offline? | Required / Nice-to-have / No | Sync architecture |
+   | Devices? | Phone / Tablet / Both | Layout strategy |
+
+2. **Calculate MFRI** (Mobile Feasibility Risk Index) from `mobile-design/SKILL.md`. MFRI < 3 → Redesign.
 
 ---
 
 ## Phase 2: Design & Architecture
 
-3. **Load mobile-design skill:**
-   ```
-   Read: .agent/skills/mobile-design/SKILL.md
-   Then read platform-specific files based on target
-   ```
+3. **Load:** `.agent/skills/mobile-design/SKILL.md`
 
-4. **Apply platform conventions:**
-   - iOS: SF Pro font, 44pt touch targets, edge swipe back
-   - Android: Roboto font, 48dp touch targets, system back button
+4. **Platform conventions:**
 
-5. **Create component architecture:**
-   - Follow mobile-first principles
-   - Ensure all touch targets ≥ 44-48px
+   | Aspect | iOS | Android |
+   |--------|-----|---------|
+   | Font | SF Pro | Roboto |
+   | Touch target | ≥44pt | ≥48dp |
+   | Back | Edge swipe | System back |
+   | Navigation | Tab bar (bottom) | Bottom nav / drawer |
 
 ---
 
 ## Phase 3: Implementation
 
-6. **Load mobile-developer skill:**
-   ```
-   Read: .agent/skills/mobile-developer/SKILL.md
-   ```
+5. **Initialize project:**
 
-7. **Initialize project:**
-   - React Native: `npx create-expo-app@latest ./`
-   - Flutter: `flutter create .`
-   - Native iOS: SwiftUI project
-   - Native Android: Kotlin + Compose project
+   | Framework | Command |
+   |-----------|---------|
+   | React Native | `npx create-expo-app@latest ./` |
+   | Flutter | `flutter create .` |
+   | iOS Native | SwiftUI project |
+   | Android | Kotlin + Compose |
 
-8. **Apply performance patterns:**
-   - FlatList/FlashList for lists (NEVER ScrollView)
-   - React.memo + useCallback for all components
-   - const widgets in Flutter
-
----
-
-## Phase 4: Security Implementation
-
-9. **Load mobile-security-coder skill:**
-   ```
-   Read: .agent/skills/mobile-security-coder/SKILL.md
-   ```
-
-10. **Apply security checklist:**
-    - [ ] Secure storage (Keychain/Keystore)
-    - [ ] Certificate pinning
-    - [ ] Biometric authentication
-    - [ ] No sensitive data in logs
+6. **Performance patterns:**
+   - Lists: FlatList/FlashList (NEVER ScrollView for lists)
+   - Memoization: React.memo + useCallback / const widgets
+   - Images: Lazy load, cache, progressive quality
+   - Navigation: Lazy screens, pre-fetch next screen data
 
 ---
 
-## Phase 5: Testing & Verification
+## Phase 4: Push Notifications
 
-11. **Run mobile audit script:**
-    ```bash
-    node .agent/skills/mobile-design/scripts/mobile_audit.js <project_path>
+7. **Setup push infrastructure:**
+
+   | Platform | Service | Package |
+   |----------|---------|---------|
+   | iOS | APNs | `@notifee/react-native` / firebase_messaging |
+   | Android | FCM | `@react-native-firebase/messaging` / firebase_messaging |
+   | Cross-platform | OneSignal | `onesignal-expo-plugin` |
+
+8. **Push notification checklist:**
+   - [ ] Permission request (show value before asking)
+   - [ ] Foreground + background + killed state handling
+   - [ ] Deep link from notification tap
+   - [ ] Badge count management
+   - [ ] Notification channels (Android)
+   - [ ] Rich notifications (images, actions)
+
+---
+
+## Phase 5: Deep Linking
+
+9. **Universal/App Links setup:**
+
+   | Platform | Config | Domain |
+   |----------|--------|--------|
+   | iOS | `apple-app-site-association` | `/.well-known/` |
+   | Android | `assetlinks.json` | `/.well-known/` |
+   | Expo | `app.json` → scheme + intentFilters | Custom scheme |
+
+10. **Link routing patterns:**
+    ```
+    myapp://product/123     → ProductScreen(id=123)
+    myapp://profile         → ProfileScreen
+    https://app.com/invite  → InviteFlow (deferred deep link)
     ```
 
-12. **Test checklist:**
-    - [ ] Touch targets ≥ 44-48px
-    - [ ] Works offline (if required)
-    - [ ] Tested on low-end devices
-    - [ ] Accessibility labels present
+---
+
+## Phase 6: Offline Sync
+
+11. **Offline architecture:**
+
+    | Pattern | Use When |
+    |---------|----------|
+    | **Cache-first** | Read-heavy, eventual consistency OK |
+    | **Optimistic UI** | Writes need instant feedback |
+    | **Queue + retry** | Writes must not be lost |
+    | **CRDT** | Multi-device conflict resolution |
+
+12. **Offline checklist:**
+    - [ ] Local database (SQLite / WatermelonDB / Hive)
+    - [ ] Sync queue for pending writes
+    - [ ] Conflict resolution strategy (last-write-wins / merge)
+    - [ ] Connectivity listener (online/offline banner)
+    - [ ] Background sync (when connection restored)
 
 ---
 
-## Phase 6: App Store Preparation
+## Phase 7: Security
 
-13. **iOS App Store:**
-    - Privacy labels configured
-    - Screenshots for all device sizes
-    - App Transport Security configured
+13. **Load:** `.agent/skills/mobile-security-coder/SKILL.md`
 
-14. **Google Play Store:**
-    - Target API = current year's SDK
-    - 64-bit build
-    - App bundle format
+    - [ ] Secure storage (Keychain / Keystore)
+    - [ ] Certificate pinning
+    - [ ] Biometric auth (Face ID / fingerprint)
+    - [ ] No sensitive data in logs
+    - [ ] Root/jailbreak detection
 
 ---
 
-> **Remember:** Mobile users are impatient, interrupted, using imprecise fingers on small screens. Design for the WORST conditions.
+## Phase 8: CI/CD & App Store
+
+14. **Mobile CI/CD pipeline:**
+
+    | Tool | Purpose |
+    |------|---------|
+    | **EAS Build** (Expo) | Cloud builds, OTA updates |
+    | **Fastlane** | Automate screenshots, signing, upload |
+    | **GitHub Actions** | CI pipeline, automated testing |
+    | **App Center** | Distribution, crash reporting |
+
+15. **Store submission checklist:**
+
+    | iOS App Store | Google Play |
+    |--------------|-------------|
+    | Privacy labels | Target current SDK |
+    | Screenshots (all sizes) | 64-bit build |
+    | App Transport Security | App bundle (AAB) |
+    | TestFlight beta | Internal testing track |
 
 ---
 
-## Examples
+## Phase 9: Analytics & Monitoring
 
-```
-/mobile iOS fitness app with React Native
-/mobile cross-platform e-commerce app with Flutter
-/mobile native Android banking app
-/mobile tablet-optimized dashboard
-/mobile offline-first notes app
-```
+16. **Analytics integration:**
+
+    | Tool | Purpose |
+    |------|---------|
+    | **Firebase Analytics** | Events, funnels, retention |
+    | **Crashlytics** | Crash reporting, ANR detection |
+    | **Amplitude/Mixpanel** | Product analytics, cohorts |
+    | **Sentry** | Error tracking, performance |
+
+17. **Key metrics to track:**
+    - DAU/MAU, retention (D1/D7/D30)
+    - Crash-free rate (target: >99.5%)
+    - App startup time (target: <2s cold start)
+    - Screen load times, API latency
 
 ---
 
-## Output Format
+## Anti-Patterns
 
-```markdown
-## 📱 Mobile App Development Complete
-
-### Deliverables
-| Item | Status |
-|------|--------|
-| App Build | ✅ iOS + Android |
-| Security | ✅ Keychain/Keystore |
-| Offline | ✅ Sync enabled |
-
-### Next Steps
-- [ ] Submit to TestFlight/Play Console
-- [ ] Complete store listing
-- [ ] Configure analytics
-```
+| ❌ Don't | ✅ Do |
+|----------|-------|
+| ScrollView for long lists | FlatList / FlashList |
+| Ask notification permission on launch | Show value, then ask |
+| Ignore offline | Design for bad connectivity |
+| Skip deep linking | Deep link from day one |
 
 ---
 
 ## 🔗 Workflow Chain
 
-**Skills Loaded (3):**
-
-- `mobile-first` - Mobile development orchestrator
-- `mobile-developer` - React Native, Flutter, native development
-- `mobile-design` - Touch interaction and platform conventions
-
-```mermaid
-graph LR
-    A["/plan"] --> B["/mobile"]
-    B --> C["/validate"]
-    C --> D["/launch"]
-    style B fill:#10b981
-```
+**Skills (4):** `mobile-first` · `mobile-developer` · `mobile-design` · `mobile-security-coder`
 
 | After /mobile | Run | Purpose |
 |---------------|-----|---------|
-| Need testing | `/validate` | Run mobile tests |
-| Ready to ship | `/launch` | App store submission |
-| Performance issues | `/optimize` | Fix bottlenecks |
-
-**Handoff:**
-```markdown
-✅ Mobile app built! Run `/validate` to test, then `/launch` to submit.
-```
+| Need testing | `/validate` | Mobile tests |
+| Performance | `/optimize` | Profiling |
+| Ready to ship | `/launch` | Store submission |
 
 ---
 
-**Version:** 1.0.0  
-**Chain:** mobile-development  
-**Added:** v3.6.0
-
+**Version:** 2.0.0 · **Updated:** v3.9.64

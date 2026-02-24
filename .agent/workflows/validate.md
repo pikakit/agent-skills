@@ -10,27 +10,18 @@ $ARGUMENTS
 
 ## Purpose
 
-Generate comprehensive tests, execute test suites, and analyze coverage. **Follows AAA pattern (Arrange-Act-Assert) with edge case detection.**
+Generate comprehensive tests, execute suites, and analyze coverage. **AAA pattern, mutation testing, visual regression, and contract testing.**
 
 ---
 
 ## 🤖 Meta-Agents Integration
 
 | Phase | Agent | Action |
-| ----- | ----- | ------ |
-| **Test Generation** | `learner` | Analyze existing test patterns for consistency |
-| **Pre-Test** | `recovery` | Save test state before execution |
+|-------|-------|--------|
+| **Test Generation** | `learner` | Analyze existing patterns for consistency |
+| **Pre-Test** | `recovery` | Save state before execution |
 | **Post-Test** | `learner` | Log common failure patterns |
-| **On Failure** | `assessor` | Evaluate test failure severity |
-
-```
-Flow:
-learner.analyze(existing_tests) → generate tests
-       ↓
-recovery.save() → run tests
-       ↓
-failures? → assessor.evaluate(severity) → learner.log(patterns)
-```
+| **On Failure** | `assessor` | Evaluate failure severity |
 
 ---
 
@@ -42,13 +33,16 @@ failures? → assessor.evaluate(severity) → learner.log(patterns)
 /validate coverage     - Show coverage report
 /validate watch        - Run in watch mode
 /validate fix          - Auto-fix failing tests
+/validate mutation     - Run mutation testing
+/validate visual       - Run visual regression tests
+/validate contract     - Run API contract tests
 ```
 
 ---
 
-## 🔴 MANDATORY: Test Generation Protocol
+## Phase 1: Test Generation Protocol
 
-### Step 1: Analyze Target
+### Analyze Target
 ```
 For function/component, identify:
 □ Happy path (normal use)
@@ -57,196 +51,161 @@ For function/component, identify:
 □ Integration points (external deps)
 ```
 
-### Step 2: Generate Test Cases
+### Test Case Categories
 
 | Category | Example |
 |----------|---------|
 | **Happy Path** | Valid input → expected output |
 | **Empty Input** | `""`, `[]`, `null`, `undefined` |
-| **Boundary** | Min value, max value, off-by-one |
+| **Boundary** | Min, max, off-by-one |
 | **Type Errors** | Wrong type, missing property |
 | **Async** | Timeout, race condition, retry |
 | **Security** | XSS, injection, auth bypass |
 
-### Step 3: Apply AAA Pattern
+### AAA Pattern
 
 ```typescript
 describe('UserService', () => {
-  describe('createUser', () => {
-    it('should create user with valid data', async () => {
-      // ARRANGE
-      const input = {
-        email: 'test@example.com',
-        name: 'Test User',
-      };
-      
-      // ACT
-      const result = await userService.createUser(input);
-      
-      // ASSERT
-      expect(result.id).toBeDefined();
-      expect(result.email).toBe(input.email);
-    });
-
-    it('should throw for invalid email', async () => {
-      // ARRANGE
-      const input = { email: 'invalid', name: 'Test' };
-      
-      // ACT & ASSERT
-      await expect(userService.createUser(input))
-        .rejects.toThrow('Invalid email');
-    });
+  it('should create user with valid data', async () => {
+    // ARRANGE
+    const input = { email: 'test@example.com', name: 'Test' };
+    // ACT
+    const result = await userService.createUser(input);
+    // ASSERT
+    expect(result.id).toBeDefined();
+    expect(result.email).toBe(input.email);
   });
 });
 ```
 
 ---
 
-## Output Format
+## Phase 2: Mutation Testing
 
-### Test Generation
+**What:** Automatically modify source code (mutants) and verify tests catch the changes.
 
-```markdown
-## 🧪 Tests: [Target]
+```bash
+/validate mutation
 
-### Analysis
-| Aspect | Value |
-|--------|-------|
-| Functions | 5 |
-| Complexity | Medium |
-| Dependencies | 2 (mock required) |
+# Uses: Stryker (JS/TS) or mutmut (Python)
+npx stryker run
+```
 
-### Test Plan
+| Mutant Type | Example | Good Test Catches It? |
+|-------------|---------|----------------------|
+| Conditional | `>` → `>=` | ✅ Boundary test |
+| Return value | `return true` → `return false` | ✅ Assert on return |
+| Remove call | Delete `validate()` | ✅ Integration test |
+| Arithmetic | `+` → `-` | ✅ Calculation test |
 
-| Test Case | Type | Priority |
-|-----------|------|----------|
-| Create with valid data | Happy | High |
-| Create with empty name | Edge | Medium |
-| Create with duplicate email | Error | High |
-| Update non-existent user | Error | Medium |
-| Delete with cascade | Integration | High |
-
-### Generated Tests
-
-📁 `tests/services/user.test.ts`
-
-[Generated test code]
+**Target:** Mutation score ≥ 80%. If lower, tests are weak.
 
 ---
 
-Run: `npm test`
-Coverage: `npm run coverage`
+## Phase 3: Visual Regression Testing
+
+```bash
+/validate visual
+
+# Captures screenshots and compares against baselines
+npx playwright test --project=visual
 ```
 
-### Test Execution
+| Tool | Best For | Integration |
+|------|----------|-------------|
+| **Playwright screenshots** | Component snapshots | Built-in |
+| **Percy** | Full-page visual diffs | CI/CD |
+| **Chromatic** | Storybook components | Storybook |
+
+**Workflow:**
+1. Baseline: Capture reference screenshots
+2. Change: Modify code
+3. Compare: Pixel-diff against baseline
+4. Review: Approve or reject visual changes
+
+---
+
+## Phase 4: Contract Testing
+
+```bash
+/validate contract
+
+# API consumer-provider contract verification
+npx pact-verifier
+```
+
+| Pattern | Use When |
+|---------|----------|
+| **Consumer-driven (Pact)** | Frontend ↔ Backend API contracts |
+| **Provider-driven (OpenAPI)** | Public API validation |
+| **Schema validation (Zod)** | Runtime type checking |
+
+**Contract test flow:**
+```
+Consumer defines expected API → Generate contract
+Provider verifies against contract → Pass/fail
+Breaking change? → Contract fails before deploy
+```
+
+---
+
+## Phase 5: Framework Detection & Execution
+
+| Project | Framework | Config |
+|---------|-----------|--------|
+| Next.js | Vitest | vitest.config.ts |
+| Node.js | Jest | jest.config.js |
+| React | Vitest + RTL | vitest.config.ts |
+| API | Supertest | jest.config.js |
+| Python | Pytest | pytest.ini |
+
+---
+
+## Output Format
 
 ```markdown
 ## 🧪 Test Results
 
 ### Summary
-✅ Passed: 42
-❌ Failed: 2
-⏭️ Skipped: 1
-
-### Failed Tests
-
-**1. UserService.createUser**
-```
-Expected: user object
-Received: null
-
-File: tests/services/user.test.ts:42
-```
-
-**2. AuthService.login**
-```
-Timeout: 5000ms exceeded
-
-File: tests/services/auth.test.ts:28
-```
+✅ Passed: 42  ❌ Failed: 2  ⏭️ Skipped: 1
 
 ### Coverage
-
 | Metric | Current | Target | Status |
 |--------|---------|--------|--------|
-| Statements | 78% | 80% | ⚠️ |
-| Branches | 65% | 70% | ⚠️ |
-| Functions | 85% | 80% | ✅ |
-| Lines | 79% | 80% | ⚠️ |
-
-### Uncovered Lines
-
-| File | Lines |
-|------|-------|
-| `src/services/user.ts` | 45-52, 78-80 |
-| `src/utils/validate.ts` | 23-25 |
+| Statements | 85% | 80% | ✅ |
+| Branches | 72% | 70% | ✅ |
+| Mutation Score | 82% | 80% | ✅ |
+| Visual Diffs | 0 | 0 | ✅ |
+| Contracts | 5/5 | 100% | ✅ |
 
 ### Next Steps
-1. Fix 2 failing tests
-2. Add tests for uncovered lines
-3. Run `/validate` again
+- [ ] Fix 2 failing tests
+- [ ] Review visual baselines
 ```
-
----
-
-## Examples
-
-```
-/validate
-/validate src/services/auth.ts
-/validate user registration flow
-/validate coverage
-/validate watch
-/validate fix failing tests
-```
-
----
-
-## Test Framework Detection
-
-| Project Type | Framework | Config |
-|--------------|-----------|--------|
-| Next.js | Vitest | vitest.config.ts |
-| Node.js | Jest | jest.config.js |
-| React | Vitest/RTL | vitest.config.ts |
-| API | Supertest | jest.config.js |
 
 ---
 
 ## Key Principles
 
-1. **Test behavior, not implementation** - focus on outcomes
-2. **One assertion per test** - easier to debug
-3. **Descriptive names** - test name = documentation
-4. **Mock external deps** - isolate unit under test
-5. **AAA pattern** - consistent structure
-6. **Edge cases first** - catch bugs before happy path
+1. **Test behavior, not implementation**
+2. **One assertion per test**
+3. **Descriptive names** — test name = documentation
+4. **Mock external deps** — isolate unit under test
+5. **Mutation testing** — verify test quality
+6. **Visual regression** — catch UI drift
 
 ---
 
 ## 🔗 Workflow Chain
 
-**Skills Loaded (3):**
-
-- `test-architect` - Unit, integration, E2E testing patterns
-- `e2e-automation` - Playwright browser testing
-- `code-review` - Automated quality checks
-
-```mermaid
-graph LR
-    A["/build"] --> B["/validate"]
-    B --> C["/launch"]
-    style B fill:#10b981
-```
+**Skills (3):** `test-architect` · `e2e-automation` · `code-review`
 
 | After /validate | Run | Purpose |
 |-----------------|-----|---------|
-| All tests pass | `/launch` | Deploy to production |
-| Tests fail | `/diagnose` | Find root cause |
+| All pass | `/launch` | Deploy |
+| Tests fail | `/diagnose` | Root cause |
 | Need review | `/inspect` | Code review |
 
-**Handoff to /launch:**
-```markdown
-Tests: 42/42 passed. Coverage: 85%.
-Run /launch to deploy to production.
-```
+---
+
+**Version:** 2.0.0 · **Updated:** v3.9.64
