@@ -154,7 +154,7 @@ Enforce structured JSON responses:
 | Item | Type | Purpose |
 |------|------|---------|
 | `mcp-builder` | Skill | Build MCP servers |
-| `mcp-server` | Skill | MCP design principles |
+| `mcp-builder/references/design-principles.md` | Reference | MCP design principles |
 
 ---
 

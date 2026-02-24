@@ -69,13 +69,9 @@ Purpose → Bold Direction → Execute with Precision
 
 ## Anti-AI-Slop Principles
 
-| ❌ Generic | ✅ Distinctive |
-|-----------|---------------|
-| Inter, Roboto, Arial | Playfair Display, Syne, Fraunces |
-| White background + purple | Bold color commitment |
-| Basic box-shadow | Dramatic shadows, layered depth |
-| Scattered micro-interactions | Orchestrated page load |
-| Centered everything | Asymmetric, overlapping, diagonal |
+> **Full rules:** See `studio` skill → Anti-AI-Slop Rules section (single source of truth).
+
+**Quick summary:** Avoid generic fonts (Inter, Roboto), pure RGB colors, basic shadows, and scattered micro-interactions. Choose bold, distinctive aesthetics instead.
 
 ---
 

@@ -1,14 +1,15 @@
 ---
 name: mcp-builder
 description: >-
-  Guide for building MCP servers for AI agents following a 4-phase process.
-  Triggers on: build MCP, create MCP server, MCP development, agent tools.
-  Coordinates with: mcp-server, api-architect, typescript-expert.
+  Complete guide for building MCP servers for AI agents. Includes design principles,
+  4-phase build process, and evaluation framework.
+  Triggers on: build MCP, create MCP server, MCP development, MCP, Model Context Protocol, agent tools.
+  Coordinates with: api-architect, typescript-expert, mcp-management.
 metadata:
-  version: "1.0.0"
+  version: "2.0.0"
   category: "framework"
-  triggers: "build MCP, create MCP server, MCP development"
-  coordinates_with: "mcp-server, api-architect, typescript-expert"
+  triggers: "build MCP, create MCP server, MCP development, MCP, Model Context Protocol, agent tools"
+  coordinates_with: "api-architect, typescript-expert, mcp-management"
   success_metrics: "MCP server functional, 10 evaluation questions pass"
 ---
 
@@ -24,7 +25,7 @@ metadata:
 - Need end-to-end guidance
 - Need to create evaluations to test server
 
-> Use `mcp-server` for design principles, this skill for build process.
+> Design principles + build process in one skill. See `references/design-principles.md` for core MCP concepts.
 
 ---
 
@@ -87,6 +88,7 @@ Create 10 test questions that are:
 
 | File | When to Read |
 |------|--------------|
+| `references/design-principles.md` | MCP concepts, tool design, resource patterns |
 | `references/quickstart.md` | Getting started |
 | `references/python-implementation.md` | Python development |
 | `references/typescript-implementation.md` | TypeScript development |
@@ -109,7 +111,7 @@ Create 10 test questions that are:
 
 | Item | Type | Purpose |
 |------|------|---------|
-| `mcp-server` | Skill | MCP principles |
+| `mcp-management` | Skill | Use/discover MCP tools |
 | `api-architect` | Skill | API design |
 | `typescript-expert` | Skill | TS patterns |
 
