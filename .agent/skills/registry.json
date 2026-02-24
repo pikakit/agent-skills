@@ -1127,6 +1127,87 @@
                 "code-review"
             ],
             "success_metrics": "violations found, actionable fixes"
+        },
+        {
+            "name": "auth-patterns",
+            "category": "security",
+            "triggers": [
+                "auth",
+                "login",
+                "OAuth",
+                "JWT",
+                "RBAC",
+                "permissions",
+                "MFA",
+                "passkey",
+                "SSO"
+            ],
+            "coordinates_with": [
+                "api-architect",
+                "security-scanner",
+                "data-modeler"
+            ],
+            "success_metrics": "auth flow secure, tokens rotated, permissions enforced",
+            "references": [
+                "references/oauth2.md",
+                "references/jwt-deep.md",
+                "references/rbac-abac.md",
+                "references/mfa.md",
+                "references/session.md",
+                "references/passkey.md"
+            ]
+        },
+        {
+            "name": "caching-strategy",
+            "category": "architecture",
+            "triggers": [
+                "cache",
+                "Redis",
+                "CDN",
+                "service worker",
+                "SWR",
+                "memoization",
+                "TTL",
+                "invalidation"
+            ],
+            "coordinates_with": [
+                "perf-optimizer",
+                "api-architect",
+                "server-ops"
+            ],
+            "success_metrics": "cache hit rate >80%, latency reduced, invalidation working",
+            "references": [
+                "references/redis.md",
+                "references/cdn.md",
+                "references/browser-cache.md",
+                "references/application-cache.md"
+            ]
+        },
+        {
+            "name": "event-driven",
+            "category": "architecture",
+            "triggers": [
+                "event-driven",
+                "message queue",
+                "Kafka",
+                "RabbitMQ",
+                "pub/sub",
+                "CQRS",
+                "event sourcing",
+                "saga"
+            ],
+            "coordinates_with": [
+                "api-architect",
+                "system-design",
+                "caching-strategy"
+            ],
+            "success_metrics": "messages delivered, idempotent consumers, no data loss",
+            "references": [
+                "references/patterns.md",
+                "references/message-queues.md",
+                "references/pubsub.md",
+                "references/webhooks.md"
+            ]
         }
     ]
 }
