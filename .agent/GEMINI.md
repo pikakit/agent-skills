@@ -698,6 +698,43 @@ When invoking ANY sub-agent, MUST include:
 
 ---
 
+### 0.5-K: Auto-Learned Pattern Check (MANDATORY)
+
+> **Purpose:** AI MUST consult learned patterns before repeating known mistakes.
+
+#### When to Check
+
+**BEFORE any of these actions, read `.agent/skills/auto-learned/patterns/` for matches:**
+
+| Action | Check Files | Example |
+|--------|-------------|---------|
+| Running terminal commands | `shell-syntax-patterns.md` | PowerShell `&&` → use `;` |
+| Writing imports | `import-patterns.md` | Missing imports, wrong paths |
+| Fixing type errors | `type-patterns.md` | Type mismatches, property errors |
+| npm/git operations | `npm-patterns.md`, `git-patterns.md` | Known failures |
+| Any error you just caused | ALL pattern files | Prevent immediate repeat |
+
+#### Protocol
+
+```
+BEFORE executing command or writing code:
+1. Check if auto-learned/patterns/ exists
+2. Scan relevant {category}-patterns.md for matching context
+3. If match found → Apply the solution, do NOT repeat the mistake
+4. If no match → Proceed normally
+```
+
+#### Enforcement
+
+```
+IF action matches a learned pattern AND agent ignores it:
+  → VIOLATION: Agent repeated a known mistake
+  → auto-learner logs severity: HIGH
+  → Pattern occurrence incremented
+```
+
+> 🔴 **Rule:** Ignoring a learned pattern = SAME as ignoring a P0 rule.
+
 ## CRITICAL: AGENT & SKILL PROTOCOL (START HERE)
 
 > **MANDATORY:** You MUST read the appropriate agent file and its skills BEFORE performing any implementation. This is the highest priority rule.
