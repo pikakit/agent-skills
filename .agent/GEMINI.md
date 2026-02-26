@@ -724,16 +724,26 @@ BEFORE executing command or writing code:
 4. If no match → Proceed normally
 ```
 
-#### Enforcement
+#### Enforcement (Tiered — P2 Level)
+
+> **Priority:** P2 (Suggestion). Learned patterns are auto-generated and advisory.
+> Context may differ from when the pattern was learned. Use judgment.
+
+| Occurrence | Level | Action |
+|-----------|-------|--------|
+| 1st time ignoring pattern | 💡 **Log** | Note in console, increment occurrence count |
+| 2nd time same pattern | ⚠️ **Warn** | Re-read patterns/, apply if applicable |
+| 3+ same pattern | 📊 **Flag** | Mark as high-frequency, prioritize for skill generation |
 
 ```
-IF action matches a learned pattern AND agent ignores it:
-  → VIOLATION: Agent repeated a known mistake
-  → auto-learner logs severity: HIGH
-  → Pattern occurrence incremented
+IF action matches a learned pattern:
+  → SHOULD apply the solution (not MUST)
+  → If context differs → OK to skip, but log reason
+  → If same context AND ignored → increment + warn
 ```
 
-> 🔴 **Rule:** Ignoring a learned pattern = SAME as ignoring a P0 rule.
+> � **Rule:** Learned patterns are advisory (P2), not safety-critical (P0).
+> Treat them as "strong suggestions from past experience".
 
 ## CRITICAL: AGENT & SKILL PROTOCOL (START HERE)
 
