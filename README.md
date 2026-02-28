@@ -1,317 +1,300 @@
-# PikaKit
+<div align="center">
 
-> **Transform your AI Agent into a FAANG-level engineering team with one command**
+# ⚡ PikaKit
 
-[![npm](https://img.shields.io/badge/version-3.7.1-7c3aed?style=flat&colorA=18181b)](https://www.npmjs.com/package/pikakit)
-[![skills](https://img.shields.io/badge/skills-50-7c3aed?style=flat&colorA=18181b)](https://github.com/pikakit/agent-skills)
-[![agents](https://img.shields.io/badge/agents-25-7c3aed?style=flat&colorA=18181b)](https://github.com/pikakit/agent-skills)
-[![workflows](https://img.shields.io/badge/workflows-25-7c3aed?style=flat&colorA=18181b)](https://github.com/pikakit/agent-skills)
-[![JavaScript](https://img.shields.io/badge/100%25-JavaScript-F7DF1E?style=flat&colorA=18181b&logo=javascript)](https://github.com/pikakit/agent-skills)
-[![license](https://img.shields.io/badge/license-UNLICENSED-7c3aed?style=flat&colorA=18181b)](LICENSE)
+### Transform your AI Agent into a FAANG-level engineering team
+
+[![npm version](https://img.shields.io/badge/npm-v3.9.66-7c3aed?style=for-the-badge&logo=npm&logoColor=white&labelColor=18181b)](https://www.npmjs.com/package/pikakit)
+[![Skills](https://img.shields.io/badge/skills-67-06b6d4?style=for-the-badge&labelColor=18181b)](https://github.com/pikakit/agent-skills)
+[![Agents](https://img.shields.io/badge/agents-26-f59e0b?style=for-the-badge&labelColor=18181b)](https://github.com/pikakit/agent-skills)
+[![Workflows](https://img.shields.io/badge/workflows-26-10b981?style=for-the-badge&labelColor=18181b)](https://github.com/pikakit/agent-skills)
+[![JavaScript](https://img.shields.io/badge/100%25-JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black&labelColor=18181b)](https://github.com/pikakit/agent-skills)
+
+**Composable Skills · Coordinated Agents · Intelligent Execution**
+
+[Install](#-quick-install) · [Skills](#-skills-catalog-67) · [Workflows](#-workflows-26) · [Agents](#-multi-agent-coordination-26) · [Docs](#-links)
+
+</div>
 
 ---
 
-## ⚡ Quick Install
+## 🚀 Quick Install
 
 ```bash
 npx pikakit
 ```
 
-**What gets installed:**
+> One command installs **67 skills**, **26 workflows**, **26 agents**, and a complete AI operating system into your project.
 
-| Component | Count | Description |
-|-----------|-------|-------------|
-| **Skills** | 50 | FAANG-grade coding skills |
-| **Workflows** | 25 | `/think`, `/build`, `/autopilot`, etc. |
-| **Agents** | 25 | Specialist AI agents |
-| **Rules** | GEMINI.md | AI behavior configuration |
-| **Scripts** | 25 | JavaScript automation scripts |
-| **Commands** | `kit` | CLI management tool |
-| **Commands** | `agent` (optional) | Interactive learning dashboard |
+### What You Get
 
----
-
-## 🎯 What Makes This Different
-
-| Feature | PikaKit | Generic AI | Other Tools |
-|---------|-----------------|------------|-------------|
-| **Auto-Accept Workflow** | ✅ 1 approval → Full execution | ❌ | ❌ |
-| **Multi-Agent Coordination** | ✅ 25 specialists in parallel | 1 generic | 1-3 |
-| **Self-Learning** | ✅ Learns from mistakes | ❌ | ❌ |
-| **100% JavaScript** | ✅ No Python required | Mixed | Python |
-| **Project-Specific Skills** | ✅ Create your own | ❌ | Partial |
-| **Safety Protocol** | ✅ TIER -1 (no data loss) | ❌ | ❌ |
-| **Token Efficiency** | ✅ 80% reduction | Baseline | 30% |
-
-### 3 Unique Selling Points
-
-1. **🤖 Auto-Accept Execution** - Approve plan once, agent runs to completion without interruptions
-2. **🧠 Self-Learning Memory** - AI remembers mistakes and never repeats them
-3. **🛠️ Project-Specific Skills** - Create custom skills that teach AI YOUR project's conventions
+| Component | Count | Highlights |
+|-----------|:-----:|------------|
+| **Skills** | 67 | Architecture, Frontend, Backend, Security, DevOps, AI, Mobile, Testing |
+| **Workflows** | 26 | `/think` · `/build` · `/autopilot` · `/studio` · `/validate` · and more |
+| **Agents** | 26 | 21 domain specialists + 5 meta-agents for coordination |
+| **Rules** | `GEMINI.md` | AI behavior configuration — the Supreme Law |
+| **Scripts** | 6 | Checklist, verify, preview, session management |
+| **CLI** | `kit` | Skill management · `agent` (optional interactive dashboard) |
 
 ---
 
-## 🚀 Quick Start (3 Steps)
+## 🎯 Why PikaKit
 
-### Step 1: Install
+<table>
+<tr>
+<td width="33%" align="center">
+
+### 🤖 Auto-Accept
+Approve plan **once** → agent runs to completion with **zero interruptions**
+
+</td>
+<td width="33%" align="center">
+
+### 🧠 Self-Learning
+AI **remembers mistakes** from `lessons-learned.yaml` and never repeats them
+
+</td>
+<td width="33%" align="center">
+
+### 🛠️ Custom Skills
+Create **project-specific skills** that teach AI your conventions
+
+</td>
+</tr>
+</table>
+
+| | PikaKit | Generic AI | Other Tools |
+|---|:---:|:---:|:---:|
+| **Auto-Accept Workflow** | ✅ | ❌ | ❌ |
+| **Multi-Agent Coordination** | 26 specialists | 1 generic | 1–3 |
+| **Self-Learning Memory** | ✅ | ❌ | ❌ |
+| **100% JavaScript** | ✅ | Mixed | Python |
+| **Safety Protocol** | TIER -1 | ❌ | ❌ |
+| **Token Efficiency** | ~80% reduction | Baseline | ~30% |
+
+---
+
+## ⚡ Quick Start
+
+### 1. Install
 
 ```bash
 npx pikakit
 ```
 
-**During installation:**
-- Choose **Project** (local `.agent/`) or **Global** (`~/.gemini/`)
-- Choose **Yes/No** for AutoLearn CLI (optional - does not affect core functionality)
+Choose **Project** (`.agent/`) or **Global** (`~/.gemini/`) scope. Optionally install AutoLearn CLI.
 
-### Step 2: Use Commands
+### 2. Manage Skills
 
 ```bash
-# Manage skills
 kit list                    # List all skills
-kit validate                # Validate skill structure
 kit info <skill-name>       # Show skill details
-
-# Interactive dashboard (if AutoLearn installed)
-agent                       # Launch Smart CLI
+kit validate                # Validate skill structure
+kit doctor                  # System health check
 ```
 
-### Step 3: Use Workflows
+### 3. Run Workflows
 
 ```bash
-/think authentication system    # Brainstorm 3+ approaches
-/plan                           # Generate detailed plan
-/build                          # Implement with multi-agent
-/autopilot                      # Full autonomous execution
-/validate                       # Run tests automatically
+/think auth system          # Brainstorm 3+ approaches
+/plan                       # Generate detailed plan
+/build                      # Multi-agent implementation
+/autopilot                  # Full autonomous execution
+/validate                   # Run test suite
+/studio                     # UI design with 50+ styles
 ```
 
 ---
 
-## 📦 Complete Installation Contents
-
-When you run `npx -y pikakit pikakit-agent-skills`, you get:
-
-```
-your-project/
-├── .agent/
-│   ├── GEMINI.md                      # AI Rules (Supreme Law)
-│   ├── ARCHITECTURE.md                # System Architecture
-│   ├── CONTINUOUS_EXECUTION_POLICY.md # Autopilot Rules
-│   ├── WORKFLOW_CHAINS.md             # Workflow Patterns
-│   │
-│   ├── skills/                        # 50 Skills
-│   │   ├── skill-generator/           # FAANG-grade skill generation
-│   │   ├── react-architect/           # React best practices
-│   │   ├── typescript-expert/         # TypeScript mastery
-│   │   ├── debug-pro/                 # Advanced debugging
-│   │   ├── studio/                    # 50+ design styles
-│   │   └── ...
-│   │
-│   ├── workflows/                     # 25 Workflows
-│   │   ├── think.md                   # /think
-│   │   ├── build.md                   # /build
-│   │   ├── autopilot.md               # /autopilot
-│   │   └── ...
-│   │
-│   ├── agents/                        # 25 Specialist Agents
-│   │   ├── frontend-specialist.md
-│   │   ├── backend-specialist.md
-│   │   ├── security-auditor.md
-│   │   └── ...
-│   │
-│   ├── knowledge/                     # Self-Learning Memory
-│   │   └── lessons-learned.yaml
-│   │
-│   ├── config/                        # Configuration
-│   ├── scripts-js/                    # 25 JS Scripts
-│   └── metrics/                       # Performance Tracking
-│
-├── kit.cmd / kit                      # CLI wrapper
-├── agent.cmd / agent                  # AutoLearn wrapper (optional)
-└── package.json                       # npm scripts added
-```
-
----
-
-
----
-
-## 🤖 Auto-Accept Workflow (Zero Interruption)
-
-> **User approves PLAN.md once → Agent executes everything automatically**
-
-### Concept
-
-Traditional AI workflow:
-```
-User → Command → AI asks permission → User approves → AI runs → AI asks again → ...
-```
-
-PikaKit with Auto-Accept:
-```
-User → /autopilot → PLAN.md → ⛔ ONE APPROVAL → Agent runs ALL → ✅ DONE
-```
-
-### Real Example
-
-**User Request:**
-```
-/autopilot Build FAANG-quality TodoList with Zustand + TypeScript + Tailwind
-
-AUTO-APPROVE: After PLAN.md, proceed automatically.
-```
-
-**Result:** 
-- **1 user approval** → **15+ auto-executed operations** → **Complete app in 8 minutes**
-
----
-
-## 📜 Workflows Reference (25)
-
-| Command | Description | Agents Used |
-|---------|-------------|-------------|
-| `/think` | Brainstorm 3+ approaches | project-planner |
-| `/plan` | Generate detailed plan.md | project-planner, explorer |
-| `/build` | Full-stack implementation | 3-7 agents |
-| `/autopilot` | Multi-agent auto-execution | 3+ agents |
-| `/validate` | Run test suite | test-engineer |
-| `/diagnose` | Root cause debugging | debugger, explorer |
-| `/launch` | Production deployment | devops, security |
-| `/inspect` | Security code review | security-auditor |
-| `/chronicle` | Auto-documentation | documentation-writer |
-| `/studio` | UI design (50+ styles) | frontend-specialist |
-| `/stage` | Preview server control | devops-engineer |
-| `/forge` | Create custom skills | - |
-| `/pulse` | Project health check | - |
-| `/api` | API development | backend, security |
-| `/mobile` | Mobile app development | mobile-developer |
-| `/game` | Game development | game-engine |
-| `/monitor` | Observability setup | observability |
-| `/optimize` | Performance optimization | performance-optimizer |
-| `/benchmark` | Load testing | - |
-| `/diagram` | Auto-generate diagrams | - |
-| `/flags` | Feature flag management | - |
-| `/alert` | Alert configuration | - |
-| `/boost` | Enhance existing code | varies |
-| `/auto-accept-process` | Autonomous workflow | all |
-| `/agent` | Smart CLI dashboard | - |
-| `/cook` | **Technical:** Direct implementation | code-craft |
-| `/fix` | **Technical:** Quick error remediation | debug-pro |
-
----
-
-## 🧩 Skills Catalog (50)
+## 🧩 Skills Catalog (67)
 
 ### 🏗️ Architecture & Planning
 
 | Skill | Description |
 |-------|-------------|
-| `app-scaffold` | Full-stack app scaffolding |
-| `project-planner` | Task planning, breakdown |
-| `idea-storm` | Socratic questioning, brainstorming |
-| `lifecycle-orchestrator` | End-to-end task management |
+| `app-scaffold` | Full-stack app scaffolding from natural language |
+| `project-planner` | Task planning with dependency graph |
+| `idea-storm` | Socratic questioning & brainstorming |
+| `lifecycle-orchestrator` | End-to-end task lifecycle management |
+| `system-design` | Architecture decisions & ADR |
+| `context-engineering` | Token optimization & agent architecture |
 
-### 🎨 Frontend & UI
+### 🎨 Frontend & Design
 
 | Skill | Description |
 |-------|-------------|
-| `react-architect` | React hooks, state, performance |
-| `nextjs-pro` | App Router, Server Components |
-| `tailwind-kit` | Tailwind CSS utilities |
-| `studio` | 50+ styles, 97 palettes, 57 fonts |
+| `react-architect` | Modern React patterns, hooks, composition |
+| `nextjs-pro` | App Router, RSC, 60+ optimization rules |
+| `frontend-design` | Anti-AI-slop production-grade interfaces |
+| `frontend-development` | React + TypeScript + TanStack Query + MUI |
+| `design-system` | Color theory, typography, UX psychology |
+| `studio` | 50+ styles, 97 palettes, 57 font pairings |
+| `tailwind-kit` | Tailwind CSS v4 patterns |
+| `web-design-guidelines` | WCAG, semantic HTML, accessibility |
 
 ### ⚙️ Backend & API
 
 | Skill | Description |
 |-------|-------------|
-| `api-architect` | REST, GraphQL, tRPC |
-| `nodejs-pro` | Node.js async patterns |
-| `data-modeler` | Schema design, Prisma |
+| `api-architect` | REST, GraphQL, tRPC design |
+| `nodejs-pro` | Hono/Fastify/Express/NestJS patterns |
+| `python-pro` | FastAPI, Django, Flask |
+| `data-modeler` | Schema design, Prisma/Drizzle |
+| `auth-patterns` | OAuth2, JWT, RBAC/ABAC, MFA, Passkeys |
+| `payment-patterns` | SePay, Polar, subscription lifecycle |
+| `caching-strategy` | Redis, CDN, service workers, SWR |
+| `event-driven` | Kafka, RabbitMQ, CQRS, saga patterns |
 
 ### 🔐 Security
 
 | Skill | Description |
 |-------|-------------|
-| `security-scanner` | OWASP, vulnerability detection |
-| `offensive-sec` | Offensive security, pentesting |
-| `code-constitution` | Core code rules (SUPREME LAW) |
+| `security-scanner` | OWASP 2025, supply chain security |
+| `offensive-sec` | Red team tactics, MITRE ATT&CK |
+| `code-constitution` | Constitutional governance (Supreme Law) |
+| `mobile-security-coder` | Mobile-specific security patterns |
 
 ### 🧪 Testing & Quality
 
 | Skill | Description |
 |-------|-------------|
-| `test-architect` | Jest, Vitest, strategies |
-| `e2e-automation` | Playwright automation |
-| `code-quality` | Linting, validation |
-| `problem-checker` | IDE problem detection |
+| `test-architect` | Unit, integration, E2E strategies |
+| `test-driven-dev` | RED-GREEN-REFACTOR cycle |
+| `e2e-automation` | Playwright, visual testing, deep audit |
+| `code-craft` | Clean code, SRP, DRY, KISS |
+| `code-review` | Linting, static analysis, PR review |
+| `problem-checker` | IDE problem detection & auto-fix |
 
-### 🐛 Debugging & Recovery
+### 🐛 Debugging
 
 | Skill | Description |
 |-------|-------------|
-| `debug-pro` | 4-phase debugging + frameworks |
-| `state-rollback` | Save/restore checkpoints |
+| `debug-pro` | 4-phase methodology + defense-in-depth |
+| `chrome-devtools` | Puppeteer CLI, screenshots, Core Web Vitals |
+| `knowledge-graph` | AST parsing, find-usages, impact analysis |
 
 ### 🤖 AI & Agents
 
 | Skill | Description |
 |-------|-------------|
-| `agent-patterns` | Multi-agent design patterns |
-| `skill-generator` | FAANG-grade skill generation |
-| `self-evolution` | Knowledge evolution |
+| `google-adk-python` | Google Agent Development Kit |
+| `skill-generator` | Auto-generate skills from patterns |
+| `auto-learned` | Hierarchical auto-learned patterns |
 | `execution-reporter` | Agent routing transparency |
+| `mcp-builder` | Build MCP servers for AI agents |
+| `mcp-management` | Discover & execute MCP tools |
+| `ai-artist` | Prompt engineering for LLM & image AI |
+| `scout` | Fast parallel codebase exploration |
 
-### ☁️ DevOps & Infra
+### ☁️ DevOps & Infrastructure
 
 | Skill | Description |
 |-------|-------------|
-| `cicd-pipeline` | CI/CD, Docker, K8s |
-| `gitops-workflow` | ArgoCD/Flux GitOps |
-| `observability` | OpenTelemetry, monitoring |
+| `cicd-pipeline` | Safe deployments, rollback strategies |
+| `gitops` | ArgoCD/Flux GitOps workflows |
+| `git-workflow` | Conventional commits, secret detection |
+| `server-ops` | Process management, scaling |
 | `vercel-deploy` | 1-click Vercel deployment |
+| `observability` | OpenTelemetry, unified logs/metrics/traces |
+| `perf-optimizer` | Core Web Vitals, bundle analysis |
 
-### 📱 Specialized
+### 📱 Mobile & Specialized
 
 | Skill | Description |
 |-------|-------------|
-| `mobile-design` | Mobile UI/UX patterns |
-| `mobile-developer` | React Native, Flutter |
-| `mobile-security-coder` | Mobile security |
-| `game-development` | Game logic, mechanics |
-| `typescript-expert` | Type-level programming |
+| `mobile-developer` | React Native, Flutter, native |
+| `mobile-design` | Mobile-first UI/UX patterns |
+| `mobile-first` | Mobile routing & publishing |
+| `game-development` | Game logic & mechanics |
+| `remotion` | Programmatic video creation in React |
+| `shader` | GLSL fragment shaders |
+| `typescript-expert` | Type-level programming, monorepo |
+| `shell-script` | Bash/Linux terminal patterns |
 
-[See full catalog →](https://github.com/pikakit/agent-skills/tree/main/.agent/skills)
+### 📝 Documentation & Content
+
+| Skill | Description |
+|-------|-------------|
+| `doc-templates` | README, API docs, ADR templates |
+| `copywriting` | AIDA, PAS, conversion formulas |
+| `seo-optimizer` | SEO, E-E-A-T, Core Web Vitals |
+| `geo-spatial` | GEO for AI search engines |
+| `markdown-novel-viewer` | Markdown preview server |
+| `mermaid-editor` | Live Mermaid diagram editor |
+| `plans-kanban` | Visual Kanban dashboard |
+| `media-processing` | FFmpeg, ImageMagick, RMBG |
+| `agent-browser` | AI-optimized browser automation |
 
 ---
 
-## 🤝 Multi-Agent Coordination
+## 📜 Workflows (26)
 
-> **25 specialist agents working together like a FAANG engineering team**
+| Command | Purpose | Agents |
+|---------|---------|:------:|
+| `/think` | Brainstorm 3+ approaches | planner |
+| `/plan` | Generate detailed `PLAN.md` | planner, explorer |
+| `/build` | Full-stack implementation | 3–7 |
+| `/autopilot` | Multi-agent autonomous execution | 3+ |
+| `/cook` | Direct implementation from instructions | code-craft |
+| `/fix` | Quick error remediation | debug-pro |
+| `/validate` | Test suite with coverage | qa |
+| `/diagnose` | Root cause debugging | debug |
+| `/inspect` | Defense-in-depth code review | security |
+| `/studio` | UI design (50+ styles, 97 palettes) | frontend |
+| `/api` | API development with OpenAPI docs | backend |
+| `/mobile` | Mobile app development | mobile |
+| `/game` | Game development | gamedev |
+| `/chronicle` | Auto-documentation | docs |
+| `/diagram` | Auto-generate architecture diagrams | — |
+| `/launch` | Zero-downtime deployment | devops |
+| `/stage` | Dev sandbox & Docker Compose | devops |
+| `/monitor` | Observability setup | — |
+| `/optimize` | Performance optimization | perf |
+| `/benchmark` | Load testing (k6/Artillery) | — |
+| `/flags` | Feature flag management | — |
+| `/alert` | Alert rules & incident response | — |
+| `/boost` | Enhance existing code | varies |
+| `/pulse` | Project health dashboard | — |
+| `/auto-accept-process` | Full autonomous workflow | all |
+| `/think` | Ideation with alternatives | planner |
 
-### Agent Categories
+---
 
-**Meta-Agents (Runtime Control):**
+## 🤝 Multi-Agent Coordination (26)
+
+> **21 domain specialists + 5 meta-agents** working together like a FAANG engineering team.
+
+### Meta-Agents (Runtime Control)
 
 | Agent | Role |
 |-------|------|
-| `orchestrator` | Strategic coordination |
-| `assessor` | Risk evaluation |
-| `recovery` | State management |
-| `critic` | Conflict resolution |
-| `learner` | Continuous improvement |
+| `orchestrator` | Strategic coordination & execution order |
+| `assessor` | Risk evaluation before risky operations |
+| `recovery` | State management & checkpoint/restore |
+| `critic` | Conflict resolution between agents |
+| `learner` | Continuous improvement from outcomes |
 
-**Domain Agents (20):**
+### Domain Agents (21)
 
-| Domain | Agent | Skills Used |
-|--------|-------|-------------|
-| Web UI | `frontend-specialist` | react-architect, tailwind-kit |
-| API | `backend-specialist` | api-architect, nodejs-pro |
-| Database | `database-architect` | data-modeler, prisma-expert |
-| Security | `security-auditor` | security-scanner, offensive-sec |
-| Testing | `test-engineer` | test-architect, e2e-automation |
-| DevOps | `devops-engineer` | cicd-pipeline, server-ops |
-| Mobile | `mobile-developer` | mobile-design |
-| Debug | `debugger` | debug-pro |
+| Domain | Agent | Key Skills |
+|--------|-------|------------|
+| Frontend | `frontend` | react-architect, tailwind-kit, studio |
+| Backend | `backend` / `api` | api-architect, nodejs-pro |
+| Database | `database` | data-modeler |
+| Security | `security` / `pentest` | security-scanner, offensive-sec |
+| Testing | `testing` / `qa` | test-architect, e2e-automation |
+| DevOps | `devops` | cicd-pipeline, server-ops |
+| Mobile | `mobile` | mobile-developer, mobile-design |
+| Debug | `debug` | debug-pro |
+| Performance | `perf` | perf-optimizer |
+| Planning | `planner` / `lead` | project-planner, idea-storm |
+| Documentation | `docs` | doc-templates, chronicle |
+| SEO | `seo` | seo-optimizer |
+| Game Dev | `gamedev` | game-development |
+| Exploration | `explorer` / `scout` | scout, knowledge-graph |
+| Legacy | `legacy` | migration patterns |
+| Product | `po` / `pm` | requirements, UX |
 
 ---
 
@@ -319,62 +302,87 @@ AUTO-APPROVE: After PLAN.md, proceed automatically.
 
 > **Safety > Recoverability > Correctness > Cleanliness > Convenience**
 
-### Core Rules
-
 | Rule | Description |
 |------|-------------|
-| **NO DELETE** | Never delete files without explicit user confirmation |
-| **WRITE-ONLY DEFAULT** | Create new files, don't modify without approval |
-| **VERSIONING** | All updates use `.v2`, `.new`, `.proposed` suffix |
-| **ROLLBACK GUARANTEE** | Previous version always recoverable |
-| **HUMAN CHECKPOINT** | Critical changes require explicit approval |
-
-### Forbidden Operations (Always Blocked)
-
-```bash
-# These NEVER auto-execute, regardless of settings:
-rm -rf *
-git push --force
-DROP DATABASE
-Remove-Item -Recurse
-```
+| 🚫 **No Delete** | Never delete files without explicit user confirmation |
+| ✍️ **Safe Modify** | Read/Create/Modify allowed; Delete/Overwrite forbidden |
+| 🗂️ **Git Versioning** | All risky changes get `git stash` or checkpoint commit |
+| 🔁 **Rollback Guarantee** | Previous version always recoverable via Git |
+| ⛔ **Human Checkpoint** | Core logic, auth, config, architecture require explicit approval |
+| 🛠️ **Failure Recovery** | 6-level auto-recovery before escalating to user |
 
 ---
 
 ## 🧠 Self-Learning System
 
-> **AI learns from every mistake and NEVER repeats it**
-
-### How It Works
+> AI learns from every mistake and **never repeats it**.
 
 ```
-Error Detected → skill-generator → Root Cause Analysis → Lesson Extracted
-                                                                    ↓
-Future Prevention ← Stored in lessons-learned.yaml ← Pattern Documented
+Error Detected → Root Cause Analysis → Lesson Extracted → lessons-learned.yaml
+                                                                ↓
+Future Prevention ← Pattern Matching ← Auto-Learned Patterns ←─┘
 ```
 
-### Using the Learning System
-
-**Teach AI from your feedback:**
+**Teach the AI from your feedback:**
 
 ```
-User: "Đây là lỗi nghiêm trọng, bạn đã tạo file mới thay vì rename"
-
-AI: 📚 Đã học: [LEARN-003] - When rebranding: copy original first, 
-    don't create new simplified file
+User: "This is a bug — you created a new file instead of renaming"
+  AI: 📚 Learned: [LEARN-003] - Use rename, don't create new simplified files
 ```
 
-**View all learned lessons (if AutoLearn CLI installed):**
+**View learned lessons:**
 
 ```bash
-agent → Learn → View All
+agent                       # Launch interactive dashboard
+agent learn                 # Teach new patterns
+agent recall                # Scan for violations
+agent stats                 # View statistics
 ```
 
 ---
 
-## 🗂️ CLI Commands
+## 📦 Project Structure
 
-### `kit` Command (Always Installed)
+```
+your-project/
+├── .agent/
+│   ├── GEMINI.md                         # AI Rules (Supreme Law)
+│   ├── ARCHITECTURE.md                   # System Architecture
+│   │
+│   ├── skills/                           # 67 Skills
+│   │   ├── react-architect/
+│   │   ├── debug-pro/
+│   │   ├── studio/
+│   │   └── ...
+│   │
+│   ├── workflows/                        # 26 Workflows
+│   │   ├── think.md
+│   │   ├── build.md
+│   │   ├── autopilot.md
+│   │   └── ...
+│   │
+│   ├── agents/                           # 26 Specialist Agents
+│   │   ├── frontend.md
+│   │   ├── backend.md
+│   │   ├── security.md
+│   │   └── ...
+│   │
+│   ├── knowledge/                        # Self-Learning Memory
+│   │   └── lessons-learned.yaml
+│   │
+│   ├── scripts-js/                       # Automation Scripts
+│   ├── config/                           # Configuration
+│   └── metrics/                          # Performance Tracking
+│
+├── kit.cmd / kit                         # CLI wrapper
+└── agent.cmd / agent                     # AutoLearn wrapper (optional)
+```
+
+---
+
+## 🗂️ CLI Reference
+
+### `kit` (Always Installed)
 
 ```bash
 kit list                    # List all installed skills
@@ -384,7 +392,7 @@ kit doctor                  # Check system health
 kit cache status            # View cache usage
 ```
 
-### `agent` Command (Optional - AutoLearn)
+### `agent` (Optional — AutoLearn Dashboard)
 
 ```bash
 agent                       # Launch interactive dashboard
@@ -394,55 +402,33 @@ agent stats                 # View statistics
 agent watch                 # Real-time monitoring
 ```
 
-> **Note:** Not installing AutoLearn does NOT affect workflows, skills, or agents. The `agent` command is purely a convenience tool for interactive learning.
-
----
-
-## 📈 Version History
-
-**v3.7.1 (Current)**
-- ✅ FAANG-Grade Structure Optimization
-- ✅ Removed duplicate CLI (lib/agent-cli)
-- ✅ Fixed all package counts
-- ✅ 50 skills, 25 workflows, 25 agents
-- ✅ Kit CLI dependencies fixed
-
-**v3.7.0**
-- ✅ Added vercel-deploy skill (1-click Vercel deployment)
-
-**v3.2.5**
-
-**v3.2.0**
-- All master scripts migrated to JavaScript
-- TypeScript definitions for IDE support
-- ~10% faster execution
-
-**v3.1.0**
-- Added SelfEvolution v4.0 (auto-learning system)
-- Enhanced agent routing (SmartRouter skill)
-
-See [CHANGELOG.md](CHANGELOG.md) for full history.
+> **Note:** Not installing AutoLearn does **not** affect workflows, skills, or agents.
 
 ---
 
 ## 🔗 Links
 
-- [GitHub - agent-skills](https://github.com/pikakit/agent-skills)
-- [GitHub - pikakit](https://github.com/pikakit/pikakit)
-- [npm - pikakit](https://www.npmjs.com/package/pikakit)
-- [Issues & Feature Requests](https://github.com/pikakit/agent-skills/issues)
+| | |
+|---|---|
+| 📦 **npm** | [npmjs.com/package/pikakit](https://www.npmjs.com/package/pikakit) |
+| 🐙 **GitHub (Skills)** | [github.com/pikakit/agent-skills](https://github.com/pikakit/agent-skills) |
+| 🐙 **GitHub (CLI)** | [github.com/pikakit/pikakit](https://github.com/pikakit/pikakit) |
+| 🐛 **Issues** | [github.com/pikakit/agent-skills/issues](https://github.com/pikakit/agent-skills/issues) |
 
 ---
 
 ## 📄 License
 
-UNLICENSED - Commercial use only. See [LICENSE](LICENSE) for details.
+UNLICENSED — See [LICENSE](LICENSE) for details.
 
 ---
 
-**⚡ PikaKit v3.7.1**
-*Composable Skills. Coordinated Agents. Intelligent Execution.*
+<div align="center">
 
----
+**⚡ PikaKit v3.9.66**
 
-**⭐ Star the repo • Install now • Build something great**
+*Composable Skills · Coordinated Agents · Intelligent Execution*
+
+**[⭐ Star](https://github.com/pikakit/agent-skills) · [Install Now](#-quick-install) · Build Something Great**
+
+</div>

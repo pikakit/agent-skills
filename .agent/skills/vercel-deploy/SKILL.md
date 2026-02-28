@@ -150,4 +150,4 @@ Deployment failed due to network restrictions. To fix this:
 
 ---
 
-⚡ PikaKit v3.2.0
+⚡ PikaKit v3.9.66

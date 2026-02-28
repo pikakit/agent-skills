@@ -85,4 +85,4 @@ const portal = await polar.customers.getPortalUrl({
 
 ---
 
-⚡ PikaKit v3.2.0
+⚡ PikaKit v3.9.66

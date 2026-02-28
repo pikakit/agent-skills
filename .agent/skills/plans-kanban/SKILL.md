@@ -195,4 +195,4 @@ curl http://localhost:3500/api/plans | jq '.plans[] | select(.status == "in-prog
 
 ---
 
-⚡ PikaKit v3.2.0
+⚡ PikaKit v3.9.66

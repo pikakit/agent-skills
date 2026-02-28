@@ -137,4 +137,4 @@ await db.processedEvents.create({ data: { eventId: event.id } });
 
 ---
 
-⚡ PikaKit v3.2.0
+⚡ PikaKit v3.9.66

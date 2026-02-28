@@ -117,4 +117,4 @@ Create 10 test questions that are:
 
 ---
 
-⚡ PikaKit v3.2.0
+⚡ PikaKit v3.9.66

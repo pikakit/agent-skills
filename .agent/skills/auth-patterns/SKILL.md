@@ -129,4 +129,4 @@ What type of application?
 
 ---
 
-⚡ PikaKit v3.2.0
+⚡ PikaKit v3.9.66
