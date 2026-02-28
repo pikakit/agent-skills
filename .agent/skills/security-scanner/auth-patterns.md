@@ -127,4 +127,4 @@ const hashedToken = crypto.createHash('sha256').update(token).digest('hex');
 
 ---
 
-⚡ PikaKit v3.9.67
+⚡ PikaKit v3.9.68
