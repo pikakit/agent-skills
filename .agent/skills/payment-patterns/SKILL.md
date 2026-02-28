@@ -155,4 +155,4 @@ POLAR_WEBHOOK_SECRET=your_webhook_secret
 
 ---
 
-⚡ PikaKit v3.9.66
+⚡ PikaKit v3.9.67

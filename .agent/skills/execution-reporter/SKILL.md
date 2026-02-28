@@ -46,7 +46,7 @@ metadata:
 
 ```
 ┌─────────────────────────────────────────────────────────────────┐
-│  🤖 PikaKit v3.9.66                                              │
+│  🤖 PikaKit v3.9.67                                              │
 ├─────────────────────────────────────────────────────────────────┤
 │  📋 Task: {task_description}                                    │
 │                                                                 │
@@ -73,7 +73,7 @@ metadata:
 │  Duration: {time}s                                              │
 │  Files: {count} created/modified                                │
 ├─────────────────────────────────────────────────────────────────┤
-│  ⚡ PikaKit v3.9.66                                              │
+│  ⚡ PikaKit v3.9.67                                              │
 │  Precision-Orchestrated Agents and Workflows.                   │
 └─────────────────────────────────────────────────────────────────┘
 ```
@@ -111,7 +111,7 @@ Location: `.agent/config/notification-config.json`
 
 ### Design Task
 ```
-🤖 PikaKit v3.9.66
+🤖 PikaKit v3.9.67
 📋 Task: Design fintech dashboard
 ◆ Agent: @frontend-specialist
 ◇ Skills: studio, code-craft
@@ -120,7 +120,7 @@ Location: `.agent/config/notification-config.json`
 
 ### Multi-Agent Task
 ```
-🤖 PikaKit v3.9.66
+🤖 PikaKit v3.9.67
 📋 Task: Build full-stack app
 ◆ Lead: @orchestrator
 ◇ Specialists: @frontend, @backend, @security
@@ -148,5 +148,5 @@ Location: `.agent/config/notification-config.json`
 
 ---
 
-⚡ PikaKit v3.9.66
+⚡ PikaKit v3.9.67
 Precision-Orchestrated Agents and Workflows.

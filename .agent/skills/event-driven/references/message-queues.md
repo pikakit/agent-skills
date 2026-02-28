@@ -228,4 +228,4 @@ async function processIdempotent(event: DomainEvent) {
 
 ---
 
-⚡ PikaKit v3.9.66
+⚡ PikaKit v3.9.67
