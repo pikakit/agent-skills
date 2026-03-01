@@ -9,77 +9,79 @@ metadata:
   version: "2.0.0"
   category: "mobile-games"
   triggers: "React Native, Flutter, iOS, Android, mobile app"
+  success_metrics: "framework selected, architecture matched, security checklist passed"
   coordinates_with: "mobile-first, mobile-design, perf-optimizer"
-  success_metrics: "app builds, no crashes, store approved"
 ---
 
-# Mobile Developer
+# Mobile Developer — Cross-Platform & Native Expert
 
-> **Purpose:** Cross-platform and native mobile development expert.
-
----
-
-## When to Use This Skill
-
-- Building React Native, Flutter, or native iOS/Android apps
-- Implementing mobile features (auth, push, payments)
-- Optimizing mobile app performance
-- Preparing for App Store/Play Store submission
+> 4 frameworks. 4 architectures. 4 test levels. 6 security items. 60fps target.
 
 ---
 
-## Framework Decision
+## When to Use
+
+| Situation | Action |
+|-----------|--------|
+| Choose mobile framework | Framework selection tree |
+| Design app architecture | Architecture routing |
+| Plan testing strategy | 4-level test plan |
+| Security compliance | OWASP MASVS checklist |
+| Store submission | ASO checklist |
+
+---
+
+## System Boundaries
+
+| Owned by This Skill | NOT Owned |
+|---------------------|-----------|
+| Framework selection (4 options) | Mobile design (→ mobile-design) |
+| Architecture routing (4 patterns) | Mobile orchestration (→ mobile-first) |
+| Testing strategy (4 levels) | Security code review (→ mobile-security-coder) |
+| Security checklist (6 items) | Performance profiling (→ perf-optimizer) |
+
+**Expert decision skill:** Produces recommendations and checklists. Does not write code.
+
+---
+
+## Framework Selection (Deterministic)
 
 | Need | Framework |
 |------|-----------|
-| OTA updates, rapid iteration | React Native + Expo |
-| Pixel-perfect custom UI | Flutter |
-| Deep iOS features | SwiftUI |
-| Deep Android features | Kotlin + Compose |
+| OTA updates, rapid iteration | **React Native + Expo** |
+| Pixel-perfect custom UI | **Flutter** |
+| Deep iOS platform features | **SwiftUI** |
+| Deep Android platform features | **Kotlin + Compose** |
+| Cross-platform, no special needs | **React Native + Expo** (default) |
 
 ---
 
-## Architecture Patterns
+## Architecture Routing (Deterministic)
 
-| Pattern | Use When |
-|---------|----------|
-| **Clean Architecture** | Complex apps, team scaling |
-| **MVVM** | UI-driven apps |
-| **BLoC/Redux** | Complex state management |
-| **Repository** | Data abstraction |
+| Context | Pattern |
+|---------|---------|
+| Complex app + large team (6+) | **Clean Architecture** |
+| UI-driven app, moderate complexity | **MVVM** |
+| Complex state management | **BLoC / Redux** |
+| Data abstraction needed | **Repository** |
 
 ---
 
-## Core Capabilities
+## Performance Targets (Fixed)
 
-### Cross-Platform
-- React Native New Architecture (Fabric, TurboModules, JSI)
-- Flutter 3.x with Dart 3 null safety
-- Expo SDK 50+ with EAS services
-
-### Native Integration
-- Swift/SwiftUI for iOS, Kotlin/Compose for Android
-- Camera, sensors, hardware APIs
-- Background processing, push notifications
-
-### Performance
-- Startup time optimization
-- Memory management, leak prevention
-- 60fps animation maintenance
-- List virtualization for large datasets
-
-### Data & Sync
-- Offline-first with SQLite, Realm, Hive
-- GraphQL/REST with caching
-- Real-time sync with WebSockets/Firebase
-- Conflict resolution patterns
+| Target | Value |
+|--------|-------|
+| Animation framerate | 60fps |
+| App startup (cold) | < 2,000 ms |
+| List rendering | Virtualized (FlatList / ListView) |
+| Memory leaks | Zero (enforce cleanup) |
 
 ---
 
 ## Platform Services
 
 | Service | Technologies |
-|---------|--------------|
+|---------|-------------|
 | Push | FCM, APNs |
 | Auth | OAuth, Biometric, Social |
 | Payments | Stripe, Apple Pay, Google Pay |
@@ -88,7 +90,7 @@ metadata:
 
 ---
 
-## Testing Strategy
+## Testing Strategy (4 Levels)
 
 | Level | Tools |
 |-------|-------|
@@ -99,18 +101,7 @@ metadata:
 
 ---
 
-## DevOps & Deployment
-
-| Task | Tools |
-|------|-------|
-| CI/CD | Bitrise, GitHub Actions, Codemagic |
-| Automation | Fastlane |
-| OTA Updates | CodePush, EAS Update |
-| Beta Testing | TestFlight, Internal App Sharing |
-
----
-
-## Security Checklist
+## Security Checklist (OWASP MASVS — 6 Items)
 
 - [ ] OWASP MASVS compliance
 - [ ] Certificate pinning
@@ -121,35 +112,28 @@ metadata:
 
 ---
 
-## App Store Optimization
+## Error Taxonomy
 
-- [ ] Metadata optimization
-- [ ] Screenshots and preview videos
-- [ ] A/B testing store listings
-- [ ] Privacy nutrition labels
-- [ ] Bundle size optimization
+| Code | Recoverable | Trigger |
+|------|-------------|---------|
+| `ERR_INVALID_REQUEST_TYPE` | No | Request type not supported |
+| `ERR_UNKNOWN_PLATFORM` | Yes | Platform not ios/android/both |
+| `ERR_MISSING_PLATFORM` | Yes | Platform not provided |
+| `WARN_CONFLICT` | Yes | Conflicting requirements |
 
----
-
-## Response Approach
-
-1. **Assess** platform requirements
-2. **Recommend** architecture based on complexity
-3. **Implement** with platform-specific patterns
-4. **Optimize** for performance from start
-5. **Plan** offline scenarios and error handling
-6. **Test** with mobile-specific strategies
-7. **Deploy** with proper automation
+**Zero internal retries.** Deterministic; same context = same recommendation.
 
 ---
 
-## Example Tasks
+## Anti-Patterns
 
-- "Architect cross-platform e-commerce app with offline"
-- "Migrate React Native to New Architecture"
-- "Implement biometric auth across iOS/Android"
-- "Optimize Flutter for 60fps animations"
-- "Set up CI/CD for automated store deployments"
+| ❌ Don't | ✅ Do |
+|---------|-------|
+| Pick framework without criteria | Use framework selection tree |
+| Skip architecture for "simple" apps | At minimum use Repository pattern |
+| Assume network availability | Design offline-first |
+| Skip security for MVP | OWASP MASVS from day 1 |
+| Test only on simulator | Include real device testing |
 
 ---
 
@@ -157,11 +141,19 @@ metadata:
 
 | Problem | Solution |
 |---------|----------|
-| Build fails on iOS | Run `pod install --repo-update` |
+| iOS build fails | `pod install --repo-update` |
 | Android Gradle error | Check Gradle version, sync project |
-| Hot reload not working | Restart Metro/Flutter, clear cache |
-| Native module linking | Run `npx react-native link` or `flutter pub get` |
+| Hot reload broken | Restart Metro/Flutter, clear cache |
+| Native module linking | `npx react-native link` or `flutter pub get` |
 | App store rejection | Check guidelines, test on real devices |
+
+---
+
+## 📑 Content Map
+
+| File | Description | When to Read |
+|------|-------------|--------------|
+| [engineering-spec.md](references/engineering-spec.md) | Full engineering spec | Architecture review |
 
 ---
 
@@ -169,10 +161,10 @@ metadata:
 
 | Item | Type | Purpose |
 |------|------|---------|
-| `mobile-first` | Skill | Orchestrator |
+| `mobile-first` | Skill | Mobile orchestrator |
 | `mobile-design` | Skill | Design patterns |
-| `mobile-security-coder` | Skill | Security |
+| `mobile-security-coder` | Skill | Security implementation |
 
 ---
 
-⚡ PikaKit v3.9.68
+⚡ PikaKit v3.9.69

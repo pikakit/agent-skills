@@ -8,17 +8,51 @@ metadata:
   category: "devops"
   version: "2.0.0"
   triggers: "pentest, red team, exploit, vulnerability, hacking"
+  success_metrics: "phases covered, scope enforced, report complete"
   coordinates_with: "security-scanner, code-review"
-  success_metrics: "vulnerabilities found, report complete"
 ---
 
-# Red Team Tactics
+# Offensive Security — Red Team Tactics (MITRE ATT&CK)
 
-> **Purpose:** Adversary simulation based on MITRE ATT&CK
+> 13 phases. 4 access vectors. Authorization mandatory. Guidance only — no execution.
+
+**Remember:** Red team simulates attackers to improve defenses, not to cause harm.
 
 ---
 
-## MITRE ATT&CK Phases
+## Prerequisites
+
+- **Authorization confirmed** (`authorized: true`)
+- **Scope defined** (engagement boundaries documented)
+
+---
+
+## When to Use
+
+| Situation | Action |
+|-----------|--------|
+| Plan red team engagement | Use MITRE ATT&CK methodology |
+| Select initial access vector | Use vector decision tree |
+| Privilege escalation | Use platform-specific checklist |
+| Active Directory testing | Use AD attack paths |
+| Write pentest report | Use report structure |
+
+---
+
+## System Boundaries
+
+| Owned by This Skill | NOT Owned |
+|---------------------|-----------|
+| ATT&CK phase guidance (13 phases) | Vulnerability scanning (→ security-scanner) |
+| Initial access vectors (4) | Code security review (→ code-review) |
+| Priv esc checklists (Win + Linux) | Mobile security (→ mobile-security-coder) |
+| AD attack paths (3) | Exploit development |
+
+**Expert decision skill:** Produces methodology and checklists. Does NOT execute exploits.
+
+---
+
+## MITRE ATT&CK Phases (13 — Fixed Order)
 
 ```
 RECON → INITIAL ACCESS → EXECUTION → PERSISTENCE
@@ -28,62 +62,43 @@ PRIV ESC → DEFENSE EVASION → CRED ACCESS → DISCOVERY
 LATERAL → COLLECTION → C2 → EXFILTRATION → IMPACT
 ```
 
----
-
-## Phase Objectives
-
 | Phase | Objective |
 |-------|-----------|
 | Recon | Map attack surface |
-| Initial Access | Get first foothold |
+| Initial Access | First foothold |
 | Execution | Run code on target |
 | Persistence | Survive reboots |
-| Privilege Escalation | Get admin/root |
+| Privilege Escalation | Gain admin/root |
 | Defense Evasion | Avoid detection |
 | Lateral Movement | Spread to other systems |
 
 ---
 
-## Initial Access Vectors
+## Initial Access Vectors (4 — Fixed)
 
 | Vector | When to Use |
 |--------|-------------|
 | Phishing | Human target, email access |
-| Public exploits | Vulnerable services exposed |
+| Public exploits | Vulnerable exposed services |
 | Valid credentials | Leaked or cracked |
 | Supply chain | Third-party access |
 
 ---
 
-## Privilege Escalation
+## Privilege Escalation (Platform-Specific)
 
-### Windows
-| Check | Opportunity |
-|-------|-------------|
-| Unquoted service paths | Write to path |
-| Weak service permissions | Modify service |
-| Stored credentials | Harvest |
-
-### Linux
-| Check | Opportunity |
-|-------|-------------|
-| SUID binaries | Execute as owner |
-| Sudo misconfig | Command execution |
-| Cron jobs | Writable scripts |
+| Platform | Check | Opportunity |
+|----------|-------|-------------|
+| **Windows** | Unquoted service paths | Write to path |
+| **Windows** | Weak service permissions | Modify service |
+| **Windows** | Stored credentials | Harvest |
+| **Linux** | SUID binaries | Execute as owner |
+| **Linux** | Sudo misconfig | Command execution |
+| **Linux** | Cron jobs | Writable scripts |
 
 ---
 
-## Defense Evasion
-
-| Technique | Purpose |
-|-----------|---------|
-| LOLBins | Use legitimate tools |
-| Obfuscation | Hide malicious code |
-| Timestomping | Hide file modifications |
-
----
-
-## AD Attacks
+## AD Attacks (3 — Fixed)
 
 | Attack | Target |
 |--------|--------|
@@ -93,18 +108,28 @@ LATERAL → COLLECTION → C2 → EXFILTRATION → IMPACT
 
 ---
 
-## Ethical Boundaries
+## Ethical Boundaries (Non-Negotiable)
 
-### Always
-- Stay within scope
-- Minimize impact
-- Report immediately if real threat found
-- Document all actions
+| ✅ Always | ❌ Never |
+|----------|---------|
+| Stay within scope | Destroy production data |
+| Minimize impact | Access beyond proof of concept |
+| Report real threats immediately | Retain sensitive data |
+| Document all actions | Create or distribute malware |
 
-### Never
-- Destroy production data
-- Access beyond proof of concept
-- Retain sensitive data
+---
+
+## Error Taxonomy
+
+| Code | Recoverable | Trigger |
+|------|-------------|---------|
+| `ERR_NOT_AUTHORIZED` | No | Engagement not authorized |
+| `ERR_MISSING_SCOPE` | Yes | Scope not defined |
+| `ERR_UNKNOWN_PHASE` | Yes | Phase not in ATT&CK |
+| `ERR_UNKNOWN_PLATFORM` | Yes | Platform not recognized |
+| `ERR_INVALID_REQUEST_TYPE` | No | Request type not supported |
+
+**Zero internal retries.** `authorized: false` → hard block, no output.
 
 ---
 
@@ -112,14 +137,29 @@ LATERAL → COLLECTION → C2 → EXFILTRATION → IMPACT
 
 | ❌ Don't | ✅ Do |
 |---------|-------|
-| Rush to exploitation | Follow methodology |
-| Cause damage | Minimize impact |
-| Skip reporting | Document everything |
+| Rush to exploitation | Follow MITRE ATT&CK phases in order |
+| Cause damage | Minimize impact to production |
+| Skip documentation | Document every action with timestamps |
+| Test beyond scope | Verify scope before each phase |
 
 ---
 
-> **Remember:** Red team simulates attackers to improve defenses, not to cause harm.
+## 📑 Content Map
+
+| File | Description | When to Read |
+|------|-------------|--------------|
+| [engineering-spec.md](references/engineering-spec.md) | Full engineering spec | Architecture review |
 
 ---
 
-⚡ PikaKit v3.9.68
+## 🔗 Related
+
+| Item | Type | Purpose |
+|------|------|---------|
+| `security-scanner` | Skill | Vulnerability scanning |
+| `code-review` | Skill | Code security review |
+| `mobile-security-coder` | Skill | Mobile security |
+
+---
+
+⚡ PikaKit v3.9.69

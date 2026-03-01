@@ -1,28 +1,34 @@
 ---
 name: vercel-deploy
-description: Deploy applications and websites to Vercel. Use this skill when the user requests deployment actions such as "Deploy my app", "Deploy this to production", "Create a preview deployment", "Deploy and give me the link", or "Push this live". No authentication required - returns preview URL and claimable deployment link.
+description: >-
+  Deploy applications and websites to Vercel. Use this skill when the user requests
+  deployment actions such as "Deploy my app", "Deploy this to production",
+  "Create a preview deployment", "Deploy and give me the link", or "Push this live".
+  No authentication required - returns preview URL and claimable deployment link.
+  Triggers on: deploy, vercel, production, preview, push live.
+  Coordinates with: cicd-pipeline, nextjs-pro.
 metadata:
+  version: "2.0.0"
   category: "core"
-  author: vercel
-  version: "1.0.0"
   triggers: "deploy, vercel, production, preview, push live"
   success_metrics: "deployment URL returned, site live"
+  coordinates_with: "cicd-pipeline, nextjs-pro"
 ---
 
-# Vercel Deploy
+# Vercel Deploy — Zero-Auth Deployment
 
-Deploy any project to Vercel instantly. No authentication required.
+> Package → Detect Framework → Upload → Preview URL + Claim URL
 
 ---
 
 ## Prerequisites
 
-**Required:**
-- Bash shell (Linux/macOS/WSL)
-- `tar` and `curl` commands available
-
-**Optional (for claiming deployments):**
-- Vercel account at [vercel.com](https://vercel.com)
+| Requirement | Type |
+|-------------|------|
+| Bash shell (Linux/macOS/WSL) | Required |
+| `tar` command | Required |
+| `curl` command | Required |
+| Vercel account | Optional (for claiming) |
 
 ---
 
@@ -30,56 +36,50 @@ Deploy any project to Vercel instantly. No authentication required.
 
 | Situation | Approach |
 |-----------|----------|
-| Deploy app | Run deploy script |
-| Preview deployment | Get preview URL |
-| Production deploy | Deploy and claim |
-| Quick demo | Instant deploy |
+| Deploy app | `bash scripts/deploy.sh [path]` |
+| Preview deployment | Deploy → get preview URL |
+| Production deploy | Deploy → claim via claim URL |
+| Quick demo | Instant deploy, no auth |
 
 ---
 
-## How It Works
+## System Boundaries
 
-1. Packages your project into a tarball (excludes `node_modules` and `.git`)
-2. Auto-detects framework from `package.json`
-3. Uploads to deployment service
-4. Returns **Preview URL** (live site) and **Claim URL** (transfer to your Vercel account)
+| Owned by This Skill | NOT Owned |
+|---------------------|-----------|
+| Tarball packaging (excl. node_modules/.git) | CI/CD pipeline (→ cicd-pipeline) |
+| Framework auto-detection (40+ frameworks) | Release workflow (→ /launch) |
+| Upload to Vercel API | Custom domains / env vars |
+| Preview URL + Claim URL output | Deployment claiming |
+
+**Automation skill:** Creates tarball, makes network requests. Has side effects.
+
+---
+
+## 4-Stage Pipeline
+
+```
+INIT → PACKAGING [path provided]
+PACKAGING → DETECTING [tarball created]
+DETECTING → UPLOADING [framework identified]
+UPLOADING → DEPLOYED [upload successful]     // terminal
+UPLOADING → FAILED [upload error]            // terminal
+PACKAGING → FAILED [no project files]        // terminal
+```
+
+---
 
 ## Usage
 
 ```bash
-bash /mnt/skills/user/vercel-deploy/scripts/deploy.sh [path]
+bash scripts/deploy.sh [path]
 ```
 
-**Arguments:**
-- `path` - Directory to deploy, or a `.tgz` file (defaults to current directory)
+| Argument | Description |
+|----------|-------------|
+| `path` | Directory or `.tgz` file (default: current directory) |
 
-**Examples:**
-
-```bash
-# Deploy current directory
-bash /mnt/skills/user/vercel-deploy/scripts/deploy.sh
-
-# Deploy specific project
-bash /mnt/skills/user/vercel-deploy/scripts/deploy.sh /path/to/project
-
-# Deploy existing tarball
-bash /mnt/skills/user/vercel-deploy/scripts/deploy.sh /path/to/project.tgz
-```
-
-## Output
-
-```
-Preparing deployment...
-Detected framework: nextjs
-Creating deployment package...
-Deploying...
-✓ Deployment successful!
-
-Preview URL: https://skill-deploy-abc123.vercel.app
-Claim URL:   https://vercel.com/claim-deployment?code=...
-```
-
-The script also outputs JSON to stdout for programmatic use:
+### Output (JSON to stdout)
 
 ```json
 {
@@ -90,53 +90,53 @@ The script also outputs JSON to stdout for programmatic use:
 }
 ```
 
+---
+
 ## Framework Detection
 
-The script auto-detects frameworks from `package.json`. Supported frameworks include:
+Auto-detects from `package.json`:
+- **React:** Next.js, Gatsby, CRA, Remix, React Router
+- **Vue:** Nuxt, Vitepress, Vuepress, Gridsome
+- **Svelte:** SvelteKit, Svelte, Sapper
+- **Other:** Astro, Solid, Angular, Ember, Preact, Docusaurus
+- **Backend:** Express, Hono, Fastify, NestJS, Elysia, h3
+- **Build:** Vite, Parcel
+- **Static HTML:** No package.json → framework: null
 
-- **React**: Next.js, Gatsby, Create React App, Remix, React Router
-- **Vue**: Nuxt, Vitepress, Vuepress, Gridsome
-- **Svelte**: SvelteKit, Svelte, Sapper
-- **Other Frontend**: Astro, Solid Start, Angular, Ember, Preact, Docusaurus
-- **Backend**: Express, Hono, Fastify, NestJS, Elysia, h3, Nitro
-- **Build Tools**: Vite, Parcel
-- **And more**: Blitz, Hydrogen, RedwoodJS, Storybook, Sanity, etc.
+---
 
-For static HTML projects (no `package.json`), framework is set to `null`.
+## Error Taxonomy
 
-## Static HTML Projects
+| Code | Recoverable | Trigger |
+|------|-------------|---------|
+| `ERR_MISSING_PREREQ` | No | bash, tar, or curl not available |
+| `ERR_NO_PROJECT` | Yes | No project files in path |
+| `ERR_NETWORK_BLOCKED` | Yes | Egress to *.vercel.com blocked |
+| `ERR_UPLOAD_TIMEOUT` | Yes | Upload exceeded 300s |
+| `ERR_UPLOAD_FAILED` | Yes | HTTP error during upload |
+| `ERR_INVALID_TARBALL` | Yes | Provided .tgz is invalid |
 
-For projects without a `package.json`:
-- If there's a single `.html` file not named `index.html`, it gets renamed automatically
-- This ensures the page is served at the root URL (`/`)
+**Upload retry:** 1 retry on timeout. All other errors: zero retries.
 
-## Present Results to User
-
-Always show both URLs:
-
-```
-✓ Deployment successful!
-
-Preview URL: https://skill-deploy-abc123.vercel.app
-Claim URL:   https://vercel.com/claim-deployment?code=...
-
-View your site at the Preview URL.
-To transfer this deployment to your Vercel account, visit the Claim URL.
-```
+---
 
 ## Troubleshooting
 
-### Network Egress Error
+| Problem | Solution |
+|---------|----------|
+| Network egress error | Allowlist `*.vercel.com` in network settings |
+| Large project timeout | Exclude node_modules (automatic); increase timeout |
+| Static HTML not at root | Single non-index.html auto-renamed to index.html |
+| Claude.ai egress blocked | Settings → Capabilities → Add *.vercel.com |
 
-If deployment fails due to network restrictions (common on claude.ai), tell the user:
+---
 
-```
-Deployment failed due to network restrictions. To fix this:
+## 📑 Content Map
 
-1. Go to https://claude.ai/settings/capabilities
-2. Add *.vercel.com to the allowed domains
-3. Try deploying again
-```
+| File | Description | When to Read |
+|------|-------------|--------------|
+| [scripts/deploy.sh](scripts/deploy.sh) | Deploy script | Running deploys |
+| [engineering-spec.md](references/engineering-spec.md) | Full spec | Architecture review |
 
 ---
 
@@ -144,10 +144,10 @@ Deployment failed due to network restrictions. To fix this:
 
 | Item | Type | Purpose |
 |------|------|---------|
-| `cicd-pipeline` | Skill | Deployment |
+| `cicd-pipeline` | Skill | Deployment pipelines |
 | `/launch` | Workflow | Release workflow |
 | `nextjs-pro` | Skill | Next.js apps |
 
 ---
 
-⚡ PikaKit v3.9.68
+⚡ PikaKit v3.9.69

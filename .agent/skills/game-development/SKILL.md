@@ -1,175 +1,166 @@
 ---
 name: game-development
-description: Game development orchestrator. Routes to platform-specific skills based on project needs.
+description: >-
+  Game development orchestrator. Routes to platform-specific skills based on project needs.
+  Core principles for game loop, performance, patterns, AI, collision, input.
+  Triggers on: game, game development, Unity, Godot, Phaser, game engine.
+  Coordinates with: mobile-developer, perf-optimizer, shader.
 metadata:
-  category: "mobile-games"
-  version: "1.0.0"
+  version: "2.0.0"
+  category: "game"
   triggers: "game, game development, Unity, Godot, Phaser, game engine"
-  coordinates_with: "mobile-first, mobile-developer"
-allowed-tools: Read, Write, Edit, Glob, Grep, Bash
+  success_metrics: "correct sub-skill routed, 16.67ms frame budget, fixed timestep"
+  coordinates_with: "mobile-developer, perf-optimizer, shader"
 ---
 
-# Game Development
+# Game Development — Orchestrator
 
-> **Orchestrator skill** that provides core principles and routes to specialized sub-skills.
+> Route to right sub-skill. Fixed timestep. 16.67ms budget. Input abstraction.
 
 ---
 
-## When to Use This Skill
+## Prerequisites
 
-You are working on a game development project. This skill teaches the PRINCIPLES of game development and directs you to the right sub-skill based on context.
+**Required:** None — Game Development is a routing and principles skill.
+
+---
+
+## When to Use
+
+| Situation | Action |
+|-----------|--------|
+| Starting a game project | Route by platform + dimension below |
+| Need game loop architecture | Read game loop section |
+| Performance questions | Read performance budget section |
+| Architecture review | Read `references/engineering-spec.md` |
+
+---
+
+## System Boundaries
+
+| Owned by This Skill | NOT Owned |
+|---------------------|-----------|
+| Sub-skill routing (10 sub-skills) | Platform-specific code (→ sub-skills) |
+| Game loop pattern (INPUT→UPDATE→RENDER) | Engine configuration |
+| Performance budget (16.67ms at 60 FPS) | Profiling tools (→ perf-optimizer) |
+| Pattern selection (6 patterns) | Shader code (→ shader) |
+| AI type selection (4 types) | Mobile builds (→ mobile-developer) |
+
+**Orchestrator skill:** Routes to sub-skills. Does NOT invoke them automatically.
 
 ---
 
 ## Sub-Skill Routing
 
-### Platform Selection
+### By Platform
 
-| If the game targets... | Use Sub-Skill |
-|------------------------|---------------|
-| Web browsers (HTML5, WebGL) | `game-development/web-games` |
+| Platform | Sub-Skill |
+|----------|-----------|
+| Web (HTML5, WebGL) | `game-development/web-games` |
 | Mobile (iOS, Android) | `game-development/mobile-games` |
 | PC (Steam, Desktop) | `game-development/pc-games` |
 | VR/AR headsets | `game-development/vr-ar` |
 
-### Dimension Selection
+### By Dimension
 
-| If the game is... | Use Sub-Skill |
-|-------------------|---------------|
+| Dimension | Sub-Skill |
+|-----------|-----------|
 | 2D (sprites, tilemaps) | `game-development/2d-games` |
 | 3D (meshes, shaders) | `game-development/3d-games` |
 
-### Specialty Areas
+### By Specialty
 
-| If you need... | Use Sub-Skill |
-|----------------|---------------|
-| GDD, balancing, player psychology | `game-development/game-design` |
-| Multiplayer, networking | `game-development/multiplayer` |
-| Visual style, asset pipeline, animation | `game-development/game-art` |
+| Specialty | Sub-Skill |
+|-----------|-----------|
+| GDD, balancing, psychology | `game-development/game-design` |
+| Multiplayer networking | `game-development/multiplayer` |
+| Visual style, assets, animation | `game-development/game-art` |
 | Sound design, music, adaptive audio | `game-development/game-audio` |
 
 ---
 
-## Core Principles (All Platforms)
-
-### 1. The Game Loop
-
-Every game, regardless of platform, follows this pattern:
+## Game Loop (Universal)
 
 ```
 INPUT  → Read player actions
-UPDATE → Process game logic (fixed timestep)
+UPDATE → Process game logic (fixed timestep: 50Hz)
 RENDER → Draw the frame (interpolated)
 ```
 
-**Fixed Timestep Rule:**
-- Physics/logic: Fixed rate (e.g., 50Hz)
-- Rendering: As fast as possible
-- Interpolate between states for smooth visuals
+**Fixed timestep mandatory.** Physics at 50Hz. Render interpolated. No variable delta for physics.
 
 ---
 
-### 2. Pattern Selection Matrix
-
-| Pattern | Use When | Example |
-|---------|----------|---------|
-| **State Machine** | 3-5 discrete states | Player: Idle→Walk→Jump |
-| **Object Pooling** | Frequent spawn/destroy | Bullets, particles |
-| **Observer/Events** | Cross-system communication | Health→UI updates |
-| **ECS** | Thousands of similar entities | RTS units, particles |
-| **Command** | Undo, replay, networking | Input recording |
-| **Behavior Tree** | Complex AI decisions | Enemy AI |
-
-**Decision Rule:** Start with State Machine. Add ECS only when performance demands.
-
----
-
-### 3. Input Abstraction
-
-Abstract input into ACTIONS, not raw keys:
-
-```
-"jump"  → Space, Gamepad A, Touch tap
-"move"  → WASD, Left stick, Virtual joystick
-```
-
-**Why:** Enables multi-platform, rebindable controls.
-
----
-
-### 4. Performance Budget (60 FPS = 16.67ms)
+## Performance Budget (60 FPS = 16.67ms)
 
 | System | Budget |
 |--------|--------|
-| Input | 1ms |
-| Physics | 3ms |
-| AI | 2ms |
-| Game Logic | 4ms |
-| Rendering | 5ms |
-| Buffer | 1.67ms |
-
-**Optimization Priority:**
-1. Algorithm (O(n²) → O(n log n))
-2. Batching (reduce draw calls)
-3. Pooling (avoid GC spikes)
-4. LOD (detail by distance)
-5. Culling (skip invisible)
+| Input | 1 ms |
+| Physics | 3 ms |
+| AI | 2 ms |
+| Game Logic | 4 ms |
+| Rendering | 5 ms |
+| Buffer | 1.67 ms |
 
 ---
 
-### 5. AI Selection by Complexity
+## Pattern Selection
 
-| AI Type | Complexity | Use When |
-|---------|------------|----------|
-| **FSM** | Simple | 3-5 states, predictable behavior |
-| **Behavior Tree** | Medium | Modular, designer-friendly |
-| **GOAP** | High | Emergent, planning-based |
-| **Utility AI** | High | Scoring-based decisions |
-
----
-
-### 6. Collision Strategy
-
-| Type | Best For |
-|------|----------|
-| **AABB** | Rectangles, fast checks |
-| **Circle** | Round objects, cheap |
-| **Spatial Hash** | Many similar-sized objects |
-| **Quadtree** | Large worlds, varying sizes |
+| Pattern | Use When |
+|---------|----------|
+| **State Machine** | 3-5 discrete states (DEFAULT — start here) |
+| **Object Pooling** | Frequent spawn/destroy (bullets, particles) |
+| **Observer/Events** | Cross-system communication |
+| **ECS** | 1000+ similar entities (RTS units) |
+| **Command** | Undo, replay, networking |
+| **Behavior Tree** | Complex AI decisions |
 
 ---
 
-## Anti-Patterns (Universal)
+## Error Taxonomy
 
-| Don't | Do |
-|-------|-----|
+| Code | Recoverable | Trigger |
+|------|-------------|---------|
+| `ERR_INVALID_PLATFORM` | No | Platform not web/mobile/pc/vr-ar |
+| `ERR_INVALID_DIMENSION` | No | Dimension not 2d/3d |
+| `ERR_INVALID_FPS` | No | FPS target not 30/60/120 |
+| `ERR_SUBSKILL_NOT_FOUND` | No | Sub-skill directory missing |
+| `ERR_MISSING_CONTEXT` | Yes | Required field missing |
+
+**Zero internal retries.** Deterministic; same context = same routing.
+
+---
+
+## Anti-Patterns
+
+| ❌ Don't | ✅ Do |
+|---------|-------|
 | Update everything every frame | Use events, dirty flags |
 | Create objects in hot loops | Object pooling |
-| Cache nothing | Cache references |
-| Optimize without profiling | Profile first |
-| Mix input with logic | Abstract input layer |
+| Use variable delta for physics | Fixed timestep (50Hz) |
+| Hardcode key bindings | Abstract input into actions |
+| Start with ECS | State Machine first; ECS for 1000+ entities |
 
 ---
 
-## Routing Examples
+## 📑 Content Map
 
-### Example 1: "I want to make a browser-based 2D platformer"
-→ Start with `game-development/web-games` for framework selection
-→ Then `game-development/2d-games` for sprite/tilemap patterns
-→ Reference `game-development/game-design` for level design
+| File | Description | When to Read |
+|------|-------------|--------------|
+| [engineering-spec.md](references/engineering-spec.md) | Full engineering spec | Architecture review |
 
-### Example 2: "Mobile puzzle game for iOS and Android"
-→ Start with `game-development/mobile-games` for touch input and stores
-→ Use `game-development/game-design` for puzzle balancing
-
-### Example 3: "Multiplayer VR shooter"
-→ `game-development/vr-ar` for comfort and immersion
-→ `game-development/3d-games` for rendering
-→ `game-development/multiplayer` for networking
-
----
-
-> **Remember:** Great games come from iteration, not perfection. Prototype fast, then polish.
+| Sub-Skill | Directory |
+|-----------|-----------|
+| Web Games | `game-development/web-games/` |
+| Mobile Games | `game-development/mobile-games/` |
+| PC Games | `game-development/pc-games/` |
+| VR/AR | `game-development/vr-ar/` |
+| 2D Games | `game-development/2d-games/` |
+| 3D Games | `game-development/3d-games/` |
+| Game Design | `game-development/game-design/` |
+| Multiplayer | `game-development/multiplayer/` |
+| Game Art | `game-development/game-art/` |
+| Game Audio | `game-development/game-audio/` |
 
 ---
 
@@ -180,7 +171,8 @@ Abstract input into ACTIONS, not raw keys:
 | `/game` | Workflow | Game development workflow |
 | `mobile-developer` | Skill | Mobile game builds |
 | `perf-optimizer` | Skill | Game performance |
+| `shader` | Skill | GLSL shader programming |
 
 ---
 
-⚡ PikaKit v3.9.68
+⚡ PikaKit v3.9.69

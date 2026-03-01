@@ -9,8 +9,8 @@
 
 ```
 ┌──────────────┐     ┌──────────────┐     ┌──────────────┐
-│   Your App   │     │  Event Queue  │     │   Consumer   │
-│  (producer)  │────▶│  (async)     │────▶│  (receiver)  │
+│   Your App   │     │  Event Queue │     │   Consumer  │
+│  (producer)  │───▶ │  (async)    │───▶ │  (receiver) │
 └──────────────┘     └──────────────┘     └──────────────┘
                                                 │
                                           Retry on failure
@@ -194,4 +194,4 @@ function isWebhookFresh(timestampHeader: string): boolean {
 
 ---
 
-⚡ PikaKit v3.9.68
+⚡ PikaKit v3.9.69

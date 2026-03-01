@@ -6,76 +6,78 @@ description: >-
   Triggers on: every task start, agent routing, skill loading, task completion.
   Coordinates with: smart-router, lifecycle-orchestrator, auto-learner.
 metadata:
-  category: "core"
   version: "2.0.0"
+  category: "core"
   triggers: "task start, agent routing, skill loading, task completion"
+  success_metrics: "100% task visibility, one notification per phase, consistent branding"
   coordinates_with: "smart-router, lifecycle-orchestrator, auto-learner"
-  success_metrics: "100% task visibility, clear audit trail"
 ---
 
-# Execution Reporter
+# Execution Reporter — Task Notifications
 
-> **Purpose:** Transparent agent operations with PikaKit branding
+> Fixed templates. One notification per phase. PikaKit branding mandatory.
+
+---
+
+## Prerequisites
+
+**Required:** None — Execution Reporter is a pure formatting function with no external dependencies.
 
 ---
 
 ## When to Use
 
-| Situation | Approach |
-|-----------|----------|
-| Task start | Show execution context |
-| Multi-agent work | Track skill loading |
-| Task completion | Include footer |
-| Complex tasks | Full template |
+| Event | Template | Condition |
+|-------|----------|-----------|
+| Task start (complex) | Full template | > 3 skills loaded |
+| Task start (simple) | Compact template | ≤ 3 skills loaded |
+| Script execution | Script template | Script invoked |
+| Task complete | Complete template | Task finished |
 
 ---
 
-## Quick Reference
+## System Boundaries
 
-| Event | Template |
-|-------|----------|
-| Task Start | `🤖 PikaKit • @agent → skill1, skill2` |
-| Script Run | `⚡ skill-name • running script.py` |
-| Task Complete | `✅ Done • 3 files • 2.5s` |
+| Owned by This Skill | NOT Owned |
+|---------------------|-----------|
+| Notification string formatting (4 templates) | Task execution (→ lifecycle-orchestrator) |
+| Verbosity level filtering (3 levels) | Agent routing (→ smart-router) |
+| PikaKit branding (v3.9.68) | Error detection (→ problem-checker) |
+| Complexity threshold (> 3 skills → full) | Notification delivery |
+
+**Pure function skill:** Returns formatted strings. Zero side effects.
 
 ---
 
 ## Output Templates
 
-### 1. Task Start (MANDATORY)
+### Full Template (> 3 skills)
 
 ```
-┌─────────────────────────────────────────────────────────────────┐
-│  🤖 PikaKit v3.9.68                                              │
-├─────────────────────────────────────────────────────────────────┤
-│  📋 Task: {task_description}                                    │
-│                                                                 │
-│  ◆ Agent: @{agent_name}                                         │
-│  ◇ Skills: {skill_1}, {skill_2}                                 │
-│  📂 Workflow: /{workflow_name}                                  │
-└─────────────────────────────────────────────────────────────────┘
+🤖 PikaKit v3.9.69
+📋 Task: {task_description}
+◆ Agent: @{agent_name}
+◇ Skills: {skill_1}, {skill_2}, ...
+📂 Workflow: /{workflow_name}
 ```
 
-### 2. Compact (Simple Tasks)
+### Compact Template (≤ 3 skills)
 
 ```
 🤖 PikaKit • @{agent} → {skill_1}, {skill_2}
 ```
 
-### 3. Task Complete
+### Task Complete Template
 
 ```
-┌─────────────────────────────────────────────────────────────────┐
-│  ✅ Task Complete                                               │
-├─────────────────────────────────────────────────────────────────┤
-│  Agent: @{agent_name}                                           │
-│  Skills: {skill_list}                                           │
-│  Duration: {time}s                                              │
-│  Files: {count} created/modified                                │
-├─────────────────────────────────────────────────────────────────┤
-│  ⚡ PikaKit v3.9.68                                              │
-│  Precision-Orchestrated Agents and Workflows.                   │
-└─────────────────────────────────────────────────────────────────┘
+✅ Done • Agent: @{agent_name} • Skills: {count} • Files: {count} • {duration}s
+⚡ PikaKit v3.9.69
+```
+
+### Script Run Template
+
+```
+⚡ {skill_name} • running {script_name}
 ```
 
 ---
@@ -88,53 +90,51 @@ metadata:
 | `normal` | ✅ | ✅ | ❌ | ✅ |
 | `verbose` | ✅ | ✅ | ✅ | ✅ |
 
-**Default:** `normal`
-
----
-
-## Config
-
-Location: `.agent/config/notification-config.json`
-
-```json
-{
-  "notifications": {
-    "enabled": true,
-    "verbosity": "normal"
-  }
-}
-```
-
----
-
-## Examples
-
-### Design Task
-```
-🤖 PikaKit v3.9.68
-📋 Task: Design fintech dashboard
-◆ Agent: @frontend-specialist
-◇ Skills: studio, code-craft
-📂 Workflow: /studio
-```
-
-### Multi-Agent Task
-```
-🤖 PikaKit v3.9.68
-📋 Task: Build full-stack app
-◆ Lead: @orchestrator
-◇ Specialists: @frontend, @backend, @security
-📂 Workflow: /autopilot
-```
+**Default:** `normal`. Config: `.agent/config/notification-config.json`
 
 ---
 
 ## Rules
 
-1. **Complex tasks** (>3 tools) → Full template
-2. **Simple tasks** (1-2 tools) → Compact format
-3. **One notification per phase** - never spam
-4. **Always include PikaKit branding** in headers/footers
+| # | Rule | Enforcement |
+|---|------|------------|
+| 1 | One notification per phase | No duplicate notifications for same event |
+| 2 | > 3 skills → full template | Complexity threshold is fixed |
+| 3 | PikaKit branding mandatory | Header and/or footer on every notification |
+| 4 | Templates fit 65-char width | No terminal wrapping |
+
+---
+
+## Error Taxonomy
+
+| Code | Recoverable | Trigger |
+|------|-------------|---------|
+| `ERR_INVALID_REQUEST_TYPE` | No | Request type not supported |
+| `ERR_MISSING_AGENT` | Yes | Agent name not provided |
+| `ERR_MISSING_DESCRIPTION` | Yes | Task description not provided |
+| `ERR_INVALID_VERBOSITY` | Yes | Verbosity level not recognized |
+
+**Zero internal retries.** Deterministic; same context = same notification.
+
+---
+
+## Anti-Patterns
+
+| ❌ Don't | ✅ Do |
+|---------|-------|
+| Notify on every tool call | One notification per phase |
+| Custom branding per agent | PikaKit branding only |
+| Variable template format | Use fixed 4+template set |
+| Verbose by default | Default to "normal" |
+| Include sensitive data | Display task descriptions only |
+
+---
+
+## 📑 Content Map
+
+| File | Description | When to Read |
+|------|-------------|--------------|
+| [engineering-spec.md](references/engineering-spec.md) | Full engineering spec | Architecture review |
 
 ---
 
@@ -142,11 +142,11 @@ Location: `.agent/config/notification-config.json`
 
 | Item | Type | Purpose |
 |------|------|---------|
-| `lifecycle-orchestrator` | Skill | Task lifecycle |
-| `problem-checker` | Skill | Error check |
+| `lifecycle-orchestrator` | Skill | Task lifecycle management |
+| `problem-checker` | Skill | Error detection |
+| `smart-router` | Skill | Agent routing decisions |
 | `/pulse` | Workflow | Status dashboard |
 
 ---
 
-⚡ PikaKit v3.9.68
-Precision-Orchestrated Agents and Workflows.
+⚡ PikaKit v3.9.69

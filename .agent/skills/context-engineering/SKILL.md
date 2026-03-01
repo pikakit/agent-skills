@@ -1,30 +1,30 @@
 ---
 name: context-engineering
 description: >-
-  Monitor context usage, optimize token consumption, design efficient agent architectures.
-  Four-bucket strategy: Write, Select, Compress, Isolate.
+  Monitor context usage, design efficient agent architectures, control token consumption.
+  Four-bucket strategy: Write, Select, Compress, Isolate. Fixed thresholds: 70% warning, 80% critical.
   Triggers on: context usage, token limit, agent architecture, memory system.
-  Coordinates with: lifecycle-orchestrator, multi-agent.
+  Coordinates with: lifecycle-orchestrator, multi-agent, system-design.
 metadata:
-  version: "1.0.0"
+  version: "2.0.0"
   category: "architecture"
   triggers: "context usage, token limit, agent architecture, memory, compression"
-  success_metrics: "token usage <70%, quality maintained, cost reduced"
+  success_metrics: "token usage <70%, compression 50-70% with <5% quality loss"
   coordinates_with: "lifecycle-orchestrator, multi-agent, system-design"
 ---
 
 # Context Engineering
 
-> Smallest high-signal token set = Maximum reasoning quality.
+> Smallest high-signal token set = maximum reasoning quality. Thresholds: 70% warning, 80% critical.
 
 ---
 
 ## Prerequisites
 
 **Knowledge:**
-- Understanding of LLM context windows
-- Agent architecture patterns
+- LLM context window behavior (attention U-curve)
 - Token counting basics
+- Agent architecture patterns
 
 ---
 
@@ -32,44 +32,61 @@ metadata:
 
 | Situation | Action |
 |-----------|--------|
-| Context >70% full | Trigger optimization |
-| Agent failing on large files | Apply compression |
-| Multi-agent coordination | Use isolation patterns |
-| Cross-session memory | Implement persistence |
+| Context > 70% full | Invoke utilization-check; plan reduction |
+| Agent failing on large inputs | Diagnose degradation pattern |
+| Multi-agent coordination needed | Select isolation pattern |
+| Cross-session memory required | Apply Write bucket (external persistence) |
+| Architecture review | Read `references/engineering-spec.md` |
+
+---
+
+## System Boundaries
+
+| Owned by This Skill | NOT Owned |
+|---------------------|-----------|
+| Token utilization thresholds (70%/80%) | Token counting implementation |
+| Four-bucket strategy selection | Compression execution |
+| Degradation pattern detection (4 patterns) | Automatic detection tooling |
+| Compression technique selection (3 strategies) | Summarization models |
+| Multi-agent isolation patterns (4 patterns) | Agent instantiation (→ lifecycle-orchestrator) |
+
+**Pure decision skill:** Produces context management recommendations. Zero side effects.
 
 ---
 
 ## Core Principles
 
-| Principle | Description |
-|-----------|-------------|
-| **Quality > Quantity** | High-signal tokens beat exhaustive content |
-| **Attention is Finite** | U-curve: beginning/end favored |
-| **Progressive Disclosure** | Load just-in-time |
-| **Isolation Prevents Degradation** | Partition across sub-agents |
-| **Measure Before Optimizing** | Know your baseline |
+| Principle | Rule |
+|-----------|------|
+| **Quality > Quantity** | High-signal tokens over exhaustive content |
+| **Attention is Finite** | U-curve: beginning/end of context get more attention |
+| **Progressive Disclosure** | Load just-in-time; remove after use |
+| **Isolation Prevents Degradation** | Partition across sub-agents at boundaries |
+| **Measure Before Acting** | Know utilization baseline before applying strategy |
 
 ---
 
-## Four-Bucket Strategy
+## Four-Bucket Strategy (Escalating Intervention)
 
-| Bucket | Strategy | Example |
-|--------|----------|---------|
-| **Write** | Save externally | Scratchpads, files |
-| **Select** | Pull only relevant | Retrieval, filtering |
-| **Compress** | Reduce tokens | Summarization |
-| **Isolate** | Split work | Sub-agents |
+| # | Bucket | Strategy | Expected Reduction | Quality Risk |
+|---|--------|----------|--------------------|-------------|
+| 1 | **Write** | Save to files/scratchpads | 20–40% | None |
+| 2 | **Select** | Pull only relevant content | 30–50% | Low |
+| 3 | **Compress** | Hierarchical summarization | 50–70% | Medium (< 5%) |
+| 4 | **Isolate** | Split across sub-agents | 60–80% | Medium |
+
+**Escalation order:** Write → Select → Compress → Isolate. Apply least invasive first.
 
 ---
 
-## Key Metrics
+## Key Metrics (Fixed Thresholds)
 
-| Metric | Target | Note |
-|--------|--------|------|
-| Token utilization | <70% warning | Optimize at 80% |
-| Compaction | 50-70% reduction | <5% quality loss |
-| Cache hit rate | >70% | Stable workloads |
-| Multi-agent overhead | ~15x baseline | Plan accordingly |
+| Metric | Target | Trigger |
+|--------|--------|---------|
+| Token utilization | < 70% | ≥ 70% = warning; ≥ 80% = critical |
+| Compression ratio | 50–70% reduction | < 5% quality loss |
+| Cache hit rate | > 70% | Stable workloads only |
+| Multi-agent overhead | ~15x baseline | Per sub-agent |
 
 ---
 
@@ -77,64 +94,44 @@ metadata:
 
 | Pattern | Symptom | Fix |
 |---------|---------|-----|
-| **Lost-in-Middle** | Middle content ignored | Move to beginning/end |
-| **Context Poisoning** | Bad examples corrupt output | Filter training data |
-| **Attention Dilution** | Too much noise | Compress, select |
-| **Token Exhaustion** | Truncation mid-task | Checkpoint, isolate |
+| **Lost-in-Middle** | Middle content ignored | Move critical content to beginning/end |
+| **Context Poisoning** | Bad examples corrupt output | Filter low-quality examples |
+| **Attention Dilution** | Too much noise, vague responses | Compress + select high-signal content |
+| **Token Exhaustion** | Truncation mid-task | Checkpoint + isolate into sub-agents |
 
 ---
 
-## Compression Strategies
+## Multi-Agent Isolation Patterns
 
-```markdown
-## Hierarchical Summarization
-1. Split content into chunks
-2. Summarize each chunk
-3. Combine summaries
-4. Repeat if needed
-
-## Selective Loading
-1. Index all content
-2. Query for relevance
-3. Load only matches
-4. Expand as needed
-
-## Progressive Disclosure
-1. Start with overview
-2. Deep-dive on request
-3. Remove after use
-```
-
----
-
-## Multi-Agent Patterns
-
-| Pattern | Use Case |
+| Pattern | Use When |
 |---------|----------|
-| **Orchestrator** | Central coordinator delegates tasks |
-| **Pipeline** | Sequential processing stages |
-| **Parallel** | Independent workers merge results |
-| **Hierarchical** | Nested agents for complex tasks |
+| **Orchestrator** | Central coordinator delegates independent tasks |
+| **Pipeline** | Sequential processing; output of one = input of next |
+| **Parallel** | Independent workers; merge results |
+| **Hierarchical** | Nested agents for deeply complex tasks |
+
+---
+
+## Error Taxonomy
+
+| Code | Recoverable | Trigger |
+|------|-------------|---------|
+| `ERR_INVALID_REQUEST_TYPE` | No | Request type not supported |
+| `ERR_MISSING_UTILIZATION` | Yes | Utilization not provided |
+| `ERR_INVALID_RANGE` | No | Utilization outside 0.0–1.0 |
+| `ERR_MISSING_WINDOW_SIZE` | Yes | Context window size not provided |
+| `ERR_MISSING_SYMPTOMS` | Yes | No symptoms for degradation diagnosis |
+| `WARN_UNKNOWN_CONTENT` | Yes | Content type not recognized; generic applied |
+
+**Zero internal retries.** Deterministic output; same context = same recommendation.
 
 ---
 
 ## 📑 Content Map
 
-| File | Description |
-|------|-------------|
-| `references/optimization.md` | Compression techniques |
-| `references/multi-agent.md` | Architecture patterns |
-
----
-
-## Troubleshooting
-
-| Problem | Solution |
-|---------|----------|
-| Agent forgetting earlier context | Add summary checkpoints |
-| Response quality degrading | Reduce context, increase signal |
-| Token limit exceeded | Split into sub-agents |
-| Cost too high | Cache, compress, batch |
+| File | Description | When to Read |
+|------|-------------|--------------|
+| [engineering-spec.md](references/engineering-spec.md) | Full engineering spec: contracts, security, scalability | Architecture review |
 
 ---
 
@@ -142,9 +139,9 @@ metadata:
 
 | Item | Type | Purpose |
 |------|------|---------|
-| `lifecycle-orchestrator` | Skill | Task lifecycle |
-| `system-design` | Skill | Architecture patterns |
+| `lifecycle-orchestrator` | Skill | Task lifecycle and multi-agent coordination |
+| `system-design` | Skill | Architecture decision framework |
 
 ---
 
-⚡ PikaKit v3.9.68
+⚡ PikaKit v3.9.69

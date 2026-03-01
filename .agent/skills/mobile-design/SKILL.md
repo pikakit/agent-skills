@@ -9,21 +9,13 @@ metadata:
   category: "mobile-games"
   version: "2.0.0"
   triggers: "mobile design, iOS, Android, touch, responsive"
+  success_metrics: "MFRI > 5, platform guidelines followed, touch targets met"
   coordinates_with: "mobile-first, mobile-developer, design-system"
-  success_metrics: "MFRI > 5, platform guidelines followed"
 ---
 
-# Mobile Design System
+# Mobile Design — Mobile-First Design Doctrine
 
-> **Purpose:** Mobile-first, touch-first, platform-respectful design
-
----
-
-## Core Philosophy
-
-```
-Touch-first → Battery-conscious → Platform-respectful → Offline-capable
-```
+> Touch-first. Platform-respectful. MFRI scored. 44×44pt / 48×48dp minimum.
 
 **Core Law:** Mobile is NOT a small desktop.
 
@@ -31,31 +23,44 @@ Touch-first → Battery-conscious → Platform-respectful → Offline-capable
 
 ## When to Use
 
-| Situation | Approach |
-|-----------|----------|
-| Designing mobile UI | Follow MFRI principles |
+| Situation | Action |
+|-----------|--------|
+| Designing mobile UI | Score with MFRI |
 | iOS vs Android | Check platform guidelines |
-| Touch interactions | Use touch patterns |
-| Accessibility | Check a11y requirements |
+| Touch interactions | Use touch target standards |
+| Accessibility audit | Check a11y requirements |
 
 ---
 
-## Quick Reference: Ask First
+## System Boundaries
 
-| Aspect | Must Ask |
-|--------|----------|
-| Platform | iOS, Android, or both? |
-| Framework | React Native, Flutter, native? |
-| Navigation | Tabs, stack, drawer? |
-| Offline | Must work offline? |
-| Devices | Phone only or tablet too? |
+| Owned by This Skill | NOT Owned |
+|---------------------|-----------|
+| MFRI scoring (5 dimensions) | Mobile orchestration (→ mobile-first) |
+| Platform guidelines (iOS/Android) | Mobile implementation (→ mobile-developer) |
+| Touch target standards | Design system components (→ design-system) |
+| Typography routing (SF Pro/Roboto) | API design (→ api-architect) |
+
+**Expert decision skill:** Produces design decisions. Does not write code or create components.
 
 ---
 
-## MFRI (Mobile Feasibility & Risk Index)
+## 5 Must-Ask Questions (Before Any Design)
 
-| Dimension | Question |
-|-----------|----------|
+| # | Question | Options |
+|---|----------|---------|
+| 1 | Platform? | iOS, Android, or both |
+| 2 | Framework? | React Native, Flutter, native |
+| 3 | Navigation? | Tabs, stack, drawer |
+| 4 | Offline? | Must work offline? |
+| 5 | Devices? | Phone only or tablet too |
+
+---
+
+## MFRI Scoring (Mobile Feasibility & Risk Index)
+
+| Dimension | Assessment |
+|-----------|------------|
 | Platform Clarity | Target platform defined? |
 | Interaction Complexity | How complex are gestures? |
 | Performance Risk | Heavy lists, animations, media? |
@@ -64,31 +69,52 @@ Touch-first → Battery-conscious → Platform-respectful → Offline-capable
 
 | Score | Action |
 |-------|--------|
-| 6-10 | Safe - proceed |
-| 3-5 | Add validation |
-| 0-2 | Simplify first |
-| <0 | Redesign required |
+| 6-10 | ✅ Safe — proceed |
+| 3-5 | ⚠️ Add validation |
+| 0-2 | 🔴 Simplify first |
+| < 0 | ❌ Redesign required |
 
 ---
 
-## Platform Differences
+## Platform Differences (Fixed)
 
 | Element | iOS | Android |
 |---------|-----|---------|
 | Back | No button | System back |
-| Navigation | Bottom tabs | Bottom nav drawer |
-| Typography | SF Pro | Roboto |
-| Radius | Rounded | Varies |
+| Navigation | Bottom tabs | Bottom nav / drawer |
+| Typography | **SF Pro** | **Roboto** |
+| Corner radius | Rounded (continuous) | Varies (MD3) |
 
 ---
 
-## Touch Targets
+## Touch Targets (Fixed)
 
-| Guideline | Minimum |
-|-----------|---------|
+| Standard | Minimum |
+|----------|---------|
 | **iOS** | 44×44 pt |
 | **Android** | 48×48 dp |
-| **Spacing** | 8dp between |
+| **Spacing** | 8dp between targets |
+
+---
+
+## Core Philosophy (Fixed Order)
+
+```
+Touch-first → Battery-conscious → Platform-respectful → Offline-capable
+```
+
+---
+
+## Error Taxonomy
+
+| Code | Recoverable | Trigger |
+|------|-------------|---------|
+| `ERR_INVALID_REQUEST_TYPE` | No | Request type not supported |
+| `ERR_UNKNOWN_PLATFORM` | Yes | Platform not ios/android/both |
+| `ERR_MISSING_PLATFORM` | Yes | Platform not provided |
+| `WARN_LOW_MFRI` | Yes | MFRI score below 3 |
+
+**Zero internal retries.** Deterministic; same context = same assessment.
 
 ---
 
@@ -96,22 +122,33 @@ Touch-first → Battery-conscious → Platform-respectful → Offline-capable
 
 | ❌ Don't | ✅ Do |
 |---------|-------|
-| Desktop patterns | Touch-first design |
-| Hover states | Tap/press states |
-| Small tap targets | 44×44pt minimum |
+| Apply desktop patterns | Touch-first design |
+| Use hover states | Tap and press states |
+| Small tap targets | 44×44pt (iOS) / 48×48dp (Android) |
 | Assume network | Design for offline |
+| Mix platform conventions | Respect iOS HIG / Material Design |
 
 ---
 
-## References
+## 📑 Content Map
 
-- [references/platform-guidelines.md](references/platform-guidelines.md)
-- [references/touch-patterns.md](references/touch-patterns.md)
-- [references/accessibility.md](references/accessibility.md)
+| File | Description | When to Read |
+|------|-------------|--------------|
+| [platform-ios.md](platform-ios.md) | iOS HIG guidelines | iOS design |
+| [platform-android.md](platform-android.md) | Material Design guidelines | Android design |
+| [touch-psychology.md](touch-psychology.md) | Touch interaction patterns | Touch UX |
+| [mobile-navigation.md](mobile-navigation.md) | Navigation patterns | Nav decisions |
+| [mobile-typography.md](mobile-typography.md) | Typography systems | Font selection |
+| [mobile-color-system.md](mobile-color-system.md) | Color palettes | Color decisions |
+| [mobile-performance.md](mobile-performance.md) | Performance guidelines | Perf concerns |
+| [mobile-testing.md](mobile-testing.md) | Testing strategies | QA planning |
+| [mobile-debugging.md](mobile-debugging.md) | Debugging patterns | Bug fixing |
+| [mobile-backend.md](mobile-backend.md) | Backend integration | API decisions |
+| [mobile-design-thinking.md](mobile-design-thinking.md) | Design methodology | Design process |
+| [decision-trees.md](decision-trees.md) | Decision frameworks | Complex decisions |
+| [engineering-spec.md](references/engineering-spec.md) | Full engineering spec | Architecture review |
 
----
-
-> **Remember:** Never default to your favorite stack or pattern.
+**Selective reading:** Read ONLY files relevant to current design question.
 
 ---
 
@@ -119,10 +156,10 @@ Touch-first → Battery-conscious → Platform-respectful → Offline-capable
 
 | Item | Type | Purpose |
 |------|------|---------|
-| `mobile-first` | Skill | Orchestrator |
+| `mobile-first` | Skill | Mobile orchestrator |
 | `mobile-developer` | Skill | Implementation |
 | `design-system` | Skill | Design patterns |
 
 ---
 
-⚡ PikaKit v3.9.68
+⚡ PikaKit v3.9.69

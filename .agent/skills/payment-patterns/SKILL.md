@@ -5,36 +5,27 @@ description: >-
   Webhook security, subscription lifecycle, usage-based billing, automated benefits.
   Triggers on: payment, SePay, Polar, subscription, checkout, webhook, VietQR.
   Coordinates with: api-architect, security-scanner.
-allowed-tools: Read, Write, Edit, Glob, Grep
 metadata:
   version: "2.0.0"
   category: "integration"
   triggers: "payment, SePay, Polar, subscription, checkout, webhook, VietQR"
-  success_metrics: "webhook verified, idempotent, subscription handled"
+  success_metrics: "webhook verified, idempotent, platform selected"
   coordinates_with: "api-architect, security-scanner"
 ---
 
-# Payment Integration
+# Payment Patterns — SePay & Polar Integration
 
-> SePay for Vietnamese market. Polar for global SaaS. Secure, automated, production-ready.
+> 2 platforms. Webhook signatures mandatory. Idempotency keys required. No raw card storage.
 
 ---
 
 ## Prerequisites
 
-**API Access:**
-- **SePay**: API key from [sepay.vn](https://my.sepay.vn) → Settings → API
-- **Polar**: Access token from [polar.sh](https://polar.sh/settings) → Developers
-
-**Environment Variables:**
-```bash
-# SePay
-SEPAY_API_KEY=your_sepay_api_key
-
-# Polar
-POLAR_ACCESS_TOKEN=your_polar_access_token
-POLAR_WEBHOOK_SECRET=your_webhook_secret
-```
+| Platform | Credential | Source |
+|----------|-----------|--------|
+| SePay | `SEPAY_API_KEY` | [sepay.vn](https://my.sepay.vn) → Settings → API |
+| Polar | `POLAR_ACCESS_TOKEN` | [polar.sh](https://polar.sh/settings) → Developers |
+| Polar | `POLAR_WEBHOOK_SECRET` | Polar webhook settings |
 
 ---
 
@@ -43,7 +34,7 @@ POLAR_WEBHOOK_SECRET=your_webhook_secret
 | Situation | Platform | Reference |
 |-----------|----------|-----------|
 | Vietnamese market (VND) | SePay | `sepay/overview.md` |
-| VietQR/bank transfer | SePay | `sepay/sdk.md` |
+| VietQR / bank transfer | SePay | `sepay/sdk.md` |
 | Global SaaS subscriptions | Polar | `polar/overview.md` |
 | Usage-based billing | Polar | `polar/products.md` |
 | Automated benefits | Polar | `polar/benefits.md` |
@@ -51,74 +42,58 @@ POLAR_WEBHOOK_SECRET=your_webhook_secret
 
 ---
 
-## Platform Selection
+## System Boundaries
+
+| Owned by This Skill | NOT Owned |
+|---------------------|-----------|
+| Platform selection (SePay vs Polar) | API design (→ api-architect) |
+| Webhook verification scripts | Security auditing (→ security-scanner) |
+| Rate limit documentation | Payment processing |
+| Subscription lifecycle guidance | PCI DSS certification |
+
+**Expert decision skill:** Produces integration guidance. Does not call payment APIs.
+
+---
+
+## Platform Selection (Deterministic)
 
 | Feature | SePay | Polar |
 |---------|-------|-------|
-| Payment methods | QR, bank transfer, cards | Cards, subscriptions, usage-based |
-| Bank monitoring | 44+ VN banks | N/A |
-| Tax handling | Manual | MoR (global compliance) |
-| Subscriptions | Manual | Full lifecycle |
-| Benefits automation | Manual | GitHub, Discord, licenses |
-| Rate limit | 2 calls/sec | 300 req/min |
-| Customer portal | No | Built-in |
+| **Market** | Vietnam (VND) | Global |
+| **Methods** | QR, bank transfer, cards | Cards, subscriptions, usage |
+| **Banks** | 44+ Vietnamese banks | N/A |
+| **Tax** | Manual | MoR (global compliance) |
+| **Subscriptions** | Manual | Full lifecycle |
+| **Benefits** | Manual | GitHub, Discord, licenses |
+| **Rate limit** | 2 calls/sec | 300 req/min |
+| **Portal** | No | Built-in |
 
-**Choose SePay**: Vietnamese market, VND, bank transfers, VietQR
-**Choose Polar**: Global SaaS, subscriptions, usage billing, automated benefits
-
----
-
-## 📑 Content Map
-
-| File | Description | When to Read |
-|------|-------------|--------------|
-| `sepay/overview.md` | SePay auth, concepts | VN integration |
-| `sepay/sdk.md` | SePay SDK integration | VN checkout |
-| `sepay/webhooks.md` | Bank notification handling | VN webhooks |
-| `polar/overview.md` | Polar auth, concepts | Global SaaS |
-| `polar/products.md` | Product/pricing setup | Subscriptions |
-| `polar/checkouts.md` | Checkout flow | Payment flow |
-| `polar/webhooks.md` | Event handling | Polar webhooks |
-| `polar/benefits.md` | Automated delivery | GitHub/Discord/licenses |
+**Choose SePay:** Vietnamese market, VND, bank transfers, VietQR
+**Choose Polar:** Global SaaS, subscriptions, usage billing, automated benefits
 
 ---
 
-## 🔧 Scripts
+## Core Principles (Fixed)
 
-| Script | Purpose | Command |
-|--------|---------|---------|
-| `sepay-webhook-verify.js` | SePay signature verification | `node scripts/sepay-webhook-verify.js` |
-| `polar-webhook-verify.js` | Polar signature verification | `node scripts/polar-webhook-verify.js` |
-
----
-
-## Quick Start
-
-### SePay (Vietnamese)
-
-1. Load `sepay/overview.md` for auth
-2. Load `sepay/sdk.md` for integration
-3. Load `sepay/webhooks.md` for notifications
-4. Use `scripts/sepay-webhook-verify.js`
-
-### Polar (Global SaaS)
-
-1. Load `polar/overview.md` for auth
-2. Load `polar/products.md` for products
-3. Load `polar/checkouts.md` for checkout
-4. Load `polar/webhooks.md` for events
-5. Use `scripts/polar-webhook-verify.js`
-
----
-
-## Core Principles
-
-| Principle | Application |
+| Principle | Enforcement |
 |-----------|-------------|
-| **Verify Signatures** | Always verify webhook signatures |
-| **Idempotency** | Use idempotency keys for mutations |
-| **Test First** | Use sandbox/test mode before prod |
-| **Store Minimally** | Don't store full card numbers |
+| Verify webhook signatures | Always; use raw body, not parsed JSON |
+| Idempotency keys | All mutation operations |
+| No raw card storage | Tokenization only |
+| Test-first | Sandbox/test mode before production |
+| Credentials via env vars | Never hardcode API keys |
+
+---
+
+## Error Taxonomy
+
+| Code | Recoverable | Trigger |
+|------|-------------|---------|
+| `ERR_INVALID_REQUEST_TYPE` | No | Request type not supported |
+| `ERR_UNKNOWN_MARKET` | Yes | Market not vietnam or global |
+| `ERR_UNKNOWN_PLATFORM` | Yes | Platform not sepay or polar |
+
+**Zero internal retries.** Deterministic; same context = same guidance.
 
 ---
 
@@ -126,10 +101,11 @@ POLAR_WEBHOOK_SECRET=your_webhook_secret
 
 | ❌ Don't | ✅ Do |
 |---------|-------|
-| Skip signature verification | Always verify webhooks |
-| Store raw card data | Use tokenization |
-| Process without idempotency | Use idempotency keys |
+| Skip webhook signature verification | Always verify with provided scripts |
+| Store raw card numbers | Use tokenization |
+| Process without idempotency keys | Use keys for all mutations |
 | Ignore failed webhooks | Implement retry queue |
+| Hardcode API keys | Use environment variables |
 
 ---
 
@@ -137,11 +113,31 @@ POLAR_WEBHOOK_SECRET=your_webhook_secret
 
 | Problem | Solution |
 |---------|----------|
-| Webhook signature fails | Check secret key, verify raw body not parsed |
+| Webhook signature fails | Check secret key; verify raw body not parsed |
 | Duplicate transactions | Implement idempotency keys |
-| Payment not reflecting | Check webhook endpoint registered correctly |
-| Rate limit exceeded | SePay: 2 calls/sec; Polar: 300 req/min |
-| Sandbox vs Production | Verify using correct API keys for environment |
+| Payment not reflecting | Check webhook endpoint registration |
+| Rate limit exceeded | SePay: 2/sec; Polar: 300/min |
+| Sandbox vs production | Verify correct API keys for environment |
+
+---
+
+## 📑 Content Map
+
+| File | Description | When to Read |
+|------|-------------|--------------|
+| [sepay/overview.md](sepay/overview.md) | SePay auth, concepts | VN integration |
+| [sepay/sdk.md](sepay/sdk.md) | SePay SDK | VN checkout |
+| [sepay/webhooks.md](sepay/webhooks.md) | Bank notifications | VN webhooks |
+| [polar/overview.md](polar/overview.md) | Polar auth, concepts | Global SaaS |
+| [polar/products.md](polar/products.md) | Products/pricing | Subscriptions |
+| [polar/checkouts.md](polar/checkouts.md) | Checkout flow | Payment flow |
+| [polar/webhooks.md](polar/webhooks.md) | Event handling | Polar webhooks |
+| [polar/benefits.md](polar/benefits.md) | Automated delivery | Benefits |
+| [scripts/sepay-webhook-verify.js](scripts/sepay-webhook-verify.js) | SePay sig verify | Webhook setup |
+| [scripts/polar-webhook-verify.js](scripts/polar-webhook-verify.js) | Polar sig verify | Webhook setup |
+| [engineering-spec.md](references/engineering-spec.md) | Full spec | Architecture review |
+
+**Selective reading:** Load ONLY the platform files relevant to your market.
 
 ---
 
@@ -151,8 +147,8 @@ POLAR_WEBHOOK_SECRET=your_webhook_secret
 |------|------|---------|
 | `api-architect` | Skill | API design |
 | `security-scanner` | Skill | Payment security |
-| `/cook` | Workflow | Implement payments |
+| `/cook` | Workflow | Implementation |
 
 ---
 
-⚡ PikaKit v3.9.68
+⚡ PikaKit v3.9.69

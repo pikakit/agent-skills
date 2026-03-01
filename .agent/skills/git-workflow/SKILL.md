@@ -4,61 +4,74 @@ description: >-
   Git operations with conventional commits, auto-split logic, secret detection.
   Stage, commit, push, PR, merge with security scanning.
   Triggers on: git, commit, push, PR, merge, conventional commits.
-  Coordinates with: cicd-pipeline, code-review.
+  Coordinates with: cicd-pipeline, code-review, security-scanner.
 metadata:
-  version: "1.0.0"
+  version: "2.0.0"
   category: "devops"
   triggers: "git, commit, push, PR, merge, branch, conventional commits"
-  success_metrics: "clean history, no secrets, conventional format"
+  success_metrics: "zero secrets committed, 100% conventional format, clean history"
   coordinates_with: "cicd-pipeline, code-review, security-scanner"
 ---
 
-# Git Workflow
+# Git Workflow — Conventional Commits + Secret Detection
 
-> Conventional commits. Secret detection. Clean history.
+> Scan before commit. Conventional format. Split if mixed. Rebase on rejection.
 
 ---
 
-## Commands
+## Prerequisites
 
-| Command | Action |
-|---------|--------|
-| `cm` | Stage + commit |
-| `cp` | Stage + commit + push |
-| `pr` | Create Pull Request |
-| `merge` | Merge branches |
+**Required:** Git installed. `gh` CLI for PR creation.
+
+---
+
+## When to Use
+
+| Command | Action | Side Effects |
+|---------|--------|-------------|
+| `cm` | Stage + commit | Git index + local commit |
+| `cp` | Stage + commit + push | Git index + local + remote |
+| `pr` | Create Pull Request | Remote PR via `gh` |
+| `merge` | Merge branches | Branch history modified |
+| `status` | Read-only status | None |
+
+---
+
+## System Boundaries
+
+| Owned by This Skill | NOT Owned |
+|---------------------|-----------|
+| Git stage, commit, push | CI/CD pipelines (→ cicd-pipeline) |
+| Secret detection (6 patterns) | Code review (→ code-review) |
+| Conventional commit format (9 types) | GitOps deploy (→ gitops-workflow) |
+| Commit splitting (threshold-based) | Git server administration |
+| Push recovery (rebase once) | Advanced merge strategies |
+
+**Automation skill:** Executes git commands. Modifies git index, local repo, and remote.
 
 ---
 
 ## Workflow
 
 ```bash
-# 1. Stage + Analyze
+# 1. Stage
 git add -A && git diff --cached --stat
 
-# 2. Security Check
-git diff --cached | grep -iE "(api[_-]?key|token|password|secret)"
-# If found → STOP, warn, suggest .gitignore
+# 2. Secret Scan (MANDATORY — blocks commit)
+git diff --cached | grep -iE "(api[_-]?key|token|password|secret|private_key|credentials)"
+# If found → BLOCK, return violations
 
-# 3. Commit
+# 3. Commit (conventional format)
 git commit -m "type(scope): description"
 
-# 4. Push (optional)
+# 4. Push (cp only)
 git push origin HEAD
+# If rejected → git pull --rebase → retry once
 ```
 
 ---
 
-## Conventional Commits
-
-```
-type(scope): description
-
-[optional body]
-[optional footer]
-```
-
-### Types
+## Conventional Commit Types (9)
 
 | Type | When |
 |------|------|
@@ -72,58 +85,85 @@ type(scope): description
 | `ci` | CI/CD |
 | `build` | Build system |
 
----
-
-## Commit Splitting
-
-**Split if:**
-- Different types mixed (feat + fix)
-- Multiple scopes (auth + payments)
-- Config/deps + code mixed
-- FILES > 10 unrelated
-
-**Single commit if:**
-- Same type/scope
-- FILES ≤ 3
-- LINES ≤ 50
+**Format:** `type(scope): description` — no deviations.
 
 ---
 
-## Security Check
+## Commit Splitting Rules
 
-**Block commit if detected:**
+| Condition | Decision |
+|-----------|----------|
+| ≤ 3 files AND ≤ 50 lines AND same type/scope | **Single commit** |
+| > 10 unrelated files | **Split** |
+| Mixed types (feat + fix) | **Split** |
+| Multiple scopes (auth + payments) | **Split** |
+| Config/deps + code mixed | **Split** |
 
-```bash
-# Patterns
-API_KEY=xxx
-token: "xxx"
-password: xxx
-secret: xxx
+---
+
+## Secret Detection (6 Patterns — Blocks Commit)
+
+| Pattern | Example |
+|---------|---------|
+| `API_KEY` | `API_KEY=sk_live_xxx` |
+| `token` | `token: "ghp_xxx"` |
+| `password` | `password: xxx` |
+| `secret` | `secret: xxx` |
+| `private_key` | `PRIVATE_KEY=xxx` |
+| `credentials` | `credentials: {...}` |
+
+**Action:** BLOCK → Return violations (file + line) → User removes + .gitignore.
+
+---
+
+## Session Lifecycle
+
+```
+IDLE → STAGING              [cm/cp invoked]
+STAGING → SCANNING          [files staged]
+SCANNING → BLOCKED          [secrets detected]  // terminal
+SCANNING → COMMITTING       [scan passed]
+COMMITTING → PUSHING        [cp command]
+COMMITTING → COMPLETED      [cm command]  // terminal
+PUSHING → REBASING          [push rejected]
+PUSHING → COMPLETED         [push accepted]  // terminal
+REBASING → PUSHING          [rebase succeeded]
+REBASING → CONFLICT         [merge conflicts]  // terminal
 ```
 
-**Action:** STOP → Warn → Suggest `.gitignore`
+---
+
+## Error Taxonomy
+
+| Code | Recoverable | Trigger |
+|------|-------------|---------|
+| `ERR_SECRETS_DETECTED` | Yes | Credentials in staged diff |
+| `ERR_NOTHING_TO_COMMIT` | Yes | No staged changes |
+| `ERR_PUSH_REJECTED` | Yes | Remote rejected after rebase |
+| `ERR_MERGE_CONFLICT` | Yes | Merge conflict |
+| `ERR_GIT_NOT_FOUND` | No | Git not installed |
+| `ERR_INVALID_TYPE` | Yes | Commit type not in list |
+| `ERR_FORCE_PUSH_DENIED` | No | Force push without approval |
 
 ---
 
-## Output Format
+## Anti-Patterns
 
-```markdown
-✓ staged: N files (+X/-Y lines)
-✓ security: passed
-✓ commit: HASH type(scope): description
-✓ pushed: yes/no
-```
+| ❌ Don't | ✅ Do |
+|---------|-------|
+| Skip secret scan | Scan before every commit |
+| Monolithic commits (>10 files) | Split by type/scope |
+| Non-conventional messages | `type(scope): description` |
+| Force push without approval | Request explicit approval |
+| `git push --force` on shared branches | `git pull --rebase` first |
 
 ---
 
-## Error Handling
+## 📑 Content Map
 
-| Error | Action |
-|-------|--------|
-| Secrets detected | Block, show files |
-| No changes | Exit cleanly |
-| Push rejected | `git pull --rebase` |
-| Merge conflicts | Manual resolution |
+| File | Description | When to Read |
+|------|-------------|--------------|
+| [engineering-spec.md](references/engineering-spec.md) | Full engineering spec | Architecture review |
 
 ---
 
@@ -132,9 +172,10 @@ secret: xxx
 | Item | Type | Purpose |
 |------|------|---------|
 | `cicd-pipeline` | Skill | CI/CD deployment |
-| `code-review` | Skill | PR review |
+| `code-review` | Skill | PR review patterns |
 | `gitops-workflow` | Skill | ArgoCD/Flux GitOps |
+| `security-scanner` | Skill | Advanced secret scanning |
 
 ---
 
-⚡ PikaKit v3.9.68
+⚡ PikaKit v3.9.69

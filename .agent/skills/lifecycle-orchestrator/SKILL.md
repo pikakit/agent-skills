@@ -6,31 +6,50 @@ description: >-
   Triggers on: complex multi-phase requests, /autopilot, /build workflows, rollback.
   Coordinates with: smart-router, multi-agent, problem-checker.
 metadata:
-  category: "core"
   version: "2.0.0"
+  category: "core"
   triggers: "complex multi-phase requests, /autopilot, /build, rollback, undo"
+  success_metrics: "all phases complete, 100% restore accuracy, state save <1s"
   coordinates_with: "smart-router, multi-agent, problem-checker"
-  success_metrics: "all phases complete, 100% restore accuracy"
 ---
 
-# Lifecycle Orchestrator
+# Lifecycle Orchestrator — Pipeline + Checkpoint/Restore
 
-> Coordinate full task lifecycle with safe state rollback
+> 7 phases. Checkpoint before risk. 100% restore. No phase skipping.
+
+---
+
+## Prerequisites
+
+**Required:** Node.js (for `state_manager.js`).
 
 ---
 
 ## When to Use
 
-| Situation | Approach |
-|-----------|----------|
-| Complex task | Use full lifecycle |
-| /autopilot | Coordinate all phases |
-| Rollback needed | Restore checkpoint |
-| Multi-agent | Monitor handoffs |
+| Situation | Action |
+|-----------|--------|
+| Complex multi-phase task | Use full 7-phase pipeline |
+| `/autopilot` or `/build` | Coordinate all phases |
+| Rollback needed | Restore from checkpoint |
+| Multi-agent task | Monitor handoffs per phase |
 
 ---
 
-## Safety Philosophy
+## System Boundaries
+
+| Owned by This Skill | NOT Owned |
+|---------------------|-----------|
+| 7-phase pipeline management | Task planning (→ project-planner) |
+| Checkpoint save/restore/rollback | Code execution (→ domain agents) |
+| Phase enforcement (no skip verify) | Error detection (→ problem-checker) |
+| Context monitoring (70%/80%) | Agent routing (→ smart-router) |
+
+**Orchestrator skill:** Manages pipeline state, invokes agents, creates checkpoints. Non-idempotent.
+
+---
+
+## Safety Hierarchy
 
 ```
 Safety > Recoverability > Correctness > Cleanliness > Convenience
@@ -38,60 +57,101 @@ Safety > Recoverability > Correctness > Cleanliness > Convenience
 
 ---
 
-## Lifecycle Phases
+## Pipeline Phases (7 — Fixed Order)
 
-```
-Input → Plan → Execute → Verify → Deploy → Learn → Complete
-         ↓       ↓        ↓        ↓
-      [Checkpoint saved before each phase]
-```
-
-| Phase | Owner | Success |
-|-------|-------|---------|
+| Phase | Owner | Exit Criteria |
+|-------|-------|--------------|
+| **Input** | This skill | Task defined |
 | **Plan** | project-planner | PLAN.md approved |
-| **Execute** | multi-agent | Code complete |
+| **Execute** | domain agents | Code complete |
 | **Verify** | problem-checker | 0 errors |
-| **Recover** | this skill | State restored |
+| **Deploy** | cicd-pipeline | Deploy complete |
+| **Learn** | This skill | Lessons captured |
+| **Complete** | This skill | Pipeline done |
+
+**Checkpoint saved before:** Execute, Verify, Deploy. Never skipped.
 
 ---
 
-## State Rollback
+## State Transitions
+
+```
+IDLE → INPUT                [start invoked]
+INPUT → PLANNING            [advance, task defined]
+PLANNING → EXECUTING        [advance, PLAN.md approved]
+EXECUTING → VERIFYING       [advance, code complete]
+VERIFYING → EXECUTING       [errors found, rollback]
+VERIFYING → DEPLOYING       [advance, 0 errors]
+DEPLOYING → LEARNING        [advance, deploy complete]
+LEARNING → COMPLETED        [advance, lessons captured]  // terminal
+VERIFYING → ROLLED_BACK     [rollback invoked]  // terminal
+EXECUTING → ROLLED_BACK     [rollback invoked]  // terminal
+ANY → FAILED                [unrecoverable error]  // terminal
+```
+
+---
+
+## Checkpoint/Restore
 
 | Trigger | Action |
 |---------|--------|
 | Before >3 file changes | Save state |
 | Before risky refactoring | Save state |
-| User says "rollback", "undo" | Restore state |
+| User says "rollback"/"undo" | Restore latest checkpoint |
 
 ```bash
-# Quick commands
 node state_manager.js save --files "file1.tsx,file2.tsx"
 node state_manager.js restore --latest
 node state_manager.js list
 ```
 
-**Storage:** `.agent/state/`
+**Storage:** `.agent/state/{task_id}/`
 
 ---
 
-## Context Optimization
+## Context Monitoring
 
-| Metric | Target | Action |
-|--------|--------|--------|
-| Token warning | 70% | Start compressing |
-| Optimization trigger | 80% | Mandatory optimization |
-
-**Four-Bucket Strategy:** WRITE → SELECT → COMPRESS → ISOLATE
+| Usage | Threshold | Action |
+|-------|-----------|--------|
+| < 70% | Normal | Continue |
+| 70-80% | ⚠️ Warning | Compress context |
+| > 80% | 🔴 Critical | Isolate sub-tasks |
 
 ---
 
-## Success Metrics
+## Error Taxonomy
 
-| Metric | Target |
-|--------|--------|
-| All phases complete | 100% |
-| Restore accuracy | 100% |
-| State save time | <1s |
+| Code | Recoverable | Trigger |
+|------|-------------|---------|
+| `ERR_PHASE_FAILED` | Yes | Phase agent returned failure |
+| `ERR_CHECKPOINT_FAILED` | Yes | Cannot write checkpoint |
+| `ERR_RESTORE_FAILED` | No | Cannot restore from checkpoint |
+| `ERR_PHASE_SKIP` | No | Attempted to skip a phase |
+| `ERR_VERIFY_REQUIRED` | No | Deploy without verify |
+| `ERR_INVALID_TASK` | Yes | Task ID not found |
+| `WARN_CONTEXT_CRITICAL` | Yes | Context usage > 80% |
+
+**Phase retries:** max 2. Checkpoint save retries: max 1. Restore retries: 0.
+
+---
+
+## Anti-Patterns
+
+| ❌ Don't | ✅ Do |
+|---------|-------|
+| Skip verification phase | Complete verify with 0 errors |
+| Deploy without checkpoint | Save state before every deploy |
+| Ignore context warnings | Compress at 70%, isolate at 80% |
+| Auto-delete checkpoints | Manual cleanup only |
+| Run concurrent phases | Sequential phases within task |
+
+---
+
+## 📑 Content Map
+
+| File | Description | When to Read |
+|------|-------------|--------------|
+| [engineering-spec.md](references/engineering-spec.md) | Full engineering spec | Architecture review |
 
 ---
 
@@ -100,9 +160,10 @@ node state_manager.js list
 | Item | Type | Purpose |
 |------|------|---------|
 | `execution-reporter` | Skill | Task visibility |
-| `problem-checker` | Skill | Error handling |
+| `problem-checker` | Skill | Error detection |
+| `context-engineering` | Skill | Token management |
 | `/autopilot` | Workflow | Auto execution |
 
 ---
 
-⚡ PikaKit v3.9.68
+⚡ PikaKit v3.9.69

@@ -6,36 +6,69 @@ description: >-
   Triggers on: Google ADK, agent development, multi-agent, agent orchestration.
   Coordinates with: python-pro, api-architect.
 metadata:
-  version: "1.0.0"
+  version: "2.0.0"
   category: "ai"
   triggers: "Google ADK, agent development, multi-agent, agent orchestration"
-  success_metrics: "agent runs, tools execute, deployment successful"
+  success_metrics: "correct agent type, ≤5 tools/agent, typed tool functions"
   coordinates_with: "python-pro, api-architect"
 ---
 
-# Google ADK Python
+# Google ADK Python — AI Agent Development
 
-> Build production-ready AI agents with tool integration and multi-agent orchestration.
+> Code-first. ≤ 5 tools per agent. Typed functions. Deterministic type selection.
 
 ---
 
 ## Prerequisites
 
-```bash
-pip install google-adk
-# Set: GEMINI_API_KEY or GOOGLE_CLOUD_PROJECT + GOOGLE_CLOUD_LOCATION
-```
+**Required:** `pip install google-adk`. Set `GEMINI_API_KEY` or `GOOGLE_CLOUD_PROJECT` + `GOOGLE_CLOUD_LOCATION`.
 
 ---
 
 ## When to Use
 
-| Situation | Reference |
-|-----------|-----------| 
-| Single agent with tools | This file |
-| Multi-agent coordination | `references/multi-agent.md` |
-| Custom tool creation | `references/tools.md` |
-| Deployment patterns | `references/deployment.md` |
+| Situation | Action |
+|-----------|--------|
+| Single agent with tools | Follow quick start + agent type table |
+| Multi-agent coordination | Read `references/multi-agent.md` |
+| Custom tool creation | Read `references/tools.md` |
+| Deployment patterns | Read `references/deployment.md` |
+| Architecture review | Read `references/engineering-spec.md` |
+
+---
+
+## System Boundaries
+
+| Owned by This Skill | NOT Owned |
+|---------------------|-----------|
+| Agent type selection (4 types) | Python project setup (→ python-pro) |
+| Model selection (3 tiers) | API architecture (→ api-architect) |
+| Tool creation patterns | Prompt engineering (→ ai-artist) |
+| Multi-agent composition | Cloud project config |
+| Deployment guidance | Model hosting |
+
+**Expert decision skill:** Produces agent architecture decisions and code patterns. No execution.
+
+---
+
+## Agent Type Selection (Deterministic)
+
+| Task Type | Agent Type | When |
+|-----------|-----------|------|
+| Conversational | `LlmAgent` | Unpredictable inputs, dialogue |
+| Pipeline | `SequentialAgent` | Ordered step execution |
+| Fan-out | `ParallelAgent` | Concurrent independent tasks |
+| Iterative | `LoopAgent` | Repeat until condition met |
+
+---
+
+## Model Selection (Cost-Based)
+
+| Complexity | Model | Tier |
+|-----------|-------|------|
+| Simple | `gemini-3-flash` | Fast, low cost |
+| Balanced | `gemini-3-pro-low` | Moderate reasoning |
+| Complex | `gemini-3-pro-high` | Deep reasoning |
 
 ---
 
@@ -49,105 +82,77 @@ agent = LlmAgent(
     model="gemini-3-flash",
     instruction="You are a helpful assistant."
 )
-response = agent.run("Hello!")
 ```
 
 ---
 
-## Agent Types
-
-| Type | Purpose | Use Case |
-|------|---------|----------|
-| `LlmAgent` | LLM-powered | Unpredictable inputs |
-| `SequentialAgent` | Execute in order | Pipeline processing |
-| `ParallelAgent` | Run concurrently | Fan-out tasks |
-| `LoopAgent` | Repeat execution | Iterative processing |
-
----
-
-## Single Agent with Tools
+## Tool Creation (Mandatory Contract)
 
 ```python
-from google.adk.agents import LlmAgent
-from google.adk.tools import google_search
-
-agent = LlmAgent(
-    name="search_assistant",
-    model="gemini-3-flash",
-    instruction="Search the web for information.",
-    tools=[google_search]
-)
-```
-
----
-
-## Multi-Agent Pattern
-
-```python
-researcher = LlmAgent(name="Researcher", tools=[google_search])
-writer = LlmAgent(name="Writer")
-
-coordinator = LlmAgent(
-    name="Coordinator",
-    instruction="Delegate to Researcher, then Writer.",
-    sub_agents=[researcher, writer]
-)
-```
-
----
-
-## Custom Tools
-
-```python
-from google.adk.tools import Tool
-
 def calculate_roi(revenue: float, cost: float) -> float:
     """Calculate return on investment."""
     return ((revenue - cost) / cost) * 100
+```
 
-roi_tool = Tool.from_function(calculate_roi)
+**Rules:** Typed parameters + docstring + return type annotation. Always.
+
+---
+
+## Multi-Agent Rules
+
+| Rule | Limit |
+|------|-------|
+| Max tools per agent | 5 |
+| Max sub-agents per coordinator | 5 |
+| Tool count > 5 | Split into sub-agents |
+
+```python
+coordinator = LlmAgent(
+    name="Coordinator",
+    instruction="Delegate to specialists.",
+    sub_agents=[researcher, writer]  # ≤ 5
+)
 ```
 
 ---
 
-## Model Selection
+## Error Taxonomy
 
-| Model | Use Case |
-|-------|----------|
-| `gemini-3-flash` | Fast, cost-effective |
-| `gemini-3-pro-low` | Balanced reasoning |
-| `gemini-3-pro-high` | Complex reasoning |
+| Code | Recoverable | Trigger |
+|------|-------------|---------|
+| `ERR_INVALID_REQUEST_TYPE` | No | Request type not supported |
+| `ERR_MISSING_TASK_TYPE` | Yes | Task type not provided |
+| `ERR_INVALID_COMPLEXITY` | Yes | Not simple/balanced/complex |
+| `ERR_REFERENCE_NOT_FOUND` | No | Reference file missing |
+| `ERR_PACKAGE_MISSING` | Yes | google-adk not installed |
+| `WARN_TOOL_LIMIT` | Yes | Tool count exceeds 20 |
 
----
-
-## Best Practices
-
-| Practice | Application |
-|----------|-------------|
-| **Code-first** | Define in Python for version control |
-| **Modular** | Specialized agents, compose larger |
-| **Start simple** | Single agent → multi-agent |
-| **Test agents** | Validate outputs, measure performance |
+**Zero internal retries.** Deterministic; same context = same pattern.
 
 ---
 
-## Troubleshooting
+## Anti-Patterns
 
-| Problem | Solution |
-|---------|----------|
-| `ModuleNotFoundError` | `pip install google-adk` |
-| API key not found | Set `GEMINI_API_KEY` env var |
-| Tool not called | Verify function signature |
+| ❌ Don't | ✅ Do |
+|---------|-------|
+| Use pro-high for simple tasks | Match complexity to model tier |
+| Put > 5 tools on one agent | Split into coordinator + specialists |
+| Skip type annotations on tools | Typed params + docstring + return type |
+| Use LlmAgent for pipelines | SequentialAgent for ordered steps |
+| Hardcode API keys | Use environment variables |
 
 ---
 
 ## 📑 Content Map
 
-| File | When to Read |
-|------|--------------|
-| `references/multi-agent.md` | Multi-agent systems |
-| `references/tools.md` | Tool integration |
-| `references/deployment.md` | Production deploy |
+| File | Description | When to Read |
+|------|-------------|--------------|
+| [multi-agent.md](references/multi-agent.md) | Multi-agent patterns | Agent composition |
+| [tools.md](references/tools.md) | Tool integration | Custom tools |
+| [deployment.md](references/deployment.md) | Production deploy | Deployment |
+| [engineering-spec.md](references/engineering-spec.md) | Full engineering spec | Architecture review |
+
+**Selective reading:** Read ONLY files relevant to the request.
 
 ---
 
@@ -157,7 +162,8 @@ roi_tool = Tool.from_function(calculate_roi)
 |------|------|---------|
 | `python-pro` | Skill | Python patterns |
 | `api-architect` | Skill | API design |
+| `ai-artist` | Skill | Prompt engineering |
 
 ---
 
-⚡ PikaKit v3.9.68
+⚡ PikaKit v3.9.69

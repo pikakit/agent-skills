@@ -5,43 +5,51 @@ description: >-
   Triggers on: template, README, documentation, API docs, changelog, ADR.
   Coordinates with: project-planner, code-craft.
 metadata:
+  version: "2.0.0"
   category: "specialized"
-  version: "1.0.0"
   triggers: "template, README, documentation, API docs, changelog, ADR"
+  success_metrics: "template applied, all required sections present"
   coordinates_with: "project-planner, code-craft"
-  success_metrics: "template applied, documentation complete"
 ---
 
-# Documentation Templates
+# Doc Templates — Documentation Structure
 
-> **Purpose:** Templates and structure guidelines for documentation.
+> Fixed templates per document type. All sections required. Fill content, not structure.
+
+---
+
+## Prerequisites
+
+**Required:** None — Doc Templates is a knowledge-based skill with no external dependencies.
 
 ---
 
 ## When to Use
 
-| Situation | Template |
-|-----------|----------|
-| New project README | README Template |
-| API endpoint docs | API Doc Template |
-| Architecture decisions | ADR Template |
-| Release notes | Changelog Template |
-| AI agent context | llms.txt Template |
+| Document Type | Template | Required Sections |
+|--------------|----------|-------------------|
+| New project README | README template | 6 sections |
+| API endpoint docs | API doc template | Method, path, params, response |
+| Architecture decisions | ADR template | Status, Context, Decision, Consequences |
+| Release notes | Changelog template | Version, date, changes |
+| AI agent context | llms.txt template | Project summary, structure |
 
 ---
 
-## 📂 Skill Structure
+## System Boundaries
 
-```
-doc-templates/
-├── SKILL.md
-└── references/
-    └── doc.md     # Detailed templates & examples
-```
+| Owned by This Skill | NOT Owned |
+|---------------------|-----------|
+| Template structure (5 document types) | Content writing |
+| Section order and requirements | Auto-documentation (→ /chronicle) |
+| Comment guidelines (why vs what) | Project structure (→ project-planner) |
+| AI-friendly doc format (llms.txt) | Code quality (→ code-craft) |
+
+**Pure decision skill:** Produces document templates and guidelines. Zero side effects.
 
 ---
 
-## README Template
+## README Template (6 Required Sections)
 
 ```markdown
 # Project Name
@@ -114,10 +122,42 @@ What are the trade-offs?
 ## Comment Guidelines
 
 | ✅ Comment | ❌ Don't Comment |
-|-----------|------------------|
-| Why (business logic) | What (obvious) |
+|-----------|-----------------|
+| Why (business logic) | What (obvious code) |
 | Complex algorithms | Every line |
 | API contracts | Implementation details |
+
+---
+
+## Error Taxonomy
+
+| Code | Recoverable | Trigger |
+|------|-------------|---------|
+| `ERR_INVALID_REQUEST_TYPE` | No | Request type not supported |
+| `ERR_REFERENCE_NOT_FOUND` | No | Reference file missing |
+
+**Zero internal retries.** Deterministic; same type = same template.
+
+---
+
+## Anti-Patterns
+
+| ❌ Don't | ✅ Do |
+|---------|-------|
+| Skip Quick Start in README | Always include Quick Start |
+| Undocumented API parameters | Document all params with types |
+| ADR without Consequences | Always include trade-offs |
+| Comment what code does | Comment why code exists |
+| No changelog | Maintain structured changelog |
+
+---
+
+## 📑 Content Map
+
+| File | Description | When to Read |
+|------|-------------|--------------|
+| [doc.md](references/doc.md) | Full templates and examples | Detailed template reference |
+| [engineering-spec.md](references/engineering-spec.md) | Full engineering spec | Architecture review |
 
 ---
 
@@ -125,15 +165,10 @@ What are the trade-offs?
 
 | Item | Type | Purpose |
 |------|------|---------|
-| `/chronicle` | Workflow | Auto-documentation |
-| `project-planner` | Skill | Project structure |
+| `/chronicle` | Workflow | Auto-documentation generation |
+| `project-planner` | Skill | Project structure planning |
+| `code-craft` | Skill | Code quality and comments |
 
 ---
 
-## References
-
-See [references/doc.md](references/doc.md) for full templates.
-
----
-
-⚡ PikaKit v3.9.68
+⚡ PikaKit v3.9.69

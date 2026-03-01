@@ -1,31 +1,32 @@
 ---
 name: cicd-pipeline
 description: >-
-  Production deployment principles and decision-making. Safe deployment workflows, rollback strategies.
+  Production deployment principles and decision-making. Safe deployment workflows,
+  rollback strategies. 5-phase lifecycle: Prepare → Backup → Deploy → Verify → Confirm.
   Triggers on: deploy, deployment, CI/CD, pipeline, rollback, release.
   Coordinates with: git-workflow, security-scanner, feature-flags.
 metadata:
-  category: "devops"
   version: "2.0.0"
+  category: "devops"
   triggers: "deploy, CI/CD, pipeline, rollback, release"
+  success_metrics: "zero-downtime deploy, rollback ≤ 5min, 15min post-deploy monitoring"
   coordinates_with: "git-workflow, security-scanner, feature-flags"
-  success_metrics: "zero downtime, rollback ready"
 ---
 
 # CI/CD Pipeline
 
-> **Purpose:** Safe production deployment with rollback capability
+> Safe production deployment. 5-phase lifecycle. Rollback ≤ 5 minutes. Zero downtime.
 
 ---
 
-## Quick Reference
+## Prerequisites
 
-| Task | Action |
-|------|--------|
-| **Pre-deploy** | Tests ✅ Build ✅ Env ✅ Backup ✅ |
-| **Deploy** | Monitor actively during deploy |
-| **Post-deploy** | Verify health, logs, key flows |
-| **Rollback** | Speed > perfection, fix later |
+**Required:** None — CI/CD Pipeline is a knowledge-based skill with no external dependencies.
+
+**Optional:**
+- `security-scanner` skill (pre-deploy security scan)
+- `git-workflow` skill (release branching)
+- `gitops` skill (GitOps deployment patterns)
 
 ---
 
@@ -33,75 +34,93 @@ metadata:
 
 | Situation | Approach |
 |-----------|----------|
-| Deploying new feature | Follow 5-phase |
-| Production issue | Rollback first |
-| Platform choice | Check selection guide |
+| Deploying new feature | Follow 5-phase deployment lifecycle |
+| Production incident | Rollback first, fix later |
+| Choosing deployment platform | Check platform selection table |
 | Scheduled release | Use pre-deploy checklist |
+| High-risk change | Use blue-green or canary strategy |
+| Architecture review | Read `references/engineering-spec.md` |
+
+**Selective Reading Rule:** Read ONLY the reference file matching the current request.
 
 ---
 
-## 5-Phase Deployment
+## System Boundaries
 
-```
-1. PREPARE → Tests, build, env vars
-2. BACKUP  → Save current state
-3. DEPLOY  → Execute with monitoring
-4. VERIFY  → Health check, logs
-5. CONFIRM → All good or rollback
-```
+| Owned by This Skill | NOT Owned |
+|---------------------|-----------|
+| Deployment strategy selection (rolling/blue-green/canary) | CI/CD tool configuration (→ implementation) |
+| Platform selection per project type | Docker/K8s YAML generation (→ server-ops) |
+| Rollback procedures per platform | Security scanning execution (→ security-scanner) |
+| Pre-deploy validation checklist | Git workflow management (→ git-workflow) |
+| Post-deploy monitoring plan | Infrastructure provisioning (→ server-ops) |
 
----
-
-## Platform Selection
-
-| Type | Platform |
-|------|----------|
-| Static/JAMstack | Vercel, Netlify, Cloudflare |
-| Web app | Railway, Render, Fly.io |
-| VPS | PM2, Docker |
-| Microservices | Kubernetes |
+**Pure decision skill:** Produces deployment plans and runbooks. Zero side effects.
 
 ---
 
-## Pre-Deployment Checklist
+## 5-Phase Deployment Lifecycle
 
-- [ ] All tests passing
-- [ ] Code reviewed
-- [ ] Production build OK
-- [ ] Env vars verified
-- [ ] Rollback plan ready
-- [ ] Team notified
+| Phase | Actions | Duration |
+|-------|---------|----------|
+| **1. Prepare** | Tests pass, build succeeds, env vars verified, security scan | 5–15 min |
+| **2. Backup** | Save current state, tag current release | 1–5 min |
+| **3. Deploy** | Execute deployment with active monitoring | 2–10 min |
+| **4. Verify** | Health checks, log inspection, key user flows | 5–15 min |
+| **5. Confirm** | All criteria met → confirm; any failure → rollback | 1 min |
 
----
-
-## Rollback Strategy
-
-| Platform | Method |
-|----------|--------|
-| Vercel/Netlify | Redeploy previous commit |
-| Railway/Render | Dashboard rollback |
-| VPS + PM2 | Restore backup |
-| Docker | Previous image tag |
-| Kubernetes | `kubectl rollout undo` |
-
-### When to Rollback
-
-| Symptom | Action |
-|---------|--------|
-| Service down | Rollback immediately |
-| Critical errors | Rollback |
-| 50% perf degradation | Consider rollback |
-| Minor issues | Fix forward if quick |
+**Pipeline is sequential.** Each phase completes before the next begins.
 
 ---
 
 ## Zero-Downtime Strategies
 
-| Strategy | Use When |
-|----------|----------|
-| **Rolling** | Standard release |
-| **Blue-Green** | High-risk change |
-| **Canary** | Need real traffic validation |
+| Strategy | Risk Level | Use When |
+|----------|-----------|----------|
+| **Rolling** | Low | Standard feature release, stateless services |
+| **Blue-Green** | High | Breaking changes, database migrations, compliance |
+| **Canary** | Medium–High | Need real traffic validation before full rollout |
+
+---
+
+## Platform Selection
+
+| Project Type | Platform | Rollback Method |
+|-------------|----------|-----------------|
+| Static / JAMstack | Vercel, Netlify, Cloudflare | Redeploy previous commit |
+| Web app | Railway, Render, Fly.io | Dashboard rollback |
+| VPS | PM2, Docker | Restore backup / previous image tag |
+| Microservices | Kubernetes | `kubectl rollout undo` |
+
+**Rollback target:** ≤ 5 minutes for all platforms.
+
+---
+
+## Error Taxonomy
+
+| Code | Recoverable | Trigger |
+|------|-------------|---------|
+| `ERR_INVALID_REQUEST_TYPE` | No | Request type not one of the 7 supported types |
+| `ERR_MISSING_CONTEXT` | Yes | Required context field is null or empty |
+| `ERR_CONSTRAINT_CONFLICT` | Yes | Contradictory constraints |
+| `ERR_INVALID_PROJECT_TYPE` | No | Project type not recognized |
+| `ERR_INVALID_RISK_LEVEL` | No | Risk level not one of: low, medium, high, critical |
+| `ERR_UNSUPPORTED_PLATFORM` | Yes | Platform not in supported list |
+| `ERR_REFERENCE_NOT_FOUND` | No | Reference file missing |
+| `ERR_MIGRATION_CONFLICT` | Yes | Database migration bundled with feature deploy |
+
+**Zero internal retries.** Deterministic output; same context = same plan.
+
+---
+
+## Pre-Deploy Checklist
+
+- [ ] All tests passing (unit + integration + E2E)
+- [ ] Code reviewed and approved
+- [ ] Production build succeeds with zero errors
+- [ ] Environment variables verified (staging → production diff)
+- [ ] Rollback plan documented and tested
+- [ ] Team notified of deployment window
 
 ---
 
@@ -109,10 +128,23 @@ metadata:
 
 | ❌ Don't | ✅ Do |
 |---------|-------|
-| Deploy Friday | Deploy early in week |
-| Skip staging | Always test first |
-| Walk away after deploy | Monitor 15+ min |
-| Multiple changes at once | One change at a time |
+| Deploy on Friday | Deploy early in week (Mon–Wed) |
+| Skip staging validation | Always test in staging first |
+| Walk away after deploy | Monitor actively for ≥ 15 minutes |
+| Bundle multiple changes | One logical change per deployment |
+| Rollback without plan | Document rollback before deploying |
+| Deploy security patches slowly | Hotfix path: test → deploy → verify in < 1 hour |
+
+---
+
+## 📑 Content Map
+
+| File | Description | When to Read |
+|------|-------------|--------------|
+| [deployment-platforms.md](references/deployment-platforms.md) | Platform-specific deployment patterns | Choosing platform |
+| [emergency-procedures.md](references/emergency-procedures.md) | Incident response runbooks | Production incidents |
+| [engineering-spec.md](references/engineering-spec.md) | Full engineering spec: contracts, security, scalability | Architecture review |
+| [scripts/](scripts/) | Deployment helper scripts | Script execution |
 
 ---
 
@@ -120,21 +152,13 @@ metadata:
 
 | Item | Type | Purpose |
 |------|------|---------|
-| `/launch` | Workflow | Deployment workflow |
-| `security-scanner` | Skill | Pre-deploy scan |
-| `gitops` | Skill | GitOps deployment |
+| `/launch` | Workflow | Full deployment workflow |
+| `security-scanner` | Skill | Pre-deploy security scan |
+| `git-workflow` | Skill | Release branching and tagging |
+| `gitops` | Skill | GitOps deployment patterns |
+| `feature-flags` | Skill | Gradual rollout via flags |
+| `server-ops` | Skill | Infrastructure management |
 
 ---
 
-## References
-
-- [references/deployment-platforms.md](references/deployment-platforms.md)
-- [references/emergency-procedures.md](references/emergency-procedures.md)
-
----
-
-> **Remember:** Every deployment is a risk. Minimize risk through preparation.
-
----
-
-⚡ PikaKit v3.9.68
+⚡ PikaKit v3.9.69

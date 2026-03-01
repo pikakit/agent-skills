@@ -6,54 +6,85 @@ description: >-
   Triggers on: MCP tools, server discovery, tool execution, multi-server.
   Coordinates with: mcp-builder, mcp-server.
 metadata:
-  version: "1.0.0"
+  version: "2.0.0"
   category: "framework"
   triggers: "MCP tools, server discovery, tool execution, multi-server, orchestration"
-  success_metrics: "tools discovered, execution successful, structured response"
+  success_metrics: "tools discovered, structured JSON response, method fallback works"
   coordinates_with: "mcp-builder, mcp-server"
 ---
 
-# MCP Management
+# MCP Management — Tool Discovery, Routing & Execution
 
-> Discover, orchestrate, and execute MCP tools without polluting context.
+> Progressive disclosure. 3 execution methods. Structured JSON. Never `-p` flag.
 
 ---
 
 ## Prerequisites
 
-**Required:**
-- MCP servers configured in `.mcp.json`
-- Node.js 18+
-
-**Optional:**
-- Gemini CLI (for primary execution method)
+**Required:** MCP servers in `.mcp.json`, Node.js 18+.
+**Optional:** Gemini CLI (primary execution method).
 
 ---
 
 ## When to Use
 
-| Situation | Approach |
-|-----------|----------|
-| Discover available tools | Run `list-tools` |
-| Execute specific tool | Use Gemini CLI or direct CLI |
+| Situation | Action |
+|-----------|--------|
+| Discover available tools | `npx tsx cli.ts list-tools` |
+| Execute specific tool | Use 3-method priority |
 | Multi-server orchestration | Route by server name |
-| Keep context clean | Use progressive disclosure |
+| Keep context clean | Progressive disclosure |
+
+---
+
+## System Boundaries
+
+| Owned by This Skill | NOT Owned |
+|---------------------|-----------|
+| Tool discovery (list-tools/prompts/resources) | MCP server development (→ mcp-builder) |
+| 3 execution methods + fallback | Server hosting |
+| Multi-server routing from .mcp.json | Tool implementation |
+| Structured JSON response format | Server-side authorization |
+
+**Automation skill:** Spawns processes, makes JSON-RPC calls, writes catalog. Non-idempotent.
+
+---
+
+## Execution Methods (Priority Order)
+
+| Priority | Method | Command |
+|----------|--------|---------|
+| 1 (Primary) | Gemini CLI | `echo "instruction" \| gemini -y` |
+| 2 (Secondary) | Direct CLI | `npx tsx cli.ts call-tool <server> <tool> '<json>'` |
+| 3 (Fallback) | Subagent | Delegate to mcp-manager |
+
+**⚠️ Gemini CLI:** Always stdin pipe. Never `-p` flag (skips MCP init).
+
+---
+
+## State Transitions
+
+```
+IDLE → DISCOVERING           [discover invoked]
+DISCOVERING → CATALOG_SAVED  [tools.json written]  // terminal
+IDLE → EXECUTING             [execute invoked]
+EXECUTING → RESULT_RECEIVED  [server responded]  // terminal
+EXECUTING → METHOD_FALLBACK  [method unavailable]
+METHOD_FALLBACK → RESULT_RECEIVED  [fallback succeeded]  // terminal
+METHOD_FALLBACK → ALL_METHODS_FAILED  [all 3 failed]  // terminal
+EXECUTING → SERVER_FAILED   [server error/timeout]  // terminal
+```
 
 ---
 
 ## Configuration
 
 ```json
-// .mcp.json
 {
   "mcpServers": {
     "memory": {
       "command": "npx",
       "args": ["-y", "@modelcontextprotocol/server-memory"]
-    },
-    "filesystem": {
-      "command": "npx",
-      "args": ["-y", "@modelcontextprotocol/server-filesystem", "/path"]
     }
   }
 }
@@ -61,39 +92,7 @@ metadata:
 
 ---
 
-## Three Execution Methods
-
-### 1. Gemini CLI (Primary)
-
-```bash
-# ✅ CORRECT - use stdin piping
-echo "Take screenshot of example.com. Return JSON only." | gemini -y
-
-# ❌ WRONG - -p flag skips MCP init
-gemini -p "Take screenshot..."  # DON'T USE
-```
-
-### 2. Direct CLI (Secondary)
-
-```bash
-cd scripts/
-
-# List tools (saves to assets/tools.json)
-npx tsx cli.ts list-tools
-
-# Execute tool
-npx tsx cli.ts call-tool memory create_entities '{"entities":[...]}'
-```
-
-### 3. Subagent (Fallback)
-
-Delegate to mcp-manager for context efficiency.
-
----
-
-## Quick Reference
-
-### Discovery Commands
+## Discovery Commands
 
 ```bash
 npx tsx cli.ts list-tools      # All tools → assets/tools.json
@@ -101,19 +100,9 @@ npx tsx cli.ts list-prompts    # Available prompts
 npx tsx cli.ts list-resources  # Available resources
 ```
 
-### Tool Execution
-
-```bash
-# Format: call-tool <server> <tool> '<json-args>'
-npx tsx cli.ts call-tool filesystem read_file '{"path":"/file.txt"}'
-npx tsx cli.ts call-tool memory create_entities '{"entities":[...]}'
-```
-
 ---
 
-## Response Format
-
-Enforce structured JSON responses:
+## Response Format (Enforced)
 
 ```json
 {
@@ -127,25 +116,41 @@ Enforce structured JSON responses:
 
 ---
 
-## 📑 Content Map
+## Error Taxonomy
 
-| File | Description |
-|------|-------------|
-| `references/protocol.md` | JSON-RPC protocol details |
-| `references/cli-usage.md` | CLI commands and examples |
-| `scripts/cli.ts` | CLI implementation |
-| `scripts/mcp-client.ts` | MCP client manager |
+| Code | Recoverable | Trigger |
+|------|-------------|---------|
+| `ERR_CONFIG_MISSING` | Yes | .mcp.json not found |
+| `ERR_SERVER_NOT_FOUND` | Yes | Server name not in config |
+| `ERR_TOOL_NOT_FOUND` | Yes | Tool not on server |
+| `ERR_ALL_METHODS_FAILED` | No | All 3 methods failed |
+| `ERR_SERVER_TIMEOUT` | Yes | Server did not respond |
+| `ERR_RESPONSE_PARSE` | Yes | Cannot parse response |
+| `ERR_GEMINI_CLI_MISSING` | Yes | Auto-fallback to Direct CLI |
+
+**Method fallback:** max 3 attempts (one per method, ordered priority).
 
 ---
 
-## Troubleshooting
+## Anti-Patterns
 
-| Problem | Solution |
-|---------|----------|
-| Gemini CLI not found | Install globally or use direct CLI |
-| Server connection fails | Check .mcp.json config |
-| Tool not found | Run list-tools to refresh catalog |
-| Unstructured response | Add "Return JSON only" to prompt |
+| ❌ Don't | ✅ Do |
+|---------|-------|
+| Use `gemini -p "..."` | Use `echo "..." \| gemini -y` |
+| Load all tools upfront | Progressive disclosure |
+| Assume tool catalog is fresh | Re-run list-tools to refresh |
+| Ignore structured format | Enforce JSON response |
+| Assume server is running | Check before execute |
+
+---
+
+## 📑 Content Map
+
+| File | Description | When to Read |
+|------|-------------|--------------|
+| [protocol.md](references/protocol.md) | JSON-RPC protocol details | Protocol questions |
+| [cli-usage.md](references/cli-usage.md) | CLI commands and examples | CLI usage |
+| [engineering-spec.md](references/engineering-spec.md) | Full engineering spec | Architecture review |
 
 ---
 
@@ -154,8 +159,7 @@ Enforce structured JSON responses:
 | Item | Type | Purpose |
 |------|------|---------|
 | `mcp-builder` | Skill | Build MCP servers |
-| `mcp-builder/references/design-principles.md` | Reference | MCP design principles |
 
 ---
 
-⚡ PikaKit v3.9.68
+⚡ PikaKit v3.9.69

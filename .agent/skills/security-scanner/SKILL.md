@@ -8,21 +8,13 @@ metadata:
   category: "devops"
   version: "2.0.0"
   triggers: "security, vulnerability, OWASP, pentest, threat modeling"
-  coordinates_with: "code-review, cicd-pipeline, api-architect"
   success_metrics: "no critical vulnerabilities, OWASP passed"
+  coordinates_with: "code-review, cicd-pipeline, api-architect"
 ---
 
-# Security Scanner
+# Security Scanner — Vulnerability Analysis & OWASP
 
-> **Purpose:** Think like an attacker, defend like an expert
-
----
-
-## Quick Reference
-
-| Script | Command |
-|--------|---------|
-| Security scan | `node scripts/security_scan.js <path>` |
+> Think like an attacker. Prioritize by exploitability (EPSS), not just severity (CVSS).
 
 ---
 
@@ -31,75 +23,101 @@ metadata:
 | Situation | Approach |
 |-----------|----------|
 | Pre-deployment | Run security scan |
-| New dependencies | Check supply chain |
-| Code review | Check for high-risk patterns |
-| Secret detection | Scan for exposed secrets |
+| New dependencies | Check supply chain (A03) |
+| Code review | Check 5 high-risk patterns |
+| Secret detection | Scan 4 secret categories |
 | Auth implementation | Read `auth-patterns.md` |
 
 ---
 
-## Core Principles
+## System Boundaries
+
+| Owned by This Skill | NOT Owned |
+|---------------------|-----------|
+| OWASP Top 10:2025 mapping | Red team execution (→ offensive-sec) |
+| Risk prioritization (EPSS + CVSS) | CI/CD configuration (→ cicd-pipeline) |
+| High-risk code patterns (5) | Authentication design (→ auth-patterns) |
+| Secret detection guidance (4 types) | Code fixes |
+
+**Expert decision skill:** Produces vulnerability assessments. Does not run scans.
+
+---
+
+## Core Principles (5 — Fixed)
 
 | Principle | Application |
 |-----------|-------------|
-| **Assume Breach** | Design as if attacker inside |
+| **Assume Breach** | Design as if attacker is already inside |
 | **Zero Trust** | Never trust, always verify |
-| **Defense in Depth** | Multiple layers |
-| **Least Privilege** | Minimum access only |
-| **Fail Secure** | On error, deny access |
+| **Defense in Depth** | Multiple independent layers |
+| **Least Privilege** | Minimum access required |
+| **Fail Secure** | On error, deny access (fail closed) |
 
 ---
 
-## OWASP Top 10:2025
-
-| Rank | Category | Think About |
-|------|----------|-------------|
-| A01 | Broken Access Control | IDOR, SSRF |
-| A02 | Security Misconfiguration | Headers, defaults |
-| A03 | Supply Chain 🆕 | Dependencies, CI/CD |
-| A04 | Cryptographic Failures | Weak crypto, secrets |
-| A05 | Injection | User input → commands |
-| A06 | Insecure Design | Flawed architecture |
-| A07 | Auth Failures | Session, credentials |
-| A08 | Integrity Failures | Unsigned updates |
-| A09 | Logging & Alerting | Blind spots |
-| A10 | Exceptional Conditions 🆕 | Error handling |
-
----
-
-## Risk Prioritization
+## Risk Prioritization (Deterministic)
 
 ```
-Is it actively exploited (EPSS >0.5)?
-├── YES → CRITICAL: Immediate
-└── NO → Check CVSS
-         ├── ≥9.0 → HIGH
-         ├── 7.0-8.9 → Check asset value
-         └── <7.0 → Schedule later
+Is it actively exploited (EPSS > 0.5)?
+├── YES → CRITICAL: Immediate remediation
+└── NO  → Check CVSS score:
+         ├── ≥ 9.0        → HIGH
+         ├── 7.0 - 8.9    → Check asset value → MEDIUM or HIGH
+         └── < 7.0        → LOW: Schedule later
 ```
 
 ---
 
-## High-Risk Code Patterns
+## OWASP Top 10:2025 (Fixed)
 
-| Pattern | Risk |
-|---------|------|
-| String concat in queries | Injection |
-| `eval()`, `exec()` | RCE |
-| `pickle.loads()` | Deserialization |
-| User input in file paths | Traversal |
-| `verify=False` | Security disabled |
+| Rank | Category | Key Indicators |
+|------|----------|---------------|
+| A01 | Broken Access Control | IDOR, SSRF, privilege escalation |
+| A02 | Security Misconfiguration | Default creds, missing headers |
+| A03 | Supply Chain 🆕 | Compromised deps, CI/CD tampering |
+| A04 | Cryptographic Failures | Weak crypto, exposed secrets |
+| A05 | Injection | String concat in queries, user→commands |
+| A06 | Insecure Design | Missing threat model |
+| A07 | Auth Failures | Broken sessions, weak credentials |
+| A08 | Integrity Failures | Unsigned updates, untrusted pipelines |
+| A09 | Logging & Alerting | Missing audit trail |
+| A10 | Exceptional Conditions 🆕 | Unhandled errors exposing internals |
 
 ---
 
-## Secret Patterns
+## High-Risk Code Patterns (5 — Fixed)
 
-| Type | Look For |
-|------|----------|
-| API Keys | `api_key`, high entropy |
-| Tokens | `bearer`, `jwt` |
-| Credentials | `password`, `secret` |
-| Cloud | `AWS_`, `AZURE_`, `GCP_` |
+| Pattern | Risk | Fix |
+|---------|------|-----|
+| String concat in SQL/queries | Injection | Parameterized queries |
+| `eval()`, `exec()` | Remote Code Execution | Remove or sandbox |
+| `pickle.loads()` | Deserialization attack | Use JSON |
+| User input in file paths | Path traversal | Sanitize + allowlist |
+| `verify=False` (SSL) | Security bypass | Enable verification |
+
+---
+
+## Secret Detection (4 Categories)
+
+| Type | Indicators |
+|------|-----------|
+| API Keys | `api_key`, `apikey`, high entropy strings |
+| Tokens | `bearer`, `jwt`, `token` |
+| Credentials | `password`, `secret`, `passwd` |
+| Cloud | `AWS_`, `AZURE_`, `GCP_`, `GOOGLE_` |
+
+---
+
+## Error Taxonomy
+
+| Code | Recoverable | Trigger |
+|------|-------------|---------|
+| `ERR_INVALID_REQUEST_TYPE` | No | Request type not supported |
+| `ERR_MISSING_SCORES` | Yes | CVSS/EPSS required for risk |
+| `ERR_INVALID_OWASP` | Yes | Category not A01-A10 |
+| `ERR_INVALID_CVSS` | Yes | CVSS outside 0.0-10.0 |
+
+**Zero internal retries.** Same vulnerability = same classification.
 
 ---
 
@@ -108,16 +126,20 @@ Is it actively exploited (EPSS >0.5)?
 | ❌ Don't | ✅ Do |
 |---------|-------|
 | Scan without understanding | Map attack surface first |
-| Alert on every CVE | Prioritize by exploitability |
+| Alert on every CVE | Prioritize by EPSS exploitability |
 | Fix symptoms only | Address root causes |
-| Trust deps blindly | Verify integrity |
+| Trust dependencies blindly | Verify integrity + audit |
 
 ---
 
-## References
+## 📑 Content Map
 
-- [references/owasp-checklists.md](references/owasp-checklists.md)
-- [references/supply-chain.md](references/supply-chain.md)
+| File | Description | When to Read |
+|------|-------------|--------------|
+| [auth-patterns.md](auth-patterns.md) | Authentication patterns | Auth implementation |
+| [checklists.md](checklists.md) | Security checklists | Pre-deployment |
+| [scripts/security_scan.js](scripts/security_scan.js) | Scan script | Automated scanning |
+| [engineering-spec.md](references/engineering-spec.md) | Full spec | Architecture review |
 
 ---
 
@@ -131,8 +153,4 @@ Is it actively exploited (EPSS >0.5)?
 
 ---
 
-> **Remember:** Vulnerability scanning finds issues. Expert thinking prioritizes what matters.
-
----
-
-⚡ PikaKit v3.9.68
+⚡ PikaKit v3.9.69

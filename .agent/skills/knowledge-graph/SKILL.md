@@ -6,16 +6,22 @@ description: >-
   Triggers on: find usages, code graph, semantic search, impact analysis.
   Coordinates with: code-review, system-design.
 metadata:
-  version: "1.0.0"
+  version: "2.0.0"
   category: "architecture"
   triggers: "find usages, code graph, semantic search, impact analysis, definition"
-  success_metrics: "precise references found, impact identified"
+  success_metrics: "zero false positives, all impact categories enumerated"
   coordinates_with: "code-review, system-design"
 ---
 
-# Knowledge Graph
+# Knowledge Graph — Semantic Code Analysis
 
-> Semantic code analysis. AST > grep. Precise > approximate.
+> AST > grep. Precision > recall. 3-category impact. Scope-aware resolution.
+
+---
+
+## Prerequisites
+
+**Recommended:** LSP server or Tree-sitter for the target language.
 
 ---
 
@@ -23,77 +29,120 @@ metadata:
 
 | Need | Approach |
 |------|----------|
-| Find all usages | Semantic search |
-| Go-to-definition | Symbol lookup |
-| Refactoring impact | Cross-file analysis |
+| Find all usages of a symbol | Semantic search (AST-based) |
+| Go-to-definition | Symbol lookup (scope-aware) |
+| Refactoring impact | Cross-file impact analysis |
 | Architecture diagram | Graph visualization |
-
-**Use grep/ripgrep instead for:** Quick text search, pattern matching
+| Quick text pattern match | Use grep/ripgrep instead |
 
 ---
 
-## Capabilities
+## System Boundaries
+
+| Owned by This Skill | NOT Owned |
+|---------------------|-----------|
+| Analysis strategy (4 capabilities) | Code review (→ code-review) |
+| Language support matrix (4 full + 2 partial) | Architecture design (→ system-design) |
+| Tool selection (4 tools) | LSP/Tree-sitter installation |
+| Impact enumeration (3 categories) | Automated refactoring |
+
+**Expert decision skill:** Produces analysis strategies. Does not execute analysis.
+
+---
+
+## Capabilities (4)
 
 | Feature | Description |
 |---------|-------------|
-| **Symbol Lookup** | Find definition of function/class |
-| **Find Usages** | All call sites across codebase |
-| **Impact Analysis** | What breaks if I change X? |
-| **Cross-file Refs** | Track imports and dependencies |
+| **Symbol Lookup** | Find definition with scope-aware resolution |
+| **Find Usages** | All call sites across project (includes re-exports for TS/JS) |
+| **Impact Analysis** | What breaks if I change X? (direct + indirect + tests) |
+| **Cross-file Refs** | Track imports, re-exports, and aliases |
 
 ---
 
 ## Language Support
 
-| Language | Status |
-|----------|--------|
+| Language | Tier |
+|----------|------|
 | TypeScript | ✅ Full |
 | JavaScript | ✅ Full |
 | Python | ✅ Full |
 | Ruby | ✅ Full |
-| Java/Kotlin | 🚧 Partial |
+| Java | 🚧 Partial |
+| Kotlin | 🚧 Partial |
+
+---
+
+## Integration Tool Selection (Deterministic)
+
+| Need | Tool |
+|------|------|
+| IDE integration | LSP |
+| Raw AST parsing | Tree-sitter |
+| Context dumps for agents | Repomix |
+| AI agent integration | MCP |
+
+---
+
+## Impact Analysis Framework (3 Categories)
+
+| Category | Scope |
+|----------|-------|
+| **Direct callers** | Functions that call the changed symbol |
+| **Indirect refs** | Re-exports, barrel files, aliases |
+| **Test coverage** | Test files referencing the symbol |
+
+All 3 categories always enumerated. Never partial impact analysis.
 
 ---
 
 ## Common Queries
 
-### Find All Usages
-
-```markdown
-Query: "Where is `authenticate` function used?"
-Result: 
-- src/auth/login.ts:45
-- src/middleware/auth.ts:12
-- src/api/users.ts:78
 ```
+"Where is authenticate used?"
+→ Strategy: semantic find-usages, include re-exports, include tests
 
-### Go-to-Definition
+"Definition of User class"
+→ Strategy: scope-aware symbol lookup, LSP preferred
 
-```markdown
-Query: "Definition of User class"
-Result: src/models/user.ts:15
-```
-
-### Impact Analysis
-
-```markdown
-Query: "What breaks if I change validateEmail signature?"
-Result:
-- Direct calls: 5 files
-- Indirect: 2 files via re-exports
-- Tests: 3 test files
+"What breaks if I change validateEmail signature?"
+→ Strategy: 3-category impact (direct: call sites, indirect: re-exports, tests: test files)
 ```
 
 ---
 
-## Integration Options
+## Error Taxonomy
 
-| Tool | Use Case |
-|------|----------|
-| LSP | IDE integration |
-| Tree-sitter | AST parsing |
-| Repomix | Context dumps |
-| MCP | AI agent integration |
+| Code | Recoverable | Trigger |
+|------|-------------|---------|
+| `ERR_INVALID_REQUEST_TYPE` | No | Request type not supported |
+| `ERR_UNSUPPORTED_LANGUAGE` | No | Language not in matrix |
+| `ERR_MISSING_SYMBOL` | Yes | Symbol name not provided |
+| `ERR_MISSING_FILE_PATH` | Yes | File path not provided |
+| `WARN_PARTIAL_SUPPORT` | Yes | Language has partial support |
+
+**Zero internal retries.** Deterministic; same context = same strategy.
+
+---
+
+## Anti-Patterns
+
+| ❌ Don't | ✅ Do |
+|---------|-------|
+| Use grep for symbol analysis | Use AST-based semantic search |
+| Skip re-export tracking (TS/JS) | Always include barrel exports |
+| Partial impact analysis | Enumerate all 3 categories |
+| Assume partial language = full | Check `WARN_PARTIAL_SUPPORT` |
+| Ignore test references | Include test coverage in impact |
+
+---
+
+## 📑 Content Map
+
+| File | Description | When to Read |
+|------|-------------|--------------|
+| [engineering-spec.md](references/engineering-spec.md) | Full engineering spec | Architecture review |
 
 ---
 
@@ -101,9 +150,9 @@ Result:
 
 | Item | Type | Purpose |
 |------|------|---------|
-| `code-review` | Skill | Quality analysis |
+| `code-review` | Skill | Code quality analysis |
 | `system-design` | Skill | Architecture patterns |
 
 ---
 
-⚡ PikaKit v3.9.68
+⚡ PikaKit v3.9.69

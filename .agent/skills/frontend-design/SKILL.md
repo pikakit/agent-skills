@@ -6,79 +6,58 @@ description: >-
   Triggers on: frontend design, UI design, landing page, design from screenshot, anti-generic.
   Coordinates with: design-system, studio, ai-artist.
 metadata:
-  version: "1.0.0"
+  version: "2.0.0"
   category: "design"
   triggers: "frontend design, UI design, landing page, design from screenshot, anti-generic, visual design"
-  success_metrics: "distinctive design, no generic aesthetics, design extracted accurately"
+  success_metrics: "distinctive design, zero AI-slop violations, design extracted accurately"
   coordinates_with: "design-system, studio, ai-artist"
 ---
 
-# Frontend Design
+# Frontend Design — Distinctive Interfaces
 
-> Create distinctive interfaces that avoid "AI slop" aesthetics. Bold, intentional, memorable.
+> Bold, committed, memorable. No "safe middle." Every decision demands a direction.
 
 ---
 
 ## Prerequisites
 
-**Required:**
-- HTML, CSS, JavaScript knowledge
-- React (for component workflows)
-
-**Optional:**
-- `ai-artist` skill for asset generation
-- `studio` skill for design systems
+**Required:** HTML, CSS, JavaScript knowledge; React for component workflows.
+**Optional:** `ai-artist` (asset generation), `studio` (design systems).
 
 ---
 
 ## When to Use
 
-| Situation | Approach |
-|-----------|----------|
-| Replicate from screenshot | Use Workflow 1: Extract → Implement → Verify |
-| Build from scratch | Use Workflow 2: Design Thinking → Bold Direction → Execute |
-| Avoid generic UI | Follow anti-AI-slop principles |
-| Need distinctive typography | See `references/typography.md` |
+| Situation | Action |
+|-----------|--------|
+| Replicate from screenshot | Workflow 1: Extract → Document → Implement → Verify |
+| Build from scratch | Workflow 2: Direction → Typography → Color → Motion |
+| Avoid generic UI | Run anti-slop check |
+| Typography decisions | Read `references/typography.md` |
+| Color direction | Read `references/color-systems.md` |
+| Architecture review | Read `references/engineering-spec.md` |
 
 ---
 
-## Two Workflows
+## System Boundaries
 
-### Workflow 1: From Screenshots
+| Owned by This Skill | NOT Owned |
+|---------------------|-----------|
+| Aesthetic direction selection (5 styles) | Design tokens (→ design-system) |
+| Anti-AI-slop enforcement (4 bans) | AI style search (→ studio) |
+| Screenshot design extraction | Asset generation (→ ai-artist) |
+| Typography pairing guidance | WCAG accessibility (→ web-design-guidelines) |
+| Color commitment strategy | CSS implementation (→ tailwind-kit) |
+| Motion choreography | Component architecture |
 
-```
-Screenshot → Extract Design System → Implement → Verify
-```
-
-1. **Analyze screenshot** - Extract colors, fonts, spacing, layout
-2. **Document** - Create `design-guidelines.md` with specs
-3. **Implement** - Match exact specifications
-4. **Verify** - Compare side-by-side
-
-### Workflow 2: From Scratch
-
-```
-Purpose → Bold Direction → Execute with Precision
-```
-
-1. **Design Thinking** - Purpose, tone, constraints, differentiation
-2. **Choose Aesthetic** - Commit to extreme direction
-3. **Execute** - Meticulous attention to detail
+**Pure decision skill:** Produces design direction and specifications. Zero side effects.
 
 ---
 
-## Anti-AI-Slop Principles
+## Aesthetic Directions (Pick ONE — Commit Fully)
 
-> **Full rules:** See `studio` skill → Anti-AI-Slop Rules section (single source of truth).
-
-**Quick summary:** Avoid generic fonts (Inter, Roboto), pure RGB colors, basic shadows, and scattered micro-interactions. Choose bold, distinctive aesthetics instead.
-
----
-
-## Aesthetic Directions
-
-| Style | Description |
-|-------|-------------|
+| Direction | Key Traits |
+|-----------|-----------|
 | **Brutally Minimal** | Monospace, black/white, generous whitespace |
 | **Editorial Magazine** | Large display fonts, multi-column, dramatic imagery |
 | **Retro-Futuristic** | Neon gradients, geometric, synthwave |
@@ -87,42 +66,74 @@ Purpose → Bold Direction → Execute with Precision
 
 ---
 
-## Quick Reference
+## Anti-AI-Slop Bans (Enforced on ALL Outputs)
 
-### Typography
+| # | Banned Pattern | Alternative |
+|---|---------------|-------------|
+| 1 | Generic fonts alone (Inter, Roboto) | Distinctive display font pairing |
+| 2 | Pure RGB colors (#FF0000, #0000FF) | Color theory palettes with nuance |
+| 3 | Basic drop shadows (0 2px 4px) | Intentional shadow systems or none |
+| 4 | Scattered micro-interactions | One orchestrated entrance sequence |
 
-```css
-/* Distinctive pairing */
-:root {
-  --font-display: 'Playfair Display', serif;
-  --font-body: 'Source Sans Pro', sans-serif;
-}
+> Full anti-slop rules: see `studio` skill (single source of truth).
 
-.heading {
-  font-family: var(--font-display);
-  font-size: clamp(48px, 8vw, 120px);
-  font-weight: 700;
-  line-height: 0.95;
-}
-```
+---
 
-### Color (Commit Fully)
+## Design Constraints (Fixed)
 
-```css
-:root {
-  --color-primary: #1A202C;
-  --color-accent: #F56565;
-  --color-neutral: #E2E8F0;
-}
-```
+| Constraint | Value |
+|-----------|-------|
+| Max font families | 2 (display + body) |
+| Min heading size | 48px (via `clamp(48px, 8vw, 120px)`) |
+| Max brand colors | 3 (dominant + accent + neutral) |
+| Motion pattern | 1 orchestrated entrance per view |
+| Base animation duration | 600ms ease-out |
+| Stagger delay | 200ms between elements |
 
-### Motion (Orchestrated)
+---
 
-```css
-.hero-title { animation: fadeInUp 0.6s ease-out; }
-.hero-subtitle { animation: fadeInUp 0.6s ease-out 0.2s backwards; }
-.hero-cta { animation: fadeInUp 0.6s ease-out 0.4s backwards; }
-```
+## Two Workflows
+
+### Workflow 1: From Screenshots
+1. Analyze screenshot — extract colors, fonts, spacing, layout
+2. Document extracted specs in `design-guidelines.md`
+3. Implement matching design
+4. Verify side-by-side (≥ 95% accuracy)
+
+### Workflow 2: From Scratch
+1. Choose aesthetic direction (commit to one)
+2. Select typography pairing
+3. Commit color system (dominant + accent + neutral)
+4. Design motion choreography
+5. Run anti-slop check
+6. Implement
+
+---
+
+## Error Taxonomy
+
+| Code | Recoverable | Trigger |
+|------|-------------|---------|
+| `ERR_INVALID_REQUEST_TYPE` | No | Request type not supported |
+| `ERR_MISSING_BRAND_TONE` | Yes | Brand tone not provided |
+| `ERR_MISSING_PROJECT_TYPE` | Yes | Project type not provided |
+| `ERR_SCREENSHOT_NOT_FOUND` | Yes | Screenshot path invalid |
+| `ERR_REFERENCE_NOT_FOUND` | No | Reference file missing |
+| `WARN_AI_SLOP` | Yes | Generic AI pattern detected |
+
+**Zero internal retries.** Deterministic; same context = same direction.
+
+---
+
+## Anti-Patterns
+
+| ❌ Don't | ✅ Do |
+|---------|-------|
+| Choose "safe middle" aesthetics | Commit to one bold direction |
+| Use Inter/Roboto as only font | Pair distinctive display + body fonts |
+| Use timid muted colors | Commit: dominant + sharp accent |
+| Scatter random animations | One orchestrated entrance sequence |
+| Copy layout patterns | Break the grid, add asymmetry |
 
 ---
 
@@ -130,23 +141,14 @@ Purpose → Bold Direction → Execute with Precision
 
 | File | Description | When to Read |
 |------|-------------|--------------|
-| `references/typography.md` | Font pairings, sizing systems | Typography decisions |
-| `references/color-systems.md` | Color palettes, commitments | Color direction |
-| `references/motion-design.md` | Animation patterns, anime.js | Motion design |
-| `references/spatial-composition.md` | Layout breaking, asymmetry | Layout innovation |
-| `references/design-extraction.md` | Screenshot analysis process | Replicate designs |
+| [typography.md](references/typography.md) | Font pairings, sizing systems | Typography decisions |
+| [color-systems.md](references/color-systems.md) | Color palettes, commitments | Color direction |
+| [motion-design.md](references/motion-design.md) | Animation patterns | Motion design |
+| [spatial-composition.md](references/spatial-composition.md) | Layout breaking, asymmetry | Layout innovation |
+| [design-extraction.md](references/design-extraction.md) | Screenshot analysis process | Replicate designs |
+| [engineering-spec.md](references/engineering-spec.md) | Full engineering spec | Architecture review |
 
----
-
-## Troubleshooting
-
-| Problem | Solution |
-|---------|----------|
-| Design looks generic | Choose bolder aesthetic direction |
-| Typography bland | Use distinctive display font pairing |
-| Colors timid | Commit to dominant + sharp accent |
-| Layout boring | Break the grid, add asymmetry |
-| Motion scattered | Focus on one orchestrated entrance |
+**Selective reading:** Read ONLY files relevant to the request.
 
 ---
 
@@ -161,4 +163,4 @@ Purpose → Bold Direction → Execute with Precision
 
 ---
 
-⚡ PikaKit v3.9.68
+⚡ PikaKit v3.9.69

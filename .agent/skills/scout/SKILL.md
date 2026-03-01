@@ -6,16 +6,16 @@ description: >-
   Triggers on: find files, locate, codebase structure, explore, search.
   Coordinates with: knowledge-graph, code-review.
 metadata:
-  version: "1.0.0"
+  version: "2.0.0"
   category: "development"
   triggers: "find files, locate, codebase structure, explore, search"
   success_metrics: "files found, structure understood, <3 min"
   coordinates_with: "knowledge-graph, code-review"
 ---
 
-# Scout
+# Scout — Fast Codebase Exploration
 
-> Fast codebase exploration. Divide and conquer. Find files in minutes.
+> Divide and conquer. 4 agents max. 200K tokens each. 3-minute timeout. No overlap.
 
 ---
 
@@ -30,54 +30,77 @@ metadata:
 
 ---
 
-## Workflow
+## System Boundaries
 
-### 1. Analyze Task
+| Owned by This Skill | NOT Owned |
+|---------------------|-----------|
+| Search strategy (task analysis) | Semantic code analysis (→ knowledge-graph) |
+| Directory segmentation (no overlap) | Code quality review (→ code-review) |
+| Context budgeting (200K/agent) | File modification |
+| Report template | Agent orchestration |
 
-```markdown
-- Parse prompt for search targets
-- Identify directories, patterns, file types
-- Estimate scale (files, LOC)
+**Expert decision skill:** Produces scouting strategies. Does not execute searches.
+
+---
+
+## 4-Step Scouting Workflow (Fixed)
+
 ```
-
-### 2. Divide and Conquer
-
-```markdown
-- Split codebase into segments
-- Assign directories per agent
-- No overlap, max coverage
-```
-
-### 3. Parallel Exploration
-
-```markdown
-- Each agent explores assigned area
-- <200K token context per agent
-- 3-minute timeout per agent
-```
-
-### 4. Collect Results
-
-```markdown
-- Aggregate findings
-- List unresolved questions
-- Produce concise report
+1. ANALYZE   → Parse prompt, identify targets, estimate scale
+2. DIVIDE    → Split codebase into non-overlapping segments
+3. EXPLORE   → Each agent explores assigned area (<200K tokens, 3-min timeout)
+4. COLLECT   → Aggregate findings into structured report
 ```
 
 ---
 
-## Report Format
+## Constraints (Fixed)
+
+| Parameter | Default | Maximum |
+|-----------|---------|---------|
+| Agents | 4 | 8 |
+| Context per agent | 200,000 tokens | 200,000 tokens |
+| Timeout per agent | 180 seconds | 300 seconds |
+| Total scouting | 300 seconds | 600 seconds |
+
+---
+
+## Segmentation Rules (Deterministic)
+
+| Rule | Enforcement |
+|------|-------------|
+| No overlap | Each directory assigned to exactly 1 agent |
+| Round-robin | Directories distributed evenly |
+| Token awareness | Estimated file count per segment ≤ context budget |
+
+---
+
+## Search Patterns (3 Tools)
+
+```bash
+# Pattern search
+grep -r "authenticate" src/
+rg "pattern" --type ts
+
+# File discovery
+find . -name "*.test.ts"
+
+# Content search with type filter
+rg "TODO|FIXME" --type ts
+```
+
+---
+
+## Report Format (Fixed)
 
 ```markdown
 # Scout Report
 
 ## Relevant Files
 - `path/to/file.ts` - Brief description
-- `path/to/other.ts` - Brief description
 
 ## Structure
 - `src/auth/` - Authentication logic
-- `src/api/` - API endpoints
 
 ## Unresolved Questions
 - Any gaps in findings
@@ -85,18 +108,15 @@ metadata:
 
 ---
 
-## Search Patterns
+## Error Taxonomy
 
-```bash
-# Find by pattern
-grep -r "authenticate" src/
+| Code | Recoverable | Trigger |
+|------|-------------|---------|
+| `ERR_INVALID_REQUEST_TYPE` | No | Request type not supported |
+| `ERR_INVALID_ROOT` | Yes | Root directory not valid |
+| `ERR_TOO_MANY_AGENTS` | Yes | max_agents exceeds 8 |
 
-# Find by extension
-find . -name "*.test.ts"
-
-# Find by content
-rg "TODO|FIXME" --type ts
-```
+**Zero internal retries.** Same task + structure = same segmentation.
 
 ---
 
@@ -107,7 +127,15 @@ rg "TODO|FIXME" --type ts
 | Wide search | Start with glob patterns |
 | Narrow down | Filter by extension first |
 | Understand flow | Follow imports |
-| Find entry points | Check index files |
+| Find entry points | Check index/main files |
+
+---
+
+## 📑 Content Map
+
+| File | Description | When to Read |
+|------|-------------|--------------|
+| [engineering-spec.md](references/engineering-spec.md) | Full spec | Architecture review |
 
 ---
 
@@ -120,4 +148,4 @@ rg "TODO|FIXME" --type ts
 
 ---
 
-⚡ PikaKit v3.9.68
+⚡ PikaKit v3.9.69

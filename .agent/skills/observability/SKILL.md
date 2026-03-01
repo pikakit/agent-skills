@@ -8,37 +8,52 @@ metadata:
   category: "devops"
   version: "2.0.0"
   triggers: "monitoring, observability, OpenTelemetry, telemetry"
-  coordinates_with: "logging, metrics, tracing, incident-response"
-  success_metrics: "SDK initialized, telemetry exported"
+  success_metrics: "SDK configured, sampling set, provider selected"
+  coordinates_with: "server-ops, cicd-pipeline"
 ---
 
-# Observability
+# Observability — Unified Telemetry with OpenTelemetry
 
-> **Purpose:** Unified telemetry with OpenTelemetry SDK
+> 3 pillars. Vendor-agnostic. Fixed sampling. Auto-instrumentation first.
+
+**Key:** Set up once, benefit everywhere (logs, metrics, traces share same SDK).
 
 ---
 
-## Quick Reference
+## Prerequisites
 
-| Task | Command |
-|------|---------|
-| **Install (Node)** | `npm install @opentelemetry/sdk-node @opentelemetry/auto-instrumentations-node` |
-| **Install (Python)** | `pip install opentelemetry-sdk opentelemetry-instrumentation` |
+| Runtime | Install Command |
+|---------|----------------|
+| Node.js | `npm install @opentelemetry/sdk-node @opentelemetry/auto-instrumentations-node` |
+| Python | `pip install opentelemetry-sdk opentelemetry-instrumentation` |
 
 ---
 
 ## When to Use
 
-| Situation | Approach |
-|-----------|----------|
-| Need unified telemetry | Setup OpenTelemetry SDK |
-| Debug production issues | Check traces |
+| Situation | Action |
+|-----------|--------|
+| Need unified telemetry | Set up OpenTelemetry SDK |
+| Debug production issues | Check traces (trace_id) |
 | Monitor performance | Use metrics |
-| Track errors | Configure logging |
+| Track errors | Configure structured logging |
 
 ---
 
-## Three Pillars
+## System Boundaries
+
+| Owned by This Skill | NOT Owned |
+|---------------------|-----------|
+| SDK configuration (Node.js, Python) | Infrastructure provisioning (→ server-ops) |
+| Sampling strategy (3 environments) | Alerting rules (→ /alert workflow) |
+| Provider routing (3 providers) | CI/CD monitoring (→ cicd-pipeline) |
+| Auto-instrumentation guidance | Dashboard design |
+
+**Expert decision skill:** Produces configuration guidance. Does not install packages.
+
+---
+
+## Three Pillars (Unified via trace_id)
 
 | Pillar | Purpose | Example |
 |--------|---------|---------|
@@ -48,55 +63,29 @@ metadata:
 
 ---
 
-## OpenTelemetry Benefits
+## Sampling by Environment (Fixed)
 
-| Benefit | Description |
-|---------|-------------|
-| Vendor-agnostic | Switch providers easily |
-| Auto-instrumentation | No manual logging for HTTP, DB |
-| Correlation | Link logs ↔ metrics ↔ traces |
-
----
-
-## Quick Setup (Node.js)
-
-```typescript
-import { NodeSDK } from '@opentelemetry/sdk-node';
-import { getNodeAutoInstrumentations } from '@opentelemetry/auto-instrumentations-node';
-
-const sdk = new NodeSDK({
-  serviceName: process.env.SERVICE_NAME,
-  instrumentations: [getNodeAutoInstrumentations()],
-});
-
-sdk.start();
-```
+| Environment | Rate | Rationale |
+|-------------|------|-----------|
+| Development | 100% | Full visibility for debugging |
+| Staging | 50% | Balance cost vs visibility |
+| Production | 1-10% | Cost control |
 
 ---
 
-## Auto-Instrumented Libraries
+## Auto-Instrumented Libraries (Fixed)
 
-| Library | Captured |
-|---------|----------|
-| HTTP | Request/response, status |
-| Express | Routes, middleware |
+| Library | Data Captured |
+|---------|--------------|
+| HTTP | Request/response, status codes |
+| Express | Routes, middleware timing |
 | Prisma | Database queries |
 | Redis | Commands, latency |
 | Next.js | Page loads, API routes |
 
 ---
 
-## Sampling by Environment
-
-| Environment | Rate | Reason |
-|-------------|------|--------|
-| Development | 100% | Debug all |
-| Staging | 50% | Cost vs visibility |
-| Production | 1-10% | Cost optimization |
-
----
-
-## Provider Integration
+## Provider Integration (Fixed)
 
 | Provider | Exporter |
 |----------|----------|
@@ -106,22 +95,28 @@ sdk.start();
 
 ---
 
+## Error Taxonomy
+
+| Code | Recoverable | Trigger |
+|------|-------------|---------|
+| `ERR_INVALID_REQUEST_TYPE` | No | Request type not supported |
+| `ERR_UNKNOWN_RUNTIME` | Yes | Runtime not nodejs or python |
+| `ERR_UNKNOWN_ENVIRONMENT` | Yes | Environment not recognized |
+| `ERR_UNKNOWN_PROVIDER` | Yes | Provider not one of 3 |
+
+**Zero internal retries.** Deterministic; same context = same configuration.
+
+---
+
 ## Anti-Patterns
 
 | ❌ Don't | ✅ Do |
 |---------|-------|
-| Too many custom spans | Use auto-instrumentation |
-| Sensitive data in tags | Sanitize before export |
-| Ignore errors | Log exceptions |
-
----
-
-## References
-
-For detailed setup and code examples:
-- [references/setup-nodejs.md](references/setup-nodejs.md)
-- [references/setup-python.md](references/setup-python.md)
-- [references/providers.md](references/providers.md)
+| Create excessive custom spans | Use auto-instrumentation first |
+| Put sensitive data in span tags | Sanitize all tags before export |
+| Hardcode SERVICE_NAME | Use environment variable |
+| Sample 100% in production | Use 1-10% for production |
+| Ignore errors in telemetry | Log all exceptions |
 
 ---
 
@@ -129,10 +124,18 @@ For detailed setup and code examples:
 
 | Problem | Solution |
 |---------|----------|
-| No traces appearing | Check OTEL_EXPORTER_OTLP_ENDPOINT is set |
+| No traces appearing | Check `OTEL_EXPORTER_OTLP_ENDPOINT` is set |
 | High cardinality metrics | Reduce label values, use histograms |
-| Missing spans | Verify instrumentation is auto-loaded |
-| Prometheus scrape fails | Check /metrics endpoint, firewall rules |
+| Missing spans | Verify auto-instrumentation is loaded |
+| Prometheus scrape fails | Check `/metrics` endpoint and firewall |
+
+---
+
+## 📑 Content Map
+
+| File | Description | When to Read |
+|------|-------------|--------------|
+| [engineering-spec.md](references/engineering-spec.md) | Full engineering spec | Architecture review |
 
 ---
 
@@ -146,8 +149,4 @@ For detailed setup and code examples:
 
 ---
 
-> **Key:** Set up once, benefit everywhere (logs, metrics, traces share same SDK).
-
----
-
-⚡ PikaKit v3.9.68
+⚡ PikaKit v3.9.69

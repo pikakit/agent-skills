@@ -6,22 +6,21 @@
 
 ## Agent → Script Mapping
 
-| Agent                     | Script          | Command                                                                        |
-| ------------------------- | --------------- | ------------------------------------------------------------------------------ |
-| **frontend-specialist**   | UX Audit        | `python .agent/skills/frontend-design/scripts/ux_audit.py .`                   |
-| **frontend-specialist**   | A11y Check      | `python .agent/skills/frontend-design/scripts/accessibility_checker.py .`      |
-| **backend-specialist**    | API Validator   | `python .agent/skills/api-patterns/scripts/api_validator.py .`                 |
-| **mobile-developer**      | Mobile Audit    | `python .agent/skills/mobile-design/scripts/mobile_audit.py .`                 |
-| **database-architect**    | Schema Validate | `python .agent/skills/database-design/scripts/schema_validator.py .`           |
-| **security-auditor**      | Security Scan   | `python .agent/skills/vulnerability-scanner/scripts/security_scan.py .`        |
-| **seo-specialist**        | SEO Check       | `python .agent/skills/seo-fundamentals/scripts/seo_checker.py .`               |
-| **seo-specialist**        | GEO Check       | `python .agent/skills/geo-fundamentals/scripts/geo_checker.py .`               |
-| **performance-optimizer** | Lighthouse      | `python .agent/skills/performance-profiling/scripts/lighthouse_audit.py <url>` |
-| **test-engineer**         | Test Runner     | `python .agent/skills/testing-patterns/scripts/test_runner.py .`               |
-| **test-engineer**         | Playwright      | `python .agent/skills/webapp-testing/scripts/playwright_runner.py <url>`       |
-| **Any agent**             | Lint Check      | `python .agent/skills/lint-and-validate/scripts/lint_runner.py .`              |
-| **Any agent**             | Type Coverage   | `python .agent/skills/lint-and-validate/scripts/type_coverage.py .`            |
-| **Any agent**             | i18n Check      | `python .agent/skills/i18n-localization/scripts/i18n_checker.py .`             |
+| Agent                     | Script          | Command                                                                     |
+| ------------------------- | --------------- | --------------------------------------------------------------------------- |
+| **frontend-specialist**   | UX Audit        | `node .agent/skills/design-system/scripts/ux_audit.js .`                    |
+| **frontend-specialist**   | A11y Check      | `node .agent/skills/design-system/scripts/accessibility_checker.js .`       |
+| **backend-specialist**    | API Validator   | `node .agent/skills/api-architect/scripts/api_validator.js .`               |
+| **mobile-developer**      | Mobile Audit    | `node .agent/skills/mobile-design/scripts/mobile_audit.js .`               |
+| **database-architect**    | Schema Validate | `node .agent/skills/data-modeler/scripts/schema_validator.js .`            |
+| **security-auditor**      | Security Scan   | `node .agent/skills/security-scanner/scripts/security_scan.js .`           |
+| **seo-specialist**        | SEO Check       | `node .agent/skills/seo-optimizer/scripts/seo_checker.js .`                |
+| **seo-specialist**        | GEO Check       | `node .agent/skills/geo-spatial/scripts/geo_checker.js .`                  |
+| **performance-optimizer** | Lighthouse      | `node .agent/skills/perf-optimizer/scripts/lighthouse_audit.js <url>`      |
+| **test-engineer**         | Test Runner     | `node .agent/skills/test-architect/scripts/test_runner.js .`               |
+| **test-engineer**         | Playwright      | `node .agent/skills/e2e-automation/scripts/playwright_runner.js <url>`     |
+| **Any agent**             | Lint Check      | `node .agent/skills/code-review/scripts/lint_runner.js .`                  |
+| **Any agent**             | Problem Check   | `node .agent/skills/problem-checker/scripts/check_problems.js .`           |
 
 ---
 
@@ -30,11 +29,11 @@
 ### Protocol: READ → SUMMARIZE → ASK
 
 1. **Run** script, capture ALL output
-2. **Parse** - identify errors, warnings, passes
+2. **Parse** — identify errors, warnings, passes
 3. **Summarize** to user:
 
 ```markdown
-## Script Results: [script_name.py]
+## Script Results: [script_name.js]
 
 ### ❌ Errors Found (X items)
 - [File:Line] Error description
@@ -63,4 +62,4 @@
 
 ---
 
-⚡ PikaKit v3.9.68
+⚡ PikaKit v3.9.69

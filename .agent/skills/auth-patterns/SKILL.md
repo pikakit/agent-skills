@@ -3,41 +3,73 @@ name: auth-patterns
 description: >-
   Authentication and authorization patterns for production applications.
   OAuth2, JWT, RBAC/ABAC, MFA, Passkeys, session management.
+  Fail-closed design: ambiguity → deny access. Defense in depth required.
   Triggers on: auth, login, OAuth, JWT, RBAC, permissions, MFA, passkey.
   Coordinates with: api-architect, security-scanner, data-modeler.
-allowed-tools: Read, Write, Edit, Glob, Grep
 metadata:
-  version: "1.0.0"
+  version: "2.0.0"
   category: "security"
   triggers: "auth, login, OAuth, JWT, RBAC, permissions, MFA, passkey, SSO"
-  success_metrics: "auth flow secure, tokens rotated, permissions enforced"
+  success_metrics: "fail-closed defaults enforced, token TTL ≤ 15min, zero implicit allow"
   coordinates_with: "api-architect, security-scanner, data-modeler"
 ---
 
 # Auth Patterns
 
-> Authentication & authorization principles for FAANG-grade applications.
-> **Learn to THINK about auth, not copy patterns blindly.**
+> Authentication & authorization decisions for production applications. Fail closed. Defense in depth.
+
+---
+
+## Prerequisites
+
+**Required:** None — Auth Patterns is a knowledge-based skill with no external dependencies.
+
+**Optional:**
+- `security-scanner` skill (for implementation validation)
+- `offensive-sec` skill (for attack vector analysis)
 
 ---
 
 ## When to Use
 
-| Situation | Approach |
-|-----------|----------|
-| Choosing auth strategy | Check decision tree below |
-| OAuth2 / SSO integration | Read `references/oauth2.md` |
-| JWT implementation | Read `references/jwt-deep.md` |
-| Permission system | Read `references/rbac-abac.md` |
-| Multi-factor auth | Read `references/mfa.md` |
-| Session management | Read `references/session.md` |
-| Passwordless / Passkey | Read `references/passkey.md` |
+| Situation | Reference |
+|-----------|-----------|
+| Choosing auth strategy | Decision tree below |
+| OAuth2 / SSO / OIDC | `references/oauth2.md` |
+| JWT signing, rotation, refresh | `references/jwt-deep.md` |
+| Permission system (RBAC/ABAC) | `references/rbac-abac.md` |
+| Multi-factor authentication | `references/mfa.md` |
+| Session management | `references/session.md` |
+| Passwordless / Passkeys | `references/passkey.md` |
+| Architecture review, contracts | `references/engineering-spec.md` |
+
+**Selective Reading Rule:** Read ONLY the file matching the current request.
 
 ---
 
-## 🎯 Selective Reading Rule
+## System Boundaries
 
-**Read ONLY files relevant to the request!** Check content map, find what you need.
+| Owned by This Skill | NOT Owned |
+|---------------------|-----------|
+| Auth strategy selection (JWT/Session/OAuth/Passkey) | Auth library implementation |
+| Token lifecycle design (TTL, rotation, revocation) | Secret/key generation |
+| Permission model architecture (RBAC/ABAC) | Users/roles DB schema (→ data-modeler) |
+| MFA strategy selection (TOTP/WebAuthn) | MFA provider integration |
+| Session config (cookie, store, invalidation) | Session store provisioning (→ server-ops) |
+
+**Pure decision skill:** Produces security guidance. Zero network calls, zero credential handling, zero side effects.
+
+---
+
+## Core Principles
+
+| Principle | Enforcement |
+|-----------|-------------|
+| **Fail Closed** | Auth error or ambiguity → deny access. Never implicit allow. |
+| **Defense in Depth** | Every recommendation includes ≥ 3 controls: auth + authz + rate limit + monitoring |
+| **Least Privilege** | Grant minimum permissions; default to no-access |
+| **Token Hygiene** | Access token ≤ 15 min. Refresh token rotated on use. httpOnly storage. |
+| **Zero Trust** | Verify every request. No implicit trust for internal services. |
 
 ---
 
@@ -46,10 +78,10 @@ metadata:
 ```
 What type of application?
 ├── SPA / Mobile App
-│   ├── First-party only → JWT (short-lived) + Refresh Token
-│   └── Third-party login → OAuth 2.0 + PKCE
+│   ├── First-party only → JWT (≤15min access) + Refresh Token (httpOnly cookie)
+│   └── Third-party login → OAuth 2.0 + PKCE (mandatory for public clients)
 ├── Traditional Web (SSR)
-│   └── Session-based (httpOnly cookies)
+│   └── Session-based (httpOnly secure cookies, SameSite=Strict)
 ├── API / Microservices
 │   ├── Service-to-service → mTLS or API Keys + HMAC
 │   └── User-facing → JWT with gateway validation
@@ -61,60 +93,61 @@ What type of application?
 
 ---
 
+## Error Taxonomy
+
+| Code | Recoverable | Trigger |
+|------|-------------|---------|
+| `ERR_INVALID_REQUEST_TYPE` | No | Request type not one of the 8 supported types |
+| `ERR_MISSING_CONTEXT` | Yes | Required context field is null or empty |
+| `ERR_CONSTRAINT_CONFLICT` | Yes | Contradictory constraints |
+| `ERR_INVALID_APP_TYPE` | No | App type not recognized |
+| `ERR_INVALID_SENSITIVITY` | No | Sensitivity not one of: low, medium, high, critical |
+| `ERR_REFERENCE_NOT_FOUND` | No | Reference file missing |
+| `ERR_UNSUPPORTED_COMPLIANCE` | Yes | Compliance standard combination not covered |
+
+**Zero internal retries.** Deterministic output; same context = same recommendation.
+
+---
+
+## Decision Checklist
+
+- [ ] **Auth strategy chosen for THIS app type?** (JWT / Session / OAuth / Passkey)
+- [ ] **Token storage decided?** (httpOnly secure cookie — NOT localStorage)
+- [ ] **Access token TTL ≤ 15 minutes?**
+- [ ] **Refresh token rotation configured?** (rotate on every use)
+- [ ] **Permission model chosen?** (RBAC / ABAC / hybrid)
+- [ ] **MFA required for sensitive operations?** (high/critical sensitivity)
+- [ ] **Session invalidation on password change?**
+- [ ] **Rate limiting on auth endpoints?**
+- [ ] **PKCE enabled for all public clients?** (SPA, mobile)
+
+---
+
+## Anti-Patterns
+
+| ❌ Don't | ✅ Do |
+|---------|-------|
+| Store JWT in localStorage | Use httpOnly secure cookies |
+| Access tokens with 24h+ expiry | Access token ≤ 15 min + refresh token |
+| Roll your own crypto | Use battle-tested libraries (jose, passport) |
+| Same signing key for all services | Per-service signing keys |
+| Skip PKCE for public clients | PKCE mandatory for SPA/mobile OAuth |
+| Hardcode roles in application code | Store permissions in database |
+| Implicit trust for internal services | Zero trust: verify every request |
+
+---
+
 ## 📑 Content Map
 
 | File | Description | When to Read |
 |------|-------------|--------------|
-| `references/oauth2.md` | OAuth 2.0 + OIDC flows, PKCE, scopes, providers | Third-party login, SSO |
-| `references/jwt-deep.md` | JWT signing, rotation, claims, refresh patterns | Token-based auth |
-| `references/rbac-abac.md` | Role-Based + Attribute-Based access control | Permission systems |
-| `references/mfa.md` | TOTP, WebAuthn, backup codes, recovery | Multi-factor auth |
-| `references/session.md` | Cookie sessions, Redis store, stateless vs stateful | Session design |
-| `references/passkey.md` | WebAuthn/FIDO2 implementation guide | Passwordless auth |
-
-### Also See (existing skills)
-
-| File | Skill | What It Covers |
-|------|-------|----------------|
-| `rules/auth.md` | `api-architect` | Auth pattern selection guide (JWT vs Session vs OAuth) |
-| `auth-patterns.md` | `security-scanner` | 2FA TOTP, account lockout, password reset token |
-
----
-
-## Core Principles
-
-| Principle | Application |
-|-----------|-------------|
-| **Defense in Depth** | Auth + Authz + Rate Limit + Monitoring |
-| **Least Privilege** | Grant minimum permissions needed |
-| **Fail Closed** | On auth error → deny access |
-| **Token Hygiene** | Short-lived access, rotated refresh |
-| **Zero Trust** | Verify every request, even internal |
-
----
-
-## ✅ Decision Checklist
-
-- [ ] **Auth strategy chosen for THIS context?** (JWT / Session / OAuth / Passkey)
-- [ ] **Token storage decided?** (httpOnly cookie, NOT localStorage)
-- [ ] **Refresh token rotation configured?**
-- [ ] **Permission model chosen?** (RBAC / ABAC / hybrid)
-- [ ] **MFA considered for sensitive operations?**
-- [ ] **Session invalidation on password change?**
-- [ ] **Rate limiting on auth endpoints?**
-
----
-
-## ❌ Anti-Patterns
-
-| ❌ Don't | ✅ Do |
-|---------|------|
-| Store JWT in localStorage | Use httpOnly secure cookies |
-| Long-lived access tokens (hours+) | Short-lived (15 min) + refresh |
-| Roll your own crypto | Use battle-tested libraries |
-| Same secret for all services | Per-service signing keys |
-| Skip PKCE for public clients | Always use PKCE for SPA/mobile |
-| Hardcode roles in code | Store permissions in database |
+| [oauth2.md](references/oauth2.md) | OAuth 2.0 + OIDC flows, PKCE, scopes, providers | Third-party login, SSO |
+| [jwt-deep.md](references/jwt-deep.md) | JWT signing, rotation, claims, refresh patterns | Token-based auth |
+| [rbac-abac.md](references/rbac-abac.md) | Role-Based + Attribute-Based access control | Permission systems |
+| [mfa.md](references/mfa.md) | TOTP, WebAuthn, backup codes, recovery | Multi-factor auth |
+| [session.md](references/session.md) | Cookie sessions, Redis store, stateless vs stateful | Session design |
+| [passkey.md](references/passkey.md) | WebAuthn/FIDO2 implementation guide | Passwordless auth |
+| [engineering-spec.md](references/engineering-spec.md) | Full engineering spec: contracts, security model, scalability | Architecture review |
 
 ---
 
@@ -122,11 +155,11 @@ What type of application?
 
 | Item | Type | Purpose |
 |------|------|---------|
-| `api-architect` | Skill | API auth integration |
+| `api-architect` | Skill | API auth integration patterns |
 | `security-scanner` | Skill | Auth vulnerability scanning |
 | `data-modeler` | Skill | Users/roles schema design |
-| `offensive-sec` | Skill | Auth attack vectors |
+| `offensive-sec` | Skill | Auth attack vectors and pen testing |
 
 ---
 
-⚡ PikaKit v3.9.68
+⚡ PikaKit v3.9.69

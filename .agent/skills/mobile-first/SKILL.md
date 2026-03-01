@@ -6,81 +6,57 @@ description: >-
   Triggers on: mobile, responsive, touch, React Native, Flutter, iOS, Android.
   Coordinates with: mobile-developer, design-system, perf-optimizer.
 metadata:
-  version: "1.0.0"
+  version: "2.0.0"
   category: "mobile-games"
   triggers: "mobile, responsive, touch, React Native, Flutter, iOS, Android"
-  success_metrics: "mobile audit passed, responsive design"
-  coordinates_with: "mobile-developer, design-system, perf-optimizer"
+  success_metrics: "sub-skill routed, must-ask answered, audit passed"
+  coordinates_with: "mobile-developer, mobile-design, design-system, perf-optimizer"
 ---
 
-# Mobile Development Orchestrator
+# Mobile First — Mobile Development Orchestrator
 
-> **Philosophy:** Touch-first. Battery-conscious. Platform-respectful. Offline-capable.
-> **Core Principle:** Mobile is NOT a small desktop. THINK mobile constraints, ASK platform choice.
+> Routes to framework + publishing sub-skills. 4 must-ask questions. Selective loading.
+
+**Core Principle:** Mobile is NOT a small desktop. Ask platform first.
 
 ---
 
 ## When to Use
 
-| Situation | Approach |
-|-----------|----------|
-| Building mobile app | Use orchestrator routing |
-| React Native / Flutter | Check framework sub-skills |
-| Mobile performance | Run mobile audit |
-| Publishing to stores | Check publishing patterns |
+| Situation | Action |
+|-----------|--------|
+| Building mobile app | Route through decision tree |
+| React Native / Flutter / Native | Route to framework sub-skill |
+| Publishing to stores | Route to publishing sub-skill |
+| Mobile UX audit | Run audit script |
 
 ---
 
-## Sub-Skill Routing
+## System Boundaries
 
-### Framework Selection
+| Owned by This Skill | NOT Owned |
+|---------------------|-----------|
+| Sub-skill routing (6 sub-skills) | Implementation (→ mobile-developer) |
+| Framework decision tree (5 branches) | Design decisions (→ mobile-design) |
+| 4 must-ask questions | Performance profiling (→ perf-optimizer) |
+| Runtime audit script | Design system (→ design-system) |
 
-| If building with... | Use Sub-Skill |
-|---------------------|---------------|
-| React Native / Expo | [frameworks/react-native.md](frameworks/react-native.md) |
-| Flutter / Dart | [frameworks/flutter.md](frameworks/flutter.md) |
-| SwiftUI / Kotlin Compose | [frameworks/native.md](frameworks/native.md) |
-
-### Publishing & Distribution
-
-| If you need... | Use Sub-Skill |
-|----------------|---------------|
-| App Store visibility | [publishing/app-store-optimization.md](publishing/app-store-optimization.md) |
-| Universal/App Links | [publishing/deep-linking.md](publishing/deep-linking.md) |
-| FCM/APNs setup | [publishing/push-notifications.md](publishing/push-notifications.md) |
-
-### Design References
-
-| Priority | File | Content |
-|----------|------|---------|
-| 🔴 **CRITICAL** | [references/mobile-design-thinking.md](references/mobile-design-thinking.md) | Anti-memorization, forces thinking |
-| 🔴 **CRITICAL** | [references/touch-psychology.md](references/touch-psychology.md) | Fitts' Law, gestures, thumb zone |
-| 🔴 **CRITICAL** | [references/mobile-performance.md](references/mobile-performance.md) | RN/Flutter 60fps, memory |
-| 🟡 Platform | [references/platform-ios.md](references/platform-ios.md) | iOS HIG, SF Pro, SwiftUI |
-| 🟡 Platform | [references/platform-android.md](references/platform-android.md) | Material Design 3, Roboto |
+**Orchestrator skill:** Routes to sub-skills. Does not implement.
 
 ---
 
-## 🔧 Runtime Scripts
+## ⚠️ 4 Must-Ask Questions (Before Routing)
 
-| Script | Purpose | Usage |
-|--------|---------|-------|
-| `scripts/mobile_audit.py` | Mobile UX & Touch Audit | `python scripts/mobile_audit.py <project_path>` |
-
----
-
-## ⚠️ MANDATORY: Ask Before Assuming
-
-| Aspect | Ask | Why |
-|--------|-----|-----|
-| **Platform** | "iOS, Android, or both?" | Affects EVERY decision |
-| **Framework** | "React Native, Flutter, or native?" | Determines patterns |
-| **Navigation** | "Tab bar, drawer, or stack-based?" | Core UX decision |
-| **Offline** | "Does this need to work offline?" | Affects data strategy |
+| # | Aspect | Question |
+|---|--------|----------|
+| 1 | **Platform** | iOS, Android, or both? |
+| 2 | **Framework** | React Native, Flutter, or native? |
+| 3 | **Navigation** | Tab bar, drawer, or stack-based? |
+| 4 | **Offline** | Does this need to work offline? |
 
 ---
 
-## Framework Decision Tree
+## Framework Decision Tree (Deterministic)
 
 ```
 WHAT ARE YOU BUILDING?
@@ -88,44 +64,91 @@ WHAT ARE YOU BUILDING?
 │   └── Read: frameworks/react-native.md
 ├── Pixel-perfect custom UI → Flutter
 │   └── Read: frameworks/flutter.md
-├── Deep native features (iOS) → SwiftUI
+├── Deep iOS features → SwiftUI
 │   └── Read: frameworks/native.md
-├── Deep native features (Android) → Kotlin + Compose
+├── Deep Android features → Kotlin + Compose
 │   └── Read: frameworks/native.md
 └── Existing codebase → Match current framework
 ```
 
 ---
 
-## Quick Reference: Platform Defaults
+## State Transitions
+
+```
+IDLE → ASKING                [context incomplete]
+ASKING → ROUTING             [4 questions answered]
+ROUTING → ROUTED             [sub-skill determined]  // terminal
+IDLE → AUDITING              [audit invoked]
+AUDITING → AUDIT_COMPLETE    [script finished]  // terminal
+AUDITING → AUDIT_FAILED      [script error]  // terminal
+```
+
+---
+
+## Platform Defaults (Fixed)
 
 | Element | iOS | Android |
 |---------|-----|---------|
-| **Primary Font** | SF Pro | Roboto |
-| **Min Touch Target** | 44pt × 44pt | 48dp × 48dp |
-| **Back Navigation** | Edge swipe left | System back button |
-| **Bottom Tab Icons** | SF Symbols | Material Symbols |
+| Font | SF Pro | Roboto |
+| Touch target | 44×44pt | 48×48dp |
+| Back navigation | Edge swipe | System back |
+| Icons | SF Symbols | Material Symbols |
 
 ---
 
-## Pre-Development Checkpoint
+## Runtime Audit
 
+```bash
+python .agent/skills/mobile-first/scripts/mobile_audit.py <project_path>
 ```
-🧠 CHECKPOINT (fill before coding):
 
-Platform:   [ iOS / Android / Both ]
-Framework:  [ React Native / Flutter / SwiftUI / Kotlin ]
-Sub-skills Read: [ List files you've read ]
-
-3 Principles I Will Apply:
-1. _______________
-2. _______________
-3. _______________
-```
+Read-only. Does not modify project files.
 
 ---
 
-> **Remember:** Mobile users are impatient, interrupted, using imprecise fingers on small screens. Design for the WORST conditions.
+## Error Taxonomy
+
+| Code | Recoverable | Trigger |
+|------|-------------|---------|
+| `NEEDS_INPUT` | Yes | Must-ask questions not answered |
+| `ERR_UNKNOWN_FRAMEWORK` | Yes | Framework not in decision tree |
+| `ERR_SUBSKILL_NOT_FOUND` | No | Sub-skill file missing |
+| `ERR_PROJECT_NOT_FOUND` | Yes | Audit path not found |
+| `ERR_AUDIT_FAILED` | Yes | Audit script error |
+
+---
+
+## Anti-Patterns
+
+| ❌ Don't | ✅ Do |
+|---------|-------|
+| Load all sub-skills at once | Selective: load only routed file |
+| Assume platform choice | Ask must-ask questions first |
+| Skip publishing planning | Route to ASO/push/deep-link |
+| Apply desktop patterns | Mobile-first constraints |
+
+---
+
+## 📑 Content Map
+
+| File | Type | When to Read |
+|------|------|--------------|
+| [frameworks/react-native.md](frameworks/react-native.md) | Sub-skill | RN/Expo selected |
+| [frameworks/flutter.md](frameworks/flutter.md) | Sub-skill | Flutter selected |
+| [frameworks/native.md](frameworks/native.md) | Sub-skill | SwiftUI/Kotlin selected |
+| [publishing/app-store-optimization.md](publishing/app-store-optimization.md) | Sub-skill | ASO needed |
+| [publishing/deep-linking.md](publishing/deep-linking.md) | Sub-skill | Deep links needed |
+| [publishing/push-notifications.md](publishing/push-notifications.md) | Sub-skill | Push needed |
+| [references/mobile-design-thinking.md](references/mobile-design-thinking.md) | Reference | Design process |
+| [references/touch-psychology.md](references/touch-psychology.md) | Reference | Touch UX |
+| [references/mobile-performance.md](references/mobile-performance.md) | Reference | Performance |
+| [references/platform-ios.md](references/platform-ios.md) | Reference | iOS specifics |
+| [references/platform-android.md](references/platform-android.md) | Reference | Android specifics |
+| [scripts/mobile_audit.py](scripts/mobile_audit.py) | Script | UX audit |
+| [engineering-spec.md](references/engineering-spec.md) | Spec | Architecture review |
+
+**Selective reading:** Load ONLY the file relevant to current routing decision.
 
 ---
 
@@ -139,4 +162,4 @@ Sub-skills Read: [ List files you've read ]
 
 ---
 
-⚡ PikaKit v3.9.68
+⚡ PikaKit v3.9.69

@@ -1,5 +1,5 @@
 {
-    "updatedAt": "2026-01-30T01:34:27.498Z",
+    "updatedAt": "2026-03-01T16:45:00.000Z",
     "version": "2.0.0",
     "skills": [
         {
@@ -12,7 +12,9 @@
                 "task completion"
             ],
             "coordinates_with": [
-                "lifecycle-orchestrator"
+                "smart-router",
+                "lifecycle-orchestrator",
+                "auto-learner"
             ],
             "success_metrics": "notification displayed, audit logged"
         },
@@ -30,7 +32,7 @@
             "coordinates_with": [
                 "data-modeler",
                 "security-scanner",
-                "frontend-development"
+                "auth-patterns"
             ],
             "success_metrics": "API documentation complete, endpoints validated",
             "rules": [
@@ -80,7 +82,8 @@
             ],
             "coordinates_with": [
                 "git-workflow",
-                "security-scanner"
+                "security-scanner",
+                "feature-flags"
             ],
             "success_metrics": "pipeline passing, deployment successful"
         },
@@ -96,6 +99,7 @@
             ],
             "coordinates_with": [
                 "code-review",
+                "review-automation",
                 "security-scanner"
             ],
             "success_metrics": "doctrine checks pass, no governance violations",
@@ -175,7 +179,9 @@
                 "root cause"
             ],
             "coordinates_with": [
-                "test-architect"
+                "test-architect",
+                "code-review",
+                "recovery-agent"
             ],
             "success_metrics": "bug fixed, root cause identified"
         },
@@ -191,8 +197,9 @@
                 "component design"
             ],
             "coordinates_with": [
-                "react-architect",
-                "tailwind-kit"
+                "tailwind-kit",
+                "studio",
+                "frontend-design"
             ],
             "success_metrics": "design system consistent, components documented",
             "rules": [
@@ -220,7 +227,8 @@
                 "changelog"
             ],
             "coordinates_with": [
-                "project-planner"
+                "project-planner",
+                "code-craft"
             ],
             "success_metrics": "template applied, documentation complete"
         },
@@ -256,7 +264,7 @@
             ],
             "coordinates_with": [
                 "seo-optimizer",
-                "frontend-development"
+                "copywriting"
             ],
             "success_metrics": "AI citation rate improved, content structured",
             "scripts": [
@@ -290,6 +298,8 @@
                 "Flutter"
             ],
             "coordinates_with": [
+                "mobile-developer",
+                "mobile-design",
                 "design-system",
                 "perf-optimizer"
             ],
@@ -310,8 +320,9 @@
                 "SSG"
             ],
             "coordinates_with": [
-                "react-architect",
-                "frontend-development"
+                "design-system",
+                "tailwind-kit",
+                "react-architect"
             ],
             "success_metrics": "build passes, pages render"
         },
@@ -353,14 +364,13 @@
             "triggers": [
                 "performance",
                 "slow",
-                "optimize",
                 "Lighthouse",
                 "bundle size",
                 "Core Web Vitals"
             ],
             "coordinates_with": [
-                "frontend-development",
-                "e2e-automation"
+                "e2e-automation",
+                "web-core"
             ],
             "success_metrics": "Core Web Vitals pass, performance improved",
             "scripts": [
@@ -413,7 +423,8 @@
             ],
             "coordinates_with": [
                 "nextjs-pro",
-                "design-system"
+                "design-system",
+                "typescript-expert"
             ],
             "success_metrics": "components render, no prop drilling"
         },
@@ -448,8 +459,9 @@
                 "OpenGraph"
             ],
             "coordinates_with": [
-                "frontend-development",
-                "perf-optimizer"
+                "web-core",
+                "perf-optimizer",
+                "geo-spatial"
             ],
             "success_metrics": "SEO score improved, meta tags complete",
             "scripts": [
@@ -514,7 +526,7 @@
             ],
             "coordinates_with": [
                 "design-system",
-                "react-architect"
+                "web-core"
             ],
             "success_metrics": "styles applied, design consistent"
         },
@@ -531,8 +543,8 @@
             ],
             "coordinates_with": [
                 "code-craft",
-                "code-review",
-                "e2e-automation"
+                "e2e-automation",
+                "code-review"
             ],
             "success_metrics": "tests pass, coverage adequate",
             "scripts": [
@@ -563,8 +575,8 @@
                 "check problems"
             ],
             "coordinates_with": [
-                "code-review",
-                "auto-learned"
+                "auto-learned",
+                "auto-learner"
             ],
             "success_metrics": "IDE errors = 0, auto-fix success rate > 80%",
             "scripts": [
@@ -580,6 +592,8 @@
                 "full lifecycle"
             ],
             "coordinates_with": [
+                "smart-router",
+                "multi-agent",
                 "problem-checker"
             ],
             "success_metrics": "all phases complete, no failures"
@@ -593,7 +607,10 @@
                 "OpenTelemetry",
                 "telemetry"
             ],
-            "coordinates_with": [],
+            "coordinates_with": [
+                "server-ops",
+                "cicd-pipeline"
+            ],
             "success_metrics": "observability stack configured"
         },
         {
@@ -606,6 +623,7 @@
                 "typography"
             ],
             "coordinates_with": [
+                "frontend-specialist",
                 "design-system"
             ],
             "success_metrics": "design system generated",
@@ -619,17 +637,17 @@
             "category": "framework",
             "triggers": [
                 "TypeScript",
-                "type-level programming",
+                "JavaScript",
+                "type error",
                 "tsconfig",
-                "monorepo",
-                "type gymnastics",
-                "build performance"
+                "monorepo"
             ],
             "coordinates_with": [
-                "nodejs-pro",
-                "react-architect"
+                "nextjs-pro",
+                "react-architect",
+                "code-review"
             ],
-            "success_metrics": "type errors resolved, build optimized"
+            "success_metrics": "tsc passes, no type errors"
         },
         {
             "name": "gitops",
@@ -642,8 +660,9 @@
                 "declarative infrastructure"
             ],
             "coordinates_with": [
+                "cicd-pipeline",
                 "server-ops",
-                "cicd-pipeline"
+                "git-workflow"
             ],
             "success_metrics": "GitOps workflow configured, sync working"
         },
@@ -660,9 +679,8 @@
                 "Expo"
             ],
             "coordinates_with": [
-                "mobile-design",
-                "mobile-security-coder",
                 "mobile-first",
+                "mobile-design",
                 "perf-optimizer"
             ],
             "success_metrics": "mobile app builds, tests pass, app store ready"
@@ -679,9 +697,9 @@
                 "touch targets"
             ],
             "coordinates_with": [
+                "mobile-first",
                 "mobile-developer",
-                "design-system",
-                "studio"
+                "design-system"
             ],
             "success_metrics": "MFRI score ≥3, touch targets validated"
         },
@@ -697,7 +715,8 @@
             ],
             "coordinates_with": [
                 "mobile-developer",
-                "security-scanner"
+                "security-scanner",
+                "mobile-first"
             ],
             "success_metrics": "OWASP MASVS compliance, no security vulnerabilities"
         },
@@ -713,8 +732,9 @@
                 "game AI"
             ],
             "coordinates_with": [
+                "mobile-developer",
                 "perf-optimizer",
-                "mobile-developer"
+                "shader"
             ],
             "success_metrics": "game runs 60fps, no crashes",
             "sub_skills": [
@@ -741,7 +761,7 @@
             ],
             "coordinates_with": [
                 "cicd-pipeline",
-                "server-ops"
+                "nextjs-pro"
             ],
             "success_metrics": "preview URL returned, deployment claimable",
             "scripts": [
@@ -758,7 +778,9 @@
                 "error fix"
             ],
             "coordinates_with": [
-                "problem-checker"
+                "problem-checker",
+                "skill-generator",
+                "auto-learner"
             ],
             "success_metrics": "patterns matched, auto-fixes applied",
             "hierarchical": true,
@@ -815,7 +837,8 @@
                 "Flux"
             ],
             "coordinates_with": [
-                "studio"
+                "studio",
+                "media-processing"
             ],
             "success_metrics": "prompt produces desired output, minimal iterations",
             "references": [
@@ -953,7 +976,8 @@
             ],
             "coordinates_with": [
                 "api-architect",
-                "typescript-expert"
+                "typescript-expert",
+                "mcp-management"
             ],
             "success_metrics": "MCP server functional, evaluations pass"
         },
@@ -967,7 +991,8 @@
                 "multi-server"
             ],
             "coordinates_with": [
-                "mcp-builder"
+                "mcp-builder",
+                "mcp-server"
             ],
             "success_metrics": "tools discovered, execution successful"
         },
@@ -1015,6 +1040,7 @@
             ],
             "coordinates_with": [
                 "lifecycle-orchestrator",
+                "multi-agent",
                 "system-design"
             ],
             "success_metrics": "token usage <70%, quality maintained"
@@ -1031,7 +1057,8 @@
             ],
             "coordinates_with": [
                 "seo-optimizer",
-                "studio"
+                "studio",
+                "ai-artist"
             ],
             "success_metrics": "conversion-focused, formulas applied"
         },
@@ -1047,7 +1074,8 @@
             ],
             "coordinates_with": [
                 "cicd-pipeline",
-                "code-review"
+                "code-review",
+                "security-scanner"
             ],
             "success_metrics": "clean history, no secrets"
         },
@@ -1076,7 +1104,9 @@
                 "React animation"
             ],
             "coordinates_with": [
-                "react-architect"
+                "react-architect",
+                "media-processing",
+                "ai-artist"
             ],
             "success_metrics": "video renders, animations smooth"
         },
@@ -1107,7 +1137,8 @@
                 "visual effect"
             ],
             "coordinates_with": [
-                "game-development"
+                "game-development",
+                "media-processing"
             ],
             "success_metrics": "shader compiles, visuals render"
         },
@@ -1207,6 +1238,50 @@
                 "references/message-queues.md",
                 "references/pubsub.md",
                 "references/webhooks.md"
+            ]
+        },
+        {
+            "name": "media-processing",
+            "category": "devops",
+            "triggers": [
+                "video",
+                "audio",
+                "image",
+                "compress",
+                "resize",
+                "convert",
+                "ffmpeg",
+                "imagemagick",
+                "rmbg"
+            ],
+            "coordinates_with": [
+                "perf-optimizer",
+                "studio"
+            ],
+            "success_metrics": "correct tool selected, valid command generated, destructive flagged",
+            "scripts": [
+                "ffmpeg_runner.py",
+                "imagemagick_runner.py"
+            ]
+        },
+        {
+            "name": "skill-generator",
+            "category": "evolution",
+            "triggers": [
+                "generate skill",
+                "create skill",
+                "pattern to skill",
+                "auto-generate"
+            ],
+            "coordinates_with": [
+                "problem-checker",
+                "code-constitution"
+            ],
+            "success_metrics": "≥80% generated skills pass validation",
+            "scripts": [
+                "generate.js",
+                "validate.js",
+                "promote.js"
             ]
         }
     ]

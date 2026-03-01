@@ -7,28 +7,25 @@ description: >-
   Coordinates with: plans-kanban, doc-templates.
 allowed-tools: Read, Write, Edit, Terminal
 metadata:
-  version: "1.0.0"
+  version: "2.0.0"
   category: "tools"
   triggers: "preview, markdown viewer, view plans, documentation, mermaid"
-  success_metrics: "server starts, markdown renders, mermaid works"
+  success_metrics: "server starts <2s, markdown renders <200ms, port allocated"
   coordinates_with: "plans-kanban, doc-templates"
 ---
 
-# Markdown Novel Viewer
+# Markdown Novel Viewer — Background Preview Server
 
-> Universal viewer for markdown with book-like reading experience.
+> Single command. Novel theme. Mermaid auto-render. Port 3456-3500.
 
 ---
 
 ## Prerequisites
 
-**Installation:**
 ```bash
 cd .agent/skills/markdown-novel-viewer
 npm install marked gray-matter
 ```
-
-**Dependencies:** `marked` (markdown parser), `gray-matter` (frontmatter)
 
 ---
 
@@ -36,10 +33,25 @@ npm install marked gray-matter
 
 | Situation | Action |
 |-----------|--------|
-| Preview markdown | `/preview file.md` |
-| Browse directory | `/preview docs/` |
-| View plan phases | Auto-detected navigation |
-| Render diagrams | Mermaid auto-renders |
+| Preview markdown file | `--file ./README.md` |
+| Browse documentation dir | `--dir ./docs` |
+| View plan phases | Auto-detected sidebar nav |
+| Render Mermaid diagrams | Auto-renders in code blocks |
+| Stop all servers | `--stop` |
+
+---
+
+## System Boundaries
+
+| Owned by This Skill | NOT Owned |
+|---------------------|-----------|
+| HTTP server lifecycle (start/stop) | Plan dashboards (→ plans-kanban) |
+| Port allocation (3456-3500) | Doc generation (→ doc-templates) |
+| Markdown rendering (novel theme) | Markdown authoring |
+| Mermaid diagram rendering (5 types) | Diagram authoring |
+| Directory browsing | File system permissions |
+
+**Automation skill:** Spawns HTTP server process, binds ports, reads files. Non-idempotent.
 
 ---
 
@@ -48,21 +60,17 @@ npm install marked gray-matter
 ```bash
 # View a file
 node .agent/skills/markdown-novel-viewer/scripts/server.cjs \
-  --file ./README.md \
-  --open
+  --file ./README.md --open
 
 # Browse a directory
 node .agent/skills/markdown-novel-viewer/scripts/server.cjs \
-  --dir ./docs \
-  --open
+  --dir ./docs --open
 
 # Remote access
 node .agent/skills/markdown-novel-viewer/scripts/server.cjs \
-  --file ./plan.md \
-  --host 0.0.0.0 \
-  --open
+  --file ./plan.md --host 0.0.0.0 --open
 
-# Stop servers
+# Stop all servers
 node .agent/skills/markdown-novel-viewer/scripts/server.cjs --stop
 ```
 
@@ -70,58 +78,27 @@ node .agent/skills/markdown-novel-viewer/scripts/server.cjs --stop
 
 ## CLI Options
 
-| Option | Description | Default |
-|--------|-------------|---------|
-| `--file <path>` | Markdown file | - |
-| `--dir <path>` | Directory to browse | - |
-| `--port <number>` | Server port | 3456 |
-| `--host <addr>` | Host (`0.0.0.0` for remote) | localhost |
-| `--open` | Auto-open browser | false |
-| `--background` | Run in background | false |
-| `--stop` | Stop all servers | - |
+| Option | Default | Description |
+|--------|---------|-------------|
+| `--file <path>` | — | Markdown file to render |
+| `--dir <path>` | — | Directory to browse |
+| `--port <n>` | 3456 | Server port (range: 3456-3500) |
+| `--host <addr>` | localhost | Bind address |
+| `--open` | false | Auto-open browser |
+| `--background` | false | Run in background |
+| `--stop` | — | Stop all servers |
 
 ---
 
-## Features
+## State Transitions
 
-### Novel Theme
-
-| Mode | Background | Accent |
-|------|------------|--------|
-| Light | Warm cream (#faf8f3) | Saddle brown |
-| Dark | Near black (#1a1a1a) | Warm gold |
-
-**Typography:**
-- Libre Baskerville serif for headings
-- Inter for body text
-- JetBrains Mono for code
-- 720px max content width
-
----
-
-### Mermaid Diagrams
-
-Auto-renders mermaid code blocks:
-
-````markdown
-```mermaid
-flowchart LR
-    A[Start] --> B[End]
 ```
-````
-
-**Supported:** Flowcharts, Sequence, Pie, Gantt, Mindmap
-
----
-
-### Keyboard Shortcuts
-
-| Key | Action |
-|-----|--------|
-| `T` | Toggle theme |
-| `S` | Toggle sidebar |
-| `←` `→` | Navigate phases |
-| `Esc` | Close sidebar |
+IDLE → STARTING              [start invoked]
+STARTING → RUNNING           [port bound, listening]
+STARTING → PORT_EXHAUSTED    [all 3456-3500 in use]  // terminal
+RUNNING → STOPPED            [stop invoked]  // terminal
+RUNNING → CRASHED            [unhandled error]  // terminal
+```
 
 ---
 
@@ -135,38 +112,60 @@ flowchart LR
 
 ---
 
-## Architecture
+## Theme & Typography
 
-```
-scripts/
-├── server.cjs           # Main entry
-└── lib/
-    ├── port-finder.cjs  # Port allocation
-    ├── http-server.cjs  # HTTP routing
-    └── markdown-renderer.cjs
-```
+| Mode | Background | Accent |
+|------|------------|--------|
+| Light | #faf8f3 (warm cream) | Saddle brown |
+| Dark | #1a1a1a (near black) | Warm gold |
+
+**Fonts:** Libre Baskerville (headings), Inter (body), JetBrains Mono (code). **Max width:** 720px.
 
 ---
 
-## Troubleshooting
+## Keyboard Shortcuts
 
-| Problem | Solution |
-|---------|----------|
-| Port in use | Auto-increments (3456-3500) |
-| Images not loading | Use relative paths |
-| Mermaid error | Check syntax at mermaid.live |
-| Can't access remotely | Use `--host 0.0.0.0` |
+| Key | Action |
+|-----|--------|
+| `T` | Toggle theme |
+| `S` | Toggle sidebar |
+| `←` `→` | Navigate phases |
+| `Esc` | Close sidebar |
 
 ---
 
-## Best Practices
+## Error Taxonomy
 
-| Practice | Application |
-|----------|-------------|
-| Relative paths | Images load correctly |
-| Test Mermaid | Validate at mermaid.live |
-| Background mode | Keep server running |
-| Keyboard shortcuts | `T` for theme |
+| Code | Recoverable | Trigger |
+|------|-------------|---------|
+| `ERR_PORT_EXHAUSTED` | Yes | All ports 3456-3500 in use |
+| `ERR_FILE_NOT_FOUND` | Yes | Markdown file not found |
+| `ERR_DIR_NOT_FOUND` | Yes | Directory not found |
+| `ERR_DEPS_MISSING` | Yes | marked or gray-matter missing |
+| `ERR_ALREADY_RUNNING` | Yes | Port already bound |
+| `ERR_NOT_RUNNING` | Yes | Stop called; no server running |
+
+**Port conflict:** auto-increments within 3456-3500 (max 45 attempts).
+
+---
+
+## Anti-Patterns
+
+| ❌ Don't | ✅ Do |
+|---------|-------|
+| Bind 0.0.0.0 by default | Use localhost; explicit --host for remote |
+| Leave servers orphaned | Use --stop to clean up |
+| Use absolute paths outside project | Use relative paths |
+| Ignore Mermaid errors | Validate at mermaid.live |
+
+---
+
+## 📑 Content Map
+
+| File | Description | When to Read |
+|------|-------------|--------------|
+| [server.cjs](scripts/server.cjs) | Main server entry point | Implementation |
+| [engineering-spec.md](references/engineering-spec.md) | Full engineering spec | Architecture review |
 
 ---
 
@@ -176,8 +175,7 @@ scripts/
 |------|------|---------|
 | `plans-kanban` | Skill | Dashboard view |
 | `doc-templates` | Skill | Documentation structure |
-| `/preview` | Workflow | Quick access |
 
 ---
 
-⚡ PikaKit v3.9.68
+⚡ PikaKit v3.9.69

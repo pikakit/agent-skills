@@ -2,22 +2,22 @@
 name: typescript-expert
 description: >-
   TypeScript and JavaScript expert with deep knowledge of type-level programming,
-  performance optimization, monorepo management, migration strategies, and modern tooling.
+  performance tuning, monorepo management, migration strategies, and modern tooling.
   Use PROACTIVELY for any TypeScript/JavaScript issues including complex type gymnastics,
   build performance, debugging, and architectural decisions.
   Triggers on: TypeScript, JavaScript, type error, tsconfig, monorepo.
   Coordinates with: nextjs-pro, react-architect, code-review.
 metadata:
-  category: "framework"
   version: "2.0.0"
+  category: "framework"
   triggers: "TypeScript, JavaScript, type error, tsconfig, monorepo"
-  coordinates_with: "nextjs-pro, react-architect, code-review"
   success_metrics: "tsc passes, no type errors"
+  coordinates_with: "nextjs-pro, react-architect, code-review"
 ---
 
-# TypeScript Expert
+# TypeScript Expert — Advanced TS Problem-Solving
 
-> **Purpose:** Advanced TypeScript problem-solving and optimization
+> Strict mode. ESM-first. Type-level patterns. Deterministic error routing.
 
 ---
 
@@ -25,14 +25,28 @@ metadata:
 
 | Situation | Approach |
 |-----------|----------|
-| Type errors | Check type patterns |
-| Build performance | See performance guide |
-| Monorepo setup | Check monorepo patterns |
-| Migration strategy | See migration guide |
+| Type errors | Check error routing table |
+| Build performance | See performance settings |
+| Monorepo setup | Check project references |
+| Migration strategy | See references/migration.md |
+| Module issues | ESM-first config |
 
 ---
 
-## Quick Reference
+## System Boundaries
+
+| Owned by This Skill | NOT Owned |
+|---------------------|-----------|
+| Type-level patterns (3) | Next.js integration (→ nextjs-pro) |
+| Error → fix routing (4 errors) | React patterns (→ react-architect) |
+| Performance config (3 settings) | Code review (→ code-review) |
+| Strict config + ESM-first | Build tooling (Vite/webpack) |
+
+**Expert decision skill:** Produces TS guidance. Does not execute compilers.
+
+---
+
+## Diagnostics (3 Commands)
 
 | Task | Command |
 |------|---------|
@@ -42,18 +56,28 @@ metadata:
 
 ---
 
-## Type-Level Patterns
+## Common Errors (4 — Deterministic Routing)
+
+| Error | Fix |
+|-------|-----|
+| "Cannot be named" | Export type explicitly |
+| "Excessive depth" | Limit recursion, use `interface` instead of `type` |
+| "Cannot find module" | Check `moduleResolution: "bundler"` |
+| Missing types | Add ambient declaration (`.d.ts`) |
+
+---
+
+## Type-Level Patterns (3)
 
 ### Branded Types
 ```typescript
 type Brand<K, T> = K & { __brand: T };
 type UserId = Brand<string, 'UserId'>;
-type OrderId = Brand<string, 'OrderId'>;
 ```
 
 ### Deep Readonly
 ```typescript
-type DeepReadonly<T> = T extends object 
+type DeepReadonly<T> = T extends object
   ? { readonly [K in keyof T]: DeepReadonly<T[K]> }
   : T;
 ```
@@ -68,28 +92,7 @@ const config = {
 
 ---
 
-## Common Errors
-
-| Error | Fix |
-|-------|-----|
-| "Cannot be named" | Export type explicitly |
-| "Excessive depth" | Limit recursion, use interface |
-| "Cannot find module" | Check moduleResolution |
-| Missing types | Add ambient declaration |
-
----
-
-## Performance Tips
-
-| Setting | Effect |
-|---------|--------|
-| `skipLibCheck: true` | Skip library type checking |
-| `incremental: true` | Cache builds |
-| Project references | Monorepo optimization |
-
----
-
-## Strict Config (Recommended)
+## Strict Config (Recommended — Fixed)
 
 ```json
 {
@@ -101,9 +104,7 @@ const config = {
 }
 ```
 
----
-
-## ESM-First
+## ESM-First Config (Fixed)
 
 ```json
 {
@@ -114,17 +115,26 @@ const config = {
 
 ---
 
-## References
+## Performance Settings (3 — Fixed)
 
-For detailed patterns and debugging:
-- [references/type-patterns.md](references/type-patterns.md)
-- [references/performance.md](references/performance.md)
-- [references/monorepo.md](references/monorepo.md)
-- [references/migration.md](references/migration.md)
+| Setting | Effect |
+|---------|--------|
+| `skipLibCheck: true` | Skip library type checking |
+| `incremental: true` | Cache builds |
+| Project references | Monorepo parallel builds |
 
 ---
 
-> **Remember:** Validate changes with `npx tsc --noEmit` before done.
+## Error Taxonomy
+
+| Code | Recoverable | Trigger |
+|------|-------------|---------|
+| `ERR_INVALID_REQUEST_TYPE` | No | Request type not supported |
+| `ERR_UNKNOWN_ERROR` | Yes | tsc error not in routing table |
+| `ERR_UNSUPPORTED_VERSION` | Yes | TS version below 5.0 |
+| `ERR_UNKNOWN_PROJECT_TYPE` | Yes | Not app, library, or monorepo |
+
+**Zero internal retries.** Same error = same fix.
 
 ---
 
@@ -132,11 +142,23 @@ For detailed patterns and debugging:
 
 | Problem | Solution |
 |---------|----------|
-| Type error with generics | Add explicit type annotations |
 | `any` type spreading | Enable `noImplicitAny` in tsconfig |
-| Module resolution fails | Check `moduleResolution: "bundler"` in TS 5+ |
-| Slow type checking | Use project references, exclude node_modules |
+| Module resolution fails | Set `moduleResolution: "bundler"` (TS 5+) |
+| Slow type checking | Use project references, `skipLibCheck: true` |
 | ESM/CJS mismatch | Set `"type": "module"` in package.json |
+
+---
+
+## 📑 Content Map
+
+| File | Description | When to Read |
+|------|-------------|--------------|
+| [type-patterns.md](references/type-patterns.md) | Advanced type patterns | Type gymnastics |
+| [performance.md](references/performance.md) | Build performance | Slow builds |
+| [monorepo.md](references/monorepo.md) | Monorepo setup | Project references |
+| [migration.md](references/migration.md) | Migration strategies | Version upgrades |
+| [scripts/](scripts/) | Utility scripts | Automation |
+| [engineering-spec.md](references/engineering-spec.md) | Full spec | Architecture review |
 
 ---
 
@@ -150,4 +172,4 @@ For detailed patterns and debugging:
 
 ---
 
-⚡ PikaKit v3.9.68
+⚡ PikaKit v3.9.69

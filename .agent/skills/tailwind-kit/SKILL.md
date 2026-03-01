@@ -5,16 +5,16 @@ description: >-
   Triggers on: Tailwind, CSS, styling, utility classes.
   Coordinates with: design-system, web-core.
 metadata:
-  category: "architecture"
   version: "2.0.0"
+  category: "architecture"
   triggers: "Tailwind, CSS, styling, utility classes"
-  coordinates_with: "design-system, web-core"
   success_metrics: "styles applied, design consistent"
+  coordinates_with: "design-system, web-core"
 ---
 
-# Tailwind CSS v4 Patterns
+# Tailwind Kit — Tailwind CSS v4 Patterns
 
-> **Purpose:** Modern utility-first CSS with CSS-native configuration
+> CSS-first `@theme`. OKLCH colors. Container queries. Mobile-first responsive.
 
 ---
 
@@ -23,69 +23,61 @@ metadata:
 | Situation | Approach |
 |-----------|----------|
 | Styling components | Use utility classes |
-| Theme setup | CSS-first @theme |
-| Dark mode | Use dark: prefix |
+| Theme setup | CSS-first `@theme` |
+| Dark mode | Use `dark:` prefix |
 | Responsive | Mobile-first breakpoints |
+| Migrating v3 → v4 | Check migration table |
 
 ---
 
-## Quick Reference
+## System Boundaries
 
-| Task | Pattern |
-|------|---------|
-| **Theme** | `@theme { --color-primary: oklch(...); }` |
-| **Container Query** | `@container` + `@sm:`, `@md:`, `@lg:` |
-| **Dark Mode** | `dark:bg-zinc-900 dark:text-white` |
-| **Center** | `flex items-center justify-center` |
-| **Responsive** | `w-full md:w-1/2 lg:w-1/3` |
+| Owned by This Skill | NOT Owned |
+|---------------------|-----------|
+| Tailwind class recommendations | Design theory (→ design-system) |
+| @theme configuration (OKLCH) | Next.js integration (→ nextjs-pro) |
+| v3 → v4 migration paths | AI design (→ studio) |
+| Layout + responsive patterns | CSS processing pipeline |
+
+**Expert decision skill:** Produces class recommendations. Does not write files.
 
 ---
 
-## Tailwind v4 Changes
+## v3 → v4 Migration (3 Breaking Changes)
 
 | v3 (Legacy) | v4 (Current) |
-|-------------|--------------|
+|-------------|-------------|
 | `tailwind.config.js` | CSS-based `@theme` |
-| PostCSS plugin | Oxide engine (10x faster) |
+| PostCSS plugin | Oxide engine (10× faster) |
 | JIT mode | Native, always-on |
 
 ---
 
-## Core Patterns
+## Core Patterns (4 — Fixed)
 
 ### Theme (CSS-First)
-
 ```css
 @theme {
   --color-primary: oklch(0.7 0.15 250);
   --color-surface: oklch(0.98 0 0);
   --font-sans: 'Inter', system-ui, sans-serif;
-  --spacing-md: 1rem;
 }
 ```
 
-### Container Queries
-
-| Type | Responds To |
-|------|-------------|
+### Responsive vs Container
+| Prefix | Responds To |
+|--------|-------------|
 | `md:` | Viewport width |
 | `@md:` | Parent container width |
 
 ### Dark Mode
-
 ```html
 <div class="bg-white dark:bg-zinc-900 text-zinc-900 dark:text-white">
 ```
 
-### Responsive (Mobile-First)
-
-```html
-<div class="w-full md:w-1/2 lg:w-1/3">
-```
-
 ---
 
-## Layout Patterns
+## Layout Patterns (4 — Deterministic)
 
 | Pattern | Classes |
 |---------|---------|
@@ -96,36 +88,26 @@ metadata:
 
 ---
 
-## Color System (OKLCH)
+## OKLCH Color System (3 Layers)
 
 | Layer | Example | Purpose |
 |-------|---------|---------|
-| **Primitive** | `--blue-500` | Raw values |
-| **Semantic** | `--color-primary` | Purpose-based |
-| **Component** | `--button-bg` | Component-specific |
+| Primitive | `--blue-500` | Raw values |
+| Semantic | `--color-primary` | Purpose-based |
+| Component | `--button-bg` | Component-specific |
 
 ---
 
-## Typography
+## Error Taxonomy
 
-| Class | Size | Use |
-|-------|------|-----|
-| `text-xs` | 0.75rem | Labels |
-| `text-sm` | 0.875rem | Secondary |
-| `text-base` | 1rem | Body |
-| `text-lg` | 1.125rem | Lead |
-| `text-xl+` | 1.25rem+ | Headings |
+| Code | Recoverable | Trigger |
+|------|-------------|---------|
+| `ERR_INVALID_REQUEST_TYPE` | No | Request type not supported |
+| `ERR_UNKNOWN_LAYOUT` | Yes | Layout type not one of 4 |
+| `ERR_UNKNOWN_COLOR_LAYER` | Yes | Color layer not one of 3 |
+| `ERR_VERSION_MISMATCH` | Yes | Mixing v3 config with v4 |
 
----
-
-## Animation
-
-| Class | Effect |
-|-------|--------|
-| `animate-spin` | Rotation |
-| `animate-pulse` | Opacity pulse |
-| `transition-all duration-200` | Smooth transition |
-| `hover:scale-105` | Hover grow |
+**Zero internal retries.** Same use case = same class recommendation.
 
 ---
 
@@ -141,16 +123,14 @@ metadata:
 
 ---
 
-## References
+## 📑 Content Map
 
-For detailed patterns, see:
-- [references/v4-config.md](references/v4-config.md) - Full v4 configuration
-- [references/responsive.md](references/responsive.md) - Breakpoints & container queries
-- [references/components.md](references/components.md) - Component extraction
-
----
-
-> **Remember:** Tailwind v4 is CSS-first. Config file is now optional.
+| File | Description | When to Read |
+|------|-------------|--------------|
+| [v4-config.md](references/v4-config.md) | Full v4 configuration | New project setup |
+| [responsive.md](references/responsive.md) | Breakpoints + container queries | Responsive design |
+| [components.md](references/components.md) | Component extraction | Component patterns |
+| [engineering-spec.md](references/engineering-spec.md) | Full spec | Architecture review |
 
 ---
 
@@ -164,4 +144,4 @@ For detailed patterns, see:
 
 ---
 
-⚡ PikaKit v3.9.68
+⚡ PikaKit v3.9.69

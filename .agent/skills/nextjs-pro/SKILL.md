@@ -9,130 +9,126 @@ metadata:
   category: "framework"
   version: "2.0.0"
   triggers: "Next.js, React, App Router, RSC, frontend, performance"
+  success_metrics: "LCP < 2.5s, FID < 100ms, CLS < 0.1, build passes"
   coordinates_with: "design-system, tailwind-kit, react-architect"
-  success_metrics: "Core Web Vitals pass, build passes"
 ---
 
-# Next.js & React Frontend
+# Next.js Pro — App Router & React Performance
 
-> **Purpose:** Modern frontend patterns with Next.js App Router and React performance
+> Server-first. 3 data strategies. 4 route files. 60+ rules. CWV targets.
+
+**Philosophy:** Performance is a feature. Waterfalls are the enemy. Server first.
 
 ---
 
 ## When to Use
 
-| Situation | Approach |
-|-----------|----------|
+| Situation | Action |
+|-----------|--------|
 | Building React frontend | Use App Router patterns |
-| Performance optimization | Check Core Web Vitals |
-| Data fetching | Use Server Components |
-| Routing decisions | See routing rules |
+| Server vs Client decision | Use component decision tree |
+| Data fetching strategy | Route by volatility |
+| Performance patterns | Read rules/ by category |
 
 ---
 
-## Quick Reference
+## System Boundaries
 
-| Task | Pattern |
-|------|---------|
-| **Server Component** | Default (no directive) |
-| **Client Component** | `'use client'` at top |
-| **Data Fetch** | fetch in Server Component |
-| **ISR** | `revalidate: 60` |
-| **Dynamic** | `cache: 'no-store'` |
+| Owned by This Skill | NOT Owned |
+|---------------------|-----------|
+| Server/Client component decision | React architecture (→ react-architect) |
+| Data fetching strategy (3 options) | CSS/styling (→ tailwind-kit) |
+| Routing conventions (4 files) | Design system (→ design-system) |
+| 60+ performance rules (7 categories) | Performance profiling (→ perf-optimizer) |
+
+**Expert decision skill:** Produces patterns and rule references. Does not write code.
 
 ---
 
-## Server vs Client Decision
+## Server vs Client Decision (Binary)
 
 ```
-Need useState/useEffect/events?
+Need useState / useEffect / event handlers?
 ├── YES → 'use client'
-└── NO  → Server Component (default)
+└── NO  → Server Component (default, no directive)
 ```
 
 | Type | Use For |
 |------|---------|
-| **Server** | Data fetching, layouts, static |
+| **Server** | Data fetching, layouts, static content |
 | **Client** | Forms, buttons, interactive UI |
 
 ---
 
-## Data Fetching
+## Data Fetching (3 Strategies — Fixed)
 
-| Pattern | Cache | Use |
-|---------|-------|-----|
-| Default | Static (build) | Content pages |
-| `revalidate: 60` | ISR | Dynamic but cacheable |
-| `no-store` | None | Real-time data |
-
----
-
-## Routing Conventions
-
-| File | Purpose |
-|------|---------|
-| `page.tsx` | Route UI |
-| `layout.tsx` | Shared layout |
-| `loading.tsx` | Loading state |
-| `error.tsx` | Error boundary |
+| Volatility | Strategy | Cache Config | Use Case |
+|-----------|----------|-------------|----------|
+| Static | Default | `cache: 'force-cache'` | Content pages |
+| Periodic | ISR | `revalidate: 60` | Dynamic but cacheable |
+| Real-time | Dynamic | `cache: 'no-store'` | Live data |
 
 ---
 
-## Performance Anti-Patterns
+## Route Conventions (4 Files — Fixed)
+
+| File | Purpose | Required |
+|------|---------|----------|
+| `page.tsx` | Route UI | Yes |
+| `layout.tsx` | Shared layout | Yes (root) |
+| `loading.tsx` | Loading state (Suspense) | Recommended |
+| `error.tsx` | Error boundary | Recommended |
+
+---
+
+## Core Web Vitals Targets (Fixed)
+
+| Metric | Target |
+|--------|--------|
+| LCP | < 2,500 ms |
+| FID | < 100 ms |
+| CLS | < 0.1 |
+
+---
+
+## Error Taxonomy
+
+| Code | Recoverable | Trigger |
+|------|-------------|---------|
+| `ERR_INVALID_REQUEST_TYPE` | No | Request type not supported |
+| `ERR_UNKNOWN_CATEGORY` | Yes | Rule category not one of 7 |
+| `ERR_INVALID_VOLATILITY` | Yes | Data volatility not recognized |
+
+**Zero internal retries.** Deterministic; same context = same pattern.
+
+---
+
+## Anti-Patterns
 
 | ❌ Don't | ✅ Do |
 |---------|-------|
-| `'use client'` everywhere | Server by default |
-| Fetch in client | Fetch in server |
+| `'use client'` everywhere | Server Component by default |
+| Fetch data in Client Components | Fetch in Server Components |
 | Barrel imports (`index.js`) | Direct imports |
-| Nested awaits | Parallel fetch |
-| Skip loading states | Use Suspense |
+| Nested awaits (waterfall) | `Promise.all()` (parallel) |
+| Skip loading/error states | Use loading.tsx + error.tsx |
 
 ---
 
-## Rules Library (60+ Patterns)
+## 📑 Content Map
 
-Detailed optimization rules in `rules/`:
+| Category | Files | Focus | When to Read |
+|----------|-------|-------|--------------|
+| `rules/async-*.md` | 5 | Waterfalls, parallel fetch | Data fetching |
+| `rules/bundle-*.md` | 5 | Tree-shaking, lazy loading | Bundle size |
+| `rules/server-*.md` | 8 | RSC, caching, actions | Server Components |
+| `rules/client-*.md` | 4 | Events, SWR, localStorage | Client Components |
+| `rules/rendering-*.md` | 10 | Hydration, transitions | Rendering issues |
+| `rules/rerender-*.md` | 12 | Memo, state, effects | Re-render prevention |
+| `rules/js-*.md` | 11 | Micro-patterns | JS performance |
+| [engineering-spec.md](rules/engineering-spec.md) | 1 | Full engineering spec | Architecture review |
 
-| Category | Files | Focus |
-|----------|-------|-------|
-| `async-*.md` | 5 | Waterfalls, parallel fetch |
-| `bundle-*.md` | 5 | Tree-shaking, lazy loading |
-| `server-*.md` | 8 | RSC, caching, actions |
-| `client-*.md` | 4 | Events, SWR, localStorage |
-| `rendering-*.md` | 10 | Hydration, transitions |
-| `rerender-*.md` | 12 | Memo, state, effects |
-| `js-*.md` | 11 | Micro-optimizations |
-
-### Critical Rules
-
-```
-📂 rules/
-├── async-parallel.md          # Parallel data fetching
-├── bundle-barrel-imports.md   # Avoid barrel files
-├── server-auth-actions.md     # Secure server actions
-├── rendering-hydration-*.md   # No hydration flicker
-└── rerender-memo.md           # Proper memoization
-```
-
----
-
-## Project Structure
-
-```
-app/
-├── (marketing)/
-│   └── page.tsx
-├── (dashboard)/
-│   ├── layout.tsx
-│   └── page.tsx
-└── api/
-    └── route.ts
-```
-
----
-
-> **Philosophy:** Performance is a feature. Waterfalls are the enemy. Server first.
+**Selective reading:** Read ONLY the category relevant to current task.
 
 ---
 
@@ -142,8 +138,8 @@ app/
 |------|------|---------|
 | `react-architect` | Skill | React patterns |
 | `tailwind-kit` | Skill | Styling |
-| `perf-optimizer` | Skill | Performance |
+| `perf-optimizer` | Skill | Performance profiling |
 
 ---
 
-⚡ PikaKit v3.9.68
+⚡ PikaKit v3.9.69

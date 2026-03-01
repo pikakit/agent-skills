@@ -3,20 +3,31 @@ name: ai-artist
 description: >-
   Prompt engineering for AI text and image generation models.
   LLM prompting (Claude, GPT, Gemini), image generation (Midjourney, DALL-E, Stable Diffusion, Flux).
-  Triggers on: prompt, AI prompt, image generation, Midjourney, DALL-E, Stable Diffusion.
+  Deterministic prompt construction with domain-specific templates and model-aware parameter injection.
+  Triggers on: prompt, AI prompt, image generation, Midjourney, DALL-E, Stable Diffusion, Flux.
   Coordinates with: studio, media-processing.
-allowed-tools: Read, Write, Edit
 metadata:
-  version: "1.0.0"
+  version: "2.0.0"
   category: "ai"
   triggers: "prompt, AI prompt, image generation, Midjourney, DALL-E, Stable Diffusion, Flux"
-  success_metrics: "prompt produces desired output, minimal iterations"
+  success_metrics: "same inputs = same prompt output, ≤ 3 refinement iterations, zero silent failures"
   coordinates_with: "studio, media-processing"
 ---
 
-# AI Artist - Prompt Engineering
+# AI Artist — Prompt Engineering
 
-> Craft effective prompts for AI text and image generation models.
+> Deterministic prompt construction for LLMs and image generation models. Same inputs = same output.
+
+---
+
+## Prerequisites
+
+**Required:** None — AI Artist is a knowledge-based skill with no external dependencies.
+
+**Optional:**
+- Target model API access (Claude, GPT, Gemini, Midjourney, DALL-E, SD, Flux)
+- `studio` skill (for design system prompts)
+- `media-processing` skill (for post-processing generated images)
 
 ---
 
@@ -24,22 +35,38 @@ metadata:
 
 | Situation | Reference |
 |-----------|-----------|
-| LLM prompt structure | This file |
-| Image generation | `references/image-prompts.md` |
-| Marketing copy | `references/domain-marketing.md` |
-| Code generation | `references/domain-code.md` |
-| Model-specific syntax | `references/model-syntax.md` |
+| Structuring LLM prompts | This file — LLM Prompt Pattern |
+| Generating image prompts | `references/image-prompts.md` |
+| Marketing/copywriting prompts | `references/domain-marketing.md` |
+| Code generation prompts | `references/domain-code.md` |
+| Model-specific parameters | `references/model-syntax.md` |
+| Architecture review, contracts, security | `references/engineering-spec.md` |
 
 ---
 
-## Core Principles
+## System Boundaries
 
-| Principle | Application |
-|-----------|-------------|
-| **Clarity** | Be specific, avoid ambiguity |
-| **Context** | Set role, constraints, audience upfront |
-| **Structure** | Use consistent formatting (headers, XML tags) |
-| **Iteration** | Refine based on outputs, A/B test |
+| Owned by This Skill | NOT Owned |
+|---------------------|-----------|
+| Prompt template construction | API submission to models |
+| Domain-specific prompt patterns | Response quality evaluation |
+| Model parameter syntax | Content safety filtering |
+| Success criteria extraction | Token counting (→ context-engineering) |
+| Prompt versioning structure | Design systems (→ studio) |
+
+**Pure function:** This skill produces text output. Zero network calls, zero file mutations, zero side effects.
+
+---
+
+## Execution Model — 3-Phase Lifecycle
+
+| Phase | Action | Output |
+|-------|--------|--------|
+| **Parse** | Validate domain, template, parameters | Validated input or error |
+| **Compose** | Apply template, inject parameters, format for model | Structured prompt string |
+| **Emit** | Return prompt with metadata and success criteria | Complete output |
+
+All phases execute synchronously. No async pipeline, no queue.
 
 ---
 
@@ -50,6 +77,7 @@ metadata:
 [Context] [Background, constraints, audience]
 [Task] [Specific action to perform]
 [Format] [Output structure: markdown, JSON, etc.]
+[Constraints] [Word limit, tone, technical level]
 [Examples]
 Good: [Example of desired output]
 Bad: [Example to avoid]
@@ -60,8 +88,10 @@ Bad: [Example to avoid]
 ## Image Prompt Pattern
 
 ```
-[Subject] + [Style] + [Composition] + [Quality] + [Parameters]
+[Subject] + [Style] + [Composition] + [Quality] + [Model Parameters]
 ```
+
+**Parameter ordering is fixed:** subject → style → composition → quality → model_params.
 
 **Example:**
 ```
@@ -69,17 +99,43 @@ Portrait of cyberpunk hacker, neon purple lighting, cinematic close-up,
 volumetric fog, 8k render, artstation quality --ar 16:9 --style raw
 ```
 
----
-
-## Quick Reference
-
 | Element | Purpose | Example |
 |---------|---------|---------|
 | Subject | What to generate | "portrait of cyberpunk hacker" |
 | Style | Visual aesthetic | "neon lighting, cinematic" |
 | Composition | Framing | "close-up, shallow depth of field" |
-| Quality | Render quality | "8k, artstation quality" |
+| Quality | Render markers | "8k, artstation quality" |
 | Parameters | Model-specific | `--ar 16:9 --style raw` |
+
+---
+
+## Supported Models
+
+| Model | Domain | Parameter Reference |
+|-------|--------|---------------------|
+| Claude, GPT, Gemini | Text, Code, Marketing | Core LLM pattern (above) |
+| Midjourney | Image | `references/model-syntax.md` — `--ar`, `--style`, `--chaos` |
+| DALL-E | Image | `references/model-syntax.md` — size, quality, style |
+| Stable Diffusion | Image | `references/model-syntax.md` — steps, cfg, sampler |
+| Flux | Image | `references/model-syntax.md` — guidance, steps |
+
+Unknown model → generic format (no model-specific parameters injected).
+
+---
+
+## Error Taxonomy
+
+| Code | Recoverable | Trigger |
+|------|-------------|---------|
+| `ERR_INVALID_DOMAIN` | No | Domain not one of: text, image, code, marketing |
+| `ERR_INVALID_TEMPLATE` | No | Template not one of: role-task, subject-style, chain-of-thought, few-shot |
+| `ERR_MISSING_PARAM` | Yes | Required parameter is null or empty |
+| `ERR_UNKNOWN_MODEL` | Yes | Model not recognized; falls back to generic format |
+| `ERR_TEMPLATE_NOT_FOUND` | No | Reference file missing from skill directory |
+| `ERR_PARAM_CONFLICT` | Yes | Contradictory parameters (e.g., format=json + template=subject-style) |
+| `ERR_PARAM_TOO_LONG` | Yes | Parameter exceeds maximum character limit |
+
+**Zero internal retries.** Deterministic output makes retries meaningless for same input.
 
 ---
 
@@ -88,19 +144,23 @@ volumetric fog, 8k render, artstation quality --ar 16:9 --style raw
 | ❌ Don't | ✅ Do |
 |---------|-------|
 | "Make it better" | "Increase contrast by 20%" |
-| "Professional but casual" | Choose one tone |
-| Missing context | Set role, audience, constraints |
-| Over-prompting | Focus on core requirements |
+| "Professional but casual" | Choose one tone, specify explicitly |
+| Skip context/constraints | Set role, audience, constraints upfront |
+| Over-prompt with 10+ directives | Focus on 3–5 core requirements |
+| Assume model compatibility | Check `references/model-syntax.md` for target model |
 
 ---
 
-## Best Practices
+## Troubleshooting
 
-1. **Start broad, refine narrow**: Simple prompt first, add constraints
-2. **Use examples over descriptions**: "Like Stripe's docs" > "clean and minimalist"
-3. **Specify output format explicitly**: Markdown, JSON, CSV
-4. **Include success criteria**: "Under 150 words", "p95 <200ms"
-5. **Version your prompts**: Track what works
+| Problem | Cause | Resolution |
+|---------|-------|------------|
+| Vague output | Missing constraints | Add specific criteria: "under 150 words", "technical audience" |
+| Wrong visual style | Style description too generic | Use style references: "in the style of [artist/work]" |
+| Busy image composition | Too many subjects | Reduce to one primary subject, simplify background |
+| Inconsistent results | No seed parameter | Add `--seed` for Midjourney/SD; not controllable for LLMs |
+| Syntax errors in model params | Wrong model format | Check `references/model-syntax.md` for correct syntax |
+| Token limit exceeded | Prompt too long | Estimate: ~4 chars/token for English; trim constraints |
 
 ---
 
@@ -108,22 +168,11 @@ volumetric fog, 8k render, artstation quality --ar 16:9 --style raw
 
 | File | Description | When to Read |
 |------|-------------|--------------|
-| `references/image-prompts.md` | Image generation techniques | Visual AI |
-| `references/domain-marketing.md` | Marketing copy patterns | Copywriting |
-| `references/domain-code.md` | Code generation patterns | Programming |
-| `references/model-syntax.md` | Model-specific parameters | Midjourney, SD, DALL-E |
-
----
-
-## Troubleshooting
-
-| Problem | Solution |
-|---------|----------|
-| Vague/generic output | Add specific constraints and examples |
-| Wrong style | Use style references: "in the style of [artist/work]" |
-| Busy composition | Reduce elements, focus on one subject |
-| Inconsistent results | Add seed parameter, use same prompt base |
-| Model-specific syntax ignored | Check `references/model-syntax.md` for correct format |
+| [image-prompts.md](references/image-prompts.md) | Image generation techniques, styles, composition | Visual AI prompts |
+| [domain-marketing.md](references/domain-marketing.md) | Marketing copy, AIDA/PAS formulas | Copywriting prompts |
+| [domain-code.md](references/domain-code.md) | Code generation patterns | Programming prompts |
+| [model-syntax.md](references/model-syntax.md) | Model-specific parameters | Midjourney, SD, DALL-E, Flux |
+| [engineering-spec.md](references/engineering-spec.md) | Full engineering spec: contracts, security, scalability | Architecture review, integration |
 
 ---
 
@@ -131,9 +180,10 @@ volumetric fog, 8k render, artstation quality --ar 16:9 --style raw
 
 | Item | Type | Purpose |
 |------|------|---------|
-| `studio` | Skill | Design system generation |
-| `media-processing` | Skill | Post-processing images |
+| `studio` | Skill | Design system generation, color palettes |
+| `media-processing` | Skill | Post-processing generated images |
+| `context-engineering` | Skill | Token management, context window planning |
 
 ---
 
-⚡ PikaKit v3.9.68
+⚡ PikaKit v3.9.69

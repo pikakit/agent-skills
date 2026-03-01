@@ -4,49 +4,87 @@ description: >-
   Implement GitOps workflows with ArgoCD and Flux for automated, declarative
   Kubernetes deployments with continuous reconciliation.
   Triggers on: GitOps, ArgoCD, Flux, Kubernetes, declarative deployment.
-  Coordinates with: cicd-pipeline, server-ops.
+  Coordinates with: cicd-pipeline, server-ops, git-workflow.
 metadata:
-  category: "core"
   version: "2.0.0"
-  triggers: "GitOps, ArgoCD, Flux, Kubernetes"
-  coordinates_with: "cicd-pipeline, server-ops"
-  success_metrics: "deployment automated, reconciliation active"
+  category: "devops"
+  triggers: "GitOps, ArgoCD, Flux, Kubernetes, declarative deployment"
+  success_metrics: "Git is source of truth, reconciliation active, zero secrets in Git"
+  coordinates_with: "cicd-pipeline, server-ops, git-workflow"
 ---
 
-# GitOps Workflow
+# GitOps Workflow — Declarative Kubernetes Delivery
 
-> **Purpose:** Declarative, Git-based continuous delivery for Kubernetes
+> Git is the single source of truth. Continuous reconciliation. No auto-sync to production.
+
+---
+
+## Prerequisites
+
+**Required:** Kubernetes cluster, `kubectl`, ArgoCD or Flux installed.
 
 ---
 
 ## When to Use
 
-| Situation | Approach |
-|-----------|----------|
-| K8s deployment | Choose ArgoCD or Flux |
-| CD setup | Configure reconciliation |
-| Secret management | Use sealed secrets |
-| Multi-env | Setup promotion workflow |
+| Situation | Action |
+|-----------|--------|
+| K8s deployment needed | Choose ArgoCD or Flux via decision tree |
+| CD pipeline setup | Configure sync policies per environment |
+| Secret management | Use Sealed Secrets or External Secrets (no plaintext) |
+| Multi-environment | Set up staging → production promotion |
+| Architecture review | Read `references/engineering-spec.md` |
 
 ---
 
-## Quick Reference
+## System Boundaries
 
-| Tool | Install Command |
-|------|-----------------|
-| ArgoCD | `kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml` |
-| Flux | `flux bootstrap github --owner=ORG --repository=REPO` |
+| Owned by This Skill | NOT Owned |
+|---------------------|-----------|
+| ArgoCD vs Flux decision (4 criteria) | CI pipeline (→ cicd-pipeline) |
+| Sync policy selection (4 policies) | Server management (→ server-ops) |
+| Repository structure template | Git operations (→ git-workflow) |
+| OpenGitOps compliance (4 principles) | Cluster provisioning |
+| Secret management strategy | Helm chart development |
+
+**Expert decision skill:** Produces architecture decisions. No cluster modifications.
 
 ---
 
-## OpenGitOps Principles
+## OpenGitOps Principles (4 — All Required)
 
-| Principle | Description |
-|-----------|-------------|
-| **Declarative** | Entire system described declaratively |
-| **Versioned** | Desired state stored in Git |
-| **Pulled Automatically** | Agents pull desired state |
-| **Continuously Reconciled** | Agents reconcile actual vs desired |
+| # | Principle | Requirement |
+|---|-----------|-------------|
+| 1 | Declarative | Entire system described declaratively |
+| 2 | Versioned | Desired state stored in Git |
+| 3 | Pulled | Agents pull desired state (not pushed) |
+| 4 | Reconciled | Agents continuously reconcile actual vs desired |
+
+---
+
+## ArgoCD vs Flux Decision Tree
+
+| Criterion | ArgoCD | Flux |
+|-----------|--------|------|
+| Web UI | ✅ Rich dashboard | ❌ CLI only |
+| Multi-cluster | ✅ Native support | ⚠️ Requires setup |
+| Helm support | ✅ Native | ✅ Native |
+| Learning curve | Medium | Lower |
+
+**Rule:** needs_ui=true OR cluster_count>1 → **ArgoCD**. Otherwise → **Flux**.
+
+---
+
+## Sync Policies (4)
+
+| Policy | Environment | Behavior |
+|--------|-------------|----------|
+| **Manual** | Production | Requires explicit approval |
+| **Auto** | Dev, Staging | Deploys on Git push |
+| **Prune** | All | Removes resources not in Git |
+| **Self-Heal** | All | Reverts manual cluster changes |
+
+**Safety:** Production is ALWAYS manual sync. No exceptions.
 
 ---
 
@@ -66,47 +104,49 @@ gitops-repo/
 
 ---
 
-## ArgoCD vs Flux
+## Safety Rules (Non-Negotiable)
 
-| Feature | ArgoCD | Flux |
-|---------|--------|------|
-| UI | ✅ Rich | ❌ CLI only |
-| Multi-cluster | ✅ Native | ⚠️ Needs setup |
-| Helm | ✅ Native | ✅ Native |
-| Learning curve | Medium | Lower |
-
----
-
-## Sync Policies
-
-| Policy | Use When |
-|--------|----------|
-| **Manual** | Production, need approval |
-| **Auto** | Dev/staging environments |
-| **Prune** | Remove resources not in Git |
-| **Self-Heal** | Revert manual cluster changes |
+| Rule | Enforcement |
+|------|-------------|
+| No auto-sync to production | Sync policy = manual |
+| No secrets in Git | Sealed Secrets / External Secrets |
+| Rollback tested | Rollback procedure in promotion workflow |
 
 ---
 
-## Safety Rules
+## Error Taxonomy
 
-| Rule | Why |
-|------|-----|
-| No auto-sync to production | Requires approval |
-| Keep secrets out of Git | Use sealed/external secrets |
-| Always have rollback | Test rollback procedures |
+| Code | Recoverable | Trigger |
+|------|-------------|---------|
+| `ERR_INVALID_REQUEST_TYPE` | No | Request type not supported |
+| `ERR_MISSING_CLUSTER_COUNT` | Yes | Cluster count not provided |
+| `ERR_MISSING_ENVIRONMENTS` | Yes | Environment list not provided |
+| `ERR_INVALID_ENVIRONMENT` | Yes | Environment name not recognized |
+| `ERR_REFERENCE_NOT_FOUND` | No | Reference file missing |
 
----
-
-## References
-
-- [references/argocd-setup.md](references/argocd-setup.md)
-- [references/flux-setup.md](references/flux-setup.md)
-- [references/secret-management.md](references/secret-management.md)
+**Zero internal retries.** Deterministic; same context = same recommendation.
 
 ---
 
-> **Key:** Git is the single source of truth for cluster state.
+## Anti-Patterns
+
+| ❌ Don't | ✅ Do |
+|---------|-------|
+| Auto-sync to production | Manual sync with approval |
+| Store secrets in Git | Sealed Secrets / External Secrets |
+| Push-based deployment | Pull-based reconciliation |
+| Skip rollback testing | Test rollback on every release |
+| Use imperative `kubectl apply` | Declarative manifests in Git |
+
+---
+
+## 📑 Content Map
+
+| File | Description | When to Read |
+|------|-------------|--------------|
+| [argocd-setup.md](references/argocd-setup.md) | ArgoCD installation and config | ArgoCD selected |
+| [sync-policies.md](references/sync-policies.md) | Sync policy deep dive | Policy configuration |
+| [engineering-spec.md](references/engineering-spec.md) | Full engineering spec | Architecture review |
 
 ---
 
@@ -114,10 +154,11 @@ gitops-repo/
 
 | Item | Type | Purpose |
 |------|------|---------|
-| `cicd-pipeline` | Skill | CI/CD |
+| `cicd-pipeline` | Skill | CI/CD pipeline |
 | `server-ops` | Skill | Server management |
+| `git-workflow` | Skill | Git operations |
 | `/launch` | Workflow | Deployment |
 
 ---
 
-⚡ PikaKit v3.9.68
+⚡ PikaKit v3.9.69

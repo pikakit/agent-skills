@@ -6,16 +6,16 @@ description: >-
   Triggers on: screenshot, browser, puppeteer, devtools, performance.
   Coordinates with: agent-browser, e2e-automation, perf-optimizer.
 metadata:
-  version: "1.0.0"
+  version: "2.0.0"
   category: "testing"
   triggers: "screenshot, browser, puppeteer, devtools, performance, console, network"
-  success_metrics: "screenshot captured, JSON output, session persists"
+  success_metrics: "JSON output on all scripts, screenshots ≤ 5MB, session persists across scripts"
   coordinates_with: "agent-browser, e2e-automation, perf-optimizer"
 ---
 
-# Chrome DevTools
+# Chrome DevTools — Puppeteer CLI
 
-> Puppeteer CLI scripts. Session persistence. JSON output.
+> Direct Puppeteer CLI scripts. Session persistence. JSON output. Auto-compressed screenshots.
 
 ---
 
@@ -23,131 +23,128 @@ metadata:
 
 **Required:**
 - Node.js 18+
-- Puppeteer (`npm install puppeteer sharp yargs`)
+- Puppeteer: `npm install puppeteer sharp yargs`
 
-**Linux/WSL:**
-- Chrome dependencies (`./install-deps.sh`)
+**Linux/WSL:** Chrome dependencies via `./install-deps.sh`
 
 ---
 
 ## When to Use
 
-| Use This For | Use agent-browser For |
-|--------------|----------------------|
-| Quick screenshots | Long autonomous sessions |
-| Custom Puppeteer scripts | Context-constrained AI workflows |
+| Use This For | Use `agent-browser` For |
+|--------------|------------------------|
+| Quick screenshots | Long autonomous AI sessions |
+| Custom Puppeteer scripts | Context-constrained agent workflows |
 | WebSocket debugging | Cloud browsers (CI/CD) |
-| Auth injection | Multi-tab with @refs |
+| Core Web Vitals measurement | Multi-tab @ref interactions |
+| Auth injection, form filling | AI-optimized element referencing |
+
+---
+
+## System Boundaries
+
+| Owned by This Skill | NOT Owned |
+|---------------------|-----------|
+| 10 Puppeteer CLI scripts | E2E test suites (→ e2e-automation) |
+| Session persistence (.browser-session.json) | AI @ref handle system (→ agent-browser) |
+| Screenshot capture + auto-compress | Performance recommendations (→ perf-optimizer) |
+| Core Web Vitals measurement | Cross-browser testing |
+| Console/network monitoring | Browser installation |
+
+**Side effects:** Launches browser processes, writes files (screenshots, session), executes JavaScript in page context, navigates pages with network requests.
 
 ---
 
 ## Available Scripts
 
-| Script | Purpose |
-|--------|---------|
-| `navigate.js` | Navigate to URLs |
-| `screenshot.js` | Capture screenshots (auto-compress >5MB) |
-| `click.js` | Click elements |
-| `fill.js` | Fill form fields |
-| `evaluate.js` | Execute JavaScript |
-| `aria-snapshot.js` | Get ARIA tree (YAML) |
-| `select-ref.js` | Interact by ref |
-| `console.js` | Monitor console |
-| `network.js` | Track HTTP requests |
-| `performance.js` | Core Web Vitals |
+| Script | Purpose | Side Effects | Idempotent |
+|--------|---------|-------------|-----------|
+| `navigate.js` | Navigate to URL | Browser launch, page navigation | No |
+| `screenshot.js` | Capture screenshot | File write (auto-compress > 5MB) | No |
+| `click.js` | Click element | Page state mutation | No |
+| `fill.js` | Fill form field | Form state mutation | No |
+| `evaluate.js` | Execute JavaScript | Depends on script content | Depends |
+| `aria-snapshot.js` | Get ARIA tree (YAML) | None (read-only) | Yes |
+| `select-ref.js` | Interact by ref | Page state mutation | No |
+| `console.js` | Monitor console | None (passive) | Yes |
+| `network.js` | Track HTTP requests | None (passive) | Yes |
+| `performance.js` | Core Web Vitals | Navigation + measurement | No |
 
 ---
 
 ## Session Persistence
 
 ```bash
-# 1. First script - launches browser
+# 1. Launch session (browser starts)
 node navigate.js --url https://example.com/login
 
-# 2. Subsequent scripts - reuse browser
+# 2. Interact (browser reuses session)
 node fill.js --selector "#email" --value "user@example.com"
 node click.js --selector "button[type=submit]"
 
-# 3. Close when done
-node navigate.js --url about:blank --close true
+# 3. Capture
+node screenshot.js --output ./result.png
+
+# 4. Close (browser terminates)
+node navigate.js --close true
 ```
 
----
-
-## Quick Examples
-
-### Screenshot
-
-```bash
-# Basic
-node screenshot.js --url https://example.com --output ./shot.png
-
-# Full page
-node screenshot.js --url https://example.com --output ./full.png --full-page true
-
-# Current page (no navigation)
-node screenshot.js --output ./current.png
-```
-
-### Form Automation
-
-```bash
-node fill.js --selector "#email" --value "test@example.com"
-node fill.js --selector "#password" --value "secret"
-node click.js --selector "button[type=submit]"
-```
-
-### JavaScript Execution
-
-```bash
-node evaluate.js --script "document.title"
-
-node evaluate.js --script "
-  Array.from(document.querySelectorAll('.item')).map(el => ({
-    title: el.textContent
-  }))
-"
-```
-
-### Performance
-
-```bash
-node performance.js --url https://example.com | jq '.vitals'
-# { FCP: 1200, LCP: 2400, CLS: 0.05, TTFB: 300 }
-```
+**State:** `.browser-session.json` in working directory. One session per directory. Delete file to reset.
 
 ---
 
 ## Common Options
 
-| Option | Description |
-|--------|-------------|
-| `--headless false` | Show browser window |
-| `--close true` | Close browser completely |
-| `--timeout 30000` | Timeout in ms |
-| `--wait-until networkidle2` | Wait strategy |
+| Option | Default | Description |
+|--------|---------|-------------|
+| `--headless false` | true | Show browser window |
+| `--close true` | false | Terminate browser process |
+| `--timeout 30000` | 30000 | Timeout in ms |
+| `--wait-until networkidle2` | load | Wait strategy |
+| `--full-page true` | false | Full page screenshot |
+| `--max-size 5` | 5 | Max screenshot MB before auto-compress |
 
 ---
 
-## 📑 Content Map
+## Error Taxonomy
 
-| File | Description |
-|------|-------------|
-| `references/scripts-guide.md` | All scripts with options |
-| `references/aria-snapshot.md` | ARIA tree format |
-| `scripts/` | Puppeteer CLI scripts |
+| Code | Recoverable | Trigger |
+|------|-------------|---------|
+| `ERR_ELEMENT_NOT_FOUND` | Yes | CSS selector matched no elements |
+| `ERR_NAVIGATION_TIMEOUT` | Yes | Page did not load within timeout |
+| `ERR_BROWSER_DISCONNECTED` | Yes | Browser process unreachable |
+| `ERR_BROWSER_CRASHED` | Yes | Browser terminated unexpectedly |
+| `ERR_PUPPETEER_MISSING` | No | Puppeteer npm package not installed |
+| `ERR_SCRIPT_FAILED` | Yes | JavaScript execution threw error |
+| `ERR_WRITE_FAILED` | Yes | Screenshot/file write failed |
+| `ERR_INVALID_SELECTOR` | No | CSS selector syntactically invalid |
+| `ERR_SESSION_CORRUPTED` | Yes | Session file is invalid JSON |
+
+**Zero internal retries.** Scripts execute once and return JSON. Callers own retry logic.
 
 ---
 
 ## Troubleshooting
 
-| Problem | Solution |
-|---------|----------|
-| `Cannot find puppeteer` | Run `npm install` in scripts dir |
-| `libnss3.so` missing | Run `./install-deps.sh` (Linux) |
-| Element not found | Use `aria-snapshot.js` first |
-| Screenshot >5MB | Auto-compressed, use `--max-size 3` |
-| Session stale | Delete `.browser-session.json` |
+| Problem | Cause | Resolution |
+|---------|-------|------------|
+| `Cannot find puppeteer` | Not installed | `npm install puppeteer sharp yargs` |
+| `libnss3.so` missing | Linux deps | Run `./install-deps.sh` |
+| Element not found | Wrong selector | Use `aria-snapshot.js` to find correct selector |
+| Screenshot > 5MB | High DPI / full page | Auto-compressed; use `--max-size 3` for smaller |
+| Session stale | Browser died | Delete `.browser-session.json`, re-launch |
+| Script hangs | Page never loads | Increase `--timeout` or check URL |
+
+---
+
+## 📑 Content Map
+
+| File | Description | When to Read |
+|------|-------------|--------------|
+| [scripts-guide.md](references/scripts-guide.md) | Complete script reference with all options | Detailed script usage |
+| [aria-snapshot.md](references/aria-snapshot.md) | ARIA tree format and usage | Element discovery |
+| [scripts/](scripts/) | Puppeteer CLI scripts | Script execution |
+| [engineering-spec.md](references/engineering-spec.md) | Full engineering spec: contracts, security, scalability | Architecture review |
 
 ---
 
@@ -155,10 +152,10 @@ node performance.js --url https://example.com | jq '.vitals'
 
 | Item | Type | Purpose |
 |------|------|---------|
-| `agent-browser` | Skill | AI-optimized automation |
-| `e2e-automation` | Skill | Playwright testing |
-| `perf-optimizer` | Skill | Performance optimization |
+| `agent-browser` | Skill | AI-optimized browser automation with @ref handles |
+| `e2e-automation` | Skill | Playwright E2E testing |
+| `perf-optimizer` | Skill | Performance analysis and recommendations |
 
 ---
 
-⚡ PikaKit v3.9.68
+⚡ PikaKit v3.9.69

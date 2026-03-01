@@ -5,54 +5,69 @@ description: >-
   Message queues, pub/sub, event sourcing, CQRS, saga patterns.
   Triggers on: event-driven, message queue, Kafka, RabbitMQ, pub/sub, CQRS, saga.
   Coordinates with: api-architect, system-design, caching-strategy.
-allowed-tools: Read, Write, Edit, Glob, Grep
 metadata:
-  version: "1.0.0"
+  version: "2.0.0"
   category: "architecture"
   triggers: "event-driven, message queue, Kafka, RabbitMQ, pub/sub, CQRS, event sourcing, saga"
-  success_metrics: "messages delivered, idempotent consumers, no data loss"
+  success_metrics: "idempotent consumers, DLQ configured, versioned events, no data loss"
   coordinates_with: "api-architect, system-design, caching-strategy"
 ---
 
 # Event-Driven Architecture
 
-> Asynchronous communication patterns for scalable distributed systems.
-> **Learn to THINK about event flow, not default to synchronous calls.**
+> Async by default. At-least-once delivery. Idempotent consumers. DLQ mandatory.
+
+---
+
+## Prerequisites
+
+**Required:** None — Event-Driven is a knowledge-based skill with no external dependencies.
 
 ---
 
 ## When to Use
 
-| Situation | Approach |
-|-----------|----------|
-| Choosing messaging pattern | Check decision tree below |
+| Situation | Action |
+|-----------|--------|
+| Sync vs async decision | Use sync-async decision tree below |
 | Event sourcing / CQRS | Read `references/patterns.md` |
-| Message queue selection | Read `references/message-queues.md` |
+| Queue selection | Read `references/message-queues.md` |
 | Real-time / pub/sub | Read `references/pubsub.md` |
 | Webhook design | Read `references/webhooks.md` |
+| Architecture review | Read `references/engineering-spec.md` |
 
 ---
 
-## 🎯 Selective Reading Rule
+## System Boundaries
 
-**Read ONLY files relevant to the request!** Check content map, find what you need.
+| Owned by This Skill | NOT Owned |
+|---------------------|-----------|
+| Sync-vs-async classification | API endpoint design (→ api-architect) |
+| Pattern selection (6 patterns) | System architecture (→ system-design) |
+| Queue selection (Kafka/RabbitMQ/SQS) | Cache invalidation (→ caching-strategy) |
+| DomainEvent schema standard | Payment webhooks (→ payment-patterns) |
+| Webhook design patterns | Broker provisioning |
+
+**Pure decision skill:** Produces architecture decisions. Zero side effects.
 
 ---
 
-## When Sync vs Async
+## Sync vs Async Decision Tree
 
 ```
 Does the caller NEED the result immediately?
 ├── YES → Synchronous (REST/gRPC)
 │   Examples: user login, payment validation, read queries
 └── NO → Asynchronous (events/queues)
-    ├── Fire-and-forget?
-    │   └── Message Queue (one consumer)
-    ├── Multiple consumers need it?
+    ├── Single consumer, no response?
+    │   └── Fire-and-Forget (Message Queue)
+    ├── Multiple consumers?
     │   └── Pub/Sub (fan-out)
-    ├── Need audit trail of changes?
+    ├── Need audit trail?
     │   └── Event Sourcing
-    └── Complex multi-step workflow?
+    ├── Read/write at different scales?
+    │   └── CQRS
+    └── Multi-step distributed transaction?
         └── Saga (choreography or orchestration)
 ```
 
@@ -62,12 +77,75 @@ Does the caller NEED the result immediately?
 
 | Pattern | Use When | Example |
 |---------|----------|---------|
-| **Request/Reply** | Need response | Payment processing |
+| **Request/Reply** | Caller needs immediate response | Payment processing |
 | **Fire-and-Forget** | No response needed | Email sending, logging |
-| **Pub/Sub** | Multiple consumers | Order placed → inventory, email, analytics |
-| **Event Sourcing** | Need full audit trail | Financial transactions, compliance |
+| **Pub/Sub** | Multiple consumers | Order → inventory, email, analytics |
+| **Event Sourcing** | Full audit trail required | Financial transactions, compliance |
 | **CQRS** | Read/write at different scales | Read-heavy dashboards |
 | **Saga** | Distributed transactions | Order → Payment → Shipping |
+
+---
+
+## Queue Selection
+
+| Requirement | Queue | Rationale |
+|-------------|-------|-----------|
+| High throughput + ordering | Kafka | Partition-based ordering |
+| Routing flexibility | RabbitMQ | Exchange/binding patterns |
+| Serverless / managed | SQS | Zero infrastructure |
+
+---
+
+## Core Principles
+
+| Principle | Rule |
+|-----------|------|
+| **Idempotent consumers** | Same event twice = same result |
+| **At-least-once delivery** | Design for duplicates, never assume exactly-once |
+| **Event ordering** | Partition by entity ID for ordered processing |
+| **Dead letter queues** | DLQ mandatory on every queue/subscription |
+| **Schema evolution** | Backward-compatible versioned events |
+| **Correlation tracing** | Every event carries correlationId + causationId |
+
+---
+
+## Decision Checklist
+
+| # | Check |
+|---|-------|
+| 1 | Sync vs async classified for THIS use case? |
+| 2 | Event schema versioned? (backward compatible) |
+| 3 | Consumers are idempotent? (handle duplicates) |
+| 4 | Dead letter queue configured? |
+| 5 | Retry policy defined? (exponential backoff) |
+| 6 | Monitoring/tracing in place? (correlation IDs) |
+| 7 | Data loss prevention? (persist before ack) |
+
+---
+
+## Error Taxonomy
+
+| Code | Recoverable | Trigger |
+|------|-------------|---------|
+| `ERR_INVALID_REQUEST_TYPE` | No | Request type not supported |
+| `ERR_MISSING_CONTEXT` | Yes | Required context field missing |
+| `ERR_CONTEXT_CONFLICT` | Yes | Conflicting requirements |
+| `ERR_REFERENCE_NOT_FOUND` | No | Reference file missing |
+
+**Zero internal retries.** Deterministic; same context = same recommendation.
+
+---
+
+## Anti-Patterns
+
+| ❌ Don't | ✅ Do |
+|---------|-------|
+| Use events for everything | Sync for queries, async for commands |
+| Put full entity in event | Include only changed data + entity ID |
+| Assume exactly-once delivery | Design for at-least-once always |
+| Skip dead letter queues | DLQ on every queue |
+| Tight coupling via event data | Use versioned event contracts |
+| Ignore event ordering | Partition by entity ID |
 
 ---
 
@@ -75,87 +153,13 @@ Does the caller NEED the result immediately?
 
 | File | Description | When to Read |
 |------|-------------|--------------|
-| `references/patterns.md` | Event Sourcing, CQRS, Saga, choreography vs orchestration | Architecture design |
-| `references/message-queues.md` | Kafka vs RabbitMQ vs SQS, setup, patterns | Queue selection |
-| `references/pubsub.md` | Redis Pub/Sub, WebSocket, SSE, real-time | Real-time features |
-| `references/webhooks.md` | Webhook design, retry, idempotency, signatures | External integrations |
+| [patterns.md](references/patterns.md) | Event Sourcing, CQRS, Saga patterns | Architecture design |
+| [message-queues.md](references/message-queues.md) | Kafka vs RabbitMQ vs SQS | Queue selection |
+| [pubsub.md](references/pubsub.md) | Redis Pub/Sub, WebSocket, SSE | Real-time features |
+| [webhooks.md](references/webhooks.md) | Webhook retry, idempotency, signatures | External integrations |
+| [engineering-spec.md](references/engineering-spec.md) | Full engineering spec | Architecture review |
 
----
-
-## Core Principles
-
-| Principle | Application |
-|-----------|-------------|
-| **Idempotent Consumers** | Processing same event twice = same result |
-| **At-Least-Once Delivery** | Design for duplicates, not exactly-once |
-| **Event Ordering** | Use partition keys for ordered processing |
-| **Dead Letter Queues** | Capture failed messages for debugging |
-| **Schema Evolution** | Backward-compatible event schemas |
-| **Observability** | Trace events across services |
-
----
-
-## Event Schema
-
-```typescript
-interface DomainEvent<T = unknown> {
-  id: string;              // Unique event ID (UUID)
-  type: string;            // "order.created", "user.updated"
-  source: string;          // "order-service"
-  timestamp: string;       // ISO 8601
-  version: string;         // Schema version "1.0"
-  data: T;                 // Event payload
-  metadata: {
-    correlationId: string; // Trace across services
-    causationId: string;   // What caused this event
-    userId?: string;       // Who triggered it
-  };
-}
-
-// Example
-const event: DomainEvent<OrderCreated> = {
-  id: "evt_abc123",
-  type: "order.created",
-  source: "order-service",
-  timestamp: "2025-01-15T10:30:00Z",
-  version: "1.0",
-  data: {
-    orderId: "ord_xyz",
-    items: [...],
-    total: 99.99,
-  },
-  metadata: {
-    correlationId: "req_456",
-    causationId: "cmd_789",
-    userId: "user_012",
-  },
-};
-```
-
----
-
-## ✅ Decision Checklist
-
-- [ ] **Sync vs async decided for THIS use case?**
-- [ ] **Event schema versioned?** (backward compatible)
-- [ ] **Consumers are idempotent?** (handle duplicates)
-- [ ] **Dead letter queue configured?**
-- [ ] **Retry policy defined?** (exponential backoff)
-- [ ] **Monitoring/tracing in place?** (correlation IDs)
-- [ ] **Data loss prevention?** (persistence before ack)
-
----
-
-## ❌ Anti-Patterns
-
-| ❌ Don't | ✅ Do |
-|---------|------|
-| Use events for everything | Sync for queries, async for commands |
-| Put full entity in event | Include only changed data + ID |
-| Assume exactly-once delivery | Design for at-least-once |
-| Skip dead letter queues | Always capture failed messages |
-| Tight coupling via event data | Use event contracts/schemas |
-| Ignore event ordering | Partition by entity ID |
+**Selective reading:** Read ONLY files relevant to the request.
 
 ---
 
@@ -170,4 +174,4 @@ const event: DomainEvent<OrderCreated> = {
 
 ---
 
-⚡ PikaKit v3.9.68
+⚡ PikaKit v3.9.69

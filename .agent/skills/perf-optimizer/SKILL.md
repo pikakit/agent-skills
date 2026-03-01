@@ -1,29 +1,20 @@
 ---
 name: perf-optimizer
 description: >-
-  Performance profiling principles. Core Web Vitals, bundle analysis, runtime optimization.
-  Triggers on: performance, slow, optimize, Lighthouse, bundle size, Core Web Vitals.
-  Coordinates with: web-core, feature-flags, e2e-automation.
-allowed-tools: Read, Glob, Grep, Bash
+  Performance profiling principles. Core Web Vitals, bundle analysis, runtime profiling.
+  Triggers on: performance, slow, Lighthouse, bundle size, Core Web Vitals.
+  Coordinates with: e2e-automation, web-core.
 metadata:
-  version: "1.0.0"
+  version: "2.0.0"
   category: "devops"
-  triggers: "performance, slow, optimize, Lighthouse, bundle, Core Web Vitals"
+  triggers: "performance, slow, Lighthouse, bundle, Core Web Vitals"
   success_metrics: "LCP <2.5s, INP <200ms, CLS <0.1"
-  coordinates_with: "web-core, e2e-automation"
+  coordinates_with: "e2e-automation, web-core"
 ---
 
-# Performance Profiling
+# Performance Profiler — Core Web Vitals & Profiling
 
-> Measure, analyze, optimize - in that order.
-
-## 🔧 Runtime Scripts
-
-**Execute these for automated profiling:**
-
-| Script                        | Purpose                      | Usage                                                    |
-| ----------------------------- | ---------------------------- | -------------------------------------------------------- |
-| `scripts/lighthouse_audit.js` | Lighthouse performance audit | `node scripts/lighthouse_audit.js https://example.com` |
+> Measure first. Profile second. Fix third. Validate last.
 
 ---
 
@@ -33,135 +24,129 @@ metadata:
 |-----------|----------|
 | Slow page load | Run Lighthouse audit |
 | Large bundle size | Use bundle analyzer |
-| Runtime issues | DevTools Performance tab |
-| Memory problems | DevTools Memory tab |
+| Runtime lag / jank | DevTools Performance tab |
+| Memory growth | DevTools Memory tab |
 | N+1 queries, caching | Read `backend-patterns.md` |
 
 ---
 
-## 1. Core Web Vitals
+## System Boundaries
 
-### Targets
+| Owned by This Skill | NOT Owned |
+|---------------------|-----------|
+| Core Web Vitals targets | Measurement execution |
+| Tool selection (symptom → tool) | Tool installation |
+| Bundle analysis guidance | Bundle build |
+| Quick win prioritization | Code modification |
 
-| Metric  | Good    | Poor    | Measures      |
-| ------- | ------- | ------- | ------------- |
-| **LCP** | < 2.5s  | > 4.0s  | Loading       |
+**Expert decision skill:** Produces profiling methodology. Does not run tools.
+
+---
+
+## Core Web Vitals (Fixed Targets)
+
+| Metric | Good | Poor | Measures |
+|--------|------|------|----------|
+| **LCP** | < 2.5s | > 4.0s | Loading speed |
 | **INP** | < 200ms | > 500ms | Interactivity |
-| **CLS** | < 0.1   | > 0.25  | Stability     |
+| **CLS** | < 0.1 | > 0.25 | Visual stability |
 
-### When to Measure
-
-| Stage       | Tool                       |
-| ----------- | -------------------------- |
-| Development | Local Lighthouse           |
-| CI/CD       | Lighthouse CI              |
-| Production  | RUM (Real User Monitoring) |
+| Stage | Tool |
+|-------|------|
+| Development | Local Lighthouse |
+| CI/CD | Lighthouse CI |
+| Production | RUM (Real User Monitoring) |
 
 ---
 
-## 2. Profiling Workflow
-
-### The 4-Step Process
+## 4-Step Profiling Workflow (Fixed)
 
 ```
-1. BASELINE → Measure current state
-2. IDENTIFY → Find the bottleneck
-3. FIX → Make targeted change
-4. VALIDATE → Confirm improvement
+1. BASELINE  → Measure current state
+2. IDENTIFY  → Find the bottleneck
+3. FIX       → Make targeted change
+4. VALIDATE  → Confirm improvement
 ```
 
-### Profiling Tool Selection
+---
 
-| Problem     | Tool                 |
-| ----------- | -------------------- |
-| Page load   | Lighthouse           |
-| Bundle size | Bundle analyzer      |
-| Runtime     | DevTools Performance |
-| Memory      | DevTools Memory      |
-| Network     | DevTools Network     |
+## Tool Selection (Deterministic)
+
+| Symptom | Tool |
+|---------|------|
+| Page load speed | Lighthouse |
+| Bundle size | Bundle analyzer |
+| Runtime performance | DevTools Performance |
+| Memory issues | DevTools Memory |
+| Network latency | DevTools Network |
 
 ---
 
-## 3. Bundle Analysis
+## Bundle Analysis (4 Issues → 4 Actions)
 
-### What to Look For
-
-| Issue              | Indicator          |
-| ------------------ | ------------------ |
-| Large dependencies | Top of bundle      |
-| Duplicate code     | Multiple chunks    |
-| Unused code        | Low coverage       |
-| Missing splits     | Single large chunk |
-
-### Optimization Actions
-
-| Finding        | Action                  |
-| -------------- | ----------------------- |
-| Big library    | Import specific modules |
-| Duplicate deps | Dedupe, update versions |
-| Route in main  | Code split              |
-| Unused exports | Tree shake              |
+| Issue | Indicator | Action |
+|-------|-----------|--------|
+| Large dependency | Top of bundle | Import specific modules |
+| Duplicate deps | Multiple chunks | Dedupe, update versions |
+| Unused code | Low coverage | Tree shake |
+| Missing code split | Single large chunk | Split by route |
 
 ---
 
-## 4. Runtime Profiling
+## Runtime Profiling Patterns
 
-### Performance Tab Analysis
-
-| Pattern            | Meaning                       |
-| ------------------ | ----------------------------- |
-| Long tasks (>50ms) | UI blocking                   |
-| Many small tasks   | Possible batching opportunity |
-| Layout/paint       | Rendering bottleneck          |
-| Script             | JavaScript execution          |
-
-### Memory Tab Analysis
-
-| Pattern        | Meaning          |
-| -------------- | ---------------- |
-| Growing heap   | Possible leak    |
-| Large retained | Check references |
-| Detached DOM   | Not cleaned up   |
+| Pattern | Meaning |
+|---------|---------|
+| Long tasks (> 50ms) | UI blocking |
+| Many small tasks | Batching opportunity |
+| Layout/paint | Rendering bottleneck |
+| Growing heap | Possible memory leak |
+| Detached DOM | Not cleaned up |
 
 ---
 
-## 5. Common Bottlenecks
+## Quick Win Priorities (Ranked)
 
-### By Symptom
-
-| Symptom            | Likely Cause              |
-| ------------------ | ------------------------- |
-| Slow initial load  | Large JS, render blocking |
-| Slow interactions  | Heavy event handlers      |
-| Jank during scroll | Layout thrashing          |
-| Growing memory     | Leaks, retained refs      |
-
----
-
-## 6. Quick Win Priorities
-
-| Priority | Action              | Impact |
-| -------- | ------------------- | ------ |
-| 1        | Enable compression  | High   |
-| 2        | Lazy load images    | High   |
-| 3        | Code split routes   | High   |
-| 4        | Cache static assets | Medium |
-| 5        | Optimize images     | Medium |
+| Priority | Action | Impact |
+|----------|--------|--------|
+| 1 | Enable compression (gzip/brotli) | High |
+| 2 | Lazy load images | High |
+| 3 | Code split routes | High |
+| 4 | Cache static assets | Medium |
+| 5 | Use modern image formats (WebP/AVIF) | Medium |
 
 ---
 
-## 7. Anti-Patterns
+## Error Taxonomy
 
-| ❌ Don't          | ✅ Do                |
-| ----------------- | -------------------- |
-| Guess at problems | Profile first        |
-| Micro-optimize    | Fix biggest issue    |
-| Optimize early    | Optimize when needed |
-| Ignore real users | Use RUM data         |
+| Code | Recoverable | Trigger |
+|------|-------------|---------|
+| `ERR_INVALID_REQUEST_TYPE` | No | Request type not supported |
+| `ERR_UNKNOWN_SYMPTOM` | Yes | Symptom not in known set |
+| `ERR_UNKNOWN_FRAMEWORK` | Yes | Framework not recognized |
+
+**Zero internal retries.** Same symptom = same recommendation.
 
 ---
 
-> **Remember:** The fastest code is code that doesn't run. Remove before optimizing.
+## Anti-Patterns
+
+| ❌ Don't | ✅ Do |
+|---------|-------|
+| Guess at bottlenecks | Profile first, then fix |
+| Micro-adjust non-critical paths | Fix the biggest issue |
+| Skip baseline measurement | Always measure before/after |
+| Ignore real user data | Use RUM in production |
+
+---
+
+## 📑 Content Map
+
+| File | Description | When to Read |
+|------|-------------|--------------|
+| [backend-patterns.md](backend-patterns.md) | N+1, caching, DB tuning | Backend performance |
+| [scripts/lighthouse_audit.js](scripts/lighthouse_audit.js) | Lighthouse runner | Automated audit |
+| [engineering-spec.md](references/engineering-spec.md) | Full spec | Architecture review |
 
 ---
 
@@ -171,8 +156,7 @@ metadata:
 |------|------|---------|
 | `/optimize` | Workflow | Performance workflow |
 | `e2e-automation` | Skill | Performance testing |
-| `web-core` | Skill | Web fundamentals |
 
 ---
 
-⚡ PikaKit v3.9.68
+⚡ PikaKit v3.9.69

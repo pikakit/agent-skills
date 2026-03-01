@@ -6,16 +6,16 @@ description: >-
   Triggers on: test, testing, unit test, coverage, mocking, AAA pattern.
   Coordinates with: code-craft, e2e-automation, code-review.
 metadata:
+  version: "2.0.0"
   category: "testing"
-  version: "1.0.0"
   triggers: "test, unit test, coverage, mocking, AAA, jest, vitest"
-  coordinates_with: "code-craft, e2e-automation, code-review"
   success_metrics: "test coverage >80%, all tests pass"
+  coordinates_with: "code-craft, e2e-automation, code-review"
 ---
 
-# Test Architect
+# Test Architect — Testing Patterns & Principles
 
-> **Purpose:** Testing patterns and principles for reliable test suites.
+> Pyramid/Trophy/Honeycomb strategy. AAA structure. FIRST principles. Mock routing.
 
 ---
 
@@ -24,34 +24,37 @@ metadata:
 | Situation | Approach |
 |-----------|----------|
 | Writing unit tests | AAA pattern, FIRST principles |
-| Need mocking | Stub/Spy/Mock selection |
+| Need mocking | Stub/Spy/Mock/Fake selection |
 | Test organization | Grouping and naming |
 | Coverage gaps | Identify what to test |
+| Strategy selection | Match to architecture type |
 
 ---
 
-## Testing Pyramid
+## System Boundaries
 
-```
-        /\          E2E (Few) - Critical flows
-       /  \         
-      /----\
-     /      \       Integration (Some) - API, DB
-    /--------\      
-   /          \     Unit (Many) - Functions, classes
-```
+| Owned by This Skill | NOT Owned |
+|---------------------|-----------|
+| Strategy selection (3 models) | E2E browser testing (→ e2e-automation) |
+| AAA pattern + FIRST principles | TDD workflow (→ test-driven-dev) |
+| Mock type routing (4 types) | Code quality (→ code-craft) |
+| Naming conventions (3 patterns) | Test execution / coverage tooling |
 
-### Strategy Selection
+**Expert decision skill:** Produces testing guidance. Does not write or execute tests.
 
-| Model | Structure | Best For |
-|-------|-----------|----------|
+---
+
+## Strategy Selection (3 Models — Deterministic)
+
+| Model | Distribution | Best For |
+|-------|-------------|----------|
 | **Pyramid** | Unit 70% > Int 20% > E2E 10% | Monoliths |
 | **Trophy** | Integration-heavy | Modern SPAs |
 | **Honeycomb** | Contract-centric | Microservices |
 
 ---
 
-## AAA Pattern
+## AAA Pattern (Fixed)
 
 | Step | Purpose |
 |------|---------|
@@ -61,10 +64,10 @@ metadata:
 
 ---
 
-## FIRST Principles
+## FIRST Principles (5 — Fixed)
 
-| Principle | Meaning |
-|-----------|---------|
+| Principle | Constraint |
+|-----------|-----------|
 | **F**ast | < 100ms each |
 | **I**solated | No external deps |
 | **R**epeatable | Same result always |
@@ -73,21 +76,19 @@ metadata:
 
 ---
 
-## Mock Types
+## Mock Types (4 — Deterministic)
 
-| Type | Use |
-|------|-----|
+| Type | Use When |
+|------|----------|
 | **Stub** | Return fixed values |
 | **Spy** | Track calls |
 | **Mock** | Set expectations |
 | **Fake** | Simplified implementation |
 
----
-
-## What to Mock
+### What to Mock vs Not
 
 | ✅ Mock | ❌ Don't Mock |
-|---------|---------------|
+|---------|--------------|
 | External APIs | Code under test |
 | Database (unit) | Pure functions |
 | Time/random | Simple dependencies |
@@ -95,24 +96,46 @@ metadata:
 
 ---
 
-## Test Naming
+## Naming Conventions (3 Patterns)
 
 | Pattern | Example |
 |---------|---------|
-| Should behavior | "should return error when..." |
-| When condition | "when user not found..." |
-| Given-when-then | "given X, when Y, then Z" |
+| Should | "should return error when..." |
+| When | "when user not found..." |
+| Given-When-Then | "given X, when Y, then Z" |
+
+---
+
+## Error Taxonomy
+
+| Code | Recoverable | Trigger |
+|------|-------------|---------|
+| `ERR_INVALID_REQUEST_TYPE` | No | Request type not supported |
+| `ERR_UNKNOWN_ARCHITECTURE` | Yes | Architecture not one of 3 |
+| `ERR_UNKNOWN_DEPENDENCY` | Yes | Dependency type not recognized |
+| `ERR_UNKNOWN_TEST_LEVEL` | Yes | Test level not unit/integration/e2e |
+
+**Zero internal retries.** Same architecture = same strategy model.
 
 ---
 
 ## Anti-Patterns
 
 | ❌ Don't | ✅ Do |
-|----------|-------|
-| Test implementation | Test behavior |
+|---------|-------|
+| Test implementation details | Test behavior |
 | Duplicate test code | Use factories |
-| Complex test setup | Simplify or split |
-| Skip cleanup | Reset state |
+| Complex test setup (>10 lines) | Simplify or split |
+| Skip cleanup | Reset state after each test |
+
+---
+
+## 📑 Content Map
+
+| File | Description | When to Read |
+|------|-------------|--------------|
+| [scripts/](scripts/) | Test utilities | Running scripts |
+| [engineering-spec.md](references/engineering-spec.md) | Full spec | Architecture review |
 
 ---
 
@@ -126,4 +149,4 @@ metadata:
 
 ---
 
-⚡ PikaKit v3.9.68
+⚡ PikaKit v3.9.69

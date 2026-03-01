@@ -6,17 +6,16 @@ description: >-
   Triggers on: Python, pip, FastAPI, Django, Flask.
   Coordinates with: test-architect, api-architect.
 metadata:
-  version: "1.0.0"
+  version: "2.0.0"
   category: "framework"
   triggers: "Python, pip, FastAPI, Django, Flask, async"
-  success_metrics: "tests pass, type hints complete"
+  success_metrics: "framework selected, type hints complete, tests pass"
   coordinates_with: "test-architect, api-architect"
 ---
 
-# Python Patterns
+# Python Pro — Framework Selection & Architecture
 
-> Python development principles and decision-making for 2025.
-> **Learn to THINK, not memorize patterns.**
+> Decision-making principles. Not patterns to copy. Ask, classify, decide.
 
 ---
 
@@ -24,85 +23,125 @@ metadata:
 
 | Situation | Approach |
 |-----------|----------|
-| Choosing framework | Use decision tree |
-| API-first project | Consider FastAPI |
-| Full-stack web | Consider Django |
-| Async vs sync | Check decision guide |
+| Choosing Python framework | Use decision tree |
+| API-first / microservices | Consider FastAPI |
+| Full-stack web / CMS | Consider Django |
+| Async vs sync decision | Check I/O vs CPU classification |
 
 ---
 
-## ⚠️ How to Use This Skill
+## System Boundaries
 
-This skill teaches **decision-making principles**, not fixed code to copy.
+| Owned by This Skill | NOT Owned |
+|---------------------|-----------|
+| Framework selection (5 branches) | API design (→ api-architect) |
+| Async/sync classification | Testing strategy (→ test-architect) |
+| Type hint rules | Database schema (→ data-modeler) |
+| Architecture layering | Code implementation |
 
-- ASK user for framework preference when unclear
-- Choose async vs sync based on CONTEXT
-- Don't default to same framework every time
+**Expert decision skill:** Produces recommendations. Does not write code.
 
-## Quick References
+---
 
-| Topic                  | Reference                                                     |
-| ---------------------- | ------------------------------------------------------------- |
-| Framework Selection    | [framework-selection.md](./references/framework-selection.md) |
-| Async Patterns         | [async-patterns.md](./references/async-patterns.md)           |
-| Type Hints             | [type-hints.md](./references/type-hints.md)                   |
-| Project Structure      | [project-structure.md](./references/project-structure.md)     |
-| FastAPI Best Practices | [fastapi-patterns.md](./references/fastapi-patterns.md)       |
-| Django Best Practices  | [django-patterns.md](./references/django-patterns.md)         |
-| Testing Strategy       | [testing-patterns.md](./references/testing-patterns.md)       |
-
-## Framework Decision Tree
+## Framework Decision Tree (Deterministic)
 
 ```
 What are you building?
 │
-├── API-first / Microservices → FastAPI
-├── Full-stack web / CMS / Admin → Django
+├── API-first / Microservices  → FastAPI
+├── Full-stack web / CMS       → Django
 ├── Simple / Script / Learning → Flask
-├── AI/ML API serving → FastAPI
-└── Background workers → Celery + any
+├── AI/ML API serving          → FastAPI
+└── Background workers         → Celery + any
 ```
 
-## Async vs Sync Decision
+**If user has explicit preference → respect it.** Ask when unclear.
+
+---
+
+## Async vs Sync (Deterministic)
+
+| Workload | Decision | Rationale |
+|----------|----------|-----------|
+| I/O-bound (HTTP, DB, file) | `async` | Waiting for external |
+| CPU-bound (compute) | `sync` + multiprocessing | Number crunching |
+| Mixed | Async with sync offload | `run_in_executor` |
+
+**Constraints:** Never use sync libraries in async code. Never force async for CPU work.
+
+---
+
+## Architecture Layering (Fixed)
 
 ```
-I/O-bound → async (waiting for external)
-CPU-bound → sync + multiprocessing (computing)
-
-Don't:
-├── Mix sync and async carelessly
-├── Use sync libraries in async code
-└── Force async for CPU work
+Routes (HTTP handlers)
+  └→ Services (business logic)
+      └→ Repositories (data access)
 ```
+
+**Rule:** No business logic in routes/views. Routes delegate to services.
+
+---
+
+## Type Hints & Validation (Mandatory)
+
+| Rule | Scope |
+|------|-------|
+| Type hints on all public APIs | Functions, methods, return types |
+| Pydantic for validation | All input/output boundaries |
+| No `Any` in public signatures | Use specific types or generics |
+
+---
 
 ## Decision Checklist
-
-Before implementing:
 
 - [ ] Asked user about framework preference?
 - [ ] Chosen framework for THIS context?
 - [ ] Decided async vs sync?
 - [ ] Planned type hint strategy?
 - [ ] Defined project structure?
-- [ ] Considered background tasks?
+- [ ] Considered background tasks (Celery)?
+
+---
+
+## Error Taxonomy
+
+| Code | Recoverable | Trigger |
+|------|-------------|---------|
+| `ERR_INVALID_REQUEST_TYPE` | No | Request type not supported |
+| `ERR_UNKNOWN_PROJECT_TYPE` | Yes | Project type not one of 5 |
+| `ERR_UNKNOWN_FRAMEWORK` | Yes | Framework not fastapi/django/flask |
+
+**Zero internal retries.** Same context = same recommendation.
+
+---
 
 ## Anti-Patterns
 
-### ❌ DON'T:
+| ❌ Don't | ✅ Do |
+|---------|-------|
+| Default to Django for simple APIs | Choose framework per context |
+| Use sync libraries in async code | Use async-compatible libraries |
+| Skip type hints on public APIs | Annotate all public functions |
+| Put business logic in routes/views | Separate: routes → services → repos |
+| Always pick the same framework | Ask user, evaluate context |
 
-- Default to Django for simple APIs
-- Use sync libraries in async code
-- Skip type hints for public APIs
-- Put business logic in routes/views
+---
 
-### ✅ DO:
+## 📑 Content Map
 
-- Choose framework based on context
-- Ask about async requirements
-- Use Pydantic for validation
-- Separate concerns (routes → services → repos)
+| File | Description | When to Read |
+|------|-------------|--------------|
+| [framework-selection.md](references/framework-selection.md) | Framework comparison | Choosing framework |
+| [async-patterns.md](references/async-patterns.md) | Async/sync patterns | Concurrency decisions |
+| [type-hints.md](references/type-hints.md) | Type annotation rules | Type strategy |
+| [project-structure.md](references/project-structure.md) | Directory layouts | New project |
+| [fastapi-patterns.md](references/fastapi-patterns.md) | FastAPI specifics | FastAPI project |
+| [django-patterns.md](references/django-patterns.md) | Django specifics | Django project |
+| [testing-patterns.md](references/testing-patterns.md) | Python testing | Writing tests |
+| [engineering-spec.md](references/engineering-spec.md) | Full spec | Architecture review |
 
-> **Remember**: Python patterns are about decision-making for YOUR specific context.
+**Selective reading:** Load ONLY the reference file matching your current decision.
 
 ---
 
@@ -116,4 +155,4 @@ Before implementing:
 
 ---
 
-⚡ PikaKit v3.9.68
+⚡ PikaKit v3.9.69

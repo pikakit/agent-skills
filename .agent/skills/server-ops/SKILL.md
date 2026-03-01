@@ -4,19 +4,17 @@ description: >-
   Server management principles and decision-making. Process management, monitoring strategy, scaling decisions.
   Triggers on: server, DevOps, infrastructure, deployment, hosting.
   Coordinates with: cicd-pipeline, security-scanner.
-allowed-tools: Read, Write, Edit, Glob, Grep, Bash
 metadata:
-  version: "1.0.0"
+  version: "2.0.0"
   category: "devops"
   triggers: "server, DevOps, infrastructure, deployment, hosting, PM2"
   success_metrics: "server running, uptime maintained"
   coordinates_with: "cicd-pipeline, security-scanner"
 ---
 
-# Server Management
+# Server Ops — Production Server Management
 
-> Server management principles for production operations.
-> **Learn to THINK, not memorize commands.**
+> Boring servers = well-managed servers. Auto-restart. Monitor day one. Rotate logs.
 
 ---
 
@@ -27,158 +25,133 @@ metadata:
 | Deploy Node.js app | Use PM2 |
 | Server provisioning | Check platform selection |
 | High CPU/memory | Follow scaling decisions |
-| Server issues | Use troubleshooting priority |
+| Server issues | Use 5-step troubleshooting |
 
 ---
 
-## 1. Process Management Principles
+## System Boundaries
 
-### Tool Selection
+| Owned by This Skill | NOT Owned |
+|---------------------|-----------|
+| Process manager selection (4 tools) | CI/CD pipelines (→ cicd-pipeline) |
+| Monitoring strategy (4 categories) | Observability instrumentation (→ observability) |
+| Scaling decisions (3 strategies) | Security scanning (→ security-scanner) |
+| Health check design | Command execution |
 
-| Scenario          | Tool                     |
-| ----------------- | ------------------------ |
-| **Node.js app**   | PM2 (clustering, reload) |
-| **Any app**       | systemd (Linux native)   |
-| **Containers**    | Docker/Podman            |
-| **Orchestration** | Kubernetes, Docker Swarm |
-
-### Process Management Goals
-
-| Goal                     | What It Means           |
-| ------------------------ | ----------------------- |
-| **Restart on crash**     | Auto-recovery           |
-| **Zero-downtime reload** | No service interruption |
-| **Clustering**           | Use all CPU cores       |
-| **Persistence**          | Survive server reboot   |
+**Expert decision skill:** Produces management recommendations. Does not execute commands.
 
 ---
 
-## 2. Monitoring Principles
+## Process Manager Selection (Deterministic)
 
-### What to Monitor
+| Scenario | Tool |
+|----------|------|
+| Node.js app | PM2 (clustering, reload) |
+| Any app (Linux) | systemd (native) |
+| Containers | Docker / Podman |
+| Orchestration | Kubernetes / Swarm |
 
-| Category         | Key Metrics               |
-| ---------------- | ------------------------- |
-| **Availability** | Uptime, health checks     |
-| **Performance**  | Response time, throughput |
-| **Errors**       | Error rate, types         |
-| **Resources**    | CPU, memory, disk         |
+**4 Goals:** restart-on-crash, zero-downtime reload, clustering, persist across reboot.
 
-### Alert Severity Strategy
+---
 
-| Level        | Response         |
-| ------------ | ---------------- |
+## Monitoring Strategy (4 Categories × 3 Levels)
+
+| Category | Key Metrics |
+|----------|------------|
+| Availability | Uptime, health checks |
+| Performance | Response time, throughput |
+| Errors | Error rate, types |
+| Resources | CPU, memory, disk |
+
+| Alert Level | Response |
+|-------------|----------|
 | **Critical** | Immediate action |
-| **Warning**  | Investigate soon |
-| **Info**     | Review daily     |
-
-### Monitoring Tool Selection
-
-| Need               | Options              |
-| ------------------ | -------------------- |
-| Simple/Free        | PM2 metrics, htop    |
-| Full observability | Grafana, Datadog     |
-| Error tracking     | Sentry               |
-| Uptime             | UptimeRobot, Pingdom |
+| **Warning** | Investigate soon |
+| **Info** | Review daily |
 
 ---
 
-## 3. Log Management Principles
+## Log Management (3 Types + 4 Principles)
 
-### Log Strategy
+| Type | Purpose |
+|------|---------|
+| Application | Debug, audit trail |
+| Access | Traffic analysis |
+| Error | Issue detection |
 
-| Log Type             | Purpose          |
-| -------------------- | ---------------- |
-| **Application logs** | Debug, audit     |
-| **Access logs**      | Traffic analysis |
-| **Error logs**       | Issue detection  |
-
-### Log Principles
-
-1. **Rotate logs** to prevent disk fill
-2. **Structured logging** (JSON) for parsing
-3. **Appropriate levels** (error/warn/info/debug)
-4. **No sensitive data** in logs
+**Principles:** Rotate logs, structured JSON, appropriate levels, no sensitive data.
 
 ---
 
-## 4. Scaling Decisions
+## Scaling Decisions (Deterministic)
 
-### When to Scale
+| Symptom | Solution |
+|---------|----------|
+| High CPU | Add instances (horizontal) |
+| High memory | Increase RAM or fix leak (vertical) |
+| Slow response | Profile first, then scale |
+| Traffic spikes | Auto-scaling |
 
-| Symptom        | Solution                   |
-| -------------- | -------------------------- |
-| High CPU       | Add instances (horizontal) |
-| High memory    | Increase RAM or fix leak   |
-| Slow response  | Profile first, then scale  |
-| Traffic spikes | Auto-scaling               |
-
-### Scaling Strategy
-
-| Type           | When to Use                |
-| -------------- | -------------------------- |
-| **Vertical**   | Quick fix, single instance |
-| **Horizontal** | Sustainable, distributed   |
-| **Auto**       | Variable traffic           |
+| Strategy | When |
+|----------|------|
+| Vertical | Quick fix, single instance |
+| Horizontal | Sustainable, distributed |
+| Auto | Variable traffic |
 
 ---
 
-## 5. Health Check Principles
+## Health Checks (2 Levels)
 
-### What Constitutes Healthy
+| Level | Design |
+|-------|--------|
+| **Simple** | HTTP 200 response |
+| **Deep** | Check DB, dependencies, resources |
 
-| Check                  | Meaning                     |
-| ---------------------- | --------------------------- |
-| **HTTP 200**           | Service responding          |
-| **Database connected** | Data accessible             |
-| **Dependencies OK**    | External services reachable |
-| **Resources OK**       | CPU/memory not exhausted    |
-
-### Health Check Implementation
-
-- Simple: Just return 200
-- Deep: Check all dependencies
-- Choose based on load balancer needs
+Route by load balancer needs.
 
 ---
 
-## 6. Security Principles
+## 5-Step Troubleshooting (Fixed Priority)
 
-| Area         | Principle                   |
-| ------------ | --------------------------- |
-| **Access**   | SSH keys only, no passwords |
-| **Firewall** | Only needed ports open      |
-| **Updates**  | Regular security patches    |
-| **Secrets**  | Environment vars, not files |
-| **Audit**    | Log access and changes      |
+1. **Process status** — Is it running?
+2. **Logs** — Error messages?
+3. **Resources** — Disk, memory, CPU?
+4. **Network** — Ports, DNS?
+5. **Dependencies** — Database, APIs?
 
 ---
 
-## 7. Troubleshooting Priority
+## Error Taxonomy
 
-When something's wrong:
+| Code | Recoverable | Trigger |
+|------|-------------|---------|
+| `ERR_INVALID_REQUEST_TYPE` | No | Request type not supported |
+| `ERR_UNKNOWN_RUNTIME` | Yes | Runtime not one of 4 |
+| `ERR_UNKNOWN_ENVIRONMENT` | Yes | Environment not one of 4 |
+| `ERR_UNKNOWN_SYMPTOM` | Yes | Scaling symptom not recognized |
 
-1. **Check if running** (process status)
-2. **Check logs** (error messages)
-3. **Check resources** (disk, memory, CPU)
-4. **Check network** (ports, DNS)
-5. **Check dependencies** (database, APIs)
-
----
-
-## 8. Anti-Patterns
-
-| ❌ Don't        | ✅ Do                   |
-| --------------- | ----------------------- |
-| Run as root     | Use non-root user       |
-| Ignore logs     | Set up log rotation     |
-| Skip monitoring | Monitor from day one    |
-| Manual restarts | Auto-restart config     |
-| No backups      | Regular backup schedule |
+**Zero internal retries.** Same context = same recommendation.
 
 ---
 
-> **Remember:** A well-managed server is boring. That's the goal.
+## Anti-Patterns
+
+| ❌ Don't | ✅ Do |
+|---------|-------|
+| Run as root | Use non-root user |
+| Ignore logs | Set up log rotation |
+| Skip monitoring | Monitor from day one |
+| Manual restarts | Auto-restart configuration |
+| No backups | Regular backup schedule |
+
+---
+
+## 📑 Content Map
+
+| File | Description | When to Read |
+|------|-------------|--------------|
+| [engineering-spec.md](references/engineering-spec.md) | Full spec | Architecture review |
 
 ---
 
@@ -192,4 +165,4 @@ When something's wrong:
 
 ---
 
-⚡ PikaKit v3.9.68
+⚡ PikaKit v3.9.69

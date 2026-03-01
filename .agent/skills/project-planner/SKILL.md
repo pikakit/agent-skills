@@ -7,15 +7,15 @@ description: >-
   Coordinates with: app-scaffold, code-craft, test-architect.
 metadata:
   category: "planning"
-  version: "1.0.0"
+  version: "2.0.0"
   triggers: "plan, breakdown, tasks, strategy, scope, implementation"
-  coordinates_with: "app-scaffold, code-craft, test-architect"
   success_metrics: "plan approved, all tasks verifiable, max 10 tasks"
+  coordinates_with: "app-scaffold, code-craft, test-architect"
 ---
 
-# Project Planner
+# Project Planner — Structured Task Breakdown
 
-> **Purpose:** Break work into clear, verifiable tasks.
+> Max 10 tasks. 2-5 min each. Action + Verify format. Dependencies explicit.
 
 ---
 
@@ -25,24 +25,37 @@ metadata:
 |-----------|--------|
 | New project from scratch | Create full plan |
 | Adding a feature | Plan affected files |
-| Complex bug fix | Plan investigation |
-| Refactoring multiple files | Plan changes |
+| Complex bug fix | Plan investigation steps |
+| Refactoring multiple files | Plan change order |
 
 ---
 
-## Task Breakdown Principles
+## System Boundaries
 
-| Principle | Implementation |
-|-----------|----------------|
+| Owned by This Skill | NOT Owned |
+|---------------------|-----------|
+| Task breakdown (max 10) | Requirements gathering (→ idea-storm) |
+| Verification criteria | Project scaffolding (→ app-scaffold) |
+| Dependency ordering | Code implementation |
+| Plan template | Test execution (→ test-architect) |
+
+**Expert decision skill:** Produces plan documents. Does not write code.
+
+---
+
+## Task Breakdown Principles (Fixed)
+
+| Principle | Constraint |
+|-----------|-----------|
 | **Small, Focused** | 2-5 minutes per task |
-| **Verifiable** | Clear "done" criteria |
-| **Ordered** | Dependencies identified |
+| **Verifiable** | Every task: action + how to verify |
+| **Ordered** | Dependencies via `depends_on` |
 | **Specific** | No vague descriptions |
-| **Max 10 tasks** | Split if more needed |
+| **Bounded** | Max 10 tasks; split into sub-plans if more |
 
 ---
 
-## Plan Structure
+## Plan Template (Fixed)
 
 ```markdown
 # [Task Name]
@@ -61,34 +74,59 @@ One sentence: What are we building/fixing?
 
 ---
 
-## Be Specific
+## Specificity Rules (Non-Negotiable)
 
-| ❌ Wrong | ✅ Right |
-|----------|----------|
+| ❌ Vague | ✅ Specific |
+|----------|-----------|
 | "Set up project" | "Run `npx create-next-app`" |
 | "Add authentication" | "Install next-auth, create auth route" |
 | "Style the UI" | "Add Tailwind classes to `Header.tsx`" |
-
----
-
-## Verification Examples
-
-| ❌ Wrong | ✅ Right |
-|----------|----------|
 | "Verify it works" | "Run dev, click button, see toast" |
 | "Test the API" | "curl localhost:3000/api returns 200" |
-| "Check styles" | "Open browser, toggle dark mode" |
 
 ---
 
-## Scripts by Project Type
+## Project Type Scripts (Fixed)
 
 | Project Type | Relevant Scripts |
-|--------------|------------------|
+|--------------|-----------------|
 | Frontend/React | `ux_audit.js`, `accessibility_checker.js` |
 | Backend/API | `api_validator.js`, `security_scan.js` |
 | Mobile | `mobile_audit.js` |
 | Database | `schema_validator.js` |
+
+---
+
+## Error Taxonomy
+
+| Code | Recoverable | Trigger |
+|------|-------------|---------|
+| `ERR_INVALID_REQUEST_TYPE` | No | Request type not supported |
+| `ERR_VAGUE_GOAL` | Yes | Goal lacks specificity |
+| `ERR_SCOPE_TOO_LARGE` | Yes | Requires > 10 tasks |
+| `ERR_UNKNOWN_TYPE` | Yes | Project type not one of 4 |
+
+**Zero internal retries.** Deterministic; same goal + scope = same plan.
+
+---
+
+## Anti-Patterns
+
+| ❌ Don't | ✅ Do |
+|---------|-------|
+| Create plans with > 10 tasks | Split into sub-plans |
+| Use vague task descriptions | Be specific: command, file, action |
+| Use vague verification | Specify: URL, status code, visible result |
+| Skip dependency ordering | Use `depends_on` task numbers |
+| Estimate without bounds | Use 2-5 minute fixed range |
+
+---
+
+## 📑 Content Map
+
+| File | Description | When to Read |
+|------|-------------|--------------|
+| [engineering-spec.md](references/engineering-spec.md) | Full engineering spec | Architecture review |
 
 ---
 
@@ -102,4 +140,4 @@ One sentence: What are we building/fixing?
 
 ---
 
-⚡ PikaKit v3.9.68
+⚡ PikaKit v3.9.69

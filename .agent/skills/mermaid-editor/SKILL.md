@@ -7,16 +7,46 @@ description: >-
   Coordinates with: system-design, doc-templates, markdown-novel-viewer.
 allowed-tools: Read, Write, Edit, Terminal
 metadata:
-  version: "1.0.0"
+  version: "2.0.0"
   category: "tools"
   triggers: "mermaid, diagram, flowchart, mmd, sequence, class diagram"
-  success_metrics: "editor starts, diagrams render, export works"
+  success_metrics: "editor starts, 9 types render, file save/load works"
   coordinates_with: "system-design, doc-templates, markdown-novel-viewer"
 ---
 
-# Mermaid Editor
+# Mermaid Editor — Live Diagram Editor Server
 
-> Live diagram editor with preview, export, and syntax reference.
+> 9 diagram types. Live preview. Syntax highlighting. Port 3457.
+
+---
+
+## Prerequisites
+
+**Required:** Node.js 18+.
+
+---
+
+## When to Use
+
+| Situation | Action |
+|-----------|--------|
+| Edit Mermaid diagram | `--open` (empty editor) |
+| Edit existing .mmd file | `--file diagram.mmd --open` |
+| Preview diagram live | Real-time rendering in editor |
+| Stop editor server | `--stop` |
+
+---
+
+## System Boundaries
+
+| Owned by This Skill | NOT Owned |
+|---------------------|-----------|
+| HTTP editor server (start/stop) | Architecture diagrams (→ system-design) |
+| 9 diagram type rendering | Markdown preview (→ markdown-novel-viewer) |
+| .mmd file save/load | Documentation (→ doc-templates) |
+| Syntax highlighting + live preview | Mermaid.js library |
+
+**Automation skill:** Spawns HTTP server, binds port, reads/writes files. Non-idempotent.
 
 ---
 
@@ -37,18 +67,28 @@ node .agent/skills/mermaid-editor/scripts/editor-server.cjs --stop
 
 ## CLI Options
 
-| Option | Description | Default |
-|--------|-------------|---------|
-| `--file <path>` | Open .mmd file | - |
-| `--port <n>` | Server port | 3457 |
-| `--open` | Auto-open browser | false |
-| `--stop` | Stop all servers | - |
+| Option | Default | Description |
+|--------|---------|-------------|
+| `--file <path>` | — | Open .mmd file |
+| `--port <n>` | 3457 | Server port |
+| `--open` | false | Auto-open browser |
+| `--stop` | — | Stop all servers |
 
 ---
 
-## Diagram Types
+## State Transitions
 
-9 diagram types supported — see reference for full syntax and examples:
+```
+IDLE → STARTING              [start invoked]
+STARTING → RUNNING           [port bound, listening]
+STARTING → PORT_UNAVAILABLE  [port 3457 in use]  // terminal
+RUNNING → STOPPED            [stop invoked]  // terminal
+RUNNING → CRASHED            [unhandled error]  // terminal
+```
+
+---
+
+## Diagram Types (9 — Fixed)
 
 | # | Type | Keyword |
 |---|------|---------|
@@ -64,11 +104,38 @@ node .agent/skills/mermaid-editor/scripts/editor-server.cjs --stop
 
 ---
 
+## Error Taxonomy
+
+| Code | Recoverable | Trigger |
+|------|-------------|---------|
+| `ERR_PORT_UNAVAILABLE` | Yes | Port in use |
+| `ERR_FILE_NOT_FOUND` | Yes | .mmd file not found |
+| `ERR_WRITE_FAILED` | Yes | Cannot save file |
+| `ERR_ALREADY_RUNNING` | Yes | Editor already on port |
+| `ERR_NOT_RUNNING` | Yes | Stop called; not running |
+
+**No auto port increment.** Use `--port` for alternative port.
+
+---
+
+## Anti-Patterns
+
+| ❌ Don't | ✅ Do |
+|---------|-------|
+| Assume port 3457 is free | Check or use --port |
+| Leave servers orphaned | Use --stop to clean up |
+| Edit non-.mmd files | Use .mmd for Mermaid diagrams |
+| Skip syntax validation | Preview catches errors live |
+
+---
+
 ## 📑 Content Map
 
 | File | Description | When to Read |
 |------|-------------|--------------|
-| `references/diagram-reference.md` | Full syntax + examples for all 9 types, best practices, CLI export, themes | When writing specific diagram syntax |
+| [diagram-reference.md](references/diagram-reference.md) | Full syntax + examples for all 9 types | Writing diagram syntax |
+| [editor-server.cjs](scripts/editor-server.cjs) | Server implementation | Implementation |
+| [engineering-spec.md](references/engineering-spec.md) | Full engineering spec | Architecture review |
 
 ---
 
@@ -82,5 +149,4 @@ node .agent/skills/mermaid-editor/scripts/editor-server.cjs --stop
 
 ---
 
-⚡ PikaKit v3.9.68
-
+⚡ PikaKit v3.9.69

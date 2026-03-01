@@ -3,18 +3,18 @@ name: react-architect
 description: >-
   Modern React patterns and principles. Hooks, composition, performance, TypeScript best practices.
   Triggers on: React, component, hooks, state management, Redux, Zustand.
-  Coordinates with: nextjs-pro, design-system.
+  Coordinates with: nextjs-pro, design-system, typescript-expert.
 metadata:
-  version: "1.0.0"
+  version: "2.0.0"
   category: "architecture"
   triggers: "React, component, hooks, state management, Redux, Zustand"
-  success_metrics: "components render, no prop drilling"
+  success_metrics: "components render, no prop drilling, state correctly scoped"
   coordinates_with: "nextjs-pro, design-system, typescript-expert"
 ---
 
-# React Patterns
+# React Architect — Component & State Architecture
 
-> Principles for building production-ready React applications.
+> 4 component types. 4 state levels. Composition over inheritance. Profile before memoizing.
 
 ---
 
@@ -22,83 +22,114 @@ metadata:
 
 | Situation | Approach |
 |-----------|----------|
-| Component design | Check component types |
-| State management | Use selection guide |
-| Hooks patterns | See hook patterns |
-| Performance | See `references/patterns.md` |
+| Component design | Check component type classification |
+| State management | Use complexity → solution routing |
+| Hook reuse | Check extraction criteria |
+| Performance issues | Use signal → action mapping |
 
 ---
 
-## 1. Component Design Principles
+## System Boundaries
 
-### Component Types
+| Owned by This Skill | NOT Owned |
+|---------------------|-----------|
+| Component classification (4 types) | Next.js patterns (→ nextjs-pro) |
+| State management routing (4 levels) | TypeScript patterns (→ typescript-expert) |
+| Hook extraction criteria | UI design (→ design-system) |
+| Performance signal→action | Code implementation |
 
-| Type               | Use                   | State             |
-| ------------------ | --------------------- | ----------------- |
-| **Server**         | Data fetching, static | None              |
-| **Client**         | Interactivity         | useState, effects |
-| **Presentational** | UI display            | Props only        |
-| **Container**      | Logic/state           | Heavy state       |
+**Expert decision skill:** Produces architecture decisions. Does not write code.
 
-### Design Rules
+---
 
-- One responsibility per component
+## Component Types (4 — Deterministic)
+
+| Type | Use For | State Model |
+|------|---------|-------------|
+| **Server** | Data fetching, static content | None |
+| **Client** | Interactivity, browser APIs | useState, effects |
+| **Presentational** | UI display | Props only |
+| **Container** | Logic/orchestration | Heavy state |
+
+**Design Rules:**
+- One responsibility per component (≤ 150 lines)
 - Props down, events up
 - Composition over inheritance
-- Prefer small, focused components
 
 ---
 
-## 2. Hook Patterns
+## State Management Routing (Deterministic)
 
-### When to Extract Hooks
+| Complexity | Solution |
+|------------|----------|
+| Simple (single component) | `useState`, `useReducer` |
+| Shared local (subtree) | `Context` |
+| Server state (API data) | React Query, SWR |
+| Complex global (app-wide) | Zustand, Redux Toolkit |
 
-| Pattern             | Extract When              |
-| ------------------- | ------------------------- |
-| **useLocalStorage** | Same storage logic needed |
-| **useDebounce**     | Multiple debounced values |
-| **useFetch**        | Repeated fetch patterns   |
-| **useForm**         | Complex form state        |
+## State Placement (4 Scopes)
 
-### Hook Rules
+| Scope | Where |
+|-------|-------|
+| Single component | `useState` |
+| Parent-child | Lift state up |
+| Subtree | Context |
+| App-wide | Global store |
 
-- Hooks at top level only
+---
+
+## Hook Patterns
+
+### When to Extract Custom Hook
+
+| Pattern | Extract When |
+|---------|-------------|
+| `useLocalStorage` | Same storage logic in 2+ components |
+| `useDebounce` | Multiple debounced values |
+| `useFetch` | Repeated fetch patterns |
+| `useForm` | Complex form state reused |
+
+### Hook Rules (Non-Negotiable)
+
+- Hooks at top level only (no conditionals)
 - Same order every render
-- Custom hooks start with "use"
+- Custom hooks prefix with `use`
 - Clean up effects on unmount
 
 ---
 
-## 3. State Management Selection
+## Performance Signals (4 — Fixed)
 
-| Complexity     | Solution               |
-| -------------- | ---------------------- |
-| Simple         | useState, useReducer   |
-| Shared local   | Context                |
-| Server state   | React Query, SWR       |
-| Complex global | Zustand, Redux Toolkit |
-
-### State Placement
-
-| Scope            | Where         |
-| ---------------- | ------------- |
-| Single component | useState      |
-| Parent-child     | Lift state up |
-| Subtree          | Context       |
-| App-wide         | Global store  |
+| Signal | Action |
+|--------|--------|
+| Slow renders | Profile first (DevTools) |
+| Large lists (> 100 items) | Virtualize |
+| Expensive calculation | `useMemo` |
+| Unstable callbacks causing re-renders | `useCallback` |
 
 ---
 
-## 4. Performance Quick Tips
+## Error Taxonomy
 
-| Signal           | Action        |
-| ---------------- | ------------- |
-| Slow renders     | Profile first |
-| Large lists      | Virtualize    |
-| Expensive calc   | useMemo       |
-| Stable callbacks | useCallback   |
+| Code | Recoverable | Trigger |
+|------|-------------|---------|
+| `ERR_INVALID_REQUEST_TYPE` | No | Request type not supported |
+| `ERR_UNKNOWN_COMPLEXITY` | Yes | State complexity not one of 4 |
+| `ERR_UNKNOWN_SCOPE` | Yes | State scope not one of 4 |
 
-> For priority categories and deep dive, see `references/patterns.md`
+**Zero internal retries.** Same context = same recommendation.
+
+---
+
+## Anti-Patterns
+
+| ❌ Don't | ✅ Do |
+|---------|-------|
+| Use global state for local concerns | Start with useState, escalate as needed |
+| Prop drill > 3 levels | Use Context or state library |
+| Memoize everything | Profile first, memoize measured bottlenecks |
+| Mix data fetching with UI | Separate server/container from presentational |
+| Create God components (> 300 lines) | Split into focused components (≤ 150 lines) |
 
 ---
 
@@ -106,11 +137,8 @@ metadata:
 
 | File | Description | When to Read |
 |------|-------------|--------------|
-| `references/patterns.md` | React 19, Composition, Performance, TypeScript, Testing, Anti-Patterns | Advanced patterns |
-
----
-
-> **Remember:** React is about composition. Build small, combine thoughtfully.
+| [patterns.md](references/patterns.md) | React 19, Composition, Performance, TypeScript, Testing | Advanced patterns |
+| [engineering-spec.md](references/engineering-spec.md) | Full spec | Architecture review |
 
 ---
 
@@ -124,4 +152,4 @@ metadata:
 
 ---
 
-⚡ PikaKit v3.9.68
+⚡ PikaKit v3.9.69

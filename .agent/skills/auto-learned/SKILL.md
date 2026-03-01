@@ -1,105 +1,147 @@
 ---
 name: auto-learned
 description: >-
-  Hierarchical skill containing all auto-learned patterns from IDE errors 
+  Hierarchical skill containing all auto-learned patterns from IDE errors
   and code analysis. Organizes patterns by category (import, type, syntax, etc.)
-  with subskills in patterns/ folder.
+  with subskills in patterns/ folder. Writable by authorized agents only.
   Triggers on: auto-learn, pattern, learned, error fix.
   Coordinates with: problem-checker, skill-generator, auto-learner.
 metadata:
+  version: "2.0.0"
   category: "evolution"
-  version: "1.0.0"
   triggers: "auto-learn, pattern, learned, error fix"
-  coordinates_with: "problem-checker, skill-generator"
-  success_metrics: "pattern_matches, auto_fixes_applied"
+  success_metrics: "zero repeated errors for recorded patterns, sub-50ms lookup"
+  coordinates_with: "problem-checker, skill-generator, auto-learner"
   generated_by: "skill-generator"
   hierarchical: true
 ---
 
-# Auto-Learned Patterns
+# Auto-Learned — Pattern Repository
 
-> **Purpose:** Central repository for all auto-learned patterns from IDE errors and code analysis
-
----
-
-## 🎯 Purpose
-
-This skill contains patterns automatically learned from:
-- IDE errors detected by PikaKit extension
-- Code analysis and linting issues
-- User corrections and fixes
-
-Patterns are organized by category in subskill files within `patterns/` folder.
+> Living repository of patterns learned from IDE errors. Append-only. Agents read to prevent; agents write to record.
 
 ---
 
-## 📂 Skill Structure
+## Prerequisites
 
-```
-auto-learned/
-├── SKILL.md              # This file (index, <200 lines)
-├── patterns/             # Subskills by category
-│   ├── import-patterns.md    # Import-related patterns
-│   ├── type-patterns.md      # Type-related patterns
-│   └── syntax-patterns.md    # Syntax-related patterns
-├── patterns.json         # Raw pattern data for dashboard
-└── config.json           # Auto-learn configuration
-```
+**Required:** None — patterns are stored as local markdown and JSON files.
 
----
-
-## 🔧 Quick Reference
-
-### View Patterns by Category
-
-```bash
-# View import patterns
-cat .agent/skills/auto-learned/patterns/import-patterns.md
-
-# View type patterns
-cat .agent/skills/auto-learned/patterns/type-patterns.md
-```
-
-### Pattern Categories
-
-| Category | File | Description |
-|----------|------|-------------|
-| `import` | `import-patterns.md` | Missing imports, module resolution |
-| `type` | `type-patterns.md` | Type mismatches, property errors |
-| `syntax` | `syntax-patterns.md` | Syntax errors, parsing issues |
-| `logic` | `logic-patterns.md` | Logical errors, undefined values |
-| `style` | `style-patterns.md` | Code style, formatting |
-
----
-
-## 📊 Statistics
-
-| Metric | Value |
-|--------|-------|
-| **Total Categories** | 2 |
-| **Import Patterns** | 4 |
-| **Type Patterns** | 3 |
-| **Last Updated** | 2026-02-03 |
+**Write access:** Restricted to authorized agents: `problem-checker`, `auto-learner`, `skill-generator`.
 
 ---
 
 ## When to Use
 
-| Situation | Approach |
-|-----------|----------|
-| IDE shows import error | Check `import-patterns.md` for known fixes |
-| Type mismatch detected | Check `type-patterns.md` for solutions |
-| New pattern learned | Auto-merged into correct category file |
+| Situation | Operation | Approach |
+|-----------|-----------|----------|
+| Before writing code that may cause known errors | **Lookup** | Query matching category for preventive patterns |
+| IDE error detected and fix applied | **Ingest** | Record pattern via authorized agent pipeline |
+| Reviewing learned patterns | **Lookup** | Read category files directly |
+| Checking pattern coverage | **Lookup** | Read patterns.json for statistics |
+
+**Selective Reading Rule:** Query ONLY the category matching the current error type.
 
 ---
 
-## 🤖 Meta-Agents Integration
+## System Boundaries
+
+| Owned by This Skill | NOT Owned |
+|---------------------|-----------|
+| Pattern storage (categorized markdown) | Error detection (→ problem-checker) |
+| Pattern lookup by category + context | Pattern extraction (→ auto-learner) |
+| JSON index maintenance (patterns.json) | Skill generation from patterns (→ skill-generator) |
+| Deduplication on ingest | Dashboard rendering (→ external tooling) |
+
+**Writable skill:** Authorized agents write patterns into `patterns/*.md` and update `patterns.json`. The skill is read-only when consulted by other agents.
+
+---
+
+## Execution Model
+
+### Lookup (Read) — 3 Phases
+
+| Phase | Action | Side Effects |
+|-------|--------|-------------|
+| **Parse** | Validate category and context | None |
+| **Search** | Read category file(s), match error signature | None |
+| **Emit** | Return matches sorted by occurrence count | None |
+
+### Ingest (Write) — 4 Phases
+
+| Phase | Action | Side Effects |
+|-------|--------|-------------|
+| **Authorize** | Verify calling agent is in authorized list | None |
+| **Validate** | Check category, deduplicate by error_signature | None |
+| **Write** | Append pattern to `patterns/{category}-patterns.md`, update JSON | File writes |
+| **Confirm** | Return pattern_id and updated stats | None |
+
+All phases synchronous. Append-only writes. Deduplication returns `duplicate: true` without mutation.
+
+---
+
+## Pattern Categories
+
+| Category | File | Description | ID Prefix |
+|----------|------|-------------|-----------|
+| `import` | `patterns/import-patterns.md` | Missing imports, module resolution | IMP- |
+| `type` | `patterns/type-patterns.md` | Type mismatches, property errors | TYP- |
+| `syntax` | `patterns/syntax-patterns.md` | Syntax errors, parsing issues | SYN- |
+| `logic` | `patterns/logic-patterns.md` | Logical errors, undefined values | LOG- |
+| `style` | `patterns/style-patterns.md` | Code style, formatting | STY- |
+
+---
+
+## Error Taxonomy
+
+| Code | Recoverable | Trigger |
+|------|-------------|---------|
+| `ERR_INVALID_CATEGORY` | No | Category not one of: import, type, syntax, logic, style |
+| `ERR_CATEGORY_NOT_FOUND` | Yes | Category markdown file missing from patterns/ |
+| `ERR_INDEX_CORRUPTED` | Yes | patterns.json invalid; regenerate from markdown |
+| `ERR_UNAUTHORIZED` | No | Calling agent not in authorized list |
+| `ERR_WRITE_FAILED` | Yes | File write operation failed |
+| `ERR_INVALID_PATTERN` | No | Pattern missing required fields |
+| `ERR_CONFIG_INVALID` | Yes | config.json is invalid or missing |
+
+**Zero internal retries.** Callers own retry logic.
+
+---
+
+## Agent Pipeline
 
 | Phase | Agent | Action |
 |-------|-------|--------|
-| **Detection** | `problem-checker` | Detects IDE errors |
-| **Learning** | `auto-learner` | Extracts patterns |
-| **Storage** | `skill-generator` | Merges into this skill |
+| **Detection** | `problem-checker` | Detects IDE errors and linting issues |
+| **Learning** | `auto-learner` | Extracts error signature and fix into structured pattern |
+| **Storage** | `skill-generator` | Ingests pattern into this skill |
+| **Prevention** | Any agent | Looks up patterns before code modification |
+
+---
+
+## 📑 Content Map
+
+| File | Description | When to Read |
+|------|-------------|--------------|
+| [patterns/import-patterns.md](patterns/import-patterns.md) | Import resolution patterns | Import errors |
+| [patterns/type-patterns.md](patterns/type-patterns.md) | Type mismatch patterns | Type errors |
+| [patterns/syntax-patterns.md](patterns/syntax-patterns.md) | Syntax/parsing patterns | Syntax errors |
+| [patterns/logic-patterns.md](patterns/logic-patterns.md) | Logic error patterns | Logic errors |
+| [patterns/style-patterns.md](patterns/style-patterns.md) | Code style patterns | Style issues |
+| [patterns.json](patterns.json) | JSON index of all patterns | Dashboard, statistics |
+| [config.json](config.json) | Auto-learn configuration | Settings review |
+| [engineering-spec.md](references/engineering-spec.md) | Full engineering spec: contracts, security, scalability | Architecture review |
+
+---
+
+## Anti-Patterns
+
+| ❌ Don't | ✅ Do |
+|---------|-------|
+| Ignore pattern matches before coding | Always check relevant category before writing code |
+| Apply low-confidence patterns blindly | Verify solution in pattern context matches current context |
+| Write patterns from unauthorized agents | Only use problem-checker → auto-learner → skill-generator pipeline |
+| Edit patterns.json directly | Let ingest update JSON automatically |
+| Delete patterns without user approval | Patterns are append-only; deletion requires explicit approval |
 
 ---
 
@@ -107,19 +149,10 @@ cat .agent/skills/auto-learned/patterns/type-patterns.md
 
 | Item | Type | Purpose |
 |------|------|---------|
-| `problem-checker` | Skill | Detects IDE errors |
-| `skill-generator` | Skill | Generates/updates patterns |
-| `auto-learner` | Extension | Learns from errors |
+| `problem-checker` | Skill | Detects IDE errors for pattern extraction |
+| `skill-generator` | Skill | Generates/updates patterns in this skill |
+| `auto-learner` | Agent | Extracts patterns from errors and fixes |
 
 ---
 
-## 📖 Subskills
-
-For detailed patterns, see:
-- [import-patterns.md](patterns/import-patterns.md) - Import issues
-- [type-patterns.md](patterns/type-patterns.md) - Type issues
-
----
-
-⚡ PikaKit v3.9.68
-Composable Skills. Coordinated Agents. Intelligent Execution.
+⚡ PikaKit v3.9.69

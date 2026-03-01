@@ -6,106 +6,81 @@ description: >-
   Triggers on: React, TypeScript, TanStack Query, MUI, frontend, component, hook.
   Coordinates with: frontend-design, react-architect, typescript-expert.
 metadata:
-  version: "1.0.0"
+  version: "2.0.0"
   category: "framework"
   triggers: "React, TypeScript, TanStack Query, MUI, frontend, component, hook, useSuspenseQuery"
   success_metrics: "no early returns, useSuspenseQuery used, features directory structure"
   coordinates_with: "frontend-design, react-architect, typescript-expert"
 ---
 
-# Frontend Development
+# Frontend Development — React + TypeScript + MUI v7
 
-> Modern React with Suspense, TanStack Query, MUI v7. No early returns.
+> Suspense-first. No early returns. `useSuspenseQuery` — data always defined.
 
 ---
 
 ## Prerequisites
 
-**Required:**
-- React 18.3+
-- TypeScript 5.7+
-- TanStack Query v5
-- MUI v7 (Material-UI)
-
-**Optional:**
-- TanStack Router (file-based routing)
+**Required:** React 18.3+, TypeScript 5.7+, TanStack Query v5, MUI v7.
+**Optional:** TanStack Router (file-based routing).
 
 ---
 
 ## When to Use
 
-| Situation | Approach |
-|-----------|----------|
-| Create component | Follow component pattern |
-| Fetch data | Use `useSuspenseQuery` |
-| Loading state | Wrap in `<SuspenseLoader>` - NO early returns |
-| New feature | Create features/ directory structure |
+| Situation | Action |
+|-----------|--------|
+| Create component | Follow component pattern (Suspense-first) |
+| Fetch data | Use `useSuspenseQuery` — never `useQuery` |
+| Loading state | Wrap in `<SuspenseLoader>` — NO early returns |
+| New feature | Create `features/` directory structure |
 | Heavy component | Lazy load with `React.lazy()` |
+| Architecture review | Read `references/engineering-spec.md` |
 
 ---
 
-## Core Principles
+## System Boundaries
 
-| Principle | Rule |
-|-----------|------|
-| **No Early Returns** | ❌ `if (isLoading) return <Spinner />` |
-| **Suspense First** | ✅ Wrap in `<SuspenseLoader>` |
-| **useSuspenseQuery** | Data guaranteed, no null checks |
-| **Features Directory** | Organize by feature, not type |
-| **Lazy Load Heavy** | DataGrid, charts, editors → `React.lazy()` |
-| **Inline Styles** | <100 lines inline, >100 lines separate file |
+| Owned by This Skill | NOT Owned |
+|---------------------|-----------|
+| Component patterns (Suspense-first, no early returns) | UI design (→ frontend-design) |
+| Data fetching (`useSuspenseQuery` + `SuspenseLoader`) | React architecture (→ react-architect) |
+| Features directory structure (4 subdirs) | TypeScript patterns (→ typescript-expert) |
+| MUI v7 syntax enforcement | Next.js specifics (→ nextjs-pro) |
+| Lazy loading rules | CSS/Tailwind (→ tailwind-kit) |
+
+**Pure decision skill:** Produces code patterns and structure recommendations. Zero side effects.
+
+---
+
+## Core Rules (Non-Negotiable)
+
+| Rule | Enforcement |
+|------|------------|
+| **No early returns** | ❌ `if (isLoading) return <Spinner/>` — NEVER |
+| **Suspense-first** | ✅ Wrap in `<SuspenseLoader>` always |
+| **`useSuspenseQuery`** | `data` is guaranteed defined — no null checks |
+| **Features directory** | `src/features/{name}/` with api/, components/, hooks/, types/ |
+| **Lazy load heavy** | DataGrid, charts, editors → `React.lazy()` |
+| **Style threshold** | ≤ 100 lines inline `sx`; > 100 lines separate file |
+| **MUI v7 Grid** | `size={{ xs: 12, md: 6 }}` — NOT `xs={12}` |
 
 ---
 
 ## Component Pattern
 
 ```typescript
-import React, { useState, useCallback } from 'react';
-import { Box, Paper } from '@mui/material';
 import { useSuspenseQuery } from '@tanstack/react-query';
-import type { FeatureData } from '~types/feature';
+import { Box, Paper } from '@mui/material';
 
-interface Props {
-  id: number;
-  onAction?: () => void;
-}
-
-export const MyComponent: React.FC<Props> = ({ id, onAction }) => {
-  const [state, setState] = useState('');
-  
+export const MyComponent: React.FC<Props> = ({ id }) => {
   const { data } = useSuspenseQuery({
     queryKey: ['feature', id],
     queryFn: () => featureApi.getFeature(id),
   });
-
-  const handleAction = useCallback(() => {
-    onAction?.();
-  }, [onAction]);
-
-  return (
-    <Box sx={{ p: 2 }}>
-      <Paper sx={{ p: 3 }}>{data.title}</Paper>
-    </Box>
-  );
+  // data is ALWAYS defined — no null check needed
+  return <Paper sx={{ p: 3 }}>{data.title}</Paper>;
 };
-
-export default MyComponent;
-```
-
----
-
-## Data Fetching
-
-```typescript
-// ✅ CORRECT - useSuspenseQuery
-const { data } = useSuspenseQuery({
-  queryKey: ['posts', status],
-  queryFn: () => postsApi.getPosts({ status }),
-});
-// data is guaranteed defined
-
-// ❌ WRONG - Early return
-if (isLoading) return <Spinner />; // DON'T DO THIS
 ```
 
 ---
@@ -114,15 +89,23 @@ if (isLoading) return <Spinner />; // DON'T DO THIS
 
 ```
 src/features/my-feature/
-├── api/
-│   └── myFeatureApi.ts     # API service
-├── components/
-│   └── MyFeature.tsx       # Components
-├── hooks/
-│   └── useMyFeature.ts     # Custom hooks
-├── types/
-│   └── index.ts            # Types
-└── index.ts                # Public exports
+├── api/           # API service
+├── components/    # Components
+├── hooks/         # Custom hooks
+├── types/         # Types
+└── index.ts       # Public exports
+```
+
+---
+
+## MUI v7 Grid (Breaking Change!)
+
+```typescript
+// ✅ MUI v7 — correct
+<Grid size={{ xs: 12, md: 6 }}>
+
+// ❌ Old syntax — WRONG
+<Grid xs={12} md={6}>
 ```
 
 ---
@@ -138,39 +121,45 @@ import { authApi } from '~features/auth';
 
 ---
 
-## MUI v7 Grid (Breaking Change!)
+## Error Taxonomy
 
-```typescript
-// ✅ MUI v7
-<Grid size={{ xs: 12, md: 6 }}>
+| Code | Recoverable | Trigger |
+|------|-------------|---------|
+| `ERR_INVALID_REQUEST_TYPE` | No | Request type not supported |
+| `ERR_UNSUPPORTED_MUI` | No | MUI version not v7 |
+| `ERR_MISSING_NAME` | Yes | Component/feature name missing |
+| `ERR_REFERENCE_NOT_FOUND` | No | Reference file missing |
+| `WARN_EARLY_RETURN` | Yes | Loading early return detected |
+| `WARN_LEGACY_GRID` | Yes | Old MUI Grid syntax detected |
 
-// ❌ Old syntax (wrong)
-<Grid xs={12} md={6}>
-```
+**Zero internal retries.** Deterministic; same context = same pattern.
+
+---
+
+## Anti-Patterns
+
+| ❌ Don't | ✅ Do |
+|---------|-------|
+| `if (isLoading) return <Spinner/>` | `<SuspenseLoader>` wrapper |
+| `useQuery` with null checks | `useSuspenseQuery` — data defined |
+| Organize by file type | Organize by feature |
+| `<Grid xs={12}>` (v6) | `<Grid size={{ xs: 12 }}>` (v7) |
+| Eager load DataGrid | `React.lazy()` for heavy components |
 
 ---
 
 ## 📑 Content Map
 
-| File | Description |
-|------|-------------|
-| `references/component-patterns.md` | Structure, props, exports |
-| `references/data-fetching.md` | TanStack Query patterns |
-| `references/file-organization.md` | Features directory |
-| `references/mui-styling.md` | MUI v7, sx prop |
-| `references/performance.md` | Lazy loading, memo |
+| File | Description | When to Read |
+|------|-------------|--------------|
+| [component-patterns.md](references/component-patterns.md) | Structure, props, exports | Component creation |
+| [data-fetching.md](references/data-fetching.md) | TanStack Query patterns | Data layer |
+| [file-organization.md](references/file-organization.md) | Features directory | Project structure |
+| [mui-styling.md](references/mui-styling.md) | MUI v7, sx prop | Styling |
+| [performance.md](references/performance.md) | Lazy loading, memo | Performance |
+| [engineering-spec.md](references/engineering-spec.md) | Full engineering spec | Architecture review |
 
----
-
-## Troubleshooting
-
-| Problem | Solution |
-|---------|----------|
-| Layout shift on load | Use Suspense, not early returns |
-| `data` possibly undefined | Use `useSuspenseQuery` |
-| Grid layout broken | Use MUI v7 `size={{ xs: 12 }}` syntax |
-| Imports too long | Set up path aliases in vite.config.ts |
-| Component too large | Extract to features/ directory |
+**Selective reading:** Read ONLY files relevant to the request.
 
 ---
 
@@ -185,4 +174,4 @@ import { authApi } from '~features/auth';
 
 ---
 
-⚡ PikaKit v3.9.68
+⚡ PikaKit v3.9.69

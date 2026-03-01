@@ -5,32 +5,24 @@ description: >-
   timeline visualization, and phase status indicators.
   Triggers on: kanban, dashboard, plan progress, timeline.
   Coordinates with: project-planner, lifecycle-orchestrator.
-allowed-tools: Read, Write, Edit, Terminal
 metadata:
-  version: "1.0.0"
+  version: "2.0.0"
   category: "tools"
   triggers: "kanban, dashboard, plan progress, timeline, gantt"
-  success_metrics: "server starts, dashboard renders, plans displayed"
+  success_metrics: "server starts, dashboard renders, API responds"
   coordinates_with: "project-planner, lifecycle-orchestrator"
 ---
 
-# Plans Kanban Dashboard
+# Plans Kanban — Visual Dashboard Server
 
-> Visual dashboard for plan directories with progress tracking and timeline.
+> Background HTTP server. Port 3500-3550. JSON API. Glassmorphism UI. Read-only.
 
 ---
 
 ## Prerequisites
 
-**Installation:**
 ```bash
-cd .agent/skills/plans-kanban
-npm install gray-matter
-```
-
-**Or install globally:**
-```bash
-npm install -g gray-matter
+cd .agent/skills/plans-kanban && npm install gray-matter
 ```
 
 ---
@@ -39,52 +31,57 @@ npm install -g gray-matter
 
 | Situation | Action |
 |-----------|--------|
-| View plan progress | `/kanban plans/` |
-| Track parallel features | Multi-plan dashboard view |
-| Team standup | Share networkUrl |
+| View plan progress | Start server with `--dir plans/` |
+| Track parallel features | Multi-plan dashboard |
+| Team standup | Share via `--host 0.0.0.0` |
 | CI/CD integration | Use `/api/plans` endpoint |
+
+---
+
+## System Boundaries
+
+| Owned by This Skill | NOT Owned |
+|---------------------|-----------|
+| HTTP server lifecycle (start/stop) | Plan creation (→ project-planner) |
+| Plan directory parsing (read-only) | Multi-phase execution (→ lifecycle-orchestrator) |
+| Dashboard rendering + JSON API | Infrastructure hosting |
+
+**Automation (scripted):** Spawns process, binds port, writes PID file. Read-only plan access.
 
 ---
 
 ## Quick Start
 
 ```bash
-# View plans dashboard
-node .agent/skills/plans-kanban/scripts/server.cjs \
-  --dir ./plans \
-  --open
+# Start dashboard
+node .agent/skills/plans-kanban/scripts/server.cjs --dir ./plans --open
 
-# Remote access
-node .agent/skills/plans-kanban/scripts/server.cjs \
-  --dir ./plans \
-  --host 0.0.0.0 \
-  --open
+# Remote access (team sharing)
+node .agent/skills/plans-kanban/scripts/server.cjs --dir ./plans --host 0.0.0.0 --open
 
 # Background mode
-node .agent/skills/plans-kanban/scripts/server.cjs \
-  --dir ./plans \
-  --background
+node .agent/skills/plans-kanban/scripts/server.cjs --dir ./plans --background
 
-# Stop servers
+# Stop all servers
 node .agent/skills/plans-kanban/scripts/server.cjs --stop
 ```
 
 ---
 
-## CLI Options
+## CLI Options (Fixed)
 
 | Option | Description | Default |
 |--------|-------------|---------|
 | `--dir <path>` | Plans directory | Required |
 | `--port <number>` | Server port | 3500 |
-| `--host <addr>` | Host (`0.0.0.0` for remote) | localhost |
+| `--host <addr>` | Bind address | localhost |
 | `--open` | Auto-open browser | false |
 | `--background` | Run in background | false |
-| `--stop` | Stop all servers | - |
+| `--stop` | Stop all servers | — |
 
 ---
 
-## HTTP Routes
+## HTTP Routes (Fixed)
 
 | Route | Description |
 |-------|-------------|
@@ -95,26 +92,36 @@ node .agent/skills/plans-kanban/scripts/server.cjs --stop
 
 ---
 
-## Plan Structure
+## State Transitions
+
+```
+IDLE → STARTING              [start action]
+STARTING → RUNNING           [port bound]
+STARTING → PORT_SEARCH       [port unavailable]
+PORT_SEARCH → RUNNING        [port found in 3500-3550]
+PORT_SEARCH → FAILED         [all ports occupied]  // terminal
+RUNNING → STOPPED            [stop action]  // terminal
+RUNNING → CRASHED            [unhandled error]  // terminal
+```
+
+---
+
+## Plan Structure (Required)
 
 ```
 plans/
 ├── feature-auth/
-│   ├── plan.md          # Required with frontmatter
+│   ├── plan.md              # Required (frontmatter below)
 │   ├── phase-01-design.md
 │   └── phase-02-impl.md
-└── feature-api/
-    ├── plan.md
-    └── phase-01-endpoints.md
 ```
 
-**Required plan.md frontmatter:**
-
+**plan.md frontmatter (6 fields):**
 ```yaml
 ---
 title: Feature A Implementation
-status: in-progress
-priority: high
+status: in-progress           # not-started | in-progress | completed
+priority: high                # high | medium | low
 issue: https://github.com/org/repo/issues/123
 branch: feature/feature-a
 created: 2025-12-15
@@ -123,42 +130,15 @@ created: 2025-12-15
 
 ---
 
-## Features
+## Error Taxonomy
 
-| Feature | Description |
-|---------|-------------|
-| **Progress bars** | Visual percentage completion |
-| **Phase breakdown** | Completed, in-progress, pending |
-| **Timeline** | Gantt-style visualization |
-| **Activity heatmap** | Busy period highlighting |
-| **Glassmorphism UI** | Dark mode, warm accents |
-
----
-
-## Architecture
-
-```
-scripts/
-├── server.cjs           # Main entry
-└── lib/
-    ├── port-finder.cjs  # Port allocation
-    ├── process-mgr.cjs  # PID management
-    ├── http-server.cjs  # HTTP routing
-    ├── plan-parser.cjs  # Markdown parsing
-    └── dashboard-renderer.cjs
-```
-
----
-
-## API Integration
-
-```bash
-# Get plans data
-curl http://localhost:3500/api/plans | jq '.plans[]'
-
-# Filter by status
-curl http://localhost:3500/api/plans | jq '.plans[] | select(.status == "in-progress")'
-```
+| Code | Recoverable | Trigger |
+|------|-------------|---------|
+| `ERR_DEPENDENCY_MISSING` | Yes | gray-matter not installed |
+| `ERR_NO_AVAILABLE_PORT` | Yes | All ports 3500-3550 occupied |
+| `ERR_DIR_NOT_FOUND` | Yes | Plans directory not found |
+| `ERR_PLAN_PARSE` | Yes | plan.md frontmatter malformed |
+| `ERR_SERVER_CRASH` | No | Unhandled server error |
 
 ---
 
@@ -166,22 +146,19 @@ curl http://localhost:3500/api/plans | jq '.plans[] | select(.status == "in-prog
 
 | Problem | Solution |
 |---------|----------|
-| Port in use | Auto-increments (3500-3550) |
-| No plans found | Check `plan.md` exists |
+| Port in use | Auto-increments 3500-3550 |
+| No plans found | Check plan.md exists in subdirectory |
 | Can't access remotely | Use `--host 0.0.0.0` |
 | Server won't stop | Check `/tmp/plans-kanban-*.pid` |
 
 ---
 
-## Best Practices
+## 📑 Content Map
 
-| Practice | Application |
-|----------|-------------|
-| Consistent naming | `phase-01-name.md` for sorting |
-| Update frontmatter | Keep status, priority current |
-| Include links | Issue/branch for navigation |
-| Background mode | Free terminal |
-| Network access | `--host 0.0.0.0` for teams |
+| File | Description | When to Read |
+|------|-------------|--------------|
+| [scripts/server.cjs](scripts/server.cjs) | Main server entry | Implementation |
+| [engineering-spec.md](references/engineering-spec.md) | Full spec | Architecture review |
 
 ---
 
@@ -195,4 +172,4 @@ curl http://localhost:3500/api/plans | jq '.plans[] | select(.status == "in-prog
 
 ---
 
-⚡ PikaKit v3.9.68
+⚡ PikaKit v3.9.69

@@ -5,22 +5,16 @@ description: >-
   and anti-AI-slop design system generation. Triggers on: design system, UI design,
   color palette, typography, style guide. Coordinates with: frontend-specialist, design-system.
 metadata:
-  version: "1.0.0"
+  version: "2.0.0"
   category: "design"
   triggers: "design system, UI design, color palette, typography, style guide"
   success_metrics: "design system generated, styles matched"
   coordinates_with: "frontend-specialist, design-system"
 ---
 
-# Studio - Design Intelligence Skill
+# Studio — Design Intelligence
 
-> Comprehensive design database with 50+ styles, 97 color palettes, 57 font pairings, 99 UX guidelines, and 25 chart types across 9 technology stacks.
-
----
-
-## 🎯 Purpose
-
-Generate design systems, color palettes, and typography recommendations based on product type, industry, and style preferences. **Searchable database with priority-based recommendations.**
+> 50+ styles. 97 palettes. 57 font pairings. Anti-AI-Slop by default.
 
 ---
 
@@ -35,140 +29,86 @@ Generate design systems, color palettes, and typography recommendations based on
 
 ---
 
-## 📂 Skill Structure
+## System Boundaries
 
-```
-studio/
-├── SKILL.md           # This file (entry point)
-├── data/              # CSV databases
-│   ├── colors.csv     # 97 color palettes
-│   ├── styles.csv     # 50+ design styles
-│   ├── typography.csv # 57 font pairings
-│   ├── ux-guidelines.csv
-│   ├── charts.csv
-│   └── ...
-└── scripts-js/        # Search & generation
-    ├── search.js      # Main search CLI
-    ├── design_system.js
-    └── core.js
-```
+| Owned by This Skill | NOT Owned |
+|---------------------|-----------|
+| Searchable design database (6 categories) | CSS implementation (→ frontend agents) |
+| Anti-AI-Slop avoidance rules | Design theory (→ design-system) |
+| Design system config generation | Image assets (→ ai-artist) |
+| Priority-ranked recommendations | Component coding |
+
+**Expert decision skill:** Produces design recommendations. Does not write CSS or code.
 
 ---
 
-## 🔧 Quick Reference
+## Database Contents (6 Categories)
 
-### Generate Design System
+| Category | Count | Data File |
+|----------|-------|-----------|
+| Styles | 50+ | `data/styles.csv` |
+| Colors | 97 | `data/colors.csv` |
+| Typography | 57 | `data/typography.csv` |
+| UX Guidelines | 99 | `data/ux-guidelines.csv` |
+| Charts | 25 | `data/charts.csv` |
+| Stacks | 9 | `data/` |
+
+---
+
+## CLI Commands
 
 ```bash
+# Generate design system
 node .agent/skills/studio/scripts-js/search.js "<query>" --design-system [-p "Project Name"]
-```
 
-### Search Specific Category
-
-```bash
-# Colors
+# Search by category
 node .agent/skills/studio/scripts-js/search.js "fintech dark" --category colors
-
-# Styles  
 node .agent/skills/studio/scripts-js/search.js "minimal professional" --category styles
-
-# Typography
 node .agent/skills/studio/scripts-js/search.js "modern tech" --category typography
 ```
 
 ---
 
-## 📊 Database Contents
-
-| Category | Count | Description |
-|----------|-------|-------------|
-| **Styles** | 50+ | Design aesthetics (minimal, playful, elegant...) |
-| **Colors** | 97 | Curated palettes with hex codes |
-| **Typography** | 57 | Font pairings (heading + body) |
-| **UX Guidelines** | 99 | Best practices and patterns |
-| **Charts** | 25 | Data visualization types |
-| **Stacks** | 9 | Technology implementations |
-
----
-
-## 🤖 Meta-Agents Integration
-
-| Phase | Agent | Action |
-| ----- | ----- | ------ |
-| **Design Planning** | `learner` | Analyze past successful design patterns |
-| **Style Selection** | `critic` | Arbitrate conflicting design choices |
-| **Post-Design** | `learner` | Log design decisions for future reference |
-| **Accessibility** | `assessor` | Evaluate accessibility and UX risks |
-
----
-
-## 🔗 Related
-
-| Item | Type | Purpose |
-|------|------|---------|
-| `/studio` | Workflow | User-facing command |
-| `frontend-specialist` | Agent | Uses this skill for UI work |
-| `design-system` | Skill | Companion skill |
-
----
-
-## ❌ Anti-AI-Slop Rules
-
-> **Purpose:** Avoid generic designs that are recognizable as "AI-generated".
+## Anti-AI-Slop Rules (Fixed)
 
 ### Fonts to AVOID
 
-| Don't Use | Use Instead |
-|-----------|-------------|
+| ❌ Don't Use | ✅ Use Instead |
+|-------------|---------------|
 | Inter | Playfair Display, Cormorant |
 | Roboto | Syne, Outfit |
 | Arial | Source Sans Pro, Work Sans |
 | System fonts | Fraunces, IBM Plex |
 
-**Why:** These fonts are too common, every AI suggests them → immediately recognizable as AI-generated.
-
 ### Colors to AVOID
 
-| Don't Use | Use Instead |
-|-----------|-------------|
+| ❌ Don't Use | ✅ Use Instead |
+|-------------|---------------|
 | #FF0000 (pure red) | #DC2626, #EF4444 |
 | #00FF00 (pure green) | #10B981, #059669 |
 | #0000FF (pure blue) | #3B82F6, #2563EB |
 | #800080 (pure purple) | #8B5CF6, #7C3AED |
 
-**Why:** Pure RGB colors look cheap and unprofessional.
+### Patterns to AVOID
 
-### Shadows to AVOID
+| ❌ Don't | ✅ Do |
+|---------|-------|
+| Generic `box-shadow: 0 2px 4px rgba(0,0,0,0.1)` | Dramatic: `0 25px 50px -12px rgba(0,0,0,0.25)` |
+| Solid #FFFFFF / #000000 backgrounds | Gradients, noise textures, glass effects |
+| Scattered micro-interactions on every hover | One orchestrated page-load animation |
 
-```css
-/* ❌ Generic AI shadow */
-box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+---
 
-/* ✅ Intentional, dramatic */
-box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25);
-box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06);
-```
+## Error Taxonomy
 
-### Backgrounds to AVOID
+| Code | Recoverable | Trigger |
+|------|-------------|---------|
+| `ERR_INVALID_REQUEST_TYPE` | No | Request type not supported |
+| `ERR_EMPTY_QUERY` | Yes | Search query is empty |
+| `ERR_UNKNOWN_CATEGORY` | Yes | Category not one of 5 |
+| `ERR_DATABASE_LOAD` | Yes | CSV file not readable |
 
-| Don't Use | Use Instead |
-|-----------|-------------|
-| Solid #FFFFFF | Subtle gradients, noise textures |
-| Solid #000000 | Dark gradients, pattern overlays |
-| Plain colors | Gradient meshes, glass effects |
-
-### Animations to AVOID
-
-```css
-/* ❌ Micro-interactions everywhere */
-:hover { transform: scale(1.05); }
-
-/* ✅ One orchestrated page load */
-.hero { animation: fadeInUp 0.6s ease-out; }
-.hero-cta { animation: fadeInUp 0.6s ease-out 0.3s backwards; }
-```
-
-**Rule:** One orchestrated animation > many scattered micro-interactions.
+**Zero internal retries.** Same query = same ranked results.
 
 ---
 
@@ -183,13 +123,24 @@ box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06);
 
 ---
 
-## 📖 References
+## 📑 Content Map
 
-For detailed documentation, see:
-- `data/` - Raw CSV databases
-- `scripts-js/` - Search implementation
-
+| File | Description | When to Read |
+|------|-------------|--------------|
+| [data/](data/) | 24 CSV databases | Database contents |
+| [scripts-js/](scripts-js/) | Search CLI + core logic | Running commands |
+| [engineering-spec.md](references/engineering-spec.md) | Full spec | Architecture review |
 
 ---
 
-⚡ PikaKit v3.9.68
+## 🔗 Related
+
+| Item | Type | Purpose |
+|------|------|---------|
+| `/studio` | Workflow | User-facing command |
+| `frontend-specialist` | Agent | Uses this for UI work |
+| `design-system` | Skill | Companion design skill |
+
+---
+
+⚡ PikaKit v3.9.69
