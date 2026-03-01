@@ -59,4 +59,4 @@ const sepay = new SePay({
 
 ---
 
-⚡ PikaKit v3.9.69
+⚡ PikaKit v3.9.70
