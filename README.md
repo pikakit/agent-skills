@@ -4,7 +4,7 @@
 
 ### Transform your AI Agent into a FAANG-level engineering team
 
-[![npm version](https://img.shields.io/badge/npm-v3.9.71-7c3aed?style=for-the-badge&logo=npm&logoColor=white&labelColor=18181b)](https://www.npmjs.com/package/pikakit)
+[![npm version](https://img.shields.io/badge/npm-v3.9.72-7c3aed?style=for-the-badge&logo=npm&logoColor=white&labelColor=18181b)](https://www.npmjs.com/package/pikakit)
 [![Skills](https://img.shields.io/badge/skills-67-06b6d4?style=for-the-badge&labelColor=18181b)](https://github.com/pikakit/agent-skills)
 [![Agents](https://img.shields.io/badge/agents-26-f59e0b?style=for-the-badge&labelColor=18181b)](https://github.com/pikakit/agent-skills)
 [![Workflows](https://img.shields.io/badge/workflows-26-10b981?style=for-the-badge&labelColor=18181b)](https://github.com/pikakit/agent-skills)
@@ -425,7 +425,7 @@ UNLICENSED — See [LICENSE](LICENSE) for details.
 
 <div align="center">
 
-**⚡ PikaKit v3.9.71**
+**⚡ PikaKit v3.9.72**
 
 *Composable Skills · Coordinated Agents · Intelligent Execution*
 
