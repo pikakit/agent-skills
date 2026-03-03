@@ -171,4 +171,4 @@ rmbg input.jpg -m briaai -o output.png   # Highest quality
 
 ---
 
-⚡ PikaKit v3.9.70
+⚡ PikaKit v3.9.71

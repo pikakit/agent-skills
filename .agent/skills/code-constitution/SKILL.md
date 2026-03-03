@@ -6,7 +6,7 @@ description: >-
   Triggers on: architecture review, critical data, breaking change, governance, doctrine.
   Coordinates with: code-review, review-automation, security-scanner.
 metadata:
-  version: "3.0.0"
+  version: "2.0.0"
   type: "constitutional-skill"
   authority: "supreme"
   enforcement: "strict"
@@ -42,6 +42,7 @@ metadata:
 | Breaking changes or commercial risk | **Mandatory** | — |
 | AI agent behavior or autonomy | **Mandatory** | — |
 | Ambiguous intent | **Mandatory** — load by default | Refuse |
+| Architecture review, contracts, security | See `rules/engineering-spec.md` | — |
 
 ---
 
@@ -56,6 +57,19 @@ metadata:
 | Change Proposal review | Proposal tooling |
 
 **Pure decision skill:** Produces governance decisions (approve/refuse/escalate). Zero side effects.
+
+---
+
+## Execution Model — 4-Phase Lifecycle
+
+| Phase | Action | Output |
+|-------|--------|--------|
+| **Classify** | Validate request type, extract scope, identify risk level | Validated input or error |
+| **Evaluate** | Load applicable doctrines from `rules/`, check each against context | Violation list (may be empty) |
+| **Decide** | 0 violations → approve; ≥1 blocking → refuse; ambiguous → escalate | Decision + conditions/violations |
+| **Emit** | Return structured output with enforcement action | Complete output schema |
+
+All phases synchronous. Fail-closed: any phase failure defaults to "refuse."
 
 ---
 
@@ -115,16 +129,16 @@ When violation detected:
 
 ---
 
-## Change Policy
+## Quick Start
 
-| Allowed | Forbidden |
-|---------|-----------|
-| General reasoning improvements | Code style overrides |
-| Better risk judgment | Naming convention exceptions |
-| New doctrine via Change Proposal | Project-specific hacks |
-| — | Direct doctrine modification without proposal |
+```
+1. Agent proposes action with context (scope, files, change type, risk level)
+2. Code Constitution validates against applicable doctrines in rules/
+3. Decision returned: approve | refuse | escalate
+4. If refused: Stop, cite violation, do NOT proceed
+```
 
-**This skill is LOCKED.** Changes require an approved Change Proposal (stored in `proposals/`).
+Validation scripts: `scripts/validate_doctrine.js` | PR audit: `scripts/audit_pr.js`
 
 ---
 
@@ -137,6 +151,17 @@ When violation detected:
 | Override constitution from another skill | Respect authority hierarchy |
 | Assume no violation = safe | Explicitly check applicable doctrines |
 | Modify doctrines directly | Submit Change Proposal |
+
+---
+
+## Troubleshooting
+
+| Problem | Cause | Resolution |
+|---------|-------|------------|
+| Every action refused | Scope set to "critical" for minor changes | Set accurate `risk_level` and `scope` |
+| Doctrine not found error | Skill installation incomplete | Verify `rules/doctrines/` contains all 8 domains |
+| Escalation loop | Ambiguous scope keeps re-triggering | Provide explicit scope: architecture, data, security |
+| Agent bypasses governance | Skill not loaded for the request type | Add trigger keywords to agent routing config |
 
 ---
 
@@ -166,4 +191,4 @@ When violation detected:
 
 ---
 
-⚡ PikaKit v3.9.70
+⚡ PikaKit v3.9.71

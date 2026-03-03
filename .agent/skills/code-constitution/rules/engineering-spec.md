@@ -10,9 +10,12 @@ Code Constitution defines the supreme governance framework for the PikaKit agent
 
 The skill has supreme authority: it overrides all other skills, framework defaults, agent preferences, and developer convenience. Output that violates this skill is invalid regardless of functional correctness.
 
+**Skill Type:** Expert (decision tree) — stateless, zero side effects, fully idempotent.
+
 **Contract Version:** 2.0.0
-**Backward Compatibility:** breaking (first hardened version; previous version was 3.0.0 but lacked formal contracts)
-**Breaking Changes:** None — new spec for first governance hardening. Metadata version retained at 3.0.0 for continuity.
+**Backward Compatibility:** breaking (first hardened version; previous version lacked formal contracts)
+**Breaking Changes:** None — new spec for first governance hardening.
+**Migration Notes:** Metadata version bumped from 3.0.0 to 2.0.0 to align with contract versioning. No schema changes for downstream consumers; all changes are additive specification.
 
 ---
 
@@ -34,12 +37,12 @@ Code Constitution eliminates these by establishing binding laws with explicit en
 ## 3. Design Goals
 
 | ID | Goal | Measurable Constraint |
-|----|------|-----------------------|
-| G1 | Supreme authority | Overrides all other skills; no exceptions |
-| G2 | Zero-trust agent mode | Agents operate in PROPOSAL_ONLY mode; no autonomous approval |
-| G3 | Deterministic enforcement | Same violation = same enforcement action, every time |
-| G4 | Audit-ready violation handling | Every violation logged with doctrine reference and systemic risk |
-| G5 | Change control | Constitution changes require approved Change Proposal only |
+|----|------|----------------------|
+| G1 | Supreme authority | Overrides all other skills; zero exceptions |
+| G2 | Zero-trust agent mode | Agents operate in PROPOSAL_ONLY mode; zero autonomous approvals |
+| G3 | Deterministic enforcement | Same violation + same doctrine = identical enforcement action |
+| G4 | Audit-ready violation handling | 100% of violations logged with doctrine reference and systemic risk |
+| G5 | Change control | Constitution changes require approved Change Proposal; zero direct edits |
 
 ---
 
@@ -109,8 +112,9 @@ Data: {
   conditions: Array<string> | null  # Conditions for approval (if approved)
   enforcement_action: string | null # "stop" | "restrict" | "audit"
   metadata: {
-    contract_version: string
-    backward_compatibility: string
+    contract_version: string  # "2.0.0"
+    backward_compatibility: string  # "breaking"
+    breaking_changes: Array<string> | null  # List of breaking changes
     authority_level: string   # "supreme"
     agent_operating_mode: string  # "STRICT"
   }
@@ -123,17 +127,17 @@ Error: ErrorSchema | null
 ```
 Code: string                  # From Error Taxonomy (Section 11)
 Message: string               # Human-readable, single line
-Request_Type: string
+Request_Type: string          # Echo of input Request_Type
 Recoverable: boolean
 ```
 
 #### Deterministic Guarantees
 
-- Same `Request_Type` + `Context` = identical decision output.
+- Same `Request_Type` + `Context` = identical decision output, character-for-character.
 - Violation detection is deterministic: same action against same doctrine = same violation list.
-- Authority level is always "supreme"; never downgraded.
-- Agent operating mode is always "STRICT"; never relaxed.
-- No randomization, no probabilistic assessment.
+- Authority level is fixed at "supreme"; never downgraded at runtime.
+- Agent operating mode is fixed at "STRICT"; never relaxed at runtime.
+- Zero randomization, zero probabilistic assessment, zero machine-learning inference.
 
 #### What Agents May Assume
 
@@ -147,17 +151,17 @@ Recoverable: boolean
 - An "approved" decision for one context applies to a different context.
 - The skill accounts for business urgency or deadlines (governance is atemporal).
 - A lack of violation means the action is safe (only checked doctrines are evaluated).
-- The skill performs automated remediation (it only decides; caller acts).
+- The skill performs automated remediation (it decides; caller acts).
 
 #### Side-Effect Boundaries
 
 | Operation | Side Effects |
 |-----------|-------------|
-| Validate action | None; pure decision |
-| Check doctrine | None; read-only rule evaluation |
-| Enforcement report | None; report generation |
-| Authority query | None; returns authority model |
-| Change proposal review | None; reviews proposal text |
+| Validate action | None; pure decision producing structured output |
+| Check doctrine | None; read-only rule evaluation against `rules/` |
+| Enforcement report | None; report generation from evaluation results |
+| Authority query | None; returns static authority model |
+| Change proposal review | None; reviews proposal text against doctrine |
 
 ### 6.2 Workflow Contract
 
@@ -168,15 +172,16 @@ Recoverable: boolean
 2. Code Constitution validates against applicable doctrines in rules/
 3. Decision returned: approve (with conditions) | refuse (with violations) | escalate
 4. If refused: Agent stops, cites violation, does NOT proceed
-5. If escalated: Agent requests user approval
+5. If escalated: Agent requests user approval with violation context
 6. If approved with conditions: Agent verifies all conditions before proceeding
 ```
 
 #### Execution Guarantees
 
 - Every invocation produces a complete, self-contained decision.
-- Violation list includes all matching doctrines, not just the first.
+- Violation list includes all matching doctrines, not just the first match.
 - "Refuse" is final within the invocation; no override without user intervention.
+- No partial decisions; output is complete or an error is returned.
 
 #### Failure Propagation Model
 
@@ -191,13 +196,15 @@ Recoverable: boolean
 
 #### Retry Boundaries
 
-- Zero internal retries. Deterministic output.
+- Zero internal retries. Deterministic output makes retries meaningless for same input.
 - Callers may retry with modified context after resolving violations.
+- No retry backoff; each invocation is independent.
 
 #### Isolation Model
 
 - Each invocation is stateless and independent.
-- Doctrine files in `rules/` are read-only.
+- Doctrine files in `rules/` are read-only during evaluation.
+- No shared state between concurrent invocations.
 
 #### Idempotency Expectations
 
@@ -205,7 +212,7 @@ Recoverable: boolean
 |-----------|-----------|-------|
 | Validate action | Yes | Same context = same decision |
 | Check doctrine | Yes | Read-only rule evaluation |
-| Enforcement report | Yes | Deterministic report |
+| Enforcement report | Yes | Deterministic report generation |
 | Authority query | Yes | Fixed authority model |
 | Change proposal review | Yes | Same proposal = same review |
 
@@ -222,7 +229,20 @@ Recoverable: boolean
 | **Decide** | Apply decision logic: 0 violations → approve, ≥1 blocking → refuse | Decision + conditions/violations |
 | **Emit** | Return structured output with enforcement action | Complete output schema |
 
-All phases synchronous. Fail-closed: any phase failure defaults to "refuse."
+All phases execute synchronously in a single invocation. Fail-closed: any phase failure defaults to "refuse."
+
+### Decision Logic
+
+```
+IF violations.count == 0:
+  decision = "approve"
+ELSE IF violations.any(severity == "blocking" OR severity == "critical"):
+  decision = "refuse"
+ELSE IF violations.all(severity == "warning") AND scope_is_ambiguous:
+  decision = "escalate-to-user"
+ELSE:
+  decision = "refuse"  # fail-closed default
+```
 
 ---
 
@@ -230,21 +250,34 @@ All phases synchronous. Fail-closed: any phase failure defaults to "refuse."
 
 | Principle | Enforcement |
 |-----------|-------------|
-| Fixed authority hierarchy | Constitution > all skills > all agents |
-| Fixed agent operating mode | STRICT / PROPOSAL_ONLY / ZERO_TRUST |
+| Fixed authority hierarchy | Constitution > all skills > all agents; zero override paths |
+| Fixed agent operating mode | STRICT / PROPOSAL_ONLY / ZERO_TRUST; immutable at runtime |
 | Fail-closed default | Ambiguity → refuse or escalate; never approve by default |
-| Doctrine evaluation order | Alphabetical by doctrine file name |
-| No external calls | Decisions use only local doctrine files |
+| Doctrine evaluation order | Alphabetical by doctrine file name; deterministic traversal |
+| No external calls | Decisions use only local doctrine files in `rules/` |
 | No ambient state | Each invocation operates solely on explicit inputs |
 | No learning overrides | Constitution rules are immutable; no pattern-based exceptions |
+| No probabilistic decisions | All decisions are binary against doctrine rules; zero ML inference |
 
 ---
 
 ## 9. State & Idempotency Model
 
+### State Machine
+
+```
+IDLE → IDLE  [every invocation starts and ends in IDLE]  // terminal state
+```
+
 Stateless. Fully idempotent. No persistent state.
 
-Each invocation produces an identical output for identical inputs. The constitution is immutable between explicit Change Proposals.
+Each invocation produces an identical output for identical inputs. The constitution is immutable between explicit Change Proposals. No session, no pipeline state, no accumulated context.
+
+### Doctrine Versioning
+
+- Doctrine files are versioned via the Change Proposal process in `proposals/`.
+- Doctrine changes require explicit user approval before taking effect.
+- No hot-reloading of doctrine changes during evaluation.
 
 ---
 
@@ -253,28 +286,28 @@ Each invocation produces an identical output for identical inputs. The constitut
 | Failure Class | Behavior | Default |
 |---------------|----------|---------|
 | Unknown request type | Return `ERR_INVALID_REQUEST_TYPE` | Refuse |
-| Missing context field | Return `ERR_MISSING_CONTEXT` | Refuse |
-| Missing doctrine file | Return `ERR_DOCTRINE_NOT_FOUND` | Refuse |
-| Ambiguous scope | Return `ERR_AMBIGUOUS_SCOPE` | Escalate |
-| Agent trust violation | Return `ERR_TRUST_VIOLATION` | Refuse + restrict |
-| Change proposal invalid | Return `ERR_INVALID_PROPOSAL` | Refuse |
-| Internal evaluation error | Return `ERR_EVALUATION_FAILED` | Refuse |
+| Missing context field | Return `ERR_MISSING_CONTEXT` with missing field name | Refuse |
+| Missing doctrine file | Return `ERR_DOCTRINE_NOT_FOUND` with file path | Refuse |
+| Ambiguous scope | Return `ERR_AMBIGUOUS_SCOPE` with scope value | Escalate |
+| Agent trust violation | Return `ERR_TRUST_VIOLATION` with agent_id | Refuse + restrict |
+| Change proposal invalid | Return `ERR_INVALID_PROPOSAL` with validation errors | Refuse |
+| Internal evaluation error | Return `ERR_EVALUATION_FAILED` with phase name | Refuse |
 
-**Fail-closed invariant:** Every unhandled failure results in "refuse." No silent approvals.
+**Fail-closed invariant:** Every unhandled failure results in "refuse." Zero silent approvals. Zero partial decisions.
 
 ---
 
 ## 11. Error Taxonomy
 
-| Code | Category | Recoverable | Default Action |
-|------|----------|-------------|----------------|
-| `ERR_INVALID_REQUEST_TYPE` | Validation | No | Refuse |
-| `ERR_MISSING_CONTEXT` | Validation | Yes | Refuse |
-| `ERR_DOCTRINE_NOT_FOUND` | Infrastructure | No | Refuse |
-| `ERR_AMBIGUOUS_SCOPE` | Validation | Yes | Escalate |
-| `ERR_TRUST_VIOLATION` | Security | No | Refuse + restrict |
-| `ERR_INVALID_PROPOSAL` | Validation | Yes | Refuse |
-| `ERR_EVALUATION_FAILED` | Internal | No | Refuse |
+| Code | Category | Recoverable | Default Action | Description |
+|------|----------|-------------|----------------|-------------|
+| `ERR_INVALID_REQUEST_TYPE` | Validation | No | Refuse | Request type not one of: validate, check-doctrine, enforcement-report, authority-query, change-proposal-review |
+| `ERR_MISSING_CONTEXT` | Validation | Yes | Refuse | Required context field is null or empty |
+| `ERR_DOCTRINE_NOT_FOUND` | Infrastructure | No | Refuse | Doctrine file missing from `rules/` directory |
+| `ERR_AMBIGUOUS_SCOPE` | Validation | Yes | Escalate | Scope cannot be classified into a single domain |
+| `ERR_TRUST_VIOLATION` | Security | No | Refuse + restrict | Agent attempted self-approval or enforcement bypass |
+| `ERR_INVALID_PROPOSAL` | Validation | Yes | Refuse | Change Proposal fails structural or content validation |
+| `ERR_EVALUATION_FAILED` | Internal | No | Refuse | Doctrine evaluation encountered an internal error |
 
 ---
 
@@ -282,9 +315,13 @@ Each invocation produces an identical output for identical inputs. The constitut
 
 | Parameter | Default | Maximum | Rationale |
 |-----------|---------|---------|-----------|
-| Doctrine evaluation timeout | N/A | N/A | Synchronous rule check; < 100ms |
-| Internal retries | Zero | Zero | Deterministic; fail-closed |
-| Doctrine file read timeout | 1,000 ms | 1,000 ms | Local filesystem; 16 files |
+| Full evaluation timeout | 200 ms | 500 ms | Synchronous rule check across 16 doctrine files |
+| Single doctrine file read | 50 ms | 1,000 ms | Local filesystem; single file ≤ 3 KB |
+| Decision generation | 10 ms | 50 ms | In-memory logic after evaluation |
+| Internal retries | 0 | 0 | Deterministic; same input = same output; retries are meaningless |
+| Caller retry limit | No default | No maximum | Callers may retry with modified context after resolving violations |
+
+**Retry policy:** Zero internal retries. Since output is deterministic, retrying the same input produces the same result. Callers must modify context between invocations.
 
 ---
 
@@ -310,6 +347,8 @@ Each invocation produces an identical output for identical inputs. The constitut
   "duration_ms": "number"
 }
 ```
+
+**Mandatory fields (non-negotiable):** `trace_id`, `skill_name`, `contract_version`, `execution_id`, `timestamp`.
 
 ### Required Log Points
 
@@ -340,12 +379,14 @@ Each invocation produces an identical output for identical inputs. The constitut
 - All agents operate at **ZERO_TRUST** by default.
 - No agent may self-approve, self-merge, or bypass enforcement.
 - Trust level cannot be elevated without explicit user consent.
+- Trust violations are logged at ERROR level and trigger `restrict` enforcement.
 
 ### Doctrine Integrity
 
 - Doctrine files in `rules/` are read-only during evaluation.
 - Doctrine modification requires a Change Proposal (stored in `proposals/`).
 - No runtime injection, template expansion, or dynamic rule generation.
+- Doctrine files are not user-supplied; they are part of the skill installation.
 
 ### Authority Hierarchy
 
@@ -356,12 +397,25 @@ Code Constitution (SUPREME)
               └── Skill .md files (P2)
 ```
 
-No skill, agent, or workflow may override a constitutional decision.
+No skill, agent, or workflow may override a constitutional decision. Authority is non-negotiable and atemporal.
 
 ### Fail-Closed Security
 
 - Every ambiguous input defaults to "refuse" or "escalate."
-- No implicit approval. Absence of violation is not approval without explicit check.
+- No implicit approval. Absence of violation is not approval without explicit doctrine check.
+- No credential handling; governance decisions are content-based, not identity-based.
+
+### Input Sanitization
+
+- Context fields are evaluated as literal strings against doctrine rules.
+- No template evaluation engine (no eval, no code execution from context fields).
+- Context containing executable syntax is treated as literal text.
+
+### Multi-Tenant Boundaries
+
+- Each invocation is stateless; no data persists between invocations.
+- No invocation can access context or decisions from another invocation.
+- Agent identifiers are logged but do not affect decision logic.
 
 ---
 
@@ -369,31 +423,45 @@ No skill, agent, or workflow may override a constitutional decision.
 
 | Dimension | Constraint | Mitigation |
 |-----------|-----------|------------|
-| Throughput | CPU-bound rule evaluation | < 100ms for 16 doctrine files |
-| Concurrency | Stateless invocations | Unlimited parallel |
-| Doctrine storage | 16 files in `rules/` (~20 KB total) | Static; growth controlled by proposals |
-| Memory per invocation | < 2 MB | No accumulation |
+| Throughput | CPU-bound rule evaluation | < 100 ms for 16 doctrine files per invocation |
+| Concurrency | Stateless invocations | Unlimited parallel; no shared state |
+| Doctrine storage | 16 files in `rules/` (~20 KB total) | Static; growth controlled by Change Proposals |
+| Memory per invocation | < 2 MB | No accumulation; scoped to invocation |
 | Network | Zero network calls | No external dependency |
+
+### Capacity Planning
+
+| Metric | Per Invocation | Per Node |
+|--------|---------------|----------|
+| CPU | < 10 ms computation | 100,000+ invocations/second (single core) |
+| Memory | < 2 MB | Bound by concurrent invocations × 2 MB |
+| Disk I/O | 16 doctrine file reads (~20 KB) | Cached by OS after first read |
+| Network | Zero | Zero |
 
 ---
 
 ## 16. Concurrency Model
 
-Fully parallel. No shared state. No coordination required.
+| Scope | Model | Behavior |
+|-------|-------|----------|
+| Within invocation | Sequential | Classify → Evaluate → Decide → Emit; no internal parallelism |
+| Across invocations | Fully parallel | No shared state, no locks, no coordination needed |
+| Doctrine access | Read-only shared | Multiple concurrent reads are safe; no write contention |
 
-Each invocation reads doctrine files independently. Concurrent evaluations are safe because doctrines are immutable between Change Proposals.
+**No undefined behavior:** Since the skill is stateless with read-only resource access, any level of concurrency is safe by design. Doctrine files are immutable between Change Proposals.
 
 ---
 
 ## 17. Resource Lifecycle Management
 
-All resources scoped to invocation. No persistent handles.
-
 | Resource | Created By | Destroyed By | Max Lifetime |
 |----------|-----------|-------------|--------------|
-| Decision output | Emit phase | Caller | Invocation scope |
-| Doctrine file handles | Evaluate phase | Auto-close | < 50 ms |
-| Violation report | Decide phase | Caller | Invocation scope |
+| Decision output | Emit phase | Caller (after consumption) | Invocation scope |
+| Doctrine file handles | Evaluate phase | Auto-close after read | < 50 ms |
+| Violation report | Decide phase | Caller (after consumption) | Invocation scope |
+| Context input | Caller | Invocation completion | Invocation scope |
+
+**Leak prevention:** All resources are scoped to a single invocation. No persistent handles, connections, or buffers. No resource created outlives the invocation that created it.
 
 ---
 
@@ -404,6 +472,7 @@ All resources scoped to invocation. No persistent handles.
 | Single doctrine check | < 5 ms | < 10 ms | 50 ms |
 | Full validation (16 doctrines) | < 30 ms | < 80 ms | 500 ms |
 | Decision generation | < 5 ms | < 10 ms | 50 ms |
+| Total invocation latency | < 40 ms | < 100 ms | 500 ms |
 | Output size | ≤ 1,000 chars | ≤ 3,000 chars | 5,000 chars |
 
 ---
@@ -413,10 +482,11 @@ All resources scoped to invocation. No persistent handles.
 | Risk | Likelihood | Impact | Mitigation |
 |------|-----------|--------|------------|
 | Overly restrictive enforcement | Medium | Blocks legitimate agent actions | Escalation path to user for ambiguous cases |
-| Doctrine staleness | Low | Rules don't reflect current architecture | Change Proposal process for updates |
+| Doctrine staleness | Low | Rules do not reflect current architecture | Change Proposal process for updates |
 | Constitution bypass via new skill | Medium | New skill ignores constitutional rules | Authority hierarchy enforced in GEMINI.md |
-| False negative (missed violation) | Low | Unapproved action proceeds | Doctrine coverage reviewed periodically |
+| False negative (missed violation) | Low | Unapproved action proceeds | Doctrine coverage reviewed quarterly |
 | Agent spoofing scope/risk level | Medium | Agent underreports risk to get approval | Zero-trust: agent declarations are inputs, not truth |
+| Doctrine file corruption | Low | Evaluation errors, false refusals | `ERR_DOCTRINE_NOT_FOUND`; re-install skill from source |
 
 ---
 
@@ -425,15 +495,16 @@ All resources scoped to invocation. No persistent handles.
 | Requirement | Status | Evidence |
 |-------------|--------|----------|
 | YAML frontmatter complete | ✅ | name, description, metadata with category, version, triggers, coordinates_with, success_metrics |
-| SKILL.md < 200 lines | ✅ | Entry point under 200 lines |
-| Prerequisites documented | ✅ | No external dependencies |
-| When to Use section | ✅ | Scope-based activation table |
-| Core content matches skill type | ✅ | Meta-governance type: authority model, enforcement, doctrines |
-| Troubleshooting section | ✅ | Anti-patterns table (violation behaviors) |
-| Related section | ✅ | Cross-links to code-review, security-scanner, code-craft |
-| Content Map for multi-file | ✅ | Links to rules/, metadata/, resources/, scripts/, examples/ |
-| Contract versioning | ✅ | contract_version, backward_compatibility, breaking_changes in Integration Model |
-| Compliance matrix structured | ✅ | This table with ✅/❌ + evidence |
+| SKILL.md < 200 lines | ✅ | Entry point under 200 lines; details in `rules/engineering-spec.md` |
+| Prerequisites documented | ✅ | No external dependencies; doctrine library documented |
+| When to Use section | ✅ | Scope-based activation table with 7 trigger conditions |
+| Quick Reference with commands | ✅ | Quick Start section with invocation pattern and script references |
+| Core content matches skill type | ✅ | Expert (decision tree): authority model, enforcement behavior, operating modes |
+| Troubleshooting section | ✅ | Problem/cause/resolution table with 4 entries |
+| Related section | ✅ | Cross-links to code-review, security-scanner, code-craft, skill-generator |
+| Content Map for multi-file | ✅ | Links to 8 subdirectories including rules/, resources/, scripts/ |
+| Contract versioning | ✅ | contract_version: "2.0.0", backward_compatibility, breaking_changes in Section 6 |
+| Compliance matrix structured | ✅ | This table with ✅/❌ + evidence per requirement |
 
 ---
 
@@ -441,26 +512,37 @@ All resources scoped to invocation. No persistent handles.
 
 | Category | Check | Status |
 |----------|-------|--------|
-| **Governance** | Supreme authority model defined | ✅ |
-| **Governance** | Zero-trust agent operating mode | ✅ |
-| **Governance** | Fail-closed enforcement default | ✅ |
-| **Governance** | Change Proposal process for doctrine updates | ✅ |
+| **Governance** | Supreme authority model defined with hierarchy diagram | ✅ |
+| **Governance** | Zero-trust agent operating mode (STRICT/PROPOSAL_ONLY/ZERO_TRUST) | ✅ |
+| **Governance** | Fail-closed enforcement default on all failure paths | ✅ |
+| **Governance** | Change Proposal process for doctrine updates in `proposals/` | ✅ |
 | **Contracts** | Input/output/error schemas in pseudo-schema format | ✅ |
-| **Contracts** | Contract versioning with semver | ✅ |
+| **Contracts** | Contract versioning with semver (2.0.0) | ✅ |
 | **Contracts** | Agent assumptions and non-assumptions documented | ✅ |
+| **Contracts** | Side-effect boundaries per operation | ✅ |
 | **Failure** | Error taxonomy with 7 categorized error codes | ✅ |
 | **Failure** | Fail-closed invariant: all failures default to refuse | ✅ |
-| **Failure** | Zero internal retries | ✅ |
+| **Failure** | Zero internal retries; deterministic output | ✅ |
 | **Determinism** | Fixed doctrine evaluation order (alphabetical) | ✅ |
 | **Determinism** | Fixed authority hierarchy (Constitution > GEMINI.md > Agent > Skill) | ✅ |
+| **Determinism** | Decision logic codified with explicit branches | ✅ |
 | **Security** | Zero-trust agent mode; no self-approval | ✅ |
-| **Security** | Doctrine files are read-only during evaluation | ✅ |
-| **Observability** | Structured log schema with 5 mandatory fields + 5 log points | ✅ |
-| **Observability** | 5 metrics defined | ✅ |
-| **Performance** | P50/P99 targets for all operations | ✅ |
+| **Security** | Doctrine files read-only during evaluation | ✅ |
+| **Security** | Input sanitization: literal evaluation, no eval | ✅ |
+| **Observability** | Structured log schema with 5 mandatory fields | ✅ |
+| **Observability** | 5 log points defined with log levels | ✅ |
+| **Observability** | 5 metrics defined with types and units | ✅ |
+| **Performance** | P50/P99/hard limit targets for all operations | ✅ |
+| **Performance** | Total invocation latency hard limit: 500 ms | ✅ |
 | **Scalability** | Stateless; unlimited parallel invocations | ✅ |
+| **Scalability** | Capacity planning table with per-node estimates | ✅ |
+| **Concurrency** | No shared state; read-only doctrine access | ✅ |
+| **Resources** | All resources scoped to invocation lifetime | ✅ |
+| **Idempotency** | Fully idempotent — all operations are pure functions | ✅ |
+| **Timeouts** | All timeouts specify default AND maximum values | ✅ |
+| **State** | State transitions use explicit `→` notation | ✅ |
 | **Compliance** | All skill-design-guide.md sections mapped with evidence | ✅ |
 
 ---
 
-⚡ PikaKit v3.9.70
+⚡ PikaKit v3.9.71
