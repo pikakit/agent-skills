@@ -506,4 +506,4 @@ Blocked protocols return `ERR_INVALID_URL`.
 
 ---
 
-⚡ PikaKit v3.9.72
+⚡ PikaKit v3.9.73
