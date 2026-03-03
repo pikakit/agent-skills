@@ -495,7 +495,7 @@ No skill, agent, or workflow may override a constitutional decision. Authority i
 | Requirement | Status | Evidence |
 |-------------|--------|----------|
 | YAML frontmatter complete | ✅ | name, description, metadata with category, version, triggers, coordinates_with, success_metrics |
-| SKILL.md < 200 lines | ✅ | Entry point under 200 lines; details in `rules/engineering-spec.md` |
+| SKILL.md < 200 lines | ✅ | Entry point under 200 lines; details in `references/engineering-spec.md` |
 | Prerequisites documented | ✅ | No external dependencies; doctrine library documented |
 | When to Use section | ✅ | Scope-based activation table with 7 trigger conditions |
 | Quick Reference with commands | ✅ | Quick Start section with invocation pattern and script references |
@@ -545,4 +545,4 @@ No skill, agent, or workflow may override a constitutional decision. Authority i
 
 ---
 
-⚡ PikaKit v3.9.73
+⚡ PikaKit v3.9.74

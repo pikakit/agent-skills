@@ -126,7 +126,7 @@ Need useState / useEffect / event handlers?
 | `rules/rendering-*.md` | 10 | Hydration, transitions | Rendering issues |
 | `rules/rerender-*.md` | 12 | Memo, state, effects | Re-render prevention |
 | `rules/js-*.md` | 11 | Micro-patterns | JS performance |
-| [engineering-spec.md](rules/engineering-spec.md) | 1 | Full engineering spec | Architecture review |
+| [engineering-spec.md](references/engineering-spec.md) | 1 | Full engineering spec | Architecture review |
 
 **Selective reading:** Read ONLY the category relevant to current task.
 
@@ -142,4 +142,4 @@ Need useState / useEffect / event handlers?
 
 ---
 
-⚡ PikaKit v3.9.73
+⚡ PikaKit v3.9.74

@@ -1,6 +1,6 @@
 {
   "name": "pikakit-agent-skills",
-  "version": "3.9.73",
+  "version": "3.9.74",
   "description": "PikaKit Agent Skills - 50 FAANG-grade skills, 25 workflows, 25 agents for AI-powered development",
   "repository": {
     "type": "git",
@@ -80,7 +80,7 @@
     "css-tree": "^3.1.0",
     "csv-parse": "^6.1.0",
     "glob": "^13.0.0",
-    "gradient-string": "^2.0.2",
+    "gradient-string": "^3.0.0",
     "js-yaml": "^4.1.1",
     "kleur": "^4.1.5",
     "ora": "^9.1.0",

@@ -42,7 +42,7 @@ metadata:
 | Breaking changes or commercial risk | **Mandatory** | — |
 | AI agent behavior or autonomy | **Mandatory** | — |
 | Ambiguous intent | **Mandatory** — load by default | Refuse |
-| Architecture review, contracts, security | See `rules/engineering-spec.md` | — |
+| Architecture review, contracts, security | See `references/engineering-spec.md` | — |
 
 ---
 
@@ -170,7 +170,7 @@ Validation scripts: `scripts/validate_doctrine.js` | PR audit: `scripts/audit_pr
 | Folder | Content | When to Read |
 |--------|---------|--------------|
 | [rules/](rules/) | 16 domain-specific governance rules | Doctrine evaluation |
-| [rules/engineering-spec.md](rules/engineering-spec.md) | Full engineering spec: contracts, security, scalability | Architecture review |
+| [references/engineering-spec.md](references/engineering-spec.md) | Full engineering spec: contracts, security, scalability | Architecture review |
 | [metadata/](metadata/) | Routing & intent configuration | Skill routing |
 | [resources/](resources/) | Templates & reference materials | Building governance artifacts |
 | [scripts/](scripts/) | Validation & enforcement scripts | Automated checking |
@@ -191,4 +191,4 @@ Validation scripts: `scripts/validate_doctrine.js` | PR audit: `scripts/audit_pr
 
 ---
 
-⚡ PikaKit v3.9.73
+⚡ PikaKit v3.9.74
