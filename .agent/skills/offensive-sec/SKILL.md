@@ -162,4 +162,4 @@ LATERAL → COLLECTION → C2 → EXFILTRATION → IMPACT
 
 ---
 
-⚡ PikaKit v3.9.76
+⚡ PikaKit v3.9.77

@@ -140,7 +140,7 @@ export async function POST(req: Request) {
 
 ---
 
-⚡ PikaKit v3.9.76
+⚡ PikaKit v3.9.77
 
 ---
 
