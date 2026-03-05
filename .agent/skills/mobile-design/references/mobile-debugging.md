@@ -127,7 +127,7 @@ Web Debugging:      Mobile Debugging:
 > **Remember:** If JavaScript looks perfect but the app fails, look closer at the Native side.
 ---
 
-⚡ PikaKit v3.9.79
+⚡ PikaKit v3.9.80
 
 ---
 

@@ -102,9 +102,17 @@ function updatePackageFiles(version, dryRun) {
     try {
       const pkg = JSON.parse(readFileSync(file, 'utf-8'));
       if (pkg.version !== version) {
-        if (!dryRun) writeFileSync(file, JSON.stringify(pkg, null, 2) + '\n', 'utf-8');
-        // Update version in memory for dry-run display
-        pkg.version = version;
+        if (!dryRun) {
+          // CRITICAL: When running via `npm run`, npm locks the host package.json
+          // and reverts direct writes on exit. Use `npm version` for the host repo.
+          const isHostPkg = resolve(file) === resolve(ROOT, 'package.json');
+          if (isHostPkg) {
+            execSync(`npm version ${version} --no-git-tag-version --allow-same-version`, { cwd: ROOT, stdio: 'pipe' });
+          } else {
+            pkg.version = version;
+            writeFileSync(file, JSON.stringify(pkg, null, 2) + '\n', 'utf-8');
+          }
+        }
         console.log(`  ✅ ${file.replace(ROOT, '.').replace(ADD_SKILL_KIT, '../add-agent-skill-kit')}`);
         count++;
       } else {
@@ -166,6 +174,30 @@ function updateMdDirs(newVersion, dryRun) {
   return totalCount;
 }
 
+// ─── Git Helpers ─────────────────────────────────────────────────────────────
+import { execSync } from 'child_process';
+
+function gitCommit(dir, message) {
+  try {
+    execSync(`git add -A`, { cwd: dir, stdio: 'pipe' });
+    const result = execSync(`git commit -m "${message}"`, { cwd: dir, stdio: 'pipe' });
+    return result.toString().includes('nothing to commit') ? 'clean' : 'committed';
+  } catch (e) {
+    const msg = e.stdout?.toString() || e.message;
+    if (msg.includes('nothing to commit')) return 'clean';
+    return 'error';
+  }
+}
+
+function checkNpmVersion(pkgName) {
+  try {
+    const result = execSync(`npm view ${pkgName} version`, { stdio: 'pipe', timeout: 10000 });
+    return result.toString().trim();
+  } catch {
+    return null;
+  }
+}
+
 // ─── Main ────────────────────────────────────────────────────────────────────
 const args = process.argv.slice(2);
 const dryRun = args.includes('--dry-run');
@@ -174,8 +206,16 @@ const versionArg = args.find(a => a !== '--dry-run') || 'patch';
 const currentVersion = getCurrentVersion();
 const newVersion = bumpVersion(currentVersion, versionArg);
 
-console.log(`\n⚡ PikaKit Version Sync v2.0${dryRun ? ' [DRY RUN]' : ''}`);
+console.log(`\n⚡ PikaKit Version Sync v3.0${dryRun ? ' [DRY RUN]' : ''}`);
 console.log(`   ${currentVersion} → ${newVersion}\n`);
+
+// Check if version already published on npm
+const npmVersion = await checkNpmVersion('pikakit');
+if (npmVersion === newVersion) {
+  console.log(`\n⚠️  v${newVersion} is already published on npm!`);
+  console.log(`   Use a different version: node scripts/sync-version.mjs ${newVersion.replace(/\d+$/, m => +m + 1)}`);
+  process.exit(1);
+}
 
 console.log(`📦 Package files:`);
 const pkgCount = updatePackageFiles(newVersion, dryRun);
@@ -205,10 +245,18 @@ const grandTotal = total + copyCount;
 console.log(`\n${'─'.repeat(50)}`);
 console.log(`✅ ${dryRun ? 'Would update' : 'Updated'} ${grandTotal} files to v${newVersion}`);
 
+// Auto-commit both repos
 if (!dryRun && grandTotal > 0) {
-  console.log(`\n💡 Next steps:`);
-  console.log(`   git add -A ; git commit -m "chore: bump to v${newVersion}"`);
-  console.log(`   cd ${ADD_SKILL_KIT}`);
-  console.log(`   git add -A ; git commit -m "chore: sync to v${newVersion}"`);
-  console.log(`   npm publish`);
+  console.log(`\n📝 Git commits:`);
+
+  const r1 = await gitCommit(ROOT, `chore: bump to v${newVersion}`);
+  console.log(`  ${r1 === 'committed' ? '✅' : '⏭️ '} agent-skill-kit (${r1})`);
+
+  const r2 = await gitCommit(ADD_SKILL_KIT, `chore: sync to v${newVersion}`);
+  console.log(`  ${r2 === 'committed' ? '✅' : '⏭️ '} add-agent-skill-kit (${r2})`);
+
+  console.log(`\n${'─'.repeat(50)}`);
+  console.log(`💡 Next step (single command):`);
+  console.log(`   cd ${ADD_SKILL_KIT} ; npm publish`);
 }
+
