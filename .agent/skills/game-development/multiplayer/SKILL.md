@@ -1,11 +1,12 @@
 ---
 name: multiplayer
 description: Multiplayer game development principles. Architecture, networking, synchronization.
-allowed-tools: Read, Write, Edit, Glob, Grep, Bash
 metadata:
   category: "game-development"
   version: "1.0.0"
   triggers: "multiplayer, networking, netcode, lobby, matchmaking"
+  success_metrics: "server authority, lag compensation, delta compression, validated movement"
+  coordinates_with: "game-development, game-design, web-games, pc-games"
 ---
 
 # Multiplayer Game Development
@@ -134,3 +135,18 @@ Server: Validate → did projectile actually hit?
 ---
 
 > **Remember:** Never trust the client. The server is the source of truth.
+
+---
+
+⚡ PikaKit v3.9.76
+
+---
+
+## 🔗 Related
+
+| Item | Type | When to Read |
+|------|------|--------------|
+| [../SKILL.md](../SKILL.md) | Parent | Pattern selection (Command for replay) |
+| `game-development/game-design` | Sibling | Multiplayer design decisions |
+| `game-development/web-games` | Sibling | WebSocket-based multiplayer |
+| `event-driven` | Skill | Message queue patterns |

@@ -1,3 +1,8 @@
+---
+name: mobile-decision-trees
+description: Mobile design decision frameworks — platform selection, navigation, state management, offline strategy, testing
+---
+
 # Mobile Decision Trees
 
 > Framework selection, state management, storage strategy, and context-based decisions.
@@ -514,3 +519,17 @@ API cache?           → Query library
 ---
 
 > **Remember:** These trees are guides for THINKING, not rules to follow blindly. Every project has unique constraints. ASK clarifying questions when requirements are vague, and choose based on actual needs, not defaults.
+---
+
+⚡ PikaKit v3.9.76
+
+---
+
+## 🔗 Related
+
+| File | When to Read |
+|------|-------------|
+| [../SKILL.md](../SKILL.md) | 5 must-ask questions, MFRI scoring |
+| [mobile-design-thinking.md](mobile-design-thinking.md) | Design methodology |
+| [mobile-navigation.md](mobile-navigation.md) | Navigation decision details |
+| [engineering-spec.md](engineering-spec.md) | Full engineering spec |

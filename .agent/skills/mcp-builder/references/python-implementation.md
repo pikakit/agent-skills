@@ -1,6 +1,11 @@
+---
+name: mcp-python-implementation
+description: Python MCP server with FastMCP — tool annotations, error helpers, pagination, quality checklist
+---
+
 # Python MCP Server Implementation
 
-> Chi tiết triển khai MCP server bằng Python với FastMCP.
+> Detailed Python MCP server implementation with FastMCP.
 
 ---
 
@@ -222,3 +227,19 @@ npx @modelcontextprotocol/inspector python server.py
 - [ ] Actionable error messages
 - [ ] "concise" vs "detailed" format option
 - [ ] Environment variables for secrets
+
+---
+
+⚡ PikaKit v3.9.76
+
+---
+
+## 🔗 Related
+
+| File | When to Read |
+|------|-------------|
+| [../SKILL.md](../SKILL.md) | 4-phase build, review checklist |
+| [quickstart.md](quickstart.md) | Minimal Python setup |
+| [typescript-implementation.md](typescript-implementation.md) | TypeScript alternative |
+| [best-practices.md](best-practices.md) | Workflow design patterns |
+| [evaluation.md](evaluation.md) | Phase 4 testing |

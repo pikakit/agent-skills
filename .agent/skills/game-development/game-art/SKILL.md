@@ -1,11 +1,12 @@
 ---
 name: game-art
 description: Game art principles. Visual style selection, asset pipeline, animation workflow.
-allowed-tools: Read, Glob, Grep
 metadata:
   category: "game-development"
   version: "1.0.0"
   triggers: "game art, visual style, asset pipeline, animation, sprites"
+  success_metrics: "consistent art style, optimized atlases, readable silhouettes, proper naming"
+  coordinates_with: "game-development, 2d-games, 3d-games, ai-artist"
 ---
 
 # Game Art Principles
@@ -187,3 +188,19 @@ assets/
 ---
 
 > **Remember:** Art serves gameplay. If it doesn't help the player, it's decoration.
+
+---
+
+⚡ PikaKit v3.9.76
+
+---
+
+## 🔗 Related
+
+| Item | Type | When to Read |
+|------|------|--------------|
+| [../SKILL.md](../SKILL.md) | Parent | Game loop and pattern selection |
+| `game-development/2d-games` | Sibling | Sprite and tilemap systems |
+| `game-development/3d-games` | Sibling | 3D rendering and LOD |
+| `game-development/game-audio` | Sibling | Audio to complement visuals |
+| `ai-artist` | Skill | AI-generated game assets |

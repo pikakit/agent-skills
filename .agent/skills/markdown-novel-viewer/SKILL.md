@@ -5,7 +5,6 @@ description: >-
   Mermaid diagrams, plan navigation, directory browser.
   Triggers on: preview, markdown viewer, view plans, documentation.
   Coordinates with: plans-kanban, doc-templates.
-allowed-tools: Read, Write, Edit, Terminal
 metadata:
   version: "2.0.0"
   category: "tools"
@@ -59,19 +58,19 @@ npm install marked gray-matter
 
 ```bash
 # View a file
-node .agent/skills/markdown-novel-viewer/scripts/server.cjs \
+node .agent/skills/markdown-novel-viewer/scripts/server.js \
   --file ./README.md --open
 
 # Browse a directory
-node .agent/skills/markdown-novel-viewer/scripts/server.cjs \
+node .agent/skills/markdown-novel-viewer/scripts/server.js \
   --dir ./docs --open
 
 # Remote access
-node .agent/skills/markdown-novel-viewer/scripts/server.cjs \
+node .agent/skills/markdown-novel-viewer/scripts/server.js \
   --file ./plan.md --host 0.0.0.0 --open
 
 # Stop all servers
-node .agent/skills/markdown-novel-viewer/scripts/server.cjs --stop
+node .agent/skills/markdown-novel-viewer/scripts/server.js --stop
 ```
 
 ---
@@ -108,7 +107,6 @@ RUNNING → CRASHED            [unhandled error]  // terminal
 |-------|-------------|
 | `/view?file=<path>` | Markdown viewer |
 | `/browse?dir=<path>` | Directory browser |
-| `/assets/*` | Static assets |
 
 ---
 
@@ -129,7 +127,7 @@ RUNNING → CRASHED            [unhandled error]  // terminal
 |-----|--------|
 | `T` | Toggle theme |
 | `S` | Toggle sidebar |
-| `←` `→` | Navigate phases |
+| `←→` | Scroll page |
 | `Esc` | Close sidebar |
 
 ---
@@ -164,7 +162,7 @@ RUNNING → CRASHED            [unhandled error]  // terminal
 
 | File | Description | When to Read |
 |------|-------------|--------------|
-| [server.cjs](scripts/server.cjs) | Main server entry point | Implementation |
+| [server.js](scripts/server.js) | Main server entry point | Implementation |
 | [engineering-spec.md](references/engineering-spec.md) | Full engineering spec | Architecture review |
 
 ---
@@ -178,4 +176,4 @@ RUNNING → CRASHED            [unhandled error]  // terminal
 
 ---
 
-⚡ PikaKit v3.9.74
+⚡ PikaKit v3.9.76

@@ -73,7 +73,7 @@ The implementation:
 > Charts represent historical financial truth, not realtime excitement.
 > Realtime ticks MUST NEVER be injected into charts.
 
-From: `constitution/coinpika-master-constitution.md`
+From: Code Constitution — Master Laws
 
 ## Chart Data Doctrine
 
@@ -81,7 +81,7 @@ From: `constitution/coinpika-master-constitution.md`
 > 
 > If a user cannot distinguish historical from realtime, the system is broken.
 
-From: `doctrines/data/coinpika-chart-data-doctrine.md`
+From: Code Constitution — Data Integrity Doctrine
 
 ## Visual Separation Examples
 

@@ -40,6 +40,7 @@ metadata:
 | New CLI tool | Use `cli-tool` template |
 | New API-only backend | Use `express-api` or `python-fastapi` template |
 | New monorepo | Use `monorepo-turborepo` template |
+| New blog / docs site | Use `astro-static` template |
 | Add features to existing project | Read `feature-building.md` instead |
 
 **Selective Reading Rule:** Read ONLY the reference file or template matching the current request.
@@ -93,6 +94,7 @@ Read the matching template ONLY:
 | [chrome-extension](templates/chrome-extension/TEMPLATE.md) | Chrome MV3 | Browser extension |
 | [cli-tool](templates/cli-tool/TEMPLATE.md) | Node.js + Commander | CLI app |
 | [monorepo-turborepo](templates/monorepo-turborepo/TEMPLATE.md) | Turborepo + pnpm | Monorepo |
+| [astro-static](templates/astro-static/TEMPLATE.md) | Astro + MDX | Blog / Docs site |
 
 ---
 
@@ -154,4 +156,4 @@ Read the matching template ONLY:
 
 ---
 
-⚡ PikaKit v3.9.74
+⚡ PikaKit v3.9.76

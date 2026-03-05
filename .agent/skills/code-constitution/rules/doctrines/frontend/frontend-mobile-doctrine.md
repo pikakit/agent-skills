@@ -1,15 +1,15 @@
 ---
-name: coinpika-frontend-mobile-doctrine
+name: frontend-mobile-doctrine
 version: 1.0.0
 status: LOCKED
 authority: CONSTITUTIONAL
-parent: coinpika-architecture-doctrine
+parent: architecture-doctrine
 ---
 
-# 📱 CoinPika Frontend Mobile Doctrine  
+# 📱 PikaKit Frontend Mobile Doctrine  
 **(Mobile UX · Layout · Gesture Integrity Law)**
 
-This doctrine defines the **non-negotiable laws** governing how CoinPika’s
+This doctrine defines the **non-negotiable laws** governing how PikaKit’s
 mobile interface is structured, rendered, scrolled, and interacted with.
 
 Mobile UX is **NOT a collection of components**.  
@@ -22,7 +22,7 @@ the UI may render — but the system is **BROKEN**.
 
 ## 1. Mobile-First Law
 
-CoinPika is **mobile-first**, not mobile-compatible.
+PikaKit is **mobile-first**, not mobile-compatible.
 
 Mobile defines:
 
@@ -161,5 +161,5 @@ but violates these laws,
 
 **Status:** LOCKED
 **Version:** 1.0.0
-**Parent:** CoinPika Architecture Doctrine
+**Parent:** PikaKit Architecture Doctrine
 **Override Permission:** NONE

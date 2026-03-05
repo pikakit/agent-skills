@@ -5,9 +5,6 @@
  * ==================================
  * Analyzes project state, detects tech stack, tracks file statistics,
  * and provides a summary of the current session.
- * 
- * JavaScript port of session_manager.py
- * 
  * Usage:
  *   node session_manager.js status [path]
  *   node session_manager.js info [path]

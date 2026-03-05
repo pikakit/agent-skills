@@ -1,11 +1,12 @@
 ---
 name: 3d-games
 description: 3D game development principles. Rendering, shaders, physics, cameras.
-allowed-tools: Read, Write, Edit, Glob, Grep
 metadata:
   category: "game-development"
   version: "1.0.0"
   triggers: "3D game, rendering, shaders, meshes, cameras"
+  success_metrics: "frustum culling, LOD strategy, simplified colliders, baked shadows"
+  coordinates_with: "game-development, shader, game-art, pc-games"
 ---
 
 # 3D Game Development
@@ -137,3 +138,18 @@ metadata:
 ---
 
 > **Remember:** 3D is about illusion. Create the impression of detail, not the detail itself.
+
+---
+
+⚡ PikaKit v3.9.76
+
+---
+
+## 🔗 Related
+
+| Item | Type | When to Read |
+|------|------|--------------|
+| [../SKILL.md](../SKILL.md) | Parent | Game loop, perf budget, pattern selection |
+| `game-development/2d-games` | Sibling | If project has 2D elements |
+| `game-development/game-art` | Sibling | Visual style and asset pipeline |
+| `shader` | Skill | Custom GLSL shader programming |

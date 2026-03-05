@@ -1,190 +1,356 @@
 #!/usr/bin/env node
 /**
- * Schema Validator - Database schema validation
- * Validates Prisma schemas and checks for common issues.
+ * Schema Validator v2.0.0
+ * Skill: data-modeler
+ *
+ * Validates Prisma and Drizzle schemas for common issues.
  *
  * Usage:
- *     node schema_validator.js <project_path>
+ *   node schema_validator.js <project_path>
+ *   node schema_validator.js <project_path> --json
  *
  * Checks:
- *     - Prisma schema syntax
- *     - Missing relations
- *     - Index recommendations
- *     - Naming conventions
+ *   - Prisma schema: model naming, @id, timestamps, FK indexes, enum naming
+ *   - Drizzle schema: table naming, primaryKey, timestamps, index hints
+ *
+ * Flags:
+ *   --json     Output as JSON only
+ *   --help     Show help
+ *   --version  Show version
  */
 
-import { readFileSync, readdirSync, existsSync } from 'fs';
-import { resolve, relative, extname } from 'path';
+import { readFile, readdir, stat } from 'node:fs/promises';
+import { resolve, extname } from 'node:path';
 
-const SKIP_DIRS = new Set(['node_modules', '.git', 'dist', 'build', '__pycache__']);
+const VERSION = '2.0.0';
+const SKIP_DIRS = new Set(['node_modules', '.git', 'dist', 'build', '__pycache__', '.next', '.nuxt']);
+const MAX_SCHEMA_FILES = 10;
 
-function findSchemaFiles(projectPath) {
-    const schemas = [];
+// --- CLI ---
 
-    function walk(dir) {
-        try {
-            const entries = readdirSync(dir, { withFileTypes: true });
-            for (const entry of entries) {
-                if (SKIP_DIRS.has(entry.name)) continue;
-                const fullPath = resolve(dir, entry.name);
+const args = process.argv.slice(2);
+const jsonMode = args.includes('--json');
+const filteredArgs = args.filter(a => !a.startsWith('--'));
 
-                if (entry.isDirectory()) {
-                    walk(fullPath);
-                } else {
-                    // Prisma schema
-                    if (entry.name === 'schema.prisma') {
-                        schemas.push(['prisma', fullPath]);
-                    }
-                    // Drizzle schema
-                    if ((entry.name.includes('schema') || entry.name.includes('table')) &&
-                        extname(entry.name) === '.ts') {
-                        schemas.push(['drizzle', fullPath]);
-                    }
-                }
-            }
-        } catch { /* ignore */ }
-    }
+function showHelp() {
+    console.log(`Schema Validator v${VERSION}
 
-    walk(projectPath);
-    return schemas.slice(0, 10);
+Usage: node schema_validator.js <project_path> [options]
+
+Options:
+  --json       Output as JSON only
+  --help       Show this help
+  --version    Show version
+
+Checks:
+  Prisma: model PascalCase, @id present, createdAt/updatedAt, FK indexes, enum naming
+  Drizzle: table definition, primaryKey call, timestamp columns, index hints`);
 }
 
-function validatePrismaSchema(filePath) {
+// --- File Discovery ---
+
+async function findSchemaFiles(projectPath) {
+    const schemas = [];
+
+    async function walk(dir, depth = 0) {
+        if (depth > 8 || schemas.length >= MAX_SCHEMA_FILES) return;
+
+        let entries;
+        try {
+            entries = await readdir(dir, { withFileTypes: true });
+        } catch (err) {
+            if (!jsonMode) console.warn(`[WARN] Cannot read directory: ${dir} (${err.code})`);
+            return;
+        }
+
+        for (const entry of entries) {
+            if (SKIP_DIRS.has(entry.name)) continue;
+            const fullPath = resolve(dir, entry.name);
+
+            if (entry.isDirectory()) {
+                await walk(fullPath, depth + 1);
+            } else if (entry.name === 'schema.prisma') {
+                schemas.push({ type: 'prisma', path: fullPath, name: entry.name });
+            } else if (
+                (entry.name.includes('schema') || entry.name.includes('table')) &&
+                extname(entry.name) === '.ts' &&
+                !entry.name.endsWith('.d.ts')
+            ) {
+                schemas.push({ type: 'drizzle', path: fullPath, name: entry.name });
+            }
+        }
+    }
+
+    await walk(projectPath);
+    return schemas;
+}
+
+// --- Prisma Validation ---
+
+async function validatePrisma(filePath) {
     const issues = [];
+    let content;
 
     try {
-        const content = readFileSync(filePath, 'utf-8');
+        content = await readFile(filePath, 'utf-8');
+    } catch (err) {
+        issues.push({ rule: 'FILE_READ', severity: 'error', message: `Cannot read file: ${err.message}` });
+        return issues;
+    }
 
-        // Find all models
-        const modelRegex = /model\s+(\w+)\s*{([^}]+)}/g;
-        let match;
+    const modelRegex = /model\s+(\w+)\s*\{([^}]+)\}/g;
+    let match;
 
-        while ((match = modelRegex.exec(content)) !== null) {
-            const modelName = match[1];
-            const modelBody = match[2];
+    while ((match = modelRegex.exec(content)) !== null) {
+        const modelName = match[1];
+        const modelBody = match[2];
 
-            // Check naming convention (PascalCase)
-            if (modelName[0] !== modelName[0].toUpperCase()) {
-                issues.push(`Model '${modelName}' should be PascalCase`);
-            }
-
-            // Check for id field
-            if (!modelBody.includes('@id') && !modelBody.toLowerCase().includes('id')) {
-                issues.push(`Model '${modelName}' might be missing @id field`);
-            }
-
-            // Check for createdAt/updatedAt
-            if (!modelBody.includes('createdAt') && !modelBody.includes('created_at')) {
-                issues.push(`Model '${modelName}' missing createdAt field (recommended)`);
-            }
-
-            // Check for foreign key index suggestions
-            const fkRegex = /(\w+Id)\s+\w+/g;
-            let fkMatch;
-            while ((fkMatch = fkRegex.exec(modelBody)) !== null) {
-                const fk = fkMatch[1];
-                if (!content.includes(`@@index([${fk}])`) && !content.includes(`@@index(["${fk}"])`)) {
-                    issues.push(`Consider adding @@index([${fk}]) for better query performance in ${modelName}`);
-                }
-            }
+        // PascalCase check
+        if (!/^[A-Z][a-zA-Z0-9]*$/.test(modelName)) {
+            issues.push({
+                rule: 'PRISMA_MODEL_NAMING',
+                severity: 'error',
+                message: `Model '${modelName}' should be PascalCase`,
+            });
         }
 
-        // Check enum definitions
-        const enumRegex = /enum\s+(\w+)\s*{/g;
-        while ((match = enumRegex.exec(content)) !== null) {
-            const enumName = match[1];
-            if (enumName[0] !== enumName[0].toUpperCase()) {
-                issues.push(`Enum '${enumName}' should be PascalCase`);
-            }
+        // @id field check
+        if (!modelBody.includes('@id') && !modelBody.includes('@@id')) {
+            issues.push({
+                rule: 'PRISMA_MISSING_ID',
+                severity: 'error',
+                message: `Model '${modelName}' missing @id or @@id field`,
+            });
         }
 
-    } catch (e) {
-        issues.push(`Error reading schema: ${e.message.slice(0, 50)}`);
+        // createdAt check
+        if (!modelBody.includes('createdAt') && !modelBody.includes('created_at')) {
+            issues.push({
+                rule: 'PRISMA_MISSING_CREATED_AT',
+                severity: 'warning',
+                message: `Model '${modelName}' missing createdAt/created_at timestamp`,
+            });
+        }
+
+        // updatedAt check
+        if (!modelBody.includes('updatedAt') && !modelBody.includes('updated_at')) {
+            issues.push({
+                rule: 'PRISMA_MISSING_UPDATED_AT',
+                severity: 'warning',
+                message: `Model '${modelName}' missing updatedAt/updated_at timestamp`,
+            });
+        }
+
+        // FK index suggestions (camelCase + snake_case)
+        const fkRegex = /(\w+(?:Id|_id))\s+String/g;
+        let fkMatch;
+        while ((fkMatch = fkRegex.exec(modelBody)) !== null) {
+            const fk = fkMatch[1];
+            if (!content.includes(`@@index([${fk}])`) && !content.includes(`@@index(["${fk}"])`)) {
+                issues.push({
+                    rule: 'PRISMA_MISSING_FK_INDEX',
+                    severity: 'warning',
+                    message: `Consider @@index([${fk}]) in ${modelName} for query performance`,
+                });
+            }
+        }
+    }
+
+    // Enum naming check
+    const enumRegex = /enum\s+(\w+)\s*\{/g;
+    while ((match = enumRegex.exec(content)) !== null) {
+        if (!/^[A-Z][a-zA-Z0-9]*$/.test(match[1])) {
+            issues.push({
+                rule: 'PRISMA_ENUM_NAMING',
+                severity: 'error',
+                message: `Enum '${match[1]}' should be PascalCase`,
+            });
+        }
     }
 
     return issues;
 }
 
-function main() {
-    const projectPath = resolve(process.argv[2] || '.');
+// --- Drizzle Validation ---
 
-    console.log(`\n${'='.repeat(60)}`);
-    console.log('[SCHEMA VALIDATOR] Database Schema Validation');
-    console.log('='.repeat(60));
-    console.log(`Project: ${projectPath}`);
-    console.log(`Time: ${new Date().toISOString()}`);
-    console.log('-'.repeat(60));
+async function validateDrizzle(filePath) {
+    const issues = [];
+    let content;
 
-    // Find schema files
-    const schemas = findSchemaFiles(projectPath);
-    console.log(`Found ${schemas.length} schema files`);
-
-    if (schemas.length === 0) {
-        const output = {
-            script: 'schema_validator',
-            project: projectPath,
-            schemas_checked: 0,
-            issues_found: 0,
-            passed: true,
-            message: 'No schema files found'
-        };
-        console.log(JSON.stringify(output, null, 2));
-        process.exit(0);
+    try {
+        content = await readFile(filePath, 'utf-8');
+    } catch (err) {
+        issues.push({ rule: 'FILE_READ', severity: 'error', message: `Cannot read file: ${err.message}` });
+        return issues;
     }
 
-    // Validate each schema
-    const allIssues = [];
+    // Check for table definitions
+    const tableRegex = /(?:pgTable|sqliteTable|mysqlTable)\(\s*['"](\w+)['"]/g;
+    let match;
+    const tables = [];
 
-    for (const [schemaType, filePath] of schemas) {
-        const basename = filePath.split(/[/\\]/).pop();
-        console.log(`\nValidating: ${basename} (${schemaType})`);
+    while ((match = tableRegex.exec(content)) !== null) {
+        tables.push(match[1]);
+    }
 
-        let issues = [];
-        if (schemaType === 'prisma') {
-            issues = validatePrismaSchema(filePath);
-        }
-        // Drizzle validation could be added
+    if (tables.length === 0) return issues; // Not a schema file
 
-        if (issues.length > 0) {
-            allIssues.push({
-                file: basename,
-                type: schemaType,
-                issues: issues
+    for (const tableName of tables) {
+        // snake_case check for table names
+        if (tableName !== tableName.toLowerCase()) {
+            issues.push({
+                rule: 'DRIZZLE_TABLE_NAMING',
+                severity: 'warning',
+                message: `Table '${tableName}' should be snake_case`,
             });
         }
     }
 
-    // Summary
-    console.log('\n' + '='.repeat(60));
-    console.log('SCHEMA ISSUES');
-    console.log('='.repeat(60));
-
-    if (allIssues.length > 0) {
-        for (const item of allIssues) {
-            console.log(`\n${item.file} (${item.type}):`);
-            item.issues.slice(0, 5).forEach(issue => console.log(`  - ${issue}`));
-            if (item.issues.length > 5) {
-                console.log(`  ... and ${item.issues.length - 5} more issues`);
-            }
-        }
-    } else {
-        console.log('No schema issues found!');
+    // Check for primaryKey
+    if (!content.includes('primaryKey') && !content.includes('.primaryKey()')) {
+        issues.push({
+            rule: 'DRIZZLE_MISSING_PK',
+            severity: 'error',
+            message: 'No primaryKey() found — every table needs a primary key',
+        });
     }
 
-    const totalIssues = allIssues.reduce((sum, item) => sum + item.issues.length, 0);
+    // Check for timestamps
+    if (!content.includes('created_at') && !content.includes('createdAt')) {
+        issues.push({
+            rule: 'DRIZZLE_MISSING_CREATED_AT',
+            severity: 'warning',
+            message: 'No created_at/createdAt column found — recommended for all tables',
+        });
+    }
+
+    // Check for withTimezone (TIMESTAMPTZ)
+    if (content.includes('timestamp(') && !content.includes('withTimezone')) {
+        issues.push({
+            rule: 'DRIZZLE_NO_TIMEZONE',
+            severity: 'warning',
+            message: 'timestamp() without { withTimezone: true } — use TIMESTAMPTZ',
+        });
+    }
+
+    return issues;
+}
+
+// --- Main ---
+
+async function main() {
+    if (args.includes('--version')) {
+        console.log(VERSION);
+        return;
+    }
+    if (args.includes('--help') || filteredArgs.length === 0) {
+        showHelp();
+        return;
+    }
+
+    const projectPath = resolve(filteredArgs[0]);
+
+    try {
+        await stat(projectPath);
+    } catch {
+        console.error(`[ERROR] Path does not exist: ${projectPath}`);
+        process.exit(1);
+    }
+
+    if (!jsonMode) {
+        console.log(`\n${'='.repeat(60)}`);
+        console.log('[SCHEMA VALIDATOR] Database Schema Validation v' + VERSION);
+        console.log('='.repeat(60));
+        console.log(`Project: ${projectPath}`);
+        console.log(`Time: ${new Date().toISOString()}`);
+        console.log('-'.repeat(60));
+    }
+
+    const schemas = await findSchemaFiles(projectPath);
+
+    if (schemas.length === 0) {
+        const output = {
+            script: 'schema_validator',
+            version: VERSION,
+            project: projectPath,
+            schemas_checked: 0,
+            errors: 0,
+            warnings: 0,
+            passed: true,
+            message: 'No schema files found',
+        };
+        if (jsonMode) {
+            console.log(JSON.stringify(output, null, 2));
+        } else {
+            console.log('No schema files found.');
+            console.log('\n' + JSON.stringify(output, null, 2));
+        }
+        return;
+    }
+
+    if (!jsonMode) console.log(`Found ${schemas.length} schema file(s)`);
+
+    const allResults = [];
+
+    for (const schema of schemas) {
+        if (!jsonMode) console.log(`\nValidating: ${schema.name} (${schema.type})`);
+
+        const issues = schema.type === 'prisma'
+            ? await validatePrisma(schema.path)
+            : await validateDrizzle(schema.path);
+
+        if (issues.length > 0) {
+            allResults.push({ file: schema.name, type: schema.type, issues });
+        }
+
+        if (!jsonMode && issues.length > 0) {
+            for (const issue of issues.slice(0, 8)) {
+                const icon = issue.severity === 'error' ? '[ERROR]' : '[WARN]';
+                console.log(`  ${icon} ${issue.rule}: ${issue.message}`);
+            }
+            if (issues.length > 8) {
+                console.log(`  ... and ${issues.length - 8} more issues`);
+            }
+        } else if (!jsonMode) {
+            console.log('  [OK] No issues found');
+        }
+    }
+
+    const totalErrors = allResults.reduce(
+        (sum, r) => sum + r.issues.filter(i => i.severity === 'error').length, 0,
+    );
+    const totalWarnings = allResults.reduce(
+        (sum, r) => sum + r.issues.filter(i => i.severity === 'warning').length, 0,
+    );
 
     const output = {
         script: 'schema_validator',
+        version: VERSION,
         project: projectPath,
         schemas_checked: schemas.length,
-        issues_found: totalIssues,
-        passed: true, // Schema issues are warnings
-        issues: allIssues
+        errors: totalErrors,
+        warnings: totalWarnings,
+        passed: totalErrors === 0,
+        results: allResults,
     };
+
+    if (!jsonMode) {
+        console.log('\n' + '='.repeat(60));
+        console.log(`RESULT: ${output.passed ? 'PASSED' : 'FAILED'} | ${totalErrors} errors, ${totalWarnings} warnings`);
+        console.log('='.repeat(60));
+    }
 
     console.log('\n' + JSON.stringify(output, null, 2));
 
-    process.exit(0);
+    process.exit(totalErrors > 0 ? 1 : 0);
 }
 
-main();
+main().catch(err => {
+    const error = { status: 'error', code: 'ERR_UNEXPECTED', message: err.message };
+    if (jsonMode) {
+        console.error(JSON.stringify(error));
+    } else {
+        console.error(`[FATAL] ${err.message}`);
+    }
+    process.exit(1);
+});

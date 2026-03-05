@@ -1,3 +1,8 @@
+---
+name: ai-artist-engineering-spec
+description: Full 21-section engineering spec — contracts, deterministic design, compliance matrix, production checklist
+---
+
 # AI Artist — Engineering Specification
 
 > Production-grade specification for AI prompt engineering across text and image generation models at FAANG scale.
@@ -491,4 +496,16 @@ AI Artist maintains zero persistent state. Every invocation starts from a clean 
 
 ---
 
-⚡ PikaKit v3.9.74
+⚡ PikaKit v3.9.76
+
+---
+
+## 🔗 Related
+
+| File | When to Read |
+|------|-------------|
+| [image-prompts.md](image-prompts.md) | Image generation techniques |
+| [domain-marketing.md](domain-marketing.md) | Marketing copy patterns |
+| [domain-code.md](domain-code.md) | Code generation patterns |
+| [model-syntax.md](model-syntax.md) | Model-specific parameters |
+| [../SKILL.md](../SKILL.md) | Quick reference and anti-patterns |

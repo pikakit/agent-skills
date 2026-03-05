@@ -1,3 +1,8 @@
+---
+name: model-syntax
+description: Model-specific parameters — Midjourney, DALL-E 3, Stable Diffusion, Flux, Imagen/Veo
+---
+
 # Model-Specific Syntax
 
 > Parameters and syntax for different AI image models.
@@ -93,4 +98,14 @@ purple sky, volumetric lighting, movie quality
 
 ---
 
-⚡ PikaKit v3.9.74
+⚡ PikaKit v3.9.76
+
+---
+
+## 🔗 Related
+
+| File | When to Read |
+|------|-------------|
+| [image-prompts.md](image-prompts.md) | Image prompt techniques and recipes |
+| [domain-code.md](domain-code.md) | Code generation prompt patterns |
+| [../SKILL.md](../SKILL.md) | Supported models quick reference |

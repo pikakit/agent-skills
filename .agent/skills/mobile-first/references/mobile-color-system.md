@@ -1,3 +1,8 @@
+---
+name: mobile-color-system
+description: OLED optimization, dark mode, battery-aware colors, outdoor visibility, and color accessibility
+---
+
 # Mobile Color System Reference
 
 > OLED optimization, dark mode, battery-aware colors, and outdoor visibility.
@@ -418,3 +423,14 @@ Ideal:       7:1 (AAA)
 ---
 
 > **Remember:** Color on mobile must work in the worst conditions—bright sun, tired eyes, colorblindness, low battery. Pretty colors that fail these tests are useless colors.
+
+---
+
+## 🔗 Related
+
+| File | When to Read |
+|------|-------------|
+| [platform-ios.md](platform-ios.md) | iOS semantic colors, dark mode |
+| [platform-android.md](platform-android.md) | Material You dynamic color |
+| [mobile-typography.md](mobile-typography.md) | Text contrast requirements |
+| [touch-psychology.md](touch-psychology.md) | Visual feedback patterns |

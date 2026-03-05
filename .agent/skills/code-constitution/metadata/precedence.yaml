@@ -1,4 +1,4 @@
-# CoinPika Doctrine Precedence Map
+# Doctrine Precedence Map
 # Defines absolute authority order for conflict resolution.
 # Higher precedence ALWAYS overrides lower precedence.
 # No implicit override is permitted.
@@ -8,7 +8,7 @@ status: LOCKED
 authority: SUPREME
 
 precedence:
-  - id: coinpika-master-constitution
+  - id: master-constitution
     level: 0
     authority: supreme
     description: >
@@ -16,81 +16,81 @@ precedence:
       Overrides all doctrines, skills, enforcement rules,
       agent behavior, and developer preference.
 
-  - id: coinpika-architecture-doctrine
+  - id: architecture-doctrine
     level: 1
     authority: constitutional
     description: >
       System-wide architectural boundaries, ownership,
       scalability invariants, and dependency direction.
 
-  - id: coinpika-backend-data-engine-doctrine
+  - id: backend-data-engine-doctrine
     level: 2
     authority: constitutional
     description: >
       Backend truth ownership, ingestion taxonomy,
       persistence, caching, and cost control laws.
 
-  - id: coinpika-chart-data-doctrine
+  - id: data-integrity-doctrine
     level: 3
     authority: constitutional
     description: >
-      Financial data integrity, historical immutability,
-      and chart truth enforcement.
+      Data integrity, historical immutability,
+      and truth enforcement.
 
-  - id: coinpika-commercial-guardrails-doctrine
+  - id: commercial-guardrails-doctrine
     level: 4
     authority: constitutional
     description: >
       Enterprise safety, legal exposure,
       blast radius control, and business continuity rules.
 
-  - id: coinpika-performance-doctrine
+  - id: performance-doctrine
     level: 5
     authority: constitutional
     description: >
       User-perceived performance, visual stability,
       cache-first rendering, and trust preservation.
 
-  - id: coinpika-frontend-mobile-doctrine
+  - id: frontend-mobile-doctrine
     level: 6
     authority: constitutional
     description: >
       Mobile-first layout invariants, scroll ownership,
       and structural UX rules.
 
-  - id: coinpika-swipe-tabs-doctrine
+  - id: interaction-patterns-doctrine
     level: 7
     authority: constitutional
     description: >
-      Universal swipe-tab architecture,
+      Universal interaction architecture,
       gesture arbitration, and navigation consistency.
 
-  - id: coinpika-code-review-doctrine
+  - id: code-review-doctrine
     level: 8
     authority: enforcement
     description: >
       Review authority, rejection rules,
       and enforcement of architectural law.
 
-  - id: coinpika-learning-engine-doctrine
+  - id: learning-engine-doctrine
     level: 9
     authority: controlled-learning
     description: >
       Controlled reasoning improvement,
       learning boundaries, and rollback rules.
 
-  - id: coinpika-agent-enforcement-protocol
+  - id: agent-enforcement-protocol
     level: 10
     authority: enforcement
     description: >
       AI agent permission model,
       compliance enforcement, and shutdown rules.
 
-  - id: coinpika-frontend-gesture-review-checklist
+  - id: frontend-review-checklist
     level: 11
     authority: enforcement
     description: >
-      Hard merge gate for frontend gesture
+      Hard merge gate for frontend interaction
       and scroll-related changes.
 
   - id: developer-or-agent-preference

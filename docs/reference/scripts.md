@@ -15,7 +15,7 @@ These scripts remain in Python for specialized tooling:
 | Script                 | Skill            | Purpose                |
 | ---------------------- | ---------------- | ---------------------- |
 | `security_scan.py`     | security-scanner | OWASP security audit   |
-| `lint_runner.py`       | code-quality     | Run linting tools      |
+| `lint_runner.js`       | code-review      | Run linting tools      |
 | `schema_validator.py`  | data-modeler     | Validate DB schemas    |
 | `ux_audit.py`          | design-system    | UX accessibility check |
 | `seo_checker.py`       | seo-optimizer    | SEO validation         |

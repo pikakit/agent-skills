@@ -1,3 +1,8 @@
+---
+name: data-fetching
+description: TanStack Query patterns — useSuspenseQuery, mutations, query keys, API service layer
+---
+
 # Data Fetching with TanStack Query
 
 > Use `useSuspenseQuery` - data is guaranteed, no null checks.
@@ -110,4 +115,15 @@ export const postsApi = {
 
 ---
 
-⚡ PikaKit v3.9.74
+⚡ PikaKit v3.9.76
+
+---
+
+## 🔗 Related
+
+| File | When to Read |
+|------|-------------|
+| [component-patterns.md](component-patterns.md) | Component structure using useSuspenseQuery |
+| [performance.md](performance.md) | Lazy loading and memoization |
+| [file-organization.md](file-organization.md) | Where to place api/ services |
+| [../SKILL.md](../SKILL.md) | No early returns rule |

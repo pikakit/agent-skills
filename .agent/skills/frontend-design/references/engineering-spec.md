@@ -1,3 +1,8 @@
+---
+name: frontend-design-engineering-spec
+description: Full 21-section engineering spec — contracts, anti-slop enforcement, compliance matrix, production checklist
+---
+
 # Frontend Design — Engineering Specification
 
 > Production-grade specification for distinctive frontend interface design decisions at FAANG scale.
@@ -452,4 +457,17 @@ All resources scoped to invocation. No persistent handles.
 
 ---
 
-⚡ PikaKit v3.9.74
+⚡ PikaKit v3.9.76
+
+---
+
+## 🔗 Related
+
+| File | When to Read |
+|------|-------------|
+| [typography.md](typography.md) | Font pairings and scale |
+| [color-systems.md](color-systems.md) | Color commitment strategy |
+| [motion-design.md](motion-design.md) | Animation choreography |
+| [spatial-composition.md](spatial-composition.md) | Layout innovation |
+| [design-extraction.md](design-extraction.md) | Screenshot analysis |
+| [../SKILL.md](../SKILL.md) | Quick reference and anti-slop bans |

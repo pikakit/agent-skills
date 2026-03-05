@@ -1,5 +1,9 @@
 # ArgoCD Setup and Configuration
 
+> Installation, access, SSO, and RBAC configuration for ArgoCD.
+
+---
+
 ## Installation Methods
 
 ### 1. Standard Installation
@@ -132,3 +136,7 @@ data:
 8. Configure health checks
 9. Use sync windows for maintenance
 10. Monitor with Prometheus metrics
+
+---
+
+⚡ PikaKit v3.9.76

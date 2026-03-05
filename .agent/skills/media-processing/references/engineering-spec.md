@@ -1,3 +1,8 @@
+---
+name: media-processing-engineering-spec
+description: Full 21-section engineering spec — 3-tool routing, CRF quality guide, RMBG model selection, destructive warnings
+---
+
 # Media Processing — Engineering Specification
 
 > Production-grade specification for multimedia processing with FFmpeg, ImageMagick, and RMBG at FAANG scale.
@@ -428,4 +433,16 @@ All resources scoped to invocation. No persistent handles.
 
 ---
 
-⚡ PikaKit v3.9.74
+⚡ PikaKit v3.9.76
+
+---
+
+## 🔗 Related
+
+| File | When to Read |
+|------|-------------|
+| [../SKILL.md](../SKILL.md) | Quick reference, CRF guide, RMBG models |
+| [../scripts/convert-video.js](../scripts/convert-video.js) | FFmpeg video converter script |
+| [../scripts/optimize-image.js](../scripts/optimize-image.js) | ImageMagick image optimizer script |
+| `perf-optimizer` | Performance profiling |
+| `studio` | Design assets |

@@ -1,15 +1,15 @@
 ---
-name: coinpika-architecture-doctrine
+name: architecture-doctrine
 version: 1.0.0
 status: LOCKED
 authority: CONSTITUTIONAL
-parent: coinpika-master-constitution
+parent: master-constitution
 ---
 
-# 🏛️ CoinPika Architecture Doctrine  
+# 🏛️ PikaKit Architecture Doctrine  
 **(System Architecture & Boundary Law)**
 
-This doctrine defines the **architectural laws** governing how CoinPika is
+This doctrine defines the **architectural laws** governing how PikaKit is
 structured, scaled, and evolved.
 
 Architecture exists to:
@@ -24,7 +24,7 @@ the system may appear functional — **but it is already broken**.
 
 ## 1. Architectural Intent
 
-CoinPika is a **data-trust platform**, not a feature-driven application.
+PikaKit is a **data-trust platform**, not a feature-driven application.
 
 The architecture prioritizes:
 - Correctness over speed
@@ -170,7 +170,7 @@ This doctrine overrides:
 - Tooling constraints
 - Short-term optimization goals
 
-CoinPika architecture exists to protect:
+PikaKit architecture exists to protect:
 
 **Long-term trust · Correctness · Scalability**
 
@@ -180,5 +180,5 @@ Not developer convenience.
 
 **Status:** LOCKED  
 **Version:** 1.0.0  
-**Parent:** CoinPika Master Constitution  
+**Parent:** PikaKit Master Constitution  
 **Override Permission:** NONE  

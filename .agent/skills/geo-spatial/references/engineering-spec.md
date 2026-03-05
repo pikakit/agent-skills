@@ -1,3 +1,8 @@
+---
+name: geo-spatial-engineering-spec
+description: Full 21-section engineering spec — AI engine citation contracts, 7-item GEO checklist, crawler management
+---
+
 # GEO (Generative Engine Optimization) — Engineering Specification
 
 > Production-grade specification for AI search engine visibility and citation strategies at FAANG scale.
@@ -440,4 +445,15 @@ GEO checker opens file handles for scanning and closes them before returning.
 
 ---
 
-⚡ PikaKit v3.9.74
+⚡ PikaKit v3.9.76
+
+---
+
+## 🔗 Related
+
+| File | When to Read |
+|------|-------------|
+| [../SKILL.md](../SKILL.md) | Quick reference, 7-item checklist, anti-patterns |
+| [../scripts/geo_checker.js](../scripts/geo_checker.js) | Automated GEO audit script |
+| `seo-optimizer` | Traditional SEO (complementary) |
+| `copywriting` | Content creation for AI citations |

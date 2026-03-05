@@ -1,3 +1,8 @@
+---
+name: cdn
+description: CDN and edge caching — Cache-Control headers, cache busting, Vary, purge/invalidation
+---
+
 # CDN & Edge Caching
 
 > Global content delivery and edge caching strategies.
@@ -135,4 +140,15 @@ export async function POST(req: Request) {
 
 ---
 
-⚡ PikaKit v3.9.74
+⚡ PikaKit v3.9.76
+
+---
+
+## 🔗 Related
+
+| File | When to Read |
+|------|-------------|
+| [redis.md](redis.md) | Application cache behind CDN |
+| [browser-cache.md](browser-cache.md) | Browser cache below CDN |
+| [application-cache.md](application-cache.md) | In-memory app caching |
+| [SKILL.md](../SKILL.md) | Cache layer decision tree |

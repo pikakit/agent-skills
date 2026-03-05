@@ -1,11 +1,12 @@
 ---
 name: game-design
 description: Game design principles. GDD structure, balancing, player psychology, progression.
-allowed-tools: Read, Glob, Grep
 metadata:
   category: "game-development"
   version: "1.0.0"
   triggers: "game design, GDD, balancing, player psychology, progression"
+  success_metrics: "fun 30s loop, living GDD, flow state, playtested difficulty"
+  coordinates_with: "game-development, game-art, game-audio, multiplayer"
 ---
 
 # Game Design Principles
@@ -131,3 +132,18 @@ Just Right → Flow → Engagement
 ---
 
 > **Remember:** Fun is discovered through iteration, not designed on paper.
+
+---
+
+⚡ PikaKit v3.9.76
+
+---
+
+## 🔗 Related
+
+| Item | Type | When to Read |
+|------|------|--------------|
+| [../SKILL.md](../SKILL.md) | Parent | Pattern selection, AI types |
+| `game-development/game-art` | Sibling | Visual design for gameplay |
+| `game-development/game-audio` | Sibling | Audio feedback for core loop |
+| `game-development/multiplayer` | Sibling | Multiplayer design considerations |

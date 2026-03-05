@@ -51,7 +51,14 @@ metadata:
 | Typography | 57 | `data/typography.csv` |
 | UX Guidelines | 99 | `data/ux-guidelines.csv` |
 | Charts | 25 | `data/charts.csv` |
-| Stacks | 9 | `data/` |
+| Icons | — | `data/icons.csv` |
+| Landing Pages | — | `data/landing.csv` |
+| Products | — | `data/products.csv` |
+| Prompts | — | `data/prompts.csv` |
+| React Performance | — | `data/react-performance.csv` |
+| UI Reasoning | — | `data/ui-reasoning.csv` |
+| Web Interface | — | `data/web-interface.csv` |
+| Stacks | 12 | `data/stacks/*.csv` (React, Next.js, Vue, Nuxt, Svelte, Flutter, SwiftUI, etc.) |
 
 ---
 
@@ -143,4 +150,4 @@ node .agent/skills/studio/scripts-js/search.js "modern tech" --category typograp
 
 ---
 
-⚡ PikaKit v3.9.74
+⚡ PikaKit v3.9.76

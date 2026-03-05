@@ -158,6 +158,8 @@ rmbg input.jpg -m briaai -o output.png   # Highest quality
 
 | File | Description | When to Read |
 |------|-------------|--------------|
+| [convert-video.js](scripts/convert-video.js) | FFmpeg video converter CLI | Video conversion |
+| [optimize-image.js](scripts/optimize-image.js) | ImageMagick image optimizer CLI | Image optimization |
 | [engineering-spec.md](references/engineering-spec.md) | Full engineering spec | Architecture review |
 
 ---
@@ -171,4 +173,4 @@ rmbg input.jpg -m briaai -o output.png   # Highest quality
 
 ---
 
-⚡ PikaKit v3.9.74
+⚡ PikaKit v3.9.76

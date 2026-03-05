@@ -1,3 +1,8 @@
+---
+name: domain-code
+description: Code generation prompt patterns — function gen, code review, refactoring, debugging, API design
+---
+
 # Code Generation Prompt Patterns
 
 > Templates for generating code with AI.
@@ -96,4 +101,14 @@ function processPayment(amount: number, currency: string): PaymentResult
 
 ---
 
-⚡ PikaKit v3.9.74
+⚡ PikaKit v3.9.76
+
+---
+
+## 🔗 Related
+
+| File | When to Read |
+|------|-------------|
+| [domain-marketing.md](domain-marketing.md) | Marketing copy prompt patterns |
+| [model-syntax.md](model-syntax.md) | Model-specific parameters |
+| [../SKILL.md](../SKILL.md) | LLM prompt pattern and anti-patterns |

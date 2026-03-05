@@ -1,3 +1,8 @@
+---
+name: frontend-development-engineering-spec
+description: Full 21-section engineering spec — contracts, Suspense-first rules, compliance matrix, production checklist
+---
+
 # Frontend Development — Engineering Specification
 
 > Production-grade specification for modern React + TypeScript + TanStack Query + MUI v7 development patterns at FAANG scale.
@@ -428,4 +433,17 @@ All resources scoped to invocation. No persistent handles.
 
 ---
 
-⚡ PikaKit v3.9.74
+⚡ PikaKit v3.9.76
+
+---
+
+## 🔗 Related
+
+| File | When to Read |
+|------|-------------|
+| [component-patterns.md](component-patterns.md) | Component structure |
+| [data-fetching.md](data-fetching.md) | TanStack Query patterns |
+| [file-organization.md](file-organization.md) | Features directory |
+| [mui-styling.md](mui-styling.md) | MUI v7 styling |
+| [performance.md](performance.md) | Lazy loading and memo |
+| [../SKILL.md](../SKILL.md) | Quick reference and core rules |

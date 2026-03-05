@@ -1,14 +1,14 @@
 ---
-name: coinpika-master-constitution
+name: master-constitution
 version: 1.0.0
 status: LOCKED
 authority: SUPREME
 ---
 
-# 👑 CoinPika Master Constitution  
+# 👑 PikaKit Master Constitution  
 **(Supreme Engineering Constitution)**
 
-This document is the **highest authority** governing how CoinPika is designed,
+This document is the **highest authority** governing how PikaKit is designed,
 built, reviewed, scaled, and evolved.
 
 It represents the standards of **world-class, long-lived systems**
@@ -101,7 +101,7 @@ Realtime ticks MUST NEVER be injected into charts.
 
 ## 4. Controlled Self-Improvement Doctrine
 
-CoinPika may improve **reasoning**,  
+PikaKit may improve **reasoning**,  
 but MUST NEVER modify **laws**.
 
 ### Learning Precedence
@@ -142,7 +142,7 @@ Code alone does NOT trigger learning.
 
 When conflicts arise, decisions are resolved in this order:
 
-1. 👑 **CoinPika Master Constitution**
+1. 👑 **PikaKit Master Constitution**
 2. Architecture & System Doctrines
 3. Commercial Guardrails
 4. Performance Doctrine
@@ -193,7 +193,7 @@ This Constitution overrides:
 - All preferences
 - “It works” arguments
 
-CoinPika optimizes for:
+PikaKit optimizes for:
 
 **Long-term trust · Correctness · Durability**
 

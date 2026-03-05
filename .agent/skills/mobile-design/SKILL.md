@@ -134,18 +134,19 @@ Touch-first → Battery-conscious → Platform-respectful → Offline-capable
 
 | File | Description | When to Read |
 |------|-------------|--------------|
-| [platform-ios.md](platform-ios.md) | iOS HIG guidelines | iOS design |
-| [platform-android.md](platform-android.md) | Material Design guidelines | Android design |
-| [touch-psychology.md](touch-psychology.md) | Touch interaction patterns | Touch UX |
-| [mobile-navigation.md](mobile-navigation.md) | Navigation patterns | Nav decisions |
-| [mobile-typography.md](mobile-typography.md) | Typography systems | Font selection |
-| [mobile-color-system.md](mobile-color-system.md) | Color palettes | Color decisions |
-| [mobile-performance.md](mobile-performance.md) | Performance guidelines | Perf concerns |
-| [mobile-testing.md](mobile-testing.md) | Testing strategies | QA planning |
-| [mobile-debugging.md](mobile-debugging.md) | Debugging patterns | Bug fixing |
-| [mobile-backend.md](mobile-backend.md) | Backend integration | API decisions |
-| [mobile-design-thinking.md](mobile-design-thinking.md) | Design methodology | Design process |
-| [decision-trees.md](decision-trees.md) | Decision frameworks | Complex decisions |
+| [platform-ios.md](references/platform-ios.md) | iOS HIG guidelines | iOS design |
+| [platform-android.md](references/platform-android.md) | Material Design guidelines | Android design |
+| [touch-psychology.md](references/touch-psychology.md) | Touch interaction patterns | Touch UX |
+| [mobile-navigation.md](references/mobile-navigation.md) | Navigation patterns | Nav decisions |
+| [mobile-typography.md](references/mobile-typography.md) | Typography systems | Font selection |
+| [mobile-color-system.md](references/mobile-color-system.md) | Color palettes | Color decisions |
+| [mobile-performance.md](references/mobile-performance.md) | Performance guidelines | Perf concerns |
+| [mobile-testing.md](references/mobile-testing.md) | Testing strategies | QA planning |
+| [mobile-debugging.md](references/mobile-debugging.md) | Debugging patterns | Bug fixing |
+| [mobile-backend.md](references/mobile-backend.md) | Backend integration | API decisions |
+| [mobile-design-thinking.md](references/mobile-design-thinking.md) | Design methodology | Design process |
+| [decision-trees.md](references/decision-trees.md) | Decision frameworks | Complex decisions |
+| [mobile_audit.js](scripts/mobile_audit.js) | Mobile design audit CLI | Design audit |
 | [engineering-spec.md](references/engineering-spec.md) | Full engineering spec | Architecture review |
 
 **Selective reading:** Read ONLY files relevant to current design question.
@@ -162,4 +163,4 @@ Touch-first → Battery-conscious → Platform-respectful → Offline-capable
 
 ---
 
-⚡ PikaKit v3.9.74
+⚡ PikaKit v3.9.76

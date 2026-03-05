@@ -1,3 +1,8 @@
+---
+name: idea-storm-engineering-spec
+description: Full 21-section engineering spec — Socratic gate contracts, question schema, progress/error protocols
+---
+
 # Idea Storm — Engineering Specification
 
 > Production-grade specification for Socratic requirement clarification before implementation at FAANG scale.
@@ -437,4 +442,16 @@ All resources scoped to invocation. No persistent handles.
 
 ---
 
-⚡ PikaKit v3.9.74
+⚡ PikaKit v3.9.76
+
+---
+
+## 🔗 Related
+
+| File | When to Read |
+|------|-------------|
+| [../SKILL.md](../SKILL.md) | Quick reference, gate protocol, anti-patterns |
+| [architecture-debate.md](architecture-debate.md) | 8-phase debate process |
+| [dynamic-questioning.md](dynamic-questioning.md) | Domain question banks, algorithm |
+| `project-planner` | Post-gate task planning |
+| `app-scaffold` | Post-gate project scaffolding |

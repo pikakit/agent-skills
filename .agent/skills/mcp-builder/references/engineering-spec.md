@@ -1,3 +1,8 @@
+---
+name: mcp-builder-engineering-spec
+description: Full 21-section engineering spec — 4-phase build contracts, framework selection, evaluation framework
+---
+
 # MCP Builder — Engineering Specification
 
 > Production-grade specification for building MCP servers for AI agents at FAANG scale.
@@ -441,4 +446,19 @@ All resources scoped to invocation. No persistent handles.
 
 ---
 
-⚡ PikaKit v3.9.74
+⚡ PikaKit v3.9.76
+
+---
+
+## 🔗 Related
+
+| File | When to Read |
+|------|-------------|
+| [../SKILL.md](../SKILL.md) | Quick reference, 4-phase build, anti-patterns |
+| [design-principles.md](design-principles.md) | Phase 1 — MCP concepts |
+| [quickstart.md](quickstart.md) | Phase 2 — setup guides |
+| [python-implementation.md](python-implementation.md) | Phase 2 — Python patterns |
+| [typescript-implementation.md](typescript-implementation.md) | Phase 2 — TypeScript patterns |
+| [best-practices.md](best-practices.md) | Phase 3 — review patterns |
+| [evaluation.md](evaluation.md) | Phase 4 — testing framework |
+| `mcp-management` | MCP tool discovery |

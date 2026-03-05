@@ -1,7 +1,11 @@
+---
+name: mcp-design-principles
+description: Core MCP concepts — tool/resource/prompt design, transport selection, error handling, security patterns
+---
+
 # MCP Server Design Principles
 
 > Core principles for building MCP (Model Context Protocol) servers.
-> **Merged from:** `mcp-server` skill — now part of `mcp-builder`.
 
 ---
 
@@ -83,4 +87,15 @@ my-mcp-server/
 
 ---
 
-⚡ PikaKit v3.9.74
+⚡ PikaKit v3.9.76
+
+---
+
+## 🔗 Related
+
+| File | When to Read |
+|------|-------------|
+| [../SKILL.md](../SKILL.md) | 4-phase build, framework selection |
+| [quickstart.md](quickstart.md) | Setup guides (Python/TypeScript) |
+| [best-practices.md](best-practices.md) | Workflow design, error patterns |
+| [engineering-spec.md](engineering-spec.md) | Full engineering spec |

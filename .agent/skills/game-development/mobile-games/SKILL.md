@@ -1,11 +1,12 @@
 ---
 name: mobile-games
 description: Mobile game development principles. Touch input, battery, performance, app stores.
-allowed-tools: Read, Write, Edit, Glob, Grep
 metadata:
   category: "game-development"
   version: "1.0.0"
   triggers: "mobile game, touch input, app store, iOS game, Android game"
+  success_metrics: "44pt touch targets, thermal management, 30 FPS stable, store compliance"
+  coordinates_with: "game-development, mobile-developer, 2d-games, game-audio"
 ---
 
 # Mobile Game Development
@@ -110,3 +111,18 @@ metadata:
 ---
 
 > **Remember:** Mobile is the most constrained platform. Respect battery and attention.
+
+---
+
+⚡ PikaKit v3.9.76
+
+---
+
+## 🔗 Related
+
+| Item | Type | When to Read |
+|------|------|--------------|
+| [../SKILL.md](../SKILL.md) | Parent | Game loop and perf budget |
+| `mobile-developer` | Skill | App builds, React Native, Flutter |
+| `game-development/2d-games` | Sibling | 2D mobile game patterns |
+| `game-development/game-audio` | Sibling | Mobile audio format (AAC/MP3) |

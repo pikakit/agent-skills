@@ -1,3 +1,8 @@
+---
+name: mcp-protocol
+description: JSON-RPC 2.0 protocol reference — message types, 6 MCP methods, error codes, stdio/SSE transports
+---
+
 # MCP Protocol Reference
 
 > JSON-RPC protocol for AI-tool communication.
@@ -136,4 +141,15 @@ Server exposes HTTP endpoint with Server-Sent Events.
 
 ---
 
-⚡ PikaKit v3.9.74
+⚡ PikaKit v3.9.76
+
+---
+
+## 🔗 Related
+
+| File | When to Read |
+|------|-------------|
+| [../SKILL.md](../SKILL.md) | 3 execution methods, state transitions |
+| [cli-usage.md](cli-usage.md) | CLI commands and examples |
+| [engineering-spec.md](engineering-spec.md) | Full engineering spec |
+| `mcp-builder` | Building MCP servers |

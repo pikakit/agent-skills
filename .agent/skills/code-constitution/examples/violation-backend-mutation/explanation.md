@@ -58,7 +58,7 @@ The frontend:
 > 
 > If the frontend can alter financial meaning, the system is architecturally broken.
 
-From: `constitution/coinpika-master-constitution.md`
+From: Code Constitution — Master Laws
 
 ## Architecture Doctrine
 
@@ -69,7 +69,7 @@ From: `constitution/coinpika-master-constitution.md`
 > 
 > If the frontend can "fix" backend data, the architecture is invalid.
 
-From: `doctrines/architecture/coinpika-architecture-doctrine.md`
+From: Code Constitution — Architecture Doctrine
 
 ## When to Apply This Pattern
 

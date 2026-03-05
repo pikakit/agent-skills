@@ -157,7 +157,7 @@ What are you caching?
 
 ---
 
-## � Content Map
+## 📑 Content Map
 
 | File | Description | When to Read |
 |------|-------------|--------------|
@@ -169,7 +169,7 @@ What are you caching?
 
 ---
 
-## �🔗 Related
+## 🔗 Related
 
 | Item | Type | Purpose |
 |------|------|---------|
@@ -180,4 +180,4 @@ What are you caching?
 
 ---
 
-⚡ PikaKit v3.9.74
+⚡ PikaKit v3.9.76

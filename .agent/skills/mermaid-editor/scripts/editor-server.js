@@ -1,18 +1,47 @@
 #!/usr/bin/env node
 /**
  * Mermaid Live Editor Server
- * 
+ *
+ * Background HTTP server with syntax-highlighted editor,
+ * real-time Mermaid preview, 9 diagram templates, SVG/PNG export.
+ *
+ * @version 2.0.0
+ * @contract mermaid-editor v2.0.0
+ * @see references/engineering-spec.md
+ *
+ * Features:
+ *  - 9 diagram types: flowchart, sequence, class, state, ER, gantt, pie, mindmap, timeline
+ *  - Live preview with 300ms debounce
+ *  - SVG + PNG export (2x retina)
+ *  - Dark/light theme with localStorage
+ *  - .mmd file save/load via POST /save
+ *  - Port 3457 (fixed, no auto-increment)
+ *
  * Usage:
- *   node editor-server.cjs --open
- *   node editor-server.cjs --file diagram.mmd --open
- *   node editor-server.cjs --stop
+ *   node editor-server.js --open
+ *   node editor-server.js --file diagram.mmd --open
+ *   node editor-server.js --stop
  */
 
-const http = require('http');
-const fs = require('fs');
-const path = require('path');
-const url = require('url');
-const { execSync } = require('child_process');
+import http from 'node:http';
+import fs from 'node:fs';
+import path from 'node:path';
+import os from 'node:os';
+import { exec } from 'node:child_process';
+
+// --- Error Taxonomy (matches SKILL.md) ---
+const ERR = {
+  PORT_UNAVAILABLE: 'ERR_PORT_UNAVAILABLE',
+  FILE_NOT_FOUND: 'ERR_FILE_NOT_FOUND',
+  WRITE_FAILED: 'ERR_WRITE_FAILED',
+  ALREADY_RUNNING: 'ERR_ALREADY_RUNNING',
+  NOT_RUNNING: 'ERR_NOT_RUNNING',
+};
+
+function fail(code, message) {
+  console.error(JSON.stringify({ success: false, error: code, message }));
+  process.exit(1);
+}
 
 // Parse command line arguments
 const args = process.argv.slice(2);
@@ -34,10 +63,19 @@ for (let i = 0; i < args.length; i++) {
   }
 }
 
+// Validate --file exists
+if (config.file && !fs.existsSync(config.file)) {
+  fail(ERR.FILE_NOT_FOUND, `File not found: ${config.file}`);
+}
+
 // Stop all servers
 if (config.stop) {
-  const tmpDir = require('os').tmpdir();
+  const tmpDir = os.tmpdir();
   const pidFiles = fs.readdirSync(tmpDir).filter(f => f.startsWith('mermaid-editor-') && f.endsWith('.pid'));
+
+  if (pidFiles.length === 0) {
+    fail(ERR.NOT_RUNNING, 'No mermaid editor servers are running');
+  }
 
   pidFiles.forEach(pidFile => {
     const pid = fs.readFileSync(path.join(tmpDir, pidFile), 'utf8').trim();
@@ -373,7 +411,7 @@ function renderEditor(initialCode) {
     </div>
   </div>
   
-  <div class="status">⚡ PikaKit v3.2.0 | Mermaid Editor</div>
+  <div class="status">⚡ PikaKit v3.9.74 | Mermaid Editor</div>
   
   <script>
     const templates = ${JSON.stringify(templates)};
@@ -505,13 +543,36 @@ function renderEditor(initialCode) {
       if (e.ctrlKey || e.metaKey) {
         if (e.key === 's') {
           e.preventDefault();
-          exportSVG();
+          saveFile();
         }
       }
       if (e.key === 't' && !e.target.matches('textarea')) {
         toggleTheme();
       }
     });
+
+    // Save to server (Ctrl+S)
+    async function saveFile() {
+      const code = document.getElementById('editor').value;
+      try {
+        const res = await fetch('/save', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ content: code })
+        });
+        const data = await res.json();
+        if (data.success) {
+          document.querySelector('.status').textContent = '✅ Saved: ' + (data.file || 'diagram.mmd');
+          setTimeout(() => {
+            document.querySelector('.status').textContent = '⚡ PikaKit v3.9.74 | Mermaid Editor';
+          }, 2000);
+        } else {
+          alert('Save failed: ' + data.message);
+        }
+      } catch (e) {
+        alert('Save failed: ' + e.message);
+      }
+    }
   </script>
 </body>
 </html>`;
@@ -519,7 +580,7 @@ function renderEditor(initialCode) {
 
 // Get local network IP
 function getNetworkIP() {
-  const interfaces = require('os').networkInterfaces();
+  const interfaces = os.networkInterfaces();
   for (const name of Object.keys(interfaces)) {
     for (const iface of interfaces[name]) {
       if (iface.family === 'IPv4' && !iface.internal) {
@@ -532,8 +593,8 @@ function getNetworkIP() {
 
 // Create HTTP server
 const server = http.createServer((req, res) => {
-  const parsedUrl = url.parse(req.url, true);
-  const pathname = parsedUrl.pathname;
+  const reqUrl = new URL(req.url, `http://${req.headers.host || 'localhost'}`);
+  const pathname = reqUrl.pathname;
 
   try {
     if (pathname === '/' || pathname === '/editor') {
@@ -549,34 +610,42 @@ const server = http.createServer((req, res) => {
       return;
     }
 
+    // Save .mmd file (POST /save)
+    if (pathname === '/save' && req.method === 'POST') {
+      if (!config.file) {
+        res.writeHead(400, { 'Content-Type': 'application/json' });
+        res.end(JSON.stringify({ success: false, error: ERR.WRITE_FAILED, message: 'No --file specified. Cannot save.' }));
+        return;
+      }
+
+      let body = '';
+      req.on('data', chunk => { body += chunk; });
+      req.on('end', () => {
+        try {
+          const { content } = JSON.parse(body);
+          fs.writeFileSync(config.file, content, 'utf8');
+          res.writeHead(200, { 'Content-Type': 'application/json' });
+          res.end(JSON.stringify({ success: true, file: config.file }));
+        } catch (e) {
+          res.writeHead(500, { 'Content-Type': 'application/json' });
+          res.end(JSON.stringify({ success: false, error: ERR.WRITE_FAILED, message: e.message }));
+        }
+      });
+      return;
+    }
+
     // 404
-    res.writeHead(404, { 'Content-Type': 'text/plain' });
-    res.end('Not Found');
+    res.writeHead(404, { 'Content-Type': 'application/json' });
+    res.end(JSON.stringify({ success: false, error: 'ERR_NOT_FOUND', message: 'Route not found' }));
 
   } catch (error) {
-    res.writeHead(500, { 'Content-Type': 'text/plain' });
-    res.end(`Error: ${error.message}`);
+    res.writeHead(500, { 'Content-Type': 'application/json' });
+    res.end(JSON.stringify({ success: false, error: ERR.WRITE_FAILED, message: error.message }));
   }
 });
 
-// Find available port
-function findPort(startPort, callback) {
-  const testServer = http.createServer();
-  testServer.listen(startPort, config.host, () => {
-    testServer.close(() => callback(startPort));
-  });
-  testServer.on('error', () => {
-    if (startPort < 3500) {
-      findPort(startPort + 1, callback);
-    } else {
-      console.error('No available ports');
-      process.exit(1);
-    }
-  });
-}
-
-// Start server
-findPort(config.port, (port) => {
+// Find available port (no auto-increment per SKILL.md spec)
+function startServer(port) {
   server.listen(port, config.host, () => {
     const localUrl = `http://localhost:${port}`;
     const networkUrl = config.host === '0.0.0.0'
@@ -584,8 +653,12 @@ findPort(config.port, (port) => {
       : localUrl;
 
     // Save PID
-    const tmpDir = require('os').tmpdir();
-    fs.writeFileSync(path.join(tmpDir, `mermaid-editor-${port}.pid`), process.pid.toString());
+    try {
+      const tmpDir = os.tmpdir();
+      fs.writeFileSync(path.join(tmpDir, `mermaid-editor-${port}.pid`), process.pid.toString());
+    } catch (e) {
+      console.error(JSON.stringify({ success: false, error: ERR.WRITE_FAILED, message: 'Cannot write PID file' }));
+    }
 
     // User-friendly output
     console.log('');
@@ -598,7 +671,6 @@ findPort(config.port, (port) => {
     console.log('');
     if (config.open) {
       console.log('   → Attempting to open browser...');
-      console.log('   → If browser doesn\'t open, copy the link above manually.');
     } else {
       console.log('   → Open the link above in your browser.');
     }
@@ -610,13 +682,12 @@ findPort(config.port, (port) => {
     console.log(JSON.stringify({
       success: true,
       url: localUrl,
-      networkUrl: networkUrl,
-      port: port,
+      networkUrl,
+      port,
     }));
 
     // Open browser
     if (config.open) {
-      const { exec } = require('child_process');
       if (process.platform === 'win32') {
         exec(`cmd /c start "" "${localUrl}"`);
       } else if (process.platform === 'darwin') {
@@ -626,4 +697,15 @@ findPort(config.port, (port) => {
       }
     }
   });
-});
+
+  server.on('error', (err) => {
+    if (err.code === 'EADDRINUSE') {
+      fail(ERR.PORT_UNAVAILABLE, `Port ${port} is already in use. Use --port <n> for alternative.`);
+    } else {
+      fail(ERR.PORT_UNAVAILABLE, err.message);
+    }
+  });
+}
+
+// Start
+startServer(config.port);

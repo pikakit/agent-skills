@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Skill: webapp-testing
+ * Skill: e2e-automation
  * Script: playwright_runner.js
  * Purpose: Run basic Playwright browser tests
  * Usage: node playwright_runner.js <url> [--screenshot] [--a11y]
@@ -14,40 +14,40 @@ import { tmpdir } from 'os';
 import { join } from 'path';
 
 function checkPlaywright() {
-    try {
-        // Try to require playwright - this will fail if not installed
-        execSync('npx playwright --version', { encoding: 'utf-8', stdio: 'pipe' });
-        return true;
-    } catch {
-        return false;
-    }
+  try {
+    // Try to require playwright - this will fail if not installed
+    execSync('npx playwright --version', { encoding: 'utf-8', stdio: 'pipe' });
+    return true;
+  } catch {
+    return false;
+  }
 }
 
 async function runBasicTest(url, takeScreenshot = false) {
-    /**
-     * Run basic browser test on URL.
-     * Uses execSync to run playwright script since we can't dynamically import ESM in all environments.
-     */
+  /**
+   * Run basic browser test on URL.
+   * Uses execSync to run playwright script since we can't dynamically import ESM in all environments.
+   */
 
-    if (!checkPlaywright()) {
-        return {
-            error: 'Playwright not installed',
-            fix: 'npm install playwright && npx playwright install chromium'
-        };
-    }
-
-    const result = {
-        url,
-        timestamp: new Date().toISOString(),
-        status: 'pending'
+  if (!checkPlaywright()) {
+    return {
+      error: 'Playwright not installed',
+      fix: 'npm install playwright && npx playwright install chromium'
     };
+  }
 
-    // Create inline playwright script and run it
-    const screenshotDir = join(tmpdir(), 'maestro_screenshots');
-    const screenshotPath = takeScreenshot ?
-        join(screenshotDir, `screenshot_${Date.now()}.png`) : '';
+  const result = {
+    url,
+    timestamp: new Date().toISOString(),
+    status: 'pending'
+  };
 
-    const script = `
+  // Create inline playwright script and run it
+  const screenshotDir = join(tmpdir(), 'e2e_screenshots');
+  const screenshotPath = takeScreenshot ?
+    join(screenshotDir, `screenshot_${Date.now()}.png`) : '';
+
+  const script = `
     const { chromium } = require('playwright');
     (async () => {
       const browser = await chromium.launch({ headless: true });
@@ -101,36 +101,36 @@ async function runBasicTest(url, takeScreenshot = false) {
     })();
   `;
 
-    try {
-        const output = execSync(`node -e "${script.replace(/"/g, '\\"').replace(/\n/g, ' ')}"`, {
-            encoding: 'utf-8',
-            timeout: 60000
-        });
+  try {
+    const output = execSync(`node -e "${script.replace(/"/g, '\\"').replace(/\n/g, ' ')}"`, {
+      encoding: 'utf-8',
+      timeout: 60000
+    });
 
-        try {
-            return { ...result, ...JSON.parse(output.trim()) };
-        } catch {
-            return { ...result, status: 'error', error: 'Failed to parse output', raw: output };
-        }
-    } catch (e) {
-        return {
-            ...result,
-            status: 'error',
-            error: e.message,
-            summary: `[X] Error: ${e.message.slice(0, 100)}`
-        };
+    try {
+      return { ...result, ...JSON.parse(output.trim()) };
+    } catch {
+      return { ...result, status: 'error', error: 'Failed to parse output', raw: output };
     }
+  } catch (e) {
+    return {
+      ...result,
+      status: 'error',
+      error: e.message,
+      summary: `[X] Error: ${e.message.slice(0, 100)}`
+    };
+  }
 }
 
 async function runAccessibilityCheck(url) {
-    /**
-     * Run basic accessibility check.
-     */
-    if (!checkPlaywright()) {
-        return { error: 'Playwright not installed' };
-    }
+  /**
+   * Run basic accessibility check.
+   */
+  if (!checkPlaywright()) {
+    return { error: 'Playwright not installed' };
+  }
 
-    const script = `
+  const script = `
     const { chromium } = require('playwright');
     (async () => {
       const browser = await chromium.launch({ headless: true });
@@ -163,45 +163,45 @@ async function runAccessibilityCheck(url) {
     })();
   `;
 
-    try {
-        const output = execSync(`node -e "${script.replace(/"/g, '\\"').replace(/\n/g, ' ')}"`, {
-            encoding: 'utf-8',
-            timeout: 60000
-        });
+  try {
+    const output = execSync(`node -e "${script.replace(/"/g, '\\"').replace(/\n/g, ' ')}"`, {
+      encoding: 'utf-8',
+      timeout: 60000
+    });
 
-        return JSON.parse(output.trim());
-    } catch (e) {
-        return { status: 'error', error: e.message };
-    }
+    return JSON.parse(output.trim());
+  } catch (e) {
+    return { status: 'error', error: e.message };
+  }
 }
 
 async function main() {
-    const args = process.argv.slice(2);
+  const args = process.argv.slice(2);
 
-    if (args.length === 0 || !args[0] || args[0].startsWith('--')) {
-        console.log(JSON.stringify({
-            error: 'Usage: node playwright_runner.js <url> [--screenshot] [--a11y]',
-            examples: [
-                'node playwright_runner.js https://example.com',
-                'node playwright_runner.js https://example.com --screenshot',
-                'node playwright_runner.js https://example.com --a11y'
-            ]
-        }, null, 2));
-        process.exit(1);
-    }
+  if (args.length === 0 || !args[0] || args[0].startsWith('--')) {
+    console.log(JSON.stringify({
+      error: 'Usage: node playwright_runner.js <url> [--screenshot] [--a11y]',
+      examples: [
+        'node playwright_runner.js https://example.com',
+        'node playwright_runner.js https://example.com --screenshot',
+        'node playwright_runner.js https://example.com --a11y'
+      ]
+    }, null, 2));
+    process.exit(1);
+  }
 
-    const url = args[0];
-    const takeScreenshot = args.includes('--screenshot');
-    const checkA11y = args.includes('--a11y');
+  const url = args[0];
+  const takeScreenshot = args.includes('--screenshot');
+  const checkA11y = args.includes('--a11y');
 
-    let result;
-    if (checkA11y) {
-        result = await runAccessibilityCheck(url);
-    } else {
-        result = await runBasicTest(url, takeScreenshot);
-    }
+  let result;
+  if (checkA11y) {
+    result = await runAccessibilityCheck(url);
+  } else {
+    result = await runBasicTest(url, takeScreenshot);
+  }
 
-    console.log(JSON.stringify(result, null, 2));
+  console.log(JSON.stringify(result, null, 2));
 }
 
 main();

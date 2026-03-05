@@ -3,13 +3,13 @@ name: doctrine-violation-playbook
 version: 1.0.0
 status: LOCKED
 authority: ENFORCEMENT
-parent: coinpika-master-constitution
+parent: master-constitution
 ---
 
-# 🚨 CoinPika Doctrine Violation Playbook  
+# 🚨 Governance Doctrine Violation Playbook  
 **(Incident Response · Governance Enforcement · System Integrity)**
 
-This playbook defines **how CoinPika responds** when any doctrine,
+This playbook defines **how PikaKit responds** when any doctrine,
 law, or constitutional rule is violated.
 
 Doctrine violations are **NOT personal failures**.  
@@ -218,7 +218,7 @@ the violation **WILL recur**.
 
 Doctrine violations are **signals**, not annoyances.
 
-CoinPika chooses:
+PikaKit chooses:
 
 **Correction over comfort**  
 **Integrity over speed**  
@@ -228,5 +228,5 @@ CoinPika chooses:
 
 **Status:** LOCKED  
 **Version:** 1.0.0  
-**Parent:** CoinPika Master Constitution  
+**Parent:** PikaKit Master Constitution  
 **Override Permission:** NONE  

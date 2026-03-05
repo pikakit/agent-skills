@@ -1,3 +1,8 @@
+---
+name: component-patterns
+description: React.FC with TypeScript — Suspense-first, useCallback rules, props patterns, named/default exports
+---
+
 # Component Patterns
 
 > React.FC with TypeScript, useCallback for handlers, default export.
@@ -122,4 +127,15 @@ export default MyComponent;
 
 ---
 
-⚡ PikaKit v3.9.74
+⚡ PikaKit v3.9.76
+
+---
+
+## 🔗 Related
+
+| File | When to Read |
+|------|-------------|
+| [data-fetching.md](data-fetching.md) | useSuspenseQuery for data layer |
+| [mui-styling.md](mui-styling.md) | MUI v7 sx prop patterns |
+| [file-organization.md](file-organization.md) | Where to place components |
+| [../SKILL.md](../SKILL.md) | Core rules and anti-patterns |

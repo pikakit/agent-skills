@@ -1,8 +1,13 @@
 #!/usr/bin/env node
 /**
- * Studio Search CLI - JavaScript port of search.py
- * ==================================================
- * CLI for Studio search and design system generation
+ * Studio Search CLI
+ *
+ * CLI entry point for Studio search and design system generation.
+ * BM25-powered search across 24 CSV databases with design system output.
+ *
+ * @version 2.0.0
+ * @contract studio v2.0.0
+ * @see references/engineering-spec.md
  */
 
 import { parseArgs } from 'node:util';

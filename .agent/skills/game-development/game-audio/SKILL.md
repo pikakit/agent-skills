@@ -1,11 +1,12 @@
 ---
 name: game-audio
 description: Game audio principles. Sound design, music integration, adaptive audio systems.
-allowed-tools: Read, Glob, Grep
 metadata:
   category: "game-development"
   version: "1.0.0"
   triggers: "game audio, sound design, music, adaptive audio"
+  success_metrics: "priority hierarchy, sound variations, adaptive music, proper ducking"
+  coordinates_with: "game-development, game-design, web-games, mobile-games"
 ---
 
 # Game Audio Principles
@@ -192,3 +193,18 @@ Game State → Music Response
 ---
 
 > **Remember:** 50% of the game experience is audio. A muted game loses half its soul.
+
+---
+
+⚡ PikaKit v3.9.76
+
+---
+
+## 🔗 Related
+
+| Item | Type | When to Read |
+|------|------|--------------|
+| [../SKILL.md](../SKILL.md) | Parent | Game loop and perf budget |
+| `game-development/game-art` | Sibling | Visual style to complement audio |
+| `game-development/game-design` | Sibling | Core loop feedback sounds |
+| `game-development/web-games` | Sibling | Browser audio constraints |

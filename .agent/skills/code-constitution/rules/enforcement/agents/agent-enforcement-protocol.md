@@ -1,16 +1,16 @@
 ---
-name: coinpika-agent-enforcement-protocol
+name: agent-enforcement-protocol
 version: 1.0.0
 status: LOCKED
 authority: ENFORCEMENT
-parent: coinpika-master-constitution
+parent: master-constitution
 ---
 
-# 🤖 CoinPika Agent Enforcement Protocol  
+# 🤖 PikaKit Agent Enforcement Protocol  
 **(AI Authority · Compliance · Safety Law)**
 
 This protocol defines **how AI agents are constrained, evaluated, and enforced**
-within the CoinPika system.
+within the PikaKit system.
 
 Agents are powerful.  
 Unbounded agents are **DANGEROUS**.
@@ -43,7 +43,7 @@ They have **NO implicit authority**.
 
 All agents MUST obey, in strict order:
 
-1. CoinPika Master Constitution
+1. PikaKit Master Constitution
 2. Architecture Doctrine
 3. All System Doctrines
 4. Commercial Guardrails
@@ -79,7 +79,7 @@ Agents MUST NOT:
 - Bypass enforcement or review
 
 Final authority **ALWAYS** belongs to humans
-operating under CoinPika doctrine.
+operating under Governance Doctrine.
 
 ---
 
@@ -133,7 +133,7 @@ Any occurrence requires immediate rejection.
 
 Agents MUST comply with:
 
-- coinpika-learning-engine-doctrine.md
+- learning-engine-doctrine.md
 
 Agents MAY:
 
@@ -210,5 +210,5 @@ but less safe,
 
 **Status:** LOCKED  
 **Version:** 1.0.0  
-**Parent:** CoinPika Master Constitution  
+**Parent:** PikaKit Master Constitution  
 **Override Permission:** NONE  

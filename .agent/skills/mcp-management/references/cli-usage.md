@@ -1,3 +1,8 @@
+---
+name: mcp-cli-usage
+description: CLI commands for MCP tool discovery and execution — list-tools, call-tool, Gemini CLI stdin pipe
+---
+
 # MCP CLI Usage
 
 > Commands for discovering and executing MCP tools.
@@ -123,4 +128,15 @@ cat assets/tools.json | jq '.[] | {server: .server, tools: .tools[].name}'
 
 ---
 
-⚡ PikaKit v3.9.74
+⚡ PikaKit v3.9.76
+
+---
+
+## 🔗 Related
+
+| File | When to Read |
+|------|-------------|
+| [../SKILL.md](../SKILL.md) | 3 execution methods, anti-patterns |
+| [protocol.md](protocol.md) | JSON-RPC protocol details |
+| [engineering-spec.md](engineering-spec.md) | Full engineering spec |
+| `mcp-builder` | Building MCP servers |

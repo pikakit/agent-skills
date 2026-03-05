@@ -1,3 +1,8 @@
+---
+name: mobile-backend
+description: Mobile backend integration — API design, offline sync, push notifications, real-time, caching strategies
+---
+
 # Mobile Backend Patterns
 
 > **This file covers backend/API patterns SPECIFIC to mobile clients.**
@@ -489,3 +494,18 @@ ALERTS:
 ---
 
 > **Remember:** Mobile backend must be resilient to bad networks, respect battery life, and handle interrupted sessions gracefully. The client cannot be trusted, but it also cannot be hung up—provide offline capabilities and clear error recovery paths.
+---
+
+⚡ PikaKit v3.9.76
+
+---
+
+## 🔗 Related
+
+| File | When to Read |
+|------|-------------|
+| [../SKILL.md](../SKILL.md) | MFRI offline dependence dimension |
+| [mobile-performance.md](mobile-performance.md) | API performance, caching |
+| [mobile-testing.md](mobile-testing.md) | Backend integration testing |
+| [engineering-spec.md](engineering-spec.md) | Full engineering spec |
+| `api-architect` | API design patterns |

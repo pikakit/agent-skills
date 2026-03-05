@@ -1,3 +1,8 @@
+---
+name: color-system
+description: Color theory, 60-30-10 rule, HSL palette generation, dark mode, WCAG accessibility, Purple Ban
+---
+
 # Color System Reference
 
 > Color theory principles, selection process, and decision-making guidelines.
@@ -309,3 +314,18 @@ Before finalizing any color choice, verify:
 ---
 
 > **Remember**: Colors are decisions, not defaults. Every project deserves thoughtful selection based on its unique context.
+
+---
+
+⚡ PikaKit v3.9.76
+
+---
+
+## 🔗 Related
+
+| File | When to Read |
+|------|-------------|
+| [ux-psychology.md](ux-psychology.md) | Emotion-color mapping and trust signals |
+| [decision-trees.md](decision-trees.md) | Color selection decision tree |
+| [visual-effects.md](visual-effects.md) | Gradient and glow effects using palette |
+| [../SKILL.md](../SKILL.md) | Purple Ban enforcement |

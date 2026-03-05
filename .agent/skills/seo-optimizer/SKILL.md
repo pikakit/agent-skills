@@ -137,7 +137,7 @@ metadata:
 
 | File | Description | When to Read |
 |------|-------------|--------------|
-| [scripts/](scripts/) | SEO automation scripts | Automated auditing |
+| [seo_checker.js](scripts/seo_checker.js) | Static SEO audit (title, meta, canonical, schema, robots) | Automated auditing |
 | [engineering-spec.md](references/engineering-spec.md) | Full spec | Architecture review |
 
 ---
@@ -151,4 +151,4 @@ metadata:
 
 ---
 
-⚡ PikaKit v3.9.74
+⚡ PikaKit v3.9.76

@@ -1,11 +1,13 @@
 ---
 name: deep-linking
-description: Universal Links (iOS), App Links (Android), and deferred deep linking patterns
+description: Universal Links (iOS), App Links (Android), deferred deep linking, and cross-framework configuration
 ---
 
 # Deep Linking
 
 > **Philosophy:** Every screen should be linkable. Users expect seamless web-to-app transitions.
+
+---
 
 ## Deep Link Types
 
@@ -16,12 +18,13 @@ description: Universal Links (iOS), App Links (Android), and deferred deep linki
 | **App Links** (Android) | `https://example.com/path` | Web-to-app, verified |
 | **Deferred Deep Links** | Works even if app not installed | Marketing campaigns |
 
+---
+
 ## Universal Links (iOS)
 
 ### 1. Host AASA File
 
 ```json
-// https://example.com/.well-known/apple-app-site-association
 {
   "applinks": {
     "apps": [],
@@ -39,11 +42,13 @@ description: Universal Links (iOS), App Links (Android), and deferred deep linki
 }
 ```
 
+**Host at:** `https://example.com/.well-known/apple-app-site-association`
+
 **Critical:**
-- Must be HTTPS
-- Must be valid JSON (no comments)
+- Must be HTTPS, no redirects
+- Must be valid JSON (no comments allowed)
 - Content-Type: `application/json`
-- No redirects
+- File must be at root or `.well-known` path
 
 ### 2. Configure Entitlements
 
@@ -56,40 +61,42 @@ description: Universal Links (iOS), App Links (Android), and deferred deep linki
 </array>
 ```
 
-### 3. Handle in App
+### 3. Handle in App (SwiftUI)
 
 ```swift
-// SwiftUI
-.onOpenURL { url in
-    handleDeepLink(url)
-}
-
-// UIKit
-func application(_ application: UIApplication,
-                 continue userActivity: NSUserActivity,
-                 restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {
-    guard let url = userActivity.webpageURL else { return false }
-    return handleDeepLink(url)
+@main
+struct MyApp: App {
+    var body: some Scene {
+        WindowGroup {
+            ContentView()
+                .onOpenURL { url in
+                    DeepLinkRouter.handle(url)
+                }
+        }
+    }
 }
 ```
+
+---
 
 ## App Links (Android)
 
 ### 1. Host assetlinks.json
 
 ```json
-// https://example.com/.well-known/assetlinks.json
 [{
   "relation": ["delegate_permission/common.handle_all_urls"],
   "target": {
     "namespace": "android_app",
     "package_name": "com.example.myapp",
     "sha256_cert_fingerprints": [
-      "AA:BB:CC:DD:..." 
+      "AA:BB:CC:DD:EE:FF:00:11:22:33:44:55:66:77:88:99:AA:BB:CC:DD:EE:FF:00:11:22:33:44:55:66:77:88:99"
     ]
   }
 }]
 ```
+
+**Host at:** `https://example.com/.well-known/assetlinks.json`
 
 ### 2. Configure AndroidManifest
 
@@ -106,38 +113,34 @@ func application(_ application: UIApplication,
 </activity>
 ```
 
-### 3. Handle Intent
+### 3. Handle Intent (Compose)
 
 ```kotlin
-override fun onCreate(savedInstanceState: Bundle?) {
-    super.onCreate(savedInstanceState)
-    intent?.data?.let { uri ->
-        handleDeepLink(uri)
+@Composable
+fun DeepLinkHandler(navController: NavController) {
+    val context = LocalContext.current
+    val activity = context as? Activity
+
+    LaunchedEffect(Unit) {
+        activity?.intent?.data?.let { uri ->
+            when {
+                uri.path?.startsWith("/product/") == true -> {
+                    val id = uri.lastPathSegment
+                    navController.navigate("product/$id")
+                }
+                uri.path?.startsWith("/user/") == true -> {
+                    val id = uri.lastPathSegment
+                    navController.navigate("user/$id")
+                }
+            }
+        }
     }
 }
 ```
 
+---
+
 ## React Native Configuration
-
-### react-native-linking
-
-```typescript
-import { Linking } from 'react-native';
-
-// Listen for links
-useEffect(() => {
-  const subscription = Linking.addEventListener('url', ({ url }) => {
-    handleDeepLink(url);
-  });
-  
-  // Handle app opened from link
-  Linking.getInitialURL().then(url => {
-    if (url) handleDeepLink(url);
-  });
-  
-  return () => subscription.remove();
-}, []);
-```
 
 ### React Navigation Deep Linking
 
@@ -150,9 +153,7 @@ const linking = {
       Product: 'product/:id',
       User: {
         path: 'user/:userId',
-        parse: {
-          userId: (id: string) => id,
-        },
+        parse: { userId: (id: string) => id },
       },
     },
   },
@@ -162,6 +163,121 @@ const linking = {
   {/* ... */}
 </NavigationContainer>
 ```
+
+### Listening for Links
+
+```typescript
+import { Linking } from 'react-native';
+
+useEffect(() => {
+  const subscription = Linking.addEventListener('url', ({ url }) => {
+    handleDeepLink(url);
+  });
+
+  Linking.getInitialURL().then(url => {
+    if (url) handleDeepLink(url);
+  });
+
+  return () => subscription.remove();
+}, []);
+```
+
+---
+
+## Expo Configuration
+
+### expo-router (Recommended)
+
+```typescript
+// app/_layout.tsx — automatic file-based deep linking
+export default function RootLayout() {
+  return <Stack />;
+}
+
+// app/product/[id].tsx — matches /product/:id
+export default function ProductScreen() {
+  const { id } = useLocalSearchParams<{ id: string }>();
+  return <ProductDetail id={id} />;
+}
+```
+
+### app.json Configuration
+
+```json
+{
+  "expo": {
+    "scheme": "myapp",
+    "web": { "bundler": "metro" },
+    "plugins": [
+      ["expo-router", { "origin": "https://example.com" }]
+    ],
+    "ios": {
+      "associatedDomains": ["applinks:example.com"]
+    },
+    "android": {
+      "intentFilters": [{
+        "action": "VIEW",
+        "autoVerify": true,
+        "data": [{ "scheme": "https", "host": "example.com", "pathPrefix": "/product" }],
+        "category": ["BROWSABLE", "DEFAULT"]
+      }]
+    }
+  }
+}
+```
+
+---
+
+## Flutter Configuration
+
+### GoRouter Deep Linking
+
+```dart
+final router = GoRouter(
+  routes: [
+    GoRoute(
+      path: '/',
+      builder: (context, state) => const HomeScreen(),
+      routes: [
+        GoRoute(
+          path: 'product/:id',
+          builder: (context, state) {
+            final id = state.pathParameters['id']!;
+            return ProductScreen(productId: id);
+          },
+        ),
+        GoRoute(
+          path: 'user/:userId',
+          builder: (context, state) {
+            final userId = state.pathParameters['userId']!;
+            return UserScreen(userId: userId);
+          },
+        ),
+      ],
+    ),
+  ],
+);
+```
+
+### AndroidManifest (Flutter)
+
+```xml
+<!-- android/app/src/main/AndroidManifest.xml -->
+<meta-data android:name="flutter_deeplinking_enabled" android:value="true" />
+
+<intent-filter android:autoVerify="true">
+  <action android:name="android.intent.action.VIEW" />
+  <category android:name="android.intent.category.DEFAULT" />
+  <category android:name="android.intent.category.BROWSABLE" />
+  <data android:scheme="https" android:host="example.com" />
+</intent-filter>
+```
+
+### iOS (Flutter)
+
+Add associated domains in Xcode Runner target → Signing & Capabilities → Associated Domains: `applinks:example.com`
+
+---
 
 ## Deferred Deep Linking
 
@@ -179,35 +295,82 @@ For users who don't have the app installed:
 
 ### Solutions
 
-| Service | Features |
-|---------|----------|
-| **Branch.io** | Full attribution, deferred links |
-| **Firebase Dynamic Links** | Free, Google ecosystem |
-| **AppsFlyer** | Marketing attribution focus |
-| **Adjust** | Analytics + attribution |
+| Service | Features | Status |
+|---------|----------|--------|
+| **Branch.io** | Full attribution, deferred links | ✅ Active, recommended |
+| **Adjust** | Analytics + attribution | ✅ Active |
+| **AppsFlyer** | Marketing attribution focus | ✅ Active |
+| ~~Firebase Dynamic Links~~ | ~~Free, Google ecosystem~~ | ❌ **Deprecated Aug 2025** |
 
-### Firebase Example
+### Branch.io Example
 
 ```typescript
-import dynamicLinks from '@react-native-firebase/dynamic-links';
+import branch from 'react-native-branch';
 
-// Create link
-const link = await dynamicLinks().buildShortLink({
-  link: 'https://example.com/product/123',
-  domainUriPrefix: 'https://example.page.link',
-  android: { packageName: 'com.example.myapp' },
-  ios: { bundleId: 'com.example.myapp' },
+// Listen for deep links
+branch.subscribe(({ error, params }) => {
+  if (error) return console.error(error);
+  if (params['+clicked_branch_link']) {
+    const productId = params.productId;
+    navigation.navigate('Product', { id: productId });
+  }
 });
 
-// Handle on app open
-dynamicLinks()
-  .getInitialLink()
-  .then(link => {
-    if (link) {
-      handleDeepLink(link.url);
-    }
-  });
+// Create deep link
+const branchObject = await branch.createBranchUniversalObject('product/123', {
+  title: 'Cool Product',
+  contentDescription: 'Check out this product',
+});
+
+const { url } = await branchObject.generateShortUrl({
+  feature: 'sharing',
+  channel: 'sms',
+});
 ```
+
+---
+
+## QR Code Deep Links
+
+| Library | Platform | Purpose |
+|---------|----------|---------|
+| `react-native-qrcode-svg` | RN | Generate QR codes |
+| `qr_flutter` | Flutter | Generate QR codes |
+| Core Image (`CIFilter`) | iOS Native | Generate QR codes |
+| `zxing` | Android | Generate/scan QR codes |
+
+```typescript
+// React Native QR generation
+import QRCode from 'react-native-qrcode-svg';
+
+<QRCode value="https://example.com/product/123" size={200} />
+```
+
+---
+
+## Link Preview (OG Tags)
+
+Universal Links display previews on social media. Add meta tags to your web pages:
+
+```html
+<meta property="og:title" content="Cool Product" />
+<meta property="og:description" content="Check out this amazing product" />
+<meta property="og:image" content="https://example.com/images/product.jpg" />
+<meta property="og:url" content="https://example.com/product/123" />
+```
+
+---
+
+## Privacy & Compliance
+
+| Concern | Guidance |
+|---------|---------|
+| **ATT (iOS)** | Deep link attribution may require ATT prompt if tracking across apps |
+| **GDPR** | Store referral data only with consent; honor right-to-erasure |
+| **Fingerprinting** | Probabilistic matching (IP/UA) is restricted on iOS — avoid |
+| **Data minimization** | Pass only necessary params in deep link URLs |
+
+---
 
 ## Testing Deep Links
 
@@ -229,12 +392,42 @@ adb shell am start -a android.intent.action.VIEW -d "https://example.com/product
 |----------|------|
 | iOS | [Apple AASA Validator](https://search.developer.apple.com/appsearch-validation-tool/) |
 | Android | `adb shell pm verify-app-links --re-verify com.example.myapp` |
+| Branch | Branch link debugger dashboard |
 
-## Common Issues
+---
+
+## Troubleshooting
 
 | Issue | Cause | Fix |
 |-------|-------|-----|
-| Links open in browser | AASA/assetlinks not found | Check file hosting |
-| Intermittent failures | Caching | Clear link cache, reinstall |
-| Only works on some links | Path matching wrong | Check path patterns |
-| Doesn't work after install | Deferred linking not set up | Use Branch/Firebase |
+| Links open in browser | AASA/assetlinks not found | Check file hosting, HTTPS, no redirects |
+| Intermittent failures | System caching | Clear link cache, reinstall app |
+| Only works on some links | Path matching wrong | Check path patterns in AASA/manifest |
+| Doesn't work after install | Deferred linking not set up | Use Branch.io |
+| AASA not found by Apple | Invalid JSON | Validate JSON (no comments), check Content-Type |
+| App Links not verified | SHA256 mismatch | Re-generate fingerprint: `keytool -list -v` |
+
+---
+
+## Anti-Patterns
+
+| ❌ Don't | ✅ Do |
+|---------|-------|
+| Use URI schemes for web-to-app | Use Universal Links / App Links |
+| Rely on Firebase Dynamic Links | Migrate to Branch.io or custom |
+| Put comments in AASA JSON | Valid JSON only |
+| Skip deferred deep linking | Handle install-then-open flow |
+| Ignore link previews | Add OG meta tags |
+| Track without consent | ATT + GDPR compliance |
+
+---
+
+## 🔗 Related
+
+| File | When to Read |
+|------|-------------|
+| [app-store-optimization.md](app-store-optimization.md) | Store listing with deep link targets |
+| [push-notifications.md](push-notifications.md) | Push → deep link to screen |
+| [../frameworks/react-native.md](../frameworks/react-native.md) | RN navigation config |
+| [../frameworks/flutter.md](../frameworks/flutter.md) | GoRouter deep linking |
+| [../frameworks/native.md](../frameworks/native.md) | SwiftUI/Compose navigation |

@@ -1,13 +1,20 @@
 {
-  "lockVersion": 1,
-  "generatedAt": "2026-01-29T15:35:49.173Z",
-  "generator": "@dataguruin/add-skill@3.2.0",
+  "lockVersion": 2,
+  "generatedAt": "2026-03-05T02:19:00.000Z",
+  "generator": "@pikakit/agent-skills@3.9.74",
   "skills": {
-    "agent-modes": {
+    "agent-browser": {
       "repo": "pikakit/agent-skills",
-      "skill": "behavioral-modes",
+      "skill": "agent-browser",
       "ref": null,
-      "checksum": "sha256:e18ca3e02e1b9898c569f3e1cccdda06d7fc04da59bd0304a3714293532a0412",
+      "checksum": null,
+      "publisher": null
+    },
+    "ai-artist": {
+      "repo": "pikakit/agent-skills",
+      "skill": "ai-artist",
+      "ref": null,
+      "checksum": null,
       "publisher": null
     },
     "api-architect": {
@@ -22,6 +29,34 @@
       "skill": "app-builder",
       "ref": null,
       "checksum": "sha256:f1624e1ab3100f1212b8d2f477ef09c055939ff535ef3438ca388ab94929571f",
+      "publisher": null
+    },
+    "auth-patterns": {
+      "repo": "pikakit/agent-skills",
+      "skill": "auth-patterns",
+      "ref": null,
+      "checksum": null,
+      "publisher": null
+    },
+    "auto-learned": {
+      "repo": "pikakit/agent-skills",
+      "skill": "auto-learn",
+      "ref": null,
+      "checksum": "sha256:eec798819f9da3b471570f399ed32ebc66aadfa71f4d61182ea9c0182ba30bc1",
+      "publisher": null
+    },
+    "caching-strategy": {
+      "repo": "pikakit/agent-skills",
+      "skill": "caching-strategy",
+      "ref": null,
+      "checksum": null,
+      "publisher": null
+    },
+    "chrome-devtools": {
+      "repo": "pikakit/agent-skills",
+      "skill": "chrome-devtools",
+      "ref": null,
+      "checksum": null,
       "publisher": null
     },
     "cicd-pipeline": {
@@ -45,13 +80,6 @@
       "checksum": "sha256:0eec53f2632f6b2643542f13185401c20eefcff6961c1c3ea32c9c0482b7e498",
       "publisher": null
     },
-    "code-quality": {
-      "repo": "pikakit/agent-skills",
-      "skill": "lint-and-validate",
-      "ref": null,
-      "checksum": "sha256:283b9b0aedeac7832ee3aae365992151c913923064e8ba7581c95b7ee7c080ec",
-      "publisher": null
-    },
     "code-review": {
       "repo": "pikakit/agent-skills",
       "skill": "code-review-checklist",
@@ -59,18 +87,18 @@
       "checksum": "sha256:678ed9bab570d6ab843765eb91f338d6b5ec6e657cdae5029a8a239d25cd7722",
       "publisher": null
     },
-    "context-optimizer": {
+    "context-engineering": {
       "repo": "pikakit/agent-skills",
       "skill": "context-engineering",
       "ref": null,
-      "checksum": "sha256:962f9b16b8991d10a921ed970eef532a0fd2d7346a4500685ed3b6fbcc517bdb",
+      "checksum": null,
       "publisher": null
     },
-    "creative-thinking": {
+    "copywriting": {
       "repo": "pikakit/agent-skills",
-      "skill": "problem-solving",
+      "skill": "copywriting",
       "ref": null,
-      "checksum": "sha256:7a66a5b3244cc7704486c79fe5800669aaccff987dde0f8c8de84750a6f6bee5",
+      "checksum": null,
       "publisher": null
     },
     "data-modeler": {
@@ -87,32 +115,11 @@
       "checksum": "sha256:c42aa72962ab4db456381df21bb71c71c3b45223f7a42dfd6f0d948ac8350da0",
       "publisher": null
     },
-    "debug-toolkit": {
-      "repo": "pikakit/agent-skills",
-      "skill": "debugging",
-      "ref": null,
-      "checksum": "sha256:54164843a7324216014c484af14421f5ba4a4c825f2ea9c9b41566e5b5dec839",
-      "publisher": null
-    },
     "design-system": {
       "repo": "pikakit/agent-skills",
       "skill": "frontend-design",
       "ref": null,
       "checksum": "sha256:db4d8115c437f67cbec8a3e1daed9df4fd518d14e34870d9786e1c524a6a77c1",
-      "publisher": null
-    },
-    "diagram-kit": {
-      "repo": "pikakit/agent-skills",
-      "skill": "mermaidjs-v11",
-      "ref": null,
-      "checksum": "sha256:1c67665ee9eec217147aa7f161b5ce4b2d8bf2450355e5651b5c341abbfa7ed0",
-      "publisher": null
-    },
-    "doc-processor": {
-      "repo": "pikakit/agent-skills",
-      "skill": "document-skills",
-      "ref": null,
-      "checksum": "sha256:c3ebc14dfd2b051d10546e0a6c328b4c08a0bb511f78f868788f012ab7122426",
       "publisher": null
     },
     "doc-templates": {
@@ -129,7 +136,35 @@
       "checksum": "sha256:bf631e2fefab36fb55a8fbf0cdb824a67555388bcc5da217be01dbe4687514db",
       "publisher": null
     },
-    "game-engine": {
+    "event-driven": {
+      "repo": "pikakit/agent-skills",
+      "skill": "event-driven",
+      "ref": null,
+      "checksum": null,
+      "publisher": null
+    },
+    "execution-reporter": {
+      "repo": "pikakit/agent-skills",
+      "skill": "execution-reporter",
+      "ref": null,
+      "checksum": null,
+      "publisher": null
+    },
+    "frontend-design": {
+      "repo": "pikakit/agent-skills",
+      "skill": "frontend-design",
+      "ref": null,
+      "checksum": null,
+      "publisher": null
+    },
+    "frontend-development": {
+      "repo": "pikakit/agent-skills",
+      "skill": "frontend-development",
+      "ref": null,
+      "checksum": null,
+      "publisher": null
+    },
+    "game-development": {
       "repo": "pikakit/agent-skills",
       "skill": "game-development",
       "ref": null,
@@ -150,11 +185,18 @@
       "checksum": "sha256:9f850a7911bf99347199eed6b6b1a106174111413e335f9186dfefd582fb868c",
       "publisher": null
     },
-    "globalization-kit": {
+    "gitops": {
       "repo": "pikakit/agent-skills",
-      "skill": "i18n-localization",
+      "skill": "gitops",
       "ref": null,
-      "checksum": "sha256:cfe81bc3b3480fdda20de329cd0ab99364a7b96579dbe3f2d8df051f5ed5b9b1",
+      "checksum": null,
+      "publisher": null
+    },
+    "google-adk-python": {
+      "repo": "pikakit/agent-skills",
+      "skill": "google-adk-python",
+      "ref": null,
+      "checksum": null,
       "publisher": null
     },
     "idea-storm": {
@@ -164,11 +206,67 @@
       "checksum": "sha256:9166290e3c0af460970814a262965310e2d954366249912c9ca83cf88175a8da",
       "publisher": null
     },
-    "mcp-server": {
+    "knowledge-graph": {
+      "repo": "pikakit/agent-skills",
+      "skill": "knowledge-graph",
+      "ref": null,
+      "checksum": null,
+      "publisher": null
+    },
+    "lifecycle-orchestrator": {
+      "repo": "pikakit/agent-skills",
+      "skill": "lifecycle-orchestrator",
+      "ref": null,
+      "checksum": null,
+      "publisher": null
+    },
+    "markdown-novel-viewer": {
+      "repo": "pikakit/agent-skills",
+      "skill": "markdown-novel-viewer",
+      "ref": null,
+      "checksum": null,
+      "publisher": null
+    },
+    "mcp-builder": {
       "repo": "pikakit/agent-skills",
       "skill": "mcp-builder",
       "ref": null,
       "checksum": "sha256:94177008dc8319736bd16b5b8d22b06ecb5e944eed1a20553636b5b378db1bb7",
+      "publisher": null
+    },
+    "mcp-management": {
+      "repo": "pikakit/agent-skills",
+      "skill": "mcp-management",
+      "ref": null,
+      "checksum": null,
+      "publisher": null
+    },
+    "media-processing": {
+      "repo": "pikakit/agent-skills",
+      "skill": "media-processing",
+      "ref": null,
+      "checksum": null,
+      "publisher": null
+    },
+    "mermaid-editor": {
+      "repo": "pikakit/agent-skills",
+      "skill": "mermaid-editor",
+      "ref": null,
+      "checksum": null,
+      "publisher": null
+    },
+    "mobile-design": {
+      "repo": "pikakit/agent-skills",
+      "skill": "mobile-design",
+      "ref": null,
+      "checksum": null,
+      "publisher": null
+    },
+    "mobile-developer": {
+      "repo": "pikakit/agent-skills",
+      "skill": "mobile-developer",
+      "ref": null,
+      "checksum": null,
       "publisher": null
     },
     "mobile-first": {
@@ -178,11 +276,11 @@
       "checksum": "sha256:bcc40ea24ad952638e9b083ba539af6fa3daf847599c1c3f067aa37076b0931a",
       "publisher": null
     },
-    "multi-agent": {
+    "mobile-security-coder": {
       "repo": "pikakit/agent-skills",
-      "skill": "parallel-agents",
+      "skill": "mobile-security-coder",
       "ref": null,
-      "checksum": "sha256:d9cf68cef2085e836c7500d08fa051e5d908252f3f91a65b18ce6fba406559e1",
+      "checksum": null,
       "publisher": null
     },
     "nextjs-pro": {
@@ -199,6 +297,13 @@
       "checksum": "sha256:4b89f7e2eb30e488cbf86550c567d665ccd9cd0231f51d40dc8c15c8a10e8426",
       "publisher": null
     },
+    "observability": {
+      "repo": "pikakit/agent-skills",
+      "skill": "observability",
+      "ref": null,
+      "checksum": null,
+      "publisher": null
+    },
     "offensive-sec": {
       "repo": "pikakit/agent-skills",
       "skill": "red-team-tactics",
@@ -206,11 +311,32 @@
       "checksum": "sha256:d31da9c314654508935745c3e8a7b597f98ed0efc8947eb330b897bcf133d0d9",
       "publisher": null
     },
+    "payment-patterns": {
+      "repo": "pikakit/agent-skills",
+      "skill": "payment-patterns",
+      "ref": null,
+      "checksum": null,
+      "publisher": null
+    },
     "perf-optimizer": {
       "repo": "pikakit/agent-skills",
       "skill": "performance-profiling",
       "ref": null,
       "checksum": "sha256:bf6c9ba1f011cb21aaaeab6f5987e0f45de5b77c105dccbf2bc0ee7855b5894d",
+      "publisher": null
+    },
+    "plans-kanban": {
+      "repo": "pikakit/agent-skills",
+      "skill": "plans-kanban",
+      "ref": null,
+      "checksum": null,
+      "publisher": null
+    },
+    "problem-checker": {
+      "repo": "pikakit/agent-skills",
+      "skill": "problem-checker",
+      "ref": null,
+      "checksum": null,
       "publisher": null
     },
     "project-planner": {
@@ -234,18 +360,18 @@
       "checksum": "sha256:a1eaf2f804d4b6217ab29fafd50dd4fda7ac58e1a3ba9d3eb57ba835ca6bb073",
       "publisher": null
     },
-    "reasoning-engine": {
+    "remotion": {
       "repo": "pikakit/agent-skills",
-      "skill": "sequential-thinking",
+      "skill": "remotion",
       "ref": null,
-      "checksum": "sha256:57b0e7b470eb5a10b4473b20796a6e22c689dba9bdd3ae26834fa8214dd66025",
+      "checksum": null,
       "publisher": null
     },
-    "review-automation": {
+    "scout": {
       "repo": "pikakit/agent-skills",
-      "skill": "code-reviewer",
+      "skill": "scout",
       "ref": null,
-      "checksum": "sha256:eccfd74d82d3f2ae72776c1eb3528ba840856ef60ff224272c8b1cd981c7a323",
+      "checksum": null,
       "publisher": null
     },
     "security-scanner": {
@@ -253,13 +379,6 @@
       "skill": "vulnerability-scanner",
       "ref": null,
       "checksum": "sha256:8f627ff71b09dbe98bc401c4757b544bfc43afeec93d96ada49efbcb1996803a",
-      "publisher": null
-    },
-    "self-evolution": {
-      "repo": "pikakit/agent-skills",
-      "skill": "auto-learn",
-      "ref": null,
-      "checksum": "sha256:eec798819f9da3b471570f399ed32ebc66aadfa71f4d61182ea9c0182ba30bc1",
       "publisher": null
     },
     "seo-optimizer": {
@@ -276,6 +395,13 @@
       "checksum": "sha256:22f28c2dcfc1192768876962807e71d4df7d484a41888bc421451e52e483ce76",
       "publisher": null
     },
+    "shader": {
+      "repo": "pikakit/agent-skills",
+      "skill": "shader",
+      "ref": null,
+      "checksum": null,
+      "publisher": null
+    },
     "shell-script": {
       "repo": "pikakit/agent-skills",
       "skill": "bash-linux",
@@ -283,18 +409,18 @@
       "checksum": "sha256:386d3f9ce7a8a89c67fbc0bf4bd4eadb3504203f445cb2968af93d8ea00b2ca2",
       "publisher": null
     },
-    "skill-forge": {
+    "skill-generator": {
       "repo": "pikakit/agent-skills",
       "skill": "skill-creator",
       "ref": null,
       "checksum": "sha256:4de84cac9f34d2b0578cb0bfa41bb30edfe480772e06d5faea7750f704e8fd39",
       "publisher": null
     },
-    "smart-router": {
+    "studio": {
       "repo": "pikakit/agent-skills",
-      "skill": "intelligent-routing",
+      "skill": "studio",
       "ref": null,
-      "checksum": "sha256:4b66fcb3c62021910e06479e5072c69e699aed178c5d43a782053999f15cfc6e",
+      "checksum": null,
       "publisher": null
     },
     "system-design": {
@@ -325,18 +451,25 @@
       "checksum": "sha256:7f9b9a29fec0a4c838442e8e514486070f1e71309ebc9884934d508997f9cb3e",
       "publisher": null
     },
-    "visual-excellence": {
+    "typescript-expert": {
       "repo": "pikakit/agent-skills",
-      "skill": "aesthetic",
+      "skill": "typescript-expert",
       "ref": null,
-      "checksum": "sha256:3b0b736c04c00d63ed07d8f2215ee98b74c264df376ec7d2ede227e64144ba8a",
+      "checksum": null,
       "publisher": null
     },
-    "web-core": {
+    "vercel-deploy": {
       "repo": "pikakit/agent-skills",
-      "skill": "frontend",
+      "skill": "vercel-deploy",
       "ref": null,
-      "checksum": "sha256:5b59330532b4865a77a7ed6b115f5601bd80dcd6670c075c508f20b121245baa",
+      "checksum": null,
+      "publisher": null
+    },
+    "web-design-guidelines": {
+      "repo": "pikakit/agent-skills",
+      "skill": "web-design-guidelines",
+      "ref": null,
+      "checksum": null,
       "publisher": null
     }
   }

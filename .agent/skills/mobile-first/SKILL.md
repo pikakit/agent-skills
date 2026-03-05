@@ -100,7 +100,7 @@ AUDITING → AUDIT_FAILED      [script error]  // terminal
 ## Runtime Audit
 
 ```bash
-python .agent/skills/mobile-first/scripts/mobile_audit.py <project_path>
+node .agent/skills/mobile-first/scripts/mobile_audit.js <project_path>
 ```
 
 Read-only. Does not modify project files.
@@ -133,20 +133,28 @@ Read-only. Does not modify project files.
 ## 📑 Content Map
 
 | File | Type | When to Read |
-|------|------|--------------|
+|------|------|--------------| 
 | [frameworks/react-native.md](frameworks/react-native.md) | Sub-skill | RN/Expo selected |
 | [frameworks/flutter.md](frameworks/flutter.md) | Sub-skill | Flutter selected |
 | [frameworks/native.md](frameworks/native.md) | Sub-skill | SwiftUI/Kotlin selected |
 | [publishing/app-store-optimization.md](publishing/app-store-optimization.md) | Sub-skill | ASO needed |
 | [publishing/deep-linking.md](publishing/deep-linking.md) | Sub-skill | Deep links needed |
 | [publishing/push-notifications.md](publishing/push-notifications.md) | Sub-skill | Push needed |
+| [references/decision-trees.md](references/decision-trees.md) | Reference | Framework/state/nav selection |
 | [references/mobile-design-thinking.md](references/mobile-design-thinking.md) | Reference | Design process |
 | [references/touch-psychology.md](references/touch-psychology.md) | Reference | Touch UX |
 | [references/mobile-performance.md](references/mobile-performance.md) | Reference | Performance |
+| [references/mobile-navigation.md](references/mobile-navigation.md) | Reference | Navigation architecture |
+| [references/mobile-backend.md](references/mobile-backend.md) | Reference | Backend for mobile |
+| [references/mobile-color-system.md](references/mobile-color-system.md) | Reference | Color/theme decisions |
+| [references/mobile-typography.md](references/mobile-typography.md) | Reference | Typography decisions |
+| [references/mobile-testing.md](references/mobile-testing.md) | Reference | Testing strategy |
+| [references/mobile-debugging.md](references/mobile-debugging.md) | Reference | Debugging mobile issues |
 | [references/platform-ios.md](references/platform-ios.md) | Reference | iOS specifics |
 | [references/platform-android.md](references/platform-android.md) | Reference | Android specifics |
-| [scripts/mobile_audit.py](scripts/mobile_audit.py) | Script | UX audit |
-| [engineering-spec.md](references/engineering-spec.md) | Spec | Architecture review |
+| [references/anti-patterns.md](references/anti-patterns.md) | Reference | Quick anti-pattern check |
+| [references/engineering-spec.md](references/engineering-spec.md) | Spec | Architecture review |
+| [scripts/mobile_audit.js](scripts/mobile_audit.js) | Script | UX audit |
 
 **Selective reading:** Load ONLY the file relevant to current routing decision.
 
@@ -162,4 +170,4 @@ Read-only. Does not modify project files.
 
 ---
 
-⚡ PikaKit v3.9.74
+⚡ PikaKit v3.9.76

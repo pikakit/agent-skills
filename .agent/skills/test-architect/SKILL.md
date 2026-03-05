@@ -134,7 +134,7 @@ metadata:
 
 | File | Description | When to Read |
 |------|-------------|--------------|
-| [scripts/](scripts/) | Test utilities | Running scripts |
+| [test_runner.js](scripts/test_runner.js) | Unified test execution + coverage validation | Running tests |
 | [engineering-spec.md](references/engineering-spec.md) | Full spec | Architecture review |
 
 ---
@@ -149,4 +149,4 @@ metadata:
 
 ---
 
-⚡ PikaKit v3.9.74
+⚡ PikaKit v3.9.76

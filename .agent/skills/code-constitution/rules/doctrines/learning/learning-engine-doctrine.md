@@ -1,31 +1,31 @@
 ---
-name: coinpika-learning-engine-doctrine
+name: learning-engine-doctrine
 version: 1.0.0
 status: LOCKED
 authority: CONSTITUTIONAL
-parent: coinpika-architecture-doctrine
+parent: architecture-doctrine
 ---
 
-# 🧠 CoinPika Learning Engine Doctrine  
+# 🧠 PikaKit Learning Engine Doctrine  
 **(Controlled Learning · Reasoning Integrity Law)**
 
-This doctrine defines how CoinPika is **allowed to learn and improve over time**
+This doctrine defines how PikaKit is **allowed to learn and improve over time**
 without violating architectural, data, or trust invariants.
 
 Learning is power.  
 Uncontrolled learning is **SYSTEM FAILURE**.
 
-CoinPika learns to become **more correct**,  
+PikaKit learns to become **more correct**,  
 not more flexible.
 
 ---
 
 ## 1. Learning Philosophy
 
-CoinPika does **NOT** learn code.  
-CoinPika does **NOT** learn implementation details.
+PikaKit does **NOT** learn code.  
+PikaKit does **NOT** learn implementation details.
 
-CoinPika learns:
+PikaKit learns:
 
 - Reasoning patterns
 - Decision heuristics
@@ -45,7 +45,7 @@ Novelty and cleverness are **NOT goals**.
 
 All learning is **strictly subordinate** to:
 
-1. CoinPika Master Constitution
+1. PikaKit Master Constitution
 2. Architecture Doctrine
 3. System Doctrines
 
@@ -137,7 +137,7 @@ Silent behavioral drift is **FORBIDDEN**.
 
 ## 8. AI Agent Constraints
 
-AI agents operating under CoinPika:
+AI agents operating under PikaKit:
 
 - Are proposal-only
 - Have zero trust by default
@@ -174,7 +174,7 @@ This doctrine overrides:
 - Self-modifying behavior
 - Unbounded AI learning
 
-CoinPika learns to protect:
+PikaKit learns to protect:
 
 **Correctness · Predictability · Trust**
 
@@ -184,5 +184,5 @@ Not novelty.
 
 **Status:** LOCKED  
 **Version:** 1.0.0  
-**Parent:** CoinPika Architecture Doctrine  
+**Parent:** PikaKit Architecture Doctrine  
 **Override Permission:** NONE  

@@ -1,6 +1,6 @@
 {
     "version": "1.0.0",
-    "minPatternsToCreate": 3,
+    "minPatternsToCreate": 2,
     "categories": [
         "import",
         "type",

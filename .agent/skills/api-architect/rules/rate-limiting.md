@@ -1,3 +1,8 @@
+---
+name: rate-limiting
+description: Rate limiting strategies — token bucket, sliding window, Redis implementation, recommended limits
+---
+
 # Rate Limiting Principles
 
 > Protect your API from abuse and overload.
@@ -51,3 +56,13 @@ if (current > maxRequests) {
 | Authenticated | 1000 | 1 min |
 | Auth endpoints | 5 | 15 min |
 | File uploads | 10 | 1 hour |
+
+---
+
+## 🔗 Related
+
+| File | When to Read |
+|------|-------------|
+| [security-testing.md](security-testing.md) | Rate limit bypass testing |
+| [auth.md](auth.md) | Auth endpoint limits |
+| [SKILL.md](../SKILL.md) | Full decision framework |

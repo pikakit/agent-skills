@@ -1,3 +1,8 @@
+---
+name: visual-effects
+description: Glassmorphism, neumorphism, shadow hierarchy, gradients, glow, overlays, modern CSS techniques
+---
+
 # Visual Effects Reference
 
 > Modern CSS effect principles and techniques - learn the concepts, create variations.
@@ -381,3 +386,18 @@ Before applying any effect:
 ---
 
 > **Remember**: Effects enhance meaning. Choose based on purpose and context, not because it "looks cool."
+
+---
+
+⚡ PikaKit v3.9.76
+
+---
+
+## 🔗 Related
+
+| File | When to Read |
+|------|-------------|
+| [animation-guide.md](animation-guide.md) | Animation timing for effects |
+| [motion-graphics.md](motion-graphics.md) | Advanced Lottie, GSAP, 3D effects |
+| [color-system.md](color-system.md) | Color for gradients and glows |
+| [../SKILL.md](../SKILL.md) | Anti-pattern bans |

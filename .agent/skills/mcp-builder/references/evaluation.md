@@ -1,3 +1,8 @@
+---
+name: mcp-evaluation
+description: 10-question evaluation framework for MCP servers — complex, read-only, verifiable test questions
+---
+
 # MCP Evaluation Guide
 
 > Create 10 complex questions to test your MCP server with real AI agents.
@@ -81,4 +86,14 @@ This requires:
 
 ---
 
-⚡ PikaKit v3.9.74
+⚡ PikaKit v3.9.76
+
+---
+
+## 🔗 Related
+
+| File | When to Read |
+|------|-------------|
+| [../SKILL.md](../SKILL.md) | Phase 4 overview |
+| [best-practices.md](best-practices.md) | Design patterns to test |
+| [engineering-spec.md](engineering-spec.md) | Evaluation contracts |

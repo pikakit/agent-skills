@@ -1,6 +1,6 @@
 {
   "name": "pikakit-agent-skills",
-  "version": "3.9.74",
+  "version": "3.9.76",
   "description": "PikaKit Agent Skills - 50 FAANG-grade skills, 25 workflows, 25 agents for AI-powered development",
   "repository": {
     "type": "git",
@@ -44,7 +44,7 @@
     "test:unit": "vitest run tests/scripts --exclude tests/scripts/integration/*",
     "test:all": "npm run test && npm run test:integration && npm run test:studio",
     "scan:security": "python .agent/skills/vulnerability-scanner/scripts/security_scan.py .",
-    "lint": "python .agent/skills/lint-and-validate/scripts/lint_runner.py .",
+    "lint": "node .agent/skills/code-review/scripts/lint_runner.js .",
     "learn": "node packages/agent/lib/learn.js",
     "workflow:validate": "node .agent/scripts-js/workflow-validator.js",
     "workflow:list": "node .agent/scripts-js/workflow-engine.js --list",

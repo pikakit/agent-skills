@@ -1,3 +1,8 @@
+---
+name: mfa
+description: Multi-factor authentication — TOTP setup, backup codes, WebAuthn for MFA, recovery flows
+---
+
 # Multi-Factor Authentication (MFA)
 
 > TOTP, WebAuthn, backup codes, and recovery flows.
@@ -151,4 +156,15 @@ User cannot access MFA device?
 
 ---
 
-⚡ PikaKit v3.9.74
+⚡ PikaKit v3.9.76
+
+---
+
+## 🔗 Related
+
+| File | When to Read |
+|------|-------------|
+| [passkey.md](passkey.md) | Passkeys as MFA or passwordless |
+| [jwt-deep.md](jwt-deep.md) | Token lifecycle after MFA |
+| [session.md](session.md) | Session management with MFA |
+| [SKILL.md](../SKILL.md) | Auth strategy decision tree |

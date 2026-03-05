@@ -1,3 +1,8 @@
+---
+name: motion-design
+description: Orchestrated entrances — CSS stagger, Framer Motion variants, Anime.js timeline, duration guide
+---
+
 # Motion Design
 
 > One orchestrated animation > many scattered micro-interactions.
@@ -139,4 +144,14 @@ tl
 
 ---
 
-⚡ PikaKit v3.9.74
+⚡ PikaKit v3.9.76
+
+---
+
+## 🔗 Related
+
+| File | When to Read |
+|------|-------------|
+| [spatial-composition.md](spatial-composition.md) | Layout to animate |
+| [color-systems.md](color-systems.md) | Color transitions |
+| [../SKILL.md](../SKILL.md) | 1 orchestrated entrance rule |

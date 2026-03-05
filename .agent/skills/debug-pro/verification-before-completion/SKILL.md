@@ -6,7 +6,7 @@ version: 1.1.0
 languages: all
 metadata:
   category: "core"
-  version: "1.0.0"
+  version: "1.1.0"
   triggers: "verification, pre-completion check, quality gate"
 ---
 
@@ -144,3 +144,17 @@ From 24 failure memories:
 Run the command. Read the output. THEN claim the result.
 
 This is non-negotiable.
+
+---
+
+⚡ PikaKit v3.9.76
+
+---
+
+## 🔗 Related
+
+| File | When to Read |
+|------|-------------|
+| [../root-cause-tracing/SKILL.md](../root-cause-tracing/SKILL.md) | Trace root cause before claiming fix |
+| [../defense-in-depth/SKILL.md](../defense-in-depth/SKILL.md) | Add validation layers for robust fix |
+| [../SKILL.md](../SKILL.md) | 4-phase methodology overview |

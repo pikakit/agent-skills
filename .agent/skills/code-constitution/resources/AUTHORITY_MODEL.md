@@ -2,7 +2,7 @@
 
 ## Supreme Authority
 
-The `coinpika-doctrine-pack` skill has **SUPREME AUTHORITY** in the CoinPika ecosystem.
+The `PikaKit-doctrine-pack` skill has **SUPREME AUTHORITY** in the PikaKit ecosystem.
 
 ### What This Means
 
@@ -20,7 +20,7 @@ No implicit override is permitted.
 
 When conflicts arise, decisions are resolved in this strict order:
 
-1. 👑 **CoinPika Master Constitution** (HIGHEST)
+1. 👑 **PikaKit Master Constitution** (HIGHEST)
    - Prime Directives (immutable)
    - System Laws (non-negotiable)
    - Constitutional scope
@@ -106,6 +106,6 @@ Unauthorized modification of doctrine files is a **governance violation**.
 ## Final Authority Statement
 
 > This Constitution overrides all other considerations.
-> CoinPika optimizes for **long-term trust, correctness, and durability**—not short-term velocity.
+> PikaKit optimizes for **long-term trust, correctness, and durability**—not short-term velocity.
 > Safety overrides productivity.
 > If in doubt — **REFUSE**.

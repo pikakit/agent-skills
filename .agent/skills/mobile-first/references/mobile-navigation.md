@@ -1,3 +1,8 @@
+---
+name: mobile-navigation
+description: Navigation patterns, deep linking, back handling, tab/stack/drawer decisions, and transition animations
+---
+
 # Mobile Navigation Reference
 
 > Navigation patterns, deep linking, back handling, and tab/stack/drawer decisions.
@@ -456,3 +461,15 @@ Don't reinvent navigation.
 ---
 
 > **Remember:** Navigation is invisible when done right. Users shouldn't think about HOW to get somewhere—they just get there. If they notice navigation, something is wrong.
+
+---
+
+## 🔗 Related
+
+| File | When to Read |
+|------|-------------|
+| [decision-trees.md](decision-trees.md) | Navigation pattern selection |
+| [touch-psychology.md](touch-psychology.md) | Thumb zone, gesture psychology |
+| [platform-ios.md](platform-ios.md) | iOS navigation conventions |
+| [platform-android.md](platform-android.md) | Android navigation conventions |
+| [../publishing/deep-linking.md](../publishing/deep-linking.md) | Universal/App Links setup |

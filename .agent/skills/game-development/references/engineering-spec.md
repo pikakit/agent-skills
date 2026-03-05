@@ -1,3 +1,8 @@
+---
+name: game-development-engineering-spec
+description: Full 21-section engineering spec — routing contracts, game loop, perf budget, AI/collision selection
+---
+
 # Game Development — Engineering Specification
 
 > Production-grade specification for game development orchestration and core principles at FAANG scale.
@@ -445,4 +450,22 @@ Sub-skill SKILL.md files are read by the caller, not by this skill.
 
 ---
 
-⚡ PikaKit v3.9.74
+⚡ PikaKit v3.9.76
+
+---
+
+## 🔗 Related
+
+| Item | Type | When to Read |
+|------|------|--------------|
+| [../SKILL.md](../SKILL.md) | Parent | Quick reference routing tables |
+| `game-development/2d-games` | Sub-skill | 2D sprite and tilemap systems |
+| `game-development/3d-games` | Sub-skill | 3D rendering and physics |
+| `game-development/web-games` | Sub-skill | Browser game frameworks |
+| `game-development/mobile-games` | Sub-skill | Mobile constraints |
+| `game-development/pc-games` | Sub-skill | Engine selection |
+| `game-development/vr-ar` | Sub-skill | VR/AR comfort and performance |
+| `game-development/game-design` | Sub-skill | GDD and balancing |
+| `game-development/multiplayer` | Sub-skill | Networking architecture |
+| `game-development/game-art` | Sub-skill | Visual style and pipeline |
+| `game-development/game-audio` | Sub-skill | Sound design and adaptive audio |

@@ -1,3 +1,8 @@
+---
+name: verification-scripts
+description: Agent-to-script mapping for running validation scripts — output protocol, rules
+---
+
 # Verification Scripts Reference
 
 > Script mapping by agent role.
@@ -62,4 +67,13 @@
 
 ---
 
-⚡ PikaKit v3.9.74
+⚡ PikaKit v3.9.76
+
+---
+
+## 🔗 Related
+
+| File | When to Read |
+|------|-------------|
+| [engineering-spec.md](engineering-spec.md) | Full contracts and architecture |
+| [SKILL.md](../SKILL.md) | Core principles and function rules |

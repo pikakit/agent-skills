@@ -38,7 +38,7 @@ Mobile First eliminates these with deterministic sub-skill routing (3 framework 
 | G3 | 4 must-ask questions | Platform, Framework, Navigation, Offline — mandatory |
 | G4 | Framework decision tree | 5 branches: OTA → RN, custom UI → Flutter, iOS-deep → SwiftUI, Android-deep → Kotlin, existing → match |
 | G5 | Selective loading | Read only relevant sub-skill; never all |
-| G6 | Runtime audit | `mobile_audit.py` for UX/touch audit |
+| G6 | Runtime audit | `mobile_audit.js` for UX/touch audit |
 
 ---
 
@@ -109,7 +109,7 @@ Data: {
     android: object
   } | null
   audit: {
-    script_path: string       # "scripts/mobile_audit.py"
+    script_path: string       # "scripts/mobile_audit.js"
     command: string           # Full command to run
     project_path: string
   } | null
@@ -377,7 +377,7 @@ Orchestrator with routing state. Routing is idempotent (same context = same path
 |-----------|-----------|------------|
 | Routing throughput | CPU-bound decision tree | < 50ms; scales linearly |
 | Concurrent routing | Stateless per invocation | Unlimited parallel |
-| Sub-skill file count | 6 sub-skills + 13 references | Static; no growth expected |
+| Sub-skill file count | 6 sub-skills + 14 references | Static; no growth expected |
 | Audit concurrency | One per project | Serial per project |
 | Memory | < 1 MB per routing | No accumulation |
 
@@ -434,7 +434,7 @@ Routing is fully parallel (stateless). Audit is serial per project.
 |-------------|--------|----------|
 | YAML frontmatter complete | ✅ | name, description, metadata with category, version, triggers, coordinates_with, success_metrics |
 | SKILL.md < 200 lines | ✅ | Entry point under 200 lines |
-| Prerequisites documented | ✅ | Python for audit script |
+| Prerequisites documented | ✅ | Node.js for audit script |
 | When to Use section | ✅ | Situation-based routing table |
 | Core content matches skill type | ✅ | Orchestrator: sub-skill routing, decision tree |
 | Troubleshooting section | ✅ | Anti-patterns table |
@@ -468,4 +468,4 @@ Routing is fully parallel (stateless). Audit is serial per project.
 
 ---
 
-⚡ PikaKit v3.9.74
+⚡ PikaKit v3.9.76

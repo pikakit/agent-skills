@@ -1,3 +1,8 @@
+---
+name: application-cache
+description: App-level caching — TanStack Query, SWR, LRU cache, memoization, cache warming
+---
+
 # Application-Level Caching
 
 > In-memory caching, memoization, and frontend data cache (TanStack Query, SWR).
@@ -184,4 +189,15 @@ async function warmCache() {
 
 ---
 
-⚡ PikaKit v3.9.74
+⚡ PikaKit v3.9.76
+
+---
+
+## 🔗 Related
+
+| File | When to Read |
+|------|-------------|
+| [redis.md](redis.md) | Redis for shared/distributed cache |
+| [browser-cache.md](browser-cache.md) | Service Worker caching |
+| [cdn.md](cdn.md) | CDN for static/public cache |
+| [SKILL.md](../SKILL.md) | Cache layer decision tree |

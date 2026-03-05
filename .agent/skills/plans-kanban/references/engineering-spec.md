@@ -1,3 +1,8 @@
+---
+name: plans-kanban-engineering-spec
+description: Full 21-section engineering spec — HTTP dashboard server, port 3500-3550, plan.md parsing, glassmorphism UI, JSON API
+---
+
 # Plans Kanban — Engineering Specification
 
 > Production-grade specification for visual plan dashboard server at FAANG scale.
@@ -459,4 +464,15 @@ Session-based with process lifecycle state. Server state persisted via PID files
 
 ---
 
-⚡ PikaKit v3.9.74
+⚡ PikaKit v3.9.76
+
+---
+
+## 🔗 Related
+
+| File | When to Read |
+|------|-------------|
+| [../SKILL.md](../SKILL.md) | Quick start, CLI options, state transitions |
+| [../scripts/server.cjs](../scripts/server.cjs) | Server implementation |
+| `project-planner` | Creating plan structures |
+| `lifecycle-orchestrator` | Multi-phase execution |

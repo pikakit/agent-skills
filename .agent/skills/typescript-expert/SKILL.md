@@ -153,11 +153,14 @@ const config = {
 
 | File | Description | When to Read |
 |------|-------------|--------------|
+| [tsconfig-strict.json](references/tsconfig-strict.json) | Strict TS 5.x config template | New project setup |
+| [typescript-cheatsheet.md](references/typescript-cheatsheet.md) | Full TS quick reference (13 sections) | Writing TypeScript |
+| [utility-types.js](references/utility-types.js) | Runtime utilities (Result, Option, Brand) | JavaScript helpers |
 | [type-patterns.md](references/type-patterns.md) | Advanced type patterns | Type gymnastics |
 | [performance.md](references/performance.md) | Build performance | Slow builds |
 | [monorepo.md](references/monorepo.md) | Monorepo setup | Project references |
 | [migration.md](references/migration.md) | Migration strategies | Version upgrades |
-| [scripts/](scripts/) | Utility scripts | Automation |
+| [ts_diagnostic.js](scripts/ts_diagnostic.js) | Project health analysis | Automated diagnostics |
 | [engineering-spec.md](references/engineering-spec.md) | Full spec | Architecture review |
 
 ---
@@ -172,4 +175,4 @@ const config = {
 
 ---
 
-⚡ PikaKit v3.9.74
+⚡ PikaKit v3.9.76

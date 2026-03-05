@@ -1,16 +1,16 @@
 ---
-name: coinpika-swipe-tabs-doctrine
+name: interaction-patterns-doctrine
 version: 1.0.0
 status: LOCKED
 authority: CONSTITUTIONAL
-parent: coinpika-frontend-mobile-doctrine
+parent: frontend-mobile-doctrine
 ---
 
-# 👉 CoinPika Swipe Tabs Doctrine  
+# 👉 PikaKit Swipe Tabs Doctrine  
 **(Universal Swipe · Gesture · Navigation Law)**
 
 This doctrine defines the **single, universal swipe-tab architecture**
-used across CoinPika.
+used across PikaKit.
 
 Swipe is **NOT** a visual effect.  
 Swipe is a **navigation primitive**.
@@ -35,7 +35,7 @@ Consistency is more important than animation smoothness.
 
 ## 2. Single Implementation Law (NON-NEGOTIABLE)
 
-CoinPika MUST have:
+PikaKit MUST have:
 
 - **Exactly ONE swipe implementation**
 - Shared across **ALL** pages
@@ -158,7 +158,7 @@ This doctrine overrides:
 * Framework gesture defaults
 * Visual polish preferences
 
-CoinPika swipe exists to protect:
+PikaKit swipe exists to protect:
 
 **Predictability · Consistency · Navigation Trust**
 
@@ -168,5 +168,5 @@ Not visual flair.
 
 **Status:** LOCKED
 **Version:** 1.0.0
-**Parent:** CoinPika Frontend Mobile Doctrine
+**Parent:** PikaKit Frontend Mobile Doctrine
 **Override Permission:** NONE

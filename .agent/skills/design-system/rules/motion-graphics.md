@@ -1,3 +1,8 @@
+---
+name: motion-graphics
+description: Advanced motion — Lottie, GSAP, SVG animation, 3D CSS, particles, scroll-driven animations
+---
+
 # Motion Graphics Reference
 
 > Advanced animation techniques for premium web experiences - Lottie, GSAP, SVG, 3D, Particles.
@@ -304,3 +309,18 @@ What animation do you need?
 ---
 
 > **Remember**: Motion graphics should enhance, not distract. Every animation must serve a PURPOSE—feedback, guidance, delight, or storytelling.
+
+---
+
+⚡ PikaKit v3.9.76
+
+---
+
+## 🔗 Related
+
+| File | When to Read |
+|------|-------------|
+| [animation-guide.md](animation-guide.md) | Core animation timing and easing principles |
+| [visual-effects.md](visual-effects.md) | CSS glassmorphism, gradients, shadows |
+| [ux-psychology.md](ux-psychology.md) | Emotional design and feedback psychology |
+| [../SKILL.md](../SKILL.md) | Animation categories quick reference |

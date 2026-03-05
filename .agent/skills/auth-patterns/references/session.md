@@ -1,3 +1,8 @@
+---
+name: session
+description: Cookie sessions, Redis store, stateless vs stateful, session lifecycle and security
+---
+
 # Session Management
 
 > Cookie-based sessions, Redis store, stateless vs stateful trade-offs.
@@ -160,4 +165,15 @@ async function invalidateAllSessions(userId: string) {
 
 ---
 
-⚡ PikaKit v3.9.74
+⚡ PikaKit v3.9.76
+
+---
+
+## 🔗 Related
+
+| File | When to Read |
+|------|-------------|
+| [jwt-deep.md](jwt-deep.md) | JWT as stateless alternative |
+| [oauth2.md](oauth2.md) | OAuth sessions |
+| [mfa.md](mfa.md) | MFA with sessions |
+| [SKILL.md](../SKILL.md) | Auth strategy decision tree |

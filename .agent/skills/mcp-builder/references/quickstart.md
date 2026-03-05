@@ -1,3 +1,8 @@
+---
+name: mcp-quickstart
+description: Setup guides for Python FastMCP and TypeScript MCP SDK servers with minimal templates
+---
+
 # MCP Builder Quick Start
 
 > Setup guides for Python and TypeScript MCP servers.
@@ -88,4 +93,15 @@ npx ts-node server.ts
 
 ---
 
-⚡ PikaKit v3.9.74
+⚡ PikaKit v3.9.76
+
+---
+
+## 🔗 Related
+
+| File | When to Read |
+|------|-------------|
+| [../SKILL.md](../SKILL.md) | 4-phase build process |
+| [python-implementation.md](python-implementation.md) | Full Python server template |
+| [typescript-implementation.md](typescript-implementation.md) | Full TypeScript server template |
+| [design-principles.md](design-principles.md) | MCP concepts |

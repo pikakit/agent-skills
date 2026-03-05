@@ -37,7 +37,7 @@ Next.js Pro eliminates these with Server-first defaults (no directive = Server C
 | G2 | Data fetching routing | 3 strategies: static (default), ISR (revalidate: 60), dynamic (no-store) |
 | G3 | Route conventions | 4 files: page.tsx, layout.tsx, loading.tsx, error.tsx |
 | G4 | 60+ performance rules | 7 categories: async, bundle, server, client, rendering, rerender, js |
-| G5 | Core Web Vitals pass | LCP < 2.5s, FID < 100ms, CLS < 0.1 |
+| G5 | Core Web Vitals pass | LCP < 2.5s, INP < 200ms, CLS < 0.1 |
 | G6 | Server-first philosophy | Server Component by default; client only when necessary |
 
 ---
@@ -143,7 +143,7 @@ Recoverable: boolean
 - Data fetching is deterministic: static → default cache, periodic → `revalidate: N`, real-time → `no-store`.
 - Route conventions are fixed: page.tsx, layout.tsx, loading.tsx, error.tsx.
 - Rule categories are fixed: 7 categories with fixed file counts.
-- Core Web Vitals targets are fixed: LCP < 2.5s, FID < 100ms, CLS < 0.1.
+- Core Web Vitals targets are fixed: LCP < 2.5s, INP < 200ms, CLS < 0.1.
 - Default ISR interval is 60 seconds.
 
 #### What Agents May Assume
@@ -239,7 +239,7 @@ All phases synchronous. No async pipeline.
 | Binary component decision | needs_interactivity → client; else → server |
 | Fixed data strategies | static (default), ISR (revalidate: 60), dynamic (no-store) |
 | Fixed route files | page.tsx, layout.tsx, loading.tsx, error.tsx |
-| Fixed CWV targets | LCP < 2.5s, FID < 100ms, CLS < 0.1 |
+| Fixed CWV targets | LCP < 2.5s, INP < 200ms, CLS < 0.1 |
 | No barrel imports | Direct imports only; barrel files break tree-shaking |
 | Parallel fetching | No nested awaits; use Promise.all() |
 | Suspense boundaries | Use loading.tsx for route-level, `<Suspense>` for component-level |
@@ -416,7 +416,7 @@ All resources scoped to invocation. No persistent handles.
 | **Functionality** | Data fetching (3 strategies: static, ISR, dynamic) | ✅ |
 | **Functionality** | Route conventions (4 files) | ✅ |
 | **Functionality** | 60+ rules across 7 categories | ✅ |
-| **Functionality** | Core Web Vitals targets (LCP, FID, CLS) | ✅ |
+| **Functionality** | Core Web Vitals targets (LCP, INP, CLS) | ✅ |
 | **Contracts** | Input/output/error schemas in pseudo-schema format | ✅ |
 | **Contracts** | Contract versioning with semver | ✅ |
 | **Failure** | Error taxonomy with 3 categorized codes | ✅ |
@@ -431,4 +431,4 @@ All resources scoped to invocation. No persistent handles.
 
 ---
 
-⚡ PikaKit v3.9.74
+⚡ PikaKit v3.9.76

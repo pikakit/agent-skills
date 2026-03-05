@@ -1,3 +1,8 @@
+---
+name: dynamic-questioning
+description: Dynamic question generation algorithm with domain-specific banks (e-commerce, auth, real-time, CMS) and full examples.
+---
+
 # Dynamic Question Generation
 
 > **PRINCIPLE:** Questions are not about gathering data—they are about **revealing architectural consequences**.
@@ -348,3 +353,18 @@ Based on your Instagram clone request:
 4. **Provide defaults** → If user doesn't answer, we proceed anyway
 5. **Domain-aware** → Ecommerce questions ≠ Auth questions ≠ Real-time questions
 6. **Iterative** → More questions as patterns emerge during implementation
+
+---
+
+⚡ PikaKit v3.9.76
+
+---
+
+## 🔗 Related
+
+| File | When to Read |
+|------|-------------|
+| [../SKILL.md](../SKILL.md) | Socratic gate protocol, progress icons |
+| [architecture-debate.md](architecture-debate.md) | 8-phase debate, YAGNI/KISS/DRY |
+| [engineering-spec.md](engineering-spec.md) | Full engineering spec, contracts |
+| `project-planner` | Post-gate task planning |

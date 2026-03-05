@@ -1,3 +1,8 @@
+---
+name: mermaid-editor-engineering-spec
+description: Full 21-section engineering spec — HTTP editor server lifecycle, port 3457, 9 diagram types, file save/load
+---
+
 # Mermaid Editor — Engineering Specification
 
 > Production-grade specification for live Mermaid diagram editing server at FAANG scale.
@@ -34,7 +39,7 @@ Mermaid Editor eliminates these with a local preview server, syntax highlighting
 | ID | Goal | Measurable Constraint |
 |----|------|-----------------------|
 | G1 | 9 diagram types | flowchart, sequence, class, state, ER, gantt, pie, mindmap, timeline |
-| G2 | Single-command start | `node editor-server.cjs --open` |
+| G2 | Single-command start | `node editor-server.js --open` |
 | G3 | Live preview | Real-time rendering on keystroke |
 | G4 | File integration | Open/save `.mmd` files |
 | G5 | Syntax highlighting | Language-aware editor |
@@ -412,7 +417,7 @@ Single-thread per server (Node.js event loop). One editor per port.
 |-------------|--------|----------|
 | YAML frontmatter complete | ✅ | name, description, metadata, allowed-tools |
 | SKILL.md < 200 lines | ✅ | Entry point under 200 lines |
-| Prerequisites documented | ✅ | Node.js for editor-server.cjs |
+| Prerequisites documented | ✅ | Node.js for editor-server.js |
 | When to Use section | ✅ | Situation-based routing table |
 | Core content matches skill type | ✅ | Automation: CLI commands, server lifecycle |
 | Troubleshooting section | ✅ | Anti-patterns table |
@@ -446,4 +451,16 @@ Single-thread per server (Node.js event loop). One editor per port.
 
 ---
 
-⚡ PikaKit v3.9.74
+⚡ PikaKit v3.9.76
+
+---
+
+## 🔗 Related
+
+| File | When to Read |
+|------|-------------|
+| [../SKILL.md](../SKILL.md) | Quick start, CLI options, state transitions |
+| [diagram-reference.md](diagram-reference.md) | Syntax for all 9 diagram types |
+| [../scripts/editor-server.js](../scripts/editor-server.js) | Server implementation |
+| `system-design` | Architecture diagrams |
+| `markdown-novel-viewer` | Mermaid in markdown preview |

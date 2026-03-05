@@ -1,16 +1,16 @@
 ---
-name: coinpika-commercial-guardrails-doctrine
+name: commercial-guardrails-doctrine
 version: 1.0.0
 status: LOCKED
 authority: CONSTITUTIONAL
-parent: coinpika-architecture-doctrine
+parent: architecture-doctrine
 ---
 
-# 💼 CoinPika Commercial Guardrails Doctrine  
+# 💼 PikaKit Commercial Guardrails Doctrine  
 **(Enterprise Safety · Risk · Business Continuity Law)**
 
 This doctrine defines the **commercial and enterprise guardrails**
-governing how CoinPika evolves in production.
+governing how PikaKit evolves in production.
 
 At scale,  
 **technical mistakes become business failures**.
@@ -25,7 +25,7 @@ This doctrine exists to protect:
 
 ## 1. Commercial Risk Philosophy
 
-CoinPika assumes:
+PikaKit assumes:
 
 - Long-lived systems
 - Paying users
@@ -126,7 +126,7 @@ When trade-offs exist between:
 
 Decisions MUST defer in this order:
 
-1. CoinPika Master Constitution
+1. PikaKit Master Constitution
 2. Architecture Doctrine
 3. Commercial Guardrails (this document)
 4. Performance Doctrine
@@ -178,7 +178,7 @@ This doctrine overrides:
 - Short-term delivery pressure
 - Experimental ambition
 
-CoinPika protects:
+PikaKit protects:
 
 **Trust · Stability · Business Continuity**
 
@@ -188,5 +188,5 @@ Because **trust is the business**.
 
 **Status:** LOCKED  
 **Version:** 1.0.0  
-**Parent:** CoinPika Architecture Doctrine  
+**Parent:** PikaKit Architecture Doctrine  
 **Override Permission:** NONE  

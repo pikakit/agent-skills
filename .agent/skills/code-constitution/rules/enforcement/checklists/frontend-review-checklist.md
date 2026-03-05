@@ -1,12 +1,12 @@
 ---
-name: coinpika-frontend-gesture-review-checklist
+name: frontend-review-checklist
 version: 1.0.0
 status: LOCKED
 authority: ENFORCEMENT
-parent: coinpika-frontend-mobile-doctrine
+parent: frontend-mobile-doctrine
 ---
 
-# 🧾 CoinPika Frontend Gesture Review Checklist  
+# 🧾 PikaKit Frontend Gesture Review Checklist  
 **(Hard Merge Gate · Mobile UX Enforcement)**
 
 This checklist is a **MANDATORY enforcement gate** for any change involving:
@@ -22,10 +22,10 @@ If **ANY** item fails,
 the change **MUST NOT BE MERGED**.
 
 This checklist enforces:
-- CoinPika Frontend Mobile Doctrine
-- CoinPika Swipe Tabs Doctrine
-- CoinPika Performance Doctrine
-- CoinPika Architecture Doctrine
+- PikaKit Frontend Mobile Doctrine
+- PikaKit Swipe Tabs Doctrine
+- PikaKit Performance Doctrine
+- PikaKit Architecture Doctrine
 
 ---
 
@@ -186,5 +186,5 @@ When in doubt — **REJECT THE CHANGE**.
 
 **Status:** LOCKED
 **Version:** 1.0.0
-**Parent:** CoinPika Frontend Mobile Doctrine
+**Parent:** PikaKit Frontend Mobile Doctrine
 **Override Permission:** NONE

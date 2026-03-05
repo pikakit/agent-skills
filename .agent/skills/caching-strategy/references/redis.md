@@ -1,3 +1,8 @@
+---
+name: redis
+description: Advanced Redis caching patterns — cache-aside, write-through, SWR, thundering herd, tag invalidation
+---
+
 # Redis Caching Patterns
 
 > Advanced Redis patterns beyond basic cache-aside.
@@ -196,4 +201,15 @@ await invalidateTag('user:456'); // Clears all caches for user 456
 
 ---
 
-⚡ PikaKit v3.9.74
+⚡ PikaKit v3.9.76
+
+---
+
+## 🔗 Related
+
+| File | When to Read |
+|------|-------------|
+| [cdn.md](cdn.md) | CDN layer above Redis |
+| [application-cache.md](application-cache.md) | In-memory cache before Redis |
+| [browser-cache.md](browser-cache.md) | Client-side caching |
+| [SKILL.md](../SKILL.md) | Cache layer decision tree |

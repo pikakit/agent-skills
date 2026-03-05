@@ -1,60 +1,120 @@
 #!/usr/bin/env node
 /**
- * Feature Flag Manager - Stub Script
+ * Feature Flag Manager v2.0.0
+ * Skill: cicd-pipeline
  * Referenced by: /flags workflow
- * 
+ *
  * Commands:
  *   init    - Initialize feature flags config
  *   list    - List all flags
  *   enable  - Enable a flag
  *   disable - Disable a flag
  *   set     - Set rollout percentage
+ *
+ * Flags:
+ *   --json     Output as JSON
+ *   --help     Show help
+ *   --version  Show version
  */
 
-const fs = require('fs');
-const path = require('path');
+import { readFile, writeFile, access } from 'node:fs/promises';
+import { constants } from 'node:fs';
 
+const VERSION = '2.0.0';
 const FLAGS_FILE = '.feature-flags.json';
 
-function loadFlags() {
-    if (fs.existsSync(FLAGS_FILE)) {
-        return JSON.parse(fs.readFileSync(FLAGS_FILE, 'utf8'));
+// --- CLI Parsing ---
+
+const args = process.argv.slice(2);
+const jsonMode = args.includes('--json');
+const filteredArgs = args.filter(a => a !== '--json');
+const [command, ...commandArgs] = filteredArgs;
+
+function output(data) {
+    if (jsonMode) {
+        console.log(JSON.stringify(data, null, 2));
+    } else if (typeof data === 'string') {
+        console.log(data);
+    } else {
+        console.log(JSON.stringify(data, null, 2));
     }
-    return { flags: {} };
 }
 
-function saveFlags(config) {
-    fs.writeFileSync(FLAGS_FILE, JSON.stringify(config, null, 2));
+function outputError(code, message) {
+    if (jsonMode) {
+        console.error(JSON.stringify({ status: 'error', code, message }));
+    } else {
+        console.error(`[X] ${code}: ${message}`);
+    }
+    process.exit(1);
 }
 
-function init() {
-    if (fs.existsSync(FLAGS_FILE)) {
-        console.log(`⚠️  ${FLAGS_FILE} already exists`);
+// --- File I/O ---
+
+async function fileExists(path) {
+    try {
+        await access(path, constants.F_OK);
+        return true;
+    } catch {
+        return false;
+    }
+}
+
+async function loadFlags() {
+    if (await fileExists(FLAGS_FILE)) {
+        try {
+            const raw = await readFile(FLAGS_FILE, 'utf8');
+            return JSON.parse(raw);
+        } catch (err) {
+            outputError('ERR_CORRUPTED_FILE', `Failed to parse ${FLAGS_FILE}: ${err.message}`);
+        }
+    }
+    return { version: VERSION, flags: {} };
+}
+
+async function saveFlags(config) {
+    try {
+        await writeFile(FLAGS_FILE, JSON.stringify(config, null, 2), 'utf8');
+    } catch (err) {
+        outputError('ERR_WRITE_FAILED', `Failed to write ${FLAGS_FILE}: ${err.message}`);
+    }
+}
+
+// --- Commands ---
+
+async function init() {
+    if (await fileExists(FLAGS_FILE)) {
+        output({ status: 'skipped', message: `${FLAGS_FILE} already exists` });
         return;
     }
 
     const config = {
-        version: "1.0.0",
+        version: VERSION,
         flags: {
-            "example-feature": {
+            'example-feature': {
                 enabled: false,
                 percentage: 0,
-                description: "Example feature flag"
-            }
-        }
+                description: 'Example feature flag',
+                createdAt: new Date().toISOString(),
+            },
+        },
     };
 
-    saveFlags(config);
-    console.log(`✅ Created ${FLAGS_FILE}`);
-    console.log('📝 Example flag "example-feature" added');
+    await saveFlags(config);
+    output({ status: 'success', message: `Created ${FLAGS_FILE}`, flags: Object.keys(config.flags) });
 }
 
-function list() {
-    const config = loadFlags();
-    const flags = Object.entries(config.flags);
+async function list() {
+    const config = await loadFlags();
+    const entries = Object.entries(config.flags);
 
-    if (flags.length === 0) {
-        console.log('No flags configured. Run: node flag-manager.js init');
+    if (entries.length === 0) {
+        output({ status: 'success', flags: [], message: 'No flags configured. Run: node flag-manager.js init' });
+        return;
+    }
+
+    if (jsonMode) {
+        output({ status: 'success', count: entries.length, flags: config.flags });
         return;
     }
 
@@ -62,94 +122,131 @@ function list() {
     console.log('| Flag | Status | % | Description |');
     console.log('|------|--------|---|-------------|');
 
-    for (const [name, flag] of flags) {
+    for (const [name, flag] of entries) {
         const status = flag.enabled ? '✅ ON' : '❌ OFF';
-        const pct = flag.percentage || 100;
+        const pct = flag.percentage ?? 100;
         const desc = flag.description || '';
         console.log(`| ${name} | ${status} | ${pct}% | ${desc} |`);
     }
     console.log();
 }
 
-function enable(flagName) {
-    const config = loadFlags();
-
-    if (!config.flags[flagName]) {
-        config.flags[flagName] = { enabled: true, percentage: 100 };
-        console.log(`✅ Created and enabled flag: ${flagName}`);
-    } else {
-        config.flags[flagName].enabled = true;
-        console.log(`✅ Enabled flag: ${flagName}`);
+async function enable(flagName) {
+    if (!flagName) {
+        outputError('ERR_MISSING_ARG', 'Usage: node flag-manager.js enable <flag-name>');
     }
 
-    saveFlags(config);
+    const config = await loadFlags();
+    const isNew = !config.flags[flagName];
+
+    if (isNew) {
+        config.flags[flagName] = { enabled: true, percentage: 100, createdAt: new Date().toISOString() };
+    } else {
+        config.flags[flagName].enabled = true;
+    }
+
+    await saveFlags(config);
+    output({ status: 'success', flag: flagName, enabled: true, created: isNew });
 }
 
-function disable(flagName) {
-    const config = loadFlags();
+async function disable(flagName) {
+    if (!flagName) {
+        outputError('ERR_MISSING_ARG', 'Usage: node flag-manager.js disable <flag-name>');
+    }
+
+    const config = await loadFlags();
 
     if (!config.flags[flagName]) {
-        console.log(`⚠️  Flag "${flagName}" does not exist`);
-        return;
+        outputError('ERR_FLAG_NOT_FOUND', `Flag "${flagName}" does not exist`);
     }
 
     config.flags[flagName].enabled = false;
-    saveFlags(config);
-    console.log(`❌ Disabled flag: ${flagName}`);
+    await saveFlags(config);
+    output({ status: 'success', flag: flagName, enabled: false });
 }
 
-function setPercentage(flagName, percentage) {
-    const config = loadFlags();
-
-    if (!config.flags[flagName]) {
-        config.flags[flagName] = { enabled: true, percentage: parseInt(percentage) };
-    } else {
-        config.flags[flagName].percentage = parseInt(percentage);
+async function setPercentage(flagName, percentage) {
+    if (!flagName || percentage === undefined) {
+        outputError('ERR_MISSING_ARG', 'Usage: node flag-manager.js set <flag-name> --percentage <0-100>');
     }
 
-    saveFlags(config);
-    console.log(`📊 Set ${flagName} to ${percentage}% rollout`);
+    const pct = parseInt(percentage, 10);
+
+    if (isNaN(pct) || pct < 0 || pct > 100) {
+        outputError('ERR_INVALID_PERCENTAGE', 'Percentage must be an integer between 0 and 100');
+    }
+
+    const config = await loadFlags();
+
+    if (!config.flags[flagName]) {
+        config.flags[flagName] = { enabled: true, percentage: pct, createdAt: new Date().toISOString() };
+    } else {
+        config.flags[flagName].percentage = pct;
+    }
+
+    await saveFlags(config);
+    output({ status: 'success', flag: flagName, percentage: pct });
 }
 
-// Main
-const [, , command, ...args] = process.argv;
+function showHelp() {
+    const help = `Feature Flag Manager v${VERSION}
 
-switch (command) {
-    case 'init':
-        init();
-        break;
-    case 'list':
-        list();
-        break;
-    case 'enable':
-        if (!args[0]) {
-            console.log('Usage: node flag-manager.js enable <flag-name>');
-            process.exit(1);
-        }
-        enable(args[0]);
-        break;
-    case 'disable':
-        if (!args[0]) {
-            console.log('Usage: node flag-manager.js disable <flag-name>');
-            process.exit(1);
-        }
-        disable(args[0]);
-        break;
-    case 'set':
-        if (!args[0] || !args.includes('--percentage')) {
-            console.log('Usage: node flag-manager.js set <flag-name> --percentage <0-100>');
-            process.exit(1);
-        }
-        const pctIndex = args.indexOf('--percentage');
-        setPercentage(args[0], args[pctIndex + 1]);
-        break;
-    default:
-        console.log('Feature Flag Manager\n');
-        console.log('Commands:');
-        console.log('  init                    Initialize flags config');
-        console.log('  list                    List all flags');
-        console.log('  enable <name>           Enable a flag');
-        console.log('  disable <name>          Disable a flag');
-        console.log('  set <name> --percentage <N>  Set rollout %');
-        process.exit(0);
+Usage: node flag-manager.js <command> [options]
+
+Commands:
+  init                              Initialize flags config
+  list                              List all flags
+  enable <name>                     Enable a flag
+  disable <name>                    Disable a flag
+  set <name> --percentage <0-100>   Set rollout percentage
+
+Options:
+  --json       Output as JSON
+  --help       Show this help
+  --version    Show version`;
+
+    console.log(help);
 }
+
+// --- Main ---
+
+async function main() {
+    if (args.includes('--version')) {
+        console.log(VERSION);
+        return;
+    }
+
+    if (args.includes('--help') || !command) {
+        showHelp();
+        return;
+    }
+
+    switch (command) {
+        case 'init':
+            await init();
+            break;
+        case 'list':
+            await list();
+            break;
+        case 'enable':
+            await enable(commandArgs[0]);
+            break;
+        case 'disable':
+            await disable(commandArgs[0]);
+            break;
+        case 'set': {
+            const pctIdx = commandArgs.indexOf('--percentage');
+            if (pctIdx === -1) {
+                outputError('ERR_MISSING_ARG', 'Usage: node flag-manager.js set <flag-name> --percentage <0-100>');
+            }
+            await setPercentage(commandArgs[0], commandArgs[pctIdx + 1]);
+            break;
+        }
+        default:
+            outputError('ERR_UNKNOWN_COMMAND', `Unknown command: "${command}". Run with --help for usage.`);
+    }
+}
+
+main().catch(err => {
+    outputError('ERR_UNEXPECTED', err.message);
+});

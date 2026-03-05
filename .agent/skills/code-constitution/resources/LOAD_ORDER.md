@@ -1,4 +1,4 @@
-# CoinPika Doctrine Pack - Load Order
+# Governance Doctrine Pack - Load Order
 
 ## Progressive Disclosure Model
 
@@ -12,7 +12,7 @@ This skill follows **Progressive Disclosure** to optimize context window usage.
    - Quick reference guide
 
 2. **constitution/*** (Load when architectural decisions needed)
-   - `coinpika-master-constitution.md` - Supreme authority
+   - `master-constitution.md` - Supreme authority
    - Prime Directives (immutable)
    - System Laws (non-negotiable)
    - Learning constraints
@@ -42,9 +42,9 @@ If a lower layer conflicts with a higher layer, **the higher layer always wins**
 
 Example precedence:
 ```
-constitution/coinpika-master-constitution.md  (HIGHEST)
+constitution/master-constitution.md  (HIGHEST)
   ↓
-doctrines/architecture/coinpika-architecture-doctrine.md
+doctrines/architecture/architecture-doctrine.md
   ↓
 enforcement/checklists/backend-api-review-checklist.md
   ↓
@@ -55,7 +55,7 @@ Developer preference  (LOWEST)
 
 ### Scenario: Backend API Changes
 1. Load `SKILL.md` (intent matching)
-2. Load `constitution/coinpika-master-constitution.md` (Laws 1-3)
+2. Load `constitution/master-constitution.md` (Laws 1-3)
 3. Load `doctrines/architecture/` (boundary laws)
 4. Load `doctrines/backend/` (data engine rules)
 5. Reference `enforcement/checklists/backend-api-review-checklist.md`
@@ -63,14 +63,14 @@ Developer preference  (LOWEST)
 ### Scenario: Mobile UI/Gesture Changes
 1. Load `SKILL.md` (intent matching)
 2. Load `constitution/` (Prime Directives)
-3. Load `doctrines/frontend/coinpika-frontend-mobile-doctrine.md`
-4. Load `doctrines/frontend/coinpika-swipe-tabs-doctrine.md`
+3. Load `doctrines/frontend/frontend-mobile-doctrine.md`
+4. Load `doctrines/frontend/interaction-patterns-doctrine.md`
 5. Reference `enforcement/checklists/mobile-gesture-review-checklist.md`
 
 ### Scenario: Chart/Financial Data
 1. Load `SKILL.md` (intent matching)
 2. Load `constitution/` (Laws 2-4: immutability, ephemerality, truthfulness)
-3. Load `doctrines/data/coinpika-chart-data-doctrine.md`
+3. Load `doctrines/data/data-integrity-doctrine.md`
 4. Load `doctrines/backend/` (aggregation rules)
 5. Reference `enforcement/checklists/chart-component-review-checklist.md`
 

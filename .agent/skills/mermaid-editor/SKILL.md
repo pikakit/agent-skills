@@ -5,7 +5,6 @@ description: >-
   9 diagram types: flowchart, sequence, class, state, ER, gantt, pie, mindmap, timeline.
   Triggers on: mermaid, diagram, flowchart, sequence diagram, mmd editor.
   Coordinates with: system-design, doc-templates, markdown-novel-viewer.
-allowed-tools: Read, Write, Edit, Terminal
 metadata:
   version: "2.0.0"
   category: "tools"
@@ -54,13 +53,13 @@ metadata:
 
 ```bash
 # Open editor (empty)
-node .agent/skills/mermaid-editor/scripts/editor-server.cjs --open
+node .agent/skills/mermaid-editor/scripts/editor-server.js --open
 
 # Edit existing file
-node .agent/skills/mermaid-editor/scripts/editor-server.cjs --file diagram.mmd --open
+node .agent/skills/mermaid-editor/scripts/editor-server.js --file diagram.mmd --open
 
 # Stop server
-node .agent/skills/mermaid-editor/scripts/editor-server.cjs --stop
+node .agent/skills/mermaid-editor/scripts/editor-server.js --stop
 ```
 
 ---
@@ -71,6 +70,7 @@ node .agent/skills/mermaid-editor/scripts/editor-server.cjs --stop
 |--------|---------|-------------|
 | `--file <path>` | — | Open .mmd file |
 | `--port <n>` | 3457 | Server port |
+| `--host <addr>` | localhost | Bind address |
 | `--open` | false | Auto-open browser |
 | `--stop` | — | Stop all servers |
 
@@ -134,7 +134,7 @@ RUNNING → CRASHED            [unhandled error]  // terminal
 | File | Description | When to Read |
 |------|-------------|--------------|
 | [diagram-reference.md](references/diagram-reference.md) | Full syntax + examples for all 9 types | Writing diagram syntax |
-| [editor-server.cjs](scripts/editor-server.cjs) | Server implementation | Implementation |
+| [editor-server.js](scripts/editor-server.js) | Server implementation | Implementation |
 | [engineering-spec.md](references/engineering-spec.md) | Full engineering spec | Architecture review |
 
 ---
@@ -149,4 +149,4 @@ RUNNING → CRASHED            [unhandled error]  // terminal
 
 ---
 
-⚡ PikaKit v3.9.74
+⚡ PikaKit v3.9.76

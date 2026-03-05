@@ -143,7 +143,7 @@ metadata:
 | File | Description | When to Read |
 |------|-------------|--------------|
 | [architecture-debate.md](references/architecture-debate.md) | 8-phase debate, YAGNI/KISS/DRY | Architecture decisions |
-| [dynamic-questioning.md](dynamic-questioning.md) | Dynamic question generation | Advanced questioning |
+| [dynamic-questioning.md](references/dynamic-questioning.md) | Dynamic question generation | Advanced questioning |
 | [engineering-spec.md](references/engineering-spec.md) | Full engineering spec | Architecture review |
 
 ---
@@ -158,4 +158,4 @@ metadata:
 
 ---
 
-⚡ PikaKit v3.9.74
+⚡ PikaKit v3.9.76

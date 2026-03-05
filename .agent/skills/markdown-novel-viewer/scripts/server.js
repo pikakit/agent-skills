@@ -1,26 +1,44 @@
 #!/usr/bin/env node
 /**
- * Markdown Novel Viewer Server
- * 
- * Usage:
- *   node server.cjs --file ./README.md --open
- *   node server.cjs --dir ./docs --open
- *   node server.cjs --stop
+ * Markdown Novel Viewer — Background Preview Server
+ *
+ * Renders markdown files with a book-like reading experience.
+ * Novel theme (light/dark), Mermaid diagrams, directory browsing.
+ *
+ * @version 2.0.0
+ * @contract markdown-novel-viewer v2.0.0
+ * @see references/engineering-spec.md
+ *
+ * Features:
+ *  - Novel theme: Libre Baskerville + Inter + JetBrains Mono
+ *  - Port auto-allocation: 3456-3500
+ *  - Mermaid rendering: flowchart, sequence, pie, gantt, mindmap
+ *  - Directory browsing with parent navigation
+ *  - Keyboard shortcuts: T (theme), S (sidebar), ←→ (navigate), Esc (close)
+ *  - Path traversal prevention
+ *
+ * Read-only: reads files, never modifies them.
  */
 
-const http = require('http');
-const fs = require('fs');
-const path = require('path');
-const url = require('url');
-const { execSync } = require('child_process');
+import http from 'node:http';
+import fs from 'node:fs';
+import path from 'node:path';
+import os from 'node:os';
+import { exec } from 'node:child_process';
+import { createRequire } from 'node:module';
+
+const require = createRequire(import.meta.url);
 
 // Check for required dependencies
 let marked, matter;
 try {
     marked = require('marked');
     matter = require('gray-matter');
-} catch (e) {
-    console.error('Dependencies not installed. Run: npm install marked gray-matter');
+} catch {
+    console.error(JSON.stringify({
+        success: false,
+        error: { code: 'ERR_DEPS_MISSING', message: 'Run: npm install marked gray-matter' }
+    }));
     process.exit(1);
 }
 
@@ -50,7 +68,7 @@ for (let i = 0; i < args.length; i++) {
 
 // Stop all servers
 if (config.stop) {
-    const tmpDir = require('os').tmpdir();
+    const tmpDir = os.tmpdir();
     const pidFiles = fs.readdirSync(tmpDir).filter(f => f.startsWith('md-novel-viewer-') && f.endsWith('.pid'));
 
     pidFiles.forEach(pidFile => {
@@ -59,7 +77,7 @@ if (config.stop) {
             process.kill(parseInt(pid, 10));
             fs.unlinkSync(path.join(tmpDir, pidFile));
             console.log(`Stopped server with PID ${pid}`);
-        } catch (e) {
+        } catch {
             fs.unlinkSync(path.join(tmpDir, pidFile));
         }
     });
@@ -69,13 +87,28 @@ if (config.stop) {
 }
 
 if (!config.file && !config.dir) {
-    console.error('Error: --file or --dir is required');
+    console.error(JSON.stringify({
+        success: false,
+        error: { code: 'ERR_MISSING_ARG', message: '--file or --dir is required' }
+    }));
     process.exit(1);
 }
 
-// Get local network IP
+// Resolve project root for path traversal prevention
+const projectRoot = path.resolve(config.file ? path.dirname(config.file) : config.dir);
+
+/**
+ * Validate file path against traversal attacks.
+ * Rejects paths containing .. that escape the target directory.
+ */
+function isPathSafe(requestedPath) {
+    const resolved = path.resolve(requestedPath);
+    return resolved.startsWith(projectRoot);
+}
+
+/** Get local network IP for remote access display. */
 function getNetworkIP() {
-    const interfaces = require('os').networkInterfaces();
+    const interfaces = os.networkInterfaces();
     for (const name of Object.keys(interfaces)) {
         for (const iface of interfaces[name]) {
             if (iface.family === 'IPv4' && !iface.internal) {
@@ -141,6 +174,51 @@ body {
   min-height: 100vh;
 }
 
+.layout { display: flex; min-height: 100vh; }
+
+.sidebar {
+  width: 260px;
+  background: var(--bg-secondary);
+  border-right: 1px solid var(--border);
+  padding: 2rem 1rem;
+  position: fixed;
+  top: 0;
+  left: -260px;
+  height: 100vh;
+  overflow-y: auto;
+  transition: left 0.3s ease;
+  z-index: 100;
+}
+
+.sidebar.open { left: 0; }
+
+.sidebar h3 {
+  font-family: 'Libre Baskerville', Georgia, serif;
+  color: var(--accent);
+  font-size: 1rem;
+  margin-bottom: 1rem;
+}
+
+.sidebar ul { list-style: none; padding: 0; }
+
+.sidebar li {
+  margin-bottom: 0.25rem;
+}
+
+.sidebar a {
+  display: block;
+  padding: 0.4rem 0.75rem;
+  color: var(--text-secondary);
+  text-decoration: none;
+  border-radius: 6px;
+  font-size: 0.85rem;
+}
+
+.sidebar a:hover, .sidebar a.active {
+  background: var(--bg-primary);
+  color: var(--accent);
+}
+
 .container {
   max-width: var(--content-width);
   margin: 0 auto;
@@ -181,10 +259,7 @@ pre {
   border: 1px solid var(--border);
 }
 
-pre code {
-  background: none;
-  padding: 0;
-}
+pre code { background: none; padding: 0; }
 
 blockquote {
   border-left: 4px solid var(--accent);
@@ -194,18 +269,10 @@ blockquote {
   margin: 1.5rem 0;
 }
 
-ul, ol {
-  margin-bottom: 1.5rem;
-  padding-left: 2rem;
-}
-
+ul, ol { margin-bottom: 1.5rem; padding-left: 2rem; }
 li { margin-bottom: 0.5rem; }
 
-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-bottom: 1.5rem;
-}
+table { width: 100%; border-collapse: collapse; margin-bottom: 1.5rem; }
 
 th, td {
   border: 1px solid var(--border);
@@ -213,17 +280,9 @@ th, td {
   text-align: left;
 }
 
-th {
-  background: var(--bg-secondary);
-  color: var(--accent);
-}
+th { background: var(--bg-secondary); color: var(--accent); }
 
-img {
-  max-width: 100%;
-  height: auto;
-  border-radius: 8px;
-  margin: 1rem 0;
-}
+img { max-width: 100%; height: auto; border-radius: 8px; margin: 1rem 0; }
 
 .mermaid {
   background: var(--bg-secondary);
@@ -233,23 +292,26 @@ img {
   text-align: center;
 }
 
-.theme-toggle {
+.toolbar {
   position: fixed;
   top: 1rem;
   right: 1rem;
+  display: flex;
+  gap: 0.5rem;
+  z-index: 200;
+}
+
+.toolbar button {
   background: var(--bg-secondary);
   border: 1px solid var(--border);
-  padding: 0.5rem 1rem;
+  padding: 0.5rem 0.75rem;
   border-radius: 8px;
   cursor: pointer;
   color: var(--text-primary);
-  font-size: 0.9rem;
+  font-size: 0.85rem;
 }
 
-.theme-toggle:hover {
-  background: var(--accent);
-  color: white;
-}
+.toolbar button:hover { background: var(--accent); color: white; }
 
 .meta {
   color: var(--text-secondary);
@@ -268,48 +330,79 @@ img {
   border-top: 1px solid var(--border);
 }
 
+.kbd {
+  display: inline-block;
+  padding: 0.1rem 0.4rem;
+  font-size: 0.75rem;
+  font-family: 'JetBrains Mono', monospace;
+  background: var(--code-bg);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  margin-left: 0.5rem;
+}
+
 /* Directory browser */
-.directory {
-  list-style: none;
-  padding: 0;
-}
-
-.directory li {
-  padding: 0.75rem;
-  border-bottom: 1px solid var(--border);
-}
-
-.directory a {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.directory .icon {
-  font-size: 1.2rem;
-}
+.directory { list-style: none; padding: 0; }
+.directory li { padding: 0.75rem; border-bottom: 1px solid var(--border); }
+.directory a { display: flex; align-items: center; gap: 0.5rem; }
+.directory .icon { font-size: 1.2rem; }
 `;
 
-// Render markdown to HTML
+/** Extract headings from markdown for sidebar navigation. */
+function extractHeadings(mdContent) {
+    const headings = [];
+    const regex = /^(#{2,3})\s+(.+)$/gm;
+    let match;
+    while ((match = regex.exec(mdContent)) !== null) {
+        const level = match[1].length;
+        const text = match[2].replace(/[*_`]/g, '');
+        const id = text.toLowerCase().replace(/[^\w]+/g, '-').replace(/^-+|-+$/g, '');
+        headings.push({ level, text, id });
+    }
+    return headings;
+}
+
+/** Render markdown to HTML with frontmatter extraction. */
 function renderMarkdown(content) {
-    // Parse frontmatter
     const { data: meta, content: mdContent } = matter(content);
 
-    // Convert Mermaid blocks
-    let html = mdContent.replace(/```mermaid\n([\s\S]*?)```/g, (match, code) => {
+    // Convert Mermaid blocks before markdown rendering
+    let processedMd = mdContent.replace(/```mermaid\n([\s\S]*?)```/g, (_match, code) => {
         return `<div class="mermaid">${code.trim()}</div>`;
     });
 
-    // Render markdown
-    html = marked.parse(html);
+    // Add IDs to headings for sidebar navigation
+    processedMd = processedMd.replace(/^(#{2,3})\s+(.+)$/gm, (_match, hashes, text) => {
+        const id = text.replace(/[*_`]/g, '').toLowerCase().replace(/[^\w]+/g, '-').replace(/^-+|-+$/g, '');
+        return `${hashes} <a id="${id}"></a>${text}`;
+    });
 
-    return { html, meta };
+    const html = marked.parse(processedMd);
+    const headings = extractHeadings(mdContent);
+
+    return { html, meta, headings };
 }
 
-// Generate viewer HTML
+/** Generate sidebar HTML from headings. */
+function renderSidebar(headings) {
+    if (headings.length === 0) return '';
+    const items = headings.map(h => {
+        const indent = h.level === 3 ? 'style="padding-left: 1.5rem; font-size: 0.8rem;"' : '';
+        return `<li><a href="#${h.id}" ${indent}>${h.text}</a></li>`;
+    }).join('\n');
+    return `
+    <nav class="sidebar" id="sidebar">
+      <h3>📑 Contents</h3>
+      <ul>${items}</ul>
+    </nav>`;
+}
+
+/** Generate full viewer HTML page. */
 function renderViewer(content, filePath) {
-    const { html, meta } = renderMarkdown(content);
+    const { html, meta, headings } = renderMarkdown(content);
     const title = meta.title || path.basename(filePath, '.md');
+    const sidebar = renderSidebar(headings);
+    const hasSidebar = headings.length > 0;
 
     return `<!DOCTYPE html>
 <html lang="en">
@@ -323,19 +416,33 @@ function renderViewer(content, filePath) {
   <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
 </head>
 <body>
-  <button class="theme-toggle" onclick="toggleTheme()">🌓 Theme</button>
-  <div class="container">
-    ${meta.title ? `<div class="meta">${meta.date || ''}</div>` : ''}
-    ${html}
-    <div class="footer">⚡ PikaKit v3.2.0 | Markdown Novel Viewer</div>
+  <div class="toolbar">
+    ${hasSidebar ? '<button onclick="toggleSidebar()" title="Toggle sidebar (S)">☰ Nav</button>' : ''}
+    <button onclick="toggleTheme()" title="Toggle theme (T)">🌓 Theme</button>
+  </div>
+  ${sidebar}
+  <div class="layout">
+    <div class="container">
+      ${meta.title ? `<div class="meta">${meta.date || ''}</div>` : ''}
+      ${html}
+      <div class="footer">
+        ⚡ PikaKit v3.9.74 | Markdown Novel Viewer
+        <br><span style="font-size:0.7rem">
+          <kbd class="kbd">T</kbd> Theme
+          ${hasSidebar ? '<kbd class="kbd">S</kbd> Sidebar' : ''}
+          <kbd class="kbd">←→</kbd> Scroll
+          <kbd class="kbd">Esc</kbd> Close sidebar
+        </span>
+      </div>
+    </div>
   </div>
   <script>
     // Initialize Mermaid
-    mermaid.initialize({ 
+    mermaid.initialize({
       startOnLoad: true,
       theme: document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
     });
-    
+
     // Theme toggle
     function toggleTheme() {
       const html = document.documentElement;
@@ -343,31 +450,44 @@ function renderViewer(content, filePath) {
       const next = current === 'dark' ? 'light' : 'dark';
       html.setAttribute('data-theme', next);
       localStorage.setItem('theme', next);
-      
-      // Re-render Mermaid with new theme
       mermaid.initialize({ theme: next === 'dark' ? 'dark' : 'default' });
       document.querySelectorAll('.mermaid').forEach(el => {
         el.removeAttribute('data-processed');
       });
       mermaid.init();
     }
-    
+
+    // Sidebar toggle
+    function toggleSidebar() {
+      const sidebar = document.getElementById('sidebar');
+      if (sidebar) sidebar.classList.toggle('open');
+    }
+
     // Load saved theme
     const savedTheme = localStorage.getItem('theme');
-    if (savedTheme) {
-      document.documentElement.setAttribute('data-theme', savedTheme);
-    }
-    
-    // Keyboard shortcuts
+    if (savedTheme) document.documentElement.setAttribute('data-theme', savedTheme);
+
+    // Keyboard shortcuts (4 keys per engineering-spec Section 8)
     document.addEventListener('keydown', (e) => {
-      if (e.key === 't' || e.key === 'T') toggleTheme();
+      if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+      switch (e.key) {
+        case 't': case 'T': toggleTheme(); break;
+        case 's': case 'S': toggleSidebar(); break;
+        case 'ArrowLeft': window.scrollBy(0, -window.innerHeight * 0.8); break;
+        case 'ArrowRight': window.scrollBy(0, window.innerHeight * 0.8); break;
+        case 'Escape': {
+          const sidebar = document.getElementById('sidebar');
+          if (sidebar) sidebar.classList.remove('open');
+          break;
+        }
+      }
     });
   </script>
 </body>
 </html>`;
 }
 
-// Generate directory browser HTML
+/** Generate directory browser HTML page. */
 function renderDirectory(dirPath) {
     const entries = fs.readdirSync(dirPath, { withFileTypes: true });
 
@@ -387,7 +507,6 @@ function renderDirectory(dirPath) {
         })
         .join('\n');
 
-    // Parent directory link
     const parentDir = path.dirname(dirPath);
     const parentLink = parentDir !== dirPath
         ? `<li><a href="/browse?dir=${encodeURIComponent(parentDir)}"><span class="icon">📁</span> ..</a></li>`
@@ -403,14 +522,16 @@ function renderDirectory(dirPath) {
   <style>${novelThemeCSS}</style>
 </head>
 <body>
-  <button class="theme-toggle" onclick="toggleTheme()">🌓 Theme</button>
+  <div class="toolbar">
+    <button onclick="toggleTheme()" title="Toggle theme (T)">🌓 Theme</button>
+  </div>
   <div class="container">
     <h1>📂 ${path.basename(dirPath)}</h1>
     <ul class="directory">
       ${parentLink}
       ${items}
     </ul>
-    <div class="footer">⚡ PikaKit v3.2.0 | Markdown Novel Viewer</div>
+    <div class="footer">⚡ PikaKit v3.9.74 | Markdown Novel Viewer</div>
   </div>
   <script>
     function toggleTheme() {
@@ -422,6 +543,9 @@ function renderDirectory(dirPath) {
     }
     const savedTheme = localStorage.getItem('theme');
     if (savedTheme) document.documentElement.setAttribute('data-theme', savedTheme);
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 't' || e.key === 'T') toggleTheme();
+    });
   </script>
 </body>
 </html>`;
@@ -429,17 +553,23 @@ function renderDirectory(dirPath) {
 
 // Create HTTP server
 const server = http.createServer((req, res) => {
-    const parsedUrl = url.parse(req.url, true);
-    const pathname = parsedUrl.pathname;
-    const query = parsedUrl.query;
+    const reqUrl = new URL(req.url, `http://${req.headers.host || 'localhost'}`);
+    const pathname = reqUrl.pathname;
 
     try {
         // View markdown file
         if (pathname === '/view' || pathname === '/') {
-            const filePath = query.file || config.file;
+            const filePath = reqUrl.searchParams.get('file') || config.file;
             if (!filePath || !fs.existsSync(filePath)) {
-                res.writeHead(404, { 'Content-Type': 'text/plain' });
-                res.end('File not found');
+                res.writeHead(404, { 'Content-Type': 'application/json' });
+                res.end(JSON.stringify({ error: { code: 'ERR_FILE_NOT_FOUND', message: 'File not found' } }));
+                return;
+            }
+
+            // Path traversal prevention
+            if (!isPathSafe(filePath)) {
+                res.writeHead(403, { 'Content-Type': 'application/json' });
+                res.end(JSON.stringify({ error: { code: 'ERR_PATH_TRAVERSAL', message: 'Path traversal rejected' } }));
                 return;
             }
 
@@ -452,10 +582,17 @@ const server = http.createServer((req, res) => {
 
         // Browse directory
         if (pathname === '/browse') {
-            const dirPath = query.dir || config.dir;
+            const dirPath = reqUrl.searchParams.get('dir') || config.dir;
             if (!dirPath || !fs.existsSync(dirPath)) {
-                res.writeHead(404, { 'Content-Type': 'text/plain' });
-                res.end('Directory not found');
+                res.writeHead(404, { 'Content-Type': 'application/json' });
+                res.end(JSON.stringify({ error: { code: 'ERR_DIR_NOT_FOUND', message: 'Directory not found' } }));
+                return;
+            }
+
+            // Path traversal prevention
+            if (!isPathSafe(dirPath)) {
+                res.writeHead(403, { 'Content-Type': 'application/json' });
+                res.end(JSON.stringify({ error: { code: 'ERR_PATH_TRAVERSAL', message: 'Path traversal rejected' } }));
                 return;
             }
 
@@ -466,33 +603,35 @@ const server = http.createServer((req, res) => {
         }
 
         // 404
-        res.writeHead(404, { 'Content-Type': 'text/plain' });
-        res.end('Not Found');
+        res.writeHead(404, { 'Content-Type': 'application/json' });
+        res.end(JSON.stringify({ error: { code: 'ERR_NOT_FOUND', message: 'Route not found' } }));
 
     } catch (error) {
-        res.writeHead(500, { 'Content-Type': 'text/plain' });
-        res.end(`Error: ${error.message}`);
+        res.writeHead(500, { 'Content-Type': 'application/json' });
+        res.end(JSON.stringify({ error: { code: 'ERR_INTERNAL', message: error.message } }));
     }
 });
 
-// Find available port
-function findPort(startPort, callback) {
-    const testServer = http.createServer();
-    testServer.listen(startPort, config.host, () => {
-        testServer.close(() => callback(startPort));
-    });
-    testServer.on('error', () => {
-        if (startPort < 3500) {
-            findPort(startPort + 1, callback);
-        } else {
-            console.error('No available ports');
-            process.exit(1);
-        }
+/** Find available port within 3456-3500 range. */
+function findPort(startPort) {
+    return new Promise((resolve, reject) => {
+        const testServer = http.createServer();
+        testServer.listen(startPort, config.host, () => {
+            testServer.close(() => resolve(startPort));
+        });
+        testServer.on('error', () => {
+            if (startPort < 3500) {
+                findPort(startPort + 1).then(resolve).catch(reject);
+            } else {
+                reject(new Error('ERR_PORT_EXHAUSTED: All ports 3456-3500 in use'));
+            }
+        });
     });
 }
 
 // Start server
-findPort(config.port, (port) => {
+try {
+    const port = await findPort(config.port);
     server.listen(port, config.host, () => {
         const target = config.file
             ? `/view?file=${encodeURIComponent(path.resolve(config.file))}`
@@ -503,22 +642,29 @@ findPort(config.port, (port) => {
             ? `http://${getNetworkIP()}:${port}${target}`
             : localUrl;
 
-        // Save PID
-        const tmpDir = require('os').tmpdir();
+        // Save PID for --stop
+        const tmpDir = os.tmpdir();
         fs.writeFileSync(path.join(tmpDir, `md-novel-viewer-${port}.pid`), process.pid.toString());
 
         console.log(JSON.stringify({
             success: true,
+            version: '2.0.0',
             url: localUrl,
-            networkUrl: networkUrl,
-            port: port,
+            networkUrl,
+            port,
         }));
 
         // Open browser
         if (config.open) {
             const opener = process.platform === 'darwin' ? 'open'
                 : process.platform === 'win32' ? 'start' : 'xdg-open';
-            require('child_process').exec(`${opener} "${localUrl}"`);
+            exec(`${opener} "${localUrl}"`);
         }
     });
-});
+} catch (error) {
+    console.error(JSON.stringify({
+        success: false,
+        error: { code: 'ERR_PORT_EXHAUSTED', message: error.message }
+    }));
+    process.exit(1);
+}

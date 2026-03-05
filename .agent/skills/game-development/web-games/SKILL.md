@@ -1,11 +1,12 @@
 ---
 name: web-games
 description: Web browser game development principles. Framework selection, WebGPU, optimization, PWA.
-allowed-tools: Read, Write, Edit, Glob, Grep
 metadata:
   category: "game-development"
   version: "1.0.0"
   triggers: "web game, HTML5, WebGL, Phaser, browser game"
+  success_metrics: "framework matched, WebGPU with fallback, <2MB startup, progressive loading"
+  coordinates_with: "game-development, 2d-games, 3d-games, perf-optimizer"
 ---
 
 # Web Browser Game Development
@@ -152,3 +153,19 @@ What type of game?
 ---
 
 > **Remember:** Browser is the most accessible platform. Respect its constraints.
+
+---
+
+⚡ PikaKit v3.9.76
+
+---
+
+## 🔗 Related
+
+| Item | Type | When to Read |
+|------|------|--------------|
+| [../SKILL.md](../SKILL.md) | Parent | Game loop and perf budget |
+| `game-development/2d-games` | Sibling | 2D browser game patterns |
+| `game-development/multiplayer` | Sibling | WebSocket multiplayer |
+| `game-development/game-audio` | Sibling | Web Audio API constraints |
+| `perf-optimizer` | Skill | Browser performance profiling |

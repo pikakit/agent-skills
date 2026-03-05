@@ -1,3 +1,8 @@
+---
+name: file-organization
+description: Features directory structure — organize by feature not type, import aliases, public exports
+---
+
 # File Organization
 
 > Organize by feature, not by type. Features directory structure.
@@ -136,4 +141,14 @@ Problem: Related code scattered across folders.
 
 ---
 
-⚡ PikaKit v3.9.74
+⚡ PikaKit v3.9.76
+
+---
+
+## 🔗 Related
+
+| File | When to Read |
+|------|-------------|
+| [component-patterns.md](component-patterns.md) | Component structure within features |
+| [data-fetching.md](data-fetching.md) | API service layer per feature |
+| [../SKILL.md](../SKILL.md) | Features directory requirement |

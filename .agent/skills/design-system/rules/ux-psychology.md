@@ -1,3 +1,8 @@
+---
+name: ux-psychology
+description: Core UX laws (Hick's, Fitts', Miller's, Von Restorff), emotional design, trust signals, cognitive load, persona guide
+---
+
 # UX Psychology Reference
 
 > Deep dive into UX laws, emotional design, trust building, and behavioral psychology.
@@ -539,3 +544,18 @@ DESIGN APPROACH:
 - [ ] **Familiar Patterns:** Standard conventions used
 - [ ] **Feedback:** All actions have clear responses
 - [ ] **Accessibility:** Inclusive for all users
+
+---
+
+⚡ PikaKit v3.9.76
+
+---
+
+## 🔗 Related
+
+| File | When to Read |
+|------|-------------|
+| [decision-trees.md](decision-trees.md) | Apply UX laws to design decisions |
+| [color-system.md](color-system.md) | Emotion-color mapping for trust/urgency |
+| [animation-guide.md](animation-guide.md) | Feedback animation timing |
+| [../SKILL.md](../SKILL.md) | Anti-pattern bans and quick reference |

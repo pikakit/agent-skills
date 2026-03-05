@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * CoinPika PR Audit Tool
+ * PikaKit PR Audit Tool
  * 
  * Audits a Git branch or PR for doctrine compliance
  * 
@@ -86,28 +86,28 @@ class PRAuditor {
 
     getApplicableDoctrines(categories) {
         const doctrines = [
-            'constitution/coinpika-master-constitution.md',
+            'constitution/master-constitution.md',
         ];
 
         if (categories.backend || categories.api) {
-            doctrines.push('doctrines/architecture/coinpika-architecture-doctrine.md');
-            doctrines.push('doctrines/backend/coinpika-backend-data-engine-doctrine.md');
+            doctrines.push('doctrines/architecture/architecture-doctrine.md');
+            doctrines.push('doctrines/backend/backend-data-engine-doctrine.md');
         }
 
         if (categories.chart || categories.data) {
-            doctrines.push('doctrines/data/coinpika-chart-data-doctrine.md');
+            doctrines.push('doctrines/data/data-integrity-doctrine.md');
         }
 
         if (categories.frontend || categories.mobile) {
-            doctrines.push('doctrines/frontend/coinpika-frontend-mobile-doctrine.md');
+            doctrines.push('doctrines/frontend/frontend-mobile-doctrine.md');
         }
 
         if (categories.mobile) {
-            doctrines.push('doctrines/frontend/coinpika-swipe-tabs-doctrine.md');
+            doctrines.push('doctrines/frontend/interaction-patterns-doctrine.md');
         }
 
-        doctrines.push('doctrines/performance/coinpika-performance-doctrine.md');
-        doctrines.push('doctrines/commercial/coinpika-commercial-guardrails-doctrine.md');
+        doctrines.push('doctrines/performance/performance-doctrine.md');
+        doctrines.push('doctrines/commercial/commercial-guardrails-doctrine.md');
 
         return doctrines;
     }
@@ -138,7 +138,7 @@ class PRAuditor {
         const doctrines = this.getApplicableDoctrines(categories);
 
         console.log('\n' + colors.magenta + '═'.repeat(70) + colors.reset);
-        console.log(colors.magenta + colors.bold + `CoinPika PR Audit Report` + colors.reset);
+        console.log(colors.magenta + colors.bold + `PikaKit PR Audit Report` + colors.reset);
         console.log(colors.magenta + '═'.repeat(70) + colors.reset + '\n');
 
         console.log(colors.cyan + `Branch: ${this.targetBranch}` + colors.reset);
@@ -173,7 +173,7 @@ class PRAuditor {
     }
 
     async run() {
-        console.log(colors.cyan + '\n🔍 Starting CoinPika PR Audit...\n' + colors.reset);
+        console.log(colors.cyan + '\n🔍 Starting PikaKit PR Audit...\n' + colors.reset);
 
         this.getChangedFiles();
 

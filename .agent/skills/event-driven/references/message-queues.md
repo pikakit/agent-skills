@@ -1,3 +1,8 @@
+---
+name: message-queues
+description: Kafka vs RabbitMQ vs SQS vs BullMQ — selection guide, producer/consumer patterns, idempotency
+---
+
 # Message Queue Selection
 
 > Kafka vs RabbitMQ vs SQS — decision guide and patterns.
@@ -228,4 +233,15 @@ async function processIdempotent(event: DomainEvent) {
 
 ---
 
-⚡ PikaKit v3.9.74
+⚡ PikaKit v3.9.76
+
+---
+
+## 🔗 Related
+
+| File | When to Read |
+|------|-------------|
+| [patterns.md](patterns.md) | Event Sourcing, CQRS, Saga patterns |
+| [pubsub.md](pubsub.md) | Real-time Pub/Sub and WebSocket |
+| [webhooks.md](webhooks.md) | External webhook delivery |
+| [../SKILL.md](../SKILL.md) | Queue selection quick reference |

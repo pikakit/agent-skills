@@ -6,7 +6,7 @@ version: 1.1.0
 languages: all
 metadata:
   category: "core"
-  version: "1.0.0"
+  version: "1.1.0"
   triggers: "defense in depth, multi-layer validation, code review layers"
 ---
 
@@ -132,3 +132,17 @@ All four layers were necessary. During testing, each layer caught bugs the other
 - Debug logging identified structural misuse
 
 **Don't stop at one validation point.** Add checks at every layer.
+
+---
+
+⚡ PikaKit v3.9.76
+
+---
+
+## 🔗 Related
+
+| File | When to Read |
+|------|-------------|
+| [../root-cause-tracing/SKILL.md](../root-cause-tracing/SKILL.md) | Trace to original trigger before adding layers |
+| [../verification-before-completion/SKILL.md](../verification-before-completion/SKILL.md) | Verify fix after adding defense layers |
+| [../SKILL.md](../SKILL.md) | 4-phase methodology overview |

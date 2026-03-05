@@ -1,4 +1,4 @@
-# 🏛️ CoinPika Doctrine Pack v1.0  
+# 🏛️ Governance Doctrine Pack v1.0  
 **Supreme Engineering Constitution · PikaKit Skill**
 
 **Status:** OFFICIAL · LOCKED  
@@ -10,9 +10,9 @@
 
 ## 1. What Is This?
 
-The **CoinPika Doctrine Pack** is the **constitutional governance system** for CoinPika.
+The **Governance Doctrine Pack** is the **constitutional governance system** for PikaKit.
 
-It defines **how CoinPika is allowed to think, design, build, review, scale, and learn**.
+It defines **how PikaKit is allowed to think, design, build, review, scale, and learn**.
 
 This is **not documentation**.  
 This is **not best practices**.  
@@ -25,7 +25,7 @@ If a solution violates this pack,
 
 ## 2. Why This Exists
 
-CoinPika is a **data-trust financial platform**, not a feature-driven app.
+PikaKit is a **data-trust financial platform**, not a feature-driven app.
 
 At scale:
 - Small technical shortcuts become systemic failures
@@ -49,7 +49,7 @@ This pack is implemented as a **single PikaKit Skill** using
 
 ### Progressive Disclosure Mapping
 
-| PikaKit Level | CoinPika Content | When Loaded |
+| PikaKit Level | PikaKit Content | When Loaded |
 |---------------|------------------|-------------|
 | **Level 1 – Metadata** | `SKILL.md`, `metadata/*.yaml` | Always (router) |
 | **Level 2 – Instructions** | `constitution/`, `doctrines/` | When skill is equipped |
@@ -67,7 +67,7 @@ This ensures:
 
 All decisions are resolved in **strict order**:
 
-1. 👑 **CoinPika Master Constitution**
+1. 👑 **PikaKit Master Constitution**
 2. Architecture & System Doctrines
 3. Commercial Guardrails
 4. Performance Doctrine
@@ -82,42 +82,37 @@ There are **no exceptions**.
 
 ## 5. Repository Structure
 
-coinpika-doctrine-pack/
+code-constitution/
 ├── SKILL.md                  # PikaKit entry point (router)
 ├── README.md                 # Onboarding (human + AI)
 ├── VERSION
 ├── CHANGELOG.md
 │
-├── constitution/             # 👑 Supreme authority
-│   └── coinpika-master-constitution.md
+├── rules/
+│   ├── constitution/         # 👑 Supreme authority
+│   │   └── master-constitution.md
+│   ├── doctrines/            # 🏛️ System laws (by domain)
+│   │   ├── architecture/architecture-doctrine.md
+│   │   ├── backend/backend-data-engine-doctrine.md
+│   │   ├── data/data-integrity-doctrine.md
+│   │   ├── frontend/frontend-mobile-doctrine.md
+│   │   ├── frontend/interaction-patterns-doctrine.md
+│   │   ├── performance/performance-doctrine.md
+│   │   ├── commercial/commercial-guardrails-doctrine.md
+│   │   ├── review/code-review-doctrine.md
+│   │   └── learning/learning-engine-doctrine.md
+│   └── enforcement/          # 🛡️ Checklists, agent control, playbooks
+│       ├── checklists/backend-api-review-checklist.md
+│       ├── checklists/chart-component-review-checklist.md
+│       ├── checklists/frontend-review-checklist.md
+│       ├── agents/agent-enforcement-protocol.md
+│       ├── agents/agent-system-prompt.md
+│       └── playbooks/doctrine-violation-playbook.md
 │
-├── doctrines/                # 🏛️ System laws (by domain)
-│   ├── architecture/
-│   │   └── coinpika-architecture-doctrine.md
-│   ├── backend/
-│   │   └── coinpika-backend-data-engine-doctrine.md
-│   ├── data/
-│   │   └── coinpika-chart-data-doctrine.md
-│   ├── frontend/
-│   │   ├── coinpika-frontend-mobile-doctrine.md
-│   │   └── coinpika-swipe-tabs-doctrine.md
-│   ├── performance/
-│   │   └── coinpika-performance-doctrine.md
-│   ├── commercial/
-│   │   └── coinpika-commercial-guardrails-doctrine.md
-│   ├── review/
-│   │   └── coinpika-code-review-doctrine.md
-│   └── learning/
-│       └── coinpika-learning-engine-doctrine.md
-│
-├── enforcement/              # 🛡️ Checklists, agent control, playbooks
-│   ├── checklists/
-│   │   └── coinpika-frontend-gesture-review-checklist.md
-│   ├── agents/
-│   │   ├── coinpika-agent-enforcement-protocol.md
-│   │   └── coinpika-agent-system-prompt.md
-│   └── playbooks/
-│       └── doctrine-violation-playbook.md
+├── scripts/                  # 🔧 Validation & enforcement
+│   ├── validate_doctrine.js
+│   ├── audit_pr.js
+│   └── learn.js
 │
 ├── proposals/                # 🏷️ Controlled evolution (v1.1+)
 │   └── v1.1-change-proposal-template.md
@@ -126,14 +121,24 @@ coinpika-doctrine-pack/
 │   ├── precedence.yaml
 │   └── scope-map.yaml
 │
-└── assets/                   # Optional diagrams
+├── resources/                # 📚 Reference materials
+│   ├── AUTHORITY_MODEL.md
+│   ├── ENFORCEMENT_GUIDE.md
+│   └── LOAD_ORDER.md
+│
+├── examples/                 # 📝 Governance violation examples
+│   ├── violation-backend-mutation/
+│   └── violation-chart-injection/
+│
+└── knowledge/                # 🧠 Learned governance lessons
+    └── lessons-learned.yaml
 
 ---
 
 ## 6. What's Inside (High Level)
 
 ### 👑 Constitution
-- `coinpika-master-constitution.md`  
+- `master-constitution.md`  
 Defines Prime Directives, System Laws, and decision precedence.
 
 ---
@@ -191,7 +196,7 @@ This pack applies to:
 ## 8. How To Use This Pack
 
 ### For Humans
-1. Read `constitution/coinpika-master-constitution.md`
+1. Read `constitution/master-constitution.md`
 2. Identify applicable doctrines
 3. Design **within the laws**
 4. Expect rejection if violations exist
@@ -230,7 +235,7 @@ Silent edits are **governance violations**.
 
 ## 10. Final Principle
 
-CoinPika optimizes for:
+PikaKit optimizes for:
 - Long-term trust
 - Predictability
 - System correctness
@@ -246,9 +251,9 @@ it means it is working.
 
 ---
 
-**Welcome to CoinPika.**  
+**Welcome to PikaKit.**  
 **Protect the Constitution.**
 
 ---
 
-⚡ PikaKit v3.9.74
+⚡ PikaKit v3.9.76

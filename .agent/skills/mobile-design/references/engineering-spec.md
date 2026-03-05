@@ -1,3 +1,8 @@
+---
+name: mobile-design-engineering-spec
+description: Full 21-section engineering spec — MFRI scoring, platform guidelines, touch targets, 4 error codes
+---
+
 # Mobile Design — Engineering Specification
 
 > Production-grade specification for mobile-first design and engineering doctrine at FAANG scale.
@@ -438,4 +443,16 @@ All resources scoped to invocation. No persistent handles.
 
 ---
 
-⚡ PikaKit v3.9.74
+⚡ PikaKit v3.9.76
+
+---
+
+## 🔗 Related
+
+| File | When to Read |
+|------|-------------|
+| [../SKILL.md](../SKILL.md) | Quick reference, MFRI scoring |
+| [platform-ios.md](platform-ios.md) | iOS HIG guidelines |
+| [platform-android.md](platform-android.md) | Material Design guidelines |
+| [touch-psychology.md](touch-psychology.md) | Touch interaction patterns |
+| [../scripts/mobile_audit.js](../scripts/mobile_audit.js) | MFRI audit script |

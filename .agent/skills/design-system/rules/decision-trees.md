@@ -1,3 +1,8 @@
+---
+name: decision-trees
+description: Design decision framework — master tree, audience routing, color/typography/layout selection, page templates
+---
+
 # Decision Trees & Context Templates
 
 > Context-based design THINKING, not fixed solutions.
@@ -416,3 +421,18 @@ Complex workflows
 ---
 
 > **Remember**: These templates show STRUCTURE and THINKING process. Every project needs fresh color, typography, and styling decisions based on its unique context. ASK when unclear.
+
+---
+
+⚡ PikaKit v3.9.76
+
+---
+
+## 🔗 Related
+
+| File | When to Read |
+|------|-------------|
+| [ux-psychology.md](ux-psychology.md) | UX laws applied in each template |
+| [color-system.md](color-system.md) | HSL palette generation after color decision |
+| [typography-system.md](typography-system.md) | Font selection after type decision |
+| [../SKILL.md](../SKILL.md) | Anti-pattern bans and quick reference |

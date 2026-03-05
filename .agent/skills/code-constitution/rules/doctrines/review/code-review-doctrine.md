@@ -1,16 +1,16 @@
 ---
-name: coinpika-code-review-doctrine
+name: code-review-doctrine
 version: 1.0.0
 status: LOCKED
 authority: CONSTITUTIONAL
-parent: coinpika-architecture-doctrine
+parent: architecture-doctrine
 ---
 
-# 🛡️ CoinPika Code Review Doctrine  
+# 🛡️ PikaKit Code Review Doctrine  
 **(Engineering Review · Enforcement · System Integrity Law)**
 
 This doctrine defines the **non-negotiable laws** governing how code is reviewed,
-approved, or rejected in CoinPika.
+approved, or rejected in PikaKit.
 
 Code review exists to:
 - Protect system correctness
@@ -45,7 +45,7 @@ regardless of effort, intent, or sunk cost.
 
 All code MUST be evaluated in the following order:
 
-1. CoinPika Master Constitution
+1. PikaKit Master Constitution
 2. Architecture & System Doctrines
 3. Commercial Guardrails
 4. Performance Doctrine
@@ -156,7 +156,7 @@ This doctrine overrides:
 - Delivery pressure
 - “It works” arguments
 
-CoinPika code review exists to protect:
+PikaKit code review exists to protect:
 
 **Correctness · Architecture · Trust**
 
@@ -166,5 +166,5 @@ Not velocity.
 
 **Status:** LOCKED  
 **Version:** 1.0.0  
-**Parent:** CoinPika Architecture Doctrine  
+**Parent:** PikaKit Architecture Doctrine  
 **Override Permission:** NONE  

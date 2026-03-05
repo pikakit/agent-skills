@@ -1,3 +1,8 @@
+---
+name: performance
+description: React performance — lazy loading, React.memo, useMemo, useCallback, bundle analysis
+---
+
 # Performance Optimization
 
 > Lazy load heavy components, memoize expensive computations.
@@ -115,4 +120,14 @@ npm run build
 
 ---
 
-⚡ PikaKit v3.9.74
+⚡ PikaKit v3.9.76
+
+---
+
+## 🔗 Related
+
+| File | When to Read |
+|------|-------------|
+| [component-patterns.md](component-patterns.md) | useCallback rules for components |
+| [data-fetching.md](data-fetching.md) | Query caching for performance |
+| [../SKILL.md](../SKILL.md) | Lazy load heavy components rule |

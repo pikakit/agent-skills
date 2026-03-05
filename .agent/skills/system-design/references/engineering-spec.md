@@ -1,3 +1,8 @@
+---
+name: system-design-engineering-spec
+description: Full 21-section engineering spec — context discovery, ADR format, pattern selection, 6-item validation checklist
+---
+
 # System Design — Engineering Specification
 
 > Production-grade specification for architectural decision-making at FAANG scale.
@@ -425,4 +430,4 @@ All resources scoped to invocation. No persistent handles.
 
 ---
 
-⚡ PikaKit v3.9.74
+⚡ PikaKit v3.9.76

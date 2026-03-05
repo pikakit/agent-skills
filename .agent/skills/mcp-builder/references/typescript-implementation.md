@@ -1,6 +1,11 @@
+---
+name: mcp-typescript-implementation
+description: TypeScript MCP server with Zod validation — tool annotations, strict mode, build/test workflow
+---
+
 # TypeScript MCP Server Implementation
 
-> Chi tiết triển khai MCP server bằng TypeScript với Zod.
+> Detailed TypeScript MCP server implementation with Zod validation.
 
 ---
 
@@ -252,3 +257,20 @@ npx @modelcontextprotocol/inspector node dist/index.js
 - [ ] "concise" vs "detailed" format option
 - [ ] Environment variables for secrets
 - [ ] Build succeeds without errors
+
+---
+
+⚡ PikaKit v3.9.76
+
+---
+
+## 🔗 Related
+
+| File | When to Read |
+|------|-------------|
+| [../SKILL.md](../SKILL.md) | 4-phase build, review checklist |
+| [quickstart.md](quickstart.md) | Minimal TypeScript setup |
+| [python-implementation.md](python-implementation.md) | Python alternative |
+| [best-practices.md](best-practices.md) | Workflow design patterns |
+| [evaluation.md](evaluation.md) | Phase 4 testing |
+| `typescript-expert` | Advanced TypeScript patterns |

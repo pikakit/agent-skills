@@ -1,3 +1,8 @@
+---
+name: mobile-design-thinking
+description: Mobile design methodology — user research, prototyping, usability testing, design sprints, mobile-specific UX
+---
+
 # Mobile Design Thinking
 
 > **This file prevents AI from using memorized patterns and forces genuine thinking.**
@@ -355,3 +360,17 @@ Platform: iOS / Android / Both
 ---
 
 > **Remember:** If you chose a solution "because that's how it's always done," you chose WITHOUT THINKING. Every project is unique. Every context is different. Every user behavior is specific. **THINK, then code.**
+---
+
+⚡ PikaKit v3.9.76
+
+---
+
+## 🔗 Related
+
+| File | When to Read |
+|------|-------------|
+| [../SKILL.md](../SKILL.md) | 5 must-ask questions, MFRI scoring |
+| [decision-trees.md](decision-trees.md) | Decision frameworks |
+| [touch-psychology.md](touch-psychology.md) | Touch UX psychology |
+| [engineering-spec.md](engineering-spec.md) | Full engineering spec |

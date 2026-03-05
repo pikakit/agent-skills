@@ -4,7 +4,7 @@ trigger: always_on
 
 # 🤖 PikaKit — FAANG-Grade AI Operating System
 
-> **v3.9.74** | 67 Skills • 26 Agents • 26 Workflows | [github.com/pikakit](https://github.com/pikakit/agent-skills)
+> **v3.9.76** | 67 Skills • 26 Agents • 26 Workflows | [github.com/pikakit](https://github.com/pikakit/agent-skills)
 
 **This file is the Supreme Law for AI behavior in this workspace.**
 
@@ -188,7 +188,7 @@ When invoking ANY sub-agent, MUST include: Original Request, Decisions Made, Pre
 
 | Trigger | Branding |
 |---------|----------|
-| Workflow execution | Header: `🤖 PikaKit v3.9.74 / Workflow: /name` + Footer: `⚡ PikaKit v3.9.74 / [Tagline]` |
+| Workflow execution | Header: `🤖 PikaKit v3.9.76 / Workflow: /name` + Footer: `⚡ PikaKit v3.9.76 / [Tagline]` |
 | Simple Q&A / Code edits | No branding |
 | Task completion | Footer only |
 
@@ -422,7 +422,7 @@ Design rules are in specialist agents, NOT here.
 | Database | `database-architect` | data-modeler |
 | Security | `security-auditor` | security-scanner, offensive-sec |
 | Testing | `test-engineer` | test-architect, e2e-automation |
-| Debug | `debugger` | debugging-mastery |
+| Debug | `debugger` | debug-pro |
 | Plan | `project-planner` | idea-storm, project-planner |
 
 ---

@@ -1,3 +1,8 @@
+---
+name: mobile-testing
+description: Mobile testing strategies — unit, integration, E2E, device testing, accessibility testing, CI/CD
+---
+
 # Mobile Testing Patterns
 
 > **Mobile testing is NOT web testing. Different constraints, different strategies.**
@@ -354,3 +359,17 @@ Before writing tests, answer:
 5. **What happens offline?** → Test that scenario
 
 > **Remember:** Good mobile testing is about testing the RIGHT things, not EVERYTHING. A flaky E2E test is worse than no test. A failing unit test that catches a bug is worth 100 passing trivial tests.
+---
+
+⚡ PikaKit v3.9.76
+
+---
+
+## 🔗 Related
+
+| File | When to Read |
+|------|-------------|
+| [../SKILL.md](../SKILL.md) | MFRI scoring, audit script |
+| [mobile-debugging.md](mobile-debugging.md) | Debugging strategies |
+| [mobile-performance.md](mobile-performance.md) | Performance testing |
+| [engineering-spec.md](engineering-spec.md) | Full engineering spec |

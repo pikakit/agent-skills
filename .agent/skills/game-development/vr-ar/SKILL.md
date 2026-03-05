@@ -1,11 +1,12 @@
 ---
 name: vr-ar
 description: VR/AR development principles. Comfort, interaction, performance requirements.
-allowed-tools: Read, Write, Edit, Glob, Grep
 metadata:
   category: "game-development"
   version: "1.0.0"
   triggers: "VR, AR, virtual reality, augmented reality, XR"
+  success_metrics: "90 FPS maintained, comfort options, 1m=1unit scale, hand tracking support"
+  coordinates_with: "game-development, 3d-games, game-audio, perf-optimizer"
 ---
 
 # VR/AR Development
@@ -125,3 +126,18 @@ metadata:
 ---
 
 > **Remember:** Comfort is not optional. Sick players don't play.
+
+---
+
+⚡ PikaKit v3.9.76
+
+---
+
+## 🔗 Related
+
+| Item | Type | When to Read |
+|------|------|--------------|
+| [../SKILL.md](../SKILL.md) | Parent | Game loop and perf budget |
+| `game-development/3d-games` | Sibling | 3D rendering fundamentals |
+| `game-development/game-audio` | Sibling | 3D spatial audio for VR |
+| `perf-optimizer` | Skill | Frame time profiling |

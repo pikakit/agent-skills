@@ -1,3 +1,8 @@
+---
+name: event-driven-patterns
+description: Event Sourcing, CQRS, Saga patterns — choreography vs orchestration, aggregate rebuild, write/read separation
+---
+
 # Event-Driven Patterns
 
 > Event Sourcing, CQRS, Saga, choreography vs orchestration.
@@ -198,4 +203,15 @@ class OrderSaga {
 
 ---
 
-⚡ PikaKit v3.9.74
+⚡ PikaKit v3.9.76
+
+---
+
+## 🔗 Related
+
+| File | When to Read |
+|------|-------------|
+| [message-queues.md](message-queues.md) | Queue selection for event transport |
+| [pubsub.md](pubsub.md) | Real-time patterns (WebSocket, SSE) |
+| [webhooks.md](webhooks.md) | External event delivery |
+| [../SKILL.md](../SKILL.md) | Sync vs async decision tree |

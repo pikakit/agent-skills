@@ -142,6 +142,7 @@ node .agent/skills/studio/scripts-js/search.js "<query>" --domain style
 | Script | Purpose |
 |--------|---------|
 | `scripts/ux_audit.js` | UX psychology audit |
+| `scripts/accessibility_checker.js` | WCAG compliance audit |
 
 **Selective reading:** Read ONLY files relevant to the request.
 
@@ -158,4 +159,4 @@ node .agent/skills/studio/scripts-js/search.js "<query>" --domain style
 
 ---
 
-⚡ PikaKit v3.9.74
+⚡ PikaKit v3.9.76

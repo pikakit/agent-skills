@@ -1,3 +1,8 @@
+---
+name: scripts-guide
+description: Complete Puppeteer CLI script reference — navigation, screenshot, form automation, JS execution, ARIA, performance
+---
+
 # Scripts Guide
 
 > All Puppeteer CLI scripts with options.
@@ -152,4 +157,14 @@ node performance.js --url https://example.com | jq '.vitals'
 
 ---
 
-⚡ PikaKit v3.9.74
+⚡ PikaKit v3.9.76
+
+---
+
+## 🔗 Related
+
+| File | When to Read |
+|------|-------------|
+| [aria-snapshot.md](aria-snapshot.md) | ARIA tree format for element discovery |
+| [engineering-spec.md](engineering-spec.md) | Full contracts and architecture |
+| [SKILL.md](../SKILL.md) | Quick reference and error taxonomy |

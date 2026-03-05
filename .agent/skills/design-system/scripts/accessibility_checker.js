@@ -1,177 +1,291 @@
 #!/usr/bin/env node
 /**
- * Accessibility Checker - WCAG compliance audit
- * Checks HTML/JSX/TSX files for accessibility issues.
+ * Accessibility Checker v2.0.0
+ * Skill: design-system
+ *
+ * WCAG compliance audit for HTML/JSX/TSX files.
+ *
+ * Usage:
+ *   node accessibility_checker.js <project_path>
+ *   node accessibility_checker.js <project_path> --json
+ *
+ * Checks:
+ *   - Inputs without label or aria-label
+ *   - Buttons without accessible text
+ *   - Missing lang attribute on <html>
+ *   - Missing skip-to-main-content link
+ *   - onClick without keyboard handler
+ *   - Positive tabIndex values
+ *   - Autoplay media without muted
+ *   - role="button" without tabindex
+ *   - Images without alt attribute
+ *
+ * Flags:
+ *   --json     Output as JSON only
+ *   --help     Show help
+ *   --version  Show version
  */
 
-import { readFileSync, readdirSync } from 'fs';
-import { resolve, extname } from 'path';
+import { readFile, readdir } from 'node:fs/promises';
+import { resolve, extname } from 'node:path';
 
-const SKIP_DIRS = new Set(['node_modules', '.next', 'dist', 'build', '.git']);
+const VERSION = '2.0.0';
+const SKIP_DIRS = new Set(['node_modules', '.next', 'dist', 'build', '.git', '__pycache__']);
+const VALID_EXTS = new Set(['.html', '.jsx', '.tsx', '.vue']);
+const MAX_FILES = 50;
 
-function walkFiles(dir, callback) {
-    try {
-        const entries = readdirSync(dir, { withFileTypes: true });
-        for (const entry of entries) {
-            if (SKIP_DIRS.has(entry.name)) continue;
-            const fullPath = resolve(dir, entry.name);
-            if (entry.isDirectory()) {
-                walkFiles(fullPath, callback);
-            } else {
-                const ext = extname(entry.name).toLowerCase();
-                if (['.html', '.jsx', '.tsx'].includes(ext)) {
-                    callback(fullPath);
-                }
-            }
-        }
-    } catch { /* ignore */ }
+const args = process.argv.slice(2);
+const jsonMode = args.includes('--json');
+const filteredArgs = args.filter(a => !a.startsWith('--'));
+
+function showHelp() {
+    console.log(`Accessibility Checker v${VERSION}
+
+Usage: node accessibility_checker.js <project_path> [options]
+
+Options:
+  --json       Output as JSON only
+  --help       Show this help
+  --version    Show version
+
+Checks: inputs, buttons, lang, skip-link, keyboard, tabindex, autoplay, role, img alt`);
 }
 
-function checkAccessibility(filePath) {
+// --- File Discovery ---
+
+async function walkFiles(dir, files = [], depth = 0) {
+    if (depth > 8 || files.length >= MAX_FILES) return files;
+
+    let entries;
+    try {
+        entries = await readdir(dir, { withFileTypes: true });
+    } catch (err) {
+        if (!jsonMode) console.warn(`[WARN] Cannot read: ${dir} (${err.code})`);
+        return files;
+    }
+
+    for (const entry of entries) {
+        if (SKIP_DIRS.has(entry.name) || files.length >= MAX_FILES) continue;
+        const fullPath = resolve(dir, entry.name);
+
+        if (entry.isDirectory()) {
+            await walkFiles(fullPath, files, depth + 1);
+        } else if (VALID_EXTS.has(extname(entry.name).toLowerCase())) {
+            files.push(fullPath);
+        }
+    }
+    return files;
+}
+
+// --- Checks ---
+
+async function checkAccessibility(filePath) {
     const issues = [];
+    let content;
 
     try {
-        const content = readFileSync(filePath, 'utf-8');
+        content = await readFile(filePath, 'utf-8');
+    } catch (err) {
+        issues.push({ rule: 'FILE_READ', severity: 'error', message: `Cannot read: ${err.message}` });
+        return issues;
+    }
 
-        // Inputs without labels
-        const inputs = content.match(/<input[^>]*>/gi) || [];
-        for (const inp of inputs) {
-            if (!inp.toLowerCase().includes('type="hidden"')) {
-                if (!inp.toLowerCase().includes('aria-label') && !inp.includes('id=')) {
-                    issues.push('Input without label or aria-label');
-                    break;
-                }
-            }
+    // 1. Inputs without labels
+    const inputs = content.match(/<input[^>]*>/gi) || [];
+    for (const inp of inputs) {
+        const lower = inp.toLowerCase();
+        if (lower.includes('type="hidden"') || lower.includes("type='hidden'")) continue;
+        if (!lower.includes('aria-label') && !lower.includes('aria-labelledby')) {
+            issues.push({
+                rule: 'A11Y_INPUT_NO_LABEL',
+                severity: 'error',
+                message: 'Input without aria-label or aria-labelledby',
+            });
+            break; // report once per file
         }
+    }
 
-        // Buttons without accessible text
-        const buttons = content.match(/<button[^>]*>[^<]*<\/button>/gi) || [];
-        for (const btn of buttons) {
-            if (!btn.toLowerCase().includes('aria-label')) {
-                const text = btn.replace(/<[^>]+>/g, '');
-                if (!text.trim()) {
-                    issues.push('Button without accessible text');
-                    break;
-                }
-            }
+    // 2. Buttons without accessible text
+    const buttons = content.match(/<button[^>]*>[\s\S]*?<\/button>/gi) || [];
+    for (const btn of buttons) {
+        const lower = btn.toLowerCase();
+        if (lower.includes('aria-label') || lower.includes('aria-labelledby')) continue;
+        const text = btn.replace(/<[^>]+>/g, '').trim();
+        if (!text) {
+            issues.push({
+                rule: 'A11Y_BUTTON_NO_TEXT',
+                severity: 'error',
+                message: 'Button without accessible text or aria-label',
+            });
+            break;
         }
+    }
 
-        // Missing lang attribute
-        if (content.toLowerCase().includes('<html') && !content.toLowerCase().includes('lang=')) {
-            issues.push('Missing lang attribute on <html>');
+    // 3. Missing lang attribute
+    if (content.toLowerCase().includes('<html') && !content.toLowerCase().includes('lang=')) {
+        issues.push({
+            rule: 'A11Y_MISSING_LANG',
+            severity: 'error',
+            message: 'Missing lang attribute on <html>',
+        });
+    }
+
+    // 4. Missing skip link
+    if (content.toLowerCase().includes('<main') || content.toLowerCase().includes('<body')) {
+        if (!content.toLowerCase().includes('skip') && !content.includes('#main')) {
+            issues.push({
+                rule: 'A11Y_NO_SKIP_LINK',
+                severity: 'warning',
+                message: 'Consider adding skip-to-main-content link',
+            });
         }
+    }
 
-        // Missing skip link
-        if (content.toLowerCase().includes('<main') || content.toLowerCase().includes('<body')) {
-            if (!content.toLowerCase().includes('skip') && !content.includes('#main')) {
-                issues.push('Consider adding skip-to-main-content link');
-            }
+    // 5. onClick without keyboard support
+    const onclickCount = (content.toLowerCase().match(/onclick=/g) || []).length;
+    const keyboardCount = (content.toLowerCase().match(/onkeydown=|onkeyup=|onkeypress=/g) || []).length;
+    if (onclickCount > 0 && keyboardCount === 0) {
+        issues.push({
+            rule: 'A11Y_NO_KEYBOARD',
+            severity: 'warning',
+            message: 'onClick without keyboard handler (onKeyDown)',
+        });
+    }
+
+    // 6. Positive tabIndex
+    if (/tabindex=["']([1-9]\d*)["']/i.test(content)) {
+        issues.push({
+            rule: 'A11Y_POSITIVE_TABINDEX',
+            severity: 'warning',
+            message: 'Avoid positive tabIndex values (use 0 or -1)',
+        });
+    }
+
+    // 7. Autoplay without muted
+    if (content.toLowerCase().includes('autoplay') && !content.toLowerCase().includes('muted')) {
+        issues.push({
+            rule: 'A11Y_AUTOPLAY_UNMUTED',
+            severity: 'error',
+            message: 'Autoplay media should be muted',
+        });
+    }
+
+    // 8. role="button" without tabindex
+    const divButtons = content.match(/<div[^>]*role=["']button["'][^>]*>/gi) || [];
+    for (const div of divButtons) {
+        if (!div.toLowerCase().includes('tabindex')) {
+            issues.push({
+                rule: 'A11Y_ROLE_NO_TABINDEX',
+                severity: 'error',
+                message: 'role="button" without tabindex',
+            });
+            break;
         }
+    }
 
-        // onClick without keyboard support
-        const onclickCount = (content.toLowerCase().match(/onclick=/g) || []).length;
-        const onkeydownCount = (content.toLowerCase().match(/onkeydown=|onkeyup=/g) || []).length;
-        if (onclickCount > 0 && onkeydownCount === 0) {
-            issues.push('onClick without keyboard handler (onKeyDown)');
+    // 9. Images without alt
+    const images = content.match(/<img[^>]*>/gi) || [];
+    for (const img of images) {
+        if (!img.toLowerCase().includes('alt=')) {
+            issues.push({
+                rule: 'A11Y_IMG_NO_ALT',
+                severity: 'error',
+                message: 'Image without alt attribute',
+            });
+            break;
         }
-
-        // Positive tabIndex
-        const positiveTabindex = content.match(/tabindex="([1-9]\d*)"/gi);
-        if (positiveTabindex) {
-            issues.push('Avoid positive tabIndex values');
-        }
-
-        // Autoplay without muted
-        if (content.toLowerCase().includes('autoplay') && !content.toLowerCase().includes('muted')) {
-            issues.push('Autoplay media should be muted');
-        }
-
-        // role="button" without tabindex
-        const divButtons = content.match(/<div[^>]*role="button"[^>]*>/gi) || [];
-        for (const div of divButtons) {
-            if (!div.toLowerCase().includes('tabindex')) {
-                issues.push("role='button' without tabindex");
-                break;
-            }
-        }
-
-    } catch (e) {
-        issues.push(`Error reading file: ${e.message.slice(0, 50)}`);
     }
 
     return issues;
 }
 
-function main() {
-    const projectPath = resolve(process.argv[2] || '.');
+// --- Main ---
 
-    console.log(`\n${'='.repeat(60)}`);
-    console.log('[ACCESSIBILITY CHECKER] WCAG Compliance Audit');
-    console.log('='.repeat(60));
-    console.log(`Project: ${projectPath}`);
-    console.log(`Time: ${new Date().toISOString()}`);
-    console.log('-'.repeat(60));
+async function main() {
+    if (args.includes('--version')) { console.log(VERSION); return; }
+    if (args.includes('--help') || filteredArgs.length === 0) { showHelp(); return; }
 
-    const files = [];
-    walkFiles(projectPath, (f) => files.push(f));
-    console.log(`Found ${files.length} HTML/JSX/TSX files`);
+    const projectPath = resolve(filteredArgs[0]);
+
+    if (!jsonMode) {
+        console.log(`\n${'='.repeat(60)}`);
+        console.log(`[ACCESSIBILITY CHECKER] WCAG Compliance v${VERSION}`);
+        console.log('='.repeat(60));
+        console.log(`Project: ${projectPath}`);
+        console.log(`Time: ${new Date().toISOString()}`);
+        console.log('-'.repeat(60));
+    }
+
+    const files = await walkFiles(projectPath);
 
     if (files.length === 0) {
         const output = {
-            script: 'accessibility_checker',
-            project: projectPath,
-            files_checked: 0,
-            issues_found: 0,
-            passed: true,
-            message: 'No HTML files found'
+            script: 'accessibility_checker', version: VERSION,
+            project: projectPath, files_checked: 0,
+            errors: 0, warnings: 0, passed: true,
+            message: 'No HTML/JSX/TSX files found',
         };
-        console.log(JSON.stringify(output, null, 2));
-        process.exit(0);
+        console.log(jsonMode ? JSON.stringify(output, null, 2) : 'No files found.\n' + JSON.stringify(output, null, 2));
+        return;
     }
 
-    const allIssues = [];
+    if (!jsonMode) console.log(`Found ${files.length} file(s)`);
 
-    for (const f of files.slice(0, 50)) {
-        const issues = checkAccessibility(f);
+    const allResults = [];
+
+    for (const f of files) {
+        const issues = await checkAccessibility(f);
         if (issues.length > 0) {
-            allIssues.push({
-                file: f.split(/[/\\]/).pop(),
-                issues: issues
-            });
+            allResults.push({ file: f.split(/[/\\]/).pop(), issues });
         }
     }
 
-    console.log('\n' + '='.repeat(60));
-    console.log('ACCESSIBILITY ISSUES');
-    console.log('='.repeat(60));
+    const totalErrors = allResults.reduce(
+        (sum, r) => sum + r.issues.filter(i => i.severity === 'error').length, 0,
+    );
+    const totalWarnings = allResults.reduce(
+        (sum, r) => sum + r.issues.filter(i => i.severity === 'warning').length, 0,
+    );
 
-    if (allIssues.length > 0) {
-        for (const item of allIssues.slice(0, 10)) {
-            console.log(`\n${item.file}:`);
-            item.issues.forEach(issue => console.log(`  - ${issue}`));
+    if (!jsonMode) {
+        console.log('\n' + '='.repeat(60));
+        if (allResults.length > 0) {
+            console.log('ACCESSIBILITY ISSUES');
+            console.log('='.repeat(60));
+            for (const item of allResults.slice(0, 10)) {
+                console.log(`\n${item.file}:`);
+                for (const issue of item.issues) {
+                    const icon = issue.severity === 'error' ? '[ERROR]' : '[WARN]';
+                    console.log(`  ${icon} ${issue.rule}: ${issue.message}`);
+                }
+            }
+            if (allResults.length > 10) {
+                console.log(`\n... and ${allResults.length - 10} more files`);
+            }
+        } else {
+            console.log('No accessibility issues found!');
         }
-        if (allIssues.length > 10) {
-            console.log(`\n... and ${allIssues.length - 10} more files with issues`);
-        }
-    } else {
-        console.log('No accessibility issues found!');
+        console.log(`\nRESULT: ${totalErrors === 0 ? 'PASSED' : 'FAILED'} | ${totalErrors} errors, ${totalWarnings} warnings`);
+        console.log('='.repeat(60));
     }
-
-    const totalIssues = allIssues.reduce((sum, item) => sum + item.issues.length, 0);
-    const passed = totalIssues < 5;
 
     const output = {
         script: 'accessibility_checker',
+        version: VERSION,
         project: projectPath,
         files_checked: files.length,
-        files_with_issues: allIssues.length,
-        issues_found: totalIssues,
-        passed: passed
+        files_with_issues: allResults.length,
+        errors: totalErrors,
+        warnings: totalWarnings,
+        passed: totalErrors === 0,
+        results: allResults,
     };
 
     console.log('\n' + JSON.stringify(output, null, 2));
-
-    process.exit(passed ? 0 : 1);
+    process.exit(totalErrors === 0 ? 0 : 1);
 }
 
-main();
+main().catch(err => {
+    console.error(jsonMode ? JSON.stringify({ status: 'error', message: err.message }) : `[FATAL] ${err.message}`);
+    process.exit(1);
+});

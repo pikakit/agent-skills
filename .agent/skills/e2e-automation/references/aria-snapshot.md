@@ -66,7 +66,7 @@ node select-ref.js --ref e3 --action hover
 
 ```javascript
 // aria-snapshot.js
-const { chromium } = require('playwright');
+import { chromium } from 'playwright';
 
 async function getAriaSnapshot(url) {
   const browser = await chromium.launch();
@@ -108,7 +108,7 @@ getAriaSnapshot(process.argv[2] || 'https://example.com');
 
 ```javascript
 // select-ref.js
-const { chromium } = require('playwright');
+import { chromium } from 'playwright';
 
 async function selectByRef(url, ref, action, value) {
   const browser = await chromium.launch();

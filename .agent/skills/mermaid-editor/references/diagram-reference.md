@@ -1,3 +1,8 @@
+---
+name: mermaid-diagram-reference
+description: Complete syntax and examples for all 9 Mermaid diagram types — flowchart, sequence, class, state, ER, gantt, pie, mindmap, timeline
+---
+
 # Mermaid Diagram Reference
 
 > Complete syntax and examples for all 9 supported diagram types.
@@ -175,3 +180,19 @@ mmdc -i "*.mmd" -o output/
 flowchart LR
     A --> B
 ```
+
+---
+
+⚡ PikaKit v3.9.76
+
+---
+
+## 🔗 Related
+
+| File | When to Read |
+|------|-------------|
+| [../SKILL.md](../SKILL.md) | Quick start, CLI options, state transitions |
+| [../scripts/editor-server.js](../scripts/editor-server.js) | Live editor server |
+| [engineering-spec.md](engineering-spec.md) | Full engineering spec |
+| `system-design` | Architecture diagrams |
+| `markdown-novel-viewer` | Mermaid in markdown preview |

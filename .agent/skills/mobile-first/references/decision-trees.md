@@ -1,3 +1,8 @@
+---
+name: decision-trees
+description: Framework selection, state management, storage, navigation, offline, and auth decision trees for mobile projects
+---
+
 # Mobile Decision Trees
 
 > Framework selection, state management, storage strategy, and context-based decisions.
@@ -153,10 +158,11 @@ WHAT'S YOUR STATE COMPLEXITY?
         │
         └── Quick prototyping
             │
-            └── GetX (with caution)
+            └── GetX (⚠️ NOT recommended for production)
                 ├── Fast to implement
-                ├── Less strict patterns
-                └── Can become messy at scale
+                ├── Mixes concerns (state + nav + DI)
+                ├── Poor testability at scale
+                └── Consider Riverpod instead
 ```
 
 ### State Management Anti-Patterns
@@ -241,8 +247,9 @@ WHAT TYPE OF DATA?
         │   │
         │   └── ✅ Database
         │       ├── SQLite (expo-sqlite, sqflite)
-        │       ├── Realm (NoSQL, reactive)
-        │       └── WatermelonDB (large datasets)
+        │       ├── WatermelonDB (large datasets, RN)
+        │       ├── Drift (SQLite wrapper, Flutter)
+        │       └── ~~Realm~~ (❌ deprecated for new projects, consider alternatives)
         │
         ├── Large files (images, documents)
         │   │
@@ -514,3 +521,17 @@ API cache?           → Query library
 ---
 
 > **Remember:** These trees are guides for THINKING, not rules to follow blindly. Every project has unique constraints. ASK clarifying questions when requirements are vague, and choose based on actual needs, not defaults.
+
+---
+
+## 🔗 Related
+
+| File | When to Read |
+|------|-------------|
+| [mobile-navigation.md](mobile-navigation.md) | Deep-dive on navigation patterns |
+| [mobile-backend.md](mobile-backend.md) | Backend patterns for mobile clients |
+| [mobile-performance.md](mobile-performance.md) | Performance optimization |
+| [mobile-testing.md](mobile-testing.md) | Testing strategy selection |
+| [../frameworks/react-native.md](../frameworks/react-native.md) | RN patterns after selection |
+| [../frameworks/flutter.md](../frameworks/flutter.md) | Flutter patterns after selection |
+| [../frameworks/native.md](../frameworks/native.md) | Native patterns after selection |

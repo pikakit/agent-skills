@@ -1,3 +1,8 @@
+---
+name: browser-cache
+description: Client-side caching — Service Workers, Cache API, Workbox, offline strategies
+---
+
 # Browser & Service Worker Caching
 
 > Client-side caching with Cache API, Service Workers, and offline strategies.
@@ -192,4 +197,15 @@ self.addEventListener('fetch', (event) => {
 
 ---
 
-⚡ PikaKit v3.9.74
+⚡ PikaKit v3.9.76
+
+---
+
+## 🔗 Related
+
+| File | When to Read |
+|------|-------------|
+| [cdn.md](cdn.md) | CDN layer above browser |
+| [application-cache.md](application-cache.md) | TanStack Query / SWR patterns |
+| [redis.md](redis.md) | Server-side Redis cache |
+| [SKILL.md](../SKILL.md) | Cache layer decision tree |

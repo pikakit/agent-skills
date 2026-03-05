@@ -1,11 +1,12 @@
 ---
 name: pc-games
 description: PC and console game development principles. Engine selection, platform features, optimization strategies.
-allowed-tools: Read, Write, Edit, Glob, Grep
 metadata:
   category: "game-development"
   version: "1.0.0"
   triggers: "PC game, Steam, desktop game, controller support"
+  success_metrics: "engine matched to project, input abstraction, profiling-first, certification ready"
+  coordinates_with: "game-development, 3d-games, multiplayer, shader"
 ---
 
 # PC/Console Game Development
@@ -146,3 +147,18 @@ Map ACTIONS, not buttons:
 ---
 
 > **Remember:** Engine is a tool. Master the principles, then adapt to any engine.
+
+---
+
+⚡ PikaKit v3.9.76
+
+---
+
+## 🔗 Related
+
+| Item | Type | When to Read |
+|------|------|--------------|
+| [../SKILL.md](../SKILL.md) | Parent | Game loop, pattern selection |
+| `game-development/3d-games` | Sibling | 3D rendering and LOD |
+| `game-development/multiplayer` | Sibling | Online PC game networking |
+| `shader` | Skill | Custom GLSL shaders |

@@ -1,3 +1,8 @@
+---
+name: event-driven-engineering-spec
+description: Full 21-section engineering spec — contracts, deterministic design, compliance matrix, production checklist
+---
+
 # Event-Driven — Engineering Specification
 
 > Production-grade specification for event-driven architecture pattern selection at FAANG scale.
@@ -446,4 +451,16 @@ All resources scoped to invocation. No persistent handles.
 
 ---
 
-⚡ PikaKit v3.9.74
+⚡ PikaKit v3.9.76
+
+---
+
+## 🔗 Related
+
+| File | When to Read |
+|------|-------------|
+| [patterns.md](patterns.md) | Event Sourcing, CQRS, Saga patterns |
+| [message-queues.md](message-queues.md) | Kafka vs RabbitMQ vs SQS |
+| [pubsub.md](pubsub.md) | Real-time patterns |
+| [webhooks.md](webhooks.md) | Webhook design |
+| [../SKILL.md](../SKILL.md) | Quick reference and decision tree |

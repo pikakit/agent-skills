@@ -1,3 +1,8 @@
+---
+name: webhooks
+description: Webhook design — producer (HMAC-SHA256, retry), consumer (signature verify, idempotent), replay protection
+---
+
 # Webhook Design Patterns
 
 > Design, deliver, and consume webhooks reliably.
@@ -194,4 +199,15 @@ function isWebhookFresh(timestampHeader: string): boolean {
 
 ---
 
-⚡ PikaKit v3.9.74
+⚡ PikaKit v3.9.76
+
+---
+
+## 🔗 Related
+
+| File | When to Read |
+|------|-------------|
+| [message-queues.md](message-queues.md) | Queue-based async instead of webhooks |
+| [patterns.md](patterns.md) | Event Sourcing, Saga patterns |
+| [pubsub.md](pubsub.md) | Real-time alternatives to webhooks |
+| [../SKILL.md](../SKILL.md) | Core principles and decision checklist |

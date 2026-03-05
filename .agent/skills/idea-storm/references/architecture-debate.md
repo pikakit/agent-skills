@@ -1,3 +1,8 @@
+---
+name: architecture-debate
+description: 8-phase debate process for technical decisions. YAGNI + KISS + DRY trinity with analysis template.
+---
+
 # Architecture Debate Process
 
 > 8-phase process for technical decisions. YAGNI + KISS + DRY = holy trinity.
@@ -99,4 +104,15 @@
 
 ---
 
-⚡ PikaKit v3.9.74
+⚡ PikaKit v3.9.76
+
+---
+
+## 🔗 Related
+
+| File | When to Read |
+|------|-------------|
+| [../SKILL.md](../SKILL.md) | Socratic gate protocol, question format |
+| [dynamic-questioning.md](dynamic-questioning.md) | Domain-specific question banks, algorithm |
+| [engineering-spec.md](engineering-spec.md) | Full engineering spec, contracts |
+| `system-design` | Architecture decision frameworks |

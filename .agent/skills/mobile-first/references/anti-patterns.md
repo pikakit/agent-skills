@@ -1,3 +1,8 @@
+---
+name: anti-patterns
+description: Quick-reference anti-pattern table for mobile development — performance, UX, security, architecture
+---
+
 # Mobile Anti-Patterns
 
 > 🚫 Common AI default tendencies that MUST be avoided!
@@ -44,3 +49,14 @@
 | Global state for everything | Unnecessary re-renders | Local state default, lift when needed |
 | Deep linking as afterthought | Notifications, shares broken | Plan deep links from day one |
 | Skip dispose/cleanup | Memory leaks | Clean up subscriptions, timers |
+
+---
+
+## 🔗 Related
+
+| File | When to Read |
+|------|-------------|
+| [mobile-performance.md](mobile-performance.md) | Performance anti-pattern details |
+| [mobile-debugging.md](mobile-debugging.md) | Debugging workflows |
+| [decision-trees.md](decision-trees.md) | Correct patterns to use instead |
+| [touch-psychology.md](touch-psychology.md) | Touch UX guidance |

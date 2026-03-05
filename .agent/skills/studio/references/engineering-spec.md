@@ -1,3 +1,8 @@
+---
+name: studio-engineering-spec
+description: Full 21-section engineering spec — BM25 search, 6 CSV categories, design system generation, Anti-AI-Slop rules
+---
+
 # Studio — Engineering Specification
 
 > Production-grade specification for AI-powered design intelligence at FAANG scale.
@@ -430,4 +435,17 @@ CSV data may be cached in memory for performance but is never mutated.
 
 ---
 
-⚡ PikaKit v3.9.74
+⚡ PikaKit v3.9.76
+
+---
+
+## 🔗 Related
+
+| File | When to Read |
+|------|-------------|
+| [../SKILL.md](../SKILL.md) | Quick start, Anti-AI-Slop rules, CLI commands |
+| [../scripts-js/search.js](../scripts-js/search.js) | CLI entry point |
+| [../scripts-js/core.js](../scripts-js/core.js) | BM25 search engine |
+| [../scripts-js/design_system.js](../scripts-js/design_system.js) | Design system generator |
+| `design-system` | Companion design skill |
+| `frontend-specialist` | Uses studio for UI work |

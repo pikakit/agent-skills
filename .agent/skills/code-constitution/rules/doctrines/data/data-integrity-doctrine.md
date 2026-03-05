@@ -1,16 +1,16 @@
 ---
-name: coinpika-chart-data-doctrine
+name: data-integrity-doctrine
 version: 1.0.0
 status: LOCKED
 authority: CONSTITUTIONAL
-parent: coinpika-architecture-doctrine
+parent: architecture-doctrine
 ---
 
-# 📈 CoinPika Chart Data Doctrine  
+# 📈 PikaKit Chart Data Doctrine  
 **(Financial Truth · Historical Integrity · Visualization Law)**
 
 This doctrine defines the **non-negotiable laws** governing how
-price data is classified, stored, and visualized in CoinPika charts.
+price data is classified, stored, and visualized in PikaKit charts.
 
 Charts are **NOT visual components**.  
 Charts are **financial statements**.
@@ -22,7 +22,7 @@ user trust is **PERMANENTLY DAMAGED**.
 
 ## 1. Chart Truth Philosophy
 
-A CoinPika chart represents **historical financial truth**.
+A PikaKit chart represents **historical financial truth**.
 
 It MUST be:
 
@@ -184,7 +184,7 @@ This doctrine overrides:
 - Performance shortcuts that alter truth
 - “Looks better” arguments
 
-CoinPika charts exist to protect:
+PikaKit charts exist to protect:
 
 **Truth · Auditability · User Trust**
 
@@ -194,5 +194,5 @@ Not visual flair.
 
 **Status:** LOCKED  
 **Version:** 1.0.0  
-**Parent:** CoinPika Architecture Doctrine  
+**Parent:** PikaKit Architecture Doctrine  
 **Override Permission:** NONE  

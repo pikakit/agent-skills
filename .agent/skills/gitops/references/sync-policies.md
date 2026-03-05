@@ -1,5 +1,9 @@
 # GitOps Sync Policies
 
+> Sync strategies, windows, retry policies, and health checks for ArgoCD and Flux.
+
+---
+
 ## ArgoCD Sync Policies
 
 ### Automated Sync
@@ -129,3 +133,7 @@ data:
 8. Use prune with caution in production
 9. Test sync policies in staging
 10. Document sync behavior for teams
+
+---
+
+⚡ PikaKit v3.9.76

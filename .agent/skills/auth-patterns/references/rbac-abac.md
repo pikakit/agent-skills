@@ -1,3 +1,8 @@
+---
+name: rbac-abac
+description: Role-Based and Attribute-Based access control — Prisma schema, middleware, ABAC policy engine
+---
+
 # RBAC & ABAC — Access Control
 
 > Role-Based and Attribute-Based authorization patterns.
@@ -184,4 +189,14 @@ function evaluatePolicy(ctx: PolicyContext): boolean {
 
 ---
 
-⚡ PikaKit v3.9.74
+⚡ PikaKit v3.9.76
+
+---
+
+## 🔗 Related
+
+| File | When to Read |
+|------|-------------|
+| [jwt-deep.md](jwt-deep.md) | Role/permission claims in JWT |
+| [session.md](session.md) | Session-based permission checks |
+| [SKILL.md](../SKILL.md) | Auth strategy decision tree |

@@ -1,3 +1,8 @@
+---
+name: mobile-platform-android
+description: Material Design 3 guidelines — Roboto typography, bottom navigation, dynamic color, elevation system
+---
+
 # Android Platform Guidelines
 
 > Material Design 3 essentials, Android design conventions, Roboto typography, and native patterns.
@@ -664,3 +669,6 @@ if (reduceMotion) {
 ---
 
 > **Remember:** Android users expect Material Design. Custom designs that ignore Material patterns feel foreign and broken. Use Material components as your foundation, customize thoughtfully.
+---
+
+⚡ PikaKit v3.9.76\r\n\r\n---\r\n\r\n## 🔗 Related\r\n\r\n| File | When to Read |\r\n|------|-------------|\r\n| [../SKILL.md](../SKILL.md) | MFRI scoring, platform differences |\r\n| [platform-ios.md](platform-ios.md) | iOS counterpart |\r\n| [touch-psychology.md](touch-psychology.md) | Touch interaction patterns |\r\n| [mobile-typography.md](mobile-typography.md) | Roboto details |\r\n| [engineering-spec.md](engineering-spec.md) | Full engineering spec |

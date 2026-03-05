@@ -1,80 +1,173 @@
-# Project Structure Principles
+---
+name: project-structure
+description: Python project structure — directory layouts for small/medium/large apps, FastAPI vs Django, pyproject.toml
+---
 
-## Structure by Size
+# Project Structure
+
+> Structure by size. Feature-based for large apps. Layer-based for small.
+
+---
+
+## By Project Size
+
+### Small (Script / Tool)
 
 ```
-Small project / Script:
+myapp/
 ├── main.py
 ├── utils.py
-└── requirements.txt
+├── pyproject.toml
+└── README.md
+```
 
-Medium API:
+### Medium (API / Service)
+
+```
+myapp/
 ├── app/
 │   ├── __init__.py
-│   ├── main.py
-│   ├── models/
-│   ├── routes/
-│   ├── services/
-│   └── schemas/
+│   ├── main.py              # App entry + lifespan
+│   ├── config.py             # Pydantic Settings
+│   ├── dependencies.py       # Shared DI (db session, auth)
+│   ├── models/               # SQLAlchemy / DB models
+│   │   ├── __init__.py
+│   │   └── user.py
+│   ├── schemas/              # Pydantic request/response
+│   │   ├── __init__.py
+│   │   └── user.py
+│   ├── routes/               # API routes
+│   │   ├── __init__.py
+│   │   └── users.py
+│   └── services/             # Business logic
+│       ├── __init__.py
+│       └── user_service.py
 ├── tests/
-└── pyproject.toml
-
-Large application:
-├── src/
-│   └── myapp/
-│       ├── core/
-│       ├── api/
-│       ├── services/
-│       ├── models/
-│       └── ...
-├── tests/
-└── pyproject.toml
+│   ├── conftest.py           # Shared fixtures
+│   ├── test_users.py
+│   └── test_services.py
+├── alembic/                  # DB migrations
+├── pyproject.toml
+├── .env.example
+└── README.md
 ```
 
-## FastAPI Structure
+### Large (Monolith / Multiple Domains)
 
 ```
-Organize by feature or layer:
-
-By layer:
-├── routes/ (API endpoints)
-├── services/ (business logic)
-├── models/ (database models)
-├── schemas/ (Pydantic models)
-└── dependencies/ (shared deps)
-
-By feature:
+src/
+└── myapp/
+    ├── core/                 # Shared kernel
+    │   ├── config.py
+    │   ├── database.py
+    │   ├── security.py
+    │   └── exceptions.py
+    ├── users/                # Feature module
+    │   ├── models.py
+    │   ├── schemas.py
+    │   ├── routes.py
+    │   ├── service.py
+    │   └── repository.py
+    ├── products/             # Feature module
+    │   └── ...
+    └── main.py
+tests/
 ├── users/
-│   ├── routes.py
-│   ├── service.py
-│   └── schemas.py
-└── products/
-    └── ...
+├── products/
+└── conftest.py
+pyproject.toml
 ```
+
+---
+
+## FastAPI Entry Point
+
+```python
+# app/main.py
+from contextlib import asynccontextmanager
+from fastapi import FastAPI
+from app.config import settings
+from app.routes import users, products
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    # Startup
+    await database.connect()
+    yield
+    # Shutdown
+    await database.disconnect()
+
+app = FastAPI(
+    title=settings.app_name,
+    version="1.0.0",
+    lifespan=lifespan,
+)
+
+app.include_router(users.router, prefix="/api/v1/users", tags=["users"])
+app.include_router(products.router, prefix="/api/v1/products", tags=["products"])
+```
+
+---
+
+## Django Structure
+
+```
+myproject/
+├── manage.py
+├── myproject/
+│   ├── __init__.py
+│   ├── settings/
+│   │   ├── __init__.py
+│   │   ├── base.py           # Shared settings
+│   │   ├── dev.py            # Development
+│   │   └── prod.py           # Production
+│   ├── urls.py
+│   └── wsgi.py / asgi.py
+├── users/                    # Django app
+│   ├── models.py
+│   ├── views.py / viewsets.py
+│   ├── serializers.py
+│   ├── urls.py
+│   ├── admin.py
+│   ├── tests.py
+│   └── migrations/
+├── products/                 # Django app
+│   └── ...
+└── requirements/
+    ├── base.txt
+    ├── dev.txt
+    └── prod.txt
+```
+
+---
 
 ## Background Tasks Selection
 
-| Solution | Best For |
-|----------|----------|
-| **BackgroundTasks** | Simple, in-process tasks |
-| **Celery** | Distributed, complex workflows |
-| **ARQ** | Async, Redis-based |
-| **RQ** | Simple Redis queue |
-| **Dramatiq** | Actor-based, simpler than Celery |
+| Solution | Best For | Async | Persistence |
+|----------|----------|:-----:|:-----------:|
+| **BackgroundTasks** (FastAPI) | Quick, in-process | ✅ | ❌ |
+| **Celery** | Distributed workflows | ❌ | ✅ |
+| **ARQ** | Async + Redis | ✅ | ✅ |
+| **Dramatiq** | Actor-based | ❌ | ✅ |
+| **RQ** | Simple Redis queue | ❌ | ✅ |
 
-## When to Use Each
+---
 
-```
-FastAPI BackgroundTasks:
-├── Quick operations
-├── No persistence needed
-├── Fire-and-forget
-└── Same process
+## Anti-Patterns
 
-Celery/ARQ:
-├── Long-running tasks
-├── Need retry logic
-├── Distributed workers
-├── Persistent queue
-└── Complex workflows
-```
+| ❌ Don't | ✅ Do |
+|---------|-------|
+| Flat file dump (all in root) | Organize by feature/layer |
+| Business logic in routes | Routes → services → repos |
+| `settings.py` with hardcoded values | Pydantic Settings + `.env` |
+| Skip `__init__.py` | Always include (explicit packages) |
+
+---
+
+## 🔗 Related
+
+| File | When to Read |
+|------|-------------|
+| [framework-selection.md](framework-selection.md) | Which framework |
+| [fastapi-patterns.md](fastapi-patterns.md) | FastAPI specifics |
+| [django-patterns.md](django-patterns.md) | Django specifics |

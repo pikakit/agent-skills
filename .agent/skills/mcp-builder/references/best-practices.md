@@ -1,3 +1,8 @@
+---
+name: mcp-best-practices
+description: MCP design patterns — workflow over endpoints, concise/detailed output, actionable errors, naming conventions
+---
+
 # MCP Best Practices
 
 > Design for workflows, not endpoints. Optimize for agent context.
@@ -133,4 +138,16 @@ async def list_items(page: int = 1, per_page: int = 20) -> str:
 
 ---
 
-⚡ PikaKit v3.9.74
+⚡ PikaKit v3.9.76
+
+---
+
+## 🔗 Related
+
+| File | When to Read |
+|------|-------------|
+| [../SKILL.md](../SKILL.md) | Phase 3 review checklist |
+| [design-principles.md](design-principles.md) | Core MCP concepts |
+| [python-implementation.md](python-implementation.md) | Python patterns |
+| [typescript-implementation.md](typescript-implementation.md) | TypeScript patterns |
+| [evaluation.md](evaluation.md) | Phase 4 testing |

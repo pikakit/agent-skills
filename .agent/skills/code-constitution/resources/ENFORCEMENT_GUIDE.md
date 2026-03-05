@@ -1,13 +1,13 @@
 # Enforcement Guide
 
-## How to Enforce CoinPika Doctrines
+## How to Enforce Governance Doctrines
 
 This guide explains how to actively enforce constitutional and doctrinal requirements in code reviews, architecture decisions, and AI agent behavior.
 
 ## Enforcement Levels
 
 ### Level 1: Constitutional (IMMUTABLE)
-**Source**: `constitution/coinpika-master-constitution.md`
+**Source**: `constitution/master-constitution.md`
 
 **Violations at this level are FATAL**. The work must be rejected entirely.
 
@@ -122,8 +122,8 @@ Only approve if:
 **Request**: "Add a new endpoint to serve sparkline data"
 
 **Enforcement Checklist**:
-1. Load `doctrines/backend/coinpika-backend-data-engine-doctrine.md`
-2. Load `doctrines/data/coinpika-chart-data-doctrine.md`
+1. Load `doctrines/backend/backend-data-engine-doctrine.md`
+2. Load `doctrines/data/data-integrity-doctrine.md`
 3. Load `enforcement/checklists/backend-api-review-checklist.md`
 
 **Key Checks**:
@@ -133,7 +133,7 @@ Only approve if:
 - ✅ Caching strategy defined (Performance)?
 - ✅ Rate limiting implemented (Performance)?
 
-**Cite if violated**: "This violates Law 3 (Realtime Ephemerality) from `constitution/coinpika-master-constitution.md`. Realtime ticks must not be persisted as historical aggregates."
+**Cite if violated**: "This violates Law 3 (Realtime Ephemerality) from `constitution/master-constitution.md`. Realtime ticks must not be persisted as historical aggregates."
 
 ---
 
@@ -142,8 +142,8 @@ Only approve if:
 **Request**: "Modify swipe behavior on Portfolio page"
 
 **Enforcement Checklist**:
-1. Load `doctrines/frontend/coinpika-frontend-mobile-doctrine.md`
-2. Load `doctrines/frontend/coinpika-swipe-tabs-doctrine.md`
+1. Load `doctrines/frontend/frontend-mobile-doctrine.md`
+2. Load `doctrines/frontend/interaction-patterns-doctrine.md`
 3. Load `enforcement/checklists/mobile-gesture-review-checklist.md`
 
 **Key Checks**:
@@ -152,7 +152,7 @@ Only approve if:
 - ✅ Swipe-tab architecture followed?
 - ✅ Predictable behavior guaranteed?
 
-**Cite if violated**: "This violates the Native Gesture Precedence rule from `doctrines/frontend/coinpika-frontend-mobile-doctrine.md`. Native scrolling must never be blocked."
+**Cite if violated**: "This violates the Native Gesture Precedence rule from `doctrines/frontend/frontend-mobile-doctrine.md`. Native scrolling must never be blocked."
 
 ---
 
@@ -163,7 +163,7 @@ Only approve if:
 **Enforcement Checklist**:
 1. Load `constitution/` (Law 1: Truth Ownership)
 2. Load `doctrines/architecture/` (Dependency Direction Law)
-3. Load `doctrines/learning/coinpika-learning-engine-doctrine.md`
+3. Load `doctrines/learning/learning-engine-doctrine.md`
 
 **Key Checks**:
 - ❌ Frontend managing truth? (Violates Law 1)

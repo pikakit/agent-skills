@@ -1,15 +1,15 @@
 ---
-name: coinpika-backend-data-engine-doctrine
+name: backend-data-engine-doctrine
 version: 1.0.0
 status: LOCKED
 authority: CONSTITUTIONAL
-parent: coinpika-architecture-doctrine
+parent: architecture-doctrine
 ---
 
-# 🧱 CoinPika Backend Data Engine Doctrine  
+# 🧱 PikaKit Backend Data Engine Doctrine  
 **(Data Truth · Ingestion · Persistence Law)**
 
-This doctrine defines the **backend data engine laws** governing how CoinPika
+This doctrine defines the **backend data engine laws** governing how PikaKit
 ingests, normalizes, persists, caches, and serves data.
 
 The backend is **NOT** an API relay.  
@@ -210,5 +210,5 @@ Not developer speed.
 
 **Status:** LOCKED
 **Version:** 1.0.0
-**Parent:** CoinPika Architecture Doctrine
+**Parent:** PikaKit Architecture Doctrine
 **Override Permission:** NONE

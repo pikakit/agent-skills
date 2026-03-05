@@ -1,3 +1,8 @@
+---
+name: security-testing
+description: OWASP API Top 10, JWT testing, BOLA/IDOR, authorization and input validation testing
+---
+
 # API Security Testing
 
 > Principles for testing API security. OWASP API Top 10, authentication, authorization testing.
@@ -120,3 +125,14 @@
 ---
 
 > **Remember:** APIs are the backbone of modern apps. Test them like attackers will.
+
+---
+
+## 🔗 Related
+
+| File | When to Read |
+|------|-------------|
+| [auth.md](auth.md) | Auth patterns to test |
+| [rate-limiting.md](rate-limiting.md) | Rate limit bypass testing |
+| [graphql.md](graphql.md) | GraphQL-specific security |
+| [SKILL.md](../SKILL.md) | Full decision framework |

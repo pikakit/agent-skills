@@ -6,7 +6,7 @@ version: 1.1.0
 languages: all
 metadata:
   category: "core"
-  version: "1.0.0"
+  version: "1.1.0"
   triggers: "root cause, trace, error chain, debugging origin"
 ---
 
@@ -179,3 +179,18 @@ From debugging session (2025-10-03):
 - Fixed at source (getter validation)
 - Added 4 layers of defense
 - 1847 tests passed, zero pollution
+
+---
+
+⚡ PikaKit v3.9.76
+
+---
+
+## 🔗 Related
+
+| File | When to Read |
+|------|-------------|
+| [find-polluter.sh](find-polluter.sh) | Bisection script to find polluting test |
+| [../defense-in-depth/SKILL.md](../defense-in-depth/SKILL.md) | Add validation layers after finding root cause |
+| [../verification-before-completion/SKILL.md](../verification-before-completion/SKILL.md) | Verify fix completeness |
+| [../SKILL.md](../SKILL.md) | 4-phase methodology overview |

@@ -1,3 +1,8 @@
+---
+name: mobile-backend
+description: Backend/API patterns specific to mobile clients — push, sync, versioning, auth, media, and security
+---
+
 # Mobile Backend Patterns
 
 > **This file covers backend/API patterns SPECIFIC to mobile clients.**
@@ -489,3 +494,15 @@ ALERTS:
 ---
 
 > **Remember:** Mobile backend must be resilient to bad networks, respect battery life, and handle interrupted sessions gracefully. The client cannot be trusted, but it also cannot be hung up—provide offline capabilities and clear error recovery paths.
+
+---
+
+## 🔗 Related
+
+| File | When to Read |
+|------|-------------|
+| [decision-trees.md](decision-trees.md) | Auth, storage, offline strategy selection |
+| [mobile-performance.md](mobile-performance.md) | Network/image performance |
+| [mobile-testing.md](mobile-testing.md) | API testing strategies |
+| [../publishing/push-notifications.md](../publishing/push-notifications.md) | Push notification patterns |
+| [../publishing/deep-linking.md](../publishing/deep-linking.md) | Deep link routing |

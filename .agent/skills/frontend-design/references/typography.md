@@ -1,3 +1,8 @@
+---
+name: typography
+description: Distinctive font pairings, fluid typography scale, display vs body rules, variable fonts
+---
+
 # Typography for Distinctive Design
 
 > Break the default. Stop using Inter, Roboto, Arial.
@@ -102,4 +107,14 @@ For advanced control:
 
 ---
 
-⚡ PikaKit v3.9.74
+⚡ PikaKit v3.9.76
+
+---
+
+## 🔗 Related
+
+| File | When to Read |
+|------|-------------|
+| [color-systems.md](color-systems.md) | Color palette to complement typography |
+| [spatial-composition.md](spatial-composition.md) | Layout for text-heavy pages |
+| [../SKILL.md](../SKILL.md) | Design constraints and anti-slop bans |

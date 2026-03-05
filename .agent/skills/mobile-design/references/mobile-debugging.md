@@ -1,3 +1,8 @@
+---
+name: mobile-debugging
+description: Mobile debugging patterns — React Native Flipper, Flutter DevTools, Xcode/Android Studio, crash diagnostics
+---
+
 # Mobile Debugging Guide
 
 > **Stop console.log() debugging!**
@@ -120,3 +125,17 @@ Web Debugging:      Mobile Debugging:
 - [ ] **Did you check the native logs?** (Not just terminal output)
 
 > **Remember:** If JavaScript looks perfect but the app fails, look closer at the Native side.
+---
+
+⚡ PikaKit v3.9.76
+
+---
+
+## 🔗 Related
+
+| File | When to Read |
+|------|-------------|
+| [../SKILL.md](../SKILL.md) | MFRI scoring |
+| [mobile-testing.md](mobile-testing.md) | Testing strategies |
+| [mobile-performance.md](mobile-performance.md) | Performance debugging |
+| [engineering-spec.md](engineering-spec.md) | Full engineering spec |

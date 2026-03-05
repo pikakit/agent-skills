@@ -1,21 +1,23 @@
 #!/usr/bin/env node
 /**
- * Skill: vulnerability-scanner
- * Script: security_scan.js
- * Purpose: Validate that security principles from SKILL.md are applied correctly
- * Usage: node security_scan.js <project_path> [--scan-type all|deps|secrets|patterns|config]
- * Output: JSON with validation findings
+ * Security Scanner — Automated Vulnerability Detection
+ * Version: 2.0.0
+ * Skill: security-scanner
  *
- * This script verifies:
- * 1. Dependencies - Supply chain security (OWASP A03)
- * 2. Secrets - No hardcoded credentials (OWASP A04)
- * 3. Code Patterns - Dangerous patterns identified (OWASP A05)
- * 4. Configuration - Security settings validated (OWASP A02)
+ * Validates OWASP 2025 security principles via static analysis.
+ * 4 scan modules: Dependencies (A03), Secrets (A04), Patterns (A05), Config (A02).
+ *
+ * Usage: node security_scan.js <path> [--scan-type all|deps|secrets|patterns|config]
+ * Output: JSON findings with severity classification
  */
 
-import { execSync } from 'child_process';
-import { readFileSync, readdirSync, statSync, existsSync } from 'fs';
-import { join, resolve, relative, extname } from 'path';
+import { execFile } from 'node:child_process';
+import { promisify } from 'node:util';
+import { readFileSync, readdirSync, existsSync } from 'node:fs';
+import { join, resolve, relative, extname } from 'node:path';
+
+const execFileAsync = promisify(execFile);
+const VERSION = '2.0.0';
 
 // ============================================================================
 //  CONFIGURATION
@@ -96,7 +98,7 @@ function walkDir(dir, callback) {
 //  SCANNING FUNCTIONS
 // ============================================================================
 
-function scanDependencies(projectPath) {
+async function scanDependencies(projectPath) {
     /**
      * Validate supply chain security (OWASP A03).
      * Checks: npm audit, lock file presence, dependency age.
@@ -132,11 +134,9 @@ function scanDependencies(projectPath) {
     // Run npm audit if applicable
     if (existsSync(join(projectPath, 'package.json'))) {
         try {
-            const output = execSync('npm audit --json', {
+            const { stdout: output } = await execFileAsync('npm', ['audit', '--json'], {
                 cwd: projectPath,
-                encoding: 'utf-8',
-                timeout: 60000,
-                stdio: ['pipe', 'pipe', 'pipe']
+                timeout: 60_000,
             });
 
             try {
@@ -379,8 +379,9 @@ function scanConfiguration(projectPath) {
 //  MAIN
 // ============================================================================
 
-function runFullScan(projectPath, scanType = 'all') {
+async function runFullScan(projectPath, scanType = 'all') {
     const report = {
+        version: VERSION,
         project: projectPath,
         timestamp: new Date().toISOString(),
         scan_type: scanType,
@@ -402,7 +403,7 @@ function runFullScan(projectPath, scanType = 'all') {
 
     for (const [key, [name, scanner]] of Object.entries(scanners)) {
         if (scanType === 'all' || scanType === key) {
-            const result = scanner(projectPath);
+            const result = await scanner(projectPath);
             report.scans[name] = result;
 
             const findingsCount = (result.findings || []).length;
@@ -431,8 +432,40 @@ function runFullScan(projectPath, scanType = 'all') {
     return report;
 }
 
-function main() {
+async function main() {
     const args = process.argv.slice(2);
+
+    if (args.includes('--help') || args.includes('-h')) {
+        console.log(`
+Security Scanner v${VERSION}
+
+Usage:
+  node security_scan.js <path>                          Full scan
+  node security_scan.js <path> --scan-type=secrets      Single module
+  node security_scan.js <path> --output=summary         Human-readable
+  node security_scan.js --help                          Show this help
+
+Scan Types:
+  all       All 4 modules (default)
+  deps      Dependencies — npm audit, lock files (OWASP A03)
+  secrets   Secrets — API keys, tokens, passwords (OWASP A04)
+  patterns  Code — eval, exec, SQL concat, XSS (OWASP A05)
+  config    Config — debug mode, CORS, headers (OWASP A02)
+
+Options:
+  --scan-type=X     Run specific scan module
+  --output=summary  Human-readable output (default: JSON)
+  --help, -h        Show this help
+
+Exit Codes:
+  0  SECURE   — No findings
+  1  CRITICAL — Critical vulnerabilities found
+  2  HIGH     — High severity issues found
+  3  ERROR    — Script error
+`);
+        process.exit(0);
+    }
+
     const projectPath = resolve(args.find(a => !a.startsWith('--')) || '.');
 
     const scanTypeArg = args.find(a => a.startsWith('--scan-type'));
@@ -442,14 +475,14 @@ function main() {
 
     if (!existsSync(projectPath)) {
         console.log(JSON.stringify({ error: `Directory not found: ${projectPath}` }));
-        process.exit(1);
+        process.exit(3);
     }
 
-    const result = runFullScan(projectPath, scanType);
+    const result = await runFullScan(projectPath, scanType);
 
     if (outputFormat === 'summary') {
         console.log(`\n${'='.repeat(60)}`);
-        console.log(`Security Scan: ${result.project}`);
+        console.log(`Security Scan v${VERSION}: ${result.project}`);
         console.log('='.repeat(60));
         console.log(`Status: ${result.summary.overall_status}`);
         console.log(`Total Findings: ${result.summary.total_findings}`);
@@ -466,6 +499,14 @@ function main() {
     } else {
         console.log(JSON.stringify(result, null, 2));
     }
+
+    // Exit code based on severity
+    if (result.summary.critical > 0) process.exit(1);
+    if (result.summary.high > 0) process.exit(2);
+    process.exit(0);
 }
 
-main();
+main().catch(err => {
+    console.error(JSON.stringify({ error: err.message }));
+    process.exit(3);
+});

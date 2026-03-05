@@ -1,3 +1,8 @@
+---
+name: mobile-testing
+description: Mobile testing pyramid, tool selection, platform-specific testing, offline/network/performance/accessibility testing
+---
+
 # Mobile Testing Patterns
 
 > **Mobile testing is NOT web testing. Different constraints, different strategies.**
@@ -354,3 +359,16 @@ Before writing tests, answer:
 5. **What happens offline?** → Test that scenario
 
 > **Remember:** Good mobile testing is about testing the RIGHT things, not EVERYTHING. A flaky E2E test is worse than no test. A failing unit test that catches a bug is worth 100 passing trivial tests.
+
+---
+
+## 🔗 Related
+
+| File | When to Read |
+|------|-------------|
+| [mobile-debugging.md](mobile-debugging.md) | When tests reveal bugs |
+| [mobile-performance.md](mobile-performance.md) | Performance testing deep-dive |
+| [decision-trees.md](decision-trees.md) | Framework selection (affects tools) |
+| [../frameworks/react-native.md](../frameworks/react-native.md) | RN testing patterns |
+| [../frameworks/flutter.md](../frameworks/flutter.md) | Flutter testing patterns |
+| [../frameworks/native.md](../frameworks/native.md) | Native testing patterns |

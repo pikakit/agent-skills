@@ -1,3 +1,8 @@
+---
+name: mobile-typography
+description: Type scale, system fonts, Dynamic Type, accessibility, dark mode typography, and font performance
+---
+
 # Mobile Typography Reference
 
 > Type scale, system fonts, Dynamic Type, accessibility, and dark mode typography.
@@ -431,3 +436,14 @@ Long text: 1.5-1.75
 ---
 
 > **Remember:** If users can't read your text, your app is broken. Typography isn't decoration—it's the primary interface. Test on real devices, in real conditions, with accessibility settings enabled.
+
+---
+
+## 🔗 Related
+
+| File | When to Read |
+|------|-------------|
+| [mobile-color-system.md](mobile-color-system.md) | Text contrast, dark mode colors |
+| [platform-ios.md](platform-ios.md) | iOS SF Pro type scale |
+| [platform-android.md](platform-android.md) | Material type scale, sp units |
+| [touch-psychology.md](touch-psychology.md) | Readability in mobile context |

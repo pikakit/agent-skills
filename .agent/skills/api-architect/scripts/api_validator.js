@@ -1,193 +1,273 @@
 #!/usr/bin/env node
 /**
- * API Validator - Checks API endpoints for best practices.
+ * API Validator — Checks API endpoints for best practices.
  * Validates OpenAPI specs, response formats, and common issues.
+ *
+ * Usage: node api_validator.js <project_path> [--json] [--help] [--version]
+ *
+ * @version 2.0.0
+ * @skill api-architect
  */
 
-import { readFileSync, existsSync, readdirSync, statSync } from 'fs';
-import { resolve, relative, extname } from 'path';
+import { readFile, readdir } from 'node:fs/promises';
+import { existsSync } from 'node:fs';
+import { resolve, relative, extname } from 'node:path';
 
-const SKIP_DIRS = new Set(['node_modules', '.git', 'dist', 'build', '__pycache__']);
+const VERSION = '2.0.0';
 
-function findApiFiles(projectPath) {
-    const patterns = [
-        /api/i, /routes/i, /controllers/i, /endpoints/i,
-        /openapi/i, /swagger/i
-    ];
+const HELP = `
+API Validator v${VERSION}
+Checks API endpoints for best practices.
 
+Usage:
+  node api_validator.js <project_path>        Validate API files
+  node api_validator.js <project_path> --json  Output JSON
+  node api_validator.js --help                 Show help
+  node api_validator.js --version              Show version
+
+Checks:
+  - OpenAPI/Swagger spec validation (JSON + YAML)
+  - Error handling patterns
+  - HTTP status code usage
+  - Input validation (Zod, Joi, Yup)
+  - Authentication/authorization
+  - Rate limiting
+  - API versioning
+  - CORS configuration
+  - Pagination support
+  - Structured logging
+`.trim();
+
+const SKIP_DIRS = new Set([
+    'node_modules', '.git', 'dist', 'build', '.next', 'coverage', '.turbo',
+]);
+
+const API_PATTERNS = [/api/i, /routes/i, /controllers/i, /endpoints/i, /openapi/i, /swagger/i];
+const CODE_EXTENSIONS = new Set(['.ts', '.js', '.mts', '.mjs', '.json', '.yaml', '.yml']);
+
+// --- File Discovery ---
+
+async function findApiFiles(projectPath, maxFiles = 15) {
     const files = [];
 
-    function walk(dir) {
+    async function walk(dir) {
+        let entries;
         try {
-            const entries = readdirSync(dir, { withFileTypes: true });
-            for (const entry of entries) {
-                if (SKIP_DIRS.has(entry.name)) continue;
-                const fullPath = resolve(dir, entry.name);
+            entries = await readdir(dir, { withFileTypes: true });
+        } catch (err) {
+            // Permission denied or other I/O error — skip gracefully
+            if (err.code !== 'ENOENT' && err.code !== 'EACCES') {
+                console.error(`[WARN] Cannot read directory: ${dir} (${err.code})`);
+            }
+            return;
+        }
 
-                if (entry.isDirectory()) {
-                    walk(fullPath);
-                } else {
-                    const ext = extname(entry.name).toLowerCase();
-                    if (['.ts', '.js', '.json', '.yaml', '.yml'].includes(ext)) {
-                        if (patterns.some(p => p.test(entry.name) || p.test(fullPath))) {
-                            files.push(fullPath);
-                        }
+        for (const entry of entries) {
+            if (files.length >= maxFiles) return;
+            if (SKIP_DIRS.has(entry.name)) continue;
+
+            const fullPath = resolve(dir, entry.name);
+
+            if (entry.isDirectory()) {
+                await walk(fullPath);
+            } else {
+                const ext = extname(entry.name).toLowerCase();
+                if (CODE_EXTENSIONS.has(ext)) {
+                    if (API_PATTERNS.some(p => p.test(entry.name) || p.test(fullPath))) {
+                        files.push(fullPath);
                     }
                 }
             }
-        } catch { /* ignore */ }
+        }
     }
 
-    walk(projectPath);
-    return files.slice(0, 15);
+    await walk(projectPath);
+    return files;
 }
 
-function checkOpenApiSpec(filePath) {
+// --- OpenAPI Spec Validation ---
+
+async function checkOpenApiSpec(filePath) {
     const issues = [];
     const passed = [];
 
     try {
-        const content = readFileSync(filePath, 'utf-8');
+        const content = await readFile(filePath, 'utf-8');
 
         if (filePath.endsWith('.json')) {
             const spec = JSON.parse(content);
 
-            if (spec.openapi || spec.swagger) {
-                passed.push('[OK] OpenAPI version defined');
+            // Version check
+            if (spec.openapi) {
+                passed.push(`[OK] OpenAPI ${spec.openapi} detected`);
+            } else if (spec.swagger) {
+                passed.push(`[OK] Swagger ${spec.swagger} detected (consider upgrading to OpenAPI 3.x)`);
+            } else {
+                issues.push('[X] No OpenAPI/Swagger version defined');
             }
 
+            // Info section
             if (spec.info) {
                 if (spec.info.title) passed.push('[OK] API title defined');
+                else issues.push('[X] API title missing');
                 if (spec.info.version) passed.push('[OK] API version defined');
+                else issues.push('[X] API version missing');
                 if (!spec.info.description) issues.push('[!] API description missing');
+            } else {
+                issues.push('[X] Info section missing');
             }
 
+            // Paths
             if (spec.paths) {
-                passed.push(`[OK] ${Object.keys(spec.paths).length} endpoints defined`);
+                const pathCount = Object.keys(spec.paths).length;
+                passed.push(`[OK] ${pathCount} endpoint(s) defined`);
 
                 for (const [path, methods] of Object.entries(spec.paths)) {
+                    // Check for verb-based endpoints
+                    if (/\/(get|create|update|delete|fetch|remove)/i.test(path)) {
+                        issues.push(`[!] ${path}: Uses verb in path — prefer resource nouns`);
+                    }
+
                     for (const [method, details] of Object.entries(methods)) {
-                        if (['get', 'post', 'put', 'patch', 'delete'].includes(method)) {
-                            if (!details.responses) {
-                                issues.push(`[X] ${method.toUpperCase()} ${path}: No responses defined`);
-                            }
-                            if (!details.summary && !details.description) {
-                                issues.push(`[!] ${method.toUpperCase()} ${path}: No description`);
-                            }
+                        if (!['get', 'post', 'put', 'patch', 'delete'].includes(method)) continue;
+                        if (!details.responses) {
+                            issues.push(`[X] ${method.toUpperCase()} ${path}: No responses defined`);
+                        }
+                        if (!details.summary && !details.description) {
+                            issues.push(`[!] ${method.toUpperCase()} ${path}: No summary/description`);
+                        }
+                        if (!details.operationId) {
+                            issues.push(`[!] ${method.toUpperCase()} ${path}: No operationId`);
                         }
                     }
                 }
+            } else {
+                issues.push('[X] No paths section');
+            }
+
+            // Components / security
+            if (spec.components?.securitySchemes) {
+                passed.push('[OK] Security schemes defined');
+            } else {
+                issues.push('[!] No security schemes defined');
             }
         } else {
-            // YAML check
-            if (content.includes('openapi:') || content.includes('swagger:')) {
-                passed.push('[OK] OpenAPI/Swagger version defined');
+            // YAML — basic string checks (no external YAML parser dependency)
+            if (/^openapi:\s/m.test(content)) {
+                passed.push('[OK] OpenAPI version defined');
+            } else if (/^swagger:\s/m.test(content)) {
+                passed.push('[OK] Swagger version defined (consider upgrading to OpenAPI 3.x)');
             } else {
-                issues.push('[X] No OpenAPI version found');
+                issues.push('[X] No OpenAPI/Swagger version found');
             }
 
-            if (content.includes('paths:')) {
-                passed.push('[OK] Paths section exists');
-            } else {
-                issues.push('[X] No paths defined');
-            }
+            if (/^paths:/m.test(content)) passed.push('[OK] Paths section exists');
+            else issues.push('[X] No paths defined');
 
-            if (content.includes('components:') || content.includes('definitions:')) {
+            if (/^components:/m.test(content) || /^definitions:/m.test(content)) {
                 passed.push('[OK] Schema components defined');
             }
+
+            if (/securitySchemes:/m.test(content)) {
+                passed.push('[OK] Security schemes defined');
+            }
         }
-    } catch (e) {
-        issues.push(`[X] Parse error: ${e.message}`);
+    } catch (err) {
+        issues.push(`[X] Parse error: ${err.message}`);
     }
 
     return { file: filePath, passed, issues, type: 'openapi' };
 }
 
-function checkApiCode(filePath) {
+// --- API Code Validation ---
+
+async function checkApiCode(filePath) {
     const issues = [];
     const passed = [];
 
     try {
-        const content = readFileSync(filePath, 'utf-8');
+        const content = await readFile(filePath, 'utf-8');
 
-        // Check for error handling
-        const errorPatterns = [/try\s*{/, /try:/, /\.catch\(/, /except\s+/, /catch\s*\(/];
-        if (errorPatterns.some(p => p.test(content))) {
+        // Error handling
+        if (/try\s*\{/.test(content) || /\.catch\(/.test(content) || /catch\s*\(/.test(content)) {
             passed.push('[OK] Error handling present');
         } else {
             issues.push('[X] No error handling found');
         }
 
-        // Check for status codes
-        const statusPatterns = [
-            /status\s*\(\s*\d{3}\s*\)/, /statusCode\s*[=:]\s*\d{3}/,
-            /HttpStatus\./, /status_code\s*=\s*\d{3}/,
-            /\.status\(\d{3}\)/, /res\.status\(/
-        ];
-        if (statusPatterns.some(p => p.test(content))) {
+        // HTTP status codes
+        if (/\.status\(\d{3}\)/.test(content) || /statusCode\s*[=:]\s*\d{3}/.test(content) || /HttpStatus\./.test(content)) {
             passed.push('[OK] HTTP status codes used');
         } else {
             issues.push('[!] No explicit HTTP status codes');
         }
 
-        // Check for validation
-        const validationPatterns = [/validate/i, /schema/i, /zod/i, /joi/i, /yup/i, /pydantic/i];
-        if (validationPatterns.some(p => p.test(content))) {
-            passed.push('[OK] Input validation present');
+        // Input validation
+        if (/\b(zod|z\.object|z\.string|joi|yup|class-validator)\b/i.test(content)) {
+            passed.push('[OK] Input validation library detected');
+        } else if (/validate/i.test(content) || /schema/i.test(content)) {
+            passed.push('[OK] Validation patterns detected');
         } else {
             issues.push('[!] No input validation detected');
         }
 
-        // Check for auth
-        const authPatterns = [/auth/i, /jwt/i, /bearer/i, /token/i, /middleware/i, /guard/i];
-        if (authPatterns.some(p => p.test(content))) {
+        // Auth
+        if (/\b(auth|jwt|bearer|middleware|guard)\b/i.test(content)) {
             passed.push('[OK] Authentication/authorization detected');
         }
 
-        // Check for rate limiting
-        if (/rateLimit/i.test(content) || /throttle/i.test(content)) {
+        // Rate limiting
+        if (/\b(rateLimit|throttle|rate.limit)\b/i.test(content)) {
             passed.push('[OK] Rate limiting present');
         }
 
-        // Check for logging
-        if (/console\.log/.test(content) || /logger\./.test(content)) {
-            passed.push('[OK] Logging present');
+        // Structured logging (not console.log)
+        if (/\b(logger|winston|pino|bunyan)\b/i.test(content)) {
+            passed.push('[OK] Structured logging detected');
+        } else if (/console\.(log|error|warn)/.test(content)) {
+            issues.push('[!] Uses console.log — consider structured logging (pino, winston)');
         }
 
-    } catch (e) {
-        issues.push(`[X] Read error: ${e.message}`);
+        // API versioning
+        if (/\/v\d+\//i.test(content) || /api-version/i.test(content) || /\/api\/v\d/i.test(content)) {
+            passed.push('[OK] API versioning detected');
+        } else {
+            issues.push('[!] No API versioning detected');
+        }
+
+        // Pagination
+        if (/\b(paginate|cursor|offset|per_page)\b/i.test(content) || /page\s*[=:]/i.test(content)) {
+            passed.push('[OK] Pagination support detected');
+        }
+
+        // CORS
+        if (/\b(cors)\b/i.test(content) || /access-control-allow/i.test(content)) {
+            passed.push('[OK] CORS configuration detected');
+        } else {
+            issues.push('[!] No CORS configuration detected');
+        }
+
+        // Response envelope
+        if (/\b(success|ApiResponse|envelope)\b/i.test(content)) {
+            passed.push('[OK] Response envelope pattern detected');
+        }
+
+    } catch (err) {
+        issues.push(`[X] Read error: ${err.message}`);
     }
 
     return { file: filePath, passed, issues, type: 'code' };
 }
 
-function main() {
-    const projectPath = resolve(process.argv[2] || '.');
+// --- Output Formatting ---
 
+function printResults(results, projectPath) {
     console.log('\n' + '='.repeat(60));
-    console.log('  API VALIDATOR - Endpoint Best Practices Check');
+    console.log('  API VALIDATOR v' + VERSION + ' — Endpoint Best Practices');
     console.log('='.repeat(60) + '\n');
 
-    const apiFiles = findApiFiles(projectPath);
-
-    if (apiFiles.length === 0) {
-        console.log('[!] No API files found.');
-        console.log('   Looking for: routes/, controllers/, api/, openapi.json/yaml');
-        process.exit(0);
-    }
-
-    const results = [];
-    for (const filePath of apiFiles) {
-        const basename = filePath.split(/[/\\]/).pop().toLowerCase();
-        if (basename.includes('openapi') || basename.includes('swagger')) {
-            results.push(checkOpenApiSpec(filePath));
-        } else {
-            results.push(checkApiCode(filePath));
-        }
-    }
-
-    // Print results
     let totalIssues = 0;
+    let totalWarnings = 0;
     let totalPassed = 0;
 
     for (const result of results) {
@@ -199,20 +279,101 @@ function main() {
         for (const item of result.issues) {
             console.log(`   ${item}`);
             if (item.startsWith('[X]')) totalIssues++;
+            else if (item.startsWith('[!]')) totalWarnings++;
         }
     }
 
     console.log('\n' + '='.repeat(60));
-    console.log(`[RESULTS] ${totalPassed} passed, ${totalIssues} critical issues`);
+    console.log(`[RESULTS] ${totalPassed} passed, ${totalWarnings} warnings, ${totalIssues} critical`);
     console.log('='.repeat(60));
 
     if (totalIssues === 0) {
         console.log('[OK] API validation passed');
-        process.exit(0);
     } else {
         console.log('[X] Fix critical issues before deployment');
+    }
+
+    return totalIssues;
+}
+
+function jsonResults(results, projectPath) {
+    return {
+        version: VERSION,
+        projectPath,
+        timestamp: new Date().toISOString(),
+        files: results.map(r => ({
+            file: relative(projectPath, r.file),
+            type: r.type,
+            passed: r.passed.length,
+            issues: r.issues.filter(i => i.startsWith('[X]')).length,
+            warnings: r.issues.filter(i => i.startsWith('[!]')).length,
+            details: { passed: r.passed, issues: r.issues },
+        })),
+        summary: {
+            totalFiles: results.length,
+            totalPassed: results.reduce((s, r) => s + r.passed.length, 0),
+            totalIssues: results.reduce((s, r) => s + r.issues.filter(i => i.startsWith('[X]')).length, 0),
+            totalWarnings: results.reduce((s, r) => s + r.issues.filter(i => i.startsWith('[!]')).length, 0),
+        },
+    };
+}
+
+// --- Main ---
+
+async function main() {
+    const args = process.argv.slice(2);
+
+    if (args.includes('--help') || args.includes('-h')) {
+        console.log(HELP);
+        process.exit(0);
+    }
+
+    if (args.includes('--version') || args.includes('-v')) {
+        console.log(VERSION);
+        process.exit(0);
+    }
+
+    const isJson = args.includes('--json');
+    const projectPath = resolve(args.find(a => !a.startsWith('-')) || '.');
+
+    if (!existsSync(projectPath)) {
+        console.error(`[ERROR] Path does not exist: ${projectPath}`);
         process.exit(1);
+    }
+
+    const apiFiles = await findApiFiles(projectPath);
+
+    if (apiFiles.length === 0) {
+        if (isJson) {
+            console.log(JSON.stringify({ version: VERSION, files: [], summary: { totalFiles: 0 } }, null, 2));
+        } else {
+            console.log('[!] No API files found.');
+            console.log('    Looking for: routes/, controllers/, api/, openapi.json/yaml');
+        }
+        process.exit(0);
+    }
+
+    const results = [];
+    for (const filePath of apiFiles) {
+        const basename = filePath.split(/[/\\]/).pop().toLowerCase();
+        if (basename.includes('openapi') || basename.includes('swagger')) {
+            results.push(await checkOpenApiSpec(filePath));
+        } else {
+            results.push(await checkApiCode(filePath));
+        }
+    }
+
+    if (isJson) {
+        console.log(JSON.stringify(jsonResults(results, projectPath), null, 2));
+        const criticalCount = results.reduce((s, r) => s + r.issues.filter(i => i.startsWith('[X]')).length, 0);
+        process.exit(criticalCount > 0 ? 1 : 0);
+    } else {
+        const criticalCount = printResults(results, projectPath);
+        process.exit(criticalCount > 0 ? 1 : 0);
     }
 }
 
-main();
+main().catch(err => {
+    console.error(`[FATAL] ${err.message}`);
+    process.exit(1);
+});

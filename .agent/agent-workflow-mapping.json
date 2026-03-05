@@ -1,7 +1,7 @@
 {
-    "$comment": "Agent-Workflow Mapping for PikaKit v3.2.0",
-    "version": "1.0.0",
-    "lastUpdated": "2026-02-05",
+    "$comment": "Agent-Workflow Mapping for PikaKit v3.9.74",
+    "version": "2.0.0",
+    "lastUpdated": "2026-03-05",
     "description": "Maps workflow agent references to actual agent file names",
     "workflow_to_agent": {
         "backend-specialist": {
@@ -127,6 +127,14 @@
                 "test"
             ],
             "note": "Maps to testing agent for test architecture"
+        },
+        "legacy-specialist": {
+            "agentFile": "legacy.md",
+            "domain": "Legacy",
+            "aliases": [
+                "legacy"
+            ],
+            "note": "Maps to legacy agent for legacy code tasks"
         }
     },
     "meta_agents": {
@@ -190,8 +198,8 @@
         }
     },
     "validation": {
-        "totalAgents": 25,
-        "workflowReferencedAgents": 15,
+        "totalAgents": 26,
+        "workflowReferencedAgents": 16,
         "metaAgents": 5,
         "otherAgents": 5
     }

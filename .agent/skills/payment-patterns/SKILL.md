@@ -133,6 +133,7 @@ metadata:
 | [polar/checkouts.md](polar/checkouts.md) | Checkout flow | Payment flow |
 | [polar/webhooks.md](polar/webhooks.md) | Event handling | Polar webhooks |
 | [polar/benefits.md](polar/benefits.md) | Automated delivery | Benefits |
+| [stripe.md](stripe.md) | Stripe integration | Stripe payments |
 | [scripts/sepay-webhook-verify.js](scripts/sepay-webhook-verify.js) | SePay sig verify | Webhook setup |
 | [scripts/polar-webhook-verify.js](scripts/polar-webhook-verify.js) | Polar sig verify | Webhook setup |
 | [engineering-spec.md](references/engineering-spec.md) | Full spec | Architecture review |
@@ -151,4 +152,4 @@ metadata:
 
 ---
 
-⚡ PikaKit v3.9.74
+⚡ PikaKit v3.9.76

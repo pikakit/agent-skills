@@ -1,69 +1,200 @@
 #!/usr/bin/env node
 /**
- * Lighthouse Audit - Performance profiling via Lighthouse CLI
- * Usage: node lighthouse_audit.js <url>
- * Note: Requires lighthouse CLI (npm install -g lighthouse)
+ * Lighthouse Performance Audit
+ * Version: 2.0.0
+ *
+ * Runs Lighthouse CLI and extracts Core Web Vitals + category scores.
+ * Requires: npm install -g lighthouse
+ *
+ * Usage:
+ *   node lighthouse_audit.js <url>
+ *   node lighthouse_audit.js <url> --threshold=80
+ *   node lighthouse_audit.js <url> --mobile
+ *   node lighthouse_audit.js --help
  */
 
-import { execSync } from 'child_process';
-import { readFileSync, unlinkSync, existsSync, mkdirSync } from 'fs';
-import { tmpdir } from 'os';
-import { join } from 'path';
+import { execFile } from 'node:child_process'
+import { readFile, unlink, mkdir } from 'node:fs/promises'
+import { existsSync } from 'node:fs'
+import { tmpdir } from 'node:os'
+import { join } from 'node:path'
+import { promisify } from 'node:util'
 
-function runLighthouse(url) {
+const execFileAsync = promisify(execFile)
+const VERSION = '2.0.0'
+
+// --- CLI Argument Parsing ---
+const args = process.argv.slice(2)
+
+if (args.includes('--help') || args.length === 0) {
+    console.log(`
+Lighthouse Audit v${VERSION}
+
+Usage:
+  node lighthouse_audit.js <url>                     Run audit (desktop)
+  node lighthouse_audit.js <url> --mobile            Run audit (mobile)
+  node lighthouse_audit.js <url> --threshold=80      Set pass/fail threshold
+  node lighthouse_audit.js <url> --categories=perf   Audit specific categories
+
+Options:
+  --mobile          Emulate mobile device (default: desktop)
+  --threshold=N     Performance score threshold (0-100). Exit 1 if below.
+  --categories=X    Comma-separated: perf,a11y,bp,seo (default: all)
+  --help            Show this help
+
+Examples:
+  node lighthouse_audit.js https://example.com
+  node lighthouse_audit.js https://example.com --mobile --threshold=90
+  node lighthouse_audit.js http://localhost:3000 --categories=perf
+
+Requires: npm install -g lighthouse
+`)
+    process.exit(0)
+}
+
+const url = args.find(a => !a.startsWith('--'))
+const isMobile = args.includes('--mobile')
+const thresholdArg = args.find(a => a.startsWith('--threshold='))
+const threshold = thresholdArg ? parseInt(thresholdArg.split('=')[1], 10) : null
+const catArg = args.find(a => a.startsWith('--categories='))
+
+const categoryMap = { perf: 'performance', a11y: 'accessibility', bp: 'best-practices', seo: 'seo' }
+const categories = catArg
+    ? catArg.split('=')[1].split(',').map(c => categoryMap[c] || c).join(',')
+    : 'performance,accessibility,best-practices,seo'
+
+if (!url) {
+    console.log(JSON.stringify({ error: 'No URL provided. Use --help for usage.' }))
+    process.exit(1)
+}
+
+// --- Main Audit Function ---
+async function runLighthouse(targetUrl) {
+    const outputDir = join(tmpdir(), 'lighthouse_audit')
+    if (!existsSync(outputDir)) await mkdir(outputDir, { recursive: true })
+    const outputPath = join(outputDir, `lighthouse_${Date.now()}.json`)
+
+    const lhArgs = [
+        targetUrl,
+        '--output=json',
+        `--output-path=${outputPath}`,
+        '--chrome-flags=--headless --no-sandbox',
+        `--only-categories=${categories}`,
+    ]
+
+    if (!isMobile) {
+        lhArgs.push('--preset=desktop')
+    }
+
     try {
-        const outputDir = join(tmpdir(), 'lighthouse_audit');
-        if (!existsSync(outputDir)) mkdirSync(outputDir, { recursive: true });
-        const outputPath = join(outputDir, `lighthouse_${Date.now()}.json`);
-
-        execSync([
-            'lighthouse',
-            url,
-            '--output=json',
-            `--output-path=${outputPath}`,
-            '--chrome-flags=--headless',
-            '--only-categories=performance,accessibility,best-practices,seo'
-        ].join(' '), { encoding: 'utf-8', timeout: 120000, stdio: 'pipe' });
-
-        if (existsSync(outputPath)) {
-            const report = JSON.parse(readFileSync(outputPath, 'utf-8'));
-            unlinkSync(outputPath);
-
-            const categories = report.categories || {};
-            const scores = {
-                performance: Math.round((categories.performance?.score || 0) * 100),
-                accessibility: Math.round((categories.accessibility?.score || 0) * 100),
-                best_practices: Math.round((categories['best-practices']?.score || 0) * 100),
-                seo: Math.round((categories.seo?.score || 0) * 100)
-            };
-
-            let summary = '[OK] Excellent performance';
-            if (scores.performance < 50) {
-                summary = '[X] Poor performance';
-            } else if (scores.performance < 90) {
-                summary = '[!] Needs improvement';
-            }
-
-            return { url, scores, summary };
-        } else {
-            return { error: 'Lighthouse failed to generate report' };
+        await execFileAsync('lighthouse', lhArgs, {
+            timeout: 120_000,
+            maxBuffer: 10 * 1024 * 1024,
+        })
+    } catch (err) {
+        if (err.code === 'ENOENT') {
+            return { error: 'Lighthouse CLI not found. Install: npm install -g lighthouse' }
         }
-    } catch (e) {
-        if (e.code === 'ENOENT') {
-            return { error: 'Lighthouse CLI not found. Install with: npm install -g lighthouse' };
+        if (err.killed) {
+            return { error: 'Lighthouse audit timed out (120s)' }
         }
-        if (e.code === 'ETIMEDOUT') {
-            return { error: 'Lighthouse audit timed out' };
+        // Lighthouse may exit non-zero but still produce output
+        if (!existsSync(outputPath)) {
+            return { error: `Lighthouse failed: ${err.message}` }
         }
-        return { error: e.message };
+    }
+
+    if (!existsSync(outputPath)) {
+        return { error: 'Lighthouse did not produce output' }
+    }
+
+    try {
+        const raw = await readFile(outputPath, 'utf-8')
+        await unlink(outputPath).catch(() => { })
+
+        const report = JSON.parse(raw)
+        return parseReport(report, targetUrl)
+    } catch (err) {
+        return { error: `Failed to parse report: ${err.message}` }
     }
 }
 
-const url = process.argv[2];
-if (!url) {
-    console.log(JSON.stringify({ error: 'Usage: node lighthouse_audit.js <url>' }));
-    process.exit(1);
+function parseReport(report, targetUrl) {
+    const cats = report.categories || {}
+    const audits = report.audits || {}
+
+    // Category scores (0-100)
+    const scores = {}
+    for (const [key, cat] of Object.entries(cats)) {
+        scores[key] = Math.round((cat.score || 0) * 100)
+    }
+
+    // Core Web Vitals
+    const cwv = {
+        lcp: extractMetric(audits, 'largest-contentful-paint'),
+        inp: extractMetric(audits, 'interaction-to-next-paint') ||
+            extractMetric(audits, 'total-blocking-time'), // TBT as INP proxy in lab
+        cls: extractMetric(audits, 'cumulative-layout-shift'),
+        fcp: extractMetric(audits, 'first-contentful-paint'),
+        ttfb: extractMetric(audits, 'server-response-time'),
+        si: extractMetric(audits, 'speed-index'),
+    }
+
+    // CWV pass/fail
+    const cwvStatus = {
+        lcp: cwv.lcp ? (cwv.lcp.value <= 2500 ? 'GOOD' : cwv.lcp.value <= 4000 ? 'NEEDS_WORK' : 'POOR') : null,
+        cls: cwv.cls ? (cwv.cls.value <= 0.1 ? 'GOOD' : cwv.cls.value <= 0.25 ? 'NEEDS_WORK' : 'POOR') : null,
+    }
+
+    // Summary
+    const perfScore = scores.performance ?? 0
+    let summary
+    if (perfScore >= 90) summary = '✅ Excellent performance'
+    else if (perfScore >= 50) summary = '⚠️ Needs improvement'
+    else summary = '❌ Poor performance'
+
+    // Top opportunities
+    const opportunities = (report.audits ? Object.values(report.audits) : [])
+        .filter(a => a.details?.type === 'opportunity' && a.details?.overallSavingsMs > 0)
+        .sort((a, b) => (b.details.overallSavingsMs || 0) - (a.details.overallSavingsMs || 0))
+        .slice(0, 5)
+        .map(a => ({
+            title: a.title,
+            savingsMs: Math.round(a.details.overallSavingsMs),
+        }))
+
+    return {
+        url: targetUrl,
+        device: isMobile ? 'mobile' : 'desktop',
+        scores,
+        cwv,
+        cwvStatus,
+        summary,
+        opportunities,
+        threshold: threshold ? { value: threshold, passed: perfScore >= threshold } : undefined,
+    }
 }
 
-const result = runLighthouse(url);
-console.log(JSON.stringify(result, null, 2));
+function extractMetric(audits, id) {
+    const audit = audits[id]
+    if (!audit) return null
+    return {
+        value: audit.numericValue != null ? Math.round(audit.numericValue * 100) / 100 : null,
+        unit: audit.numericUnit || 'ms',
+        display: audit.displayValue || null,
+        score: audit.score != null ? Math.round(audit.score * 100) : null,
+    }
+}
+
+// --- Run ---
+const result = await runLighthouse(url)
+console.log(JSON.stringify(result, null, 2))
+
+// Exit code based on threshold
+if (result.error) {
+    process.exit(2)
+} else if (threshold && result.scores?.performance < threshold) {
+    process.exit(1)
+} else {
+    process.exit(0)
+}

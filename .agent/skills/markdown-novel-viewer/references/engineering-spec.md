@@ -1,3 +1,8 @@
+---
+name: markdown-novel-viewer-engineering-spec
+description: Full 21-section engineering spec — HTTP server lifecycle, port allocation, novel theme, path traversal prevention
+---
+
 # Markdown Novel Viewer — Engineering Specification
 
 > Production-grade specification for background HTTP markdown rendering server at FAANG scale.
@@ -465,4 +470,15 @@ Single-thread per server (Node.js event loop). Multiple servers on different por
 
 ---
 
-⚡ PikaKit v3.9.74
+⚡ PikaKit v3.9.76
+
+---
+
+## 🔗 Related
+
+| File | When to Read |
+|------|-------------|
+| [../SKILL.md](../SKILL.md) | Quick reference, CLI options, routes |
+| [../scripts/server.js](../scripts/server.js) | Server implementation |
+| `plans-kanban` | Dashboard view for plans |
+| `doc-templates` | Documentation structure |

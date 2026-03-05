@@ -4,7 +4,6 @@
  * Checklist - PikaKit Master Validator
  * =============================================
  * Priority-based validation orchestrator
- * JavaScript port of checklist.py
  * 
  * Usage:
  *   node checklist.js \u003cproject\u003e
@@ -21,17 +20,17 @@ import { formatJsonOutput, printSummary } from './utils/reporter.js';
 
 // Define priority-ordered checks
 const CORE_CHECKS = [
-    { name: 'Security Scan', script: '.agent/skills/vulnerability-scanner/scripts/security_scan.py', required: true },
-    { name: 'Lint Check', script: '.agent/skills/lint-and-validate/scripts/lint_runner.py', required: true },
-    { name: 'Schema Validation', script: '.agent/skills/database-design/scripts/schema_validator.py', required: false },
-    { name: 'Test Runner', script: '.agent/skills/testing-patterns/scripts/test_runner.py', required: false },
-    { name: 'UX Audit', script: '.agent/skills/frontend-design/scripts/ux_audit.py', required: false },
-    { name: 'SEO Check', script: '.agent/skills/seo-fundamentals/scripts/seo_checker.py', required: false }
+    { name: 'Security Scan', script: '.agent/skills/security-scanner/scripts/security_scan.js', required: true },
+    { name: 'Lint Check', script: '.agent/skills/code-review/scripts/lint_runner.js', required: true },
+    { name: 'Schema Validation', script: '.agent/skills/data-modeler/scripts/schema_validator.js', required: false },
+    { name: 'Test Runner', script: '.agent/skills/test-architect/scripts/test_runner.js', required: false },
+    { name: 'UX Audit', script: '.agent/skills/design-system/scripts/ux_audit.js', required: false },
+    { name: 'SEO Check', script: '.agent/skills/seo-optimizer/scripts/seo_checker.js', required: false }
 ];
 
 const PERFORMANCE_CHECKS = [
-    { name: 'Lighthouse Audit', script: '.agent/skills/performance-profiling/scripts/lighthouse_audit.py', required: true },
-    { name: 'Playwright E2E', script: '.agent/skills/webapp-testing/scripts/playwright_runner.py', required: false }
+    { name: 'Lighthouse Audit', script: '.agent/skills/perf-optimizer/scripts/lighthouse_audit.js', required: true },
+    { name: 'Playwright E2E', script: '.agent/skills/e2e-automation/scripts/playwright_runner.js', required: false }
 ];
 
 /**

@@ -1,3 +1,8 @@
+---
+name: mcp-management-engineering-spec
+description: Full 21-section engineering spec — 3-method execution, progressive disclosure, method fallback contracts
+---
+
 # MCP Management — Engineering Specification
 
 > Production-grade specification for MCP tool discovery, routing, and execution at FAANG scale.
@@ -473,4 +478,15 @@ Single execution per invocation. Concurrent invocations to different servers are
 
 ---
 
-⚡ PikaKit v3.9.74
+⚡ PikaKit v3.9.76
+
+---
+
+## 🔗 Related
+
+| File | When to Read |
+|------|-------------|
+| [../SKILL.md](../SKILL.md) | Quick reference, execution methods, anti-patterns |
+| [protocol.md](protocol.md) | JSON-RPC protocol details |
+| [cli-usage.md](cli-usage.md) | CLI commands and examples |
+| `mcp-builder` | Building MCP servers |

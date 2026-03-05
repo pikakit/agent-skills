@@ -1,3 +1,8 @@
+---
+name: agent-coordination
+description: Multi-agent orchestration pipeline for app building. Execution order, plan verification, parallel phases.
+---
+
 # Agent Coordination
 
 > How App Builder orchestrates specialist agents.
@@ -69,3 +74,13 @@
 | 6 | DevOps Engineer | ❌ | All code ready | Deployment ready |
 
 > 🔴 **CRITICAL:** Phase 1.5 is MANDATORY. No specialist agents proceed without PLAN.md verification.
+
+---
+
+## 🔗 Related
+
+| File | When to Read |
+|------|-------------|
+| [project-detection.md](project-detection.md) | Before coordination — detect type |
+| [scaffolding.md](scaffolding.md) | Structure agents will create |
+| [SKILL.md](SKILL.md) | Full pipeline overview |

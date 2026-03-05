@@ -1,3 +1,8 @@
+---
+name: vercel-deploy-engineering-spec
+description: Full 21-section engineering spec — zero-auth deployment, 4-stage pipeline, 40+ framework detection, tarball packaging
+---
+
 # Vercel Deploy — Engineering Specification
 
 > Production-grade specification for Vercel deployment automation at FAANG scale.
@@ -440,4 +445,15 @@ Sequential pipeline. One deployment per invocation.
 
 ---
 
-⚡ PikaKit v3.9.74
+⚡ PikaKit v3.9.76
+
+---
+
+## 🔗 Related
+
+| File | When to Read |
+|------|-------------|
+| [../SKILL.md](../SKILL.md) | Quick start, pipeline, error taxonomy |
+| [../scripts/deploy.sh](../scripts/deploy.sh) | Deploy script implementation |
+| `cicd-pipeline` | Full CI/CD pipelines |
+| `nextjs-pro` | Next.js deployment specifics |

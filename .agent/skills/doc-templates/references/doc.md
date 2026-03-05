@@ -1,182 +1,351 @@
-# PikaKit Skills
+---
+name: doc-templates-reference
+description: Full templates and examples for README, API docs, ADR, changelog, llms.txt, and comment guidelines
+---
 
-> **Guide to creating and using Skills in PikaKit**
+# Doc Templates — Full Reference
+
+> Complete templates with examples. Fill in content, not structure.
 
 ---
 
-## 📋 Introduction
+## 1. README Template (6 Required Sections)
 
-Although the base AI models (like Gemini) are powerful general-purpose models, they don't know your specific project context or team standards. Loading every rule or tool into the agent's context window leads to "tool bloat", higher costs, latency, and confusion.
-
-**PikaKit Skills** solve this through **Progressive Disclosure**. A skill is a specialized knowledge package that remains dormant until needed. This information is only loaded into the agent's context when your specific request matches the skill's description.
-
----
-
-## 📁 Structure and Scope
-
-Skills are folder-based packages. You can define these scopes depending on your needs:
-
-| Scope | Path | Description |
-|-------|------|-------------|
-| **Workspace** | `<workspace-root>/.agent/skills/` | Only available in a specific project |
-
-### Skill Directory Structure
-
-```
-my-skill/
-├── SKILL.md      # (Required) Metadata & instructions
-├── scripts/      # (Optional) Python or Bash scripts
-├── references/   # (Optional) Text, documentation, templates
-└── assets/       # (Optional) Images or logos
-```
-
----
-
-## 🔍 Example 1: Code Review Skill
-
-This is an instruction-only skill, just need to create a `SKILL.md` file.
-
-### Step 1: Create Directory
-
-```bash
-mkdir -p .agent/skills/code-review
-```
-
-### Step 2: Create SKILL.md
+Every README must contain these 6 sections in this order:
 
 ```markdown
----
-name: code-review
-description: Reviews code changes for bugs, style issues, and best practices. Use when reviewing PRs or checking code quality.
----
+# Project Name
 
-# Code Review Skill
+Brief one-line description of what this project does.
 
-When reviewing code, follow these steps:
-
-## Review checklist
-
-1. **Correctness**: Does the code do what it's supposed to?
-2. **Edge cases**: Are error conditions handled?
-3. **Style**: Does it follow project conventions?
-4. **Performance**: Are there obvious inefficiencies?
-
-## How to provide feedback
-
-- Be specific about what needs to change
-- Explain why, not just what
-- Suggest alternatives when possible
-```
-
-> **Note**: The `SKILL.md` file contains metadata (name, description) at the top, followed by instructions. The agent only reads metadata and only loads instructions when needed.
-
-### Try it Out
-
-Create file `demo_bad_code.py`:
-
-```python
-import time
-
-def get_user_data(users, id):
-    # Find user by ID
-    for u in users:
-        if u['id'] == id:
-            return u
-    return None
-
-def process_payments(items):
-    total = 0
-    for i in items:
-        # Calculate tax
-        tax = i['price'] * 0.1
-        total = total + i['price'] + tax
-        time.sleep(0.1)  # Simulate slow network call
-    return total
-
-def run_batch():
-    users = [{'id': 1, 'name': 'Alice'}, {'id': 2, 'name': 'Bob'}]
-    items = [{'price': 10}, {'price': 20}, {'price': 100}]
-    
-    u = get_user_data(users, 3)
-    print("User found: " + u['name'])  # Will crash if None
-    
-    print("Total: " + str(process_payments(items)))
-
-if __name__ == "__main__":
-    run_batch()
-```
-
-**Prompt**: `review the @demo_bad_code.py file`
-
-The agent will automatically identify the `code-review` skill, load the information and follow the instructions.
-
----
-
-## 📄 Example 2: License Header Skill
-
-This skill uses a reference file in the `resources/` directory.
-
-### Step 1: Create Directory
+## Quick Start
 
 ```bash
-mkdir -p .agent/skills/license-header-adder/resources
+# Clone and install
+git clone https://github.com/org/project.git
+cd project
+npm install
+
+# Configure
+cp .env.example .env
+
+# Run
+npm run dev
 ```
 
-### Step 2: Create Template File
+## Features
 
-**`.agent/skills/license-header-adder/resources/HEADER.txt`**:
+- **Feature 1** — Brief description
+- **Feature 2** — Brief description
+- **Feature 3** — Brief description
 
+## Configuration
+
+| Variable | Description | Default | Required |
+|----------|-------------|---------|----------|
+| `PORT` | Server port | `3000` | No |
+| `DATABASE_URL` | PostgreSQL connection string | — | Yes |
+| `API_KEY` | External API key | — | Yes |
+
+## Documentation
+
+- [API Reference](./docs/api.md)
+- [Architecture Decisions](./docs/adr/)
+- [Contributing Guide](./CONTRIBUTING.md)
+
+## License
+
+MIT © 2025 Your Organization
 ```
-/*
- * Copyright (c) 2026 YOUR_COMPANY_NAME LLC.
- * All rights reserved.
- * This code is proprietary and confidential.
- */
-```
 
-### Step 3: Create SKILL.md
+### README Anti-Patterns
 
-**`.agent/skills/license-header-adder/SKILL.md`**:
+| ❌ Don't | ✅ Do |
+|---------|------|
+| Skip Quick Start | Always include runnable steps |
+| List features without description | One line per feature explaining value |
+| Hardcode config values | Use env variables with table |
+| Link to non-existent docs | Verify all links before commit |
+
+---
+
+## 2. API Endpoint Template
+
+Every endpoint must document: method, path, parameters, response codes.
+
+### Single Endpoint
 
 ```markdown
----
-name: license-header-adder
-description: Adds the standard corporate license header to new source files.
----
+## GET /api/users/:id
 
-# License Header Adder
+Get a user by ID.
 
-This skill ensures that all new source files have the correct copyright header.
+**Authentication:** Bearer token required
 
-## Instructions
+**Parameters:**
 
-1. **Read the Template**: Read the content of `resources/HEADER.txt`.
-2. **Apply to File**: When creating a new file, prepend this exact content.
-3. **Adapt Syntax**: 
-   - For C-style languages (Java, TS), keep the `/* */` block.
-   - For Python/Shell, convert to `#` comments.
+| Name | In | Type | Required | Description |
+|------|----|------|----------|-------------|
+| `id` | path | string (UUID) | Yes | User ID |
+| `include` | query | string | No | Comma-separated relations: `posts,profile` |
+
+**Response:**
+
+| Status | Description | Body |
+|--------|-------------|------|
+| `200` | Success | `{ id, name, email, createdAt }` |
+| `401` | Unauthorized | `{ error: "Invalid token" }` |
+| `404` | Not found | `{ error: "User not found" }` |
+
+**Example:**
+
+```bash
+curl -H "Authorization: Bearer $TOKEN" \
+  https://api.example.com/api/users/abc-123
+```
 ```
 
-### Try it Out
+### Batch Endpoint
 
-**Prompt**: `Create a new Python script named data_processor.py that prints 'Hello World'.`
+```markdown
+## POST /api/users/batch
 
-The agent will read the template, convert comments to Python style and automatically add it to the beginning of the file.
+Create multiple users in a single request.
+
+**Request Body:**
+
+```json
+{
+  "users": [
+    { "name": "Alice", "email": "alice@example.com" },
+    { "name": "Bob", "email": "bob@example.com" }
+  ]
+}
+```
+
+**Response:** `201` — Array of created user objects
+```
+
+### API Anti-Patterns
+
+| ❌ Don't | ✅ Do |
+|---------|------|
+| Undocumented parameters | Document all params with types |
+| Missing error responses | List every possible status code |
+| No example request | Include curl or fetch example |
+| Assume auth is obvious | State auth requirement explicitly |
 
 ---
 
-## 🎯 Conclusion
+## 3. ADR Template (4 Required Sections)
 
-By creating Skills, you've transformed a general-purpose AI model into an expert for your project:
+Architecture Decision Records capture **why** decisions were made.
 
-- ✅ Systematize best practices
-- ✅ Follow code review rules
-- ✅ Automatically add license headers
-- ✅ Agent automatically knows how to work with your team
+```markdown
+# ADR-001: Use PostgreSQL for Primary Database
 
-Instead of constantly reminding AI to "remember to add license" or "fix commit format", now the Agent will do it automatically!
+## Status
+
+Accepted | 2025-01-15
+
+## Context
+
+We need a primary database for the user service. Requirements:
+- ACID compliance for financial transactions
+- JSON support for flexible user profiles
+- Proven at scale (>10M rows)
+- Team has existing expertise
+
+Alternatives considered:
+1. **MySQL** — Less JSON support, team less experienced
+2. **MongoDB** — No ACID, schema flexibility unnecessary
+3. **PostgreSQL** — Meets all requirements
+
+## Decision
+
+Use **PostgreSQL 16** with Prisma ORM.
+
+- Connection pooling via PgBouncer
+- Read replicas for analytics queries
+- JSONB columns for extensible metadata
+
+## Consequences
+
+**Positive:**
+- Strong ACID guarantees for transactions
+- JSONB enables schema evolution without migrations
+- Team already proficient
+
+**Negative:**
+- Vertical scaling limits (mitigated by read replicas)
+- More complex setup than SQLite for local dev
+- Requires connection pool management
+```
+
+### ADR Anti-Patterns
+
+| ❌ Don't | ✅ Do |
+|---------|------|
+| Skip Consequences | Always include trade-offs |
+| No alternatives listed | Show what was considered |
+| Vague context | Quantify requirements |
+| No date on status | Include decision date |
 
 ---
 
-⚡ PikaKit v3.9.74
-Composable Skills. Coordinated Agents. Intelligent Execution.
+## 4. Changelog Template
+
+Follow [Keep a Changelog](https://keepachangelog.com/) format:
+
+```markdown
+# Changelog
+
+All notable changes to this project will be documented in this file.
+
+## [1.2.0] - 2025-01-20
+
+### Added
+- User profile photo upload (max 5MB, JPEG/PNG)
+- Email verification flow with 24h expiry
+
+### Changed
+- Upgraded Prisma from 5.x to 6.x
+- Password hashing from bcrypt to argon2id
+
+### Fixed
+- Race condition in concurrent checkout (#234)
+- Memory leak in WebSocket handler (#256)
+
+### Deprecated
+- `GET /api/v1/users` — Use `GET /api/v2/users` instead
+
+## [1.1.0] - 2025-01-10
+
+### Added
+- Two-factor authentication via TOTP
+```
+
+### Changelog Categories (Fixed Order)
+
+| Category | When to Use |
+|----------|-------------|
+| **Added** | New features |
+| **Changed** | Changes to existing functionality |
+| **Deprecated** | Features to be removed |
+| **Removed** | Features removed |
+| **Fixed** | Bug fixes |
+| **Security** | Vulnerability patches |
+
+---
+
+## 5. llms.txt Template (AI Context)
+
+Provide AI agents with project context:
+
+```markdown
+# Project Name
+
+> One-line description
+
+## Tech Stack
+
+- **Runtime:** Node.js 20
+- **Framework:** Next.js 15 (App Router)
+- **Database:** PostgreSQL 16 + Prisma 6
+- **Auth:** NextAuth.js v5
+- **Styling:** Tailwind CSS v4
+
+## Project Structure
+
+```
+src/
+├── app/           # Next.js App Router pages
+├── components/    # Shared React components
+├── lib/           # Utility functions
+├── server/        # Server-side logic
+│   ├── api/       # API route handlers
+│   └── db/        # Database queries
+└── types/         # TypeScript type definitions
+```
+
+## Key Patterns
+
+- Server Components by default, `'use client'` only when needed
+- All database access through `src/server/db/`
+- Feature-based directory structure within `app/`
+- Environment variables in `.env.local` (see `.env.example`)
+
+## Important Files
+
+- `prisma/schema.prisma` — Database schema
+- `src/lib/auth.ts` — Authentication configuration
+- `src/server/api/router.ts` — API route definitions
+```
+
+---
+
+## 6. Comment Guidelines
+
+### What to Comment (Why)
+
+```typescript
+// Business rule: orders over $500 require manager approval
+// due to fraud prevention policy (POLICY-2024-03)
+if (order.total > 500) {
+  await requireApproval(order, 'manager');
+}
+
+// Quadratic probe instead of linear for better cache behavior
+// when load factor > 0.7 (measured 2x throughput improvement)
+const index = quadraticProbe(hash, table.length);
+
+// WARNING: This endpoint is called by the legacy billing system
+// which sends dates as MM/DD/YYYY. Do not change the format
+// without updating the billing service first.
+function parseLegacyDate(dateStr: string): Date {
+```
+
+### What NOT to Comment (What)
+
+```typescript
+// ❌ Don't: states the obvious
+// Increment counter by 1
+counter++;
+
+// ❌ Don't: restates the code
+// Set user name to the input value
+user.name = input.value;
+
+// ❌ Don't: comments every line
+// Get the users
+const users = await getUsers();
+// Filter active users
+const active = users.filter(u => u.active);
+// Return the active users
+return active;
+```
+
+### Comment Decision Table
+
+| Situation | Comment? | Example |
+|-----------|----------|---------|
+| Business rule | ✅ Yes | Why this threshold/limit exists |
+| Complex algorithm | ✅ Yes | Why this approach, not the obvious one |
+| API contract | ✅ Yes | External dependencies, format requirements |
+| Workaround/hack | ✅ Yes | Why, and link to tracking issue |
+| Obvious code | ❌ No | `i++`, `return result` |
+| Well-named function | ❌ No | `calculateTotalWithTax()` |
+| Type declarations | ❌ No | Types are self-documenting |
+
+---
+
+⚡ PikaKit v3.9.76
+
+---
+
+## 🔗 Related
+
+| File | When to Read |
+|------|-------------|
+| [engineering-spec.md](engineering-spec.md) | Full engineering spec and contracts |
+| [../SKILL.md](../SKILL.md) | Quick reference and anti-patterns |

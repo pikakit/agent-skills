@@ -4,7 +4,6 @@
  * Auto Preview - PikaKit
  * ===============================
  * Development server manager (start/stop/status)
- * JavaScript port of auto_preview.py
  * 
  * Usage:
  *   node auto_preview.js start [port]

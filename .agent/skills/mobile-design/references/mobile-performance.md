@@ -1,3 +1,8 @@
+---
+name: mobile-performance
+description: Mobile performance guidelines — list virtualization, image optimization, battery, memory management, profiling tools
+---
+
 # Mobile Performance Reference
 
 > Deep dive into React Native and Flutter performance optimization, 60fps animations, memory management, and battery considerations.
@@ -765,3 +770,6 @@ Low-end Android ← Test device
 ---
 
 > **Remember:** Performance is not optimization—it's baseline quality. A slow app is a broken app. Test on the worst device your users have, not the best device you have.
+---
+
+⚡ PikaKit v3.9.76\r\n\r\n---\r\n\r\n## 🔗 Related\r\n\r\n| File | When to Read |\r\n|------|-------------|\r\n| [../SKILL.md](../SKILL.md) | MFRI performance risk dimension |\r\n| [mobile-testing.md](mobile-testing.md) | Performance testing strategies |\r\n| [mobile-debugging.md](mobile-debugging.md) | Performance debugging |\r\n| [mobile-backend.md](mobile-backend.md) | API performance, caching |\r\n| [engineering-spec.md](engineering-spec.md) | Full engineering spec |

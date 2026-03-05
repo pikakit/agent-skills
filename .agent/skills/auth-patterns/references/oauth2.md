@@ -1,3 +1,8 @@
+---
+name: oauth2
+description: OAuth 2.0 + OpenID Connect flows, PKCE, scopes, provider integration
+---
+
 # OAuth 2.0 & OpenID Connect
 
 > Third-party login, SSO, and delegated authorization.
@@ -111,4 +116,15 @@ OIDC = OAuth 2.0 + Identity Layer
 
 ---
 
-⚡ PikaKit v3.9.74
+⚡ PikaKit v3.9.76
+
+---
+
+## 🔗 Related
+
+| File | When to Read |
+|------|-------------|
+| [jwt-deep.md](jwt-deep.md) | Token lifecycle after OAuth login |
+| [session.md](session.md) | Session-based alternative |
+| [passkey.md](passkey.md) | Passwordless alternative |
+| [SKILL.md](../SKILL.md) | Auth strategy decision tree |

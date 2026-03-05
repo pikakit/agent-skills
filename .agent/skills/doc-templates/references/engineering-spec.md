@@ -1,3 +1,8 @@
+---
+name: doc-templates-engineering-spec
+description: Full 21-section engineering spec — contracts, deterministic design, compliance matrix
+---
+
 # Doc Templates — Engineering Specification
 
 > Production-grade specification for documentation template selection and structure guidelines at FAANG scale.
@@ -397,4 +402,13 @@ All resources scoped to invocation. No persistent handles.
 
 ---
 
-⚡ PikaKit v3.9.74
+⚡ PikaKit v3.9.76
+
+---
+
+## 🔗 Related
+
+| File | When to Read |
+|------|-------------|
+| [doc.md](doc.md) | Full templates with examples |
+| [../SKILL.md](../SKILL.md) | Quick reference and anti-patterns |

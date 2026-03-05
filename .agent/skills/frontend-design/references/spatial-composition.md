@@ -1,3 +1,8 @@
+---
+name: spatial-composition
+description: Layout innovation — asymmetric grids, overlapping elements, diagonal flow, negative space
+---
+
 # Spatial Composition
 
 > Break the grid. Create unexpected layouts.
@@ -162,4 +167,14 @@ Don't default to centered, symmetrical layouts. Create visual tension:
 
 ---
 
-⚡ PikaKit v3.9.74
+⚡ PikaKit v3.9.76
+
+---
+
+## 🔗 Related
+
+| File | When to Read |
+|------|-------------|
+| [motion-design.md](motion-design.md) | Animate layout transitions |
+| [typography.md](typography.md) | Typography scale for layout hierarchy |
+| [../SKILL.md](../SKILL.md) | Aesthetic directions and constraints |

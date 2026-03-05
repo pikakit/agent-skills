@@ -1,3 +1,8 @@
+---
+name: mui-styling
+description: MUI v7 styling — sx prop, Grid size syntax, inline vs separate files, theme access
+---
+
 # MUI v7 Styling
 
 > sx prop for styling, Grid with size prop, inline vs separate files.
@@ -116,4 +121,14 @@ sx={{
 
 ---
 
-⚡ PikaKit v3.9.74
+⚡ PikaKit v3.9.76
+
+---
+
+## 🔗 Related
+
+| File | When to Read |
+|------|-------------|
+| [component-patterns.md](component-patterns.md) | Component structure with MUI |
+| [performance.md](performance.md) | Lazy load heavy MUI components |
+| [../SKILL.md](../SKILL.md) | MUI v7 Grid breaking change |

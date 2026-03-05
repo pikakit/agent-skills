@@ -1,3 +1,8 @@
+---
+name: domain-marketing
+description: Marketing copy prompt patterns — headlines (AIDA/PAS/4U), product descriptions, email sequences, ad copy, social media
+---
+
 # Marketing Prompt Patterns
 
 > Templates for generating marketing copy with AI.
@@ -83,4 +88,14 @@ Bad: "These headphones have good noise cancellation features."
 
 ---
 
-⚡ PikaKit v3.9.74
+⚡ PikaKit v3.9.76
+
+---
+
+## 🔗 Related
+
+| File | When to Read |
+|------|-------------|
+| [domain-code.md](domain-code.md) | Code generation prompt patterns |
+| [image-prompts.md](image-prompts.md) | Visual prompts for marketing assets |
+| [../SKILL.md](../SKILL.md) | LLM prompt pattern and anti-patterns |

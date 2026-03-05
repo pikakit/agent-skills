@@ -561,7 +561,8 @@ RULE: Always resize images to display size (or 2-3x for retina).
 
 ```
 React Native:
-├── Flipper → Memory tab
+├── React Native DevTools → Performance tab
+├── Reactotron → State + Memory monitoring
 ├── Xcode Instruments (iOS)
 └── Android Studio Profiler
 

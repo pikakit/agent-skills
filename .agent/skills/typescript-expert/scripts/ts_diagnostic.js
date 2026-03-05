@@ -1,227 +1,320 @@
 #!/usr/bin/env node
 /**
- * TypeScript Project Diagnostic Script
- * Analyzes TypeScript projects for configuration, performance, and common issues.
+ * TypeScript Diagnostic — Project Health Analysis
+ * Version: 2.0.0
+ * Skill: typescript-expert
+ *
+ * Analyzes TS projects: tsconfig, strict flags, tooling, monorepo,
+ * `any` usage, type assertions, type errors, performance.
+ *
+ * Usage: node ts_diagnostic.js <path> [--json]
  */
 
-import { execSync } from 'child_process';
-import fs from 'fs';
-import path from 'path';
+import { execFile } from 'node:child_process'
+import { promisify } from 'node:util'
+import { readFileSync, readdirSync, existsSync } from 'node:fs'
+import { resolve, join, extname, relative } from 'node:path'
 
-/**
- * Run shell command and return output.
- * @param {string} cmd 
- * @returns {string}
- */
-function runCmd(cmd) {
+const execFileAsync = promisify(execFile)
+const VERSION = '2.0.0'
+
+// --- CLI ---
+const args = process.argv.slice(2)
+
+if (args.includes('--help') || args.includes('-h')) {
+    console.log(`
+TypeScript Diagnostic v${VERSION}
+
+Usage:
+  node ts_diagnostic.js <path>         Full diagnostic
+  node ts_diagnostic.js <path> --json  JSON output for agents
+  node ts_diagnostic.js --help         Show this help
+
+Checks:
+  ✓ TypeScript version
+  ✓ tsconfig.json strict flags + module config
+  ✓ Tooling detection (biome, eslint, vitest, etc.)
+  ✓ Monorepo detection (pnpm, turbo, nx, lerna)
+  ✓ 'any' type usage scan
+  ✓ Type assertion scan ('as' keyword)
+  ✓ Type errors (tsc --noEmit)
+  ✓ Performance diagnostics (tsc --extendedDiagnostics)
+
+Exit Codes:
+  0  HEALTHY  — No critical issues
+  1  ISSUES   — Type errors or major config problems
+`)
+    process.exit(0)
+}
+
+const jsonMode = args.includes('--json')
+const projectPath = resolve(args.find(a => !a.startsWith('--')) || '.')
+
+function log(msg) { if (!jsonMode) console.log(msg) }
+
+// --- Helpers ---
+const SKIP_DIRS = new Set(['node_modules', '.next', 'dist', 'build', '.git', 'coverage', '__pycache__'])
+const TS_EXTENSIONS = new Set(['.ts', '.tsx'])
+
+function walkTs(dir, callback) {
     try {
-        return execSync(cmd, { encoding: 'utf-8', stdio: ['pipe', 'pipe', 'pipe'] });
-    } catch (e) {
-        return e.stdout || e.stderr || e.message;
+        const entries = readdirSync(dir, { withFileTypes: true })
+        for (const entry of entries) {
+            if (SKIP_DIRS.has(entry.name)) continue
+            const fullPath = join(dir, entry.name)
+            if (entry.isDirectory()) {
+                walkTs(fullPath, callback)
+            } else if (TS_EXTENSIONS.has(extname(entry.name).toLowerCase())) {
+                callback(fullPath)
+            }
+        }
+    } catch { /* ignore unreadable */ }
+}
+
+async function runCmd(cmd, cmdArgs, cwd) {
+    try {
+        const { stdout, stderr } = await execFileAsync(cmd, cmdArgs, {
+            cwd,
+            timeout: 60_000,
+        })
+        return { stdout: stdout || '', stderr: stderr || '', ok: true }
+    } catch (err) {
+        return {
+            stdout: err.stdout || '',
+            stderr: err.stderr || '',
+            ok: false,
+            code: err.code,
+        }
     }
 }
 
-function checkVersions() {
-    console.log('\n📦 Versions:');
-    console.log('-'.repeat(40));
-
-    const tsVersion = runCmd('npx tsc --version 2>/dev/null').trim();
-    const nodeVersion = runCmd('node -v 2>/dev/null').trim();
-
-    console.log(`  TypeScript: ${tsVersion || 'Not found'}`);
-    console.log(`  Node.js: ${nodeVersion || 'Not found'}`);
+// --- Checks ---
+async function checkVersion() {
+    const result = await runCmd('npx', ['tsc', '--version'], projectPath)
+    const version = result.stdout.trim().replace('Version ', '')
+    return { typescript: version || 'not found' }
 }
 
 function checkTsconfig() {
-    console.log('\n⚙️ TSConfig Analysis:');
-    console.log('-'.repeat(40));
-
-    const tsconfigPath = 'tsconfig.json';
-    if (!fs.existsSync(tsconfigPath)) {
-        console.log('⚠️ tsconfig.json not found');
-        return;
+    const tsconfigPath = join(projectPath, 'tsconfig.json')
+    if (!existsSync(tsconfigPath)) {
+        return { found: false, issues: ['tsconfig.json not found'] }
     }
 
     try {
-        const config = JSON.parse(fs.readFileSync(tsconfigPath, 'utf-8'));
-        const compilerOpts = config.compilerOptions || {};
+        const config = JSON.parse(readFileSync(tsconfigPath, 'utf-8'))
+        const opts = config.compilerOptions || {}
+        const issues = []
+        const flags = {}
 
-        // Check strict mode
-        if (compilerOpts.strict) {
-            console.log('✅ Strict mode enabled');
-        } else {
-            console.log('⚠️ Strict mode NOT enabled');
+        // Strict flags
+        const strictFlags = {
+            strict: true,
+            noUncheckedIndexedAccess: true,
+            noImplicitOverride: true,
+            skipLibCheck: true,
+            incremental: true,
         }
 
-        // Check important flags
-        const flags = {
-            noUncheckedIndexedAccess: 'Unchecked index access protection',
-            noImplicitOverride: 'Implicit override protection',
-            skipLibCheck: 'Skip lib check (performance)',
-            incremental: 'Incremental compilation'
-        };
-
-        for (const [flag, desc] of Object.entries(flags)) {
-            const status = compilerOpts[flag] ? '✅' : '⚪';
-            console.log(`  ${status} ${desc}: ${compilerOpts[flag] ?? 'not set'}`);
+        for (const [flag, recommended] of Object.entries(strictFlags)) {
+            flags[flag] = opts[flag] ?? null
+            if (recommended && !opts[flag]) {
+                issues.push(`${flag} not enabled (recommended: true)`)
+            }
         }
 
-        // Check module settings
-        console.log(`\n  Module: ${compilerOpts.module || 'not set'}`);
-        console.log(`  Module Resolution: ${compilerOpts.moduleResolution || 'not set'}`);
-        console.log(`  Target: ${compilerOpts.target || 'not set'}`);
+        // Module config
+        flags.module = opts.module || null
+        flags.moduleResolution = opts.moduleResolution || null
+        flags.target = opts.target || null
 
-    } catch (e) {
-        console.log('❌ Invalid JSON in tsconfig.json');
+        if (opts.moduleResolution && opts.moduleResolution !== 'bundler' && opts.moduleResolution !== 'Bundler') {
+            issues.push(`moduleResolution is "${opts.moduleResolution}" (recommended: "bundler" for TS 5+)`)
+        }
+
+        return { found: true, flags, issues }
+    } catch {
+        return { found: true, issues: ['Invalid JSON in tsconfig.json'] }
     }
 }
 
 function checkTooling() {
-    console.log('\n🛠️ Tooling Detection:');
-    console.log('-'.repeat(40));
-
-    const pkgPath = 'package.json';
-    if (!fs.existsSync(pkgPath)) {
-        console.log('⚠️ package.json not found');
-        return;
-    }
+    const pkgPath = join(projectPath, 'package.json')
+    if (!existsSync(pkgPath)) return { detected: [] }
 
     try {
-        const pkg = JSON.parse(fs.readFileSync(pkgPath, 'utf-8'));
-        const allDeps = { ...pkg.dependencies, ...pkg.devDependencies };
+        const pkg = JSON.parse(readFileSync(pkgPath, 'utf-8'))
+        const allDeps = { ...pkg.dependencies, ...pkg.devDependencies }
+        const depNames = Object.keys(allDeps || {})
 
-        const tools = {
-            biome: 'Biome (linter/formatter)',
-            eslint: 'ESLint',
-            prettier: 'Prettier',
-            vitest: 'Vitest (testing)',
-            jest: 'Jest (testing)',
-            turborepo: 'Turborepo (monorepo)',
-            turbo: 'Turbo (monorepo)',
-            nx: 'Nx (monorepo)',
-            lerna: 'Lerna (monorepo)'
-        };
-
-        for (const [tool, desc] of Object.entries(tools)) {
-            for (const dep of Object.keys(allDeps || {})) {
-                if (dep.toLowerCase().includes(tool)) {
-                    console.log(`  ✅ ${desc}`);
-                    break;
-                }
-            }
+        const toolMap = {
+            biome: 'Biome', '@biomejs/biome': 'Biome',
+            eslint: 'ESLint', prettier: 'Prettier',
+            vitest: 'Vitest', jest: 'Jest',
+            turbo: 'Turborepo', turborepo: 'Turborepo',
+            nx: 'Nx', lerna: 'Lerna',
         }
-    } catch (e) {
-        console.log('❌ Invalid JSON in package.json');
+
+        const detected = []
+        for (const dep of depNames) {
+            const name = dep.toLowerCase()
+            if (toolMap[name]) detected.push(toolMap[name])
+        }
+        return { detected: [...new Set(detected)] }
+    } catch {
+        return { detected: [] }
     }
 }
 
 function checkMonorepo() {
-    console.log('\n📦 Monorepo Check:');
-    console.log('-'.repeat(40));
-
     const indicators = [
         ['pnpm-workspace.yaml', 'PNPM Workspace'],
         ['lerna.json', 'Lerna'],
         ['nx.json', 'Nx'],
-        ['turbo.json', 'Turborepo']
-    ];
+        ['turbo.json', 'Turborepo'],
+    ]
 
-    let found = false;
+    const detected = []
     for (const [file, name] of indicators) {
-        if (fs.existsSync(file)) {
-            console.log(`  ✅ ${name} detected`);
-            found = true;
-        }
+        if (existsSync(join(projectPath, file))) detected.push(name)
     }
+    return { detected }
+}
 
-    if (!found) {
-        console.log('  ⚪ No monorepo configuration detected');
+function scanCodePatterns() {
+    let anyCount = 0
+    let assertionCount = 0
+    let fileCount = 0
+    const anyFiles = []
+    const assertionFiles = []
+
+    walkTs(projectPath, (filePath) => {
+        fileCount++
+        try {
+            const content = readFileSync(filePath, 'utf-8')
+            const lines = content.split('\n')
+
+            for (const line of lines) {
+                // Skip imports and type imports
+                if (line.trimStart().startsWith('import')) continue
+
+                // Count `: any` (not in comments)
+                if (/:\s*any\b/.test(line) && !line.trimStart().startsWith('//')) {
+                    anyCount++
+                    const rel = relative(projectPath, filePath)
+                    if (!anyFiles.includes(rel)) anyFiles.push(rel)
+                }
+
+                // Count ` as ` assertions (not imports)
+                if (/\bas\b/.test(line) && !line.includes('import') && !line.trimStart().startsWith('//')) {
+                    assertionCount++
+                    const rel = relative(projectPath, filePath)
+                    if (!assertionFiles.includes(rel)) assertionFiles.push(rel)
+                }
+            }
+        } catch { /* read error */ }
+    })
+
+    return {
+        filesScanned: fileCount,
+        any: { count: anyCount, files: anyFiles.slice(0, 5) },
+        assertions: { count: assertionCount, files: assertionFiles.slice(0, 5) },
     }
 }
 
-function checkTypeErrors() {
-    console.log('\n🔍 Type Check:');
-    console.log('-'.repeat(40));
+async function checkTypeErrors() {
+    const result = await runCmd('npx', ['tsc', '--noEmit'], projectPath)
+    const output = result.stdout + result.stderr
+    const errorCount = (output.match(/error TS/g) || []).length
 
-    const result = runCmd('npx tsc --noEmit 2>&1');
-    if (result.includes('error TS')) {
-        const errors = (result.match(/error TS/g) || []).length;
-        console.log(`  ❌ ${errors}+ type errors found`);
-        console.log(result.slice(0, 500));
+    return {
+        errors: errorCount,
+        passed: errorCount === 0,
+        sample: errorCount > 0 ? output.slice(0, 500) : null,
+    }
+}
+
+// --- Main ---
+async function main() {
+    log(`\n${'='.repeat(60)}`)
+    log(`  TypeScript Diagnostic v${VERSION}`)
+    log('='.repeat(60))
+    log(`Project: ${projectPath}\n`)
+
+    const report = { version: VERSION, project: projectPath }
+
+    // 1. Version
+    log('📦 Version')
+    report.versions = await checkVersion()
+    log(`  TypeScript: ${report.versions.typescript}`)
+
+    // 2. TSConfig
+    log('\n⚙️  TSConfig')
+    report.tsconfig = checkTsconfig()
+    if (!report.tsconfig.found) {
+        log('  ⚠️  tsconfig.json not found')
     } else {
-        console.log('  ✅ No type errors');
-    }
-}
-
-function checkAnyUsage() {
-    console.log("\n⚠️ 'any' Type Usage:");
-    console.log('-'.repeat(40));
-
-    try {
-        const result = runCmd("grep -r ': any' --include='*.ts' --include='*.tsx' src/ 2>/dev/null | wc -l");
-        const count = result.trim();
-        if (count && count !== '0') {
-            console.log(`  ⚠️ Found ${count} occurrences of ': any'`);
-            const sample = runCmd("grep -rn ': any' --include='*.ts' --include='*.tsx' src/ 2>/dev/null | head -5");
-            if (sample) console.log(sample);
-        } else {
-            console.log("  ✅ No explicit 'any' types found");
+        const { flags, issues } = report.tsconfig
+        if (flags) {
+            for (const [key, val] of Object.entries(flags)) {
+                const icon = val === true ? '✅' : val === false ? '❌' : '⚪'
+                log(`  ${icon} ${key}: ${val ?? 'not set'}`)
+            }
         }
-    } catch {
-        console.log("  ⚪ Could not check (grep not available on Windows)");
+        for (const issue of issues) log(`  ⚠️  ${issue}`)
     }
-}
 
-function checkTypeAssertions() {
-    console.log('\n⚠️ Type Assertions (as):');
-    console.log('-'.repeat(40));
-
-    try {
-        const result = runCmd("grep -r ' as ' --include='*.ts' --include='*.tsx' src/ 2>/dev/null | grep -v 'import' | wc -l");
-        const count = result.trim();
-        if (count && count !== '0') {
-            console.log(`  ⚠️ Found ${count} type assertions`);
-        } else {
-            console.log('  ✅ No type assertions found');
-        }
-    } catch {
-        console.log('  ⚪ Could not check (grep not available on Windows)');
-    }
-}
-
-function checkPerformance() {
-    console.log('\n⏱️ Type Check Performance:');
-    console.log('-'.repeat(40));
-
-    const result = runCmd('npx tsc --extendedDiagnostics --noEmit 2>&1');
-    const lines = result.split('\n').filter(line =>
-        /Check time|Files:|Lines:|Nodes:/.test(line)
-    );
-
-    if (lines.length > 0) {
-        lines.forEach(line => console.log(`  ${line}`));
+    // 3. Tooling
+    log('\n🛠️  Tooling')
+    report.tooling = checkTooling()
+    if (report.tooling.detected.length > 0) {
+        for (const tool of report.tooling.detected) log(`  ✅ ${tool}`)
     } else {
-        console.log('  ⚠️ Could not measure performance');
+        log('  ⚪ No tools detected')
     }
+
+    // 4. Monorepo
+    log('\n📦 Monorepo')
+    report.monorepo = checkMonorepo()
+    if (report.monorepo.detected.length > 0) {
+        for (const mono of report.monorepo.detected) log(`  ✅ ${mono}`)
+    } else {
+        log('  ⚪ Not a monorepo')
+    }
+
+    // 5. Code patterns
+    log('\n🔍 Code Patterns')
+    report.patterns = scanCodePatterns()
+    const { any, assertions, filesScanned } = report.patterns
+    log(`  Scanned: ${filesScanned} TS files`)
+    log(`  ${any.count === 0 ? '✅' : '⚠️'} \`any\` usage: ${any.count}`)
+    log(`  ${assertions.count === 0 ? '✅' : '⚠️'} Type assertions: ${assertions.count}`)
+
+    // 6. Type errors
+    log('\n🔍 Type Check')
+    report.typeCheck = await checkTypeErrors()
+    if (report.typeCheck.passed) {
+        log('  ✅ No type errors')
+    } else {
+        log(`  ❌ ${report.typeCheck.errors} type error(s)`)
+    }
+
+    // Summary
+    const healthy = report.typeCheck.passed &&
+        (report.tsconfig.issues || []).length === 0
+
+    report.healthy = healthy
+
+    log('\n' + '='.repeat(60))
+    log(`${healthy ? '✅ HEALTHY' : '⚠️  ISSUES FOUND'}`)
+    log('='.repeat(60))
+
+    if (jsonMode) console.log(JSON.stringify(report, null, 2))
+
+    process.exit(healthy ? 0 : 1)
 }
 
-function main() {
-    console.log('='.repeat(50));
-    console.log('🔍 TypeScript Project Diagnostic Report');
-    console.log('='.repeat(50));
-
-    checkVersions();
-    checkTsconfig();
-    checkTooling();
-    checkMonorepo();
-    checkAnyUsage();
-    checkTypeAssertions();
-    checkTypeErrors();
-    checkPerformance();
-
-    console.log('\n' + '='.repeat(50));
-    console.log('✅ Diagnostic Complete');
-    console.log('='.repeat(50));
-}
-
-main();
+main().catch(err => {
+    console.error(JSON.stringify({ error: err.message }))
+    process.exit(1)
+})

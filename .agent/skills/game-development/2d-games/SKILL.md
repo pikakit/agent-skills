@@ -1,11 +1,12 @@
 ---
 name: 2d-games
 description: 2D game development principles. Sprites, tilemaps, physics, camera.
-allowed-tools: Read, Write, Edit, Glob, Grep
 metadata:
   category: "game-development"
   version: "1.0.0"
   triggers: "2D game, sprites, tilemaps, platformer, side-scroller"
+  success_metrics: "atlased sprites, simplified collision, smooth camera, fixed timestep"
+  coordinates_with: "game-development, game-art, web-games, mobile-games"
 ---
 
 # 2D Game Development
@@ -121,3 +122,18 @@ metadata:
 ---
 
 > **Remember:** 2D is about clarity. Every pixel should communicate.
+
+---
+
+⚡ PikaKit v3.9.76
+
+---
+
+## 🔗 Related
+
+| Item | Type | When to Read |
+|------|------|--------------|
+| [../SKILL.md](../SKILL.md) | Parent | Game loop, perf budget, pattern selection |
+| `game-development/3d-games` | Sibling | If project has 3D elements |
+| `game-development/game-art` | Sibling | Sprite art style and animation |
+| `game-development/web-games` | Sibling | If targeting browser |

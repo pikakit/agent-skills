@@ -36,7 +36,7 @@ roi_tool = Tool.from_function(calculate_roi)
 ```python
 agent = LlmAgent(
     name="business_analyst",
-    model="gemini-2.5-flash",
+    model="gemini-3-flash",
     instruction="Analyze business metrics.",
     tools=[roi_tool, revenue_tool, cost_tool]
 )
@@ -122,4 +122,4 @@ response = agent.run("Process customer refund")
 
 ---
 
-⚡ PikaKit v3.9.74
+⚡ PikaKit v3.9.76

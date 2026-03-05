@@ -1,5 +1,5 @@
 {
-    "updatedAt": "2026-03-01T16:45:00.000Z",
+    "updatedAt": "2026-03-05T01:55:00.000Z",
     "version": "2.0.0",
     "skills": [
         {
@@ -12,9 +12,7 @@
                 "task completion"
             ],
             "coordinates_with": [
-                "smart-router",
-                "lifecycle-orchestrator",
-                "auto-learner"
+                "lifecycle-orchestrator"
             ],
             "success_metrics": "notification displayed, audit logged"
         },
@@ -82,8 +80,7 @@
             ],
             "coordinates_with": [
                 "git-workflow",
-                "security-scanner",
-                "feature-flags"
+                "security-scanner"
             ],
             "success_metrics": "pipeline passing, deployment successful"
         },
@@ -99,7 +96,6 @@
             ],
             "coordinates_with": [
                 "code-review",
-                "review-automation",
                 "security-scanner"
             ],
             "success_metrics": "doctrine checks pass, no governance violations",
@@ -180,8 +176,7 @@
             ],
             "coordinates_with": [
                 "test-architect",
-                "code-review",
-                "recovery-agent"
+                "code-review"
             ],
             "success_metrics": "bug fixed, root cause identified"
         },
@@ -369,8 +364,7 @@
                 "Core Web Vitals"
             ],
             "coordinates_with": [
-                "e2e-automation",
-                "web-core"
+                "e2e-automation"
             ],
             "success_metrics": "Core Web Vitals pass, performance improved",
             "scripts": [
@@ -445,7 +439,7 @@
             ],
             "success_metrics": "no critical vulnerabilities, scan complete",
             "scripts": [
-                "security_scan.py"
+                "security_scan.js"
             ]
         },
         {
@@ -459,13 +453,12 @@
                 "OpenGraph"
             ],
             "coordinates_with": [
-                "web-core",
                 "perf-optimizer",
                 "geo-spatial"
             ],
             "success_metrics": "SEO score improved, meta tags complete",
             "scripts": [
-                "seo_checker.py"
+                "seo_checker.js"
             ]
         },
         {
@@ -525,8 +518,7 @@
                 "utility classes"
             ],
             "coordinates_with": [
-                "design-system",
-                "web-core"
+                "design-system"
             ],
             "success_metrics": "styles applied, design consistent"
         },
@@ -548,7 +540,7 @@
             ],
             "success_metrics": "tests pass, coverage adequate",
             "scripts": [
-                "test_runner.py"
+                "test_runner.js"
             ]
         },
         {
@@ -575,8 +567,7 @@
                 "check problems"
             ],
             "coordinates_with": [
-                "auto-learned",
-                "auto-learner"
+                "auto-learned"
             ],
             "success_metrics": "IDE errors = 0, auto-fix success rate > 80%",
             "scripts": [
@@ -592,8 +583,6 @@
                 "full lifecycle"
             ],
             "coordinates_with": [
-                "smart-router",
-                "multi-agent",
                 "problem-checker"
             ],
             "success_metrics": "all phases complete, no failures"
@@ -647,7 +636,10 @@
                 "react-architect",
                 "code-review"
             ],
-            "success_metrics": "tsc passes, no type errors"
+            "success_metrics": "tsc passes, no type errors",
+            "scripts": [
+                "ts_diagnostic.js"
+            ]
         },
         {
             "name": "gitops",
@@ -779,8 +771,7 @@
             ],
             "coordinates_with": [
                 "problem-checker",
-                "skill-generator",
-                "auto-learner"
+                "skill-generator"
             ],
             "success_metrics": "patterns matched, auto-fixes applied",
             "hierarchical": true,
@@ -991,8 +982,7 @@
                 "multi-server"
             ],
             "coordinates_with": [
-                "mcp-builder",
-                "mcp-server"
+                "mcp-builder"
             ],
             "success_metrics": "tools discovered, execution successful"
         },
@@ -1040,7 +1030,6 @@
             ],
             "coordinates_with": [
                 "lifecycle-orchestrator",
-                "multi-agent",
                 "system-design"
             ],
             "success_metrics": "token usage <70%, quality maintained"

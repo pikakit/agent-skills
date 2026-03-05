@@ -1,3 +1,8 @@
+---
+name: jwt-deep
+description: JWT signing, rotation, claims, refresh token patterns, JWKS endpoint
+---
+
 # JWT Deep Dive
 
 > Token design, signing, rotation, and refresh patterns.
@@ -173,4 +178,15 @@ async function refreshTokens(oldRefreshToken: string) {
 
 ---
 
-⚡ PikaKit v3.9.74
+⚡ PikaKit v3.9.76
+
+---
+
+## 🔗 Related
+
+| File | When to Read |
+|------|-------------|
+| [oauth2.md](oauth2.md) | OAuth2 flows that issue JWTs |
+| [session.md](session.md) | Stateful alternative to JWT |
+| [rbac-abac.md](rbac-abac.md) | Permission claims in JWT |
+| [SKILL.md](../SKILL.md) | Auth strategy decision tree |

@@ -1,6 +1,23 @@
+---
+name: pattern-selection
+description: Architecture pattern selection — decision trees for data access, domain logic, distribution, communication, with validation questions
+---
+
 # Pattern Selection Guidelines
 
-> Decision trees for choosing architectural patterns.
+> Decision trees for choosing architectural patterns. Always ask: Is there a simpler solution?
+
+---
+
+## The 3 Questions (Before ANY Pattern)
+
+1. **Problem Solved**: What SPECIFIC problem does this pattern solve?
+2. **Simpler Alternative**: Is there a simpler solution?
+3. **Deferred Complexity**: Can we add this LATER when needed?
+
+> If you can't answer #1 clearly → don't use the pattern.
+
+---
 
 ## Main Decision Tree
 
@@ -51,18 +68,59 @@ START: What's your MAIN concern?
       Simpler = Better, Faster
 ```
 
-## The 3 Questions (Before ANY Pattern)
+---
 
-1. **Problem Solved**: What SPECIFIC problem does this pattern solve?
-2. **Simpler Alternative**: Is there a simpler solution?
-3. **Deferred Complexity**: Can we add this LATER when needed?
+## Communication Pattern Selection
+
+```
+How do services communicate?
+
+┌─ Synchronous (request-response)?
+│  ├─ Public API → REST (standard, cacheable)
+│  ├─ Internal services → gRPC (fast, typed)
+│  ├─ Flexible queries → GraphQL (client-driven)
+│  └─ Real-time bidirectional → WebSocket
+│
+└─ Asynchronous (fire-and-forget)?
+   ├─ Simple job queue → BullMQ (Redis-based)
+   ├─ Point-to-point → RabbitMQ (routing, reliability)
+   ├─ High throughput stream → Kafka (log, replay)
+   └─ Cloud-native → AWS SQS/SNS, GCP Pub/Sub
+```
+
+### Message Broker Selection
+
+| Factor | BullMQ | RabbitMQ | Kafka |
+|--------|--------|----------|-------|
+| **Best for** | Background jobs | Task routing | Event streaming |
+| **Throughput** | Medium | Medium | Very High |
+| **Ordering** | Per queue | Per queue | Per partition |
+| **Replay** | ❌ | ❌ | ✅ |
+| **Complexity** | Low | Medium | High |
+| **Persistence** | Redis | Disk | Disk (replicated) |
+| **Use when** | <10K msgs/sec | Routing logic | >10K msgs/sec, audit |
+
+---
 
 ## Red Flags (Anti-patterns)
 
-| Pattern | Anti-pattern | Simpler Alternative |
-|---------|-------------|-------------------|
-| Microservices | Premature splitting | Start monolith, extract later |
-| Clean/Hexagonal | Over-abstraction | Concrete first, interfaces later |
-| Event Sourcing | Over-engineering | Append-only audit log |
-| CQRS | Unnecessary complexity | Single model |
-| Repository | YAGNI for simple CRUD | ORM direct access |
+| Pattern | Anti-pattern Signal | Simpler Alternative |
+|---------|-------------------|---------------------|
+| Microservices | "We might need to scale someday" | Start monolith, extract later |
+| Clean/Hexagonal | Dozens of interfaces for simple CRUD | Concrete first, interfaces later |
+| Event Sourcing | "Audit trail would be nice" | Append-only audit log table |
+| CQRS | Read/write look the same | Single model, add CQRS when diverged |
+| Repository | Single database, simple queries | ORM direct access |
+| DDD | No domain experts, simple CRUD | Transaction Script |
+| GraphQL | Single client, simple queries | REST |
+
+---
+
+## 🔗 Related
+
+| File | When to Read |
+|------|-------------|
+| [context-discovery.md](context-discovery.md) | Classify project first |
+| [patterns-reference.md](patterns-reference.md) | Quick pattern lookup |
+| [trade-off-analysis.md](trade-off-analysis.md) | Document your choice |
+| [examples.md](examples.md) | See real implementations |

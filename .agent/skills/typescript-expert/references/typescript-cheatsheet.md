@@ -1,3 +1,8 @@
+---
+name: typescript-cheatsheet
+description: TypeScript quick reference — primitives, generics, utility types, conditionals, mapped types, type guards, branded types, module declarations, tsconfig
+---
+
 # TypeScript Cheatsheet
 
 ## Type Basics
@@ -381,3 +386,14 @@ export function getUser(id: string): User | null {
 const data: any = fetchData()
 data.anything.goes.wrong  // No type safety
 ```
+
+---
+
+## 🔗 Related
+
+| File | When to Read |
+|------|-------------|
+| [tsconfig-strict.json](tsconfig-strict.json) | Copy-paste strict config |
+| [utility-types.js](utility-types.js) | Runtime utility helpers |
+| [ts_diagnostic.js](../scripts/ts_diagnostic.js) | Project health scan |
+| [SKILL.md](../SKILL.md) | Error routing, patterns |

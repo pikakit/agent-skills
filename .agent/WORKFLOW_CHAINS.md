@@ -34,7 +34,7 @@
 ```
 app-scaffold       → Create project structure
 project-planner    → Break down tasks
-web-core           → Web fundamentals
+frontend-design    → Web UI patterns
 design-system      → UI/UX patterns
 tailwind-kit       → Styling utilities
 test-architect     → Testing strategy
@@ -120,8 +120,8 @@ Agent: Loads security-audit chain
 
 ```
 debug-pro          → 4-phase debugging methodology
-debug-toolkit      → Tools and techniques
-reasoning-engine   → Logic analysis
+code-review        → Code quality analysis
+knowledge-graph    → Impact analysis
 test-architect     → Test-based verification
 ```
 
@@ -158,14 +158,13 @@ Agent: Loads debug-complex chain
 
 **Purpose:** Safe production deployment with checks
 
-**Skills Loaded (5):**
+**Skills Loaded (4):**
 
 ```
 cicd-pipeline      → Deployment workflow
 security-scanner   → Pre-deploy security check
 perf-optimizer     → Performance audit
 e2e-automation     → End-to-end tests
-feature-flags      → Gradual rollout
 ```
 
 **Triggered by:** `/launch`
@@ -244,14 +243,12 @@ Agent: Loads api-development chain
 
 **Purpose:** Production monitoring and incident response
 
-**Skills Loaded (5):**
+**Skills Loaded (3):**
 
 ```
-observability      → OpenTelemetry SDK, provider integration
-logging            → Structured logs, PII masking
-metrics            → Prometheus metrics, Golden Signals
-tracing            → Distributed tracing, APM
-incident-response  → Alerts, Slack/PagerDuty, runbooks
+observability      → OpenTelemetry SDK, logs, metrics, tracing, alerts
+server-ops         → Server management
+cicd-pipeline      → Deployment pipelines
 ```
 
 **Triggered by:** `/monitor`, `/alert`
@@ -290,13 +287,12 @@ Agent: Loads monitoring-production chain
 
 **Purpose:** Performance profiling, optimization, and load testing
 
-**Skills Loaded (4):**
+**Skills Loaded (3):**
 
 ```
 perf-optimizer     → Performance profiling, Core Web Vitals
-database-tuner     → Query optimization, N+1 fixes, indexes
-cache-optimizer    → Redis caching, CDN, HTTP headers
-load-tester        → k6 load testing, scalability validation
+data-modeler       → Query optimization, indexes
+caching-strategy   → Redis caching, CDN, HTTP headers
 ```
 
 **Triggered by:** `/optimize`, `/benchmark`
@@ -337,9 +333,9 @@ Agent: Loads performance-audit chain
 **Skills Loaded (3 - Parallel):**
 
 ```
-doc-generator          → README, CONTRIBUTING, code comments
-api-doc-builder        → Swagger/OpenAPI, Postman collections
-architecture-diagrammer → C4 diagrams, Mermaid, ER diagrams
+doc-templates      → README, CONTRIBUTING, code comments
+api-architect      → OpenAPI specs, endpoint docs
+system-design      → C4 diagrams, architecture docs
 ```
 
 **Triggered by:** `/chronicle`, `/diagram`
@@ -469,7 +465,7 @@ build-web-app chain
      ↓
 1. app-scaffold    → Creates src/, components/, tests/
 2. project-planner → Breaks down tasks (auth, charts, etc.)
-3. web-core        → Adds routing, state management
+3. frontend-design → Adds routing, state management
 4. design-system   → Applies UI patterns
 5. tailwind-kit    → Configures styling
 6. test-architect  → Sets up Jest/Vitest
@@ -537,7 +533,7 @@ Skills activated:
 1. security-scanner → Pre-deploy vuln scan
 2. perf-optimizer   → Load time check
 3. e2e-automation   → Critical path tests
-4. feature-flags    → 10% → 50% → 100% rollout
+4. feature-flags    → 10% → 50% → 100% rollout (manual)
 5. cicd-pipeline    → Blue-green deployment
 
 Result:
@@ -678,6 +674,6 @@ Look for agent confirmation:
 
 ---
 
-**Version:** 1.0.0  
-**Last Updated:** 2026-01-29  
+**Version:** 2.0.0  
+**Last Updated:** 2026-03-05  
 **Maintained by:** PikaKit Team

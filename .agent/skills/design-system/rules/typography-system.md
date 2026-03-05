@@ -1,3 +1,8 @@
+---
+name: typography-system
+description: Modular scale, font pairing, line height/length, fluid typography, weight hierarchy, F-pattern reading
+---
+
 # Typography System Reference
 
 > Typography principles and decision-making - learn to think, not memorize.
@@ -343,3 +348,18 @@ Before finalizing typography:
 ---
 
 > **Remember**: Typography is about communication clarity. Choose based on content needs and audience, not personal preference.
+
+---
+
+⚡ PikaKit v3.9.76
+
+---
+
+## 🔗 Related
+
+| File | When to Read |
+|------|-------------|
+| [decision-trees.md](decision-trees.md) | Typography decision tree by content type |
+| [ux-psychology.md](ux-psychology.md) | Readability psychology and cognitive load |
+| [color-system.md](color-system.md) | Text contrast and accessibility |
+| [../SKILL.md](../SKILL.md) | Typography quick rules |

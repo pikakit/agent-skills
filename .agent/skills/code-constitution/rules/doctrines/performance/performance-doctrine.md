@@ -1,16 +1,16 @@
 ---
-name: coinpika-performance-doctrine
+name: performance-doctrine
 version: 1.0.0
 status: LOCKED
 authority: CONSTITUTIONAL
-parent: coinpika-architecture-doctrine
+parent: architecture-doctrine
 ---
 
-# ⚡ CoinPika Performance Doctrine  
+# ⚡ PikaKit Performance Doctrine  
 **(Perceived Speed · Stability · Trust Law)**
 
 This doctrine defines the **non-negotiable performance laws**
-governing how CoinPika loads, renders, updates, and feels to users.
+governing how PikaKit loads, renders, updates, and feels to users.
 
 Performance is **NOT a metric**.  
 Performance is **user trust over time**.
@@ -22,7 +22,7 @@ A slightly stale but stable system preserves trust.
 
 ## 1. Performance Philosophy
 
-CoinPika prioritizes **perceived performance** over raw technical freshness.
+PikaKit prioritizes **perceived performance** over raw technical freshness.
 
 Users judge speed by:
 
@@ -162,7 +162,7 @@ This doctrine overrides:
 - Blog-driven “best practices”
 - Benchmark obsession
 
-CoinPika performance exists to protect:
+PikaKit performance exists to protect:
 
 **Speed Perception · Stability · User Trust**
 
@@ -172,5 +172,5 @@ Not numbers on a dashboard.
 
 **Status:** LOCKED  
 **Version:** 1.0.0  
-**Parent:** CoinPika Architecture Doctrine  
+**Parent:** PikaKit Architecture Doctrine  
 **Override Permission:** NONE  

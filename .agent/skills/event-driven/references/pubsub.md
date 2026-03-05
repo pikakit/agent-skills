@@ -1,3 +1,8 @@
+---
+name: pubsub-realtime
+description: Real-time patterns — WebSocket (Socket.io), SSE, Redis Pub/Sub, Redis Streams consumer groups
+---
+
 # Pub/Sub & Real-Time Patterns
 
 > Redis Pub/Sub, WebSocket, Server-Sent Events for real-time features.
@@ -219,4 +224,15 @@ for (const message of messages) {
 
 ---
 
-⚡ PikaKit v3.9.74
+⚡ PikaKit v3.9.76
+
+---
+
+## 🔗 Related
+
+| File | When to Read |
+|------|-------------|
+| [message-queues.md](message-queues.md) | Persistent queues (Kafka, RabbitMQ) |
+| [patterns.md](patterns.md) | Event Sourcing, CQRS for event-driven |
+| [webhooks.md](webhooks.md) | External event delivery |
+| [../SKILL.md](../SKILL.md) | Sync vs async decision tree |

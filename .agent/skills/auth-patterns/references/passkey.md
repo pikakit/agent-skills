@@ -1,3 +1,8 @@
+---
+name: passkey
+description: WebAuthn/FIDO2 passkeys — registration, authentication, browser + server implementation
+---
+
 # Passkeys (WebAuthn / FIDO2)
 
 > Passwordless authentication using public-key cryptography.
@@ -220,4 +225,15 @@ await fetch('/api/auth/passkey/login/verify', {
 
 ---
 
-⚡ PikaKit v3.9.74
+⚡ PikaKit v3.9.76
+
+---
+
+## 🔗 Related
+
+| File | When to Read |
+|------|-------------|
+| [mfa.md](mfa.md) | MFA with passkeys as second factor |
+| [oauth2.md](oauth2.md) | OAuth alternative to passkeys |
+| [session.md](session.md) | Session after passkey auth |
+| [SKILL.md](../SKILL.md) | Auth strategy decision tree |

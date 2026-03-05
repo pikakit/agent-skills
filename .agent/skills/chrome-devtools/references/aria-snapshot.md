@@ -1,3 +1,8 @@
+---
+name: aria-snapshot
+description: YAML accessibility tree format with ref handles for element interaction
+---
+
 # ARIA Snapshot Format
 
 > YAML accessibility tree with refs for interaction.
@@ -73,4 +78,14 @@ node select-ref.js --ref e1 --action screenshot --output ./element.png
 
 ---
 
-⚡ PikaKit v3.9.74
+⚡ PikaKit v3.9.76
+
+---
+
+## 🔗 Related
+
+| File | When to Read |
+|------|-------------|
+| [scripts-guide.md](scripts-guide.md) | All script options and examples |
+| [engineering-spec.md](engineering-spec.md) | Full contracts and architecture |
+| [SKILL.md](../SKILL.md) | Quick reference and error taxonomy |

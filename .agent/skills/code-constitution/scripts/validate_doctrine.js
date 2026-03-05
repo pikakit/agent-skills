@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 /**
- * CoinPika Doctrine Validator
+ * Governance Doctrine Validator
  * 
- * Validates code files against CoinPika Architecture Doctrine
+ * Validates code files against PikaKit Architecture Doctrine
  * 
  * Usage:
  *   node scripts/validate_doctrine.js <file-path>
@@ -49,7 +49,7 @@ class DoctrineValidator {
                 law: 'Law 1: Truth Ownership',
                 severity: 'ERROR',
                 message: 'Frontend persisting financial data to localStorage',
-                doctrine: 'constitution/coinpika-master-constitution.md',
+                doctrine: 'constitution/master-constitution.md',
                 line: this.findLineNumber(/localStorage\.setItem.*price|localStorage\.setItem.*balance/i),
             });
         }
@@ -62,7 +62,7 @@ class DoctrineValidator {
                 law: 'Law 1: Truth Ownership',
                 severity: 'ERROR',
                 message: 'Frontend calling external API directly (should go through backend)',
-                doctrine: 'doctrines/architecture/coinpika-architecture-doctrine.md',
+                doctrine: 'doctrines/architecture/architecture-doctrine.md',
                 line: this.findLineNumber(/fetch\(['"]https:\/\/api\./i),
             });
         }
@@ -74,7 +74,7 @@ class DoctrineValidator {
                 law: 'Law 1: Truth Ownership',
                 severity: 'WARNING',
                 message: 'Frontend calculating financial aggregates (consider moving to backend)',
-                doctrine: 'doctrines/backend/coinpika-backend-data-engine-doctrine.md',
+                doctrine: 'doctrines/backend/backend-data-engine-doctrine.md',
                 line: this.findLineNumber(/\.reduce/i),
             });
         }
@@ -98,7 +98,7 @@ class DoctrineValidator {
                         law: 'Law 2: Historical Integrity',
                         severity: 'ERROR',
                         message: `Array mutation detected on historical data: ${method}`,
-                        doctrine: 'constitution/coinpika-master-constitution.md',
+                        doctrine: 'constitution/master-constitution.md',
                         line: this.findLineNumber(regex),
                     });
                 }
@@ -111,7 +111,7 @@ class DoctrineValidator {
                 law: 'Law 2: Historical Integrity',
                 severity: 'ERROR',
                 message: 'Direct mutation of historical data array index',
-                doctrine: 'constitution/coinpika-master-constitution.md',
+                doctrine: 'constitution/master-constitution.md',
                 line: this.findLineNumber(/\.(data|history|candles)\[.*\]\s*=/),
             });
         }
@@ -131,7 +131,7 @@ class DoctrineValidator {
                 law: 'Law 3: Realtime Ephemerality',
                 severity: 'ERROR',
                 message: 'Potential realtime data injection into chart detected',
-                doctrine: 'constitution/coinpika-master-constitution.md',
+                doctrine: 'constitution/master-constitution.md',
                 line: this.findLineNumber(/\.update\(|\.setData\(/i),
             });
         }
@@ -143,7 +143,7 @@ class DoctrineValidator {
                 law: 'Law 3: Realtime Ephemerality',
                 severity: 'WARNING',
                 message: 'Realtime data being persisted (ensure proper aggregation)',
-                doctrine: 'doctrines/data/coinpika-chart-data-doctrine.md',
+                doctrine: 'doctrines/data/data-integrity-doctrine.md',
                 line: this.findLineNumber(/\.create\(|\.insert\(/i),
             });
         }
@@ -162,7 +162,7 @@ class DoctrineValidator {
                 law: 'System Boundary Law',
                 severity: 'WARNING',
                 message: 'Frontend importing backend modules (check dependency direction)',
-                doctrine: 'doctrines/architecture/coinpika-architecture-doctrine.md',
+                doctrine: 'doctrines/architecture/architecture-doctrine.md',
                 line: this.findLineNumber(/from ['"]@\/(?:lib|api|db)/i),
             });
         }
@@ -181,7 +181,7 @@ class DoctrineValidator {
                 law: 'Performance Doctrine',
                 severity: 'INFO',
                 message: 'API route may benefit from caching strategy',
-                doctrine: 'doctrines/performance/coinpika-performance-doctrine.md',
+                doctrine: 'doctrines/performance/performance-doctrine.md',
             });
         }
 
@@ -222,7 +222,7 @@ class DoctrineValidator {
         const hasIssues = results.errors.length > 0 || results.warnings.length > 0;
 
         console.log('\n' + colors.cyan + '═'.repeat(70) + colors.reset);
-        console.log(colors.cyan + `CoinPika Doctrine Validator` + colors.reset);
+        console.log(colors.cyan + `Governance Doctrine Validator` + colors.reset);
         console.log(colors.dim + `File: ${this.filepath}` + colors.reset);
         console.log(colors.cyan + '═'.repeat(70) + colors.reset + '\n');
 

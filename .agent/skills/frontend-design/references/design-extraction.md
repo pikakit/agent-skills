@@ -1,3 +1,8 @@
+---
+name: design-extraction
+description: Screenshot analysis process — 4-step extract-document-implement-verify workflow
+---
+
 # Design Extraction from Screenshots
 
 > Never jump straight to code. Analyze first.
@@ -130,4 +135,14 @@ Compare implementation to original:
 
 ---
 
-⚡ PikaKit v3.9.74
+⚡ PikaKit v3.9.76
+
+---
+
+## 🔗 Related
+
+| File | When to Read |
+|------|-------------|
+| [color-systems.md](color-systems.md) | Extracted color systematization |
+| [typography.md](typography.md) | Identify extracted font pairings |
+| [../SKILL.md](../SKILL.md) | Workflow 1: From Screenshots |

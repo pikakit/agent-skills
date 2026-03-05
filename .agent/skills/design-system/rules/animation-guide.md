@@ -1,3 +1,8 @@
+---
+name: animation-guide
+description: Animation principles — duration psychology, easing, micro-interactions, loading states, scroll animations
+---
+
 # Animation Guidelines Reference
 
 > Animation principles and timing psychology - learn to decide, not copy.
@@ -329,3 +334,18 @@ Before adding animation:
 ---
 
 > **Remember**: Animation is communication. Every motion should have meaning and serve the user experience.
+
+---
+
+⚡ PikaKit v3.9.76
+
+---
+
+## 🔗 Related
+
+| File | When to Read |
+|------|-------------|
+| [motion-graphics.md](motion-graphics.md) | Advanced Lottie, GSAP, particle effects |
+| [visual-effects.md](visual-effects.md) | CSS effects to animate |
+| [ux-psychology.md](ux-psychology.md) | Feedback psychology for micro-interactions |
+| [../SKILL.md](../SKILL.md) | Animation categories quick reference |

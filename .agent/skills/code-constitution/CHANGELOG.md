@@ -1,6 +1,6 @@
-# 📜 CoinPika Doctrine Pack — CHANGELOG
+# 📜 Governance Doctrine Pack — CHANGELOG
 
-All notable changes to the **CoinPika Doctrine Pack** are documented in this file.
+All notable changes to the **Governance Doctrine Pack** are documented in this file.
 
 This project follows **strict versioning and constitutional governance**.  
 Changes are **rare by design**.
@@ -18,49 +18,39 @@ This release completes the **100/100 PikaKit Compatibility Score**.
 ---
 
 ### 🔧 Scripts Enhancement
-- Added **audit_pr.v2.js** — Functional PR audit with pattern matching
+- Added **audit_pr.js** — Functional PR audit with pattern matching
   - Doctrine violation detection
   - JSON output support
   - CI/CD integration ready
 - Added **validate_doctrine.js** — Single file/directory validator
   - Multi-doctrine support
   - Configurable severity levels
-- Added **format-commit.js** — Interactive commit formatter
-  - Auto-suggests doctrine tags
-  - Scope-to-doctrine mapping
+- Added **learn.js** — Governance learning tool
+  - Pattern-based lesson recording
+  - YAML knowledge base management
 
 ---
 
 ### 📂 Progressive Disclosure Expansion
-- Added `coinpika-pr-reviewer/metadata/` directory
-  - `intent-triggers.yaml` — Skill activation patterns
-  - `doctrine-mapping.yaml` — File pattern to doctrine mapping
-- Added `coinpika-commit-formatter/metadata/` directory
-  - `intent-triggers.yaml`
-  - `scope-mapping.yaml`
-- Added `coinpika-commit-formatter/enforcement/` directory
-  - `commit-validation-rules.md`
+- Added `metadata/` directory
+  - `precedence.yaml` — Authority resolution
+  - `scope-map.yaml` — Automatic doctrine routing
 
 ---
 
 ### 📚 Resources Enrichment
-- Expanded `coinpika-pr-reviewer/resources/links.md`
-  - GitHub Actions, GitLab CI, Conventional Comments
-  - Security scanning tools
-- Expanded `coinpika-commit-formatter/resources/references.md`
-  - Conventional Commits, Semantic Versioning
-  - Git tools and changelog generation
-- Added `coinpika-commit-formatter/resources/BEST_PRACTICES.md`
-  - CoinPika-specific commit guidelines
-  - Anti-patterns to avoid
+- Added `resources/AUTHORITY_MODEL.md`
+  - Decision precedence order, agent operating mode
+- Added `resources/ENFORCEMENT_GUIDE.md`
+  - 4-level enforcement workflow, 3 examples
+- Added `resources/LOAD_ORDER.md`
+  - Progressive disclosure, scenario-based loading
 
 ---
 
 ### 📝 Examples Enhancement
-- Added `coinpika-pr-reviewer/examples/approved-pr/`
-- Added `coinpika-pr-reviewer/examples/rejected-pr/`
-- Added `coinpika-commit-formatter/examples/good-commits.md`
-- Added `coinpika-commit-formatter/examples/bad-commits.md`
+- Added `examples/violation-backend-mutation/` — Law 1 violation before/after
+- Added `examples/violation-chart-injection/` — Law 3+4 violation before/after
 
 ---
 
@@ -77,9 +67,9 @@ This release completes the **100/100 PikaKit Compatibility Score**.
 ## [v1.0.0] — 2026-01-23  
 ### 🎉 OFFICIAL INITIAL RELEASE
 
-This release establishes the **foundational constitutional system** governing CoinPika.
+This release establishes the **foundational constitutional system** governing PikaKit.
 
-It defines how CoinPika is:
+It defines how PikaKit is:
 - Designed
 - Implemented
 - Reviewed
@@ -91,7 +81,7 @@ This version is declared **LOCKED**.
 ---
 
 ### 👑 Supreme Constitution
-- Added **CoinPika Master Constitution**
+- Added **PikaKit Master Constitution**
   - Prime Directives
   - System Laws
   - Decision precedence
@@ -186,7 +176,7 @@ This version is declared **LOCKED**.
 
 ### 📦 Distribution
 - Published **single bundled ZIP**
-  - `coinpika-doctrine-pack-pikakit.zip`
+  - `PikaKit-doctrine-pack-pikakit.zip`
 - Supports:
   - Workspace scope
   - Global scope

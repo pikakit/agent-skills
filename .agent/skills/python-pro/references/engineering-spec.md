@@ -1,3 +1,8 @@
+---
+name: python-pro-engineering-spec
+description: Full 21-section engineering spec — FastAPI/Django/Flask selection, async/sync classification, type hints, architecture layering
+---
+
 # Python Pro — Engineering Specification
 
 > Production-grade specification for Python development principles at FAANG scale.
@@ -413,4 +418,4 @@ All resources scoped to invocation. No persistent handles.
 
 ---
 
-⚡ PikaKit v3.9.74
+⚡ PikaKit v3.9.76
