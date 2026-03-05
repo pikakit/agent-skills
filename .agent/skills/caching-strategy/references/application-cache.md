@@ -189,7 +189,7 @@ async function warmCache() {
 
 ---
 
-⚡ PikaKit v3.9.81
+⚡ PikaKit v3.9.82
 
 ---
 

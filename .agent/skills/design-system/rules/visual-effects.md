@@ -389,7 +389,7 @@ Before applying any effect:
 
 ---
 
-⚡ PikaKit v3.9.81
+⚡ PikaKit v3.9.82
 
 ---
 

@@ -256,4 +256,4 @@ it means it is working.
 
 ---
 
-⚡ PikaKit v3.9.81
+⚡ PikaKit v3.9.82
