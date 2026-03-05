@@ -11,11 +11,7 @@ $ARGUMENTS
 
 ## Purpose
 
-Apply immediate, targeted fixes for known errors, lint issues, or test failures. **Focuses on remediation rather than root cause analysis.**
-
-> **Differences:**
-> - `/diagnose`: Finds the root cause of complex bugs (Strategic)
-> - `/fix`: Applies the solution to specific errors (Tactical)
+Apply immediate, targeted fixes for known errors, lint issues, or test failures — focusing on remediation rather than root cause analysis. **Differs from `/diagnose` (investigates unknown root causes with hypothesis testing) by assuming the problem is already identified and applying the solution directly.** Uses the domain-appropriate specialist agent (auto-routed) with `debug-pro` for fix methodology and `code-craft` for coding standards.
 
 ---
 
@@ -23,81 +19,127 @@ Apply immediate, targeted fixes for known errors, lint issues, or test failures.
 
 | Mode | When | Behavior |
 |------|------|----------|
-| **--auto** (default) | Simple/moderate | Auto-approve if score ≥9.5 |
-| **--review** | Critical/production | Pause for approval |
-| **--quick** | Type/lint errors | Fast debug → fix cycle |
-
----
+| **--auto** (default) | Simple/moderate fixes | Auto-approve if confidence ≥ 9.5 |
+| **--review** | Critical/production code | Pause for user approval |
+| **--quick** | Type/lint errors | Fast fix cycle, minimal analysis |
 
 ## Complexity Routing
 
 | Level | Indicators | Action |
-|-------|------------|--------|
-| **Simple** | Single file, clear error | Quick workflow |
-| **Moderate** | Multi-file, unclear cause | Standard workflow |
-| **Complex** | System-wide impact | Invoke `debug-pro` first |
-| **Parallel** | 2+ independent issues | Fix in parallel |
+|-------|-----------|--------|
+| **Simple** | Single file, clear error | Quick fix → verify |
+| **Moderate** | Multi-file, unclear scope | Standard workflow with `recovery` |
+| **Complex** | System-wide impact | Escalate to `/diagnose` first |
+
+---
 
 ## 🤖 Meta-Agents Integration
 
 | Phase | Agent | Action |
 | ----- | ----- | ------ |
-| **Pre-Fix** | `recovery` | Save checkpoint |
-| **Security** | `security-auditor`| Check fix for new vulnerabilities |
-| **Post-Fix** | `learner` | Log error pattern |
+| **Pre-Fix** | `recovery` | Save checkpoint of affected files |
+| **Post-Fix** | `learner` | Log error pattern for future reference |
 
 ```
 Flow:
-Error Log → Analyze → Fix (Code/Config/Data) → Verify (Test/Security)
+recovery.save() → analyze error → apply fix → verify
+       ↓ fail
+recovery.restore() → learner.log(failure)
+       ↓ success
+learner.log(pattern)
 ```
 
 ---
 
 ## 🔴 MANDATORY: Repair Protocol
 
-### Phase 1: Diagnostics (Triage)
+### Phase 1: Triage
 
-1. Read error message / failure log
-2. Locate the specific line/file
-3. Understand the immediate context
+| Field | Value |
+|-------|-------|
+| **INPUT** | $ARGUMENTS (error message, failing test, or issue description) |
+| **OUTPUT** | Located error: file, line, immediate context, fix type |
+| **AGENTS** | `debugger` |
+| **SKILLS** | `debug-pro` |
 
-// turbo
-```bash
-# Check current problems
-node .agent/scripts-js/problem-checker.js
-```
-
-### Phase 2: Implementation (The Fix)
-
-Invoke `code-craft` or `debug-pro` to apply the fix.
-
-**Types of Fixes:**
+1. Read error message or failure log
+2. Locate the specific file and line
+3. Classify fix type:
 
 | Type | Action |
-| :--- | :--- |
-| **Code Logic** | Correct algorithms, fix off-by-one, handle nulls |
-| **Configuration** | Update `.env`, `tsconfig`, or `package.json` |
+|------|--------|
+| **Code Logic** | Correct algorithms, fix null handling, missing await |
+| **Configuration** | Update env, tsconfig, or package.json |
 | **Database** | Create migrations, fix schema, update queries |
 | **Security** | Sanitize inputs, update dependencies, fix permissions |
-| **Performance** | Optimize queries, add caching, reduce bundle size |
+| **Performance** | Optimize queries, add caching, reduce bundle |
 
-### Phase 3: Comprehensive Verification (QC)
+4. `recovery` saves checkpoint of affected files
 
-1. **Unit Test:** Run tests for the specific file
-2. **Regression:** Check related components
-3. **Security:** Ensure no new vulnerabilities introduced via `security-scanner`
+### Phase 2: Apply Fix
+
+| Field | Value |
+|-------|-------|
+| **INPUT** | Located error and fix type from Phase 1 |
+| **OUTPUT** | Modified source files with the fix applied |
+| **AGENTS** | Auto-routed specialist (`backend-specialist`, `frontend-specialist`, etc.) |
+| **SKILLS** | `code-craft`, `debug-pro` |
+
+1. Apply the fix following existing code patterns
+2. Minimal diff — change only what's needed
+3. No unrelated formatting or refactoring
+
+### Phase 3: Verification
+
+| Field | Value |
+|-------|-------|
+| **INPUT** | Modified files from Phase 2 |
+| **OUTPUT** | Verification result: error cleared, tests passing, no regressions |
+| **AGENTS** | none |
+| **SKILLS** | `problem-checker` |
 
 // turbo
 ```bash
-# Verify the fix worked
-npm run test:quick -- [related_file]
+npm test
 ```
 
-### Phase 4: Deployment & Handoff
+// turbo
+```bash
+npm run lint && npx tsc --noEmit
+```
 
-If verification passes:
-1. Commit the fix
-2. Prepare for deployment (if applicable)
+1. Verify the original error is resolved
+2. Check for regressions in related components
+3. If fix fails → `recovery.restore()` → escalate to `/diagnose`
+4. `learner` logs error pattern for future reference
+
+---
+
+## ⛔ MANDATORY: Problem Verification Before Completion
+
+> **CRITICAL:** This check MUST be performed before any `notify_user` or task completion.
+
+### Check @[current_problems]
+
+```
+1. Read @[current_problems] from IDE
+2. If errors/warnings > 0:
+   a. Auto-fix: imports, types, lint errors
+   b. Re-check @[current_problems]
+   c. If still > 0 → STOP → Notify user
+3. If count = 0 → Proceed to completion
+```
+
+### Auto-Fixable
+
+| Type | Fix |
+|------|-----|
+| Missing import | Add import statement |
+| Unused variable | Remove or prefix `_` |
+| Type mismatch | Fix type annotation |
+| Lint errors | Run eslint --fix |
+
+> **Rule:** Never mark complete with errors in `@[current_problems]`.
 
 ---
 
@@ -107,59 +149,78 @@ If verification passes:
 ## 🔧 Fixed: [Error Description]
 
 ### The Issue
+
 [Brief description of what was broken]
 
 ### The Fix
-- [x] Modified `path/to/file`
-- [x] Type: [Code/Config/Data/Security]
-- [x] [Description of change, e.g., "Added missing check"]
+
+| File | Change | Type | Status |
+|------|--------|------|--------|
+| `path/to/file.ts` | Added null check | Code Logic | ✅ |
 
 ### Verification
-- [x] Error cleared
-- [x] Tests passing
-- [x] Security check passed
+
+| Check | Result |
+|-------|--------|
+| Error cleared | ✅ |
+| Tests passing | ✅ |
+| Lint clean | ✅ |
+| IDE Problems | ✅ 0 |
 
 ### Next Steps
-- [ ] Run full regression suite
-- [ ] `/launch` to deploy
+
+- [ ] Run `/validate` for full regression suite
+- [ ] Deploy with `/launch` when ready
 ```
 
 ---
 
 ## Examples
 
-```bash
-/fix "TypeError: Cannot read property 'map' of undefined"
-/fix "Login tests failing with 401"
-/fix "sanitize user input and implement CSP"
-/fix "implement database query optimization"
-/fix "failing GitHub Actions for test suite"
 ```
+/fix "TypeError: Cannot read property 'map' of undefined"
+/fix "Login tests failing with 401 error"
+/fix "ESLint: no-unused-vars in auth.ts"
+/fix "TypeScript error TS2345 in UserService"
+/fix "failing GitHub Actions CI for test suite"
+```
+
+---
+
+## Key Principles
+
+- **Fix, don't investigate** — assume the problem is known, apply the solution
+- **Minimal diff** — change only what's needed, no unrelated refactoring
+- **Verify immediately** — run tests and lint after every fix
+- **Rollback ready** — checkpoint before fixing, restore on failure
 
 ---
 
 ## 🔗 Workflow Chain
 
-**Skills Loaded (2):**
+**Skills Loaded (3):**
 
-- `debug-pro` - Root cause analysis and defense-in-depth
-- `test-architect` - Regression test creation
+- `debug-pro` - Fix methodology and error analysis
+- `code-craft` - Coding standards for fix implementation
+- `problem-checker` - IDE error detection and auto-fix
 
 ```mermaid
 graph LR
     A["/diagnose"] --> B["/fix"]
     B --> C["/validate"]
     C --> D["/launch"]
-    style B fill:#ef4444
+    style B fill:#10b981
 ```
 
 | After /fix | Run | Purpose |
-| :--- | :--- | :--- |
-| **Success** | `/validate` | Ensure no regressions in full suite |
-| **Success** | `/launch` | Deploy the fix to production |
-| **Failed** | `/diagnose` | If fix fails, re-analyze root cause |
+|-----------|-----|---------|
+| Fix applied | `/validate` | Full regression suite |
+| Ready to deploy | `/launch` | Deploy the fix |
+| Fix failed | `/diagnose` | Re-analyze root cause |
 
-**Handoff:**
+**Handoff to /validate:**
+
 ```markdown
-Fix applied. Run `/validate` to ensure no side effects or `/launch` to deploy.
+🔧 Fix applied to [files]. Error: [description] → resolved.
+Run `/validate` to ensure no regressions or `/launch` to deploy.
 ```

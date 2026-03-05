@@ -225,7 +225,7 @@ await fetch('/api/auth/passkey/login/verify', {
 
 ---
 
-⚡ PikaKit v3.9.77
+⚡ PikaKit v3.9.79
 
 ---
 

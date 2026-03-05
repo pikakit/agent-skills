@@ -1,5 +1,5 @@
 ---
-description: Full-stack application factory. From idea to deployed app with agent-patterns coordination.
+description: Full-stack application factory. From idea to deployed app with multi-agent coordination.
 chain: build-web-app
 ---
 
@@ -11,35 +11,48 @@ $ARGUMENTS
 
 ## Purpose
 
-Ship production-ready applications from natural language descriptions. **Coordinates 4+ specialist agents with automated verification.**
+Ship production-ready applications from natural language descriptions by coordinating 4+ specialist agents with automated verification. **Differs from `/autopilot` (fully autonomous multi-domain orchestration) and `/boost` (enhancing existing apps) by focusing on new application creation from scratch with guided requirements discovery.** Uses `project-planner` for architecture, `database-architect` + `backend-specialist` + `frontend-specialist` for parallel implementation, and `test-engineer` for verification.
+
+---
+
+## 🤖 Meta-Agents Integration
+
+| Phase | Agent | Action |
+| ----- | ----- | ------ |
+| **Pre-Build** | `assessor` | Evaluate risk level of requested build |
+| **Pre-Build** | `recovery` | Save current state (if existing project) |
+| **During Build** | `orchestrator` | Coordinate parallel agent execution |
+| **On Conflict** | `critic` | Resolve agent disagreements (schema vs API design) |
+| **On Failure** | `recovery` | Restore to pre-build state |
+| **Post-Build** | `learner` | Log build patterns for reuse |
+
+```
+Flow:
+assessor.evaluate(risk) → recovery.save(state)
+       ↓
+orchestrator.init() → assign agents to parallel groups
+       ↓
+conflict? → critic.arbitrate(safety > correctness)
+       ↓
+failure? → recovery.restore() → learner.log(failure)
+       ↓
+success → learner.log(patterns)
+```
 
 ---
 
 ## 🔴 MANDATORY: Build Pipeline
 
-### Phase 0: Risk Assessment & Safety (NEW)
-
-> **Before building, invoke meta-agents:**
-
-| Step | Agent | Action |
-| ---- | ----- | ------ |
-| 1 | `assessor` | Evaluate risk level of requested changes |
-| 2 | `recovery` | Save current state (if existing project) |
-
-```
-IF risk_level == CRITICAL:
-  → Require explicit user approval
-  → Prepare rollback plan
-ELSE:
-  → Proceed with Phase 1
-```
-
 ### Phase 1: Requirements Discovery
 
+| Field | Value |
+|-------|-------|
+| **INPUT** | $ARGUMENTS (app description — what to build) |
+| **OUTPUT** | Requirements document: app type, users, core features, stack |
+| **AGENTS** | `project-planner` |
+| **SKILLS** | `idea-storm`, `project-planner` |
 
-Ask these questions if not answered:
-
-// turbo
+1. If requirements are incomplete, ask clarifying questions:
 
 ```
 1. What TYPE of app? (web/mobile/api/cli)
@@ -49,136 +62,125 @@ Ask these questions if not answered:
 5. What is the TIMELINE? (MVP/full product)
 ```
 
-### Phase 2: Tech Stack Selection
+2. Select tech stack based on app type:
 
-**AI-Powered Stack Recommendation:**
+| App Type | Recommended Stack | Agents Invoked |
+|----------|------------------|----------------|
+| Web SaaS | Next.js + Prisma + PostgreSQL | frontend, backend, database |
+| E-commerce | Next.js + Stripe + Supabase | frontend, backend, security |
+| Mobile | React Native + Expo + Firebase | mobile, backend, test |
+| API | Hono + Prisma + Railway | backend, database, devops |
+| Dashboard | Next.js + Chart.js | frontend, backend |
 
-| App Type       | Recommended Stack              | Agents Invoked              |
-| -------------- | ------------------------------ | --------------------------- |
-| **Web SaaS**   | Next.js + Prisma + PostgreSQL  | frontend, backend, database |
-| **E-commerce** | Next.js + Stripe + Supabase    | frontend, backend, security |
-| **Mobile**     | React Native + Expo + Firebase | mobile, backend, test       |
-| **API**        | Hono + Prisma + Railway        | backend, database, devops   |
-| **Dashboard**  | Next.js + Tremor + Chart.js    | frontend, backend           |
+3. Smart defaults (when user doesn't specify):
 
-### Phase 3: Project Scaffolding
+| Aspect | Default |
+|--------|---------|
+| Framework | Next.js 15 |
+| Styling | Tailwind + shadcn/ui |
+| Database | PostgreSQL (Supabase) |
+| Auth | Clerk |
+| Deployment | Vercel |
+| Testing | Vitest + Playwright |
+
+### Phase 2: Planning & Design
+
+| Field | Value |
+|-------|-------|
+| **INPUT** | Requirements from Phase 1 |
+| **OUTPUT** | PLAN.md with task breakdown, agent assignments, file structure |
+| **AGENTS** | `project-planner` |
+| **SKILLS** | `project-planner`, `app-scaffold` |
+
+1. Create PLAN.md with:
+   - Task breakdown and agent assignments
+   - File structure blueprint
+   - Dependency graph between agents
+   - Parallel execution groups
+2. `assessor` evaluates risk level of the build plan
+3. `recovery` saves current project state (if existing directory)
+
+**⛔ CHECKPOINT: User approval required before Phase 3**
+
+### Phase 3: Design System (UI Apps Only)
+
+| Field | Value |
+|-------|-------|
+| **INPUT** | Approved PLAN.md (for apps with UI) |
+| **OUTPUT** | Design tokens: colors, typography, effects |
+| **AGENTS** | `frontend-specialist` |
+| **SKILLS** | `studio`, `design-system` |
+
+> **Skip this phase** if the app has no UI (API-only, CLI).
 
 // turbo
-
 ```bash
-# Auto-detect and scaffold
-npm run session:status
+node .agent/skills/studio/scripts-js/search.js "<app_type> <style> <keywords>" --design-system -p "<Project Name>"
 ```
 
-### Phase 4: agent-patterns Build
+### Phase 4: Parallel Build
+
+| Field | Value |
+|-------|-------|
+| **INPUT** | Approved plan + design system tokens |
+| **OUTPUT** | Complete application: schema, API routes, UI components, tests |
+| **AGENTS** | `database-architect`, `backend-specialist`, `frontend-specialist`, `test-engineer` |
+| **SKILLS** | `data-modeler`, `nodejs-pro`, `api-architect`, `code-craft`, `test-architect` |
 
 ```mermaid
 graph TD
-    A[/build request] --> B[project-planner]
-    B --> C[Create PLAN.md]
-    C --> D{User Approval?}
-    D -->|Yes| E[Parallel Build]
-    D -->|No| B
-    E --> F[database-architect]
-    E --> G[backend-specialist]
-    E --> H[frontend-specialist]
-    F --> I[Schema + Migrations]
-    G --> J[API Endpoints]
-    H --> K[UI Components]
-    I --> L[Integration]
-    J --> L
-    K --> L
-    L --> M[test-engineer]
-    M --> N[Preview Deploy]
+    A[Approved Plan] --> B[Foundation]
+    B --> B1[database-architect]
+    B --> B2[security-auditor]
+    B1 --> C[Core]
+    B2 --> C
+    C --> C1[backend-specialist]
+    C --> C2[frontend-specialist]
+    C1 --> D[Polish]
+    C2 --> D
+    D --> D1[test-engineer]
+    D1 --> E[Preview]
 ```
 
-### Phase 5: Preview & Iterate
+| Parallel Group | Agents | Task |
+|----------------|--------|------|
+| **Foundation** | `database-architect`, `security-auditor` | Schema + auth setup |
+| **Core** | `backend-specialist`, `frontend-specialist` | API routes + UI components |
+| **Polish** | `test-engineer` | Tests + integration |
+
+### Phase 5: Verification & Preview
+
+| Field | Value |
+|-------|-------|
+| **INPUT** | All artifacts from Phase 4 |
+| **OUTPUT** | Running preview + verification report |
+| **AGENTS** | `test-engineer` |
+| **SKILLS** | `test-architect`, `problem-checker` |
 
 // turbo
-
 ```bash
-npm run preview:start
+npm test
 ```
 
----
-
-## Output Format
-
-```markdown
-## ðŸ—ï¸ Building: [App Name]
-
-### Stack Decision
-
-| Layer    | Choice               | Reason                         |
-| -------- | -------------------- | ------------------------------ |
-| Frontend | Next.js 15           | SSR, App Router, Vercel deploy |
-| Backend  | Hono + Prisma        | Type-safe, edge-ready          |
-| Database | PostgreSQL           | Relational, Supabase hosting   |
-| Auth     | Clerk                | Fast integration, social login |
-| Styling  | Tailwind + shadcn/ui | Rapid UI development           |
-
-### Agent Coordination
-
-| Agent                 | Task          | Status         |
-| --------------------- | ------------- | -------------- |
-| `database-architect`  | Schema design | ✅ Complete    |
-| `backend-specialist`  | API routes    | 📁„ In progress |
-| `frontend-specialist` | UI components | â³ Waiting     |
-| `test-engineer`       | E2E tests     | â³ Waiting     |
-
-### Files Created
+// turbo
+```bash
+npm run lint && npx tsc --noEmit
 ```
 
-src/
-├── app/
-│ ├── page.tsx
-│ ├── layout.tsx
-│ └── api/
-├── components/
-├── lib/
-├── prisma/
-│ └── schema.prisma
-└── tests/
-
+// turbo
+```bash
+npm run dev
 ```
 
-### Preview
-ðŸŒ **URL:** http://localhost:3000
-📊 **Status:** Running
+**Exit Gate — ALL must pass:**
 
-### Next Steps
-- [ ] Review the code
-- [ ] Test core features
-- [ ] Request changes or `/launch` to deploy
-```
-
----
-
-## Examples
-
-```
-/build SaaS dashboard with user analytics
-/build e-commerce app with Stripe payments
-/build blog with MDX and CMS
-/build real-time chat app
-/build portfolio with project gallery
-/build REST API for mobile app
-```
-
----
-
-## Smart Defaults
-
-If user doesn't specify, use these:
-
-| Aspect     | Default               |
-| ---------- | --------------------- |
-| Framework  | Next.js 15            |
-| Styling    | Tailwind + shadcn/ui  |
-| Database   | PostgreSQL (Supabase) |
-| Auth       | Clerk                 |
-| Deployment | Vercel                |
-| Testing    | Vitest + Playwright   |
+| Check | Target | How to Verify |
+|-------|--------|---------------|
+| IDE Problems | 0 | `@[current_problems]` |
+| Compilation | Pass | TypeScript check |
+| Tests | All passing | npm test |
+| Preview | Running | localhost:3000 responding |
+| Schema | Valid | Prisma validate (if applicable) |
 
 ---
 
@@ -194,66 +196,114 @@ If user doesn't specify, use these:
    a. Auto-fix: imports, types, lint errors
    b. Re-check @[current_problems]
    c. If still > 0 → STOP → Notify user
-3. If count = 0 → Proceed to Quality Gates
+3. If count = 0 → Proceed to completion
 ```
 
 ### Auto-Fixable
 
-| Type            | Fix                  |
-| --------------- | -------------------- |
-| Missing import  | Add import statement |
-| JSX namespace   | Import from 'react'  |
+| Type | Fix |
+|------|-----|
+| Missing import | Add import statement |
+| JSX namespace | Import from 'react' |
 | Unused variable | Remove or prefix `_` |
-| Lint errors     | Run eslint --fix     |
+| Lint errors | Run eslint --fix |
 
-> **Rule:** Never mark complete with errors in `@[current_problems]`.
+> **Rule:** Never mark complete with errors in `@[current_problems]`. **NEVER mark complete without a working preview.**
 
 ---
 
-## Quality Gates
+## Output Format
 
-Before marking complete, verify:
+```markdown
+## 🏗️ Building: [App Name]
 
-- [ ] `@[current_problems]` shows 0 errors â† **CHECK THIS FIRST**
-- [ ] All files compile without errors
-- [ ] Database schema is valid
-- [ ] API endpoints respond correctly
-- [ ] UI renders without errors
-- [ ] Preview server is running
-- [ ] User can test the app
+### Stack Decision
 
-**NEVER mark complete without a working preview.**
+| Layer | Choice | Reason |
+|-------|--------|--------|
+| Frontend | Next.js 15 | SSR, App Router, Vercel deploy |
+| Backend | Hono + Prisma | Type-safe, edge-ready |
+| Database | PostgreSQL | Relational, Supabase hosting |
+| Auth | Clerk | Fast integration, social login |
+| Styling | Tailwind + shadcn/ui | Rapid UI development |
+
+### Agent Coordination
+
+| Agent | Task | Status |
+|-------|------|--------|
+| `project-planner` | Architecture plan | ✅ Complete |
+| `database-architect` | Schema design | ✅ Complete |
+| `backend-specialist` | API routes | ✅ Complete |
+| `frontend-specialist` | UI components | ✅ Complete |
+| `test-engineer` | E2E tests | ✅ Complete |
+
+### Preview
+
+🌐 http://localhost:3000
+
+### Next Steps
+
+- [ ] Review the generated code
+- [ ] Test core user flows
+- [ ] Run `/validate` for comprehensive tests
+- [ ] Deploy when ready: `/launch`
+```
+
+---
+
+## Examples
+
+```
+/build SaaS dashboard with user analytics and auth
+/build e-commerce store with Stripe payments and product catalog
+/build blog engine with MDX content and CMS
+/build real-time chat app with WebSocket and message history
+/build REST API for mobile app with auth and rate limiting
+```
+
+---
+
+## Key Principles
+
+- **Requirements first** — discover what to build before building, ask clarifying questions
+- **Smart stack defaults** — sensible tech choices unless user specifies otherwise
+- **Parallel execution** — independent agents run simultaneously for faster delivery
+- **Working preview required** — never mark complete without a running dev server
+- **Exit gate enforced** — IDE problems = 0, tests passing, types valid before completion
 
 ---
 
 ## 🔗 Workflow Chain
 
-**Skills Loaded (4):**
+**Skills Loaded (8):**
 
 - `app-scaffold` - Full-stack scaffolding from natural language
-- `code-craft` - Coding standards and best practices
+- `project-planner` - Task breakdown and architecture planning
+- `studio` - Design system generation for UI apps
 - `design-system` - UI/UX design tokens and components
+- `code-craft` - Coding standards and best practices
+- `data-modeler` - Database schema design
+- `api-architect` - API design and endpoint patterns
 - `test-architect` - Testing strategies and coverage
 
 ```mermaid
 graph LR
-    A[\"/plan\"] --> B[\"/build\"]
+    A["/plan"] --> B["/build"]
     B --> C["/validate"]
     C --> D["/launch"]
     style B fill:#10b981
 ```
 
-| After /build    | Run         | Purpose              |
-| --------------- | ----------- | -------------------- |
-| Build complete  | `/validate` | Run tests            |
-| Needs testing   | `/stage`    | Start preview server |
-| Ready to deploy | `/launch`   | Deploy to production |
-| Found bugs      | `/diagnose` | Debug issues         |
+| After /build | Run | Purpose |
+|-------------|-----|---------|
+| Build complete | `/validate` | Run comprehensive test suite |
+| Needs preview | `/stage` | Start development environment |
+| Ready to deploy | `/launch` | Deploy to production |
+| Found bugs | `/diagnose` | Root cause investigation |
 
 **Handoff to /validate:**
 
 ```markdown
-Build complete. Preview running at http://localhost:3000
-Run /validate to generate and execute tests.
+✅ Build complete! Preview running at localhost:3000.
+[X] agents coordinated, [Y] files created. Run `/validate` for full test suite.
 ```
-

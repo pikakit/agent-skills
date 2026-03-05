@@ -26,8 +26,8 @@
 │  ╔═══════════════════════════════════════════════════════════════════════╗  │
 │  ║                      🌟 DISCOVER & PLAN                               ║  │
 │  ╠═══════════════════════════════════════════════════════════════════════╣  │
-│  ║  /think       │  /plan        │  /pulse       │  /agent               ║  │
-│  ║  Brainstorm   │  Blueprint    │  Health check │  Smart CLI            ║  │
+│  ║  /think       │  /plan        │  /pulse       │  /studio              ║  │
+│  ║  Brainstorm   │  Blueprint    │  Health check │  Design UI            ║  │
 │  ╚═══════════════════════════════════════════════════════════════════════╝  │
 │                              │                                              │
 │                              ▼                                              │
@@ -56,10 +56,10 @@
 │                              │                                              │
 │                              ▼                                              │
 │  ╔═══════════════════════════════════════════════════════════════════════╗  │
-│  ║                      📚 DOCUMENT & EXTEND                             ║  │
+│  ║                      📚 DOCUMENT & OPTIMIZE                            ║  │
 │  ╠═══════════════════════════════════════════════════════════════════════╣  │
-│  ║  /chronicle                │  /forge                                  ║  │
-│  ║  Auto-generate docs        │  Create new skills                       ║  │
+│  ║  /chronicle                │  /optimize                               ║  │
+│  ║  Auto-generate docs        │  Performance optimization                ║  │
 │  ╚═══════════════════════════════════════════════════════════════════════╝  │
 │                                                                             │
 └─────────────────────────────────────────────────────────────────────────────┘
@@ -280,7 +280,7 @@
 | **Got an error?** | `/diagnose` → Evidence-based root cause analysis |
 | **Need preview?** | `/stage` → Start/stop/restart preview servers |
 | **Need docs?** | `/chronicle` → Auto-generate README, API docs |
-| **Want new skill?** | `/forge` → Create, validate, package new capabilities |
+| **Want new skill?** | Check `.agent/skills/` for available capabilities |
 
 ---
 
@@ -300,9 +300,8 @@
 | `/stage` | Preview/staging server | Local dev environment |
 | `/autopilot` | Full automation | Multi-agent coordination |
 | `/chronicle` | Write documentation | README, API docs |
-| `/forge` | Create new skill | Packaged capability |
+| `/optimize` | Speed up app | Performance optimization |
 | `/pulse` | Check project health | Health dashboard |
-| `/agent` | Smart CLI | Interactive commands |
 
 ---
 

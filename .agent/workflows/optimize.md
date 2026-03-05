@@ -1,5 +1,5 @@
 ---
-description: Performance optimizer with bundle analysis, N+1 query fixes, Redis caching, and k6 load testing
+description: Performance optimizer with bundle analysis, N+1 query fixes, Redis caching, and k6 load testing.
 ---
 
 # /optimize - Performance Optimization
@@ -10,209 +10,139 @@ $ARGUMENTS
 
 ## Purpose
 
-This workflow uses the **performance-audit** chain to:
+Profile application performance, optimize bottlenecks (database queries, bundle size, caching), and validate improvements with load testing. **Differs from `/benchmark` (runs load tests only, no optimization) and `/monitor` (tracks production metrics) by actively identifying and fixing performance issues across frontend, backend, and infrastructure.** Uses `performance-specialist` with `perf-optimizer` for profiling and `backend-specialist` with `data-modeler` for database optimization.
 
-- Profile application performance (Lighthouse, bundle size, API latency)
-- Optimize database queries (indexes, N+1 fixes)
-- Implement caching layers (Redis, CDN)
-- Validate improvements with load testing
+---
 
 ## 🤖 Meta-Agents Integration
 
 | Phase | Agent | Action |
 | ----- | ----- | ------ |
 | **Pre-Optimize** | `recovery` | Save current state before changes |
-| **Optimization** | `orchestrator` | Coordinate parallel optimization tasks |
 | **Post-Optimize** | `learner` | Log optimization patterns for reuse |
-| **Failure** | `recovery` | Rollback if optimization degrades performance |
 
 ```
 Flow:
-recovery.save() → orchestrator.run(optimizations)
+recovery.save() → profile → optimize → benchmark
        ↓
 benchmark → worse? → recovery.restore()
-       ↓
-better → learner.log(optimization_patterns)
+       ↓ better
+learner.log(optimization_patterns)
 ```
 
 ---
 
-## 🔗 Chain: performance-audit
+## 🔴 MANDATORY: Performance Optimization Protocol
 
-**Skills Loaded (4):**
+### Phase 1: Performance Profiling
 
-- `perf-optimizer` - Performance profiling (Core Web Vitals, bundle analysis)
-- `data-modeler` - Query optimization, index recommendations
-- `perf-optimizer` - Redis caching, CDN configuration
-- `perf-optimizer` - k6/Artillery load testing, scalability validation
+| Field | Value |
+|-------|-------|
+| **INPUT** | $ARGUMENTS (app/component to optimize + optional targets) |
+| **OUTPUT** | Performance audit: bottlenecks identified with metrics |
+| **AGENTS** | `performance-specialist` |
+| **SKILLS** | `perf-optimizer` |
 
-## 📖 Usage
+1. `recovery` saves current state before any changes
+2. Run profiling:
 
-```bash
-/optimize <description>
-```
+| Area | Profile | Metrics |
+|------|---------|---------|
+| Frontend | Lighthouse, bundle analysis | LCP, CLS, FID, bundle KB |
+| Backend | API profiling | p50, p95, p99 latency |
+| Database | Query analysis | Query count, duration, N+1 |
+| Cache | Hit/miss analysis | Hit rate %, DB load |
 
-## Examples
+3. Identify bottlenecks and rank by impact
 
-```bash
-# Basic optimization
-/optimize my-slow-api
+Performance targets:
 
-# With specific target
-/optimize checkout flow (target: p95 <200ms)
+| Metric | Target | Critical |
+|--------|--------|----------|
+| p95 Latency | <200ms | <500ms |
+| Error Rate | <0.5% | <1% |
+| Cache Hit Rate | >80% | >70% |
+| Concurrent Users | 10,000+ | 5,000+ |
+| LCP | <2.5s | <4s |
+| CLS | <0.1 | <0.25 |
 
-# Production optimization
-/optimize production app (10K+ users)
-```
+### Phase 2: Database Optimization
 
-## 📁„ Workflow Steps
+| Field | Value |
+|-------|-------|
+| **INPUT** | Bottleneck report from Phase 1 |
+| **OUTPUT** | Optimized queries, added indexes, fixed N+1 patterns |
+| **AGENTS** | `backend-specialist` |
+| **SKILLS** | `data-modeler`, `perf-optimizer` |
 
-This workflow automatically:
+| Issue | Solution | Impact |
+|-------|----------|--------|
+| N+1 queries | Use `include` or JOINs | 90%+ faster |
+| Missing indexes | Add indexes on foreign keys | 95%+ faster |
+| Small connection pool | Increase to 20-50 | Eliminates timeouts |
+| Unoptimized queries | Rewrite with proper filtering | Variable |
 
-1. **Performance Profiling**
-   - Run Lighthouse audit (Core Web Vitals)
-   - Analyze bundle size
-   - Profile API response times
-   - Identify slow database queries
+### Phase 3: Caching & Frontend
 
-2. **Database Optimization**
-   - Detect N+1 queries
-   - Add missing indexes
-   - Optimize slow queries
-   - Tune connection pool
+| Field | Value |
+|-------|-------|
+| **INPUT** | Optimized database from Phase 2 |
+| **OUTPUT** | Redis cache configured, CDN setup, bundle optimized |
+| **AGENTS** | `performance-specialist` |
+| **SKILLS** | `perf-optimizer`, `caching-strategy` |
 
-3. **Cache Implementation**
-   - Setup Redis cache
-   - Configure CDN (Cloudflare/Vercel)
-   - Set HTTP caching headers
-   - Implement cache-aside pattern
+Backend caching:
+- Redis cache-aside pattern
+- TTL strategy per data volatility
+- Target: >80% cache hit rate
 
-4. **Load Testing**
-   - Run realistic user scenarios
-   - Test at target scale (10K+ users)
-   - Measure p95 latency, error rate
-   - Identify remaining bottlenecks
-
-## ✅ Success Criteria
-
-After running `/optimize`, you will have:
-
-✓ **Bottlenecks Identified** - Slow queries, large bundles
-✓ **Performance Improved** - 50%+ latency reduction
-✓ **Caching Implemented** - >80% cache hit rate
-✓ **Load Test Passed** - Supports target concurrent users
-
-## 📊 What Gets Optimized
-
-### Frontend
-
-- Bundle size reduction (code splitting)
-- Image optimization (WebP, lazy loading)
-- Core Web Vitals (LCP <2.5s, CLS <0.1)
-
-### Backend
-
-- Database query optimization (indexes, N+1 fixes)
-- Redis caching (80%+ hit rate)
-- API response time (p95 <200ms)
-- Connection pool tuning
-
-### Infrastructure
-
-- CDN configuration
+Frontend optimization:
+- Code splitting and lazy loading
+- Image optimization (WebP, lazy load)
+- CDN configuration (Cloudflare/Vercel)
 - HTTP caching headers
-- Horizontal scaling recommendations
 
-## 🎨 Performance Targets
+### Phase 4: Load Testing & Validation
 
-| Metric               | Target  | Critical |
-| -------------------- | ------- | -------- |
-| **p95 Latency**      | <200ms  | <500ms   |
-| **Error Rate**       | <0.5%   | <1%      |
-| **Cache Hit Rate**   | >80%    | >70%     |
-| **Concurrent Users** | 10,000+ | 5,000+   |
+| Field | Value |
+|-------|-------|
+| **INPUT** | Optimized application from Phase 3 |
+| **OUTPUT** | Load test results: before/after comparison, go/no-go |
+| **AGENTS** | `performance-specialist` |
+| **SKILLS** | `perf-optimizer` |
 
-## 📁 Related Workflows
+1. Run realistic user scenarios at target scale
+2. Compare before/after metrics
+3. If regression detected → `recovery` restores checkpoint
+4. If improved → `learner` logs patterns
 
-- `/benchmark` - Run load tests only (no optimization)
-- `/monitor` - Setup monitoring after optimization
-- `/launch` - Deploy optimized version
+---
 
-## 💡 Tips
+## ⛔ MANDATORY: Problem Verification Before Completion
 
-**When to use `/optimize`:**
+> **CRITICAL:** This check MUST be performed before any `notify_user` or task completion.
 
-- API response times >500ms
-- High database load
-- Poor Lighthouse scores
-- Before launch to production
+### Check @[current_problems]
 
-**Best practices:**
-
-- Profile BEFORE optimizing
-- Fix database issues first (biggest impact)
-- Add caching second
-- Validate with load tests
-- Monitor after deployment
-
-## 📚 Example Output
-
-```bash
-You: "/optimize my-slow-api"
-
-Agent: Loading performance-audit chain
-       ↓
-Skills: perf-optimizer, data-modeler, perf-optimizer, perf-optimizer
-       ↓
-
-[1/4] 📁 Performance Profiling
-   ⚠ï¸ API p95 latency: 850ms (target: <200ms)
-   âŒ Database queries: 15 per request
-   âŒ Slow query: users.findMany (2.5s)
-   ⚠ï¸ No caching detected
-
-[2/4] 🗄ï¸ Database Tuning
-   ✅ Added index: idx_users_email
-   ✅ Fixed N+1: user posts (15 queries → 1)
-   ✅ Connection pool: 10 → 20
-   ✅ Query time: 2.5s → 50ms (98% faster)
-
-[3/4] ⚡ Cache Optimization
-   ✅ Redis configured
-   ✅ Cache-aside pattern implemented
-   ✅ CDN configured for static assets
-   ✅ Cache hit rate: 85%
-   ✅ Database load: 1000 qps → 150 qps
-
-[4/4] 🧪 Load Testing
-   Testing: 5,000 concurrent users
-   ✅ p95 latency: 180ms (target: <200ms ✓)
-   ✅ Error rate: 0.2% (target: <1% ✓)
-   ✅ Throughput: 4,150 rps
-   ✅ PASS
-
-📊 Performance Improvement:
-   - Latency: 850ms → 180ms (79% faster)
-   - Database load: 85% reduction
-   - Supports: 5,000+ users ✅
-
-✅ Optimization complete!
-
-Files modified:
-   ✓ Add indexes to schema
-   ✓ Redis cache setup (lib/cache/)
-   ✓ CDN config (next.config.js)
-   ✓ Load test script (tests/load/)
+```
+1. Read @[current_problems] from IDE
+2. If errors/warnings > 0:
+   a. Auto-fix: imports, types, lint errors
+   b. Re-check @[current_problems]
+   c. If still > 0 → STOP → Notify user
+3. If count = 0 → Proceed to completion
 ```
 
-## 🚨 Common Bottlenecks Fixed
+### Auto-Fixable
 
-| Issue                 | Solution                    | Impact                |
-| --------------------- | --------------------------- | --------------------- |
-| N+1 queries           | Use `include` or JOINs      | 90%+ faster           |
-| Missing indexes       | Add indexes on foreign keys | 95%+ faster           |
-| No caching            | Redis + CDN                 | 70% DB load reduction |
-| Small connection pool | Increase to 20-50           | Eliminates timeouts   |
+| Type | Fix |
+|------|-----|
+| Missing import | Add import statement |
+| Unused variable | Remove or prefix `_` |
+| Type mismatch | Fix type annotation |
+| Lint errors | Run eslint --fix |
+
+> **Rule:** Never mark complete with errors in `@[current_problems]`.
 
 ---
 
@@ -222,21 +152,68 @@ Files modified:
 ## ⚡ Performance Optimization Complete
 
 ### Improvements
+
 | Metric | Before | After | Improvement |
 |--------|--------|-------|-------------|
-| p95 Latency | [X]ms | [Y]ms | [Z]% faster |
-| DB Load | [X] qps | [Y] qps | [Z]% reduction |
-| Cache Hit | 0% | [X]% | New caching |
+| p95 Latency | 850ms | 180ms | 79% faster |
+| DB Load | 1000 qps | 150 qps | 85% reduction |
+| Cache Hit | 0% | 85% | New caching |
+| Bundle Size | 1.2MB | 380KB | 68% smaller |
+
+### Changes Applied
+
+| Area | Change | Impact |
+|------|--------|--------|
+| Database | Added indexes, fixed N+1 | ✅ 95% faster |
+| Cache | Redis + CDN | ✅ 85% hit rate |
+| Frontend | Code splitting | ✅ 68% smaller |
+
+### Load Test Result
+
+| Metric | Target | Actual | Status |
+|--------|--------|--------|--------|
+| p95 | <200ms | 180ms | ✅ |
+| Error rate | <0.5% | 0.2% | ✅ |
+| Concurrent | 5,000+ | 5,000 | ✅ |
 
 ### Next Steps
-- [ ] Run load test to validate
-- [ ] Monitor in production
-- [ ] Set up alerts for regression
+
+- [ ] Run `/benchmark` for extended load testing
+- [ ] Run `/monitor` to track production metrics
+- [ ] Run `/launch` to deploy optimized version
 ```
 
 ---
 
+## Examples
+
+```
+/optimize my-slow-api
+/optimize checkout flow target p95 < 200ms
+/optimize production app 10K users
+/optimize frontend bundle size reduction
+/optimize database queries for user service
+```
+
+---
+
+## Key Principles
+
+- **Profile before optimizing** — measure first, don't guess bottlenecks
+- **Database first** — fix queries and indexes before adding caching
+- **Cache second** — add Redis/CDN after database is optimized
+- **Validate with load tests** — prove improvements with realistic traffic
+- **Rollback on regression** — if metrics worsen, restore immediately
+
+---
+
 ## 🔗 Workflow Chain
+
+**Skills Loaded (3):**
+
+- `perf-optimizer` - Performance profiling, Core Web Vitals, bundle analysis
+- `data-modeler` - Database query optimization, index recommendations
+- `caching-strategy` - Redis caching, CDN, cache-aside patterns
 
 ```mermaid
 graph LR
@@ -247,19 +224,14 @@ graph LR
 ```
 
 | After /optimize | Run | Purpose |
-|-----------------|-----|---------|
-| Validate results | `/benchmark` | Run load tests |
+|----------------|-----|---------|
+| Validate results | `/benchmark` | Extended load testing |
 | Ready to deploy | `/launch` | Deploy optimized version |
-| Set up monitoring | `/monitor` | Track performance |
+| Track metrics | `/monitor` | Setup production monitoring |
 
-**Handoff:**
+**Handoff to /benchmark:**
+
 ```markdown
-✅ Optimization complete! Run `/benchmark` to validate, then `/launch` to deploy.
+⚡ Optimization complete! Latency: [before]ms → [after]ms ([X]% faster).
+Run `/benchmark` to validate at scale or `/launch` to deploy.
 ```
-
----
-
-**Version:** 1.0.0  
-**Chain:** performance-audit  
-**Added:** v3.5.0 (FAANG upgrade - Phase 2)
-

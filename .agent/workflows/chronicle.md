@@ -10,7 +10,7 @@ $ARGUMENTS
 
 ## Purpose
 
-Generate comprehensive documentation automatically. README, API specs, ADR (Architecture Decision Records), component docs, ops runbooks, and inline comments.
+Generate comprehensive project documentation automatically by analyzing source code, extracting types, and producing structured docs. **Differs from `/diagram` (visual architecture diagrams) by focusing on written documentation — README, API specs, ADR, component docs, ops runbooks, and inline comments.** Uses `documentation-writer` for all doc generation, with `doc-templates` for structure and `markdown-novel-viewer` for preview.
 
 ---
 
@@ -18,166 +18,151 @@ Generate comprehensive documentation automatically. README, API specs, ADR (Arch
 
 | Phase | Agent | Action |
 |-------|-------|--------|
-| **Scope** | `assessor` | Evaluate documentation scope |
-| **Patterns** | `learner` | Learn from existing doc patterns |
-| **Post** | `learner` | Log templates for reuse |
-
----
-
-## Sub-commands
+| **Pre-Analysis** | `assessor` | Evaluate documentation scope and coverage gaps |
+| **Post-Generation** | `learner` | Learn doc patterns and templates for reuse |
 
 ```
-/chronicle              - Full documentation suite
-/chronicle readme       - Generate/update README.md
-/chronicle api          - Generate API documentation (OpenAPI)
-/chronicle inline       - Add inline code comments (JSDoc/TSDoc)
-/chronicle adr          - Create Architecture Decision Record
-/chronicle storybook    - Generate component documentation
-/chronicle runbook      - Generate ops runbook
-/chronicle changelog    - Generate CHANGELOG.md
-/chronicle [file-path]  - Document specific file
+Flow:
+assessor.evaluate(doc_scope) → identify coverage gaps
+       ↓
+analyze codebase → generate docs per sub-command
+       ↓
+learner.log(templates, patterns)
 ```
 
 ---
 
-## Phase 1: README.md
+## Sub-Commands
 
+| Command | Purpose | Output |
+|---------|---------|--------|
+| `/chronicle` | Full documentation suite | All doc types below |
+| `/chronicle readme` | Generate/update README.md | `README.md` |
+| `/chronicle api` | API documentation (OpenAPI) | `docs/api.yaml` |
+| `/chronicle inline` | Add inline code comments (JSDoc/TSDoc) | Source file annotations |
+| `/chronicle adr` | Architecture Decision Record | `docs/adr/NNN-title.md` |
+| `/chronicle storybook` | Component documentation | Story files |
+| `/chronicle runbook` | Ops runbook | `docs/runbooks/*.md` |
+| `/chronicle changelog` | Generate CHANGELOG.md | `CHANGELOG.md` |
+| `/chronicle [file-path]` | Document specific file | File annotations |
+
+---
+
+## 🔴 MANDATORY: Documentation Generation Protocol
+
+### Phase 1: Codebase Analysis
+
+| Field | Value |
+|-------|-------|
+| **INPUT** | $ARGUMENTS (sub-command + optional scope) |
+| **OUTPUT** | Documentation scope: files to document, gaps identified, doc type |
+| **AGENTS** | `documentation-writer` |
+| **SKILLS** | `doc-templates` |
+
+1. Scan project structure and identify:
+   - Source files and their exports
+   - API routes and endpoint definitions
+   - Component files and their props
+   - Existing documentation (for update vs create)
+2. `assessor` evaluates coverage gaps
+3. Determine documentation scope based on sub-command
+
+### Phase 2: Documentation Generation
+
+| Field | Value |
+|-------|-------|
+| **INPUT** | Scope analysis from Phase 1 |
+| **OUTPUT** | Generated documentation files |
+| **AGENTS** | `documentation-writer` |
+| **SKILLS** | `doc-templates` |
+
+Generate docs based on sub-command:
+
+**README.md** — Extract from code:
 ```markdown
 # Project Name
 > One-line description
-
 ## Features
-## Quick Start
-### Prerequisites
-### Installation
-### Environment Setup
+## Quick Start (Prerequisites, Installation, Environment)
 ## Architecture
 ## API Reference
 ## Contributing
 ## License
 ```
 
----
-
-## Phase 2: API Documentation
+**API Documentation** — Source-to-spec:
 
 | Source | Tool | Output |
-|-------|------|--------|
-| Express/Fastify | swagger-autogen / @nestjs/swagger | OpenAPI 3.1 |
+|--------|------|--------|
+| Express/Fastify | swagger-autogen | OpenAPI 3.1 |
 | tRPC | trpc-openapi | OpenAPI 3.1 |
-| GraphQL | GraphQL introspection | Schema docs |
-| FastAPI | Built-in | `/docs` auto-generated |
+| GraphQL | Introspection | Schema docs |
+| FastAPI | Built-in | Auto-generated |
 
-**Auto-generation:**
-```bash
-/chronicle api
-# Scans routes → Generates OpenAPI spec → Creates docs/api.yaml
-# Includes: endpoints, types, examples (cURL + JS), error codes
-```
-
----
-
-## Phase 3: Architecture Decision Records (ADR)
-
-**FAANG standard** — Document WHY decisions were made, not just WHAT.
-
+**ADR** — Decision records:
 ```markdown
-# ADR-001: Use PostgreSQL over MongoDB
-
-## Status: Accepted
-## Date: 2026-02-24
-
-## Context
-We need a database for the user management system.
-Requirements: ACID transactions, complex queries, strong consistency.
-
-## Decision
-Use PostgreSQL with Prisma ORM.
-
-## Consequences
-- ✅ Strong consistency, ACID transactions
-- ✅ Rich query capabilities (JOIN, window functions)
-- ⚠️ Schema migrations required for changes
-- ⚠️ Vertical scaling limits (vs. horizontal with MongoDB)
-
-## Alternatives Considered
-| Option | Pros | Cons | Decision |
-|--------|------|------|----------|
-| PostgreSQL | ACID, SQL, mature | Schema migrations | ✅ Chosen |
-| MongoDB | Flexible schema | No JOINs, eventual consistency | ❌ |
-| Supabase | Postgres + auth | Vendor lock-in | ❌ |
+# ADR-NNN: [Decision Title]
+## Status: Accepted | Date: YYYY-MM-DD
+## Context (why the decision was needed)
+## Decision (what was chosen)
+## Consequences (trade-offs: ✅ pros, ⚠️ cons)
+## Alternatives Considered (comparison table)
 ```
 
-**Usage:** `/chronicle adr "Use Redis for session storage"`
+**Inline Comments** — JSDoc/TSDoc annotations for exported functions, classes, and types.
 
----
-
-## Phase 4: Component Documentation (Storybook)
-
-```bash
-/chronicle storybook
-# Scans components → Generates stories + docs
-```
-
-**Generated output per component:**
-
-| Section | Content |
-|---------|---------|
-| **Props table** | Auto-extracted from TypeScript |
-| **Usage examples** | Default, with variants, interactive |
-| **Accessibility** | ARIA labels, keyboard nav notes |
-| **Design tokens** | Colors, spacing, typography used |
-
----
-
-## Phase 5: Ops Runbooks
-
-```bash
-/chronicle runbook
-# Generates operational runbook for common scenarios
-```
-
-**Runbook template:**
-
+**Runbooks** — Operational procedures:
 ```markdown
-# Runbook: Database Connection Pool Exhausted
-
-## Severity: P1
-## Impact: API requests failing with 503
-
-## Diagnosis
-1. Check connection pool: `SELECT count(*) FROM pg_stat_activity;`
-2. Check for long-running queries
-3. Check application connection settings
-
-## Resolution
-1. Kill idle connections: `SELECT pg_terminate_backend(pid) ...`
-2. Restart API pods: `kubectl rollout restart deployment/api`
-3. If persistent: increase pool size in DATABASE_URL
-
-## Prevention
-- Set `connection_limit` in Prisma
-- Add connection timeout (30s)
-- Monitor with `/alert` workflow
+# Runbook: [Scenario]
+## Severity: P1/P2/P3
+## Impact: [User-facing effect]
+## Diagnosis (step-by-step investigation)
+## Resolution (fix steps with commands)
+## Prevention (monitoring + alerts)
 ```
+
+### Phase 3: Verification & Coverage
+
+| Field | Value |
+|-------|-------|
+| **INPUT** | Generated docs from Phase 2 |
+| **OUTPUT** | Coverage report: documented vs total, gaps remaining |
+| **AGENTS** | `documentation-writer` |
+| **SKILLS** | `doc-templates`, `markdown-novel-viewer` |
+
+1. Verify all generated docs are valid markdown
+2. Check documentation coverage:
+   - Functions documented vs total
+   - API endpoints documented vs total
+   - Components with stories vs total
+3. Log templates and patterns via `learner`
 
 ---
 
-## Phase 6: Inline Comments (JSDoc/TSDoc)
+## ⛔ MANDATORY: Problem Verification Before Completion
 
-```typescript
-/**
- * Creates a new user account with email verification.
- *
- * @param data - User registration data
- * @param data.email - Valid email address
- * @param data.password - Min 8 chars, 1 uppercase, 1 number
- * @returns Newly created user with verification token
- * @throws {ValidationError} If email is invalid
- * @throws {ConflictError} If email already exists
- */
-export async function createUser(data: CreateUserInput): Promise<User> {}
+> **CRITICAL:** This check MUST be performed before any `notify_user` or task completion.
+
+### Check @[current_problems]
+
 ```
+1. Read @[current_problems] from IDE
+2. If errors/warnings > 0:
+   a. Auto-fix: imports, types, lint errors
+   b. Re-check @[current_problems]
+   c. If still > 0 → STOP → Notify user
+3. If count = 0 → Proceed to completion
+```
+
+### Auto-Fixable
+
+| Type | Fix |
+|------|-----|
+| Missing import | Add import statement |
+| Invalid JSDoc | Fix annotation syntax |
+| Lint errors | Run eslint --fix |
+
+> **Rule:** Never mark complete with errors in `@[current_problems]`.
 
 ---
 
@@ -187,43 +172,79 @@ export async function createUser(data: CreateUserInput): Promise<User> {}
 ## 📚 Chronicle Complete
 
 ### Generated Files
-| File | Type | Lines |
-|------|------|-------|
-| README.md | Markdown | 89 |
-| docs/api.yaml | OpenAPI | 234 |
-| docs/adr/001-database.md | ADR | 45 |
-| CHANGELOG.md | Changelog | 52 |
+
+| File | Type | Lines | Status |
+|------|------|-------|--------|
+| README.md | Markdown | 89 | ✅ Created |
+| docs/api.yaml | OpenAPI | 234 | ✅ Created |
+| docs/adr/001-database.md | ADR | 45 | ✅ Created |
+| CHANGELOG.md | Changelog | 52 | ✅ Created |
 
 ### Coverage
-| Metric | Current | Target |
-|--------|---------|--------|
-| Functions documented | 45/52 | 100% |
-| API endpoints | 12/12 | ✅ |
-| ADRs | 3 | ongoing |
-| Runbooks | 5 | key scenarios |
+
+| Metric | Current | Target | Status |
+|--------|---------|--------|--------|
+| Functions documented | 45/52 | 100% | ⏳ 87% |
+| API endpoints | 12/12 | 100% | ✅ 100% |
+| ADRs | 3 | Ongoing | ✅ |
+| Runbooks | 5 | Key scenarios | ✅ |
+
+### Next Steps
+
+- [ ] Review generated documentation for accuracy
+- [ ] Fill remaining coverage gaps
+- [ ] Run `/diagram` for architecture visuals
+```
+
+---
+
+## Examples
+
+```
+/chronicle
+/chronicle readme
+/chronicle api
+/chronicle adr "Use Redis for session caching"
+/chronicle inline src/services/
+/chronicle runbook
+/chronicle storybook
 ```
 
 ---
 
 ## Key Principles
 
-1. **Code as source** — extract docs from code
-2. **ADRs are mandatory** — decisions need context
-3. **Examples matter** — always include usage
-4. **Types are docs** — TypeScript annotations
-5. **Keep updated** — regenerate on changes
+- **Code as source of truth** — extract docs from code, don't write manually
+- **ADRs are mandatory** — every architectural decision needs documented context (why, not just what)
+- **Examples matter** — always include usage examples in API docs and README
+- **Types are documentation** — TypeScript annotations serve as living docs
+- **Keep docs current** — regenerate on code changes to prevent drift
 
 ---
 
 ## 🔗 Workflow Chain
 
-**Skills (2):** `doc-templates` · `markdown-novel-viewer`
+**Skills Loaded (2):**
+
+- `doc-templates` - Documentation templates and structure guidelines
+- `markdown-novel-viewer` - Markdown preview and rendering
+
+```mermaid
+graph LR
+    A["/build"] --> B["/chronicle"]
+    B --> C["/diagram"]
+    style B fill:#10b981
+```
 
 | After /chronicle | Run | Purpose |
-|------------------|-----|---------|
-| Need diagrams | `/diagram` | Architecture diagrams |
-| Need review | `/inspect` | Verify doc quality |
+|-----------------|-----|---------|
+| Need architecture diagrams | `/diagram` | Generate C4, Mermaid, ER diagrams |
+| Need doc quality review | `/inspect` | Verify documentation quality |
+| Ready to deploy | `/launch` | Deploy with documentation |
 
----
+**Handoff to /diagram:**
 
-**Version:** 2.0.0 · **Updated:** v3.9.64
+```markdown
+📚 Documentation generated! [X] files created, [Y]% function coverage.
+Run `/diagram` to add architecture visuals (C4, Mermaid, ER).
+```

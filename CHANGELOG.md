@@ -1,30 +1,105 @@
 # Changelog
 
-All notable changes to the PikaKit will be documented in this file.
+All notable changes to PikaKit are documented in this file.
 
-The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
-and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+Format: [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) · [Semantic Versioning](https://semver.org/spec/v2.0.0.html)
+
+---
+
+## [3.9.78] - 2026-03-06
+
+### 🧹 System Cleanup & Integrity
+
+**Removed 10+ obsolete files (~133KB):**
+
+| File | Reason |
+|------|--------|
+| `.agent/ARCHITECTURE.md` | Outdated stats (45 skills vs 67 actual), wrong skill names |
+| `.agent/CONTINUOUS_EXECUTION_POLICY.md` | Duplicated by GEMINI.md + workflow files |
+| `.agent/WORKFLOW_CHAINS.md` | Duplicated by workflow chain sections |
+| `.agent/agent-workflow-mapping.json` | Non-existent agent references, no consumer |
+| `.agent/lessons.json` | Empty placeholder, no consumer |
+| `.agent/skill-lock.json` | Aspirational, no tooling implements it |
+| `.agent/metrics/` | Sample test data, no consumer |
+| `.agent/scripts-js/workflow-engine.js` | Aspirational, unreferenced |
+| `.agent/scripts-js/workflow-validator.js` | Aspirational, unreferenced |
+| `.agent/workflows/README.md` | Outdated, redundant |
+| `docs/docs-guide.md` | Outdated (v3.2), generic templates |
+| `docs/skills-overview.md` | Wrong skill count (45 vs 67) |
+| `docs/workflows.md` | Duplicated by getting-started.md |
+| `docs/maintaining-legacy-project.md` | Aspirational tutorial |
+
+**Fixed:**
+
+- `docs/getting-started.md` — Removed references to non-existent `/forge` and `/agent` workflows
+- `docs/README.md` — Rewritten as accurate navigation hub with correct links and stats
+- `.agent/workflows/pulse.md` — Removed references to non-existent `observability-collector.js`
+
+---
+
+## [3.9.77] - 2026-03-05
+
+### 🏗️ FAANG-Grade Workflow Upgrades (25/25)
+
+All 25 workflows upgraded to production-grade specifications:
+
+- **Deterministic phase templates** with INPUT/OUTPUT definitions
+- **Meta-agent integration** (orchestrator, assessor, recovery, critic, learner)
+- **Problem Verification** (`@[current_problems]` check before completion)
+- **Workflow chains** with mermaid diagrams and handoff messages
+- **`// turbo` annotations** for auto-executable commands
+- **4/4 quality gates** passed per workflow
+
+**Workflows by type:**
+
+| Type | Workflows |
+|------|-----------|
+| Orchestration | autopilot, build, game, mobile |
+| Pipeline | api, launch, validate, inspect, optimize, benchmark, monitor, alert, chronicle, diagram |
+| Automation | boost, cook, fix, flags, stage |
+| Tactical | plan, think, studio, pulse, diagnose |
+
+---
+
+## [3.9.76] - 2026-03-05
+
+### 🤖 FAANG-Grade Agent Upgrades (26/26)
+
+All 26 agents upgraded to production-grade specifications:
+
+- **21 domain agents** + **5 meta-agents** (orchestrator, assessor, recovery, critic, learner)
+- Agent identity layer with persona, expertise, and skill assignments
+- Deterministic planning protocols
+- Observability and trace propagation
+- Performance governance with quantified thresholds
+
+---
+
+## [3.9.x] - 2026-03-01 to 2026-03-04
+
+### 🔧 Skill Audits & Hardening
+
+Systematic audit of skill files for FAANG-grade compliance:
+
+- `SKILL.md` files validated under 200-line limit
+- Engineering specs split into `engineering-spec.md`
+- Script JSDoc headers and module formats standardized
+- Reference data CSVs verified for completeness
+- Content Maps in SKILL.md updated to reflect actual file structure
+
+**Skills audited:** studio, mobile-design, code-constitution, and others.
+
+---
 
 ## [3.7.1] - 2026-02-01
 
-### 🔧 FAANG-Grade Structure Optimization
+### 🔧 Structure Optimization
 
-**Cleanup & Optimization:**
-
-- **Renamed packages/cli → packages/agent** - Folder name now matches command name
-- **Removed duplicate CLI** - Deleted `lib/agent-cli/` (112 files) - was duplicate of `packages/agent/`
-- **Removed archive folders** - Cleaned `.agent/archive/` and `docs/archive/` (3 files)
-- **Removed dev artifact** - Deleted `.agent/skills-audit-report.md`
-- **Fixed workflow count** - Corrected description from "26 workflows" to "25 workflows"
-- **Renamed devDependency** - Changed `agentskillskit-cli` → `pikakit-cli`
-- **Added missing deps** - Added `kleur`, `boxen`, `ora`, `gradient-string` for packages/kit
-- **Fixed .agentignore syntax** - Corrected invalid arrow symbols in comments
-- **Updated LICENSE** - Rebranded from AgentSkillKit to PikaKit
-
-**Impact:**
-- Package cleaner: 115+ redundant files removed
-- Dependencies: Kit CLI now works correctly
-- Accuracy: All counts verified correct
+- Renamed `packages/cli` → `packages/agent`
+- Removed duplicate CLI (`lib/agent-cli/`, 112 files)
+- Removed archive folders and dev artifacts
+- Fixed workflow count description (26 → 25)
+- Updated LICENSE branding to PikaKit
 
 ---
 
@@ -32,293 +107,43 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### 🚀 Vercel Deploy Integration
 
-**New Skill:** `vercel-deploy` (from Vercel Labs)
+**New skill:** `vercel-deploy`
 
-- **Purpose:** 1-click deployment to Vercel without authentication
-- **Source:** Integrated from [vercel-labs/agent-skills](https://github.com/vercel-labs/agent-skills)
-- **Category:** DevOps
-
-#### Features
-
-1. **No Authentication Required** - Deploy without Vercel account login
-2. **Auto-Framework Detection** - 40+ frameworks supported (Next.js, Vite, Astro, SvelteKit, etc.)
-3. **Claimable Deployments** - Get preview URL + claim ownership later
-4. **One Command Deploy** - `bash deploy.sh [path]`
-
-#### Output
-
-```
-Preview URL: https://skill-deploy-abc123.vercel.app
-Claim URL:   https://vercel.com/claim-deployment?code=...
-```
-
-#### Supported Frameworks (40+)
-
-- **React:** Next.js, Gatsby, Create React App, Remix, React Router
-- **Vue:** Nuxt, Vitepress, Vuepress, Gridsome
-- **Svelte:** SvelteKit, Svelte, Sapper
-- **Other:** Astro, Solid Start, Angular, Ember, Preact, Docusaurus
-- **Backend:** Express, Hono, Fastify, NestJS, Elysia, h3, Nitro
-- **Build Tools:** Vite, Parcel
-
-#### Registry Changes
-
-- Added `vercel-deploy` to registry.json (category: devops)
-- Triggers: `deploy`, `vercel`, `push live`, `production`, `preview`
-- Coordinates with: `cicd-pipeline`, `server-ops`
-
-#### Impact
-
-- **Skills Count:** 49 → 50
-- **Deployment Time:** Complex → 1 command
-- **Developer Experience:** ✅ Instant preview deployments
+- 1-click deployment without authentication
+- 40+ framework auto-detection (Next.js, Vite, Astro, SvelteKit, etc.)
+- Claimable deployments with preview URL
+- Source: [vercel-labs/agent-skills](https://github.com/vercel-labs/agent-skills)
 
 ---
 
 ## [3.6.0] - 2026-01-29
 
-### 📚 Documentation Chain (FAANG Upgrade - Phase 3 FINAL)
+### 📚 Documentation Workflows
 
-**New Workflow Chain:** `documentation`
-
-- **Purpose:** Auto-generate comprehensive documentation with zero manual effort
-- **Priority:** P1 (High - Developer experience)
-- **Skills:** 3 new skills
-- **Workflows:** 2 workflows
-- **Execution:** DAG with parallel processing (all 3 skills run concurrently)
-
-#### New Skills (3)
-
-1. **doc-generator** - Documentation automation
-   - README.md generation with quickstart
-   - CONTRIBUTING.md for developers
-   - JSDoc/TSDoc code comments
-   - Runbook templates for operations
-   - Auto-detects tech stack and project structure
-
-2. **api-doc-builder** - API documentation
-   - Swagger/OpenAPI 3.0 spec generation
-   - Interactive Swagger UI
-   - Postman collection export
-   - GraphQL schema documentation
-   - Auto-generates from code annotations
-
-3. **architecture-diagrammer** - Visual documentation
-   - C4 diagrams (Context, Container, Component)
-   - Mermaid sequence diagrams
-   - ER diagrams auto-generated from Prisma schema
-   - Infrastructure diagrams
-   - Auto-updates when code changes
-
-#### Workflows (2)
-
-- **`/chronicle`** - Generate all documentation
-  - README + API docs + Diagrams (parallel execution)
-  - Complete documentation suite in 2-3 minutes
-  - Auto-detects and documents entire project
-- **`/diagram`** - Update architecture diagrams only
-  - Refresh diagrams when schema/structure changes
-  - Keeps visual documentation in sync with code
-
-#### Registry Changes
-
-- Added `documentation` chain to `registry.json`
-- Chain configuration:
-  - 3 skills with zero dependencies (full parallelism)
-  - DAG execution strategy
-  - Success criteria: README generated, API docs created, diagrams visualized
-  - Workflows: `/chronicle`, `/diagram`
-- Updated WORKFLOW_CHAINS.md (7 → 8 chains)
-- Updated chain performance metrics
-
-#### Impact
-
-- **FAANG Coverage:** 88% → 95%+ (Phase 3 of 3 COMPLETE)
-- **Documentation Time:** Hours → Minutes (auto-generated)
-- **Onboarding:** Days → Hours (comprehensive docs)
-- **Developer Experience:** ✅ Always up-to-date documentation
-
-#### Use Cases
-
-- Auto-document new projects
-- Onboard new developers quickly
-- Generate API documentation for integration
-- Create architecture diagrams for reviews
-- Keep documentation current with CI/CD
-
-#### FAANG Upgrade Complete
-
-**All 3 Phases Delivered:**
-
-1. ✅ **Phase 1:** monitoring-production (observability, logging, metrics, tracing, alerts)
-2. ✅ **Phase 2:** performance-audit (profiling, database, cache, load testing)
-3. ✅ **Phase 3:** documentation (README, API docs, diagrams)
-
-**Total Achievement:**
-
-- **Chains:** 5 → 8 (+60% increase)
-- **Skills:** 25 → 36 (+44% increase)
-- **FAANG Coverage:** 70% → 95%+ (Target met!)
-- **Production Readiness:** Enterprise-grade workflow automation
+- New workflows: `/chronicle`, `/diagram`
+- Auto-generate README, API docs, architecture diagrams
+- Parallel execution for speed
 
 ---
 
 ## [3.5.0] - 2026-01-29
 
-### ⚡ Performance Optimization Chain (FAANG Upgrade - Phase 2)
+### ⚡ Performance Optimization Workflows
 
-**New Workflow Chain:** `performance-audit`
-
-- **Purpose:** Systematic performance optimization: profiling, database tuning, caching, load testing
-- **Priority:** P1 (High - Production readiness)
-- **Skills:** 3 new skills + 1 enhanced
-- **Workflows:** 2 new workflows
-- **Execution:** Sequential (profile → database → cache → test)
-
-#### New Skills (3)
-
-1. **database-tuner** - Query optimization
-   - Slow query detection (\u003e100ms)
-   - N+1 query detection and fixes
-   - Missing index identification
-   - Connection pool tuning
-   - PostgreSQL EXPLAIN ANALYZE
-
-2. **cache-optimizer** - Multi-layer caching
-   - Redis/Memcached setup
-   - Cache-aside pattern
-   - Cache invalidation strategies
-   - CDN configuration (Cloudflare, Vercel Edge)
-   - HTTP caching headers
-
-3. **load-tester** - Scalability validation
-   - k6/Artillery load test scripts
-   - Realistic user scenarios
-   - Performance benchmarking (latency, throughput, errors)
-   - Bottleneck identification under load
-   - Stress/spike/soak testing patterns
-
-#### Enhanced Skills (1)
-
-- **perf-optimizer** - Existing skill, enhanced with additional profiling capabilities
-
-#### New Workflows (2)
-
-- **`/optimize`** - Full optimization pipeline
-  - Profile → Database → Cache → Load Test
-  - Identify bottlenecks
-  - Apply optimizations
-  - Validate improvements
-- **`/benchmark`** - Load testing only
-  - Run k6/Artillery tests
-  - Generate performance reports
-  - Identify bottlenecks at scale
-
-#### Registry Changes
-
-- Added `performance-audit` chain to `registry.json`
-- Chain configuration:
-  - 4 skills (perf-optimizer, database-tuner, cache-optimizer, load-tester)
-  - Sequential execution (order matters for optimization)
-  - Success criteria: >50% latency reduction, >80% cache hit rate, load test passed
-  - Workflows: `/optimize`, `/benchmark`
-- Updated WORKFLOW_CHAINS.md (6 → 7 chains)
-- Updated chain performance metrics
-
-#### Impact
-
-- **FAANG Coverage:** 80% → 88% (Phase 2 of 3 complete)
-- **Performance Targets:** p95 \u003c200ms, 10K+ concurrent users
-- **Database Optimization:** N+1 fixes, index recommendations
-- **Caching:** Redis + CDN multi-layer strategy
-- **Load Testing:** k6 scenarios for realistic traffic
-
-#### Use Cases
-
-- Pre-production performance validation
-- Database slow query optimization
-- Implementing caching layers
-- Load testing for Black Friday scale
-- Performance regression testing
+- New workflows: `/optimize`, `/benchmark`
+- k6/Artillery load testing
+- Database query optimization, caching strategy
 
 ---
 
 ## [3.4.0] - 2026-01-29
 
-### 🚀 Production Monitoring Chain (FAANG Upgrade - Phase 1)
+### 📊 Production Monitoring
 
-**New Workflow Chain:** `monitoring-production`
-
-- **Purpose:** Comprehensive production monitoring, logging, metrics, and incident response
-- **Priority:** P0 (Critical for production readiness)
-- **Skills:** 5 new skills added
-- **Workflows:** 2 new workflows added
-- **Execution:** DAG with parallel processing (logging + metrics + tracing)
-
-#### New Skills (5)
-
-1. **observability** - OpenTelemetry SDK setup
-   - Provider integration (Datadog, Sentry, New Relic, Grafana Cloud)
-   - Auto-instrumentation (HTTP, DB, Redis, etc.)
-   - Resource attributes and sampling strategies
-   - Health checks and troubleshooting
-
-2. **logging** - Structured logging
-   - Pino/Winston setup with JSON format
-   - Cloud aggregation (Datadog Logs, CloudWatch, Loki)
-   - PII masking (GDPR/CCPA compliance)
-   - Correlation IDs for request tracing
-   - Log sampling and performance optimization
-
-3. **metrics** - Prometheus-compatible metrics
-   - Golden Signals (Latency, Traffic, Errors, Saturation)
-   - Custom metrics (Counter, Gauge, Histogram)
-   - Business metrics (revenue, signups, etc.)
-   - Grafana/Datadog dashboard creation
-   - PromQL query examples
-
-4. **tracing** - Distributed tracing
-   - OpenTelemetry spans and context propagation
-   - W3C Trace Context standard
-   - Custom instrumentation
-   - APM integration (Datadog APM, Sentry)
-   - Sampling strategies (10% prod, 100% dev)
-
-5. **incident-response** - Alerting and on-call
-   - Alert rules (error rate, latency, health checks)
-   - Slack/PagerDuty integrations
-   - Runbook templates (5 playbooks)
-   - Post-mortem templates
-   - Escalation policies
-
-#### New Workflows (2)
-
-- **`/monitor`** - Setup production monitoring stack
-  - Configures OpenTelemetry, logging, metrics, tracing
-  - Creates dashboards and basic alerts
-  - Generates runbooks
-- **`/alert`** - Configure custom alert rules
-  - Setup notification channels
-  - Test alert delivery
-  - Generate runbooks per alert
-
-#### Registry Changes
-
-- Added `monitoring-production` chain to `registry.json`
-- Chain configuration:
-  - 5 skills with dependency graph
-  - DAG execution (max 3 concurrent)
-  - Success criteria: dashboard created, alerts configured, logs aggregated
-  - Workflows: `/monitor`, `/alert`
-- Updated WORKFLOW_CHAINS.md (5 → 6 chains)
-- Updated chain performance metrics
-
-#### Impact
-
-- **FAANG Coverage:** 70% → 80% (Phase 1 of 3 complete)
-- **Production Readiness:** ✅ Observability foundation
-- **Compliance:** ✅ PII masking for GDPR/CCPA
-- **Incident Response:** ✅ 24/7 alerting capability
+- New skill: `observability` (OpenTelemetry SDK)
+- New workflows: `/monitor`, `/alert`
+- Structured logging, metrics dashboards, distributed tracing
+- Slack/PagerDuty alerting with runbook templates
 
 ---
 
@@ -326,206 +151,49 @@ Claim URL:   https://vercel.com/claim-deployment?code=...
 
 ### 🏗️ FAANG Standards Restructure
 
-- **Documentation Restructure**
-  - Reorganized `docs/` to FAANG standards
-  - Moved 5 root .md files to `docs/guides/` and `docs/reference/`
-  - Created `docs/guides/migration.md` (merged MIGRATION + STUDIO_MIGRATION)
-  - Created `docs/guides/publishing.md`, `docs/guides/versioning.md`
-  - Moved `PYTHON_STRATEGY.md` → `docs/reference/python-strategy.md`
-  - Root now has only 2 .md files: `README.md`, `CHANGELOG.md` (FAANG standard)
-
-- **Studio Integration**
-  - Added studio integration to `design-system` skill (path, commands)
-  - Added `/studio` workflow recommendation to `frontend.md` agent
-  - Added studio coordination to `visual-excellence` skill
-  - All 50 skills validated ✅
-
-- **Package Configuration**
-  - Added `engines` field: Node.js >=18.0.0 (FAANG required)
-  - Added `files` field for npm publish control
-  - Upgraded vitest to 4.0.18 (fixed 4 moderate vulnerabilities)
-  - Updated `.agentignore` v3.0: REMOVED package-lock.json ignore (FAANG requires lock files)
-
-- **Script Updates**
-  - Modernized `sync-publish.ps1` with auto-version detection, pre-publish checks
-  - Updated `vitest.config.js` with CLI tests, integration exclusion
-  - Updated `LICENSE` with professional formatting
-
-### 🚀 Rebrand Script v4.0
-
-- **Performance Enhancement (5x Faster)**
-  - Parallel batch processing (50 files per batch)
-  - Stream processing for large files (>1MB threshold)
-  - Progress tracking with percentage and ETA
-  - Expected: 1000 files in ~3s (vs 15s in v3.3.0)
-
-- **Safety & Rollback (100% Data Protection)**
-  - `BackupManager` class with git-based backup
-  - Creates backup branch before any changes
-  - File-based fallback for non-git repositories
-  - Transaction-like file processing (temp files + atomic rename)
-  - Git status check with uncommitted changes warning
-
-- **Intelligence & Precision**
-  - Auto-discover `package.json` files across monorepo
-  - Word boundary matching (`\b...\b`) prevents false positives
-  - Special character normalization (collapse multiple hyphens)
-  - File-type aware variation application (JSON, YAML, etc.)
-
-- **Enhanced UX**
-  - Grouped file preview by directory
-  - Enhanced progress indicators with color coding
-  - Clear rollback instructions in next steps
-  - Comprehensive `scripts/rebrand/README.md` (400+ lines)
-
-### 🛡️ Execution Policy v1.1
-
-- **Added Codebase Version Tracking**
-  - `codebaseVersion: "3.3.0"` field in execution-policy.json
-  - Updated `$comment` with v3.3.0 reference
-
-- **PowerShell Safety Patterns (5 New Rules)**
-  - `Remove-Item -Recurse` → CRITICAL block
-  - `Remove-Item -Force` → HIGH block
-  - `Clear-RecycleBin` → HIGH block
-  - `Stop-Computer` → CRITICAL block
-  - `Restart-Computer` → CRITICAL block
-  - Total deny patterns: 15 → 20
-
-### 🔗 Workflow Chains Enhancement
-
-- **Added `/api` Workflow**
-  - Created `.agent/workflows/api.md` (200+ lines comprehensive guide)
-  - Linked to `api-development` chain in `registry.json`
-  - All 5 workflow chains now have dedicated slash commands
-  - Improved UX consistency and discoverability
-
-- **Documentation Additions**
-  - Created `.agent/WORKFLOW_CHAINS.md` (550+ lines)
-  - Detailed usage guide for all 5 chains
-  - Real-world examples (E-commerce, Security Audit, Deploy)
-  - Customization instructions and FAQ
-  - Updated `ARCHITECTURE.md` with v3.3.0 evolution section
-
-### 🔧 Workflow Chains Schema v2.0 (FAANG Upgrade)
-
-All 5 workflow chains upgraded to enterprise-grade v2.0 schema:
-
-- **Error Handling & Resilience**
-  - Configurable retry policies (0-2 retries, exponential backoff)
-  - Fail-fast vs. continue-on-error strategies
-  - Fallback chain support for graceful degradation
-
-- **Dependency Management & Execution**
-  - DAG (Directed Acyclic Graph) execution engine
-  - Parallel skill execution (1-3 concurrent max)
-  - Explicit skill dependencies with topological sorting
-  - Sequential vs. parallel execution strategies
-
-- **Success Criteria & Validation**
-  - Required metrics (must pass for success)
-  - Optional metrics (nice-to-have validation)
-  - Automated verification scripts per chain
-  - Configurable timeout periods (30-60 seconds)
-
-- **Versioning & Change Tracking**
-  - Semantic versioning (v1.0.0)
-  - Schema versioning (v2.0)
-  - Detailed changelog per chain
-  - Deprecation lifecycle management
-
-**Chains Upgraded (5/5):**
-
-1. **build-web-app**: 7 skills, DAG, 3 parallel, 600s timeout
-2. **security-audit**: 4 skills, DAG, 2 parallel, comprehensive checks
-3. **debug-complex**: 4 skills, sequential, systematic methodology
-4. **deploy-production**: 5 skills, DAG, zero retries (safety first)
-5. **api-development**: 5 skills, sequential, API-focused
-
-**Impact:**
-
-- FAANG Compliance: 64% → 90%+
-- registry.json: +480 lines (v1 → v2 schema)
-- Backward compatible design (v1 fallback support documented)
-
-### 🔧 Configuration
-
-- **package-lock.json**: Regenerated, 0 vulnerabilities (removed 136 packages)
-- **.agentignore**: v3.0 - Keep lock files for reproducible builds
-- **vitest.config.js**: Added packages/cli tests, coverage for CLI lib
+- Documentation reorganized to FAANG standards
+- Studio integration across design skills
+- Workflow chains v2.0 schema (error handling, DAG execution, success criteria)
+- PowerShell safety patterns (5 new deny rules)
+- Package configuration: Node.js ≥18, lock files committed
 
 ---
 
 ## [3.2.0] - 2026-01-28
 
-### 🚀 Major Migration: Python → JavaScript
+### 🚀 Python → JavaScript Migration
 
-- **BREAKING**: All master scripts migrated from Python to JavaScript
-  - `checklist.js`, `verify_all.js`, `auto_preview.js`, `session_manager.js`
-  - Zero Python dependency for core validation scripts
-  - ~10% performance improvement
-  - Better cross-platform support (especially Windows)
-
-- **New Features**
-  - Auto-detection of Node.js/Python environment
-  - Unified exit codes across all scripts
-  - Improved error messages with actionable suggestions
-
-- **Deprecated (Python Scripts)**
-  - All Python scripts moved to `.agent/scripts-legacy/`
-  - Maintained for reference but no longer actively used
-  - See [PYTHON_STRATEGY.md](docs/reference/python-strategy.md) for rationale
-
-### 🧪 Testing Infrastructure
-
-- **Vitest 4.x Migration**
-  - Upgraded from v1.x to v4.0.18
-  - 4 moderate vulnerabilities fixed
-  - Improved watch mode performance
-  - Better TypeScript integration
-
-- **Coverage Improvements**
-  - Added coverage for CLI library (`packages/cli/lib/**`)
-  - Minimum thresholds: 70% lines, 70% functions, 65% branches
-  - HTML reports in `coverage/` directory
-
-### 📦 Package Management
-
-- **Lock File Strategy**
-  - package-lock.json now committed (FAANG standard)
-  - Ensures reproducible builds across environments
-  - Updated `.agentignore` to reflect this change
+- All master scripts migrated to JavaScript
+- Zero Python dependency for core validation
+- Vitest 4.x migration with coverage thresholds
+- Lock file strategy: package-lock.json committed
 
 ---
 
 ## [3.1.0] - 2026-01-27
 
-### ✨ New Features
+### ✨ Skill Expansion
 
-- Added 5 new skills: `chaos-engineer`, `feature-flags`, `geo-spatial`, `globalization-kit`, `mcp-server`
-- Introduced workflow chains: pre-configured multi-skill sequences
-- Added `/flags` workflow for feature flag management
-
-### 🔧 Improvements
-
-- Enhanced skill metadata with triggers and coordination fields
-- Improved registry.json structure with categories
-- Updated all agent files with skill recommendations
+- 5 new skills added
+- Workflow chains introduced
+- `/flags` workflow for feature flag management
 
 ---
 
 ## [3.0.0] - 2026-01-26
 
-### 🎉 Major Release: PikaKit
+### 🎉 Initial Public Release
 
-- Initial public release
 - 50 production-ready skills
 - 20 specialized agents
 - 18 workflows
-- Comprehensive documentation
 
 ---
 
+[3.9.78]: https://github.com/pikakit/agent-skills/compare/v3.9.77...v3.9.78
+[3.9.77]: https://github.com/pikakit/agent-skills/compare/v3.9.76...v3.9.77
+[3.9.76]: https://github.com/pikakit/agent-skills/compare/v3.7.1...v3.9.76
+[3.9.x]: https://github.com/pikakit/agent-skills/compare/v3.7.1...v3.9.76
 [3.7.1]: https://github.com/pikakit/agent-skills/compare/v3.7.0...v3.7.1
 [3.7.0]: https://github.com/pikakit/agent-skills/compare/v3.6.0...v3.7.0
 [3.6.0]: https://github.com/pikakit/agent-skills/compare/v3.5.0...v3.6.0
@@ -535,4 +203,3 @@ All 5 workflow chains upgraded to enterprise-grade v2.0 schema:
 [3.2.0]: https://github.com/pikakit/agent-skills/compare/v3.1.0...v3.2.0
 [3.1.0]: https://github.com/pikakit/agent-skills/compare/v3.0.0...v3.1.0
 [3.0.0]: https://github.com/pikakit/agent-skills/releases/tag/v3.0.0
-

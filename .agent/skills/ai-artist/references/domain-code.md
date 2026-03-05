@@ -101,7 +101,7 @@ function processPayment(amount: number, currency: string): PaymentResult
 
 ---
 
-⚡ PikaKit v3.9.77
+⚡ PikaKit v3.9.79
 
 ---
 

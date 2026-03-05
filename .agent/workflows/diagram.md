@@ -10,7 +10,7 @@ $ARGUMENTS
 
 ## Purpose
 
-Generate and maintain architecture diagrams from code. C4 (Context, Container, Component), sequence diagrams, ER diagrams, dependency graphs, and data flow diagrams. Auto-sync when code changes.
+Generate and maintain architecture diagrams by analyzing source code, schemas, and project structure — producing C4 models, sequence diagrams, ER diagrams, dependency graphs, and data flow diagrams. **Differs from `/chronicle` (written documentation like README, API specs, ADR) by focusing exclusively on visual architecture representations in Mermaid format.** Uses `documentation-writer` for diagram generation with `system-design` for architectural analysis and `mermaid-editor` for rendering.
 
 ---
 
@@ -18,31 +18,49 @@ Generate and maintain architecture diagrams from code. C4 (Context, Container, C
 
 | Phase | Agent | Action |
 |-------|-------|--------|
-| **Pre-Generate** | `learner` | Recall diagram conventions |
-| **Analysis** | `orchestrator` | Parallel scan of services + schema |
-| **Post-Generate** | `learner` | Log patterns for reuse |
-
----
-
-## Sub-commands
+| **Pre-Generate** | `learner` | Recall diagram conventions and project patterns |
+| **Post-Generate** | `learner` | Log diagram templates for reuse |
 
 ```
-/diagram                - Generate all diagrams
-/diagram update         - Update existing diagrams
-/diagram c4             - C4 Context + Container
-/diagram c4-component   - C4 Component level
-/diagram sequence       - Sequence diagrams (key flows)
-/diagram er             - ER diagram from schema
-/diagram dependency     - Module dependency graph
-/diagram flow           - Data flow diagram
-/diagram [scope]        - Diagram specific area
+Flow:
+learner.recall(conventions) → analyze codebase
+       ↓
+generate diagrams → render to files
+       ↓
+learner.log(templates)
 ```
 
 ---
 
-## Phase 1: Codebase Analysis
+## Sub-Commands
 
-**Auto-detect and scan:**
+| Command | Purpose | Output |
+|---------|---------|--------|
+| `/diagram` | Generate all diagrams | Full diagram suite |
+| `/diagram update` | Update existing diagrams | Changed `.mmd` files |
+| `/diagram c4` | C4 Context + Container | `docs/diagrams/context.mmd`, `container.mmd` |
+| `/diagram c4-component` | C4 Component level | `docs/diagrams/component.mmd` |
+| `/diagram sequence` | Sequence diagrams (key flows) | `docs/diagrams/seq-*.mmd` |
+| `/diagram er` | ER diagram from schema | `docs/diagrams/er.mmd` |
+| `/diagram dependency` | Module dependency graph | `docs/diagrams/deps.mmd` |
+| `/diagram flow` | Data flow diagram | `docs/diagrams/flow.mmd` |
+| `/diagram [scope]` | Diagram specific area | Scoped `.mmd` files |
+
+---
+
+## 🔴 MANDATORY: Diagram Generation Protocol
+
+### Phase 1: Codebase Analysis
+
+| Field | Value |
+|-------|-------|
+| **INPUT** | $ARGUMENTS (sub-command + optional scope) |
+| **OUTPUT** | Architecture map: services, modules, schemas, routes, integrations |
+| **AGENTS** | `documentation-writer` |
+| **SKILLS** | `system-design` |
+
+1. `learner` recalls existing diagram conventions
+2. Auto-detect and scan:
 
 | Source | Detects | Diagram Type |
 |--------|---------|-------------|
@@ -53,126 +71,76 @@ Generate and maintain architecture diagrams from code. C4 (Context, Container, C
 | Event handlers | Event chains | Data flow |
 | External integrations | Third-party services | C4 Context |
 
----
+### Phase 2: Diagram Generation
 
-## Phase 2: Diagram Types
+| Field | Value |
+|-------|-------|
+| **INPUT** | Architecture map from Phase 1 |
+| **OUTPUT** | Mermaid `.mmd` files in `docs/diagrams/` |
+| **AGENTS** | `documentation-writer` |
+| **SKILLS** | `system-design`, `mermaid-editor` |
 
-### C4 Model (4 Levels)
+Generate diagrams based on sub-command:
+
+**C4 Model (4 Levels):**
 
 | Level | Shows | When |
 |-------|-------|------|
-| **Context** | System + external actors | Always (high-level overview) |
-| **Container** | Apps + databases + services | Always (technical overview) |
-| **Component** | Internal modules + classes | On request (deep dive) |
-| **Code** | Classes + methods | Rarely (detailed design) |
+| **Context** | System + external actors | Always (high-level) |
+| **Container** | Apps + databases + services | Always (technical) |
+| **Component** | Internal modules + classes | On request |
+| **Code** | Classes + methods | Rarely |
 
-**Example C4 Context:**
-```mermaid
-graph TB
-    User[User] --> WebApp[Web Application]
-    WebApp --> API[API Server]
-    API --> DB[(PostgreSQL)]
-    API --> Redis[(Redis)]
-    API --> Stripe[Stripe API]
-    API --> Email[SendGrid]
-```
+**Sequence Diagrams** — Auto-generated for key API flows (auth, CRUD, payment).
 
-### Sequence Diagrams
+**ER Diagrams** — Auto-generated from Prisma/Drizzle schema.
 
-Auto-generated for key flows:
-```mermaid
-sequenceDiagram
-    Client->>API: POST /auth/login
-    API->>DB: Find user
-    DB-->>API: User record
-    API->>API: Verify password
-    API-->>Client: JWT token
-```
+**Dependency Graph** — Module import analysis with circular dependency detection.
 
-### ER Diagrams
+**Data Flow** — Event-driven flow between system components.
 
-Auto-generated from Prisma/Drizzle schema:
-```mermaid
-erDiagram
-    User ||--o{ Post : writes
-    User ||--o{ Comment : writes
-    Post ||--o{ Comment : has
-```
+### Phase 3: Verification & Sync
 
-### Dependency Graph
+| Field | Value |
+|-------|-------|
+| **INPUT** | Generated `.mmd` files from Phase 2 |
+| **OUTPUT** | Verified diagrams: valid mermaid syntax, no stale references |
+| **AGENTS** | `documentation-writer` |
+| **SKILLS** | `mermaid-editor` |
 
-Module dependency visualization:
-```
-/diagram dependency
-
-src/
-├── services/user.ts → [db, auth, email]
-├── services/auth.ts → [db, jwt]
-├── routes/api.ts → [services/*, middleware/*]
-└── ⚠️ Circular: utils/cache ↔ services/user
-```
-
-### Data Flow Diagram
-
-Event-driven flow visualization between system components.
+1. Validate all generated Mermaid syntax
+2. Detect issues:
+   - ⚠️ Circular dependencies
+   - ⚠️ Stale references to removed modules
+   - ⚠️ Missing connections
+3. `learner` logs diagram templates for future reuse
 
 ---
 
-## Phase 3: Diagram Rendering
+## ⛔ MANDATORY: Problem Verification Before Completion
 
-### CLI Export
+> **CRITICAL:** This check MUST be performed before any `notify_user` or task completion.
 
-```bash
-# Install Mermaid CLI
-npm install -g @mermaid-js/mermaid-cli
+### Check @[current_problems]
 
-# Convert to image
-mmdc -i diagram.mmd -o diagram.svg
-mmdc -i diagram.mmd -o diagram.png -t dark -b transparent
-
-# Batch convert all
-find docs/diagrams -name "*.mmd" -exec mmdc -i {} -o {}.svg \;
+```
+1. Read @[current_problems] from IDE
+2. If errors/warnings > 0:
+   a. Auto-fix: imports, types, lint errors
+   b. Re-check @[current_problems]
+   c. If still > 0 → STOP → Notify user
+3. If count = 0 → Proceed to completion
 ```
 
-### Themes
+### Auto-Fixable
 
-`default` · `dark` · `forest` · `neutral` · `base`
+| Type | Fix |
+|------|-----|
+| Invalid mermaid syntax | Fix node/edge formatting |
+| Missing import | Add import statement |
+| Lint errors | Run eslint --fix |
 
-### Rendering targets
-
-| Target | Format | Tool |
-|--------|--------|------|
-| GitHub | Mermaid in markdown | Native support |
-| Docs site | SVG/PNG export | mermaid-cli |
-| Confluence | Image embed | Export + upload |
-| Storybook | MDX embed | Mermaid plugin |
-
----
-
-## Phase 4: Auto-Sync
-
-**Keep diagrams in sync with code:**
-
-```bash
-/diagram update
-
-Scanning codebase...
-✅ Detected schema changes (2 new tables)
-✅ New API endpoint: POST /api/payments
-✅ New external service: Stripe
-
-Updated:
-- docs/diagrams/er.mmd (+2 tables)
-- docs/diagrams/container.mmd (+Stripe)
-- docs/diagrams/sequence-payment.mmd (new)
-```
-
-**Git hook integration:**
-```bash
-# .husky/pre-commit
-npx /diagram update --check
-# Fails if diagrams are out of sync
-```
+> **Rule:** Never mark complete with errors in `@[current_problems]`.
 
 ---
 
@@ -182,6 +150,7 @@ npx /diagram update --check
 ## 🗂️ Diagrams Generated
 
 ### Files
+
 | Diagram | Path | Status |
 |---------|------|--------|
 | C4 Context | docs/diagrams/context.mmd | ✅ Created |
@@ -191,21 +160,65 @@ npx /diagram update --check
 | Dependencies | docs/diagrams/deps.mmd | ✅ Created |
 
 ### Issues Found
-- ⚠️ Circular dependency: utils/cache ↔ services/user
+
+| Issue | Location | Severity |
+|-------|----------|----------|
+| Circular dependency | utils/cache ↔ services/user | ⚠️ Warning |
+
+### Next Steps
+
+- [ ] Review generated diagrams for accuracy
+- [ ] Fix any circular dependencies flagged
+- [ ] Run `/chronicle` for written documentation
 ```
+
+---
+
+## Examples
+
+```
+/diagram
+/diagram c4
+/diagram er
+/diagram sequence auth payment checkout
+/diagram dependency src/services/
+/diagram update
+```
+
+---
+
+## Key Principles
+
+- **Code as source** — extract diagrams from code, don't maintain manually
+- **Auto-sync** — regenerate when code changes to prevent diagram drift
+- **Detect issues** — flag circular dependencies and stale references
+- **Mermaid native** — use Mermaid format for GitHub/docs compatibility
 
 ---
 
 ## 🔗 Workflow Chain
 
-**Skills (2):** `system-design` · `mermaid-editor`
+**Skills Loaded (2):**
+
+- `system-design` - Architectural analysis and decision-making
+- `mermaid-editor` - Mermaid diagram syntax, rendering, and validation
+
+```mermaid
+graph LR
+    A["/chronicle"] --> B["/diagram"]
+    B --> C["/inspect"]
+    style B fill:#10b981
+```
 
 | After /diagram | Run | Purpose |
-|----------------|-----|---------|
-| Need full docs | `/chronicle` | Generate all docs |
-| Need API first | `/api` | Create API then diagram |
-| Circular deps | `/diagnose` | Fix dependency issues |
+|---------------|-----|---------|
+| Need written docs | `/chronicle` | Generate README, API specs, ADR |
+| Circular deps found | `/diagnose` | Investigate dependency issues |
+| Need code review | `/inspect` | Architecture quality review |
 
----
+**Handoff to /chronicle:**
 
-**Version:** 2.0.0 · **Updated:** v3.9.64
+```markdown
+🗂️ Diagrams generated! [X] files created in docs/diagrams/.
+Issues: [circular deps / none]. Run `/chronicle` for written documentation.
+```

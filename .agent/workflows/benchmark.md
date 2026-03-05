@@ -1,5 +1,6 @@
 ---
 description: Run k6/Artillery load tests with realistic scenarios. Measure throughput, latency, and error rates.
+chain: performance-audit
 ---
 
 # /benchmark - Performance Load Testing
@@ -10,210 +11,144 @@ $ARGUMENTS
 
 ## Purpose
 
-This workflow uses the **perf-optimizer** skill to:
+Run realistic load tests against APIs and web applications to measure throughput, latency percentiles, and error rates under pressure. **Differs from `/optimize` (which fixes performance issues) by focusing exclusively on measurement and bottleneck identification.** Uses `backend-specialist` for test script generation and analysis, with `perf-optimizer` for benchmark methodology and `observability` for metrics collection.
 
-- Run realistic load tests (k6/Artillery)
-- Measure performance under load
-- Identify bottlenecks at scale
-- Generate performance reports
+---
 
 ## 🤖 Meta-Agents Integration
 
 | Phase | Agent | Action |
 | ----- | ----- | ------ |
 | **Pre-Test** | `recovery` | Save current performance baseline |
-| **During Test** | `orchestrator` | Coordinate parallel load scenarios |
-| **Post-Test** | `learner` | Learn bottleneck patterns |
-| **Analysis** | `assessor` | Evaluate production-readiness risk |
+| **Post-Test** | `learner` | Learn bottleneck patterns for reuse |
+| **Analysis** | `assessor` | Evaluate production-readiness risk (go/no-go) |
 
 ```
 Flow:
-recovery.save(baseline) → orchestrator.run(load_test)
+recovery.save(baseline) → generate test script
        ↓
-results → learner.log(bottlenecks)
+execute load test → collect metrics
        ↓
-assessor.evaluate(production_risk) → go/no-go
+analyze results → learner.log(bottlenecks)
+       ↓
+assessor.evaluate(production_risk) → go/no-go decision
 ```
 
 ---
 
-## 🔗 Chain: performance-audit (perf-optimizer skill only)
+## 🔴 MANDATORY: Load Testing Protocol
 
-**Skills Loaded (1):**
+### Phase 1: Test Configuration
 
-- `perf-optimizer` - k6/Artillery load testing, performance benchmarking
+| Field | Value |
+|-------|-------|
+| **INPUT** | $ARGUMENTS (target description — API URL, user count, scenario type) |
+| **OUTPUT** | Load test script (`benchmark/load-test.js`) with scenarios and thresholds |
+| **AGENTS** | `backend-specialist` |
+| **SKILLS** | `perf-optimizer` |
 
-## 📖 Usage
+1. Identify target endpoints and user scenarios
+2. Select test type based on goal:
 
+| Test Type | Pattern | Duration | Use When |
+|-----------|---------|----------|----------|
+| **Smoke** | 1-5 users | 1 min | Verify test works |
+| **Load** | Ramp 100 → 1K → 5K → 10K | 16 min | Standard benchmark |
+| **Spike** | 100 → 10K (1 min) | 5 min | Burst handling |
+| **Soak** | 1K sustained | 3 hours | Memory leak detection |
+| **Stress** | Increment until failure | Variable | Find breaking point |
+
+3. Generate k6 or Artillery script with:
+   - Realistic user scenarios (browse, search, checkout)
+   - Staged ramp-up pattern
+   - Performance thresholds (p95 < 200ms, error rate < 1%)
+   - Think time between requests
+
+### Phase 2: Test Execution
+
+| Field | Value |
+|-------|-------|
+| **INPUT** | Load test script from Phase 1 |
+| **OUTPUT** | Raw test results (JSON + console output) |
+| **AGENTS** | `backend-specialist` |
+| **SKILLS** | `perf-optimizer` |
+
+1. Save current performance baseline via `recovery`
+2. Execute load test with real-time monitoring
+
+// turbo
 ```bash
-/benchmark <description>
+npx k6 run benchmark/load-test.js --out json=benchmark/results.json
 ```
 
-## Examples
+3. Monitor during execution:
+   - Active virtual users
+   - Request rate (rps)
+   - Error count
+   - Response time distribution
 
-```bash
-# Basic benchmark
-/benchmark my-api
+### Phase 3: Analysis & Reporting
 
-# With specific target
-/benchmark 10,000 concurrent users
+| Field | Value |
+|-------|-------|
+| **INPUT** | Raw test results from Phase 2 |
+| **OUTPUT** | Performance report with bottleneck analysis and recommendations |
+| **AGENTS** | `backend-specialist` |
+| **SKILLS** | `perf-optimizer`, `observability` |
 
-# Production validation
-/benchmark production checkout flow
-```
+1. Parse results and calculate metrics:
 
-## 📁„ Workflow Steps
+| Metric | Target | Description |
+|--------|--------|-------------|
+| p50 Latency | < 100ms | Median response time |
+| p95 Latency | < 200ms | 95th percentile |
+| p99 Latency | < 500ms | 99th percentile |
+| Error Rate | < 1% | Failed requests percentage |
+| Throughput | 1,000+ rps | Requests per second |
+| Max Users | 10,000+ | Concurrent user capacity |
 
-This workflow automatically:
+2. Identify bottlenecks:
 
-1. **Generate Load Test Script**
-   - Realistic user scenarios
-   - Staged ramp-up (100 → 1K → 5K → 10K users)
-   - Performance thresholds
+| Symptom | Likely Cause | Recommended Fix |
+|---------|-------------|-----------------|
+| Timeouts at load | Connection pool exhausted | Increase pool size |
+| Memory spikes | Memory leak | Fix resource cleanup |
+| High latency | Slow queries | Add indexes, caching |
+| 500 errors | Resource limits | Scale horizontally |
+| CPU > 80% | Compute-bound | Optimize algorithms |
 
-2. **Run Load Test**
-   - Execute k6/Artillery
-   - Monitor observability in real-time
-   - Capture bottlenecks
+3. Generate go/no-go recommendation via `assessor`:
+   - **GO:** All targets met → ready for production
+   - **NO-GO:** Critical metrics failed → fix before deploy
 
-3. **Analyze Results**
-   - p50, p95, p99 latency
-   - Error rate
-   - Throughput (requests/sec)
-   - Resource usage
+4. Log patterns via `learner` for future benchmarks
 
-4. **Generate Report**
-   - Performance summary
-   - Bottleneck identification
-   - Recommendations
+---
 
-## ✅ Success Criteria
+## ⛔ MANDATORY: Problem Verification Before Completion
 
-After running `/benchmark`, you will have:
+> **CRITICAL:** This check MUST be performed before any `notify_user` or task completion.
 
-✓ **Load Test Completed** - At target scale
-✓ **observability Captured** - Latency, errors, throughput
-✓ **Bottlenecks Identified** - Database, memory, network
-✓ **Report Generated** - HTML + JSON results
-
-## 📊 Load Test Scenarios
-
-### Spike Test
-
-Rapid increase to validate burst handling
+### Check @[current_problems]
 
 ```
-100 users → 10,000 users (1 minute)
+1. Read @[current_problems] from IDE
+2. If errors/warnings > 0:
+   a. Auto-fix: imports, types, lint errors
+   b. Re-check @[current_problems]
+   c. If still > 0 → STOP → Notify user
+3. If count = 0 → Proceed to completion
 ```
 
-### Soak Test
+### Auto-Fixable
 
-Sustained load to detect memory leaks
+| Type | Fix |
+|------|-----|
+| Missing import | Add import statement |
+| Unused variable | Remove or prefix `_` |
+| Lint errors | Run eslint --fix |
 
-```
-1,000 users (3 hours)
-```
-
-### Stress Test
-
-Find breaking point
-
-```
-Incrementally increase until failure
-```
-
-## 🎨 Performance observability
-
-| Metric          | Measured        | Target     |
-| --------------- | --------------- | ---------- |
-| **p95 Latency** | Response time   | <200ms     |
-| **Error Rate**  | Failed requests | <1%        |
-| **Throughput**  | Requests/sec    | 1,000+ rps |
-| **Max Users**   | Concurrent      | 10,000+    |
-
-## 📁 Related Workflows
-
-- `/optimize` - Auto-optimize before benchmarking
-- `/monitor` - Setup monitoring for production
-- `/launch` - Deploy after validation
-
-## 💡 Tips
-
-**When to use `/benchmark`:**
-
-- Before going to production
-- After optimizations (validate improvements)
-- Regular performance regression testing
-- Capacity planning
-
-**Best practices:**
-
-- Test realistic user scenarios
-- Gradually ramp up load
-- Monitor infrastructure during test
-- Run multiple times for consistency
-
-## 📚 Example Output
-
-```bash
-You: "/benchmark my-api 10K users"
-
-Agent: Loading performance-audit chain (perf-optimizer only)
-       ↓
-
-[1/1] 🧪 Running Load Test...
-
-   Scenario: Ramp to 10,000 concurrent users
-   Duration: 16 minutes
-   Tool: k6
-
-   ✅ Test complete!
-
-📊 Results:
-
-   Requests:
-   ✅ Total: 1,245,000
-   ✅ Success: 1,242,500 (99.8%)
-   âŒ Failed: 2,500 (0.2%)
-
-   Response Time:
-   ✅ p50: 85ms
-   ✅ p95: 180ms
-   ⚠ï¸ p99: 450ms
-   ✅ Max: 1.2s
-
-   Throughput:
-   ✅ 4,150 requests/sec
-   ✅ 15 GB data received
-
-   Errors:
-   ✅ Error rate: 0.2% (target: <1% ✓)
-   ⚠ï¸ Timeout errors: 1,500 (database)
-
-🎯 Bottlenecks Detected:
-   âŒ Database connections maxed (20/20)
-   ⚠ï¸ Memory usage: 90%
-   ✅ CPU usage: 45%
-
-💡 Recommendations:
-   1. Increase DB pool: 20 → 50
-   2. Add horizontal scaling (2 → 4 instances)
-   3. Implement request queuing
-
-✅ Benchmark complete!
-
-   Report: performance-report.html
-   Raw data: results.json
-```
-
-## 🚨 Common Bottlenecks
-
-| Symptom              | Cause                     | Fix                  |
-| -------------------- | ------------------------- | -------------------- |
-| **Timeouts at load** | Connection pool exhausted | Increase pool size   |
-| **Memory spikes**    | Memory leak               | Fix resource cleanup |
-| **High latency**     | Slow queries              | Add indexes          |
-| **500 errors**       | Resource limits           | Scale horizontally   |
+> **Rule:** Never mark complete with errors in `@[current_problems]`.
 
 ---
 
@@ -223,21 +158,66 @@ Agent: Loading performance-audit chain (perf-optimizer only)
 ## 📊 Benchmark Results
 
 ### Performance Summary
+
 | Metric | Value | Target | Status |
 |--------|-------|--------|--------|
-| p95 Latency | [X]ms | <200ms | ✅/❌ |
-| Error Rate | [X]% | <1% | ✅/❌ |
+| p50 Latency | [X]ms | < 100ms | ✅/❌ |
+| p95 Latency | [X]ms | < 200ms | ✅/❌ |
+| p99 Latency | [X]ms | < 500ms | ✅/❌ |
+| Error Rate | [X]% | < 1% | ✅/❌ |
 | Throughput | [X] rps | 1000+ | ✅/❌ |
+| Max Users | [X] | 10,000+ | ✅/❌ |
+
+### Bottlenecks Detected
+
+| Component | Issue | Severity | Fix |
+|-----------|-------|----------|-----|
+| Database | Pool exhausted (20/20) | 🔴 High | Increase to 50 |
+| Memory | Usage at 90% | 🟡 Medium | Profile allocations |
+
+### Production Readiness
+
+| Decision | Reason |
+|----------|--------|
+| ✅ GO / ❌ NO-GO | [Summary of critical metrics] |
 
 ### Next Steps
-- [ ] Review bottleneck analysis
-- [ ] Apply recommendations
-- [ ] Re-run after fixes
+
+- [ ] Apply bottleneck fixes
+- [ ] Re-run benchmark after optimizations
+- [ ] Deploy to production: `/launch`
 ```
 
 ---
 
+## Examples
+
+```
+/benchmark my-api 10K concurrent users
+/benchmark production checkout flow with spike test
+/benchmark REST API soak test for 3 hours at 1K users
+/benchmark stress test to find breaking point
+/benchmark compare before/after optimization results
+```
+
+---
+
+## Key Principles
+
+- **Realistic scenarios** — test actual user journeys, not synthetic endpoints
+- **Gradual ramp-up** — staged load increase reveals bottlenecks at each tier
+- **Multiple runs** — single runs are noisy, average 3+ runs for consistency
+- **Monitor infrastructure** — observe CPU, memory, disk I/O, network during test
+- **Go/no-go decision** — every benchmark ends with a clear production readiness verdict
+
+---
+
 ## 🔗 Workflow Chain
+
+**Skills Loaded (2):**
+
+- `perf-optimizer` - k6/Artillery load testing, Core Web Vitals, performance profiling
+- `observability` - Metrics collection, monitoring, instrumentation
 
 ```mermaid
 graph LR
@@ -247,19 +227,14 @@ graph LR
 ```
 
 | After /benchmark | Run | Purpose |
-|------------------|-----|---------|
-| Bottlenecks found | `/optimize` | Fix performance issues |
+|-----------------|-----|---------|
+| Bottlenecks found | `/optimize` | Fix performance issues, then re-benchmark |
 | All targets met | `/launch` | Deploy to production |
-| Need monitoring | `/monitor` | Setup observability |
+| Need ongoing monitoring | `/monitor` | Setup production observability |
 
-**Handoff:**
+**Handoff to /optimize:**
+
 ```markdown
-✅ Benchmark complete! See report for bottleneck analysis.
+📊 Benchmark complete! p95=[X]ms, error rate=[X]%, throughput=[X]rps.
+Bottlenecks: [list]. Run `/optimize` to fix, then re-benchmark.
 ```
-
----
-
-**Version:** 1.0.0  
-**Chain:** performance-audit (perf-optimizer)  
-**Added:** v3.5.0 (FAANG upgrade - Phase 2)
-

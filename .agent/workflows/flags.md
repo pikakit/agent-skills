@@ -10,7 +10,7 @@ $ARGUMENTS
 
 ## Purpose
 
-Manage feature flags for A/B testing, gradual rollouts, kill switches, and user targeting. **Toggle features without redeploying. Track metrics per flag. Auto-cleanup stale flags.**
+Manage feature flags for A/B testing, gradual rollouts, kill switches, and user targeting — toggling features without redeploying code. **Differs from `/launch` (full deployment pipeline) by managing runtime feature visibility at the application layer without requiring a new deploy.** Uses `backend-specialist` with `cicd-pipeline` for flag infrastructure and `server-ops` for environment management.
 
 ---
 
@@ -18,14 +18,24 @@ Manage feature flags for A/B testing, gradual rollouts, kill switches, and user 
 
 | Phase | Agent | Action |
 |-------|-------|--------|
-| **Rollout** | `assessor` | Evaluate risk of feature rollout |
-| **Backup** | `recovery` | Save flag state before changes |
-| **Learning** | `learner` | Learn from rollout success/failure |
-| **Issues** | `recovery` | Quick rollback via kill switch |
+| **Pre-Rollout** | `assessor` | Evaluate risk of feature rollout |
+| **State Change** | `recovery` | Save flag state before modifications |
+| **Post-Change** | `learner` | Learn from rollout success/failure |
+
+```
+Flow:
+assessor.evaluate(rollout_risk) → recovery.save(flag_state)
+       ↓
+create/modify flags → verify
+       ↓ issue
+recovery.restore(flag_state)
+       ↓ success
+learner.log(rollout_outcome)
+```
 
 ---
 
-## Commands
+## Sub-Commands
 
 | Command | Action |
 |---------|--------|
@@ -42,35 +52,39 @@ Manage feature flags for A/B testing, gradual rollouts, kill switches, and user 
 
 ---
 
-## Phase 1: Flag Creation & Configuration
+## 🔴 MANDATORY: Feature Flag Protocol
 
-### Quick Start
+### Phase 1: Flag Configuration
 
-// turbo
-```bash
-node .agent/skills/cicd-pipeline/scripts/flag-manager.js init
-```
+| Field | Value |
+|-------|-------|
+| **INPUT** | $ARGUMENTS (sub-command + flag name + optional rules) |
+| **OUTPUT** | Feature flag created/modified in `.featureflags.json` |
+| **AGENTS** | `backend-specialist` |
+| **SKILLS** | `cicd-pipeline` |
 
-### Flag schema
+1. `recovery` saves current flag state
+2. Parse sub-command and determine action
+3. For `create`: generate flag with schema:
 
 ```json
 {
   "flags": {
-    "new-checkout": {
+    "flag-name": {
       "enabled": true,
       "percentage": 50,
       "targeting": {
-        "segments": ["beta-users", "premium"],
-        "countries": ["US", "UK"],
+        "segments": ["beta-users"],
+        "countries": ["US"],
         "platforms": ["ios", "android"]
       },
       "metrics": {
         "track": ["conversion_rate", "error_rate"],
-        "baseline": "old-checkout"
+        "baseline": "control"
       },
       "lifecycle": {
-        "created": "2026-02-01",
-        "owner": "team-payments",
+        "created": "YYYY-MM-DD",
+        "owner": "team-name",
         "stale_after_days": 30
       }
     }
@@ -78,9 +92,18 @@ node .agent/skills/cicd-pipeline/scripts/flag-manager.js init
 }
 ```
 
----
+4. For `rollout`: `assessor` evaluates rollout risk
 
-## Phase 2: Targeting Rules
+### Phase 2: Targeting & Rules
+
+| Field | Value |
+|-------|-------|
+| **INPUT** | Flag configuration from Phase 1 |
+| **OUTPUT** | Targeting rules applied to flag |
+| **AGENTS** | `backend-specialist` |
+| **SKILLS** | `cicd-pipeline` |
+
+**Evaluation order:** Kill switch → User ID → Segment → Country → Platform → Percentage
 
 | Rule Type | Example | Use When |
 |-----------|---------|----------|
@@ -91,42 +114,16 @@ node .agent/skills/cicd-pipeline/scripts/flag-manager.js init
 | **User ID** | Specific user IDs | Individual targeting |
 | **Custom** | `plan === 'pro'` | Business logic |
 
-**Evaluation order:** Kill switch → User ID → Segment → Country → Platform → Percentage
+### Phase 3: Verification & Metrics
 
----
+| Field | Value |
+|-------|-------|
+| **INPUT** | Applied flag configuration from Phase 2 |
+| **OUTPUT** | Verification result: flag active, metrics tracking, no errors |
+| **AGENTS** | `backend-specialist` |
+| **SKILLS** | `cicd-pipeline`, `server-ops` |
 
-## Phase 3: A/B Testing & Metrics
-
-**Track conversions per flag variant:**
-
-```bash
-/flags metrics new-checkout
-
-┌─────────────┬───────────┬───────────┐
-│ Metric      │ Control   │ Variant   │
-├─────────────┼───────────┼───────────┤
-│ Conversion  │ 3.2%      │ 4.1% ↑28% │
-│ Error rate  │ 0.5%      │ 0.3% ↓40% │
-│ Avg latency │ 450ms     │ 380ms ↓16% │
-│ Users       │ 5,000     │ 5,000     │
-│ Confidence  │           │ 95% ✅     │
-└─────────────┴───────────┴───────────┘
-
-Recommendation: ✅ Roll out to 100% (statistically significant)
-```
-
-**Metrics integration:**
-
-| Tool | Purpose |
-|------|---------|
-| PostHog | Feature flag analytics (built-in) |
-| LaunchDarkly | Enterprise flag management |
-| Firebase Remote Config | Mobile flags |
-| Custom + Redis | Lightweight, self-hosted |
-
----
-
-## Phase 4: Multi-Environment
+1. Verify flag is correctly configured across environments:
 
 | Environment | Flag Source | Override |
 |------------|-----------|----------|
@@ -134,85 +131,126 @@ Recommendation: ✅ Roll out to 100% (statistically significant)
 | **Staging** | Remote config | Match production % |
 | **Production** | Remote config | Conservative rollout |
 
-```bash
-/flags list --env production
+2. Verify metrics tracking is active
+3. `learner` logs rollout pattern
 
-new-checkout:  ✅ 50% (production)
-dark-mode:     ⏳ 10% (production)
-legacy-api:    🔴 kill-switch OFF
-```
-
----
-
-## Phase 5: Flag Lifecycle & Cleanup
-
-**Stale flag detection:**
-
-```bash
-/flags cleanup
-
-⚠️ Stale Flags Detected:
-
-| Flag | Age | Status | Action |
-|------|-----|--------|--------|
-| old-onboarding | 45 days | 100% | → Remove code + flag |
-| beta-search | 30 days | 0% | → Remove flag |
-| payment-v2 | 15 days | 50% | ✅ Active |
-
-Auto-cleanup: Remove 2 stale flags? (y/n)
-```
-
-**Lifecycle states:**
+**Flag lifecycle states:**
 ```
 Created → Testing → Rollout (10→25→50→100%) → Permanent → Cleanup
 ```
 
 ---
 
-## Integration
+## ⛔ MANDATORY: Problem Verification Before Completion
 
-### React
-```tsx
-import { useFeatureFlag } from "@/flags";
+> **CRITICAL:** This check MUST be performed before any `notify_user` or task completion.
 
-function App() {
-  const showNew = useFeatureFlag("new-feature");
-  return showNew ? <NewVersion /> : <OldVersion />;
-}
+### Check @[current_problems]
+
+```
+1. Read @[current_problems] from IDE
+2. If errors/warnings > 0:
+   a. Auto-fix: imports, types, lint errors
+   b. Re-check @[current_problems]
+   c. If still > 0 → STOP → Notify user
+3. If count = 0 → Proceed to completion
 ```
 
-### Node.js
-```javascript
-import { isEnabled } from "./flags";
+### Auto-Fixable
 
-if (isEnabled("new-checkout", { userId: req.user.id, country: "US" })) {
-  return newCheckout(req, res);
-}
+| Type | Fix |
+|------|-----|
+| Missing import | Add import statement |
+| Invalid JSON | Fix flag configuration syntax |
+| Lint errors | Run eslint --fix |
+
+> **Rule:** Never mark complete with errors in `@[current_problems]`.
+
+---
+
+## Output Format
+
+```markdown
+## 🚩 Feature Flags Updated
+
+### Flag Changes
+
+| Flag | Action | Status | Rollout |
+|------|--------|--------|---------|
+| `new-checkout` | Created | ✅ | 50% |
+| `dark-mode` | Updated | ✅ | 10% → 25% |
+| `legacy-api` | Disabled | 🔴 | Kill switch |
+
+### Metrics
+
+| Metric | Control | Variant | Δ |
+|--------|---------|---------|---|
+| Conversion | 3.2% | 4.1% | ↑28% |
+| Error rate | 0.5% | 0.3% | ↓40% |
+| Confidence | | | 95% ✅ |
+
+### Stale Flags
+
+| Flag | Age | Status | Action |
+|------|-----|--------|--------|
+| old-onboarding | 45 days | 100% | → Remove |
+| beta-search | 30 days | 0% | → Remove |
+
+### Next Steps
+
+- [ ] Monitor metrics for statistical significance
+- [ ] Run `/validate` to test both flag states
+- [ ] Clean up stale flags with `/flags cleanup`
 ```
 
 ---
 
-## Best Practices
+## Examples
 
-1. **Name clearly** — `new-checkout-flow` not `flag1`
-2. **Set owner** — every flag has a team owner
-3. **Set expiry** — `stale_after_days: 30`
-4. **Track metrics** — always measure impact
-5. **Clean up** — remove after 100% rollout
-6. **Test both states** — code works with flag on/off
+```
+/flags init
+/flags create new-checkout --pct 10 --owner team-payments
+/flags rollout new-checkout 50
+/flags target new-checkout --segment beta-users --country US
+/flags metrics new-checkout
+/flags cleanup
+```
+
+---
+
+## Key Principles
+
+- **Name clearly** — `new-checkout-flow` not `flag1`, every flag has a team owner
+- **Set expiry** — `stale_after_days: 30`, clean up after 100% rollout
+- **Track metrics** — always measure impact with control vs variant
+- **Test both states** — code must work with flag on AND off
+- **Gradual rollout** — 10% → 25% → 50% → 100%, never jump to 100%
 
 ---
 
 ## 🔗 Workflow Chain
 
-**Skills (2):** `cicd-pipeline` · `server-ops`
+**Skills Loaded (2):**
+
+- `cicd-pipeline` - Feature flag infrastructure and deployment
+- `server-ops` - Multi-environment flag management
+
+```mermaid
+graph LR
+    A["/build"] --> B["/flags"]
+    B --> C["/launch"]
+    style B fill:#10b981
+```
 
 | After /flags | Run | Purpose |
-|--------------|-----|---------|
-| Deploy | `/launch` | Deploy with flags |
-| Test | `/validate` | Test flag states |
-| Issues | `/diagnose` | Debug flag issues |
+|-------------|-----|---------|
+| Ready to deploy | `/launch` | Deploy with feature flags |
+| Need to verify | `/validate` | Test flag on/off states |
+| Flag issues | `/diagnose` | Debug flag behavior |
 
----
+**Handoff to /launch:**
 
-**Version:** 2.0.0 · **Updated:** v3.9.64
+```markdown
+🚩 Feature flags configured. [X] flags active, [Y]% rollout.
+Run `/launch` to deploy or `/validate` to test both flag states.
+```

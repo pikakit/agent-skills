@@ -10,7 +10,7 @@ $ARGUMENTS
 
 ## Purpose
 
-Display real-time project status including agent progress, file statistics, and preview health. **Single command for complete project visibility.**
+Display real-time project health — agent progress, file statistics, build metrics, preview server status, and 7-day trends in a single dashboard view. **Differs from `/monitor` (production observability with OpenTelemetry) and `/inspect` (code quality review) by providing a development-time project overview for tracking build progress.** Uses `assessor` for health risk evaluation and `execution-reporter` for agent status aggregation.
 
 ---
 
@@ -18,148 +18,101 @@ Display real-time project status including agent progress, file statistics, and 
 
 | Phase | Agent | Action |
 | ----- | ----- | ------ |
-| **Status Collection** | `orchestrator` | Aggregate status from all running agents |
-| **Health Analysis** | `assessor` | Evaluate project health risks |
-| **Trend Learning** | `learner` | Track observability over time for trend analysis |
+| **Status Collection** | `assessor` | Evaluate project health risks from metrics |
+| **Trend Analysis** | `learner` | Track metrics over time for trend detection |
+
+```
+Flow:
+collect(session, preview, metrics) → assessor.evaluate(health)
+       ↓
+dashboard output → learner.log(trends)
+```
 
 ---
 
-## What It Shows
+## 🔴 MANDATORY: Health Dashboard Protocol
 
-| Section          | Information                                   |
-| ---------------- | --------------------------------------------- |
-| **Project Info** | Name, path, tech stack, features              |
-| **Agent Board**  | Running agents, completed tasks, pending work |
-| **File Stats**   | Created/modified file counts                  |
-| **Preview**      | Server URL, health status                     |
+### Phase 1: Data Collection
 
----
+| Field | Value |
+|-------|-------|
+| **INPUT** | $ARGUMENTS (optional: specific section to check) |
+| **OUTPUT** | Raw status data: session, preview, metrics |
+| **AGENTS** | none |
+| **SKILLS** | `execution-reporter` |
 
-## Technical
-
-### Get Status
+1. Collect session status:
 
 // turbo
-
 ```bash
 node .agent/scripts-js/session_manager.js status
-# OR: npm run session:status
 ```
 
-### Check Preview
+2. Check preview server:
 
 // turbo
-
 ```bash
 node .agent/scripts-js/auto_preview.js status
-# OR: npm run preview:status
 ```
+
+3. Collect project metrics (file count, git activity, dependencies):
+
+// turbo
+```bash
+git log --oneline -10
+```
+
+### Phase 2: Health Analysis & Display
+
+| Field | Value |
+|-------|-------|
+| **INPUT** | Raw status data from Phase 1 |
+| **OUTPUT** | Formatted dashboard with health indicators |
+| **AGENTS** | none |
+| **SKILLS** | `execution-reporter` |
+
+Analyze collected data and evaluate KPI thresholds (see below).
+
+3. Evaluate KPI thresholds:
+
+| Metric | Good | Warning | Critical |
+|--------|------|---------|----------|
+| Build Time | < 5s | 5-15s | > 15s |
+| Bundle Size | < 250KB | 250-500KB | > 500KB |
+| Test Coverage | > 80% | 60-80% | < 60% |
+| Lighthouse | > 90 | 70-90 | < 70 |
+
+### Phase 3: Risk Assessment
+
+| Field | Value |
+|-------|-------|
+| **INPUT** | Dashboard metrics from Phase 2 |
+| **OUTPUT** | Health summary with risk flags and recommendations |
+| **AGENTS** | none |
+| **SKILLS** | `project-planner` |
+
+1. `assessor` evaluates metrics against KPI thresholds
+2. Flag critical metrics with ❌
+3. Suggest next workflow based on findings
 
 ---
 
-## 📊 observability DASHBOARD (FAANG+)
+## ⛔ MANDATORY: Problem Verification Before Completion
 
-### Collect observability
+> **CRITICAL:** This check MUST be performed before any `notify_user` or task completion.
 
-// turbo
-
-```bash
-node .agent/scripts-js/observability-collector.js collect
-```
-
-### Show Current observability
-
-// turbo
-
-```bash
-node .agent/scripts-js/observability-collector.js show
-```
-
-### Show 7-Day Trends
-
-// turbo
-
-```bash
-node .agent/scripts-js/observability-collector.js trends
-```
-
-### Dashboard Output
+### Check @[current_problems]
 
 ```
-┌─────────────────────────────────────────â”
-│  📊 Project observability Dashboard           │
-├─────────────────────────────────────────┤
-│  Build Time:    2.3s (↓ 15%)           │
-│  Bundle Size:   245KB (stable)          │
-│  Source Files:  142                     │
-│  Test Coverage: 87% (↑ 3%)             │
-│  Lighthouse:    92/100                  │
-│  Security:      0 vulnerabilities       │
-├─────────────────────────────────────────┤
-│  7-Day Trend: â–▂▃▄▅▆▇█                  │
-└─────────────────────────────────────────┘
+1. Read @[current_problems] from IDE
+2. If errors/warnings > 0:
+   a. Auto-fix: imports, types, lint errors
+   b. Re-check @[current_problems]
+   c. If still > 0 → Include in dashboard output
+3. If count = 0 → Show clean status
 ```
 
-### KPI Thresholds
-
-| Metric        | Good    | Warning   | Critical |
-| ------------- | ------- | --------- | -------- |
-| Build Time    | < 5s    | 5-15s     | > 15s    |
-| Bundle Size   | < 250KB | 250-500KB | > 500KB  |
-| Test Coverage | > 80%   | 60-80%    | < 60%    |
-| Lighthouse    | > 90    | 70-90     | < 70     |
-
-## Example Output
-
-```markdown
-=== Project Status ===
-
-ðŸ“ Project: my-ecommerce
-📂 Path: C:/projects/my-ecommerce
-ðŸ·ï¸ Type: nextjs-ecommerce
-📊 Status: active
-
-📁§ Tech Stack:
-Framework: next.js
-Database: postgresql
-Auth: clerk
-Payment: stripe
-
-✅ Features (5):
-•¢ product-listing
-•¢ cart
-•¢ checkout
-•¢ user-auth
-•¢ order-history
-
-â³ Pending (2):
-•¢ admin-panel
-•¢ email-notifications
-
-📄 Files: 73 created, 12 modified
-
-=== Agent Status ===
-
-| Agent               | Task   | Status      |
-| ------------------- | ------ | ----------- |
-| database-architect  | Schema | ✅ Complete |
-| backend-specialist  | API    | ✅ Complete |
-| frontend-specialist | UI     | 📁„ 60%      |
-| test-engineer       | Tests  | â³ Waiting  |
-
-=== Preview ===
-
-ðŸŒ URL: http://localhost:3000
-💚 Health: OK
-```
-
----
-
-## Examples
-
-```
-/pulse
-```
+> **Note:** /pulse is a read-only dashboard. Problems are reported, not fixed.
 
 ---
 
@@ -168,18 +121,64 @@ Payment: stripe
 ```markdown
 ## 📊 Project Pulse
 
-### Status Summary
-| Component | Status |
-|-----------|--------|
-| Agents | 3/4 complete |
-| Files | 73 created, 12 modified |
-| Preview | ✅ localhost:3000 |
+### Project Info
+
+| Field | Value |
+|-------|-------|
+| Name | [project-name] |
+| Stack | [framework, db, auth] |
+| Status | ✅ Active |
+
+### Agent Board
+
+| Agent | Task | Status |
+|-------|------|--------|
+| `database-architect` | Schema | ✅ Complete |
+| `backend-specialist` | API | ✅ Complete |
+| `frontend-specialist` | UI | ⏳ 60% |
+| `test-engineer` | Tests | ⏳ Waiting |
+
+### Metrics
+
+| Metric | Value | Status |
+|--------|-------|--------|
+| Build Time | 2.3s | ✅ |
+| Bundle Size | 245KB | ✅ |
+| Test Coverage | 87% | ✅ |
+| Lighthouse | 92 | ✅ |
+
+### Preview
+
+| Field | Value |
+|-------|-------|
+| URL | http://localhost:3000 |
+| Health | ✅ OK |
 
 ### Next Steps
-- [ ] Check agent progress
-- [ ] Review preview health
-- [ ] Run tests when ready
+
+- [ ] Run `/validate` when agents complete
+- [ ] Run `/optimize` if metrics degrade
+- [ ] Run `/launch` when ready to deploy
 ```
+
+---
+
+## Examples
+
+```
+/pulse
+/pulse my-ecommerce
+/pulse --metrics-only
+```
+
+---
+
+## Key Principles
+
+- **Read-only** — /pulse observes and reports, never modifies
+- **Single command** — one command for complete project visibility
+- **KPI thresholds** — color-code metrics against defined targets
+- **Trend awareness** — show 7-day trends to detect regressions early
 
 ---
 
@@ -192,19 +191,20 @@ Payment: stripe
 
 ```mermaid
 graph LR
-    A["/pulse"] --> B["📊 Status"]
-    style A fill:#22c55e
+    A["/build"] --> B["/pulse"]
+    B --> C["/validate"]
+    style B fill:#10b981
 ```
 
-| After /pulse    | Run         | Purpose   |
-| --------------- | ----------- | --------- |
-| See issues      | `/diagnose` | Debug     |
-| Ready to test   | `/validate` | Run tests |
-| Ready to deploy | `/launch`   | Deploy    |
+| After /pulse | Run | Purpose |
+|-------------|-----|---------|
+| See issues | `/diagnose` | Debug problems |
+| Ready to test | `/validate` | Run test suite |
+| Ready to deploy | `/launch` | Deploy to production |
 
-**Handoff:**
+**Handoff to /validate:**
 
 ```markdown
-Status: 5 features complete, preview running at localhost:3000
+📊 Pulse: [X] features complete, [Y] agents active. Preview at localhost:3000.
+Run `/validate` to test or `/diagnose` for issues.
 ```
-

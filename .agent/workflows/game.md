@@ -10,7 +10,7 @@ $ARGUMENTS
 
 ## Purpose
 
-Orchestrates game development from concept to published game. Routes to sub-skills for platform, multiplayer, audio, and visual effects. Includes asset pipeline, build matrix, and store submission.
+Orchestrate game development from concept to published game — routing to platform-specific engines, implementing core game loops, managing asset pipelines, and handling multiplayer networking. **Differs from `/build` (general web/mobile apps) by focusing on game-specific concerns: frame budgets, physics, ECS architecture, networking models, and store submission.** Uses `game-developer` with `game-development` skill, coordinated by `orchestrator` for parallel art + audio + code pipelines.
 
 ---
 
@@ -18,142 +18,143 @@ Orchestrates game development from concept to published game. Routes to sub-skil
 
 | Phase | Agent | Action |
 |-------|-------|--------|
-| **Design** | `assessor` | Evaluate scope, platform risks, perf budget |
-| **Checkpoint** | `recovery` | Save state before major changes |
-| **Build** | `orchestrator` | Coordinate parallel tasks (art + audio + code) |
-| **Conflict** | `critic` | Design vs. performance trade-offs |
-| **Post-Build** | `learner` | Log patterns for reuse |
-
----
-
-## Phase 1: Requirements
-
-1. **Ask critical questions:**
-
-   | Question | Options | Impact |
-   |----------|---------|--------|
-   | Platform? | Web / Mobile / PC / Console / VR-AR | Engine + build pipeline |
-   | Dimension? | 2D / 2.5D / 3D | Rendering pipeline |
-   | Genre? | Platformer / Puzzle / Shooter / RPG / Sandbox | Core mechanics |
-   | Multiplayer? | Solo / Local co-op / Online PvP / MMO | Networking stack |
-   | Target FPS? | 30 / 60 / 120 | Performance budget |
-
-2. **Load:** `.agent/skills/game-development/SKILL.md`
-
----
-
-## Phase 2: Platform Routing
-
-| Target | Sub-skill | Engine |
-|--------|-----------|--------|
-| Web | `game-development/web-games` | Phaser / PixiJS / Three.js |
-| Mobile | `game-development/mobile-games` | Unity / Godot |
-| PC | `game-development/pc-games` | Unity / Godot / Unreal |
-| VR/AR | `game-development/vr-ar` | Unity XR / A-Frame |
-
-| Dimension | Sub-skill | Key Concerns |
-|-----------|-----------|-------------|
-| 2D | `game-development/2d-games` | Sprite batching, atlas, tile maps |
-| 3D | `game-development/3d-games` | LOD, occlusion culling, lighting |
-
----
-
-## Phase 3: Core Game Loop
+| **Requirements** | `assessor` | Evaluate scope, platform risks, performance budget |
+| **Pre-Build** | `recovery` | Save state before major implementation changes |
+| **Parallel Build** | `orchestrator` | Coordinate parallel tasks (art + audio + code) |
+| **Design Conflicts** | `critic` | Resolve design vs performance trade-offs |
+| **Post-Build** | `learner` | Log game patterns for reuse |
 
 ```
-FIXED TIMESTEP LOOP:
-accumulator = 0
-while (running):
-    deltaTime = now() - lastTime
-    accumulator += deltaTime
-    INPUT  → Read player actions
-    while (accumulator >= FIXED_DT):
-        UPDATE → Physics + game logic (deterministic)
-        accumulator -= FIXED_DT
-    RENDER → Interpolated draw (smooth)
+Flow:
+assessor.evaluate(scope, platform) → recovery.save()
+       ↓
+orchestrator.parallel(art, audio, code)
+       ↓ conflict
+critic.resolve(design_vs_perf)
+       ↓
+verify → learner.log(patterns)
 ```
+
+---
+
+## Platform Routing
+
+| Target | Engine | Sub-Skill |
+|--------|--------|-----------|
+| Web | Phaser / PixiJS / Three.js | `game-development` (web) |
+| Mobile | Unity / Godot | `game-development` (mobile) |
+| PC | Unity / Godot / Unreal | `game-development` (PC) |
+| VR/AR | Unity XR / A-Frame | `game-development` (VR/AR) |
+
+| Dimension | Key Concerns |
+|-----------|-------------|
+| 2D | Sprite batching, atlas, tile maps |
+| 3D | LOD, occlusion culling, lighting |
+
+---
+
+## 🔴 MANDATORY: Game Development Protocol
+
+### Phase 1: Requirements & Scope
+
+| Field | Value |
+|-------|-------|
+| **INPUT** | $ARGUMENTS (game concept description) |
+| **OUTPUT** | Game design doc: platform, dimension, genre, multiplayer model, target FPS |
+| **AGENTS** | `project-planner` |
+| **SKILLS** | `game-development`, `idea-storm` |
+
+1. Ask critical questions:
+
+| Question | Options | Impact |
+|----------|---------|--------|
+| Platform? | Web / Mobile / PC / Console / VR-AR | Engine + build pipeline |
+| Dimension? | 2D / 2.5D / 3D | Rendering pipeline |
+| Genre? | Platformer / Puzzle / Shooter / RPG / Sandbox | Core mechanics |
+| Multiplayer? | Solo / Local co-op / Online PvP / MMO | Networking stack |
+| Target FPS? | 30 / 60 / 120 | Performance budget |
+
+2. `assessor` evaluates scope and platform risks
+3. Select engine and architecture pattern
+
+### Phase 2: Core Game Loop & Architecture
+
+| Field | Value |
+|-------|-------|
+| **INPUT** | Game design doc from Phase 1 |
+| **OUTPUT** | Game loop implementation, architecture scaffold |
+| **AGENTS** | `game-developer` |
+| **SKILLS** | `game-development` |
+
+1. Implement fixed timestep game loop:
 
 | Target | Budget/Frame | Breakdown |
 |--------|-------------|-----------|
 | **60 FPS** | 16.67ms | Input 1ms · Physics 3ms · AI 2ms · Logic 4ms · Render 5ms |
 | **30 FPS** | 33.33ms | Input 1ms · Physics 5ms · AI 5ms · Logic 10ms · Render 10ms |
 
----
-
-## Phase 4: Architecture Patterns
+2. Select architecture pattern:
 
 | Pattern | Use When |
 |---------|----------|
-| **State Machine** | 3-5 discrete states (Player: Idle→Run→Jump) |
+| **State Machine** | 3-5 discrete states (Idle→Run→Jump) |
 | **Object Pooling** | Frequent spawn/destroy (bullets, particles) |
-| **Observer/Events** | Cross-system communication |
 | **ECS** | Thousands of similar entities |
-| **Command** | Undo, replay, networking |
 | **Behavior Tree** | Complex AI decisions |
 
-**Rule:** Start with State Machine. Add ECS only when profiler shows bottleneck.
+3. Abstract input layer (keyboard → gamepad → touch)
 
----
+### Phase 3: Asset Pipeline & Audio
 
-## Phase 5: Multiplayer & Networking
+| Field | Value |
+|-------|-------|
+| **INPUT** | Architecture scaffold from Phase 2 |
+| **OUTPUT** | Optimized assets in `assets/`, audio system |
+| **AGENTS** | `game-developer` |
+| **SKILLS** | `game-development`, `shader` |
 
-| Model | Use When | Complexity |
-|-------|----------|------------|
-| **Lock-step** | Turn-based, RTS | Low |
-| **Client-server (authoritative)** | FPS, action, MMO | High |
-| **Client prediction + reconciliation** | Fast-paced PvP | Very high |
-| **Relay (P2P via server)** | Co-op, casual | Medium |
-
-**Networking checklist:**
-- [ ] State serialization / delta compression
-- [ ] Client-side prediction + server reconciliation
-- [ ] Lobby + matchmaking system
-- [ ] Anti-cheat (server-authoritative)
-- [ ] Graceful disconnect / reconnection
-
-| Component | Web | Native |
-|-----------|-----|--------|
-| Transport | WebSocket / WebRTC | TCP/UDP (ENet) |
-| Protocol | JSON (dev) → Binary (prod) | Protobuf |
-| Server | Colyseus / Socket.io | Photon / Mirror |
-
----
-
-## Phase 6: Asset Pipeline
-
-```
-assets/
-├── sprites/       # 2D art (PNG → atlas)
-├── models/        # 3D meshes (glTF → optimized)
-├── audio/sfx/     # Sound effects (WAV → OGG)
-├── audio/music/   # Background music (OGG, loopable)
-├── shaders/       # Visual effects (GLSL/HLSL)
-└── data/          # JSON configs, level data
-```
+1. Set up asset directory structure and optimization targets:
 
 | Asset | Optimization | Target |
 |-------|-------------|--------|
 | Sprites | Texture atlasing | <4096×4096 per atlas |
 | 3D Models | LOD, mesh simplification | <10K tris (mobile) |
 | Audio SFX | Mono, 22kHz, OGG | <100KB per sound |
-| Shaders | Load `shader` skill | GPU-efficient |
+| Shaders | GPU-efficient via `shader` skill | Platform-appropriate |
 
----
+2. Audio system: pool sources (max 32), priority UI > Player > Enemies > Ambient
 
-## Phase 7: Audio & Input
+### Phase 4: Multiplayer & Networking (if applicable)
 
-**Audio:** Pool sources (max 32). Priority: UI > Player > Enemies > Ambient. Crossfade music (500ms).
+| Field | Value |
+|-------|-------|
+| **INPUT** | Multiplayer model from Phase 1 design doc |
+| **OUTPUT** | Networking layer, lobby system, anti-cheat |
+| **AGENTS** | `game-developer`, `backend-specialist` |
+| **SKILLS** | `game-development` |
 
-**Input abstraction (mandatory):**
-```
-"jump"   → Space / Gamepad A / Touch tap
-"move"   → WASD / Left stick / Virtual joystick
-"attack" → Left click / Gamepad X / Touch tap
-```
+| Model | Use When | Complexity |
+|-------|----------|------------|
+| **Lock-step** | Turn-based, RTS | Low |
+| **Client-server** | FPS, action, MMO | High |
+| **Client prediction** | Fast-paced PvP | Very high |
+| **Relay (P2P)** | Co-op, casual | Medium |
 
----
+Networking checklist:
+- [ ] State serialization / delta compression
+- [ ] Client prediction + server reconciliation
+- [ ] Lobby + matchmaking
+- [ ] Anti-cheat (server-authoritative)
+- [ ] Graceful disconnect / reconnection
 
-## Phase 8: Build & Export
+### Phase 5: Build & Export
+
+| Field | Value |
+|-------|-------|
+| **INPUT** | Complete game from Phases 2-4 |
+| **OUTPUT** | Platform-specific builds, optimized bundles |
+| **AGENTS** | `game-developer` |
+| **SKILLS** | `game-development`, `perf-optimizer` |
 
 | Platform | Build Tool | Distribution |
 |----------|-----------|-------------|
@@ -161,17 +162,19 @@ assets/
 | Android | Gradle / Unity | Google Play |
 | iOS | Xcode / Unity | App Store |
 | Windows | Electron / Unity / Godot | Steam |
-| macOS/Linux | Electron / Unity / Godot | Steam / itch.io |
 
-**Optimization:** Tree shake (-30-50%) → Minify (-20%) → Compress assets (-40-60%) → Code split → CDN.
+Optimization: Tree shake → Minify → Compress assets → Code split → CDN
 
----
+### Phase 6: Testing & Verification
 
-## Phase 9: Optimization & Testing
+| Field | Value |
+|-------|-------|
+| **INPUT** | Built game from Phase 5 |
+| **OUTPUT** | Test results: FPS, memory, platform compatibility |
+| **AGENTS** | `test-engineer` |
+| **SKILLS** | `game-development`, `perf-optimizer` |
 
-**Profiling priority:** Algorithm → Batching → Pooling → LOD → Culling → Atlas
-
-**Test checklist:**
+Test checklist:
 - [ ] Maintains target FPS on lowest-spec device
 - [ ] No memory leaks after 10+ minutes
 - [ ] Works on all target platforms
@@ -181,41 +184,125 @@ assets/
 
 ---
 
-## Anti-Patterns
+## ⛔ MANDATORY: Problem Verification Before Completion
 
-| ❌ Don't | ✅ Do |
-|----------|-------|
-| Update everything every frame | Events, dirty flags |
-| Create objects in hot loops | Object pooling |
-| Optimize without profiling | Profile first |
-| Mix input with logic | Abstract input layer |
-| Hardcode level data | Data-driven (JSON) |
-| Ship without playtesting | Playtest early |
+> **CRITICAL:** This check MUST be performed before any `notify_user` or task completion.
+
+### Check @[current_problems]
+
+```
+1. Read @[current_problems] from IDE
+2. If errors/warnings > 0:
+   a. Auto-fix: imports, types, lint errors
+   b. Re-check @[current_problems]
+   c. If still > 0 → STOP → Notify user
+3. If count = 0 → Proceed to completion
+```
+
+### Auto-Fixable
+
+| Type | Fix |
+|------|-----|
+| Missing import | Add import statement |
+| Unused variable | Remove or prefix `_` |
+| Type mismatch | Fix type annotation |
+| Lint errors | Run eslint --fix |
+
+> **Rule:** Never mark complete with errors in `@[current_problems]`.
+
+---
+
+## Output Format
+
+```markdown
+## 🎮 Game Built: [Game Name]
+
+### Configuration
+
+| Setting | Value |
+|---------|-------|
+| Platform | Web (Phaser) |
+| Dimension | 2D |
+| Genre | Platformer |
+| Multiplayer | Solo |
+| Target FPS | 60 |
+
+### Components
+
+| Component | Status |
+|-----------|--------|
+| Game loop | ✅ |
+| Asset pipeline | ✅ |
+| Audio system | ✅ |
+| Input abstraction | ✅ |
+| Multiplayer | ⏳ N/A |
+| Platform build | ✅ |
+
+### Performance
+
+| Metric | Target | Actual | Status |
+|--------|--------|--------|--------|
+| FPS | 60 | 62 | ✅ |
+| Memory | <256MB | 180MB | ✅ |
+| Load time | <3s | 2.1s | ✅ |
+
+### Next Steps
+
+- [ ] Playtest on target devices
+- [ ] Run `/optimize` for performance tuning
+- [ ] Run `/launch` to publish to store
+```
 
 ---
 
 ## Examples
 
 ```
-/game 2D platformer for web browser
-/game mobile puzzle game with Unity
-/game 3D RPG with multiplayer support
-/game online multiplayer shooter with client prediction
+/game 2D platformer for web browser with Phaser
+/game mobile puzzle game with Unity and Google Play submission
+/game 3D RPG with online multiplayer support
+/game retro arcade game with leaderboard
+/game multiplayer shooter with client prediction
 ```
+
+---
+
+## Key Principles
+
+- **Profile before optimizing** — measure with profiler, don't guess bottlenecks
+- **Data-driven design** — levels, configs, and balancing in JSON, not hardcoded
+- **Abstract input** — map actions to inputs, support keyboard + gamepad + touch
+- **Object pooling** — never create/destroy in hot loops, pool everything
+- **Fixed timestep** — deterministic physics separate from render framerate
 
 ---
 
 ## 🔗 Workflow Chain
 
-**Skills (3):** `game-development` · `shader` · `perf-optimizer`
+**Skills Loaded (4):**
+
+- `game-development` - Core game development patterns and engine routing
+- `shader` - GLSL shaders for visual effects
+- `perf-optimizer` - Performance profiling and optimization
+- `idea-storm` - Requirements gathering and scope definition
+
+```mermaid
+graph LR
+    A["/plan"] --> B["/game"]
+    B --> C["/validate"]
+    style B fill:#10b981
+```
 
 | After /game | Run | Purpose |
-|-------------|-----|---------|
-| Need testing | `/validate` | Run game tests |
-| Performance | `/optimize` | Profile bottlenecks |
+|------------|-----|---------|
+| Need testing | `/validate` | Run game test suite |
+| Performance tuning | `/optimize` | Profile and fix bottlenecks |
 | UI polish | `/studio` | Design game UI/HUD |
 | Ready to ship | `/launch` | Publish to store |
 
----
+**Handoff to /validate:**
 
-**Version:** 2.0.0 · **Chain:** game-development · **Updated:** v3.9.62
+```markdown
+🎮 Game built! Platform: [platform], FPS: [fps], Components: [count].
+Run `/validate` to test or `/optimize` for performance tuning.
+```

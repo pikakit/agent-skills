@@ -10,7 +10,7 @@ $ARGUMENTS
 
 ## Purpose
 
-Activate structured ideation mode for architecture decisions, feature planning, and problem-solving. **Unlike simple brainstorming, this produces actionable decision matrices.**
+Activate structured ideation mode for architecture decisions, feature planning, and problem-solving — generating 3+ distinct options with weighted scoring matrices and risk assessments. **Differs from `/plan` (creates task breakdown and PLAN.md) and `/build` (writes code) by producing actionable decision matrices only — NO CODE, NO PLANS.** Uses `project-planner` with `idea-storm` for Socratic questioning and `system-design` for trade-off evaluation.
 
 ---
 
@@ -18,37 +18,64 @@ Activate structured ideation mode for architecture decisions, feature planning, 
 
 | Phase | Agent | Action |
 | ----- | ----- | ------ |
-| **Decision Conflict** | `critic` | Arbitrate when options are too close |
-| **Risk Assessment** | `assessor` | Evaluate risk of each option |
-| **Pattern Learning** | `learner` | Learn from past decisions |
+| **Decision Conflict** | `critic` | Arbitrate when option scores are too close |
 
 ```
 Flow:
-generate options → assessor.evaluate(each)
+generate options → score(decision_matrix)
        ↓
 scores too close? → critic.arbitrate()
        ↓
-decision made → learner.log(decision, context)
+decision made → recommendation + next steps
 ```
 
 ---
 
 ## 🔴 MANDATORY: Decision Framework
 
-When `/think` is triggered:
+### Phase 1: Problem Framing
 
-### Phase 1: Problem Framing (2 min)
-```
-1. What OUTCOME do we want?
-2. What CONSTRAINTS exist? (time, budget, tech)
-3. Who are the STAKEHOLDERS?
-4. What is the RISK TOLERANCE? (MVP/Production/Enterprise)
-```
+| Field | Value |
+|-------|-------|
+| **INPUT** | $ARGUMENTS (decision topic or problem statement) |
+| **OUTPUT** | Framed problem: outcome, constraints, stakeholders, risk tolerance |
+| **AGENTS** | `project-planner` |
+| **SKILLS** | `idea-storm` |
+
+Ask if not provided:
+
+| Question | Purpose |
+|----------|---------|
+| What OUTCOME do we want? | Define success criteria |
+| What CONSTRAINTS exist? | Time, budget, tech limitations |
+| Who are the STAKEHOLDERS? | Users, team, business |
+| What is the RISK TOLERANCE? | MVP / Production / Enterprise |
 
 ### Phase 2: Generate 3+ Options
-**MINIMUM: 3 distinct approaches. Include one "unconventional" option.**
 
-### Phase 3: Decision Matrix
+| Field | Value |
+|-------|-------|
+| **INPUT** | Problem frame from Phase 1 |
+| **OUTPUT** | 3+ distinct approaches with pros/cons |
+| **AGENTS** | `project-planner` |
+| **SKILLS** | `idea-storm`, `system-design` |
+
+**Minimum 3 distinct approaches. Include one "unconventional" option.**
+
+For each option:
+- Description and approach
+- Pros / Cons table
+- Effort estimate (Low / Medium / High)
+
+### Phase 3: Decision Matrix & Recommendation
+
+| Field | Value |
+|-------|-------|
+| **INPUT** | Options from Phase 2 |
+| **OUTPUT** | Scored decision matrix, recommended option, risk assessment |
+| **AGENTS** | `project-planner` |
+| **SKILLS** | `system-design` |
+
 Score each option 1-5:
 
 | Criteria | Weight | Option A | Option B | Option C |
@@ -60,11 +87,31 @@ Score each option 1-5:
 | Cost | 20% | ? | ? | ? |
 | **Weighted Score** | 100% | **?** | **?** | **?** |
 
-### Phase 4: Risk Assessment
-For the top option, identify:
-- 🔴 **Blockers**: What could make this fail?
-- 🟡 **Mitigations**: How do we reduce risk?
-- 🟢 **Quick Wins**: What can we validate first?
+If scores too close → `critic` arbitrates.
+
+Risk assessment for top option:
+- 🔴 **Blockers** — what could make this fail?
+- 🟡 **Mitigations** — how to reduce risk?
+- 🟢 **Quick Wins** — what to validate first?
+
+---
+
+## ⛔ MANDATORY: Problem Verification Before Completion
+
+> **CRITICAL:** This check MUST be performed before any `notify_user` or task completion.
+
+### Check @[current_problems]
+
+```
+1. Read @[current_problems] from IDE
+2. If errors/warnings > 0:
+   a. Auto-fix: imports, types, lint errors
+   b. Re-check @[current_problems]
+   c. If still > 0 → STOP → Notify user
+3. If count = 0 → Proceed to completion
+```
+
+> **Note:** /think produces decisions, not code. This check applies only if any artifacts were generated.
 
 ---
 
@@ -81,43 +128,26 @@ For the top option, identify:
 - 💰 Budget: [resources]
 - 🛠️ Tech: [stack requirements]
 
----
-
 ### Option A: [Name] ⭐ RECOMMENDED
 [Description]
 
 | Pros | Cons |
 |------|------|
 | ✅ [benefit] | ❌ [drawback] |
-| ✅ [benefit] | ❌ [drawback] |
 
-📊 **Score:** 4.2/5 | ⏱️ **Effort:** Medium
-
----
+📊 Score: 4.2/5 | ⏱️ Effort: Medium
 
 ### Option B: [Name]
 [Description]
 
-| Pros | Cons |
-|------|------|
-| ✅ [benefit] | ❌ [drawback] |
-
-📊 **Score:** 3.5/5 | ⏱️ **Effort:** Low
-
----
+📊 Score: 3.5/5 | ⏱️ Effort: Low
 
 ### Option C: [Name] 🚀 UNCONVENTIONAL
 [Description]
 
-| Pros | Cons |
-|------|------|
-| ✅ [benefit] | ❌ [drawback] |
+📊 Score: 3.0/5 | ⏱️ Effort: High
 
-📊 **Score:** 3.0/5 | ⏱️ **Effort:** High
-
----
-
-## 📊 Decision Matrix
+### Decision Matrix
 
 | Criteria | Weight | A | B | C |
 |----------|--------|---|---|---|
@@ -128,23 +158,18 @@ For the top option, identify:
 | Cost | 20% | 3 | 4 | 2 |
 | **Total** | | **4.1** | **4.0** | **2.9** |
 
----
-
-## 🎯 Recommendation
+### Recommendation
 
 **Option A** wins with score 4.1/5.
-
-### Risk Assessment
-- 🔴 **Blocker**: [potential issue]
-- 🟡 **Mitigation**: [how to address]
-- 🟢 **Validate First**: [quick experiment]
+- 🔴 Blocker: [potential issue]
+- 🟡 Mitigation: [how to address]
+- 🟢 Validate First: [quick experiment]
 
 ### Next Steps
-1. [ ] [First action]
-2. [ ] [Second action]
-3. [ ] [Third action]
 
-Proceed with Option A? (y/n)
+- [ ] Approve Option A
+- [ ] Run `/plan` to create implementation plan
+- [ ] Or `/think` again for deeper analysis
 ```
 
 ---
@@ -163,11 +188,11 @@ Proceed with Option A? (y/n)
 
 ## Key Principles
 
-- **Quantify decisions** - use scoring, not just vibes
-- **Include unconventional** - the wild option often sparks insights
-- **Risk-first thinking** - identify blockers before committing
-- **Actionable output** - end with clear next steps
-- **No code** - this is strategy, not implementation
+- **Quantify decisions** — use weighted scoring, not just vibes
+- **Include unconventional** — the wild option often sparks insights
+- **Risk-first thinking** — identify blockers before committing
+- **Actionable output** — end with clear next steps, not abstract analysis
+- **No code** — this is strategy, not implementation
 
 ---
 
@@ -187,12 +212,14 @@ graph LR
 ```
 
 | After /think | Run | Purpose |
-|--------------|-----|---------|
+|-------------|-----|---------|
 | Decision made | `/plan` | Create detailed implementation plan |
-| Need more research | `/think` again | Explore deeper |
-| Complex task | `/autopilot` | Let AI coordinate everything |
+| Need more research | `/think` | Explore deeper with different framing |
+| Complex task | `/autopilot` | Full autonomous coordination |
 
 **Handoff to /plan:**
+
 ```markdown
-User approved Option A. Run /plan to create implementation plan.
+🧠 Decision: Option [X] approved — [name] ([score]/5).
+Run `/plan` to create implementation plan.
 ```

@@ -445,7 +445,7 @@ GEO checker opens file handles for scanning and closes them before returning.
 
 ---
 
-⚡ PikaKit v3.9.77
+⚡ PikaKit v3.9.79
 
 ---
 

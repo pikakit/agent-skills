@@ -496,7 +496,7 @@ ALERTS:
 > **Remember:** Mobile backend must be resilient to bad networks, respect battery life, and handle interrupted sessions gracefully. The client cannot be trusted, but it also cannot be hung up—provide offline capabilities and clear error recovery paths.
 ---
 
-⚡ PikaKit v3.9.77
+⚡ PikaKit v3.9.79
 
 ---
 

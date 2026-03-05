@@ -11,12 +11,7 @@ $ARGUMENTS
 
 ## Purpose
 
-Rapidly implement specific features, components, or logic based on clear instructions. **Skips architectural debate to focus on pure coding speed.**
-
-> **Differences:**
-> - `/build`: Creates entire projects (Strategic)
-> - `/boost`: Adds complex features to projects (Strategic)
-> - `/cook`: Implements specific tasks/files (Tactical)
+Rapidly implement specific features, components, or logic based on clear instructions — skipping architectural debate to focus on pure coding speed. **Differs from `/build` (creates entire projects) and `/boost` (adds complex features with impact analysis) by executing targeted, single-scope tasks with minimal overhead.** Uses the domain-appropriate specialist agent (auto-routed) with `code-craft` for coding standards.
 
 ---
 
@@ -25,61 +20,99 @@ Rapidly implement specific features, components, or logic based on clear instruc
 | Mode | Research | Testing | Review Gates | Use When |
 |------|----------|---------|--------------|----------|
 | **interactive** (default) | ✓ | ✓ | User approval | Standard features |
-| **--auto** | ✓ | ✓ | Auto if score≥9.5 | Trusted autonomous |
+| **--auto** | ✓ | ✓ | Auto if score ≥ 9.5 | Trusted autonomous |
 | **--fast** | ✗ | ✓ | User approval | Quick prototypes |
 | **--no-test** | ✓ | ✗ | User approval | Experimental code |
 
-```bash
-/cook "add user auth"              # interactive (default)
-/cook "implement notifications" --fast
-/cook path/to/plan.md --auto
-```
+---
 
 ## 🤖 Meta-Agents Integration
 
 | Phase | Agent | Action |
 | ----- | ----- | ------ |
-| **Verify** | `learner` | Log execution pattern |
+| **Post-Cook** | `learner` | Log execution pattern for reuse |
 
 ```
 Flow:
-Instruction → Code Gen → Verify → Done
+instruction → implement → verify → learner.log() → done
 ```
 
 ---
 
 ## 🔴 MANDATORY: Cooking Protocol
 
-### Phase 1: Misan Place (Preparation)
+### Phase 1: Mise en Place (Preparation)
 
-1. Understand the exact instruction
-2. Read related files (if any)
-3. Identify dependencies
+| Field | Value |
+|-------|-------|
+| **INPUT** | $ARGUMENTS (implementation instruction or plan file path) |
+| **OUTPUT** | Understanding of task, related files identified, dependencies mapped |
+| **AGENTS** | none (analysis only) |
+| **SKILLS** | `code-craft` |
 
-// turbo
-```bash
-# Verify environment is ready
-npm run problem:check
-```
+1. Parse the instruction to understand exact scope
+2. Read related files (imports, types, dependencies)
+3. Identify existing code patterns to follow
+4. Determine which specialist agent to invoke (frontend, backend, etc.)
 
-### Phase 2: Implementation (The Cooking)
+### Phase 2: Implementation
 
-Invoke `code-craft` to write the code.
+| Field | Value |
+|-------|-------|
+| **INPUT** | Task understanding + related files from Phase 1 |
+| **OUTPUT** | Created/modified source files implementing the requested feature |
+| **AGENTS** | Auto-routed specialist (`backend-specialist`, `frontend-specialist`, etc.) |
+| **SKILLS** | `code-craft` |
 
-**Guidelines:**
-- Follow existing patterns strictly
-- No whitespace changes in unrelated areas
-- One file at a time unless necessary
+1. Write code following existing patterns strictly
+2. One file at a time unless multi-file change is necessary
+3. No whitespace changes in unrelated areas
+4. Follow `code-craft` standards: 20 lines/function, 3 args max, 2 nesting levels
 
 ### Phase 3: Taste Test (Verification)
 
+| Field | Value |
+|-------|-------|
+| **INPUT** | Modified/created files from Phase 2 |
+| **OUTPUT** | Verification result: lint clean, no IDE errors |
+| **AGENTS** | none |
+| **SKILLS** | `problem-checker` |
+
 // turbo
 ```bash
-# Quick validation
 npm run lint
 ```
 
-> If errors found → Auto-fix immediately.
+1. Check `@[current_problems]` for IDE errors
+2. Auto-fix if possible (imports, types, lint)
+3. Log pattern via `learner`
+
+---
+
+## ⛔ MANDATORY: Problem Verification Before Completion
+
+> **CRITICAL:** This check MUST be performed before any `notify_user` or task completion.
+
+### Check @[current_problems]
+
+```
+1. Read @[current_problems] from IDE
+2. If errors/warnings > 0:
+   a. Auto-fix: imports, types, lint errors
+   b. Re-check @[current_problems]
+   c. If still > 0 → STOP → Notify user
+3. If count = 0 → Proceed to completion
+```
+
+### Auto-Fixable
+
+| Type | Fix |
+|------|-----|
+| Missing import | Add import statement |
+| Unused variable | Remove or prefix `_` |
+| Lint errors | Run eslint --fix |
+
+> **Rule:** Never mark complete with errors in `@[current_problems]`.
 
 ---
 
@@ -89,27 +122,46 @@ npm run lint
 ## 🍳 Cooked: [Component/File Name]
 
 ### Changes Applied
-- [x] Created/Modified `path/to/file`
-- [x] Implemented [functionality]
+
+| File | Action | Status |
+|------|--------|--------|
+| `path/to/file.ts` | Created | ✅ |
+| `path/to/other.ts` | Modified | ✅ |
 
 ### Verification
-- [x] Syntax check passed
-- [x] No lint errors
+
+| Check | Result |
+|-------|--------|
+| Syntax | ✅ Passed |
+| Lint | ✅ No errors |
+| IDE Problems | ✅ 0 |
 
 ### Next Steps
-- [ ] Manual review
-- [ ] Run full test suite (`/validate`)
+
+- [ ] Review the implementation
+- [ ] Run `/validate` for full test suite
 ```
 
 ---
 
 ## Examples
 
-```bash
-/cook "Create a Button component with variants"
-/cook "Implement the login logic in auth.ts"
-/cook "Refactor UserCard to use Tailwind v4"
 ```
+/cook "Create a Button component with primary and secondary variants"
+/cook "Implement login logic in auth.ts with JWT validation"
+/cook "Refactor UserCard to use Tailwind v4 classes"
+/cook "Add pagination to the products API endpoint"
+/cook path/to/plan.md --auto
+```
+
+---
+
+## Key Principles
+
+- **Speed over ceremony** — no planning documents, no architecture debates, just code
+- **Follow existing patterns** — match the codebase style, don't introduce new conventions
+- **Minimal diff** — change only what's needed, no unrelated whitespace or refactoring
+- **Verify before done** — always lint and check IDE problems, even for quick tasks
 
 ---
 
@@ -117,21 +169,25 @@ npm run lint
 
 **Skills Loaded (2):**
 
-- `code-craft` - Pragmatic coding standards
-- `project-planner` - Task breakdown and planning
+- `code-craft` - Pragmatic coding standards and clean code
+- `problem-checker` - IDE error detection and auto-fix
 
 ```mermaid
 graph LR
     A["/plan"] --> B["/cook"]
     B --> C["/validate"]
-    style B fill:#f59e0b
+    style B fill:#10b981
 ```
 
 | After /cook | Run | Purpose |
-|Data | `/validate` | Run tests to ensure correctness |
-| Error | `/fix` | Fix any resulting issues |
+|------------|-----|---------|
+| Task complete | `/validate` | Run tests to ensure correctness |
+| Errors found | `/fix` | Fix any resulting issues |
+| Need more features | `/boost` | Add complex enhancements |
 
-**Handoff:**
+**Handoff to /validate:**
+
 ```markdown
-Implementation complete. Run `/validate` to verify behavior.
+🍳 Implementation complete. [X] files created/modified.
+Run `/validate` to verify behavior with full test suite.
 ```

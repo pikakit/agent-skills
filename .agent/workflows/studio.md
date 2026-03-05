@@ -10,7 +10,7 @@ $ARGUMENTS
 
 ## Purpose
 
-Comprehensive design guide for web and mobile applications. Contains 50+ styles, 97 color palettes, 57 font pairings, 99 UX guidelines, and 25 chart types across 9 technology stacks. AI-powered design system generation with searchable database and priority-based recommendations.
+Generate comprehensive design systems for web and mobile applications — 50+ styles, 97 color palettes, 57 font pairings, 99 UX guidelines, and chart recommendations across 10 technology stacks with AI-powered searchable database. **Differs from `/build` (implements full apps) and `/plan` (creates task breakdown) by focusing exclusively on design system generation and UI quality standards with anti-AI-slop intelligence.** Uses `frontend-specialist` with `studio` for design search and `design-system` for color theory and typography.
 
 ---
 
@@ -18,206 +18,174 @@ Comprehensive design guide for web and mobile applications. Contains 50+ styles,
 
 | Phase | Agent | Action |
 | ----- | ----- | ------ |
-| **Design Planning** | `learner` | Analyze past successful design patterns |
-| **Style Selection** | `critic` | Arbitrate conflicting design choices |
+| **Style Selection** | `learner` | Analyze past successful design patterns |
 | **Post-Design** | `learner` | Log design decisions for future reference |
-| **Accessibility** | `assessor` | Evaluate accessibility and UX risks |
 
 ```
 Flow:
 learner.analyze(past_designs) → recommendations
        ↓
-style conflict? → critic.arbitrate(style_a vs style_b)
+search(product, style, color, typography) → design system
        ↓
-design complete → assessor.evaluate(accessibility)
-       ↓
-pass → learner.log(design_patterns)
+verify(accessibility, contrast) → learner.log(patterns)
 ```
 
 ---
 
-## Prerequisites
+## 🔴 MANDATORY: Design System Protocol
 
-Check if Python is installed:
+### Phase 1: Requirements Analysis
 
-```bash
-python3 --version || python --version
-```
+| Field | Value |
+|-------|-------|
+| **INPUT** | $ARGUMENTS (UI/UX request with product type, style, industry) |
+| **OUTPUT** | Extracted requirements: product type, style keywords, industry, stack |
+| **AGENTS** | `frontend-specialist` |
+| **SKILLS** | `studio`, `idea-storm` |
 
-If Python is not installed, install it based on user's OS:
+Extract from user request:
 
-**macOS:**
-```bash
-brew install python3
-```
+| Extract | Examples |
+|---------|---------|
+| Product type | SaaS, e-commerce, portfolio, dashboard, landing page |
+| Style keywords | minimal, playful, professional, elegant, dark mode |
+| Industry | healthcare, fintech, gaming, education, beauty |
+| Stack | html-tailwind (default), react, nextjs, vue, svelte |
 
-**Ubuntu/Debian:**
-```bash
-sudo apt update && sudo apt install python3
-```
+### Phase 2: Design System Generation
 
-**Windows:**
-```powershell
-winget install Python.Python.3.12
-```
+| Field | Value |
+|-------|-------|
+| **INPUT** | Requirements from Phase 1 |
+| **OUTPUT** | Complete design system: pattern, style, colors, typography, effects |
+| **AGENTS** | `frontend-specialist` |
+| **SKILLS** | `studio`, `design-system` |
 
----
-
-## How to Use This Workflow
-
-When user requests UI/UX work (design, build, create, implement, review, fix, improve), follow this workflow:
-
-### Step 1: Analyze User Requirements
-
-Extract key information from user request:
-- **Product type**: SaaS, e-commerce, portfolio, dashboard, landing page, etc.
-- **Style keywords**: minimal, playful, professional, elegant, dark mode, etc.
-- **Industry**: healthcare, fintech, gaming, education, etc.
-- **Stack**: React, Vue, Next.js, or default to `html-tailwind`
-
-### Step 2: Generate Design System (REQUIRED)
-
-**Always start with `--design-system`** to get comprehensive recommendations with reasoning:
+1. Generate design system (always start here):
 
 ```bash
-node .agent/skills/studio/scripts-js/search.js "<product_type> <industry> <keywords>" --design-system [-p "Project Name"]
+node .agent/skills/studio/scripts-js/search.js "<product_type> <industry> <keywords>" --design-system -p "Project Name"
 ```
 
-This command:
-1. Searches 5 domains in parallel (product, style, color, landing, typography)
-2. Applies reasoning rules from `ui-reasoning.csv` to select best matches
-3. Returns complete design system: pattern, style, colors, typography, effects
-4. Includes anti-patterns to avoid
-
-**Example:**
-```bash
-node .agent/skills/studio/scripts-js/search.js "beauty spa wellness service" --design-system -p "Serenity Spa"
-```
-
-### Step 2b: Persist Design System (Master + Overrides Pattern)
-
-To save the design system for hierarchical retrieval across sessions, add `--persist`:
+2. Optionally persist for hierarchical retrieval:
 
 ```bash
 node .agent/skills/studio/scripts-js/search.js "<query>" --design-system --persist -p "Project Name"
 ```
 
-This creates:
-- `design-system/MASTER.md` — Global Source of Truth with all design rules
-- `design-system/pages/` — Folder for page-specific overrides
+Creates `design-system/MASTER.md` + optional `design-system/pages/<page>.md` overrides.
 
-**With page-specific override:**
-```bash
-node .agent/skills/studio/scripts-js/search.js "<query>" --design-system --persist -p "Project Name" --page "dashboard"
-```
+3. Supplement with domain searches as needed:
 
-This also creates:
-- `design-system/pages/dashboard.md` — Page-specific deviations from Master
-
-**How hierarchical retrieval works:**
-1. When building a specific page (e.g., "Checkout"), first check `design-system/pages/checkout.md`
-2. If the page file exists, its rules **override** the Master file
-3. If not, use `design-system/MASTER.md` exclusively
-
-### Step 3: Supplement with Detailed Searches (as needed)
-
-After getting the design system, use domain searches to get additional details:
-
-```bash
-node .agent/skills/studio/scripts-js/search.js "<keyword>" --domain <domain> [-n <max_results>]
-```
-
-**When to use detailed searches:**
-
-| Need | Domain | Example |
+| Need | Domain | Command |
 |------|--------|---------|
 | More style options | `style` | `--domain style "glassmorphism dark"` |
-| Chart recommendations | `chart` | `--domain chart "real-time dashboard"` |
-| UX best practices | `ux` | `--domain ux "animation accessibility"` |
-| Alternative fonts | `typography` | `--domain typography "elegant luxury"` |
+| Chart types | `chart` | `--domain chart "real-time dashboard"` |
+| UX guidelines | `ux` | `--domain ux "animation accessibility"` |
+| Font alternatives | `typography` | `--domain typography "elegant luxury"` |
 | Landing structure | `landing` | `--domain landing "hero social-proof"` |
 
-### Step 4: Stack Guidelines (Default: html-tailwind)
+Available domains: `product`, `style`, `typography`, `color`, `landing`, `chart`, `ux`, `react`, `web`, `prompt`
 
-Get implementation-specific best practices. If user doesn't specify a stack, **default to `html-tailwind`**.
+### Phase 3: Stack Guidelines & Implementation
+
+| Field | Value |
+|-------|-------|
+| **INPUT** | Design system from Phase 2 |
+| **OUTPUT** | Stack-specific implementation guidelines |
+| **AGENTS** | `frontend-specialist` |
+| **SKILLS** | `studio`, `frontend-design` |
 
 ```bash
 node .agent/skills/studio/scripts-js/search.js "<keyword>" --stack html-tailwind
 ```
 
 Available stacks: `html-tailwind`, `react`, `nextjs`, `vue`, `svelte`, `swiftui`, `react-native`, `flutter`, `shadcn`, `jetpack-compose`
-, `jetpack-compose`
----
 
-## Search Reference
+### Phase 4: Pre-Delivery Verification
 
-### Available Domains
-
-| Domain | Use For | Example Keywords |
-|--------|---------|------------------|
-| `product` | Product type recommendations | SaaS, e-commerce, portfolio, healthcare, beauty, service |
-| `style` | UI styles, colors, effects | glassmorphism, minimalism, dark mode, brutalism |
-| `typography` | Font pairings, Google Fonts | elegant, playful, professional, modern |
-| `color` | Color palettes by product type | saas, ecommerce, healthcare, beauty, fintech, service |
-| `landing` | Page structure, CTA strategies | hero, hero-centric, testimonial, pricing, social-proof |
-| `chart` | Chart types, library recommendations | trend, comparison, timeline, funnel, pie |
-| `ux` | Best practices, anti-patterns | animation, accessibility, z-index, loading |
-| `react` | React/Next.js performance | waterfall, bundle, suspense, memo, rerender, cache |
-| `web` | Web interface guidelines | aria, focus, keyboard, semantic, virtualize |
-| `prompt` | AI prompts, CSS keywords | (style name) |
-
-### Available Stacks
-
-| Stack | Focus |
+| Field | Value |
 |-------|-------|
-| `html-tailwind` | Tailwind utilities, responsive, a11y (DEFAULT) |
-| `react` | State, hooks, performance, patterns |
-| `nextjs` | SSR, routing, images, API routes |
-| `vue` | Composition API, Pinia, Vue Router |
-| `svelte` | Runes, stores, SvelteKit |
-| `swiftui` | Views, State, Navigation, Animation |
-| `react-native` | Components, Navigation, Lists |
-| `flutter` | Widgets, State, Layout, Theming |
-| `shadcn` | shadcn/ui components, theming, forms, patterns |
-| `jetpack-compose` | Composables, Modifiers, State Hoisting, Recomposition |
+| **INPUT** | Implemented UI from Phase 3 |
+| **OUTPUT** | Verified design: accessibility, contrast, responsiveness |
+| **AGENTS** | `frontend-specialist` |
+| **SKILLS** | `frontend-design`, `design-system` |
+
+Pre-delivery checklist:
+
+| Category | Checks |
+|----------|--------|
+| Visual | No emoji icons (use SVG), consistent icon set, correct brand logos |
+| Interaction | `cursor-pointer` on clickable, hover feedback, smooth transitions (150-300ms) |
+| Contrast | Light mode text ≥4.5:1, glass elements visible, borders in both modes |
+| Layout | Floating navbar spacing, no hidden content, responsive (375-1440px) |
+| Accessibility | Alt text, labeled inputs, color not sole indicator, `prefers-reduced-motion` |
 
 ---
 
-## Example Workflow
+## ⛔ MANDATORY: Problem Verification Before Completion
 
-**User request:** "Làm landing page cho dịch vụ chăm sóc da chuyên nghiệp"
+> **CRITICAL:** This check MUST be performed before any `notify_user` or task completion.
 
-### Step 1: Analyze Requirements
-- Product type: Beauty/Spa service
-- Style keywords: elegant, professional, soft
-- Industry: Beauty/Wellness
-- Stack: html-tailwind (default)
+### Check @[current_problems]
 
-### Step 2: Generate Design System (REQUIRED)
-
-```bash
-node .agent/skills/studio/scripts-js/search.js "beauty spa wellness service elegant" --design-system -p "Serenity Spa"
+```
+1. Read @[current_problems] from IDE
+2. If errors/warnings > 0:
+   a. Auto-fix: imports, types, lint errors
+   b. Re-check @[current_problems]
+   c. If still > 0 → STOP → Notify user
+3. If count = 0 → Proceed to completion
 ```
 
-**Output:** Complete design system with pattern, style, colors, typography, effects, and anti-patterns.
+### Auto-Fixable
 
-### Step 3: Supplement with Detailed Searches (as needed)
+| Type | Fix |
+|------|-----|
+| Missing import | Add import statement |
+| Unused variable | Remove or prefix `_` |
+| Lint errors | Run eslint --fix |
+| CSS issues | Fix class names, contrast |
 
-```bash
-# Get UX guidelines for animation and accessibility
-node .agent/skills/studio/scripts-js/search.js "animation accessibility" --domain ux
+> **Rule:** Never mark complete with errors in `@[current_problems]`.
 
-# Get alternative typography options if needed
-node .agent/skills/studio/scripts-js/search.js "elegant luxury serif" --domain typography
+---
+
+## Output Format
+
+```markdown
+## 🎨 Design System: [Project Name]
+
+### Configuration
+
+| Setting | Value |
+|---------|-------|
+| Product | [type] |
+| Style | [style name] |
+| Stack | html-tailwind |
+
+### Design Tokens
+
+| Token | Value |
+|-------|-------|
+| Primary | [color] |
+| Typography | [font pairing] |
+| Effects | [style effects] |
+
+### Quality Check
+
+| Check | Status |
+|-------|--------|
+| Accessibility | ✅ WCAG AA |
+| Responsive | ✅ 375-1440px |
+| Dark mode | ✅ Contrast verified |
+
+### Next Steps
+
+- [ ] Review design system
+- [ ] Run `/build` to implement
+- [ ] Run `/validate` for accessibility audit
 ```
-
-### Step 4: Stack Guidelines
-
-```bash
-node .agent/skills/studio/scripts-js/search.js "layout responsive form" --stack html-tailwind
-```
-
-**Then:** Synthesize design system + detailed searches and implement the design.
 
 ---
 
@@ -233,131 +201,42 @@ node .agent/skills/studio/scripts-js/search.js "layout responsive form" --stack 
 
 ---
 
-## Output Format
+## Key Principles
 
-The `--design-system` flag supports two output formats:
-
-```bash
-# ASCII box (default) - best for terminal display
-node .agent/skills/studio/scripts-js/search.js "fintech crypto" --design-system
-
-# Markdown - best for documentation
-node .agent/skills/studio/scripts-js/search.js "fintech crypto" --design-system -f markdown
-```
-
----
-
-## Tips for Better Results
-
-1. **Be specific with keywords** - "healthcare SaaS dashboard" > "app"
-2. **Search multiple times** - Different keywords reveal different insights
-3. **Combine domains** - Style + Typography + Color = Complete design system
-4. **Always check UX** - Search "animation", "z-index", "accessibility" for common issues
-5. **Use stack flag** - Get implementation-specific best practices
-6. **Iterate** - If first search doesn't match, try different keywords
-
----
-
-## Common Rules for Professional UI
-
-These are frequently overlooked issues that make UI look unprofessional:
-
-### Icons & Visual Elements
-
-| Rule | Do | Don't |
-|------|----|----- |
-| **No emoji icons** | Use SVG icons (Heroicons, Lucide, Simple Icons) | Use emojis like 🎨 🚀 ⚙️ as UI icons |
-| **Stable hover states** | Use color/opacity transitions on hover | Use scale transforms that shift layout |
-| **Correct brand logos** | Research official SVG from Simple Icons | Guess or use incorrect logo paths |
-| **Consistent icon sizing** | Use fixed viewBox (24x24) with w-6 h-6 | Mix different icon sizes randomly |
-
-### Interaction & Cursor
-
-| Rule | Do | Don't |
-|------|----|----- |
-| **Cursor pointer** | Add `cursor-pointer` to all clickable/hoverable cards | Leave default cursor on interactive elements |
-| **Hover feedback** | Provide visual feedback (color, shadow, border) | No indication element is interactive |
-| **Smooth transitions** | Use `transition-colors duration-200` | Instant state changes or too slow (>500ms) |
-
-### Light/Dark Mode Contrast
-
-| Rule | Do | Don't |
-|------|----|----- |
-| **Glass card light mode** | Use `bg-white/80` or higher opacity | Use `bg-white/10` (too transparent) |
-| **Text contrast light** | Use `#0F172A` (slate-900) for text | Use `#94A3B8` (slate-400) for body text |
-| **Muted text light** | Use `#475569` (slate-600) minimum | Use gray-400 or lighter |
-| **Border visibility** | Use `border-gray-200` in light mode | Use `border-white/10` (invisible) |
-
-### Layout & Spacing
-
-| Rule | Do | Don't |
-|------|----|----- |
-| **Floating navbar** | Add `top-4 left-4 right-4` spacing | Stick navbar to `top-0 left-0 right-0` |
-| **Content padding** | Account for fixed navbar height | Let content hide behind fixed elements |
-| **Consistent max-width** | Use same `max-w-6xl` or `max-w-7xl` | Mix different container widths |
-
----
-
-## Pre-Delivery Checklist
-
-Before delivering UI code, verify these items:
-
-### Visual Quality
-- [ ] No emojis used as icons (use SVG instead)
-- [ ] All icons from consistent icon set (Heroicons/Lucide)
-- [ ] Brand logos are correct (verified from Simple Icons)
-- [ ] Hover states don't cause layout shift
-- [ ] Use theme colors directly (bg-primary) not var() wrapper
-
-### Interaction
-- [ ] All clickable elements have `cursor-pointer`
-- [ ] Hover states provide clear visual feedback
-- [ ] Transitions are smooth (150-300ms)
-- [ ] Focus states visible for keyboard navigation
-
-### Light/Dark Mode
-- [ ] Light mode text has sufficient contrast (4.5:1 minimum)
-- [ ] Glass/transparent elements visible in light mode
-- [ ] Borders visible in both modes
-- [ ] Test both modes before delivery
-
-### Layout
-- [ ] Floating elements have proper spacing from edges
-- [ ] No content hidden behind fixed navbars
-- [ ] Responsive at 375px, 768px, 1024px, 1440px
-- [ ] No horizontal scroll on mobile
-
-### Accessibility
-- [ ] All images have alt text
-- [ ] Form inputs have labels
-- [ ] Color is not the only indicator
-- [ ] `prefers-reduced-motion` respected
+- **Design system first** — always generate `--design-system` before implementation
+- **Anti-AI-slop** — no emoji icons, no generic colors, no layout shifts on hover
+- **Accessibility mandatory** — WCAG AA contrast, keyboard navigation, alt text
+- **Persist for consistency** — use `--persist` for multi-page projects
+- **SVG icons only** — use Heroicons/Lucide, never emoji as UI elements
 
 ---
 
 ## 🔗 Workflow Chain
 
-**Skills Loaded (3):**
+**Skills Loaded (4):**
 
-- `studio` - 50+ styles, 97 color palettes, 57 font pairings
+- `studio` - 50+ styles, 97 color palettes, 57 font pairings, searchable database
 - `design-system` - Color theory, typography, visual effects
 - `frontend-design` - Anti-AI-slop aesthetics and bold design
+- `idea-storm` - Requirements clarification
 
 ```mermaid
 graph LR
-    A["/studio"] --> B["/build"]
-    B --> C["/validate"]
-    C --> D["/launch"]
-    style A fill:#ec4899
+    A["/plan"] --> B["/studio"]
+    B --> C["/build"]
+    C --> D["/validate"]
+    style B fill:#ec4899
 ```
 
 | After /studio | Run | Purpose |
-|---------------|-----|---------|
-| Design ready | `/build` | Implement design |
-| Need feedback | `/inspect` | Review |
-| Complete | `/launch` | Deploy |
+|--------------|-----|---------|
+| Design ready | `/build` | Implement the design |
+| Need review | `/inspect` | Code review |
+| Ready to ship | `/launch` | Deploy |
 
 **Handoff to /build:**
+
 ```markdown
-Design complete. Run /build to implement the UI.
+🎨 Design system generated! Style: [style], Palette: [palette], Fonts: [fonts].
+Run `/build` to implement the UI.
 ```

@@ -11,7 +11,7 @@ $ARGUMENTS
 
 ## Purpose
 
-Systematic debugging using scientific method. **Form hypotheses, gather evidence, eliminate possibilities until root cause is found.**
+Systematic debugging using the scientific method — form hypotheses, gather evidence, and eliminate possibilities until the root cause is found. **Differs from `/fix` (applies targeted fixes for known issues) by focusing exclusively on investigation and root cause identification before any code changes.** Uses `debugger` agent with `debug-pro` for methodology and `code-review` for code analysis.
 
 ---
 
@@ -31,14 +31,26 @@ recovery.save() → learner.check(past_bugs)
        ↓
 hypotheses → test → found? → assessor.evaluate(fix)
        ↓
-apply fix → learner.log(root_cause, fix)
+apply fix → verify → learner.log(root_cause, fix)
+       ↓ failure
+recovery.restore()
 ```
 
 ---
 
-## 🔴 MANDATORY: 5-Phase Investigation
+## 🔴 MANDATORY: 5-Phase Investigation Protocol
 
 ### Phase 1: Symptom Collection
+
+| Field | Value |
+|-------|-------|
+| **INPUT** | $ARGUMENTS (bug description — error message, unexpected behavior) |
+| **OUTPUT** | Symptom report: error details, environment, reproduction steps |
+| **AGENTS** | `debugger` |
+| **SKILLS** | `debug-pro` |
+
+1. `recovery` saves current state before any investigation changes
+2. Gather evidence:
 
 ```
 GATHER:
@@ -50,197 +62,26 @@ GATHER:
 □ Environment (dev/staging/prod)
 ```
 
+3. `learner` checks past bug patterns for similar issues
+
 ### Phase 2: Hypothesis Formation
+
+| Field | Value |
+|-------|-------|
+| **INPUT** | Symptom report from Phase 1 |
+| **OUTPUT** | 3+ ranked hypotheses with likelihood and test methods |
+| **AGENTS** | `debugger` |
+| **SKILLS** | `debug-pro` |
 
 Generate 3+ ranked hypotheses:
 
-| #   | Hypothesis           | Likelihood | Test Method     |
-| --- | -------------------- | ---------- | --------------- |
-| 1   | [Most likely cause]  | 70%        | [How to verify] |
-| 2   | [Second possibility] | 20%        | [How to verify] |
-| 3   | [Edge case]          | 10%        | [How to verify] |
+| # | Hypothesis | Likelihood | Test Method |
+|---|-----------|------------|-------------|
+| 1 | [Most likely cause] | 70% | [How to verify] |
+| 2 | [Second possibility] | 20% | [How to verify] |
+| 3 | [Edge case] | 10% | [How to verify] |
 
-### Phase 3: Evidence Gathering
-
-// turbo
-
-```bash
-# Run code analysis
-node .agent/scripts-js/checklist.js .
-# OR: npm run checklist:js .
-
-# Check for security issues (Python skill script - still valid)
-node .agent/skills/security-scanner/scripts/security_scan.js .
-```
-
-### Phase 4: Systematic Elimination
-
-For each hypothesis:
-
-1. Define the TEST
-2. Predict the OUTCOME if hypothesis is true
-3. Run the test
-4. Record ACTUAL result
-5. ✅ Confirmed or ❌ Eliminated
-
-### Phase 5: Fix + Prevention
-
-```markdown
-## Root Cause Confirmed
-
-[Clear explanation]
-
-## Fix Applied
-
-[Code changes with before/after]
-
-## Prevention Measures
-
-- [ ] Add test case for this scenario
-- [ ] Add input validation
-- [ ] Update documentation
-- [ ] Add monitoring/alert
-```
-
----
-
-## Output Format
-
-````markdown
-## 🔍 Diagnosis: [Issue Title]
-
-### Symptom
-
-> [User's description of the problem]
-
-### Environment
-
-| Aspect       | Value                  |
-| ------------ | ---------------------- |
-| File         | `src/services/auth.ts` |
-| Line         | 42                     |
-| Environment  | Development            |
-| Last Working | 2 commits ago          |
-
----
-
-### Hypotheses
-
-| #   | Hypothesis                    | Likelihood | Status        |
-| --- | ----------------------------- | ---------- | ------------- |
-| 1   | Null reference in user object | 70%        | ✅ CONFIRMED  |
-| 2   | API timeout                   | 20%        | ❌ Eliminated |
-| 3   | Cache stale data              | 10%        | ⏳ Not tested |
-
----
-
-### Investigation Log
-
-**Testing H1: Null reference**
-
-- Test: Add console.log before line 42
-- Prediction: user.id will be undefined
-- Result: ✅ user was null when not logged in
-- Verdict: **ROOT CAUSE FOUND**
-
----
-
-### Root Cause
-
-🎯 **user object is null when accessing protected route without auth**
-
-The `getUser()` function returns null for unauthenticated requests, but the code assumes it always returns a user object.
-
----
-
-### Fix
-
-```typescript
-// ❌ Before
-const userId = user.id;
-
-// ✅ After
-if (!user) {
-  throw new AuthError("User not authenticated");
-}
-const userId = user.id;
-```
-````
-
----
-
-### Prevention
-
-- [x] Added null check before accessing user properties
-- [ ] Add auth middleware to protect route
-- [ ] Add test for unauthenticated access
-- [ ] Add TypeScript strict null checks
-
----
-
-### Verification
-
-Run tests to confirm fix:
-// turbo
-
-```bash
-npm test -- --grep "auth"
-```
-
-```
-
----
-
-## Examples
-
-```
-
-/diagnose login returns 401 even with correct credentials
-/diagnose form data not saving to database
-/diagnose page crashes on mobile Safari
-/diagnose API response is 10x slower since yesterday
-/diagnose deployment fails on Vercel
-
-````
-
----
-
-## 🔍 Advanced Diagnostics
-
-### Security Assessment
-```bash
-/diagnose "potential XSS vulnerability in comment system"
-```
-- **Audit:** Input sanitization, Content Security Policy (CSP)
-- **Check:** OWASP Top 10 vulnerabilities
-
-### Performance Profiling
-```bash
-/diagnose "slow API response times in user endpoints"
-```
-- **Audit:** Database query performance (N+1 problems)
-- **Check:** Memory usage and extensive logging
-
-### System Health
-```bash
-/diagnose "comprehensive system health check"
-```
-- **Audit:** Full stack analysis (Frontend -> API -> DB)
-- **Check:** Resource utilization and error rates
-
----
-
-## Key Principles
-
-1. **Never guess** - hypothesize and test
-2. **Most likely first** - test highest probability hypothesis first
-3. **Log everything** - document investigation for future reference
-4. **Fix + Prevent** - don't just patch, prevent recurrence
-5. **Verify fix** - always confirm the fix works
-
----
-
-## Common Root Causes Checklist
+**Common Root Causes Checklist:**
 
 | Category | Things to Check |
 |----------|-----------------|
@@ -250,30 +91,185 @@ npm test -- --grep "auth"
 | **Code** | Recent changes, missing await, wrong imports |
 | **Environment** | Env vars, versions, dependencies |
 
+### Phase 3: Evidence Gathering & Elimination
+
+| Field | Value |
+|-------|-------|
+| **INPUT** | Ranked hypotheses from Phase 2 |
+| **OUTPUT** | Investigation log: each hypothesis tested with verdict |
+| **AGENTS** | `debugger` |
+| **SKILLS** | `debug-pro`, `code-review` |
+
+For each hypothesis (highest likelihood first):
+
+1. Define the **TEST**
+2. Predict the **OUTCOME** if hypothesis is true
+3. Run the test
+4. Record **ACTUAL** result
+5. Verdict: ✅ Confirmed or ❌ Eliminated
+
+### Phase 4: Fix & Prevention
+
+| Field | Value |
+|-------|-------|
+| **INPUT** | Confirmed root cause from Phase 3 |
+| **OUTPUT** | Code fix + prevention measures |
+| **AGENTS** | `debugger` |
+| **SKILLS** | `debug-pro`, `code-craft` |
+
+1. `assessor` evaluates fix risk before applying
+2. Apply the fix with before/after code comparison
+3. Define prevention measures:
+   - Add test case for this scenario
+   - Add input validation if applicable
+   - Update documentation
+   - Add monitoring/alert if applicable
+4. `learner` logs root cause and fix for future reference
+
+### Phase 5: Verification
+
+| Field | Value |
+|-------|-------|
+| **INPUT** | Applied fix from Phase 4 |
+| **OUTPUT** | Verification result: fix confirmed, no regressions |
+| **AGENTS** | `debugger` |
+| **SKILLS** | `debug-pro` |
+
+// turbo
+```bash
+npm test
+```
+
+1. Verify the fix resolves the original symptom
+2. Check for regressions
+3. If fix fails → `recovery.restore()` → re-investigate
+
+---
+
+## ⛔ MANDATORY: Problem Verification Before Completion
+
+> **CRITICAL:** This check MUST be performed before any `notify_user` or task completion.
+
+### Check @[current_problems]
+
+```
+1. Read @[current_problems] from IDE
+2. If errors/warnings > 0:
+   a. Auto-fix: imports, types, lint errors
+   b. Re-check @[current_problems]
+   c. If still > 0 → STOP → Notify user
+3. If count = 0 → Proceed to completion
+```
+
+### Auto-Fixable
+
+| Type | Fix |
+|------|-----|
+| Missing import | Add import statement |
+| Unused variable | Remove or prefix `_` |
+| Type mismatch | Fix type annotation |
+| Lint errors | Run eslint --fix |
+
+> **Rule:** Never mark complete with errors in `@[current_problems]`.
+
+---
+
+## Output Format
+
+```markdown
+## 🔍 Diagnosis: [Issue Title]
+
+### Symptom
+
+> [User's description of the problem]
+
+### Environment
+
+| Aspect | Value |
+|--------|-------|
+| File | `src/services/auth.ts` |
+| Line | 42 |
+| Environment | Development |
+| Last Working | 2 commits ago |
+
+### Hypotheses
+
+| # | Hypothesis | Likelihood | Status |
+|---|-----------|------------|--------|
+| 1 | Null reference in user object | 70% | ✅ CONFIRMED |
+| 2 | API timeout | 20% | ❌ Eliminated |
+| 3 | Cache stale data | 10% | ⏳ Not tested |
+
+### Root Cause
+
+🎯 **[Clear explanation of the confirmed root cause]**
+
+### Fix Applied
+
+| File | Change | Status |
+|------|--------|--------|
+| `src/services/auth.ts` | Added null check | ✅ |
+
+### Prevention
+
+- [x] Added null check before accessing properties
+- [ ] Add auth middleware to protect route
+- [ ] Add test for unauthenticated access
+
+### Next Steps
+
+- [ ] Run `/validate` to verify fix with full test suite
+- [ ] Monitor for recurrence
+```
+
+---
+
+## Examples
+
+```
+/diagnose login returns 401 even with correct credentials
+/diagnose form data not saving to database
+/diagnose page crashes on mobile Safari
+/diagnose API response is 10x slower since yesterday
+/diagnose deployment fails on Vercel with exit code 1
+```
+
+---
+
+## Key Principles
+
+- **Never guess** — form hypotheses and test them systematically
+- **Most likely first** — test the highest probability hypothesis before edge cases
+- **Log everything** — document the investigation for future reference
+- **Fix + Prevent** — don't just patch, prevent recurrence with tests and validation
+- **Verify the fix** — always confirm the fix resolves the original symptom
+
 ---
 
 ## 🔗 Workflow Chain
 
-**Skills Loaded (2):**
+**Skills Loaded (3):**
 
 - `debug-pro` - Systematic 4-phase debugging methodology
-- `code-review` - Code quality validation
+- `code-review` - Code quality validation and analysis
+- `code-craft` - Coding standards for fix implementation
 
 ```mermaid
 graph LR
-    A["/diagnose"] --> B["/validate"]
-    B --> C["/launch"]
-    style A fill:#ef4444
-````
+    A["/diagnose"] --> B["/fix"]
+    B --> C["/validate"]
+    style A fill:#10b981
+```
 
-| After /diagnose | Run         | Purpose       |
-| --------------- | ----------- | ------------- |
-| Bug fixed       | `/validate` | Verify fix    |
-| Need tests      | `/validate` | Add test case |
-| Ready           | `/launch`   | Deploy fix    |
+| After /diagnose | Run | Purpose |
+|----------------|-----|---------|
+| Root cause found, fix applied | `/validate` | Verify fix with full test suite |
+| Complex fix needed | `/fix` | Apply targeted fix |
+| Ready to deploy | `/launch` | Deploy the fix |
 
-**Handoff to /validate:**
+**Handoff to /fix:**
 
 ```markdown
-Bug fixed. Run /validate to verify the fix works.
+🔍 Root cause found: [description]. Fix applied to [files].
+Run `/fix` for additional targeted fixes or `/validate` to verify.
 ```

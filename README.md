@@ -4,15 +4,15 @@
 
 ### Transform your AI Agent into a FAANG-level engineering team
 
-[![npm version](https://img.shields.io/badge/npm-v3.9.77-7c3aed?style=for-the-badge&logo=npm&logoColor=white&labelColor=18181b)](https://www.npmjs.com/package/pikakit)
+[![npm version](https://img.shields.io/badge/npm-v3.9.79-7c3aed?style=for-the-badge&logo=npm&logoColor=white&labelColor=18181b)](https://www.npmjs.com/package/pikakit)
 [![Skills](https://img.shields.io/badge/skills-67-06b6d4?style=for-the-badge&labelColor=18181b)](https://github.com/pikakit/agent-skills)
 [![Agents](https://img.shields.io/badge/agents-26-f59e0b?style=for-the-badge&labelColor=18181b)](https://github.com/pikakit/agent-skills)
-[![Workflows](https://img.shields.io/badge/workflows-26-10b981?style=for-the-badge&labelColor=18181b)](https://github.com/pikakit/agent-skills)
+[![Workflows](https://img.shields.io/badge/workflows-25-10b981?style=for-the-badge&labelColor=18181b)](https://github.com/pikakit/agent-skills)
 [![JavaScript](https://img.shields.io/badge/100%25-JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black&labelColor=18181b)](https://github.com/pikakit/agent-skills)
 
 **Composable Skills · Coordinated Agents · Intelligent Execution**
 
-[Install](#-quick-install) · [Skills](#-skills-catalog-67) · [Workflows](#-workflows-26) · [Agents](#-multi-agent-coordination-26) · [Docs](#-links)
+[Install](#-quick-install) · [Skills](#-skills-catalog-67) · [Workflows](#-workflows-25) · [Agents](#-multi-agent-coordination-26) · [Docs](#-links)
 
 </div>
 
@@ -24,14 +24,14 @@
 npx pikakit
 ```
 
-> One command installs **67 skills**, **26 workflows**, **26 agents**, and a complete AI operating system into your project.
+> One command installs **67 skills**, **25 workflows**, **26 agents**, and a complete AI operating system into your project.
 
 ### What You Get
 
 | Component | Count | Highlights |
 |-----------|:-----:|------------|
 | **Skills** | 67 | Architecture, Frontend, Backend, Security, DevOps, AI, Mobile, Testing |
-| **Workflows** | 26 | `/think` · `/build` · `/autopilot` · `/studio` · `/validate` · and more |
+| **Workflows** | 25 | `/think` · `/build` · `/autopilot` · `/studio` · `/validate` · and more |
 | **Agents** | 26 | 21 domain specialists + 5 meta-agents for coordination |
 | **Rules** | `GEMINI.md` | AI behavior configuration — the Supreme Law |
 | **Scripts** | 6 | Checklist, verify, preview, session management |
@@ -228,7 +228,7 @@ kit doctor                  # System health check
 
 ---
 
-## 📜 Workflows (26)
+## 📜 Workflows (25)
 
 | Command | Purpose | Agents |
 |---------|---------|:------:|
@@ -256,8 +256,6 @@ kit doctor                  # System health check
 | `/alert` | Alert rules & incident response | — |
 | `/boost` | Enhance existing code | varies |
 | `/pulse` | Project health dashboard | — |
-| `/auto-accept-process` | Full autonomous workflow | all |
-| `/think` | Ideation with alternatives | planner |
 
 ---
 
@@ -347,7 +345,6 @@ agent stats                 # View statistics
 your-project/
 ├── .agent/
 │   ├── GEMINI.md                         # AI Rules (Supreme Law)
-│   ├── ARCHITECTURE.md                   # System Architecture
 │   │
 │   ├── skills/                           # 67 Skills
 │   │   ├── react-architect/
@@ -355,7 +352,7 @@ your-project/
 │   │   ├── studio/
 │   │   └── ...
 │   │
-│   ├── workflows/                        # 26 Workflows
+│   ├── workflows/                        # 25 Workflows
 │   │   ├── think.md
 │   │   ├── build.md
 │   │   ├── autopilot.md
@@ -367,12 +364,8 @@ your-project/
 │   │   ├── security.md
 │   │   └── ...
 │   │
-│   ├── knowledge/                        # Self-Learning Memory
-│   │   └── lessons-learned.yaml
-│   │
 │   ├── scripts-js/                       # Automation Scripts
-│   ├── config/                           # Configuration
-│   └── metrics/                          # Performance Tracking
+│   └── config/                           # Configuration
 │
 ├── kit.cmd / kit                         # CLI wrapper
 └── agent.cmd / agent                     # AutoLearn wrapper (optional)
@@ -425,7 +418,7 @@ UNLICENSED — See [LICENSE](LICENSE) for details.
 
 <div align="center">
 
-**⚡ PikaKit v3.9.77**
+**⚡ PikaKit v3.9.79**
 
 *Composable Skills · Coordinated Agents · Intelligent Execution*
 

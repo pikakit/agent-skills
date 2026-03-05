@@ -11,7 +11,18 @@ $ARGUMENTS
 
 ## Purpose
 
-Systematic code review with multi-layer validation. **Prevents false completion claims with evidence-based verification.**
+Systematic code review with multi-layer validation — preventing false completion claims through evidence-based verification across build, tests, security, and logic layers. **Differs from `/validate` (runs tests) and `/diagnose` (finds bugs) by performing comprehensive quality audit across all dimensions before deployment.** Uses `security-auditor` with `security-scanner` for vulnerability scanning and `code-review` for quality validation.
+
+---
+
+## Sub-Commands
+
+| Command | Purpose |
+|---------|---------|
+| `/inspect` | Review current changes |
+| `/inspect [file-path]` | Review specific file |
+| `/inspect --pr` | PR-style review |
+| `/inspect --security` | Security-focused review |
 
 ---
 
@@ -19,131 +30,156 @@ Systematic code review with multi-layer validation. **Prevents false completion 
 
 | Phase | Agent | Action |
 | ----- | ----- | ------ |
-| **Security** | `security-auditor` | **PRIORITY 0:** Check for hardcoded secrets & known vulns |
-| **Quality** | `code-review` | Check linting, types, and complexity |
-| **Adherence** | `assessor` | Verify against project coding standards |
+| **Pre-Review** | `assessor` | Evaluate review scope and risk areas |
+| **Post-Review** | `learner` | Log review patterns for future reference |
 
 ```
 Flow:
-security.scan() → criticals? → BLOCK
+assessor.evaluate(scope) → 4-layer validation
        ↓
-code.review() → quality check
+build → tests → security → logic
        ↓
-report.generate()
-```
-critic.arbitrate(security vs speed)
-       ↓
-complete → learner.log(patterns)
+report → learner.log(patterns)
 ```
 
 ---
 
-## Sub-commands
+## 🔴 MANDATORY: 4-Layer Validation Protocol
 
-```
-/inspect              - Review current changes
-/inspect [file-path]  - Review specific file
-/inspect --pr         - PR-style review
-/inspect --security   - Security-focused review
-```
+### Phase 1: Build Verification
 
----
-
-## 🔴 MANDATORY: 4-Layer Validation
-
-### Layer 1: Compile/Build Check
+| Field | Value |
+|-------|-------|
+| **INPUT** | $ARGUMENTS (target files/scope or current changes) |
+| **OUTPUT** | Build result: compilation status, lint errors, warnings |
+| **AGENTS** | none |
+| **SKILLS** | `code-review` |
 
 // turbo
-
 ```bash
 npm run build
 ```
 
-| Check               | Required |
-| ------------------- | -------- |
-| TypeScript compiles | ✅       |
-| No lint errors      | ✅       |
-| No warnings         | ⚠️       |
+| Check | Required |
+|-------|----------|
+| TypeScript compiles | ✅ |
+| No lint errors | ✅ |
+| No warnings | ⚠️ |
 
-### Layer 2: Test Verification
+### Phase 2: Test Verification
+
+| Field | Value |
+|-------|-------|
+| **INPUT** | Build result from Phase 1 |
+| **OUTPUT** | Test result: pass/fail count, coverage, skipped tests |
+| **AGENTS** | none |
+| **SKILLS** | `code-review` |
 
 // turbo
-
 ```bash
 npm test
 ```
 
-| Check               | Required |
-| ------------------- | -------- |
-| All tests pass      | ✅       |
-| No skipped tests    | ⚠️       |
-| Coverage maintained | ⚠️       |
+| Check | Required |
+|-------|----------|
+| All tests pass | ✅ |
+| No skipped tests | ⚠️ |
+| Coverage maintained | ⚠️ |
 
-### Layer 3: Security Check
+### Phase 3: Security Scan
 
-// turbo
+| Field | Value |
+|-------|-------|
+| **INPUT** | Source files in scope |
+| **OUTPUT** | Security report: vulnerabilities found, severity levels |
+| **AGENTS** | `security-auditor` |
+| **SKILLS** | `security-scanner`, `code-review` |
 
-```bash
-node .agent/skills/security-scanner/scripts/security_scan.js .
+| Check | Required |
+|-------|----------|
+| No hardcoded secrets | ✅ |
+| Input validation present | ✅ |
+| SQL injection safe | ✅ |
+| XSS prevention | ✅ |
+
+### Phase 4: Logic Review
+
+| Field | Value |
+|-------|-------|
+| **INPUT** | All results from Phases 1-3 + source code |
+| **OUTPUT** | Logic review: issues found with severity, required actions |
+| **AGENTS** | `security-auditor` |
+| **SKILLS** | `code-review` |
+
+| Category | Questions |
+|----------|----------|
+| **Correctness** | Does it solve the stated problem? |
+| **Edge Cases** | Null, empty, max values handled? |
+| **Error Handling** | All failure modes covered? |
+| **Performance** | N+1 queries? Memory leaks? |
+| **Maintainability** | Clear naming? Single responsibility? |
+
+---
+
+## ⛔ MANDATORY: Problem Verification Before Completion
+
+> **CRITICAL:** This check MUST be performed before any `notify_user` or task completion.
+
+### Check @[current_problems]
+
+```
+1. Read @[current_problems] from IDE
+2. If errors/warnings > 0:
+   a. Auto-fix: imports, types, lint errors
+   b. Re-check @[current_problems]
+   c. If still > 0 → STOP → Notify user
+3. If count = 0 → Proceed to completion
 ```
 
-| Check                | Required |
-| -------------------- | -------- |
-| No hardcoded secrets | ✅       |
-| Input validation     | ✅       |
-| SQL injection safe   | ✅       |
-| XSS prevention       | ✅       |
+### Auto-Fixable
 
-### Layer 4: Logic Review
+| Type | Fix |
+|------|-----|
+| Missing import | Add import statement |
+| Unused variable | Remove or prefix `_` |
+| Lint errors | Run eslint --fix |
 
-| Category            | Questions                            |
-| ------------------- | ------------------------------------ |
-| **Correctness**     | Does it solve the stated problem?    |
-| **Edge Cases**      | Null, empty, max values handled?     |
-| **Error Handling**  | All failure modes covered?           |
-| **Performance**     | N+1 queries? Memory leaks?           |
-| **Maintainability** | Clear naming? Single responsibility? |
+> **Rule:** Never mark complete with errors in `@[current_problems]`.
+
+### Evidence-Based Completion
+
+**NEVER claim completion without proof:**
+
+```
+✅ CORRECT: "Build passed: `npm run build` completed in 3.2s"
+✅ CORRECT: "Tests: 42/42 passed (npm test output attached)"
+❌ WRONG:  "I believe the code should work"
+❌ WRONG:  "This should fix the issue"
+```
 
 ---
 
 ## Output Format
 
-````markdown
+```markdown
 ## 🔍 Inspect: [Target]
 
-### Layer 1: Build
+### Layer Results
 
-✅ TypeScript: 0 errors
-✅ Lint: 0 errors
-⚠️ Warnings: 2 unused imports
+| Layer | Status | Details |
+|-------|--------|---------|
+| Build | ✅ Pass | 0 errors, 2 warnings |
+| Tests | ✅ Pass | 42/42 passed, 78% coverage |
+| Security | ⚠️ Warning | 1 issue found |
+| Logic | ⚠️ Issues | 3 issues found |
 
-### Layer 2: Tests
+### Issues Found
 
-✅ Tests: 42 passed, 0 failed
-✅ Coverage: 78% (target: 80%)
-
-### Layer 3: Security
-
-✅ No hardcoded secrets
-✅ Input validation present
-⚠️ Missing CSRF token on POST /api/user
-
-### Layer 4: Logic Review
-
-| File         | Issue              | Severity |
-| ------------ | ------------------ | -------- |
-| `user.ts:45` | Missing null check | High     |
-| `api.ts:23`  | No rate limiting   | Medium   |
-| `auth.ts:89` | Unused variable    | Low      |
-
-### Summary
-
-| Layer    | Status       |
-| -------- | ------------ |
-| Build    | ✅ Pass      |
-| Tests    | ✅ Pass      |
-| Security | ⚠️ 1 warning |
-| Logic    | ⚠️ 3 issues  |
+| File | Issue | Severity |
+|------|-------|----------|
+| `user.ts:45` | Missing null check | High |
+| `api.ts:23` | No rate limiting | Medium |
+| `auth.ts:89` | Unused variable | Low |
 
 ### Verdict
 
@@ -155,32 +191,12 @@ node .agent/skills/security-scanner/scripts/security_scan.js .
 2. Add CSRF token to POST endpoints
 3. Consider rate limiting
 
-### Evidence Required
+### Next Steps
 
-Before marking complete, run:
-
-```bash
-npm run build && npm test
+- [ ] Fix identified issues with `/fix`
+- [ ] Re-run `/inspect` after fixes
+- [ ] Run `/validate` for full test suite
 ```
-````
-
-````
-
----
-
-## Evidence-Based Completion
-
-**NEVER claim completion without proof:**
-
-```markdown
-✅ CORRECT:
-"Build passed: `npm run build` completed in 3.2s"
-"Tests: 42/42 passed (npm test output attached)"
-
-❌ WRONG:
-"I believe the code should work"
-"This should fix the issue"
-````
 
 ---
 
@@ -191,43 +207,45 @@ npm run build && npm test
 /inspect src/services/auth.ts
 /inspect --pr
 /inspect --security
+/inspect src/routes/ --security
 ```
 
 ---
 
 ## Key Principles
 
-1. **Evidence over belief** - prove it works
-2. **Every layer matters** - don't skip checks
-3. **Security first** - scan before completion
-4. **Fix before claiming** - no "should work"
-5. **Document issues** - clear action items
+- **Evidence over belief** — prove it works with command output, not assumptions
+- **Every layer matters** — don't skip build, tests, security, or logic checks
+- **Security first** — always scan for vulnerabilities before marking complete
+- **Fix before claiming** — no "should work" — verify with evidence
+- **Document issues** — clear action items with file, line, and severity
 
 ---
 
 ## 🔗 Workflow Chain
 
-**Skills Loaded (3):**
+**Skills Loaded (2):**
 
-- `security-scanner` - OWASP 2025, vulnerability analysis
-- `code-review` - Multi-layer code validation
-- `offensive-sec` - Red team tactics, MITRE ATT&CK
+- `security-scanner` - OWASP 2025 vulnerability analysis
+- `code-review` - Multi-layer code quality validation
 
 ```mermaid
 graph LR
-    A["/inspect"] --> B["/build"]
+    A["/inspect"] --> B["/fix"]
     B --> C["/validate"]
-    style A fill:#06b6d4
+    C --> D["/launch"]
+    style A fill:#10b981
 ```
 
-| After /inspect | Run         | Purpose            |
-| -------------- | ----------- | ------------------ |
-| Issues found   | `/build`    | Fix issues         |
-| All clear      | `/validate` | Run tests          |
+| After /inspect | Run | Purpose |
+|---------------|-----|---------|
+| Issues found | `/fix` | Fix identified issues |
+| All clear | `/validate` | Run full test suite |
 | Security issue | `/diagnose` | Deep investigation |
 
-**Handoff to /build:**
+**Handoff to /fix:**
 
 ```markdown
-Review complete. 3 issues found. Run /build to fix.
+🔍 Review complete. [X] issues found across 4 layers.
+Verdict: [PASS/NEEDS FIXES]. Run `/fix` to resolve or `/validate` if all clear.
 ```

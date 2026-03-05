@@ -10,7 +10,7 @@ $ARGUMENTS
 
 ## Purpose
 
-Generate comprehensive tests, execute suites, and analyze coverage. **AAA pattern, mutation testing, visual regression, and contract testing.**
+Generate comprehensive tests, execute suites, and analyze coverage — supporting unit tests (Vitest/Jest), E2E (Playwright), mutation testing (Stryker), visual regression, and API contract testing. **Differs from `/inspect` (code review without execution) and `/benchmark` (load testing) by actively generating, running, and verifying test suites with the AAA pattern.** Uses `test-engineer` with `test-architect` for test generation and `e2e-automation` for browser testing.
 
 ---
 
@@ -18,138 +18,47 @@ Generate comprehensive tests, execute suites, and analyze coverage. **AAA patter
 
 | Phase | Agent | Action |
 |-------|-------|--------|
-| **Test Generation** | `learner` | Analyze existing patterns for consistency |
-| **Pre-Test** | `recovery` | Save state before execution |
+| **Pre-Test** | `recovery` | Save state before test execution |
 | **Post-Test** | `learner` | Log common failure patterns |
-| **On Failure** | `assessor` | Evaluate failure severity |
-
----
-
-## Sub-commands
 
 ```
-/validate              - Run all tests
-/validate [target]     - Generate tests for specific file/feature
-/validate coverage     - Show coverage report
-/validate watch        - Run in watch mode
-/validate fix          - Auto-fix failing tests
-/validate mutation     - Run mutation testing
-/validate visual       - Run visual regression tests
-/validate contract     - Run API contract tests
+Flow:
+recovery.save(state) → generate(tests) → execute(suite)
+       ↓
+analyze(coverage, mutations, visual, contracts)
+       ↓
+learner.log(failure_patterns)
 ```
 
 ---
 
-## Phase 1: Test Generation Protocol
+## Sub-Commands
 
-### Analyze Target
-```
-For function/component, identify:
-□ Happy path (normal use)
-□ Edge cases (boundaries, empty, null)
-□ Error cases (invalid input, exceptions)
-□ Integration points (external deps)
-```
-
-### Test Case Categories
-
-| Category | Example |
-|----------|---------|
-| **Happy Path** | Valid input → expected output |
-| **Empty Input** | `""`, `[]`, `null`, `undefined` |
-| **Boundary** | Min, max, off-by-one |
-| **Type Errors** | Wrong type, missing property |
-| **Async** | Timeout, race condition, retry |
-| **Security** | XSS, injection, auth bypass |
-
-### AAA Pattern
-
-```typescript
-describe('UserService', () => {
-  it('should create user with valid data', async () => {
-    // ARRANGE
-    const input = { email: 'test@example.com', name: 'Test' };
-    // ACT
-    const result = await userService.createUser(input);
-    // ASSERT
-    expect(result.id).toBeDefined();
-    expect(result.email).toBe(input.email);
-  });
-});
-```
+| Command | Action |
+|---------|--------|
+| `/validate` | Run all tests |
+| `/validate [target]` | Generate tests for specific file/feature |
+| `/validate coverage` | Show coverage report |
+| `/validate watch` | Run in watch mode |
+| `/validate fix` | Auto-fix failing tests |
+| `/validate mutation` | Run mutation testing |
+| `/validate visual` | Run visual regression tests |
+| `/validate contract` | Run API contract tests |
 
 ---
 
-## Phase 2: Mutation Testing
+## 🔴 MANDATORY: Test Automation Protocol
 
-**What:** Automatically modify source code (mutants) and verify tests catch the changes.
+### Phase 1: Test Generation
 
-```bash
-/validate mutation
+| Field | Value |
+|-------|-------|
+| **INPUT** | $ARGUMENTS (target file/feature or "all") |
+| **OUTPUT** | Test files following AAA pattern |
+| **AGENTS** | `test-engineer` |
+| **SKILLS** | `test-architect` |
 
-# Uses: Stryker (JS/TS) or mutmut (Python)
-npx stryker run
-```
-
-| Mutant Type | Example | Good Test Catches It? |
-|-------------|---------|----------------------|
-| Conditional | `>` → `>=` | ✅ Boundary test |
-| Return value | `return true` → `return false` | ✅ Assert on return |
-| Remove call | Delete `validate()` | ✅ Integration test |
-| Arithmetic | `+` → `-` | ✅ Calculation test |
-
-**Target:** Mutation score ≥ 80%. If lower, tests are weak.
-
----
-
-## Phase 3: Visual Regression Testing
-
-```bash
-/validate visual
-
-# Captures screenshots and compares against baselines
-npx playwright test --project=visual
-```
-
-| Tool | Best For | Integration |
-|------|----------|-------------|
-| **Playwright screenshots** | Component snapshots | Built-in |
-| **Percy** | Full-page visual diffs | CI/CD |
-| **Chromatic** | Storybook components | Storybook |
-
-**Workflow:**
-1. Baseline: Capture reference screenshots
-2. Change: Modify code
-3. Compare: Pixel-diff against baseline
-4. Review: Approve or reject visual changes
-
----
-
-## Phase 4: Contract Testing
-
-```bash
-/validate contract
-
-# API consumer-provider contract verification
-npx pact-verifier
-```
-
-| Pattern | Use When |
-|---------|----------|
-| **Consumer-driven (Pact)** | Frontend ↔ Backend API contracts |
-| **Provider-driven (OpenAPI)** | Public API validation |
-| **Schema validation (Zod)** | Runtime type checking |
-
-**Contract test flow:**
-```
-Consumer defines expected API → Generate contract
-Provider verifies against contract → Pass/fail
-Breaking change? → Contract fails before deploy
-```
-
----
-
-## Phase 5: Framework Detection & Execution
+1. Detect test framework:
 
 | Project | Framework | Config |
 |---------|-----------|--------|
@@ -158,6 +67,106 @@ Breaking change? → Contract fails before deploy
 | React | Vitest + RTL | vitest.config.ts |
 | API | Supertest | jest.config.js |
 | Python | Pytest | pytest.ini |
+
+2. Analyze target and identify test cases:
+
+| Category | Example |
+|----------|---------|
+| Happy Path | Valid input → expected output |
+| Empty Input | `""`, `[]`, `null`, `undefined` |
+| Boundary | Min, max, off-by-one |
+| Type Errors | Wrong type, missing property |
+| Async | Timeout, race condition, retry |
+| Security | XSS, injection, auth bypass |
+
+3. Generate tests using AAA pattern (Arrange, Act, Assert)
+
+### Phase 2: Test Execution
+
+| Field | Value |
+|-------|-------|
+| **INPUT** | Test files from Phase 1 |
+| **OUTPUT** | Test results: pass/fail counts, coverage report |
+| **AGENTS** | `test-engineer` |
+| **SKILLS** | `test-architect`, `e2e-automation` |
+
+// turbo
+```bash
+npm test -- --coverage
+```
+
+Coverage targets:
+
+| Metric | Target | Critical |
+|--------|--------|----------|
+| Statements | ≥80% | ≥60% |
+| Branches | ≥70% | ≥50% |
+| Mutation Score | ≥80% | ≥60% |
+
+### Phase 3: Advanced Testing
+
+| Field | Value |
+|-------|-------|
+| **INPUT** | Coverage report from Phase 2 |
+| **OUTPUT** | Mutation score, visual diffs, contract results |
+| **AGENTS** | `test-engineer` |
+| **SKILLS** | `test-architect`, `e2e-automation` |
+
+Mutation testing (if requested):
+```bash
+npx stryker run
+```
+
+Visual regression (if requested):
+```bash
+npx playwright test --project=visual
+```
+
+Contract testing (if requested):
+```bash
+npx pact-verifier
+```
+
+### Phase 4: Results Analysis
+
+| Field | Value |
+|-------|-------|
+| **INPUT** | All test results from Phases 2-3 |
+| **OUTPUT** | Test report with pass/fail, coverage, recommendations |
+| **AGENTS** | `test-engineer` |
+| **SKILLS** | `test-architect` |
+
+1. Aggregate results across all test types
+2. Compare against coverage targets
+3. Generate actionable recommendations for failures
+
+---
+
+## ⛔ MANDATORY: Problem Verification Before Completion
+
+> **CRITICAL:** This check MUST be performed before any `notify_user` or task completion.
+
+### Check @[current_problems]
+
+```
+1. Read @[current_problems] from IDE
+2. If errors/warnings > 0:
+   a. Auto-fix: imports, types, lint errors
+   b. Re-check @[current_problems]
+   c. If still > 0 → STOP → Notify user
+3. If count = 0 → Proceed to completion
+```
+
+### Auto-Fixable
+
+| Type | Fix |
+|------|-----|
+| Missing import | Add import statement |
+| Unused variable | Remove or prefix `_` |
+| Type mismatch | Fix type annotation |
+| Lint errors | Run eslint --fix |
+
+> **Rule:** Never mark complete with errors in `@[current_problems]`.
 
 ---
 
@@ -170,6 +179,7 @@ Breaking change? → Contract fails before deploy
 ✅ Passed: 42  ❌ Failed: 2  ⏭️ Skipped: 1
 
 ### Coverage
+
 | Metric | Current | Target | Status |
 |--------|---------|--------|--------|
 | Statements | 85% | 80% | ✅ |
@@ -178,34 +188,68 @@ Breaking change? → Contract fails before deploy
 | Visual Diffs | 0 | 0 | ✅ |
 | Contracts | 5/5 | 100% | ✅ |
 
+### Failures
+
+| Test | Error | Fix |
+|------|-------|-----|
+| user.test.ts:45 | Timeout | Increase wait |
+| cart.test.ts:12 | Assert | Update expected |
+
 ### Next Steps
+
 - [ ] Fix 2 failing tests
 - [ ] Review visual baselines
+- [ ] Run `/launch` when all green
+```
+
+---
+
+## Examples
+
+```
+/validate
+/validate src/services/user.service.ts
+/validate coverage
+/validate mutation
+/validate visual
 ```
 
 ---
 
 ## Key Principles
 
-1. **Test behavior, not implementation**
-2. **One assertion per test**
-3. **Descriptive names** — test name = documentation
-4. **Mock external deps** — isolate unit under test
-5. **Mutation testing** — verify test quality
-6. **Visual regression** — catch UI drift
+- **Test behavior, not implementation** — assert on outcomes, not internals
+- **AAA pattern** — Arrange, Act, Assert for every test
+- **One assertion per test** — focused, readable tests
+- **Mock external deps** — isolate the unit under test
+- **Mutation testing** — verify test quality, not just coverage
 
 ---
 
 ## 🔗 Workflow Chain
 
-**Skills (3):** `test-architect` · `e2e-automation` · `code-review`
+**Skills Loaded (3):**
+
+- `test-architect` - Test patterns, AAA, coverage strategy
+- `e2e-automation` - Playwright, visual testing, browser automation
+- `code-review` - Quality validation of test code
+
+```mermaid
+graph LR
+    A["/build"] --> B["/validate"]
+    B --> C["/launch"]
+    style B fill:#10b981
+```
 
 | After /validate | Run | Purpose |
-|-----------------|-----|---------|
-| All pass | `/launch` | Deploy |
-| Tests fail | `/diagnose` | Root cause |
+|----------------|-----|---------|
+| All tests pass | `/launch` | Deploy to production |
+| Tests fail | `/diagnose` | Root cause analysis |
 | Need review | `/inspect` | Code review |
 
----
+**Handoff to /launch:**
 
-**Version:** 2.0.0 · **Updated:** v3.9.64
+```markdown
+🧪 Tests complete! Passed: [X], Failed: [Y]. Coverage: [Z]%.
+Run `/launch` to deploy or `/diagnose` for failures.
+```
