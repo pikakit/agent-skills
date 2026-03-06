@@ -502,7 +502,7 @@ When reviewing backend code, verify:
 | `frontend` | `downstream` | Provides API contracts for client consumption |
 | `testing` | `downstream` | Hands off code for test generation |
 | `devops` | `downstream` | Hands off for deployment pipeline setup |
-| `recovery` | `fallback` | Restores previous code state on failure |
+| `orchestrator` | `fallback` | Restores previous code state on failure |
 
 ---
 
@@ -811,7 +811,7 @@ Violation → agent MUST escalate to `planner`.
 
 | Failure Type | Detection | Action | Escalation |
 |-------------|-----------|--------|------------|
-| **Transient** (npm install timeout, DB connection) | Error code / retry-able | Retry ≤ 3 with exponential backoff | → `recovery` agent |
+| **Transient** (npm install timeout, DB connection) | Error code / retry-able | Retry ≤ 3 with exponential backoff | → `orchestrator` agent |
 | **Domain mismatch** (asked to build UI) | Scope check fails | Reject + redirect to `frontend` | → `orchestrator` |
 | **Ambiguous requirements** (no framework specified) | Missing required inputs | Pause + ask user for clarification | → `planner` or user |
 | **Unrecoverable** (corrupt dependencies, broken build) | All retries exhausted | Git restore + document failure | → user with failure report |

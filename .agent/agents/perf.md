@@ -518,7 +518,7 @@ When reviewing performance optimization work, verify:
 | `backend` | `peer` | Implements server-side optimizations |
 | `devops` | `downstream` | Deploys caching/CDN/infrastructure changes |
 | `debug` | `peer` | Investigates performance regressions |
-| `recovery` | `fallback` | Restores state if optimization breaks functionality |
+| `orchestrator` | `fallback` | Restores state if optimization breaks functionality |
 
 ---
 
@@ -819,7 +819,7 @@ Violation → agent MUST escalate to `planner`.
 
 | Failure Type | Detection | Action | Escalation |
 |-------------|-----------|--------|------------|
-| **Transient** (tool timeout, build failure) | Error code / retry-able | Retry ≤ 3 with backoff | → `recovery` agent |
+| **Transient** (tool timeout, build failure) | Error code / retry-able | Retry ≤ 3 with backoff | → `orchestrator` agent |
 | **No improvement** (optimization didn't help) | Before/after same or worse | Document, try alternative strategy | → User with alternative options |
 | **Domain mismatch** (asked to build features) | Scope check fails | Reject + redirect | → Appropriate domain agent |
 | **Regression caused** (other metrics worsened) | Before/after shows regression | Revert change, re-analyze | → `debug` for investigation |

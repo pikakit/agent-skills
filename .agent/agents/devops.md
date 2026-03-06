@@ -381,7 +381,7 @@ When reviewing deployment work, verify:
 |--------|----------|--------|
 | Deployment status | User, `orchestrator` | URL, health status, deployment ID |
 | Monitoring dashboard | User, `planner` | Dashboard URL, alert configuration |
-| Rollback procedure | User, `recovery` | Step-by-step rollback instructions |
+| Rollback procedure | User, `orchestrator` | Step-by-step rollback instructions |
 
 ### Output Schema
 
@@ -425,7 +425,7 @@ When reviewing deployment work, verify:
 
 | Condition | Escalate To | Handoff Format |
 |-----------|-------------|----------------|
-| Deployment fails, rollback attempted | `recovery` | Deployment log + error details |
+| Deployment fails, rollback attempted | `orchestrator` | Deployment log + error details |
 | Application bug discovered post-deploy | `debug` | Error logs + deployment context |
 | Security vulnerability in deployment | `security` | Vulnerability details + affected services |
 | Database migration issue | `database` | Migration files + error output |
@@ -454,7 +454,7 @@ When reviewing deployment work, verify:
 | `database` | `peer` | Coordinates database migrations during deploy |
 | `security` | `peer` | Reviews deployment security posture |
 | `debug` | `peer` | Investigates post-deployment issues |
-| `recovery` | `fallback` | Handles deployment rollback failures |
+| `orchestrator` | `fallback` | Handles deployment rollback failures |
 
 ---
 
@@ -762,7 +762,7 @@ Violation → agent MUST escalate to `planner`.
 
 | Failure Type | Detection | Action | Escalation |
 |-------------|-----------|--------|------------|
-| **Transient** (network timeout, platform error) | Error code / retry-able | Retry ≤ 3 with exponential backoff | → `recovery` agent |
+| **Transient** (network timeout, platform error) | Error code / retry-able | Retry ≤ 3 with exponential backoff | → `orchestrator` agent |
 | **Deployment failure** (build fails, health check fails) | Health check returns non-200 | Rollback to previous version immediately | → User with failure report |
 | **Domain mismatch** (code fix needed) | Scope check fails | Redirect to domain agent | → `orchestrator` |
 | **Unrecoverable** (rollback also fails) | All recovery attempts exhausted | Document + emergency escalation | → User with full incident report |

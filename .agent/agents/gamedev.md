@@ -444,7 +444,7 @@ When reviewing game code, verify:
 | `mobile` | `peer` | Collaborates on mobile game platform features |
 | `devops` | `downstream` | Deploys game builds to platforms |
 | `debug` | `peer` | Investigates game-specific bugs and performance issues |
-| `recovery` | `fallback` | Restores game project state if build breaks |
+| `orchestrator` | `fallback` | Restores game project state if build breaks |
 
 ---
 
@@ -744,7 +744,7 @@ Violation → agent MUST escalate to `planner`.
 
 | Failure Type | Detection | Action | Escalation |
 |-------------|-----------|--------|------------|
-| **Transient** (build fails, dependency issue) | Error code / retry-able | Retry ≤ 3 with backoff | → `recovery` agent |
+| **Transient** (build fails, dependency issue) | Error code / retry-able | Retry ≤ 3 with backoff | → `orchestrator` agent |
 | **Performance miss** (FPS below target) | Profiler shows bottleneck | Profile → optimize cycle | → `debug` for deep investigation |
 | **Domain mismatch** (asked to build web app) | Scope check fails | Reject + redirect | → `orchestrator` |
 | **Unrecoverable** (engine incompatibility) | All approaches exhausted | Document + suggest alternative | → User with alternatives report |

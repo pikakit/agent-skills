@@ -435,7 +435,7 @@ When completing a debugging investigation, verify:
 | `frontend` | `peer` | Collaborates on client-side bug fixes |
 | `testing` | `downstream` | Receives regression tests to add to suite |
 | `security` | `peer` | Collaborates when bugs are security vulnerabilities |
-| `recovery` | `fallback` | Restores code state if fix causes new issues |
+| `orchestrator` | `fallback` | Restores code state if fix causes new issues |
 
 ---
 
@@ -733,7 +733,7 @@ Violation → agent MUST escalate to `planner`.
 
 | Failure Type | Detection | Action | Escalation |
 |-------------|-----------|--------|------------|
-| **Transient** (file not found, timeout) | Error code / retry-able | Retry ≤ 3 with backoff | → `recovery` agent |
+| **Transient** (file not found, timeout) | Error code / retry-able | Retry ≤ 3 with backoff | → `orchestrator` agent |
 | **Cannot reproduce** | No reproduction after multiple attempts | Request more details from user | → User with specific questions |
 | **Domain mismatch** (feature request) | Scope check fails | Reject + redirect to `planner` | → `orchestrator` |
 | **Unrecoverable** (no evidence, no reproduction) | All investigation approaches exhausted | Document investigation + escalate | → User with investigation report |

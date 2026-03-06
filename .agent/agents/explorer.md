@@ -723,7 +723,7 @@ Violation → agent MUST escalate to `planner`.
 
 | Failure Type | Detection | Action | Escalation |
 |-------------|-----------|--------|------------|
-| **Transient** (file not found, permission denied) | Error code / retry-able | Retry ≤ 3 with backoff | → `recovery` agent |
+| **Transient** (file not found, permission denied) | Error code / retry-able | Retry ≤ 3 with backoff | → `orchestrator` agent |
 | **Scope too large** (codebase too big) | File count > 1000 in deep mode | Reduce depth, summarize | → User for scope refinement |
 | **Domain mismatch** (asked to fix code) | Scope check fails | Reject + redirect to domain agent | → `orchestrator` |
 | **Unrecoverable** (corrupted project) | All scan attempts fail | Document + abort | → User with failure report |

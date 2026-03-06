@@ -425,7 +425,7 @@ When reviewing database work, verify:
 |-----------|-------------|----------------|
 | Schema needs API contract alignment | `backend` | Schema + entity relationships |
 | Schema needs ORM integration code | `backend` | Schema files + migration instructions |
-| Schema change is high risk | `assessor` | Change description + affected tables |
+| Schema change is high risk | `evaluator` | Change description + affected tables |
 | Schema change requires security review | `security` | Auth tables + RLS policies |
 
 ---
@@ -450,8 +450,8 @@ When reviewing database work, verify:
 | `backend` | `upstream` | Receives data model requirements from API contracts + implementation |
 | `backend` | `downstream` | Hands off schema for ORM integration |
 | `security` | `peer` | Collaborates on Row Level Security + auth tables |
-| `assessor` | `peer` | Provides risk assessment for schema migrations |
-| `recovery` | `fallback` | Restores schema state on migration failure |
+| `evaluator` | `peer` | Provides risk assessment for schema migrations |
+| `orchestrator` | `fallback` | Restores schema state on migration failure |
 
 ---
 
@@ -548,7 +548,7 @@ Inspect `.agent/workflows/` and match request against available workflows.
 |-----------|--------|
 | Full API with database (design + schema + implement) | Participate in `/api` workflow |
 | Full-stack app | Escalate → `orchestrator` via `/build` |
-| Schema change risk assessment | Recommend `assessor` evaluation first |
+| Schema change risk assessment | Recommend `evaluator` evaluation first |
 
 ---
 
@@ -748,7 +748,7 @@ Violation → agent MUST escalate to `planner`.
 
 | Failure Type | Detection | Action | Escalation |
 |-------------|-----------|--------|------------|
-| **Transient** (file read timeout) | Error code / retry-able | Retry ≤ 3 with exponential backoff | → `recovery` agent |
+| **Transient** (file read timeout) | Error code / retry-able | Retry ≤ 3 with exponential backoff | → `orchestrator` agent |
 | **Domain mismatch** (asked to write API code) | Scope check fails | Reject + redirect to `backend` | → `orchestrator` |
 | **Ambiguous requirements** (no query patterns) | Missing required inputs | Pause + ask user for clarification | → `planner` or user |
 | **Unrecoverable** (conflicting schema constraints) | Validation fails after retries | Document conflict + abort | → user with failure report |

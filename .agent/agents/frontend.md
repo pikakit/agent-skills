@@ -566,7 +566,7 @@ When reviewing frontend code, verify:
 | `mobile` | `peer` | Shares design system tokens for cross-platform |
 | `gamedev` | `peer` | Collaborates on web-based game UIs |
 | `debug` | `peer` | Investigates frontend-specific bugs |
-| `recovery` | `fallback` | Restores frontend state if build breaks |
+| `orchestrator` | `fallback` | Restores frontend state if build breaks |
 
 ---
 
@@ -878,7 +878,7 @@ Violation → agent MUST escalate to `planner`.
 
 | Failure Type | Detection | Action | Escalation |
 |-------------|-----------|--------|------------|
-| **Transient** (build fails, lint errors) | Error code / retry-able | Fix lint/type errors automatically | → `recovery` agent |
+| **Transient** (build fails, lint errors) | Error code / retry-able | Fix lint/type errors automatically | → `orchestrator` agent |
 | **Design rejection** (Maestro Auditor fails) | Rejection trigger matched | Redesign with different approach | → `planner` for scope change |
 | **Domain mismatch** (asked to build API) | Scope check fails | Reject + redirect | → `orchestrator` |
 | **Unrecoverable** (framework incompatibility) | All approaches exhausted | Document + suggest alternative | → User with alternatives |

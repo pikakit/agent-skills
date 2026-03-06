@@ -412,7 +412,7 @@ When reviewing orchestration quality, verify:
 |--------|----------|--------|
 | Orchestration report | User | Unified report with findings + recommendations |
 | Agent assignments | Specialist agents | Subtask + context per agent |
-| Conflict resolution | User or `critic` | Trade-off analysis + recommendation |
+| Conflict resolution | User or `evaluator` | Trade-off analysis + recommendation |
 
 ### Output Schema
 
@@ -455,8 +455,8 @@ When reviewing orchestration quality, verify:
 
 | Condition | Escalate To | Handoff Format |
 |-----------|-------------|----------------|
-| Agent conflict unresolvable | `critic` | Both agent outputs + context |
-| Execution failure (agent crashes) | `recovery` | Agent state + error details |
+| Agent conflict unresolvable | `evaluator` | Both agent outputs + context |
+| Execution failure (agent crashes) | `orchestrator` | Agent state + error details |
 | User needs plan created | `planner` | Requirements + project type |
 | Security concern during orchestration | `security` | Vulnerability details + agent context |
 
@@ -469,7 +469,7 @@ When reviewing orchestration quality, verify:
 3. **Load** coordination skills: `project-planner` for decomposition, `system-design` for architecture
 4. **Execute** agent selection → sequential invocation → context passing → synthesis
 5. **Return** unified orchestration report matching Output Schema
-6. **Escalate** if agent conflicts are irreconcilable → `critic`; if execution fails → `recovery`
+6. **Escalate** if agent conflicts are irreconcilable → `evaluator`; if execution fails → `orchestrator`
 
 ---
 
@@ -479,8 +479,8 @@ When reviewing orchestration quality, verify:
 |-------|-------------|----------|
 | `planner` | `upstream` | Provides approved plans for orchestration |
 | `orchestrator` | `peer` | Handles runtime execution mechanics (distinct from lead's strategy) |
-| `critic` | `peer` | Resolves irreconcilable agent conflicts |
-| `assessor` | `peer` | Evaluates risk before risky multi-agent operations |
+| `evaluator` | `peer` | Resolves irreconcilable agent conflicts |
+| `evaluator` | `peer` | Evaluates risk before risky multi-agent operations |
 | `frontend` | `downstream` | Receives web UI subtasks |
 | `backend` | `downstream` | Receives API/server subtasks |
 | `mobile` | `downstream` | Receives mobile subtasks |
@@ -489,7 +489,7 @@ When reviewing orchestration quality, verify:
 | `debug` | `downstream` | Receives debugging subtasks |
 | `devops` | `downstream` | Receives deployment subtasks |
 | `explorer` | `downstream` | Receives codebase discovery subtasks |
-| `recovery` | `fallback` | Restores state if agent execution fails |
+| `orchestrator` | `fallback` | Restores state if agent execution fails |
 
 ---
 
@@ -750,7 +750,7 @@ Given identical inputs and PLAN.md, the agent MUST produce identical:
 | Single-domain task | Delegate directly to specialist, no orchestration |
 | Runtime execution control | Delegate to `orchestrator` (runtime, not strategic) |
 | Code implementation | Delegate to domain specialist (`frontend`, `backend`, `mobile`) |
-| Risk assessment | Escalate to `assessor` |
+| Risk assessment | Escalate to `evaluator` |
 
 ### Hard Boundaries
 
@@ -796,10 +796,10 @@ Violation → agent MUST escalate to `planner`.
 
 | Failure Type | Detection | Action | Escalation |
 |-------------|-----------|--------|------------|
-| **Transient** (agent timeout, tool error) | Error code / retry-able | Retry agent invocation ≤ 3 with backoff | → `recovery` agent |
+| **Transient** (agent timeout, tool error) | Error code / retry-able | Retry agent invocation ≤ 3 with backoff | → `orchestrator` agent |
 | **Domain mismatch** (wrong agent selected) | Boundary check fails | Re-route to correct specialist agent | → Self-correction |
 | **Plan missing** (no PLAN.md) | Pre-flight check fails | STOP → Create plan via `project-planner` | → `planner` |
-| **Agent conflict** (irreconcilable) | Both agents produce contradictory output | Apply Security > Performance > Convenience | → `critic` for final ruling |
+| **Agent conflict** (irreconcilable) | Both agents produce contradictory output | Apply Security > Performance > Convenience | → `evaluator` for final ruling |
 | **Unrecoverable** (multiple agents fail) | All retries exhausted | Document + abort with partial results | → User with failure report |
 
 ---

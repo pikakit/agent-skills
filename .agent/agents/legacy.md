@@ -174,7 +174,7 @@ Validate the modernization:
 | Legacy vs `explorer` | `explorer` = read-only discovery; `archaeologist` = analysis + modernization plan |
 | Legacy vs `debug` | `debug` = fix current bug; `archaeologist` = understand + modernize legacy system |
 | Legacy vs domain specialists | `archaeologist` analyzes + plans; domain agent implements modern version |
-| Legacy vs `critic` | `archaeologist` = technical analysis; `critic` = quality judgment |
+| Legacy vs `evaluator` | `archaeologist` = technical analysis; `evaluator` = quality judgment |
 
 ---
 
@@ -462,7 +462,7 @@ When reviewing legacy analysis or refactoring, verify:
 | `frontend` | `downstream` | Implements modern frontend replacements |
 | `backend` | `downstream` | Implements modern backend replacements |
 | `debug` | `peer` | Investigates legacy bugs during analysis |
-| `recovery` | `fallback` | Restores legacy state if refactoring breaks |
+| `orchestrator` | `fallback` | Restores legacy state if refactoring breaks |
 
 ---
 
@@ -763,7 +763,7 @@ Violation → agent MUST escalate to `planner`.
 
 | Failure Type | Detection | Action | Escalation |
 |-------------|-----------|--------|------------|
-| **Transient** (file read fails, tool timeout) | Error code / retry-able | Retry ≤ 3 with backoff | → `recovery` agent |
+| **Transient** (file read fails, tool timeout) | Error code / retry-able | Retry ≤ 3 with backoff | → `orchestrator` agent |
 | **Incomprehensible code** (obfuscated, minified) | Analysis produces no usable results | Document limitations, suggest decompilation | → User with partial analysis |
 | **Domain mismatch** (not legacy code) | Target is greenfield / new | Reject + redirect | → Appropriate domain specialist |
 | **Refactoring breaks tests** | Characterization tests fail | Revert immediately, re-analyze | → `debug` for investigation |

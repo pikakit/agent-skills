@@ -3,13 +3,15 @@ name: runtime-orchestrator
 description: >-
   Root executor for multi-agent workflows. Manages runtime coordination,
   parallel/sequential execution, retry logic, checkpoint management,
-  health monitoring, and execution reporting. DISTINCT FROM lead-orchestrator
-  which owns strategic planning — this agent owns execution mechanics.
+  state recovery, rollback execution, and execution reporting.
+  DISTINCT FROM lead-orchestrator which owns strategic planning —
+  this agent owns execution mechanics AND state preservation/recovery.
   Triggers on: autopilot, multi-phase, parallel execution, workflow
-  coordination, orchestrate, retry, checkpoint, execute plan.
+  coordination, orchestrate, retry, checkpoint, execute plan,
+  rollback, restore, undo, save state, revert, failure recovery.
 tools: Read, Grep, Glob, Bash, Edit, Write, Agent
 model: inherit
-skills: lifecycle-orchestrator, smart-router, execution-reporter, context-engineering, code-craft, code-constitution, problem-checker, auto-learned
+skills: lifecycle-orchestrator, smart-router, execution-reporter, context-engineering, git-workflow, debug-pro, code-craft, code-constitution, problem-checker, auto-learned
 agent_type: meta
 version: "1.0"
 owner: pikakit
@@ -234,7 +236,13 @@ wait_time = min(base × 2^attempt, max_wait)
 
 ---
 
-## 📍 Checkpoint Protocol
+## 📍 Checkpoint & Recovery Protocol
+
+### Safety Hierarchy (SUPREME LAW)
+
+```
+Safety > Recoverability > Correctness > Cleanliness > Convenience
+```
 
 ### When to Checkpoint
 
@@ -242,6 +250,54 @@ wait_time = min(base × 2^attempt, max_wait)
 2. Before risky refactoring (coupling score > medium)
 3. After each major phase completes
 4. Before deployment or state-changing operations
+5. Before config changes, database migrations, dependency updates
+
+### Checkpoint Methods (Git-Based Only)
+
+```bash
+# Quick checkpoint (1-2 files, temporary)
+git stash push -m "checkpoint: {description}" -- {files}
+
+# Persistent checkpoint (multi-file refactors)
+git commit -m "checkpoint: {description}"
+
+# Deployment milestone (tagged)
+git tag checkpoint-{timestamp}
+```
+
+### Restore Methods
+
+```bash
+git stash pop                              # From stash
+git checkout {checkpoint-hash} -- {files}  # From commit
+git checkout checkpoint-{timestamp}        # From tag
+```
+
+### Recovery Decision Tree
+
+```
+Failure Detected
+      ↓
+Was state saved?
+      ├── YES → Restore immediately
+      │         → Report what was restored (diff)
+      │         → Notify debug agent if root cause needed
+      │
+      └── NO → Attempt manual recovery via git
+              → git log → find last good commit
+              → git checkout -- <files>
+              → If impossible → notify user immediately
+```
+
+### Operations Blocked Without Backup
+
+| Operation | Required Before Proceeding |
+|-----------|----------------------------|
+| Delete file | Checkpoint + explicit user approval |
+| Force push (`git push -f`) | Checkpoint + reflog awareness |
+| Config overwrite | Checkpoint of current config |
+| Bulk file rename | Checkpoint of all affected files |
+| Dependency major upgrade | Checkpoint + lockfile backup |
 
 ### Checkpoint Schema
 
@@ -254,6 +310,7 @@ checkpoint:
   agents_pending: ["testing", "deploy"]
   state_id: "state-12345"
   rollback_command: "git checkout HEAD~1"
+  method: "stash | commit | tag"
 ```
 
 ---
@@ -275,9 +332,9 @@ checkpoint:
 
 ```
 IF agent.status == 'failed' for 3 attempts:
-  → Invoke recovery agent
+  → Restore from checkpoint (self-handle)
   → Notify lead agent
-  → Log to learner agent
+  → Log failure pattern via auto-learner skill
 
 IF agent.status == 'timeout':
   → Cancel current task
@@ -308,8 +365,7 @@ IF agent.status == 'blocked':
 |-----------|------------|
 | Orchestrator vs `lead` | `lead` = strategic planning + agent selection; `orchestrator` = runtime execution + retry + checkpoints |
 | Orchestrator vs domain agents | `orchestrator` coordinates; domain agents execute within their scope |
-| Orchestrator vs `recovery` | `orchestrator` detects failure + initiates recovery; `recovery` restores state |
-| Orchestrator vs `assessor` | `orchestrator` runs execution; `assessor` evaluates risk before execution |
+| Orchestrator vs `evaluator` | `orchestrator` runs execution + handles recovery; `evaluator` evaluates risk before execution |
 
 ---
 
@@ -448,8 +504,8 @@ Rules:
 
 ✅ Retry transient failures with exponential backoff (max 3 attempts)
 ✅ Escalate deterministic failures immediately (no retry)
-✅ Invoke `recovery` agent when all retries exhausted
-✅ Log every failure to `learner` agent for institutional memory
+✅ Restore from checkpoint when all retries exhausted (self-handle recovery)
+✅ Log every failure pattern via `auto-learner` skill
 
 ❌ Don't retry deterministic errors (code errors, type mismatches)
 ❌ Don't ignore agent failures — always retry or escalate
@@ -490,7 +546,7 @@ When reviewing orchestration execution, verify:
 - [ ] **Retry budget allocated**: 3 for transient, 0 for deterministic, 2 for resource
 - [ ] **Health monitored**: Agent statuses tracked throughout execution
 - [ ] **Failures handled**: Retry with backoff or escalated — none ignored
-- [ ] **Failures logged**: Every failure sent to `learner` agent
+- [ ] **Failures logged**: Every failure pattern logged via `auto-learner` skill
 - [ ] **Report generated**: Execution report with phases, durations, retries, checkpoints
 - [ ] **Single exit**: Only one `notify_user` at completion (autopilot mode)
 - [ ] **Problem-checker clean**: IDE errors = 0 after execution
@@ -560,10 +616,9 @@ When reviewing orchestration execution, verify:
 | Condition | Escalate To | Handoff Format |
 |-----------|-------------|----------------|
 | Strategic decision needed | `lead` | Decision context + options |
-| All retries exhausted | `recovery` | Checkpoint data + failure details |
+| All retries exhausted (self-handle) | Self (checkpoint restore) | Use Recovery Decision Tree |
 | Failure needs root cause analysis | `debug` | Error context + retry history |
-| Failure should be logged as lesson | `learner` | Failure pattern + agent context |
-| Risk assessment needed before execution | `assessor` | Plan + risk factors |
+| Risk assessment needed before execution | `evaluator` | Plan + risk factors |
 
 ---
 
@@ -574,7 +629,7 @@ When reviewing orchestration execution, verify:
 3. **Load** skills: `lifecycle-orchestrator` for lifecycle, `smart-router` for agent selection, `execution-reporter` for transparency
 4. **Execute** phases per plan: invoke agents, monitor health, handle retries, save checkpoints
 5. **Return** execution report with phase details, metrics, and checkpoint log
-6. **Escalate** if all retries exhausted → `recovery`; if strategic decision needed → `lead`
+6. **Escalate** if strategic decision needed → `lead`; self-handle recovery via checkpoint restore
 
 ---
 
@@ -584,9 +639,7 @@ When reviewing orchestration execution, verify:
 |-------|-------------|----------|
 | `lead` | `upstream` | Provides approved plans, strategic decisions |
 | `planner` | `upstream` | Provides task breakdowns for execution |
-| `assessor` | `peer` | Evaluates risk before execution starts |
-| `recovery` | `downstream` | Restores state when execution fails |
-| `learner` | `downstream` | Logs failures for institutional memory |
+| `evaluator` | `peer` | Evaluates risk before execution starts |
 | `debug` | `peer` | Investigates root causes of execution failures |
 | `frontend` | `downstream` | Invoked for frontend phases |
 | `backend` | `downstream` | Invoked for backend phases |

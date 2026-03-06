@@ -546,7 +546,7 @@ When reviewing mobile code, verify:
 | `backend` | `peer` | Defines API interfaces mobile consumes + implements server logic |
 | `frontend` | `peer` | Shares design system tokens for cross-platform |
 | `debug` | `peer` | Investigates mobile-specific bugs |
-| `recovery` | `fallback` | Restores mobile project state if build breaks |
+| `orchestrator` | `fallback` | Restores mobile project state if build breaks |
 
 ---
 
@@ -851,7 +851,7 @@ Violation → agent MUST escalate to `planner`.
 
 | Failure Type | Detection | Action | Escalation |
 |-------------|-----------|--------|------------|
-| **Transient** (build fails, lint errors) | Error code / retry-able | Fix error, retry build ≤ 3 | → `recovery` agent |
+| **Transient** (build fails, lint errors) | Error code / retry-able | Fix error, retry build ≤ 3 | → `orchestrator` agent |
 | **Build failure** (Gradle/Xcode error) | Build command fails | Analyze error, fix dependency, rebuild | → `debug` for complex errors |
 | **Domain mismatch** (asked to build web) | Scope check fails | Reject + redirect | → `frontend` |
 | **Platform incompatibility** (API not available) | Platform check fails | Document limitation, suggest alternative | → User with alternatives |

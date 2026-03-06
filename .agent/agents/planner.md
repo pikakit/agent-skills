@@ -537,7 +537,7 @@ When reviewing plan quality, verify:
 | Strategic coordination needed | `lead` | Plan summary + agent assignment questions |
 | Plan approved, ready for execution | `orchestrator` | Plan file path + execution order |
 | Codebase analysis needed | `explorer` | Analysis request + scope boundaries |
-| Risk assessment needed | `assessor` | Plan + identified risks |
+| Risk assessment needed | `evaluator` | Plan + identified risks |
 
 ---
 
@@ -559,7 +559,7 @@ When reviewing plan quality, verify:
 | `lead` | `upstream` | Provides strategic direction |
 | `orchestrator` | `downstream` | Receives plan for execution |
 | `explorer` | `peer` | Provides codebase analysis for planning |
-| `assessor` | `peer` | Evaluates risk of proposed plan |
+| `evaluator` | `peer` | Evaluates risk of proposed plan |
 | `frontend` | `downstream` | Receives WEB tasks from plan |
 | `backend` | `downstream` | Receives BACKEND tasks from plan |
 | `mobile` | `downstream` | Receives MOBILE tasks from plan |
@@ -867,7 +867,7 @@ Violation → agent MUST pause and clarify.
 |-------------|-----------|--------|------------|
 | **Ambiguous request** | Requirements unclear after initial analysis | Ask Socratic questions (max 5) | → User for clarification |
 | **Wrong project type** | Agent mismatch detected during planning | Re-detect project type, fix assignments | → `lead` if still unclear |
-| **Plan file creation fails** | File system error | Retry with different path | → `recovery` for file system |
+| **Plan file creation fails** | File system error | Retry with different path | → `orchestrator` for file system |
 | **Dependencies circular** | Topological sort fails | Flatten dependencies, warn user | → User for dependency resolution |
 | **Context overflow** | Plan too large for context | Break into phased sub-plans | → `lead` for phase prioritization |
 
