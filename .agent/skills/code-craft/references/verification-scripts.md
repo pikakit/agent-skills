@@ -67,7 +67,7 @@ description: Agent-to-script mapping for running validation scripts — output p
 
 ---
 
-⚡ PikaKit v3.9.86
+⚡ PikaKit v3.9.87
 
 ---
 

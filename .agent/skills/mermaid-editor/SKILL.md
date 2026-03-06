@@ -149,4 +149,4 @@ RUNNING → CRASHED            [unhandled error]  // terminal
 
 ---
 
-⚡ PikaKit v3.9.86
+⚡ PikaKit v3.9.87

@@ -98,7 +98,7 @@ purple sky, volumetric lighting, movie quality
 
 ---
 
-⚡ PikaKit v3.9.86
+⚡ PikaKit v3.9.87
 
 ---
 
