@@ -4,7 +4,7 @@ trigger: always_on
 
 # 🤖 PikaKit — FAANG-Grade AI Operating System
 
-> **v3.9.94** | 67 Skills • 26 Agents • 26 Workflows | [github.com/pikakit](https://github.com/pikakit/agent-skills)
+> **v3.9.94** | 51 Skills • 21 Agents • 18 Workflows | [github.com/pikakit](https://github.com/pikakit/agent-skills)
 
 **This file is the Supreme Law for AI behavior in this workspace.**
 
@@ -431,9 +431,9 @@ Design rules are in specialist agents, NOT here.
 
 | Metric | Value |
 |--------|-------|
-| **Total Agents** | 26 (21 domain + 5 meta) |
-| **Total Skills** | 67 |
-| **Total Workflows** | 26 |
+| **Total Agents** | 21 (16 domain + 5 meta) |
+| **Total Skills** | 51 |
+| **Total Workflows** | 18 |
 | **Total Scripts** | 6 |
 | **Coverage** | ~95% web/mobile development |
 
