@@ -159,4 +159,4 @@ node .agent/skills/studio/scripts-js/search.js "<query>" --domain style
 
 ---
 
-⚡ PikaKit v3.9.92
+⚡ PikaKit v3.9.93

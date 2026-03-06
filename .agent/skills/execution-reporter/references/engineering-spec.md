@@ -212,7 +212,7 @@ All phases synchronous. No async pipeline.
 |-----------|-------------|
 | Fixed template set | 4 templates: full, compact, complete, script |
 | Fixed verbosity levels | 3 levels: minimal, normal, verbose |
-| Fixed branding | PikaKit v3.9.92; not configurable |
+| Fixed branding | PikaKit v3.9.93; not configurable |
 | Fixed complexity threshold | > 3 skills → full template; ≤ 3 → compact |
 | One notification per phase | No duplicate or overlapping notifications |
 | No content generation | Templates are structural; values are interpolated |
@@ -393,4 +393,4 @@ All resources scoped to invocation. No persistent handles.
 
 ---
 
-⚡ PikaKit v3.9.92
+⚡ PikaKit v3.9.93

@@ -527,4 +527,4 @@ App Scaffold is NOT idempotent. Invoking it twice with the same `project_path` f
 
 ---
 
-⚡ PikaKit v3.9.92
+⚡ PikaKit v3.9.93

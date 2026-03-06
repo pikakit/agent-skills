@@ -189,7 +189,7 @@ function evaluatePolicy(ctx: PolicyContext): boolean {
 
 ---
 
-⚡ PikaKit v3.9.92
+⚡ PikaKit v3.9.93
 
 ---
 

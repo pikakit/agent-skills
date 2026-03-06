@@ -322,5 +322,5 @@ Before publishing a workflow:
 
 ---
 
-⚡ PikaKit v3.9.92
+⚡ PikaKit v3.9.93
 Composable Skills. Coordinated Agents. Intelligent Execution.

@@ -224,7 +224,7 @@ for (const message of messages) {
 
 ---
 
-⚡ PikaKit v3.9.92
+⚡ PikaKit v3.9.93
 
 ---
 
