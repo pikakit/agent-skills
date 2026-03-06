@@ -167,7 +167,7 @@ Prepare context for downstream agents:
 | Situation | Resolution |
 |-----------|------------|
 | Codebase exploration vs bug investigation | `explorer` provides architectural context; `debug` investigates specific bugs |
-| Architecture analysis vs system design | `explorer` discovers current state; `api-designer`/`backend` designs new systems |
+| Architecture analysis vs system design | `explorer` discovers current state; `backend` designs new systems |
 | Feasibility research vs implementation | `explorer` researches possibility; domain agent implements |
 | Code review vs code audit | `explorer` audits architecture; domain agents do code review |
 

@@ -730,7 +730,7 @@ Given identical page content, the agent MUST produce identical:
 | Rule | Description |
 |------|-------------|
 | **Primary ownership** | `seo-optimizer` and `geo-spatial` primarily owned by this agent |
-| **Shared skills** | `copywriting` (shared with `pm`, `po`), `perf-optimizer` (shared with `perf`) |
+| **Shared skills** | `copywriting` (shared with `product-lead`), `perf-optimizer` (shared with `perf`) |
 | **Registry validation** | Skill must exist in `.agent/skills/<skill-name>/` |
 | **Category integrity** | Skill category must match `skill-design-guide.md` |
 

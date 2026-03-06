@@ -723,7 +723,7 @@ Given identical deployment requests and environment, the agent MUST produce iden
 ❌ Design database schemas (owned by `database`)
 ❌ Perform security audits (owned by `security`)
 ❌ Debug application bugs (owned by `debug`)
-❌ Design API contracts (owned by `api-designer`)
+❌ Design API contracts (owned by `backend`)
 
 ---
 

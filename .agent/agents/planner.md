@@ -314,7 +314,7 @@ Before exiting:
 | ------------ | ------------- | ----------------- | ----- |
 | WEB | `frontend` | `backend`, `database`, `security` | ❌ Never use `mobile` for web |
 | MOBILE | `mobile` | `backend`, `database`, `security` | ❌ Never use `frontend` for mobile |
-| BACKEND | `backend` | `database`, `security`, `api-designer` | ❌ No frontend/mobile agent |
+| BACKEND | `backend` | `database`, `security` | ❌ No frontend/mobile agent |
 | GAME | `gamedev` | `frontend` (web games only), `mobile` (mobile games only) | Match platform to agent |
 | FULL-STACK | `frontend` + `backend` | `database`, `security` | Explicit split of concerns |
 

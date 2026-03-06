@@ -356,7 +356,7 @@ IF agent.status == 'blocked':
 | Task Type | Agent Selection | Verification |
 | --------- | -------------- | ------------ |
 | Frontend component | `frontend` | Triggers contain "React", "component", "UI" |
-| API endpoint | `backend` or `api-designer` | Triggers contain "API", "endpoint", "server" |
+| API endpoint / API design | `backend` | Triggers contain "API", "endpoint", "server", "API design", "OpenAPI" |
 | Database schema | `database` | Triggers contain "schema", "migration", "SQL" |
 | Mobile screen | `mobile` | Triggers contain "React Native", "Flutter", "mobile" |
 | Security audit | `security` | Triggers contain "security", "vulnerability", "OWASP" |

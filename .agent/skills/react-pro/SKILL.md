@@ -1,14 +1,15 @@
 ---
-name: react-architect
+name: react-pro
 description: >-
-  Modern React patterns and principles. Hooks, composition, performance, TypeScript best practices.
-  Triggers on: React, component, hooks, state management, Redux, Zustand.
+  Modern React patterns, component architecture, state management, TypeScript best practices,
+  and modern React development with Suspense, TanStack Query, MUI v7, and lazy loading.
+  Triggers on: React, component, hooks, state management, Redux, Zustand, TypeScript, TanStack Query, MUI, frontend.
   Coordinates with: nextjs-pro, design-system, typescript-expert.
 metadata:
   version: "2.0.0"
   category: "architecture"
-  triggers: "React, component, hooks, state management, Redux, Zustand"
-  success_metrics: "components render, no prop drilling, state correctly scoped"
+  triggers: "React, component, hooks, state management, Redux, Zustand, TypeScript, TanStack Query, MUI, frontend"
+  success_metrics: "components render, no prop drilling, state correctly scoped, lazy loading active"
   coordinates_with: "nextjs-pro, design-system, typescript-expert"
 ---
 

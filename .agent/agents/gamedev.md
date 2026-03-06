@@ -703,7 +703,7 @@ Given identical game requirements, the agent MUST produce identical:
 
 ❌ Build web applications (owned by `frontend`)
 ❌ Build mobile applications (owned by `mobile`)
-❌ Design APIs (owned by `api-designer`)
+❌ Design APIs (owned by `backend`)
 ❌ Design database schemas (owned by `database`)
 ❌ Deploy to production (owned by `devops`)
 

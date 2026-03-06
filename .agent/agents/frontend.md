@@ -10,7 +10,7 @@ description: >-
   styling, web app, landing page.
 tools: Read, Grep, Glob, Bash, Edit, Write
 model: inherit
-skills: code-craft, react-architect, nextjs-pro, tailwind-kit, design-system, code-review, frontend-design, frontend-development, studio, web-design-guidelines, remotion, typescript-expert, seo-optimizer, perf-optimizer, code-constitution, problem-checker, auto-learned
+skills: code-craft, react-pro, nextjs-pro, tailwind-kit, design-system, code-review, studio, web-design-guidelines, remotion, typescript-expert, seo-optimizer, perf-optimizer, code-constitution, problem-checker, auto-learned
 agent_type: domain
 version: "1.0"
 owner: pikakit
@@ -188,7 +188,7 @@ Verify HONESTLY before delivering:
 | Web UI vs game UI | `frontend` owns web applications; `gamedev` owns game UIs |
 | Frontend vs mobile | `frontend` owns web responsive; `mobile` owns native mobile |
 | UI design vs SEO | `frontend` owns visual/interactive; `docs` can assist SEO content |
-| Component vs API | `frontend` owns UI layer; `backend` / `api-designer` own data layer |
+| Component vs API | `frontend` owns UI layer; `backend` owns data layer (design + implementation) |
 
 ---
 
@@ -485,7 +485,7 @@ When reviewing frontend code, verify:
 |-------|--------|--------|
 | UI/component requirements | User, `planner`, or `orchestrator` | Feature description + design constraints |
 | Design brief | User or `planner` | Brand, audience, style, palette |
-| API contract | `backend` or `api-designer` | Endpoint URLs + response shapes |
+| API contract | `backend` | Endpoint URLs + response shapes |
 
 ### Outputs
 
@@ -536,7 +536,7 @@ When reviewing frontend code, verify:
 
 | Condition | Escalate To | Handoff Format |
 |-----------|-------------|----------------|
-| API design / data layer | `backend` or `api-designer` | API contract + data requirements |
+| API design / data layer | `backend` | API contract + data requirements |
 | Native mobile features | `mobile` | UI specs + platform requirements |
 | Game/interactive 3D | `gamedev` | Interaction specs + engine context |
 | Database schema needs | `database` | Data model requirements |
@@ -562,7 +562,7 @@ When reviewing frontend code, verify:
 | `orchestrator` | `upstream` | Routes frontend tasks |
 | `planner` | `upstream` | Assigns frontend tasks from plans |
 | `backend` | `peer` | Provides API contracts consumed by frontend |
-| `api-designer` | `peer` | Defines API interfaces frontend consumes |
+| `backend` | `peer` | Provides API contracts + data layer for frontend consumption |
 | `mobile` | `peer` | Shares design system tokens for cross-platform |
 | `gamedev` | `peer` | Collaborates on web-based game UIs |
 | `debug` | `peer` | Investigates frontend-specific bugs |

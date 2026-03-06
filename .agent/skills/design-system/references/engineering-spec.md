@@ -1,12 +1,17 @@
-# Design System — Engineering Specification
+---
+name: frontend-design-engineering-spec
+description: Full 21-section engineering spec — contracts, anti-slop enforcement, compliance matrix, production checklist
+---
 
-> Production-grade specification for UI design decision-making at FAANG scale.
+# Frontend Design — Engineering Specification
+
+> Production-grade specification for distinctive frontend interface design decisions at FAANG scale.
 
 ---
 
 ## 1. Overview
 
-Design System provides structured decision frameworks for web UI architecture: color theory and palette selection, typography systems and font pairing, visual effects (shadows, gradients, glassmorphism), animation and motion principles, UX psychology laws, and design decision trees. The skill operates as an expert knowledge base with 7 rule files and a UX audit script. It produces design decisions and system specifications — it does not generate CSS, create components, or render UI.
+Frontend Design provides structured decision frameworks for creating distinctive, production-grade web interfaces: aesthetic direction selection (5 styles), anti-AI-slop enforcement, design extraction from screenshots, typography pairing, color system commitment, and motion orchestration. The skill operates as an expert knowledge base with 5 reference files — it produces design direction decisions, aesthetic specifications, and implementation guidance. It does not write CSS, create components, or render UI.
 
 **Contract Version:** 2.0.0
 **Backward Compatibility:** breaking (first hardened version)
@@ -16,16 +21,16 @@ Design System provides structured decision frameworks for web UI architecture: c
 
 ## 2. Problem Statement
 
-UI design at scale faces four quantified problems:
+Frontend design at scale faces four quantified problems:
 
 | Problem | Measurement | Impact |
 |---------|-------------|--------|
-| Generic AI design (purple themes, bento grids) | 70% of AI-generated UIs use identical patterns | Indistinguishable products |
-| No design token system | 50% of projects use ad-hoc color/typography values | Visual inconsistency across pages |
-| UX psychology ignored | 60% of UIs violate Hick's Law (too many choices) | Higher bounce rates |
-| Animation misuse | 40% of motion is decorative with no functional purpose | Degraded performance, accessibility issues |
+| Generic AI-generated UIs | 75% of AI-built interfaces use Inter + purple gradient + bento grid | Indistinguishable products |
+| Timid color choices | 60% of projects use safe, muted palettes | No visual identity |
+| Scattered animations | 45% of motion has no choreographic purpose | Visual noise, performance cost |
+| Layout conformity | 70% of layouts follow identical card-grid patterns | No design differentiation |
 
-Design System eliminates these with principled rules, explicit anti-patterns, and deterministic decision trees.
+Frontend Design eliminates these with bold aesthetic direction commitment, anti-AI-slop rules, and intentional design decisions.
 
 ---
 
@@ -33,11 +38,12 @@ Design System eliminates these with principled rules, explicit anti-patterns, an
 
 | ID | Goal | Measurable Constraint |
 |----|------|-----------------------|
-| G1 | Eliminate generic AI design | 3 explicit bans: purple themes, bento grids, dark mode default |
-| G2 | Systematic color selection | Color palette from theory (complementary/analogous/triadic) |
-| G3 | Typography coherence | Font pairing from established scale; max 2 font families |
-| G4 | Purposeful animation | Every animation serves function (feedback, orientation, continuity) |
-| G5 | UX psychology compliance | All UIs checked against Hick's Law, Fitts's Law, Gestalt principles |
+| G1 | Distinctive aesthetics | 1 of 5 committed directions; no "safe middle" |
+| G2 | Anti-AI-slop | No generic fonts (Inter/Roboto alone), no pure RGB, no basic shadows |
+| G3 | Bold typography | Display font + body font pairing; heading ≥ 48px |
+| G4 | Committed color | Dominant primary + sharp accent; no more than 3 brand colors |
+| G5 | Orchestrated motion | Single entrance sequence with staggered timing |
+| G6 | Faithful reproduction | Screenshot → implementation match ≥ 95% accuracy |
 
 ---
 
@@ -45,12 +51,12 @@ Design System eliminates these with principled rules, explicit anti-patterns, an
 
 | ID | Excluded | Rationale |
 |----|----------|-----------|
-| NG1 | CSS/Tailwind class generation | Owned by `tailwind-kit` skill |
-| NG2 | AI-powered style recommendations | Owned by `studio` skill |
-| NG3 | Component implementation | Framework-specific concern |
-| NG4 | Accessibility compliance (WCAG) | Owned by `web-design-guidelines` skill |
-| NG5 | Image/asset generation | Owned by `ai-artist` skill |
-| NG6 | Frontend code architecture | Owned by `frontend-design` skill |
+| NG1 | CSS/Tailwind code generation | Owned by `tailwind-kit` / caller |
+| NG2 | Design token systems | Owned by `design-system` skill |
+| NG3 | AI-powered style search | Owned by `studio` skill |
+| NG4 | Asset/image generation | Owned by `ai-artist` skill |
+| NG5 | Component architecture | Framework-specific concern |
+| NG6 | WCAG accessibility | Owned by `web-design-guidelines` skill |
 
 ---
 
@@ -58,15 +64,14 @@ Design System eliminates these with principled rules, explicit anti-patterns, an
 
 | Boundary | Owned | Not Owned |
 |----------|-------|-----------|
-| Color theory (3 harmony types, palette generation) | Decision framework | CSS custom properties generation |
-| Typography system (scale, pairing, max 2 families) | Selection rules | Font loading implementation |
-| Visual effects (shadows, gradients, glassmorphism) | Effect selection criteria | CSS implementation |
-| Animation principles (3 functional categories) | Motion decision tree | Lottie/CSS animation code |
-| UX psychology (Hick's, Fitts's, Gestalt) | Audit criteria | Automated UX testing |
-| Design decision trees | Decision framework | Design tool execution |
-| UX audit script | `scripts/ux_audit.js` | Audit remediation |
+| Aesthetic direction selection (5 styles) | Decision framework | CSS implementation |
+| Anti-AI-slop enforcement (4 banned patterns) | Ban list and alternatives | Automated linting |
+| Design extraction from screenshots | Extraction process (4 steps) | Screenshot capture |
+| Typography pairing guidance | Font pair selection, sizing rules | Font loading |
+| Color system commitment | Palette strategy (dominant + accent) | CSS custom properties |
+| Motion orchestration | Choreography patterns | Animation library code |
 
-**Side-effect boundary:** Design System produces design decisions, palette specifications, and UX audit results. The UX audit script reads files and produces stdout output. No CSS generation, no component creation.
+**Side-effect boundary:** Frontend Design produces design decisions, aesthetic guidelines, and implementation specifications. It does not create files, write CSS, or render components.
 
 ---
 
@@ -77,15 +82,16 @@ Design System eliminates these with principled rules, explicit anti-patterns, an
 #### Input Schema
 
 ```
-Request_Type: string          # "color-palette" | "typography-system" | "visual-effect" |
-                              # "animation-select" | "ux-audit" | "decision-tree" | "full-system"
+Request_Type: string          # "aesthetic-direction" | "screenshot-extract" | "typography-guide" |
+                              # "color-system" | "motion-guide" | "anti-slop-check" |
+                              # "full-design-spec"
 Context: {
   project_type: string        # "landing-page" | "dashboard" | "e-commerce" | "saas" | "portfolio"
-  brand_mood: string | null   # "professional" | "playful" | "minimal" | "bold" | "luxury"
-  existing_colors: Array<string> | null  # Hex values of existing brand colors
+  brand_tone: string          # "bold" | "minimal" | "editorial" | "retro" | "organic" | "industrial"
+  screenshot_url: string | null  # URL or path to screenshot for extraction
+  existing_fonts: Array<string> | null  # Already committed fonts
+  existing_colors: Array<string> | null  # Already committed hex values
   content_type: string | null # "text-heavy" | "data-heavy" | "media-heavy" | "mixed"
-  target_audience: string | null  # Audience description
-  dark_mode_requested: boolean  # Explicit user request for dark mode
 }
 contract_version: string      # "2.0.0"
 ```
@@ -95,47 +101,40 @@ contract_version: string      # "2.0.0"
 ```
 Status: "success" | "violations" | "error"
 Data: {
-  color: {
-    harmony: string           # "complementary" | "analogous" | "triadic" | "split-complementary"
-    primary: string           # Hex value
-    secondary: string         # Hex value
-    accent: string            # Hex value
-    neutrals: Array<string>   # 5 neutral shades
-    semantic: {
-      success: string
-      warning: string
-      error: string
-      info: string
-    }
+  aesthetic: {
+    direction: string         # "brutally-minimal" | "editorial-magazine" |
+                              # "retro-futuristic" | "organic-natural" | "industrial-utilitarian"
+    description: string
+    key_traits: Array<string>
+  } | null
+  extraction: {
+    colors: Array<string>     # Hex values extracted
+    fonts: Array<string>      # Identified font families
+    spacing: string           # Spacing system description
+    layout: string            # Layout structure description
   } | null
   typography: {
-    heading_font: string      # Font family name
-    body_font: string         # Font family name
-    scale: Array<number>      # Font size scale in px
-    line_height_ratio: number # e.g., 1.5
-    max_families: number      # Always 2
+    display_font: string      # Recommended display font
+    body_font: string         # Recommended body font
+    min_heading_size: string   # e.g., "clamp(48px, 8vw, 120px)"
+    line_height: number       # e.g., 0.95 for headings
   } | null
-  visual_effect: {
-    recommended: string       # "shadow" | "gradient" | "glassmorphism" | "none"
-    rationale: string
-    css_guidance: string      # Directional guidance, not code
+  color: {
+    dominant: string          # Primary color hex
+    accent: string            # Accent color hex
+    neutral: string           # Neutral color hex
+    max_brand_colors: number  # Always 3
   } | null
-  animation: {
-    category: string          # "feedback" | "orientation" | "continuity"
-    duration_ms: number       # Recommended duration
-    easing: string            # "ease-out" | "ease-in-out" | "spring"
-    rationale: string
+  motion: {
+    pattern: string           # "staggered-entrance" | "scroll-reveal" | "orchestrated-sequence"
+    duration_ms: number       # Base duration
+    stagger_ms: number        # Delay between elements
   } | null
-  ux_audit: {
-    violations: Array<{
-      law: string             # "hicks-law" | "fitts-law" | "gestalt-proximity" | etc.
-      description: string
-      severity: string        # "error" | "warning"
-      fix: string
-    }>
-    passed: boolean
-  } | null
-  anti_patterns_checked: Array<string>
+  anti_slop_violations: Array<{
+    pattern: string
+    alternative: string
+  }> | null
+  reference_file: string | null
   metadata: {
     contract_version: string
     backward_compatibility: string
@@ -155,73 +154,79 @@ Recoverable: boolean
 
 #### Deterministic Guarantees
 
-- Same `Request_Type` + `Context` = identical design decisions.
-- Color harmony selection: project_type → brand_mood → harmony type (fixed mapping).
-- Typography: max 2 font families enforced; scale follows modular ratio.
-- Anti-pattern check always evaluates all 3 bans (purple, bento, dark mode).
-- UX audit uses fixed criteria (Hick's, Fitts's, Gestalt).
-- Dark mode only included if `dark_mode_requested = true`.
+- Same `brand_tone` = same aesthetic direction.
+- Aesthetic selection is deterministic: tone → direction mapping is fixed.
+- Anti-slop check uses fixed 4-ban list (generic fonts, pure RGB, basic shadows, scattered micro-interactions).
+- Typography always pairs display + body font; heading minimum 48px.
+- Color system always limits to 3 brand colors (dominant + accent + neutral).
+- Motion always uses one orchestrated entrance pattern.
 
 #### What Agents May Assume
 
-- Color palette is harmonious and includes semantic colors.
-- Typography recommendation limits to 2 font families.
-- Anti-pattern check covers all 3 known AI design traps.
-- UX audit evaluates against established psychology laws.
+- Aesthetic direction is committed (no "safe middle" options).
+- Typography pairing is distinctive (not Inter/Roboto default).
+- Color palette includes dominant, accent, and neutral.
+- Anti-slop check covers all 4 banned AI patterns.
 
 #### What Agents Must NOT Assume
 
-- The skill generates CSS or Tailwind classes (→ tailwind-kit).
-- Color palette accounts for brand-specific requirements beyond mood.
-- The skill handles WCAG accessibility compliance (→ web-design-guidelines).
-- Animation recommendations include implementation code.
+- The skill generates CSS, HTML, or component code.
+- Font files are available or loaded.
+- Color values pass WCAG contrast requirements (→ web-design-guidelines).
+- The skill creates design system tokens (→ design-system).
 
 #### Side-Effect Boundaries
 
 | Operation | Side Effects |
 |-----------|-------------|
-| Color palette | None; color values output |
-| Typography system | None; font/scale recommendation |
-| Visual effect | None; guidance output |
-| Animation select | None; recommendation |
-| UX audit (decision) | None; checklist output |
-| UX audit (script) | Reads files; stdout output |
-| Decision tree | None; framework output |
+| Aesthetic direction | None; decision output |
+| Screenshot extract | None; analysis output |
+| Typography guide | None; recommendation |
+| Color system | None; palette specification |
+| Motion guide | None; choreography recommendation |
+| Anti-slop check | None; violation list |
 
 ### 6.2 Workflow Contract
 
-#### Invocation Pattern
+#### Workflow 1: From Screenshots
 
 ```
-1. Define project type, brand mood, and content type
-2. Invoke color-palette for color system
-3. Invoke typography-system for font selection
-4. Invoke visual-effect for effect recommendations
-5. Invoke animation-select for motion guidelines
-6. Implement design (caller's responsibility)
-7. Invoke ux-audit to validate against psychology laws
-8. Fix violations (caller's responsibility)
+1. Receive screenshot URL/path
+2. Invoke screenshot-extract to analyze design
+3. Document extracted specs (caller's responsibility)
+4. Implement matching design (caller's responsibility)
+5. Verify side-by-side (caller's responsibility)
+```
+
+#### Workflow 2: From Scratch
+
+```
+1. Define project type and brand tone
+2. Invoke aesthetic-direction for committed style
+3. Invoke typography-guide for font pairing
+4. Invoke color-system for palette
+5. Invoke motion-guide for choreography
+6. Invoke anti-slop-check to validate decisions
+7. Implement design (caller's responsibility)
 ```
 
 #### Execution Guarantees
 
-- Each invocation produces a complete, self-contained design decision.
-- All 3 anti-patterns are checked on every design output.
-- UX audit evaluates all applicable psychology laws.
+- Each invocation produces a complete, self-contained recommendation.
+- Anti-slop check can be invoked at any point for validation.
 
 #### Failure Propagation Model
 
 | Failure Severity | Propagation | Workflow Action |
 |-----------------|-------------|-----------------|
 | Invalid request type | Return error to caller | Use supported type |
-| Missing project type | Return error to caller | Supply project type |
-| Anti-pattern violation | Return violations status | Revise design choices |
-| UX audit failure | Return violations with fixes | Apply fixes, re-audit |
+| Missing brand tone | Return error to caller | Supply brand tone |
+| Anti-slop violation | Return violations status | Revise design choice |
+| Screenshot not found | Return error to caller | Supply valid screenshot |
 
 #### Retry Boundaries
 
 - Zero internal retries. Deterministic output.
-- Callers revise inputs and re-invoke after fixing violations.
 
 #### Isolation Model
 
@@ -231,12 +236,12 @@ Recoverable: boolean
 
 | Operation | Idempotent | Notes |
 |-----------|-----------|-------|
-| Color palette | Yes | Same context = same palette |
-| Typography system | Yes | Same context = same fonts |
-| Visual effect | Yes | Same context = same recommendation |
-| Animation select | Yes | Same context = same motion |
-| UX audit (decision) | Yes | Same violations = same checklist |
-| UX audit (script) | No | Depends on current file state |
+| Aesthetic direction | Yes | Same tone = same direction |
+| Screenshot extract | Yes | Same screenshot = same analysis |
+| Typography guide | Yes | Same context = same pairing |
+| Color system | Yes | Same context = same palette |
+| Motion guide | Yes | Same context = same choreography |
+| Anti-slop check | Yes | Same input = same violations |
 
 ---
 
@@ -246,9 +251,9 @@ Recoverable: boolean
 
 | Phase | Action | Output |
 |-------|--------|--------|
-| **Parse** | Validate request type, project type, brand mood | Validated input or error |
-| **Evaluate** | Traverse design decision tree; check anti-patterns | Design recommendation |
-| **Emit** | Return structured output with anti-pattern status | Complete output schema |
+| **Parse** | Validate request type, brand tone, project type | Validated input or error |
+| **Evaluate** | Traverse aesthetic decision tree; check anti-slop bans | Design recommendation |
+| **Emit** | Return structured output with reference file link | Complete output schema |
 
 All phases synchronous. No async pipeline.
 
@@ -258,13 +263,13 @@ All phases synchronous. No async pipeline.
 
 | Principle | Enforcement |
 |-----------|-------------|
-| Fixed color harmony mapping | project_type + brand_mood → harmony type |
-| Fixed typography limit | Max 2 font families |
-| Fixed anti-pattern bans | 3 bans: purple themes, bento grids, dark mode default |
-| Fixed animation categories | 3 functional types: feedback, orientation, continuity |
-| Fixed UX laws | Hick's Law, Fitts's Law, Gestalt principles |
-| No brand assumption | Brand mood must be explicitly provided |
-| No dark mode default | Only if `dark_mode_requested = true` |
+| Fixed aesthetic directions | 5 styles; no hybrid or "safe" options |
+| Fixed anti-slop bans | 4 bans: generic fonts, pure RGB, basic shadows, scattered motion |
+| Fixed typography minimum | Heading ≥ 48px; max 2 font families |
+| Fixed color limit | Max 3 brand colors (dominant + accent + neutral) |
+| Fixed motion rule | One orchestrated entrance; no scattered micro-interactions |
+| Bold commitment | Every decision demands a committed direction |
+| No external calls | All decisions based on embedded rules + reference files |
 
 ---
 
@@ -281,13 +286,13 @@ Each invocation produces an identical output for identical inputs. No design his
 | Failure Class | Behavior | Caller Recovery |
 |---------------|----------|-----------------|
 | Unknown request type | Return `ERR_INVALID_REQUEST_TYPE` | Use supported type |
+| Missing brand tone | Return `ERR_MISSING_BRAND_TONE` | Supply brand tone |
 | Missing project type | Return `ERR_MISSING_PROJECT_TYPE` | Supply project type |
-| Missing brand mood | Return `ERR_MISSING_BRAND_MOOD` | Supply brand mood |
-| Anti-pattern detected | Return `WARN_ANTI_PATTERN` with pattern name | Revise design |
-| UX law violated | Return `WARN_UX_VIOLATION` with law and fix | Apply fix |
-| Rule file missing | Return `ERR_RULE_NOT_FOUND` | Verify skill installation |
+| Screenshot not found | Return `ERR_SCREENSHOT_NOT_FOUND` | Supply valid path |
+| Anti-slop violation | Return `WARN_AI_SLOP` with violations | Revise design |
+| Reference file missing | Return `ERR_REFERENCE_NOT_FOUND` | Verify installation |
 
-**Invariant:** Every failure returns a structured error. No silent fallback.
+**Invariant:** Every failure returns a structured error. No silent fallback to "safe" defaults.
 
 ---
 
@@ -296,11 +301,11 @@ Each invocation produces an identical output for identical inputs. No design his
 | Code | Category | Recoverable | Description |
 |------|----------|-------------|-------------|
 | `ERR_INVALID_REQUEST_TYPE` | Validation | No | Request type not supported |
+| `ERR_MISSING_BRAND_TONE` | Validation | Yes | Brand tone not provided |
 | `ERR_MISSING_PROJECT_TYPE` | Validation | Yes | Project type not provided |
-| `ERR_MISSING_BRAND_MOOD` | Validation | Yes | Brand mood not provided |
-| `ERR_RULE_NOT_FOUND` | Infrastructure | No | Rule file missing from rules/ |
-| `WARN_ANTI_PATTERN` | Design | Yes | Known AI design anti-pattern detected |
-| `WARN_UX_VIOLATION` | Design | Yes | UX psychology law violated |
+| `ERR_SCREENSHOT_NOT_FOUND` | Validation | Yes | Screenshot path invalid |
+| `ERR_REFERENCE_NOT_FOUND` | Infrastructure | No | Reference file missing |
+| `WARN_AI_SLOP` | Design | Yes | Generic AI pattern detected |
 
 ---
 
@@ -309,7 +314,6 @@ Each invocation produces an identical output for identical inputs. No design his
 | Parameter | Default | Maximum | Rationale |
 |-----------|---------|---------|-----------|
 | Decision timeout | N/A | N/A | Synchronous; < 50ms |
-| UX audit script | 10,000 ms | 30,000 ms | File scanning |
 | Internal retries | Zero | Zero | Deterministic output |
 
 ---
@@ -321,16 +325,14 @@ Each invocation produces an identical output for identical inputs. No design his
 ```json
 {
   "trace_id": "uuid",
-  "skill_name": "design-system",
+  "skill_name": "frontend-design",
   "contract_version": "2.0.0",
   "execution_id": "uuid",
   "timestamp": "ISO-8601",
   "request_type": "string",
-  "project_type": "string",
-  "brand_mood": "string|null",
-  "color_harmony": "string|null",
-  "anti_patterns_detected": "number",
-  "ux_violations": "number|null",
+  "brand_tone": "string|null",
+  "aesthetic_direction": "string|null",
+  "anti_slop_violations": "number",
   "status": "success|violations|error",
   "error_code": "string|null",
   "duration_ms": "number"
@@ -341,20 +343,18 @@ Each invocation produces an identical output for identical inputs. No design his
 
 | Event | Log Level | Fields |
 |-------|-----------|--------|
-| Design decision generated | INFO | All fields |
-| Anti-pattern detected | WARN | pattern name, recommendation |
-| UX violation found | WARN | law, severity, fix |
+| Direction selected | INFO | aesthetic_direction, brand_tone |
+| Anti-slop violation | WARN | pattern, alternative |
 | Decision failed | ERROR | error_code, message |
 
 ### Metrics
 
 | Metric | Type | Unit |
 |--------|------|------|
-| `designsystem.decision.duration` | Histogram | ms |
-| `designsystem.harmony.selected` | Counter | per harmony type |
-| `designsystem.antipattern.count` | Counter | per pattern |
-| `designsystem.ux_violation.count` | Counter | per law |
-| `designsystem.request_type.distribution` | Counter | per request type |
+| `frontenddesign.decision.duration` | Histogram | ms |
+| `frontenddesign.direction.selected` | Counter | per direction |
+| `frontenddesign.slop_violation.count` | Counter | per pattern |
+| `frontenddesign.request_type.distribution` | Counter | per type |
 
 ---
 
@@ -362,13 +362,9 @@ Each invocation produces an identical output for identical inputs. No design his
 
 ### Data Handling
 
-- Design System does not access user data, credentials, or PII.
+- Frontend Design does not access user data, credentials, or PII.
+- Screenshot paths are used for analysis guidance; no file access by this skill.
 - Color values and font names are treated as configuration data.
-- UX audit script reads source files but does not modify them.
-
-### No Code Execution Risk
-
-- No CSS generation, no template injection, no dynamic evaluation.
 
 ---
 
@@ -376,30 +372,23 @@ Each invocation produces an identical output for identical inputs. No design his
 
 | Dimension | Constraint | Mitigation |
 |-----------|-----------|------------|
-| Throughput (decisions) | CPU-bound decision tree | < 50ms; scales linearly |
-| Throughput (audit script) | I/O-bound file scan | Limited by project size |
-| Concurrency | Stateless decisions | Unlimited parallel |
-| Rule storage | 7 files (~8 KB total) | Static; no growth |
+| Throughput | CPU-bound decision tree | < 50ms; scales linearly |
+| Concurrency | Stateless invocations | Unlimited parallel |
+| Reference storage | 5 files (~8 KB total) | Static; no growth |
 | Memory per invocation | < 1 MB | No accumulation |
+| Network | Zero network calls | No external dependency |
 
 ---
 
 ## 16. Concurrency Model
 
-Fully parallel for design decisions. No shared state. No coordination required.
-
-UX audit script: one instance per project directory to avoid conflicting file reads.
+Fully parallel. No shared state. No coordination required.
 
 ---
 
 ## 17. Resource Lifecycle Management
 
-All resources scoped to invocation for design decisions. No persistent handles.
-
-| Resource | Created By | Destroyed By | Max Lifetime |
-|----------|-----------|-------------|--------------|
-| Design output | Emit phase | Caller | Invocation scope |
-| Audit process | Script execution | Process exit | Script timeout |
+All resources scoped to invocation. No persistent handles.
 
 ---
 
@@ -407,9 +396,9 @@ All resources scoped to invocation for design decisions. No persistent handles.
 
 | Operation | P50 Target | P99 Target | Hard Limit |
 |-----------|-----------|-----------|------------|
-| Color/typography decision | < 5 ms | < 15 ms | 50 ms |
-| Full system design | < 15 ms | < 40 ms | 100 ms |
-| UX audit script | < 3,000 ms | < 10,000 ms | 30,000 ms |
+| Direction selection | < 5 ms | < 15 ms | 50 ms |
+| Full design spec | < 15 ms | < 40 ms | 100 ms |
+| Anti-slop check | < 3 ms | < 10 ms | 30 ms |
 | Output size | ≤ 1,000 chars | ≤ 3,000 chars | 5,000 chars |
 
 ---
@@ -418,11 +407,11 @@ All resources scoped to invocation for design decisions. No persistent handles.
 
 | Risk | Likelihood | Impact | Mitigation |
 |------|-----------|--------|------------|
-| Anti-pattern bans too restrictive | Low | Blocks valid designs | 3 bans are specific, not blanket |
-| Color harmony doesn't fit brand | Medium | Client rejection | Brand mood input drives selection |
-| Typography scale mismatch | Low | Readability issues | Modular ratio enforces consistency |
-| UX audit false positives | Medium | Unnecessary rework | Fixed law criteria reduce ambiguity |
-| Dark mode forced without request | Medium | Wrong design direction | Explicit `dark_mode_requested` flag |
+| Aesthetic direction too extreme | Low | Client rejection | 5 directions cover broad spectrum |
+| Anti-slop false positive | Medium | Blocks valid choices | 4 specific bans, not blanket rules |
+| Typography pairing mismatch | Low | Readability issues | Display + body pairing is well-established |
+| Color fails WCAG contrast | Medium | Accessibility violation | Downstream check by web-design-guidelines |
+| Screenshot extraction inaccurate | Medium | Wrong implementation | 4-step verification process |
 
 ---
 
@@ -432,12 +421,12 @@ All resources scoped to invocation for design decisions. No persistent handles.
 |-------------|--------|----------|
 | YAML frontmatter complete | ✅ | name, description, metadata with category, version, triggers, coordinates_with, success_metrics |
 | SKILL.md < 200 lines | ✅ | Entry point under 200 lines |
-| Prerequisites documented | ✅ | No external dependencies |
-| When to Use section | ✅ | Request-type decision table with rule file links |
-| Core content matches skill type | ✅ | Expert type: decision trees, theory frameworks |
+| Prerequisites documented | ✅ | HTML/CSS/JS + optional skills |
+| When to Use section | ✅ | Workflow-based routing table |
+| Core content matches skill type | ✅ | Expert type: decision trees, aesthetic selection |
 | Troubleshooting section | ✅ | Anti-patterns table |
-| Related section | ✅ | Cross-links to studio, tailwind-kit, frontend-design |
-| Content Map for multi-file | ✅ | Links to 7 rule files + scripts + engineering-spec.md |
+| Related section | ✅ | Cross-links to design-system, studio, ai-artist |
+| Content Map for multi-file | ✅ | Links to 5 reference files + engineering-spec.md |
 | Contract versioning | ✅ | contract_version, backward_compatibility, breaking_changes |
 | Compliance matrix structured | ✅ | This table with ✅/❌ + evidence |
 
@@ -447,25 +436,38 @@ All resources scoped to invocation for design decisions. No persistent handles.
 
 | Category | Check | Status |
 |----------|-------|--------|
-| **Functionality** | Color theory (3 harmony types + semantic colors) | ✅ |
-| **Functionality** | Typography system (max 2 families, modular scale) | ✅ |
-| **Functionality** | Visual effects selection (shadows/gradients/glassmorphism) | ✅ |
-| **Functionality** | Animation principles (3 functional categories) | ✅ |
-| **Functionality** | UX psychology audit (Hick's, Fitts's, Gestalt) | ✅ |
-| **Functionality** | 3 anti-pattern bans (purple, bento, dark mode default) | ✅ |
+| **Functionality** | 5 aesthetic directions with committed traits | ✅ |
+| **Functionality** | Anti-AI-slop enforcement (4 banned patterns) | ✅ |
+| **Functionality** | 2 workflows (from screenshot, from scratch) | ✅ |
+| **Functionality** | Typography pairing (display + body, heading ≥ 48px) | ✅ |
+| **Functionality** | Color commitment (dominant + accent + neutral, max 3) | ✅ |
+| **Functionality** | Motion orchestration (single entrance pattern) | ✅ |
 | **Contracts** | Input/output/error schemas in pseudo-schema format | ✅ |
 | **Contracts** | Contract versioning with semver | ✅ |
 | **Failure** | Error taxonomy with 6 categorized codes | ✅ |
-| **Failure** | No silent fallback | ✅ |
+| **Failure** | No silent fallback to "safe" defaults | ✅ |
 | **Failure** | Zero internal retries | ✅ |
-| **Determinism** | Fixed harmony mapping, fixed font limit, fixed bans | ✅ |
-| **Security** | No code generation; read-only audit script | ✅ |
-| **Observability** | Structured log schema with 5 mandatory fields + 4 log points | ✅ |
-| **Observability** | 5 metrics defined | ✅ |
-| **Performance** | P50/P99 targets for decisions and audit | ✅ |
-| **Scalability** | Stateless decisions; audit concurrency documented | ✅ |
+| **Determinism** | Fixed directions, fixed bans, fixed limits | ✅ |
+| **Security** | No PII, no credential exposure | ✅ |
+| **Observability** | Structured log schema with 5 mandatory fields | ✅ |
+| **Observability** | 4 metrics defined | ✅ |
+| **Performance** | P50/P99 targets for all operations | ✅ |
+| **Scalability** | Stateless; unlimited parallel invocations | ✅ |
 | **Compliance** | All skill-design-guide.md sections mapped with evidence | ✅ |
 
 ---
 
 ⚡ PikaKit v3.9.82
+
+---
+
+## 🔗 Related
+
+| File | When to Read |
+|------|-------------|
+| [typography.md](typography.md) | Font pairings and scale |
+| [color-systems.md](color-systems.md) | Color commitment strategy |
+| [motion-design.md](motion-design.md) | Animation choreography |
+| [spatial-composition.md](spatial-composition.md) | Layout innovation |
+| [design-extraction.md](design-extraction.md) | Screenshot analysis |
+| [../SKILL.md](../SKILL.md) | Quick reference and anti-slop bans |

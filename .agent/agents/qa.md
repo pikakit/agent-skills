@@ -429,7 +429,7 @@ When reviewing test automation code, verify:
 
 | Input | Source | Format |
 |-------|--------|--------|
-| Test scope + critical flows | User, `planner`, or `po` | Feature description + critical path list |
+| Test scope + critical flows | User, `planner`, or `product-lead` | Feature description + critical path list |
 | Codebase under test | Project workspace | Source code + existing test files |
 | CI/CD configuration | `devops` or project workspace | Pipeline YAML or description |
 

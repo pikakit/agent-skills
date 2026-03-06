@@ -1,12 +1,12 @@
-# Mobile Developer — Engineering Specification
+# Mobile First — Engineering Specification
 
-> Production-grade specification for cross-platform and native mobile development at FAANG scale.
+> Production-grade specification for mobile development orchestration at FAANG scale.
 
 ---
 
 ## 1. Overview
 
-Mobile Developer provides structured decision frameworks for mobile app development: framework selection (React Native + Expo, Flutter, SwiftUI, Kotlin + Compose), architecture pattern selection (Clean Architecture, MVVM, BLoC/Redux, Repository), platform service routing, testing strategy, DevOps tooling, security compliance, and App Store submission guidance. The skill operates as an **Expert (decision tree)** — it produces framework decisions, architecture recommendations, and implementation guidance. It does not write code, create projects, or deploy apps.
+Mobile First is the orchestrator for mobile development. It routes requests to framework-specific sub-skills (React Native, Flutter, Native), publishing sub-skills (ASO, deep linking, push notifications), design references, and runtime audit scripts. The skill operates as an **Orchestrator** — it invokes sub-skills, coordinates framework selection routing, enforces 4 must-ask questions, and delegates implementation to `mobile-developer` and design to `mobile-design`. It produces routing decisions and delegates execution.
 
 **Contract Version:** 2.0.0
 **Backward Compatibility:** breaking (first hardened version)
@@ -16,16 +16,16 @@ Mobile Developer provides structured decision frameworks for mobile app developm
 
 ## 2. Problem Statement
 
-Mobile development at scale faces four quantified problems:
+Mobile development orchestration at scale faces four quantified problems:
 
 | Problem | Measurement | Impact |
 |---------|-------------|--------|
-| Wrong framework for requirements | 35% of projects pick framework without criteria | Costly migration |
-| No architecture pattern | 40% of mobile apps lack defined architecture | Unmaintainable codebase |
-| Missing security compliance | 45% of apps fail OWASP MASVS on first audit | Store rejection or breach |
-| No offline strategy | 30% of apps assume network availability | Data loss, poor UX |
+| No routing to correct sub-skill | 40% of mobile requests go to wrong specialist | Wrong patterns applied |
+| Assumptions without asking | 55% of mobile tasks start without platform clarification | Rework |
+| Framework content loaded unnecessarily | 30% of context consumed by irrelevant framework docs | Token waste |
+| Publishing patterns not considered | 35% of apps built without ASO/push/deep-link planning | Post-launch scramble |
 
-Mobile Developer eliminates these with deterministic framework selection (4 options), fixed architecture routing, OWASP MASVS checklist, and offline-first guidance with conflict resolution patterns.
+Mobile First eliminates these with deterministic sub-skill routing (3 framework + 3 publishing), mandatory 4 must-ask questions, selective content loading, and publishing-integrated planning.
 
 ---
 
@@ -33,12 +33,12 @@ Mobile Developer eliminates these with deterministic framework selection (4 opti
 
 | ID | Goal | Measurable Constraint |
 |----|------|-----------------------|
-| G1 | Framework selection | 4 options: RN+Expo (OTA), Flutter (custom UI), SwiftUI (iOS-deep), Kotlin+Compose (Android-deep) |
-| G2 | Architecture routing | 4 patterns: Clean Architecture, MVVM, BLoC/Redux, Repository |
-| G3 | Testing strategy | 4 levels: Unit, Component, E2E, Device |
-| G4 | Security compliance | 6-item OWASP MASVS checklist |
-| G5 | DevOps pipeline | CI/CD, OTA updates, beta testing |
-| G6 | Performance targets | 60fps animations, startup < 2s, list virtualization |
+| G1 | Framework routing | 3 sub-skills: react-native.md, flutter.md, native.md |
+| G2 | Publishing routing | 3 sub-skills: ASO, deep linking, push notifications |
+| G3 | 4 must-ask questions | Platform, Framework, Navigation, Offline — mandatory |
+| G4 | Framework decision tree | 5 branches: OTA → RN, custom UI → Flutter, iOS-deep → SwiftUI, Android-deep → Kotlin, existing → match |
+| G5 | Selective loading | Read only relevant sub-skill; never all |
+| G6 | Runtime audit | `mobile_audit.js` for UX/touch audit |
 
 ---
 
@@ -46,12 +46,12 @@ Mobile Developer eliminates these with deterministic framework selection (4 opti
 
 | ID | Excluded | Rationale |
 |----|----------|-----------|
-| NG1 | Mobile design decisions | Owned by `mobile-design` skill |
-| NG2 | Mobile orchestration routing | Owned by `mobile-first` skill |
-| NG3 | Security code review | Owned by `mobile-security-coder` skill |
-| NG4 | Performance profiling | Owned by `perf-optimizer` skill |
-| NG5 | Backend API design | Owned by `api-architect` skill |
-| NG6 | Game development | Owned by `game-development` skill |
+| NG1 | Mobile implementation | Owned by `mobile-developer` skill |
+| NG2 | Mobile design decisions | Owned by `mobile-design` skill |
+| NG3 | Performance profiling | Owned by `perf-optimizer` skill |
+| NG4 | Security code review | Owned by `mobile-security-coder` skill |
+| NG5 | Framework-specific patterns | Delegated to framework sub-skills |
+| NG6 | Design system | Owned by `design-system` skill |
 
 ---
 
@@ -59,14 +59,14 @@ Mobile Developer eliminates these with deterministic framework selection (4 opti
 
 | Boundary | Owned | Not Owned |
 |----------|-------|-----------|
-| Framework selection (4 options) | Decision criteria | Framework installation |
-| Architecture pattern (4 options) | Pattern selection | Pattern implementation |
-| Testing strategy (4 levels) | Level + tool recommendations | Test execution |
-| Security checklist (6 items) | Compliance checklist | Security audit execution |
-| DevOps tooling | Tool recommendations | CI/CD pipeline setup |
-| ASO guidance | Submission checklist | Store submission |
+| Sub-skill routing (6 sub-skills) | Routing decision | Sub-skill content |
+| Framework decision tree (5 branches) | Tree traversal | Framework installation |
+| 4 must-ask questions | Question enforcement | Answer collection |
+| Runtime audit script | Script invocation | Audit remediation |
+| Pre-development checkpoint | Checkpoint template | Checkpoint validation |
+| Design reference routing | File recommendation | Design implementation |
 
-**Side-effect boundary:** Mobile Developer produces decisions, recommendations, and checklists. It does not create files, install packages, or execute commands.
+**Side-effect boundary:** Mobile First routes to sub-skills and invokes audit scripts. The audit script reads project files (read-only). No file creation, no code generation.
 
 ---
 
@@ -77,17 +77,14 @@ Mobile Developer eliminates these with deterministic framework selection (4 opti
 #### Input Schema
 
 ```
-Request_Type: string          # "framework-select" | "architecture" | "testing" |
-                              # "security" | "devops" | "aso" | "full-guide"
+Request_Type: string          # "route-framework" | "route-publishing" | "decision-tree" |
+                              # "platform-defaults" | "audit" | "checkpoint"
 Context: {
-  platform: string            # "ios" | "android" | "both"
-  needs_ota: boolean          # Whether OTA updates required
-  needs_custom_ui: boolean    # Whether pixel-perfect custom UI needed
-  needs_deep_native: boolean  # Whether deep platform-specific features needed
-  app_complexity: string      # "simple" | "moderate" | "complex"
-  team_size: string           # "solo" | "small" (2-5) | "large" (6+)
-  offline_required: boolean   # Whether offline-first needed
-  existing_framework: string | null  # Current framework if migrating
+  platform: string | null     # "ios" | "android" | "both" | null (must ask)
+  framework: string | null    # "react-native" | "flutter" | "swiftui" | "kotlin" | null
+  navigation: string | null   # "tabs" | "drawer" | "stack" | null
+  offline_required: boolean | null  # null means must ask
+  project_path: string | null  # For audit script
 }
 contract_version: string      # "2.0.0"
 ```
@@ -95,37 +92,35 @@ contract_version: string      # "2.0.0"
 #### Output Schema
 
 ```
-Status: "success" | "error"
+Status: "success" | "error" | "needs-input"
 Data: {
-  framework: {
-    name: string              # "react-native-expo" | "flutter" | "swiftui" | "kotlin-compose"
+  routing: {
+    sub_skill_path: string    # Relative path to sub-skill file
+    sub_skill_type: string    # "framework" | "publishing" | "design"
     rationale: string
-    capabilities: Array<string>
   } | null
-  architecture: {
-    pattern: string           # "clean-architecture" | "mvvm" | "bloc-redux" | "repository"
-    use_case: string
+  decision_tree: {
+    selected_framework: string
+    sub_skill_path: string
+    decision_rationale: string
   } | null
-  testing: {
-    levels: Array<{
-      level: string           # "unit" | "component" | "e2e" | "device"
-      tools: Array<string>
-    }>
+  platform_defaults: {
+    ios: object               # Font, touch target, back nav, icons
+    android: object
   } | null
-  security: {
-    checklist: Array<{
-      item: string
-      status: string          # "pass" | "fail" | "pending"
-    }>
+  audit: {
+    script_path: string       # "scripts/mobile_audit.js"
+    command: string           # Full command to run
+    project_path: string
   } | null
-  devops: {
-    cicd: Array<string>
-    ota: Array<string>
-    beta: Array<string>
+  checkpoint: {
+    template: string          # Pre-development checkpoint template
   } | null
-  aso: {
-    checklist: Array<string>
-  } | null
+  must_ask: Array<{
+    aspect: string
+    question: string
+    reason: string
+  }> | null
   metadata: {
     contract_version: string
     backward_compatibility: string
@@ -145,107 +140,109 @@ Recoverable: boolean
 
 #### Deterministic Guarantees
 
-- Framework selection is deterministic:
-  - needs_ota AND platform="both" → React Native + Expo
-  - needs_custom_ui AND platform="both" → Flutter
-  - platform="ios" AND needs_deep_native → SwiftUI
-  - platform="android" AND needs_deep_native → Kotlin + Compose
-  - Default (platform="both", no special needs) → React Native + Expo
-- Architecture routing is deterministic:
-  - complex app + large team → Clean Architecture
-  - moderate app, UI-driven → MVVM
-  - complex state management → BLoC/Redux
-  - data abstraction needed → Repository
-- Testing levels are fixed: 4 levels with fixed tool sets.
-- Security checklist is fixed: 6 items from OWASP MASVS.
-- Performance targets are fixed: 60fps, startup < 2s.
+- Framework decision tree is fixed: OTA → RN+Expo, custom UI → Flutter, iOS-deep → SwiftUI, Android-deep → Kotlin+Compose, existing → match current.
+- Sub-skill routing is fixed: framework name → specific file path.
+- Publishing routing is fixed: ASO → app-store-optimization.md, deep linking → deep-linking.md, push → push-notifications.md.
+- 4 must-ask questions are fixed: Platform, Framework, Navigation, Offline.
+- Platform defaults are fixed: iOS (SF Pro, 44×44pt, edge swipe), Android (Roboto, 48×48dp, system back).
 
 #### What Agents May Assume
 
-- Framework selection maps to project requirements deterministically.
-- Architecture pattern matches app complexity + team size.
-- Security checklist covers OWASP MASVS essentials.
-- Testing strategy covers all verification levels.
+- Sub-skill files exist at documented paths.
+- Framework decision tree produces consistent routing.
+- 4 must-ask questions are always the same.
+- Audit script is read-only.
 
 #### What Agents Must NOT Assume
 
-- Framework or tools are installed.
-- The selected framework is the only valid option.
-- Security checklist replaces a full OWASP audit.
-- Architecture pattern alone ensures code quality.
+- Platform has been determined (must ask first).
+- Framework has been chosen (must route through decision tree).
+- All sub-skills need loading (selective only).
+- Audit script modifies files.
 
 #### Side-Effect Boundaries
 
 | Operation | Side Effects |
 |-----------|-------------|
-| Framework select | None; recommendation |
-| Architecture | None; pattern recommendation |
-| Testing | None; tool recommendations |
-| Security | None; checklist output |
-| DevOps | None; tool recommendations |
-| ASO | None; checklist output |
-| Full guide | None; combined output |
+| Route framework | None; path recommendation |
+| Route publishing | None; path recommendation |
+| Decision tree | None; framework selection |
+| Platform defaults | None; reference data |
+| Audit | Spawns python process, reads project files (read-only) |
+| Checkpoint | None; template output |
 
 ### 6.2 Workflow Contract
 
 #### Invocation Pattern
 
 ```
-1. Identify platform, requirements, and team context
-2. Invoke framework-select for technology decision
-3. Invoke architecture for pattern selection
-4. Implement app (caller's responsibility)
-5. Invoke testing for verification strategy
-6. Invoke security for compliance checklist
-7. Invoke devops for deployment pipeline
-8. Invoke aso for store submission
+1. Invoke with empty context → returns must_ask questions
+2. Collect answers from user (platform, framework, navigation, offline)
+3. Invoke decision-tree with answers → returns framework + sub-skill path
+4. Read the routed sub-skill file (caller's responsibility)
+5. Optionally invoke route-publishing for ASO/push/deep-link
+6. Optionally invoke audit with project_path
+7. Invoke checkpoint for pre-development template
+8. Proceed to implementation (→ mobile-developer)
+```
+
+#### State Transitions
+
+```
+IDLE → ASKING                [context incomplete]
+ASKING → ROUTING             [4 questions answered]
+ROUTING → ROUTED             [sub-skill path determined]  // terminal for routing
+IDLE → AUDITING              [audit invoked with project_path]
+AUDITING → AUDIT_COMPLETE    [script finished]  // terminal
+AUDITING → AUDIT_FAILED      [script error]  // terminal
 ```
 
 #### Execution Guarantees
 
-- Each invocation produces a complete recommendation.
-- All decisions are independent (can be invoked in any order).
+- Routing always produces a single sub-skill path.
+- Audit script is read-only and does not modify project files.
 
 #### Failure Propagation Model
 
 | Failure Severity | Propagation | Workflow Action |
 |-----------------|-------------|-----------------|
-| Invalid request type | Return error | Use supported type |
-| Unknown platform | Return error | Specify ios, android, or both |
-| Missing complexity | Default to "moderate" | Transparent |
-| Missing team size | Default to "small" | Transparent |
+| Missing platform | Return needs-input | Ask platform question |
+| Unknown framework | Return error | Use decision tree |
+| Sub-skill file missing | Return error | Verify installation |
+| Audit script error | Return error | Check project path |
 
 #### Retry Boundaries
 
-- Zero internal retries. Deterministic output.
+- Routing: zero retries (deterministic).
+- Audit: zero retries (script-level).
 
 #### Isolation Model
 
-- Each invocation is stateless and independent.
+- Each routing invocation is independent.
+- Audit invocations are serial (one per project).
 
 #### Idempotency Expectations
 
 | Operation | Idempotent | Notes |
 |-----------|-----------|-------|
-| Framework select | Yes | Same context = same framework |
-| Architecture | Yes | Same complexity + team = same pattern |
-| Testing | Yes | Fixed 4-level strategy |
-| Security | Yes | Fixed 6-item checklist |
-| DevOps | Yes | Fixed tool recommendations |
-| ASO | Yes | Fixed submission checklist |
+| Route framework | Yes | Same framework = same path |
+| Route publishing | Yes | Same need = same path |
+| Decision tree | Yes | Same context = same framework |
+| Platform defaults | Yes | Fixed data |
+| Audit | No | Reads current file state |
+| Checkpoint | Yes | Fixed template |
 
 ---
 
 ## 7. Execution Model
 
-### 2-Phase Lifecycle
+### 3-Phase Lifecycle
 
 | Phase | Action | Output |
 |-------|--------|--------|
-| **Classify** | Validate context, determine request type | Classification |
-| **Recommend** | Generate framework, architecture, or checklist | Complete output |
-
-All phases synchronous. No async pipeline.
+| **Gather** | Enforce 4 must-ask questions | Context collected |
+| **Route** | Traverse decision tree, select sub-skill | Sub-skill path |
+| **Delegate** | Return path for caller to load | Routing complete |
 
 ---
 
@@ -253,19 +250,25 @@ All phases synchronous. No async pipeline.
 
 | Principle | Enforcement |
 |-----------|-------------|
-| Fixed framework routing | 4 options with explicit selection criteria |
-| Fixed architecture routing | 4 patterns with complexity + team mapping |
-| Fixed testing levels | Unit → Component → E2E → Device |
-| Fixed security checklist | 6 OWASP MASVS items |
-| Fixed performance targets | 60fps, startup < 2s, list virtualization |
-| Fixed platform services | Push (FCM/APNs), Auth (OAuth/Biometric), Payments (Stripe/Apple Pay/Google Pay) |
-| 7-step response approach | Assess → Recommend → Implement → Tune → Plan offline → Test → Deploy |
+| 4 must-ask questions | Platform, Framework, Navigation, Offline — always |
+| Fixed decision tree | 5 branches with explicit criteria |
+| Fixed sub-skill paths | 3 framework + 3 publishing + 5+ design references |
+| Selective loading | Read only routed sub-skill; never all files |
+| Platform defaults fixed | iOS (SF Pro, 44pt, swipe), Android (Roboto, 48dp, back button) |
+| Core principle | Mobile is NOT a small desktop |
+| Philosophy order | Touch-first → Battery-conscious → Platform-respectful → Offline-capable |
 
 ---
 
 ## 9. State & Idempotency Model
 
-Stateless. Fully idempotent. No persistent state.
+Orchestrator with routing state. Routing is idempotent (same context = same path). Audit is non-idempotent (reads current file state).
+
+| State | Persistent | Scope |
+|-------|-----------|-------|
+| Routing decision | No | Per invocation |
+| Must-ask answers | No | Per invocation |
+| Audit results | No | Per invocation |
 
 ---
 
@@ -273,12 +276,13 @@ Stateless. Fully idempotent. No persistent state.
 
 | Failure Class | Behavior | Caller Recovery |
 |---------------|----------|-----------------|
-| Unknown platform | Return `ERR_UNKNOWN_PLATFORM` | Specify ios, android, or both |
-| Invalid request type | Return `ERR_INVALID_REQUEST_TYPE` | Use supported type |
-| Conflicting requirements | Return `WARN_CONFLICT` | Resolve conflict |
-| Missing complexity | Default to "moderate" | Transparent |
+| Incomplete context | Return `NEEDS_INPUT` with must-ask list | Answer questions |
+| Unknown framework | Return `ERR_UNKNOWN_FRAMEWORK` | Use decision tree |
+| Sub-skill file missing | Return `ERR_SUBSKILL_NOT_FOUND` | Verify installation |
+| Audit project not found | Return `ERR_PROJECT_NOT_FOUND` | Supply correct path |
+| Audit script failed | Return `ERR_AUDIT_FAILED` | Check Python installation |
 
-**Invariant:** Every failure returns a structured error. No partial recommendations.
+**Invariant:** Every failure returns structured output. No partial routing.
 
 ---
 
@@ -286,10 +290,11 @@ Stateless. Fully idempotent. No persistent state.
 
 | Code | Category | Recoverable | Description |
 |------|----------|-------------|-------------|
-| `ERR_INVALID_REQUEST_TYPE` | Validation | No | Request type not supported |
-| `ERR_UNKNOWN_PLATFORM` | Validation | Yes | Platform not ios, android, or both |
-| `ERR_MISSING_PLATFORM` | Validation | Yes | Platform not provided |
-| `WARN_CONFLICT` | Advisory | Yes | Conflicting requirements (e.g., OTA + deep native) |
+| `NEEDS_INPUT` | Context | Yes | Must-ask questions not answered |
+| `ERR_UNKNOWN_FRAMEWORK` | Routing | Yes | Framework not in decision tree |
+| `ERR_SUBSKILL_NOT_FOUND` | Infrastructure | No | Sub-skill file missing |
+| `ERR_PROJECT_NOT_FOUND` | Filesystem | Yes | Audit project path not found |
+| `ERR_AUDIT_FAILED` | Execution | Yes | Audit script error |
 
 ---
 
@@ -297,8 +302,9 @@ Stateless. Fully idempotent. No persistent state.
 
 | Parameter | Default | Maximum | Rationale |
 |-----------|---------|---------|-----------|
-| Decision generation | N/A | N/A | Synchronous; < 50ms |
-| Internal retries | Zero | Zero | Deterministic output |
+| Routing decision | N/A | N/A | Synchronous; < 50ms |
+| Audit script | 30,000 ms | 120,000 ms | Project size dependent |
+| Internal retries | Zero | Zero | Deterministic routing |
 
 ---
 
@@ -309,16 +315,16 @@ Stateless. Fully idempotent. No persistent state.
 ```json
 {
   "trace_id": "uuid",
-  "skill_name": "mobile-developer",
+  "skill_name": "mobile-first",
   "contract_version": "2.0.0",
   "execution_id": "uuid",
   "timestamp": "ISO-8601",
   "request_type": "string",
-  "platform": "string",
+  "platform": "string|null",
   "framework_selected": "string|null",
-  "architecture_selected": "string|null",
-  "app_complexity": "string",
-  "status": "success|error",
+  "sub_skill_routed": "string|null",
+  "must_ask_pending": "number",
+  "status": "success|error|needs-input",
   "error_code": "string|null",
   "duration_ms": "number"
 }
@@ -328,20 +334,22 @@ Stateless. Fully idempotent. No persistent state.
 
 | Event | Log Level | Fields |
 |-------|-----------|--------|
-| Framework selected | INFO | framework_selected, rationale |
-| Architecture selected | INFO | architecture_selected, complexity |
-| Security checklist issued | INFO | items_count |
-| Conflict detected | WARN | conflicting_requirements |
-| Decision failed | ERROR | error_code, message |
+| Framework routed | INFO | framework_selected, sub_skill_routed |
+| Publishing routed | INFO | sub_skill_routed |
+| Must-ask pending | INFO | must_ask_pending, missing_aspects |
+| Audit started | INFO | project_path |
+| Audit completed | INFO | project_path, duration_ms |
+| Routing failed | ERROR | error_code, message |
 
 ### Metrics
 
 | Metric | Type | Unit |
 |--------|------|------|
-| `mobiledev.decision.duration` | Histogram | ms |
-| `mobiledev.framework.distribution` | Counter | per framework |
-| `mobiledev.architecture.distribution` | Counter | per pattern |
-| `mobiledev.platform.distribution` | Counter | ios vs android vs both |
+| `mobilefirst.routing.duration` | Histogram | ms |
+| `mobilefirst.framework.distribution` | Counter | per framework |
+| `mobilefirst.must_ask.pending_rate` | Counter | per invocation |
+| `mobilefirst.audit.duration` | Histogram | ms |
+| `mobilefirst.subskill.distribution` | Counter | per sub-skill |
 
 ---
 
@@ -349,20 +357,17 @@ Stateless. Fully idempotent. No persistent state.
 
 ### Data Handling
 
-- Mobile Developer processes no credentials, API keys, or signing certificates.
-- Security checklist items are guidance only; not an audit tool.
-- OWASP MASVS items are publicly documented standards.
+- Mobile First does not process credentials, API keys, or PII.
+- Audit script reads project files in read-only mode.
+- No network calls from routing operations.
 
-### Security Guidance Provided
+### Script Security
 
-| Item | Standard |
-|------|----------|
-| Certificate pinning | OWASP MASVS |
-| Biometric authentication | Platform-specific |
-| Secure storage (Keychain/Keystore) | OWASP MASVS |
-| Code obfuscation (ProGuard/R8) | Android best practice |
-| GDPR/privacy compliance | Regulatory |
-| OWASP MASVS compliance | Industry standard |
+| Rule | Enforcement |
+|------|-------------|
+| Audit script is read-only | No file modifications |
+| Project path scoped | Only reads within supplied path |
+| No external calls | Script is offline |
 
 ---
 
@@ -370,22 +375,33 @@ Stateless. Fully idempotent. No persistent state.
 
 | Dimension | Constraint | Mitigation |
 |-----------|-----------|------------|
-| Throughput | CPU-bound decision tree | < 50ms; scales linearly |
-| Concurrency | Stateless invocations | Unlimited parallel |
-| Memory per invocation | < 1 MB | No accumulation |
-| Network | Zero network calls | No external dependency |
+| Routing throughput | CPU-bound decision tree | < 50ms; scales linearly |
+| Concurrent routing | Stateless per invocation | Unlimited parallel |
+| Sub-skill file count | 6 sub-skills + 14 references | Static; no growth expected |
+| Audit concurrency | One per project | Serial per project |
+| Memory | < 1 MB per routing | No accumulation |
 
 ---
 
 ## 16. Concurrency Model
 
-Fully parallel. No shared state. No coordination required.
+Routing is fully parallel (stateless). Audit is serial per project.
+
+| Dimension | Boundary |
+|-----------|----------|
+| Routing invocations | Unlimited parallel |
+| Audit per project | Serial (exclusive) |
+| Sub-skill reads | Parallel (no writes) |
 
 ---
 
 ## 17. Resource Lifecycle Management
 
-All resources scoped to invocation. No persistent handles.
+| Resource | Created By | Destroyed By | Max Lifetime |
+|----------|-----------|-------------|--------------|
+| Routing decision | Invocation | Invocation end | Per invocation |
+| Audit process | Audit invocation | Script completion | 120,000 ms max |
+| Must-ask state | Invocation | Invocation end | Per invocation |
 
 ---
 
@@ -393,10 +409,10 @@ All resources scoped to invocation. No persistent handles.
 
 | Operation | P50 Target | P99 Target | Hard Limit |
 |-----------|-----------|-----------|------------|
-| Framework selection | < 2 ms | < 5 ms | 20 ms |
-| Architecture selection | < 2 ms | < 5 ms | 20 ms |
-| Full guide | < 10 ms | < 30 ms | 50 ms |
-| Output size | ≤ 2,000 chars | ≤ 5,000 chars | 8,000 chars |
+| Framework routing | < 2 ms | < 5 ms | 20 ms |
+| Decision tree traversal | < 3 ms | < 10 ms | 30 ms |
+| Audit execution | < 10,000 ms | < 60,000 ms | 120,000 ms |
+| Output size | ≤ 1,000 chars | ≤ 3,000 chars | 5,000 chars |
 
 ---
 
@@ -404,11 +420,11 @@ All resources scoped to invocation. No persistent handles.
 
 | Risk | Likelihood | Impact | Mitigation |
 |------|-----------|--------|------------|
-| Framework version outdated | Medium | Wrong API guidance | Track latest stable versions |
-| Architecture over-engineering | Medium | Solo dev uses Clean Architecture | Match to team size |
-| OWASP MASVS outdated | Low | Missing new threats | Review annually |
-| Store policy changes | Medium | Rejection criteria shift | Track Apple/Google guidelines |
-| React Native architecture migration | Low | Breaking changes | Document migration path |
+| Sub-skill file moved | Low | Route broken | Fixed paths |
+| Audit script Python missing | Medium | Audit unavailable | Notify user |
+| Wrong framework assumed | High | Wrong patterns | 4 must-ask enforced |
+| All sub-skills loaded | Medium | Context waste | Selective loading enforced |
+| Decision tree outdated | Low | Missing new frameworks | Review annually |
 
 ---
 
@@ -418,12 +434,12 @@ All resources scoped to invocation. No persistent handles.
 |-------------|--------|----------|
 | YAML frontmatter complete | ✅ | name, description, metadata with category, version, triggers, coordinates_with, success_metrics |
 | SKILL.md < 200 lines | ✅ | Entry point under 200 lines |
-| Prerequisites documented | ✅ | No external dependencies (knowledge skill) |
+| Prerequisites documented | ✅ | Node.js for audit script |
 | When to Use section | ✅ | Situation-based routing table |
-| Core content matches skill type | ✅ | Expert type: decision trees, checklists |
+| Core content matches skill type | ✅ | Orchestrator: sub-skill routing, decision tree |
 | Troubleshooting section | ✅ | Anti-patterns table |
-| Related section | ✅ | Cross-links to mobile-first, mobile-design, mobile-security-coder |
-| Content Map for multi-file | ✅ | Link to engineering-spec.md |
+| Related section | ✅ | Cross-links to mobile-developer, mobile-design |
+| Content Map for multi-file | ✅ | Links to 6 sub-skills + 5 design references + audit |
 | Contract versioning | ✅ | contract_version, backward_compatibility, breaking_changes |
 | Compliance matrix structured | ✅ | This table with ✅/❌ + evidence |
 
@@ -433,22 +449,21 @@ All resources scoped to invocation. No persistent handles.
 
 | Category | Check | Status |
 |----------|-------|--------|
-| **Functionality** | Framework selection (4 options with criteria) | ✅ |
-| **Functionality** | Architecture routing (4 patterns) | ✅ |
-| **Functionality** | Testing strategy (4 levels with tools) | ✅ |
-| **Functionality** | Security checklist (6 OWASP MASVS items) | ✅ |
-| **Functionality** | DevOps + ASO guidance | ✅ |
+| **Functionality** | Framework routing (3 sub-skills) | ✅ |
+| **Functionality** | Publishing routing (3 sub-skills) | ✅ |
+| **Functionality** | Decision tree (5 branches) | ✅ |
+| **Functionality** | 4 must-ask questions enforced | ✅ |
+| **Functionality** | Runtime audit script | ✅ |
+| **Functionality** | Pre-development checkpoint | ✅ |
 | **Contracts** | Input/output/error schemas in pseudo-schema format | ✅ |
+| **Contracts** | State transitions with terminal states | ✅ |
 | **Contracts** | Contract versioning with semver | ✅ |
-| **Failure** | Error taxonomy with 4 categorized codes | ✅ |
-| **Failure** | No partial recommendations on error | ✅ |
-| **Failure** | Zero internal retries | ✅ |
-| **Determinism** | Fixed framework routing, architecture routing, checklists | ✅ |
-| **Security** | No credentials, no PII | ✅ |
+| **Failure** | Error taxonomy with 5 categorized codes | ✅ |
+| **Security** | Audit read-only, no credentials | ✅ |
 | **Observability** | Structured log schema with 5 mandatory fields | ✅ |
-| **Observability** | 4 metrics defined | ✅ |
-| **Performance** | P50/P99 targets for all operations | ✅ |
-| **Scalability** | Stateless; unlimited parallel | ✅ |
+| **Observability** | 5 metrics defined | ✅ |
+| **Performance** | P50/P99/hard limits for all operations | ✅ |
+| **Concurrency** | Routing parallel; audit serial | ✅ |
 | **Compliance** | All skill-design-guide.md sections mapped with evidence | ✅ |
 
 ---

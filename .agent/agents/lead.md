@@ -258,7 +258,7 @@ Combine results:
 | `database-architect` | Schema, migrations, queries | ❌ UI, API logic |
 | `security-auditor` | Audit, vulnerabilities, auth review | ❌ Feature code, UI |
 | `devops-engineer` | CI/CD, deployment, infra config | ❌ Application code |
-| `api-designer` | API specs, OpenAPI, GraphQL schema | ❌ UI code |
+| `backend` | API specs, OpenAPI, GraphQL schema, server implementation | ❌ UI code |
 | `game-developer` | Game logic, scenes, engine code | ❌ Web/mobile components |
 | `debugger` | Bug fixes, root cause analysis | ❌ New features |
 | `explorer-agent` | Codebase discovery, read-only | ❌ Write operations |

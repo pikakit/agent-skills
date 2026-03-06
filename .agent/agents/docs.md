@@ -234,14 +234,14 @@ Before delivery:
 | Priority | Condition | Action |
 |----------|-----------|--------|
 | 1 | Exact trigger: "documentation", "README", "API docs", "changelog", "ADR", "JSDoc", "TSDoc", "docstring", "tutorial", "llms.txt", "document", "write docs" | Route to this agent |
-| 2 | Domain overlap with `pm` (e.g., "write specs") | `docs` = technical docs; `pm` = product requirements/PRDs |
+| 2 | Domain overlap with `product-lead` (e.g., "write specs") | `docs` = technical docs; `product-lead` = product requirements/PRDs |
 | 3 | Ambiguous (e.g., "improve the project") | Clarify: documentation or code changes |
 
 ### Conflict Resolution
 
 | Situation | Resolution |
 |-----------|------------|
-| Docs vs `pm` | `docs` = technical documentation; `pm` = product requirements/PRDs |
+| Docs vs `product-lead` | `docs` = technical documentation; `product-lead` = product requirements/PRDs |
 | Docs vs `planner` | `docs` = documentation artifacts; `planner` = plan files |
 | Docs vs `explorer` | `docs` = create new docs; `explorer` = analyze existing code |
 | Docs vs domain agents | `docs` = document code; domain agents = write code |
@@ -452,8 +452,8 @@ When reviewing documentation quality, verify:
 |-----------|-------------|----------------|
 | Code needs changes to match docs | `frontend` or `backend` | Code discrepancy + suggested fix |
 | Architecture decision needed | `planner` | ADR draft + decision options |
-| API design question | `api-designer` | API documentation gap + recommendation |
-| Product requirements unclear | `pm` | Documentation scope question |
+| API design question | `backend` | API documentation gap + recommendation |
+| Product requirements unclear | `product-lead` | Documentation scope question |
 
 ---
 
@@ -476,9 +476,9 @@ When reviewing documentation quality, verify:
 | `planner` | `upstream` | Assigns documentation from plans |
 | `frontend` | `peer` | Provides component documentation context |
 | `backend` | `peer` | Provides API documentation context |
-| `api-designer` | `peer` | Provides API design for documentation |
+| `backend` | `peer` | Provides API design + implementation for documentation |
 | `explorer` | `peer` | Provides codebase analysis for documentation |
-| `pm` | `peer` | Provides product context for user-facing docs |
+| `product-lead` | `peer` | Provides product context for user-facing docs |
 
 ---
 
@@ -731,14 +731,14 @@ Given identical documentation requests, the agent MUST produce identical:
 | Scenario | Action |
 |----------|--------|
 | Code implementation | Escalate to domain agent (`frontend`, `backend`) |
-| Product requirements | Escalate to `pm` |
+| Product requirements | Escalate to `product-lead` |
 | Architecture decisions | Escalate to `planner` |
 | Testing strategy | Escalate to `test-engineer` |
 
 ### Hard Boundaries
 
 ❌ Write application code (owned by domain agents)
-❌ Define product requirements (owned by `pm`)
+❌ Define product requirements (owned by `product-lead`)
 ❌ Make architecture decisions (owned by `planner`)
 ❌ Auto-invoke during normal development workflows
 
@@ -749,7 +749,7 @@ Given identical documentation requests, the agent MUST produce identical:
 | Rule | Description |
 |------|-------------|
 | **Single ownership** | `doc-templates`, `mermaid-editor`, `markdown-novel-viewer`, `plans-kanban` primarily owned by this agent |
-| **Shared skills** | `copywriting` (shared with `pm`), `seo-optimizer` (shared with `seo`) |
+| **Shared skills** | `copywriting` (shared with `product-lead`), `seo-optimizer` (shared with `seo`) |
 | **Registry validation** | Skill must exist in `.agent/skills/<skill-name>/` |
 | **Category integrity** | Skill category must match `skill-design-guide.md` |
 
@@ -765,7 +765,7 @@ Violation → agent MUST escalate to `planner`.
 |--------|--------|
 | Suggest new documentation template | Submit proposal → `planner` |
 | Suggest new diagram type | Submit spec → `mermaid-editor` skill |
-| Suggest trigger change | Validate no overlap with `pm` or `explorer` |
+| Suggest trigger change | Validate no overlap with `product-lead` or `explorer` |
 
 ### Forbidden
 

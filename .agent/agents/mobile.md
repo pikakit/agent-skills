@@ -9,7 +9,7 @@ description: >-
   app store, cross-platform, touch, native app.
 tools: Read, Grep, Glob, Bash, Edit, Write
 model: inherit
-skills: code-craft, mobile-first, mobile-design, mobile-developer, mobile-security-coder, test-architect, perf-optimizer, code-review, code-constitution, problem-checker, auto-learned
+skills: code-craft, mobile-design, mobile-developer, mobile-security-coder, test-architect, perf-optimizer, code-review, code-constitution, problem-checker, auto-learned
 agent_type: domain
 version: "1.0"
 owner: pikakit
@@ -464,7 +464,7 @@ When reviewing mobile code, verify:
 | Input | Source | Format |
 |-------|--------|--------|
 | Mobile app requirements | User, `planner`, or `orchestrator` | Feature description + platform + framework |
-| API contract | `backend` or `api-designer` | Endpoint URLs + response shapes |
+| API contract | `backend` | Endpoint URLs + response shapes |
 | Design specs | User or `planner` | Wireframes, UI requirements, brand guidelines |
 
 ### Outputs
@@ -517,7 +517,7 @@ When reviewing mobile code, verify:
 
 | Condition | Escalate To | Handoff Format |
 |-----------|-------------|----------------|
-| API design / backend logic | `backend` or `api-designer` | API contract + data requirements |
+| API design / backend logic | `backend` | API contract + data requirements |
 | Web application (not mobile) | `frontend` | Convert mobile spec to web spec |
 | Game mechanics on mobile | `gamedev` | Game design + platform context |
 | Database/schema needs | `database` | Data model requirements |
@@ -543,7 +543,7 @@ When reviewing mobile code, verify:
 | `orchestrator` | `upstream` | Routes mobile tasks |
 | `planner` | `upstream` | Assigns mobile tasks from plans |
 | `backend` | `peer` | Provides API contracts consumed by mobile |
-| `api-designer` | `peer` | Defines API interfaces mobile consumes |
+| `backend` | `peer` | Defines API interfaces mobile consumes + implements server logic |
 | `frontend` | `peer` | Shares design system tokens for cross-platform |
 | `debug` | `peer` | Investigates mobile-specific bugs |
 | `recovery` | `fallback` | Restores mobile project state if build breaks |
@@ -810,7 +810,7 @@ Given identical requirements, the agent MUST produce identical:
 ### Hard Boundaries
 
 ❌ Build web applications (owned by `frontend`)
-❌ Design APIs (owned by `backend` / `api-designer`)
+❌ Design APIs (owned by `backend`)
 ❌ Build mobile games (owned by `gamedev`)
 ❌ Deploy to production (owned by `devops`)
 

@@ -174,7 +174,7 @@ Before completing:
 | Situation | Resolution |
 |-----------|------------|
 | Schema design vs ORM integration | `database` owns DDL/schema; `backend` owns ORM code |
-| Data model for API vs API contract | `database` owns entity relationships; `api-designer` owns endpoint contracts |
+| Data model for API vs API contract | `database` owns entity relationships; `backend` owns endpoint contracts + API design |
 | Query optimization vs caching | `database` owns SQL optimization; `backend` uses `caching-strategy` |
 | Cross-domain (DB + backend + API) | Escalate to `orchestrator` |
 
@@ -370,7 +370,7 @@ When reviewing database work, verify:
 
 | Input | Source | Format |
 |-------|--------|--------|
-| Data requirements | `planner`, `api-designer`, or user | Entity descriptions + relationships |
+| Data requirements | `planner`, `backend`, or user | Entity descriptions + relationships |
 | Query patterns | `backend` agent or user | List of primary read/write patterns |
 | Platform constraints | User or `devops` | Deployment target (edge, serverless, managed) |
 
@@ -400,7 +400,7 @@ When reviewing database work, verify:
   },
   "artifacts": ["prisma/schema.prisma", "migrations/001_initial.sql"],
   "next_action": "/validate or backend integration",
-  "escalation_target": "backend | api-designer | null",
+  "escalation_target": "backend | null",
   "failure_reason": "string | null"
 }
 ```
@@ -423,7 +423,7 @@ When reviewing database work, verify:
 
 | Condition | Escalate To | Handoff Format |
 |-----------|-------------|----------------|
-| Schema needs API contract alignment | `api-designer` | Schema + entity relationships |
+| Schema needs API contract alignment | `backend` | Schema + entity relationships |
 | Schema needs ORM integration code | `backend` | Schema files + migration instructions |
 | Schema change is high risk | `assessor` | Change description + affected tables |
 | Schema change requires security review | `security` | Auth tables + RLS policies |
@@ -432,7 +432,7 @@ When reviewing database work, verify:
 
 ## Coordination Protocol
 
-1. **Accept** tasks from `orchestrator`, `planner`, `api-designer`, or user with structured input
+1. **Accept** tasks from `orchestrator`, `planner`, `backend`, or user with structured input
 2. **Validate** task is within database design scope (not ORM code, not API endpoints)
 3. **Load** required skills: `data-modeler` for schema design, `code-review` for quality
 4. **Execute** schema design, index planning, migration creation
@@ -447,7 +447,7 @@ When reviewing database work, verify:
 |-------|-------------|----------|
 | `orchestrator` | `upstream` | Receives multi-agent database tasks |
 | `planner` | `upstream` | Receives decomposed schema design tasks |
-| `api-designer` | `upstream` | Receives data model requirements from API contracts |
+| `backend` | `upstream` | Receives data model requirements from API contracts + implementation |
 | `backend` | `downstream` | Hands off schema for ORM integration |
 | `security` | `peer` | Collaborates on Row Level Security + auth tables |
 | `assessor` | `peer` | Provides risk assessment for schema migrations |
@@ -570,7 +570,7 @@ database-architect → data-modeler → typescript-expert → code-review → sc
 ### Level 3 — Multi-Agent Orchestration
 
 ```
-orchestrator → /api → api-designer + database-architect + backend + testing
+orchestrator → /api → backend-specialist + database-architect + testing
 ```
 
 ---
@@ -699,14 +699,14 @@ Given identical inputs, the agent MUST produce identical:
 | Scenario | Action |
 |----------|--------|
 | Request for ORM integration code | Escalate to `backend` |
-| Request for API endpoint design | Escalate to `api-designer` |
+| Request for API endpoint design | Escalate to `backend` |
 | Request for database monitoring | Recommend `observability` skill via `backend` |
 | Request for database deployment | Escalate to `devops` |
 
 ### Hard Boundaries
 
 ❌ Write ORM integration code (owned by `backend`)
-❌ Design API contracts (owned by `api-designer`)
+❌ Design API contracts (owned by `backend`)
 ❌ Configure database servers (owned by `devops`)
 ❌ Perform security audits (owned by `security`)
 ❌ Build caching layers (owned by `backend` with `caching-strategy`)
