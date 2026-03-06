@@ -158,7 +158,7 @@ ALTER TABLE users DROP COLUMN full_name;
 
 ---
 
-⚡ PikaKit v3.9.87
+⚡ PikaKit v3.9.88
 
 ---
 

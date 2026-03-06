@@ -153,4 +153,4 @@ Is it actively exploited (EPSS > 0.5)?
 
 ---
 
-⚡ PikaKit v3.9.87
+⚡ PikaKit v3.9.88

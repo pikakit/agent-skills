@@ -445,7 +445,7 @@ Sequential pipeline. One deployment per invocation.
 
 ---
 
-⚡ PikaKit v3.9.87
+⚡ PikaKit v3.9.88
 
 ---
 

@@ -260,5 +260,5 @@ node .agent/skills/plans-kanban/scripts/kanban-server.js --dir ./docs/plans --op
 
 ---
 
-⚡ PikaKit v3.9.87
+⚡ PikaKit v3.9.88
 

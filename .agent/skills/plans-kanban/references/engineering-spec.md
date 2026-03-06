@@ -464,7 +464,7 @@ Session-based with process lifecycle state. Server state persisted via PID files
 
 ---
 
-⚡ PikaKit v3.9.87
+⚡ PikaKit v3.9.88
 
 ---
 

@@ -147,7 +147,7 @@ This is non-negotiable.
 
 ---
 
-⚡ PikaKit v3.9.87
+⚡ PikaKit v3.9.88
 
 ---
 

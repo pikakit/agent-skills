@@ -163,4 +163,4 @@ Touch-first → Battery-conscious → Platform-respectful → Offline-capable
 
 ---
 
-⚡ PikaKit v3.9.87
+⚡ PikaKit v3.9.88

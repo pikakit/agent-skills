@@ -178,7 +178,7 @@ data visualization art, 8k render --ar 16:9 --style raw
 
 ---
 
-⚡ PikaKit v3.9.87
+⚡ PikaKit v3.9.88
 
 ---
 

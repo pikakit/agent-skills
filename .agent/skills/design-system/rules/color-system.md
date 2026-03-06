@@ -317,7 +317,7 @@ Before finalizing any color choice, verify:
 
 ---
 
-⚡ PikaKit v3.9.87
+⚡ PikaKit v3.9.88
 
 ---
 

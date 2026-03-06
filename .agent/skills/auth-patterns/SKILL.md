@@ -162,4 +162,4 @@ What type of application?
 
 ---
 
-⚡ PikaKit v3.9.87
+⚡ PikaKit v3.9.88

@@ -235,4 +235,4 @@ When creating or reviewing an agent spec, verify:
 
 ---
 
-> ⚡ PikaKit v3.9.87 — Agent Specification Template v1.0
+> ⚡ PikaKit v3.9.88 — Agent Specification Template v1.0
