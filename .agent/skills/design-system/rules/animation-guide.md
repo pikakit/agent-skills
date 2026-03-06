@@ -337,7 +337,7 @@ Before adding animation:
 
 ---
 
-⚡ PikaKit v3.9.83
+⚡ PikaKit v3.9.84
 
 ---
 

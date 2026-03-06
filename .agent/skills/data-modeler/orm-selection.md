@@ -137,7 +137,7 @@ const result = await db
 
 ---
 
-⚡ PikaKit v3.9.83
+⚡ PikaKit v3.9.84
 
 ---
 
