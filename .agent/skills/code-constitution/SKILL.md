@@ -191,4 +191,4 @@ Validation scripts: `scripts/validate_doctrine.js` | PR audit: `scripts/audit_pr
 
 ---
 
-⚡ PikaKit v3.9.82
+⚡ PikaKit v3.9.83
