@@ -8,7 +8,7 @@ description: >-
   Owns legacy code analysis, refactoring strategy, modernization planning,
   dependency mapping, and characterization testing.
   Triggers on: legacy, refactor, spaghetti code, analyze repo, explain
-  codebase, modernize, migration, brownfield, reverse engineer, dead code.
+  codebase, modernize, legacy migration, brownfield, reverse engineer, dead code.
 tools: Read, Grep, Glob, Edit, Write
 model: inherit
 skills: code-craft, code-review, system-design, knowledge-graph, test-architect, code-constitution, problem-checker, auto-learned

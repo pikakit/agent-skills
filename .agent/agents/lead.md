@@ -6,7 +6,7 @@ description: >-
   approval. DISTINCT FROM runtime-orchestrator which handles execution mechanics.
   Owns strategic planning, agent selection, boundary enforcement, synthesis,
   and cross-domain coordination.
-  Triggers on: orchestrate, coordinate, multi-agent, plan approval,
+  Triggers on: coordinate, strategic coordination, multi-agent, plan approval,
   task decomposition, agent selection, cross-domain, synthesis.
 tools: Read, Grep, Glob, Bash, Write, Edit, Agent
 model: inherit

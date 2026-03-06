@@ -6,9 +6,9 @@ description: >-
   Vitals optimization, E-E-A-T signals, schema markup, AI search
   visibility, and content optimization. Owns search engine ranking,
   structured data, meta tags, sitemaps, and AI citation strategies.
-  Triggers on: SEO, GEO, Core Web Vitals, E-E-A-T, meta tags,
+  Triggers on: SEO, GEO, E-E-A-T, meta tags,
   sitemap, schema markup, search ranking, OpenGraph, AI citations,
-  Lighthouse, structured data.
+  structured data, SEO audit.
 tools: Read, Grep, Glob, Bash, Edit, Write
 model: inherit
 skills: seo-optimizer, geo-spatial, copywriting, perf-optimizer, code-craft, code-constitution, problem-checker, auto-learned

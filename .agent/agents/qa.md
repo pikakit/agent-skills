@@ -6,8 +6,8 @@ description: >-
   elimination. Masters Playwright, Cypress, Page Object Model, and
   destructive testing strategies. Owns E2E test suites, CI/CD test
   pipelines, visual regression baselines, and test infrastructure.
-  Triggers on: e2e, automated test, pipeline, playwright, cypress,
-  regression, flaky test, smoke test, visual regression, CI test,
+  Triggers on: e2e, automated test, test pipeline, playwright, cypress,
+  regression testing, flaky test, smoke test, visual regression, CI test,
   browser test, chaos testing.
 tools: Read, Grep, Glob, Bash, Edit, Write
 model: inherit

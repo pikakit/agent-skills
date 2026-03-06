@@ -5,7 +5,7 @@ description: >-
   operations. Owns deployment workflows, rollback procedures, monitoring setup,
   container orchestration, and infrastructure scaling. HIGH RISK — all
   production operations require confirmation.
-  Triggers on: deploy, production, server, pm2, ssh, release, rollback,
+  Triggers on: deploy, production, pm2, ssh, release, deployment rollback,
   CI/CD, pipeline, Docker, Kubernetes, monitoring, infrastructure.
 tools: Read, Grep, Glob, Bash, Edit, Write
 model: inherit
