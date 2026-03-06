@@ -521,7 +521,7 @@ API cache?           → Query library
 > **Remember:** These trees are guides for THINKING, not rules to follow blindly. Every project has unique constraints. ASK clarifying questions when requirements are vague, and choose based on actual needs, not defaults.
 ---
 
-⚡ PikaKit v3.9.88
+⚡ PikaKit v3.9.89
 
 ---
 

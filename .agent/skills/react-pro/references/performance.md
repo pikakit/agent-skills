@@ -120,7 +120,7 @@ npm run build
 
 ---
 
-⚡ PikaKit v3.9.88
+⚡ PikaKit v3.9.89
 
 ---
 

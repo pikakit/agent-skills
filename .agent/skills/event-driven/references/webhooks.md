@@ -199,7 +199,7 @@ function isWebhookFresh(timestampHeader: string): boolean {
 
 ---
 
-⚡ PikaKit v3.9.88
+⚡ PikaKit v3.9.89
 
 ---
 
