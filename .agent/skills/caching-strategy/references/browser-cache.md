@@ -197,7 +197,7 @@ self.addEventListener('fetch', (event) => {
 
 ---
 
-⚡ PikaKit v3.9.84
+⚡ PikaKit v3.9.85
 
 ---
 
