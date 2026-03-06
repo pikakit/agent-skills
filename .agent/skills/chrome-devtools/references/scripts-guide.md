@@ -157,7 +157,7 @@ node performance.js --url https://example.com | jq '.vitals'
 
 ---
 
-⚡ PikaKit v3.9.94
+⚡ PikaKit v3.9.95
 
 ---
 

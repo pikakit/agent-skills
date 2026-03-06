@@ -443,7 +443,7 @@ All resources scoped to invocation. No persistent handles.
 
 ---
 
-⚡ PikaKit v3.9.94
+⚡ PikaKit v3.9.95
 
 ---
 

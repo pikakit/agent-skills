@@ -186,4 +186,4 @@ Unknown model → generic format (no model-specific parameters injected).
 
 ---
 
-⚡ PikaKit v3.9.94
+⚡ PikaKit v3.9.95

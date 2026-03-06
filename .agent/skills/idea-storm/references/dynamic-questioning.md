@@ -356,7 +356,7 @@ Based on your Instagram clone request:
 
 ---
 
-⚡ PikaKit v3.9.94
+⚡ PikaKit v3.9.95
 
 ---
 

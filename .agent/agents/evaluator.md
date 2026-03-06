@@ -802,4 +802,4 @@ After completing any evaluation:
 
 > **Note:** This agent combines risk analysis and conflict arbitration. Loads `code-review` for dependency/evidence analysis, `project-planner` for mitigation design, `code-constitution` for governance compliance, and `auto-learned` for pattern matching. Merges capabilities of former `assessor` and `critic` agents.
 
-> ⚡ PikaKit v3.9.94
+> ⚡ PikaKit v3.9.95
