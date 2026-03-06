@@ -5,14 +5,14 @@
 ### Transform your AI Agent into a FAANG-level engineering team
 
 [![npm version](https://img.shields.io/badge/npm-v3.9.94-7c3aed?style=for-the-badge&logo=npm&logoColor=white&labelColor=18181b)](https://www.npmjs.com/package/pikakit)
-[![Skills](https://img.shields.io/badge/skills-67-06b6d4?style=for-the-badge&labelColor=18181b)](https://github.com/pikakit/agent-skills)
-[![Agents](https://img.shields.io/badge/agents-26-f59e0b?style=for-the-badge&labelColor=18181b)](https://github.com/pikakit/agent-skills)
-[![Workflows](https://img.shields.io/badge/workflows-25-10b981?style=for-the-badge&labelColor=18181b)](https://github.com/pikakit/agent-skills)
+[![Skills](https://img.shields.io/badge/skills-51-06b6d4?style=for-the-badge&labelColor=18181b)](https://github.com/pikakit/agent-skills)
+[![Agents](https://img.shields.io/badge/agents-21-f59e0b?style=for-the-badge&labelColor=18181b)](https://github.com/pikakit/agent-skills)
+[![Workflows](https://img.shields.io/badge/workflows-18-10b981?style=for-the-badge&labelColor=18181b)](https://github.com/pikakit/agent-skills)
 [![JavaScript](https://img.shields.io/badge/100%25-JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black&labelColor=18181b)](https://github.com/pikakit/agent-skills)
 
 **Composable Skills · Coordinated Agents · Intelligent Execution**
 
-[Install](#-quick-install) · [Skills](#-skills-catalog-67) · [Workflows](#-workflows-25) · [Agents](#-multi-agent-coordination-26) · [Docs](#-links)
+[Install](#-quick-install) · [Skills](#-skills-catalog-51) · [Workflows](#-workflows-18) · [Agents](#-multi-agent-coordination-21) · [Docs](#-links)
 
 </div>
 
@@ -24,15 +24,15 @@
 npx pikakit
 ```
 
-> One command installs **67 skills**, **25 workflows**, **26 agents**, and a complete AI operating system into your project.
+> One command installs **51 skills**, **18 workflows**, **21 agents**, and a complete AI operating system into your project.
 
 ### What You Get
 
 | Component | Count | Highlights |
 |-----------|:-----:|------------|
-| **Skills** | 67 | Architecture, Frontend, Backend, Security, DevOps, AI, Mobile, Testing |
-| **Workflows** | 25 | `/think` · `/build` · `/autopilot` · `/studio` · `/validate` · and more |
-| **Agents** | 26 | 21 domain specialists + 5 meta-agents for coordination |
+| **Skills** | 51 | Architecture, Frontend, Backend, Security, DevOps, AI, Mobile, Testing |
+| **Workflows** | 18 | `/think` · `/build` · `/autopilot` · `/studio` · `/validate` · and more |
+| **Agents** | 21 | 16 domain specialists + 5 meta-agents for coordination |
 | **Rules** | `GEMINI.md` | AI behavior configuration — the Supreme Law |
 | **Scripts** | 6 | Checklist, verify, preview, session management |
 | **CLI** | `kit` | Skill management · `agent` (optional interactive dashboard) |
@@ -67,7 +67,7 @@ Create **project-specific skills** that teach AI your conventions
 | | PikaKit | Generic AI | Other Tools |
 |---|:---:|:---:|:---:|
 | **Auto-Accept Workflow** | ✅ | ❌ | ❌ |
-| **Multi-Agent Coordination** | 26 specialists | 1 generic | 1–3 |
+| **Multi-Agent Coordination** | 21 specialists | 1 generic | 1–3 |
 | **Self-Learning Memory** | ✅ | ❌ | ❌ |
 | **100% JavaScript** | ✅ | Mixed | Python |
 | **Safety Protocol** | TIER -1 | ❌ | ❌ |
@@ -107,13 +107,12 @@ kit doctor                  # System health check
 
 ---
 
-## 🧩 Skills Catalog (67)
+## 🧩 Skills Catalog (51)
 
 ### 🏗️ Architecture & Planning
 
 | Skill | Description |
 |-------|-------------|
-| `app-scaffold` | Full-stack app scaffolding from natural language |
 | `project-planner` | Task planning with dependency graph |
 | `idea-storm` | Socratic questioning & brainstorming |
 | `lifecycle-orchestrator` | End-to-end task lifecycle management |
@@ -124,14 +123,11 @@ kit doctor                  # System health check
 
 | Skill | Description |
 |-------|-------------|
-| `react-architect` | Modern React patterns, hooks, composition |
+| `react-pro` | Modern React patterns, hooks, state management |
 | `nextjs-pro` | App Router, RSC, 60+ optimization rules |
-| `frontend-design` | Anti-AI-slop production-grade interfaces |
-| `frontend-development` | React + TypeScript + TanStack Query + MUI |
 | `design-system` | Color theory, typography, UX psychology |
 | `studio` | 50+ styles, 97 palettes, 57 font pairings |
 | `tailwind-kit` | Tailwind CSS v4 patterns |
-| `web-design-guidelines` | WCAG, semantic HTML, accessibility |
 
 ### ⚙️ Backend & API
 
@@ -142,9 +138,6 @@ kit doctor                  # System health check
 | `python-pro` | FastAPI, Django, Flask |
 | `data-modeler` | Schema design, Prisma/Drizzle |
 | `auth-patterns` | OAuth2, JWT, RBAC/ABAC, MFA, Passkeys |
-| `payment-patterns` | SePay, Polar, subscription lifecycle |
-| `caching-strategy` | Redis, CDN, service workers, SWR |
-| `event-driven` | Kafka, RabbitMQ, CQRS, saga patterns |
 
 ### 🔐 Security
 
@@ -153,14 +146,12 @@ kit doctor                  # System health check
 | `security-scanner` | OWASP 2025, supply chain security |
 | `offensive-sec` | Red team tactics, MITRE ATT&CK |
 | `code-constitution` | Constitutional governance (Supreme Law) |
-| `mobile-security-coder` | Mobile-specific security patterns |
 
 ### 🧪 Testing & Quality
 
 | Skill | Description |
 |-------|-------------|
 | `test-architect` | Unit, integration, E2E strategies |
-| `test-driven-dev` | RED-GREEN-REFACTOR cycle |
 | `e2e-automation` | Playwright, visual testing, deep audit |
 | `code-craft` | Clean code, SRP, DRY, KISS |
 | `code-review` | Linting, static analysis, PR review |
@@ -179,13 +170,13 @@ kit doctor                  # System health check
 | Skill | Description |
 |-------|-------------|
 | `google-adk-python` | Google Agent Development Kit |
-| `skill-generator` | Auto-generate skills from patterns |
 | `auto-learned` | Hierarchical auto-learned patterns |
+| `auto-learner` | Pattern extraction from errors |
 | `execution-reporter` | Agent routing transparency |
+| `smart-router` | Intelligent agent routing |
 | `mcp-builder` | Build MCP servers for AI agents |
 | `mcp-management` | Discover & execute MCP tools |
 | `ai-artist` | Prompt engineering for LLM & image AI |
-| `scout` | Fast parallel codebase exploration |
 
 ### ☁️ DevOps & Infrastructure
 
@@ -205,10 +196,7 @@ kit doctor                  # System health check
 |-------|-------------|
 | `mobile-developer` | React Native, Flutter, native |
 | `mobile-design` | Mobile-first UI/UX patterns |
-| `mobile-first` | Mobile routing & publishing |
 | `game-development` | Game logic & mechanics |
-| `remotion` | Programmatic video creation in React |
-| `shader` | GLSL fragment shaders |
 | `typescript-expert` | Type-level programming, monorepo |
 | `shell-script` | Bash/Linux terminal patterns |
 
@@ -219,16 +207,13 @@ kit doctor                  # System health check
 | `doc-templates` | README, API docs, ADR templates |
 | `copywriting` | AIDA, PAS, conversion formulas |
 | `seo-optimizer` | SEO, E-E-A-T, Core Web Vitals |
-| `geo-spatial` | GEO for AI search engines |
-| `markdown-novel-viewer` | Markdown preview server |
-| `mermaid-editor` | Live Mermaid diagram editor |
-| `plans-kanban` | Visual Kanban dashboard |
 | `media-processing` | FFmpeg, ImageMagick, RMBG |
 | `agent-browser` | AI-optimized browser automation |
+| `knowledge-graph` | AST parsing, find-usages, impact analysis |
 
 ---
 
-## 📜 Workflows (25)
+## 📜 Workflows (18)
 
 | Command | Purpose | Agents |
 |---------|---------|:------:|
@@ -246,22 +231,16 @@ kit doctor                  # System health check
 | `/mobile` | Mobile app development | mobile |
 | `/game` | Game development | gamedev |
 | `/chronicle` | Auto-documentation | docs |
-| `/diagram` | Auto-generate architecture diagrams | — |
 | `/launch` | Zero-downtime deployment | devops |
 | `/stage` | Dev sandbox & Docker Compose | devops |
 | `/monitor` | Observability setup | — |
 | `/optimize` | Performance optimization | perf |
-| `/benchmark` | Load testing (k6/Artillery) | — |
-| `/flags` | Feature flag management | — |
-| `/alert` | Alert rules & incident response | — |
-| `/boost` | Enhance existing code | varies |
-| `/pulse` | Project health dashboard | — |
 
 ---
 
-## 🤝 Multi-Agent Coordination (26)
+## 🤝 Multi-Agent Coordination (21)
 
-> **21 domain specialists + 5 meta-agents** working together like a FAANG engineering team.
+> **16 domain specialists + 5 meta-agents** working together like a FAANG engineering team.
 
 ### Meta-Agents (Runtime Control)
 
@@ -273,12 +252,12 @@ kit doctor                  # System health check
 | `critic` | Conflict resolution between agents |
 | `learner` | Continuous improvement from outcomes |
 
-### Domain Agents (21)
+### Domain Agents (16)
 
 | Domain | Agent | Key Skills |
 |--------|-------|------------|
-| Frontend | `frontend` | react-architect, tailwind-kit, studio |
-| Backend | `backend` / `api` | api-architect, nodejs-pro |
+| Frontend | `frontend` | react-pro, tailwind-kit, studio |
+| Backend | `backend` | api-architect, nodejs-pro |
 | Database | `database` | data-modeler |
 | Security | `security` / `pentest` | security-scanner, offensive-sec |
 | Testing | `testing` / `qa` | test-architect, e2e-automation |
@@ -287,12 +266,12 @@ kit doctor                  # System health check
 | Debug | `debug` | debug-pro |
 | Performance | `perf` | perf-optimizer |
 | Planning | `planner` / `lead` | project-planner, idea-storm |
-| Documentation | `docs` | doc-templates, chronicle |
+| Documentation | `docs` | doc-templates |
 | SEO | `seo` | seo-optimizer |
 | Game Dev | `gamedev` | game-development |
-| Exploration | `explorer` / `scout` | scout, knowledge-graph |
+| Exploration | `explorer` | knowledge-graph |
 | Legacy | `legacy` | migration patterns |
-| Product | `po` / `pm` | requirements, UX |
+| Product | `product-lead` | requirements, UX |
 
 ---
 
@@ -346,25 +325,24 @@ your-project/
 ├── .agent/
 │   ├── GEMINI.md                         # AI Rules (Supreme Law)
 │   │
-│   ├── skills/                           # 67 Skills
-│   │   ├── react-architect/
+│   ├── skills/                           # 51 Skills
+│   │   ├── react-pro/
 │   │   ├── debug-pro/
 │   │   ├── studio/
 │   │   └── ...
 │   │
-│   ├── workflows/                        # 25 Workflows
+│   ├── workflows/                        # 18 Workflows
 │   │   ├── think.md
 │   │   ├── build.md
 │   │   ├── autopilot.md
 │   │   └── ...
 │   │
-│   ├── agents/                           # 26 Specialist Agents
+│   ├── agents/                           # 21 Specialist Agents
 │   │   ├── frontend.md
 │   │   ├── backend.md
 │   │   ├── security.md
 │   │   └── ...
 │   │
-│   ├── scripts-js/                       # Automation Scripts
 │   └── config/                           # Configuration
 │
 ├── kit.cmd / kit                         # CLI wrapper
