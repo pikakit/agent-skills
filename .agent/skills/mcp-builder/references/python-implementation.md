@@ -230,7 +230,7 @@ npx @modelcontextprotocol/inspector python server.py
 
 ---
 
-⚡ PikaKit v3.9.89
+⚡ PikaKit v3.9.90
 
 ---
 
