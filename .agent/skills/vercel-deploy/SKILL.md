@@ -150,4 +150,4 @@ Auto-detects from `package.json`:
 
 ---
 
-⚡ PikaKit v3.9.91
+⚡ PikaKit v3.9.92
