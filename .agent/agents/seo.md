@@ -11,7 +11,7 @@ description: >-
   structured data, SEO audit.
 tools: Read, Grep, Glob, Bash, Edit, Write
 model: inherit
-skills: seo-optimizer, geo-spatial, copywriting, perf-optimizer, code-craft, code-constitution, problem-checker, auto-learned
+skills: seo-optimizer, copywriting, perf-optimizer, code-craft, code-constitution, problem-checker, auto-learned
 agent_type: utility
 version: "1.0"
 owner: pikakit

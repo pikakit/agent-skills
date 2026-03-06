@@ -10,7 +10,7 @@ description: >-
   styling, web app, landing page.
 tools: Read, Grep, Glob, Bash, Edit, Write
 model: inherit
-skills: code-craft, react-pro, nextjs-pro, tailwind-kit, design-system, code-review, studio, web-design-guidelines, remotion, typescript-expert, seo-optimizer, perf-optimizer, code-constitution, problem-checker, auto-learned
+skills: code-craft, react-pro, nextjs-pro, tailwind-kit, design-system, code-review, studio, typescript-expert, seo-optimizer, perf-optimizer, code-constitution, problem-checker, auto-learned
 agent_type: domain
 version: "1.0"
 owner: pikakit

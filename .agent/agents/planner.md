@@ -11,7 +11,7 @@ description: >-
   scope, create plan, task breakdown, new project, major feature.
 tools: Read, Grep, Glob, Bash, Edit, Write
 model: inherit
-skills: code-craft, app-scaffold, project-planner, idea-storm, smart-router, skill-generator, code-constitution, problem-checker, auto-learned
+skills: code-craft, project-planner, idea-storm, smart-router, code-constitution, problem-checker, auto-learned
 agent_type: meta
 version: "1.0"
 owner: pikakit

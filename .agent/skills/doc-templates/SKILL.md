@@ -1,26 +1,30 @@
 ---
 name: doc-templates
 description: >-
-  Documentation templates and structure guidelines. README, API docs, code comments, and AI-friendly documentation.
-  Triggers on: template, README, documentation, API docs, changelog, ADR.
-  Coordinates with: project-planner, code-craft.
+  Documentation templates, structure guidelines, Mermaid diagram editing,
+  markdown preview, and plan dashboards. README, API docs, code comments,
+  AI-friendly documentation, live diagram editor, and documentation preview server.
+  Triggers on: template, README, documentation, API docs, changelog, ADR,
+  mermaid, diagram, flowchart, preview, markdown viewer, view plans, kanban, dashboard.
+  Coordinates with: project-planner, code-craft, system-design.
 metadata:
-  version: "2.0.0"
+  version: "3.0.0"
   category: "specialized"
-  triggers: "template, README, documentation, API docs, changelog, ADR"
-  success_metrics: "template applied, all required sections present"
-  coordinates_with: "project-planner, code-craft"
+  triggers: "template, README, documentation, API docs, changelog, ADR, mermaid, diagram, preview, kanban"
+  success_metrics: "template applied, all required sections present, diagrams render"
+  coordinates_with: "project-planner, code-craft, system-design"
+  absorbs: "mermaid-editor@2.0.0, markdown-novel-viewer@2.0.0, plans-kanban@2.0.0"
 ---
 
-# Doc Templates — Documentation Structure
+# Doc Templates — Documentation, Diagrams & Preview
 
-> Fixed templates per document type. All sections required. Fill content, not structure.
+> Fixed templates per document type. Mermaid diagrams. Markdown preview. Plan dashboards.
 
 ---
 
 ## Prerequisites
 
-**Required:** None — Doc Templates is a knowledge-based skill with no external dependencies.
+**Required:** Node.js 18+ (for diagram editor and preview server scripts).
 
 ---
 
@@ -33,6 +37,9 @@ metadata:
 | Architecture decisions | ADR template | Status, Context, Decision, Consequences |
 | Release notes | Changelog template | Version, date, changes |
 | AI agent context | llms.txt template | Project summary, structure |
+| Mermaid diagrams | Diagram editor | 9 types supported |
+| Documentation preview | Preview server | Markdown rendering |
+| Plan progress | Plan dashboard | Phase tracking |
 
 ---
 
@@ -44,8 +51,11 @@ metadata:
 | Section order and requirements | Auto-documentation (→ /chronicle) |
 | Comment guidelines (why vs what) | Project structure (→ project-planner) |
 | AI-friendly doc format (llms.txt) | Code quality (→ code-craft) |
+| Mermaid diagram editing (9 types) | Architecture decisions (→ system-design) |
+| Markdown preview server | File system permissions |
+| Plan dashboard server | Plan creation (→ project-planner) |
 
-**Pure decision skill:** Produces document templates and guidelines. Zero side effects.
+**Hybrid skill:** Templates are pure decision; diagram/preview are automation (HTTP servers).
 
 ---
 
@@ -122,10 +132,83 @@ What are the trade-offs?
 ## Comment Guidelines
 
 | ✅ Comment | ❌ Don't Comment |
-|-----------|-----------------|
+|-----------|--------------------|
 | Why (business logic) | What (obvious code) |
 | Complex algorithms | Every line |
 | API contracts | Implementation details |
+
+---
+
+## Mermaid Diagram Editor (Absorbed from mermaid-editor)
+
+### Diagram Types (9 — Fixed)
+
+| # | Type | Keyword |
+|---|------|---------|
+| 1 | Flowchart | `flowchart LR` |
+| 2 | Sequence | `sequenceDiagram` |
+| 3 | Class | `classDiagram` |
+| 4 | State | `stateDiagram-v2` |
+| 5 | ER | `erDiagram` |
+| 6 | Gantt | `gantt` |
+| 7 | Pie | `pie` |
+| 8 | Mindmap | `mindmap` |
+| 9 | Timeline | `timeline` |
+
+### Editor Server
+
+```bash
+# Open editor (empty)
+node .agent/skills/mermaid-editor/scripts/editor-server.js --open
+
+# Edit existing file
+node .agent/skills/mermaid-editor/scripts/editor-server.js --file diagram.mmd --open
+
+# Stop server
+node .agent/skills/mermaid-editor/scripts/editor-server.js --stop
+```
+
+| Option | Default | Description |
+|--------|---------|-------------|
+| `--file <path>` | — | Open .mmd file |
+| `--port <n>` | 3457 | Server port |
+| `--open` | false | Auto-open browser |
+| `--stop` | — | Stop all servers |
+
+---
+
+## Markdown Preview Server (Absorbed from markdown-novel-viewer)
+
+```bash
+# View a file
+node .agent/skills/markdown-novel-viewer/scripts/server.js --file ./README.md --open
+
+# Browse a directory
+node .agent/skills/markdown-novel-viewer/scripts/server.js --dir ./docs --open
+
+# Stop all servers
+node .agent/skills/markdown-novel-viewer/scripts/server.js --stop
+```
+
+| Option | Default | Description |
+|--------|---------|-------------|
+| `--file <path>` | — | Markdown file |
+| `--dir <path>` | — | Directory to browse |
+| `--port <n>` | 3456 | Server port (3456-3500) |
+| `--open` | false | Auto-open browser |
+| `--stop` | — | Stop all servers |
+
+**Theme:** Libre Baskerville (headings), Inter (body), JetBrains Mono (code). Light/dark toggle.
+
+---
+
+## Plan Dashboard (Absorbed from plans-kanban)
+
+Visual dashboard for plan directories with progress tracking and phase status indicators.
+
+```bash
+node .agent/skills/plans-kanban/scripts/kanban-server.js --dir ./docs/plans --open
+```
 
 ---
 
@@ -135,8 +218,8 @@ What are the trade-offs?
 |------|-------------|---------|
 | `ERR_INVALID_REQUEST_TYPE` | No | Request type not supported |
 | `ERR_REFERENCE_NOT_FOUND` | No | Reference file missing |
-
-**Zero internal retries.** Deterministic; same type = same template.
+| `ERR_PORT_UNAVAILABLE` | Yes | Port in use (editor/preview) |
+| `ERR_FILE_NOT_FOUND` | Yes | File not found |
 
 ---
 
@@ -149,6 +232,8 @@ What are the trade-offs?
 | ADR without Consequences | Always include trade-offs |
 | Comment what code does | Comment why code exists |
 | No changelog | Maintain structured changelog |
+| Leave servers orphaned | Use --stop to clean up |
+| Assume port is free | Check or use --port |
 
 ---
 
@@ -158,6 +243,9 @@ What are the trade-offs?
 |------|-------------|--------------|
 | [doc.md](references/doc.md) | Full templates and examples | Detailed template reference |
 | [engineering-spec.md](references/engineering-spec.md) | Full engineering spec | Architecture review |
+| [editor-server.js](../mermaid-editor/scripts/editor-server.js) | Mermaid editor server | Diagram implementation |
+| [server.js](../markdown-novel-viewer/scripts/server.js) | Preview server | Preview implementation |
+| [diagram-reference.md](../mermaid-editor/references/diagram-reference.md) | 9 diagram types syntax | Writing diagrams |
 
 ---
 
@@ -168,7 +256,9 @@ What are the trade-offs?
 | `/chronicle` | Workflow | Auto-documentation generation |
 | `project-planner` | Skill | Project structure planning |
 | `code-craft` | Skill | Code quality and comments |
+| `system-design` | Skill | Architecture diagrams |
 
 ---
 
 ⚡ PikaKit v3.9.87
+

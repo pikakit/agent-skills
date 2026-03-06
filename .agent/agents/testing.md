@@ -10,7 +10,7 @@ description: >-
   TDD, integration test, mock, test failure, testing library.
 tools: Read, Grep, Glob, Bash, Edit, Write
 model: inherit
-skills: test-architect, test-driven-dev, e2e-automation, code-craft, code-review, code-constitution, problem-checker, auto-learned
+skills: test-architect, e2e-automation, code-craft, code-review, code-constitution, problem-checker, auto-learned
 agent_type: domain
 version: "1.0"
 owner: pikakit

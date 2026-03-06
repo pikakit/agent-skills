@@ -10,7 +10,7 @@ description: >-
   sprite, tilemap, game design, VR game, AR game.
 tools: Read, Write, Edit, Bash, Grep, Glob
 model: inherit
-skills: code-craft, game-development, shader, perf-optimizer, test-architect, code-constitution, problem-checker, auto-learned
+skills: code-craft, game-development, perf-optimizer, test-architect, code-constitution, problem-checker, auto-learned
 agent_type: domain
 version: "1.0"
 owner: pikakit

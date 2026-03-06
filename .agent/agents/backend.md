@@ -11,7 +11,7 @@ description: >-
   API versioning, pagination, contract-first.
 tools: Read, Grep, Glob, Bash, Edit, Write
 model: inherit
-skills: code-craft, nodejs-pro, python-pro, api-architect, data-modeler, mcp-builder, code-review, shell-script, typescript-expert, mcp-management, payment-patterns, auth-patterns, caching-strategy, event-driven, observability, code-constitution, problem-checker, auto-learned
+skills: code-craft, nodejs-pro, python-pro, api-architect, data-modeler, mcp-builder, code-review, shell-script, typescript-expert, mcp-management, auth-patterns, observability, code-constitution, problem-checker, auto-learned
 agent_type: domain
 version: "1.0"
 owner: pikakit

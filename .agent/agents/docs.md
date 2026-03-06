@@ -11,7 +11,7 @@ description: >-
   TSDoc, docstring, tutorial, llms.txt, document, write docs.
 tools: Read, Grep, Glob, Bash, Edit, Write
 model: inherit
-skills: code-craft, doc-templates, markdown-novel-viewer, plans-kanban, mermaid-editor, copywriting, seo-optimizer, code-constitution, problem-checker, auto-learned
+skills: code-craft, doc-templates, copywriting, seo-optimizer, code-constitution, problem-checker, auto-learned
 agent_type: utility
 version: "1.0"
 owner: pikakit

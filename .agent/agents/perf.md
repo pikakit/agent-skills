@@ -11,7 +11,7 @@ description: >-
   Lighthouse, bundle size, Core Web Vitals, LCP, INP, CLS, latency.
 tools: Read, Grep, Glob, Bash, Edit, Write
 model: inherit
-skills: code-craft, perf-optimizer, caching-strategy, e2e-automation, chrome-devtools, code-review, code-constitution, problem-checker, auto-learned
+skills: code-craft, perf-optimizer, e2e-automation, chrome-devtools, code-review, code-constitution, problem-checker, auto-learned
 agent_type: domain
 version: "1.0"
 owner: pikakit

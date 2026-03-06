@@ -9,7 +9,7 @@ description: >-
   codebase, architecture, dependencies, feasibility, health check.
 tools: Read, Grep, Glob, Bash
 model: inherit
-skills: code-craft, system-design, project-planner, idea-storm, debug-pro, knowledge-graph, scout, code-constitution, problem-checker, auto-learned
+skills: code-craft, system-design, project-planner, idea-storm, debug-pro, knowledge-graph, code-constitution, problem-checker, auto-learned
 agent_type: utility
 version: "1.0"
 owner: pikakit

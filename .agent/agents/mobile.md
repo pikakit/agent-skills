@@ -9,7 +9,7 @@ description: >-
   app store, cross-platform, touch, native app.
 tools: Read, Grep, Glob, Bash, Edit, Write
 model: inherit
-skills: code-craft, mobile-design, mobile-developer, mobile-security-coder, test-architect, perf-optimizer, code-review, code-constitution, problem-checker, auto-learned
+skills: code-craft, mobile-design, mobile-developer, test-architect, perf-optimizer, code-review, code-constitution, problem-checker, auto-learned
 agent_type: domain
 version: "1.0"
 owner: pikakit
