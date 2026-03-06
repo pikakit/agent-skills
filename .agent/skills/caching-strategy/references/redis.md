@@ -201,7 +201,7 @@ await invalidateTag('user:456'); // Clears all caches for user 456
 
 ---
 
-⚡ PikaKit v3.9.85
+⚡ PikaKit v3.9.86
 
 ---
 
