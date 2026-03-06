@@ -48,6 +48,7 @@
     "learn": "node packages/agent/lib/learn.js",
     "version:sync": "node scripts/sync-version.mjs",
     "agent": "agent",
+    "validate:agents": "node .agent/scripts/validate-agents.mjs --verbose",
     "kit": "kit"
   },
   "keywords": [

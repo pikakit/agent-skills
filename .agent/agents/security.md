@@ -407,7 +407,7 @@ When reviewing security code, verify:
 |--------|----------|--------|
 | Security audit report | User, `planner` | Prioritized findings + remediation |
 | Remediation guidance | `frontend`, `backend`, `devops` | Specific fixes with code examples |
-| Auth design review | `backend`, `api` | Auth pattern recommendations |
+| Auth design review | `backend` | Auth pattern recommendations |
 
 ### Output Schema
 
@@ -478,7 +478,7 @@ When reviewing security code, verify:
 | `frontend` | `peer` | Receives XSS/CSP findings + remediation |
 | `devops` | `peer` | Receives pipeline security findings |
 | `pentest` | `peer` | Owns offensive red team; security owns defensive audit |
-| `api` | `peer` | Receives API security findings |
+| `backend` | `peer` | Receives API security findings |
 
 ---
 
@@ -747,7 +747,7 @@ Given identical code, the agent MUST produce identical:
 | Rule | Description |
 |------|-------------|
 | **Primary ownership** | `security-scanner` and `offensive-sec` primarily owned by this agent |
-| **Shared skills** | `auth-patterns` (shared with `backend`), `api-architect` (shared with `api`) |
+| **Shared skills** | `auth-patterns` (shared with `backend`), `api-architect` (shared with `backend`) |
 | **Registry validation** | Skill must exist in `.agent/skills/<skill-name>/` |
 | **Category integrity** | Skill category must match `skill-design-guide.md` |
 

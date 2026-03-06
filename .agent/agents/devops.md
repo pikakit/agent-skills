@@ -9,7 +9,7 @@ description: >-
   CI/CD, pipeline, Docker, Kubernetes, monitoring, infrastructure.
 tools: Read, Grep, Glob, Bash, Edit, Write
 model: inherit
-skills: code-craft, cicd-pipeline, server-ops, shell-script, gitops, git-workflow, vercel-deploy, observability, feature-flags, code-constitution, problem-checker, auto-learned
+skills: code-craft, cicd-pipeline, server-ops, shell-script, gitops, git-workflow, vercel-deploy, observability, code-constitution, problem-checker, auto-learned
 agent_type: domain
 version: "1.0"
 owner: pikakit
