@@ -1,6 +1,6 @@
 ---
 name: mobile-games
-description: Mobile game development principles. Touch input, battery, performance, app stores.
+summary: Mobile game development principles. Touch input, battery, performance, app stores.
 metadata:
   category: "game-development"
   version: "1.0.0"
@@ -114,7 +114,7 @@ metadata:
 
 ---
 
-⚡ PikaKit v3.9.95
+⚡ PikaKit v3.9.96
 
 ---
 

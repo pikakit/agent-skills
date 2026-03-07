@@ -1,6 +1,6 @@
 ---
 name: python-pro
-description: >-
+summary: >-
   Python development principles and decision-making. Framework selection (FastAPI/Django/Flask),
   async patterns, type hints, project structure.
   Triggers on: Python, pip, FastAPI, Django, Flask.
@@ -155,4 +155,4 @@ Routes (HTTP handlers)
 
 ---
 
-⚡ PikaKit v3.9.95
+⚡ PikaKit v3.9.96

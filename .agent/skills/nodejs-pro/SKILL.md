@@ -1,6 +1,6 @@
 ---
 name: nodejs-pro
-description: >-
+summary: >-
   Node.js development principles and decision-making. Framework selection (Hono/Fastify/Express/NestJS),
   async patterns, security, architecture.
   Triggers on: Node.js, Express, backend, server, API.
@@ -145,4 +145,4 @@ What are you building?
 
 ---
 
-⚡ PikaKit v3.9.95
+⚡ PikaKit v3.9.96

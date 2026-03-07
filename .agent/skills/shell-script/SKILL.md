@@ -1,6 +1,6 @@
 ---
 name: shell-script
-description: >-
+summary: >-
   Bash/Linux terminal patterns. Critical commands, piping, error handling, scripting.
   Use when working on macOS or Linux systems.
   Triggers on: shell, bash, script, automation, CLI.
@@ -177,4 +177,4 @@ trap 'rm -f /tmp/tempfile' EXIT
 
 ---
 
-⚡ PikaKit v3.9.95
+⚡ PikaKit v3.9.96

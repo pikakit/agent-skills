@@ -1,6 +1,6 @@
 ---
 name: execution-reporter
-description: >-
+summary: >-
   Display agent routing, skill loading, and execution context at task start.
   Provides transparency and audit trail for agent operations.
   Triggers on: every task start, agent routing, skill loading, task completion.
@@ -54,7 +54,7 @@ metadata:
 ### Full Template (> 3 skills)
 
 ```
-🤖 PikaKit v3.9.95
+🤖 PikaKit v3.9.96
 📋 Task: {task_description}
 ◆ Agent: @{agent_name}
 ◇ Skills: {skill_1}, {skill_2}, ...
@@ -71,7 +71,7 @@ metadata:
 
 ```
 ✅ Done • Agent: @{agent_name} • Skills: {count} • Files: {count} • {duration}s
-⚡ PikaKit v3.9.95
+⚡ PikaKit v3.9.96
 ```
 
 ### Script Run Template
@@ -149,4 +149,4 @@ metadata:
 
 ---
 
-⚡ PikaKit v3.9.95
+⚡ PikaKit v3.9.96

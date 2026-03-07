@@ -1,6 +1,6 @@
 ---
 name: multiplayer
-description: Multiplayer game development principles. Architecture, networking, synchronization.
+summary: Multiplayer game development principles. Architecture, networking, synchronization.
 metadata:
   category: "game-development"
   version: "1.0.0"
@@ -138,7 +138,7 @@ Server: Validate → did projectile actually hit?
 
 ---
 
-⚡ PikaKit v3.9.95
+⚡ PikaKit v3.9.96
 
 ---
 

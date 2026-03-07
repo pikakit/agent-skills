@@ -1,6 +1,6 @@
 ---
 name: media-processing
-description: >-
+summary: >-
   Process video, audio, image with FFmpeg, ImageMagick, RMBG.
   Triggers on: video, audio, image, compress, resize, convert, background removal.
   Coordinates with: perf-optimizer, studio.
@@ -173,4 +173,4 @@ rmbg input.jpg -m briaai -o output.png   # Highest quality
 
 ---
 
-⚡ PikaKit v3.9.95
+⚡ PikaKit v3.9.96

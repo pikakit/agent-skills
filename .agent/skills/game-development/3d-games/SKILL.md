@@ -1,6 +1,6 @@
 ---
 name: 3d-games
-description: 3D game development principles. Rendering, shaders, physics, cameras.
+summary: 3D game development principles. Rendering, shaders, physics, cameras.
 metadata:
   category: "game-development"
   version: "1.0.0"
@@ -141,7 +141,7 @@ metadata:
 
 ---
 
-⚡ PikaKit v3.9.95
+⚡ PikaKit v3.9.96
 
 ---
 

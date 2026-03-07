@@ -1,6 +1,6 @@
 ---
 name: server-ops
-description: >-
+summary: >-
   Server management principles and decision-making. Process management, monitoring strategy, scaling decisions.
   Triggers on: server, DevOps, infrastructure, deployment, hosting.
   Coordinates with: cicd-pipeline, security-scanner.
@@ -165,4 +165,4 @@ Route by load balancer needs.
 
 ---
 
-⚡ PikaKit v3.9.95
+⚡ PikaKit v3.9.96

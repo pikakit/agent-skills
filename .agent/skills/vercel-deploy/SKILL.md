@@ -1,6 +1,6 @@
 ---
 name: vercel-deploy
-description: >-
+summary: >-
   Deploy applications and websites to Vercel. Use this skill when the user requests
   deployment actions such as "Deploy my app", "Deploy this to production",
   "Create a preview deployment", "Deploy and give me the link", or "Push this live".
@@ -150,4 +150,4 @@ Auto-detects from `package.json`:
 
 ---
 
-⚡ PikaKit v3.9.95
+⚡ PikaKit v3.9.96

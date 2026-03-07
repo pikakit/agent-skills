@@ -1,6 +1,6 @@
 ---
 name: web-games
-description: Web browser game development principles. Framework selection, WebGPU, optimization, PWA.
+summary: Web browser game development principles. Framework selection, WebGPU, optimization, PWA.
 metadata:
   category: "game-development"
   version: "1.0.0"
@@ -156,7 +156,7 @@ What type of game?
 
 ---
 
-⚡ PikaKit v3.9.95
+⚡ PikaKit v3.9.96
 
 ---
 

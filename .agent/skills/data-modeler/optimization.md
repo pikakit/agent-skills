@@ -144,7 +144,7 @@ SELECT reltuples AS estimate FROM pg_class WHERE relname = 'orders';
 
 ---
 
-⚡ PikaKit v3.9.95
+⚡ PikaKit v3.9.96
 
 ---
 

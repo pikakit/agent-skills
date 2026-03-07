@@ -1,6 +1,6 @@
 ---
 name: design-system
-description: >-
+summary: >-
   Design thinking and decision-making for web UI. Color theory, typography, visual effects, and UX psychology.
   Triggers on: design, UI, UX, color palette, typography, component design.
   Coordinates with: tailwind-kit, studio, frontend-design.
@@ -159,4 +159,4 @@ node .agent/skills/studio/scripts-js/search.js "<query>" --domain style
 
 ---
 
-⚡ PikaKit v3.9.95
+⚡ PikaKit v3.9.96

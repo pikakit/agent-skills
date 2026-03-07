@@ -1,6 +1,6 @@
 ---
 name: perf-optimizer
-description: >-
+summary: >-
   Performance profiling principles. Core Web Vitals, bundle analysis, runtime profiling.
   Triggers on: performance, slow, Lighthouse, bundle size, Core Web Vitals.
   Coordinates with: e2e-automation, web-core.
@@ -159,4 +159,4 @@ metadata:
 
 ---
 
-⚡ PikaKit v3.9.95
+⚡ PikaKit v3.9.96

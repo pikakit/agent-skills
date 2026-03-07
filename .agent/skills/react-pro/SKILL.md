@@ -1,6 +1,6 @@
 ---
 name: react-pro
-description: >-
+summary: >-
   Modern React patterns, component architecture, state management, TypeScript best practices,
   and modern React development with Suspense, TanStack Query, MUI v7, and lazy loading.
   Triggers on: React, component, hooks, state management, Redux, Zustand, TypeScript, TanStack Query, MUI, frontend.
@@ -153,4 +153,4 @@ metadata:
 
 ---
 
-⚡ PikaKit v3.9.95
+⚡ PikaKit v3.9.96

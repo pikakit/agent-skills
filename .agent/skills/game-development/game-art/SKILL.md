@@ -1,6 +1,6 @@
 ---
 name: game-art
-description: Game art principles. Visual style selection, asset pipeline, animation workflow.
+summary: Game art principles. Visual style selection, asset pipeline, animation workflow.
 metadata:
   category: "game-development"
   version: "1.0.0"
@@ -191,7 +191,7 @@ assets/
 
 ---
 
-⚡ PikaKit v3.9.95
+⚡ PikaKit v3.9.96
 
 ---
 

@@ -1,6 +1,6 @@
 ---
 name: doc-templates
-description: >-
+summary: >-
   Documentation templates, structure guidelines, Mermaid diagram editing,
   markdown preview, and plan dashboards. README, API docs, code comments,
   AI-friendly documentation, live diagram editor, and documentation preview server.
@@ -260,5 +260,5 @@ node .agent/skills/plans-kanban/scripts/kanban-server.js --dir ./docs/plans --op
 
 ---
 
-⚡ PikaKit v3.9.95
+⚡ PikaKit v3.9.96
 

@@ -1,6 +1,6 @@
 ---
 name: auth-patterns
-description: >-
+summary: >-
   Authentication and authorization patterns for production applications.
   OAuth2, JWT, RBAC/ABAC, MFA, Passkeys, session management.
   Fail-closed design: ambiguity → deny access. Defense in depth required.
@@ -162,4 +162,4 @@ What type of application?
 
 ---
 
-⚡ PikaKit v3.9.95
+⚡ PikaKit v3.9.96

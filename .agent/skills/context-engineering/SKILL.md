@@ -1,6 +1,6 @@
 ---
 name: context-engineering
-description: >-
+summary: >-
   Monitor context usage, design efficient agent architectures, control token consumption.
   Four-bucket strategy: Write, Select, Compress, Isolate. Fixed thresholds: 70% warning, 80% critical.
   Triggers on: context usage, token limit, agent architecture, memory system.
@@ -144,4 +144,4 @@ metadata:
 
 ---
 
-⚡ PikaKit v3.9.95
+⚡ PikaKit v3.9.96

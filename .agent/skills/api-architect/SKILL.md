@@ -1,6 +1,6 @@
 ---
 name: api-architect
-description: >-
+summary: >-
   API design principles and decision-making. REST vs GraphQL vs tRPC selection,
   response formats, versioning, pagination, auth patterns, rate limiting.
   Deterministic decision trees produce context-specific API design choices.
@@ -173,4 +173,4 @@ Before designing an API, confirm:
 
 ---
 
-⚡ PikaKit v3.9.95
+⚡ PikaKit v3.9.96

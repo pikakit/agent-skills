@@ -260,7 +260,7 @@ npx @modelcontextprotocol/inspector node dist/index.js
 
 ---
 
-⚡ PikaKit v3.9.95
+⚡ PikaKit v3.9.96
 
 ---
 

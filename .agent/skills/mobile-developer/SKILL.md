@@ -1,6 +1,6 @@
 ---
 name: mobile-developer
-description: >-
+summary: >-
   Develop React Native, Flutter, or native mobile apps with modern architecture patterns.
   Masters cross-platform development, native integrations, offline sync, and app store optimization.
   Triggers on: React Native, Flutter, iOS, Android, mobile app, cross-platform.
@@ -167,4 +167,4 @@ metadata:
 
 ---
 
-⚡ PikaKit v3.9.95
+⚡ PikaKit v3.9.96

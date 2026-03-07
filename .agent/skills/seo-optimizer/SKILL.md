@@ -1,6 +1,6 @@
 ---
 name: seo-optimizer
-description: >-
+summary: >-
   SEO fundamentals, E-E-A-T, Core Web Vitals, and Google algorithm principles.
   Triggers on: SEO, meta tags, sitemap, search ranking, OpenGraph.
   Coordinates with: web-core, perf-optimizer.
@@ -151,4 +151,4 @@ metadata:
 
 ---
 
-⚡ PikaKit v3.9.95
+⚡ PikaKit v3.9.96

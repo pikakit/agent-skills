@@ -1,6 +1,6 @@
 ---
 name: Defense-in-Depth Validation
-description: Validate at every layer data passes through to make bugs impossible
+summary: Validate at every layer data passes through to make bugs impossible
 when_to_use: when invalid data causes failures deep in execution, requiring validation at multiple system layers
 version: 1.1.0
 languages: all
@@ -135,7 +135,7 @@ All four layers were necessary. During testing, each layer caught bugs the other
 
 ---
 
-⚡ PikaKit v3.9.95
+⚡ PikaKit v3.9.96
 
 ---
 

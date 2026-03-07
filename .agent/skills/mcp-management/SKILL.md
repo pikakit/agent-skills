@@ -1,6 +1,6 @@
 ---
 name: mcp-management
-description: >-
+summary: >-
   Discover, analyze, and execute tools from configured MCP servers.
   Progressive disclosure: load only the tools you need, when you need them.
   Triggers on: MCP tools, server discovery, tool execution, multi-server.
@@ -162,4 +162,4 @@ npx tsx cli.ts list-resources  # Available resources
 
 ---
 
-⚡ PikaKit v3.9.95
+⚡ PikaKit v3.9.96

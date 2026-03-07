@@ -1,6 +1,6 @@
 ---
 name: idea-storm
-description: >-
+summary: >-
   Socratic questioning protocol + user communication. MANDATORY for complex requests,
   new features, or unclear requirements. Includes progress reporting and error handling.
   Triggers on: brainstorm, understand requirements, clarify, unclear, complex request.
@@ -158,4 +158,4 @@ metadata:
 
 ---
 
-⚡ PikaKit v3.9.95
+⚡ PikaKit v3.9.96

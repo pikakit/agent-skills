@@ -1,6 +1,6 @@
 ---
 name: observability
-description: >-
+summary: >-
   OpenTelemetry-based observability for production applications. Unified logs, metrics, traces.
   Triggers on: monitoring, observability, OpenTelemetry, telemetry, instrumentation.
   Coordinates with: logging, metrics, tracing, incident-response.
@@ -149,4 +149,4 @@ metadata:
 
 ---
 
-⚡ PikaKit v3.9.95
+⚡ PikaKit v3.9.96

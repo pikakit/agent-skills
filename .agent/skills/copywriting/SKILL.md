@@ -1,6 +1,6 @@
 ---
 name: copywriting
-description: >-
+summary: >-
   Conversion copywriting formulas, headline templates, email patterns.
   AIDA, PAS, BAB, 4Ps, 4Us, FAB formulas for high-converting copy.
   Triggers on: copywriting, headlines, landing page, email, marketing.
@@ -161,4 +161,4 @@ metadata:
 
 ---
 
-⚡ PikaKit v3.9.95
+⚡ PikaKit v3.9.96

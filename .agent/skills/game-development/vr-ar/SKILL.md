@@ -1,6 +1,6 @@
 ---
 name: vr-ar
-description: VR/AR development principles. Comfort, interaction, performance requirements.
+summary: VR/AR development principles. Comfort, interaction, performance requirements.
 metadata:
   category: "game-development"
   version: "1.0.0"
@@ -129,7 +129,7 @@ metadata:
 
 ---
 
-⚡ PikaKit v3.9.95
+⚡ PikaKit v3.9.96
 
 ---
 

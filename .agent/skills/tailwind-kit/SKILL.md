@@ -1,6 +1,6 @@
 ---
 name: tailwind-kit
-description: >-
+summary: >-
   Tailwind CSS v4 principles. CSS-first configuration, container queries, modern patterns.
   Triggers on: Tailwind, CSS, styling, utility classes.
   Coordinates with: design-system, web-core.
@@ -144,4 +144,4 @@ metadata:
 
 ---
 
-⚡ PikaKit v3.9.95
+⚡ PikaKit v3.9.96

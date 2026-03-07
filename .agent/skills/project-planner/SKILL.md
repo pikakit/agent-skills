@@ -1,6 +1,6 @@
 ---
 name: project-planner
-description: >-
+summary: >-
   Structured task planning with clear breakdowns, dependencies, and verification criteria.
   Use when implementing features, refactoring, or any multi-step work requiring planning.
   Triggers on: plan, breakdown, tasks, implementation strategy, project scope.
@@ -140,4 +140,4 @@ One sentence: What are we building/fixing?
 
 ---
 
-⚡ PikaKit v3.9.95
+⚡ PikaKit v3.9.96

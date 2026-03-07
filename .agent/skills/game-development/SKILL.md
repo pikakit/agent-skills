@@ -1,6 +1,6 @@
 ---
 name: game-development
-description: >-
+summary: >-
   Game development orchestrator. Routes to platform-specific skills based on project needs.
   Core principles for game loop, performance, patterns, AI, collision, input.
   Triggers on: game, game development, Unity, Godot, Phaser, game engine.
@@ -175,4 +175,4 @@ RENDER → Draw the frame (interpolated)
 
 ---
 
-⚡ PikaKit v3.9.95
+⚡ PikaKit v3.9.96

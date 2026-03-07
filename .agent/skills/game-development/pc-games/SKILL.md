@@ -1,6 +1,6 @@
 ---
 name: pc-games
-description: PC and console game development principles. Engine selection, platform features, optimization strategies.
+summary: PC and console game development principles. Engine selection, platform features, optimization strategies.
 metadata:
   category: "game-development"
   version: "1.0.0"
@@ -150,7 +150,7 @@ Map ACTIONS, not buttons:
 
 ---
 
-⚡ PikaKit v3.9.95
+⚡ PikaKit v3.9.96
 
 ---
 

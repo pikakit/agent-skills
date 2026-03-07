@@ -1,6 +1,6 @@
 ---
 name: game-design
-description: Game design principles. GDD structure, balancing, player psychology, progression.
+summary: Game design principles. GDD structure, balancing, player psychology, progression.
 metadata:
   category: "game-development"
   version: "1.0.0"
@@ -135,7 +135,7 @@ Just Right → Flow → Engagement
 
 ---
 
-⚡ PikaKit v3.9.95
+⚡ PikaKit v3.9.96
 
 ---
 

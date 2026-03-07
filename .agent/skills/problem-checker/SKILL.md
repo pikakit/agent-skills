@@ -1,6 +1,6 @@
 ---
 name: problem-checker
-description: >-
+summary: >-
   Automated IDE problem detection and auto-fix before task completion. Checks
   @[current_problems] and auto-fixes common issues. Triggers on: before notify_user,
   after code modification, IDE errors. Coordinates with: auto-learned, auto-learner.
@@ -143,4 +143,4 @@ npx tsc --noEmit <file>
 
 ---
 
-⚡ PikaKit v3.9.95
+⚡ PikaKit v3.9.96

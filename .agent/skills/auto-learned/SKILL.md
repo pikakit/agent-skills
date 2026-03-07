@@ -1,6 +1,6 @@
 ---
 name: auto-learned
-description: >-
+summary: >-
   Hierarchical skill containing all auto-learned patterns from IDE errors
   and code analysis. Organizes patterns by category (import, type, syntax, etc.)
   with subskills in patterns/ folder. Writable by authorized agents only.
@@ -155,4 +155,4 @@ All phases synchronous. Append-only writes. Deduplication returns `duplicate: tr
 
 ---
 
-⚡ PikaKit v3.9.95
+⚡ PikaKit v3.9.96

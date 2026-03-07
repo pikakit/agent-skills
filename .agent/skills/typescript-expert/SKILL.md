@@ -1,6 +1,6 @@
 ---
 name: typescript-expert
-description: >-
+summary: >-
   TypeScript and JavaScript expert with deep knowledge of type-level programming,
   performance tuning, monorepo management, migration strategies, and modern tooling.
   Use PROACTIVELY for any TypeScript/JavaScript issues including complex type gymnastics,
@@ -175,4 +175,4 @@ const config = {
 
 ---
 
-⚡ PikaKit v3.9.95
+⚡ PikaKit v3.9.96

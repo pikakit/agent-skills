@@ -1,6 +1,6 @@
 ---
 name: security-scanner
-description: >-
+summary: >-
   Advanced vulnerability analysis principles. OWASP 2025, Supply Chain Security, risk prioritization.
   Triggers on: security, vulnerability, OWASP, pentest, threat modeling.
   Coordinates with: code-review, cicd-pipeline, api-architect.
@@ -153,4 +153,4 @@ Is it actively exploited (EPSS > 0.5)?
 
 ---
 
-⚡ PikaKit v3.9.95
+⚡ PikaKit v3.9.96

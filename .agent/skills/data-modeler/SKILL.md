@@ -1,6 +1,6 @@
 ---
 name: data-modeler
-description: >-
+summary: >-
   Database design principles and decision-making. Schema design, indexing strategy, ORM selection.
   Triggers on: database, schema, Prisma, Drizzle, SQL, migration, indexing.
   Coordinates with: api-architect, security-scanner, nodejs-pro.
@@ -167,4 +167,4 @@ metadata:
 
 ---
 
-⚡ PikaKit v3.9.95
+⚡ PikaKit v3.9.96

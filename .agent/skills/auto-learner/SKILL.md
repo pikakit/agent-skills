@@ -1,6 +1,6 @@
 ---
 name: auto-learner
-description: >
+summary: >
   Autonomous learning agent that extracts patterns from IDE errors, user corrections, and
   agent failures. Writes structured patterns to auto-learned skill. Triggers on: auto-learn,
   mistake, error fix, pattern extraction. Coordinates with: auto-learned, problem-checker,

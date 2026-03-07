@@ -1,6 +1,6 @@
 ---
 name: agent-browser
-description: >-
+summary: >-
   AI-optimized browser automation with context-efficient @ref element handles.
   Reduces LLM context consumption by 93% compared to full DOM passing.
   4-phase lifecycle: Navigate → Snapshot → Interact → Verify.
@@ -191,4 +191,4 @@ agent-browser fill @e2 "email@example.com"
 
 ---
 
-⚡ PikaKit v3.9.95
+⚡ PikaKit v3.9.96

@@ -547,7 +547,7 @@ DESIGN APPROACH:
 
 ---
 
-⚡ PikaKit v3.9.95
+⚡ PikaKit v3.9.96
 
 ---
 

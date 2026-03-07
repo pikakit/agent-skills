@@ -1,6 +1,6 @@
 ---
 name: knowledge-graph
-description: >-
+summary: >-
   Semantic code analysis with AST parsing. Go-to-definition, find-usages,
   impact analysis, architecture visualization.
   Triggers on: find usages, code graph, semantic search, impact analysis.
@@ -155,4 +155,4 @@ All 3 categories always enumerated. Never partial impact analysis.
 
 ---
 
-⚡ PikaKit v3.9.95
+⚡ PikaKit v3.9.96

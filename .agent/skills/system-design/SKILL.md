@@ -1,6 +1,6 @@
 ---
 name: system-design
-description: >-
+summary: >-
   Architectural decision-making framework. Requirements analysis, trade-off evaluation, ADR documentation.
   Use when making architecture decisions or analyzing system design.
   Triggers on: architecture, system design, scalability, microservices.
@@ -125,4 +125,4 @@ metadata:
 
 ---
 
-⚡ PikaKit v3.9.95
+⚡ PikaKit v3.9.96

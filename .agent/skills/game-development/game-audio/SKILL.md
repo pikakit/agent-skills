@@ -1,6 +1,6 @@
 ---
 name: game-audio
-description: Game audio principles. Sound design, music integration, adaptive audio systems.
+summary: Game audio principles. Sound design, music integration, adaptive audio systems.
 metadata:
   category: "game-development"
   version: "1.0.0"
@@ -196,7 +196,7 @@ Game State → Music Response
 
 ---
 
-⚡ PikaKit v3.9.95
+⚡ PikaKit v3.9.96
 
 ---
 

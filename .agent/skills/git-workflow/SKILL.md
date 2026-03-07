@@ -1,6 +1,6 @@
 ---
 name: git-workflow
-description: >-
+summary: >-
   Git operations with conventional commits, auto-split logic, secret detection.
   Stage, commit, push, PR, merge with security scanning.
   Triggers on: git, commit, push, PR, merge, conventional commits.
@@ -178,4 +178,4 @@ REBASING → CONFLICT         [merge conflicts]  // terminal
 
 ---
 
-⚡ PikaKit v3.9.95
+⚡ PikaKit v3.9.96

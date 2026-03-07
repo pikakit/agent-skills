@@ -1,6 +1,6 @@
 ---
 name: mobile-design
-description: >-
+summary: >-
   Mobile-first design and engineering doctrine for iOS and Android apps.
   Covers touch interaction, performance, platform conventions, offline behavior.
   Triggers on: mobile design, iOS, Android, touch, responsive mobile.
@@ -163,4 +163,4 @@ Touch-first → Battery-conscious → Platform-respectful → Offline-capable
 
 ---
 
-⚡ PikaKit v3.9.95
+⚡ PikaKit v3.9.96

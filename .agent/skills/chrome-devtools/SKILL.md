@@ -1,6 +1,6 @@
 ---
 name: chrome-devtools
-description: >-
+summary: >-
   Puppeteer CLI scripts for browser automation, screenshots, debugging.
   Session persistence, JSON output, Core Web Vitals.
   Triggers on: screenshot, browser, puppeteer, devtools, performance.
@@ -158,4 +158,4 @@ node navigate.js --close true
 
 ---
 
-⚡ PikaKit v3.9.95
+⚡ PikaKit v3.9.96

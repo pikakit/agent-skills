@@ -1,6 +1,6 @@
 ---
 name: e2e-automation
-description: >-
+summary: >-
   Web application testing principles. E2E, Playwright, visual testing, and deep audit strategies.
   Triggers on: E2E test, Playwright, browser test, visual testing, automation.
   Coordinates with: test-architect, perf-optimizer, cicd-pipeline.
@@ -171,4 +171,4 @@ NAVIGATING → ERROR        [target unreachable]  // terminal
 
 ---
 
-⚡ PikaKit v3.9.95
+⚡ PikaKit v3.9.96

@@ -1,6 +1,6 @@
 ---
 name: 2d-games
-description: 2D game development principles. Sprites, tilemaps, physics, camera.
+summary: 2D game development principles. Sprites, tilemaps, physics, camera.
 metadata:
   category: "game-development"
   version: "1.0.0"
@@ -125,7 +125,7 @@ metadata:
 
 ---
 
-⚡ PikaKit v3.9.95
+⚡ PikaKit v3.9.96
 
 ---
 

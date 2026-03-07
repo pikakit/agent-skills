@@ -1,6 +1,6 @@
 ---
 name: debug-pro
-description: >-
+summary: >-
   Unified debugging skill combining systematic 4-phase methodology with advanced frameworks
   (defense-in-depth, root-cause tracing, verification).
   Triggers on: debug, bug, error, crash, exception, root cause, investigation, not working.
@@ -166,4 +166,4 @@ ANY_PHASE → REPRODUCE   [red flag detected]
 
 ---
 
-⚡ PikaKit v3.9.95
+⚡ PikaKit v3.9.96
