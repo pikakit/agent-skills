@@ -1,6 +1,6 @@
 # PikaKit Documentation
 
-> **67 Skills · 26 Agents · 25 Workflows** — Your ideas, our engineering.
+> **51 Skills · 21 Agents · 18 Workflows** — Your ideas, our engineering.
 
 ---
 
@@ -102,8 +102,8 @@ docs/
 
 | Component | Count | Location |
 |-----------|-------|----------|
-| **Agents** | 26 (21 domain + 5 meta) | `.agent/agents/` |
-| **Skills** | 67 | `.agent/skills/` |
-| **Workflows** | 25 | `.agent/workflows/` |
+| **Agents** | 21 (16 domain + 5 meta) | `.agent/agents/` |
+| **Skills** | 51 | `.agent/skills/` |
+| **Workflows** | 18 | `.agent/workflows/` |
 | **Guides** | 15 | `docs/guides/` |
 | **Design Guides** | 3 | `docs/` |

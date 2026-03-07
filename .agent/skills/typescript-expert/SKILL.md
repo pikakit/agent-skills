@@ -175,4 +175,4 @@ const config = {
 
 ---
 
-⚡ PikaKit v3.9.96
+⚡ PikaKit v3.9.98
