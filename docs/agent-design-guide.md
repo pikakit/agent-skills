@@ -439,5 +439,5 @@ Before publishing an agent:
 
 ---
 
-⚡ PikaKit v3.9.99
+⚡ PikaKit v3.9.100
 Composable Skills. Coordinated Agents. Intelligent Execution.

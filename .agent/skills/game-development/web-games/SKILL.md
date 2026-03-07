@@ -156,7 +156,7 @@ What type of game?
 
 ---
 
-⚡ PikaKit v3.9.99
+⚡ PikaKit v3.9.100
 
 ---
 

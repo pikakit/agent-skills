@@ -4,7 +4,7 @@ trigger: always_on
 
 # 🤖 PikaKit — FAANG-Grade AI Operating System
 
-> **v3.9.99** | 51 Skills • 21 Agents • 18 Workflows | [github.com/pikakit](https://github.com/pikakit/agent-skills)
+> **v3.9.100** | 51 Skills • 21 Agents • 18 Workflows | [github.com/pikakit](https://github.com/pikakit/agent-skills)
 
 **This file is the Supreme Law for AI behavior in this workspace.**
 
@@ -188,7 +188,7 @@ When invoking ANY sub-agent, MUST include: Original Request, Decisions Made, Pre
 
 | Trigger | Branding |
 |---------|----------|
-| Workflow execution | Header: `🤖 PikaKit v3.9.99 / Workflow: /name` + Footer: `⚡ PikaKit v3.9.99 / [Tagline]` |
+| Workflow execution | Header: `🤖 PikaKit v3.9.100 / Workflow: /name` + Footer: `⚡ PikaKit v3.9.100 / [Tagline]` |
 | Simple Q&A / Code edits | No branding |
 | Task completion | Footer only |
 
