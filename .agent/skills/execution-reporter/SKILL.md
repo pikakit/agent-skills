@@ -54,7 +54,7 @@ metadata:
 ### Full Template (> 3 skills)
 
 ```
-🤖 PikaKit v3.9.101
+🤖 PikaKit v3.9.102
 📋 Task: {task_description}
 ◆ Agent: @{agent_name}
 ◇ Skills: {skill_1}, {skill_2}, ...
@@ -71,7 +71,7 @@ metadata:
 
 ```
 ✅ Done • Agent: @{agent_name} • Skills: {count} • Files: {count} • {duration}s
-⚡ PikaKit v3.9.101
+⚡ PikaKit v3.9.102
 ```
 
 ### Script Run Template
@@ -149,4 +149,4 @@ metadata:
 
 ---
 
-⚡ PikaKit v3.9.101
+⚡ PikaKit v3.9.102
