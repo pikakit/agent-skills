@@ -182,7 +182,7 @@ From debugging session (2025-10-03):
 
 ---
 
-⚡ PikaKit v3.9.98
+⚡ PikaKit v3.9.99
 
 ---
 

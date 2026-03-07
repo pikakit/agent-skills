@@ -116,7 +116,7 @@ OIDC = OAuth 2.0 + Identity Layer
 
 ---
 
-⚡ PikaKit v3.9.98
+⚡ PikaKit v3.9.99
 
 ---
 
