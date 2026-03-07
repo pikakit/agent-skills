@@ -1,5 +1,5 @@
 ---
-description: Defense-in-depth code review. Multi-layer validation to prevent false completion claims.
+description: Defense-in-depth code review — four-layer validation across build, tests, security, and logic to eliminate false completion claims with evidence-based verification.
 chain: security-audit
 ---
 

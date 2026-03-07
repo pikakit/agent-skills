@@ -1,5 +1,5 @@
 ---
-description: Performance optimizer with bundle analysis, N+1 query fixes, Redis caching, and k6 load testing.
+description: Full-stack performance optimization — profile bottlenecks, fix N+1 queries, configure Redis caching, reduce bundle size, and validate with k6 load testing.
 ---
 
 # /optimize - Performance Optimization
@@ -10,7 +10,7 @@ $ARGUMENTS
 
 ## Purpose
 
-Profile application performance, optimize bottlenecks (database queries, bundle size, caching), and validate improvements with load testing. **Differs from `/benchmark` (runs load tests only, no optimization) and `/monitor` (tracks production metrics) by actively identifying and fixing performance issues across frontend, backend, and infrastructure.** Uses `performance-specialist` with `perf-optimizer` for profiling and `backend-specialist` with `data-modeler` for database optimization.
+Profile application performance, optimize bottlenecks (database queries, bundle size, caching), and validate improvements with load testing. **Differs from `/validate` (runs test suites, no optimization) and `/monitor` (tracks production metrics) by actively identifying and fixing performance issues across frontend, backend, and infrastructure.** Uses `performance-specialist` with `perf-optimizer` for profiling and `backend-specialist` with `data-modeler` for database optimization.
 
 ---
 
@@ -178,7 +178,7 @@ Frontend optimization:
 
 ### Next Steps
 
-- [ ] Run `/benchmark` for extended load testing
+- [ ] Run `/validate` for extended test coverage
 - [ ] Run `/monitor` to track production metrics
 - [ ] Run `/launch` to deploy optimized version
 ```
@@ -218,20 +218,20 @@ Frontend optimization:
 ```mermaid
 graph LR
     A["/diagnose"] --> B["/optimize"]
-    B --> C["/benchmark"]
+    B --> C["/validate"]
     C --> D["/launch"]
     style B fill:#10b981
 ```
 
 | After /optimize | Run | Purpose |
 |----------------|-----|---------|
-| Validate results | `/benchmark` | Extended load testing |
+| Validate results | `/validate` | Run full test suite |
 | Ready to deploy | `/launch` | Deploy optimized version |
 | Track metrics | `/monitor` | Setup production monitoring |
 
-**Handoff to /benchmark:**
+**Handoff to /validate:**
 
 ```markdown
 ⚡ Optimization complete! Latency: [before]ms → [after]ms ([X]% faster).
-Run `/benchmark` to validate at scale or `/launch` to deploy.
+Run `/validate` to verify at scale or `/launch` to deploy.
 ```

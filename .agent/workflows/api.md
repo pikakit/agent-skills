@@ -1,5 +1,5 @@
 ---
-description: Build production-grade REST/GraphQL/tRPC APIs with OpenAPI docs, Prisma ORM, and comprehensive testing.
+description: End-to-end API development pipeline — design, implement, and ship production-grade REST, GraphQL, or tRPC services with OpenAPI specs, Prisma ORM, and full test coverage.
 chain: api-development
 ---
 

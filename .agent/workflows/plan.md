@@ -1,5 +1,5 @@
 ---
-description: Blueprint generator. Task breakdown, tech stack selection, and PLAN.md creation (no code).
+description: Project blueprint generator — requirements discovery, architecture decisions, hierarchical task breakdown, agent assignment, and PLAN.md creation without writing code.
 ---
 
 # /plan - Project Blueprint

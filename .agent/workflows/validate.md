@@ -1,5 +1,5 @@
 ---
-description: Test automation with Vitest/Playwright. Generate, execute, and analyze coverage with AAA pattern.
+description: Comprehensive test automation suite — generate, execute, and analyze tests with Vitest/Playwright using AAA pattern, mutation testing, visual regression, and contract verification.
 ---
 
 # /validate - Test Automation Suite
@@ -10,7 +10,7 @@ $ARGUMENTS
 
 ## Purpose
 
-Generate comprehensive tests, execute suites, and analyze coverage — supporting unit tests (Vitest/Jest), E2E (Playwright), mutation testing (Stryker), visual regression, and API contract testing. **Differs from `/inspect` (code review without execution) and `/benchmark` (load testing) by actively generating, running, and verifying test suites with the AAA pattern.** Uses `test-engineer` with `test-architect` for test generation and `e2e-automation` for browser testing.
+Generate comprehensive tests, execute suites, and analyze coverage — supporting unit tests (Vitest/Jest), E2E (Playwright), mutation testing (Stryker), visual regression, and API contract testing. **Differs from `/inspect` (code review without execution) and `/optimize` (performance profiling) by actively generating, running, and verifying test suites with the AAA pattern.** Uses `test-engineer` with `test-architect` for test generation and `e2e-automation` for browser testing.
 
 ---
 

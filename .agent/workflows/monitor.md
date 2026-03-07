@@ -1,5 +1,5 @@
 ---
-description: Production observability with OpenTelemetry, Prometheus/Grafana dashboards, and PagerDuty alerting.
+description: Production observability stack — OpenTelemetry instrumentation, structured logging, Prometheus/Grafana dashboards, distributed tracing, and PagerDuty incident alerting.
 ---
 
 # /monitor - Production Observability
@@ -10,7 +10,7 @@ $ARGUMENTS
 
 ## Purpose
 
-Set up production observability infrastructure — OpenTelemetry SDK, structured logging, Prometheus metrics, distributed tracing, and incident alerting with runbooks. **Differs from `/alert` (configures specific alert rules and incident response) by establishing the full observability foundation that alerting builds upon.** Uses `devops-engineer` with `observability` for instrumentation and `server-ops` for infrastructure configuration.
+Set up production observability infrastructure — OpenTelemetry SDK, structured logging, Prometheus metrics, distributed tracing, and incident alerting with runbooks. **Differs from `/launch` (production deployment) and `/diagnose` (root cause analysis) by establishing the full observability foundation for production monitoring.** Uses `devops-engineer` with `observability` for instrumentation and `server-ops` for infrastructure configuration.
 
 ---
 
@@ -202,7 +202,7 @@ Runbooks generated:
 
 - [ ] Test alerts in staging first
 - [ ] Add custom business metrics
-- [ ] Run `/alert` for additional rules
+- [ ] Configure additional alert rules as needed
 - [ ] Deploy with `/launch`
 ```
 
@@ -240,19 +240,19 @@ Runbooks generated:
 ```mermaid
 graph LR
     A["/launch"] --> B["/monitor"]
-    B --> C["/alert"]
+    B --> C["/diagnose"]
     style B fill:#10b981
 ```
 
 | After /monitor | Run | Purpose |
 |---------------|-----|---------|
-| Configure alerts | `/alert` | Set up additional alert rules |
+| Issues detected | `/diagnose` | Root cause analysis using traces |
 | Ready to deploy | `/launch` | Deploy with monitoring |
 | Issues occur | `/diagnose` | Debug using metrics and traces |
 
-**Handoff to /alert:**
+**Handoff to /diagnose:**
 
 ```markdown
 📊 Monitoring configured! OpenTelemetry + logs + metrics + alerts active.
-Run `/alert` for additional alert rules or `/launch` to deploy.
+Run `/diagnose` to investigate issues or `/launch` to deploy.
 ```

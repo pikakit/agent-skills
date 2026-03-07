@@ -45,7 +45,7 @@ metadata:
 | Owned by This Skill | NOT Owned |
 |---------------------|-----------|
 | SDK configuration (Node.js, Python) | Infrastructure provisioning (→ server-ops) |
-| Sampling strategy (3 environments) | Alerting rules (→ /alert workflow) |
+| Sampling strategy (3 environments) | Alerting rules (→ /monitor workflow) |
 | Provider routing (3 providers) | CI/CD monitoring (→ cicd-pipeline) |
 | Auto-instrumentation guidance | Dashboard design |
 
@@ -149,4 +149,4 @@ metadata:
 
 ---
 
-⚡ PikaKit v3.9.100
+⚡ PikaKit v3.9.101

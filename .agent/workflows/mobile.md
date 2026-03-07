@@ -1,5 +1,5 @@
 ---
-description: Mobile app development workflow with React Native/Flutter/Native. Full lifecycle from requirements to app store.
+description: End-to-end mobile development — React Native, Flutter, or native iOS/Android with push notifications, deep linking, offline-first architecture, and app store submission.
 ---
 
 # /mobile - Mobile App Development

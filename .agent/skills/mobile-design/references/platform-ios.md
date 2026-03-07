@@ -566,4 +566,4 @@ AccessibilityInfo.isReduceMotionEnabled()
 > **Remember:** iOS users have strong expectations from other iOS apps. Deviating from HIG patterns feels "broken" to them. When in doubt, use the native component.
 ---
 
-⚡ PikaKit v3.9.100\r\n\r\n---\r\n\r\n## 🔗 Related\r\n\r\n| File | When to Read |\r\n|------|-------------|\r\n| [../SKILL.md](../SKILL.md) | MFRI scoring, platform differences |\r\n| [platform-android.md](platform-android.md) | Android counterpart |\r\n| [touch-psychology.md](touch-psychology.md) | Touch interaction patterns |\r\n| [mobile-typography.md](mobile-typography.md) | SF Pro details |\r\n| [engineering-spec.md](engineering-spec.md) | Full engineering spec |
+⚡ PikaKit v3.9.101\r\n\r\n---\r\n\r\n## 🔗 Related\r\n\r\n| File | When to Read |\r\n|------|-------------|\r\n| [../SKILL.md](../SKILL.md) | MFRI scoring, platform differences |\r\n| [platform-android.md](platform-android.md) | Android counterpart |\r\n| [touch-psychology.md](touch-psychology.md) | Touch interaction patterns |\r\n| [mobile-typography.md](mobile-typography.md) | SF Pro details |\r\n| [engineering-spec.md](engineering-spec.md) | Full engineering spec |

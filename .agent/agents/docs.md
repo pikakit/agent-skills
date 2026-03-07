@@ -581,7 +581,7 @@ Inspect `.agent/workflows/` and match request against available workflows.
 | Condition | Action |
 |-----------|--------|
 | Full project documentation | Start `/chronicle` workflow |
-| Architecture diagram generation | Start `/diagram` workflow |
+| Architecture diagram generation | Use Mermaid diagrams via `mermaid-editor` skill |
 | Multi-agent documentation effort | Escalate → `orchestrator` |
 
 ---

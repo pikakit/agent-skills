@@ -1,5 +1,5 @@
 ---
-description: Root cause detective. Hypothesis-driven debugging with evidence-based verification.
+description: Systematic root cause analysis — hypothesis-driven debugging with ranked probability testing, evidence-based verification, and prevention-first resolution.
 chain: debug-complex
 ---
 

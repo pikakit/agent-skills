@@ -1,5 +1,5 @@
 ---
-description: Execute specific implementation tasks directly from instructions or plans. The "Just Code It" workflow.
+description: Rapid-fire implementation — execute targeted coding tasks directly from instructions or plans with minimal overhead, following existing patterns and verified output.
 chain: build-web-app
 ---
 
@@ -11,7 +11,7 @@ $ARGUMENTS
 
 ## Purpose
 
-Rapidly implement specific features, components, or logic based on clear instructions — skipping architectural debate to focus on pure coding speed. **Differs from `/build` (creates entire projects) and `/boost` (adds complex features with impact analysis) by executing targeted, single-scope tasks with minimal overhead.** Uses the domain-appropriate specialist agent (auto-routed) with `code-craft` for coding standards.
+Rapidly implement specific features, components, or logic based on clear instructions — skipping architectural debate to focus on pure coding speed. **Differs from `/build` (creates entire projects) and `/autopilot` (multi-agent orchestration) by executing targeted, single-scope tasks with minimal overhead.** Uses the domain-appropriate specialist agent (auto-routed) with `code-craft` for coding standards.
 
 ---
 
@@ -183,7 +183,7 @@ graph LR
 |------------|-----|---------|
 | Task complete | `/validate` | Run tests to ensure correctness |
 | Errors found | `/fix` | Fix any resulting issues |
-| Need more features | `/boost` | Add complex enhancements |
+| Need more features | `/build` | Add complex enhancements |
 
 **Handoff to /validate:**
 

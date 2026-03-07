@@ -47,7 +47,7 @@ Observability eliminates these with OpenTelemetry (vendor-agnostic), unified cor
 | ID | Excluded | Rationale |
 |----|----------|-----------|
 | NG1 | Infrastructure provisioning | Owned by `server-ops` skill |
-| NG2 | Alerting rules | Owned by `/alert` workflow |
+| NG2 | Alerting rules | Owned by `/monitor` workflow |
 | NG3 | Incident response | Owned by incident-response patterns |
 | NG4 | CI/CD monitoring | Owned by `cicd-pipeline` skill |
 | NG5 | Custom collector deployment | Infrastructure concern |
@@ -431,4 +431,4 @@ All resources scoped to invocation. No persistent handles.
 
 ---
 
-⚡ PikaKit v3.9.100
+⚡ PikaKit v3.9.101

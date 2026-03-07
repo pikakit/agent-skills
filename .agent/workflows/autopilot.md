@@ -1,5 +1,5 @@
 ---
-description: Autonomous agent-patterns coordination. 3+ specialists working in parallel with verification.
+description: Autonomous multi-agent orchestration — coordinate 3+ specialist agents in parallel with automated verification, conflict resolution, and continuous execution.
 chain: build-web-app
 ---
 
@@ -11,7 +11,7 @@ $ARGUMENTS
 
 ## Purpose
 
-Coordinate 3+ specialist agents for complex multi-domain tasks — planning through parallel execution to verification. **Differs from `/build` (sequential) and `/auto-accept-process` (execution policy) by orchestrating multiple specialists simultaneously.** Uses all 5 meta-agents.
+Coordinate 3+ specialist agents for complex multi-domain tasks — planning through parallel execution to verification. **Differs from `/build` (sequential new-app creation) and `/cook` (single-scope targeted tasks) by orchestrating multiple specialists simultaneously.** Uses all 5 meta-agents.
 
 > **MINIMUM 3 SPECIALISTS.** Fewer than 3 → use direct delegation.
 
@@ -308,7 +308,7 @@ graph LR
 |-----------------|-----|---------|
 | All phases complete | `/launch` | Deploy to production |
 | Issues found | `/diagnose` | Root cause investigation |
-| Need more features | `/boost` | Enhance existing app |
+| Need more features | `/build` | Enhance existing app |
 | Need test coverage | `/validate` | Comprehensive test suite |
 
 **Handoff to /launch:**

@@ -608,7 +608,7 @@ Inspect `.agent/workflows/` and match request against available workflows.
 
 ```json
 {
-  "workflow": "/benchmark",
+  "workflow": "/validate",
   "initiator": "performance-optimizer",
   "input": { "url": "https://example.com", "metrics": ["LCP", "INP", "CLS"] },
   "execution_mode": "sync"
@@ -619,7 +619,7 @@ Inspect `.agent/workflows/` and match request against available workflows.
 
 | Condition | Action |
 |-----------|--------|
-| Load testing needed | Start `/benchmark` workflow |
+| Load testing needed | Start `/validate` workflow |
 | Full performance audit | Start `/optimize` workflow |
 | Validate optimizations | Start `/validate` workflow |
 | Multi-agent optimization | Escalate → `orchestrator` |
@@ -744,7 +744,7 @@ Given identical baseline metrics, the agent MUST produce identical:
 |------------|------|
 | **File access** | Only within project workspace |
 | **Skill invocation** | Only declared skills in frontmatter |
-| **Workflow invocation** | Only registered workflows (`/benchmark`, `/optimize`, `/validate`) |
+| **Workflow invocation** | Only registered workflows (`/optimize`, `/validate`) |
 | **Build tools** | Only approved build/profiling tools |
 
 ### Unsafe Operations — MUST reject:

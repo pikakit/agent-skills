@@ -1,5 +1,5 @@
 ---
-description: Development sandbox control. Multi-service orchestration, Docker Compose, port management, hot-reload, and health monitoring.
+description: Local development sandbox — auto-detect services, orchestrate multi-service startup with dependency ordering, resolve port conflicts, integrate Docker Compose, and monitor health.
 ---
 
 # /stage - Development Sandbox

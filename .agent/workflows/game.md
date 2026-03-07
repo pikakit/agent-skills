@@ -1,5 +1,5 @@
 ---
-description: Game development workflow with platform-specific routing. From concept to polished game with multiplayer, asset pipeline, and platform builds.
+description: Full-lifecycle game development — platform-specific engine routing, core loop architecture, asset pipeline optimization, multiplayer networking, and store-ready builds.
 ---
 
 # /game - Game Development

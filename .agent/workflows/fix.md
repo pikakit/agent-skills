@@ -1,5 +1,5 @@
 ---
-description: Apply targeted fixes for specific errors or test failures. The "Mechanic" workflow.
+description: Targeted error remediation — triage, patch, and verify specific errors, lint failures, or broken tests with minimal diff and automatic rollback safety.
 chain: debug-complex
 ---
 

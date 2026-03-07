@@ -1,5 +1,5 @@
 ---
-description: Ideation engine with 3+ alternatives analysis. Evaluate trade-offs and make informed decisions before coding.
+description: Strategic decision engine — generate 3+ distinct alternatives with weighted scoring matrices, risk assessments, and actionable recommendations before writing any code.
 ---
 
 # /think - Strategic Decision Engine

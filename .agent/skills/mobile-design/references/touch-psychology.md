@@ -542,4 +542,4 @@ Warning:  Attention needed
 > **Remember:** Every touch is a conversation between user and device. Make it feel natural, responsive, and respectful of human fingers—not precise cursor points.
 ---
 
-⚡ PikaKit v3.9.100\r\n\r\n---\r\n\r\n## 🔗 Related\r\n\r\n| File | When to Read |\r\n|------|-------------|\r\n| [../SKILL.md](../SKILL.md) | Touch target standards (44pt/48dp) |\r\n| [platform-ios.md](platform-ios.md) | iOS haptics, gestures |\r\n| [platform-android.md](platform-android.md) | Android touch feedback |\r\n| [mobile-navigation.md](mobile-navigation.md) | Gesture-based navigation |\r\n| [engineering-spec.md](engineering-spec.md) | Full engineering spec |
+⚡ PikaKit v3.9.101\r\n\r\n---\r\n\r\n## 🔗 Related\r\n\r\n| File | When to Read |\r\n|------|-------------|\r\n| [../SKILL.md](../SKILL.md) | Touch target standards (44pt/48dp) |\r\n| [platform-ios.md](platform-ios.md) | iOS haptics, gestures |\r\n| [platform-android.md](platform-android.md) | Android touch feedback |\r\n| [mobile-navigation.md](mobile-navigation.md) | Gesture-based navigation |\r\n| [engineering-spec.md](engineering-spec.md) | Full engineering spec |

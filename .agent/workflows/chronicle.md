@@ -1,5 +1,5 @@
 ---
-description: Auto-documentation engine. README, API specs, ADR, Storybook, runbooks, and inline comments with zero effort.
+description: Automated documentation engine — generate README, OpenAPI specs, ADRs, Storybook stories, operational runbooks, and inline comments directly from source code analysis.
 ---
 
 # /chronicle - Documentation Engine
@@ -10,7 +10,7 @@ $ARGUMENTS
 
 ## Purpose
 
-Generate comprehensive project documentation automatically by analyzing source code, extracting types, and producing structured docs. **Differs from `/diagram` (visual architecture diagrams) by focusing on written documentation — README, API specs, ADR, component docs, ops runbooks, and inline comments.** Uses `documentation-writer` for all doc generation, with `doc-templates` for structure and `markdown-novel-viewer` for preview.
+Generate comprehensive project documentation automatically by analyzing source code, extracting types, and producing structured docs. **Differs from `/inspect` (code review and quality audit) and `/plan` (task breakdown) by focusing on written documentation — README, API specs, ADR, component docs, ops runbooks, and inline comments.** Uses `documentation-writer` for all doc generation, with `doc-templates` for structure and `markdown-novel-viewer` for preview.
 
 ---
 
@@ -193,7 +193,7 @@ Generate docs based on sub-command:
 
 - [ ] Review generated documentation for accuracy
 - [ ] Fill remaining coverage gaps
-- [ ] Run `/diagram` for architecture visuals
+- [ ] Run `/inspect` for documentation quality review
 ```
 
 ---
@@ -232,19 +232,19 @@ Generate docs based on sub-command:
 ```mermaid
 graph LR
     A["/build"] --> B["/chronicle"]
-    B --> C["/diagram"]
+    B --> C["/inspect"]
     style B fill:#10b981
 ```
 
 | After /chronicle | Run | Purpose |
 |-----------------|-----|---------|
-| Need architecture diagrams | `/diagram` | Generate C4, Mermaid, ER diagrams |
+| Need quality review | `/inspect` | Verify documentation completeness |
 | Need doc quality review | `/inspect` | Verify documentation quality |
 | Ready to deploy | `/launch` | Deploy with documentation |
 
-**Handoff to /diagram:**
+**Handoff to /inspect:**
 
 ```markdown
 📚 Documentation generated! [X] files created, [Y]% function coverage.
-Run `/diagram` to add architecture visuals (C4, Mermaid, ER).
+Run `/inspect` to review documentation quality or `/launch` to deploy.
 ```

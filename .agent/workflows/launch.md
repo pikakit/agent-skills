@@ -1,5 +1,5 @@
 ---
-description: Zero-downtime release pipeline. Security scan, build verification, and health checks included.
+description: Zero-downtime production release pipeline — pre-flight security gates, automated build verification, health-check monitoring, and instant rollback on failure.
 chain: deploy-production
 ---
 
@@ -11,7 +11,7 @@ $ARGUMENTS
 
 ## Purpose
 
-Production deployment with automated pre-flight checks, security scanning, build verification, health monitoring, and auto-rollback capability. **Differs from `/flags` (runtime feature toggling without deploy) by executing the full deployment pipeline with zero-downtime guarantees.** Uses `devops-engineer` with `cicd-pipeline` for deployment orchestration, `security-auditor` with `security-scanner` for pre-deploy validation, and `recovery` for rollback safety.
+Production deployment with automated pre-flight checks, security scanning, build verification, health monitoring, and auto-rollback capability. **Differs from `/stage` (local development sandbox) and `/monitor` (production observability) by executing the full deployment pipeline with zero-downtime guarantees.** Uses `devops-engineer` with `cicd-pipeline` for deployment orchestration, `security-auditor` with `security-scanner` for pre-deploy validation, and `recovery` for rollback safety.
 
 ---
 
