@@ -141,7 +141,7 @@ Server exposes HTTP endpoint with Server-Sent Events.
 
 ---
 
-⚡ PikaKit v3.9.102
+⚡ PikaKit v3.9.103
 
 ---
 
