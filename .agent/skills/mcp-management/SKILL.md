@@ -162,4 +162,4 @@ npx tsx cli.ts list-resources  # Available resources
 
 ---
 
-⚡ PikaKit v3.9.103
+⚡ PikaKit v3.9.104
