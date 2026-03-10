@@ -30,7 +30,6 @@
     "test:integration": "node packages/agent/tests/integration/gemini-export.test.js",
     "test:scripts": "vitest run tests/scripts",
     "example:violations": "node packages/agent/examples/demo-violations.js",
-    "rebrand": "node scripts/rebrand/index.mjs",
     "checklist": "node .agent/scripts-js/checklist.js .",
     "verify": "node .agent/scripts-js/verify_all.js . --url",
     "preview:start": "node .agent/scripts-js/auto_preview.js start",
