@@ -71,7 +71,7 @@ Create **project-specific skills** that teach AI your conventions
 | 🧠 Self-Learning Memory       | ✅                | ❌            | ❌            |
 | 💛 100% JavaScript             | ✅                | Mixed         | Python        |
 | 🛡️ Safety Protocol            | TIER -1           | ❌            | ❌            |
-| 📉 Token Efficiency            | ~80% reduction    | Baseline      | ~30%          |
+| 📉 Token Efficiency            | Modular loading   | Baseline      | Varies        |
 
 ---
 
