@@ -12,7 +12,7 @@
 
 **Composable Skills · Coordinated Agents · Intelligent Execution**
 
-[Install](#-quick-install) · [Skills](#-skills-catalog-51) · [Workflows](#-workflows-18) · [Agents](#-multi-agent-coordination-21) · [Docs](#-links)
+[Install](#-quick-install) · [Skills](#-skills-catalog-51) · [Workflows](#-workflows-18) · [Agents](#-multi-agent-coordination-21) · [Website](https://pikakit.com)
 
 </div>
 
@@ -28,14 +28,14 @@ npx pikakit
 
 ### What You Get
 
-| Component | Count | Highlights |
-|-----------|:-----:|------------|
-| **Skills** | 51 | Architecture, Frontend, Backend, Security, DevOps, AI, Mobile, Testing |
-| **Workflows** | 18 | `/think` · `/build` · `/autopilot` · `/studio` · `/validate` · and more |
-| **Agents** | 21 | 16 domain specialists + 5 meta-agents for coordination |
-| **Rules** | `GEMINI.md` | AI behavior configuration — the Supreme Law |
-| **Scripts** | 6 | Checklist, verify, preview, session management |
-| **CLI** | `kit` | Skill management · `agent` (optional interactive dashboard) |
+| Component          | Count       | Highlights                                                              |
+|--------------------|:-----------:|-------------------------------------------------------------------------|
+| 🧩 **Skills**      | 51          | Architecture, Frontend, Backend, Security, DevOps, AI, Mobile, Testing  |
+| ⚡ **Workflows**   | 18          | `/think` · `/build` · `/autopilot` · `/studio` · `/validate` and more  |
+| 🤖 **Agents**      | 21          | 16 domain specialists + 5 meta-agents for coordination                  |
+| 📜 **Rules**       | `GEMINI.md` | AI behavior configuration — the Supreme Law                            |
+| 🛠️ **Scripts**     | 6           | Checklist, verify, preview, session management                          |
+| 💻 **CLI**         | `kit`       | Skill management · `agent` (optional interactive dashboard)             |
 
 ---
 
@@ -45,7 +45,7 @@ npx pikakit
 <tr>
 <td width="33%" align="center">
 
-### 🤖 Auto-Accept
+### ⚙️ Auto-Accept
 Approve plan **once** → agent runs to completion with **zero interruptions**
 
 </td>
@@ -57,21 +57,21 @@ AI **remembers mistakes** from `lessons-learned.yaml` and never repeats them
 </td>
 <td width="33%" align="center">
 
-### 🛠️ Custom Skills
+### 🔧 Custom Skills
 Create **project-specific skills** that teach AI your conventions
 
 </td>
 </tr>
 </table>
 
-| | PikaKit | Generic AI | Other Tools |
-|---|:---:|:---:|:---:|
-| **Auto-Accept Workflow** | ✅ | ❌ | ❌ |
-| **Multi-Agent Coordination** | 21 specialists | 1 generic | 1–3 |
-| **Self-Learning Memory** | ✅ | ❌ | ❌ |
-| **100% JavaScript** | ✅ | Mixed | Python |
-| **Safety Protocol** | TIER -1 | ❌ | ❌ |
-| **Token Efficiency** | ~80% reduction | Baseline | ~30% |
+| Feature                        | PikaKit           | Generic AI    | Other Tools   |
+|--------------------------------|:-----------------:|:-------------:|:-------------:|
+| ⚡ Auto-Accept Workflow        | ✅                | ❌            | ❌            |
+| 🤖 Multi-Agent Coordination   | 21 specialists    | 1 generic     | 1–3           |
+| 🧠 Self-Learning Memory       | ✅                | ❌            | ❌            |
+| 💛 100% JavaScript             | ✅                | Mixed         | Python        |
+| 🛡️ Safety Protocol            | TIER -1           | ❌            | ❌            |
+| 📉 Token Efficiency            | ~80% reduction    | Baseline      | ~30%          |
 
 ---
 
@@ -111,130 +111,129 @@ kit doctor                  # System health check
 
 ### 🏗️ Architecture & Planning
 
-| Skill | Description |
-|-------|-------------|
-| `project-planner` | Task planning with dependency graph |
-| `idea-storm` | Socratic questioning & brainstorming |
-| `lifecycle-orchestrator` | End-to-end task lifecycle management |
-| `system-design` | Architecture decisions & ADR |
-| `context-engineering` | Token optimization & agent architecture |
+| Skill                       | Description                                     |
+|-----------------------------|-------------------------------------------------|
+| `project-planner`           | Task planning with dependency graph              |
+| `idea-storm`                | Socratic questioning & brainstorming             |
+| `lifecycle-orchestrator`    | End-to-end task lifecycle management             |
+| `system-design`             | Architecture decisions & ADR                     |
+| `context-engineering`       | Token optimization & agent architecture          |
 
 ### 🎨 Frontend & Design
 
-| Skill | Description |
-|-------|-------------|
-| `react-pro` | Modern React patterns, hooks, state management |
-| `nextjs-pro` | App Router, RSC, 60+ optimization rules |
-| `design-system` | Color theory, typography, UX psychology |
-| `studio` | 50+ styles, 97 palettes, 57 font pairings |
-| `tailwind-kit` | Tailwind CSS v4 patterns |
+| Skill                       | Description                                     |
+|-----------------------------|-------------------------------------------------|
+| `react-pro`                 | Modern React patterns, hooks, state management   |
+| `nextjs-pro`                | App Router, RSC, 60+ optimization rules          |
+| `design-system`             | Color theory, typography, UX psychology           |
+| `studio`                    | 50+ styles, 97 palettes, 57 font pairings        |
+| `tailwind-kit`              | Tailwind CSS v4 patterns                         |
 
 ### ⚙️ Backend & API
 
-| Skill | Description |
-|-------|-------------|
-| `api-architect` | REST, GraphQL, tRPC design |
-| `nodejs-pro` | Hono/Fastify/Express/NestJS patterns |
-| `python-pro` | FastAPI, Django, Flask |
-| `data-modeler` | Schema design, Prisma/Drizzle |
-| `auth-patterns` | OAuth2, JWT, RBAC/ABAC, MFA, Passkeys |
+| Skill                       | Description                                     |
+|-----------------------------|-------------------------------------------------|
+| `api-architect`             | REST, GraphQL, tRPC design                       |
+| `nodejs-pro`                | Hono/Fastify/Express/NestJS patterns             |
+| `python-pro`                | FastAPI, Django, Flask                           |
+| `data-modeler`              | Schema design, Prisma/Drizzle                    |
+| `auth-patterns`             | OAuth2, JWT, RBAC/ABAC, MFA, Passkeys            |
 
 ### 🔐 Security
 
-| Skill | Description |
-|-------|-------------|
-| `security-scanner` | OWASP 2025, supply chain security |
-| `offensive-sec` | Red team tactics, MITRE ATT&CK |
-| `code-constitution` | Constitutional governance (Supreme Law) |
+| Skill                       | Description                                     |
+|-----------------------------|-------------------------------------------------|
+| `security-scanner`          | OWASP 2025, supply chain security                |
+| `offensive-sec`             | Red team tactics, MITRE ATT&CK                  |
+| `code-constitution`         | Constitutional governance (Supreme Law)          |
 
 ### 🧪 Testing & Quality
 
-| Skill | Description |
-|-------|-------------|
-| `test-architect` | Unit, integration, E2E strategies |
-| `e2e-automation` | Playwright, visual testing, deep audit |
-| `code-craft` | Clean code, SRP, DRY, KISS |
-| `code-review` | Linting, static analysis, PR review |
-| `problem-checker` | IDE problem detection & auto-fix |
+| Skill                       | Description                                     |
+|-----------------------------|-------------------------------------------------|
+| `test-architect`            | Unit, integration, E2E strategies                |
+| `e2e-automation`            | Playwright, visual testing, deep audit           |
+| `code-craft`                | Clean code, SRP, DRY, KISS                       |
+| `code-review`               | Linting, static analysis, PR review              |
+| `problem-checker`           | IDE problem detection & auto-fix                 |
 
 ### 🐛 Debugging
 
-| Skill | Description |
-|-------|-------------|
-| `debug-pro` | 4-phase methodology + defense-in-depth |
-| `chrome-devtools` | Puppeteer CLI, screenshots, Core Web Vitals |
-| `knowledge-graph` | AST parsing, find-usages, impact analysis |
+| Skill                       | Description                                     |
+|-----------------------------|-------------------------------------------------|
+| `debug-pro`                 | 4-phase methodology + defense-in-depth           |
+| `chrome-devtools`           | Puppeteer CLI, screenshots, Core Web Vitals      |
+| `knowledge-graph`           | AST parsing, find-usages, impact analysis        |
 
 ### 🤖 AI & Agents
 
-| Skill | Description |
-|-------|-------------|
-| `google-adk-python` | Google Agent Development Kit |
-| `auto-learned` | Hierarchical auto-learned patterns |
-| `auto-learner` | Pattern extraction from errors |
-| `execution-reporter` | Agent routing transparency |
-| `smart-router` | Intelligent agent routing |
-| `mcp-builder` | Build MCP servers for AI agents |
-| `mcp-management` | Discover & execute MCP tools |
-| `ai-artist` | Prompt engineering for LLM & image AI |
+| Skill                       | Description                                     |
+|-----------------------------|-------------------------------------------------|
+| `google-adk-python`         | Google Agent Development Kit                     |
+| `auto-learned`              | Hierarchical auto-learned patterns               |
+| `auto-learner`              | Pattern extraction from errors                   |
+| `execution-reporter`        | Agent routing transparency                       |
+| `smart-router`              | Intelligent agent routing                        |
+| `mcp-builder`               | Build MCP servers for AI agents                  |
+| `mcp-management`            | Discover & execute MCP tools                     |
+| `ai-artist`                 | Prompt engineering for LLM & image AI            |
 
 ### ☁️ DevOps & Infrastructure
 
-| Skill | Description |
-|-------|-------------|
-| `cicd-pipeline` | Safe deployments, rollback strategies |
-| `gitops` | ArgoCD/Flux GitOps workflows |
-| `git-workflow` | Conventional commits, secret detection |
-| `server-ops` | Process management, scaling |
-| `vercel-deploy` | 1-click Vercel deployment |
-| `observability` | OpenTelemetry, unified logs/metrics/traces |
-| `perf-optimizer` | Core Web Vitals, bundle analysis |
+| Skill                       | Description                                     |
+|-----------------------------|-------------------------------------------------|
+| `cicd-pipeline`             | Safe deployments, rollback strategies            |
+| `gitops`                    | ArgoCD/Flux GitOps workflows                     |
+| `git-workflow`              | Conventional commits, secret detection           |
+| `server-ops`                | Process management, scaling                      |
+| `vercel-deploy`             | 1-click Vercel deployment                        |
+| `observability`             | OpenTelemetry, unified logs/metrics/traces       |
+| `perf-optimizer`            | Core Web Vitals, bundle analysis                 |
 
 ### 📱 Mobile & Specialized
 
-| Skill | Description |
-|-------|-------------|
-| `mobile-developer` | React Native, Flutter, native |
-| `mobile-design` | Mobile-first UI/UX patterns |
-| `game-development` | Game logic & mechanics |
-| `typescript-expert` | Type-level programming, monorepo |
-| `shell-script` | Bash/Linux terminal patterns |
+| Skill                       | Description                                     |
+|-----------------------------|-------------------------------------------------|
+| `mobile-developer`          | React Native, Flutter, native                    |
+| `mobile-design`             | Mobile-first UI/UX patterns                      |
+| `game-development`          | Game logic & mechanics                           |
+| `typescript-expert`         | Type-level programming, monorepo                 |
+| `shell-script`              | Bash/Linux terminal patterns                     |
 
 ### 📝 Documentation & Content
 
-| Skill | Description |
-|-------|-------------|
-| `doc-templates` | README, API docs, ADR templates |
-| `copywriting` | AIDA, PAS, conversion formulas |
-| `seo-optimizer` | SEO, E-E-A-T, Core Web Vitals |
-| `media-processing` | FFmpeg, ImageMagick, RMBG |
-| `agent-browser` | AI-optimized browser automation |
-| `knowledge-graph` | AST parsing, find-usages, impact analysis |
+| Skill                       | Description                                     |
+|-----------------------------|-------------------------------------------------|
+| `doc-templates`             | README, API docs, ADR templates                  |
+| `copywriting`               | AIDA, PAS, conversion formulas                   |
+| `seo-optimizer`             | SEO, E-E-A-T, Core Web Vitals                    |
+| `media-processing`          | FFmpeg, ImageMagick, RMBG                        |
+| `agent-browser`             | AI-optimized browser automation                  |
 
 ---
 
 ## 📜 Workflows (18)
 
-| Command | Purpose | Agents |
-|---------|---------|:------:|
-| `/think` | Brainstorm 3+ approaches | planner |
-| `/plan` | Generate detailed `PLAN.md` | planner, explorer |
-| `/build` | Full-stack implementation | 3–7 |
-| `/autopilot` | Multi-agent autonomous execution | 3+ |
-| `/cook` | Direct implementation from instructions | code-craft |
-| `/fix` | Quick error remediation | debug-pro |
-| `/validate` | Test suite with coverage | qa |
-| `/diagnose` | Root cause debugging | debug |
-| `/inspect` | Defense-in-depth code review | security |
-| `/studio` | UI design (50+ styles, 97 palettes) | frontend |
-| `/api` | API development with OpenAPI docs | backend |
-| `/mobile` | Mobile app development | mobile |
-| `/game` | Game development | gamedev |
-| `/chronicle` | Auto-documentation | docs |
-| `/launch` | Zero-downtime deployment | devops |
-| `/stage` | Dev sandbox & Docker Compose | devops |
-| `/monitor` | Observability setup | — |
-| `/optimize` | Performance optimization | perf |
+| Command        | Purpose                                | Agents          |
+|----------------|----------------------------------------|:---------------:|
+| `/think`       | Brainstorm 3+ approaches               | planner         |
+| `/plan`        | Generate detailed `PLAN.md`            | planner, explorer |
+| `/build`       | Full-stack implementation              | 3–7             |
+| `/autopilot`   | Multi-agent autonomous execution       | 3+              |
+| `/cook`        | Direct implementation from instructions | code-craft     |
+| `/fix`         | Quick error remediation                | debug-pro       |
+| `/validate`    | Test suite with coverage               | qa              |
+| `/diagnose`    | Root cause debugging                   | debug           |
+| `/inspect`     | Defense-in-depth code review           | security        |
+| `/studio`      | UI design (50+ styles, 97 palettes)    | frontend        |
+| `/api`         | API development with OpenAPI docs      | backend         |
+| `/mobile`      | Mobile app development                 | mobile          |
+| `/game`        | Game development                       | gamedev         |
+| `/chronicle`   | Auto-documentation                     | docs            |
+| `/launch`      | Zero-downtime deployment               | devops          |
+| `/stage`       | Dev sandbox & Docker Compose           | devops          |
+| `/monitor`     | Observability setup                    | devops          |
+| `/optimize`    | Performance optimization               | perf            |
 
 ---
 
@@ -242,36 +241,36 @@ kit doctor                  # System health check
 
 > **16 domain specialists + 5 meta-agents** working together like a FAANG engineering team.
 
-### Meta-Agents (Runtime Control)
+### 🧠 Meta-Agents (Runtime Control)
 
-| Agent | Role |
-|-------|------|
-| `orchestrator` | Strategic coordination & execution order |
-| `assessor` | Risk evaluation before risky operations |
-| `recovery` | State management & checkpoint/restore |
-| `critic` | Conflict resolution between agents |
-| `learner` | Continuous improvement from outcomes |
+| Agent              | Role                                               |
+|--------------------|-----------------------------------------------------|
+| `orchestrator`     | Strategic coordination & execution order             |
+| `assessor`         | Risk evaluation before risky operations              |
+| `recovery`         | State management & checkpoint/restore                |
+| `critic`           | Conflict resolution between agents                   |
+| `learner`          | Continuous improvement from outcomes                 |
 
-### Domain Agents (16)
+### 👥 Domain Agents (16)
 
-| Domain | Agent | Key Skills |
-|--------|-------|------------|
-| Frontend | `frontend` | react-pro, tailwind-kit, studio |
-| Backend | `backend` | api-architect, nodejs-pro |
-| Database | `database` | data-modeler |
-| Security | `security` / `pentest` | security-scanner, offensive-sec |
-| Testing | `testing` / `qa` | test-architect, e2e-automation |
-| DevOps | `devops` | cicd-pipeline, server-ops |
-| Mobile | `mobile` | mobile-developer, mobile-design |
-| Debug | `debug` | debug-pro |
-| Performance | `perf` | perf-optimizer |
-| Planning | `planner` / `lead` | project-planner, idea-storm |
-| Documentation | `docs` | doc-templates |
-| SEO | `seo` | seo-optimizer |
-| Game Dev | `gamedev` | game-development |
-| Exploration | `explorer` | knowledge-graph |
-| Legacy | `legacy` | migration patterns |
-| Product | `product-lead` | requirements, UX |
+| Domain             | Agent                      | Key Skills                             |
+|--------------------|----------------------------|----------------------------------------|
+| 🎨 Frontend        | `frontend`                 | react-pro, tailwind-kit, studio        |
+| ⚙️ Backend         | `backend`                  | api-architect, nodejs-pro              |
+| 🗄️ Database        | `database`                 | data-modeler                           |
+| 🔐 Security        | `security` / `pentest`     | security-scanner, offensive-sec        |
+| 🧪 Testing         | `testing` / `qa`           | test-architect, e2e-automation         |
+| ☁️ DevOps          | `devops`                   | cicd-pipeline, server-ops              |
+| 📱 Mobile          | `mobile`                   | mobile-developer, mobile-design        |
+| 🐛 Debug           | `debug`                    | debug-pro                              |
+| ⚡ Performance     | `perf`                     | perf-optimizer                         |
+| 📋 Planning        | `planner` / `lead`         | project-planner, idea-storm            |
+| 📝 Documentation   | `docs`                     | doc-templates                          |
+| 🔍 SEO             | `seo`                      | seo-optimizer                          |
+| 🎮 Game Dev        | `gamedev`                  | game-development                       |
+| 🔭 Exploration     | `explorer`                 | knowledge-graph                        |
+| 🏚️ Legacy          | `legacy`                   | migration patterns                     |
+| 💡 Product         | `product-lead`             | requirements, UX                       |
 
 ---
 
@@ -279,14 +278,14 @@ kit doctor                  # System health check
 
 > **Safety > Recoverability > Correctness > Cleanliness > Convenience**
 
-| Rule | Description |
-|------|-------------|
-| 🚫 **No Delete** | Never delete files without explicit user confirmation |
-| ✍️ **Safe Modify** | Read/Create/Modify allowed; Delete/Overwrite forbidden |
-| 🗂️ **Git Versioning** | All risky changes get `git stash` or checkpoint commit |
-| 🔁 **Rollback Guarantee** | Previous version always recoverable via Git |
-| ⛔ **Human Checkpoint** | Core logic, auth, config, architecture require explicit approval |
-| 🛠️ **Failure Recovery** | 6-level auto-recovery before escalating to user |
+| Rule                            | Description                                          |
+|---------------------------------|------------------------------------------------------|
+| 🚫 **No Delete**                | Never delete files without explicit user confirmation |
+| ✍️ **Safe Modify**              | Read/Create/Modify allowed; Delete/Overwrite forbidden |
+| 🗂️ **Git Versioning**          | All risky changes get `git stash` or checkpoint commit |
+| 🔁 **Rollback Guarantee**       | Previous version always recoverable via Git          |
+| ⛔ **Human Checkpoint**         | Core logic, auth, config require explicit approval    |
+| 🛠️ **Failure Recovery**        | 6-level auto-recovery before escalating to user       |
 
 ---
 
@@ -351,7 +350,7 @@ your-project/
 
 ---
 
-## 🗂️ CLI Reference
+## 💻 CLI Reference
 
 ### `kit` (Always Installed)
 
@@ -379,18 +378,22 @@ agent watch                 # Real-time monitoring
 
 ## 🔗 Links
 
-| | |
-|---|---|
-| 📦 **npm** | [npmjs.com/package/pikakit](https://www.npmjs.com/package/pikakit) |
-| 🐙 **GitHub (Skills)** | [github.com/pikakit/agent-skills](https://github.com/pikakit/agent-skills) |
-| 🐙 **GitHub (CLI)** | [github.com/pikakit/pikakit](https://github.com/pikakit/pikakit) |
-| 🐛 **Issues** | [github.com/pikakit/agent-skills/issues](https://github.com/pikakit/agent-skills/issues) |
+| Resource                    | URL                                                                                      |
+|-----------------------------|------------------------------------------------------------------------------------------|
+| 🌐 **Website**              | [pikakit.com](https://pikakit.com)                                                       |
+| 📧 **Support**              | [hello@pikakit.com](mailto:hello@pikakit.com)                                            |
+| 📦 **npm**                  | [npmjs.com/package/pikakit](https://www.npmjs.com/package/pikakit)                       |
+| 🐙 **GitHub (Skills)**      | [github.com/pikakit/agent-skills](https://github.com/pikakit/agent-skills)               |
+| 🐙 **GitHub (CLI)**         | [github.com/pikakit/add-skill-kit](https://github.com/pikakit/add-skill-kit)             |
+| 🐛 **Issues**               | [github.com/pikakit/agent-skills/issues](https://github.com/pikakit/agent-skills/issues) |
 
 ---
 
 ## 📄 License
 
-UNLICENSED — See [LICENSE](LICENSE) for details.
+Proprietary — See [LICENSE](LICENSE) for details.
+
+© 2026 PikaKit. All Rights Reserved.
 
 ---
 
@@ -399,6 +402,8 @@ UNLICENSED — See [LICENSE](LICENSE) for details.
 **⚡ PikaKit v3.9.104**
 
 *Composable Skills · Coordinated Agents · Intelligent Execution*
+
+[pikakit.com](https://pikakit.com) · [hello@pikakit.com](mailto:hello@pikakit.com)
 
 **[⭐ Star](https://github.com/pikakit/agent-skills) · [Install Now](#-quick-install) · Build Something Great**
 
