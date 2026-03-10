@@ -308,7 +308,7 @@ node .agent/skills/skill-name/scripts/main.js
 
 ---
 
-⚡ PikaKit v3.9.104
+⚡ PikaKit v3.9.105
 ```
 
 ---
@@ -331,5 +331,5 @@ Before publishing a skill:
 
 ---
 
-⚡ PikaKit v3.9.104
+⚡ PikaKit v3.9.105
 Composable Skills. Coordinated Agents. Intelligent Execution.
