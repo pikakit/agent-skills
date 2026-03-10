@@ -1,4 +1,4 @@
-PIKAKIT - PROPRIETARY COMMERCIAL LICENSE
+PIKAKIT - PROPRIETARY LICENSE
 ================================================================================
 
 Copyright (c) 2026 PikaKit. All Rights Reserved.
@@ -16,11 +16,12 @@ patents in process, and are protected by trade secret or copyright law.
    strictly forbidden unless prior written permission is obtained from
    PikaKit.
 
-2. COMMERCIAL USE ONLY
+2. USAGE RESTRICTION
 
-   This software is licensed for commercial use only by authorized entities.
-   Any unauthorized use, copying, modification, or distribution is a violation
-   of international copyright laws.
+   This software may not be used, copied, modified, merged, published,
+   distributed, sublicensed, or sold without explicit written permission
+   from the author. Any unauthorized use is a violation of international
+   copyright laws.
 
 3. NO WARRANTY
 
@@ -34,6 +35,6 @@ patents in process, and are protected by trade secret or copyright law.
 
 ================================================================================
 
-For licensing inquiries: support@pikakit.com
+Website: https://pikakit.com
+For licensing inquiries: hello@pikakit.com
 Repository: https://github.com/pikakit/agent-skills
-
