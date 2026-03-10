@@ -1,5 +1,0 @@
-# Enforce TypeScript detection for FAANG-level project optics
-*.js linguist-language=TypeScript
-*.jsx linguist-language=TypeScript
-*.mjs linguist-language=TypeScript
-*.cjs linguist-language=TypeScript
