@@ -1,4 +1,4 @@
----
+﻿---
 name: google-adk-python
 description: >-
   Build, evaluate, and deploy AI agents with Google's Agent Development Kit.
@@ -9,13 +9,13 @@ metadata:
   version: "2.0.0"
   category: "ai"
   triggers: "Google ADK, agent development, multi-agent, agent orchestration"
-  success_metrics: "correct agent type, ≤5 tools/agent, typed tool functions"
+  success_metrics: "correct agent type, â‰¤5 tools/agent, typed tool functions"
   coordinates_with: "python-pro, api-architect"
 ---
 
-# Google ADK Python — AI Agent Development
+# Google ADK Python â€” AI Agent Development
 
-> Code-first. ≤ 5 tools per agent. Typed functions. Deterministic type selection.
+> Code-first. â‰¤ 5 tools per agent. Typed functions. Deterministic type selection.
 
 ---
 
@@ -30,10 +30,10 @@ metadata:
 | Situation | Action |
 |-----------|--------|
 | Single agent with tools | Follow quick start + agent type table |
-| Multi-agent coordination | Read `references/multi-agent.md` |
-| Custom tool creation | Read `references/tools.md` |
-| Deployment patterns | Read `references/deployment.md` |
-| Architecture review | Read `references/engineering-spec.md` |
+| Multi-agent coordination | Read `rules/multi-agent.md` |
+| Custom tool creation | Read `rules/tools.md` |
+| Deployment patterns | Read `rules/deployment.md` |
+| Architecture review | Read `rules/engineering-spec.md` |
 
 ---
 
@@ -41,9 +41,9 @@ metadata:
 
 | Owned by This Skill | NOT Owned |
 |---------------------|-----------|
-| Agent type selection (4 types) | Python project setup (→ python-pro) |
-| Model selection (3 tiers) | API architecture (→ api-architect) |
-| Tool creation patterns | Prompt engineering (→ ai-artist) |
+| Agent type selection (4 types) | Python project setup (â†’ python-pro) |
+| Model selection (3 tiers) | API architecture (â†’ api-architect) |
+| Tool creation patterns | Prompt engineering (â†’ ai-artist) |
 | Multi-agent composition | Cloud project config |
 | Deployment guidance | Model hosting |
 
@@ -110,7 +110,7 @@ def calculate_roi(revenue: float, cost: float) -> float:
 coordinator = LlmAgent(
     name="Coordinator",
     instruction="Delegate to specialists.",
-    sub_agents=[researcher, writer]  # ≤ 5
+    sub_agents=[researcher, writer]  # â‰¤ 5
 )
 ```
 
@@ -133,7 +133,7 @@ coordinator = LlmAgent(
 
 ## Anti-Patterns
 
-| ❌ Don't | ✅ Do |
+| âŒ Don't | âœ… Do |
 |---------|-------|
 | Use pro-high for simple tasks | Match complexity to model tier |
 | Put > 5 tools on one agent | Split into coordinator + specialists |
@@ -143,20 +143,20 @@ coordinator = LlmAgent(
 
 ---
 
-## 📑 Content Map
+## ðŸ“‘ Content Map
 
 | File | Description | When to Read |
 |------|-------------|--------------|
-| [multi-agent.md](references/multi-agent.md) | Multi-agent patterns | Agent composition |
-| [tools.md](references/tools.md) | Tool integration | Custom tools |
-| [deployment.md](references/deployment.md) | Production deploy | Deployment |
-| [engineering-spec.md](references/engineering-spec.md) | Full engineering spec | Architecture review |
+| [multi-agent.md](rules/multi-agent.md) | Multi-agent patterns | Agent composition |
+| [tools.md](rules/tools.md) | Tool integration | Custom tools |
+| [deployment.md](rules/deployment.md) | Production deploy | Deployment |
+| [engineering-spec.md](rules/engineering-spec.md) | Full engineering spec | Architecture review |
 
 **Selective reading:** Read ONLY files relevant to the request.
 
 ---
 
-## 🔗 Related
+## ðŸ”— Related
 
 | Item | Type | Purpose |
 |------|------|---------|
@@ -166,4 +166,4 @@ coordinator = LlmAgent(
 
 ---
 
-⚡ PikaKit v3.9.105
+âš¡ PikaKit v3.9.105

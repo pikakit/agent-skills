@@ -1,6 +1,6 @@
 ﻿# mcp-builder — Full Reference Guide
 
-> **Compiled from SKILL.md + references/ for AI agent consumption.**
+> **Compiled from SKILL.md + rules/ for AI agent consumption.**
 
 ---
 
@@ -24,7 +24,7 @@
 | Choose framework | Python FastMCP vs TypeScript MCP SDK |
 | Review MCP server quality | Use review checklist (4 items) |
 | Test MCP server | Create 10 evaluation questions |
-| Learn MCP design | Read `references/design-principles.md` |
+| Learn MCP design | Read `rules/design-principles.md` |
 
 ---
 
@@ -133,13 +133,13 @@ Create 10 test questions that are:
 
 | File | Description | When to Read |
 |------|-------------|--------------|
-| [design-principles.md](references/design-principles.md) | Core MCP concepts | Phase 1 (Research) |
-| [quickstart.md](references/quickstart.md) | Getting started | Phase 2 (Implement) |
-| [python-implementation.md](references/python-implementation.md) | Python patterns | Python selected |
-| [typescript-implementation.md](references/typescript-implementation.md) | TypeScript patterns | TypeScript selected |
-| [best-practices.md](references/best-practices.md) | Design decisions | Phase 3 (Review) |
-| [evaluation.md](references/evaluation.md) | Testing framework | Phase 4 (Evaluate) |
-| [engineering-spec.md](references/engineering-spec.md) | Full engineering spec | Architecture review |
+| [design-principles.md](rules/design-principles.md) | Core MCP concepts | Phase 1 (Research) |
+| [quickstart.md](rules/quickstart.md) | Getting started | Phase 2 (Implement) |
+| [python-implementation.md](rules/python-implementation.md) | Python patterns | Python selected |
+| [typescript-implementation.md](rules/typescript-implementation.md) | TypeScript patterns | TypeScript selected |
+| [best-practices.md](rules/best-practices.md) | Design decisions | Phase 3 (Review) |
+| [evaluation.md](rules/evaluation.md) | Testing framework | Phase 4 (Evaluate) |
+| [engineering-spec.md](rules/engineering-spec.md) | Full engineering spec | Architecture review |
 
 **Selective reading:** Read ONLY files relevant to the current phase.
 
@@ -582,7 +582,7 @@ Recoverable: boolean
 - Review checklist always has 4 items: DRY, error handling, type coverage, docstrings.
 - Evaluation always produces 10 questions with 6 criteria.
 - Design principles always include: workflow-oriented, context-aware output, actionable errors.
-- Reference files are fixed: 6 files in `references/`.
+- Reference files are fixed: 6 files in `rules/`.
 
 #### What Agents May Assume
 

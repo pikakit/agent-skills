@@ -1,4 +1,4 @@
----
+﻿---
 name: shell-script
 description: >-
   Bash/Linux terminal patterns. Critical commands, piping, error handling, scripting.
@@ -13,7 +13,7 @@ metadata:
   coordinates_with: "cicd-pipeline, server-ops"
 ---
 
-# Shell Script — Bash/Linux Patterns
+# Shell Script â€” Bash/Linux Patterns
 
 > `set -euo pipefail` always. Quote variables. Trap cleanup. Think Unix.
 
@@ -34,8 +34,8 @@ metadata:
 
 | Owned by This Skill | NOT Owned |
 |---------------------|-----------|
-| Operator syntax (4 operators) | CI/CD scripts (→ cicd-pipeline) |
-| File/process/text commands | Server management (→ server-ops) |
+| Operator syntax (4 operators) | CI/CD scripts (â†’ cicd-pipeline) |
+| File/process/text commands | Server management (â†’ server-ops) |
 | Script template + patterns | Command execution |
 | Bash vs PowerShell mapping | PowerShell expertise |
 
@@ -43,7 +43,7 @@ metadata:
 
 ---
 
-## Operator Syntax (4 — Fixed)
+## Operator Syntax (4 â€” Fixed)
 
 | Operator | Meaning | Example |
 |----------|---------|---------|
@@ -78,7 +78,7 @@ metadata:
 
 ---
 
-## Text Processing (4 Tools — Deterministic)
+## Text Processing (4 Tools â€” Deterministic)
 
 | Tool | Purpose | Example |
 |------|---------|---------|
@@ -151,7 +151,7 @@ trap 'rm -f /tmp/tempfile' EXIT
 
 ## Anti-Patterns
 
-| ❌ Don't | ✅ Do |
+| âŒ Don't | âœ… Do |
 |---------|-------|
 | Skip error handling | Always `set -euo pipefail` |
 | Unquoted variables | Quote: `"$VAR"` |
@@ -160,15 +160,15 @@ trap 'rm -f /tmp/tempfile' EXIT
 
 ---
 
-## 📑 Content Map
+## ðŸ“‘ Content Map
 
 | File | Description | When to Read |
 |------|-------------|--------------|
-| [engineering-spec.md](references/engineering-spec.md) | Full spec | Architecture review |
+| [engineering-spec.md](rules/engineering-spec.md) | Full spec | Architecture review |
 
 ---
 
-## 🔗 Related
+## ðŸ”— Related
 
 | Item | Type | Purpose |
 |------|------|---------|
@@ -177,4 +177,4 @@ trap 'rm -f /tmp/tempfile' EXIT
 
 ---
 
-⚡ PikaKit v3.9.105
+âš¡ PikaKit v3.9.105

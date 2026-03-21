@@ -1,6 +1,6 @@
 ﻿# mobile-design — Full Reference Guide
 
-> **Compiled from SKILL.md + references/ for AI agent consumption.**
+> **Compiled from SKILL.md + rules/ for AI agent consumption.**
 
 ---
 
@@ -125,20 +125,20 @@ Touch-first â†’ Battery-conscious â†’ Platform-respectful â†’ Off
 
 | File | Description | When to Read |
 |------|-------------|--------------|
-| [platform-ios.md](references/platform-ios.md) | iOS HIG guidelines | iOS design |
-| [platform-android.md](references/platform-android.md) | Material Design guidelines | Android design |
-| [touch-psychology.md](references/touch-psychology.md) | Touch interaction patterns | Touch UX |
-| [mobile-navigation.md](references/mobile-navigation.md) | Navigation patterns | Nav decisions |
-| [mobile-typography.md](references/mobile-typography.md) | Typography systems | Font selection |
-| [mobile-color-system.md](references/mobile-color-system.md) | Color palettes | Color decisions |
-| [mobile-performance.md](references/mobile-performance.md) | Performance guidelines | Perf concerns |
-| [mobile-testing.md](references/mobile-testing.md) | Testing strategies | QA planning |
-| [mobile-debugging.md](references/mobile-debugging.md) | Debugging patterns | Bug fixing |
-| [mobile-backend.md](references/mobile-backend.md) | Backend integration | API decisions |
-| [mobile-design-thinking.md](references/mobile-design-thinking.md) | Design methodology | Design process |
-| [decision-trees.md](references/decision-trees.md) | Decision frameworks | Complex decisions |
+| [platform-ios.md](rules/platform-ios.md) | iOS HIG guidelines | iOS design |
+| [platform-android.md](rules/platform-android.md) | Material Design guidelines | Android design |
+| [touch-psychology.md](rules/touch-psychology.md) | Touch interaction patterns | Touch UX |
+| [mobile-navigation.md](rules/mobile-navigation.md) | Navigation patterns | Nav decisions |
+| [mobile-typography.md](rules/mobile-typography.md) | Typography systems | Font selection |
+| [mobile-color-system.md](rules/mobile-color-system.md) | Color palettes | Color decisions |
+| [mobile-performance.md](rules/mobile-performance.md) | Performance guidelines | Perf concerns |
+| [mobile-testing.md](rules/mobile-testing.md) | Testing strategies | QA planning |
+| [mobile-debugging.md](rules/mobile-debugging.md) | Debugging patterns | Bug fixing |
+| [mobile-backend.md](rules/mobile-backend.md) | Backend integration | API decisions |
+| [mobile-design-thinking.md](rules/mobile-design-thinking.md) | Design methodology | Design process |
+| [decision-trees.md](rules/decision-trees.md) | Decision frameworks | Complex decisions |
 | [mobile_audit.js](scripts/mobile_audit.js) | Mobile design audit CLI | Design audit |
-| [engineering-spec.md](references/engineering-spec.md) | Full engineering spec | Architecture review |
+| [engineering-spec.md](rules/engineering-spec.md) | Full engineering spec | Architecture review |
 
 **Selective reading:** Read ONLY files relevant to current design question.
 

@@ -1,4 +1,4 @@
----
+﻿---
 name: debug-pro
 description: >-
   Unified debugging skill combining systematic 4-phase methodology with advanced frameworks
@@ -13,7 +13,7 @@ metadata:
   coordinates_with: "test-architect, code-review, recovery-agent"
 ---
 
-# Debug Pro — Systematic Debugging
+# Debug Pro â€” Systematic Debugging
 
 > 4 phases. 5 Whys. No random changes. Never claim "fixed" without verification.
 
@@ -21,7 +21,7 @@ metadata:
 
 ## Prerequisites
 
-**Required:** None — Debug Pro is a methodology-based skill with no external dependencies.
+**Required:** None â€” Debug Pro is a methodology-based skill with no external dependencies.
 
 ---
 
@@ -33,7 +33,7 @@ metadata:
 | Error/exception occurs | Root cause tracing with 5 Whys |
 | Crash investigation | Defense-in-depth analysis |
 | Fix validation needed | Verification checklist (Phase 4) |
-| Architecture review | Read `references/engineering-spec.md` |
+| Architecture review | Read `rules/engineering-spec.md` |
 
 ---
 
@@ -41,11 +41,11 @@ metadata:
 
 | Owned by This Skill | NOT Owned |
 |---------------------|-----------|
-| 4-phase methodology (Reproduce→Isolate→Understand→Fix&Verify) | Debugger tool execution |
-| 5 Whys root cause analysis | Automated bug detection (→ code-review) |
-| Isolation techniques (git bisect/blame/log) | Test writing (→ test-architect) |
-| Verification checklist (4 items) | Code quality review (→ code-craft) |
-| Red flag detection (5 patterns) | Performance profiling (→ perf-optimizer) |
+| 4-phase methodology (Reproduceâ†’Isolateâ†’Understandâ†’Fix&Verify) | Debugger tool execution |
+| 5 Whys root cause analysis | Automated bug detection (â†’ code-review) |
+| Isolation techniques (git bisect/blame/log) | Test writing (â†’ test-architect) |
+| Verification checklist (4 items) | Code quality review (â†’ code-craft) |
+| Red flag detection (5 patterns) | Performance profiling (â†’ perf-optimizer) |
 | 3 advanced frameworks | Git command execution |
 
 **Pure decision skill:** Produces debugging strategies and checklists. Zero side effects.
@@ -54,14 +54,14 @@ metadata:
 
 ## 4-Phase Methodology
 
-### Phase 1: Reproduce 🔄
+### Phase 1: Reproduce ðŸ”„
 
 - [ ] Can reproduce consistently
 - [ ] Have minimal reproduction case
 - [ ] Understand expected behavior
 - [ ] Documented environment details
 
-### Phase 2: Isolate 🔍
+### Phase 2: Isolate ðŸ”
 
 | Technique | Command | When |
 |-----------|---------|------|
@@ -69,7 +69,7 @@ metadata:
 | Recent changes | `git log --oneline -20` | Check recent commits |
 | Blame | `git blame path/to/file` | Find who changed what |
 
-### Phase 3: Understand 🧠 (5 Whys)
+### Phase 3: Understand ðŸ§  (5 Whys)
 
 ```
 1. Why: [First observation]
@@ -81,7 +81,7 @@ metadata:
 
 **Root cause MUST:** explain ALL symptoms. "It just happens" is NOT valid.
 
-### Phase 4: Fix & Verify ✅
+### Phase 4: Fix & Verify âœ…
 
 - [ ] Bug no longer reproduces
 - [ ] Related functionality works
@@ -93,20 +93,20 @@ metadata:
 ## Phase Transitions (Strict Order)
 
 ```
-REPRODUCE → ISOLATE     [reproduction checklist complete]
-ISOLATE → UNDERSTAND    [source narrowed to component]
-UNDERSTAND → FIX_VERIFY [root cause explains all symptoms]
-FIX_VERIFY → RESOLVED   [verification passed + regression test]  // terminal
-FIX_VERIFY → REPRODUCE  [verification failed]
-UNDERSTAND → ISOLATE    [hypothesis disproven]
-ANY_PHASE → REPRODUCE   [red flag detected]
+REPRODUCE â†’ ISOLATE     [reproduction checklist complete]
+ISOLATE â†’ UNDERSTAND    [source narrowed to component]
+UNDERSTAND â†’ FIX_VERIFY [root cause explains all symptoms]
+FIX_VERIFY â†’ RESOLVED   [verification passed + regression test]  // terminal
+FIX_VERIFY â†’ REPRODUCE  [verification failed]
+UNDERSTAND â†’ ISOLATE    [hypothesis disproven]
+ANY_PHASE â†’ REPRODUCE   [red flag detected]
 ```
 
 **No phase may be skipped.**
 
 ---
 
-## 🚩 Red Flags (Return to Phase 1)
+## ðŸš© Red Flags (Return to Phase 1)
 
 | Pattern | Why It's Wrong |
 |---------|---------------|
@@ -114,7 +114,7 @@ ANY_PHASE → REPRODUCE   [red flag detected]
 | "Just try changing X and see" | Random change without evidence |
 | "It's probably X, let me fix that" | Assumption without verification |
 | "Should work now" / "Seems fixed" | No verification |
-| "Tests pass, we're done" | Tests ≠ complete verification |
+| "Tests pass, we're done" | Tests â‰  complete verification |
 
 ---
 
@@ -135,7 +135,7 @@ ANY_PHASE → REPRODUCE   [red flag detected]
 
 ## Anti-Patterns
 
-| ❌ Don't | ✅ Do |
+| âŒ Don't | âœ… Do |
 |---------|-------|
 | Random changes hoping to fix | Follow 4-phase methodology |
 | Assume root cause without evidence | Verify with 5 Whys |
@@ -145,18 +145,18 @@ ANY_PHASE → REPRODUCE   [red flag detected]
 
 ---
 
-## 📑 Content Map
+## ðŸ“‘ Content Map
 
 | File | Description | When to Read |
 |------|-------------|--------------|
 | [defense-in-depth/](defense-in-depth/) | Defense-in-depth analysis framework | Crash investigation |
 | [root-cause-tracing/](root-cause-tracing/) | Root cause tracing framework | Complex bugs |
 | [verification-before-completion/](verification-before-completion/) | Verification framework | Fix validation |
-| [engineering-spec.md](references/engineering-spec.md) | Full engineering spec | Architecture review |
+| [engineering-spec.md](rules/engineering-spec.md) | Full engineering spec | Architecture review |
 
 ---
 
-## 🔗 Related
+## ðŸ”— Related
 
 | Item | Type | Purpose |
 |------|------|---------|
@@ -166,4 +166,4 @@ ANY_PHASE → REPRODUCE   [red flag detected]
 
 ---
 
-⚡ PikaKit v3.9.105
+âš¡ PikaKit v3.9.105

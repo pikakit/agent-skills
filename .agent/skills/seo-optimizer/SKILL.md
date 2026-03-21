@@ -1,4 +1,4 @@
----
+﻿---
 name: seo-optimizer
 description: >-
   SEO fundamentals, E-E-A-T, Core Web Vitals, and Google algorithm principles.
@@ -12,7 +12,7 @@ metadata:
   coordinates_with: "web-core, perf-optimizer, geo-spatial"
 ---
 
-# SEO Optimizer — Search Engine Visibility
+# SEO Optimizer â€” Search Engine Visibility
 
 > E-E-A-T for trust. CWV for speed. Schema for rich snippets. Content rules for ranking.
 
@@ -33,16 +33,16 @@ metadata:
 
 | Owned by This Skill | NOT Owned |
 |---------------------|-----------|
-| E-E-A-T framework (4 principles) | AI search (→ geo-spatial) |
-| Content SEO (char limits) | Performance profiling (→ perf-optimizer) |
-| Schema routing (5 types) | Web fundamentals (→ web-core) |
+| E-E-A-T framework (4 principles) | AI search (â†’ geo-spatial) |
+| Content SEO (char limits) | Performance profiling (â†’ perf-optimizer) |
+| Schema routing (5 types) | Web fundamentals (â†’ web-core) |
 | Technical SEO checklist | HTML implementation |
 
 **Expert decision skill:** Produces SEO recommendations. Does not modify pages.
 
 ---
 
-## E-E-A-T Framework (4 Principles — Fixed)
+## E-E-A-T Framework (4 Principles â€” Fixed)
 
 | Principle | Signals |
 |-----------|---------|
@@ -86,7 +86,7 @@ metadata:
 
 ---
 
-## Schema Routing (5 Types — Deterministic)
+## Schema Routing (5 Types â€” Deterministic)
 
 | Page Type | Schema Type |
 |-----------|------------|
@@ -124,7 +124,7 @@ metadata:
 
 ## Anti-Patterns
 
-| ❌ Don't | ✅ Do |
+| âŒ Don't | âœ… Do |
 |---------|-------|
 | Keyword stuff title/alt text | Use natural language with keyword |
 | Skip meta descriptions | Write compelling 150-160 char descriptions |
@@ -133,16 +133,16 @@ metadata:
 
 ---
 
-## 📑 Content Map
+## ðŸ“‘ Content Map
 
 | File | Description | When to Read |
 |------|-------------|--------------|
 | [seo_checker.js](scripts/seo_checker.js) | Static SEO audit (title, meta, canonical, schema, robots) | Automated auditing |
-| [engineering-spec.md](references/engineering-spec.md) | Full spec | Architecture review |
+| [engineering-spec.md](rules/engineering-spec.md) | Full spec | Architecture review |
 
 ---
 
-## 🔗 Related
+## ðŸ”— Related
 
 | Item | Type | Purpose |
 |------|------|---------|
@@ -151,4 +151,4 @@ metadata:
 
 ---
 
-⚡ PikaKit v3.9.105
+âš¡ PikaKit v3.9.105

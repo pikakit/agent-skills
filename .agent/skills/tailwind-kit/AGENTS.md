@@ -1,6 +1,6 @@
 ﻿# tailwind-kit — Full Reference Guide
 
-> **Compiled from SKILL.md + references/ for AI agent consumption.**
+> **Compiled from SKILL.md + rules/ for AI agent consumption.**
 
 ---
 
@@ -119,10 +119,10 @@
 
 | File | Description | When to Read |
 |------|-------------|--------------|
-| [v4-config.md](references/v4-config.md) | Full v4 configuration | New project setup |
-| [responsive.md](references/responsive.md) | Breakpoints + container queries | Responsive design |
-| [components.md](references/components.md) | Component extraction | Component patterns |
-| [engineering-spec.md](references/engineering-spec.md) | Full spec | Architecture review |
+| [v4-config.md](rules/v4-config.md) | Full v4 configuration | New project setup |
+| [responsive.md](rules/responsive.md) | Breakpoints + container queries | Responsive design |
+| [components.md](rules/components.md) | Component extraction | Component patterns |
+| [engineering-spec.md](rules/engineering-spec.md) | Full spec | Architecture review |
 
 ---
 
@@ -770,7 +770,7 @@ All resources scoped to invocation. No persistent handles.
 | Core content matches skill type | âœ… | Expert type: class recommendations, config guidance, migration paths |
 | Troubleshooting section | âœ… | Anti-patterns table |
 | Related section | âœ… | Cross-links to design-system, nextjs-pro, studio |
-| Content Map for multi-file | âœ… | Links to references/ + engineering-spec.md |
+| Content Map for multi-file | âœ… | Links to rules/ + engineering-spec.md |
 | Contract versioning | âœ… | contract_version, backward_compatibility, breaking_changes |
 | Compliance matrix structured | âœ… | This table with âœ…/âŒ + evidence |
 

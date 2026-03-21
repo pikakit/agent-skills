@@ -1,4 +1,4 @@
----
+﻿---
 name: data-modeler
 description: >-
   Database design principles and decision-making. Schema design, indexing strategy, ORM selection.
@@ -12,7 +12,7 @@ metadata:
   coordinates_with: "api-architect, security-scanner, nodejs-pro"
 ---
 
-# Data Modeler — Database Design
+# Data Modeler â€” Database Design
 
 > Context-specific decisions. Ask before assuming. Never default to PostgreSQL blindly.
 
@@ -20,7 +20,7 @@ metadata:
 
 ## Prerequisites
 
-**Required:** None — Data Modeler is a knowledge-based skill with no external dependencies.
+**Required:** None â€” Data Modeler is a knowledge-based skill with no external dependencies.
 
 ---
 
@@ -34,7 +34,7 @@ metadata:
 | Planning indexes | Invoke index-strategy; read `indexing.md` |
 | Changing schema | Invoke migration-plan; read `migrations.md` |
 | Query performance | Invoke query-analysis; read `optimization.md` |
-| Architecture review | Read `references/engineering-spec.md` |
+| Architecture review | Read `rules/engineering-spec.md` |
 
 ---
 
@@ -42,10 +42,10 @@ metadata:
 
 | Owned by This Skill | NOT Owned |
 |---------------------|-----------|
-| Database selection (PostgreSQL/Neon/Turso/SQLite) | Database provisioning (→ server-ops) |
-| ORM selection (Drizzle/Prisma/Kysely) | API endpoint design (→ api-architect) |
-| Schema design (normalization, PKs, relationships) | Security scanning (→ security-scanner) |
-| Index strategy (B-tree/hash/GIN/GiST) | Database monitoring (→ observability) |
+| Database selection (PostgreSQL/Neon/Turso/SQLite) | Database provisioning (â†’ server-ops) |
+| ORM selection (Drizzle/Prisma/Kysely) | API endpoint design (â†’ api-architect) |
+| Schema design (normalization, PKs, relationships) | Security scanning (â†’ security-scanner) |
+| Index strategy (B-tree/hash/GIN/GiST) | Database monitoring (â†’ observability) |
 | Migration safety (additive/destructive/multi-phase) | SQL execution |
 
 **Pure decision skill:** Produces database architecture decisions. Zero side effects.
@@ -123,7 +123,7 @@ metadata:
 
 ## Anti-Patterns
 
-| ❌ Don't | ✅ Do |
+| âŒ Don't | âœ… Do |
 |---------|-------|
 | Default to PostgreSQL for simple apps | Choose SQLite when it suffices |
 | Skip index planning | Plan indexes for every known query pattern |
@@ -134,7 +134,7 @@ metadata:
 
 ---
 
-## 📑 Content Map
+## ðŸ“‘ Content Map
 
 | File | Description | When to Read |
 |------|-------------|--------------|
@@ -144,7 +144,7 @@ metadata:
 | [indexing.md](indexing.md) | Index types, composite indexes | Performance tuning |
 | [optimization.md](optimization.md) | N+1, EXPLAIN ANALYZE | Query analysis |
 | [migrations.md](migrations.md) | Safe migrations, serverless DBs | Schema changes |
-| [engineering-spec.md](references/engineering-spec.md) | Full engineering spec | Architecture review |
+| [engineering-spec.md](rules/engineering-spec.md) | Full engineering spec | Architecture review |
 
 ## Script
 
@@ -156,7 +156,7 @@ metadata:
 
 ---
 
-## 🔗 Related
+## ðŸ”— Related
 
 | Item | Type | Purpose |
 |------|------|---------|
@@ -167,4 +167,4 @@ metadata:
 
 ---
 
-⚡ PikaKit v3.9.105
+âš¡ PikaKit v3.9.105

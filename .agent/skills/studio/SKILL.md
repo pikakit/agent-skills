@@ -1,4 +1,4 @@
----
+﻿---
 name: studio
 description: >-
   AI-powered design intelligence with 50+ styles, 97 color palettes, 57 font pairings,
@@ -12,7 +12,7 @@ metadata:
   coordinates_with: "frontend-specialist, design-system"
 ---
 
-# Studio — Design Intelligence
+# Studio â€” Design Intelligence
 
 > 50+ styles. 97 palettes. 57 font pairings. Anti-AI-Slop by default.
 
@@ -33,9 +33,9 @@ metadata:
 
 | Owned by This Skill | NOT Owned |
 |---------------------|-----------|
-| Searchable design database (6 categories) | CSS implementation (→ frontend agents) |
-| Anti-AI-Slop avoidance rules | Design theory (→ design-system) |
-| Design system config generation | Image assets (→ ai-artist) |
+| Searchable design database (6 categories) | CSS implementation (â†’ frontend agents) |
+| Anti-AI-Slop avoidance rules | Design theory (â†’ design-system) |
+| Design system config generation | Image assets (â†’ ai-artist) |
 | Priority-ranked recommendations | Component coding |
 
 **Expert decision skill:** Produces design recommendations. Does not write CSS or code.
@@ -51,13 +51,13 @@ metadata:
 | Typography | 57 | `data/typography.csv` |
 | UX Guidelines | 99 | `data/ux-guidelines.csv` |
 | Charts | 25 | `data/charts.csv` |
-| Icons | — | `data/icons.csv` |
-| Landing Pages | — | `data/landing.csv` |
-| Products | — | `data/products.csv` |
-| Prompts | — | `data/prompts.csv` |
-| React Performance | — | `data/react-performance.csv` |
-| UI Reasoning | — | `data/ui-reasoning.csv` |
-| Web Interface | — | `data/web-interface.csv` |
+| Icons | â€” | `data/icons.csv` |
+| Landing Pages | â€” | `data/landing.csv` |
+| Products | â€” | `data/products.csv` |
+| Prompts | â€” | `data/prompts.csv` |
+| React Performance | â€” | `data/react-performance.csv` |
+| UI Reasoning | â€” | `data/ui-reasoning.csv` |
+| Web Interface | â€” | `data/web-interface.csv` |
 | Stacks | 12 | `data/stacks/*.csv` (React, Next.js, Vue, Nuxt, Svelte, Flutter, SwiftUI, etc.) |
 
 ---
@@ -80,7 +80,7 @@ node .agent/skills/studio/scripts-js/search.js "modern tech" --category typograp
 
 ### Fonts to AVOID
 
-| ❌ Don't Use | ✅ Use Instead |
+| âŒ Don't Use | âœ… Use Instead |
 |-------------|---------------|
 | Inter | Playfair Display, Cormorant |
 | Roboto | Syne, Outfit |
@@ -89,7 +89,7 @@ node .agent/skills/studio/scripts-js/search.js "modern tech" --category typograp
 
 ### Colors to AVOID
 
-| ❌ Don't Use | ✅ Use Instead |
+| âŒ Don't Use | âœ… Use Instead |
 |-------------|---------------|
 | #FF0000 (pure red) | #DC2626, #EF4444 |
 | #00FF00 (pure green) | #10B981, #059669 |
@@ -98,7 +98,7 @@ node .agent/skills/studio/scripts-js/search.js "modern tech" --category typograp
 
 ### Patterns to AVOID
 
-| ❌ Don't | ✅ Do |
+| âŒ Don't | âœ… Do |
 |---------|-------|
 | Generic `box-shadow: 0 2px 4px rgba(0,0,0,0.1)` | Dramatic: `0 25px 50px -12px rgba(0,0,0,0.25)` |
 | Solid #FFFFFF / #000000 backgrounds | Gradients, noise textures, glass effects |
@@ -130,17 +130,17 @@ node .agent/skills/studio/scripts-js/search.js "modern tech" --category typograp
 
 ---
 
-## 📑 Content Map
+## ðŸ“‘ Content Map
 
 | File | Description | When to Read |
 |------|-------------|--------------|
 | [data/](data/) | 24 CSV databases | Database contents |
 | [scripts-js/](scripts-js/) | Search CLI + core logic | Running commands |
-| [engineering-spec.md](references/engineering-spec.md) | Full spec | Architecture review |
+| [engineering-spec.md](rules/engineering-spec.md) | Full spec | Architecture review |
 
 ---
 
-## 🔗 Related
+## ðŸ”— Related
 
 | Item | Type | Purpose |
 |------|------|---------|
@@ -150,4 +150,4 @@ node .agent/skills/studio/scripts-js/search.js "modern tech" --category typograp
 
 ---
 
-⚡ PikaKit v3.9.105
+âš¡ PikaKit v3.9.105

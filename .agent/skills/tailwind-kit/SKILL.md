@@ -1,4 +1,4 @@
----
+﻿---
 name: tailwind-kit
 description: >-
   Tailwind CSS v4 principles. CSS-first configuration, container queries, modern patterns.
@@ -12,7 +12,7 @@ metadata:
   coordinates_with: "design-system, web-core"
 ---
 
-# Tailwind Kit — Tailwind CSS v4 Patterns
+# Tailwind Kit â€” Tailwind CSS v4 Patterns
 
 > CSS-first `@theme`. OKLCH colors. Container queries. Mobile-first responsive.
 
@@ -26,7 +26,7 @@ metadata:
 | Theme setup | CSS-first `@theme` |
 | Dark mode | Use `dark:` prefix |
 | Responsive | Mobile-first breakpoints |
-| Migrating v3 → v4 | Check migration table |
+| Migrating v3 â†’ v4 | Check migration table |
 
 ---
 
@@ -34,26 +34,26 @@ metadata:
 
 | Owned by This Skill | NOT Owned |
 |---------------------|-----------|
-| Tailwind class recommendations | Design theory (→ design-system) |
-| @theme configuration (OKLCH) | Next.js integration (→ nextjs-pro) |
-| v3 → v4 migration paths | AI design (→ studio) |
+| Tailwind class recommendations | Design theory (â†’ design-system) |
+| @theme configuration (OKLCH) | Next.js integration (â†’ nextjs-pro) |
+| v3 â†’ v4 migration paths | AI design (â†’ studio) |
 | Layout + responsive patterns | CSS processing pipeline |
 
 **Expert decision skill:** Produces class recommendations. Does not write files.
 
 ---
 
-## v3 → v4 Migration (3 Breaking Changes)
+## v3 â†’ v4 Migration (3 Breaking Changes)
 
 | v3 (Legacy) | v4 (Current) |
 |-------------|-------------|
 | `tailwind.config.js` | CSS-based `@theme` |
-| PostCSS plugin | Oxide engine (10× faster) |
+| PostCSS plugin | Oxide engine (10Ã— faster) |
 | JIT mode | Native, always-on |
 
 ---
 
-## Core Patterns (4 — Fixed)
+## Core Patterns (4 â€” Fixed)
 
 ### Theme (CSS-First)
 ```css
@@ -77,7 +77,7 @@ metadata:
 
 ---
 
-## Layout Patterns (4 — Deterministic)
+## Layout Patterns (4 â€” Deterministic)
 
 | Pattern | Classes |
 |---------|---------|
@@ -113,7 +113,7 @@ metadata:
 
 ## Anti-Patterns
 
-| ❌ Don't | ✅ Do |
+| âŒ Don't | âœ… Do |
 |---------|-------|
 | Arbitrary values everywhere | Use design system scale |
 | `!important` | Fix specificity |
@@ -123,18 +123,18 @@ metadata:
 
 ---
 
-## 📑 Content Map
+## ðŸ“‘ Content Map
 
 | File | Description | When to Read |
 |------|-------------|--------------|
-| [v4-config.md](references/v4-config.md) | Full v4 configuration | New project setup |
-| [responsive.md](references/responsive.md) | Breakpoints + container queries | Responsive design |
-| [components.md](references/components.md) | Component extraction | Component patterns |
-| [engineering-spec.md](references/engineering-spec.md) | Full spec | Architecture review |
+| [v4-config.md](rules/v4-config.md) | Full v4 configuration | New project setup |
+| [responsive.md](rules/responsive.md) | Breakpoints + container queries | Responsive design |
+| [components.md](rules/components.md) | Component extraction | Component patterns |
+| [engineering-spec.md](rules/engineering-spec.md) | Full spec | Architecture review |
 
 ---
 
-## 🔗 Related
+## ðŸ”— Related
 
 | Item | Type | Purpose |
 |------|------|---------|
@@ -144,4 +144,4 @@ metadata:
 
 ---
 
-⚡ PikaKit v3.9.105
+âš¡ PikaKit v3.9.105

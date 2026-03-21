@@ -1,6 +1,6 @@
 ﻿# agent-browser — Full Reference Guide
 
-> **Compiled from SKILL.md + references/ for AI agent consumption.**
+> **Compiled from SKILL.md + rules/ for AI agent consumption.**
 
 ---
 
@@ -167,7 +167,7 @@ agent-browser fill @e2 "email@example.com"
 
 | File | Description | When to Read |
 |------|-------------|--------------| 
-| [engineering-spec.md](references/engineering-spec.md) | Full engineering spec: contracts, security, scalability, observability, failure model | Architecture review, integration design, production deployment |
+| [engineering-spec.md](rules/engineering-spec.md) | Full engineering spec: contracts, security, scalability, observability, failure model | Architecture review, integration design, production deployment |
 
 ---
 
@@ -654,14 +654,14 @@ Blocked protocols return `ERR_INVALID_URL`.
 | Requirement | Status | Evidence |
 |-------------|--------|----------|
 | YAML frontmatter complete | âœ… | name, description, metadata with category, version, triggers, coordinates_with, success_metrics |
-| SKILL.md < 200 lines | âœ… | Entry point SKILL.md under 200 lines; details in references/ |
+| SKILL.md < 200 lines | âœ… | Entry point SKILL.md under 200 lines; details in rules/ |
 | Prerequisites documented | âœ… | Node.js 18+, Playwright, optional Browserbase |
 | When to Use section | âœ… | Decision matrix vs chrome-devtools |
 | Quick Reference with commands | âœ… | 4-step workflow with copy-paste commands |
 | Core content matches skill type | âœ… | Automation type: commands table, @ref system, execution model |
 | Troubleshooting section | âœ… | Problem/solution table |
 | Related section | âœ… | Cross-links to e2e-automation, chrome-devtools, test-architect |
-| Content Map for multi-file | âœ… | Links to references/engineering-spec.md |
+| Content Map for multi-file | âœ… | Links to rules/engineering-spec.md |
 | Contract versioning | âœ… | contract_version, backward_compatibility, breaking_changes |
 | Compliance matrix structured | âœ… | This table with âœ…/âŒ + evidence |
 

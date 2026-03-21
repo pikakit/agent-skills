@@ -1,27 +1,27 @@
----
+﻿---
 name: cicd-pipeline
 description: >-
   Production deployment principles and decision-making. Safe deployment workflows,
-  rollback strategies. 5-phase lifecycle: Prepare → Backup → Deploy → Verify → Confirm.
+  rollback strategies. 5-phase lifecycle: Prepare â†’ Backup â†’ Deploy â†’ Verify â†’ Confirm.
   Triggers on: deploy, deployment, CI/CD, pipeline, rollback, release.
   Coordinates with: git-workflow, security-scanner, feature-flags.
 metadata:
   version: "2.0.0"
   category: "devops"
   triggers: "deploy, CI/CD, pipeline, rollback, release"
-  success_metrics: "zero-downtime deploy, rollback ≤ 5min, 15min post-deploy monitoring"
+  success_metrics: "zero-downtime deploy, rollback â‰¤ 5min, 15min post-deploy monitoring"
   coordinates_with: "git-workflow, security-scanner, feature-flags"
 ---
 
 # CI/CD Pipeline
 
-> Safe production deployment. 5-phase lifecycle. Rollback ≤ 5 minutes. Zero downtime.
+> Safe production deployment. 5-phase lifecycle. Rollback â‰¤ 5 minutes. Zero downtime.
 
 ---
 
 ## Prerequisites
 
-**Required:** None — CI/CD Pipeline is a knowledge-based skill with no external dependencies.
+**Required:** None â€” CI/CD Pipeline is a knowledge-based skill with no external dependencies.
 
 **Optional:**
 - `security-scanner` skill (pre-deploy security scan)
@@ -39,7 +39,7 @@ metadata:
 | Choosing deployment platform | Check platform selection table |
 | Scheduled release | Use pre-deploy checklist |
 | High-risk change | Use blue-green or canary strategy |
-| Architecture review | Read `references/engineering-spec.md` |
+| Architecture review | Read `rules/engineering-spec.md` |
 
 **Selective Reading Rule:** Read ONLY the reference file matching the current request.
 
@@ -49,11 +49,11 @@ metadata:
 
 | Owned by This Skill | NOT Owned |
 |---------------------|-----------|
-| Deployment strategy selection (rolling/blue-green/canary) | CI/CD tool configuration (→ implementation) |
-| Platform selection per project type | Docker/K8s YAML generation (→ server-ops) |
-| Rollback procedures per platform | Security scanning execution (→ security-scanner) |
-| Pre-deploy validation checklist | Git workflow management (→ git-workflow) |
-| Post-deploy monitoring plan | Infrastructure provisioning (→ server-ops) |
+| Deployment strategy selection (rolling/blue-green/canary) | CI/CD tool configuration (â†’ implementation) |
+| Platform selection per project type | Docker/K8s YAML generation (â†’ server-ops) |
+| Rollback procedures per platform | Security scanning execution (â†’ security-scanner) |
+| Pre-deploy validation checklist | Git workflow management (â†’ git-workflow) |
+| Post-deploy monitoring plan | Infrastructure provisioning (â†’ server-ops) |
 
 **Pure decision skill:** Produces deployment plans and runbooks. Zero side effects.
 
@@ -63,11 +63,11 @@ metadata:
 
 | Phase | Actions | Duration |
 |-------|---------|----------|
-| **1. Prepare** | Tests pass, build succeeds, env vars verified, security scan | 5–15 min |
-| **2. Backup** | Save current state, tag current release | 1–5 min |
-| **3. Deploy** | Execute deployment with active monitoring | 2–10 min |
-| **4. Verify** | Health checks, log inspection, key user flows | 5–15 min |
-| **5. Confirm** | All criteria met → confirm; any failure → rollback | 1 min |
+| **1. Prepare** | Tests pass, build succeeds, env vars verified, security scan | 5â€“15 min |
+| **2. Backup** | Save current state, tag current release | 1â€“5 min |
+| **3. Deploy** | Execute deployment with active monitoring | 2â€“10 min |
+| **4. Verify** | Health checks, log inspection, key user flows | 5â€“15 min |
+| **5. Confirm** | All criteria met â†’ confirm; any failure â†’ rollback | 1 min |
 
 **Pipeline is sequential.** Each phase completes before the next begins.
 
@@ -79,7 +79,7 @@ metadata:
 |----------|-----------|----------|
 | **Rolling** | Low | Standard feature release, stateless services |
 | **Blue-Green** | High | Breaking changes, database migrations, compliance |
-| **Canary** | Medium–High | Need real traffic validation before full rollout |
+| **Canary** | Mediumâ€“High | Need real traffic validation before full rollout |
 
 ---
 
@@ -92,7 +92,7 @@ metadata:
 | VPS | PM2, Docker | Restore backup / previous image tag |
 | Microservices | Kubernetes | `kubectl rollout undo` |
 
-**Rollback target:** ≤ 5 minutes for all platforms.
+**Rollback target:** â‰¤ 5 minutes for all platforms.
 
 ---
 
@@ -118,7 +118,7 @@ metadata:
 - [ ] All tests passing (unit + integration + E2E)
 - [ ] Code reviewed and approved
 - [ ] Production build succeeds with zero errors
-- [ ] Environment variables verified (staging → production diff)
+- [ ] Environment variables verified (staging â†’ production diff)
 - [ ] Rollback plan documented and tested
 - [ ] Team notified of deployment window
 
@@ -126,29 +126,29 @@ metadata:
 
 ## Anti-Patterns
 
-| ❌ Don't | ✅ Do |
+| âŒ Don't | âœ… Do |
 |---------|-------|
-| Deploy on Friday | Deploy early in week (Mon–Wed) |
+| Deploy on Friday | Deploy early in week (Monâ€“Wed) |
 | Skip staging validation | Always test in staging first |
-| Walk away after deploy | Monitor actively for ≥ 15 minutes |
+| Walk away after deploy | Monitor actively for â‰¥ 15 minutes |
 | Bundle multiple changes | One logical change per deployment |
 | Rollback without plan | Document rollback before deploying |
-| Deploy security patches slowly | Hotfix path: test → deploy → verify in < 1 hour |
+| Deploy security patches slowly | Hotfix path: test â†’ deploy â†’ verify in < 1 hour |
 
 ---
 
-## 📑 Content Map
+## ðŸ“‘ Content Map
 
 | File | Description | When to Read |
 |------|-------------|--------------|
-| [deployment-platforms.md](references/deployment-platforms.md) | Platform-specific deployment patterns | Choosing platform |
-| [emergency-procedures.md](references/emergency-procedures.md) | Incident response runbooks | Production incidents |
-| [engineering-spec.md](references/engineering-spec.md) | Full engineering spec: contracts, security, scalability | Architecture review |
+| [deployment-platforms.md](rules/deployment-platforms.md) | Platform-specific deployment patterns | Choosing platform |
+| [emergency-procedures.md](rules/emergency-procedures.md) | Incident response runbooks | Production incidents |
+| [engineering-spec.md](rules/engineering-spec.md) | Full engineering spec: contracts, security, scalability | Architecture review |
 | [scripts/](scripts/) | Deployment helper scripts | Script execution |
 
 ---
 
-## 🔗 Related
+## ðŸ”— Related
 
 | Item | Type | Purpose |
 |------|------|---------|
@@ -161,4 +161,4 @@ metadata:
 
 ---
 
-⚡ PikaKit v3.9.105
+âš¡ PikaKit v3.9.105

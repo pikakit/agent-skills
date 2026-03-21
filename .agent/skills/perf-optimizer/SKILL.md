@@ -1,4 +1,4 @@
----
+﻿---
 name: perf-optimizer
 description: >-
   Performance profiling principles. Core Web Vitals, bundle analysis, runtime profiling.
@@ -12,7 +12,7 @@ metadata:
   coordinates_with: "e2e-automation, web-core"
 ---
 
-# Performance Profiler — Core Web Vitals & Profiling
+# Performance Profiler â€” Core Web Vitals & Profiling
 
 > Measure first. Profile second. Fix third. Validate last.
 
@@ -35,7 +35,7 @@ metadata:
 | Owned by This Skill | NOT Owned |
 |---------------------|-----------|
 | Core Web Vitals targets | Measurement execution |
-| Tool selection (symptom → tool) | Tool installation |
+| Tool selection (symptom â†’ tool) | Tool installation |
 | Bundle analysis guidance | Bundle build |
 | Quick win prioritization | Code modification |
 
@@ -62,10 +62,10 @@ metadata:
 ## 4-Step Profiling Workflow (Fixed)
 
 ```
-1. BASELINE  → Measure current state
-2. IDENTIFY  → Find the bottleneck
-3. FIX       → Make targeted change
-4. VALIDATE  → Confirm improvement
+1. BASELINE  â†’ Measure current state
+2. IDENTIFY  â†’ Find the bottleneck
+3. FIX       â†’ Make targeted change
+4. VALIDATE  â†’ Confirm improvement
 ```
 
 ---
@@ -82,7 +82,7 @@ metadata:
 
 ---
 
-## Bundle Analysis (4 Issues → 4 Actions)
+## Bundle Analysis (4 Issues â†’ 4 Actions)
 
 | Issue | Indicator | Action |
 |-------|-----------|--------|
@@ -131,7 +131,7 @@ metadata:
 
 ## Anti-Patterns
 
-| ❌ Don't | ✅ Do |
+| âŒ Don't | âœ… Do |
 |---------|-------|
 | Guess at bottlenecks | Profile first, then fix |
 | Micro-adjust non-critical paths | Fix the biggest issue |
@@ -140,17 +140,17 @@ metadata:
 
 ---
 
-## 📑 Content Map
+## ðŸ“‘ Content Map
 
 | File | Description | When to Read |
 |------|-------------|--------------|
 | [backend-patterns.md](backend-patterns.md) | N+1, caching, DB tuning | Backend performance |
 | [scripts/lighthouse_audit.js](scripts/lighthouse_audit.js) | Lighthouse runner | Automated audit |
-| [engineering-spec.md](references/engineering-spec.md) | Full spec | Architecture review |
+| [engineering-spec.md](rules/engineering-spec.md) | Full spec | Architecture review |
 
 ---
 
-## 🔗 Related
+## ðŸ”— Related
 
 | Item | Type | Purpose |
 |------|------|---------|
@@ -159,4 +159,4 @@ metadata:
 
 ---
 
-⚡ PikaKit v3.9.105
+âš¡ PikaKit v3.9.105

@@ -1,4 +1,4 @@
----
+﻿---
 name: media-processing
 description: >-
   Process video, audio, image with FFmpeg, ImageMagick, RMBG.
@@ -12,7 +12,7 @@ metadata:
   coordinates_with: "perf-optimizer, studio"
 ---
 
-# Media Processing — FFmpeg + ImageMagick + RMBG
+# Media Processing â€” FFmpeg + ImageMagick + RMBG
 
 > 3 tools. Fixed CRF. Fixed JPEG quality. Destructive always flagged.
 
@@ -48,8 +48,8 @@ npm install -g rmbg-cli
 
 | Owned by This Skill | NOT Owned |
 |---------------------|-----------|
-| Tool selection (3 tools) | Performance profiling (→ perf-optimizer) |
-| Command generation | Design assets (→ studio) |
+| Tool selection (3 tools) | Performance profiling (â†’ perf-optimizer) |
+| Command generation | Design assets (â†’ studio) |
 | Quality parameter guidance | Tool installation |
 | Destructive warnings | Command execution |
 
@@ -101,13 +101,13 @@ magick input.jpg -resize 800x600 output.jpg
 # Compress JPEG (quality 85, strip EXIF)
 magick input.jpg -quality 85 -strip output.jpg
 
-# ⚠️ Batch resize (DESTRUCTIVE — modifies in-place)
+# âš ï¸ Batch resize (DESTRUCTIVE â€” modifies in-place)
 mogrify -resize 800x -quality 85 *.jpg
 ```
 
 **Default JPEG quality:** 85. **Always include:** `-strip` for EXIF removal.
 
-**⚠️ mogrify:** Always backup first. Test on single file before batch.
+**âš ï¸ mogrify:** Always backup first. Test on single file before batch.
 
 ---
 
@@ -144,7 +144,7 @@ rmbg input.jpg -m briaai -o output.png   # Highest quality
 
 ## Anti-Patterns
 
-| ❌ Don't | ✅ Do |
+| âŒ Don't | âœ… Do |
 |---------|-------|
 | Use mogrify without backup | Backup originals first |
 | Skip `-movflags +faststart` for MP4 | Always include for web |
@@ -154,17 +154,17 @@ rmbg input.jpg -m briaai -o output.png   # Highest quality
 
 ---
 
-## 📑 Content Map
+## ðŸ“‘ Content Map
 
 | File | Description | When to Read |
 |------|-------------|--------------|
 | [convert-video.js](scripts/convert-video.js) | FFmpeg video converter CLI | Video conversion |
 | [optimize-image.js](scripts/optimize-image.js) | ImageMagick image optimizer CLI | Image optimization |
-| [engineering-spec.md](references/engineering-spec.md) | Full engineering spec | Architecture review |
+| [engineering-spec.md](rules/engineering-spec.md) | Full engineering spec | Architecture review |
 
 ---
 
-## 🔗 Related
+## ðŸ”— Related
 
 | Item | Type | Purpose |
 |------|------|---------|
@@ -173,4 +173,4 @@ rmbg input.jpg -m briaai -o output.png   # Highest quality
 
 ---
 
-⚡ PikaKit v3.9.105
+âš¡ PikaKit v3.9.105

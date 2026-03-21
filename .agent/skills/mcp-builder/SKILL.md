@@ -1,4 +1,4 @@
----
+﻿---
 name: mcp-builder
 description: >-
   Complete guide for building MCP servers for AI agents. Includes design principles,
@@ -13,7 +13,7 @@ metadata:
   coordinates_with: "api-architect, typescript-expert, mcp-management"
 ---
 
-# MCP Builder — Build MCP Servers for AI Agents
+# MCP Builder â€” Build MCP Servers for AI Agents
 
 > 4 phases. Workflow over endpoints. 10-question evaluation. Context-aware output.
 
@@ -33,7 +33,7 @@ metadata:
 | Choose framework | Python FastMCP vs TypeScript MCP SDK |
 | Review MCP server quality | Use review checklist (4 items) |
 | Test MCP server | Create 10 evaluation questions |
-| Learn MCP design | Read `references/design-principles.md` |
+| Learn MCP design | Read `rules/design-principles.md` |
 
 ---
 
@@ -41,9 +41,9 @@ metadata:
 
 | Owned by This Skill | NOT Owned |
 |---------------------|-----------|
-| 4-phase build process | MCP tool discovery (→ mcp-management) |
-| Framework selection (2 options) | API design (→ api-architect) |
-| Review checklist (4 items) | TypeScript patterns (→ typescript-expert) |
+| 4-phase build process | MCP tool discovery (â†’ mcp-management) |
+| Framework selection (2 options) | API design (â†’ api-architect) |
+| Review checklist (4 items) | TypeScript patterns (â†’ typescript-expert) |
 | Evaluation framework (10 questions) | Server hosting/deployment |
 
 **Expert decision skill:** Produces build guidance. Does not create files or run code.
@@ -128,7 +128,7 @@ Create 10 test questions that are:
 
 ## Anti-Patterns
 
-| ❌ Don't | ✅ Do |
+| âŒ Don't | âœ… Do |
 |---------|-------|
 | Mirror API endpoints as tools | Design workflow-oriented tools |
 | Skip evaluation phase | Create 10 test questions |
@@ -138,23 +138,23 @@ Create 10 test questions that are:
 
 ---
 
-## 📑 Content Map
+## ðŸ“‘ Content Map
 
 | File | Description | When to Read |
 |------|-------------|--------------|
-| [design-principles.md](references/design-principles.md) | Core MCP concepts | Phase 1 (Research) |
-| [quickstart.md](references/quickstart.md) | Getting started | Phase 2 (Implement) |
-| [python-implementation.md](references/python-implementation.md) | Python patterns | Python selected |
-| [typescript-implementation.md](references/typescript-implementation.md) | TypeScript patterns | TypeScript selected |
-| [best-practices.md](references/best-practices.md) | Design decisions | Phase 3 (Review) |
-| [evaluation.md](references/evaluation.md) | Testing framework | Phase 4 (Evaluate) |
-| [engineering-spec.md](references/engineering-spec.md) | Full engineering spec | Architecture review |
+| [design-principles.md](rules/design-principles.md) | Core MCP concepts | Phase 1 (Research) |
+| [quickstart.md](rules/quickstart.md) | Getting started | Phase 2 (Implement) |
+| [python-implementation.md](rules/python-implementation.md) | Python patterns | Python selected |
+| [typescript-implementation.md](rules/typescript-implementation.md) | TypeScript patterns | TypeScript selected |
+| [best-practices.md](rules/best-practices.md) | Design decisions | Phase 3 (Review) |
+| [evaluation.md](rules/evaluation.md) | Testing framework | Phase 4 (Evaluate) |
+| [engineering-spec.md](rules/engineering-spec.md) | Full engineering spec | Architecture review |
 
 **Selective reading:** Read ONLY files relevant to the current phase.
 
 ---
 
-## 🔗 Related
+## ðŸ”— Related
 
 | Item | Type | Purpose |
 |------|------|---------|
@@ -164,4 +164,4 @@ Create 10 test questions that are:
 
 ---
 
-⚡ PikaKit v3.9.105
+âš¡ PikaKit v3.9.105

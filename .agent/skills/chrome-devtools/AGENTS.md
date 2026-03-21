@@ -1,6 +1,6 @@
 ﻿# chrome-devtools — Full Reference Guide
 
-> **Compiled from SKILL.md + references/ for AI agent consumption.**
+> **Compiled from SKILL.md + rules/ for AI agent consumption.**
 
 ---
 
@@ -132,10 +132,10 @@ node navigate.js --close true
 
 | File | Description | When to Read |
 |------|-------------|--------------|
-| [scripts-guide.md](references/scripts-guide.md) | Complete script reference with all options | Detailed script usage |
-| [aria-snapshot.md](references/aria-snapshot.md) | ARIA tree format and usage | Element discovery |
+| [scripts-guide.md](rules/scripts-guide.md) | Complete script reference with all options | Detailed script usage |
+| [aria-snapshot.md](rules/aria-snapshot.md) | ARIA tree format and usage | Element discovery |
 | [scripts/](scripts/) | Puppeteer CLI scripts | Script execution |
-| [engineering-spec.md](references/engineering-spec.md) | Full engineering spec: contracts, security, scalability | Architecture review |
+| [engineering-spec.md](rules/engineering-spec.md) | Full engineering spec: contracts, security, scalability | Architecture review |
 
 ---
 

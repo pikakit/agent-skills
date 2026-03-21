@@ -1,4 +1,4 @@
----
+﻿---
 name: mobile-design
 description: >-
   Mobile-first design and engineering doctrine for iOS and Android apps.
@@ -13,9 +13,9 @@ metadata:
   coordinates_with: "mobile-first, mobile-developer, design-system"
 ---
 
-# Mobile Design — Mobile-First Design Doctrine
+# Mobile Design â€” Mobile-First Design Doctrine
 
-> Touch-first. Platform-respectful. MFRI scored. 44×44pt / 48×48dp minimum.
+> Touch-first. Platform-respectful. MFRI scored. 44Ã—44pt / 48Ã—48dp minimum.
 
 **Core Law:** Mobile is NOT a small desktop.
 
@@ -36,10 +36,10 @@ metadata:
 
 | Owned by This Skill | NOT Owned |
 |---------------------|-----------|
-| MFRI scoring (5 dimensions) | Mobile orchestration (→ mobile-first) |
-| Platform guidelines (iOS/Android) | Mobile implementation (→ mobile-developer) |
-| Touch target standards | Design system components (→ design-system) |
-| Typography routing (SF Pro/Roboto) | API design (→ api-architect) |
+| MFRI scoring (5 dimensions) | Mobile orchestration (â†’ mobile-first) |
+| Platform guidelines (iOS/Android) | Mobile implementation (â†’ mobile-developer) |
+| Touch target standards | Design system components (â†’ design-system) |
+| Typography routing (SF Pro/Roboto) | API design (â†’ api-architect) |
 
 **Expert decision skill:** Produces design decisions. Does not write code or create components.
 
@@ -69,10 +69,10 @@ metadata:
 
 | Score | Action |
 |-------|--------|
-| 6-10 | ✅ Safe — proceed |
-| 3-5 | ⚠️ Add validation |
-| 0-2 | 🔴 Simplify first |
-| < 0 | ❌ Redesign required |
+| 6-10 | âœ… Safe â€” proceed |
+| 3-5 | âš ï¸ Add validation |
+| 0-2 | ðŸ”´ Simplify first |
+| < 0 | âŒ Redesign required |
 
 ---
 
@@ -91,8 +91,8 @@ metadata:
 
 | Standard | Minimum |
 |----------|---------|
-| **iOS** | 44×44 pt |
-| **Android** | 48×48 dp |
+| **iOS** | 44Ã—44 pt |
+| **Android** | 48Ã—48 dp |
 | **Spacing** | 8dp between targets |
 
 ---
@@ -100,7 +100,7 @@ metadata:
 ## Core Philosophy (Fixed Order)
 
 ```
-Touch-first → Battery-conscious → Platform-respectful → Offline-capable
+Touch-first â†’ Battery-conscious â†’ Platform-respectful â†’ Offline-capable
 ```
 
 ---
@@ -120,40 +120,40 @@ Touch-first → Battery-conscious → Platform-respectful → Offline-capable
 
 ## Anti-Patterns
 
-| ❌ Don't | ✅ Do |
+| âŒ Don't | âœ… Do |
 |---------|-------|
 | Apply desktop patterns | Touch-first design |
 | Use hover states | Tap and press states |
-| Small tap targets | 44×44pt (iOS) / 48×48dp (Android) |
+| Small tap targets | 44Ã—44pt (iOS) / 48Ã—48dp (Android) |
 | Assume network | Design for offline |
 | Mix platform conventions | Respect iOS HIG / Material Design |
 
 ---
 
-## 📑 Content Map
+## ðŸ“‘ Content Map
 
 | File | Description | When to Read |
 |------|-------------|--------------|
-| [platform-ios.md](references/platform-ios.md) | iOS HIG guidelines | iOS design |
-| [platform-android.md](references/platform-android.md) | Material Design guidelines | Android design |
-| [touch-psychology.md](references/touch-psychology.md) | Touch interaction patterns | Touch UX |
-| [mobile-navigation.md](references/mobile-navigation.md) | Navigation patterns | Nav decisions |
-| [mobile-typography.md](references/mobile-typography.md) | Typography systems | Font selection |
-| [mobile-color-system.md](references/mobile-color-system.md) | Color palettes | Color decisions |
-| [mobile-performance.md](references/mobile-performance.md) | Performance guidelines | Perf concerns |
-| [mobile-testing.md](references/mobile-testing.md) | Testing strategies | QA planning |
-| [mobile-debugging.md](references/mobile-debugging.md) | Debugging patterns | Bug fixing |
-| [mobile-backend.md](references/mobile-backend.md) | Backend integration | API decisions |
-| [mobile-design-thinking.md](references/mobile-design-thinking.md) | Design methodology | Design process |
-| [decision-trees.md](references/decision-trees.md) | Decision frameworks | Complex decisions |
+| [platform-ios.md](rules/platform-ios.md) | iOS HIG guidelines | iOS design |
+| [platform-android.md](rules/platform-android.md) | Material Design guidelines | Android design |
+| [touch-psychology.md](rules/touch-psychology.md) | Touch interaction patterns | Touch UX |
+| [mobile-navigation.md](rules/mobile-navigation.md) | Navigation patterns | Nav decisions |
+| [mobile-typography.md](rules/mobile-typography.md) | Typography systems | Font selection |
+| [mobile-color-system.md](rules/mobile-color-system.md) | Color palettes | Color decisions |
+| [mobile-performance.md](rules/mobile-performance.md) | Performance guidelines | Perf concerns |
+| [mobile-testing.md](rules/mobile-testing.md) | Testing strategies | QA planning |
+| [mobile-debugging.md](rules/mobile-debugging.md) | Debugging patterns | Bug fixing |
+| [mobile-backend.md](rules/mobile-backend.md) | Backend integration | API decisions |
+| [mobile-design-thinking.md](rules/mobile-design-thinking.md) | Design methodology | Design process |
+| [decision-trees.md](rules/decision-trees.md) | Decision frameworks | Complex decisions |
 | [mobile_audit.js](scripts/mobile_audit.js) | Mobile design audit CLI | Design audit |
-| [engineering-spec.md](references/engineering-spec.md) | Full engineering spec | Architecture review |
+| [engineering-spec.md](rules/engineering-spec.md) | Full engineering spec | Architecture review |
 
 **Selective reading:** Read ONLY files relevant to current design question.
 
 ---
 
-## 🔗 Related
+## ðŸ”— Related
 
 | Item | Type | Purpose |
 |------|------|---------|
@@ -163,4 +163,4 @@ Touch-first → Battery-conscious → Platform-respectful → Offline-capable
 
 ---
 
-⚡ PikaKit v3.9.105
+âš¡ PikaKit v3.9.105

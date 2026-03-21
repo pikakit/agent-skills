@@ -1,4 +1,4 @@
----
+﻿---
 name: server-ops
 description: >-
   Server management principles and decision-making. Process management, monitoring strategy, scaling decisions.
@@ -12,7 +12,7 @@ metadata:
   coordinates_with: "cicd-pipeline, security-scanner"
 ---
 
-# Server Ops — Production Server Management
+# Server Ops â€” Production Server Management
 
 > Boring servers = well-managed servers. Auto-restart. Monitor day one. Rotate logs.
 
@@ -33,9 +33,9 @@ metadata:
 
 | Owned by This Skill | NOT Owned |
 |---------------------|-----------|
-| Process manager selection (4 tools) | CI/CD pipelines (→ cicd-pipeline) |
-| Monitoring strategy (4 categories) | Observability instrumentation (→ observability) |
-| Scaling decisions (3 strategies) | Security scanning (→ security-scanner) |
+| Process manager selection (4 tools) | CI/CD pipelines (â†’ cicd-pipeline) |
+| Monitoring strategy (4 categories) | Observability instrumentation (â†’ observability) |
+| Scaling decisions (3 strategies) | Security scanning (â†’ security-scanner) |
 | Health check design | Command execution |
 
 **Expert decision skill:** Produces management recommendations. Does not execute commands.
@@ -55,7 +55,7 @@ metadata:
 
 ---
 
-## Monitoring Strategy (4 Categories × 3 Levels)
+## Monitoring Strategy (4 Categories Ã— 3 Levels)
 
 | Category | Key Metrics |
 |----------|------------|
@@ -114,11 +114,11 @@ Route by load balancer needs.
 
 ## 5-Step Troubleshooting (Fixed Priority)
 
-1. **Process status** — Is it running?
-2. **Logs** — Error messages?
-3. **Resources** — Disk, memory, CPU?
-4. **Network** — Ports, DNS?
-5. **Dependencies** — Database, APIs?
+1. **Process status** â€” Is it running?
+2. **Logs** â€” Error messages?
+3. **Resources** â€” Disk, memory, CPU?
+4. **Network** â€” Ports, DNS?
+5. **Dependencies** â€” Database, APIs?
 
 ---
 
@@ -137,7 +137,7 @@ Route by load balancer needs.
 
 ## Anti-Patterns
 
-| ❌ Don't | ✅ Do |
+| âŒ Don't | âœ… Do |
 |---------|-------|
 | Run as root | Use non-root user |
 | Ignore logs | Set up log rotation |
@@ -147,15 +147,15 @@ Route by load balancer needs.
 
 ---
 
-## 📑 Content Map
+## ðŸ“‘ Content Map
 
 | File | Description | When to Read |
 |------|-------------|--------------|
-| [engineering-spec.md](references/engineering-spec.md) | Full spec | Architecture review |
+| [engineering-spec.md](rules/engineering-spec.md) | Full spec | Architecture review |
 
 ---
 
-## 🔗 Related
+## ðŸ”— Related
 
 | Item | Type | Purpose |
 |------|------|---------|
@@ -165,4 +165,4 @@ Route by load balancer needs.
 
 ---
 
-⚡ PikaKit v3.9.105
+âš¡ PikaKit v3.9.105

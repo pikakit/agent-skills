@@ -1,4 +1,4 @@
----
+﻿---
 name: auto-learned
 description: >-
   Hierarchical skill containing all auto-learned patterns from IDE errors
@@ -16,7 +16,7 @@ metadata:
   hierarchical: true
 ---
 
-# Auto-Learned — Pattern Repository
+# Auto-Learned â€” Pattern Repository
 
 > Living repository of patterns learned from IDE errors. Append-only. Agents read to prevent; agents write to record.
 
@@ -24,7 +24,7 @@ metadata:
 
 ## Prerequisites
 
-**Required:** None — patterns are stored as local markdown and JSON files.
+**Required:** None â€” patterns are stored as local markdown and JSON files.
 
 **Write access:** Restricted to authorized agents: `problem-checker`, `auto-learner`, `skill-generator`.
 
@@ -47,10 +47,10 @@ metadata:
 
 | Owned by This Skill | NOT Owned |
 |---------------------|-----------|
-| Pattern storage (categorized markdown) | Error detection (→ problem-checker) |
-| Pattern lookup by category + context | Pattern extraction (→ auto-learner) |
-| JSON index maintenance (patterns.json) | Skill generation from patterns (→ skill-generator) |
-| Deduplication on ingest | Dashboard rendering (→ external tooling) |
+| Pattern storage (categorized markdown) | Error detection (â†’ problem-checker) |
+| Pattern lookup by category + context | Pattern extraction (â†’ auto-learner) |
+| JSON index maintenance (patterns.json) | Skill generation from patterns (â†’ skill-generator) |
+| Deduplication on ingest | Dashboard rendering (â†’ external tooling) |
 
 **Writable skill:** Authorized agents write patterns into `patterns/*.md` and update `patterns.json`. The skill is read-only when consulted by other agents.
 
@@ -58,7 +58,7 @@ metadata:
 
 ## Execution Model
 
-### Lookup (Read) — 3 Phases
+### Lookup (Read) â€” 3 Phases
 
 | Phase | Action | Side Effects |
 |-------|--------|-------------|
@@ -66,7 +66,7 @@ metadata:
 | **Search** | Read category file(s), match error signature | None |
 | **Emit** | Return matches sorted by occurrence count | None |
 
-### Ingest (Write) — 4 Phases
+### Ingest (Write) â€” 4 Phases
 
 | Phase | Action | Side Effects |
 |-------|--------|-------------|
@@ -118,7 +118,7 @@ All phases synchronous. Append-only writes. Deduplication returns `duplicate: tr
 
 ---
 
-## 📑 Content Map
+## ðŸ“‘ Content Map
 
 | File | Description | When to Read |
 |------|-------------|--------------|
@@ -129,23 +129,23 @@ All phases synchronous. Append-only writes. Deduplication returns `duplicate: tr
 | [patterns/style-patterns.md](patterns/style-patterns.md) | Code style patterns | Style issues |
 | [patterns.json](patterns.json) | JSON index of all patterns | Dashboard, statistics |
 | [config.json](config.json) | Auto-learn configuration | Settings review |
-| [engineering-spec.md](references/engineering-spec.md) | Full engineering spec: contracts, security, scalability | Architecture review |
+| [engineering-spec.md](rules/engineering-spec.md) | Full engineering spec: contracts, security, scalability | Architecture review |
 
 ---
 
 ## Anti-Patterns
 
-| ❌ Don't | ✅ Do |
+| âŒ Don't | âœ… Do |
 |---------|-------|
 | Ignore pattern matches before coding | Always check relevant category before writing code |
 | Apply low-confidence patterns blindly | Verify solution in pattern context matches current context |
-| Write patterns from unauthorized agents | Only use problem-checker → auto-learner → skill-generator pipeline |
+| Write patterns from unauthorized agents | Only use problem-checker â†’ auto-learner â†’ skill-generator pipeline |
 | Edit patterns.json directly | Let ingest update JSON automatically |
 | Delete patterns without user approval | Patterns are append-only; deletion requires explicit approval |
 
 ---
 
-## 🔗 Related
+## ðŸ”— Related
 
 | Item | Type | Purpose |
 |------|------|---------|
@@ -155,4 +155,4 @@ All phases synchronous. Append-only writes. Deduplication returns `duplicate: tr
 
 ---
 
-⚡ PikaKit v3.9.105
+âš¡ PikaKit v3.9.105

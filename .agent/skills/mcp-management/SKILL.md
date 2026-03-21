@@ -1,4 +1,4 @@
----
+﻿---
 name: mcp-management
 description: >-
   Discover, analyze, and execute tools from configured MCP servers.
@@ -13,7 +13,7 @@ metadata:
   coordinates_with: "mcp-builder, mcp-server"
 ---
 
-# MCP Management — Tool Discovery, Routing & Execution
+# MCP Management â€” Tool Discovery, Routing & Execution
 
 > Progressive disclosure. 3 execution methods. Structured JSON. Never `-p` flag.
 
@@ -41,7 +41,7 @@ metadata:
 
 | Owned by This Skill | NOT Owned |
 |---------------------|-----------|
-| Tool discovery (list-tools/prompts/resources) | MCP server development (→ mcp-builder) |
+| Tool discovery (list-tools/prompts/resources) | MCP server development (â†’ mcp-builder) |
 | 3 execution methods + fallback | Server hosting |
 | Multi-server routing from .mcp.json | Tool implementation |
 | Structured JSON response format | Server-side authorization |
@@ -58,21 +58,21 @@ metadata:
 | 2 (Secondary) | Direct CLI | `npx tsx cli.ts call-tool <server> <tool> '<json>'` |
 | 3 (Fallback) | Subagent | Delegate to mcp-manager |
 
-**⚠️ Gemini CLI:** Always stdin pipe. Never `-p` flag (skips MCP init).
+**âš ï¸ Gemini CLI:** Always stdin pipe. Never `-p` flag (skips MCP init).
 
 ---
 
 ## State Transitions
 
 ```
-IDLE → DISCOVERING           [discover invoked]
-DISCOVERING → CATALOG_SAVED  [tools.json written]  // terminal
-IDLE → EXECUTING             [execute invoked]
-EXECUTING → RESULT_RECEIVED  [server responded]  // terminal
-EXECUTING → METHOD_FALLBACK  [method unavailable]
-METHOD_FALLBACK → RESULT_RECEIVED  [fallback succeeded]  // terminal
-METHOD_FALLBACK → ALL_METHODS_FAILED  [all 3 failed]  // terminal
-EXECUTING → SERVER_FAILED   [server error/timeout]  // terminal
+IDLE â†’ DISCOVERING           [discover invoked]
+DISCOVERING â†’ CATALOG_SAVED  [tools.json written]  // terminal
+IDLE â†’ EXECUTING             [execute invoked]
+EXECUTING â†’ RESULT_RECEIVED  [server responded]  // terminal
+EXECUTING â†’ METHOD_FALLBACK  [method unavailable]
+METHOD_FALLBACK â†’ RESULT_RECEIVED  [fallback succeeded]  // terminal
+METHOD_FALLBACK â†’ ALL_METHODS_FAILED  [all 3 failed]  // terminal
+EXECUTING â†’ SERVER_FAILED   [server error/timeout]  // terminal
 ```
 
 ---
@@ -95,7 +95,7 @@ EXECUTING → SERVER_FAILED   [server error/timeout]  // terminal
 ## Discovery Commands
 
 ```bash
-npx tsx cli.ts list-tools      # All tools → assets/tools.json
+npx tsx cli.ts list-tools      # All tools â†’ assets/tools.json
 npx tsx cli.ts list-prompts    # Available prompts
 npx tsx cli.ts list-resources  # Available resources
 ```
@@ -134,7 +134,7 @@ npx tsx cli.ts list-resources  # Available resources
 
 ## Anti-Patterns
 
-| ❌ Don't | ✅ Do |
+| âŒ Don't | âœ… Do |
 |---------|-------|
 | Use `gemini -p "..."` | Use `echo "..." \| gemini -y` |
 | Load all tools upfront | Progressive disclosure |
@@ -144,17 +144,17 @@ npx tsx cli.ts list-resources  # Available resources
 
 ---
 
-## 📑 Content Map
+## ðŸ“‘ Content Map
 
 | File | Description | When to Read |
 |------|-------------|--------------|
-| [protocol.md](references/protocol.md) | JSON-RPC protocol details | Protocol questions |
-| [cli-usage.md](references/cli-usage.md) | CLI commands and examples | CLI usage |
-| [engineering-spec.md](references/engineering-spec.md) | Full engineering spec | Architecture review |
+| [protocol.md](rules/protocol.md) | JSON-RPC protocol details | Protocol questions |
+| [cli-usage.md](rules/cli-usage.md) | CLI commands and examples | CLI usage |
+| [engineering-spec.md](rules/engineering-spec.md) | Full engineering spec | Architecture review |
 
 ---
 
-## 🔗 Related
+## ðŸ”— Related
 
 | Item | Type | Purpose |
 |------|------|---------|
@@ -162,4 +162,4 @@ npx tsx cli.ts list-resources  # Available resources
 
 ---
 
-⚡ PikaKit v3.9.105
+âš¡ PikaKit v3.9.105

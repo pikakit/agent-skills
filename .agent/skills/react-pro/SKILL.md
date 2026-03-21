@@ -1,4 +1,4 @@
----
+﻿---
 name: react-pro
 description: >-
   Modern React patterns, component architecture, state management, TypeScript best practices,
@@ -13,7 +13,7 @@ metadata:
   coordinates_with: "nextjs-pro, design-system, typescript-expert"
 ---
 
-# React Architect — Component & State Architecture
+# React Architect â€” Component & State Architecture
 
 > 4 component types. 4 state levels. Composition over inheritance. Profile before memoizing.
 
@@ -24,9 +24,9 @@ metadata:
 | Situation | Approach |
 |-----------|----------|
 | Component design | Check component type classification |
-| State management | Use complexity → solution routing |
+| State management | Use complexity â†’ solution routing |
 | Hook reuse | Check extraction criteria |
-| Performance issues | Use signal → action mapping |
+| Performance issues | Use signal â†’ action mapping |
 
 ---
 
@@ -34,16 +34,16 @@ metadata:
 
 | Owned by This Skill | NOT Owned |
 |---------------------|-----------|
-| Component classification (4 types) | Next.js patterns (→ nextjs-pro) |
-| State management routing (4 levels) | TypeScript patterns (→ typescript-expert) |
-| Hook extraction criteria | UI design (→ design-system) |
-| Performance signal→action | Code implementation |
+| Component classification (4 types) | Next.js patterns (â†’ nextjs-pro) |
+| State management routing (4 levels) | TypeScript patterns (â†’ typescript-expert) |
+| Hook extraction criteria | UI design (â†’ design-system) |
+| Performance signalâ†’action | Code implementation |
 
 **Expert decision skill:** Produces architecture decisions. Does not write code.
 
 ---
 
-## Component Types (4 — Deterministic)
+## Component Types (4 â€” Deterministic)
 
 | Type | Use For | State Model |
 |------|---------|-------------|
@@ -53,7 +53,7 @@ metadata:
 | **Container** | Logic/orchestration | Heavy state |
 
 **Design Rules:**
-- One responsibility per component (≤ 150 lines)
+- One responsibility per component (â‰¤ 150 lines)
 - Props down, events up
 - Composition over inheritance
 
@@ -99,7 +99,7 @@ metadata:
 
 ---
 
-## Performance Signals (4 — Fixed)
+## Performance Signals (4 â€” Fixed)
 
 | Signal | Action |
 |--------|--------|
@@ -124,26 +124,26 @@ metadata:
 
 ## Anti-Patterns
 
-| ❌ Don't | ✅ Do |
+| âŒ Don't | âœ… Do |
 |---------|-------|
 | Use global state for local concerns | Start with useState, escalate as needed |
 | Prop drill > 3 levels | Use Context or state library |
 | Memoize everything | Profile first, memoize measured bottlenecks |
 | Mix data fetching with UI | Separate server/container from presentational |
-| Create God components (> 300 lines) | Split into focused components (≤ 150 lines) |
+| Create God components (> 300 lines) | Split into focused components (â‰¤ 150 lines) |
 
 ---
 
-## 📑 Content Map
+## ðŸ“‘ Content Map
 
 | File | Description | When to Read |
 |------|-------------|--------------|
-| [patterns.md](references/patterns.md) | React 19, Composition, Performance, TypeScript, Testing | Advanced patterns |
-| [engineering-spec.md](references/engineering-spec.md) | Full spec | Architecture review |
+| [patterns.md](rules/patterns.md) | React 19, Composition, Performance, TypeScript, Testing | Advanced patterns |
+| [engineering-spec.md](rules/engineering-spec.md) | Full spec | Architecture review |
 
 ---
 
-## 🔗 Related
+## ðŸ”— Related
 
 | Item | Type | Purpose |
 |------|------|---------|
@@ -153,4 +153,4 @@ metadata:
 
 ---
 
-⚡ PikaKit v3.9.105
+âš¡ PikaKit v3.9.105

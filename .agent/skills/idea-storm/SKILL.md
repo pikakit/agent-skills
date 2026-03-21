@@ -1,4 +1,4 @@
----
+﻿---
 name: idea-storm
 description: >-
   Socratic questioning protocol + user communication. MANDATORY for complex requests,
@@ -9,19 +9,19 @@ metadata:
   version: "2.0.0"
   category: "planning"
   triggers: "brainstorm, requirements, clarify, unclear, complex, think"
-  success_metrics: "≥3 questions asked, 3 dimensions covered, gate passed"
+  success_metrics: "â‰¥3 questions asked, 3 dimensions covered, gate passed"
   coordinates_with: "project-planner, app-scaffold"
 ---
 
-# Idea Storm — Socratic Requirement Clarification
+# Idea Storm â€” Socratic Requirement Clarification
 
-> STOP → ASK ≥ 3 questions → WAIT for answers → then implement. Never skip the gate.
+> STOP â†’ ASK â‰¥ 3 questions â†’ WAIT for answers â†’ then implement. Never skip the gate.
 
 ---
 
 ## Prerequisites
 
-**Required:** None — protocol skill with no external dependencies.
+**Required:** None â€” protocol skill with no external dependencies.
 
 ---
 
@@ -29,10 +29,10 @@ metadata:
 
 | Situation | Action |
 |-----------|--------|
-| "Build/Create [thing]" without details | 🛑 ASK ≥ 3 questions |
-| Complex feature or architecture | 🛑 Clarify before implementing |
-| Update/change request | 🛑 Confirm scope |
-| Vague requirements | 🛑 Ask purpose, users, constraints |
+| "Build/Create [thing]" without details | ðŸ›‘ ASK â‰¥ 3 questions |
+| Complex feature or architecture | ðŸ›‘ Clarify before implementing |
+| Update/change request | ðŸ›‘ Confirm scope |
+| Vague requirements | ðŸ›‘ Ask purpose, users, constraints |
 | Simple, clear request | Skip gate; proceed directly |
 
 ---
@@ -41,29 +41,29 @@ metadata:
 
 | Owned by This Skill | NOT Owned |
 |---------------------|-----------|
-| 3-question gate (STOP → ASK → WAIT) | Task planning (→ project-planner) |
-| Structured question format | Architecture decisions (→ system-design) |
-| Progress reporting (5 icons) | Project scaffolding (→ app-scaffold) |
+| 3-question gate (STOP â†’ ASK â†’ WAIT) | Task planning (â†’ project-planner) |
+| Structured question format | Architecture decisions (â†’ system-design) |
+| Progress reporting (5 icons) | Project scaffolding (â†’ app-scaffold) |
 | Error communication (4-step) | Implementation code |
 
 **Expert skill:** Produces structured questions. Does not answer them or implement code.
 
 ---
 
-## 🛑 SOCRATIC GATE (Mandatory)
+## ðŸ›‘ SOCRATIC GATE (Mandatory)
 
-### Protocol: STOP → ASK → WAIT
+### Protocol: STOP â†’ ASK â†’ WAIT
 
-1. **STOP** — Do NOT start coding
-2. **ASK** — Minimum 3 questions, covering 3 dimensions:
+1. **STOP** â€” Do NOT start coding
+2. **ASK** â€” Minimum 3 questions, covering 3 dimensions:
 
 | Priority | Dimension | Example Question |
 |----------|-----------|-----------------|
-| P0 | 🎯 Purpose | What problem are you solving? |
-| P0 | 👥 Users | Who will use this? |
-| P1 | 📦 Scope | Must-have vs nice-to-have? |
+| P0 | ðŸŽ¯ Purpose | What problem are you solving? |
+| P0 | ðŸ‘¥ Users | Who will use this? |
+| P1 | ðŸ“¦ Scope | Must-have vs nice-to-have? |
 
-3. **WAIT** — Get responses before proceeding
+3. **WAIT** â€” Get responses before proceeding
 
 **Limits:** Minimum 3 questions, maximum 5 per round.
 
@@ -88,7 +88,7 @@ metadata:
 **If Not Specified:** [Default + rationale]
 ```
 
-**Rules:** Every question has ≥ 2 options with pros/cons AND a default.
+**Rules:** Every question has â‰¥ 2 options with pros/cons AND a default.
 
 ---
 
@@ -96,11 +96,11 @@ metadata:
 
 | Icon | Status |
 |------|--------|
-| ✅ | Completed |
-| 🔄 | Running |
-| ⏳ | Waiting |
-| ❌ | Error |
-| ⚠️ | Warning |
+| âœ… | Completed |
+| ðŸ”„ | Running |
+| â³ | Waiting |
+| âŒ | Error |
+| âš ï¸ | Warning |
 
 ---
 
@@ -128,9 +128,9 @@ metadata:
 
 ## Anti-Patterns
 
-| ❌ Don't | ✅ Do |
+| âŒ Don't | âœ… Do |
 |---------|-------|
-| Jump to solutions | Ask ≥ 3 questions first |
+| Jump to solutions | Ask â‰¥ 3 questions first |
 | Assume requirements | Clarify with structured questions |
 | Over-engineer v1 | Start with scope (must-have vs nice-to-have) |
 | Use "I think" phrases | Ask questions with options instead |
@@ -138,17 +138,17 @@ metadata:
 
 ---
 
-## 📑 Content Map
+## ðŸ“‘ Content Map
 
 | File | Description | When to Read |
 |------|-------------|--------------|
-| [architecture-debate.md](references/architecture-debate.md) | 8-phase debate, YAGNI/KISS/DRY | Architecture decisions |
-| [dynamic-questioning.md](references/dynamic-questioning.md) | Dynamic question generation | Advanced questioning |
-| [engineering-spec.md](references/engineering-spec.md) | Full engineering spec | Architecture review |
+| [architecture-debate.md](rules/architecture-debate.md) | 8-phase debate, YAGNI/KISS/DRY | Architecture decisions |
+| [dynamic-questioning.md](rules/dynamic-questioning.md) | Dynamic question generation | Advanced questioning |
+| [engineering-spec.md](rules/engineering-spec.md) | Full engineering spec | Architecture review |
 
 ---
 
-## 🔗 Related
+## ðŸ”— Related
 
 | Item | Type | Purpose |
 |------|------|---------|
@@ -158,4 +158,4 @@ metadata:
 
 ---
 
-⚡ PikaKit v3.9.105
+âš¡ PikaKit v3.9.105

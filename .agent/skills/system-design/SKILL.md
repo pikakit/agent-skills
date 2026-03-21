@@ -1,4 +1,4 @@
----
+﻿---
 name: system-design
 description: >-
   Architectural decision-making framework. Requirements analysis, trade-off evaluation, ADR documentation.
@@ -13,7 +13,7 @@ metadata:
   coordinates_with: "api-architect, data-modeler"
 ---
 
-# System Design — Architecture Decision Framework
+# System Design â€” Architecture Decision Framework
 
 > Requirements drive architecture. Trade-offs inform decisions. ADRs capture rationale.
 
@@ -34,9 +34,9 @@ metadata:
 
 | Owned by This Skill | NOT Owned |
 |---------------------|-----------|
-| Context discovery (project classification) | API design (→ api-architect) |
-| Trade-off analysis (ADR format) | Database design (→ data-modeler) |
-| Pattern selection (decision trees) | Deployment (→ cicd-pipeline) |
+| Context discovery (project classification) | API design (â†’ api-architect) |
+| Trade-off analysis (ADR format) | Database design (â†’ data-modeler) |
+| Pattern selection (decision trees) | Deployment (â†’ cicd-pipeline) |
 | Architecture validation (6-item checklist) | Code implementation |
 
 **Expert decision skill:** Produces architecture recommendations. Does not write code.
@@ -54,7 +54,7 @@ metadata:
 
 ---
 
-## ADR Format (6 Sections — Fixed)
+## ADR Format (6 Sections â€” Fixed)
 
 | Section | Purpose |
 |---------|---------|
@@ -67,7 +67,7 @@ metadata:
 
 ---
 
-## Validation Checklist (6 Items — Fixed)
+## Validation Checklist (6 Items â€” Fixed)
 
 - [ ] Requirements clearly understood
 - [ ] Constraints identified
@@ -93,7 +93,7 @@ metadata:
 
 ## Anti-Patterns
 
-| ❌ Don't | ✅ Do |
+| âŒ Don't | âœ… Do |
 |---------|-------|
 | Over-engineer from day one | Start simple, add complexity when needed |
 | Skip trade-off analysis | Document pros/cons for every option |
@@ -102,7 +102,7 @@ metadata:
 
 ---
 
-## 📑 Content Map
+## ðŸ“‘ Content Map
 
 | File | Description | When to Read |
 |------|-------------|--------------|
@@ -111,11 +111,11 @@ metadata:
 | [pattern-selection.md](pattern-selection.md) | Decision trees, anti-patterns | Choosing patterns |
 | [patterns-reference.md](patterns-reference.md) | Quick pattern lookup | Pattern comparison |
 | [examples.md](examples.md) | MVP, SaaS, Enterprise examples | Reference implementations |
-| [engineering-spec.md](references/engineering-spec.md) | Full spec | Architecture review |
+| [engineering-spec.md](rules/engineering-spec.md) | Full spec | Architecture review |
 
 ---
 
-## 🔗 Related
+## ðŸ”— Related
 
 | Item | Type | Purpose |
 |------|------|---------|
@@ -125,4 +125,4 @@ metadata:
 
 ---
 
-⚡ PikaKit v3.9.105
+âš¡ PikaKit v3.9.105

@@ -1,6 +1,6 @@
 ﻿# api-architect — Full Reference Guide
 
-> **Compiled from SKILL.md + references/ for AI agent consumption.**
+> **Compiled from SKILL.md + rules/ for AI agent consumption.**
 
 ---
 
@@ -33,7 +33,7 @@
 | Rate limiting strategy | `rules/rate-limiting.md` |
 | OpenAPI documentation | `rules/documentation.md` |
 | OWASP API security audit | `rules/security-testing.md` |
-| Architecture review, contracts | `references/engineering-spec.md` |
+| Architecture review, contracts | `rules/engineering-spec.md` |
 
 **Selective Reading Rule:** Read ONLY the file matching the current request. Do not read all files.
 
@@ -139,7 +139,7 @@ Before designing an API, confirm:
 | [rate-limiting.md](rules/rate-limiting.md) | Token bucket, sliding window | API protection |
 | [documentation.md](rules/documentation.md) | OpenAPI/Swagger standards | API documentation |
 | [security-testing.md](rules/security-testing.md) | OWASP API Top 10, auth/authz testing | Security audits |
-| [engineering-spec.md](references/engineering-spec.md) | Full engineering spec: contracts, security, scalability | Architecture review |
+| [engineering-spec.md](rules/engineering-spec.md) | Full engineering spec: contracts, security, scalability | Architecture review |
 
 ---
 

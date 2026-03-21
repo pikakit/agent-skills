@@ -1,4 +1,4 @@
----
+﻿---
 name: nextjs-pro
 description: >-
   Next.js App Router & React performance patterns. Server Components, data fetching,
@@ -13,7 +13,7 @@ metadata:
   coordinates_with: "design-system, tailwind-kit, react-architect"
 ---
 
-# Next.js Pro — App Router & React Performance
+# Next.js Pro â€” App Router & React Performance
 
 > Server-first. 3 data strategies. 4 route files. 57 rules. 8 categories. CWV targets.
 
@@ -36,10 +36,10 @@ metadata:
 
 | Owned by This Skill | NOT Owned |
 |---------------------|-----------|
-| Server/Client component decision | React architecture (→ react-architect) |
-| Data fetching strategy (3 options) | CSS/styling (→ tailwind-kit) |
-| Routing conventions (4 files) | Design system (→ design-system) |
-| 57 performance rules (8 categories) | Performance profiling (→ perf-optimizer) |
+| Server/Client component decision | React architecture (â†’ react-architect) |
+| Data fetching strategy (3 options) | CSS/styling (â†’ tailwind-kit) |
+| Routing conventions (4 files) | Design system (â†’ design-system) |
+| 57 performance rules (8 categories) | Performance profiling (â†’ perf-optimizer) |
 
 **Expert decision skill:** Produces patterns and rule references. Does not write code.
 
@@ -49,8 +49,8 @@ metadata:
 
 ```
 Need useState / useEffect / event handlers?
-├── YES → 'use client'
-└── NO  → Server Component (default, no directive)
+â”œâ”€â”€ YES â†’ 'use client'
+â””â”€â”€ NO  â†’ Server Component (default, no directive)
 ```
 
 | Type | Use For |
@@ -60,7 +60,7 @@ Need useState / useEffect / event handlers?
 
 ---
 
-## Data Fetching (3 Strategies — Fixed)
+## Data Fetching (3 Strategies â€” Fixed)
 
 | Volatility | Strategy | Cache Config | Use Case |
 |-----------|----------|-------------|----------|
@@ -70,7 +70,7 @@ Need useState / useEffect / event handlers?
 
 ---
 
-## Route Conventions (4 Files — Fixed)
+## Route Conventions (4 Files â€” Fixed)
 
 | File | Purpose | Required |
 |------|---------|----------|
@@ -105,7 +105,7 @@ Need useState / useEffect / event handlers?
 
 ## Anti-Patterns
 
-| ❌ Don't | ✅ Do |
+| âŒ Don't | âœ… Do |
 |---------|-------|
 | `'use client'` everywhere | Server Component by default |
 | Fetch data in Client Components | Fetch in Server Components |
@@ -115,7 +115,7 @@ Need useState / useEffect / event handlers?
 
 ---
 
-## 📑 Content Map
+## ðŸ“‘ Content Map
 
 | Category | Files | Focus | When to Read |
 |----------|-------|-------|--------------|
@@ -128,13 +128,13 @@ Need useState / useEffect / event handlers?
 | `rules/js-*.md` | 12 | Micro-patterns | JS performance |
 | `rules/advanced-*.md` | 3 | Event refs, init-once, useLatest | Advanced patterns |
 | `rules/_*.md, schema.json` | 3 | Section catalog, template, schema | Rule authoring |
-| [engineering-spec.md](references/engineering-spec.md) | 1 | Full engineering spec | Architecture review |
+| [engineering-spec.md](rules/engineering-spec.md) | 1 | Full engineering spec | Architecture review |
 
 **Selective reading:** Read ONLY the category relevant to current task.
 
 ---
 
-## 🔗 Related
+## ðŸ”— Related
 
 | Item | Type | Purpose |
 |------|------|---------|
@@ -144,4 +144,4 @@ Need useState / useEffect / event handlers?
 
 ---
 
-⚡ PikaKit v3.9.105
+âš¡ PikaKit v3.9.105

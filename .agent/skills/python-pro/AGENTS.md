@@ -1,6 +1,6 @@
 ﻿# python-pro — Full Reference Guide
 
-> **Compiled from SKILL.md + references/ for AI agent consumption.**
+> **Compiled from SKILL.md + rules/ for AI agent consumption.**
 
 ---
 
@@ -123,14 +123,14 @@ Routes (HTTP handlers)
 
 | File | Description | When to Read |
 |------|-------------|--------------|
-| [framework-selection.md](references/framework-selection.md) | Framework comparison | Choosing framework |
-| [async-patterns.md](references/async-patterns.md) | Async/sync patterns | Concurrency decisions |
-| [type-hints.md](references/type-hints.md) | Type annotation rules | Type strategy |
-| [project-structure.md](references/project-structure.md) | Directory layouts | New project |
-| [fastapi-patterns.md](references/fastapi-patterns.md) | FastAPI specifics | FastAPI project |
-| [django-patterns.md](references/django-patterns.md) | Django specifics | Django project |
-| [testing-patterns.md](references/testing-patterns.md) | Python testing | Writing tests |
-| [engineering-spec.md](references/engineering-spec.md) | Full spec | Architecture review |
+| [framework-selection.md](rules/framework-selection.md) | Framework comparison | Choosing framework |
+| [async-patterns.md](rules/async-patterns.md) | Async/sync patterns | Concurrency decisions |
+| [type-hints.md](rules/type-hints.md) | Type annotation rules | Type strategy |
+| [project-structure.md](rules/project-structure.md) | Directory layouts | New project |
+| [fastapi-patterns.md](rules/fastapi-patterns.md) | FastAPI specifics | FastAPI project |
+| [django-patterns.md](rules/django-patterns.md) | Django specifics | Django project |
+| [testing-patterns.md](rules/testing-patterns.md) | Python testing | Writing tests |
+| [engineering-spec.md](rules/engineering-spec.md) | Full spec | Architecture review |
 
 **Selective reading:** Load ONLY the reference file matching your current decision.
 

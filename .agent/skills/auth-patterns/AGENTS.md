@@ -1,6 +1,6 @@
 ﻿# auth-patterns — Full Reference Guide
 
-> **Compiled from SKILL.md + references/ for AI agent consumption.**
+> **Compiled from SKILL.md + rules/ for AI agent consumption.**
 
 ---
 
@@ -25,13 +25,13 @@
 | Situation | Reference |
 |-----------|-----------|
 | Choosing auth strategy | Decision tree below |
-| OAuth2 / SSO / OIDC | `references/oauth2.md` |
-| JWT signing, rotation, refresh | `references/jwt-deep.md` |
-| Permission system (RBAC/ABAC) | `references/rbac-abac.md` |
-| Multi-factor authentication | `references/mfa.md` |
-| Session management | `references/session.md` |
-| Passwordless / Passkeys | `references/passkey.md` |
-| Architecture review, contracts | `references/engineering-spec.md` |
+| OAuth2 / SSO / OIDC | `rules/oauth2.md` |
+| JWT signing, rotation, refresh | `rules/jwt-deep.md` |
+| Permission system (RBAC/ABAC) | `rules/rbac-abac.md` |
+| Multi-factor authentication | `rules/mfa.md` |
+| Session management | `rules/session.md` |
+| Passwordless / Passkeys | `rules/passkey.md` |
+| Architecture review, contracts | `rules/engineering-spec.md` |
 
 **Selective Reading Rule:** Read ONLY the file matching the current request.
 
@@ -131,13 +131,13 @@ What type of application?
 
 | File | Description | When to Read |
 |------|-------------|--------------|
-| [oauth2.md](references/oauth2.md) | OAuth 2.0 + OIDC flows, PKCE, scopes, providers | Third-party login, SSO |
-| [jwt-deep.md](references/jwt-deep.md) | JWT signing, rotation, claims, refresh patterns | Token-based auth |
-| [rbac-abac.md](references/rbac-abac.md) | Role-Based + Attribute-Based access control | Permission systems |
-| [mfa.md](references/mfa.md) | TOTP, WebAuthn, backup codes, recovery | Multi-factor auth |
-| [session.md](references/session.md) | Cookie sessions, Redis store, stateless vs stateful | Session design |
-| [passkey.md](references/passkey.md) | WebAuthn/FIDO2 implementation guide | Passwordless auth |
-| [engineering-spec.md](references/engineering-spec.md) | Full engineering spec: contracts, security model, scalability | Architecture review |
+| [oauth2.md](rules/oauth2.md) | OAuth 2.0 + OIDC flows, PKCE, scopes, providers | Third-party login, SSO |
+| [jwt-deep.md](rules/jwt-deep.md) | JWT signing, rotation, claims, refresh patterns | Token-based auth |
+| [rbac-abac.md](rules/rbac-abac.md) | Role-Based + Attribute-Based access control | Permission systems |
+| [mfa.md](rules/mfa.md) | TOTP, WebAuthn, backup codes, recovery | Multi-factor auth |
+| [session.md](rules/session.md) | Cookie sessions, Redis store, stateless vs stateful | Session design |
+| [passkey.md](rules/passkey.md) | WebAuthn/FIDO2 implementation guide | Passwordless auth |
+| [engineering-spec.md](rules/engineering-spec.md) | Full engineering spec: contracts, security model, scalability | Architecture review |
 
 ---
 
@@ -329,7 +329,7 @@ Recoverable: boolean
 | Token config generation | None; fixed value lookup |
 | Permission model design | None; architecture output |
 | Security review | None; checklist output |
-| Reference file lookup | Read-only access to `references/` |
+| Reference file lookup | Read-only access to `rules/` |
 
 ### 6.2 Workflow Contract
 
@@ -371,7 +371,7 @@ Failures are isolated to the current invocation. No state carries between invoca
 
 - Each invocation is stateless and independent.
 - No shared state between invocations, sessions, or agents.
-- Reference files in `references/` are read-only resources.
+- Reference files in `rules/` are read-only resources.
 
 #### Idempotency Expectations
 
@@ -456,7 +456,7 @@ Auth Patterns maintains zero persistent state. Every invocation starts from a cl
 | `ERR_CONSTRAINT_CONFLICT` | Validation | Yes | Constraints contradict each other |
 | `ERR_INVALID_APP_TYPE` | Validation | No | App type not recognized |
 | `ERR_INVALID_SENSITIVITY` | Validation | No | Sensitivity not one of: low, medium, high, critical |
-| `ERR_REFERENCE_NOT_FOUND` | Infrastructure | No | Reference file missing from references/ directory |
+| `ERR_REFERENCE_NOT_FOUND` | Infrastructure | No | Reference file missing from rules/ directory |
 | `ERR_UNSUPPORTED_COMPLIANCE` | Validation | Yes | Compliance standard combination not covered |
 
 ---
@@ -535,7 +535,7 @@ Auth Patterns maintains zero persistent state. Every invocation starts from a cl
 
 ### Reference Integrity
 
-- Reference files in `references/` are read-only, security-reviewed resources.
+- Reference files in `rules/` are read-only, security-reviewed resources.
 - Changes to reference files require a version bump and security review.
 - No runtime injection; references are static markdown files.
 
@@ -616,7 +616,7 @@ Auth Patterns maintains zero persistent state. Every invocation starts from a cl
 | Requirement | Status | Evidence |
 |-------------|--------|----------|
 | YAML frontmatter complete | âœ… | name, description, metadata with category, version, triggers, coordinates_with, success_metrics |
-| SKILL.md < 200 lines | âœ… | Entry point under 200 lines; details in references/ |
+| SKILL.md < 200 lines | âœ… | Entry point under 200 lines; details in rules/ |
 | Prerequisites documented | âœ… | No external dependencies required |
 | When to Use section | âœ… | Auth domain decision matrix |
 | Quick Reference | âœ… | Decision tree and checklist |

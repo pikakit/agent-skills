@@ -1,6 +1,6 @@
 ﻿# design-system — Full Reference Guide
 
-> **Compiled from SKILL.md + references/ for AI agent consumption.**
+> **Compiled from SKILL.md + rules/ for AI agent consumption.**
 
 ---
 
@@ -26,7 +26,7 @@
 | Animation/motion | Invoke animation-select; read `rules/animation-guide.md` |
 | UX validation | Invoke ux-audit; read `rules/ux-psychology.md` |
 | Design decisions | Read `rules/decision-trees.md` |
-| Architecture review | Read `references/engineering-spec.md` |
+| Architecture review | Read `rules/engineering-spec.md` |
 
 ---
 
@@ -129,7 +129,7 @@ node .agent/skills/studio/scripts-js/search.js "<query>" --domain style
 | [animation-guide.md](rules/animation-guide.md) | Motion principles | Animation |
 | [motion-graphics.md](rules/motion-graphics.md) | Advanced motion (Lottie, 3D) | Complex animation |
 | [decision-trees.md](rules/decision-trees.md) | Design decision framework | All decisions |
-| [engineering-spec.md](references/engineering-spec.md) | Full engineering spec | Architecture review |
+| [engineering-spec.md](rules/engineering-spec.md) | Full engineering spec | Architecture review |
 
 | Script | Purpose |
 |--------|---------|

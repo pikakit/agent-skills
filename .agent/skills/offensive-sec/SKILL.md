@@ -1,4 +1,4 @@
----
+﻿---
 name: offensive-sec
 description: >-
   Red team tactics principles based on MITRE ATT&CK. Attack phases, detection evasion, reporting.
@@ -12,9 +12,9 @@ metadata:
   coordinates_with: "security-scanner, code-review"
 ---
 
-# Offensive Security — Red Team Tactics (MITRE ATT&CK)
+# Offensive Security â€” Red Team Tactics (MITRE ATT&CK)
 
-> 13 phases. 4 access vectors. Authorization mandatory. Guidance only — no execution.
+> 13 phases. 4 access vectors. Authorization mandatory. Guidance only â€” no execution.
 
 **Remember:** Red team simulates attackers to improve defenses, not to cause harm.
 
@@ -43,23 +43,23 @@ metadata:
 
 | Owned by This Skill | NOT Owned |
 |---------------------|-----------|
-| ATT&CK phase guidance (13 phases) | Vulnerability scanning (→ security-scanner) |
-| Initial access vectors (4) | Code security review (→ code-review) |
-| Priv esc checklists (Win + Linux) | Mobile security (→ mobile-security-coder) |
+| ATT&CK phase guidance (13 phases) | Vulnerability scanning (â†’ security-scanner) |
+| Initial access vectors (4) | Code security review (â†’ code-review) |
+| Priv esc checklists (Win + Linux) | Mobile security (â†’ mobile-security-coder) |
 | AD attack paths (3) | Exploit development |
 
 **Expert decision skill:** Produces methodology and checklists. Does NOT execute exploits.
 
 ---
 
-## MITRE ATT&CK Phases (13 — Fixed Order)
+## MITRE ATT&CK Phases (13 â€” Fixed Order)
 
 ```
-RECON → INITIAL ACCESS → EXECUTION → PERSISTENCE
-   ↓          ↓              ↓            ↓
-PRIV ESC → DEFENSE EVASION → CRED ACCESS → DISCOVERY
-   ↓          ↓              ↓            ↓
-LATERAL → COLLECTION → C2 → EXFILTRATION → IMPACT
+RECON â†’ INITIAL ACCESS â†’ EXECUTION â†’ PERSISTENCE
+   â†“          â†“              â†“            â†“
+PRIV ESC â†’ DEFENSE EVASION â†’ CRED ACCESS â†’ DISCOVERY
+   â†“          â†“              â†“            â†“
+LATERAL â†’ COLLECTION â†’ C2 â†’ EXFILTRATION â†’ IMPACT
 ```
 
 | Phase | Objective |
@@ -74,7 +74,7 @@ LATERAL → COLLECTION → C2 → EXFILTRATION → IMPACT
 
 ---
 
-## Initial Access Vectors (4 — Fixed)
+## Initial Access Vectors (4 â€” Fixed)
 
 | Vector | When to Use |
 |--------|-------------|
@@ -98,7 +98,7 @@ LATERAL → COLLECTION → C2 → EXFILTRATION → IMPACT
 
 ---
 
-## AD Attacks (3 — Fixed)
+## AD Attacks (3 â€” Fixed)
 
 | Attack | Target |
 |--------|--------|
@@ -110,7 +110,7 @@ LATERAL → COLLECTION → C2 → EXFILTRATION → IMPACT
 
 ## Ethical Boundaries (Non-Negotiable)
 
-| ✅ Always | ❌ Never |
+| âœ… Always | âŒ Never |
 |----------|---------|
 | Stay within scope | Destroy production data |
 | Minimize impact | Access beyond proof of concept |
@@ -129,13 +129,13 @@ LATERAL → COLLECTION → C2 → EXFILTRATION → IMPACT
 | `ERR_UNKNOWN_PLATFORM` | Yes | Platform not recognized |
 | `ERR_INVALID_REQUEST_TYPE` | No | Request type not supported |
 
-**Zero internal retries.** `authorized: false` → hard block, no output.
+**Zero internal retries.** `authorized: false` â†’ hard block, no output.
 
 ---
 
 ## Anti-Patterns
 
-| ❌ Don't | ✅ Do |
+| âŒ Don't | âœ… Do |
 |---------|-------|
 | Rush to exploitation | Follow MITRE ATT&CK phases in order |
 | Cause damage | Minimize impact to production |
@@ -144,15 +144,15 @@ LATERAL → COLLECTION → C2 → EXFILTRATION → IMPACT
 
 ---
 
-## 📑 Content Map
+## ðŸ“‘ Content Map
 
 | File | Description | When to Read |
 |------|-------------|--------------|
-| [engineering-spec.md](references/engineering-spec.md) | Full engineering spec | Architecture review |
+| [engineering-spec.md](rules/engineering-spec.md) | Full engineering spec | Architecture review |
 
 ---
 
-## 🔗 Related
+## ðŸ”— Related
 
 | Item | Type | Purpose |
 |------|------|---------|
@@ -162,4 +162,4 @@ LATERAL → COLLECTION → C2 → EXFILTRATION → IMPACT
 
 ---
 
-⚡ PikaKit v3.9.105
+âš¡ PikaKit v3.9.105

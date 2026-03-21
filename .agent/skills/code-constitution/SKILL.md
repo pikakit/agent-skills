@@ -1,4 +1,4 @@
----
+﻿---
 name: code-constitution-skills-governance
 description: >-
   Constitutional governance for PikaKit. Enforces non-negotiable laws for correctness,
@@ -16,17 +16,17 @@ metadata:
   coordinates_with: "code-review, review-automation, security-scanner"
 ---
 
-# PikaKit Governance — Code Constitution
+# PikaKit Governance â€” Code Constitution
 
 > Supreme authority. Zero-trust agents. Fail-closed enforcement. Doctrine-first decisions.
 
-**Status:** OFFICIAL · LOCKED | **Authority:** SUPREME | **Override:** NONE
+**Status:** OFFICIAL Â· LOCKED | **Authority:** SUPREME | **Override:** NONE
 
 ---
 
 ## Prerequisites
 
-**Required:** None — Code Constitution is a governance framework with no external dependencies.
+**Required:** None â€” Code Constitution is a governance framework with no external dependencies.
 
 **Doctrine library:** 16 rule files in `rules/` directory (required for evaluation).
 
@@ -36,13 +36,13 @@ metadata:
 
 | Scope | Activation | Default |
 |-------|-----------|---------|
-| System architecture or boundaries | **Mandatory** — always load | — |
-| Data ownership or persistence | **Mandatory** | — |
-| Critical business logic | **Mandatory** | — |
-| Breaking changes or commercial risk | **Mandatory** | — |
-| AI agent behavior or autonomy | **Mandatory** | — |
-| Ambiguous intent | **Mandatory** — load by default | Refuse |
-| Architecture review, contracts, security | See `references/engineering-spec.md` | — |
+| System architecture or boundaries | **Mandatory** â€” always load | â€” |
+| Data ownership or persistence | **Mandatory** | â€” |
+| Critical business logic | **Mandatory** | â€” |
+| Breaking changes or commercial risk | **Mandatory** | â€” |
+| AI agent behavior or autonomy | **Mandatory** | â€” |
+| Ambiguous intent | **Mandatory** â€” load by default | Refuse |
+| Architecture review, contracts, security | See `rules/engineering-spec.md` | â€” |
 
 ---
 
@@ -52,7 +52,7 @@ metadata:
 |---------------------|-----------|
 | Agent operating mode (STRICT/PROPOSAL_ONLY/ZERO_TRUST) | Agent implementation |
 | Doctrine library (16 rules in `rules/`) | Rule execution in other skills |
-| Enforcement behavior (Stop → Cite → Refuse) | Automated remediation |
+| Enforcement behavior (Stop â†’ Cite â†’ Refuse) | Automated remediation |
 | Authority hierarchy definition | Skill priority in GEMINI.md |
 | Change Proposal review | Proposal tooling |
 
@@ -60,13 +60,13 @@ metadata:
 
 ---
 
-## Execution Model — 4-Phase Lifecycle
+## Execution Model â€” 4-Phase Lifecycle
 
 | Phase | Action | Output |
 |-------|--------|--------|
 | **Classify** | Validate request type, extract scope, identify risk level | Validated input or error |
 | **Evaluate** | Load applicable doctrines from `rules/`, check each against context | Violation list (may be empty) |
-| **Decide** | 0 violations → approve; ≥1 blocking → refuse; ambiguous → escalate | Decision + conditions/violations |
+| **Decide** | 0 violations â†’ approve; â‰¥1 blocking â†’ refuse; ambiguous â†’ escalate | Decision + conditions/violations |
 | **Emit** | Return structured output with enforcement action | Complete output schema |
 
 All phases synchronous. Fail-closed: any phase failure defaults to "refuse."
@@ -77,9 +77,9 @@ All phases synchronous. Fail-closed: any phase failure defaults to "refuse."
 
 ```
 Code Constitution (SUPREME)
-  └── GEMINI.md (P0)
-        └── Agent .md files (P1)
-              └── Skill .md files (P2)
+  â””â”€â”€ GEMINI.md (P0)
+        â””â”€â”€ Agent .md files (P1)
+              â””â”€â”€ Skill .md files (P2)
 ```
 
 No skill, agent, or workflow may override a constitutional decision.
@@ -144,7 +144,7 @@ Validation scripts: `scripts/validate_doctrine.js` | PR audit: `scripts/audit_pr
 
 ## Anti-Patterns
 
-| ❌ Don't | ✅ Do |
+| âŒ Don't | âœ… Do |
 |---------|-------|
 | Self-approve agent actions | Propose and wait for user consent |
 | Ignore governance for "quick fix" | Load constitution; validate first |
@@ -165,12 +165,12 @@ Validation scripts: `scripts/validate_doctrine.js` | PR audit: `scripts/audit_pr
 
 ---
 
-## 📑 Content Map
+## ðŸ“‘ Content Map
 
 | Folder | Content | When to Read |
 |--------|---------|--------------|
 | [rules/](rules/) | 16 domain-specific governance rules | Doctrine evaluation |
-| [references/engineering-spec.md](references/engineering-spec.md) | Full engineering spec: contracts, security, scalability | Architecture review |
+| [rules/engineering-spec.md](rules/engineering-spec.md) | Full engineering spec: contracts, security, scalability | Architecture review |
 | [metadata/](metadata/) | Routing & intent configuration | Skill routing |
 | [resources/](resources/) | Templates & reference materials | Building governance artifacts |
 | [scripts/](scripts/) | Validation & enforcement scripts | Automated checking |
@@ -180,7 +180,7 @@ Validation scripts: `scripts/validate_doctrine.js` | PR audit: `scripts/audit_pr
 
 ---
 
-## 🔗 Related
+## ðŸ”— Related
 
 | Item | Type | Purpose |
 |------|------|---------|
@@ -191,4 +191,4 @@ Validation scripts: `scripts/validate_doctrine.js` | PR audit: `scripts/audit_pr
 
 ---
 
-⚡ PikaKit v3.9.105
+âš¡ PikaKit v3.9.105

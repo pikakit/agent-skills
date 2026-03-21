@@ -1,4 +1,4 @@
----
+﻿---
 name: e2e-automation
 description: >-
   Web application testing principles. E2E, Playwright, visual testing, and deep audit strategies.
@@ -12,7 +12,7 @@ metadata:
   coordinates_with: "test-architect, perf-optimizer, cicd-pipeline"
 ---
 
-# E2E Automation — Playwright Testing
+# E2E Automation â€” Playwright Testing
 
 > Behavior-driven E2E tests. `data-testid` selectors. Auto-wait, never sleep. Zero flake tolerance.
 
@@ -44,10 +44,10 @@ npm install playwright && npx playwright install chromium
 
 | Owned by This Skill | NOT Owned |
 |---------------------|-----------|
-| Playwright test runner (`scripts/playwright_runner.js`) | Unit/integration patterns (→ test-architect) |
-| Screenshot capture (on-failure + on-demand) | Performance benchmarking (→ perf-optimizer) |
-| Accessibility audit (axe-core via `--a11y`) | CI/CD pipeline config (→ cicd-pipeline) |
-| ARIA snapshot testing reference | Browser scraping (→ agent-browser) |
+| Playwright test runner (`scripts/playwright_runner.js`) | Unit/integration patterns (â†’ test-architect) |
+| Screenshot capture (on-failure + on-demand) | Performance benchmarking (â†’ perf-optimizer) |
+| Accessibility audit (axe-core via `--a11y`) | CI/CD pipeline config (â†’ cicd-pipeline) |
+| ARIA snapshot testing reference | Browser scraping (â†’ agent-browser) |
 | Test organization structure | Test content authoring |
 
 **Automation skill:** Launches browser, navigates pages, captures screenshots. Session-based with side effects.
@@ -97,10 +97,10 @@ node .agent/skills/e2e-automation/scripts/playwright_runner.js <url> --a11y
 
 ```
 tests/
-├── e2e/           # Full user flows
-├── integration/   # API, data
-├── component/     # UI units
-└── fixtures/      # Shared test data
+â”œâ”€â”€ e2e/           # Full user flows
+â”œâ”€â”€ integration/   # API, data
+â”œâ”€â”€ component/     # UI units
+â””â”€â”€ fixtures/      # Shared test data
 ```
 
 ---
@@ -108,14 +108,14 @@ tests/
 ## Session Lifecycle
 
 ```
-IDLE → LAUNCHING          [run-tests invoked]
-LAUNCHING → NAVIGATING    [browser started]
-NAVIGATING → EXECUTING    [target loaded]
-EXECUTING → CAPTURING     [screenshot/trace needed]
-CAPTURING → REPORTING     [artifacts saved]
-REPORTING → COMPLETED     [results output]  // terminal
-LAUNCHING → ERROR         [browser launch failed]  // terminal
-NAVIGATING → ERROR        [target unreachable]  // terminal
+IDLE â†’ LAUNCHING          [run-tests invoked]
+LAUNCHING â†’ NAVIGATING    [browser started]
+NAVIGATING â†’ EXECUTING    [target loaded]
+EXECUTING â†’ CAPTURING     [screenshot/trace needed]
+CAPTURING â†’ REPORTING     [artifacts saved]
+REPORTING â†’ COMPLETED     [results output]  // terminal
+LAUNCHING â†’ ERROR         [browser launch failed]  // terminal
+NAVIGATING â†’ ERROR        [target unreachable]  // terminal
 ```
 
 **Invariant:** Browser process ALWAYS terminated in Report phase. No orphaned processes.
@@ -138,7 +138,7 @@ NAVIGATING → ERROR        [target unreachable]  // terminal
 
 ## Anti-Patterns
 
-| ❌ Don't | ✅ Do |
+| âŒ Don't | âœ… Do |
 |---------|-------|
 | Test implementation details | Test user-visible behavior |
 | Hardcode waits (`sleep`) | Use Playwright auto-wait |
@@ -148,12 +148,12 @@ NAVIGATING → ERROR        [target unreachable]  // terminal
 
 ---
 
-## 📑 Content Map
+## ðŸ“‘ Content Map
 
 | File | Description | When to Read |
 |------|-------------|--------------|
-| [aria-snapshot.md](references/aria-snapshot.md) | ARIA snapshot testing pattern | ARIA-based tests |
-| [engineering-spec.md](references/engineering-spec.md) | Full engineering spec | Architecture review |
+| [aria-snapshot.md](rules/aria-snapshot.md) | ARIA snapshot testing pattern | ARIA-based tests |
+| [engineering-spec.md](rules/engineering-spec.md) | Full engineering spec | Architecture review |
 
 | Script | Purpose |
 |--------|---------|
@@ -161,7 +161,7 @@ NAVIGATING → ERROR        [target unreachable]  // terminal
 
 ---
 
-## 🔗 Related
+## ðŸ”— Related
 
 | Item | Type | Purpose |
 |------|------|---------|
@@ -171,4 +171,4 @@ NAVIGATING → ERROR        [target unreachable]  // terminal
 
 ---
 
-⚡ PikaKit v3.9.105
+âš¡ PikaKit v3.9.105

@@ -1,4 +1,4 @@
----
+﻿---
 name: execution-reporter
 description: >-
   Display agent routing, skill loading, and execution context at task start.
@@ -13,7 +13,7 @@ metadata:
   coordinates_with: "smart-router, lifecycle-orchestrator, auto-learner"
 ---
 
-# Execution Reporter — Task Notifications
+# Execution Reporter â€” Task Notifications
 
 > Fixed templates. One notification per phase. PikaKit branding mandatory.
 
@@ -21,7 +21,7 @@ metadata:
 
 ## Prerequisites
 
-**Required:** None — Execution Reporter is a pure formatting function with no external dependencies.
+**Required:** None â€” Execution Reporter is a pure formatting function with no external dependencies.
 
 ---
 
@@ -30,7 +30,7 @@ metadata:
 | Event | Template | Condition |
 |-------|----------|-----------|
 | Task start (complex) | Full template | > 3 skills loaded |
-| Task start (simple) | Compact template | ≤ 3 skills loaded |
+| Task start (simple) | Compact template | â‰¤ 3 skills loaded |
 | Script execution | Script template | Script invoked |
 | Task complete | Complete template | Task finished |
 
@@ -40,10 +40,10 @@ metadata:
 
 | Owned by This Skill | NOT Owned |
 |---------------------|-----------|
-| Notification string formatting (4 templates) | Task execution (→ lifecycle-orchestrator) |
-| Verbosity level filtering (3 levels) | Agent routing (→ smart-router) |
-| PikaKit branding (v3.9.68) | Error detection (→ problem-checker) |
-| Complexity threshold (> 3 skills → full) | Notification delivery |
+| Notification string formatting (4 templates) | Task execution (â†’ lifecycle-orchestrator) |
+| Verbosity level filtering (3 levels) | Agent routing (â†’ smart-router) |
+| PikaKit branding (v3.9.68) | Error detection (â†’ problem-checker) |
+| Complexity threshold (> 3 skills â†’ full) | Notification delivery |
 
 **Pure function skill:** Returns formatted strings. Zero side effects.
 
@@ -54,30 +54,30 @@ metadata:
 ### Full Template (> 3 skills)
 
 ```
-🤖 PikaKit v3.9.105
-📋 Task: {task_description}
-◆ Agent: @{agent_name}
-◇ Skills: {skill_1}, {skill_2}, ...
-📂 Workflow: /{workflow_name}
+ðŸ¤– PikaKit v3.9.105
+ðŸ“‹ Task: {task_description}
+â—† Agent: @{agent_name}
+â—‡ Skills: {skill_1}, {skill_2}, ...
+ðŸ“‚ Workflow: /{workflow_name}
 ```
 
-### Compact Template (≤ 3 skills)
+### Compact Template (â‰¤ 3 skills)
 
 ```
-🤖 PikaKit • @{agent} → {skill_1}, {skill_2}
+ðŸ¤– PikaKit â€¢ @{agent} â†’ {skill_1}, {skill_2}
 ```
 
 ### Task Complete Template
 
 ```
-✅ Done • Agent: @{agent_name} • Skills: {count} • Files: {count} • {duration}s
-⚡ PikaKit v3.9.105
+âœ… Done â€¢ Agent: @{agent_name} â€¢ Skills: {count} â€¢ Files: {count} â€¢ {duration}s
+âš¡ PikaKit v3.9.105
 ```
 
 ### Script Run Template
 
 ```
-⚡ {skill_name} • running {script_name}
+âš¡ {skill_name} â€¢ running {script_name}
 ```
 
 ---
@@ -86,9 +86,9 @@ metadata:
 
 | Level | Routing | Skills | Scripts | Complete |
 |-------|---------|--------|---------|----------|
-| `minimal` | ✅ | ❌ | ❌ | ✅ |
-| `normal` | ✅ | ✅ | ❌ | ✅ |
-| `verbose` | ✅ | ✅ | ✅ | ✅ |
+| `minimal` | âœ… | âŒ | âŒ | âœ… |
+| `normal` | âœ… | âœ… | âŒ | âœ… |
+| `verbose` | âœ… | âœ… | âœ… | âœ… |
 
 **Default:** `normal`. Config: `.agent/config/notification-config.json`
 
@@ -99,7 +99,7 @@ metadata:
 | # | Rule | Enforcement |
 |---|------|------------|
 | 1 | One notification per phase | No duplicate notifications for same event |
-| 2 | > 3 skills → full template | Complexity threshold is fixed |
+| 2 | > 3 skills â†’ full template | Complexity threshold is fixed |
 | 3 | PikaKit branding mandatory | Header and/or footer on every notification |
 | 4 | Templates fit 65-char width | No terminal wrapping |
 
@@ -120,7 +120,7 @@ metadata:
 
 ## Anti-Patterns
 
-| ❌ Don't | ✅ Do |
+| âŒ Don't | âœ… Do |
 |---------|-------|
 | Notify on every tool call | One notification per phase |
 | Custom branding per agent | PikaKit branding only |
@@ -130,15 +130,15 @@ metadata:
 
 ---
 
-## 📑 Content Map
+## ðŸ“‘ Content Map
 
 | File | Description | When to Read |
 |------|-------------|--------------|
-| [engineering-spec.md](references/engineering-spec.md) | Full engineering spec | Architecture review |
+| [engineering-spec.md](rules/engineering-spec.md) | Full engineering spec | Architecture review |
 
 ---
 
-## 🔗 Related
+## ðŸ”— Related
 
 | Item | Type | Purpose |
 |------|------|---------|
@@ -149,4 +149,4 @@ metadata:
 
 ---
 
-⚡ PikaKit v3.9.105
+âš¡ PikaKit v3.9.105

@@ -1,4 +1,4 @@
----
+﻿---
 name: gitops-workflow
 description: >-
   Implement GitOps workflows with ArgoCD and Flux for automated, declarative
@@ -13,7 +13,7 @@ metadata:
   coordinates_with: "cicd-pipeline, server-ops, git-workflow"
 ---
 
-# GitOps Workflow — Declarative Kubernetes Delivery
+# GitOps Workflow â€” Declarative Kubernetes Delivery
 
 > Git is the single source of truth. Continuous reconciliation. No auto-sync to production.
 
@@ -32,8 +32,8 @@ metadata:
 | K8s deployment needed | Choose ArgoCD or Flux via decision tree |
 | CD pipeline setup | Configure sync policies per environment |
 | Secret management | Use Sealed Secrets or External Secrets (no plaintext) |
-| Multi-environment | Set up staging → production promotion |
-| Architecture review | Read `references/engineering-spec.md` |
+| Multi-environment | Set up staging â†’ production promotion |
+| Architecture review | Read `rules/engineering-spec.md` |
 
 ---
 
@@ -41,9 +41,9 @@ metadata:
 
 | Owned by This Skill | NOT Owned |
 |---------------------|-----------|
-| ArgoCD vs Flux decision (4 criteria) | CI pipeline (→ cicd-pipeline) |
-| Sync policy selection (4 policies) | Server management (→ server-ops) |
-| Repository structure template | Git operations (→ git-workflow) |
+| ArgoCD vs Flux decision (4 criteria) | CI pipeline (â†’ cicd-pipeline) |
+| Sync policy selection (4 policies) | Server management (â†’ server-ops) |
+| Repository structure template | Git operations (â†’ git-workflow) |
 | OpenGitOps compliance (4 principles) | Cluster provisioning |
 | Secret management strategy | Helm chart development |
 
@@ -51,7 +51,7 @@ metadata:
 
 ---
 
-## OpenGitOps Principles (4 — All Required)
+## OpenGitOps Principles (4 â€” All Required)
 
 | # | Principle | Requirement |
 |---|-----------|-------------|
@@ -66,12 +66,12 @@ metadata:
 
 | Criterion | ArgoCD | Flux |
 |-----------|--------|------|
-| Web UI | ✅ Rich dashboard | ❌ CLI only |
-| Multi-cluster | ✅ Native support | ⚠️ Requires setup |
-| Helm support | ✅ Native | ✅ Native |
+| Web UI | âœ… Rich dashboard | âŒ CLI only |
+| Multi-cluster | âœ… Native support | âš ï¸ Requires setup |
+| Helm support | âœ… Native | âœ… Native |
 | Learning curve | Medium | Lower |
 
-**Rule:** needs_ui=true OR cluster_count>1 → **ArgoCD**. Otherwise → **Flux**.
+**Rule:** needs_ui=true OR cluster_count>1 â†’ **ArgoCD**. Otherwise â†’ **Flux**.
 
 ---
 
@@ -92,14 +92,14 @@ metadata:
 
 ```
 gitops-repo/
-├── apps/
-│   ├── production/
-│   └── staging/
-├── infrastructure/
-│   ├── ingress-nginx/
-│   └── cert-manager/
-└── argocd/
-    └── applications/
+â”œâ”€â”€ apps/
+â”‚   â”œâ”€â”€ production/
+â”‚   â””â”€â”€ staging/
+â”œâ”€â”€ infrastructure/
+â”‚   â”œâ”€â”€ ingress-nginx/
+â”‚   â””â”€â”€ cert-manager/
+â””â”€â”€ argocd/
+    â””â”€â”€ applications/
 ```
 
 ---
@@ -130,7 +130,7 @@ gitops-repo/
 
 ## Anti-Patterns
 
-| ❌ Don't | ✅ Do |
+| âŒ Don't | âœ… Do |
 |---------|-------|
 | Auto-sync to production | Manual sync with approval |
 | Store secrets in Git | Sealed Secrets / External Secrets |
@@ -140,17 +140,17 @@ gitops-repo/
 
 ---
 
-## 📑 Content Map
+## ðŸ“‘ Content Map
 
 | File | Description | When to Read |
 |------|-------------|--------------|
-| [argocd-setup.md](references/argocd-setup.md) | ArgoCD installation and config | ArgoCD selected |
-| [sync-policies.md](references/sync-policies.md) | Sync policy deep dive | Policy configuration |
-| [engineering-spec.md](references/engineering-spec.md) | Full engineering spec | Architecture review |
+| [argocd-setup.md](rules/argocd-setup.md) | ArgoCD installation and config | ArgoCD selected |
+| [sync-policies.md](rules/sync-policies.md) | Sync policy deep dive | Policy configuration |
+| [engineering-spec.md](rules/engineering-spec.md) | Full engineering spec | Architecture review |
 
 ---
 
-## 🔗 Related
+## ðŸ”— Related
 
 | Item | Type | Purpose |
 |------|------|---------|
@@ -161,4 +161,4 @@ gitops-repo/
 
 ---
 
-⚡ PikaKit v3.9.105
+âš¡ PikaKit v3.9.105

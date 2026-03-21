@@ -1,4 +1,4 @@
----
+﻿---
 name: typescript-expert
 description: >-
   TypeScript and JavaScript expert with deep knowledge of type-level programming,
@@ -15,7 +15,7 @@ metadata:
   coordinates_with: "nextjs-pro, react-architect, code-review"
 ---
 
-# TypeScript Expert — Advanced TS Problem-Solving
+# TypeScript Expert â€” Advanced TS Problem-Solving
 
 > Strict mode. ESM-first. Type-level patterns. Deterministic error routing.
 
@@ -28,7 +28,7 @@ metadata:
 | Type errors | Check error routing table |
 | Build performance | See performance settings |
 | Monorepo setup | Check project references |
-| Migration strategy | See references/migration.md |
+| Migration strategy | See rules/migration.md |
 | Module issues | ESM-first config |
 
 ---
@@ -37,9 +37,9 @@ metadata:
 
 | Owned by This Skill | NOT Owned |
 |---------------------|-----------|
-| Type-level patterns (3) | Next.js integration (→ nextjs-pro) |
-| Error → fix routing (4 errors) | React patterns (→ react-architect) |
-| Performance config (3 settings) | Code review (→ code-review) |
+| Type-level patterns (3) | Next.js integration (â†’ nextjs-pro) |
+| Error â†’ fix routing (4 errors) | React patterns (â†’ react-architect) |
+| Performance config (3 settings) | Code review (â†’ code-review) |
 | Strict config + ESM-first | Build tooling (Vite/webpack) |
 
 **Expert decision skill:** Produces TS guidance. Does not execute compilers.
@@ -56,7 +56,7 @@ metadata:
 
 ---
 
-## Common Errors (4 — Deterministic Routing)
+## Common Errors (4 â€” Deterministic Routing)
 
 | Error | Fix |
 |-------|-----|
@@ -92,7 +92,7 @@ const config = {
 
 ---
 
-## Strict Config (Recommended — Fixed)
+## Strict Config (Recommended â€” Fixed)
 
 ```json
 {
@@ -115,7 +115,7 @@ const config = {
 
 ---
 
-## Performance Settings (3 — Fixed)
+## Performance Settings (3 â€” Fixed)
 
 | Setting | Effect |
 |---------|--------|
@@ -149,23 +149,23 @@ const config = {
 
 ---
 
-## 📑 Content Map
+## ðŸ“‘ Content Map
 
 | File | Description | When to Read |
 |------|-------------|--------------|
-| [tsconfig-strict.json](references/tsconfig-strict.json) | Strict TS 5.x config template | New project setup |
-| [typescript-cheatsheet.md](references/typescript-cheatsheet.md) | Full TS quick reference (13 sections) | Writing TypeScript |
-| [utility-types.js](references/utility-types.js) | Runtime utilities (Result, Option, Brand) | JavaScript helpers |
-| [type-patterns.md](references/type-patterns.md) | Advanced type patterns | Type gymnastics |
-| [performance.md](references/performance.md) | Build performance | Slow builds |
-| [monorepo.md](references/monorepo.md) | Monorepo setup | Project references |
-| [migration.md](references/migration.md) | Migration strategies | Version upgrades |
+| [tsconfig-strict.json](rules/tsconfig-strict.json) | Strict TS 5.x config template | New project setup |
+| [typescript-cheatsheet.md](rules/typescript-cheatsheet.md) | Full TS quick reference (13 sections) | Writing TypeScript |
+| [utility-types.js](rules/utility-types.js) | Runtime utilities (Result, Option, Brand) | JavaScript helpers |
+| [type-patterns.md](rules/type-patterns.md) | Advanced type patterns | Type gymnastics |
+| [performance.md](rules/performance.md) | Build performance | Slow builds |
+| [monorepo.md](rules/monorepo.md) | Monorepo setup | Project references |
+| [migration.md](rules/migration.md) | Migration strategies | Version upgrades |
 | [ts_diagnostic.js](scripts/ts_diagnostic.js) | Project health analysis | Automated diagnostics |
-| [engineering-spec.md](references/engineering-spec.md) | Full spec | Architecture review |
+| [engineering-spec.md](rules/engineering-spec.md) | Full spec | Architecture review |
 
 ---
 
-## 🔗 Related
+## ðŸ”— Related
 
 | Item | Type | Purpose |
 |------|------|---------|
@@ -175,4 +175,4 @@ const config = {
 
 ---
 
-⚡ PikaKit v3.9.105
+âš¡ PikaKit v3.9.105

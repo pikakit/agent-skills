@@ -1,4 +1,4 @@
----
+﻿---
 name: doc-templates
 description: >-
   Documentation templates, structure guidelines, Mermaid diagram editing,
@@ -16,7 +16,7 @@ metadata:
   absorbs: "mermaid-editor@2.0.0, markdown-novel-viewer@2.0.0, plans-kanban@2.0.0"
 ---
 
-# Doc Templates — Documentation, Diagrams & Preview
+# Doc Templates â€” Documentation, Diagrams & Preview
 
 > Fixed templates per document type. Mermaid diagrams. Markdown preview. Plan dashboards.
 
@@ -48,12 +48,12 @@ metadata:
 | Owned by This Skill | NOT Owned |
 |---------------------|-----------|
 | Template structure (5 document types) | Content writing |
-| Section order and requirements | Auto-documentation (→ /chronicle) |
-| Comment guidelines (why vs what) | Project structure (→ project-planner) |
-| AI-friendly doc format (llms.txt) | Code quality (→ code-craft) |
-| Mermaid diagram editing (9 types) | Architecture decisions (→ system-design) |
+| Section order and requirements | Auto-documentation (â†’ /chronicle) |
+| Comment guidelines (why vs what) | Project structure (â†’ project-planner) |
+| AI-friendly doc format (llms.txt) | Code quality (â†’ code-craft) |
+| Mermaid diagram editing (9 types) | Architecture decisions (â†’ system-design) |
 | Markdown preview server | File system permissions |
-| Plan dashboard server | Plan creation (→ project-planner) |
+| Plan dashboard server | Plan creation (â†’ project-planner) |
 
 **Hybrid skill:** Templates are pure decision; diagram/preview are automation (HTTP servers).
 
@@ -131,7 +131,7 @@ What are the trade-offs?
 
 ## Comment Guidelines
 
-| ✅ Comment | ❌ Don't Comment |
+| âœ… Comment | âŒ Don't Comment |
 |-----------|--------------------|
 | Why (business logic) | What (obvious code) |
 | Complex algorithms | Every line |
@@ -141,7 +141,7 @@ What are the trade-offs?
 
 ## Mermaid Diagram Editor (Absorbed from mermaid-editor)
 
-### Diagram Types (9 — Fixed)
+### Diagram Types (9 â€” Fixed)
 
 | # | Type | Keyword |
 |---|------|---------|
@@ -170,10 +170,10 @@ node .agent/skills/mermaid-editor/scripts/editor-server.js --stop
 
 | Option | Default | Description |
 |--------|---------|-------------|
-| `--file <path>` | — | Open .mmd file |
+| `--file <path>` | â€” | Open .mmd file |
 | `--port <n>` | 3457 | Server port |
 | `--open` | false | Auto-open browser |
-| `--stop` | — | Stop all servers |
+| `--stop` | â€” | Stop all servers |
 
 ---
 
@@ -192,11 +192,11 @@ node .agent/skills/markdown-novel-viewer/scripts/server.js --stop
 
 | Option | Default | Description |
 |--------|---------|-------------|
-| `--file <path>` | — | Markdown file |
-| `--dir <path>` | — | Directory to browse |
+| `--file <path>` | â€” | Markdown file |
+| `--dir <path>` | â€” | Directory to browse |
 | `--port <n>` | 3456 | Server port (3456-3500) |
 | `--open` | false | Auto-open browser |
-| `--stop` | — | Stop all servers |
+| `--stop` | â€” | Stop all servers |
 
 **Theme:** Libre Baskerville (headings), Inter (body), JetBrains Mono (code). Light/dark toggle.
 
@@ -225,7 +225,7 @@ node .agent/skills/plans-kanban/scripts/kanban-server.js --dir ./docs/plans --op
 
 ## Anti-Patterns
 
-| ❌ Don't | ✅ Do |
+| âŒ Don't | âœ… Do |
 |---------|-------|
 | Skip Quick Start in README | Always include Quick Start |
 | Undocumented API parameters | Document all params with types |
@@ -237,19 +237,19 @@ node .agent/skills/plans-kanban/scripts/kanban-server.js --dir ./docs/plans --op
 
 ---
 
-## 📑 Content Map
+## ðŸ“‘ Content Map
 
 | File | Description | When to Read |
 |------|-------------|--------------|
-| [doc.md](references/doc.md) | Full templates and examples | Detailed template reference |
-| [engineering-spec.md](references/engineering-spec.md) | Full engineering spec | Architecture review |
+| [doc.md](rules/doc.md) | Full templates and examples | Detailed template reference |
+| [engineering-spec.md](rules/engineering-spec.md) | Full engineering spec | Architecture review |
 | [editor-server.js](../mermaid-editor/scripts/editor-server.js) | Mermaid editor server | Diagram implementation |
 | [server.js](../markdown-novel-viewer/scripts/server.js) | Preview server | Preview implementation |
-| [diagram-reference.md](../mermaid-editor/references/diagram-reference.md) | 9 diagram types syntax | Writing diagrams |
+| [diagram-reference.md](../mermaid-editor/rules/diagram-reference.md) | 9 diagram types syntax | Writing diagrams |
 
 ---
 
-## 🔗 Related
+## ðŸ”— Related
 
 | Item | Type | Purpose |
 |------|------|---------|
@@ -260,5 +260,5 @@ node .agent/skills/plans-kanban/scripts/kanban-server.js --dir ./docs/plans --op
 
 ---
 
-⚡ PikaKit v3.9.105
+âš¡ PikaKit v3.9.105
 

@@ -1,4 +1,4 @@
----
+﻿---
 name: project-planner
 description: >-
   Structured task planning with clear breakdowns, dependencies, and verification criteria.
@@ -13,7 +13,7 @@ metadata:
   coordinates_with: "app-scaffold, code-craft, test-architect"
 ---
 
-# Project Planner — Structured Task Breakdown
+# Project Planner â€” Structured Task Breakdown
 
 > Max 10 tasks. 2-5 min each. Action + Verify format. Dependencies explicit.
 
@@ -34,10 +34,10 @@ metadata:
 
 | Owned by This Skill | NOT Owned |
 |---------------------|-----------|
-| Task breakdown (max 10) | Requirements gathering (→ idea-storm) |
-| Verification criteria | Project scaffolding (→ app-scaffold) |
+| Task breakdown (max 10) | Requirements gathering (â†’ idea-storm) |
+| Verification criteria | Project scaffolding (â†’ app-scaffold) |
 | Dependency ordering | Code implementation |
-| Plan template | Test execution (→ test-architect) |
+| Plan template | Test execution (â†’ test-architect) |
 
 **Expert decision skill:** Produces plan documents. Does not write code.
 
@@ -64,9 +64,9 @@ metadata:
 One sentence: What are we building/fixing?
 
 ## Tasks
-- [ ] Task 1: [Specific action] → Verify: [How to check]
-- [ ] Task 2: [Specific action] → Verify: [How to check]
-- [ ] Task 3: [Specific action] → Verify: [How to check]
+- [ ] Task 1: [Specific action] â†’ Verify: [How to check]
+- [ ] Task 2: [Specific action] â†’ Verify: [How to check]
+- [ ] Task 3: [Specific action] â†’ Verify: [How to check]
 
 ## Done When
 - [ ] [Main success criteria]
@@ -76,7 +76,7 @@ One sentence: What are we building/fixing?
 
 ## Specificity Rules (Non-Negotiable)
 
-| ❌ Vague | ✅ Specific |
+| âŒ Vague | âœ… Specific |
 |----------|-----------|
 | "Set up project" | "Run `npx create-next-app`" |
 | "Add authentication" | "Install next-auth, create auth route" |
@@ -112,7 +112,7 @@ One sentence: What are we building/fixing?
 
 ## Anti-Patterns
 
-| ❌ Don't | ✅ Do |
+| âŒ Don't | âœ… Do |
 |---------|-------|
 | Create plans with > 10 tasks | Split into sub-plans |
 | Use vague task descriptions | Be specific: command, file, action |
@@ -122,15 +122,15 @@ One sentence: What are we building/fixing?
 
 ---
 
-## 📑 Content Map
+## ðŸ“‘ Content Map
 
 | File | Description | When to Read |
 |------|-------------|--------------|
-| [engineering-spec.md](references/engineering-spec.md) | Full engineering spec | Architecture review |
+| [engineering-spec.md](rules/engineering-spec.md) | Full engineering spec | Architecture review |
 
 ---
 
-## 🔗 Related
+## ðŸ”— Related
 
 | Item | Type | Purpose |
 |------|------|---------|
@@ -140,4 +140,4 @@ One sentence: What are we building/fixing?
 
 ---
 
-⚡ PikaKit v3.9.105
+âš¡ PikaKit v3.9.105

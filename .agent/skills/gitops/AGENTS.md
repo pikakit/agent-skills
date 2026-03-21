@@ -1,6 +1,6 @@
 ﻿# gitops-workflow — Full Reference Guide
 
-> **Compiled from SKILL.md + references/ for AI agent consumption.**
+> **Compiled from SKILL.md + rules/ for AI agent consumption.**
 
 ---
 
@@ -24,7 +24,7 @@
 | CD pipeline setup | Configure sync policies per environment |
 | Secret management | Use Sealed Secrets or External Secrets (no plaintext) |
 | Multi-environment | Set up staging â†’ production promotion |
-| Architecture review | Read `references/engineering-spec.md` |
+| Architecture review | Read `rules/engineering-spec.md` |
 
 ---
 
@@ -135,9 +135,9 @@ gitops-repo/
 
 | File | Description | When to Read |
 |------|-------------|--------------|
-| [argocd-setup.md](references/argocd-setup.md) | ArgoCD installation and config | ArgoCD selected |
-| [sync-policies.md](references/sync-policies.md) | Sync policy deep dive | Policy configuration |
-| [engineering-spec.md](references/engineering-spec.md) | Full engineering spec | Architecture review |
+| [argocd-setup.md](rules/argocd-setup.md) | ArgoCD installation and config | ArgoCD selected |
+| [sync-policies.md](rules/sync-policies.md) | Sync policy deep dive | Policy configuration |
+| [engineering-spec.md](rules/engineering-spec.md) | Full engineering spec | Architecture review |
 
 ---
 

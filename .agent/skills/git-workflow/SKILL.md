@@ -1,4 +1,4 @@
----
+﻿---
 name: git-workflow
 description: >-
   Git operations with conventional commits, auto-split logic, secret detection.
@@ -13,7 +13,7 @@ metadata:
   coordinates_with: "cicd-pipeline, code-review, security-scanner"
 ---
 
-# Git Workflow — Conventional Commits + Secret Detection
+# Git Workflow â€” Conventional Commits + Secret Detection
 
 > Scan before commit. Conventional format. Split if mixed. Rebase on rejection.
 
@@ -41,9 +41,9 @@ metadata:
 
 | Owned by This Skill | NOT Owned |
 |---------------------|-----------|
-| Git stage, commit, push | CI/CD pipelines (→ cicd-pipeline) |
-| Secret detection (6 patterns) | Code review (→ code-review) |
-| Conventional commit format (9 types) | GitOps deploy (→ gitops-workflow) |
+| Git stage, commit, push | CI/CD pipelines (â†’ cicd-pipeline) |
+| Secret detection (6 patterns) | Code review (â†’ code-review) |
+| Conventional commit format (9 types) | GitOps deploy (â†’ gitops-workflow) |
 | Commit splitting (threshold-based) | Git server administration |
 | Push recovery (rebase once) | Advanced merge strategies |
 
@@ -57,16 +57,16 @@ metadata:
 # 1. Stage
 git add -A && git diff --cached --stat
 
-# 2. Secret Scan (MANDATORY — blocks commit)
+# 2. Secret Scan (MANDATORY â€” blocks commit)
 git diff --cached | grep -iE "(api[_-]?key|token|password|secret|private_key|credentials)"
-# If found → BLOCK, return violations
+# If found â†’ BLOCK, return violations
 
 # 3. Commit (conventional format)
 git commit -m "type(scope): description"
 
 # 4. Push (cp only)
 git push origin HEAD
-# If rejected → git pull --rebase → retry once
+# If rejected â†’ git pull --rebase â†’ retry once
 ```
 
 ---
@@ -85,7 +85,7 @@ git push origin HEAD
 | `ci` | CI/CD |
 | `build` | Build system |
 
-**Format:** `type(scope): description` — no deviations.
+**Format:** `type(scope): description` â€” no deviations.
 
 ---
 
@@ -93,7 +93,7 @@ git push origin HEAD
 
 | Condition | Decision |
 |-----------|----------|
-| ≤ 3 files AND ≤ 50 lines AND same type/scope | **Single commit** |
+| â‰¤ 3 files AND â‰¤ 50 lines AND same type/scope | **Single commit** |
 | > 10 unrelated files | **Split** |
 | Mixed types (feat + fix) | **Split** |
 | Multiple scopes (auth + payments) | **Split** |
@@ -101,7 +101,7 @@ git push origin HEAD
 
 ---
 
-## Secret Detection (6 Patterns — Blocks Commit)
+## Secret Detection (6 Patterns â€” Blocks Commit)
 
 | Pattern | Example |
 |---------|---------|
@@ -112,23 +112,23 @@ git push origin HEAD
 | `private_key` | `PRIVATE_KEY=xxx` |
 | `credentials` | `credentials: {...}` |
 
-**Action:** BLOCK → Return violations (file + line) → User removes + .gitignore.
+**Action:** BLOCK â†’ Return violations (file + line) â†’ User removes + .gitignore.
 
 ---
 
 ## Session Lifecycle
 
 ```
-IDLE → STAGING              [cm/cp invoked]
-STAGING → SCANNING          [files staged]
-SCANNING → BLOCKED          [secrets detected]  // terminal
-SCANNING → COMMITTING       [scan passed]
-COMMITTING → PUSHING        [cp command]
-COMMITTING → COMPLETED      [cm command]  // terminal
-PUSHING → REBASING          [push rejected]
-PUSHING → COMPLETED         [push accepted]  // terminal
-REBASING → PUSHING          [rebase succeeded]
-REBASING → CONFLICT         [merge conflicts]  // terminal
+IDLE â†’ STAGING              [cm/cp invoked]
+STAGING â†’ SCANNING          [files staged]
+SCANNING â†’ BLOCKED          [secrets detected]  // terminal
+SCANNING â†’ COMMITTING       [scan passed]
+COMMITTING â†’ PUSHING        [cp command]
+COMMITTING â†’ COMPLETED      [cm command]  // terminal
+PUSHING â†’ REBASING          [push rejected]
+PUSHING â†’ COMPLETED         [push accepted]  // terminal
+REBASING â†’ PUSHING          [rebase succeeded]
+REBASING â†’ CONFLICT         [merge conflicts]  // terminal
 ```
 
 ---
@@ -149,7 +149,7 @@ REBASING → CONFLICT         [merge conflicts]  // terminal
 
 ## Anti-Patterns
 
-| ❌ Don't | ✅ Do |
+| âŒ Don't | âœ… Do |
 |---------|-------|
 | Skip secret scan | Scan before every commit |
 | Monolithic commits (>10 files) | Split by type/scope |
@@ -159,15 +159,15 @@ REBASING → CONFLICT         [merge conflicts]  // terminal
 
 ---
 
-## 📑 Content Map
+## ðŸ“‘ Content Map
 
 | File | Description | When to Read |
 |------|-------------|--------------|
-| [engineering-spec.md](references/engineering-spec.md) | Full engineering spec | Architecture review |
+| [engineering-spec.md](rules/engineering-spec.md) | Full engineering spec | Architecture review |
 
 ---
 
-## 🔗 Related
+## ðŸ”— Related
 
 | Item | Type | Purpose |
 |------|------|---------|
@@ -178,4 +178,4 @@ REBASING → CONFLICT         [merge conflicts]  // terminal
 
 ---
 
-⚡ PikaKit v3.9.105
+âš¡ PikaKit v3.9.105

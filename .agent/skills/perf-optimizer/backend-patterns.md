@@ -1,6 +1,6 @@
----
+﻿---
 name: backend-patterns
-description: Backend performance patterns — N+1 detection, Redis caching, connection pooling, pagination, query optimization
+description: Backend performance patterns â€” N+1 detection, Redis caching, connection pooling, pagination, query optimization
 ---
 
 # Backend Performance Patterns
@@ -23,7 +23,7 @@ description: Backend performance patterns — N+1 detection, Redis caching, conn
 ### The Problem
 
 ```typescript
-// ❌ N+1: 1 query for users + N queries for posts
+// âŒ N+1: 1 query for users + N queries for posts
 const users = await db.user.findMany()
 for (const user of users) {
   const posts = await db.post.findMany({ where: { userId: user.id } })
@@ -35,20 +35,20 @@ for (const user of users) {
 ### Fix Patterns
 
 ```typescript
-// ✅ Fix 1: Eager Loading (Prisma)
+// âœ… Fix 1: Eager Loading (Prisma)
 const users = await prisma.user.findMany({
   include: { posts: true }
 })
 // 2 queries total (1 for users + 1 for posts with IN clause)
 
-// ✅ Fix 1: Eager Loading (Drizzle)
+// âœ… Fix 1: Eager Loading (Drizzle)
 const users = await db.query.users.findMany({
   with: { posts: true }
 })
 ```
 
 ```typescript
-// ✅ Fix 2: Batch Query (manual)
+// âœ… Fix 2: Batch Query (manual)
 const users = await db.user.findMany()
 const userIds = users.map(u => u.id)
 const posts = await db.post.findMany({
@@ -65,7 +65,7 @@ for (const post of posts) {
 ```
 
 ```typescript
-// ✅ Fix 3: DataLoader (for GraphQL)
+// âœ… Fix 3: DataLoader (for GraphQL)
 import DataLoader from 'dataloader'
 
 const postLoader = new DataLoader(async (userIds: readonly string[]) => {
@@ -75,7 +75,7 @@ const postLoader = new DataLoader(async (userIds: readonly string[]) => {
   return userIds.map(id => posts.filter(p => p.userId === id))
 })
 
-// In resolver — auto-batched and cached per request
+// In resolver â€” auto-batched and cached per request
 const userPosts = await postLoader.load(userId)
 ```
 
@@ -95,7 +95,7 @@ async function getUser(userId: string) {
   const cached = await redis.get(`user:${userId}`)
   if (cached) return JSON.parse(cached)
 
-  // 2. Cache miss → fetch from DB
+  // 2. Cache miss â†’ fetch from DB
   const user = await db.user.findUnique({ where: { id: userId } })
   if (!user) return null
 
@@ -134,18 +134,18 @@ async function updateUser(userId: string, data: UserUpdate) {
 }
 
 // Pattern: invalidate on write, not on read
-// If cache miss rate is high → increase TTL
-// If stale data is a problem → decrease TTL
+// If cache miss rate is high â†’ increase TTL
+// If stale data is a problem â†’ decrease TTL
 ```
 
 ### Cache Key Naming Convention
 
 ```
-{entity}:{id}              → user:123
-{entity}:{id}:{field}      → user:123:profile
-{entity}:list:{params}     → user:list:page=1&limit=20
-{entity}:count:{filter}    → user:count:active=true
-{prefix}:{entity}:{id}     → v2:user:123  (versioned)
+{entity}:{id}              â†’ user:123
+{entity}:{id}:{field}      â†’ user:123:profile
+{entity}:list:{params}     â†’ user:list:page=1&limit=20
+{entity}:count:{filter}    â†’ user:count:active=true
+{prefix}:{entity}:{id}     â†’ v2:user:123  (versioned)
 ```
 
 ---
@@ -156,20 +156,20 @@ async function updateUser(userId: string, data: UserUpdate) {
 
 ```
 Without pooling:
-  Request → Open connection → Query → Close connection
-  100 concurrent requests → 100 connections opened/closed
-  → Connection overhead dominates response time
+  Request â†’ Open connection â†’ Query â†’ Close connection
+  100 concurrent requests â†’ 100 connections opened/closed
+  â†’ Connection overhead dominates response time
 
 With pooling:
-  Request → Borrow connection → Query → Return to pool
-  100 concurrent requests → 10-20 pooled connections reused
-  → Near-zero connection overhead
+  Request â†’ Borrow connection â†’ Query â†’ Return to pool
+  100 concurrent requests â†’ 10-20 pooled connections reused
+  â†’ Near-zero connection overhead
 ```
 
 ### Configuration
 
 ```typescript
-// Prisma — connection pool is automatic
+// Prisma â€” connection pool is automatic
 // Tune via connection string
 const DATABASE_URL = 'postgresql://user:pass@host:5432/db?connection_limit=20&pool_timeout=10'
 
@@ -203,7 +203,7 @@ const db = drizzle(pool)
 ### Offset Pagination (Simple, for small datasets)
 
 ```typescript
-// ❌ Offset gets slower as page number grows
+// âŒ Offset gets slower as page number grows
 const users = await db.user.findMany({
   skip: (page - 1) * pageSize,
   take: pageSize,
@@ -215,7 +215,7 @@ const users = await db.user.findMany({
 ### Cursor Pagination (Efficient, for large datasets)
 
 ```typescript
-// ✅ Cursor is consistently fast regardless of page depth
+// âœ… Cursor is consistently fast regardless of page depth
 const users = await db.user.findMany({
   take: pageSize,
   ...(cursor && {
@@ -258,9 +258,9 @@ return { items: users, nextCursor }
 EXPLAIN ANALYZE SELECT * FROM users WHERE email = 'test@example.com';
 
 -- Look for:
--- ✅ Index Scan (fast)
--- ❌ Seq Scan on large table (needs index)
--- ❌ Nested Loop with high row counts (possible N+1)
+-- âœ… Index Scan (fast)
+-- âŒ Seq Scan on large table (needs index)
+-- âŒ Nested Loop with high row counts (possible N+1)
 ```
 
 ### Query Logging (Development)
@@ -287,7 +287,7 @@ const db = drizzle(pool, { logger: true })
 
 ## Anti-Patterns
 
-| ❌ Don't | ✅ Do |
+| âŒ Don't | âœ… Do |
 |---------|-------|
 | `SELECT *` in production | Select only needed columns |
 | Query inside loops | Batch or eager load |
@@ -299,10 +299,10 @@ const db = drizzle(pool, { logger: true })
 
 ---
 
-## 🔗 Related
+## ðŸ”— Related
 
 | File | When to Read |
 |------|-------------|
 | [scripts/lighthouse_audit.js](scripts/lighthouse_audit.js) | Frontend performance audit |
 | [SKILL.md](SKILL.md) | Core Web Vitals targets |
-| [references/engineering-spec.md](references/engineering-spec.md) | Full architecture spec |
+| [rules/engineering-spec.md](rules/engineering-spec.md) | Full architecture spec |

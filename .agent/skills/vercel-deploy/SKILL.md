@@ -1,4 +1,4 @@
----
+﻿---
 name: vercel-deploy
 description: >-
   Deploy applications and websites to Vercel. Use this skill when the user requests
@@ -15,9 +15,9 @@ metadata:
   coordinates_with: "cicd-pipeline, nextjs-pro"
 ---
 
-# Vercel Deploy — Zero-Auth Deployment
+# Vercel Deploy â€” Zero-Auth Deployment
 
-> Package → Detect Framework → Upload → Preview URL + Claim URL
+> Package â†’ Detect Framework â†’ Upload â†’ Preview URL + Claim URL
 
 ---
 
@@ -37,8 +37,8 @@ metadata:
 | Situation | Approach |
 |-----------|----------|
 | Deploy app | `bash scripts/deploy.sh [path]` |
-| Preview deployment | Deploy → get preview URL |
-| Production deploy | Deploy → claim via claim URL |
+| Preview deployment | Deploy â†’ get preview URL |
+| Production deploy | Deploy â†’ claim via claim URL |
 | Quick demo | Instant deploy, no auth |
 
 ---
@@ -47,8 +47,8 @@ metadata:
 
 | Owned by This Skill | NOT Owned |
 |---------------------|-----------|
-| Tarball packaging (excl. node_modules/.git) | CI/CD pipeline (→ cicd-pipeline) |
-| Framework auto-detection (40+ frameworks) | Release workflow (→ /launch) |
+| Tarball packaging (excl. node_modules/.git) | CI/CD pipeline (â†’ cicd-pipeline) |
+| Framework auto-detection (40+ frameworks) | Release workflow (â†’ /launch) |
 | Upload to Vercel API | Custom domains / env vars |
 | Preview URL + Claim URL output | Deployment claiming |
 
@@ -59,12 +59,12 @@ metadata:
 ## 4-Stage Pipeline
 
 ```
-INIT → PACKAGING [path provided]
-PACKAGING → DETECTING [tarball created]
-DETECTING → UPLOADING [framework identified]
-UPLOADING → DEPLOYED [upload successful]     // terminal
-UPLOADING → FAILED [upload error]            // terminal
-PACKAGING → FAILED [no project files]        // terminal
+INIT â†’ PACKAGING [path provided]
+PACKAGING â†’ DETECTING [tarball created]
+DETECTING â†’ UPLOADING [framework identified]
+UPLOADING â†’ DEPLOYED [upload successful]     // terminal
+UPLOADING â†’ FAILED [upload error]            // terminal
+PACKAGING â†’ FAILED [no project files]        // terminal
 ```
 
 ---
@@ -101,7 +101,7 @@ Auto-detects from `package.json`:
 - **Other:** Astro, Solid, Angular, Ember, Preact, Docusaurus
 - **Backend:** Express, Hono, Fastify, NestJS, Elysia, h3
 - **Build:** Vite, Parcel
-- **Static HTML:** No package.json → framework: null
+- **Static HTML:** No package.json â†’ framework: null
 
 ---
 
@@ -127,20 +127,20 @@ Auto-detects from `package.json`:
 | Network egress error | Allowlist `*.vercel.com` in network settings |
 | Large project timeout | Exclude node_modules (automatic); increase timeout |
 | Static HTML not at root | Single non-index.html auto-renamed to index.html |
-| Claude.ai egress blocked | Settings → Capabilities → Add *.vercel.com |
+| Claude.ai egress blocked | Settings â†’ Capabilities â†’ Add *.vercel.com |
 
 ---
 
-## 📑 Content Map
+## ðŸ“‘ Content Map
 
 | File | Description | When to Read |
 |------|-------------|--------------|
 | [scripts/deploy.sh](scripts/deploy.sh) | Deploy script | Running deploys |
-| [engineering-spec.md](references/engineering-spec.md) | Full spec | Architecture review |
+| [engineering-spec.md](rules/engineering-spec.md) | Full spec | Architecture review |
 
 ---
 
-## 🔗 Related
+## ðŸ”— Related
 
 | Item | Type | Purpose |
 |------|------|---------|
@@ -150,4 +150,4 @@ Auto-detects from `package.json`:
 
 ---
 
-⚡ PikaKit v3.9.105
+âš¡ PikaKit v3.9.105

@@ -1,4 +1,4 @@
----
+﻿---
 name: design-system
 description: >-
   Design thinking and decision-making for web UI. Color theory, typography, visual effects, and UX psychology.
@@ -12,7 +12,7 @@ metadata:
   coordinates_with: "tailwind-kit, studio, frontend-design"
 ---
 
-# Design System — UI Design Decisions
+# Design System â€” UI Design Decisions
 
 > Every pixel has purpose. Restraint is luxury. User psychology drives decisions.
 
@@ -20,7 +20,7 @@ metadata:
 
 ## Prerequisites
 
-**Required:** None — Design System is a knowledge-based skill with no external dependencies.
+**Required:** None â€” Design System is a knowledge-based skill with no external dependencies.
 
 ---
 
@@ -34,7 +34,7 @@ metadata:
 | Animation/motion | Invoke animation-select; read `rules/animation-guide.md` |
 | UX validation | Invoke ux-audit; read `rules/ux-psychology.md` |
 | Design decisions | Read `rules/decision-trees.md` |
-| Architecture review | Read `references/engineering-spec.md` |
+| Architecture review | Read `rules/engineering-spec.md` |
 
 ---
 
@@ -42,22 +42,22 @@ metadata:
 
 | Owned by This Skill | NOT Owned |
 |---------------------|-----------|
-| Color theory (3 harmony types + semantic palette) | CSS/Tailwind generation (→ tailwind-kit) |
-| Typography system (max 2 families, modular scale) | AI style recommendations (→ studio) |
+| Color theory (3 harmony types + semantic palette) | CSS/Tailwind generation (â†’ tailwind-kit) |
+| Typography system (max 2 families, modular scale) | AI style recommendations (â†’ studio) |
 | Visual effects selection criteria | Component implementation |
-| Animation principles (3 functional categories) | WCAG accessibility (→ web-design-guidelines) |
-| UX psychology audit (Hick's, Fitts's, Gestalt) | Image/asset generation (→ ai-artist) |
-| 3 design anti-pattern bans | Frontend code architecture (→ frontend-design) |
+| Animation principles (3 functional categories) | WCAG accessibility (â†’ web-design-guidelines) |
+| UX psychology audit (Hick's, Fitts's, Gestalt) | Image/asset generation (â†’ ai-artist) |
+| 3 design anti-pattern bans | Frontend code architecture (â†’ frontend-design) |
 
 **Pure decision skill:** Produces design specifications. Zero side effects (except UX audit script reads files).
 
 ---
 
-## ⚠️ Anti-Pattern Bans (Enforced on ALL Outputs)
+## âš ï¸ Anti-Pattern Bans (Enforced on ALL Outputs)
 
 | # | Ban | Reason |
 |---|-----|--------|
-| 1 | **Purple Ban** | Do not use generic purple themes (AI-generated cliché) |
+| 1 | **Purple Ban** | Do not use generic purple themes (AI-generated clichÃ©) |
 | 2 | **Bento Ban** | Do not default to Bento grids without explicit justification |
 | 3 | **Dark Mode Default** | Do not assume dark mode unless `dark_mode_requested = true` |
 
@@ -81,7 +81,7 @@ Every palette includes: primary, secondary, accent, 5 neutrals, 4 semantic (succ
 |------|-----------|
 | Max font families | 2 (heading + body) |
 | Scale | Modular ratio (1.25 or 1.333) |
-| Line height | 1.4–1.6 for body text |
+| Line height | 1.4â€“1.6 for body text |
 
 ---
 
@@ -89,9 +89,9 @@ Every palette includes: primary, secondary, accent, 5 neutrals, 4 semantic (succ
 
 | Category | Purpose | Duration |
 |----------|---------|----------|
-| **Feedback** | Confirm user action | 100–200ms |
-| **Orientation** | Guide spatial awareness | 200–400ms |
-| **Continuity** | Connect state transitions | 300–500ms |
+| **Feedback** | Confirm user action | 100â€“200ms |
+| **Orientation** | Guide spatial awareness | 200â€“400ms |
+| **Continuity** | Connect state transitions | 300â€“500ms |
 
 Every animation must serve one of these 3 functions. Decorative-only motion is not allowed.
 
@@ -126,18 +126,18 @@ node .agent/skills/studio/scripts-js/search.js "<query>" --domain style
 
 ---
 
-## 📑 Content Map
+## ðŸ“‘ Content Map
 
 | File | Description | When to Read |
 |------|-------------|--------------|
-| [ux-psychology.md](rules/ux-psychology.md) | 🔴 **REQUIRED** — Core UX psychology laws | Always |
+| [ux-psychology.md](rules/ux-psychology.md) | ðŸ”´ **REQUIRED** â€” Core UX psychology laws | Always |
 | [color-system.md](rules/color-system.md) | Color theory and palette selection | Color decisions |
 | [typography-system.md](rules/typography-system.md) | Font pairing and scale | Typography |
 | [visual-effects.md](rules/visual-effects.md) | Shadows, gradients, glassmorphism | Effects selection |
 | [animation-guide.md](rules/animation-guide.md) | Motion principles | Animation |
 | [motion-graphics.md](rules/motion-graphics.md) | Advanced motion (Lottie, 3D) | Complex animation |
 | [decision-trees.md](rules/decision-trees.md) | Design decision framework | All decisions |
-| [engineering-spec.md](references/engineering-spec.md) | Full engineering spec | Architecture review |
+| [engineering-spec.md](rules/engineering-spec.md) | Full engineering spec | Architecture review |
 
 | Script | Purpose |
 |--------|---------|
@@ -148,7 +148,7 @@ node .agent/skills/studio/scripts-js/search.js "<query>" --domain style
 
 ---
 
-## 🔗 Related
+## ðŸ”— Related
 
 | Item | Type | Purpose |
 |------|------|---------|
@@ -159,4 +159,4 @@ node .agent/skills/studio/scripts-js/search.js "<query>" --domain style
 
 ---
 
-⚡ PikaKit v3.9.105
+âš¡ PikaKit v3.9.105

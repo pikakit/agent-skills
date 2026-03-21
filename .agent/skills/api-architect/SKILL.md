@@ -1,4 +1,4 @@
----
+﻿---
 name: api-architect
 description: >-
   API design principles and decision-making. REST vs GraphQL vs tRPC selection,
@@ -22,10 +22,10 @@ metadata:
 
 ## Prerequisites
 
-**Required:** None — API Architect is a knowledge-based skill with no external dependencies.
+**Required:** None â€” API Architect is a knowledge-based skill with no external dependencies.
 
 **Optional:**
-- `scripts/api_validator.js` — run `node scripts/api_validator.js <project_path>` for endpoint validation
+- `scripts/api_validator.js` â€” run `node scripts/api_validator.js <project_path>` for endpoint validation
 
 ---
 
@@ -43,7 +43,7 @@ metadata:
 | Rate limiting strategy | `rules/rate-limiting.md` |
 | OpenAPI documentation | `rules/documentation.md` |
 | OWASP API security audit | `rules/security-testing.md` |
-| Architecture review, contracts | `references/engineering-spec.md` |
+| Architecture review, contracts | `rules/engineering-spec.md` |
 
 **Selective Reading Rule:** Read ONLY the file matching the current request. Do not read all files.
 
@@ -53,23 +53,23 @@ metadata:
 
 | Owned by This Skill | NOT Owned |
 |---------------------|-----------|
-| API style selection (REST/GraphQL/tRPC) | API implementation code (→ backend-specialist) |
-| Response format and envelope design | Database schema (→ data-modeler) |
-| Versioning strategy selection | Auth implementation (→ auth-patterns) |
-| Rate limiting pattern selection | Security pen testing (→ security-scanner) |
-| OWASP API Top 10 checklist | Infrastructure / deployment (→ server-ops) |
+| API style selection (REST/GraphQL/tRPC) | API implementation code (â†’ backend-specialist) |
+| Response format and envelope design | Database schema (â†’ data-modeler) |
+| Versioning strategy selection | Auth implementation (â†’ auth-patterns) |
+| Rate limiting pattern selection | Security pen testing (â†’ security-scanner) |
+| OWASP API Top 10 checklist | Infrastructure / deployment (â†’ server-ops) |
 | OpenAPI documentation standards | Client-side consumption |
 
 **Pure decision skill:** Produces design documents and specifications. Zero code generation, zero network calls.
 
 ---
 
-## Execution Model — 4-Phase Lifecycle
+## Execution Model â€” 4-Phase Lifecycle
 
 | Phase | Action | Output |
 |-------|--------|--------|
 | **Classify** | Validate request type and project context | Validated input or error |
-| **Evaluate** | Traverse decision tree (project_type → consumers → complexity → scale) | Selected pattern |
+| **Evaluate** | Traverse decision tree (project_type â†’ consumers â†’ complexity â†’ scale) | Selected pattern |
 | **Enrich** | Attach checklist, anti-patterns, related decisions | Complete decision |
 | **Emit** | Return structured output with rationale | Decision with metadata |
 
@@ -87,7 +87,7 @@ All phases synchronous. Decision tree ordering is fixed and deterministic.
 | Simple CRUD, single consumer | **REST** | Minimal complexity, HTTP semantics sufficient |
 | Real-time data requirements | **GraphQL** (subscriptions) or **WebSocket** | Native subscription support |
 
-**Constraint:** `existing_api` context field takes precedence — avoid mixing styles unless justified.
+**Constraint:** `existing_api` context field takes precedence â€” avoid mixing styles unless justified.
 
 ---
 
@@ -112,9 +112,9 @@ All phases synchronous. Decision tree ordering is fixed and deterministic.
 Before designing an API, confirm:
 
 - [ ] **Consumers identified?** (web-spa, mobile, third-party, internal-service, cli)
-- [ ] **API style chosen for THIS context?** (REST/GraphQL/tRPC — not defaulted)
+- [ ] **API style chosen for THIS context?** (REST/GraphQL/tRPC â€” not defaulted)
 - [ ] **Response envelope format defined?** (consistent across all endpoints)
-- [ ] **Versioning strategy selected?** (URI/Header/Query — before first endpoint)
+- [ ] **Versioning strategy selected?** (URI/Header/Query â€” before first endpoint)
 - [ ] **Auth pattern selected?** (JWT/OAuth/Passkey/API Key)
 - [ ] **Rate limiting strategy defined?** (token bucket/sliding window)
 - [ ] **OpenAPI documentation approach set?**
@@ -124,7 +124,7 @@ Before designing an API, confirm:
 
 ## Anti-Patterns
 
-| ❌ Don't | ✅ Do |
+| âŒ Don't | âœ… Do |
 |---------|-------|
 | Default to REST for every project | Choose API style based on project context |
 | Use verbs in REST endpoints (`/getUsers`) | Use resource nouns (`/users`) with HTTP methods |
@@ -135,7 +135,7 @@ Before designing an API, confirm:
 
 ---
 
-## 📑 Content Map
+## ðŸ“‘ Content Map
 
 | File | Description | When to Read |
 |------|-------------|--------------|
@@ -149,7 +149,7 @@ Before designing an API, confirm:
 | [rate-limiting.md](rules/rate-limiting.md) | Token bucket, sliding window | API protection |
 | [documentation.md](rules/documentation.md) | OpenAPI/Swagger standards | API documentation |
 | [security-testing.md](rules/security-testing.md) | OWASP API Top 10, auth/authz testing | Security audits |
-| [engineering-spec.md](references/engineering-spec.md) | Full engineering spec: contracts, security, scalability | Architecture review |
+| [engineering-spec.md](rules/engineering-spec.md) | Full engineering spec: contracts, security, scalability | Architecture review |
 
 ---
 
@@ -161,7 +161,7 @@ Before designing an API, confirm:
 
 ---
 
-## 🔗 Related
+## ðŸ”— Related
 
 | Item | Type | Purpose |
 |------|------|---------|
@@ -173,4 +173,4 @@ Before designing an API, confirm:
 
 ---
 
-⚡ PikaKit v3.9.105
+âš¡ PikaKit v3.9.105

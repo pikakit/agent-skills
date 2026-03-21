@@ -1,4 +1,4 @@
----
+﻿---
 name: game-development
 description: >-
   Game development orchestrator. Routes to platform-specific skills based on project needs.
@@ -13,7 +13,7 @@ metadata:
   coordinates_with: "mobile-developer, perf-optimizer, shader"
 ---
 
-# Game Development — Orchestrator
+# Game Development â€” Orchestrator
 
 > Route to right sub-skill. Fixed timestep. 16.67ms budget. Input abstraction.
 
@@ -21,7 +21,7 @@ metadata:
 
 ## Prerequisites
 
-**Required:** None — Game Development is a routing and principles skill.
+**Required:** None â€” Game Development is a routing and principles skill.
 
 ---
 
@@ -32,7 +32,7 @@ metadata:
 | Starting a game project | Route by platform + dimension below |
 | Need game loop architecture | Read game loop section |
 | Performance questions | Read performance budget section |
-| Architecture review | Read `references/engineering-spec.md` |
+| Architecture review | Read `rules/engineering-spec.md` |
 
 ---
 
@@ -40,11 +40,11 @@ metadata:
 
 | Owned by This Skill | NOT Owned |
 |---------------------|-----------|
-| Sub-skill routing (10 sub-skills) | Platform-specific code (→ sub-skills) |
-| Game loop pattern (INPUT→UPDATE→RENDER) | Engine configuration |
-| Performance budget (16.67ms at 60 FPS) | Profiling tools (→ perf-optimizer) |
-| Pattern selection (6 patterns) | Shader code (→ shader) |
-| AI type selection (4 types) | Mobile builds (→ mobile-developer) |
+| Sub-skill routing (10 sub-skills) | Platform-specific code (â†’ sub-skills) |
+| Game loop pattern (INPUTâ†’UPDATEâ†’RENDER) | Engine configuration |
+| Performance budget (16.67ms at 60 FPS) | Profiling tools (â†’ perf-optimizer) |
+| Pattern selection (6 patterns) | Shader code (â†’ shader) |
+| AI type selection (4 types) | Mobile builds (â†’ mobile-developer) |
 
 **Orchestrator skill:** Routes to sub-skills. Does NOT invoke them automatically.
 
@@ -82,9 +82,9 @@ metadata:
 ## Game Loop (Universal)
 
 ```
-INPUT  → Read player actions
-UPDATE → Process game logic (fixed timestep: 50Hz)
-RENDER → Draw the frame (interpolated)
+INPUT  â†’ Read player actions
+UPDATE â†’ Process game logic (fixed timestep: 50Hz)
+RENDER â†’ Draw the frame (interpolated)
 ```
 
 **Fixed timestep mandatory.** Physics at 50Hz. Render interpolated. No variable delta for physics.
@@ -108,7 +108,7 @@ RENDER → Draw the frame (interpolated)
 
 | Pattern | Use When |
 |---------|----------|
-| **State Machine** | 3-5 discrete states (DEFAULT — start here) |
+| **State Machine** | 3-5 discrete states (DEFAULT â€” start here) |
 | **Object Pooling** | Frequent spawn/destroy (bullets, particles) |
 | **Observer/Events** | Cross-system communication |
 | **ECS** | 1000+ similar entities (RTS units) |
@@ -133,7 +133,7 @@ RENDER → Draw the frame (interpolated)
 
 ## Anti-Patterns
 
-| ❌ Don't | ✅ Do |
+| âŒ Don't | âœ… Do |
 |---------|-------|
 | Update everything every frame | Use events, dirty flags |
 | Create objects in hot loops | Object pooling |
@@ -143,11 +143,11 @@ RENDER → Draw the frame (interpolated)
 
 ---
 
-## 📑 Content Map
+## ðŸ“‘ Content Map
 
 | File | Description | When to Read |
 |------|-------------|--------------|
-| [engineering-spec.md](references/engineering-spec.md) | Full engineering spec | Architecture review |
+| [engineering-spec.md](rules/engineering-spec.md) | Full engineering spec | Architecture review |
 
 | Sub-Skill | Directory |
 |-----------|-----------|
@@ -164,7 +164,7 @@ RENDER → Draw the frame (interpolated)
 
 ---
 
-## 🔗 Related
+## ðŸ”— Related
 
 | Item | Type | Purpose |
 |------|------|---------|
@@ -175,4 +175,4 @@ RENDER → Draw the frame (interpolated)
 
 ---
 
-⚡ PikaKit v3.9.105
+âš¡ PikaKit v3.9.105

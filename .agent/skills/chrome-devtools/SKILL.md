@@ -1,4 +1,4 @@
----
+﻿---
 name: chrome-devtools
 description: >-
   Puppeteer CLI scripts for browser automation, screenshots, debugging.
@@ -9,11 +9,11 @@ metadata:
   version: "2.0.0"
   category: "testing"
   triggers: "screenshot, browser, puppeteer, devtools, performance, console, network"
-  success_metrics: "JSON output on all scripts, screenshots ≤ 5MB, session persists across scripts"
+  success_metrics: "JSON output on all scripts, screenshots â‰¤ 5MB, session persists across scripts"
   coordinates_with: "agent-browser, e2e-automation, perf-optimizer"
 ---
 
-# Chrome DevTools — Puppeteer CLI
+# Chrome DevTools â€” Puppeteer CLI
 
 > Direct Puppeteer CLI scripts. Session persistence. JSON output. Auto-compressed screenshots.
 
@@ -45,9 +45,9 @@ metadata:
 
 | Owned by This Skill | NOT Owned |
 |---------------------|-----------|
-| 10 Puppeteer CLI scripts | E2E test suites (→ e2e-automation) |
-| Session persistence (.browser-session.json) | AI @ref handle system (→ agent-browser) |
-| Screenshot capture + auto-compress | Performance recommendations (→ perf-optimizer) |
+| 10 Puppeteer CLI scripts | E2E test suites (â†’ e2e-automation) |
+| Session persistence (.browser-session.json) | AI @ref handle system (â†’ agent-browser) |
+| Screenshot capture + auto-compress | Performance recommendations (â†’ perf-optimizer) |
 | Core Web Vitals measurement | Cross-browser testing |
 | Console/network monitoring | Browser installation |
 
@@ -137,18 +137,18 @@ node navigate.js --close true
 
 ---
 
-## 📑 Content Map
+## ðŸ“‘ Content Map
 
 | File | Description | When to Read |
 |------|-------------|--------------|
-| [scripts-guide.md](references/scripts-guide.md) | Complete script reference with all options | Detailed script usage |
-| [aria-snapshot.md](references/aria-snapshot.md) | ARIA tree format and usage | Element discovery |
+| [scripts-guide.md](rules/scripts-guide.md) | Complete script reference with all options | Detailed script usage |
+| [aria-snapshot.md](rules/aria-snapshot.md) | ARIA tree format and usage | Element discovery |
 | [scripts/](scripts/) | Puppeteer CLI scripts | Script execution |
-| [engineering-spec.md](references/engineering-spec.md) | Full engineering spec: contracts, security, scalability | Architecture review |
+| [engineering-spec.md](rules/engineering-spec.md) | Full engineering spec: contracts, security, scalability | Architecture review |
 
 ---
 
-## 🔗 Related
+## ðŸ”— Related
 
 | Item | Type | Purpose |
 |------|------|---------|
@@ -158,4 +158,4 @@ node navigate.js --close true
 
 ---
 
-⚡ PikaKit v3.9.105
+âš¡ PikaKit v3.9.105

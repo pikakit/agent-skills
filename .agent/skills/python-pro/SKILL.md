@@ -1,4 +1,4 @@
----
+﻿---
 name: python-pro
 description: >-
   Python development principles and decision-making. Framework selection (FastAPI/Django/Flask),
@@ -13,7 +13,7 @@ metadata:
   coordinates_with: "test-architect, api-architect"
 ---
 
-# Python Pro — Framework Selection & Architecture
+# Python Pro â€” Framework Selection & Architecture
 
 > Decision-making principles. Not patterns to copy. Ask, classify, decide.
 
@@ -34,9 +34,9 @@ metadata:
 
 | Owned by This Skill | NOT Owned |
 |---------------------|-----------|
-| Framework selection (5 branches) | API design (→ api-architect) |
-| Async/sync classification | Testing strategy (→ test-architect) |
-| Type hint rules | Database schema (→ data-modeler) |
+| Framework selection (5 branches) | API design (â†’ api-architect) |
+| Async/sync classification | Testing strategy (â†’ test-architect) |
+| Type hint rules | Database schema (â†’ data-modeler) |
 | Architecture layering | Code implementation |
 
 **Expert decision skill:** Produces recommendations. Does not write code.
@@ -47,15 +47,15 @@ metadata:
 
 ```
 What are you building?
-│
-├── API-first / Microservices  → FastAPI
-├── Full-stack web / CMS       → Django
-├── Simple / Script / Learning → Flask
-├── AI/ML API serving          → FastAPI
-└── Background workers         → Celery + any
+â”‚
+â”œâ”€â”€ API-first / Microservices  â†’ FastAPI
+â”œâ”€â”€ Full-stack web / CMS       â†’ Django
+â”œâ”€â”€ Simple / Script / Learning â†’ Flask
+â”œâ”€â”€ AI/ML API serving          â†’ FastAPI
+â””â”€â”€ Background workers         â†’ Celery + any
 ```
 
-**If user has explicit preference → respect it.** Ask when unclear.
+**If user has explicit preference â†’ respect it.** Ask when unclear.
 
 ---
 
@@ -75,8 +75,8 @@ What are you building?
 
 ```
 Routes (HTTP handlers)
-  └→ Services (business logic)
-      └→ Repositories (data access)
+  â””â†’ Services (business logic)
+      â””â†’ Repositories (data access)
 ```
 
 **Rule:** No business logic in routes/views. Routes delegate to services.
@@ -118,34 +118,34 @@ Routes (HTTP handlers)
 
 ## Anti-Patterns
 
-| ❌ Don't | ✅ Do |
+| âŒ Don't | âœ… Do |
 |---------|-------|
 | Default to Django for simple APIs | Choose framework per context |
 | Use sync libraries in async code | Use async-compatible libraries |
 | Skip type hints on public APIs | Annotate all public functions |
-| Put business logic in routes/views | Separate: routes → services → repos |
+| Put business logic in routes/views | Separate: routes â†’ services â†’ repos |
 | Always pick the same framework | Ask user, evaluate context |
 
 ---
 
-## 📑 Content Map
+## ðŸ“‘ Content Map
 
 | File | Description | When to Read |
 |------|-------------|--------------|
-| [framework-selection.md](references/framework-selection.md) | Framework comparison | Choosing framework |
-| [async-patterns.md](references/async-patterns.md) | Async/sync patterns | Concurrency decisions |
-| [type-hints.md](references/type-hints.md) | Type annotation rules | Type strategy |
-| [project-structure.md](references/project-structure.md) | Directory layouts | New project |
-| [fastapi-patterns.md](references/fastapi-patterns.md) | FastAPI specifics | FastAPI project |
-| [django-patterns.md](references/django-patterns.md) | Django specifics | Django project |
-| [testing-patterns.md](references/testing-patterns.md) | Python testing | Writing tests |
-| [engineering-spec.md](references/engineering-spec.md) | Full spec | Architecture review |
+| [framework-selection.md](rules/framework-selection.md) | Framework comparison | Choosing framework |
+| [async-patterns.md](rules/async-patterns.md) | Async/sync patterns | Concurrency decisions |
+| [type-hints.md](rules/type-hints.md) | Type annotation rules | Type strategy |
+| [project-structure.md](rules/project-structure.md) | Directory layouts | New project |
+| [fastapi-patterns.md](rules/fastapi-patterns.md) | FastAPI specifics | FastAPI project |
+| [django-patterns.md](rules/django-patterns.md) | Django specifics | Django project |
+| [testing-patterns.md](rules/testing-patterns.md) | Python testing | Writing tests |
+| [engineering-spec.md](rules/engineering-spec.md) | Full spec | Architecture review |
 
 **Selective reading:** Load ONLY the reference file matching your current decision.
 
 ---
 
-## 🔗 Related
+## ðŸ”— Related
 
 | Item | Type | Purpose |
 |------|------|---------|
@@ -155,4 +155,4 @@ Routes (HTTP handlers)
 
 ---
 
-⚡ PikaKit v3.9.105
+âš¡ PikaKit v3.9.105

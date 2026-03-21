@@ -1,16 +1,16 @@
----
+﻿---
 name: agent-browser
 description: >-
   AI-optimized browser automation with context-efficient @ref element handles.
   Reduces LLM context consumption by 93% compared to full DOM passing.
-  4-phase lifecycle: Navigate → Snapshot → Interact → Verify.
+  4-phase lifecycle: Navigate â†’ Snapshot â†’ Interact â†’ Verify.
   Triggers on: browser automation, web testing, scraping, UI verification, headless.
   Coordinates with: e2e-automation, chrome-devtools, test-architect.
 metadata:
   version: "2.0.0"
   category: "testing"
   triggers: "browser automation, web testing, scraping, UI verification, headless"
-  success_metrics: "context ≤ 500 chars per snapshot, zero silent failures, session isolation"
+  success_metrics: "context â‰¤ 500 chars per snapshot, zero silent failures, session isolation"
   coordinates_with: "e2e-automation, chrome-devtools, test-architect"
 ---
 
@@ -49,16 +49,16 @@ metadata:
 # 1. Navigate
 agent-browser open https://example.com
 
-# 2. Snapshot — get @ref handles
+# 2. Snapshot â€” get @ref handles
 agent-browser snapshot -i
 # Output: @e1=button[Login] @e2=input[email] @e3=input[password]
 
-# 3. Interact — use @refs directly
+# 3. Interact â€” use @refs directly
 agent-browser fill @e2 "user@example.com"
 agent-browser fill @e3 "password123"
 agent-browser click @e1
 
-# 4. Verify — re-snapshot to confirm state change
+# 4. Verify â€” re-snapshot to confirm state change
 agent-browser snapshot -i
 ```
 
@@ -71,12 +71,12 @@ agent-browser snapshot -i
 | Browser session lifecycle | Browser binary installation |
 | @ref element handles | Full DOM serialization |
 | Click, fill, screenshot, record | JavaScript injection |
-| Structured error codes | Visual regression testing (→ e2e-automation) |
+| Structured error codes | Visual regression testing (â†’ e2e-automation) |
 | Session isolation | Network interception |
 
 ---
 
-## Execution Model — 4-Phase Lifecycle
+## Execution Model â€” 4-Phase Lifecycle
 
 | Phase | Commands | State Effect |
 |-------|----------|-------------|
@@ -85,7 +85,7 @@ agent-browser snapshot -i
 | **Interact** | `click @ref`, `fill @ref "text"` | Mutates page state, invalidates @refs |
 | **Verify** | `snapshot -i`, `screenshot [path]` | Captures new state |
 
-**State:** `NO_SESSION → [open] → SESSION_ACTIVE → [close/timeout] → SESSION_CLOSED`
+**State:** `NO_SESSION â†’ [open] â†’ SESSION_ACTIVE â†’ [close/timeout] â†’ SESSION_CLOSED`
 
 ---
 
@@ -107,7 +107,7 @@ agent-browser fill @e2 "email@example.com"
 
 | Property | Constraint |
 |----------|-----------|
-| Output size | ≤ 500 chars for ≤ 50 elements |
+| Output size | â‰¤ 500 chars for â‰¤ 50 elements |
 | Validity | Until next snapshot, navigation, or session close |
 | Stale access | Returns `ERR_REF_STALE` (never silent) |
 | ID format | Sequential: `@e1`, `@e2`, ...; resets per snapshot |
@@ -173,15 +173,15 @@ agent-browser fill @e2 "email@example.com"
 
 ---
 
-## 📑 Content Map
+## ðŸ“‘ Content Map
 
 | File | Description | When to Read |
 |------|-------------|--------------| 
-| [engineering-spec.md](references/engineering-spec.md) | Full engineering spec: contracts, security, scalability, observability, failure model | Architecture review, integration design, production deployment |
+| [engineering-spec.md](rules/engineering-spec.md) | Full engineering spec: contracts, security, scalability, observability, failure model | Architecture review, integration design, production deployment |
 
 ---
 
-## 🔗 Related
+## ðŸ”— Related
 
 | Item | Type | Purpose |
 |------|------|---------|
@@ -191,4 +191,4 @@ agent-browser fill @e2 "email@example.com"
 
 ---
 
-⚡ PikaKit v3.9.105
+âš¡ PikaKit v3.9.105

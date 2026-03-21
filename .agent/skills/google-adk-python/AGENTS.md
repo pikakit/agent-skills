@@ -1,6 +1,6 @@
 ﻿# google-adk-python — Full Reference Guide
 
-> **Compiled from SKILL.md + references/ for AI agent consumption.**
+> **Compiled from SKILL.md + rules/ for AI agent consumption.**
 
 ---
 
@@ -21,10 +21,10 @@
 | Situation | Action |
 |-----------|--------|
 | Single agent with tools | Follow quick start + agent type table |
-| Multi-agent coordination | Read `references/multi-agent.md` |
-| Custom tool creation | Read `references/tools.md` |
-| Deployment patterns | Read `references/deployment.md` |
-| Architecture review | Read `references/engineering-spec.md` |
+| Multi-agent coordination | Read `rules/multi-agent.md` |
+| Custom tool creation | Read `rules/tools.md` |
+| Deployment patterns | Read `rules/deployment.md` |
+| Architecture review | Read `rules/engineering-spec.md` |
 
 ---
 
@@ -138,10 +138,10 @@ coordinator = LlmAgent(
 
 | File | Description | When to Read |
 |------|-------------|--------------|
-| [multi-agent.md](references/multi-agent.md) | Multi-agent patterns | Agent composition |
-| [tools.md](references/tools.md) | Tool integration | Custom tools |
-| [deployment.md](references/deployment.md) | Production deploy | Deployment |
-| [engineering-spec.md](references/engineering-spec.md) | Full engineering spec | Architecture review |
+| [multi-agent.md](rules/multi-agent.md) | Multi-agent patterns | Agent composition |
+| [tools.md](rules/tools.md) | Tool integration | Custom tools |
+| [deployment.md](rules/deployment.md) | Production deploy | Deployment |
+| [engineering-spec.md](rules/engineering-spec.md) | Full engineering spec | Architecture review |
 
 **Selective reading:** Read ONLY files relevant to the request.
 

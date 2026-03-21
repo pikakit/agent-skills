@@ -1,4 +1,4 @@
----
+﻿---
 name: observability
 description: >-
   OpenTelemetry-based observability for production applications. Unified logs, metrics, traces.
@@ -12,7 +12,7 @@ metadata:
   coordinates_with: "server-ops, cicd-pipeline"
 ---
 
-# Observability — Unified Telemetry with OpenTelemetry
+# Observability â€” Unified Telemetry with OpenTelemetry
 
 > 3 pillars. Vendor-agnostic. Fixed sampling. Auto-instrumentation first.
 
@@ -44,9 +44,9 @@ metadata:
 
 | Owned by This Skill | NOT Owned |
 |---------------------|-----------|
-| SDK configuration (Node.js, Python) | Infrastructure provisioning (→ server-ops) |
-| Sampling strategy (3 environments) | Alerting rules (→ /monitor workflow) |
-| Provider routing (3 providers) | CI/CD monitoring (→ cicd-pipeline) |
+| SDK configuration (Node.js, Python) | Infrastructure provisioning (â†’ server-ops) |
+| Sampling strategy (3 environments) | Alerting rules (â†’ /monitor workflow) |
+| Provider routing (3 providers) | CI/CD monitoring (â†’ cicd-pipeline) |
 | Auto-instrumentation guidance | Dashboard design |
 
 **Expert decision skill:** Produces configuration guidance. Does not install packages.
@@ -110,7 +110,7 @@ metadata:
 
 ## Anti-Patterns
 
-| ❌ Don't | ✅ Do |
+| âŒ Don't | âœ… Do |
 |---------|-------|
 | Create excessive custom spans | Use auto-instrumentation first |
 | Put sensitive data in span tags | Sanitize all tags before export |
@@ -131,15 +131,15 @@ metadata:
 
 ---
 
-## 📑 Content Map
+## ðŸ“‘ Content Map
 
 | File | Description | When to Read |
 |------|-------------|--------------|
-| [engineering-spec.md](references/engineering-spec.md) | Full engineering spec | Architecture review |
+| [engineering-spec.md](rules/engineering-spec.md) | Full engineering spec | Architecture review |
 
 ---
 
-## 🔗 Related
+## ðŸ”— Related
 
 | Item | Type | Purpose |
 |------|------|---------|
@@ -149,4 +149,4 @@ metadata:
 
 ---
 
-⚡ PikaKit v3.9.105
+âš¡ PikaKit v3.9.105

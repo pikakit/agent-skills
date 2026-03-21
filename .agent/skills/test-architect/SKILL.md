@@ -1,4 +1,4 @@
----
+﻿---
 name: test-architect
 description: >-
   Testing patterns and principles - unit, integration, E2E, and mocking strategies.
@@ -13,7 +13,7 @@ metadata:
   coordinates_with: "code-craft, e2e-automation, code-review"
 ---
 
-# Test Architect — Testing Patterns & Principles
+# Test Architect â€” Testing Patterns & Principles
 
 > Pyramid/Trophy/Honeycomb strategy. AAA structure. FIRST principles. Mock routing.
 
@@ -35,16 +35,16 @@ metadata:
 
 | Owned by This Skill | NOT Owned |
 |---------------------|-----------|
-| Strategy selection (3 models) | E2E browser testing (→ e2e-automation) |
-| AAA pattern + FIRST principles | TDD workflow (→ test-driven-dev) |
-| Mock type routing (4 types) | Code quality (→ code-craft) |
+| Strategy selection (3 models) | E2E browser testing (â†’ e2e-automation) |
+| AAA pattern + FIRST principles | TDD workflow (â†’ test-driven-dev) |
+| Mock type routing (4 types) | Code quality (â†’ code-craft) |
 | Naming conventions (3 patterns) | Test execution / coverage tooling |
 
 **Expert decision skill:** Produces testing guidance. Does not write or execute tests.
 
 ---
 
-## Strategy Selection (3 Models — Deterministic)
+## Strategy Selection (3 Models â€” Deterministic)
 
 | Model | Distribution | Best For |
 |-------|-------------|----------|
@@ -64,7 +64,7 @@ metadata:
 
 ---
 
-## FIRST Principles (5 — Fixed)
+## FIRST Principles (5 â€” Fixed)
 
 | Principle | Constraint |
 |-----------|-----------|
@@ -76,7 +76,7 @@ metadata:
 
 ---
 
-## Mock Types (4 — Deterministic)
+## Mock Types (4 â€” Deterministic)
 
 | Type | Use When |
 |------|----------|
@@ -87,7 +87,7 @@ metadata:
 
 ### What to Mock vs Not
 
-| ✅ Mock | ❌ Don't Mock |
+| âœ… Mock | âŒ Don't Mock |
 |---------|--------------|
 | External APIs | Code under test |
 | Database (unit) | Pure functions |
@@ -121,7 +121,7 @@ metadata:
 
 ## Anti-Patterns
 
-| ❌ Don't | ✅ Do |
+| âŒ Don't | âœ… Do |
 |---------|-------|
 | Test implementation details | Test behavior |
 | Duplicate test code | Use factories |
@@ -130,16 +130,16 @@ metadata:
 
 ---
 
-## 📑 Content Map
+## ðŸ“‘ Content Map
 
 | File | Description | When to Read |
 |------|-------------|--------------|
 | [test_runner.js](scripts/test_runner.js) | Unified test execution + coverage validation | Running tests |
-| [engineering-spec.md](references/engineering-spec.md) | Full spec | Architecture review |
+| [engineering-spec.md](rules/engineering-spec.md) | Full spec | Architecture review |
 
 ---
 
-## 🔗 Related
+## ðŸ”— Related
 
 | Item | Type | Purpose |
 |------|------|---------|
@@ -149,4 +149,4 @@ metadata:
 
 ---
 
-⚡ PikaKit v3.9.105
+âš¡ PikaKit v3.9.105

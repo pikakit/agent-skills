@@ -1,4 +1,4 @@
----
+﻿---
 name: problem-checker
 description: >-
   Automated IDE problem detection and auto-fix before task completion. Checks
@@ -12,13 +12,13 @@ metadata:
   coordinates_with: "auto-learned, auto-learner"
 ---
 
-# Problem Checker — Automated IDE Error Gate
+# Problem Checker â€” Automated IDE Error Gate
 
 > 4 auto-fix patterns. 3 escalation categories. Max 3 cycles. Hard-block on errors.
 
 ---
 
-## 🚨 Critical Rule
+## ðŸš¨ Critical Rule
 
 **NEVER mark a task complete if `@[current_problems]` shows errors.**
 
@@ -39,10 +39,10 @@ metadata:
 
 | Owned by This Skill | NOT Owned |
 |---------------------|-----------|
-| IDE problem detection (`@[current_problems]`) | Pattern storage (→ auto-learned) |
-| Auto-fix (4 patterns) | Skill generation (→ skill-generator) |
-| Fix-verify loop (max 3 cycles) | Full test execution (→ /validate) |
-| Completion gate (hard-block) | Code review (→ code-review) |
+| IDE problem detection (`@[current_problems]`) | Pattern storage (â†’ auto-learned) |
+| Auto-fix (4 patterns) | Skill generation (â†’ skill-generator) |
+| Fix-verify loop (max 3 cycles) | Full test execution (â†’ /validate) |
+| Completion gate (hard-block) | Code review (â†’ code-review) |
 
 **Automation (scripted):** Reads IDE state, modifies files (auto-fix), re-checks. Sequential only.
 
@@ -52,12 +52,12 @@ metadata:
 
 ```
 Read @[current_problems]
-├── 0 problems → CLEAN (proceed)
-└── Problems found → Classify each:
-    ├── Auto-fixable → Fix → Re-check (max 3 cycles)
-    │   ├── 0 remaining → CLEAN (proceed)
-    │   └── Still remaining → BLOCKED (escalate)
-    └── Not fixable → BLOCKED (escalate)
+â”œâ”€â”€ 0 problems â†’ CLEAN (proceed)
+â””â”€â”€ Problems found â†’ Classify each:
+    â”œâ”€â”€ Auto-fixable â†’ Fix â†’ Re-check (max 3 cycles)
+    â”‚   â”œâ”€â”€ 0 remaining â†’ CLEAN (proceed)
+    â”‚   â””â”€â”€ Still remaining â†’ BLOCKED (escalate)
+    â””â”€â”€ Not fixable â†’ BLOCKED (escalate)
 ```
 
 ---
@@ -65,19 +65,19 @@ Read @[current_problems]
 ## State Transitions
 
 ```
-IDLE → CHECKING               [action received]
-CHECKING → CLEAN              [0 problems]  // terminal
-CHECKING → FIXING             [auto-fixable found]
-CHECKING → BLOCKED            [only non-fixable]  // terminal
-FIXING → VERIFYING            [fix applied]
-VERIFYING → CLEAN             [0 remaining]  // terminal
-VERIFYING → FIXING            [fixable + cycles < max]
-VERIFYING → BLOCKED           [cycles >= max OR only non-fixable]  // terminal
+IDLE â†’ CHECKING               [action received]
+CHECKING â†’ CLEAN              [0 problems]  // terminal
+CHECKING â†’ FIXING             [auto-fixable found]
+CHECKING â†’ BLOCKED            [only non-fixable]  // terminal
+FIXING â†’ VERIFYING            [fix applied]
+VERIFYING â†’ CLEAN             [0 remaining]  // terminal
+VERIFYING â†’ FIXING            [fixable + cycles < max]
+VERIFYING â†’ BLOCKED           [cycles >= max OR only non-fixable]  // terminal
 ```
 
 ---
 
-## Auto-Fixable Patterns (4 — Fixed)
+## Auto-Fixable Patterns (4 â€” Fixed)
 
 | Pattern | IDE Message Match | Fix Action |
 |---------|------------------|------------|
@@ -88,7 +88,7 @@ VERIFYING → BLOCKED           [cycles >= max OR only non-fixable]  // terminal
 
 ---
 
-## Escalation Categories (3 — Fixed)
+## Escalation Categories (3 â€” Fixed)
 
 | Category | Indicators | Action |
 |----------|-----------|--------|
@@ -108,7 +108,7 @@ VERIFYING → BLOCKED           [cycles >= max OR only non-fixable]  // terminal
 | `ERR_FIX_REGRESSION` | Yes | Fix introduced new error |
 | `ERR_BLOCKED` | No | Unfixed errors remain |
 
-**Fix regression:** If auto-fix introduces new errors → revert fix → escalate.
+**Fix regression:** If auto-fix introduces new errors â†’ revert fix â†’ escalate.
 
 ---
 
@@ -124,16 +124,16 @@ npx tsc --noEmit <file>
 
 ---
 
-## 📑 Content Map
+## ðŸ“‘ Content Map
 
 | File | Description | When to Read |
 |------|-------------|--------------|
 | [scripts/check_problems.js](scripts/check_problems.js) | Problem check script | Running checks |
-| [engineering-spec.md](references/engineering-spec.md) | Full spec | Architecture review |
+| [engineering-spec.md](rules/engineering-spec.md) | Full spec | Architecture review |
 
 ---
 
-## 🔗 Related
+## ðŸ”— Related
 
 | Item | Type | Purpose |
 |------|------|---------|
@@ -143,4 +143,4 @@ npx tsc --noEmit <file>
 
 ---
 
-⚡ PikaKit v3.9.105
+âš¡ PikaKit v3.9.105

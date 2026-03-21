@@ -1,6 +1,6 @@
 ﻿# server-ops — Full Reference Guide
 
-> **Compiled from SKILL.md + references/ for AI agent consumption.**
+> **Compiled from SKILL.md + rules/ for AI agent consumption.**
 
 ---
 
@@ -143,7 +143,7 @@ Route by load balancer needs.
 
 | File | Description | When to Read |
 |------|-------------|--------------|
-| [engineering-spec.md](references/engineering-spec.md) | Full spec | Architecture review |
+| [engineering-spec.md](rules/engineering-spec.md) | Full spec | Architecture review |
 
 ---
 
@@ -578,7 +578,7 @@ All resources scoped to invocation. No persistent handles.
 | Core content matches skill type | âœ… | Expert type: process manager routing, scaling decisions, monitoring strategy |
 | Troubleshooting section | âœ… | 5-step troubleshooting + anti-patterns |
 | Related section | âœ… | Cross-links to cicd-pipeline, observability, security-scanner |
-| Content Map for multi-file | âœ… | Links to references/ + engineering-spec.md |
+| Content Map for multi-file | âœ… | Links to rules/ + engineering-spec.md |
 | Contract versioning | âœ… | contract_version, backward_compatibility, breaking_changes |
 | Compliance matrix structured | âœ… | This table with âœ…/âŒ + evidence |
 

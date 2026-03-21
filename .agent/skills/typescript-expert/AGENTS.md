@@ -1,6 +1,6 @@
 ﻿# typescript-expert — Full Reference Guide
 
-> **Compiled from SKILL.md + references/ for AI agent consumption.**
+> **Compiled from SKILL.md + rules/ for AI agent consumption.**
 
 ---
 
@@ -17,7 +17,7 @@
 | Type errors | Check error routing table |
 | Build performance | See performance settings |
 | Monorepo setup | Check project references |
-| Migration strategy | See references/migration.md |
+| Migration strategy | See rules/migration.md |
 | Module issues | ESM-first config |
 
 ---
@@ -142,15 +142,15 @@ const config = {
 
 | File | Description | When to Read |
 |------|-------------|--------------|
-| [tsconfig-strict.json](references/tsconfig-strict.json) | Strict TS 5.x config template | New project setup |
-| [typescript-cheatsheet.md](references/typescript-cheatsheet.md) | Full TS quick reference (13 sections) | Writing TypeScript |
-| [utility-types.js](references/utility-types.js) | Runtime utilities (Result, Option, Brand) | JavaScript helpers |
-| [type-patterns.md](references/type-patterns.md) | Advanced type patterns | Type gymnastics |
-| [performance.md](references/performance.md) | Build performance | Slow builds |
-| [monorepo.md](references/monorepo.md) | Monorepo setup | Project references |
-| [migration.md](references/migration.md) | Migration strategies | Version upgrades |
+| [tsconfig-strict.json](rules/tsconfig-strict.json) | Strict TS 5.x config template | New project setup |
+| [typescript-cheatsheet.md](rules/typescript-cheatsheet.md) | Full TS quick reference (13 sections) | Writing TypeScript |
+| [utility-types.js](rules/utility-types.js) | Runtime utilities (Result, Option, Brand) | JavaScript helpers |
+| [type-patterns.md](rules/type-patterns.md) | Advanced type patterns | Type gymnastics |
+| [performance.md](rules/performance.md) | Build performance | Slow builds |
+| [monorepo.md](rules/monorepo.md) | Monorepo setup | Project references |
+| [migration.md](rules/migration.md) | Migration strategies | Version upgrades |
 | [ts_diagnostic.js](scripts/ts_diagnostic.js) | Project health analysis | Automated diagnostics |
-| [engineering-spec.md](references/engineering-spec.md) | Full spec | Architecture review |
+| [engineering-spec.md](rules/engineering-spec.md) | Full spec | Architecture review |
 
 ---
 
@@ -567,7 +567,7 @@ All resources scoped to invocation. No persistent handles.
 | Core content matches skill type | âœ… | Expert type: error routing, type patterns, config guidance |
 | Troubleshooting section | âœ… | Error table + troubleshooting table |
 | Related section | âœ… | Cross-links to nextjs-pro, react-architect, code-review |
-| Content Map for multi-file | âœ… | Links to references/ + scripts/ + engineering-spec.md |
+| Content Map for multi-file | âœ… | Links to rules/ + scripts/ + engineering-spec.md |
 | Contract versioning | âœ… | contract_version, backward_compatibility, breaking_changes |
 | Compliance matrix structured | âœ… | This table with âœ…/âŒ + evidence |
 

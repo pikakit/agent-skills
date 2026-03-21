@@ -1,6 +1,6 @@
 ﻿# system-design — Full Reference Guide
 
-> **Compiled from SKILL.md + references/ for AI agent consumption.**
+> **Compiled from SKILL.md + rules/ for AI agent consumption.**
 
 ---
 
@@ -102,7 +102,7 @@
 | [pattern-selection.md](pattern-selection.md) | Decision trees, anti-patterns | Choosing patterns |
 | [patterns-reference.md](patterns-reference.md) | Quick pattern lookup | Pattern comparison |
 | [examples.md](examples.md) | MVP, SaaS, Enterprise examples | Reference implementations |
-| [engineering-spec.md](references/engineering-spec.md) | Full spec | Architecture review |
+| [engineering-spec.md](rules/engineering-spec.md) | Full spec | Architecture review |
 
 ---
 

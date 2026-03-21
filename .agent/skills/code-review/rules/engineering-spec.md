@@ -1,4 +1,4 @@
-# Code Review — Engineering Specification
+﻿# Code Review â€” Engineering Specification
 
 > Production-grade specification for code review and quality control at FAANG scale.
 
@@ -6,11 +6,11 @@
 
 ## 1. Overview
 
-Code Review provides structured review methodology for production code: automated quality checks (linting, type checking, security scanning), manual review checklists (correctness, security, performance, quality, testing), review comment taxonomy (blocking/suggestion/nit/question), and a mandatory quality loop (edit → check → fix → repeat). The skill combines expert knowledge (review checklists) with automation scripts (lint runner, type coverage).
+Code Review provides structured review methodology for production code: automated quality checks (linting, type checking, security scanning), manual review checklists (correctness, security, performance, quality, testing), review comment taxonomy (blocking/suggestion/nit/question), and a mandatory quality loop (edit â†’ check â†’ fix â†’ repeat). The skill combines expert knowledge (review checklists) with automation scripts (lint runner, type coverage).
 
 **Contract Version:** 2.0.0
 **Backward Compatibility:** breaking (first hardened version)
-**Breaking Changes:** None — new spec for first hardening
+**Breaking Changes:** None â€” new spec for first hardening
 
 ---
 
@@ -34,10 +34,10 @@ Code Review eliminates these with a structured 5-category review checklist, mand
 | ID | Goal | Measurable Constraint |
 |----|------|-----------------------|
 | G1 | Zero lint/type errors before commit | Quality loop runs until lint + tsc pass |
-| G2 | 5-category review coverage | Correctness, security, performance, quality, testing — all checked |
-| G3 | Classified review comments | Every comment uses 4-level taxonomy (🔴/🟡/🟢/❓) |
+| G2 | 5-category review coverage | Correctness, security, performance, quality, testing â€” all checked |
+| G3 | Classified review comments | Every comment uses 4-level taxonomy (ðŸ”´/ðŸŸ¡/ðŸŸ¢/â“) |
 | G4 | Automated first pass | Lint + type check + security scan before human review |
-| G5 | Blocking issue resolution | All 🔴 BLOCKING issues resolved before merge |
+| G5 | Blocking issue resolution | All ðŸ”´ BLOCKING issues resolved before merge |
 
 ---
 
@@ -58,7 +58,7 @@ Code Review eliminates these with a structured 5-category review checklist, mand
 
 | Boundary | Owned | Not Owned |
 |----------|-------|-----------|
-| Quality loop (edit → check → fix) | Loop definition and enforcement | Linter/compiler implementation |
+| Quality loop (edit â†’ check â†’ fix) | Loop definition and enforcement | Linter/compiler implementation |
 | Review checklist (5 categories, 14 items) | Checklist definition | Checklist tooling |
 | Comment taxonomy (4 levels) | Taxonomy definition | Comment storage/display |
 | Lint/type automation scripts | `lint_runner.js`, `type_coverage.js` | ESLint/TSC installation |
@@ -131,7 +131,7 @@ Recoverable: boolean
 #### Deterministic Guarantees
 
 - Same `Request_Type` + `Context` = identical review checklist output.
-- Comment taxonomy is fixed: 🔴 BLOCKING, 🟡 SUGGESTION, 🟢 NIT, ❓ QUESTION.
+- Comment taxonomy is fixed: ðŸ”´ BLOCKING, ðŸŸ¡ SUGGESTION, ðŸŸ¢ NIT, â“ QUESTION.
 - Quality loop commands are deterministic per language.
 - `merge_ready` is deterministic: `true` if and only if `blocking_count = 0`.
 - Review categories are always the same 5: correctness, security, performance, quality, testing.
@@ -173,7 +173,7 @@ Recoverable: boolean
 4. If commands fail: fix and re-run (quality loop)
 5. Request review-checklist for manual review items
 6. Classify findings using comment taxonomy
-7. Resolve all 🔴 BLOCKING issues before completing
+7. Resolve all ðŸ”´ BLOCKING issues before completing
 ```
 
 #### Execution Guarantees
@@ -194,7 +194,7 @@ Recoverable: boolean
 #### Retry Boundaries
 
 - Zero internal retries for review decisions.
-- Quality loop is an explicit caller-driven retry (edit → check → fix → repeat).
+- Quality loop is an explicit caller-driven retry (edit â†’ check â†’ fix â†’ repeat).
 - Scripts: zero retries; caller re-runs after fixing code.
 
 #### Isolation Model
@@ -233,7 +233,7 @@ All phases synchronous. No async pipeline.
 | Principle | Enforcement |
 |-----------|-------------|
 | Fixed review categories | 5 categories: correctness, security, performance, quality, testing |
-| Fixed comment taxonomy | 4 levels: 🔴 BLOCKING, 🟡 SUGGESTION, 🟢 NIT, ❓ QUESTION |
+| Fixed comment taxonomy | 4 levels: ðŸ”´ BLOCKING, ðŸŸ¡ SUGGESTION, ðŸŸ¢ NIT, â“ QUESTION |
 | Fixed merge gate | `merge_ready = (blocking_count === 0)` |
 | Fixed quality commands per language | TypeScript: `npx tsc --noEmit && npm run lint`; Python: `ruff check --fix` |
 | No external calls | Review logic embedded; no remote API |
@@ -361,7 +361,7 @@ Review decisions and checklist outputs are identical for identical inputs. Quali
 | Throughput (scripts) | I/O-bound lint/type | Limited by project size |
 | Concurrency | Stateless decisions | Unlimited parallel |
 | Memory per invocation | < 1 MB (decisions) | No accumulation |
-| Script memory | 50–200 MB (Node.js tsc) | One script at a time per project |
+| Script memory | 50â€“200 MB (Node.js tsc) | One script at a time per project |
 
 ---
 
@@ -393,7 +393,7 @@ All resources scoped to invocation for review decisions. No persistent handles.
 | Comment classification | < 5 ms | < 10 ms | 50 ms |
 | Lint script (small project) | < 5,000 ms | < 15,000 ms | 30,000 ms |
 | Type check (small project) | < 10,000 ms | < 30,000 ms | 60,000 ms |
-| Output size | ≤ 1,000 chars | ≤ 5,000 chars | 10,000 chars |
+| Output size | â‰¤ 1,000 chars | â‰¤ 5,000 chars | 10,000 chars |
 
 ---
 
@@ -413,16 +413,16 @@ All resources scoped to invocation for review decisions. No persistent handles.
 
 | Requirement | Status | Evidence |
 |-------------|--------|----------|
-| YAML frontmatter complete | ✅ | name, description, metadata with category, version, triggers, coordinates_with, success_metrics |
-| SKILL.md < 200 lines | ✅ | Entry point under 200 lines |
-| Prerequisites documented | ✅ | Node.js, ESLint, TypeScript per language |
-| When to Use section | ✅ | Situation-based decision table |
-| Core content matches skill type | ✅ | Expert + automation hybrid: checklists + scripts |
-| Troubleshooting section | ✅ | Anti-patterns table |
-| Related section | ✅ | Cross-links to code-craft, security-scanner, test-architect |
-| Content Map for multi-file | ✅ | Links to scripts/ + references/ |
-| Contract versioning | ✅ | contract_version, backward_compatibility, breaking_changes |
-| Compliance matrix structured | ✅ | This table with ✅/❌ + evidence |
+| YAML frontmatter complete | âœ… | name, description, metadata with category, version, triggers, coordinates_with, success_metrics |
+| SKILL.md < 200 lines | âœ… | Entry point under 200 lines |
+| Prerequisites documented | âœ… | Node.js, ESLint, TypeScript per language |
+| When to Use section | âœ… | Situation-based decision table |
+| Core content matches skill type | âœ… | Expert + automation hybrid: checklists + scripts |
+| Troubleshooting section | âœ… | Anti-patterns table |
+| Related section | âœ… | Cross-links to code-craft, security-scanner, test-architect |
+| Content Map for multi-file | âœ… | Links to scripts/ + rules/ |
+| Contract versioning | âœ… | contract_version, backward_compatibility, breaking_changes |
+| Compliance matrix structured | âœ… | This table with âœ…/âŒ + evidence |
 
 ---
 
@@ -430,24 +430,24 @@ All resources scoped to invocation for review decisions. No persistent handles.
 
 | Category | Check | Status |
 |----------|-------|--------|
-| **Functionality** | 5-category review checklist (14 items) | ✅ |
-| **Functionality** | 4-level comment taxonomy (🔴/🟡/🟢/❓) | ✅ |
-| **Functionality** | Quality loop (edit→check→fix→repeat) | ✅ |
-| **Functionality** | Lint/type automation scripts | ✅ |
-| **Contracts** | Input/output/error schemas in pseudo-schema format | ✅ |
-| **Contracts** | Contract versioning with semver | ✅ |
-| **Contracts** | Per-script idempotency classification | ✅ |
-| **Failure** | Error taxonomy with 6 categorized codes | ✅ |
-| **Failure** | No silent pass on invalid input | ✅ |
-| **Failure** | Zero internal retries | ✅ |
-| **Determinism** | Fixed categories, fixed taxonomy, fixed merge gate | ✅ |
-| **Security** | No code modification; read-only file access for scripts | ✅ |
-| **Observability** | Structured log schema with 5 mandatory fields + 5 log points | ✅ |
-| **Observability** | 5 metrics defined | ✅ |
-| **Performance** | P50/P99 targets for decisions and scripts | ✅ |
-| **Scalability** | Stateless decisions; script concurrency documented | ✅ |
-| **Compliance** | All skill-design-guide.md sections mapped with evidence | ✅ |
+| **Functionality** | 5-category review checklist (14 items) | âœ… |
+| **Functionality** | 4-level comment taxonomy (ðŸ”´/ðŸŸ¡/ðŸŸ¢/â“) | âœ… |
+| **Functionality** | Quality loop (editâ†’checkâ†’fixâ†’repeat) | âœ… |
+| **Functionality** | Lint/type automation scripts | âœ… |
+| **Contracts** | Input/output/error schemas in pseudo-schema format | âœ… |
+| **Contracts** | Contract versioning with semver | âœ… |
+| **Contracts** | Per-script idempotency classification | âœ… |
+| **Failure** | Error taxonomy with 6 categorized codes | âœ… |
+| **Failure** | No silent pass on invalid input | âœ… |
+| **Failure** | Zero internal retries | âœ… |
+| **Determinism** | Fixed categories, fixed taxonomy, fixed merge gate | âœ… |
+| **Security** | No code modification; read-only file access for scripts | âœ… |
+| **Observability** | Structured log schema with 5 mandatory fields + 5 log points | âœ… |
+| **Observability** | 5 metrics defined | âœ… |
+| **Performance** | P50/P99 targets for decisions and scripts | âœ… |
+| **Scalability** | Stateless decisions; script concurrency documented | âœ… |
+| **Compliance** | All skill-design-guide.md sections mapped with evidence | âœ… |
 
 ---
 
-⚡ PikaKit v3.9.105
+âš¡ PikaKit v3.9.105

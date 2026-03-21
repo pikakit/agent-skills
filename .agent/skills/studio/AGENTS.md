@@ -1,6 +1,6 @@
 ﻿# studio — Full Reference Guide
 
-> **Compiled from SKILL.md + references/ for AI agent consumption.**
+> **Compiled from SKILL.md + rules/ for AI agent consumption.**
 
 ---
 
@@ -128,7 +128,7 @@ node .agent/skills/studio/scripts-js/search.js "modern tech" --category typograp
 |------|-------------|--------------|
 | [data/](data/) | 24 CSV databases | Database contents |
 | [scripts-js/](scripts-js/) | Search CLI + core logic | Running commands |
-| [engineering-spec.md](references/engineering-spec.md) | Full spec | Architecture review |
+| [engineering-spec.md](rules/engineering-spec.md) | Full spec | Architecture review |
 
 ---
 

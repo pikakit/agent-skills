@@ -1,9 +1,9 @@
----
+﻿---
 name: doc-templates-engineering-spec
-description: Full 21-section engineering spec — contracts, deterministic design, compliance matrix
+description: Full 21-section engineering spec â€” contracts, deterministic design, compliance matrix
 ---
 
-# Doc Templates — Engineering Specification
+# Doc Templates â€” Engineering Specification
 
 > Production-grade specification for documentation template selection and structure guidelines at FAANG scale.
 
@@ -11,11 +11,11 @@ description: Full 21-section engineering spec — contracts, deterministic desig
 
 ## 1. Overview
 
-Doc Templates provides deterministic template selection for project documentation: README structure, API endpoint docs, Architecture Decision Records (ADR), changelog format, llms.txt for AI context, and code comment guidelines. The skill operates as an expert knowledge base that produces document structures and templates — it does not create files, write documentation content, or execute tooling.
+Doc Templates provides deterministic template selection for project documentation: README structure, API endpoint docs, Architecture Decision Records (ADR), changelog format, llms.txt for AI context, and code comment guidelines. The skill operates as an expert knowledge base that produces document structures and templates â€” it does not create files, write documentation content, or execute tooling.
 
 **Contract Version:** 2.0.0
 **Backward Compatibility:** breaking (first hardened version)
-**Breaking Changes:** None — new spec for first hardening
+**Breaking Changes:** None â€” new spec for first hardening
 
 ---
 
@@ -42,7 +42,7 @@ Doc Templates eliminates these with fixed templates per document type and struct
 | G2 | Complete API docs | Every endpoint has: method, path, parameters, response codes |
 | G3 | ADR compliance | Every ADR has: Status, Context, Decision, Consequences |
 | G4 | Comment quality | Comments explain "why" (business logic, algorithms), never "what" |
-| G5 | Template selection | Deterministic: document type → template |
+| G5 | Template selection | Deterministic: document type â†’ template |
 
 ---
 
@@ -218,7 +218,7 @@ Recoverable: boolean
 | **Parse** | Validate request type | Validated input or error |
 | **Emit** | Return template for request type | Complete template |
 
-All phases synchronous. No evaluation phase needed — templates are static.
+All phases synchronous. No evaluation phase needed â€” templates are static.
 
 ---
 
@@ -226,7 +226,7 @@ All phases synchronous. No evaluation phase needed — templates are static.
 
 | Principle | Enforcement |
 |-----------|-------------|
-| Fixed template per type | 5 document types → 5 fixed templates |
+| Fixed template per type | 5 document types â†’ 5 fixed templates |
 | Fixed section order | Sections always appear in defined order |
 | Fixed comment guidelines | 3 do + 3 don't items |
 | No content generation | Templates are structural; agent fills content |
@@ -259,7 +259,7 @@ Each invocation produces an identical template for identical inputs. No session,
 | Code | Category | Recoverable | Description |
 |------|----------|-------------|-------------|
 | `ERR_INVALID_REQUEST_TYPE` | Validation | No | Request type not one of the 7 supported |
-| `ERR_REFERENCE_NOT_FOUND` | Infrastructure | No | Reference file missing from references/ |
+| `ERR_REFERENCE_NOT_FOUND` | Infrastructure | No | Reference file missing from rules/ |
 
 ---
 
@@ -348,7 +348,7 @@ All resources scoped to invocation. No persistent handles.
 |-----------|-----------|-----------|------------|
 | Template selection | < 2 ms | < 5 ms | 10 ms |
 | Full catalog | < 5 ms | < 10 ms | 20 ms |
-| Output size | ≤ 500 chars | ≤ 2,000 chars | 5,000 chars |
+| Output size | â‰¤ 500 chars | â‰¤ 2,000 chars | 5,000 chars |
 
 ---
 
@@ -367,16 +367,16 @@ All resources scoped to invocation. No persistent handles.
 
 | Requirement | Status | Evidence |
 |-------------|--------|----------|
-| YAML frontmatter complete | ✅ | name, description, metadata with category, version, triggers, coordinates_with, success_metrics |
-| SKILL.md < 200 lines | ✅ | Entry point under 200 lines |
-| Prerequisites documented | ✅ | No external dependencies |
-| When to Use section | ✅ | Document-type decision table |
-| Core content matches skill type | ✅ | Expert type: fixed templates, deterministic selection |
-| Troubleshooting section | ✅ | Anti-patterns table |
-| Related section | ✅ | Cross-links to /chronicle, project-planner, code-craft |
-| Content Map for multi-file | ✅ | Links to doc.md + engineering-spec.md |
-| Contract versioning | ✅ | contract_version, backward_compatibility, breaking_changes |
-| Compliance matrix structured | ✅ | This table with ✅/❌ + evidence |
+| YAML frontmatter complete | âœ… | name, description, metadata with category, version, triggers, coordinates_with, success_metrics |
+| SKILL.md < 200 lines | âœ… | Entry point under 200 lines |
+| Prerequisites documented | âœ… | No external dependencies |
+| When to Use section | âœ… | Document-type decision table |
+| Core content matches skill type | âœ… | Expert type: fixed templates, deterministic selection |
+| Troubleshooting section | âœ… | Anti-patterns table |
+| Related section | âœ… | Cross-links to /chronicle, project-planner, code-craft |
+| Content Map for multi-file | âœ… | Links to doc.md + engineering-spec.md |
+| Contract versioning | âœ… | contract_version, backward_compatibility, breaking_changes |
+| Compliance matrix structured | âœ… | This table with âœ…/âŒ + evidence |
 
 ---
 
@@ -384,29 +384,29 @@ All resources scoped to invocation. No persistent handles.
 
 | Category | Check | Status |
 |----------|-------|--------|
-| **Functionality** | 5 document templates (README, API, ADR, changelog, llms.txt) | ✅ |
-| **Functionality** | Comment guidelines (3 do + 3 don't) | ✅ |
-| **Functionality** | Fixed section order per template | ✅ |
-| **Contracts** | Input/output/error schemas in pseudo-schema format | ✅ |
-| **Contracts** | Contract versioning with semver | ✅ |
-| **Failure** | Error taxonomy with 2 categorized codes | ✅ |
-| **Failure** | No silent fallback | ✅ |
-| **Failure** | Zero internal retries | ✅ |
-| **Determinism** | Fixed templates per document type | ✅ |
-| **Security** | No file access; no persistent data | ✅ |
-| **Observability** | Structured log schema with 5 mandatory fields + 2 log points | ✅ |
-| **Observability** | 3 metrics defined | ✅ |
-| **Performance** | P50/P99 targets for all operations | ✅ |
-| **Scalability** | Stateless; unlimited parallel invocations | ✅ |
-| **Compliance** | All skill-design-guide.md sections mapped with evidence | ✅ |
+| **Functionality** | 5 document templates (README, API, ADR, changelog, llms.txt) | âœ… |
+| **Functionality** | Comment guidelines (3 do + 3 don't) | âœ… |
+| **Functionality** | Fixed section order per template | âœ… |
+| **Contracts** | Input/output/error schemas in pseudo-schema format | âœ… |
+| **Contracts** | Contract versioning with semver | âœ… |
+| **Failure** | Error taxonomy with 2 categorized codes | âœ… |
+| **Failure** | No silent fallback | âœ… |
+| **Failure** | Zero internal retries | âœ… |
+| **Determinism** | Fixed templates per document type | âœ… |
+| **Security** | No file access; no persistent data | âœ… |
+| **Observability** | Structured log schema with 5 mandatory fields + 2 log points | âœ… |
+| **Observability** | 3 metrics defined | âœ… |
+| **Performance** | P50/P99 targets for all operations | âœ… |
+| **Scalability** | Stateless; unlimited parallel invocations | âœ… |
+| **Compliance** | All skill-design-guide.md sections mapped with evidence | âœ… |
 
 ---
 
-⚡ PikaKit v3.9.105
+âš¡ PikaKit v3.9.105
 
 ---
 
-## 🔗 Related
+## ðŸ”— Related
 
 | File | When to Read |
 |------|-------------|

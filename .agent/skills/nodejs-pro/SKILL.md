@@ -1,4 +1,4 @@
----
+﻿---
 name: nodejs-pro
 description: >-
   Node.js development principles and decision-making. Framework selection (Hono/Fastify/Express/NestJS),
@@ -13,7 +13,7 @@ metadata:
   coordinates_with: "api-architect, data-modeler"
 ---
 
-# Node.js Pro — Backend Decision Framework
+# Node.js Pro â€” Backend Decision Framework
 
 > 5 frameworks. Async-first. Validate at boundary. No sync in production.
 
@@ -36,10 +36,10 @@ metadata:
 
 | Owned by This Skill | NOT Owned |
 |---------------------|-----------|
-| Framework selection (5 options) | API design (→ api-architect) |
-| Architecture routing | Database/ORM (→ data-modeler) |
-| Async pattern guidance | TypeScript patterns (→ typescript-expert) |
-| Error handling strategy | Performance profiling (→ perf-optimizer) |
+| Framework selection (5 options) | API design (â†’ api-architect) |
+| Architecture routing | Database/ORM (â†’ data-modeler) |
+| Async pattern guidance | TypeScript patterns (â†’ typescript-expert) |
+| Error handling strategy | Performance profiling (â†’ perf-optimizer) |
 
 **Expert decision skill:** Produces framework decisions and pattern guidance. Does not write code.
 
@@ -49,11 +49,11 @@ metadata:
 
 ```
 What are you building?
-├── Edge / Serverless → Hono (fastest cold starts)
-├── High-performance API → Fastify (2-3x faster than Express)
-├── Enterprise / Large team → NestJS (structured, DI)
-├── Legacy / Max ecosystem → Express
-└── Full-stack → Next.js API Routes or tRPC
+â”œâ”€â”€ Edge / Serverless â†’ Hono (fastest cold starts)
+â”œâ”€â”€ High-performance API â†’ Fastify (2-3x faster than Express)
+â”œâ”€â”€ Enterprise / Large team â†’ NestJS (structured, DI)
+â”œâ”€â”€ Legacy / Max ecosystem â†’ Express
+â””â”€â”€ Full-stack â†’ Next.js API Routes or tRPC
 ```
 
 ---
@@ -76,8 +76,8 @@ What are you building?
 | Async-first | No `*Sync()` methods in production |
 | Validate at boundary | All inputs validated before business logic |
 | Secrets via env vars | Never hardcode credentials |
-| Layered separation | Controllers → Services → Repositories |
-| Event loop protection | CPU work → worker threads |
+| Layered separation | Controllers â†’ Services â†’ Repositories |
+| Event loop protection | CPU work â†’ worker threads |
 | No `eval()` / `Function()` | Never in production |
 
 ---
@@ -96,7 +96,7 @@ What are you building?
 
 ## Anti-Patterns
 
-| ❌ Don't | ✅ Do |
+| âŒ Don't | âœ… Do |
 |---------|-------|
 | Default to Express for new projects | Choose framework by deployment target |
 | Use sync methods in production | Always use async/await |
@@ -118,24 +118,24 @@ What are you building?
 
 ---
 
-## 📑 Content Map
+## ðŸ“‘ Content Map
 
 | File | Description | When to Read |
 |------|-------------|--------------|
-| [framework-selection.md](references/framework-selection.md) | Framework decision criteria | Choosing framework |
-| [runtime-modules.md](references/runtime-modules.md) | Runtime & module system | Module decisions |
-| [architecture-patterns.md](references/architecture-patterns.md) | Architecture patterns | Structuring app |
-| [error-handling.md](references/error-handling.md) | Error handling patterns | Error strategy |
-| [async-patterns.md](references/async-patterns.md) | Async patterns | Async code |
-| [validation-security.md](references/validation-security.md) | Validation & security | Security planning |
-| [testing-strategy.md](references/testing-strategy.md) | Testing patterns | Test planning |
-| [engineering-spec.md](references/engineering-spec.md) | Full engineering spec | Architecture review |
+| [framework-selection.md](rules/framework-selection.md) | Framework decision criteria | Choosing framework |
+| [runtime-modules.md](rules/runtime-modules.md) | Runtime & module system | Module decisions |
+| [architecture-patterns.md](rules/architecture-patterns.md) | Architecture patterns | Structuring app |
+| [error-handling.md](rules/error-handling.md) | Error handling patterns | Error strategy |
+| [async-patterns.md](rules/async-patterns.md) | Async patterns | Async code |
+| [validation-security.md](rules/validation-security.md) | Validation & security | Security planning |
+| [testing-strategy.md](rules/testing-strategy.md) | Testing patterns | Test planning |
+| [engineering-spec.md](rules/engineering-spec.md) | Full engineering spec | Architecture review |
 
 **Selective reading:** Read ONLY the file relevant to current decision.
 
 ---
 
-## 🔗 Related
+## ðŸ”— Related
 
 | Item | Type | Purpose |
 |------|------|---------|
@@ -145,4 +145,4 @@ What are you building?
 
 ---
 
-⚡ PikaKit v3.9.105
+âš¡ PikaKit v3.9.105

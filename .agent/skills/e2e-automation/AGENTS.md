@@ -1,6 +1,6 @@
 ﻿# e2e-automation — Full Reference Guide
 
-> **Compiled from SKILL.md + references/ for AI agent consumption.**
+> **Compiled from SKILL.md + rules/ for AI agent consumption.**
 
 ---
 
@@ -144,8 +144,8 @@ NAVIGATING â†’ ERROR        [target unreachable]  // terminal
 
 | File | Description | When to Read |
 |------|-------------|--------------|
-| [aria-snapshot.md](references/aria-snapshot.md) | ARIA snapshot testing pattern | ARIA-based tests |
-| [engineering-spec.md](references/engineering-spec.md) | Full engineering spec | Architecture review |
+| [aria-snapshot.md](rules/aria-snapshot.md) | ARIA snapshot testing pattern | ARIA-based tests |
+| [engineering-spec.md](rules/engineering-spec.md) | Full engineering spec | Architecture review |
 
 | Script | Purpose |
 |--------|---------|

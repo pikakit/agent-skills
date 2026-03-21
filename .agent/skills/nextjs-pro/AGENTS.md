@@ -1,6 +1,6 @@
 ﻿# nextjs-pro — Full Reference Guide
 
-> **Compiled from SKILL.md + references/ for AI agent consumption.**
+> **Compiled from SKILL.md + rules/ for AI agent consumption.**
 
 ---
 
@@ -119,7 +119,7 @@ Need useState / useEffect / event handlers?
 | `rules/js-*.md` | 12 | Micro-patterns | JS performance |
 | `rules/advanced-*.md` | 3 | Event refs, init-once, useLatest | Advanced patterns |
 | `rules/_*.md, schema.json` | 3 | Section catalog, template, schema | Rule authoring |
-| [engineering-spec.md](references/engineering-spec.md) | 1 | Full engineering spec | Architecture review |
+| [engineering-spec.md](rules/engineering-spec.md) | 1 | Full engineering spec | Architecture review |
 
 **Selective reading:** Read ONLY the category relevant to current task.
 

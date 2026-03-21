@@ -1,4 +1,4 @@
----
+﻿---
 name: context-engineering
 description: >-
   Monitor context usage, design efficient agent architectures, control token consumption.
@@ -36,7 +36,7 @@ metadata:
 | Agent failing on large inputs | Diagnose degradation pattern |
 | Multi-agent coordination needed | Select isolation pattern |
 | Cross-session memory required | Apply Write bucket (external persistence) |
-| Architecture review | Read `references/engineering-spec.md` |
+| Architecture review | Read `rules/engineering-spec.md` |
 
 ---
 
@@ -48,7 +48,7 @@ metadata:
 | Four-bucket strategy selection | Compression execution |
 | Degradation pattern detection (4 patterns) | Automatic detection tooling |
 | Compression technique selection (3 strategies) | Summarization models |
-| Multi-agent isolation patterns (4 patterns) | Agent instantiation (→ lifecycle-orchestrator) |
+| Multi-agent isolation patterns (4 patterns) | Agent instantiation (â†’ lifecycle-orchestrator) |
 
 **Pure decision skill:** Produces context management recommendations. Zero side effects.
 
@@ -70,12 +70,12 @@ metadata:
 
 | # | Bucket | Strategy | Expected Reduction | Quality Risk |
 |---|--------|----------|--------------------|-------------|
-| 1 | **Write** | Save to files/scratchpads | 20–40% | None |
-| 2 | **Select** | Pull only relevant content | 30–50% | Low |
-| 3 | **Compress** | Hierarchical summarization | 50–70% | Medium (< 5%) |
-| 4 | **Isolate** | Split across sub-agents | 60–80% | Medium |
+| 1 | **Write** | Save to files/scratchpads | 20â€“40% | None |
+| 2 | **Select** | Pull only relevant content | 30â€“50% | Low |
+| 3 | **Compress** | Hierarchical summarization | 50â€“70% | Medium (< 5%) |
+| 4 | **Isolate** | Split across sub-agents | 60â€“80% | Medium |
 
-**Escalation order:** Write → Select → Compress → Isolate. Apply least invasive first.
+**Escalation order:** Write â†’ Select â†’ Compress â†’ Isolate. Apply least invasive first.
 
 ---
 
@@ -83,8 +83,8 @@ metadata:
 
 | Metric | Target | Trigger |
 |--------|--------|---------|
-| Token utilization | < 70% | ≥ 70% = warning; ≥ 80% = critical |
-| Compression ratio | 50–70% reduction | < 5% quality loss |
+| Token utilization | < 70% | â‰¥ 70% = warning; â‰¥ 80% = critical |
+| Compression ratio | 50â€“70% reduction | < 5% quality loss |
 | Cache hit rate | > 70% | Stable workloads only |
 | Multi-agent overhead | ~15x baseline | Per sub-agent |
 
@@ -118,7 +118,7 @@ metadata:
 |------|-------------|---------|
 | `ERR_INVALID_REQUEST_TYPE` | No | Request type not supported |
 | `ERR_MISSING_UTILIZATION` | Yes | Utilization not provided |
-| `ERR_INVALID_RANGE` | No | Utilization outside 0.0–1.0 |
+| `ERR_INVALID_RANGE` | No | Utilization outside 0.0â€“1.0 |
 | `ERR_MISSING_WINDOW_SIZE` | Yes | Context window size not provided |
 | `ERR_MISSING_SYMPTOMS` | Yes | No symptoms for degradation diagnosis |
 | `WARN_UNKNOWN_CONTENT` | Yes | Content type not recognized; generic applied |
@@ -127,15 +127,15 @@ metadata:
 
 ---
 
-## 📑 Content Map
+## ðŸ“‘ Content Map
 
 | File | Description | When to Read |
 |------|-------------|--------------|
-| [engineering-spec.md](references/engineering-spec.md) | Full engineering spec: contracts, security, scalability | Architecture review |
+| [engineering-spec.md](rules/engineering-spec.md) | Full engineering spec: contracts, security, scalability | Architecture review |
 
 ---
 
-## 🔗 Related
+## ðŸ”— Related
 
 | Item | Type | Purpose |
 |------|------|---------|
@@ -144,4 +144,4 @@ metadata:
 
 ---
 
-⚡ PikaKit v3.9.105
+âš¡ PikaKit v3.9.105

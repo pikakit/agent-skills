@@ -1,4 +1,4 @@
----
+﻿---
 name: ai-artist
 description: >-
   Prompt engineering for AI text and image generation models.
@@ -10,11 +10,11 @@ metadata:
   version: "2.0.0"
   category: "ai"
   triggers: "prompt, AI prompt, image generation, Midjourney, DALL-E, Stable Diffusion, Flux"
-  success_metrics: "same inputs = same prompt output, ≤ 3 refinement iterations, zero silent failures"
+  success_metrics: "same inputs = same prompt output, â‰¤ 3 refinement iterations, zero silent failures"
   coordinates_with: "studio, media-processing"
 ---
 
-# AI Artist — Prompt Engineering
+# AI Artist â€” Prompt Engineering
 
 > Deterministic prompt construction for LLMs and image generation models. Same inputs = same output.
 
@@ -22,7 +22,7 @@ metadata:
 
 ## Prerequisites
 
-**Required:** None — AI Artist is a knowledge-based skill with no external dependencies.
+**Required:** None â€” AI Artist is a knowledge-based skill with no external dependencies.
 
 **Optional:**
 - Target model API access (Claude, GPT, Gemini, Midjourney, DALL-E, SD, Flux)
@@ -35,12 +35,12 @@ metadata:
 
 | Situation | Reference |
 |-----------|-----------|
-| Structuring LLM prompts | This file — LLM Prompt Pattern |
-| Generating image prompts | `references/image-prompts.md` |
-| Marketing/copywriting prompts | `references/domain-marketing.md` |
-| Code generation prompts | `references/domain-code.md` |
-| Model-specific parameters | `references/model-syntax.md` |
-| Architecture review, contracts, security | `references/engineering-spec.md` |
+| Structuring LLM prompts | This file â€” LLM Prompt Pattern |
+| Generating image prompts | `rules/image-prompts.md` |
+| Marketing/copywriting prompts | `rules/domain-marketing.md` |
+| Code generation prompts | `rules/domain-code.md` |
+| Model-specific parameters | `rules/model-syntax.md` |
+| Architecture review, contracts, security | `rules/engineering-spec.md` |
 
 ---
 
@@ -51,14 +51,14 @@ metadata:
 | Prompt template construction | API submission to models |
 | Domain-specific prompt patterns | Response quality evaluation |
 | Model parameter syntax | Content safety filtering |
-| Success criteria extraction | Token counting (→ context-engineering) |
-| Prompt versioning structure | Design systems (→ studio) |
+| Success criteria extraction | Token counting (â†’ context-engineering) |
+| Prompt versioning structure | Design systems (â†’ studio) |
 
 **Pure function:** This skill produces text output. Zero network calls, zero file mutations, zero side effects.
 
 ---
 
-## Execution Model — 3-Phase Lifecycle
+## Execution Model â€” 3-Phase Lifecycle
 
 | Phase | Action | Output |
 |-------|--------|--------|
@@ -91,7 +91,7 @@ Bad: [Example to avoid]
 [Subject] + [Style] + [Composition] + [Quality] + [Model Parameters]
 ```
 
-**Parameter ordering is fixed:** subject → style → composition → quality → model_params.
+**Parameter ordering is fixed:** subject â†’ style â†’ composition â†’ quality â†’ model_params.
 
 **Example:**
 ```
@@ -114,12 +114,12 @@ volumetric fog, 8k render, artstation quality --ar 16:9 --style raw
 | Model | Domain | Parameter Reference |
 |-------|--------|---------------------|
 | Claude, GPT, Gemini | Text, Code, Marketing | Core LLM pattern (above) |
-| Midjourney | Image | `references/model-syntax.md` — `--ar`, `--style`, `--chaos` |
-| DALL-E | Image | `references/model-syntax.md` — size, quality, style |
-| Stable Diffusion | Image | `references/model-syntax.md` — steps, cfg, sampler |
-| Flux | Image | `references/model-syntax.md` — guidance, steps |
+| Midjourney | Image | `rules/model-syntax.md` â€” `--ar`, `--style`, `--chaos` |
+| DALL-E | Image | `rules/model-syntax.md` â€” size, quality, style |
+| Stable Diffusion | Image | `rules/model-syntax.md` â€” steps, cfg, sampler |
+| Flux | Image | `rules/model-syntax.md` â€” guidance, steps |
 
-Unknown model → generic format (no model-specific parameters injected).
+Unknown model â†’ generic format (no model-specific parameters injected).
 
 ---
 
@@ -141,13 +141,13 @@ Unknown model → generic format (no model-specific parameters injected).
 
 ## Anti-Patterns
 
-| ❌ Don't | ✅ Do |
+| âŒ Don't | âœ… Do |
 |---------|-------|
 | "Make it better" | "Increase contrast by 20%" |
 | "Professional but casual" | Choose one tone, specify explicitly |
 | Skip context/constraints | Set role, audience, constraints upfront |
-| Over-prompt with 10+ directives | Focus on 3–5 core requirements |
-| Assume model compatibility | Check `references/model-syntax.md` for target model |
+| Over-prompt with 10+ directives | Focus on 3â€“5 core requirements |
+| Assume model compatibility | Check `rules/model-syntax.md` for target model |
 
 ---
 
@@ -159,24 +159,24 @@ Unknown model → generic format (no model-specific parameters injected).
 | Wrong visual style | Style description too generic | Use style references: "in the style of [artist/work]" |
 | Busy image composition | Too many subjects | Reduce to one primary subject, simplify background |
 | Inconsistent results | No seed parameter | Add `--seed` for Midjourney/SD; not controllable for LLMs |
-| Syntax errors in model params | Wrong model format | Check `references/model-syntax.md` for correct syntax |
+| Syntax errors in model params | Wrong model format | Check `rules/model-syntax.md` for correct syntax |
 | Token limit exceeded | Prompt too long | Estimate: ~4 chars/token for English; trim constraints |
 
 ---
 
-## 📑 Content Map
+## ðŸ“‘ Content Map
 
 | File | Description | When to Read |
 |------|-------------|--------------|
-| [image-prompts.md](references/image-prompts.md) | Image generation techniques, styles, composition | Visual AI prompts |
-| [domain-marketing.md](references/domain-marketing.md) | Marketing copy, AIDA/PAS formulas | Copywriting prompts |
-| [domain-code.md](references/domain-code.md) | Code generation patterns | Programming prompts |
-| [model-syntax.md](references/model-syntax.md) | Model-specific parameters | Midjourney, SD, DALL-E, Flux |
-| [engineering-spec.md](references/engineering-spec.md) | Full engineering spec: contracts, security, scalability | Architecture review, integration |
+| [image-prompts.md](rules/image-prompts.md) | Image generation techniques, styles, composition | Visual AI prompts |
+| [domain-marketing.md](rules/domain-marketing.md) | Marketing copy, AIDA/PAS formulas | Copywriting prompts |
+| [domain-code.md](rules/domain-code.md) | Code generation patterns | Programming prompts |
+| [model-syntax.md](rules/model-syntax.md) | Model-specific parameters | Midjourney, SD, DALL-E, Flux |
+| [engineering-spec.md](rules/engineering-spec.md) | Full engineering spec: contracts, security, scalability | Architecture review, integration |
 
 ---
 
-## 🔗 Related
+## ðŸ”— Related
 
 | Item | Type | Purpose |
 |------|------|---------|
@@ -186,4 +186,4 @@ Unknown model → generic format (no model-specific parameters injected).
 
 ---
 
-⚡ PikaKit v3.9.105
+âš¡ PikaKit v3.9.105

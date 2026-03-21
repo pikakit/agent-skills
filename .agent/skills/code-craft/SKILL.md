@@ -1,7 +1,7 @@
----
+﻿---
 name: code-craft
 description: >-
-  Pragmatic coding standards — concise, direct, no over-engineering.
+  Pragmatic coding standards â€” concise, direct, no over-engineering.
   Fixed thresholds: 20 lines/function, 3 args max, 2 nesting levels.
   Triggers on: code style, clean code, best practices, naming conventions, SRP, DRY, KISS.
   Coordinates with: code-review, test-architect.
@@ -10,11 +10,11 @@ metadata:
   priority: "CRITICAL"
   category: "core"
   triggers: "code style, clean code, best practices, naming conventions, SRP, DRY, KISS"
-  success_metrics: "lint errors = 0, all naming rules followed, functions ≤ 20 lines"
+  success_metrics: "lint errors = 0, all naming rules followed, functions â‰¤ 20 lines"
   coordinates_with: "code-review, test-architect"
 ---
 
-# Code Craft — Pragmatic Coding Standards
+# Code Craft â€” Pragmatic Coding Standards
 
 > Concise. Direct. Measurable. Fixed thresholds: 20 lines/function, 3 args, 2 nesting levels.
 
@@ -22,7 +22,7 @@ metadata:
 
 ## Prerequisites
 
-**Required:** None — Code Craft is a knowledge-based skill with no external dependencies.
+**Required:** None â€” Code Craft is a knowledge-based skill with no external dependencies.
 
 ---
 
@@ -34,7 +34,7 @@ metadata:
 | Reviewing code quality | Run full-review check |
 | Editing existing files | Check dependency impact first |
 | Completing any task | Run 4-item self-check |
-| Architecture review | Read `references/engineering-spec.md` |
+| Architecture review | Read `rules/engineering-spec.md` |
 
 ---
 
@@ -42,9 +42,9 @@ metadata:
 
 | Owned by This Skill | NOT Owned |
 |---------------------|-----------|
-| Naming conventions (4 rules) | Lint/format execution (→ code-review) |
-| Function design (5 rules with thresholds) | Test writing (→ test-architect) |
-| Code structure (4 patterns) | Constitutional governance (→ code-constitution) |
+| Naming conventions (4 rules) | Lint/format execution (â†’ code-review) |
+| Function design (5 rules with thresholds) | Test writing (â†’ test-architect) |
+| Code structure (4 patterns) | Constitutional governance (â†’ code-constitution) |
 | Dependency awareness protocol | Language-specific style guides |
 | Pre-completion self-check (4 items) | Automated code modification |
 
@@ -79,10 +79,10 @@ metadata:
 
 | Rule | Threshold |
 |------|-----------|
-| **Size** | Max 20 lines; target 5–10 |
+| **Size** | Max 20 lines; target 5â€“10 |
 | **Responsibility** | Does one thing only |
 | **Abstraction** | One level of abstraction per function |
-| **Arguments** | Max 3; prefer 0–2 |
+| **Arguments** | Max 3; prefer 0â€“2 |
 | **Side Effects** | Don't mutate inputs unexpectedly |
 
 ---
@@ -106,7 +106,7 @@ metadata:
 | **What does this file import?** | Interface changes propagate |
 | **What tests cover this?** | Tests might fail |
 
-> 🔴 **Rule:** Edit the file + ALL dependent files in the SAME task.
+> ðŸ”´ **Rule:** Edit the file + ALL dependent files in the SAME task.
 
 ---
 
@@ -114,12 +114,12 @@ metadata:
 
 | # | Check | Question |
 |---|-------|----------|
-| 1 | ✅ Goal met? | Did I do exactly what user asked? |
-| 2 | ✅ Files complete? | Did I modify all necessary files? |
-| 3 | ✅ Code works? | Did I verify the change? |
-| 4 | ✅ No errors? | Lint and TypeScript pass? |
+| 1 | âœ… Goal met? | Did I do exactly what user asked? |
+| 2 | âœ… Files complete? | Did I modify all necessary files? |
+| 3 | âœ… Code works? | Did I verify the change? |
+| 4 | âœ… No errors? | Lint and TypeScript pass? |
 
-> 🔴 **Rule:** If ANY check fails, fix it before completing.
+> ðŸ”´ **Rule:** If ANY check fails, fix it before completing.
 
 ---
 
@@ -139,7 +139,7 @@ metadata:
 
 ## Anti-Patterns
 
-| ❌ Don't | ✅ Do |
+| âŒ Don't | âœ… Do |
 |---------|-------|
 | Comment every line | Delete obvious comments |
 | Helper for one-liner | Inline the code |
@@ -149,16 +149,16 @@ metadata:
 
 ---
 
-## 📑 Content Map
+## ðŸ“‘ Content Map
 
 | File | Description | When to Read |
 |------|-------------|--------------|
-| [verification-scripts.md](references/verification-scripts.md) | Validation scripts | Running automated checks |
-| [engineering-spec.md](references/engineering-spec.md) | Full engineering spec: contracts, security, scalability | Architecture review |
+| [verification-scripts.md](rules/verification-scripts.md) | Validation scripts | Running automated checks |
+| [engineering-spec.md](rules/engineering-spec.md) | Full engineering spec: contracts, security, scalability | Architecture review |
 
 ---
 
-## 🔗 Related
+## ðŸ”— Related
 
 | Item | Type | Purpose |
 |------|------|---------|
@@ -168,4 +168,4 @@ metadata:
 
 ---
 
-⚡ PikaKit v3.9.105
+âš¡ PikaKit v3.9.105
