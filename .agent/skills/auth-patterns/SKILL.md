@@ -1,6 +1,6 @@
 ---
 name: auth-patterns
-summary: >-
+description: >-
   Authentication and authorization patterns for production applications.
   OAuth2, JWT, RBAC/ABAC, MFA, Passkeys, session management.
   Fail-closed design: ambiguity → deny access. Defense in depth required.

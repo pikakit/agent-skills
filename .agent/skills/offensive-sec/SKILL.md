@@ -1,6 +1,6 @@
 ---
 name: offensive-sec
-summary: >-
+description: >-
   Red team tactics principles based on MITRE ATT&CK. Attack phases, detection evasion, reporting.
   Triggers on: pentest, red team, exploit, vulnerability, hacking.
   Coordinates with: security-scanner, code-review.

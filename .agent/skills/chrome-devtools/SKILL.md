@@ -1,6 +1,6 @@
 ---
 name: chrome-devtools
-summary: >-
+description: >-
   Puppeteer CLI scripts for browser automation, screenshots, debugging.
   Session persistence, JSON output, Core Web Vitals.
   Triggers on: screenshot, browser, puppeteer, devtools, performance.

@@ -1,6 +1,6 @@
 ---
 name: mobile-design
-summary: >-
+description: >-
   Mobile-first design and engineering doctrine for iOS and Android apps.
   Covers touch interaction, performance, platform conventions, offline behavior.
   Triggers on: mobile design, iOS, Android, touch, responsive mobile.

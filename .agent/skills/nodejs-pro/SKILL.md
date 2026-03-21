@@ -1,6 +1,6 @@
 ---
 name: nodejs-pro
-summary: >-
+description: >-
   Node.js development principles and decision-making. Framework selection (Hono/Fastify/Express/NestJS),
   async patterns, security, architecture.
   Triggers on: Node.js, Express, backend, server, API.

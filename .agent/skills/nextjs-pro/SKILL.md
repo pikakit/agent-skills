@@ -1,6 +1,6 @@
 ---
 name: nextjs-pro
-summary: >-
+description: >-
   Next.js App Router & React performance patterns. Server Components, data fetching,
   routing, caching, and 57 optimization rules across 8 categories.
   Triggers on: Next.js, App Router, RSC, React, frontend, performance, SSR, SSG.

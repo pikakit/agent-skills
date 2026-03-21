@@ -1,6 +1,6 @@
 ---
 name: security-scanner
-summary: >-
+description: >-
   Advanced vulnerability analysis principles. OWASP 2025, Supply Chain Security, risk prioritization.
   Triggers on: security, vulnerability, OWASP, pentest, threat modeling.
   Coordinates with: code-review, cicd-pipeline, api-architect.

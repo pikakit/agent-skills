@@ -1,6 +1,6 @@
 ---
 name: python-pro
-summary: >-
+description: >-
   Python development principles and decision-making. Framework selection (FastAPI/Django/Flask),
   async patterns, type hints, project structure.
   Triggers on: Python, pip, FastAPI, Django, Flask.

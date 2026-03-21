@@ -1,6 +1,6 @@
 ---
 name: idea-storm
-summary: >-
+description: >-
   Socratic questioning protocol + user communication. MANDATORY for complex requests,
   new features, or unclear requirements. Includes progress reporting and error handling.
   Triggers on: brainstorm, understand requirements, clarify, unclear, complex request.

@@ -1,6 +1,6 @@
 ---
 name: 3d-games
-summary: 3D game development principles. Rendering, shaders, physics, cameras.
+description: 3D game development principles. Rendering, shaders, physics, cameras.
 metadata:
   category: "game-development"
   version: "1.0.0"

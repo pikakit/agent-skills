@@ -1,6 +1,6 @@
 ---
 name: studio
-summary: >-
+description: >-
   AI-powered design intelligence with 50+ styles, 97 color palettes, 57 font pairings,
   and anti-AI-slop design system generation. Triggers on: design system, UI design,
   color palette, typography, style guide. Coordinates with: frontend-specialist, design-system.

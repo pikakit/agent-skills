@@ -1,6 +1,6 @@
 ---
 name: data-modeler
-summary: >-
+description: >-
   Database design principles and decision-making. Schema design, indexing strategy, ORM selection.
   Triggers on: database, schema, Prisma, Drizzle, SQL, migration, indexing.
   Coordinates with: api-architect, security-scanner, nodejs-pro.

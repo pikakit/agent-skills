@@ -1,6 +1,6 @@
 ---
 name: server-ops
-summary: >-
+description: >-
   Server management principles and decision-making. Process management, monitoring strategy, scaling decisions.
   Triggers on: server, DevOps, infrastructure, deployment, hosting.
   Coordinates with: cicd-pipeline, security-scanner.

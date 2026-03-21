@@ -1,6 +1,6 @@
 ---
 name: api-architect
-summary: >-
+description: >-
   API design principles and decision-making. REST vs GraphQL vs tRPC selection,
   response formats, versioning, pagination, auth patterns, rate limiting.
   Deterministic decision trees produce context-specific API design choices.

@@ -1,6 +1,6 @@
 ---
 name: mcp-builder
-summary: >-
+description: >-
   Complete guide for building MCP servers for AI agents. Includes design principles,
   4-phase build process, and evaluation framework.
   Triggers on: build MCP, create MCP server, MCP development, MCP, Model Context Protocol, agent tools.

@@ -1,6 +1,6 @@
 ---
 name: media-processing
-summary: >-
+description: >-
   Process video, audio, image with FFmpeg, ImageMagick, RMBG.
   Triggers on: video, audio, image, compress, resize, convert, background removal.
   Coordinates with: perf-optimizer, studio.

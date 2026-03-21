@@ -1,6 +1,6 @@
 ---
 name: debug-pro
-summary: >-
+description: >-
   Unified debugging skill combining systematic 4-phase methodology with advanced frameworks
   (defense-in-depth, root-cause tracing, verification).
   Triggers on: debug, bug, error, crash, exception, root cause, investigation, not working.

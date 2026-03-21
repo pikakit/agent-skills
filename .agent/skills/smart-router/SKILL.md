@@ -1,6 +1,6 @@
 ---
 name: smart-router
-summary: >
+description: >
   Intelligent agent routing based on request analysis. Maps user intent to specialist agents
   using domain detection and keyword matching. Triggers on: agent routing, request classification,
   multi-agent selection. Coordinates with: lifecycle-orchestrator, execution-reporter.

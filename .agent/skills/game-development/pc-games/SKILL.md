@@ -1,6 +1,6 @@
 ---
 name: pc-games
-summary: PC and console game development principles. Engine selection, platform features, optimization strategies.
+description: PC and console game development principles. Engine selection, platform features, optimization strategies.
 metadata:
   category: "game-development"
   version: "1.0.0"

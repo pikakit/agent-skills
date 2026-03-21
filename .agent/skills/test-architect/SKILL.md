@@ -1,6 +1,6 @@
 ---
 name: test-architect
-summary: >-
+description: >-
   Testing patterns and principles - unit, integration, E2E, and mocking strategies.
   Use when writing tests, improving coverage, or establishing testing standards.
   Triggers on: test, testing, unit test, coverage, mocking, AAA pattern.

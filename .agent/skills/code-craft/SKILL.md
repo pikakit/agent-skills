@@ -1,6 +1,6 @@
 ---
 name: code-craft
-summary: >-
+description: >-
   Pragmatic coding standards — concise, direct, no over-engineering.
   Fixed thresholds: 20 lines/function, 3 args max, 2 nesting levels.
   Triggers on: code style, clean code, best practices, naming conventions, SRP, DRY, KISS.

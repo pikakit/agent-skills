@@ -1,6 +1,6 @@
 ---
 name: doc-templates
-summary: >-
+description: >-
   Documentation templates, structure guidelines, Mermaid diagram editing,
   markdown preview, and plan dashboards. README, API docs, code comments,
   AI-friendly documentation, live diagram editor, and documentation preview server.

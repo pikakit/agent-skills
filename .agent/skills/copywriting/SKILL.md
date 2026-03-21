@@ -1,6 +1,6 @@
 ---
 name: copywriting
-summary: >-
+description: >-
   Conversion copywriting formulas, headline templates, email patterns.
   AIDA, PAS, BAB, 4Ps, 4Us, FAB formulas for high-converting copy.
   Triggers on: copywriting, headlines, landing page, email, marketing.

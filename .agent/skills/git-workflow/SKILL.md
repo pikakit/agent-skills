@@ -1,6 +1,6 @@
 ---
 name: git-workflow
-summary: >-
+description: >-
   Git operations with conventional commits, auto-split logic, secret detection.
   Stage, commit, push, PR, merge with security scanning.
   Triggers on: git, commit, push, PR, merge, conventional commits.

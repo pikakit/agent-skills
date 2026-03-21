@@ -1,6 +1,6 @@
 ---
 name: perf-optimizer
-summary: >-
+description: >-
   Performance profiling principles. Core Web Vitals, bundle analysis, runtime profiling.
   Triggers on: performance, slow, Lighthouse, bundle size, Core Web Vitals.
   Coordinates with: e2e-automation, web-core.

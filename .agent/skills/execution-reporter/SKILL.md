@@ -1,6 +1,6 @@
 ---
 name: execution-reporter
-summary: >-
+description: >-
   Display agent routing, skill loading, and execution context at task start.
   Provides transparency and audit trail for agent operations.
   Triggers on: every task start, agent routing, skill loading, task completion.

@@ -1,6 +1,6 @@
 ---
 name: seo-optimizer
-summary: >-
+description: >-
   SEO fundamentals, E-E-A-T, Core Web Vitals, and Google algorithm principles.
   Triggers on: SEO, meta tags, sitemap, search ranking, OpenGraph.
   Coordinates with: web-core, perf-optimizer.

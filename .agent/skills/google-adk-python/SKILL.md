@@ -1,6 +1,6 @@
 ---
 name: google-adk-python
-summary: >-
+description: >-
   Build, evaluate, and deploy AI agents with Google's Agent Development Kit.
   Tool integration, multi-agent orchestration, workflow automation.
   Triggers on: Google ADK, agent development, multi-agent, agent orchestration.

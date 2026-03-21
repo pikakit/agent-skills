@@ -1,6 +1,6 @@
 ---
 name: code-constitution-skills-governance
-summary: >-
+description: >-
   Constitutional governance for PikaKit. Enforces non-negotiable laws for correctness,
   trust, and durability. Fail-closed: ambiguity = refuse. Zero-trust agent mode.
   Triggers on: architecture review, critical data, breaking change, governance, doctrine.

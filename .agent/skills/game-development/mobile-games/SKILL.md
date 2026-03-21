@@ -1,6 +1,6 @@
 ---
 name: mobile-games
-summary: Mobile game development principles. Touch input, battery, performance, app stores.
+description: Mobile game development principles. Touch input, battery, performance, app stores.
 metadata:
   category: "game-development"
   version: "1.0.0"

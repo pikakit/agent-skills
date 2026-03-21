@@ -1,6 +1,6 @@
 ---
 name: mcp-management
-summary: >-
+description: >-
   Discover, analyze, and execute tools from configured MCP servers.
   Progressive disclosure: load only the tools you need, when you need them.
   Triggers on: MCP tools, server discovery, tool execution, multi-server.

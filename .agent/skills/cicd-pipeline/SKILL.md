@@ -1,6 +1,6 @@
 ---
 name: cicd-pipeline
-summary: >-
+description: >-
   Production deployment principles and decision-making. Safe deployment workflows,
   rollback strategies. 5-phase lifecycle: Prepare → Backup → Deploy → Verify → Confirm.
   Triggers on: deploy, deployment, CI/CD, pipeline, rollback, release.

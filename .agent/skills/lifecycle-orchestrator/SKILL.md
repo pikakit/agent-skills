@@ -1,6 +1,6 @@
 ---
 name: lifecycle-orchestrator
-summary: >-
+description: >-
   End-to-end task lifecycle management with state rollback capability. Coordinates
   full task lifecycle from input to completion with checkpoint/restore safety.
   Triggers on: complex multi-phase requests, /autopilot, /build workflows, rollback.

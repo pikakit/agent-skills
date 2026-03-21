@@ -1,69 +1,68 @@
 {
-    "$comment": "Agent-Workflow Mapping for PikaKit v3.9.78",
-    "version": "2.0.0",
-    "lastUpdated": "2026-03-06",
-    "description": "Maps workflow agent references to actual agent file names",
-    "workflow_to_agent": {
+    "$comment": "Skill-Workflow Mapping for PikaKit v3.9.105",
+    "version": "3.0.0",
+    "lastUpdated": "2026-03-21",
+    "description": "Maps workflow skill references to skill directories (AGENTS.md files)",
+    "workflow_to_skill": {
         "backend-specialist": {
-            "agentFile": "backend.md",
+            "skillDir": "nodejs-pro",
             "domain": "Server",
             "aliases": [
                 "backend"
             ]
         },
         "frontend-specialist": {
-            "agentFile": "frontend.md",
+            "skillDir": "react-pro",
             "domain": "UI/UX",
             "aliases": [
                 "frontend"
             ]
         },
         "database-architect": {
-            "agentFile": "database.md",
+            "skillDir": "data-modeler",
             "domain": "Data",
             "aliases": [
                 "database"
             ]
         },
         "test-engineer": {
-            "agentFile": "testing.md",
+            "skillDir": "test-architect",
             "domain": "Testing",
             "aliases": [
                 "testing",
-                "qa",
-                "test-architect"
+                "qa"
             ]
         },
         "devops-engineer": {
-            "agentFile": "devops.md",
+            "skillDir": "cicd-pipeline",
             "domain": "Ops",
             "aliases": [
                 "devops"
             ]
         },
         "security-auditor": {
-            "agentFile": "security.md",
+            "skillDir": "security-scanner",
             "domain": "Security",
             "aliases": [
                 "security"
             ]
         },
         "seo-specialist": {
-            "agentFile": "seo.md",
+            "skillDir": "seo-optimizer",
             "domain": "SEO",
             "aliases": [
                 "seo"
             ]
         },
         "mobile-developer": {
-            "agentFile": "mobile.md",
+            "skillDir": "mobile-developer",
             "domain": "Mobile",
             "aliases": [
                 "mobile"
             ]
         },
         "performance-optimizer": {
-            "agentFile": "perf.md",
+            "skillDir": "perf-optimizer",
             "domain": "Performance",
             "aliases": [
                 "perf",
@@ -71,136 +70,81 @@
             ]
         },
         "project-planner": {
-            "agentFile": "planner.md",
+            "skillDir": "project-planner",
             "domain": "Planning",
             "aliases": [
                 "planner"
             ]
         },
         "explorer-agent": {
-            "agentFile": "explorer.md",
+            "skillDir": "knowledge-graph",
             "domain": "Discovery",
             "aliases": [
                 "explorer"
             ]
         },
         "documentation-writer": {
-            "agentFile": "docs.md",
+            "skillDir": "doc-templates",
             "domain": "Docs",
             "aliases": [
                 "docs"
             ]
         },
         "debugger": {
-            "agentFile": "debug.md",
+            "skillDir": "debug-pro",
             "domain": "Debug",
             "aliases": [
                 "debug"
             ]
         },
         "penetration-tester": {
-            "agentFile": "pentest.md",
+            "skillDir": "offensive-sec",
             "domain": "Security",
             "aliases": [
                 "pentest"
             ]
         },
         "game-developer": {
-            "agentFile": "gamedev.md",
+            "skillDir": "game-development",
             "domain": "Game",
             "aliases": [
                 "gamedev"
             ]
         },
         "api-architect": {
-            "agentFile": "backend.md",
+            "skillDir": "api-architect",
             "domain": "API",
             "aliases": [
                 "api"
-            ],
-            "note": "Maps to backend agent for API design tasks"
-        },
-        "test-architect": {
-            "agentFile": "testing.md",
-            "domain": "Testing",
-            "aliases": [
-                "test"
-            ],
-            "note": "Maps to testing agent for test architecture"
+            ]
         },
         "legacy-specialist": {
-            "agentFile": "legacy.md",
+            "skillDir": "code-craft",
             "domain": "Legacy",
             "aliases": [
                 "legacy"
-            ],
-            "note": "Maps to legacy agent for legacy code tasks"
+            ]
         }
     },
-    "meta_agents": {
+    "meta_skills": {
         "orchestrator": {
-            "agentFile": "orchestrator.md",
+            "skillDir": "lifecycle-orchestrator",
             "role": "Runtime Control",
             "invokedBy": [
                 "/autopilot",
                 "complex workflows"
             ]
         },
-        "assessor": {
-            "agentFile": "assessor.md",
-            "role": "Risk Evaluation",
-            "invokedBy": [
-                "risky operations"
-            ]
-        },
-        "recovery": {
-            "agentFile": "recovery.md",
-            "role": "State Management",
-            "invokedBy": [
-                "checkpoint/rollback"
-            ]
-        },
-        "critic": {
-            "agentFile": "critic.md",
-            "role": "Conflict Resolution",
-            "invokedBy": [
-                "agent disagreements"
-            ]
-        },
         "learner": {
-            "agentFile": "learner.md",
+            "skillDir": "auto-learner",
             "role": "Learning",
             "invokedBy": [
                 "success/failure logging"
             ]
         }
     },
-    "other_agents": {
-        "lead": {
-            "agentFile": "lead.md",
-            "role": "Strategic Coordinator"
-        },
-        "analyst": {
-            "agentFile": "analyst.md",
-            "role": "Data Analysis"
-        },
-        "pm": {
-            "agentFile": "pm.md",
-            "role": "Project Management"
-        },
-        "po": {
-            "agentFile": "po.md",
-            "role": "Product Owner"
-        },
-        "qa": {
-            "agentFile": "qa.md",
-            "role": "Quality Assurance"
-        }
-    },
     "validation": {
-        "totalAgents": 26,
-        "workflowReferencedAgents": 16,
-        "metaAgents": 5,
-        "otherAgents": 5
+        "totalSkillMappings": 17,
+        "metaSkills": 2
     }
 }

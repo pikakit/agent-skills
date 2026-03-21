@@ -1,6 +1,6 @@
 ---
 name: design-system
-summary: >-
+description: >-
   Design thinking and decision-making for web UI. Color theory, typography, visual effects, and UX psychology.
   Triggers on: design, UI, UX, color palette, typography, component design.
   Coordinates with: tailwind-kit, studio, frontend-design.

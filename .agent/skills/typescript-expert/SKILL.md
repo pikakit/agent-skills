@@ -1,6 +1,6 @@
 ---
 name: typescript-expert
-summary: >-
+description: >-
   TypeScript and JavaScript expert with deep knowledge of type-level programming,
   performance tuning, monorepo management, migration strategies, and modern tooling.
   Use PROACTIVELY for any TypeScript/JavaScript issues including complex type gymnastics,

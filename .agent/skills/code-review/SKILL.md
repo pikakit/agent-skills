@@ -1,6 +1,6 @@
 ---
 name: code-review
-summary: >-
+description: >-
   Code review and quality control covering linting, static analysis, security, and best practices.
   5-category review, 4-level comment taxonomy, mandatory quality loop.
   Triggers on: review, PR, lint, format, validate, types, audit, security check.

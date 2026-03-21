@@ -1,6 +1,6 @@
 ---
 name: game-development
-summary: >-
+description: >-
   Game development orchestrator. Routes to platform-specific skills based on project needs.
   Core principles for game loop, performance, patterns, AI, collision, input.
   Triggers on: game, game development, Unity, Godot, Phaser, game engine.

@@ -1,6 +1,6 @@
 ---
 name: tailwind-kit
-summary: >-
+description: >-
   Tailwind CSS v4 principles. CSS-first configuration, container queries, modern patterns.
   Triggers on: Tailwind, CSS, styling, utility classes.
   Coordinates with: design-system, web-core.

@@ -1,6 +1,6 @@
 ---
 name: multiplayer
-summary: Multiplayer game development principles. Architecture, networking, synchronization.
+description: Multiplayer game development principles. Architecture, networking, synchronization.
 metadata:
   category: "game-development"
   version: "1.0.0"

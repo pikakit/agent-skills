@@ -1,6 +1,6 @@
 ---
 name: knowledge-graph
-summary: >-
+description: >-
   Semantic code analysis with AST parsing. Go-to-definition, find-usages,
   impact analysis, architecture visualization.
   Triggers on: find usages, code graph, semantic search, impact analysis.

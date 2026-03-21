@@ -1,6 +1,6 @@
 ---
 name: ai-artist
-summary: >-
+description: >-
   Prompt engineering for AI text and image generation models.
   LLM prompting (Claude, GPT, Gemini), image generation (Midjourney, DALL-E, Stable Diffusion, Flux).
   Deterministic prompt construction with domain-specific templates and model-aware parameter injection.

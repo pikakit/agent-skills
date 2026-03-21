@@ -1,6 +1,6 @@
 ---
 name: auto-learned
-summary: >-
+description: >-
   Hierarchical skill containing all auto-learned patterns from IDE errors
   and code analysis. Organizes patterns by category (import, type, syntax, etc.)
   with subskills in patterns/ folder. Writable by authorized agents only.

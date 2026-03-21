@@ -1,6 +1,6 @@
 ---
 name: game-art
-summary: Game art principles. Visual style selection, asset pipeline, animation workflow.
+description: Game art principles. Visual style selection, asset pipeline, animation workflow.
 metadata:
   category: "game-development"
   version: "1.0.0"
