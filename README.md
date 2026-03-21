@@ -6,13 +6,12 @@
 
 [![npm version](https://img.shields.io/badge/npm-v3.9.105-7c3aed?style=for-the-badge&logo=npm&logoColor=white&labelColor=18181b)](https://www.npmjs.com/package/pikakit)
 [![Skills](https://img.shields.io/badge/skills-51-06b6d4?style=for-the-badge&labelColor=18181b)](https://github.com/pikakit/agent-skills)
-[![Agents](https://img.shields.io/badge/agents-21-f59e0b?style=for-the-badge&labelColor=18181b)](https://github.com/pikakit/agent-skills)
 [![Workflows](https://img.shields.io/badge/workflows-18-10b981?style=for-the-badge&labelColor=18181b)](https://github.com/pikakit/agent-skills)
 [![JavaScript](https://img.shields.io/badge/100%25-JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black&labelColor=18181b)](https://github.com/pikakit/agent-skills)
 
-**Composable Skills · Coordinated Agents · Intelligent Execution**
+**Composable Skills · Intelligent Workflows · Cross-Platform**
 
-[Install](#-quick-install) · [Skills](#-skills-catalog-51) · [Workflows](#-workflows-18) · [Agents](#-multi-agent-coordination-21) · [Website](https://pikakit.com)
+[Install](#-quick-install) · [Skills](#-skills-catalog-51) · [Workflows](#-workflows-18) · [Design Guide](docs/SKILL_DESIGN_GUIDE.md) · [Website](https://pikakit.com)
 
 </div>
 
@@ -24,18 +23,28 @@
 npx pikakit
 ```
 
-> One command installs **51 skills**, **18 workflows**, **21 agents**, and a complete AI operating system into your project.
+> One command installs **51 skills** and **18 workflows** into your AI project. Works with Antigravity, Claude Code, Cursor, Windsurf, and 15+ AI tools.
 
 ### What You Get
 
-| Component          | Count       | Highlights                                                              |
-|--------------------|:-----------:|-------------------------------------------------------------------------|
-| 🧩 **Skills**      | 51          | Architecture, Frontend, Backend, Security, DevOps, AI, Mobile, Testing  |
-| ⚡ **Workflows**   | 18          | `/think` · `/build` · `/autopilot` · `/studio` · `/validate` and more  |
-| 🤖 **Agents**      | 21          | 16 domain specialists + 5 meta-agents for coordination                  |
-| 📜 **Rules**       | `GEMINI.md` | AI behavior configuration — the Supreme Law                            |
-| 🛠️ **Scripts**     | 6           | Checklist, verify, preview, session management                          |
-| 💻 **CLI**         | `kit`       | Skill management · `agent` (optional interactive dashboard)             |
+| Component          | Count | Highlights                                                              |
+|--------------------|:-----:|-------------------------------------------------------------------------|
+| 🧩 **Skills**      | 51    | Architecture, Frontend, Backend, Security, DevOps, AI, Mobile, Testing  |
+| ⚡ **Workflows**   | 18    | `/think` · `/build` · `/autopilot` · `/studio` · `/validate` and more  |
+| 📜 **Rules**       | 3     | `GEMINI.md` · `autopilot.md` · `code-rules.md`                         |
+
+### Skill Structure (Vercel-compatible)
+
+Each skill follows the [SKILL_DESIGN_GUIDE](docs/SKILL_DESIGN_GUIDE.md):
+
+```
+skill-name/
+├── SKILL.md           ← Index for AI discovery (frontmatter + rule catalog)
+├── AGENTS.md          ← Compiled full doc for AI consumption (cross-platform)
+└── rules/             ← Individual rule files with YAML frontmatter
+    ├── _template.md   ← Template for creating new rules
+    └── {prefix}-{name}.md
+```
 
 ---
 
@@ -67,7 +76,7 @@ Create **project-specific skills** that teach AI your conventions
 | Feature                        | PikaKit           | Generic AI    | Other Tools   |
 |--------------------------------|:-----------------:|:-------------:|:-------------:|
 | ⚡ Auto-Accept Workflow        | ✅                | ❌            | ❌            |
-| 🤖 Multi-Agent Coordination   | 21 specialists    | 1 generic     | 1–3           |
+| 🌐 Cross-Platform (15+ tools) | ✅                | ❌            | ❌            |
 | 🧠 Self-Learning Memory       | ✅                | ❌            | ❌            |
 | 💛 100% JavaScript             | ✅                | Mixed         | Python        |
 | 🛡️ Safety Protocol            | TIER -1           | ❌            | ❌            |
@@ -83,20 +92,11 @@ Create **project-specific skills** that teach AI your conventions
 npx pikakit
 ```
 
-Choose **Project** (`.agent/`) or **Global** (`~/.gemini/`) scope. Optionally install AutoLearn CLI.
+Choose **Project** (`.agent/`) or **Global** (`~/.gemini/`) scope.
 
-### 2. Manage Skills
+### 2. Run Workflows
 
-```bash
-kit list                    # List all skills
-kit info <skill-name>       # Show skill details
-kit validate                # Validate skill structure
-kit doctor                  # System health check
 ```
-
-### 3. Run Workflows
-
-```bash
 /think auth system          # Brainstorm 3+ approaches
 /plan                       # Generate detailed plan
 /build                      # Multi-agent implementation
@@ -173,7 +173,7 @@ kit doctor                  # System health check
 | `auto-learned`              | Hierarchical auto-learned patterns               |
 | `auto-learner`              | Pattern extraction from errors                   |
 | `execution-reporter`        | Agent routing transparency                       |
-| `smart-router`              | Intelligent agent routing                        |
+| `smart-router`              | Intelligent skill routing                        |
 | `mcp-builder`               | Build MCP servers for AI agents                  |
 | `mcp-management`            | Discover & execute MCP tools                     |
 | `ai-artist`                 | Prompt engineering for LLM & image AI            |
@@ -214,63 +214,26 @@ kit doctor                  # System health check
 
 ## 📜 Workflows (18)
 
-| Command        | Purpose                                | Agents          |
-|----------------|----------------------------------------|:---------------:|
-| `/think`       | Brainstorm 3+ approaches               | planner         |
-| `/plan`        | Generate detailed `PLAN.md`            | planner, explorer |
-| `/build`       | Full-stack implementation              | 3–7             |
-| `/autopilot`   | Multi-agent autonomous execution       | 3+              |
-| `/cook`        | Direct implementation from instructions | code-craft     |
-| `/fix`         | Quick error remediation                | debug-pro       |
-| `/validate`    | Test suite with coverage               | qa              |
-| `/diagnose`    | Root cause debugging                   | debug           |
-| `/inspect`     | Defense-in-depth code review           | security        |
-| `/studio`      | UI design (50+ styles, 97 palettes)    | frontend        |
-| `/api`         | API development with OpenAPI docs      | backend         |
-| `/mobile`      | Mobile app development                 | mobile          |
-| `/game`        | Game development                       | gamedev         |
-| `/chronicle`   | Auto-documentation                     | docs            |
-| `/launch`      | Zero-downtime deployment               | devops          |
-| `/stage`       | Dev sandbox & Docker Compose           | devops          |
-| `/monitor`     | Observability setup                    | devops          |
-| `/optimize`    | Performance optimization               | perf            |
-
----
-
-## 🤝 Multi-Agent Coordination (21)
-
-> **16 domain specialists + 5 meta-agents** working together like a FAANG engineering team.
-
-### 🧠 Meta-Agents (Runtime Control)
-
-| Agent              | Role                                               |
-|--------------------|-----------------------------------------------------|
-| `orchestrator`     | Strategic coordination & execution order             |
-| `assessor`         | Risk evaluation before risky operations              |
-| `recovery`         | State management & checkpoint/restore                |
-| `critic`           | Conflict resolution between agents                   |
-| `learner`          | Continuous improvement from outcomes                 |
-
-### 👥 Domain Agents (16)
-
-| Domain             | Agent                      | Key Skills                             |
-|--------------------|----------------------------|----------------------------------------|
-| 🎨 Frontend        | `frontend`                 | react-pro, tailwind-kit, studio        |
-| ⚙️ Backend         | `backend`                  | api-architect, nodejs-pro              |
-| 🗄️ Database        | `database`                 | data-modeler                           |
-| 🔐 Security        | `security` / `pentest`     | security-scanner, offensive-sec        |
-| 🧪 Testing         | `testing` / `qa`           | test-architect, e2e-automation         |
-| ☁️ DevOps          | `devops`                   | cicd-pipeline, server-ops              |
-| 📱 Mobile          | `mobile`                   | mobile-developer, mobile-design        |
-| 🐛 Debug           | `debug`                    | debug-pro                              |
-| ⚡ Performance     | `perf`                     | perf-optimizer                         |
-| 📋 Planning        | `planner` / `lead`         | project-planner, idea-storm            |
-| 📝 Documentation   | `docs`                     | doc-templates                          |
-| 🔍 SEO             | `seo`                      | seo-optimizer                          |
-| 🎮 Game Dev        | `gamedev`                  | game-development                       |
-| 🔭 Exploration     | `explorer`                 | knowledge-graph                        |
-| 🏚️ Legacy          | `legacy`                   | migration patterns                     |
-| 💡 Product         | `product-lead`             | requirements, UX                       |
+| Command        | Purpose                                |
+|----------------|----------------------------------------|
+| `/think`       | Brainstorm 3+ approaches               |
+| `/plan`        | Generate detailed `PLAN.md`            |
+| `/build`       | Full-stack implementation              |
+| `/autopilot`   | Multi-agent autonomous execution       |
+| `/cook`        | Direct implementation from instructions |
+| `/fix`         | Quick error remediation                |
+| `/validate`    | Test suite with coverage               |
+| `/diagnose`    | Root cause debugging                   |
+| `/inspect`     | Defense-in-depth code review           |
+| `/studio`      | UI design (50+ styles, 97 palettes)    |
+| `/api`         | API development with OpenAPI docs      |
+| `/mobile`      | Mobile app development                 |
+| `/game`        | Game development                       |
+| `/chronicle`   | Auto-documentation                     |
+| `/launch`      | Zero-downtime deployment               |
+| `/stage`       | Dev sandbox & Docker Compose           |
+| `/monitor`     | Observability setup                    |
+| `/optimize`    | Performance optimization               |
 
 ---
 
@@ -299,22 +262,6 @@ Error Detected → Root Cause Analysis → Lesson Extracted → lessons-learned.
 Future Prevention ← Pattern Matching ← Auto-Learned Patterns ←─┘
 ```
 
-**Teach the AI from your feedback:**
-
-```
-User: "This is a bug — you created a new file instead of renaming"
-  AI: 📚 Learned: [LEARN-003] - Use rename, don't create new simplified files
-```
-
-**View learned lessons:**
-
-```bash
-agent                       # Launch interactive dashboard
-agent learn                 # Teach new patterns
-agent recall                # Scan for violations
-agent stats                 # View statistics
-```
-
 ---
 
 ## 📦 Project Structure
@@ -322,57 +269,25 @@ agent stats                 # View statistics
 ```
 your-project/
 ├── .agent/
-│   ├── GEMINI.md                         # AI Rules (Supreme Law)
+│   ├── rules/                           # AI Behavior Rules
+│   │   ├── GEMINI.md                    #   Supreme Law
+│   │   ├── autopilot.md                 #   Autonomous execution
+│   │   └── code-rules.md               #   Code & design standards
 │   │
-│   ├── skills/                           # 51 Skills
+│   ├── skills/                          # 51 Skills
 │   │   ├── react-pro/
-│   │   ├── debug-pro/
-│   │   ├── studio/
+│   │   │   ├── SKILL.md                 #   Index
+│   │   │   ├── AGENTS.md               #   Full compiled doc
+│   │   │   └── rules/                   #   Individual rules
+│   │   ├── nodejs-pro/
 │   │   └── ...
 │   │
-│   ├── workflows/                        # 18 Workflows
-│   │   ├── think.md
-│   │   ├── build.md
-│   │   ├── autopilot.md
-│   │   └── ...
-│   │
-│   ├── agents/                           # 21 Specialist Agents
-│   │   ├── frontend.md
-│   │   ├── backend.md
-│   │   ├── security.md
-│   │   └── ...
-│   │
-│   └── config/                           # Configuration
-│
-├── kit.cmd / kit                         # CLI wrapper
-└── agent.cmd / agent                     # AutoLearn wrapper (optional)
+│   └── workflows/                       # 18 Workflows
+│       ├── think.md
+│       ├── build.md
+│       ├── autopilot.md
+│       └── ...
 ```
-
----
-
-## 💻 CLI Reference
-
-### `kit` (Always Installed)
-
-```bash
-kit list                    # List all installed skills
-kit info <skill-name>       # Show skill details
-kit validate                # Validate skill structure
-kit doctor                  # Check system health
-kit cache status            # View cache usage
-```
-
-### `agent` (Optional — AutoLearn Dashboard)
-
-```bash
-agent                       # Launch interactive dashboard
-agent learn                 # Teach new patterns
-agent recall                # Scan for violations
-agent stats                 # View statistics
-agent watch                 # Real-time monitoring
-```
-
-> **Note:** Not installing AutoLearn does **not** affect workflows, skills, or agents.
 
 ---
 
@@ -401,7 +316,7 @@ Proprietary — See [LICENSE](LICENSE) for details.
 
 **⚡ PikaKit v3.9.105**
 
-*Composable Skills · Coordinated Agents · Intelligent Execution*
+*Composable Skills · Intelligent Workflows · Cross-Platform*
 
 [pikakit.com](https://pikakit.com) · [hello@pikakit.com](mailto:hello@pikakit.com)
 
