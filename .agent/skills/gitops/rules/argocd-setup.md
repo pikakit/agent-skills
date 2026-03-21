@@ -1,3 +1,9 @@
+﻿---
+title: ArgoCD Setup and Configuration
+impact: MEDIUM
+tags: gitops
+---
+
 # ArgoCD Setup and Configuration
 
 > Installation, access, SSO, and RBAC configuration for ArgoCD.
@@ -139,4 +145,4 @@ data:
 
 ---
 
-⚡ PikaKit v3.9.105
+âš¡ PikaKit v3.9.105

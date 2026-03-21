@@ -1,6 +1,12 @@
-﻿# typescript-expert — Full Reference Guide
+﻿# typescript-expert
 
-> **Compiled from SKILL.md + rules/ for AI agent consumption.**
+**Version 1.0.0**
+Engineering
+March 2026
+
+> **Note:**
+> This document is for agents and LLMs to follow when working on typescript-expert domain.
+> Optimized for automation and consistency by AI-assisted workflows.
 
 ---
 
@@ -168,7 +174,18 @@ const config = {
 
 ---
 
-## Reference: engineering-spec
+## Detailed Rules
+
+
+---
+
+### Rule: engineering-spec
+
+---
+title: TypeScript Expert â€” Engineering Specification
+impact: MEDIUM
+tags: typescript-expert
+---
 
 # TypeScript Expert â€” Engineering Specification
 
@@ -600,7 +617,7 @@ All resources scoped to invocation. No persistent handles.
 
 ---
 
-## Reference: typescript-cheatsheet
+### Rule: typescript-cheatsheet
 
 ---
 name: typescript-cheatsheet

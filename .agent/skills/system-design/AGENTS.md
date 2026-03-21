@@ -1,6 +1,12 @@
-﻿# system-design — Full Reference Guide
+﻿# system-design
 
-> **Compiled from SKILL.md + rules/ for AI agent consumption.**
+**Version 1.0.0**
+Engineering
+March 2026
+
+> **Note:**
+> This document is for agents and LLMs to follow when working on system-design domain.
+> Optimized for automation and consistency by AI-assisted workflows.
 
 ---
 
@@ -120,7 +126,12 @@
 
 ---
 
-## Reference: engineering-spec
+## Detailed Rules
+
+
+---
+
+### Rule: engineering-spec
 
 ---
 name: system-design-engineering-spec

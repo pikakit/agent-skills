@@ -1,4 +1,10 @@
-# Test Architect — Engineering Specification
+﻿---
+title: Test Architect â€” Engineering Specification
+impact: MEDIUM
+tags: test-architect
+---
+
+# Test Architect â€” Engineering Specification
 
 > Production-grade specification for testing patterns and principles at FAANG scale.
 
@@ -6,11 +12,11 @@
 
 ## 1. Overview
 
-Test Architect provides structured guidance for testing: strategy selection (3 models: Pyramid, Trophy, Honeycomb), AAA pattern (Arrange/Act/Assert), FIRST principles (5: Fast/Isolated/Repeatable/Self-checking/Timely), mock types (4: Stub/Spy/Mock/Fake), mock decision guidance (what to mock vs not), test naming conventions (3 patterns), and anti-patterns (4). The skill operates as an **Expert (decision tree)** — it produces testing strategy recommendations, mock selections, and naming guidance. It does not write test files, execute tests, or measure coverage.
+Test Architect provides structured guidance for testing: strategy selection (3 models: Pyramid, Trophy, Honeycomb), AAA pattern (Arrange/Act/Assert), FIRST principles (5: Fast/Isolated/Repeatable/Self-checking/Timely), mock types (4: Stub/Spy/Mock/Fake), mock decision guidance (what to mock vs not), test naming conventions (3 patterns), and anti-patterns (4). The skill operates as an **Expert (decision tree)** â€” it produces testing strategy recommendations, mock selections, and naming guidance. It does not write test files, execute tests, or measure coverage.
 
 **Contract Version:** 2.0.0
 **Backward Compatibility:** breaking (first hardened version)
-**Breaking Changes:** None — new spec for first hardening
+**Breaking Changes:** None â€” new spec for first hardening
 
 ---
 
@@ -34,7 +40,7 @@ Test Architect eliminates these with deterministic strategy selection (3 models 
 | ID | Goal | Measurable Constraint |
 |----|------|-----------------------|
 | G1 | Strategy selection | 3 models: Pyramid (70/20/10), Trophy (integration-heavy), Honeycomb (contract-centric) |
-| G2 | Test structure | AAA pattern: Arrange → Act → Assert |
+| G2 | Test structure | AAA pattern: Arrange â†’ Act â†’ Assert |
 | G3 | Quality principles | FIRST: Fast (<100ms), Isolated, Repeatable, Self-checking, Timely |
 | G4 | Mock routing | 4 types: Stub, Spy, Mock, Fake |
 | G5 | Mock decisions | Clear mock vs don't-mock guidance |
@@ -148,9 +154,9 @@ Recoverable: boolean
 
 #### Deterministic Guarantees
 
-- Strategy routing is fixed: monolith → Pyramid (70/20/10); SPA → Trophy (integration-heavy); microservices → Honeycomb (contract-centric).
-- Mock routing is fixed: return fixed values → Stub; track calls → Spy; set expectations → Mock; simplified impl → Fake.
-- Mock decision is fixed: External APIs/DB/time/network → mock; code under test/pure functions/simple deps/in-memory → don't mock.
+- Strategy routing is fixed: monolith â†’ Pyramid (70/20/10); SPA â†’ Trophy (integration-heavy); microservices â†’ Honeycomb (contract-centric).
+- Mock routing is fixed: return fixed values â†’ Stub; track calls â†’ Spy; set expectations â†’ Mock; simplified impl â†’ Fake.
+- Mock decision is fixed: External APIs/DB/time/network â†’ mock; code under test/pure functions/simple deps/in-memory â†’ don't mock.
 - Naming is fixed: 3 patterns (should, when, given-when-then).
 - Same architecture = same strategy. Same dependency type = same mock decision.
 
@@ -240,10 +246,10 @@ All phases synchronous. No async pipeline.
 
 | Principle | Enforcement |
 |-----------|-------------|
-| Strategy routing | Monolith → Pyramid (Unit 70%, Int 20%, E2E 10%); SPA → Trophy (integration-heavy); Microservices → Honeycomb (contract-centric) |
-| AAA pattern | Arrange (setup data) → Act (execute code) → Assert (verify outcome) |
+| Strategy routing | Monolith â†’ Pyramid (Unit 70%, Int 20%, E2E 10%); SPA â†’ Trophy (integration-heavy); Microservices â†’ Honeycomb (contract-centric) |
+| AAA pattern | Arrange (setup data) â†’ Act (execute code) â†’ Assert (verify outcome) |
 | FIRST principles | Fast (<100ms each), Isolated (no external deps), Repeatable (same result always), Self-checking (no manual verification), Timely (written with code) |
-| Mock type routing | Return fixed values → Stub; Track calls → Spy; Set expectations → Mock; Simplified implementation → Fake |
+| Mock type routing | Return fixed values â†’ Stub; Track calls â†’ Spy; Set expectations â†’ Mock; Simplified implementation â†’ Fake |
 | Mock decision | Mock: external APIs, database (unit), time/random, network; Don't mock: code under test, pure functions, simple dependencies, in-memory stores |
 | Naming | "should [behavior]", "when [condition]", "given X, when Y, then Z" |
 | Coverage | Target: >80% line coverage; 100% is not the goal |
@@ -370,7 +376,7 @@ All resources scoped to invocation. No persistent handles.
 | Strategy selection | < 2 ms | < 5 ms | 20 ms |
 | Mock routing | < 2 ms | < 5 ms | 20 ms |
 | Full guide | < 10 ms | < 30 ms | 50 ms |
-| Output size | ≤ 3,000 chars | ≤ 6,000 chars | 10,000 chars |
+| Output size | â‰¤ 3,000 chars | â‰¤ 6,000 chars | 10,000 chars |
 
 ---
 
@@ -389,16 +395,16 @@ All resources scoped to invocation. No persistent handles.
 
 | Requirement | Status | Evidence |
 |-------------|--------|----------|
-| YAML frontmatter complete | ✅ | name, description, metadata with category, version, triggers, coordinates_with, success_metrics |
-| SKILL.md < 200 lines | ✅ | Entry point under 200 lines |
-| Prerequisites documented | ✅ | No external dependencies for guidance |
-| When to Use section | ✅ | Situation-based routing table |
-| Core content matches skill type | ✅ | Expert type: strategy selection, mock routing, naming conventions |
-| Troubleshooting section | ✅ | Anti-patterns table |
-| Related section | ✅ | Cross-links to e2e-automation, test-driven-dev, /validate |
-| Content Map for multi-file | ✅ | Links to scripts/ + engineering-spec.md |
-| Contract versioning | ✅ | contract_version, backward_compatibility, breaking_changes |
-| Compliance matrix structured | ✅ | This table with ✅/❌ + evidence |
+| YAML frontmatter complete | âœ… | name, description, metadata with category, version, triggers, coordinates_with, success_metrics |
+| SKILL.md < 200 lines | âœ… | Entry point under 200 lines |
+| Prerequisites documented | âœ… | No external dependencies for guidance |
+| When to Use section | âœ… | Situation-based routing table |
+| Core content matches skill type | âœ… | Expert type: strategy selection, mock routing, naming conventions |
+| Troubleshooting section | âœ… | Anti-patterns table |
+| Related section | âœ… | Cross-links to e2e-automation, test-driven-dev, /validate |
+| Content Map for multi-file | âœ… | Links to scripts/ + engineering-spec.md |
+| Contract versioning | âœ… | contract_version, backward_compatibility, breaking_changes |
+| Compliance matrix structured | âœ… | This table with âœ…/âŒ + evidence |
 
 ---
 
@@ -406,23 +412,23 @@ All resources scoped to invocation. No persistent handles.
 
 | Category | Check | Status |
 |----------|-------|--------|
-| **Functionality** | 3 strategy models (Pyramid, Trophy, Honeycomb) | ✅ |
-| **Functionality** | AAA pattern (Arrange/Act/Assert) | ✅ |
-| **Functionality** | FIRST principles (5 criteria) | ✅ |
-| **Functionality** | 4 mock types (Stub/Spy/Mock/Fake) | ✅ |
-| **Functionality** | Mock vs don't-mock guidance | ✅ |
-| **Functionality** | 3 naming conventions | ✅ |
-| **Contracts** | Input/output/error schemas in pseudo-schema format | ✅ |
-| **Contracts** | Contract versioning with semver | ✅ |
-| **Failure** | Error taxonomy with 4 categorized codes | ✅ |
-| **Failure** | Zero internal retries | ✅ |
-| **Determinism** | Fixed strategy routing, fixed mock routing, fixed naming | ✅ |
-| **Security** | No source code, no execution, no files | ✅ |
-| **Observability** | Structured log schema with 5 mandatory fields | ✅ |
-| **Observability** | 4 metrics defined | ✅ |
-| **Performance** | P50/P99 targets for all operations | ✅ |
-| **Compliance** | All skill-design-guide.md sections mapped with evidence | ✅ |
+| **Functionality** | 3 strategy models (Pyramid, Trophy, Honeycomb) | âœ… |
+| **Functionality** | AAA pattern (Arrange/Act/Assert) | âœ… |
+| **Functionality** | FIRST principles (5 criteria) | âœ… |
+| **Functionality** | 4 mock types (Stub/Spy/Mock/Fake) | âœ… |
+| **Functionality** | Mock vs don't-mock guidance | âœ… |
+| **Functionality** | 3 naming conventions | âœ… |
+| **Contracts** | Input/output/error schemas in pseudo-schema format | âœ… |
+| **Contracts** | Contract versioning with semver | âœ… |
+| **Failure** | Error taxonomy with 4 categorized codes | âœ… |
+| **Failure** | Zero internal retries | âœ… |
+| **Determinism** | Fixed strategy routing, fixed mock routing, fixed naming | âœ… |
+| **Security** | No source code, no execution, no files | âœ… |
+| **Observability** | Structured log schema with 5 mandatory fields | âœ… |
+| **Observability** | 4 metrics defined | âœ… |
+| **Performance** | P50/P99 targets for all operations | âœ… |
+| **Compliance** | All skill-design-guide.md sections mapped with evidence | âœ… |
 
 ---
 
-⚡ PikaKit v3.9.105
+âš¡ PikaKit v3.9.105

@@ -1,6 +1,12 @@
-﻿# auth-patterns — Full Reference Guide
+﻿# auth-patterns
 
-> **Compiled from SKILL.md + rules/ for AI agent consumption.**
+**Version 1.0.0**
+Engineering
+March 2026
+
+> **Note:**
+> This document is for agents and LLMs to follow when working on auth-patterns domain.
+> Optimized for automation and consistency by AI-assisted workflows.
 
 ---
 
@@ -156,7 +162,18 @@ What type of application?
 
 ---
 
-## Reference: engineering-spec
+## Detailed Rules
+
+
+---
+
+### Rule: engineering-spec
+
+---
+title: Auth Patterns â€” Engineering Specification
+impact: MEDIUM
+tags: auth-patterns
+---
 
 # Auth Patterns â€” Engineering Specification
 
@@ -662,7 +679,7 @@ Auth Patterns maintains zero persistent state. Every invocation starts from a cl
 
 ---
 
-## Reference: jwt-deep
+### Rule: jwt-deep
 
 ---
 name: jwt-deep
@@ -859,7 +876,7 @@ async function refreshTokens(oldRefreshToken: string) {
 
 ---
 
-## Reference: mfa
+### Rule: mfa
 
 ---
 name: mfa
@@ -1034,7 +1051,7 @@ User cannot access MFA device?
 
 ---
 
-## Reference: oauth2
+### Rule: oauth2
 
 ---
 name: oauth2
@@ -1169,7 +1186,7 @@ OIDC = OAuth 2.0 + Identity Layer
 
 ---
 
-## Reference: passkey
+### Rule: passkey
 
 ---
 name: passkey
@@ -1413,7 +1430,7 @@ await fetch('/api/auth/passkey/login/verify', {
 
 ---
 
-## Reference: rbac-abac
+### Rule: rbac-abac
 
 ---
 name: rbac-abac
@@ -1620,7 +1637,7 @@ function evaluatePolicy(ctx: PolicyContext): boolean {
 
 ---
 
-## Reference: session
+### Rule: session
 
 ---
 name: session

@@ -1,6 +1,12 @@
-﻿# tailwind-kit — Full Reference Guide
+﻿# tailwind-kit
 
-> **Compiled from SKILL.md + rules/ for AI agent consumption.**
+**Version 1.0.0**
+Engineering
+March 2026
+
+> **Note:**
+> This document is for agents and LLMs to follow when working on tailwind-kit domain.
+> Optimized for automation and consistency by AI-assisted workflows.
 
 ---
 
@@ -140,7 +146,12 @@
 
 ---
 
-## Reference: components
+## Detailed Rules
+
+
+---
+
+### Rule: components
 
 ---
 name: components
@@ -369,7 +380,13 @@ export function Input({ label, error, className, id, ...props }: InputProps) {
 
 ---
 
-## Reference: engineering-spec
+### Rule: engineering-spec
+
+---
+title: Tailwind Kit â€” Engineering Specification
+impact: MEDIUM
+tags: tailwind-kit
+---
 
 # Tailwind Kit â€” Engineering Specification
 
@@ -803,7 +820,7 @@ All resources scoped to invocation. No persistent handles.
 
 ---
 
-## Reference: responsive
+### Rule: responsive
 
 ---
 name: responsive
@@ -1021,7 +1038,13 @@ description: Tailwind CSS v4 responsive patterns â€” breakpoints, container
 
 ---
 
-## Reference: v4-config
+### Rule: v4-config
+
+---
+title: Tailwind v4 Configuration
+impact: MEDIUM
+tags: tailwind-kit
+---
 
 # Tailwind v4 Configuration
 

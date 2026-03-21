@@ -1,6 +1,12 @@
-﻿# agent-browser — Full Reference Guide
+﻿# agent-browser
 
-> **Compiled from SKILL.md + rules/ for AI agent consumption.**
+**Version 1.0.0**
+Engineering
+March 2026
+
+> **Note:**
+> This document is for agents and LLMs to follow when working on agent-browser domain.
+> Optimized for automation and consistency by AI-assisted workflows.
 
 ---
 
@@ -185,7 +191,18 @@ agent-browser fill @e2 "email@example.com"
 
 ---
 
-## Reference: engineering-spec
+## Detailed Rules
+
+
+---
+
+### Rule: engineering-spec
+
+---
+title: Agent Browser â€” Engineering Specification
+impact: MEDIUM
+tags: agent-browser
+---
 
 # Agent Browser â€” Engineering Specification
 

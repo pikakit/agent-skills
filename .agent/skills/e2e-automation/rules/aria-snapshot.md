@@ -1,3 +1,9 @@
+﻿---
+title: ARIA Snapshot Pattern
+impact: MEDIUM
+tags: e2e-automation
+---
+
 # ARIA Snapshot Pattern
 
 > Element Discovery via Accessibility Tree instead of CSS Selectors.

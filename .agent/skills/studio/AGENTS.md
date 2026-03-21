@@ -1,6 +1,12 @@
-﻿# studio — Full Reference Guide
+﻿# studio
 
-> **Compiled from SKILL.md + rules/ for AI agent consumption.**
+**Version 1.0.0**
+Engineering
+March 2026
+
+> **Note:**
+> This document is for agents and LLMs to follow when working on studio domain.
+> Optimized for automation and consistency by AI-assisted workflows.
 
 ---
 
@@ -146,7 +152,12 @@ node .agent/skills/studio/scripts-js/search.js "modern tech" --category typograp
 
 ---
 
-## Reference: engineering-spec
+## Detailed Rules
+
+
+---
+
+### Rule: engineering-spec
 
 ---
 name: studio-engineering-spec

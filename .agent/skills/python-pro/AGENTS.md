@@ -1,6 +1,12 @@
-﻿# python-pro — Full Reference Guide
+﻿# python-pro
 
-> **Compiled from SKILL.md + rules/ for AI agent consumption.**
+**Version 1.0.0**
+Engineering
+March 2026
+
+> **Note:**
+> This document is for agents and LLMs to follow when working on python-pro domain.
+> Optimized for automation and consistency by AI-assisted workflows.
 
 ---
 
@@ -150,7 +156,12 @@ Routes (HTTP handlers)
 
 ---
 
-## Reference: async-patterns
+## Detailed Rules
+
+
+---
+
+### Rule: async-patterns
 
 ---
 name: async-patterns
@@ -315,7 +326,7 @@ async def bad_example():
 
 ---
 
-## Reference: django-patterns
+### Rule: django-patterns
 
 ---
 name: django-patterns
@@ -506,7 +517,7 @@ def create_user_profile(sender, instance, created, **kwargs):
 
 ---
 
-## Reference: engineering-spec
+### Rule: engineering-spec
 
 ---
 name: python-pro-engineering-spec
@@ -932,7 +943,7 @@ All resources scoped to invocation. No persistent handles.
 
 ---
 
-## Reference: fastapi-patterns
+### Rule: fastapi-patterns
 
 ---
 name: fastapi-patterns
@@ -1108,7 +1119,7 @@ app = FastAPI(lifespan=lifespan)
 
 ---
 
-## Reference: framework-selection
+### Rule: framework-selection
 
 ---
 name: framework-selection
@@ -1272,7 +1283,7 @@ dev = [
 
 ---
 
-## Reference: project-structure
+### Rule: project-structure
 
 ---
 name: project-structure
@@ -1450,7 +1461,7 @@ myproject/
 
 ---
 
-## Reference: testing-patterns
+### Rule: testing-patterns
 
 ---
 name: testing-patterns
@@ -1659,7 +1670,7 @@ pytest -m "not slow"            # Skip slow tests
 
 ---
 
-## Reference: type-hints
+### Rule: type-hints
 
 ---
 name: type-hints

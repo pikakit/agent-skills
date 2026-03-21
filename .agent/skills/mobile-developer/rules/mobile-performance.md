@@ -1,3 +1,9 @@
+﻿---
+title: Mobile Performance Reference
+impact: MEDIUM
+tags: mobile-developer
+---
+
 # Mobile Performance Reference
 
 > Deep dive into React Native and Flutter performance optimization, 60fps animations, memory management, and battery considerations.
@@ -11,34 +17,34 @@
 
 ```
 DESKTOP:                          MOBILE:
-├── Unlimited power               ├── Battery matters
-├── Abundant RAM                  ├── RAM is shared, limited
-├── Stable network                ├── Network is unreliable
-├── CPU always available          ├── CPU throttles when hot
-└── User expects fast anyway      └── User expects INSTANT
+â”œâ”€â”€ Unlimited power               â”œâ”€â”€ Battery matters
+â”œâ”€â”€ Abundant RAM                  â”œâ”€â”€ RAM is shared, limited
+â”œâ”€â”€ Stable network                â”œâ”€â”€ Network is unreliable
+â”œâ”€â”€ CPU always available          â”œâ”€â”€ CPU throttles when hot
+â””â”€â”€ User expects fast anyway      â””â”€â”€ User expects INSTANT
 ```
 
 ### Performance Budget Concept
 
 ```
 Every frame must complete in:
-├── 60fps → 16.67ms per frame
-├── 120fps (ProMotion) → 8.33ms per frame
+â”œâ”€â”€ 60fps â†’ 16.67ms per frame
+â”œâ”€â”€ 120fps (ProMotion) â†’ 8.33ms per frame
 
 If your code takes longer:
-├── Frame drops → Janky scroll/animation
-├── User perceives as "slow" or "broken"
-└── They WILL uninstall your app
+â”œâ”€â”€ Frame drops â†’ Janky scroll/animation
+â”œâ”€â”€ User perceives as "slow" or "broken"
+â””â”€â”€ They WILL uninstall your app
 ```
 
 ---
 
 ## 2. React Native Performance
 
-### 🚫 The #1 AI Mistake: ScrollView for Lists
+### ðŸš« The #1 AI Mistake: ScrollView for Lists
 
 ```javascript
-// ❌ NEVER DO THIS - AI's favorite mistake
+// âŒ NEVER DO THIS - AI's favorite mistake
 <ScrollView>
   {items.map(item => (
     <ItemComponent key={item.id} item={item} />
@@ -46,12 +52,12 @@ If your code takes longer:
 </ScrollView>
 
 // Why it's catastrophic:
-// ├── Renders ALL items immediately (1000 items = 1000 renders)
-// ├── Memory explodes
-// ├── Initial render takes seconds
-// └── Scroll becomes janky
+// â”œâ”€â”€ Renders ALL items immediately (1000 items = 1000 renders)
+// â”œâ”€â”€ Memory explodes
+// â”œâ”€â”€ Initial render takes seconds
+// â””â”€â”€ Scroll becomes janky
 
-// ✅ ALWAYS USE FlatList
+// âœ… ALWAYS USE FlatList
 <FlatList
   data={items}
   renderItem={renderItem}
@@ -62,7 +68,7 @@ If your code takes longer:
 ### FlatList Optimization Checklist
 
 ```javascript
-// ✅ CORRECT: All optimizations applied
+// âœ… CORRECT: All optimizations applied
 
 // 1. Memoize the item component
 const ListItem = React.memo(({ item }: { item: Item }) => {
@@ -111,13 +117,13 @@ const getItemLayout = useCallback(
 
 | Optimization | What It Prevents | Impact |
 |--------------|------------------|--------|
-| `React.memo` | Re-render on parent change | 🔴 Critical |
-| `useCallback renderItem` | New function every render | 🔴 Critical |
-| Stable `keyExtractor` | Wrong item recycling | 🔴 Critical |
-| `getItemLayout` | Async layout calculation | 🟡 High |
-| `removeClippedSubviews` | Memory from off-screen | 🟡 High |
-| `maxToRenderPerBatch` | Blocking main thread | 🟢 Medium |
-| `windowSize` | Memory usage | 🟢 Medium |
+| `React.memo` | Re-render on parent change | ðŸ”´ Critical |
+| `useCallback renderItem` | New function every render | ðŸ”´ Critical |
+| Stable `keyExtractor` | Wrong item recycling | ðŸ”´ Critical |
+| `getItemLayout` | Async layout calculation | ðŸŸ¡ High |
+| `removeClippedSubviews` | Memory from off-screen | ðŸŸ¡ High |
+| `maxToRenderPerBatch` | Blocking main thread | ðŸŸ¢ Medium |
+| `windowSize` | Memory usage | ðŸŸ¢ Medium |
 
 ### FlashList: The Better Option
 
@@ -133,23 +139,23 @@ import { FlashList } from "@shopify/flash-list";
 />
 
 // Benefits over FlatList:
-// ├── Faster recycling
-// ├── Better memory management
-// ├── Simpler API
-// └── Fewer optimization props needed
+// â”œâ”€â”€ Faster recycling
+// â”œâ”€â”€ Better memory management
+// â”œâ”€â”€ Simpler API
+// â””â”€â”€ Fewer optimization props needed
 ```
 
 ### Animation Performance
 
 ```javascript
-// ❌ JS-driven animation (blocks JS thread)
+// âŒ JS-driven animation (blocks JS thread)
 Animated.timing(value, {
   toValue: 1,
   duration: 300,
   useNativeDriver: false, // BAD!
 }).start();
 
-// ✅ Native-driver animation (runs on UI thread)
+// âœ… Native-driver animation (runs on UI thread)
 Animated.timing(value, {
   toValue: 1,
   duration: 300,
@@ -157,14 +163,14 @@ Animated.timing(value, {
 }).start();
 
 // Native driver supports ONLY:
-// ├── transform (translate, scale, rotate)
-// └── opacity
+// â”œâ”€â”€ transform (translate, scale, rotate)
+// â””â”€â”€ opacity
 // 
 // Does NOT support:
-// ├── width, height
-// ├── backgroundColor
-// ├── borderRadius changes
-// └── margin, padding
+// â”œâ”€â”€ width, height
+// â”œâ”€â”€ backgroundColor
+// â”œâ”€â”€ borderRadius changes
+// â””â”€â”€ margin, padding
 ```
 
 ### Reanimated for Complex Animations
@@ -189,16 +195,16 @@ const Component = () => {
 };
 
 // Benefits:
-// ├── Runs on UI thread (60fps guaranteed)
-// ├── Can animate any property
-// ├── Gesture-driven animations
-// └── Worklets for complex logic
+// â”œâ”€â”€ Runs on UI thread (60fps guaranteed)
+// â”œâ”€â”€ Can animate any property
+// â”œâ”€â”€ Gesture-driven animations
+// â””â”€â”€ Worklets for complex logic
 ```
 
 ### Memory Leak Prevention
 
 ```javascript
-// ❌ Memory leak: uncleared interval
+// âŒ Memory leak: uncleared interval
 useEffect(() => {
   const interval = setInterval(() => {
     fetchData();
@@ -206,7 +212,7 @@ useEffect(() => {
   // Missing cleanup!
 }, []);
 
-// ✅ Proper cleanup
+// âœ… Proper cleanup
 useEffect(() => {
   const interval = setInterval(() => {
     fetchData();
@@ -216,11 +222,11 @@ useEffect(() => {
 }, []);
 
 // Common memory leak sources:
-// ├── Timers (setInterval, setTimeout)
-// ├── Event listeners
-// ├── Subscriptions (WebSocket, PubSub)
-// ├── Async operations that update state after unmount
-// └── Image caching without limits
+// â”œâ”€â”€ Timers (setInterval, setTimeout)
+// â”œâ”€â”€ Event listeners
+// â”œâ”€â”€ Subscriptions (WebSocket, PubSub)
+// â”œâ”€â”€ Async operations that update state after unmount
+// â””â”€â”€ Image caching without limits
 ```
 
 ### React Native Performance Checklist
@@ -250,10 +256,10 @@ useEffect(() => {
 
 ## 3. Flutter Performance
 
-### 🚫 The #1 AI Mistake: setState Overuse
+### ðŸš« The #1 AI Mistake: setState Overuse
 
 ```dart
-// ❌ WRONG: setState rebuilds ENTIRE widget tree
+// âŒ WRONG: setState rebuilds ENTIRE widget tree
 class BadCounter extends StatefulWidget {
   @override
   State<BadCounter> createState() => _BadCounterState();
@@ -284,7 +290,7 @@ class _BadCounterState extends State<BadCounter> {
 ### The `const` Constructor Revolution
 
 ```dart
-// ✅ CORRECT: const prevents rebuilds
+// âœ… CORRECT: const prevents rebuilds
 
 class GoodCounter extends StatefulWidget {
   const GoodCounter({super.key}); // CONST constructor!
@@ -314,10 +320,10 @@ class _GoodCounterState extends State<GoodCounter> {
 ### Targeted State Management
 
 ```dart
-// ❌ setState rebuilds whole tree
+// âŒ setState rebuilds whole tree
 setState(() => _value = newValue);
 
-// ✅ ValueListenableBuilder: surgical rebuilds
+// âœ… ValueListenableBuilder: surgical rebuilds
 class TargetedState extends StatelessWidget {
   final ValueNotifier<int> counter = ValueNotifier(0);
   
@@ -341,13 +347,13 @@ class TargetedState extends StatelessWidget {
 ### Riverpod/Provider Best Practices
 
 ```dart
-// ❌ WRONG: Reading entire provider in build
+// âŒ WRONG: Reading entire provider in build
 Widget build(BuildContext context) {
   final state = ref.watch(myProvider); // Rebuilds on ANY change
   return Text(state.name);
 }
 
-// ✅ CORRECT: Select only what you need
+// âœ… CORRECT: Select only what you need
 Widget build(BuildContext context) {
   final name = ref.watch(myProvider.select((s) => s.name));
   return Text(name); // Only rebuilds when name changes
@@ -357,12 +363,12 @@ Widget build(BuildContext context) {
 ### ListView Optimization
 
 ```dart
-// ❌ WRONG: ListView without builder (renders all)
+// âŒ WRONG: ListView without builder (renders all)
 ListView(
   children: items.map((item) => ItemWidget(item)).toList(),
 )
 
-// ✅ CORRECT: ListView.builder (lazy rendering)
+// âœ… CORRECT: ListView.builder (lazy rendering)
 ListView.builder(
   itemCount: items.length,
   itemBuilder: (context, index) => ItemWidget(items[index]),
@@ -371,7 +377,7 @@ ListView.builder(
   cacheExtent: 100, // Pre-render distance
 )
 
-// ✅ EVEN BETTER: ListView.separated for dividers
+// âœ… EVEN BETTER: ListView.separated for dividers
 ListView.separated(
   itemCount: items.length,
   itemBuilder: (context, index) => ItemWidget(items[index]),
@@ -382,10 +388,10 @@ ListView.separated(
 ### Image Optimization
 
 ```dart
-// ❌ WRONG: No caching, full resolution
+// âŒ WRONG: No caching, full resolution
 Image.network(url)
 
-// ✅ CORRECT: Cached with proper sizing
+// âœ… CORRECT: Cached with proper sizing
 CachedNetworkImage(
   imageUrl: url,
   width: 100,
@@ -467,12 +473,12 @@ class _MyWidgetState extends State<MyWidget> {
 
 ```
 Human eye detects:
-├── < 24 fps → "Slideshow" (broken)
-├── 24-30 fps → "Choppy" (uncomfortable)
-├── 30-45 fps → "Noticeably not smooth"
-├── 45-60 fps → "Smooth" (acceptable)
-├── 60 fps → "Buttery" (target)
-└── 120 fps → "Premium" (ProMotion devices)
+â”œâ”€â”€ < 24 fps â†’ "Slideshow" (broken)
+â”œâ”€â”€ 24-30 fps â†’ "Choppy" (uncomfortable)
+â”œâ”€â”€ 30-45 fps â†’ "Noticeably not smooth"
+â”œâ”€â”€ 45-60 fps â†’ "Smooth" (acceptable)
+â”œâ”€â”€ 60 fps â†’ "Buttery" (target)
+â””â”€â”€ 120 fps â†’ "Premium" (ProMotion devices)
 
 NEVER ship < 60fps animations.
 ```
@@ -481,11 +487,11 @@ NEVER ship < 60fps animations.
 
 ```
 GPU-ACCELERATED (FAST):          CPU-BOUND (SLOW):
-├── transform: translate          ├── width, height
-├── transform: scale              ├── top, left, right, bottom
-├── transform: rotate             ├── margin, padding
-├── opacity                       ├── border-radius (animated)
-└── (Composited, off main)        └── box-shadow (animated)
+â”œâ”€â”€ transform: translate          â”œâ”€â”€ width, height
+â”œâ”€â”€ transform: scale              â”œâ”€â”€ top, left, right, bottom
+â”œâ”€â”€ transform: rotate             â”œâ”€â”€ margin, padding
+â”œâ”€â”€ opacity                       â”œâ”€â”€ border-radius (animated)
+â””â”€â”€ (Composited, off main)        â””â”€â”€ box-shadow (animated)
 
 RULE: Only animate transform and opacity.
 Everything else causes layout recalculation.
@@ -547,12 +553,12 @@ SpringSimulation(
 ### Image Memory
 
 ```
-Image memory = width × height × 4 bytes (RGBA)
+Image memory = width Ã— height Ã— 4 bytes (RGBA)
 
-1080p image = 1920 × 1080 × 4 = 8.3 MB
-4K image = 3840 × 2160 × 4 = 33.2 MB
+1080p image = 1920 Ã— 1080 Ã— 4 = 8.3 MB
+4K image = 3840 Ã— 2160 Ã— 4 = 33.2 MB
 
-10 4K images = 332 MB → App crash!
+10 4K images = 332 MB â†’ App crash!
 
 RULE: Always resize images to display size (or 2-3x for retina).
 ```
@@ -561,15 +567,15 @@ RULE: Always resize images to display size (or 2-3x for retina).
 
 ```
 React Native:
-├── React Native DevTools → Performance tab
-├── Reactotron → State + Memory monitoring
-├── Xcode Instruments (iOS)
-└── Android Studio Profiler
+â”œâ”€â”€ React Native DevTools â†’ Performance tab
+â”œâ”€â”€ Reactotron â†’ State + Memory monitoring
+â”œâ”€â”€ Xcode Instruments (iOS)
+â””â”€â”€ Android Studio Profiler
 
 Flutter:
-├── DevTools → Memory tab
-├── Observatory
-└── flutter run --profile
+â”œâ”€â”€ DevTools â†’ Memory tab
+â”œâ”€â”€ Observatory
+â””â”€â”€ flutter run --profile
 ```
 
 ---
@@ -580,12 +586,12 @@ Flutter:
 
 | Source | Impact | Mitigation |
 |--------|--------|------------|
-| **Screen on** | 🔴 Highest | Dark mode on OLED |
-| **GPS continuous** | 🔴 Very high | Use significant change |
-| **Network requests** | 🟡 High | Batch, cache aggressively |
-| **Animations** | 🟡 Medium | Reduce when low battery |
-| **Background work** | 🟡 Medium | Defer non-critical |
-| **CPU computation** | 🟢 Lower | Offload to backend |
+| **Screen on** | ðŸ”´ Highest | Dark mode on OLED |
+| **GPS continuous** | ðŸ”´ Very high | Use significant change |
+| **Network requests** | ðŸŸ¡ High | Batch, cache aggressively |
+| **Animations** | ðŸŸ¡ Medium | Reduce when low battery |
+| **Background work** | ðŸŸ¡ Medium | Defer non-critical |
+| **CPU computation** | ðŸŸ¢ Lower | Offload to backend |
 
 ### OLED Battery Saving
 
@@ -593,10 +599,10 @@ Flutter:
 OLED screens: Black pixels = OFF = 0 power
 
 Dark mode savings:
-├── True black (#000000) → Maximum savings
-├── Dark gray (#1a1a1a) → Slight savings
-├── Any color → Some power
-└── White (#FFFFFF) → Maximum power
+â”œâ”€â”€ True black (#000000) â†’ Maximum savings
+â”œâ”€â”€ Dark gray (#1a1a1a) â†’ Slight savings
+â”œâ”€â”€ Any color â†’ Some power
+â””â”€â”€ White (#FFFFFF) â†’ Maximum power
 
 RULE: On dark mode, use true black for backgrounds.
 ```
@@ -605,16 +611,16 @@ RULE: On dark mode, use true black for backgrounds.
 
 ```
 iOS:
-├── Background refresh: Limited, system-scheduled
-├── Push notifications: Use for important updates
-├── Background modes: Location, audio, VoIP only
-└── Background tasks: Max ~30 seconds
+â”œâ”€â”€ Background refresh: Limited, system-scheduled
+â”œâ”€â”€ Push notifications: Use for important updates
+â”œâ”€â”€ Background modes: Location, audio, VoIP only
+â””â”€â”€ Background tasks: Max ~30 seconds
 
 Android:
-├── WorkManager: System-scheduled, battery-aware
-├── Foreground service: Visible to user, continuous
-├── JobScheduler: Batch network operations
-└── Doze mode: Respect it, batch operations
+â”œâ”€â”€ WorkManager: System-scheduled, battery-aware
+â”œâ”€â”€ Foreground service: Visible to user, continuous
+â”œâ”€â”€ JobScheduler: Batch network operations
+â””â”€â”€ Doze mode: Respect it, batch operations
 ```
 
 ---
@@ -624,42 +630,42 @@ Android:
 ### Offline-First Architecture
 
 ```
-                    ┌──────────────┐
-                    │     UI       │
-                    └──────┬───────┘
-                           │
-                    ┌──────▼───────┐
-                    │   Cache      │ ← Read from cache FIRST
-                    └──────┬───────┘
-                           │
-                    ┌──────▼───────┐
-                    │   Network    │ ← Update cache from network
-                    └──────────────┘
+                    â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
+                    â”‚     UI       â”‚
+                    â””â”€â”€â”€â”€â”€â”€â”¬â”€â”€â”€â”€â”€â”€â”€â”˜
+                           â”‚
+                    â”Œâ”€â”€â”€â”€â”€â”€â–¼â”€â”€â”€â”€â”€â”€â”€â”
+                    â”‚   Cache      â”‚ â† Read from cache FIRST
+                    â””â”€â”€â”€â”€â”€â”€â”¬â”€â”€â”€â”€â”€â”€â”€â”˜
+                           â”‚
+                    â”Œâ”€â”€â”€â”€â”€â”€â–¼â”€â”€â”€â”€â”€â”€â”€â”
+                    â”‚   Network    â”‚ â† Update cache from network
+                    â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
 
 Benefits:
-├── Instant UI (no loading spinner for cached data)
-├── Works offline
-├── Reduces data usage
-└── Better UX on slow networks
+â”œâ”€â”€ Instant UI (no loading spinner for cached data)
+â”œâ”€â”€ Works offline
+â”œâ”€â”€ Reduces data usage
+â””â”€â”€ Better UX on slow networks
 ```
 
 ### Request Optimization
 
 ```
 BATCH: Combine multiple requests into one
-├── 10 small requests → 1 batch request
-├── Reduces connection overhead
-└── Better for battery (radio on once)
+â”œâ”€â”€ 10 small requests â†’ 1 batch request
+â”œâ”€â”€ Reduces connection overhead
+â””â”€â”€ Better for battery (radio on once)
 
 CACHE: Don't re-fetch unchanged data
-├── ETag/If-None-Match headers
-├── Cache-Control headers
-└── Stale-while-revalidate pattern
+â”œâ”€â”€ ETag/If-None-Match headers
+â”œâ”€â”€ Cache-Control headers
+â””â”€â”€ Stale-while-revalidate pattern
 
 COMPRESS: Reduce payload size
-├── gzip/brotli compression
-├── Request only needed fields (GraphQL)
-└── Paginate large lists
+â”œâ”€â”€ gzip/brotli compression
+â”œâ”€â”€ Request only needed fields (GraphQL)
+â””â”€â”€ Paginate large lists
 ```
 
 ---
@@ -670,7 +676,7 @@ COMPRESS: Reduce payload size
 
 | Metric | Target | Tool |
 |--------|--------|------|
-| **Frame rate** | ≥ 60fps | Performance overlay |
+| **Frame rate** | â‰¥ 60fps | Performance overlay |
 | **Memory** | Stable, no growth | Profiler |
 | **Cold start** | < 2s | Manual timing |
 | **TTI (Time to Interactive)** | < 3s | Lighthouse |
@@ -680,16 +686,16 @@ COMPRESS: Reduce payload size
 ### Test on Real Devices
 
 ```
-⚠️ NEVER trust only:
-├── Simulator/emulator (faster than real)
-├── Dev mode (slower than release)
-├── High-end devices only
+âš ï¸ NEVER trust only:
+â”œâ”€â”€ Simulator/emulator (faster than real)
+â”œâ”€â”€ Dev mode (slower than release)
+â”œâ”€â”€ High-end devices only
 
-✅ ALWAYS test on:
-├── Low-end Android (< $200 phone)
-├── Older iOS device (iPhone 8 or SE)
-├── Release/profile build
-└── With real data (not 10 items)
+âœ… ALWAYS test on:
+â”œâ”€â”€ Low-end Android (< $200 phone)
+â”œâ”€â”€ Older iOS device (iPhone 8 or SE)
+â”œâ”€â”€ Release/profile build
+â””â”€â”€ With real data (not 10 items)
 ```
 
 ### Performance Monitoring Checklist
@@ -757,12 +763,12 @@ void dispose() {
 ### Animation Targets
 
 ```
-Transform/Opacity only ← What to animate
-16.67ms per frame ← Time budget
-60fps minimum ← Target
-Low-end Android ← Test device
+Transform/Opacity only â† What to animate
+16.67ms per frame â† Time budget
+60fps minimum â† Target
+Low-end Android â† Test device
 ```
 
 ---
 
-> **Remember:** Performance is not optimization—it's baseline quality. A slow app is a broken app. Test on the worst device your users have, not the best device you have.
+> **Remember:** Performance is not optimizationâ€”it's baseline quality. A slow app is a broken app. Test on the worst device your users have, not the best device you have.

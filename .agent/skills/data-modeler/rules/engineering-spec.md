@@ -1,4 +1,10 @@
-# Data Modeler — Engineering Specification
+﻿---
+title: Data Modeler â€” Engineering Specification
+impact: MEDIUM
+tags: data-modeler
+---
+
+# Data Modeler â€” Engineering Specification
 
 > Production-grade specification for database design decision-making at FAANG scale.
 
@@ -6,11 +12,11 @@
 
 ## 1. Overview
 
-Data Modeler provides structured decision frameworks for database architecture: database selection (PostgreSQL/Neon/Turso/SQLite), ORM selection (Drizzle/Prisma/Kysely), schema design (normalization, PKs, relationships), indexing strategy (B-tree/hash/GIN/GiST), query analysis (N+1 detection, EXPLAIN ANALYZE), and migration safety. The skill operates as an expert knowledge base that produces database architecture decisions — it does not execute SQL or modify databases.
+Data Modeler provides structured decision frameworks for database architecture: database selection (PostgreSQL/Neon/Turso/SQLite), ORM selection (Drizzle/Prisma/Kysely), schema design (normalization, PKs, relationships), indexing strategy (B-tree/hash/GIN/GiST), query analysis (N+1 detection, EXPLAIN ANALYZE), and migration safety. The skill operates as an expert knowledge base that produces database architecture decisions â€” it does not execute SQL or modify databases.
 
 **Contract Version:** 2.0.0
 **Backward Compatibility:** breaking (first hardened version)
-**Breaking Changes:** None — new spec for first hardening
+**Breaking Changes:** None â€” new spec for first hardening
 
 ---
 
@@ -23,7 +29,7 @@ Database design at scale faces four quantified problems:
 | Default to PostgreSQL regardless of context | 60% of projects use PostgreSQL even when SQLite suffices | Over-provisioned infrastructure, unnecessary complexity |
 | Missing index strategy | 40% of schemas have zero indexes beyond primary keys | Degraded query performance at scale |
 | Unsafe migrations | 25% of schema changes cause downtime or data loss | Production outages |
-| N+1 query blindness | 35% of ORMs generate N+1 queries undetected | 10–100x response time increase |
+| N+1 query blindness | 35% of ORMs generate N+1 queries undetected | 10â€“100x response time increase |
 
 Data Modeler eliminates these by providing context-aware database selection, mandatory index planning, safe migration patterns, and query analysis guidance.
 
@@ -151,9 +157,9 @@ Recoverable: boolean
 #### Deterministic Guarantees
 
 - Same `Request_Type` + `Context` = identical recommendation.
-- Database selection order: deployment → scale → data_model → budget.
-- ORM selection order: project_type → scale → data_model.
-- Index type is deterministic per query pattern (equality → hash, range → btree, full-text → gin).
+- Database selection order: deployment â†’ scale â†’ data_model â†’ budget.
+- ORM selection order: project_type â†’ scale â†’ data_model.
+- Index type is deterministic per query pattern (equality â†’ hash, range â†’ btree, full-text â†’ gin).
 - Migration strategy is deterministic: additive (add column/table), destructive (drop/rename), multi-phase (complex changes).
 - No randomization, no preference-based variation (user preference overrides decision tree).
 
@@ -250,9 +256,9 @@ All phases synchronous. No async pipeline.
 
 | Principle | Enforcement |
 |-----------|-------------|
-| Fixed database selection tree | deployment → scale → data_model → budget |
-| Fixed ORM selection tree | project_type → scale → data_model |
-| Fixed index type mapping | equality→hash, range→btree, full-text→gin, spatial→gist |
+| Fixed database selection tree | deployment â†’ scale â†’ data_model â†’ budget |
+| Fixed ORM selection tree | project_type â†’ scale â†’ data_model |
+| Fixed index type mapping | equalityâ†’hash, rangeâ†’btree, full-textâ†’gin, spatialâ†’gist |
 | Fixed migration classification | additive/destructive/multi-phase |
 | User preference override | If user states preference, skip decision tree |
 | No external calls | Decisions use only embedded rules + reference files |
@@ -404,7 +410,7 @@ All resources scoped to invocation. No persistent handles.
 | Database/ORM selection | < 5 ms | < 20 ms | 50 ms |
 | Full design (all aspects) | < 15 ms | < 40 ms | 100 ms |
 | Reference file read | < 1 ms | < 5 ms | 1,000 ms |
-| Output size | ≤ 1,000 chars | ≤ 3,000 chars | 5,000 chars |
+| Output size | â‰¤ 1,000 chars | â‰¤ 3,000 chars | 5,000 chars |
 
 ---
 
@@ -424,16 +430,16 @@ All resources scoped to invocation. No persistent handles.
 
 | Requirement | Status | Evidence |
 |-------------|--------|----------|
-| YAML frontmatter complete | ✅ | name, description, metadata with category, version, triggers, coordinates_with, success_metrics |
-| SKILL.md < 200 lines | ✅ | Entry point under 200 lines |
-| Prerequisites documented | ✅ | No external dependencies |
-| When to Use section | ✅ | Request-type decision table |
-| Core content matches skill type | ✅ | Expert type: decision trees, selection guides |
-| Troubleshooting section | ✅ | Anti-patterns table |
-| Related section | ✅ | Cross-links to api-architect, nodejs-pro, python-pro |
-| Content Map for multi-file | ✅ | Links to 6 reference files + engineering-spec.md |
-| Contract versioning | ✅ | contract_version, backward_compatibility, breaking_changes |
-| Compliance matrix structured | ✅ | This table with ✅/❌ + evidence |
+| YAML frontmatter complete | âœ… | name, description, metadata with category, version, triggers, coordinates_with, success_metrics |
+| SKILL.md < 200 lines | âœ… | Entry point under 200 lines |
+| Prerequisites documented | âœ… | No external dependencies |
+| When to Use section | âœ… | Request-type decision table |
+| Core content matches skill type | âœ… | Expert type: decision trees, selection guides |
+| Troubleshooting section | âœ… | Anti-patterns table |
+| Related section | âœ… | Cross-links to api-architect, nodejs-pro, python-pro |
+| Content Map for multi-file | âœ… | Links to 6 reference files + engineering-spec.md |
+| Contract versioning | âœ… | contract_version, backward_compatibility, breaking_changes |
+| Compliance matrix structured | âœ… | This table with âœ…/âŒ + evidence |
 
 ---
 
@@ -441,26 +447,26 @@ All resources scoped to invocation. No persistent handles.
 
 | Category | Check | Status |
 |----------|-------|--------|
-| **Functionality** | Database selection (4 options with decision tree) | ✅ |
-| **Functionality** | ORM selection (3 options with N+1 prevention) | ✅ |
-| **Functionality** | Schema design (normalization, PKs, relationships) | ✅ |
-| **Functionality** | Index strategy (4 index types with query pattern mapping) | ✅ |
-| **Functionality** | Migration safety (3 strategies with rollback) | ✅ |
-| **Contracts** | Input/output/error schemas in pseudo-schema format | ✅ |
-| **Contracts** | Contract versioning with semver | ✅ |
-| **Contracts** | Agent assumptions and non-assumptions documented | ✅ |
-| **Failure** | Error taxonomy with 6 categorized codes | ✅ |
-| **Failure** | No silent default; ask user on ambiguity | ✅ |
-| **Failure** | Zero internal retries | ✅ |
-| **Determinism** | Fixed decision tree ordering per request type | ✅ |
-| **Determinism** | User preference override documented | ✅ |
-| **Security** | No database connections; no credential handling | ✅ |
-| **Observability** | Structured log schema with 5 mandatory fields + 4 log points | ✅ |
-| **Observability** | 5 metrics defined | ✅ |
-| **Performance** | P50/P99 targets for all operations | ✅ |
-| **Scalability** | Stateless; unlimited parallel invocations | ✅ |
-| **Compliance** | All skill-design-guide.md sections mapped with evidence | ✅ |
+| **Functionality** | Database selection (4 options with decision tree) | âœ… |
+| **Functionality** | ORM selection (3 options with N+1 prevention) | âœ… |
+| **Functionality** | Schema design (normalization, PKs, relationships) | âœ… |
+| **Functionality** | Index strategy (4 index types with query pattern mapping) | âœ… |
+| **Functionality** | Migration safety (3 strategies with rollback) | âœ… |
+| **Contracts** | Input/output/error schemas in pseudo-schema format | âœ… |
+| **Contracts** | Contract versioning with semver | âœ… |
+| **Contracts** | Agent assumptions and non-assumptions documented | âœ… |
+| **Failure** | Error taxonomy with 6 categorized codes | âœ… |
+| **Failure** | No silent default; ask user on ambiguity | âœ… |
+| **Failure** | Zero internal retries | âœ… |
+| **Determinism** | Fixed decision tree ordering per request type | âœ… |
+| **Determinism** | User preference override documented | âœ… |
+| **Security** | No database connections; no credential handling | âœ… |
+| **Observability** | Structured log schema with 5 mandatory fields + 4 log points | âœ… |
+| **Observability** | 5 metrics defined | âœ… |
+| **Performance** | P50/P99 targets for all operations | âœ… |
+| **Scalability** | Stateless; unlimited parallel invocations | âœ… |
+| **Compliance** | All skill-design-guide.md sections mapped with evidence | âœ… |
 
 ---
 
-⚡ PikaKit v3.9.105
+âš¡ PikaKit v3.9.105

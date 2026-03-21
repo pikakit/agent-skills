@@ -1,6 +1,12 @@
-﻿# chrome-devtools — Full Reference Guide
+﻿# chrome-devtools
 
-> **Compiled from SKILL.md + rules/ for AI agent consumption.**
+**Version 1.0.0**
+Engineering
+March 2026
+
+> **Note:**
+> This document is for agents and LLMs to follow when working on chrome-devtools domain.
+> Optimized for automation and consistency by AI-assisted workflows.
 
 ---
 
@@ -153,7 +159,12 @@ node navigate.js --close true
 
 ---
 
-## Reference: aria-snapshot
+## Detailed Rules
+
+
+---
+
+### Rule: aria-snapshot
 
 ---
 name: aria-snapshot
@@ -249,7 +260,13 @@ node select-ref.js --ref e1 --action screenshot --output ./element.png
 
 ---
 
-## Reference: engineering-spec
+### Rule: engineering-spec
+
+---
+title: Chrome DevTools â€” Engineering Specification
+impact: MEDIUM
+tags: chrome-devtools
+---
 
 # Chrome DevTools â€” Engineering Specification
 
@@ -751,7 +768,7 @@ Transitions:
 
 ---
 
-## Reference: scripts-guide
+### Rule: scripts-guide
 
 ---
 name: scripts-guide

@@ -1,4 +1,10 @@
-﻿# TypeScript Expert â€” Engineering Specification
+﻿---
+title: TypeScript Expert â€” Engineering Specification
+impact: MEDIUM
+tags: typescript-expert
+---
+
+# TypeScript Expert â€” Engineering Specification
 
 > Production-grade specification for TypeScript/JavaScript expertise at FAANG scale.
 

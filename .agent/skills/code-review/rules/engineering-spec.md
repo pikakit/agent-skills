@@ -1,4 +1,10 @@
-﻿# Code Review â€” Engineering Specification
+﻿---
+title: Code Review â€” Engineering Specification
+impact: MEDIUM
+tags: code-review
+---
+
+# Code Review â€” Engineering Specification
 
 > Production-grade specification for code review and quality control at FAANG scale.
 

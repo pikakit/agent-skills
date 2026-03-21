@@ -1,4 +1,10 @@
-﻿# Code Constitution â€” Engineering Specification
+﻿---
+title: Code Constitution â€” Engineering Specification
+impact: MEDIUM
+tags: code-constitution
+---
+
+# Code Constitution â€” Engineering Specification
 
 > Production-grade specification for PikaKit governance and constitutional enforcement at FAANG scale.
 

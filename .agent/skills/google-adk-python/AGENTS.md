@@ -1,6 +1,12 @@
-﻿# google-adk-python — Full Reference Guide
+﻿# google-adk-python
 
-> **Compiled from SKILL.md + rules/ for AI agent consumption.**
+**Version 1.0.0**
+Engineering
+March 2026
+
+> **Note:**
+> This document is for agents and LLMs to follow when working on google-adk-python domain.
+> Optimized for automation and consistency by AI-assisted workflows.
 
 ---
 
@@ -161,7 +167,18 @@ coordinator = LlmAgent(
 
 ---
 
-## Reference: deployment
+## Detailed Rules
+
+
+---
+
+### Rule: deployment
+
+---
+title: Deployment Patterns
+impact: MEDIUM
+tags: google-adk-python
+---
 
 # Deployment Patterns
 
@@ -298,7 +315,13 @@ async def ready():
 
 ---
 
-## Reference: engineering-spec
+### Rule: engineering-spec
+
+---
+title: Google ADK Python â€” Engineering Specification
+impact: MEDIUM
+tags: google-adk-python
+---
 
 # Google ADK Python â€” Engineering Specification
 
@@ -743,7 +766,13 @@ All resources scoped to invocation. No persistent handles.
 
 ---
 
-## Reference: multi-agent
+### Rule: multi-agent
+
+---
+title: Multi-Agent Orchestration
+impact: MEDIUM
+tags: google-adk-python
+---
 
 # Multi-Agent Orchestration
 
@@ -888,7 +917,13 @@ response = router.run("I was charged twice")
 
 ---
 
-## Reference: tools
+### Rule: tools
+
+---
+title: Custom Tools
+impact: MEDIUM
+tags: google-adk-python
+---
 
 # Custom Tools
 

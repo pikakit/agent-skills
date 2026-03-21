@@ -1,3 +1,9 @@
+﻿---
+title: GitOps Sync Policies
+impact: MEDIUM
+tags: gitops
+---
+
 # GitOps Sync Policies
 
 > Sync strategies, windows, retry policies, and health checks for ArgoCD and Flux.
@@ -136,4 +142,4 @@ data:
 
 ---
 
-⚡ PikaKit v3.9.105
+âš¡ PikaKit v3.9.105

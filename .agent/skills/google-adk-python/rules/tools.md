@@ -1,3 +1,9 @@
+﻿---
+title: Custom Tools
+impact: MEDIUM
+tags: google-adk-python
+---
+
 # Custom Tools
 
 > Extend agents with domain-specific capabilities.
@@ -122,4 +128,4 @@ response = agent.run("Process customer refund")
 
 ---
 
-⚡ PikaKit v3.9.105
+âš¡ PikaKit v3.9.105

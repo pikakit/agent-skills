@@ -1,4 +1,10 @@
-﻿# Agent Browser â€” Engineering Specification
+﻿---
+title: Agent Browser â€” Engineering Specification
+impact: MEDIUM
+tags: agent-browser
+---
+
+# Agent Browser â€” Engineering Specification
 
 > Production-grade specification for AI-optimized browser automation at FAANG scale.
 

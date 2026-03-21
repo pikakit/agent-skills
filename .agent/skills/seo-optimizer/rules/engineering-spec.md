@@ -1,4 +1,10 @@
-# SEO Optimizer — Engineering Specification
+﻿---
+title: SEO Optimizer â€” Engineering Specification
+impact: MEDIUM
+tags: seo-optimizer
+---
+
+# SEO Optimizer â€” Engineering Specification
 
 > Production-grade specification for search engine visibility at FAANG scale.
 
@@ -6,11 +12,11 @@
 
 ## 1. Overview
 
-SEO Optimizer provides structured decision frameworks for search engine visibility: E-E-A-T framework (4 principles), Core Web Vitals targets (LCP < 2.5s, INP < 200ms, CLS < 0.1), technical SEO checklist (7 items), content SEO rules (4 elements with character limits), schema markup routing (5 types), and ranking factor prioritization (5 ranked factors). The skill operates as an **Expert (decision tree)** — it produces SEO recommendations, checklist guidance, and schema markup selections. It does not modify HTML, generate sitemaps, or submit to search engines.
+SEO Optimizer provides structured decision frameworks for search engine visibility: E-E-A-T framework (4 principles), Core Web Vitals targets (LCP < 2.5s, INP < 200ms, CLS < 0.1), technical SEO checklist (7 items), content SEO rules (4 elements with character limits), schema markup routing (5 types), and ranking factor prioritization (5 ranked factors). The skill operates as an **Expert (decision tree)** â€” it produces SEO recommendations, checklist guidance, and schema markup selections. It does not modify HTML, generate sitemaps, or submit to search engines.
 
 **Contract Version:** 2.0.0
 **Backward Compatibility:** breaking (first hardened version)
-**Breaking Changes:** None — new spec for first hardening
+**Breaking Changes:** None â€” new spec for first hardening
 
 ---
 
@@ -60,7 +66,7 @@ SEO Optimizer eliminates these with deterministic content SEO rules (character l
 | Boundary | Owned | Not Owned |
 |----------|-------|-----------|
 | E-E-A-T framework | Principle guidance | Content creation |
-| Core Web Vitals targets | Target values | Performance measurement (→ perf-optimizer) |
+| Core Web Vitals targets | Target values | Performance measurement (â†’ perf-optimizer) |
 | Technical SEO | Checklist items | Implementation |
 | Content SEO | Character limits, rules | Content writing |
 | Schema markup | Type routing | JSON-LD generation |
@@ -148,9 +154,9 @@ Recoverable: boolean
 #### Deterministic Guarantees
 
 - Content SEO character limits are fixed: title 50-60 chars, meta description 150-160 chars.
-- Schema routing is deterministic: page_type → schema type.
+- Schema routing is deterministic: page_type â†’ schema type.
 - Core Web Vitals targets are fixed: LCP < 2.5s, INP < 200ms, CLS < 0.1.
-- Ranking factors are fixed priority: content → backlinks → CWV → mobile → technical.
+- Ranking factors are fixed priority: content â†’ backlinks â†’ CWV â†’ mobile â†’ technical.
 - E-E-A-T signals are fixed per principle.
 - Same page type = same schema recommendation.
 
@@ -243,7 +249,7 @@ All phases synchronous. No async pipeline.
 | Principle | Enforcement |
 |-----------|-------------|
 | Content SEO limits | Title: 50-60 chars, keyword front-loaded; Meta description: 150-160 chars; H1: one per page; Alt text: descriptive, not keyword-stuffed |
-| Schema routing | Article → blog/news; Organization → company; FAQPage → Q&A; Product → e-commerce; BreadcrumbList → navigation |
+| Schema routing | Article â†’ blog/news; Organization â†’ company; FAQPage â†’ Q&A; Product â†’ e-commerce; BreadcrumbList â†’ navigation |
 | Core Web Vitals | LCP < 2.5s (good), > 4.0s (poor); INP < 200ms (good), > 500ms (poor); CLS < 0.1 (good), > 0.25 (poor) |
 | Ranking priorities | 1: Quality content, 2: Backlinks, 3: Page experience (CWV), 4: Mobile, 5: Technical SEO |
 | E-E-A-T signals | Experience: first-hand knowledge; Expertise: credentials; Authoritativeness: backlinks; Trustworthiness: HTTPS + accuracy |
@@ -369,7 +375,7 @@ All resources scoped to invocation. No persistent handles.
 | Schema routing | < 2 ms | < 5 ms | 20 ms |
 | CWV assessment | < 2 ms | < 5 ms | 20 ms |
 | Full audit | < 10 ms | < 30 ms | 50 ms |
-| Output size | ≤ 2,000 chars | ≤ 5,000 chars | 8,000 chars |
+| Output size | â‰¤ 2,000 chars | â‰¤ 5,000 chars | 8,000 chars |
 
 ---
 
@@ -388,16 +394,16 @@ All resources scoped to invocation. No persistent handles.
 
 | Requirement | Status | Evidence |
 |-------------|--------|----------|
-| YAML frontmatter complete | ✅ | name, description, metadata with category, version, triggers, coordinates_with, success_metrics |
-| SKILL.md < 200 lines | ✅ | Entry point under 200 lines |
-| Prerequisites documented | ✅ | No external dependencies for guidance |
-| When to Use section | ✅ | Situation-based routing table |
-| Core content matches skill type | ✅ | Expert type: E-E-A-T, CWV, schema routing, content rules |
-| Troubleshooting section | ✅ | Anti-patterns table |
-| Related section | ✅ | Cross-links to geo-spatial, perf-optimizer |
-| Content Map for multi-file | ✅ | Links to scripts/ + engineering-spec.md |
-| Contract versioning | ✅ | contract_version, backward_compatibility, breaking_changes |
-| Compliance matrix structured | ✅ | This table with ✅/❌ + evidence |
+| YAML frontmatter complete | âœ… | name, description, metadata with category, version, triggers, coordinates_with, success_metrics |
+| SKILL.md < 200 lines | âœ… | Entry point under 200 lines |
+| Prerequisites documented | âœ… | No external dependencies for guidance |
+| When to Use section | âœ… | Situation-based routing table |
+| Core content matches skill type | âœ… | Expert type: E-E-A-T, CWV, schema routing, content rules |
+| Troubleshooting section | âœ… | Anti-patterns table |
+| Related section | âœ… | Cross-links to geo-spatial, perf-optimizer |
+| Content Map for multi-file | âœ… | Links to scripts/ + engineering-spec.md |
+| Contract versioning | âœ… | contract_version, backward_compatibility, breaking_changes |
+| Compliance matrix structured | âœ… | This table with âœ…/âŒ + evidence |
 
 ---
 
@@ -405,23 +411,23 @@ All resources scoped to invocation. No persistent handles.
 
 | Category | Check | Status |
 |----------|-------|--------|
-| **Functionality** | E-E-A-T framework (4 principles) | ✅ |
-| **Functionality** | Core Web Vitals (LCP, INP, CLS with targets) | ✅ |
-| **Functionality** | Technical SEO checklist (7 items) | ✅ |
-| **Functionality** | Content SEO (4 elements with character limits) | ✅ |
-| **Functionality** | Schema routing (5 types) | ✅ |
-| **Functionality** | Ranking factors (5 prioritized) | ✅ |
-| **Contracts** | Input/output/error schemas in pseudo-schema format | ✅ |
-| **Contracts** | Contract versioning with semver | ✅ |
-| **Failure** | Error taxonomy with 3 categorized codes | ✅ |
-| **Failure** | Zero internal retries | ✅ |
-| **Determinism** | Fixed char limits, fixed schema routing, fixed CWV targets | ✅ |
-| **Security** | No PII, no credentials, no network access | ✅ |
-| **Observability** | Structured log schema with 5 mandatory fields | ✅ |
-| **Observability** | 4 metrics defined | ✅ |
-| **Performance** | P50/P99 targets for all operations | ✅ |
-| **Compliance** | All skill-design-guide.md sections mapped with evidence | ✅ |
+| **Functionality** | E-E-A-T framework (4 principles) | âœ… |
+| **Functionality** | Core Web Vitals (LCP, INP, CLS with targets) | âœ… |
+| **Functionality** | Technical SEO checklist (7 items) | âœ… |
+| **Functionality** | Content SEO (4 elements with character limits) | âœ… |
+| **Functionality** | Schema routing (5 types) | âœ… |
+| **Functionality** | Ranking factors (5 prioritized) | âœ… |
+| **Contracts** | Input/output/error schemas in pseudo-schema format | âœ… |
+| **Contracts** | Contract versioning with semver | âœ… |
+| **Failure** | Error taxonomy with 3 categorized codes | âœ… |
+| **Failure** | Zero internal retries | âœ… |
+| **Determinism** | Fixed char limits, fixed schema routing, fixed CWV targets | âœ… |
+| **Security** | No PII, no credentials, no network access | âœ… |
+| **Observability** | Structured log schema with 5 mandatory fields | âœ… |
+| **Observability** | 4 metrics defined | âœ… |
+| **Performance** | P50/P99 targets for all operations | âœ… |
+| **Compliance** | All skill-design-guide.md sections mapped with evidence | âœ… |
 
 ---
 
-⚡ PikaKit v3.9.105
+âš¡ PikaKit v3.9.105

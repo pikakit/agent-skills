@@ -1,3 +1,9 @@
+﻿---
+title: Mobile Design Thinking
+impact: MEDIUM
+tags: mobile-developer
+---
+
 # Mobile Design Thinking
 
 > **This file prevents AI from using memorized patterns and forces genuine thinking.**
@@ -6,41 +12,41 @@
 
 ---
 
-## 🧠 DEEP MOBILE THINKING PROTOCOL
+## ðŸ§  DEEP MOBILE THINKING PROTOCOL
 
 ### This Process is Mandatory Before Every Mobile Project
 
 ```
-┌─────────────────────────────────────────────────────────────────┐
-│                    DEEP MOBILE THINKING                         │
-├─────────────────────────────────────────────────────────────────┤
-│                                                                 │
-│  1️⃣ CONTEXT SCAN                                               │
-│     └── What are my assumptions for this project?               │
-│         └── QUESTION these assumptions                          │
-│                                                                 │
-│  2️⃣ ANTI-DEFAULT ANALYSIS                                      │
-│     └── Am I applying a memorized pattern?                      │
-│         └── Is this pattern REALLY the best for THIS project?   │
-│                                                                 │
-│  3️⃣ PLATFORM DECOMPOSITION                                     │
-│     └── Did I think about iOS and Android separately?           │
-│         └── What are the platform-specific patterns?            │
-│                                                                 │
-│  4️⃣ TOUCH INTERACTION BREAKDOWN                                │
-│     └── Did I analyze each interaction individually?            │
-│         └── Did I apply Fitts' Law, Thumb Zone?                 │
-│                                                                 │
-│  5️⃣ PERFORMANCE IMPACT ANALYSIS                                │
-│     └── Did I consider performance impact of each component?    │
-│         └── Is the default solution performant?                 │
-│                                                                 │
-└─────────────────────────────────────────────────────────────────┘
+â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
+â”‚                    DEEP MOBILE THINKING                         â”‚
+â”œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¤
+â”‚                                                                 â”‚
+â”‚  1ï¸âƒ£ CONTEXT SCAN                                               â”‚
+â”‚     â””â”€â”€ What are my assumptions for this project?               â”‚
+â”‚         â””â”€â”€ QUESTION these assumptions                          â”‚
+â”‚                                                                 â”‚
+â”‚  2ï¸âƒ£ ANTI-DEFAULT ANALYSIS                                      â”‚
+â”‚     â””â”€â”€ Am I applying a memorized pattern?                      â”‚
+â”‚         â””â”€â”€ Is this pattern REALLY the best for THIS project?   â”‚
+â”‚                                                                 â”‚
+â”‚  3ï¸âƒ£ PLATFORM DECOMPOSITION                                     â”‚
+â”‚     â””â”€â”€ Did I think about iOS and Android separately?           â”‚
+â”‚         â””â”€â”€ What are the platform-specific patterns?            â”‚
+â”‚                                                                 â”‚
+â”‚  4ï¸âƒ£ TOUCH INTERACTION BREAKDOWN                                â”‚
+â”‚     â””â”€â”€ Did I analyze each interaction individually?            â”‚
+â”‚         â””â”€â”€ Did I apply Fitts' Law, Thumb Zone?                 â”‚
+â”‚                                                                 â”‚
+â”‚  5ï¸âƒ£ PERFORMANCE IMPACT ANALYSIS                                â”‚
+â”‚     â””â”€â”€ Did I consider performance impact of each component?    â”‚
+â”‚         â””â”€â”€ Is the default solution performant?                 â”‚
+â”‚                                                                 â”‚
+â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
 ```
 
 ---
 
-## 🚫 AI MOBILE DEFAULTS (FORBIDDEN LIST)
+## ðŸš« AI MOBILE DEFAULTS (FORBIDDEN LIST)
 
 ### Using These Patterns Automatically is FORBIDDEN!
 
@@ -48,41 +54,41 @@ The following patterns are "defaults" that AIs learned from training data.
 Before using any of these, **QUESTION them and CONSIDER ALTERNATIVES!**
 
 ```
-┌─────────────────────────────────────────────────────────────────┐
-│                 🚫 AI MOBILE SAFE HARBOR                        │
-│           (Default Patterns - Never Use Without Questioning)    │
-├─────────────────────────────────────────────────────────────────┤
-│                                                                 │
-│  NAVIGATION DEFAULTS:                                           │
-│  ├── Tab bar for every project (Would drawer be better?)        │
-│  ├── Fixed 5 tabs (Are 3 enough? For 6+, drawer?)               │
-│  ├── "Home" tab on left (What does user behavior say?)          │
-│  └── Hamburger menu (Is it outdated now?)                       │
-│                                                                 │
-│  STATE MANAGEMENT DEFAULTS:                                     │
-│  ├── Redux everywhere (Is Zustand/Jotai sufficient?)            │
-│  ├── Global state for everything (Isn't local state enough?)   │
-│  ├── Context Provider hell (Is atom-based better?)              │
-│  └── BLoC for every Flutter project (Is Riverpod more modern?)  │
-│                                                                 │
-│  LIST IMPLEMENTATION DEFAULTS:                                  │
-│  ├── FlatList as default (Is FlashList more performant?)        │
-│  ├── windowSize=21 (Is it really needed?)                       │
-│  ├── removeClippedSubviews (Always?)                            │
-│  └── ListView.builder (Is ListView.separated better?)           │
-│                                                                 │
-│  UI PATTERN DEFAULTS:                                           │
-│  ├── FAB bottom-right (Is bottom-left more accessible?)         │
-│  ├── Pull-to-refresh on every list (Is it needed everywhere?)   │
-│  ├── Swipe-to-delete from left (Is right better?)               │
-│  └── Bottom sheet for every modal (Is full screen better?)      │
-│                                                                 │
-└─────────────────────────────────────────────────────────────────┘
+â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
+â”‚                 ðŸš« AI MOBILE SAFE HARBOR                        â”‚
+â”‚           (Default Patterns - Never Use Without Questioning)    â”‚
+â”œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¤
+â”‚                                                                 â”‚
+â”‚  NAVIGATION DEFAULTS:                                           â”‚
+â”‚  â”œâ”€â”€ Tab bar for every project (Would drawer be better?)        â”‚
+â”‚  â”œâ”€â”€ Fixed 5 tabs (Are 3 enough? For 6+, drawer?)               â”‚
+â”‚  â”œâ”€â”€ "Home" tab on left (What does user behavior say?)          â”‚
+â”‚  â””â”€â”€ Hamburger menu (Is it outdated now?)                       â”‚
+â”‚                                                                 â”‚
+â”‚  STATE MANAGEMENT DEFAULTS:                                     â”‚
+â”‚  â”œâ”€â”€ Redux everywhere (Is Zustand/Jotai sufficient?)            â”‚
+â”‚  â”œâ”€â”€ Global state for everything (Isn't local state enough?)   â”‚
+â”‚  â”œâ”€â”€ Context Provider hell (Is atom-based better?)              â”‚
+â”‚  â””â”€â”€ BLoC for every Flutter project (Is Riverpod more modern?)  â”‚
+â”‚                                                                 â”‚
+â”‚  LIST IMPLEMENTATION DEFAULTS:                                  â”‚
+â”‚  â”œâ”€â”€ FlatList as default (Is FlashList more performant?)        â”‚
+â”‚  â”œâ”€â”€ windowSize=21 (Is it really needed?)                       â”‚
+â”‚  â”œâ”€â”€ removeClippedSubviews (Always?)                            â”‚
+â”‚  â””â”€â”€ ListView.builder (Is ListView.separated better?)           â”‚
+â”‚                                                                 â”‚
+â”‚  UI PATTERN DEFAULTS:                                           â”‚
+â”‚  â”œâ”€â”€ FAB bottom-right (Is bottom-left more accessible?)         â”‚
+â”‚  â”œâ”€â”€ Pull-to-refresh on every list (Is it needed everywhere?)   â”‚
+â”‚  â”œâ”€â”€ Swipe-to-delete from left (Is right better?)               â”‚
+â”‚  â””â”€â”€ Bottom sheet for every modal (Is full screen better?)      â”‚
+â”‚                                                                 â”‚
+â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
 ```
 
 ---
 
-## 🔍 COMPONENT DECOMPOSITION (MANDATORY)
+## ðŸ” COMPONENT DECOMPOSITION (MANDATORY)
 
 ### Decomposition Analysis for Every Screen
 
@@ -90,41 +96,41 @@ Before designing any screen, perform this analysis:
 
 ```
 SCREEN: [Screen Name]
-├── PRIMARY ACTION: [What is the main action?]
-│   └── Is it in thumb zone? [Yes/No → Why?]
-│
-├── TOUCH TARGETS: [All tappable elements]
-│   ├── [Element 1]: [Size]pt → Sufficient?
-│   ├── [Element 2]: [Size]pt → Sufficient?
-│   └── Spacing: [Gap]pt → Accidental tap risk?
-│
-├── SCROLLABLE CONTENT:
-│   ├── Is it a list? → FlatList/FlashList [Why this choice?]
-│   ├── Item count: ~[N] → Performance consideration?
-│   └── Fixed height? → Is getItemLayout needed?
-│
-├── STATE REQUIREMENTS:
-│   ├── Is local state sufficient?
-│   ├── Do I need to lift state?
-│   └── Is global required? [Why?]
-│
-├── PLATFORM DIFFERENCES:
-│   ├── iOS: [Anything different needed?]
-│   └── Android: [Anything different needed?]
-│
-├── OFFLINE CONSIDERATION:
-│   ├── Should this screen work offline?
-│   └── Cache strategy: [Yes/No/Which one?]
-│
-└── PERFORMANCE IMPACT:
-    ├── Any heavy components?
-    ├── Is memoization needed?
-    └── Animation performance?
+â”œâ”€â”€ PRIMARY ACTION: [What is the main action?]
+â”‚   â””â”€â”€ Is it in thumb zone? [Yes/No â†’ Why?]
+â”‚
+â”œâ”€â”€ TOUCH TARGETS: [All tappable elements]
+â”‚   â”œâ”€â”€ [Element 1]: [Size]pt â†’ Sufficient?
+â”‚   â”œâ”€â”€ [Element 2]: [Size]pt â†’ Sufficient?
+â”‚   â””â”€â”€ Spacing: [Gap]pt â†’ Accidental tap risk?
+â”‚
+â”œâ”€â”€ SCROLLABLE CONTENT:
+â”‚   â”œâ”€â”€ Is it a list? â†’ FlatList/FlashList [Why this choice?]
+â”‚   â”œâ”€â”€ Item count: ~[N] â†’ Performance consideration?
+â”‚   â””â”€â”€ Fixed height? â†’ Is getItemLayout needed?
+â”‚
+â”œâ”€â”€ STATE REQUIREMENTS:
+â”‚   â”œâ”€â”€ Is local state sufficient?
+â”‚   â”œâ”€â”€ Do I need to lift state?
+â”‚   â””â”€â”€ Is global required? [Why?]
+â”‚
+â”œâ”€â”€ PLATFORM DIFFERENCES:
+â”‚   â”œâ”€â”€ iOS: [Anything different needed?]
+â”‚   â””â”€â”€ Android: [Anything different needed?]
+â”‚
+â”œâ”€â”€ OFFLINE CONSIDERATION:
+â”‚   â”œâ”€â”€ Should this screen work offline?
+â”‚   â””â”€â”€ Cache strategy: [Yes/No/Which one?]
+â”‚
+â””â”€â”€ PERFORMANCE IMPACT:
+    â”œâ”€â”€ Any heavy components?
+    â”œâ”€â”€ Is memoization needed?
+    â””â”€â”€ Animation performance?
 ```
 
 ---
 
-## 🎯 PATTERN QUESTIONING MATRIX
+## ðŸŽ¯ PATTERN QUESTIONING MATRIX
 
 Ask these questions for every default pattern:
 
@@ -132,7 +138,7 @@ Ask these questions for every default pattern:
 
 | Assumption | Question | Alternative |
 |------------|----------|-------------|
-| "I'll use tab bar" | How many destinations? | 3 → minimal tabs, 6+ → drawer |
+| "I'll use tab bar" | How many destinations? | 3 â†’ minimal tabs, 6+ â†’ drawer |
 | "5 tabs" | Are all equally important? | "More" tab? Drawer hybrid? |
 | "Bottom nav" | iPad/tablet support? | Navigation rail alternative |
 | "Stack navigation" | Did I consider deep links? | URL structure = navigation structure |
@@ -166,87 +172,87 @@ Ask these questions for every default pattern:
 
 ---
 
-## 🧪 ANTI-MEMORIZATION TEST
+## ðŸ§ª ANTI-MEMORIZATION TEST
 
 ### Ask Yourself Before Every Solution
 
 ```
-┌─────────────────────────────────────────────────────────────────┐
-│                    ANTI-MEMORIZATION CHECKLIST                  │
-├─────────────────────────────────────────────────────────────────┤
-│                                                                 │
-│  □ Did I pick this solution "because I always do it this way"?  │
-│    → If YES: STOP. Consider alternatives.                       │
-│                                                                 │
-│  □ Is this a pattern I've seen frequently in training data?     │
-│    → If YES: Is it REALLY suitable for THIS project?            │
-│                                                                 │
-│  □ Did I write this solution automatically without thinking?    │
-│    → If YES: Step back, do decomposition.                       │
-│                                                                 │
-│  □ Did I consider an alternative approach?                      │
-│    → If NO: Think of at least 2 alternatives, then decide.      │
-│                                                                 │
-│  □ Did I think platform-specifically?                           │
-│    → If NO: Analyze iOS and Android separately.                 │
-│                                                                 │
-│  □ Did I consider performance impact of this solution?          │
-│    → If NO: What is the memory, CPU, battery impact?            │
-│                                                                 │
-│  □ Is this solution suitable for THIS project's CONTEXT?        │
-│    → If NO: Customize based on context.                         │
-│                                                                 │
-└─────────────────────────────────────────────────────────────────┘
+â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
+â”‚                    ANTI-MEMORIZATION CHECKLIST                  â”‚
+â”œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¤
+â”‚                                                                 â”‚
+â”‚  â–¡ Did I pick this solution "because I always do it this way"?  â”‚
+â”‚    â†’ If YES: STOP. Consider alternatives.                       â”‚
+â”‚                                                                 â”‚
+â”‚  â–¡ Is this a pattern I've seen frequently in training data?     â”‚
+â”‚    â†’ If YES: Is it REALLY suitable for THIS project?            â”‚
+â”‚                                                                 â”‚
+â”‚  â–¡ Did I write this solution automatically without thinking?    â”‚
+â”‚    â†’ If YES: Step back, do decomposition.                       â”‚
+â”‚                                                                 â”‚
+â”‚  â–¡ Did I consider an alternative approach?                      â”‚
+â”‚    â†’ If NO: Think of at least 2 alternatives, then decide.      â”‚
+â”‚                                                                 â”‚
+â”‚  â–¡ Did I think platform-specifically?                           â”‚
+â”‚    â†’ If NO: Analyze iOS and Android separately.                 â”‚
+â”‚                                                                 â”‚
+â”‚  â–¡ Did I consider performance impact of this solution?          â”‚
+â”‚    â†’ If NO: What is the memory, CPU, battery impact?            â”‚
+â”‚                                                                 â”‚
+â”‚  â–¡ Is this solution suitable for THIS project's CONTEXT?        â”‚
+â”‚    â†’ If NO: Customize based on context.                         â”‚
+â”‚                                                                 â”‚
+â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
 ```
 
 ---
 
-## 📊 CONTEXT-BASED DECISION PROTOCOL
+## ðŸ“Š CONTEXT-BASED DECISION PROTOCOL
 
 ### Think Differently Based on Project Type
 
 ```
 DETERMINE PROJECT TYPE:
-        │
-        ├── E-Commerce App
-        │   ├── Navigation: Tab (Home, Search, Cart, Account)
-        │   ├── Lists: Product grids (memoized, image optimized)
-        │   ├── Performance: Image caching CRITICAL
-        │   ├── Offline: Cart persistence, product cache
-        │   └── Special: Checkout flow, payment security
-        │
-        ├── Social/Content App
-        │   ├── Navigation: Tab (Feed, Search, Create, Notify, Profile)
-        │   ├── Lists: Infinite scroll, complex items
-        │   ├── Performance: Feed rendering CRITICAL
-        │   ├── Offline: Feed cache, draft posts
-        │   └── Special: Real-time updates, media handling
-        │
-        ├── Productivity/SaaS App
-        │   ├── Navigation: Drawer or adaptive (mobile tab, tablet rail)
-        │   ├── Lists: Data tables, forms
-        │   ├── Performance: Data sync
-        │   ├── Offline: Full offline editing
-        │   └── Special: Conflict resolution, background sync
-        │
-        ├── Utility App
-        │   ├── Navigation: Minimal (stack-only possible)
-        │   ├── Lists: Probably minimal
-        │   ├── Performance: Fast startup
-        │   ├── Offline: Core feature offline
-        │   └── Special: Widget, shortcuts
-        │
-        └── Media/Streaming App
-            ├── Navigation: Tab (Home, Search, Library, Profile)
-            ├── Lists: Horizontal carousels, vertical feeds
-            ├── Performance: Preloading, buffering
-            ├── Offline: Download management
-            └── Special: Background playback, casting
+        â”‚
+        â”œâ”€â”€ E-Commerce App
+        â”‚   â”œâ”€â”€ Navigation: Tab (Home, Search, Cart, Account)
+        â”‚   â”œâ”€â”€ Lists: Product grids (memoized, image optimized)
+        â”‚   â”œâ”€â”€ Performance: Image caching CRITICAL
+        â”‚   â”œâ”€â”€ Offline: Cart persistence, product cache
+        â”‚   â””â”€â”€ Special: Checkout flow, payment security
+        â”‚
+        â”œâ”€â”€ Social/Content App
+        â”‚   â”œâ”€â”€ Navigation: Tab (Feed, Search, Create, Notify, Profile)
+        â”‚   â”œâ”€â”€ Lists: Infinite scroll, complex items
+        â”‚   â”œâ”€â”€ Performance: Feed rendering CRITICAL
+        â”‚   â”œâ”€â”€ Offline: Feed cache, draft posts
+        â”‚   â””â”€â”€ Special: Real-time updates, media handling
+        â”‚
+        â”œâ”€â”€ Productivity/SaaS App
+        â”‚   â”œâ”€â”€ Navigation: Drawer or adaptive (mobile tab, tablet rail)
+        â”‚   â”œâ”€â”€ Lists: Data tables, forms
+        â”‚   â”œâ”€â”€ Performance: Data sync
+        â”‚   â”œâ”€â”€ Offline: Full offline editing
+        â”‚   â””â”€â”€ Special: Conflict resolution, background sync
+        â”‚
+        â”œâ”€â”€ Utility App
+        â”‚   â”œâ”€â”€ Navigation: Minimal (stack-only possible)
+        â”‚   â”œâ”€â”€ Lists: Probably minimal
+        â”‚   â”œâ”€â”€ Performance: Fast startup
+        â”‚   â”œâ”€â”€ Offline: Core feature offline
+        â”‚   â””â”€â”€ Special: Widget, shortcuts
+        â”‚
+        â””â”€â”€ Media/Streaming App
+            â”œâ”€â”€ Navigation: Tab (Home, Search, Library, Profile)
+            â”œâ”€â”€ Lists: Horizontal carousels, vertical feeds
+            â”œâ”€â”€ Performance: Preloading, buffering
+            â”œâ”€â”€ Offline: Download management
+            â””â”€â”€ Special: Background playback, casting
 ```
 
 ---
 
-## 🔄 INTERACTION BREAKDOWN
+## ðŸ”„ INTERACTION BREAKDOWN
 
 ### Analysis for Every Gesture
 
@@ -254,42 +260,42 @@ Before adding any gesture:
 
 ```
 GESTURE: [Gesture Type]
-├── DISCOVERABILITY:
-│   └── How will users discover this gesture?
-│       ├── Is there a visual hint?
-│       ├── Will it be shown in onboarding?
-│       └── Is there a button alternative? (MANDATORY)
-│
-├── PLATFORM CONVENTION:
-│   ├── What does this gesture mean on iOS?
-│   ├── What does this gesture mean on Android?
-│   └── Am I deviating from platform convention?
-│
-├── ACCESSIBILITY:
-│   ├── Can motor-impaired users perform this gesture?
-│   ├── Is there a VoiceOver/TalkBack alternative?
-│   └── Does it work with switch control?
-│
-├── CONFLICT CHECK:
-│   ├── Does it conflict with system gestures?
-│   │   ├── iOS: Edge swipe back
-│   │   ├── Android: Back gesture
-│   │   └── Home indicator swipe
-│   └── Is it consistent with other app gestures?
-│
-└── FEEDBACK:
-    ├── Is haptic feedback defined?
-    ├── Is visual feedback sufficient?
-    └── Is audio feedback needed?
+â”œâ”€â”€ DISCOVERABILITY:
+â”‚   â””â”€â”€ How will users discover this gesture?
+â”‚       â”œâ”€â”€ Is there a visual hint?
+â”‚       â”œâ”€â”€ Will it be shown in onboarding?
+â”‚       â””â”€â”€ Is there a button alternative? (MANDATORY)
+â”‚
+â”œâ”€â”€ PLATFORM CONVENTION:
+â”‚   â”œâ”€â”€ What does this gesture mean on iOS?
+â”‚   â”œâ”€â”€ What does this gesture mean on Android?
+â”‚   â””â”€â”€ Am I deviating from platform convention?
+â”‚
+â”œâ”€â”€ ACCESSIBILITY:
+â”‚   â”œâ”€â”€ Can motor-impaired users perform this gesture?
+â”‚   â”œâ”€â”€ Is there a VoiceOver/TalkBack alternative?
+â”‚   â””â”€â”€ Does it work with switch control?
+â”‚
+â”œâ”€â”€ CONFLICT CHECK:
+â”‚   â”œâ”€â”€ Does it conflict with system gestures?
+â”‚   â”‚   â”œâ”€â”€ iOS: Edge swipe back
+â”‚   â”‚   â”œâ”€â”€ Android: Back gesture
+â”‚   â”‚   â””â”€â”€ Home indicator swipe
+â”‚   â””â”€â”€ Is it consistent with other app gestures?
+â”‚
+â””â”€â”€ FEEDBACK:
+    â”œâ”€â”€ Is haptic feedback defined?
+    â”œâ”€â”€ Is visual feedback sufficient?
+    â””â”€â”€ Is audio feedback needed?
 ```
 
 ---
 
-## 🎭 SPIRIT OVER CHECKLIST (Mobile Edition)
+## ðŸŽ­ SPIRIT OVER CHECKLIST (Mobile Edition)
 
 ### Passing the Checklist is Not Enough!
 
-| ❌ Self-Deception | ✅ Honest Assessment |
+| âŒ Self-Deception | âœ… Honest Assessment |
 |-------------------|----------------------|
 | "Touch target is 44px" (but on edge, unreachable) | "Can user reach it one-handed?" |
 | "I used FlatList" (but didn't memoize) | "Is scroll smooth?" |
@@ -297,59 +303,59 @@ GESTURE: [Gesture Type]
 | "Offline support exists" (but error message is generic) | "What can user actually do offline?" |
 | "Loading state exists" (but just a spinner) | "Does user know how long to wait?" |
 
-> 🔴 **Passing the checklist is NOT the goal. Creating great mobile UX IS the goal.**
+> ðŸ”´ **Passing the checklist is NOT the goal. Creating great mobile UX IS the goal.**
 
 ---
 
-## 📝 MOBILE DESIGN COMMITMENT
+## ðŸ“ MOBILE DESIGN COMMITMENT
 
 ### Fill This at the Start of Every Mobile Project
 
 ```
-📱 MOBILE DESIGN COMMITMENT
+ðŸ“± MOBILE DESIGN COMMITMENT
 
 Project: _______________
 Platform: iOS / Android / Both
 
 1. Default pattern I will NOT use in this project:
-   └── _______________
+   â””â”€â”€ _______________
    
 2. Context-specific focus for this project:
-   └── _______________
+   â””â”€â”€ _______________
 
 3. Platform-specific differences I will implement:
-   └── iOS: _______________
-   └── Android: _______________
+   â””â”€â”€ iOS: _______________
+   â””â”€â”€ Android: _______________
 
 4. Area I will specifically optimize for performance:
-   └── _______________
+   â””â”€â”€ _______________
 
 5. Unique challenge of this project:
-   └── _______________
+   â””â”€â”€ _______________
 
-🧠 If I can't fill this commitment → I don't understand the project well enough.
-   → Go back, understand context better, ask the user.
+ðŸ§  If I can't fill this commitment â†’ I don't understand the project well enough.
+   â†’ Go back, understand context better, ask the user.
 ```
 
 ---
 
-## 🚨 MANDATORY: Before Every Mobile Work
+## ðŸš¨ MANDATORY: Before Every Mobile Work
 
 ```
-┌─────────────────────────────────────────────────────────────────┐
-│                    PRE-WORK VALIDATION                          │
-├─────────────────────────────────────────────────────────────────┤
-│                                                                 │
-│  □ Did I complete Component Decomposition?                      │
-│  □ Did I fill the Pattern Questioning Matrix?                   │
-│  □ Did I pass the Anti-Memorization Test?                       │
-│  □ Did I make context-based decisions?                          │
-│  □ Did I analyze Interaction Breakdown?                         │
-│  □ Did I fill the Mobile Design Commitment?                     │
-│                                                                 │
-│  ⚠️ Do not write code without completing these!                 │
-│                                                                 │
-└─────────────────────────────────────────────────────────────────┘
+â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
+â”‚                    PRE-WORK VALIDATION                          â”‚
+â”œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¤
+â”‚                                                                 â”‚
+â”‚  â–¡ Did I complete Component Decomposition?                      â”‚
+â”‚  â–¡ Did I fill the Pattern Questioning Matrix?                   â”‚
+â”‚  â–¡ Did I pass the Anti-Memorization Test?                       â”‚
+â”‚  â–¡ Did I make context-based decisions?                          â”‚
+â”‚  â–¡ Did I analyze Interaction Breakdown?                         â”‚
+â”‚  â–¡ Did I fill the Mobile Design Commitment?                     â”‚
+â”‚                                                                 â”‚
+â”‚  âš ï¸ Do not write code without completing these!                 â”‚
+â”‚                                                                 â”‚
+â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
 ```
 
 ---

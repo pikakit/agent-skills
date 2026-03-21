@@ -1,3 +1,9 @@
+﻿---
+title: Deployment Patterns
+impact: MEDIUM
+tags: google-adk-python
+---
+
 # Deployment Patterns
 
 > Deploy agents to Cloud Run, Vertex AI, or custom infrastructure.
@@ -129,4 +135,4 @@ async def ready():
 
 ---
 
-⚡ PikaKit v3.9.105
+âš¡ PikaKit v3.9.105

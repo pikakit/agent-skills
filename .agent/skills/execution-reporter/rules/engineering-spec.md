@@ -1,4 +1,10 @@
-# Execution Reporter — Engineering Specification
+﻿---
+title: Execution Reporter â€” Engineering Specification
+impact: MEDIUM
+tags: execution-reporter
+---
+
+# Execution Reporter â€” Engineering Specification
 
 > Production-grade specification for agent execution notification formatting at FAANG scale.
 
@@ -6,11 +12,11 @@
 
 ## 1. Overview
 
-Execution Reporter produces formatted notification strings for agent task lifecycle events: task start, skill loading, script execution, and task completion. The skill operates as an expert pure function — it receives task context and returns formatted notification text. It does not execute tasks, invoke agents, or write to notification systems. Output format is deterministic based on event type and verbosity level.
+Execution Reporter produces formatted notification strings for agent task lifecycle events: task start, skill loading, script execution, and task completion. The skill operates as an expert pure function â€” it receives task context and returns formatted notification text. It does not execute tasks, invoke agents, or write to notification systems. Output format is deterministic based on event type and verbosity level.
 
 **Contract Version:** 2.0.0
 **Backward Compatibility:** breaking (first hardened version)
-**Breaking Changes:** None — new spec for first hardening
+**Breaking Changes:** None â€” new spec for first hardening
 
 ---
 
@@ -63,7 +69,7 @@ Execution Reporter eliminates these with fixed templates, verbosity controls, an
 | Verbosity level selection | Level-to-template mapping | Config file management |
 | PikaKit branding | Brand string constants | Brand design |
 
-**Side-effect boundary:** Execution Reporter returns formatted strings. Zero side effects — no file I/O, no network, no state persistence.
+**Side-effect boundary:** Execution Reporter returns formatted strings. Zero side effects â€” no file I/O, no network, no state persistence.
 
 ---
 
@@ -117,7 +123,7 @@ Recoverable: boolean
 #### Deterministic Guarantees
 
 - Same `Request_Type` + `Context` = identical formatted notification.
-- Template selection is fixed: complex tasks (> 3 skills) → full template, simple → compact.
+- Template selection is fixed: complex tasks (> 3 skills) â†’ full template, simple â†’ compact.
 - Verbosity level maps to fixed content inclusion:
   - minimal: routing + completion only
   - normal: routing + skills + completion
@@ -213,7 +219,7 @@ All phases synchronous. No async pipeline.
 | Fixed template set | 4 templates: full, compact, complete, script |
 | Fixed verbosity levels | 3 levels: minimal, normal, verbose |
 | Fixed branding | PikaKit v3.9.105; not configurable |
-| Fixed complexity threshold | > 3 skills → full template; ≤ 3 → compact |
+| Fixed complexity threshold | > 3 skills â†’ full template; â‰¤ 3 â†’ compact |
 | One notification per phase | No duplicate or overlapping notifications |
 | No content generation | Templates are structural; values are interpolated |
 
@@ -338,7 +344,7 @@ All resources scoped to invocation. No persistent handles.
 | Operation | P50 Target | P99 Target | Hard Limit |
 |-----------|-----------|-----------|------------|
 | Notification render | < 1 ms | < 3 ms | 5 ms |
-| Output size | ≤ 300 chars | ≤ 800 chars | 2,000 chars |
+| Output size | â‰¤ 300 chars | â‰¤ 800 chars | 2,000 chars |
 
 ---
 
@@ -357,16 +363,16 @@ All resources scoped to invocation. No persistent handles.
 
 | Requirement | Status | Evidence |
 |-------------|--------|----------|
-| YAML frontmatter complete | ✅ | name, description, metadata with category, version, triggers, coordinates_with, success_metrics |
-| SKILL.md < 200 lines | ✅ | Entry point under 200 lines |
-| Prerequisites documented | ✅ | No external dependencies |
-| When to Use section | ✅ | Event-type routing table |
-| Core content matches skill type | ✅ | Expert type: fixed templates, string formatting |
-| Troubleshooting section | ✅ | Anti-patterns table |
-| Related section | ✅ | Cross-links to lifecycle-orchestrator, problem-checker, /pulse |
-| Content Map for multi-file | ✅ | Link to engineering-spec.md |
-| Contract versioning | ✅ | contract_version, backward_compatibility, breaking_changes |
-| Compliance matrix structured | ✅ | This table with ✅/❌ + evidence |
+| YAML frontmatter complete | âœ… | name, description, metadata with category, version, triggers, coordinates_with, success_metrics |
+| SKILL.md < 200 lines | âœ… | Entry point under 200 lines |
+| Prerequisites documented | âœ… | No external dependencies |
+| When to Use section | âœ… | Event-type routing table |
+| Core content matches skill type | âœ… | Expert type: fixed templates, string formatting |
+| Troubleshooting section | âœ… | Anti-patterns table |
+| Related section | âœ… | Cross-links to lifecycle-orchestrator, problem-checker, /pulse |
+| Content Map for multi-file | âœ… | Link to engineering-spec.md |
+| Contract versioning | âœ… | contract_version, backward_compatibility, breaking_changes |
+| Compliance matrix structured | âœ… | This table with âœ…/âŒ + evidence |
 
 ---
 
@@ -374,23 +380,23 @@ All resources scoped to invocation. No persistent handles.
 
 | Category | Check | Status |
 |----------|-------|--------|
-| **Functionality** | 4 notification types (task-start, task-complete, compact, script-run) | ✅ |
-| **Functionality** | 3 verbosity levels (minimal, normal, verbose) | ✅ |
-| **Functionality** | PikaKit branding (v3.9.68) on all notifications | ✅ |
-| **Functionality** | Complexity threshold (> 3 skills → full template) | ✅ |
-| **Contracts** | Input/output/error schemas in pseudo-schema format | ✅ |
-| **Contracts** | Contract versioning with semver | ✅ |
-| **Failure** | Error taxonomy with 4 categorized codes | ✅ |
-| **Failure** | No empty strings or partial output | ✅ |
-| **Failure** | Zero internal retries | ✅ |
-| **Determinism** | Fixed templates, fixed verbosity, fixed branding | ✅ |
-| **Security** | No PII, no credentials in templates | ✅ |
-| **Observability** | Structured log schema with 5 mandatory fields + 2 log points | ✅ |
-| **Observability** | 3 metrics defined | ✅ |
-| **Performance** | P50/P99 targets for render | ✅ |
-| **Scalability** | Stateless; unlimited parallel invocations | ✅ |
-| **Compliance** | All skill-design-guide.md sections mapped with evidence | ✅ |
+| **Functionality** | 4 notification types (task-start, task-complete, compact, script-run) | âœ… |
+| **Functionality** | 3 verbosity levels (minimal, normal, verbose) | âœ… |
+| **Functionality** | PikaKit branding (v3.9.68) on all notifications | âœ… |
+| **Functionality** | Complexity threshold (> 3 skills â†’ full template) | âœ… |
+| **Contracts** | Input/output/error schemas in pseudo-schema format | âœ… |
+| **Contracts** | Contract versioning with semver | âœ… |
+| **Failure** | Error taxonomy with 4 categorized codes | âœ… |
+| **Failure** | No empty strings or partial output | âœ… |
+| **Failure** | Zero internal retries | âœ… |
+| **Determinism** | Fixed templates, fixed verbosity, fixed branding | âœ… |
+| **Security** | No PII, no credentials in templates | âœ… |
+| **Observability** | Structured log schema with 5 mandatory fields + 2 log points | âœ… |
+| **Observability** | 3 metrics defined | âœ… |
+| **Performance** | P50/P99 targets for render | âœ… |
+| **Scalability** | Stateless; unlimited parallel invocations | âœ… |
+| **Compliance** | All skill-design-guide.md sections mapped with evidence | âœ… |
 
 ---
 
-⚡ PikaKit v3.9.105
+âš¡ PikaKit v3.9.105

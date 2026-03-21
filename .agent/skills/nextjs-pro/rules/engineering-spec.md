@@ -1,4 +1,10 @@
-# Next.js Pro — Engineering Specification
+﻿---
+title: Next.js Pro â€” Engineering Specification
+impact: MEDIUM
+tags: nextjs-pro
+---
+
+# Next.js Pro â€” Engineering Specification
 
 > Production-grade specification for Next.js App Router and React performance patterns at FAANG scale.
 
@@ -6,11 +12,11 @@
 
 ## 1. Overview
 
-Next.js Pro provides structured decision frameworks for Next.js App Router development: Server vs Client component routing, data fetching strategy (static/ISR/dynamic), routing conventions, caching patterns, and 60+ performance rules. The skill operates as an **Expert (decision tree)** — it produces component type decisions, data fetching strategy selections, routing guidance, and performance recommendations. It does not create projects, write components, or execute builds.
+Next.js Pro provides structured decision frameworks for Next.js App Router development: Server vs Client component routing, data fetching strategy (static/ISR/dynamic), routing conventions, caching patterns, and 60+ performance rules. The skill operates as an **Expert (decision tree)** â€” it produces component type decisions, data fetching strategy selections, routing guidance, and performance recommendations. It does not create projects, write components, or execute builds.
 
 **Contract Version:** 2.0.0
 **Backward Compatibility:** breaking (first hardened version)
-**Breaking Changes:** None — new spec for first hardening
+**Breaking Changes:** None â€” new spec for first hardening
 
 ---
 
@@ -33,7 +39,7 @@ Next.js Pro eliminates these with Server-first defaults (no directive = Server C
 
 | ID | Goal | Measurable Constraint |
 |----|------|-----------------------|
-| G1 | Server/Client decision tree | Binary: needs useState/useEffect/events → client; else → server |
+| G1 | Server/Client decision tree | Binary: needs useState/useEffect/events â†’ client; else â†’ server |
 | G2 | Data fetching routing | 3 strategies: static (default), ISR (revalidate: 60), dynamic (no-store) |
 | G3 | Route conventions | 4 files: page.tsx, layout.tsx, loading.tsx, error.tsx |
 | G4 | 60+ performance rules | 7 categories: async, bundle, server, client, rendering, rerender, js |
@@ -139,8 +145,8 @@ Recoverable: boolean
 
 #### Deterministic Guarantees
 
-- Component type is binary: needs_interactivity=true → `'use client'`; false → Server Component (no directive).
-- Data fetching is deterministic: static → default cache, periodic → `revalidate: N`, real-time → `no-store`.
+- Component type is binary: needs_interactivity=true â†’ `'use client'`; false â†’ Server Component (no directive).
+- Data fetching is deterministic: static â†’ default cache, periodic â†’ `revalidate: N`, real-time â†’ `no-store`.
 - Route conventions are fixed: page.tsx, layout.tsx, loading.tsx, error.tsx.
 - Rule categories are fixed: 7 categories with fixed file counts.
 - Core Web Vitals targets are fixed: LCP < 2.5s, INP < 200ms, CLS < 0.1.
@@ -236,7 +242,7 @@ All phases synchronous. No async pipeline.
 | Principle | Enforcement |
 |-----------|-------------|
 | Server-first | No directive = Server Component; explicit `'use client'` required |
-| Binary component decision | needs_interactivity → client; else → server |
+| Binary component decision | needs_interactivity â†’ client; else â†’ server |
 | Fixed data strategies | static (default), ISR (revalidate: 60), dynamic (no-store) |
 | Fixed route files | page.tsx, layout.tsx, loading.tsx, error.tsx |
 | Fixed CWV targets | LCP < 2.5s, INP < 200ms, CLS < 0.1 |
@@ -375,7 +381,7 @@ All resources scoped to invocation. No persistent handles.
 | Data strategy decision | < 1 ms | < 3 ms | 10 ms |
 | Rule category listing | < 2 ms | < 5 ms | 20 ms |
 | Full guide | < 10 ms | < 30 ms | 50 ms |
-| Output size | ≤ 1,500 chars | ≤ 4,000 chars | 6,000 chars |
+| Output size | â‰¤ 1,500 chars | â‰¤ 4,000 chars | 6,000 chars |
 
 ---
 
@@ -395,16 +401,16 @@ All resources scoped to invocation. No persistent handles.
 
 | Requirement | Status | Evidence |
 |-------------|--------|----------|
-| YAML frontmatter complete | ✅ | name, description, metadata with category, version, triggers, coordinates_with, success_metrics |
-| SKILL.md < 200 lines | ✅ | Entry point under 200 lines |
-| Prerequisites documented | ✅ | No external dependencies (knowledge skill) |
-| When to Use section | ✅ | Situation-based routing table |
-| Core content matches skill type | ✅ | Expert type: decision trees, pattern guidance |
-| Troubleshooting section | ✅ | Anti-patterns table |
-| Related section | ✅ | Cross-links to react-architect, tailwind-kit, perf-optimizer |
-| Content Map for multi-file | ✅ | Links to 7 rule categories + engineering-spec.md |
-| Contract versioning | ✅ | contract_version, backward_compatibility, breaking_changes |
-| Compliance matrix structured | ✅ | This table with ✅/❌ + evidence |
+| YAML frontmatter complete | âœ… | name, description, metadata with category, version, triggers, coordinates_with, success_metrics |
+| SKILL.md < 200 lines | âœ… | Entry point under 200 lines |
+| Prerequisites documented | âœ… | No external dependencies (knowledge skill) |
+| When to Use section | âœ… | Situation-based routing table |
+| Core content matches skill type | âœ… | Expert type: decision trees, pattern guidance |
+| Troubleshooting section | âœ… | Anti-patterns table |
+| Related section | âœ… | Cross-links to react-architect, tailwind-kit, perf-optimizer |
+| Content Map for multi-file | âœ… | Links to 7 rule categories + engineering-spec.md |
+| Contract versioning | âœ… | contract_version, backward_compatibility, breaking_changes |
+| Compliance matrix structured | âœ… | This table with âœ…/âŒ + evidence |
 
 ---
 
@@ -412,23 +418,23 @@ All resources scoped to invocation. No persistent handles.
 
 | Category | Check | Status |
 |----------|-------|--------|
-| **Functionality** | Server/Client binary decision tree | ✅ |
-| **Functionality** | Data fetching (3 strategies: static, ISR, dynamic) | ✅ |
-| **Functionality** | Route conventions (4 files) | ✅ |
-| **Functionality** | 60+ rules across 7 categories | ✅ |
-| **Functionality** | Core Web Vitals targets (LCP, INP, CLS) | ✅ |
-| **Contracts** | Input/output/error schemas in pseudo-schema format | ✅ |
-| **Contracts** | Contract versioning with semver | ✅ |
-| **Failure** | Error taxonomy with 3 categorized codes | ✅ |
-| **Failure** | Zero internal retries | ✅ |
-| **Determinism** | Fixed component decision, fixed strategies, fixed rules | ✅ |
-| **Security** | No credentials, no PII, no file access | ✅ |
-| **Observability** | Structured log schema with 5 mandatory fields | ✅ |
-| **Observability** | 4 metrics defined | ✅ |
-| **Performance** | P50/P99 targets for all operations | ✅ |
-| **Scalability** | Stateless; unlimited parallel | ✅ |
-| **Compliance** | All skill-design-guide.md sections mapped with evidence | ✅ |
+| **Functionality** | Server/Client binary decision tree | âœ… |
+| **Functionality** | Data fetching (3 strategies: static, ISR, dynamic) | âœ… |
+| **Functionality** | Route conventions (4 files) | âœ… |
+| **Functionality** | 60+ rules across 7 categories | âœ… |
+| **Functionality** | Core Web Vitals targets (LCP, INP, CLS) | âœ… |
+| **Contracts** | Input/output/error schemas in pseudo-schema format | âœ… |
+| **Contracts** | Contract versioning with semver | âœ… |
+| **Failure** | Error taxonomy with 3 categorized codes | âœ… |
+| **Failure** | Zero internal retries | âœ… |
+| **Determinism** | Fixed component decision, fixed strategies, fixed rules | âœ… |
+| **Security** | No credentials, no PII, no file access | âœ… |
+| **Observability** | Structured log schema with 5 mandatory fields | âœ… |
+| **Observability** | 4 metrics defined | âœ… |
+| **Performance** | P50/P99 targets for all operations | âœ… |
+| **Scalability** | Stateless; unlimited parallel | âœ… |
+| **Compliance** | All skill-design-guide.md sections mapped with evidence | âœ… |
 
 ---
 
-⚡ PikaKit v3.9.105
+âš¡ PikaKit v3.9.105

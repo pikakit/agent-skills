@@ -1,6 +1,12 @@
-﻿# api-architect — Full Reference Guide
+﻿# api-architect
 
-> **Compiled from SKILL.md + rules/ for AI agent consumption.**
+**Version 1.0.0**
+Engineering
+March 2026
+
+> **Note:**
+> This document is for agents and LLMs to follow when working on api-architect domain.
+> Optimized for automation and consistency by AI-assisted workflows.
 
 ---
 
@@ -167,7 +173,389 @@ Before designing an API, confirm:
 
 ---
 
-## Reference: engineering-spec
+## Detailed Rules
+
+
+---
+
+### Rule: api-style
+
+---
+name: api-style
+description: REST vs GraphQL vs tRPC decision tree with code comparisons
+---
+
+# API Style Selection
+
+> Choose API style for THIS project's context â€” don't default to REST.
+
+---
+
+## Decision Tree
+
+```
+Who are the API consumers?
+â”‚
+â”œâ”€â”€ Public API / Multiple platforms
+â”‚   â””â”€â”€ REST + OpenAPI (widest compatibility)
+â”‚
+â”œâ”€â”€ Complex data needs / Multiple frontends
+â”‚   â””â”€â”€ GraphQL (flexible queries)
+â”‚
+â”œâ”€â”€ TypeScript frontend + backend (monorepo)
+â”‚   â””â”€â”€ tRPC (end-to-end type safety)
+â”‚
+â”œâ”€â”€ Real-time / Event-driven
+â”‚   â””â”€â”€ WebSocket + AsyncAPI
+â”‚
+â””â”€â”€ Internal microservices
+    â””â”€â”€ gRPC (performance) or REST (simplicity)
+```
+
+## Comparison
+
+| Factor | REST | GraphQL | tRPC |
+|--------|------|---------|------|
+| **Best for** | Public APIs | Complex apps | TS monorepos |
+| **Learning curve** | Low | Medium | Low (if TS) |
+| **Over/under fetching** | Common | Solved | Solved |
+| **Type safety** | Manual (OpenAPI) | Schema-based | Automatic |
+| **Caching** | HTTP native | Complex | Client-based |
+| **File uploads** | Native | Complex | Needs adapter |
+| **Versioning** | URI/Header | Schema evolution | Type inference |
+| **Tooling maturity** | Excellent | Good | Growing |
+
+## Code Comparison â€” Same Endpoint
+
+### REST
+
+```typescript
+// GET /api/users/123
+app.get('/api/users/:id', async (req, res) => {
+  const user = await db.user.findUnique({ where: { id: req.params.id } });
+  res.json({ data: user });
+});
+```
+
+### GraphQL
+
+```typescript
+// query { user(id: "123") { name email } }
+const resolvers = {
+  Query: {
+    user: (_: unknown, { id }: { id: string }) =>
+      db.user.findUnique({ where: { id } }),
+  },
+};
+```
+
+### tRPC
+
+```typescript
+// client.user.getById.query("123")
+export const userRouter = router({
+  getById: publicProcedure
+    .input(z.string())
+    .query(({ input }) => db.user.findUnique({ where: { id: input } })),
+});
+```
+
+## Anti-Patterns
+
+| âŒ Don't | âœ… Do |
+|---------|-------|
+| Default to REST for every project | Evaluate consumers + context first |
+| Mix API styles without justification | Pick one, document reasoning |
+| Choose GraphQL for simple CRUD | Use REST or tRPC for simple cases |
+| Use tRPC for public APIs | Use REST + OpenAPI for public APIs |
+
+## Selection Questions
+
+1. Who are the API consumers? (web, mobile, third-party, internal)
+2. Is the frontend TypeScript?
+3. How complex are the data relationships?
+4. Is HTTP caching critical?
+5. Public or internal API?
+
+---
+
+## ðŸ”— Related
+
+| File | When to Read |
+|------|-------------|
+| [rest.md](rest.md) | REST endpoint design |
+| [graphql.md](graphql.md) | GraphQL schema design |
+| [trpc.md](trpc.md) | tRPC for TS monorepos |
+| [SKILL.md](../SKILL.md) | Full decision framework |
+
+---
+
+### Rule: auth
+
+---
+name: auth
+description: API authentication patterns â€” JWT, OAuth2 PKCE, API Keys, Passkeys, token refresh
+---
+
+# Authentication Patterns
+
+> Choose auth pattern based on consumers and security requirements.
+
+---
+
+## Selection Guide
+
+| Pattern | Best For | Security Level |
+|---------|----------|:--------------:|
+| **JWT** | Stateless APIs, microservices | Medium |
+| **Session** | Traditional web, server-rendered | High |
+| **OAuth 2.0 PKCE** | Third-party login, SPA/mobile | High |
+| **API Keys** | Server-to-server, public APIs | Low-Medium |
+| **Passkey** | Modern passwordless (2025+) | Very High |
+
+## JWT Pattern
+
+```typescript
+import jwt from 'jsonwebtoken';
+
+// Sign â€” keep payload minimal
+function signTokens(userId: string) {
+  const accessToken = jwt.sign(
+    { sub: userId, type: 'access' },
+    process.env.JWT_SECRET!,
+    { expiresIn: '15m' }   // Short-lived
+  );
+
+  const refreshToken = jwt.sign(
+    { sub: userId, type: 'refresh' },
+    process.env.JWT_REFRESH_SECRET!,
+    { expiresIn: '7d' }
+  );
+
+  return { accessToken, refreshToken };
+}
+
+// Verify middleware
+function authMiddleware(req: Request, res: Response, next: NextFunction) {
+  const token = req.headers.authorization?.replace('Bearer ', '');
+  if (!token) return res.status(401).json({ error: 'Missing token' });
+
+  try {
+    const payload = jwt.verify(token, process.env.JWT_SECRET!);
+    req.user = payload as JwtPayload;
+    next();
+  } catch {
+    res.status(401).json({ error: 'Invalid or expired token' });
+  }
+}
+```
+
+## Token Refresh Flow
+
+```
+Client                        Server
+  â”‚                              â”‚
+  â”œâ”€â”€ Request + Access Token â”€â”€â†’ â”‚
+  â”‚                              â”œâ”€â”€ Verify token
+  â”‚ â†â”€â”€ 401 Token Expired â”€â”€â”€â”€â”€â”€â”¤
+  â”‚                              â”‚
+  â”œâ”€â”€ POST /auth/refresh â”€â”€â”€â”€â”€â”€â†’ â”‚
+  â”‚    { refreshToken }          â”œâ”€â”€ Verify refresh token
+  â”‚                              â”œâ”€â”€ Issue new access + refresh
+  â”‚ â†â”€â”€ { accessToken,          â”‚
+  â”‚       refreshToken } â”€â”€â”€â”€â”€â”€â”€â”¤
+  â”‚                              â”‚
+  â”œâ”€â”€ Retry original request â”€â”€â†’ â”‚
+```
+
+## OAuth 2.0 PKCE (for SPAs/Mobile)
+
+```typescript
+// 1. Generate PKCE challenge
+const codeVerifier = crypto.randomBytes(32).toString('base64url');
+const codeChallenge = crypto
+  .createHash('sha256')
+  .update(codeVerifier)
+  .digest('base64url');
+
+// 2. Redirect to provider
+const authUrl = `https://provider.com/authorize?` +
+  `client_id=${CLIENT_ID}&` +
+  `code_challenge=${codeChallenge}&` +
+  `code_challenge_method=S256&` +
+  `redirect_uri=${REDIRECT_URI}&` +
+  `response_type=code&scope=openid+email`;
+
+// 3. Exchange code for tokens (server-side)
+const tokens = await fetch('https://provider.com/token', {
+  method: 'POST',
+  body: new URLSearchParams({
+    grant_type: 'authorization_code',
+    code: authorizationCode,
+    code_verifier: codeVerifier,
+    client_id: CLIENT_ID,
+    redirect_uri: REDIRECT_URI,
+  }),
+});
+```
+
+## Anti-Patterns
+
+| âŒ Don't | âœ… Do |
+|---------|-------|
+| Store sensitive data in JWT payload | Include only `sub`, `type`, `exp` |
+| Use long-lived access tokens (>1h) | Short access (15m) + refresh (7d) |
+| Send tokens in URL query params | Use `Authorization: Bearer` header |
+| Use OAuth implicit flow | Use PKCE for SPAs and mobile |
+| Skip token revocation | Maintain a revocation list for refresh tokens |
+
+---
+
+## ðŸ”— Related
+
+| File | When to Read |
+|------|-------------|
+| [security-testing.md](security-testing.md) | Auth testing patterns |
+| [rate-limiting.md](rate-limiting.md) | Rate limit auth endpoints |
+| [SKILL.md](../SKILL.md) | Full decision framework |
+
+---
+
+### Rule: documentation
+
+---
+name: documentation
+description: OpenAPI 3.1 specs, Swagger UI setup, API documentation best practices
+---
+
+# API Documentation Principles
+
+> Good docs = happy developers = API adoption.
+
+---
+
+## OpenAPI 3.1 Example
+
+```yaml
+openapi: 3.1.0
+info:
+  title: Users API
+  version: 1.0.0
+  description: User management endpoints
+
+paths:
+  /users:
+    get:
+      summary: List users
+      operationId: listUsers
+      parameters:
+        - name: page
+          in: query
+          schema: { type: integer, default: 1 }
+        - name: limit
+          in: query
+          schema: { type: integer, default: 20, maximum: 100 }
+      responses:
+        '200':
+          description: Paginated user list
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserListResponse'
+
+    post:
+      summary: Create user
+      operationId: createUser
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateUserInput'
+      responses:
+        '201':
+          description: User created
+        '422':
+          description: Validation error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        id: { type: string, format: uuid }
+        name: { type: string }
+        email: { type: string, format: email }
+      required: [id, name, email]
+
+    ErrorResponse:
+      type: object
+      properties:
+        success: { type: boolean, enum: [false] }
+        error:
+          type: object
+          properties:
+            code: { type: string }
+            message: { type: string }
+            requestId: { type: string }
+```
+
+## Swagger UI Setup (Express)
+
+```typescript
+import swaggerUi from 'swagger-ui-express';
+import spec from './openapi.json';
+
+app.use('/docs', swaggerUi.serve, swaggerUi.setup(spec, {
+  customCss: '.swagger-ui .topbar { display: none }',
+  customSiteTitle: 'API Documentation',
+}));
+```
+
+## Good Documentation Includes
+
+| Section | Purpose |
+|---------|---------|
+| **Quick Start** | Get running in 5 minutes |
+| **Authentication** | How to get and use tokens |
+| **API Reference** | Every endpoint with examples |
+| **Error Handling** | Error codes and recovery |
+| **Rate Limits** | Limits and headers |
+| **Changelog** | Breaking changes and deprecations |
+| **Code Examples** | Multiple languages (curl, JS, Python) |
+
+## Anti-Patterns
+
+| âŒ Don't | âœ… Do |
+|---------|-------|
+| Write docs after shipping | Generate from OpenAPI spec |
+| Skip request/response examples | Include full JSON examples |
+| Documentation-only errors | Use consistent error schema |
+| Outdated examples | Auto-generate from tests |
+
+---
+
+## ðŸ”— Related
+
+| File | When to Read |
+|------|-------------|
+| [response.md](response.md) | Response format for docs |
+| [versioning.md](versioning.md) | Documenting API versions |
+| [SKILL.md](../SKILL.md) | Full decision framework |
+
+---
+
+### Rule: engineering-spec
+
+---
+title: API Architect â€” Engineering Specification
+impact: MEDIUM
+tags: api-architect
+---
 
 # API Architect â€” Engineering Specification
 
@@ -661,3 +1049,838 @@ API Architect maintains zero persistent state. Every invocation starts from a cl
 ---
 
 âš¡ PikaKit v3.9.105
+
+---
+
+### Rule: graphql
+
+---
+name: graphql
+description: GraphQL schema design, resolver patterns, N+1 prevention, security
+---
+
+# GraphQL Principles
+
+> Flexible queries for complex, interconnected data.
+
+---
+
+## When to Use
+
+```
+âœ… Good fit:
+â”œâ”€â”€ Complex, interconnected data
+â”œâ”€â”€ Multiple frontend platforms
+â”œâ”€â”€ Clients need flexible queries
+â”œâ”€â”€ Evolving data requirements
+â””â”€â”€ Reducing over-fetching matters
+
+âŒ Poor fit:
+â”œâ”€â”€ Simple CRUD operations
+â”œâ”€â”€ File upload heavy
+â”œâ”€â”€ HTTP caching important
+â””â”€â”€ Team unfamiliar with GraphQL
+```
+
+## Schema Design
+
+```graphql
+# Think in graphs, not endpoints
+type User {
+  id: ID!
+  name: String!
+  email: String!
+  posts(first: Int = 10, after: String): PostConnection!
+  createdAt: DateTime!
+}
+
+type Post {
+  id: ID!
+  title: String!
+  content: String!
+  author: User!
+}
+
+# Relay-style pagination (recommended)
+type PostConnection {
+  edges: [PostEdge!]!
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
+type PostEdge {
+  node: Post!
+  cursor: String!
+}
+
+type PageInfo {
+  hasNextPage: Boolean!
+  hasPreviousPage: Boolean!
+  startCursor: String
+  endCursor: String
+}
+```
+
+## Resolver Pattern
+
+```typescript
+const resolvers = {
+  Query: {
+    user: (_: unknown, { id }: { id: string }, ctx: Context) =>
+      ctx.dataSources.users.getById(id),
+
+    users: (_: unknown, args: PaginationArgs, ctx: Context) =>
+      ctx.dataSources.users.getConnection(args),
+  },
+
+  // Field resolver â€” handles N+1 via DataLoader
+  User: {
+    posts: (parent: User, args: PaginationArgs, ctx: Context) =>
+      ctx.dataSources.posts.getByAuthor(parent.id, args),
+  },
+};
+```
+
+## N+1 Prevention â€” DataLoader
+
+```typescript
+import DataLoader from 'dataloader';
+
+// Batch function: receives array of IDs, returns array of results
+const userLoader = new DataLoader<string, User>(async (ids) => {
+  const users = await db.user.findMany({ where: { id: { in: [...ids] } } });
+  const map = new Map(users.map(u => [u.id, u]));
+  return ids.map(id => map.get(id)!);
+});
+
+// In resolver â€” automatically batched
+const resolvers = {
+  Post: {
+    author: (post: Post) => userLoader.load(post.authorId),
+  },
+};
+```
+
+## Security
+
+| Threat | Mitigation |
+|--------|-----------|
+| Query depth attack | Set max depth (e.g., 7) |
+| Query complexity | Calculate cost per field, set max |
+| Batching abuse | Limit batch size |
+| Introspection leak | Disable in production |
+| Field-level auth | Check permissions per resolver |
+
+```typescript
+// Query depth + complexity limits
+const server = new ApolloServer({
+  validationRules: [
+    depthLimit(7),
+    costAnalysis({ maximumCost: 1000 }),
+  ],
+  introspection: process.env.NODE_ENV !== 'production',
+});
+```
+
+## Anti-Patterns
+
+| âŒ Don't | âœ… Do |
+|---------|-------|
+| Expose database schema directly | Design schema for clients |
+| One mega-query resolver | Keep resolvers small + composable |
+| Skip DataLoader | Always use DataLoader for relations |
+| Allow unlimited query depth | Set max depth (7) + cost limits |
+
+---
+
+## ðŸ”— Related
+
+| File | When to Read |
+|------|-------------|
+| [api-style.md](api-style.md) | REST vs GraphQL vs tRPC decision |
+| [security-testing.md](security-testing.md) | GraphQL security testing |
+| [SKILL.md](../SKILL.md) | Full decision framework |
+
+---
+
+### Rule: rate-limiting
+
+---
+name: rate-limiting
+description: Rate limiting strategies â€” token bucket, sliding window, Redis implementation, recommended limits
+---
+
+# Rate Limiting Principles
+
+> Protect your API from abuse and overload.
+
+## Why Rate Limit
+
+```
+Protect against:
+â”œâ”€â”€ Brute force attacks
+â”œâ”€â”€ Resource exhaustion
+â”œâ”€â”€ Cost overruns (if pay-per-use)
+â””â”€â”€ Unfair usage
+```
+
+## Strategy Selection
+
+| Type | How | When |
+|------|-----|------|
+| **Token bucket** | Burst allowed, refills over time | Most APIs |
+| **Sliding window** | Smooth distribution | Strict limits |
+| **Fixed window** | Simple counters per window | Basic needs |
+
+## Response Headers
+
+```
+Include in headers:
+â”œâ”€â”€ X-RateLimit-Limit (max requests)
+â”œâ”€â”€ X-RateLimit-Remaining (requests left)
+â”œâ”€â”€ X-RateLimit-Reset (when limit resets)
+â””â”€â”€ Return 429 when exceeded
+```
+
+## Redis Implementation Pattern
+
+```typescript
+// Sliding window with Redis
+const key = `ratelimit:${userId}:${endpoint}`;
+const current = await redis.incr(key);
+if (current === 1) {
+  await redis.expire(key, windowSeconds);
+}
+if (current > maxRequests) {
+  throw new RateLimitError();
+}
+```
+
+**Recommended Limits:**
+| Endpoint Type | Limit | Window |
+|---------------|-------|--------|
+| Public API | 100 | 1 min |
+| Authenticated | 1000 | 1 min |
+| Auth endpoints | 5 | 15 min |
+| File uploads | 10 | 1 hour |
+
+---
+
+## ðŸ”— Related
+
+| File | When to Read |
+|------|-------------|
+| [security-testing.md](security-testing.md) | Rate limit bypass testing |
+| [auth.md](auth.md) | Auth endpoint limits |
+| [SKILL.md](../SKILL.md) | Full decision framework |
+
+---
+
+### Rule: response
+
+---
+name: response
+description: API response envelope pattern, error format, pagination, TypeScript types
+---
+
+# Response Format Principles
+
+> One envelope pattern for ALL endpoints â€” consistency is key.
+
+---
+
+## Envelope Pattern (Recommended)
+
+```typescript
+// Success response
+interface ApiResponse<T> {
+  success: true;
+  data: T;
+  meta?: PaginationMeta;
+}
+
+// Error response
+interface ApiError {
+  success: false;
+  error: {
+    code: string;         // Machine-readable: "VALIDATION_ERROR"
+    message: string;      // Human-readable: "Email is invalid"
+    details?: Record<string, string[]>; // Field-level errors
+    requestId: string;    // For support: "req_abc123"
+  };
+}
+
+type ApiResult<T> = ApiResponse<T> | ApiError;
+```
+
+### Usage Example
+
+```typescript
+// Express middleware helper
+function ok<T>(res: Response, data: T, meta?: PaginationMeta) {
+  res.json({ success: true, data, meta });
+}
+
+function fail(res: Response, status: number, code: string, message: string) {
+  res.status(status).json({
+    success: false,
+    error: { code, message, requestId: res.locals.requestId },
+  });
+}
+
+// In route handler
+app.get('/users/:id', async (req, res) => {
+  const user = await db.user.findUnique({ where: { id: req.params.id } });
+  if (!user) return fail(res, 404, 'NOT_FOUND', 'User not found');
+  ok(res, user);
+});
+```
+
+## Error Response Standards
+
+```json
+{
+  "success": false,
+  "error": {
+    "code": "VALIDATION_ERROR",
+    "message": "Invalid input data",
+    "details": {
+      "email": ["Must be a valid email"],
+      "age": ["Must be at least 18"]
+    },
+    "requestId": "req_abc123"
+  }
+}
+```
+
+**Never expose:** stack traces, SQL queries, internal paths, dependency versions.
+
+## Pagination
+
+| Type | Best For | Trade-offs |
+|------|----------|------------|
+| **Offset** | Simple, jumpable pages | Slow on large datasets, skip drift |
+| **Cursor** | Large datasets, infinite scroll | Can't jump to page N |
+| **Keyset** | Performance critical, sorted data | Requires sortable unique key |
+
+### Pagination Response
+
+```typescript
+interface PaginationMeta {
+  page: number;
+  limit: number;
+  total: number;
+  totalPages: number;
+  hasNext: boolean;
+  hasPrev: boolean;
+}
+
+// Cursor-based alternative
+interface CursorMeta {
+  cursor: string | null;  // null = no more pages
+  hasMore: boolean;
+  limit: number;
+}
+```
+
+### Selection Guide
+
+1. Dataset < 10K rows â†’ Offset pagination
+2. Dataset > 10K, infinite scroll â†’ Cursor pagination
+3. Performance critical â†’ Keyset pagination
+4. Data frequently changing â†’ Cursor (avoids skip drift)
+
+## Anti-Patterns
+
+| âŒ Don't | âœ… Do |
+|---------|-------|
+| Different formats per endpoint | One envelope for all endpoints |
+| Expose stack traces in errors | Map to safe client-facing codes |
+| Return `200 OK` with error body | Use proper HTTP status codes |
+| No request ID in errors | Always include for debugging/support |
+
+---
+
+## ðŸ”— Related
+
+| File | When to Read |
+|------|-------------|
+| [rest.md](rest.md) | HTTP methods + status codes |
+| [rate-limiting.md](rate-limiting.md) | 429 response format |
+| [SKILL.md](../SKILL.md) | Full decision framework |
+
+---
+
+### Rule: rest
+
+---
+name: rest
+description: REST API design â€” resource naming, HTTP methods, status codes, filtering, sorting
+---
+
+# REST Principles
+
+> Resource-based API design â€” nouns not verbs.
+
+---
+
+## Resource Naming Rules
+
+```
+Principles:
+â”œâ”€â”€ Use NOUNS, not verbs (resources, not actions)
+â”œâ”€â”€ Use PLURAL forms (/users not /user)
+â”œâ”€â”€ Use lowercase with hyphens (/user-profiles)
+â”œâ”€â”€ Nest for relationships (/users/123/posts)
+â””â”€â”€ Keep shallow (max 3 levels deep)
+```
+
+### Endpoint Examples
+
+```
+âœ… Good:
+GET    /users              â†’ List users
+GET    /users/123          â†’ Get user 123
+POST   /users              â†’ Create user
+PUT    /users/123          â†’ Replace user 123
+PATCH  /users/123          â†’ Partial update user 123
+DELETE /users/123          â†’ Delete user 123
+GET    /users/123/posts    â†’ User 123's posts
+
+âŒ Bad:
+GET    /getUsers           â†’ Verb in URL
+POST   /createUser         â†’ Verb in URL
+GET    /user               â†’ Singular
+GET    /users/123/posts/456/comments/789/likes  â†’ Too deep (>3 levels)
+```
+
+## HTTP Method Selection
+
+| Method | Purpose | Idempotent? | Body? |
+|--------|---------|-------------|-------|
+| **GET** | Read resource(s) | Yes | No |
+| **POST** | Create new resource | No | Yes |
+| **PUT** | Replace entire resource | Yes | Yes |
+| **PATCH** | Partial update | No | Yes |
+| **DELETE** | Remove resource | Yes | No |
+
+## Status Code Selection
+
+| Situation | Code | When |
+|-----------|------|------|
+| Success (read) | 200 | GET returning data |
+| Created | 201 | POST success, include Location header |
+| No content | 204 | DELETE success, PUT with no response body |
+| Bad request | 400 | Malformed JSON, missing required field |
+| Unauthorized | 401 | Missing or invalid auth token |
+| Forbidden | 403 | Valid auth, insufficient permissions |
+| Not found | 404 | Resource doesn't exist |
+| Conflict | 409 | Duplicate key, state conflict |
+| Validation error | 422 | Valid syntax, invalid semantics |
+| Rate limited | 429 | Too many requests, include Retry-After |
+| Server error | 500 | Unhandled exception |
+
+## Filtering, Sorting & Search
+
+```typescript
+// Filtering â€” use query params
+GET /users?role=admin&status=active
+
+// Sorting â€” prefix with - for descending
+GET /users?sort=-created_at,name
+
+// Search â€” use q parameter
+GET /users?q=john
+
+// Fields projection (sparse fieldsets)
+GET /users?fields=id,name,email
+
+// Combined
+GET /users?role=admin&sort=-created_at&fields=id,name&page=2&limit=20
+```
+
+## Anti-Patterns
+
+| âŒ Don't | âœ… Do |
+|---------|-------|
+| `/getUsers`, `/deleteUser/123` | `GET /users`, `DELETE /users/123` |
+| `/user` (singular) | `/users` (plural) |
+| Return 200 for errors | Use semantic HTTP status codes |
+| Nest beyond 3 levels | Use flat endpoints with filters |
+| Ignore idempotency | Design PUT/DELETE as idempotent |
+
+---
+
+## ðŸ”— Related
+
+| File | When to Read |
+|------|-------------|
+| [response.md](response.md) | Response envelope + pagination |
+| [versioning.md](versioning.md) | API versioning strategy |
+| [api-style.md](api-style.md) | REST vs GraphQL vs tRPC decision |
+
+---
+
+### Rule: security-testing
+
+---
+name: security-testing
+description: OWASP API Top 10, JWT testing, BOLA/IDOR, authorization and input validation testing
+---
+
+# API Security Testing
+
+> Principles for testing API security. OWASP API Top 10, authentication, authorization testing.
+
+---
+
+## OWASP API Security Top 10
+
+| Vulnerability | Test Focus |
+|---------------|------------|
+| **API1: BOLA** | Access other users' resources |
+| **API2: Broken Auth** | JWT, session, credentials |
+| **API3: Property Auth** | Mass assignment, data exposure |
+| **API4: Resource Consumption** | Rate limiting, DoS |
+| **API5: Function Auth** | Admin endpoints, role bypass |
+| **API6: Business Flow** | Logic abuse, automation |
+| **API7: SSRF** | Internal network access |
+| **API8: Misconfiguration** | Debug endpoints, CORS |
+| **API9: Inventory** | Shadow APIs, old versions |
+| **API10: Unsafe Consumption** | Third-party API trust |
+
+---
+
+## Authentication Testing
+
+### JWT Testing
+
+| Check | What to Test |
+|-------|--------------|
+| Algorithm | None, algorithm confusion |
+| Secret | Weak secrets, brute force |
+| Claims | Expiration, issuer, audience |
+| Signature | Manipulation, key injection |
+
+### Session Testing
+
+| Check | What to Test |
+|-------|--------------|
+| Generation | Predictability |
+| Storage | Client-side security |
+| Expiration | Timeout enforcement |
+| Invalidation | Logout effectiveness |
+
+---
+
+## Authorization Testing
+
+| Test Type | Approach |
+|-----------|----------|
+| **Horizontal** | Access peer users' data |
+| **Vertical** | Access higher privilege functions |
+| **Context** | Access outside allowed scope |
+
+### BOLA/IDOR Testing
+
+1. Identify resource IDs in requests
+2. Capture request with user A's session
+3. Replay with user B's session
+4. Check for unauthorized access
+
+---
+
+## Input Validation Testing
+
+| Injection Type | Test Focus |
+|----------------|------------|
+| SQL | Query manipulation |
+| NoSQL | Document queries |
+| Command | System commands |
+| LDAP | Directory queries |
+
+**Approach:** Test all parameters, try type coercion, test boundaries, check error messages.
+
+---
+
+## Rate Limiting Testing
+
+| Aspect | Check |
+|--------|-------|
+| Existence | Is there any limit? |
+| Bypass | Headers, IP rotation |
+| Scope | Per-user, per-IP, global |
+
+**Bypass techniques:** X-Forwarded-For, different HTTP methods, case variations, API versioning.
+
+---
+
+## GraphQL Security
+
+| Test | Focus |
+|------|-------|
+| Introspection | Schema disclosure |
+| Batching | Query DoS |
+| Nesting | Depth-based DoS |
+| Authorization | Field-level access |
+
+---
+
+## Security Testing Checklist
+
+**Authentication:**
+- [ ] Test for bypass
+- [ ] Check credential strength
+- [ ] Verify token security
+
+**Authorization:**
+- [ ] Test BOLA/IDOR
+- [ ] Check privilege escalation
+- [ ] Verify function access
+
+**Input:**
+- [ ] Test all parameters
+- [ ] Check for injection
+
+**Config:**
+- [ ] Check CORS
+- [ ] Verify headers
+- [ ] Test error handling
+
+---
+
+> **Remember:** APIs are the backbone of modern apps. Test them like attackers will.
+
+---
+
+## ðŸ”— Related
+
+| File | When to Read |
+|------|-------------|
+| [auth.md](auth.md) | Auth patterns to test |
+| [rate-limiting.md](rate-limiting.md) | Rate limit bypass testing |
+| [graphql.md](graphql.md) | GraphQL-specific security |
+| [SKILL.md](../SKILL.md) | Full decision framework |
+
+---
+
+### Rule: trpc
+
+---
+name: trpc
+description: tRPC router patterns, Zod validation, React Query client for TypeScript monorepos
+---
+
+# tRPC Principles
+
+> End-to-end type safety for TypeScript monorepos â€” zero code generation.
+
+---
+
+## When to Use
+
+```
+âœ… Perfect fit:
+â”œâ”€â”€ TypeScript on both ends
+â”œâ”€â”€ Monorepo structure
+â”œâ”€â”€ Internal tools / dashboards
+â”œâ”€â”€ Rapid development
+â””â”€â”€ Type safety is critical
+
+âŒ Poor fit:
+â”œâ”€â”€ Non-TypeScript clients
+â”œâ”€â”€ Public API (need OpenAPI docs)
+â”œâ”€â”€ Need REST conventions (caching)
+â””â”€â”€ Multiple language backends
+```
+
+## Router Definition
+
+```typescript
+// server/trpc.ts â€” Base setup
+import { initTRPC, TRPCError } from '@trpc/server';
+import { z } from 'zod';
+
+const t = initTRPC.context<Context>().create();
+
+export const router = t.router;
+export const publicProcedure = t.procedure;
+export const protectedProcedure = t.procedure.use(isAuthed);
+```
+
+```typescript
+// server/routers/user.ts â€” Router with Zod validation
+export const userRouter = router({
+  getById: publicProcedure
+    .input(z.string().uuid())
+    .query(async ({ input, ctx }) => {
+      const user = await ctx.db.user.findUnique({ where: { id: input } });
+      if (!user) throw new TRPCError({ code: 'NOT_FOUND' });
+      return user;
+    }),
+
+  create: protectedProcedure
+    .input(z.object({
+      name: z.string().min(1).max(100),
+      email: z.string().email(),
+      role: z.enum(['user', 'admin']).default('user'),
+    }))
+    .mutation(async ({ input, ctx }) => {
+      return ctx.db.user.create({ data: input });
+    }),
+
+  list: publicProcedure
+    .input(z.object({
+      page: z.number().int().min(1).default(1),
+      limit: z.number().int().min(1).max(100).default(20),
+    }))
+    .query(async ({ input, ctx }) => {
+      const { page, limit } = input;
+      const [data, total] = await Promise.all([
+        ctx.db.user.findMany({ skip: (page - 1) * limit, take: limit }),
+        ctx.db.user.count(),
+      ]);
+      return { data, total, totalPages: Math.ceil(total / limit) };
+    }),
+});
+```
+
+## Client Usage (React Query)
+
+```typescript
+// Client â€” fully typed, zero codegen
+import { trpc } from '~/utils/trpc';
+
+function UserProfile({ id }: { id: string }) {
+  const { data: user } = trpc.user.getById.useQuery(id);
+  const createUser = trpc.user.create.useMutation();
+
+  // Autocomplete works across the full stack
+  return <div>{user?.name}</div>;
+}
+```
+
+## Integration Patterns
+
+| Setup | Framework | Notes |
+|-------|-----------|-------|
+| Next.js + tRPC | `@trpc/next` | App Router + RSC support |
+| Remix + tRPC | Custom adapter | Less common |
+| Monorepo | Shared `@repo/trpc` package | Most scalable |
+| Standalone | Express adapter | `@trpc/server/adapters/express` |
+
+## Anti-Patterns
+
+| âŒ Don't | âœ… Do |
+|---------|-------|
+| Use tRPC for public APIs | Use REST + OpenAPI for public |
+| Skip Zod validation | Always validate with `.input(z.object(...))` |
+| Put all routes in one file | Split into domain routers (`userRouter`, `postRouter`) |
+| Catch errors silently | Throw `TRPCError` with proper codes |
+
+---
+
+## ðŸ”— Related
+
+| File | When to Read |
+|------|-------------|
+| [api-style.md](api-style.md) | REST vs GraphQL vs tRPC decision |
+| [auth.md](auth.md) | Auth middleware patterns |
+| [SKILL.md](../SKILL.md) | Full decision framework |
+
+---
+
+### Rule: versioning
+
+---
+name: versioning
+description: API versioning strategies â€” URI, header, query; deprecation and sunset policies
+---
+
+# Versioning Strategies
+
+> Plan for API evolution from day one.
+
+---
+
+## Strategy Selection
+
+| Strategy | Implementation | Best For | Trade-offs |
+|----------|---------------|----------|------------|
+| **URI** | `/v1/users` | Public APIs | Clear, easy caching; URL pollution |
+| **Header** | `Accept-Version: 1` | Internal APIs | Clean URLs; harder discovery |
+| **Query** | `?version=1` | Quick prototypes | Easy to add; messy, cache-unfriendly |
+| **None** | Evolve carefully | GraphQL, tRPC | Simplest; risky for REST public APIs |
+
+## Decision Guide
+
+```
+Is it a public REST API?
+â”œâ”€â”€ Yes â†’ URI versioning (/v1/users)
+â”‚         Most discoverable, best tooling support
+â”‚
+â”œâ”€â”€ Internal REST only? â†’ Header versioning
+â”‚         Cleaner URLs, version-aware clients
+â”‚
+â”œâ”€â”€ GraphQL? â†’ No versioning (evolve schema)
+â”‚         Add fields, deprecate old ones
+â”‚
+â””â”€â”€ tRPC? â†’ No versioning (types enforce compat)
+          Breaking changes caught at compile time
+```
+
+## URI Versioning Example
+
+```typescript
+// Express â€” version in path
+import { Router } from 'express';
+
+const v1 = Router();
+v1.get('/users', getUsersV1);
+v1.get('/users/:id', getUserByIdV1);
+
+const v2 = Router();
+v2.get('/users', getUsersV2);        // Changed response format
+v2.get('/users/:id', getUserByIdV2);
+
+app.use('/api/v1', v1);
+app.use('/api/v2', v2);
+```
+
+## Deprecation & Sunset
+
+```typescript
+// Deprecation headers (RFC 8594)
+app.use('/api/v1', (req, res, next) => {
+  res.set('Deprecation', 'true');
+  res.set('Sunset', 'Sat, 01 Jun 2026 00:00:00 GMT');
+  res.set('Link', '</api/v2>; rel="successor-version"');
+  next();
+});
+```
+
+**Sunset Policy:**
+1. Announce deprecation with `Deprecation: true` header
+2. Set `Sunset` date (minimum 6 months for public APIs)
+3. Include `Link` header pointing to successor
+4. Monitor usage â€” notify active consumers
+5. Remove after sunset date
+
+## Anti-Patterns
+
+| âŒ Don't | âœ… Do |
+|---------|-------|
+| Version after breaking changes | Define strategy before first endpoint |
+| Remove old version without notice | Sunset with 6+ months warning |
+| Mix versioning strategies | Pick one approach |
+| Version internal tRPC APIs | Let TypeScript catch breaking changes |
+
+---
+
+## ðŸ”— Related
+
+| File | When to Read |
+|------|-------------|
+| [rest.md](rest.md) | REST endpoint design |
+| [documentation.md](documentation.md) | Documenting versions |
+| [api-style.md](api-style.md) | API style decision |

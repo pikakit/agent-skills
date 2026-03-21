@@ -1,4 +1,10 @@
-﻿# Auth Patterns â€” Engineering Specification
+﻿---
+title: Auth Patterns â€” Engineering Specification
+impact: MEDIUM
+tags: auth-patterns
+---
+
+# Auth Patterns â€” Engineering Specification
 
 > Production-grade specification for authentication and authorization pattern selection at FAANG scale.
 

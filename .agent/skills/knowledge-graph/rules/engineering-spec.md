@@ -1,4 +1,10 @@
-# Knowledge Graph — Engineering Specification
+﻿---
+title: Knowledge Graph â€” Engineering Specification
+impact: MEDIUM
+tags: knowledge-graph
+---
+
+# Knowledge Graph â€” Engineering Specification
 
 > Production-grade specification for semantic code analysis with AST parsing at FAANG scale.
 
@@ -6,11 +12,11 @@
 
 ## 1. Overview
 
-Knowledge Graph provides structured decision frameworks for semantic code analysis: symbol lookup (go-to-definition), find-usages across codebase, impact analysis for refactoring, cross-file reference tracking, and architecture graph visualization. The skill operates as an expert knowledge base — it produces analysis strategies, query patterns, and tool selection guidance. It does not execute code analysis, parse ASTs, or invoke LSP servers directly.
+Knowledge Graph provides structured decision frameworks for semantic code analysis: symbol lookup (go-to-definition), find-usages across codebase, impact analysis for refactoring, cross-file reference tracking, and architecture graph visualization. The skill operates as an expert knowledge base â€” it produces analysis strategies, query patterns, and tool selection guidance. It does not execute code analysis, parse ASTs, or invoke LSP servers directly.
 
 **Contract Version:** 2.0.0
 **Backward Compatibility:** breaking (first hardened version)
-**Breaking Changes:** None — new spec for first hardening
+**Breaking Changes:** None â€” new spec for first hardening
 
 ---
 
@@ -37,7 +43,7 @@ Knowledge Graph eliminates these with AST-based semantic analysis, cross-file im
 | G2 | Cross-file tracking | Follow imports, re-exports, and aliases across all project files |
 | G3 | Impact enumeration | Direct callers + indirect (via re-exports) + test files |
 | G4 | Language coverage | Full: TS, JS, Python, Ruby. Partial: Java, Kotlin |
-| G5 | Tool selection | Need → integration tool (LSP, Tree-sitter, Repomix, MCP) |
+| G5 | Tool selection | Need â†’ integration tool (LSP, Tree-sitter, Repomix, MCP) |
 | G6 | Precision over recall | Zero false positives for symbol resolution |
 
 ---
@@ -143,7 +149,7 @@ Recoverable: boolean
 #### Deterministic Guarantees
 
 - Language support classification is fixed: full (TS, JS, Python, Ruby), partial (Java, Kotlin).
-- Tool selection is deterministic: IDE integration → LSP, raw parsing → Tree-sitter, context dumps → Repomix, AI agent → MCP.
+- Tool selection is deterministic: IDE integration â†’ LSP, raw parsing â†’ Tree-sitter, context dumps â†’ Repomix, AI agent â†’ MCP.
 - Impact analysis always enumerates 3 categories: direct callers, indirect refs, test coverage.
 - Symbol lookup strategy depends on language + tool availability.
 - Find-usages always includes re-exports for TS/JS.
@@ -241,7 +247,7 @@ All phases synchronous. No async pipeline.
 | AST over grep | All symbol analysis uses AST-based strategies, never raw text |
 | Fixed language tiers | Full: TS, JS, Python, Ruby. Partial: Java, Kotlin |
 | Fixed tool mapping | LSP for IDE, Tree-sitter for AST, Repomix for context, MCP for agents |
-| 3-category impact | Direct callers + indirect refs + test coverage — always all 3 |
+| 3-category impact | Direct callers + indirect refs + test coverage â€” always all 3 |
 | Re-export tracking | TS/JS: always track barrel exports and re-exports |
 | Precision first | Zero false positives; scope-aware resolution |
 | No execution | Strategy only; caller runs tools |
@@ -373,7 +379,7 @@ All resources scoped to invocation. No persistent handles.
 |-----------|-----------|-----------|------------|
 | Strategy generation | < 3 ms | < 10 ms | 30 ms |
 | Full impact framework | < 5 ms | < 15 ms | 50 ms |
-| Output size | ≤ 1,000 chars | ≤ 3,000 chars | 5,000 chars |
+| Output size | â‰¤ 1,000 chars | â‰¤ 3,000 chars | 5,000 chars |
 
 ---
 
@@ -393,16 +399,16 @@ All resources scoped to invocation. No persistent handles.
 
 | Requirement | Status | Evidence |
 |-------------|--------|----------|
-| YAML frontmatter complete | ✅ | name, description, metadata with category, version, triggers, coordinates_with, success_metrics |
-| SKILL.md < 200 lines | ✅ | Entry point under 200 lines |
-| Prerequisites documented | ✅ | LSP or Tree-sitter recommended |
-| When to Use section | ✅ | Need-based routing table |
-| Core content matches skill type | ✅ | Expert type: decision trees, strategy output |
-| Troubleshooting section | ✅ | Anti-patterns table |
-| Related section | ✅ | Cross-links to code-review, system-design |
-| Content Map for multi-file | ✅ | Link to engineering-spec.md |
-| Contract versioning | ✅ | contract_version, backward_compatibility, breaking_changes |
-| Compliance matrix structured | ✅ | This table with ✅/❌ + evidence |
+| YAML frontmatter complete | âœ… | name, description, metadata with category, version, triggers, coordinates_with, success_metrics |
+| SKILL.md < 200 lines | âœ… | Entry point under 200 lines |
+| Prerequisites documented | âœ… | LSP or Tree-sitter recommended |
+| When to Use section | âœ… | Need-based routing table |
+| Core content matches skill type | âœ… | Expert type: decision trees, strategy output |
+| Troubleshooting section | âœ… | Anti-patterns table |
+| Related section | âœ… | Cross-links to code-review, system-design |
+| Content Map for multi-file | âœ… | Link to engineering-spec.md |
+| Contract versioning | âœ… | contract_version, backward_compatibility, breaking_changes |
+| Compliance matrix structured | âœ… | This table with âœ…/âŒ + evidence |
 
 ---
 
@@ -410,24 +416,24 @@ All resources scoped to invocation. No persistent handles.
 
 | Category | Check | Status |
 |----------|-------|--------|
-| **Functionality** | 4 analysis capabilities (lookup, usages, impact, cross-file) | ✅ |
-| **Functionality** | 4 full-support languages + 2 partial | ✅ |
-| **Functionality** | 4 integration tools with fixed mapping | ✅ |
-| **Functionality** | 3-category impact analysis (direct, indirect, tests) | ✅ |
-| **Functionality** | Precision-first: AST over grep | ✅ |
-| **Contracts** | Input/output/error schemas in pseudo-schema format | ✅ |
-| **Contracts** | Contract versioning with semver | ✅ |
-| **Failure** | Error taxonomy with 5 categorized codes | ✅ |
-| **Failure** | No partial strategies on error | ✅ |
-| **Failure** | Zero internal retries | ✅ |
-| **Determinism** | Fixed language tiers, fixed tool mapping, fixed impact categories | ✅ |
-| **Security** | No source code, no credentials | ✅ |
-| **Observability** | Structured log schema with 5 mandatory fields | ✅ |
-| **Observability** | 4 metrics defined | ✅ |
-| **Performance** | P50/P99 targets for all operations | ✅ |
-| **Scalability** | Stateless; unlimited parallel | ✅ |
-| **Compliance** | All skill-design-guide.md sections mapped with evidence | ✅ |
+| **Functionality** | 4 analysis capabilities (lookup, usages, impact, cross-file) | âœ… |
+| **Functionality** | 4 full-support languages + 2 partial | âœ… |
+| **Functionality** | 4 integration tools with fixed mapping | âœ… |
+| **Functionality** | 3-category impact analysis (direct, indirect, tests) | âœ… |
+| **Functionality** | Precision-first: AST over grep | âœ… |
+| **Contracts** | Input/output/error schemas in pseudo-schema format | âœ… |
+| **Contracts** | Contract versioning with semver | âœ… |
+| **Failure** | Error taxonomy with 5 categorized codes | âœ… |
+| **Failure** | No partial strategies on error | âœ… |
+| **Failure** | Zero internal retries | âœ… |
+| **Determinism** | Fixed language tiers, fixed tool mapping, fixed impact categories | âœ… |
+| **Security** | No source code, no credentials | âœ… |
+| **Observability** | Structured log schema with 5 mandatory fields | âœ… |
+| **Observability** | 4 metrics defined | âœ… |
+| **Performance** | P50/P99 targets for all operations | âœ… |
+| **Scalability** | Stateless; unlimited parallel | âœ… |
+| **Compliance** | All skill-design-guide.md sections mapped with evidence | âœ… |
 
 ---
 
-⚡ PikaKit v3.9.105
+âš¡ PikaKit v3.9.105

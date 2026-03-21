@@ -1,4 +1,10 @@
-﻿# Context Engineering â€” Engineering Specification
+﻿---
+title: Context Engineering â€” Engineering Specification
+impact: MEDIUM
+tags: context-engineering
+---
+
+# Context Engineering â€” Engineering Specification
 
 > Production-grade specification for context window management and token consumption control at FAANG scale.
 

@@ -1,6 +1,12 @@
-﻿# gitops-workflow — Full Reference Guide
+﻿# gitops-workflow
 
-> **Compiled from SKILL.md + rules/ for AI agent consumption.**
+**Version 1.0.0**
+Engineering
+March 2026
+
+> **Note:**
+> This document is for agents and LLMs to follow when working on gitops domain.
+> Optimized for automation and consistency by AI-assisted workflows.
 
 ---
 
@@ -156,7 +162,18 @@ gitops-repo/
 
 ---
 
-## Reference: argocd-setup
+## Detailed Rules
+
+
+---
+
+### Rule: argocd-setup
+
+---
+title: ArgoCD Setup and Configuration
+impact: MEDIUM
+tags: gitops
+---
 
 # ArgoCD Setup and Configuration
 
@@ -303,7 +320,13 @@ data:
 
 ---
 
-## Reference: engineering-spec
+### Rule: engineering-spec
+
+---
+title: GitOps Workflow â€” Engineering Specification
+impact: MEDIUM
+tags: gitops
+---
 
 # GitOps Workflow â€” Engineering Specification
 
@@ -747,7 +770,13 @@ All resources scoped to invocation. No persistent handles.
 
 ---
 
-## Reference: sync-policies
+### Rule: sync-policies
+
+---
+title: GitOps Sync Policies
+impact: MEDIUM
+tags: gitops
+---
 
 # GitOps Sync Policies
 

@@ -1,4 +1,10 @@
-# Project Planner — Engineering Specification
+﻿---
+title: Project Planner â€” Engineering Specification
+impact: MEDIUM
+tags: project-planner
+---
+
+# Project Planner â€” Engineering Specification
 
 > Production-grade specification for structured task planning at FAANG scale.
 
@@ -6,11 +12,11 @@
 
 ## 1. Overview
 
-Project Planner provides structured task breakdown for implementation work: plan creation with verifiable tasks (max 10 per plan), dependency ordering, done criteria, and project-type routing. The skill operates as an **Expert (decision tree)** — it produces plan documents with task breakdowns, verification criteria, and dependency ordering. It does not create projects, write code, or execute tasks.
+Project Planner provides structured task breakdown for implementation work: plan creation with verifiable tasks (max 10 per plan), dependency ordering, done criteria, and project-type routing. The skill operates as an **Expert (decision tree)** â€” it produces plan documents with task breakdowns, verification criteria, and dependency ordering. It does not create projects, write code, or execute tasks.
 
 **Contract Version:** 2.0.0
 **Backward Compatibility:** breaking (first hardened version)
-**Breaking Changes:** None — new spec for first hardening
+**Breaking Changes:** None â€” new spec for first hardening
 
 ---
 
@@ -63,7 +69,7 @@ Project Planner eliminates these with specific task format (action + verify), ma
 | Verification criteria | Done definitions | Test execution |
 | Dependency ordering | Task sequencing | Dependency resolution |
 | Plan template | Structure output | File creation |
-| Project type routing | Type → scripts mapping | Script execution |
+| Project type routing | Type â†’ scripts mapping | Script execution |
 
 **Side-effect boundary:** Project Planner produces plan documents with structured task breakdowns. It does not create files, execute code, or modify the codebase.
 
@@ -134,13 +140,13 @@ Recoverable: boolean
 - Every task has action + verify format.
 - Dependency ordering uses task order numbers.
 - Plan template is fixed: Goal + Tasks + Done When.
-- Project type routing is fixed: 4 types → fixed script sets.
+- Project type routing is fixed: 4 types â†’ fixed script sets.
 - No vague task descriptions allowed.
 
 #### What Agents May Assume
 
 - Plan output follows the fixed template (Goal + Tasks + Done When).
-- Tasks are sequentially numbered 1-N (N ≤ 10).
+- Tasks are sequentially numbered 1-N (N â‰¤ 10).
 - Dependencies reference valid task order numbers.
 - Verification criteria are actionable (not "verify it works").
 
@@ -223,11 +229,11 @@ All phases synchronous. No async pipeline.
 
 | Principle | Enforcement |
 |-----------|-------------|
-| Max 10 tasks per plan | Excess → split into sub-plans |
+| Max 10 tasks per plan | Excess â†’ split into sub-plans |
 | 2-5 minutes per task | Each task fits one focused session |
 | Action + Verify format | Every task: specific action, then how to check |
-| No vague descriptions | ❌ "Set up project" → ✅ "Run `npx create-next-app`" |
-| No vague verification | ❌ "Verify it works" → ✅ "curl localhost:3000/api returns 200" |
+| No vague descriptions | âŒ "Set up project" â†’ âœ… "Run `npx create-next-app`" |
+| No vague verification | âŒ "Verify it works" â†’ âœ… "curl localhost:3000/api returns 200" |
 | Fixed template | Goal + Tasks + Done When |
 | Fixed project types | Frontend (ux_audit, accessibility), Backend (api_validator, security), Mobile (mobile_audit), Database (schema_validator) |
 | Dependencies explicit | `depends_on` references task numbers |
@@ -355,7 +361,7 @@ All resources scoped to invocation. No persistent handles.
 | Plan generation | < 5 ms | < 20 ms | 100 ms |
 | Task breakdown | < 3 ms | < 10 ms | 50 ms |
 | Full plan | < 10 ms | < 30 ms | 100 ms |
-| Output size | ≤ 2,000 chars | ≤ 5,000 chars | 8,000 chars |
+| Output size | â‰¤ 2,000 chars | â‰¤ 5,000 chars | 8,000 chars |
 
 ---
 
@@ -375,16 +381,16 @@ All resources scoped to invocation. No persistent handles.
 
 | Requirement | Status | Evidence |
 |-------------|--------|----------|
-| YAML frontmatter complete | ✅ | name, description, metadata with category, version, triggers, coordinates_with, success_metrics |
-| SKILL.md < 200 lines | ✅ | Entry point under 200 lines |
-| Prerequisites documented | ✅ | No external dependencies |
-| When to Use section | ✅ | Situation-based routing table |
-| Core content matches skill type | ✅ | Expert type: task breakdown, plan template |
-| Troubleshooting section | ✅ | Anti-patterns with fix examples |
-| Related section | ✅ | Cross-links to idea-storm, app-scaffold, /plan |
-| Content Map for multi-file | ✅ | Link to engineering-spec.md |
-| Contract versioning | ✅ | contract_version, backward_compatibility, breaking_changes |
-| Compliance matrix structured | ✅ | This table with ✅/❌ + evidence |
+| YAML frontmatter complete | âœ… | name, description, metadata with category, version, triggers, coordinates_with, success_metrics |
+| SKILL.md < 200 lines | âœ… | Entry point under 200 lines |
+| Prerequisites documented | âœ… | No external dependencies |
+| When to Use section | âœ… | Situation-based routing table |
+| Core content matches skill type | âœ… | Expert type: task breakdown, plan template |
+| Troubleshooting section | âœ… | Anti-patterns with fix examples |
+| Related section | âœ… | Cross-links to idea-storm, app-scaffold, /plan |
+| Content Map for multi-file | âœ… | Link to engineering-spec.md |
+| Contract versioning | âœ… | contract_version, backward_compatibility, breaking_changes |
+| Compliance matrix structured | âœ… | This table with âœ…/âŒ + evidence |
 
 ---
 
@@ -392,23 +398,23 @@ All resources scoped to invocation. No persistent handles.
 
 | Category | Check | Status |
 |----------|-------|--------|
-| **Functionality** | Max 10 tasks per plan | ✅ |
-| **Functionality** | 2-5 min per task | ✅ |
-| **Functionality** | Action + Verify format | ✅ |
-| **Functionality** | Fixed plan template (Goal + Tasks + Done When) | ✅ |
-| **Functionality** | 4 project types with script routing | ✅ |
-| **Contracts** | Input/output/error schemas in pseudo-schema format | ✅ |
-| **Contracts** | Contract versioning with semver | ✅ |
-| **Failure** | Error taxonomy with 4 categorized codes | ✅ |
-| **Failure** | Zero internal retries | ✅ |
-| **Determinism** | Fixed template, fixed task limits, fixed types | ✅ |
-| **Security** | No credentials, no PII, no file access | ✅ |
-| **Observability** | Structured log schema with 5 mandatory fields | ✅ |
-| **Observability** | 4 metrics defined | ✅ |
-| **Performance** | P50/P99 targets for all operations | ✅ |
-| **Scalability** | Stateless; unlimited parallel | ✅ |
-| **Compliance** | All skill-design-guide.md sections mapped with evidence | ✅ |
+| **Functionality** | Max 10 tasks per plan | âœ… |
+| **Functionality** | 2-5 min per task | âœ… |
+| **Functionality** | Action + Verify format | âœ… |
+| **Functionality** | Fixed plan template (Goal + Tasks + Done When) | âœ… |
+| **Functionality** | 4 project types with script routing | âœ… |
+| **Contracts** | Input/output/error schemas in pseudo-schema format | âœ… |
+| **Contracts** | Contract versioning with semver | âœ… |
+| **Failure** | Error taxonomy with 4 categorized codes | âœ… |
+| **Failure** | Zero internal retries | âœ… |
+| **Determinism** | Fixed template, fixed task limits, fixed types | âœ… |
+| **Security** | No credentials, no PII, no file access | âœ… |
+| **Observability** | Structured log schema with 5 mandatory fields | âœ… |
+| **Observability** | 4 metrics defined | âœ… |
+| **Performance** | P50/P99 targets for all operations | âœ… |
+| **Scalability** | Stateless; unlimited parallel | âœ… |
+| **Compliance** | All skill-design-guide.md sections mapped with evidence | âœ… |
 
 ---
 
-⚡ PikaKit v3.9.105
+âš¡ PikaKit v3.9.105

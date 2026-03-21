@@ -1,6 +1,12 @@
-﻿# server-ops — Full Reference Guide
+﻿# server-ops
 
-> **Compiled from SKILL.md + rules/ for AI agent consumption.**
+**Version 1.0.0**
+Engineering
+March 2026
+
+> **Note:**
+> This document is for agents and LLMs to follow when working on server-ops domain.
+> Optimized for automation and consistency by AI-assisted workflows.
 
 ---
 
@@ -161,7 +167,12 @@ Route by load balancer needs.
 
 ---
 
-## Reference: engineering-spec
+## Detailed Rules
+
+
+---
+
+### Rule: engineering-spec
 
 ---
 name: server-ops

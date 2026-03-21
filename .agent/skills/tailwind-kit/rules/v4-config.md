@@ -1,3 +1,9 @@
+﻿---
+title: Tailwind v4 Configuration
+impact: MEDIUM
+tags: tailwind-kit
+---
+
 # Tailwind v4 Configuration
 
 ## Full Theme Configuration

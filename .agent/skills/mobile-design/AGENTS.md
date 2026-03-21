@@ -1,6 +1,12 @@
-﻿# mobile-design — Full Reference Guide
+﻿# mobile-design
 
-> **Compiled from SKILL.md + rules/ for AI agent consumption.**
+**Version 1.0.0**
+Engineering
+March 2026
+
+> **Note:**
+> This document is for agents and LLMs to follow when working on mobile-design domain.
+> Optimized for automation and consistency by AI-assisted workflows.
 
 ---
 
@@ -158,7 +164,12 @@ Touch-first â†’ Battery-conscious â†’ Platform-respectful â†’ Off
 
 ---
 
-## Reference: decision-trees
+## Detailed Rules
+
+
+---
+
+### Rule: decision-trees
 
 ---
 name: mobile-decision-trees
@@ -698,7 +709,7 @@ API cache?           â†’ Query library
 
 ---
 
-## Reference: engineering-spec
+### Rule: engineering-spec
 
 ---
 name: mobile-design-engineering-spec
@@ -1161,7 +1172,7 @@ All resources scoped to invocation. No persistent handles.
 
 ---
 
-## Reference: mobile-backend
+### Rule: mobile-backend
 
 ---
 name: mobile-backend
@@ -1677,7 +1688,7 @@ ALERTS:
 
 ---
 
-## Reference: mobile-color-system
+### Rule: mobile-color-system
 
 ---
 name: mobile-color-system
@@ -2110,7 +2121,7 @@ Ideal:       7:1 (AAA)
 
 ---
 
-## Reference: mobile-debugging
+### Rule: mobile-debugging
 
 ---
 name: mobile-debugging
@@ -2256,7 +2267,7 @@ Web Debugging:      Mobile Debugging:
 
 ---
 
-## Reference: mobile-design-thinking
+### Rule: mobile-design-thinking
 
 ---
 name: mobile-design-thinking
@@ -2637,7 +2648,7 @@ Platform: iOS / Android / Both
 
 ---
 
-## Reference: mobile-navigation
+### Rule: mobile-navigation
 
 ---
 name: mobile-navigation
@@ -3108,7 +3119,7 @@ Don't reinvent navigation.
 
 ---
 
-## Reference: mobile-performance
+### Rule: mobile-performance
 
 ---
 name: mobile-performance
@@ -3888,7 +3899,7 @@ Low-end Android â† Test device
 
 ---
 
-## Reference: mobile-testing
+### Rule: mobile-testing
 
 ---
 name: mobile-testing
@@ -4268,7 +4279,7 @@ Before writing tests, answer:
 
 ---
 
-## Reference: mobile-typography
+### Rule: mobile-typography
 
 ---
 name: mobile-typography
@@ -4714,7 +4725,7 @@ Long text: 1.5-1.75
 
 ---
 
-## Reference: platform-android
+### Rule: platform-android
 
 ---
 name: mobile-platform-android
@@ -5393,7 +5404,7 @@ if (reduceMotion) {
 
 ---
 
-## Reference: platform-ios
+### Rule: platform-ios
 
 ---
 name: mobile-platform-ios
@@ -5967,7 +5978,7 @@ AccessibilityInfo.isReduceMotionEnabled()
 
 ---
 
-## Reference: touch-psychology
+### Rule: touch-psychology
 
 ---
 name: mobile-touch-psychology

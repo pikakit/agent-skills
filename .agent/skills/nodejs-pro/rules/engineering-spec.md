@@ -1,4 +1,10 @@
-# Node.js Pro — Engineering Specification
+﻿---
+title: Node.js Pro â€” Engineering Specification
+impact: MEDIUM
+tags: nodejs-pro
+---
+
+# Node.js Pro â€” Engineering Specification
 
 > Production-grade specification for Node.js development decision-making at FAANG scale.
 
@@ -6,11 +12,11 @@
 
 ## 1. Overview
 
-Node.js Pro provides structured decision frameworks for Node.js backend development: framework selection (Hono, Fastify, Express, NestJS, Next.js API/tRPC), architecture pattern routing, async pattern guidance, error handling strategy, input validation, security practices, and testing strategy. The skill operates as an **Expert (decision tree)** — it produces framework decisions, architecture recommendations, and pattern guidance. It does not create projects, write server code, or deploy applications.
+Node.js Pro provides structured decision frameworks for Node.js backend development: framework selection (Hono, Fastify, Express, NestJS, Next.js API/tRPC), architecture pattern routing, async pattern guidance, error handling strategy, input validation, security practices, and testing strategy. The skill operates as an **Expert (decision tree)** â€” it produces framework decisions, architecture recommendations, and pattern guidance. It does not create projects, write server code, or deploy applications.
 
 **Contract Version:** 2.0.0
 **Backward Compatibility:** breaking (first hardened version)
-**Breaking Changes:** None — new spec for first hardening
+**Breaking Changes:** None â€” new spec for first hardening
 
 ---
 
@@ -128,15 +134,15 @@ Recoverable: boolean
 #### Deterministic Guarantees
 
 - Framework selection is deterministic:
-  - edge/serverless → Hono (fastest cold starts)
-  - performance_critical AND container → Fastify (2-3x faster than Express)
-  - complex app AND large team → NestJS (structured, DI)
-  - legacy OR maximum ecosystem → Express
-  - full-stack → Next.js API Routes or tRPC
+  - edge/serverless â†’ Hono (fastest cold starts)
+  - performance_critical AND container â†’ Fastify (2-3x faster than Express)
+  - complex app AND large team â†’ NestJS (structured, DI)
+  - legacy OR maximum ecosystem â†’ Express
+  - full-stack â†’ Next.js API Routes or tRPC
 - Architecture routing is deterministic:
-  - simple app → flat structure
-  - moderate + growing team → layered architecture
-  - complex + large team → modular/clean architecture
+  - simple app â†’ flat structure
+  - moderate + growing team â†’ layered architecture
+  - complex + large team â†’ modular/clean architecture
 - Async: always async/await; never sync methods in production.
 - Validation: always at boundary layer; never trust client input.
 
@@ -233,11 +239,11 @@ All phases synchronous. No async pipeline.
 |-----------|-------------|
 | Fixed framework routing | 5 options with explicit selection criteria |
 | Fixed comparison table | Cold start, TypeScript, throughput per framework |
-| Architecture by context | Complexity + team size → pattern |
+| Architecture by context | Complexity + team size â†’ pattern |
 | Async-first | No sync methods in production; never `fs.readFileSync` in handlers |
 | Validate at boundary | All inputs validated before reaching business logic |
 | Environment secrets | Secrets via env vars; never hardcoded |
-| Layered separation | Controllers → Services → Repositories; no business logic in routes |
+| Layered separation | Controllers â†’ Services â†’ Repositories; no business logic in routes |
 | Event loop protection | No CPU-intensive work on main thread; use worker threads |
 
 ---
@@ -373,7 +379,7 @@ All resources scoped to invocation. No persistent handles.
 | Framework selection | < 2 ms | < 5 ms | 20 ms |
 | Architecture selection | < 2 ms | < 5 ms | 20 ms |
 | Full guide | < 10 ms | < 30 ms | 50 ms |
-| Output size | ≤ 1,500 chars | ≤ 4,000 chars | 6,000 chars |
+| Output size | â‰¤ 1,500 chars | â‰¤ 4,000 chars | 6,000 chars |
 
 ---
 
@@ -393,16 +399,16 @@ All resources scoped to invocation. No persistent handles.
 
 | Requirement | Status | Evidence |
 |-------------|--------|----------|
-| YAML frontmatter complete | ✅ | name, description, metadata with category, version, triggers, coordinates_with, success_metrics |
-| SKILL.md < 200 lines | ✅ | Entry point under 200 lines |
-| Prerequisites documented | ✅ | No external dependencies (knowledge skill) |
-| When to Use section | ✅ | Situation-based routing table |
-| Core content matches skill type | ✅ | Expert type: framework decision tree, comparison table |
-| Troubleshooting section | ✅ | Anti-patterns table |
-| Related section | ✅ | Cross-links to api-architect, data-modeler, typescript-expert |
-| Content Map for multi-file | ✅ | Links to 7 reference files + engineering-spec.md |
-| Contract versioning | ✅ | contract_version, backward_compatibility, breaking_changes |
-| Compliance matrix structured | ✅ | This table with ✅/❌ + evidence |
+| YAML frontmatter complete | âœ… | name, description, metadata with category, version, triggers, coordinates_with, success_metrics |
+| SKILL.md < 200 lines | âœ… | Entry point under 200 lines |
+| Prerequisites documented | âœ… | No external dependencies (knowledge skill) |
+| When to Use section | âœ… | Situation-based routing table |
+| Core content matches skill type | âœ… | Expert type: framework decision tree, comparison table |
+| Troubleshooting section | âœ… | Anti-patterns table |
+| Related section | âœ… | Cross-links to api-architect, data-modeler, typescript-expert |
+| Content Map for multi-file | âœ… | Links to 7 reference files + engineering-spec.md |
+| Contract versioning | âœ… | contract_version, backward_compatibility, breaking_changes |
+| Compliance matrix structured | âœ… | This table with âœ…/âŒ + evidence |
 
 ---
 
@@ -410,23 +416,23 @@ All resources scoped to invocation. No persistent handles.
 
 | Category | Check | Status |
 |----------|-------|--------|
-| **Functionality** | Framework selection (5 options with criteria) | ✅ |
-| **Functionality** | Framework comparison (cold start, TS, throughput) | ✅ |
-| **Functionality** | Architecture routing (complexity + team) | ✅ |
-| **Functionality** | Async-first enforcement | ✅ |
-| **Functionality** | 7 reference files covering all domains | ✅ |
-| **Contracts** | Input/output/error schemas in pseudo-schema format | ✅ |
-| **Contracts** | Contract versioning with semver | ✅ |
-| **Failure** | Error taxonomy with 3 categorized codes | ✅ |
-| **Failure** | Zero internal retries | ✅ |
-| **Determinism** | Fixed framework routing, fixed comparison, async-first | ✅ |
-| **Security** | No credentials, no PII, no file access | ✅ |
-| **Observability** | Structured log schema with 5 mandatory fields | ✅ |
-| **Observability** | 4 metrics defined | ✅ |
-| **Performance** | P50/P99 targets for all operations | ✅ |
-| **Scalability** | Stateless; unlimited parallel | ✅ |
-| **Compliance** | All skill-design-guide.md sections mapped with evidence | ✅ |
+| **Functionality** | Framework selection (5 options with criteria) | âœ… |
+| **Functionality** | Framework comparison (cold start, TS, throughput) | âœ… |
+| **Functionality** | Architecture routing (complexity + team) | âœ… |
+| **Functionality** | Async-first enforcement | âœ… |
+| **Functionality** | 7 reference files covering all domains | âœ… |
+| **Contracts** | Input/output/error schemas in pseudo-schema format | âœ… |
+| **Contracts** | Contract versioning with semver | âœ… |
+| **Failure** | Error taxonomy with 3 categorized codes | âœ… |
+| **Failure** | Zero internal retries | âœ… |
+| **Determinism** | Fixed framework routing, fixed comparison, async-first | âœ… |
+| **Security** | No credentials, no PII, no file access | âœ… |
+| **Observability** | Structured log schema with 5 mandatory fields | âœ… |
+| **Observability** | 4 metrics defined | âœ… |
+| **Performance** | P50/P99 targets for all operations | âœ… |
+| **Scalability** | Stateless; unlimited parallel | âœ… |
+| **Compliance** | All skill-design-guide.md sections mapped with evidence | âœ… |
 
 ---
 
-⚡ PikaKit v3.9.105
+âš¡ PikaKit v3.9.105

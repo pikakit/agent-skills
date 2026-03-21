@@ -1,6 +1,12 @@
-﻿# e2e-automation — Full Reference Guide
+﻿# e2e-automation
 
-> **Compiled from SKILL.md + rules/ for AI agent consumption.**
+**Version 1.0.0**
+Engineering
+March 2026
+
+> **Note:**
+> This document is for agents and LLMs to follow when working on e2e-automation domain.
+> Optimized for automation and consistency by AI-assisted workflows.
 
 ---
 
@@ -167,7 +173,18 @@ NAVIGATING â†’ ERROR        [target unreachable]  // terminal
 
 ---
 
-## Reference: aria-snapshot
+## Detailed Rules
+
+
+---
+
+### Rule: aria-snapshot
+
+---
+title: ARIA Snapshot Pattern
+impact: MEDIUM
+tags: e2e-automation
+---
 
 # ARIA Snapshot Pattern
 
@@ -347,7 +364,13 @@ test('user can submit form', async ({ page }) => {
 
 ---
 
-## Reference: engineering-spec
+### Rule: engineering-spec
+
+---
+title: E2E Automation â€” Engineering Specification
+impact: MEDIUM
+tags: e2e-automation
+---
 
 # E2E Automation â€” Engineering Specification
 

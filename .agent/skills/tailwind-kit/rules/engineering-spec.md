@@ -1,4 +1,10 @@
-﻿# Tailwind Kit â€” Engineering Specification
+﻿---
+title: Tailwind Kit â€” Engineering Specification
+impact: MEDIUM
+tags: tailwind-kit
+---
+
+# Tailwind Kit â€” Engineering Specification
 
 > Production-grade specification for Tailwind CSS v4 patterns at FAANG scale.
 

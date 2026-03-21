@@ -1,4 +1,10 @@
-# Offensive Security — Engineering Specification
+﻿---
+title: Offensive Security â€” Engineering Specification
+impact: MEDIUM
+tags: offensive-sec
+---
+
+# Offensive Security â€” Engineering Specification
 
 > Production-grade specification for red team tactics and adversary simulation at FAANG scale.
 
@@ -6,11 +12,11 @@
 
 ## 1. Overview
 
-Offensive Security provides structured attack methodology for authorized penetration testing and red team engagements: MITRE ATT&CK phase routing (13 phases), initial access vector selection (4 vectors), privilege escalation guidance (Windows + Linux), defense evasion techniques, Active Directory attacks, and ethical boundary enforcement. The skill operates as an **Expert (decision tree)** — it produces attack methodology, phase-specific tactics, and engagement guidance. It does not execute exploits, access systems, or perform unauthorized testing.
+Offensive Security provides structured attack methodology for authorized penetration testing and red team engagements: MITRE ATT&CK phase routing (13 phases), initial access vector selection (4 vectors), privilege escalation guidance (Windows + Linux), defense evasion techniques, Active Directory attacks, and ethical boundary enforcement. The skill operates as an **Expert (decision tree)** â€” it produces attack methodology, phase-specific tactics, and engagement guidance. It does not execute exploits, access systems, or perform unauthorized testing.
 
 **Contract Version:** 2.0.0
 **Backward Compatibility:** breaking (first hardened version)
-**Breaking Changes:** None — new spec for first hardening
+**Breaking Changes:** None â€” new spec for first hardening
 
 ---
 
@@ -154,7 +160,7 @@ Recoverable: boolean
 - Priv esc checks are fixed: Windows (3), Linux (3).
 - Defense evasion techniques are fixed: LOLBins, Obfuscation, Timestomping.
 - AD attacks are fixed: Kerberoasting, DCSync, Golden Ticket.
-- Ethical boundaries are always enforced; `authorized: false` → immediate rejection.
+- Ethical boundaries are always enforced; `authorized: false` â†’ immediate rejection.
 - Same phase context = same guidance output.
 
 #### What Agents May Assume
@@ -193,7 +199,7 @@ Recoverable: boolean
 3. Invoke attack-phase for each relevant MITRE ATT&CK phase
 4. Invoke initial-access for vector selection
 5. Invoke privesc for platform-specific escalation checks
-6. Execute engagement (caller's responsibility — outside this skill)
+6. Execute engagement (caller's responsibility â€” outside this skill)
 7. Invoke report-template for findings documentation
 ```
 
@@ -250,9 +256,9 @@ Authorization phase is mandatory. If `authorized: false`, no guidance is produce
 
 | Principle | Enforcement |
 |-----------|-------------|
-| MITRE ATT&CK 13 phases | Fixed: Recon → Initial Access → Execution → Persistence → Priv Esc → Defense Evasion → Cred Access → Discovery → Lateral → Collection → C2 → Exfil → Impact |
-| Authorization mandatory | `authorized: false` → immediate `ERR_NOT_AUTHORIZED` |
-| Scope required | Missing scope → `ERR_MISSING_SCOPE` |
+| MITRE ATT&CK 13 phases | Fixed: Recon â†’ Initial Access â†’ Execution â†’ Persistence â†’ Priv Esc â†’ Defense Evasion â†’ Cred Access â†’ Discovery â†’ Lateral â†’ Collection â†’ C2 â†’ Exfil â†’ Impact |
+| Authorization mandatory | `authorized: false` â†’ immediate `ERR_NOT_AUTHORIZED` |
+| Scope required | Missing scope â†’ `ERR_MISSING_SCOPE` |
 | 4 initial access vectors | Phishing, Public exploits, Valid credentials, Supply chain |
 | Platform-specific priv esc | Windows: 3 checks; Linux: 3 checks |
 | Ethical boundaries in every response | Always: stay in scope, minimize impact, report threats, document all |
@@ -404,7 +410,7 @@ All resources scoped to invocation. No persistent handles.
 | Phase guidance | < 2 ms | < 5 ms | 20 ms |
 | Privesc checklist | < 2 ms | < 5 ms | 20 ms |
 | Full guide | < 10 ms | < 30 ms | 50 ms |
-| Output size | ≤ 2,000 chars | ≤ 5,000 chars | 8,000 chars |
+| Output size | â‰¤ 2,000 chars | â‰¤ 5,000 chars | 8,000 chars |
 
 ---
 
@@ -424,16 +430,16 @@ All resources scoped to invocation. No persistent handles.
 
 | Requirement | Status | Evidence |
 |-------------|--------|----------|
-| YAML frontmatter complete | ✅ | name, description, metadata with category, version, triggers, coordinates_with, success_metrics |
-| SKILL.md < 200 lines | ✅ | Entry point under 200 lines |
-| Prerequisites documented | ✅ | Authorization + scope required |
-| When to Use section | ✅ | Situation-based routing table |
-| Core content matches skill type | ✅ | Expert type: attack phase decision trees |
-| Troubleshooting section | ✅ | Anti-patterns table |
-| Related section | ✅ | Cross-links to security-scanner, code-review |
-| Content Map for multi-file | ✅ | Link to engineering-spec.md |
-| Contract versioning | ✅ | contract_version, backward_compatibility, breaking_changes |
-| Compliance matrix structured | ✅ | This table with ✅/❌ + evidence |
+| YAML frontmatter complete | âœ… | name, description, metadata with category, version, triggers, coordinates_with, success_metrics |
+| SKILL.md < 200 lines | âœ… | Entry point under 200 lines |
+| Prerequisites documented | âœ… | Authorization + scope required |
+| When to Use section | âœ… | Situation-based routing table |
+| Core content matches skill type | âœ… | Expert type: attack phase decision trees |
+| Troubleshooting section | âœ… | Anti-patterns table |
+| Related section | âœ… | Cross-links to security-scanner, code-review |
+| Content Map for multi-file | âœ… | Link to engineering-spec.md |
+| Contract versioning | âœ… | contract_version, backward_compatibility, breaking_changes |
+| Compliance matrix structured | âœ… | This table with âœ…/âŒ + evidence |
 
 ---
 
@@ -441,24 +447,24 @@ All resources scoped to invocation. No persistent handles.
 
 | Category | Check | Status |
 |----------|-------|--------|
-| **Functionality** | 13 MITRE ATT&CK phases with objectives | ✅ |
-| **Functionality** | 4 initial access vectors | ✅ |
-| **Functionality** | Priv esc checklists (Windows 3 + Linux 3) | ✅ |
-| **Functionality** | Defense evasion (3 techniques) | ✅ |
-| **Functionality** | AD attacks (3 paths) | ✅ |
-| **Functionality** | Ethical boundaries enforced | ✅ |
-| **Contracts** | Input/output/error schemas in pseudo-schema format | ✅ |
-| **Contracts** | Contract versioning with semver | ✅ |
-| **Failure** | Error taxonomy with 5 categorized codes | ✅ |
-| **Failure** | Authorization hard block | ✅ |
-| **Determinism** | Fixed phases, vectors, checks, techniques | ✅ |
-| **Security** | Scope logged as hash; no plaintext | ✅ |
-| **Security** | No exploit execution; guidance only | ✅ |
-| **Observability** | Structured log schema with 5 mandatory fields | ✅ |
-| **Observability** | 4 metrics defined | ✅ |
-| **Performance** | P50/P99 targets for all operations | ✅ |
-| **Compliance** | All skill-design-guide.md sections mapped with evidence | ✅ |
+| **Functionality** | 13 MITRE ATT&CK phases with objectives | âœ… |
+| **Functionality** | 4 initial access vectors | âœ… |
+| **Functionality** | Priv esc checklists (Windows 3 + Linux 3) | âœ… |
+| **Functionality** | Defense evasion (3 techniques) | âœ… |
+| **Functionality** | AD attacks (3 paths) | âœ… |
+| **Functionality** | Ethical boundaries enforced | âœ… |
+| **Contracts** | Input/output/error schemas in pseudo-schema format | âœ… |
+| **Contracts** | Contract versioning with semver | âœ… |
+| **Failure** | Error taxonomy with 5 categorized codes | âœ… |
+| **Failure** | Authorization hard block | âœ… |
+| **Determinism** | Fixed phases, vectors, checks, techniques | âœ… |
+| **Security** | Scope logged as hash; no plaintext | âœ… |
+| **Security** | No exploit execution; guidance only | âœ… |
+| **Observability** | Structured log schema with 5 mandatory fields | âœ… |
+| **Observability** | 4 metrics defined | âœ… |
+| **Performance** | P50/P99 targets for all operations | âœ… |
+| **Compliance** | All skill-design-guide.md sections mapped with evidence | âœ… |
 
 ---
 
-⚡ PikaKit v3.9.105
+âš¡ PikaKit v3.9.105

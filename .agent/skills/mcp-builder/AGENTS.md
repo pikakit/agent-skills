@@ -1,6 +1,12 @@
-﻿# mcp-builder — Full Reference Guide
+﻿# mcp-builder
 
-> **Compiled from SKILL.md + rules/ for AI agent consumption.**
+**Version 1.0.0**
+Engineering
+March 2026
+
+> **Note:**
+> This document is for agents and LLMs to follow when working on mcp-builder domain.
+> Optimized for automation and consistency by AI-assisted workflows.
 
 ---
 
@@ -159,7 +165,12 @@ Create 10 test questions that are:
 
 ---
 
-## Reference: best-practices
+## Detailed Rules
+
+
+---
+
+### Rule: best-practices
 
 ---
 name: mcp-best-practices
@@ -317,7 +328,7 @@ async def list_items(page: int = 1, per_page: int = 20) -> str:
 
 ---
 
-## Reference: design-principles
+### Rule: design-principles
 
 ---
 name: mcp-design-principles
@@ -423,7 +434,7 @@ my-mcp-server/
 
 ---
 
-## Reference: engineering-spec
+### Rule: engineering-spec
 
 ---
 name: mcp-builder-engineering-spec
@@ -892,7 +903,7 @@ All resources scoped to invocation. No persistent handles.
 
 ---
 
-## Reference: evaluation
+### Rule: evaluation
 
 ---
 name: mcp-evaluation
@@ -996,7 +1007,7 @@ This requires:
 
 ---
 
-## Reference: python-implementation
+### Rule: python-implementation
 
 ---
 name: mcp-python-implementation
@@ -1246,7 +1257,7 @@ npx @modelcontextprotocol/inspector python server.py
 
 ---
 
-## Reference: quickstart
+### Rule: quickstart
 
 ---
 name: mcp-quickstart
@@ -1358,7 +1369,7 @@ npx ts-node server.ts
 
 ---
 
-## Reference: typescript-implementation
+### Rule: typescript-implementation
 
 ---
 name: mcp-typescript-implementation

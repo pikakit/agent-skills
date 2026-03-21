@@ -1,4 +1,10 @@
-# Debug Pro — Engineering Specification
+﻿---
+title: Debug Pro â€” Engineering Specification
+impact: MEDIUM
+tags: debug-pro
+---
+
+# Debug Pro â€” Engineering Specification
 
 > Production-grade specification for systematic debugging methodology at FAANG scale.
 
@@ -6,13 +12,13 @@
 
 ## 1. Overview
 
-Debug Pro provides a deterministic 4-phase debugging methodology: Reproduce, Isolate, Understand (5 Whys), Fix & Verify. The skill produces debugging strategies, root cause analysis frameworks, isolation technique recommendations, and verification checklists. It operates as an expert knowledge base — it does not execute code, run debuggers, or modify source files.
+Debug Pro provides a deterministic 4-phase debugging methodology: Reproduce, Isolate, Understand (5 Whys), Fix & Verify. The skill produces debugging strategies, root cause analysis frameworks, isolation technique recommendations, and verification checklists. It operates as an expert knowledge base â€” it does not execute code, run debuggers, or modify source files.
 
 The skill includes 3 advanced frameworks: defense-in-depth analysis, root-cause tracing, and verification-before-completion.
 
 **Contract Version:** 2.0.0
 **Backward Compatibility:** breaking (first hardened version)
-**Breaking Changes:** None — new spec for first hardening
+**Breaking Changes:** None â€” new spec for first hardening
 
 ---
 
@@ -22,7 +28,7 @@ Debugging at scale faces four quantified problems:
 
 | Problem | Measurement | Impact |
 |---------|-------------|--------|
-| Random fix attempts | 55% of debugging sessions start with "try changing X" | 3–5x longer resolution time |
+| Random fix attempts | 55% of debugging sessions start with "try changing X" | 3â€“5x longer resolution time |
 | Surface-level fixes | 40% of fixes address symptoms, not root cause | Bug recurrence within 30 days |
 | No reproduction step | 30% of fixes applied without consistent reproduction | Unverifiable fix correctness |
 | Missing regression tests | 45% of fixes lack regression tests | Same bug reintroduced later |
@@ -59,7 +65,7 @@ Debug Pro eliminates these by enforcing a strict 4-phase methodology with mandat
 
 | Boundary | Owned | Not Owned |
 |----------|-------|-----------|
-| 4-phase methodology (Reproduce→Isolate→Understand→Fix&Verify) | Phase definitions, checklists, transitions | Debugger tool execution |
+| 4-phase methodology (Reproduceâ†’Isolateâ†’Understandâ†’Fix&Verify) | Phase definitions, checklists, transitions | Debugger tool execution |
 | 5 Whys root cause analysis | Framework and validation criteria | Automated root cause detection |
 | Isolation techniques (git bisect, blame, log) | Technique selection | Git command execution |
 | Verification checklist (4 items) | Checklist definition | Test execution |
@@ -148,7 +154,7 @@ Recoverable: boolean
 
 #### Deterministic Guarantees
 
-- Phase transitions follow strict order: Reproduce → Isolate → Understand → Fix&Verify.
+- Phase transitions follow strict order: Reproduce â†’ Isolate â†’ Understand â†’ Fix&Verify.
 - A phase cannot be skipped; prerequisites must be met.
 - 5 Whys always produces exactly 5 levels.
 - Root cause validity: must explain ALL reported symptoms.
@@ -200,13 +206,13 @@ Recoverable: boolean
 #### State Transitions
 
 ```
-REPRODUCE → ISOLATE     [reproduction checklist complete]
-ISOLATE → UNDERSTAND    [source narrowed to specific component]
-UNDERSTAND → FIX_VERIFY [root cause identified, explains all symptoms]
-FIX_VERIFY → RESOLVED   [verification checklist passed, regression test added]  // terminal state
-FIX_VERIFY → REPRODUCE  [verification failed, new symptoms observed]
-UNDERSTAND → ISOLATE    [root cause hypothesis disproven]
-ANY_PHASE → REPRODUCE   [red flag detected]
+REPRODUCE â†’ ISOLATE     [reproduction checklist complete]
+ISOLATE â†’ UNDERSTAND    [source narrowed to specific component]
+UNDERSTAND â†’ FIX_VERIFY [root cause identified, explains all symptoms]
+FIX_VERIFY â†’ RESOLVED   [verification checklist passed, regression test added]  // terminal state
+FIX_VERIFY â†’ REPRODUCE  [verification failed, new symptoms observed]
+UNDERSTAND â†’ ISOLATE    [root cause hypothesis disproven]
+ANY_PHASE â†’ REPRODUCE   [red flag detected]
 ```
 
 #### Execution Guarantees
@@ -227,7 +233,7 @@ ANY_PHASE → REPRODUCE   [red flag detected]
 #### Retry Boundaries
 
 - Zero internal retries. Deterministic output.
-- Phase looping (Understand → Isolate → Understand) is explicit, not a retry.
+- Phase looping (Understand â†’ Isolate â†’ Understand) is explicit, not a retry.
 
 #### Isolation Model
 
@@ -264,7 +270,7 @@ All phases synchronous. No async pipeline.
 
 | Principle | Enforcement |
 |-----------|-------------|
-| Fixed phase order | Reproduce → Isolate → Understand → Fix&Verify |
+| Fixed phase order | Reproduce â†’ Isolate â†’ Understand â†’ Fix&Verify |
 | Fixed phase checklists | 4 items per phase (Reproduce: 4, Fix&Verify: 4) |
 | Fixed 5 Whys depth | Exactly 5 levels, no more, no less |
 | Fixed root cause criteria | Must explain ALL symptoms; "it just happens" is invalid |
@@ -417,7 +423,7 @@ All resources scoped to invocation. No persistent handles.
 | Phase guidance | < 5 ms | < 15 ms | 50 ms |
 | Full methodology | < 10 ms | < 30 ms | 100 ms |
 | Red flag check | < 2 ms | < 5 ms | 20 ms |
-| Output size | ≤ 500 chars | ≤ 2,000 chars | 5,000 chars |
+| Output size | â‰¤ 500 chars | â‰¤ 2,000 chars | 5,000 chars |
 
 ---
 
@@ -437,16 +443,16 @@ All resources scoped to invocation. No persistent handles.
 
 | Requirement | Status | Evidence |
 |-------------|--------|----------|
-| YAML frontmatter complete | ✅ | name, description, metadata with category, version, triggers, coordinates_with, success_metrics |
-| SKILL.md < 200 lines | ✅ | Entry point under 200 lines |
-| Prerequisites documented | ✅ | No external dependencies |
-| When to Use section | ✅ | Situation-based decision table |
-| Core content matches skill type | ✅ | Expert type: 4-phase methodology, decision trees |
-| Troubleshooting section | ✅ | Anti-patterns + red flags tables |
-| Related section | ✅ | Cross-links to test-architect, code-review, /diagnose |
-| Content Map for multi-file | ✅ | Links to 3 framework directories + engineering-spec.md |
-| Contract versioning | ✅ | contract_version, backward_compatibility, breaking_changes |
-| Compliance matrix structured | ✅ | This table with ✅/❌ + evidence |
+| YAML frontmatter complete | âœ… | name, description, metadata with category, version, triggers, coordinates_with, success_metrics |
+| SKILL.md < 200 lines | âœ… | Entry point under 200 lines |
+| Prerequisites documented | âœ… | No external dependencies |
+| When to Use section | âœ… | Situation-based decision table |
+| Core content matches skill type | âœ… | Expert type: 4-phase methodology, decision trees |
+| Troubleshooting section | âœ… | Anti-patterns + red flags tables |
+| Related section | âœ… | Cross-links to test-architect, code-review, /diagnose |
+| Content Map for multi-file | âœ… | Links to 3 framework directories + engineering-spec.md |
+| Contract versioning | âœ… | contract_version, backward_compatibility, breaking_changes |
+| Compliance matrix structured | âœ… | This table with âœ…/âŒ + evidence |
 
 ---
 
@@ -454,25 +460,25 @@ All resources scoped to invocation. No persistent handles.
 
 | Category | Check | Status |
 |----------|-------|--------|
-| **Functionality** | 4-phase methodology (Reproduce→Isolate→Understand→Fix&Verify) | ✅ |
-| **Functionality** | 5 Whys root cause analysis (exactly 5 levels) | ✅ |
-| **Functionality** | 5 red flag patterns with deterministic detection | ✅ |
-| **Functionality** | 4-item verification checklist | ✅ |
-| **Functionality** | 3 advanced frameworks (defense-in-depth, root-cause tracing, verification) | ✅ |
-| **Contracts** | Input/output/error schemas in pseudo-schema format | ✅ |
-| **Contracts** | Contract versioning with semver | ✅ |
-| **Contracts** | Phase state transitions with explicit arrow notation | ✅ |
-| **Failure** | Error taxonomy with 6 categorized codes | ✅ |
-| **Failure** | Phase skip blocked by ERR_PHASE_SKIP | ✅ |
-| **Failure** | Zero internal retries | ✅ |
-| **Determinism** | Fixed phase order, fixed checklists, fixed 5 Whys depth | ✅ |
-| **Security** | No code execution; no debugger invocation | ✅ |
-| **Observability** | Structured log schema with 5 mandatory fields + 5 log points | ✅ |
-| **Observability** | 5 metrics defined | ✅ |
-| **Performance** | P50/P99 targets for all operations | ✅ |
-| **Scalability** | Stateless; unlimited parallel invocations | ✅ |
-| **Compliance** | All skill-design-guide.md sections mapped with evidence | ✅ |
+| **Functionality** | 4-phase methodology (Reproduceâ†’Isolateâ†’Understandâ†’Fix&Verify) | âœ… |
+| **Functionality** | 5 Whys root cause analysis (exactly 5 levels) | âœ… |
+| **Functionality** | 5 red flag patterns with deterministic detection | âœ… |
+| **Functionality** | 4-item verification checklist | âœ… |
+| **Functionality** | 3 advanced frameworks (defense-in-depth, root-cause tracing, verification) | âœ… |
+| **Contracts** | Input/output/error schemas in pseudo-schema format | âœ… |
+| **Contracts** | Contract versioning with semver | âœ… |
+| **Contracts** | Phase state transitions with explicit arrow notation | âœ… |
+| **Failure** | Error taxonomy with 6 categorized codes | âœ… |
+| **Failure** | Phase skip blocked by ERR_PHASE_SKIP | âœ… |
+| **Failure** | Zero internal retries | âœ… |
+| **Determinism** | Fixed phase order, fixed checklists, fixed 5 Whys depth | âœ… |
+| **Security** | No code execution; no debugger invocation | âœ… |
+| **Observability** | Structured log schema with 5 mandatory fields + 5 log points | âœ… |
+| **Observability** | 5 metrics defined | âœ… |
+| **Performance** | P50/P99 targets for all operations | âœ… |
+| **Scalability** | Stateless; unlimited parallel invocations | âœ… |
+| **Compliance** | All skill-design-guide.md sections mapped with evidence | âœ… |
 
 ---
 
-⚡ PikaKit v3.9.105
+âš¡ PikaKit v3.9.105

@@ -1,6 +1,12 @@
-﻿# design-system — Full Reference Guide
+﻿# design-system
 
-> **Compiled from SKILL.md + rules/ for AI agent consumption.**
+**Version 1.0.0**
+Engineering
+March 2026
+
+> **Note:**
+> This document is for agents and LLMs to follow when working on design-system domain.
+> Optimized for automation and consistency by AI-assisted workflows.
 
 ---
 
@@ -155,7 +161,704 @@ node .agent/skills/studio/scripts-js/search.js "<query>" --domain style
 
 ---
 
-## Reference: color-systems
+## Detailed Rules
+
+
+---
+
+### Rule: animation-guide
+
+---
+name: animation-guide
+description: Animation principles â€” duration psychology, easing, micro-interactions, loading states, scroll animations
+---
+
+# Animation Guidelines Reference
+
+> Animation principles and timing psychology - learn to decide, not copy.
+> **No fixed durations to memorize - understand what affects timing.**
+
+---
+
+## 1. Duration Principles
+
+### What Affects Timing
+
+```
+Factors that determine animation speed:
+â”œâ”€â”€ DISTANCE: Further travel = longer duration
+â”œâ”€â”€ SIZE: Larger elements = slower animations
+â”œâ”€â”€ COMPLEXITY: Complex = slower to process
+â”œâ”€â”€ IMPORTANCE: Critical actions = clear feedback
+â””â”€â”€ CONTEXT: Urgent = fast, luxurious = slow
+```
+
+### Duration Ranges by Purpose
+
+| Purpose | Range | Why |
+|---------|-------|-----|
+| Instant feedback | 50-100ms | Below perception threshold |
+| Micro-interactions | 100-200ms | Quick but noticeable |
+| Standard transitions | 200-300ms | Comfortable pace |
+| Complex animations | 300-500ms | Time to follow |
+| Page transitions | 400-600ms | Smooth handoff |
+| **Wow/Premium Effects** | 800ms+ | Dramatic, organic spring-based, layered |
+
+### Choosing Duration
+
+Ask yourself:
+1. How far is the element moving?
+2. How important is it to notice this change?
+3. Is the user waiting, or is this background?
+
+---
+
+## 2. Easing Principles
+
+### What Easing Does
+
+```
+Easing = how speed changes over time
+â”œâ”€â”€ Linear: constant speed (mechanical, robotic)
+â”œâ”€â”€ Ease-out: fast start, slow end (natural entry)
+â”œâ”€â”€ Ease-in: slow start, fast end (natural exit)
+â””â”€â”€ Ease-in-out: slow both ends (smooth, deliberate)
+```
+
+### When to Use Each
+
+| Easing | Best For | Feels Like |
+|--------|----------|------------|
+| **Ease-out** | Elements entering | Arriving, settling |
+| **Ease-in** | Elements leaving | Departing, exiting |
+| **Ease-in-out** | Emphasis, loops | Deliberate, smooth |
+| **Linear** | Continuous motion | Mechanical, constant |
+| **Bounce/Elastic** | Playful UI | Fun, energetic |
+
+### The Pattern
+
+```css
+/* Entering view = ease-out (decelerate) */
+.enter {
+  animation-timing-function: ease-out;
+}
+
+/* Leaving view = ease-in (accelerate) */
+.exit {
+  animation-timing-function: ease-in;
+}
+
+/* Continuous = ease-in-out */
+.continuous {
+  animation-timing-function: ease-in-out;
+}
+```
+
+---
+
+## 3. Micro-Interaction Principles
+
+### What Makes Good Micro-Interactions
+
+```
+Purpose of micro-interactions:
+â”œâ”€â”€ FEEDBACK: Confirm the action happened
+â”œâ”€â”€ GUIDANCE: Show what's possible
+â”œâ”€â”€ STATUS: Indicate current state
+â””â”€â”€ DELIGHT: Small moments of joy
+```
+
+### Button States
+
+```
+Hover â†’ slight visual change (lift, color, scale)
+Active â†’ pressed feeling (scale down, shadow change)
+Focus â†’ clear indicator (outline, ring)
+Loading â†’ progress indicator (spinner, skeleton)
+Success â†’ confirmation (check, color)
+```
+
+### Principles
+
+1. **Respond immediately** (under 100ms perception)
+2. **Match the action** (press = `scale(0.95)`, hover = `translateY(-4px) + glow`)
+3. **Be bold but smooth** (Usta iÅŸi hissettir)
+4. **Be consistent** (same actions = same feedback)
+
+---
+
+## 4. Loading States Principles
+
+### Types by Context
+
+| Situation | Approach |
+|-----------|----------|
+| Quick load (<1s) | No indicator needed |
+| Medium (1-3s) | Spinner or simple animation |
+| Long (3s+) | Progress bar or skeleton |
+| Unknown duration | Indeterminate indicator |
+
+### Skeleton Screens
+
+```
+Purpose: Reduce perceived wait time
+â”œâ”€â”€ Show layout shape immediately
+â”œâ”€â”€ Animate subtly (shimmer, pulse)
+â”œâ”€â”€ Replace with content when ready
+â””â”€â”€ Feels faster than spinner
+```
+
+### Progress Indicators
+
+```
+When to show progress:
+â”œâ”€â”€ User-initiated action
+â”œâ”€â”€ File uploads/downloads
+â”œâ”€â”€ Multi-step processes
+â””â”€â”€ Long operations
+
+When NOT needed:
+â”œâ”€â”€ Very quick operations
+â”œâ”€â”€ Background tasks
+â””â”€â”€ Initial page loads (skeleton better)
+```
+
+---
+
+## 5. Page Transitions Principles
+
+### Transition Strategy
+
+```
+Simple rule: exit fast, enter slower
+â”œâ”€â”€ Outgoing content fades quickly
+â”œâ”€â”€ Incoming content animates in
+â””â”€â”€ Avoids "everything moving at once"
+```
+
+### Common Patterns
+
+| Pattern | When to Use |
+|---------|-------------|
+| **Fade** | Safe default, works everywhere |
+| **Slide** | Sequential navigation (prev/next) |
+| **Scale** | Opening/closing modals |
+| **Shared element** | Maintaining visual continuity |
+
+### Direction Matching
+
+```
+Navigation direction = animation direction
+â”œâ”€â”€ Forward â†’ slide from right
+â”œâ”€â”€ Backward â†’ slide from left
+â”œâ”€â”€ Deeper â†’ scale up from center
+â”œâ”€â”€ Back up â†’ scale down
+```
+
+---
+
+## 6. Scroll Animation Principles
+
+### Progressive Reveal
+
+```
+Content appears as user scrolls:
+â”œâ”€â”€ Reduces initial cognitive load
+â”œâ”€â”€ Rewards exploration
+â”œâ”€â”€ Must not feel sluggish
+â””â”€â”€ Option to disable (accessibility)
+```
+
+### Trigger Points
+
+| When to Trigger | Effect |
+|-----------------|--------|
+| Just entering viewport | Standard reveal |
+| Centered in viewport | For emphasis |
+| Partially visible | Earlier reveal |
+| Fully visible | Late trigger |
+
+### Animation Properties
+
+- Fade in (opacity)
+- Slide up (transform)
+- Scale (transform)
+- Combination of above
+
+### Performance
+
+- Use Intersection Observer
+- Animate only transform/opacity
+- Reduce on mobile if needed
+
+---
+
+## 7. Hover Effects Principles
+
+### Matching Effect to Action
+
+| Element | Effect | Intent |
+|---------|--------|--------|
+| **Clickable card** | Lift + shadow | "This is interactive" |
+| **Button** | Color/brightness change | "Press me" |
+| **Image** | Zoom/scale | "View closer" |
+| **Link** | Underline/color | "Navigate here" |
+
+### Principles
+
+1. **Signal interactivity** - hover shows it's clickable
+2. **Don't overdo it** - subtle changes work
+3. **Match importance** - bigger change = more important
+4. **Touch alternatives** - hover doesn't work on mobile
+
+---
+
+## 8. Feedback Animation Principles
+
+### Success States
+
+```
+Celebrate appropriately:
+â”œâ”€â”€ Minor action â†’ subtle check/color
+â”œâ”€â”€ Major action â†’ more pronounced animation
+â”œâ”€â”€ Completion â†’ satisfying animation
+â””â”€â”€ Match brand personality
+```
+
+### Error States
+
+```
+Draw attention without panic:
+â”œâ”€â”€ Color change (semantic red)
+â”œâ”€â”€ Shake animation (brief!)
+â”œâ”€â”€ Focus on error field
+â””â”€â”€ Clear messaging
+```
+
+### Timing
+
+- Success: slightly longer (enjoy the moment)
+- Error: quick (don't delay action)
+- Loading: continuous until complete
+
+---
+
+## 9. Performance Principles
+
+### What's Cheap to Animate
+
+```
+GPU-accelerated (FAST):
+â”œâ”€â”€ transform: translate, scale, rotate
+â””â”€â”€ opacity: 0 to 1
+
+CPU-intensive (SLOW):
+â”œâ”€â”€ width, height
+â”œâ”€â”€ top, left, right, bottom
+â”œâ”€â”€ margin, padding
+â”œâ”€â”€ border-radius changes
+â””â”€â”€ box-shadow changes
+```
+
+### Optimization Strategies
+
+1. **Animate transform/opacity** whenever possible
+2. **Avoid layout triggers** (size/position changes)
+3. **Use will-change sparingly** (hints to browser)
+4. **Test on low-end devices** (not just dev machine)
+
+### Respecting User Preferences
+
+```css
+@media (prefers-reduced-motion: reduce) {
+  /* Honor this preference */
+  /* Essential animations only */
+  /* Reduce or remove decorative motion */
+}
+```
+
+---
+
+## 10. Animation Decision Checklist
+
+Before adding animation:
+
+- [ ] **Is there a purpose?** (feedback/guidance/delight)
+- [ ] **Is timing appropriate?** (not too fast/slow)
+- [ ] **Did you pick correct easing?** (enter/exit/emphasis)
+- [ ] **Is it performant?** (transform/opacity only)
+- [ ] **Tested reduced motion?** (accessibility)
+- [ ] **Consistent with other animations?** (same timing feel)
+- [ ] **Not your default settings?** (variety check)
+- [ ] **Asked user about style if unclear?**
+
+### Anti-Patterns
+
+- âŒ Same timing values every project
+- âŒ Animation for animation's sake
+- âŒ Ignoring reduced-motion preference
+- âŒ Animating expensive properties
+- âŒ Too many things animating at once
+- âŒ Delays that frustrate users
+
+---
+
+> **Remember**: Animation is communication. Every motion should have meaning and serve the user experience.
+
+---
+
+âš¡ PikaKit v3.9.105
+
+---
+
+## ðŸ”— Related
+
+| File | When to Read |
+|------|-------------|
+| [motion-graphics.md](motion-graphics.md) | Advanced Lottie, GSAP, particle effects |
+| [visual-effects.md](visual-effects.md) | CSS effects to animate |
+| [ux-psychology.md](ux-psychology.md) | Feedback psychology for micro-interactions |
+| [../SKILL.md](../SKILL.md) | Animation categories quick reference |
+
+---
+
+### Rule: color-system
+
+---
+name: color-system
+description: Color theory, 60-30-10 rule, HSL palette generation, dark mode, WCAG accessibility, Purple Ban
+---
+
+# Color System Reference
+
+> Color theory principles, selection process, and decision-making guidelines.
+> **No memorized hex codes - learn to THINK about color.**
+
+---
+
+## 1. Color Theory Fundamentals
+
+### The Color Wheel
+
+```
+                    YELLOW
+                      â”‚
+           Yellow-    â”‚    Yellow-
+           Green      â”‚    Orange
+              â•²       â”‚       â•±
+               â•²      â”‚      â•±
+    GREEN â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ â— â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ ORANGE
+               â•±      â”‚      â•²
+              â•±       â”‚       â•²
+           Blue-      â”‚    Red-
+           Green      â”‚    Orange
+                      â”‚
+                     RED
+                      â”‚
+                   PURPLE
+                  â•±       â•²
+             Blue-         Red-
+             Purple        Purple
+                  â•²       â•±
+                    BLUE
+```
+
+### Color Relationships
+
+| Scheme | How to Create | When to Use |
+|--------|---------------|-------------|
+| **Monochromatic** | Pick ONE hue, vary only lightness/saturation | Minimal, professional, cohesive |
+| **Analogous** | Pick 2-3 ADJACENT hues on wheel | Harmonious, calm, nature-inspired |
+| **Complementary** | Pick OPPOSITE hues on wheel | High contrast, vibrant, attention |
+| **Split-Complementary** | Base + 2 colors adjacent to complement | Dynamic but balanced |
+| **Triadic** | 3 hues EQUIDISTANT on wheel | Vibrant, playful, creative |
+
+### How to Choose a Scheme:
+1. **What's the project mood?** Calm â†’ Analogous. Bold â†’ Complementary.
+2. **How many colors needed?** Minimal â†’ Monochromatic. Complex â†’ Triadic.
+3. **Who's the audience?** Conservative â†’ Monochromatic. Young â†’ Triadic.
+
+---
+
+## 2. The 60-30-10 Rule
+
+### Distribution Principle
+```
+â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
+â”‚                                                 â”‚
+â”‚     60% PRIMARY (Background, large areas)       â”‚
+â”‚     â†’ Should be neutral or calming              â”‚
+â”‚     â†’ Carries the overall tone                  â”‚
+â”‚                                                 â”‚
+â”œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¬â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¤
+â”‚                                    â”‚            â”‚
+â”‚   30% SECONDARY                    â”‚ 10% ACCENT â”‚
+â”‚   (Cards, sections, headers)       â”‚ (CTAs,     â”‚
+â”‚   â†’ Supports without dominating    â”‚ highlights)â”‚
+â”‚                                    â”‚ â†’ Draws    â”‚
+â”‚                                    â”‚   attentionâ”‚
+â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”´â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
+```
+
+### Implementation Pattern
+```css
+:root {
+  /* 60% - Pick based on light/dark mode and mood */
+  --color-bg: /* neutral: white, off-white, or dark gray */
+  --color-surface: /* slightly different from bg */
+  
+  /* 30% - Pick based on brand or context */
+  --color-secondary: /* muted version of primary or neutral */
+  
+  /* 10% - Pick based on desired action/emotion */
+  --color-accent: /* vibrant, attention-grabbing */
+}
+```
+
+---
+
+## 3. Color Psychology - Meaning & Selection
+
+### How to Choose Based on Context
+
+| If Project Is... | Consider These Hues | Why |
+|------------------|---------------------|-----|
+| **Finance, Tech, Healthcare** | Blues, Teals | Trust, stability, calm |
+| **Eco, Wellness, Nature** | Greens, Earth tones | Growth, health, organic |
+| **Food, Energy, Youth** | Orange, Yellow, Warm | Appetite, excitement, warmth |
+| **Luxury, Beauty, Creative** | Deep Teal, Gold, Black | Sophistication, premium |
+| **Urgency, Sales, Alerts** | Red, Orange | Action, attention, passion |
+
+### Emotional Associations (For Decision Making)
+
+| Hue Family | Positive Associations | Cautions |
+|------------|----------------------|----------|
+| **Blue** | Trust, calm, professional | Can feel cold, corporate |
+| **Green** | Growth, nature, success | Can feel boring if overused |
+| **Red** | Passion, urgency, energy | High arousal, use sparingly |
+| **Orange** | Warmth, friendly, creative | Can feel cheap if saturated |
+| **Purple** | âš ï¸ **BANNED** - AI overuses this! | Use Deep Teal/Maroon/Emerald instead |
+| **Yellow** | Optimism, attention, happy | Hard to read, use as accent |
+| **Black** | Elegance, power, modern | Can feel heavy |
+| **White** | Clean, minimal, open | Can feel sterile |
+
+### Selection Process:
+1. **What industry?** â†’ Narrow to 2-3 hue families
+2. **What emotion?** â†’ Pick primary hue
+3. **What contrast?** â†’ Decide light vs dark mode
+4. **ASK USER** â†’ Confirm before proceeding
+
+---
+
+## 4. Palette Generation Principles
+
+### From a Single Color (HSL Method)
+
+Instead of memorizing hex codes, learn to **manipulate HSL**:
+
+```
+HSL = Hue, Saturation, Lightness
+
+Hue (0-360): The color family
+  0/360 = Red
+  60 = Yellow
+  120 = Green
+  180 = Cyan
+  240 = Blue
+  300 = Purple
+
+Saturation (0-100%): Color intensity
+  Low = Muted, sophisticated
+  High = Vibrant, energetic
+
+Lightness (0-100%): Brightness
+  0% = Black
+  50% = Pure color
+  100% = White
+```
+
+### Generating a Full Palette
+
+Given ANY base color, create a scale:
+
+```
+Lightness Scale:
+  50  (lightest) â†’ L: 97%
+  100            â†’ L: 94%
+  200            â†’ L: 86%
+  300            â†’ L: 74%
+  400            â†’ L: 66%
+  500 (base)     â†’ L: 50-60%
+  600            â†’ L: 48%
+  700            â†’ L: 38%
+  800            â†’ L: 30%
+  900 (darkest)  â†’ L: 20%
+```
+
+### Saturation Adjustments
+
+| Context | Saturation Level |
+|---------|-----------------|
+| **Professional/Corporate** | Lower (40-60%) |
+| **Playful/Youth** | Higher (70-90%) |
+| **Dark Mode** | Reduce by 10-20% |
+| **Accessibility** | Ensure contrast, may need adjustment |
+
+---
+
+## 5. Context-Based Selection Guide
+
+### Instead of Copying Palettes, Follow This Process:
+
+**Step 1: Identify the Context**
+```
+What type of project?
+â”œâ”€â”€ E-commerce â†’ Need trust + urgency balance
+â”œâ”€â”€ SaaS/Dashboard â†’ Need low-fatigue, data focus
+â”œâ”€â”€ Health/Wellness â†’ Need calming, natural feel
+â”œâ”€â”€ Luxury/Premium â†’ Need understated elegance
+â”œâ”€â”€ Creative/Portfolio â†’ Need personality, memorable
+â””â”€â”€ Other â†’ ASK the user
+```
+
+**Step 2: Select Primary Hue Family**
+```
+Based on context, pick ONE:
+- Blue family (trust)
+- Green family (growth)
+- Warm family (energy)
+- Neutral family (elegant)
+- OR ask user preference
+```
+
+**Step 3: Decide Light/Dark Mode**
+```
+Consider:
+- User preference?
+- Industry standard?
+- Content type? (text-heavy = light preferred)
+- Time of use? (evening app = dark option)
+```
+
+**Step 4: Generate Palette Using Principles**
+- Use HSL manipulation
+- Follow 60-30-10 rule
+- Check contrast (WCAG)
+- Test with actual content
+
+---
+
+## 6. Dark Mode Principles
+
+### Key Rules (No Fixed Codes)
+
+1. **Never pure black** â†’ Use very dark gray with slight hue
+2. **Never pure white text** â†’ Use 87-92% lightness
+3. **Reduce saturation** â†’ Vibrant colors strain eyes in dark mode
+4. **Elevation = brightness** â†’ Higher elements slightly lighter
+
+### Contrast in Dark Mode
+
+```
+Background layers (darker â†’ lighter as elevation increases):
+Layer 0 (base)    â†’ Darkest
+Layer 1 (cards)   â†’ Slightly lighter
+Layer 2 (modals)  â†’ Even lighter
+Layer 3 (popups)  â†’ Lightest dark
+```
+
+### Adapting Colors for Dark Mode
+
+| Light Mode | Dark Mode Adjustment |
+|------------|---------------------|
+| High saturation accent | Reduce saturation 10-20% |
+| Pure white background | Dark gray with brand hue tint |
+| Black text | Light gray (not pure white) |
+| Colorful backgrounds | Desaturated, darker versions |
+
+---
+
+## 7. Accessibility Guidelines
+
+### Contrast Requirements (WCAG)
+
+| Level | Normal Text | Large Text |
+|-------|-------------|------------|
+| AA (minimum) | 4.5:1 | 3:1 |
+| AAA (enhanced) | 7:1 | 4.5:1 |
+
+### How to Check Contrast
+
+1. **Convert colors to luminance**
+2. **Calculate ratio**: (lighter + 0.05) / (darker + 0.05)
+3. **Adjust until ratio meets requirement**
+
+### Safe Patterns
+
+| Use Case | Guideline |
+|----------|-----------|
+| **Text on light bg** | Use lightness 35% or less |
+| **Text on dark bg** | Use lightness 85% or more |
+| **Primary on white** | Ensure dark enough variant |
+| **Buttons** | High contrast between bg and text |
+
+---
+
+## 8. Color Selection Checklist
+
+Before finalizing any color choice, verify:
+
+- [ ] **Asked user preference?** (if not specified)
+- [ ] **Matches project context?** (industry, audience)
+- [ ] **Follows 60-30-10?** (proper distribution)
+- [ ] **WCAG compliant?** (contrast checked)
+- [ ] **Works in both modes?** (if dark mode needed)
+- [ ] **NOT your default/favorite?** (variety check)
+- [ ] **Different from last project?** (avoid repetition)
+
+---
+
+## 9. Anti-Patterns to Avoid
+
+### âŒ DON'T:
+- Copy the same hex codes every project
+- Default to purple/violet (AI tendency)
+- Default to dark mode + neon (AI tendency)
+- Use pure black (#000000) backgrounds
+- Use pure white (#FFFFFF) text on dark
+- Ignore user's industry context
+- Skip asking user preference
+
+### âœ… DO:
+- Generate fresh palette per project
+- Ask user about color preferences
+- Consider industry and audience
+- Use HSL for flexible manipulation
+- Test contrast and accessibility
+- Offer light AND dark options
+
+---
+
+> **Remember**: Colors are decisions, not defaults. Every project deserves thoughtful selection based on its unique context.
+
+---
+
+âš¡ PikaKit v3.9.105
+
+---
+
+## ðŸ”— Related
+
+| File | When to Read |
+|------|-------------|
+| [ux-psychology.md](ux-psychology.md) | Emotion-color mapping and trust signals |
+| [decision-trees.md](decision-trees.md) | Color selection decision tree |
+| [visual-effects.md](visual-effects.md) | Gradient and glow effects using palette |
+| [../SKILL.md](../SKILL.md) | Purple Ban enforcement |
+
+---
+
+### Rule: color-systems
 
 ---
 name: color-systems
@@ -289,7 +992,450 @@ Don't distribute color evenly. Choose:
 
 ---
 
-## Reference: design-extraction
+### Rule: decision-trees
+
+---
+name: decision-trees
+description: Design decision framework â€” master tree, audience routing, color/typography/layout selection, page templates
+---
+
+# Decision Trees & Context Templates
+
+> Context-based design THINKING, not fixed solutions.
+> **These are decision GUIDES, not copy-paste templates.**
+> **For UX psychology principles (Hick's, Fitts', etc.) see:** [ux-psychology.md](ux-psychology.md)
+
+---
+
+## âš ï¸ How to Use This File
+
+This file helps you DECIDE, not copy.
+
+- Decision trees â†’ Help you THINK through options
+- Templates â†’ Show STRUCTURE and PRINCIPLES, not exact values
+- **Always ask user preferences** before applying
+- **Generate fresh palettes** based on context, don't copy hex codes
+- **Apply UX laws** from ux-psychology.md to validate decisions
+
+---
+
+## 1. Master Decision Tree
+
+```
+â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
+â”‚                     WHAT ARE YOU BUILDING?                   â”‚
+â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
+                              â”‚
+        â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¼â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
+        â”‚                     â”‚                     â”‚
+        â–¼                     â–¼                     â–¼
+   E-COMMERCE            SaaS/APP              CONTENT
+   - Product pages       - Dashboard           - Blog
+   - Checkout            - Tools               - Portfolio
+   - Catalog             - Admin               - Landing
+        â”‚                     â”‚                     â”‚
+        â–¼                     â–¼                     â–¼
+   PRINCIPLES:           PRINCIPLES:           PRINCIPLES:
+   - Trust               - Functionality       - Storytelling
+   - Action              - Clarity             - Emotion
+   - Urgency             - Efficiency          - Creativity
+```
+
+---
+
+## 2. Audience Decision Tree
+
+### Who is your target user?
+
+```
+TARGET AUDIENCE
+      â”‚
+      â”œâ”€â”€ Gen Z (18-25)
+      â”‚   â”œâ”€â”€ Colors: Bold, vibrant, unexpected combinations
+      â”‚   â”œâ”€â”€ Type: Large, expressive, variable
+      â”‚   â”œâ”€â”€ Layout: Mobile-first, vertical, snackable
+      â”‚   â”œâ”€â”€ Effects: Motion, gamification, interactive
+      â”‚   â””â”€â”€ Approach: Authentic, fast, no corporate feel
+      â”‚
+      â”œâ”€â”€ Millennials (26-41)
+      â”‚   â”œâ”€â”€ Colors: Muted, earthy, sophisticated
+      â”‚   â”œâ”€â”€ Type: Clean, readable, functional
+      â”‚   â”œâ”€â”€ Layout: Responsive, card-based, organized
+      â”‚   â”œâ”€â”€ Effects: Subtle, purposeful only
+      â”‚   â””â”€â”€ Approach: Value-driven, transparent, sustainable
+      â”‚
+      â”œâ”€â”€ Gen X (42-57)
+      â”‚   â”œâ”€â”€ Colors: Professional, trusted, conservative
+      â”‚   â”œâ”€â”€ Type: Familiar, clear, no-nonsense
+      â”‚   â”œâ”€â”€ Layout: Traditional hierarchy, predictable
+      â”‚   â”œâ”€â”€ Effects: Minimal, functional feedback
+      â”‚   â””â”€â”€ Approach: Direct, efficient, reliable
+      â”‚
+      â”œâ”€â”€ Boomers (58+)
+      â”‚   â”œâ”€â”€ Colors: High contrast, simple, clear
+      â”‚   â”œâ”€â”€ Type: Large sizes, high readability
+      â”‚   â”œâ”€â”€ Layout: Simple, linear, uncluttered
+      â”‚   â”œâ”€â”€ Effects: None or very minimal
+      â”‚   â””â”€â”€ Approach: Clear, detailed, trustworthy
+      â”‚
+      â””â”€â”€ B2B / Enterprise
+          â”œâ”€â”€ Colors: Professional palette, muted
+          â”œâ”€â”€ Type: Clean, data-friendly, scannable
+          â”œâ”€â”€ Layout: Grid-based, organized, efficient
+          â”œâ”€â”€ Effects: Professional, subtle
+          â””â”€â”€ Approach: Expert, solution-focused, ROI-driven
+```
+
+---
+
+## 3. Color Selection Decision Tree
+
+### Instead of fixed hex codes, use this process:
+
+```
+WHAT EMOTION/ACTION DO YOU WANT?
+            â”‚
+            â”œâ”€â”€ Trust & Security
+            â”‚   â””â”€â”€ Consider: Blue family, professional neutrals
+            â”‚       â†’ ASK user for specific shade preference
+            â”‚
+            â”œâ”€â”€ Growth & Health
+            â”‚   â””â”€â”€ Consider: Green family, natural tones
+            â”‚       â†’ ASK user if eco/nature/wellness focus
+            â”‚
+            â”œâ”€â”€ Urgency & Action
+            â”‚   â””â”€â”€ Consider: Warm colors (orange/red) as ACCENTS
+            â”‚       â†’ Use sparingly, ASK if appropriate
+            â”‚
+            â”œâ”€â”€ Luxury & Premium
+            â”‚   â””â”€â”€ Consider: Deep darks, metallics, restrained palette
+            â”‚       â†’ ASK about brand positioning
+            â”‚
+            â”œâ”€â”€ Creative & Playful
+            â”‚   â””â”€â”€ Consider: Multi-color, unexpected combinations
+            â”‚       â†’ ASK about brand personality
+            â”‚
+            â””â”€â”€ Calm & Minimal
+                â””â”€â”€ Consider: Neutrals with single accent
+                    â†’ ASK what accent color fits brand
+```
+
+### The Process:
+1. Identify the emotion needed
+2. Narrow to color FAMILY
+3. ASK user for preference within family
+4. Generate fresh palette using HSL principles
+
+---
+
+## 4. Typography Decision Tree
+
+```
+WHAT'S THE CONTENT TYPE?
+          â”‚
+          â”œâ”€â”€ Data-Heavy (Dashboard, SaaS)
+          â”‚   â”œâ”€â”€ Style: Sans-serif, clear, compact
+          â”‚   â”œâ”€â”€ Scale: Tighter ratio (1.125-1.2)
+          â”‚   â””â”€â”€ Priority: Scannability, density
+          â”‚
+          â”œâ”€â”€ Editorial (Blog, Magazine)
+          â”‚   â”œâ”€â”€ Style: Serif heading + Sans body works well
+          â”‚   â”œâ”€â”€ Scale: More dramatic (1.333+)
+          â”‚   â””â”€â”€ Priority: Reading comfort, hierarchy
+          â”‚
+          â”œâ”€â”€ Modern Tech (Startup, SaaS Marketing)
+          â”‚   â”œâ”€â”€ Style: Geometric or humanist sans
+          â”‚   â”œâ”€â”€ Scale: Balanced (1.25)
+          â”‚   â””â”€â”€ Priority: Modern feel, clarity
+          â”‚
+          â”œâ”€â”€ Luxury (Fashion, Premium)
+          â”‚   â”œâ”€â”€ Style: Elegant serif or thin sans
+          â”‚   â”œâ”€â”€ Scale: Dramatic (1.5-1.618)
+          â”‚   â””â”€â”€ Priority: Sophistication, whitespace
+          â”‚
+          â””â”€â”€ Playful (Kids, Games, Casual)
+              â”œâ”€â”€ Style: Rounded, friendly fonts
+              â”œâ”€â”€ Scale: Varied, expressive
+              â””â”€â”€ Priority: Fun, approachable, readable
+```
+
+### Selection Process:
+1. Identify content type
+2. Choose style DIRECTION
+3. ASK user if they have brand fonts
+4. Select fonts that match direction
+
+---
+
+## 5. E-commerce Guidelines {#e-commerce}
+
+### Key Principles (Not Fixed Rules)
+- **Trust first:** How will you show security?
+- **Action-oriented:** Where are the CTAs?
+- **Scannable:** Can users compare quickly?
+
+### Color Thinking:
+```
+E-commerce typically needs:
+â”œâ”€â”€ Trust color (often blue family) â†’ ASK preference
+â”œâ”€â”€ Clean background (white/neutral) â†’ depends on brand
+â”œâ”€â”€ Action accent (for CTAs, sales) â†’ depends on urgency level
+â”œâ”€â”€ Success/error semantics â†’ standard conventions work
+â””â”€â”€ Brand integration â†’ ASK about existing colors
+```
+
+### Layout Principles:
+```
+â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
+â”‚  HEADER: Brand + Search + Cart                      â”‚
+â”‚  (Keep essential actions visible)                   â”‚
+â”œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¤
+â”‚  TRUST ZONE: Why trust this site?                   â”‚
+â”‚  (Shipping, returns, security - if applicable)      â”‚
+â”œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¤
+â”‚  HERO: Primary message or offer                     â”‚
+â”‚  (Clear CTA, single focus)                          â”‚
+â”œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¤
+â”‚  CATEGORIES: Easy navigation                        â”‚
+â”‚  (Visual, filterable, scannable)                    â”‚
+â”œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¤
+â”‚  PRODUCTS: Easy comparison                          â”‚
+â”‚  (Price, rating, quick actions visible)             â”‚
+â”œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¤
+â”‚  SOCIAL PROOF: Why others trust                     â”‚
+â”‚  (Reviews, testimonials - if available)             â”‚
+â”œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¤
+â”‚  FOOTER: All the details                            â”‚
+â”‚  (Policies, contact, trust badges)                  â”‚
+â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
+```
+
+### Psychology to Apply:
+- Hick's Law: Limit navigation choices
+- Fitts' Law: Size CTAs appropriately
+- Social proof: Show where relevant
+- Scarcity: Use honestly if at all
+
+---
+
+## 6. SaaS Dashboard Guidelines {#saas}
+
+### Key Principles
+- **Functional first:** Data clarity over decoration
+- **Calm UI:** Reduce cognitive load
+- **Consistent:** Predictable patterns
+
+### Color Thinking:
+```
+Dashboard typically needs:
+â”œâ”€â”€ Background: Light OR dark (ASK preference)
+â”œâ”€â”€ Surface: Slight contrast from background
+â”œâ”€â”€ Primary accent: For key actions
+â”œâ”€â”€ Data colors: Success/warning/danger semantics
+â””â”€â”€ Muted: For secondary information
+```
+
+### Layout Principles:
+```
+Consider these patterns (not mandated):
+
+OPTION A: Sidebar + Content
+â”œâ”€â”€ Fixed sidebar for navigation
+â””â”€â”€ Main area for content
+
+OPTION B: Top nav + Content
+â”œâ”€â”€ Horizontal navigation
+â””â”€â”€ More horizontal content space
+
+OPTION C: Collapsed + Expandable
+â”œâ”€â”€ Icon-only sidebar expands
+â””â”€â”€ Maximum content area
+
+â†’ ASK user about their navigation preference
+```
+
+### Psychology to Apply:
+- Hick's Law: Group navigation items
+- Miller's Law: Chunk information
+- Cognitive Load: Whitespace, consistency
+
+---
+
+## 7. Landing Page Guidelines {#landing-page}
+
+### Key Principles
+- **Hero-centric:** First impression matters most
+- **Single focus:** One primary CTA
+- **Emotional:** Connect before selling
+
+### Color Thinking:
+```
+Landing page typically needs:
+â”œâ”€â”€ Brand primary: Hero background or accent
+â”œâ”€â”€ Clean secondary: Most of page
+â”œâ”€â”€ CTA color: Stands out from everything
+â”œâ”€â”€ Supporting: For sections, testimonials
+â””â”€â”€ ASK about brand colors first!
+```
+
+### Structure Principles:
+```
+â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
+â”‚  Navigation: Minimal, CTA visible                   â”‚
+â”œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¤
+â”‚  HERO: Hook + Value + CTA                          â”‚
+â”‚  (Most important section, biggest impact)           â”‚
+â”œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¤
+â”‚  PROBLEM: What pain do they have?                   â”‚
+â”œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¤
+â”‚  SOLUTION: How you solve it                         â”‚
+â”œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¤
+â”‚  PROOF: Why believe you?                            â”‚
+â”‚  (Testimonials, logos, stats)                       â”‚
+â”œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¤
+â”‚  HOW: Simple explanation of process                 â”‚
+â”œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¤
+â”‚  PRICING: If applicable                             â”‚
+â”œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¤
+â”‚  FAQ: Address objections                            â”‚
+â”œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¤
+â”‚  FINAL CTA: Repeat main action                      â”‚
+â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
+```
+
+### Psychology to Apply:
+- Visceral: Beautiful hero impression
+- Serial Position: Key info top/bottom
+- Social Proof: Testimonials work
+
+---
+
+## 8. Portfolio Guidelines {#portfolio}
+
+### Key Principles
+- **Personality:** Show who you are
+- **Work-focused:** Let projects speak
+- **Memorable:** Stand out from templates
+
+### Color Thinking:
+```
+Portfolio is personal - many options:
+â”œâ”€â”€ Minimal: Neutrals + one signature accent
+â”œâ”€â”€ Bold: Unexpected color choices
+â”œâ”€â”€ Dark: Moody, artistic feel
+â”œâ”€â”€ Light: Clean, professional feel
+â””â”€â”€ ASK about personal brand identity!
+```
+
+### Structure Principles:
+```
+â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
+â”‚  Navigation: Unique to your personality             â”‚
+â”œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¤
+â”‚  INTRO: Who you are, what you do                   â”‚
+â”‚  (Make it memorable, not generic)                   â”‚
+â”œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¤
+â”‚  WORK: Featured projects                            â”‚
+â”‚  (Large, visual, interactive)                       â”‚
+â”œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¤
+â”‚  ABOUT: Personal story                              â”‚
+â”‚  (Creates connection)                               â”‚
+â”œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¤
+â”‚  CONTACT: Easy to reach                             â”‚
+â”‚  (Clear, direct)                                    â”‚
+â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
+```
+
+### Psychology to Apply:
+- Von Restorff: Be uniquely memorable
+- Reflective: Personal story creates connection
+- Emotional: Personality over professionalism
+
+---
+
+## 9. Pre-Design Checklists
+
+### Before Starting ANY Design
+
+- [ ] **Audience defined?** (who exactly)
+- [ ] **Primary goal identified?** (what action)
+- [ ] **Constraints known?** (time, brand, tech)
+- [ ] **Content available?** (or placeholders needed)
+- [ ] **User preferences asked?** (colors, style, layout)
+
+### Before Choosing Colors
+
+- [ ] **Asked user preference?**
+- [ ] **Considered context?** (industry, emotion)
+- [ ] **Different from your default?**
+- [ ] **Checked accessibility?**
+
+### Before Finalizing Layout
+
+- [ ] **Hierarchy clear?**
+- [ ] **Primary CTA obvious?**
+- [ ] **Mobile considered?**
+- [ ] **Content fits structure?**
+
+### Before Delivery
+
+- [ ] **Looks premium, not generic?**
+- [ ] **Would you be proud of this?**
+- [ ] **Different from last project?**
+
+---
+
+## 10. Complexity Estimation
+
+### Quick Projects (Hours)
+```
+Simple landing page
+Small portfolio
+Basic form
+Single component
+```
+â†’ Approach: Minimal decisions, focused execution
+
+### Medium Projects (Days)
+```
+Multi-page site
+Dashboard with modules
+E-commerce category
+Complex forms
+```
+â†’ Approach: Establish tokens, custom components
+
+### Large Projects (Weeks)
+```
+Full SaaS application
+E-commerce platform
+Custom design system
+Complex workflows
+```
+â†’ Approach: Full design system, documentation, testing
+
+---
+
+> **Remember**: These templates show STRUCTURE and THINKING process. Every project needs fresh color, typography, and styling decisions based on its unique context. ASK when unclear.
+
+---
+
+âš¡ PikaKit v3.9.105
+
+---
+
+## ðŸ”— Related
+
+| File | When to Read |
+|------|-------------|
+| [ux-psychology.md](ux-psychology.md) | UX laws applied in each template |
+| [color-system.md](color-system.md) | HSL palette generation after color decision |
+| [typography-system.md](typography-system.md) | Font selection after type decision |
+| [../SKILL.md](../SKILL.md) | Anti-pattern bans and quick reference |
+
+---
+
+### Rule: design-extraction
 
 ---
 name: design-extraction
@@ -442,7 +1588,7 @@ Compare implementation to original:
 
 ---
 
-## Reference: engineering-spec
+### Rule: engineering-spec
 
 ---
 name: frontend-design-engineering-spec
@@ -920,7 +2066,7 @@ All resources scoped to invocation. No persistent handles.
 
 ---
 
-## Reference: motion-design
+### Rule: motion-design
 
 ---
 name: motion-design
@@ -1082,7 +2228,338 @@ tl
 
 ---
 
-## Reference: spatial-composition
+### Rule: motion-graphics
+
+---
+name: motion-graphics
+description: Advanced motion â€” Lottie, GSAP, SVG animation, 3D CSS, particles, scroll-driven animations
+---
+
+# Motion Graphics Reference
+
+> Advanced animation techniques for premium web experiences - Lottie, GSAP, SVG, 3D, Particles.
+> **Learn the principles, create WOW effects.**
+
+---
+
+## 1. Lottie Animations
+
+### What is Lottie?
+
+```
+JSON-based vector animations:
+â”œâ”€â”€ Exported from After Effects via Bodymovin
+â”œâ”€â”€ Lightweight (smaller than GIF/video)
+â”œâ”€â”€ Scalable (vector-based, no pixelation)
+â”œâ”€â”€ Interactive (control playback, segments)
+â””â”€â”€ Cross-platform (web, iOS, Android, React Native)
+```
+
+### When to Use Lottie
+
+| Use Case | Why Lottie? |
+|----------|-------------|
+| **Loading animations** | Branded, smooth, lightweight |
+| **Empty states** | Engaging illustrations |
+| **Onboarding flows** | Complex multi-step animations |
+| **Success/Error feedback** | Delightful micro-interactions |
+| **Animated icons** | Consistent cross-platform |
+
+### Principles
+
+- Keep file size under 100KB for performance
+- Use loop sparingly (avoid distraction)
+- Provide static fallback for reduced-motion
+- Lazy load animation files when possible
+
+### Sources
+
+- LottieFiles.com (free library)
+- After Effects + Bodymovin (custom)
+- Figma plugins (export from design)
+
+---
+
+## 2. GSAP (GreenSock)
+
+### What Makes GSAP Different
+
+```
+Professional timeline-based animation:
+â”œâ”€â”€ Precise control over sequences
+â”œâ”€â”€ ScrollTrigger for scroll-driven animations
+â”œâ”€â”€ MorphSVG for shape transitions
+â”œâ”€â”€ Physics-based easing
+â””â”€â”€ Works with any DOM element
+```
+
+### Core Concepts
+
+| Concept | Purpose |
+|---------|---------|
+| **Tween** | Single Aâ†’B animation |
+| **Timeline** | Sequenced/overlapping animations |
+| **ScrollTrigger** | Scroll position controls playback |
+| **Stagger** | Cascade effect across elements |
+
+### When to Use GSAP
+
+- âœ… Complex sequenced animations
+- âœ… Scroll-triggered reveals
+- âœ… Precise timing control needed
+- âœ… SVG morphing effects
+- âŒ Simple hover/focus effects (use CSS)
+- âŒ Performance-critical mobile (heavier)
+
+### Principles
+
+- Use timeline for orchestration (not individual tweens)
+- Stagger delay: 0.05-0.15s between items
+- ScrollTrigger: start at 70-80% viewport entry
+- Kill animations on unmount (prevent memory leaks)
+
+---
+
+## 3. SVG Animations
+
+### Types of SVG Animation
+
+| Type | Technique | Use Case |
+|------|-----------|----------|
+| **Line Drawing** | stroke-dashoffset | Logo reveals, signatures |
+| **Morph** | Path interpolation | Icon transitions |
+| **Transform** | rotate, scale, translate | Interactive icons |
+| **Color** | fill/stroke transition | State changes |
+
+### Line Drawing Principles
+
+```
+How stroke-dashoffset drawing works:
+â”œâ”€â”€ Set dasharray to path length
+â”œâ”€â”€ Set dashoffset equal to dasharray (hidden)
+â”œâ”€â”€ Animate dashoffset to 0 (revealed)
+â””â”€â”€ Create "drawing" effect
+```
+
+### When to Use SVG Animations
+
+- âœ… Logo reveals, brand moments
+- âœ… Icon state transitions (hamburger â†” X)
+- âœ… Infographics, data visualization
+- âœ… Interactive illustrations
+- âŒ Photo-realistic content (use video)
+- âŒ Very complex scenes (performance)
+
+### Principles
+
+- Get path length dynamically for accuracy
+- Duration: 1-3s for full drawings
+- Easing: ease-out for natural feel
+- Simple fills complement, don't compete
+
+---
+
+## 4. 3D CSS Transforms
+
+### Core Properties
+
+```
+CSS 3D Space:
+â”œâ”€â”€ perspective: depth of 3D field (500-1500px typical)
+â”œâ”€â”€ transform-style: preserve-3d (enable children 3D)
+â”œâ”€â”€ rotateX/Y/Z: rotation per axis
+â”œâ”€â”€ translateZ: move toward/away from viewer
+â””â”€â”€ backface-visibility: show/hide back side
+```
+
+### Common 3D Patterns
+
+| Pattern | Use Case |
+|---------|----------|
+| **Card flip** | Reveals, flashcards, product views |
+| **Tilt on hover** | Interactive cards, 3D depth |
+| **Parallax layers** | Hero sections, immersive scrolling |
+| **3D carousel** | Image galleries, sliders |
+
+### Principles
+
+- Perspective: 800-1200px for subtle, 400-600px for dramatic
+- Keep transforms simple (rotate + translate)
+- Ensure backface-visibility: hidden for flips
+- Test on Safari (different rendering)
+
+---
+
+## 5. Particle Effects
+
+### Types of Particle Systems
+
+| Type | Feel | Use Case |
+|------|------|----------|
+| **Geometric** | Tech, network | SaaS, tech sites |
+| **Confetti** | Celebration | Success moments |
+| **Snow/Rain** | Atmospheric | Seasonal, mood |
+| **Dust/Bokeh** | Dreamy | Photography, luxury |
+| **Fireflies** | Magical | Games, fantasy |
+
+### Libraries
+
+| Library | Best For |
+|---------|----------|
+| **tsParticles** | Configurable, lightweight |
+| **particles.js** | Simple backgrounds |
+| **Canvas API** | Custom, maximum control |
+| **Three.js** | Complex 3D particles |
+
+### Principles
+
+- Default: 30-50 particles (not overwhelming)
+- Movement: slow, organic (speed 0.5-2)
+- Opacity: 0.3-0.6 (don't compete with content)
+- Connections: subtle lines for "network" feel
+- âš ï¸ Disable or reduce on mobile
+
+### When to Use
+
+- âœ… Hero backgrounds (atmospheric)
+- âœ… Success celebrations (confetti burst)
+- âœ… Tech visualization (connected nodes)
+- âŒ Content-heavy pages (distraction)
+- âŒ Low-powered devices (battery drain)
+
+---
+
+## 6. Scroll-Driven Animations
+
+### Native CSS (Modern)
+
+```
+CSS Scroll Timelines:
+â”œâ”€â”€ animation-timeline: scroll() - document scroll
+â”œâ”€â”€ animation-timeline: view() - element in viewport
+â”œâ”€â”€ animation-range: entry/exit thresholds
+â””â”€â”€ No JavaScript required
+```
+
+### Principles
+
+| Trigger Point | Use Case |
+|---------------|----------|
+| **Entry 0%** | When element starts entering |
+| **Entry 50%** | When half visible |
+| **Cover 50%** | When centered in viewport |
+| **Exit 100%** | When fully exited |
+
+### Best Practices
+
+- Reveal animations: start at ~25% entry
+- Parallax: continuous scroll progress
+- Sticky elements: use cover range
+- Always test scroll performance
+
+---
+
+## 7. Performance Principles
+
+### GPU vs CPU Animation
+
+```
+CHEAP (GPU-accelerated):
+â”œâ”€â”€ transform (translate, scale, rotate)
+â”œâ”€â”€ opacity
+â””â”€â”€ filter (use sparingly)
+
+EXPENSIVE (triggers reflow):
+â”œâ”€â”€ width, height
+â”œâ”€â”€ top, left, right, bottom
+â”œâ”€â”€ padding, margin
+â””â”€â”€ complex box-shadow
+```
+
+### Optimization Checklist
+
+- [ ] Animate only transform/opacity
+- [ ] Use `will-change` before heavy animations (remove after)
+- [ ] Test on low-end devices
+- [ ] Implement `prefers-reduced-motion`
+- [ ] Lazy load animation libraries
+- [ ] Throttle scroll-based calculations
+
+---
+
+## 8. Motion Graphics Decision Tree
+
+```
+What animation do you need?
+â”‚
+â”œâ”€â”€ Complex branded animation?
+â”‚   â””â”€â”€ Lottie (After Effects export)
+â”‚
+â”œâ”€â”€ Sequenced scroll-triggered?
+â”‚   â””â”€â”€ GSAP + ScrollTrigger
+â”‚
+â”œâ”€â”€ Logo/icon animation?
+â”‚   â””â”€â”€ SVG animation (stroke or morph)
+â”‚
+â”œâ”€â”€ Interactive 3D effect?
+â”‚   â””â”€â”€ CSS 3D Transforms (simple) or Three.js (complex)
+â”‚
+â”œâ”€â”€ Atmospheric background?
+â”‚   â””â”€â”€ tsParticles or Canvas
+â”‚
+â””â”€â”€ Simple entrance/hover?
+    â””â”€â”€ CSS @keyframes or Framer Motion
+```
+
+---
+
+## 9. Anti-Patterns
+
+| âŒ Don't | âœ… Do |
+|----------|-------|
+| Animate everything at once | Stagger and sequence |
+| Use heavy libraries for simple effects | Start with CSS |
+| Ignore reduced-motion | Always provide fallback |
+| Block main thread | Optimize for 60fps |
+| Same particles every project | Match brand/context |
+| Complex effects on mobile | Feature detection |
+
+---
+
+## 10. Quick Reference
+
+| Effect | Tool | Performance |
+|--------|------|-------------|
+| Loading spinner | CSS/Lottie | Light |
+| Staggered reveal | GSAP/Framer | Medium |
+| SVG path draw | CSS stroke | Light |
+| 3D card flip | CSS transforms | Light |
+| Particle background | tsParticles | Heavy |
+| Scroll parallax | GSAP ScrollTrigger | Medium |
+| Shape morphing | GSAP MorphSVG | Medium |
+
+---
+
+> **Remember**: Motion graphics should enhance, not distract. Every animation must serve a PURPOSEâ€”feedback, guidance, delight, or storytelling.
+
+---
+
+âš¡ PikaKit v3.9.105
+
+---
+
+## ðŸ”— Related
+
+| File | When to Read |
+|------|-------------|
+| [animation-guide.md](animation-guide.md) | Core animation timing and easing principles |
+| [visual-effects.md](visual-effects.md) | CSS glassmorphism, gradients, shadows |
+| [ux-psychology.md](ux-psychology.md) | Emotional design and feedback psychology |
+| [../SKILL.md](../SKILL.md) | Animation categories quick reference |
+
+---
+
+### Rule: spatial-composition
 
 ---
 name: spatial-composition
@@ -1267,7 +2744,7 @@ Don't default to centered, symmetrical layouts. Create visual tension:
 
 ---
 
-## Reference: typography
+### Rule: typography
 
 ---
 name: typography
@@ -1389,3 +2866,1347 @@ For advanced control:
 | [color-systems.md](color-systems.md) | Color palette to complement typography |
 | [spatial-composition.md](spatial-composition.md) | Layout for text-heavy pages |
 | [../SKILL.md](../SKILL.md) | Design constraints and anti-slop bans |
+
+---
+
+### Rule: typography-system
+
+---
+name: typography-system
+description: Modular scale, font pairing, line height/length, fluid typography, weight hierarchy, F-pattern reading
+---
+
+# Typography System Reference
+
+> Typography principles and decision-making - learn to think, not memorize.
+> **No fixed font names or sizes - understand the system.**
+
+---
+
+## 1. Modular Scale Principles
+
+### What is a Modular Scale?
+
+```
+A mathematical relationship between font sizes:
+â”œâ”€â”€ Pick a BASE size (usually body text)
+â”œâ”€â”€ Pick a RATIO (multiplier)
+â””â”€â”€ Generate all sizes using: base Ã— ratio^n
+```
+
+### Common Ratios and When to Use
+
+| Ratio | Value | Feeling | Best For |
+|-------|-------|---------|----------|
+| Minor Second | 1.067 | Very subtle | Dense UI, small screens |
+| Major Second | 1.125 | Subtle | Compact interfaces |
+| Minor Third | 1.2 | Comfortable | Mobile apps, cards |
+| Major Third | 1.25 | Balanced | General web (most common) |
+| Perfect Fourth | 1.333 | Noticeable | Editorial, blogs |
+| Perfect Fifth | 1.5 | Dramatic | Headlines, marketing |
+| Golden Ratio | 1.618 | Maximum impact | Hero sections, display |
+
+### Generate Your Scale
+
+```
+Given: base = YOUR_BASE_SIZE, ratio = YOUR_RATIO
+
+Scale:
+â”œâ”€â”€ xs:  base Ã· ratioÂ²
+â”œâ”€â”€ sm:  base Ã· ratio
+â”œâ”€â”€ base: YOUR_BASE_SIZE
+â”œâ”€â”€ lg:  base Ã— ratio
+â”œâ”€â”€ xl:  base Ã— ratioÂ²
+â”œâ”€â”€ 2xl: base Ã— ratioÂ³
+â”œâ”€â”€ 3xl: base Ã— ratioâ´
+â””â”€â”€ ... continue as needed
+```
+
+### Choosing Base Size
+
+| Context | Base Size Range | Why |
+|---------|-----------------|-----|
+| Mobile-first | 16-18px | Readability on small screens |
+| Desktop app | 14-16px | Information density |
+| Editorial | 18-21px | Long-form reading comfort |
+| Accessibility focus | 18px+ | Easier to read |
+
+---
+
+## 2. Font Pairing Principles
+
+### What Makes Fonts Work Together
+
+```
+Contrast + Harmony:
+â”œâ”€â”€ Different ENOUGH to create hierarchy
+â”œâ”€â”€ Similar ENOUGH to feel cohesive
+â””â”€â”€ Usually: serif + sans, or display + neutral
+```
+
+### Pairing Strategies
+
+| Strategy | How | Result |
+|----------|-----|--------|
+| **Contrast** | Serif heading + Sans body | Classic, editorial feel |
+| **Same Family** | One variable font, different weights | Cohesive, modern |
+| **Same Designer** | Fonts by same foundry | Often harmonious proportions |
+| **Era Match** | Fonts from same time period | Historical consistency |
+
+### What to Look For
+
+```
+When pairing, compare:
+â”œâ”€â”€ x-height (height of lowercase letters)
+â”œâ”€â”€ Letter width (narrow vs wide)
+â”œâ”€â”€ Stroke contrast (thin/thick variation)
+â””â”€â”€ Overall mood (formal vs casual)
+```
+
+### Safe Pairing Patterns
+
+| Heading Style | Body Style | Mood |
+|---------------|------------|------|
+| Geometric sans | Humanist sans | Modern, friendly |
+| Display serif | Clean sans | Editorial, sophisticated |
+| Neutral sans | Same sans | Minimal, tech |
+| Bold geometric | Light geometric | Contemporary |
+
+### Avoid
+
+- âŒ Two decorative fonts together
+- âŒ Similar fonts that conflict
+- âŒ More than 2-3 font families
+- âŒ Fonts with very different x-heights
+
+---
+
+## 3. Line Height Principles
+
+### The Relationship
+
+```
+Line height depends on:
+â”œâ”€â”€ Font size (larger text = less line height needed)
+â”œâ”€â”€ Line length (longer lines = more line height)
+â”œâ”€â”€ Font design (some fonts need more space)
+â””â”€â”€ Content type (headings vs body)
+```
+
+### Guidelines by Context
+
+| Content Type | Line Height Range | Why |
+|--------------|-------------------|-----|
+| **Headings** | 1.1 - 1.3 | Short lines, want compact |
+| **Body text** | 1.4 - 1.6 | Comfortable reading |
+| **Long-form** | 1.6 - 1.8 | Maximum readability |
+| **UI elements** | 1.2 - 1.4 | Space efficiency |
+
+### Adjustment Factors
+
+- **Longer line length** â†’ Increase line height
+- **Larger font size** â†’ Decrease line height ratio
+- **All caps** â†’ May need more line height
+- **Tight tracking** â†’ May need more line height
+
+---
+
+## 4. Line Length Principles
+
+### Optimal Reading Width
+
+```
+The sweet spot: 45-75 characters per line
+â”œâ”€â”€ < 45: Too choppy, breaks flow
+â”œâ”€â”€ 45-75: Comfortable reading
+â”œâ”€â”€ > 75: Eye tracking strain
+```
+
+### How to Measure
+
+```css
+/* Character-based (recommended) */
+max-width: 65ch; /* ch = width of "0" character */
+
+/* This adapts to font size automatically */
+```
+
+### Context Adjustments
+
+| Context | Character Range |
+|---------|-----------------|
+| Desktop article | 60-75 characters |
+| Mobile | 35-50 characters |
+| Sidebar text | 30-45 characters |
+| Wide monitors | Still cap at ~75ch |
+
+---
+
+## 5. Responsive Typography Principles
+
+### The Problem
+
+```
+Fixed sizes don't scale well:
+â”œâ”€â”€ Desktop size too big on mobile
+â”œâ”€â”€ Mobile size too small on desktop
+â””â”€â”€ Breakpoint jumps feel jarring
+```
+
+### Fluid Typography (clamp)
+
+```css
+/* Syntax: clamp(MIN, PREFERRED, MAX) */
+font-size: clamp(
+  MINIMUM_SIZE,
+  FLUID_CALCULATION,
+  MAXIMUM_SIZE
+);
+
+/* FLUID_CALCULATION typically: 
+   base + viewport-relative-unit */
+```
+
+### Scaling Strategy
+
+| Element | Scaling Behavior |
+|---------|-----------------|
+| Body text | Slight scaling (1rem â†’ 1.125rem) |
+| Subheadings | Moderate scaling |
+| Headings | More dramatic scaling |
+| Display text | Most dramatic scaling |
+
+---
+
+## 6. Weight and Emphasis Principles
+
+### Semantic Weight Usage
+
+| Weight Range | Name | Use For |
+|--------------|------|---------|
+| 300-400 | Light/Normal | Body text, paragraphs |
+| 500 | Medium | Subtle emphasis |
+| 600 | Semibold | Subheadings, labels |
+| 700 | Bold | Headings, strong emphasis |
+| 800-900 | Heavy/Black | Display, hero text |
+
+### Creating Contrast
+
+```
+Good contrast = skip at least 2 weight levels
+â”œâ”€â”€ 400 body + 700 heading = good
+â”œâ”€â”€ 400 body + 500 emphasis = subtle
+â”œâ”€â”€ 600 heading + 700 subheading = too similar
+```
+
+### Avoid
+
+- âŒ Too many weights (max 3-4 per page)
+- âŒ Adjacent weights for hierarchy (400/500)
+- âŒ Heavy weights for long text
+
+---
+
+## 7. Letter Spacing (Tracking)
+
+### Principles
+
+```
+Large text (headings): tighter tracking
+â”œâ”€â”€ Letters are big, gaps feel larger
+â””â”€â”€ Slight negative tracking looks better
+
+Small text (body): normal or slightly wider
+â”œâ”€â”€ Improves readability at small sizes
+â””â”€â”€ Never negative for body text
+
+ALL CAPS: always wider tracking
+â”œâ”€â”€ Uppercase lacks ascenders/descenders
+â””â”€â”€ Needs more space to feel right
+```
+
+### Adjustment Guidelines
+
+| Context | Tracking Adjustment |
+|---------|---------------------|
+| Display/Hero | -2% to -4% |
+| Headings | -1% to -2% |
+| Body text | 0% (normal) |
+| Small text | +1% to +2% |
+| ALL CAPS | +5% to +10% |
+
+---
+
+## 8. Hierarchy Principles
+
+### Visual Hierarchy Through Type
+
+```
+Ways to create hierarchy:
+â”œâ”€â”€ SIZE (most obvious)
+â”œâ”€â”€ WEIGHT (bold stands out)
+â”œâ”€â”€ COLOR (contrast levels)
+â”œâ”€â”€ SPACING (margins separate sections)
+â””â”€â”€ POSITION (top = important)
+```
+
+### Typical Hierarchy
+
+| Level | Characteristics |
+|-------|-----------------|
+| Primary (H1) | Largest, boldest, most distinct |
+| Secondary (H2) | Noticeably smaller but still bold |
+| Tertiary (H3) | Medium size, may use weight only |
+| Body | Standard size and weight |
+| Caption/Meta | Smaller, often lighter color |
+
+### Testing Hierarchy
+
+Ask: "Can I tell what's most important at a glance?"
+
+If squinting at the page, the hierarchy should still be clear.
+
+---
+
+## 9. Readability Psychology
+
+### F-Pattern Reading
+
+```
+Users scan in F-pattern:
+â”œâ”€â”€ Across the top (first line)
+â”œâ”€â”€ Down the left side
+â”œâ”€â”€ Across again (subheading)
+â””â”€â”€ Continue down left
+```
+
+**Implication**: Key info on left and in headings
+
+### Chunking for Comprehension
+
+- Short paragraphs (3-4 lines max)
+- Clear subheadings
+- Bullet points for lists
+- White space between sections
+
+### Cognitive Ease
+
+- Familiar fonts = easier reading
+- High contrast = less strain
+- Consistent patterns = predictable
+
+---
+
+## 10. Typography Selection Checklist
+
+Before finalizing typography:
+
+- [ ] **Asked user for font preferences?**
+- [ ] **Considered brand/context?**
+- [ ] **Selected appropriate scale ratio?**
+- [ ] **Limited to 2-3 font families?**
+- [ ] **Tested readability at all sizes?**
+- [ ] **Checked line length (45-75ch)?**
+- [ ] **Verified contrast for accessibility?**
+- [ ] **Different from your last project?**
+
+### Anti-Patterns
+
+- âŒ Same fonts every project
+- âŒ Too many font families
+- âŒ Ignoring readability for style
+- âŒ Fixed sizes without responsiveness
+- âŒ Decorative fonts for body text
+
+---
+
+> **Remember**: Typography is about communication clarity. Choose based on content needs and audience, not personal preference.
+
+---
+
+âš¡ PikaKit v3.9.105
+
+---
+
+## ðŸ”— Related
+
+| File | When to Read |
+|------|-------------|
+| [decision-trees.md](decision-trees.md) | Typography decision tree by content type |
+| [ux-psychology.md](ux-psychology.md) | Readability psychology and cognitive load |
+| [color-system.md](color-system.md) | Text contrast and accessibility |
+| [../SKILL.md](../SKILL.md) | Typography quick rules |
+
+---
+
+### Rule: ux-psychology
+
+---
+name: ux-psychology
+description: Core UX laws (Hick's, Fitts', Miller's, Von Restorff), emotional design, trust signals, cognitive load, persona guide
+---
+
+# UX Psychology Reference
+
+> Deep dive into UX laws, emotional design, trust building, and behavioral psychology.
+
+---
+
+## 1. Core UX Laws
+
+### Hick's Law
+
+**Principle:** The time to make a decision increases logarithmically with the number of choices.
+
+```
+Decision Time = a + b Ã— logâ‚‚(n + 1)
+Where n = number of choices
+```
+
+**Application:**
+- Navigation: Max 5-7 top-level items
+- Forms: Break into steps (progressive disclosure)
+- Options: Default selections when possible
+- Filters: Prioritize most-used, hide advanced
+
+**Example:**
+```
+âŒ Bad: 15 menu items in one nav
+âœ… Good: 5 main categories + "More" 
+
+âŒ Bad: 20 form fields at once
+âœ… Good: 3-step wizard with 5-7 fields each
+```
+
+---
+
+### Fitts' Law
+
+**Principle:** Time to reach a target = function of distance and size.
+
+```
+MT = a + b Ã— logâ‚‚(1 + D/W)
+Where D = distance, W = width
+```
+
+**Application:**
+- CTAs: Make primary buttons larger (min 44px height)
+- Touch targets: 44Ã—44px minimum on mobile
+- Placement: Important actions near natural cursor position
+- Corners: "Magic corners" (infinite edge = easy to hit)
+
+**Button Sizing:**
+```css
+/* Size by importance */
+.btn-primary { height: 48px; padding: 0 24px; }
+.btn-secondary { height: 40px; padding: 0 16px; }
+.btn-tertiary { height: 36px; padding: 0 12px; }
+
+/* Mobile touch targets */
+@media (hover: none) {
+  .btn { min-height: 44px; min-width: 44px; }
+}
+```
+
+---
+
+### Miller's Law
+
+**Principle:** Average person can hold 7Â±2 chunks in working memory.
+
+**Application:**
+- Lists: Group into chunks of 5-7 items
+- Navigation: Max 7 menu items
+- Content: Break long content with headings
+- Phone numbers: 555-123-4567 (chunked)
+
+**Chunking Example:**
+```
+âŒ 5551234567
+âœ… 555-123-4567
+
+âŒ Long paragraph of text without breaks
+âœ… Short paragraphs
+   With bullet points
+   And subheadings
+```
+
+---
+
+### Von Restorff Effect (Isolation Effect)
+
+**Principle:** An item that stands out is more likely to be remembered.
+
+**Application:**
+- CTA buttons: Distinct color from other elements
+- Pricing: Highlight recommended plan
+- Important info: Visual differentiation
+- New features: Badge or callout
+
+**Example:**
+```css
+/* All buttons gray, primary stands out */
+.btn { background: #E5E7EB; }
+.btn-primary { background: #3B82F6; }
+
+/* Recommended plan highlighted */
+.pricing-card { border: 1px solid #E5E7EB; }
+.pricing-card.popular { 
+  border: 2px solid #3B82F6;
+  box-shadow: var(--shadow-lg);
+}
+```
+
+---
+
+### Serial Position Effect
+
+**Principle:** Items at the beginning (primacy) and end (recency) of a list are remembered best.
+
+**Application:**
+- Navigation: Most important items first and last
+- Lists: Key info at top and bottom
+- Forms: Most critical fields at start
+- CTAs: Repeat at top and bottom of long pages
+
+**Example:**
+```
+Navigation: Home | [key items] | Contact
+
+Long landing page:
+- CTA at hero (top)
+- Content sections
+- CTA repeated at bottom
+```
+
+---
+
+## 2. Emotional Design (Don Norman)
+
+### Three Levels of Processing
+
+```
+â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
+â”‚  VISCERAL (Lizard Brain)                                    â”‚
+â”‚  â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€                                      â”‚
+â”‚  â€¢ Immediate, automatic reaction                            â”‚
+â”‚  â€¢ First impressions (first 50ms)                          â”‚
+â”‚  â€¢ Aesthetics: colors, shapes, imagery                      â”‚
+â”‚  â€¢ "Wow, this looks beautiful!"                            â”‚
+â”œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¤
+â”‚  BEHAVIORAL (Functional Brain)                              â”‚
+â”‚  â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€                              â”‚
+â”‚  â€¢ Usability and function                                   â”‚
+â”‚  â€¢ Pleasure from effective use                              â”‚
+â”‚  â€¢ Performance, reliability, ease                           â”‚
+â”‚  â€¢ "This works exactly how I expected!"                    â”‚
+â”œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¤
+â”‚  REFLECTIVE (Conscious Brain)                               â”‚
+â”‚  â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€                              â”‚
+â”‚  â€¢ Conscious thought and meaning                            â”‚
+â”‚  â€¢ Personal identity and values                             â”‚
+â”‚  â€¢ Long-term memory and loyalty                             â”‚
+â”‚  â€¢ "This brand represents who I am"                        â”‚
+â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
+```
+
+### Designing for Each Level
+
+**Visceral:**
+```css
+/* Beautiful first impression */
+.hero {
+  background: linear-gradient(135deg, #0ea5e9 0%, #14b8a6 100%);
+  color: white;
+}
+
+/* Pleasing microinteractions */
+.button:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+```
+
+**Behavioral:**
+```javascript
+// Instant feedback
+button.onclick = () => {
+  button.disabled = true;
+  button.textContent = 'Saving...';
+  
+  save().then(() => {
+    showSuccess('Saved!');  // Immediate confirmation
+  });
+};
+```
+
+**Reflective:**
+```html
+<!-- Brand story and values -->
+<section class="about">
+  <h2>Why We Exist</h2>
+  <p>We believe technology should empower, not complicate...</p>
+</section>
+
+<!-- Social proof connecting to identity -->
+<blockquote>
+  "This tool helped me become the designer I wanted to be."
+</blockquote>
+```
+
+---
+
+## 3. Trust Building System
+
+### Trust Signal Categories
+
+| Category | Elements | Implementation |
+|----------|----------|----------------|
+| **Security** | SSL, badges, encryption | Visible padlock, security logos on forms |
+| **Social Proof** | Reviews, testimonials, logos | Star ratings, customer photos, brand logos |
+| **Transparency** | Policies, pricing, contact | Clear links, no hidden fees, real address |
+| **Professional** | Design quality, consistency | No broken elements, consistent branding |
+| **Authority** | Certifications, awards, media | "As seen in...", industry certifications |
+
+### Trust Signal Placement
+
+```
+â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
+â”‚  HEADER: Trust banner ("Free shipping | 30-day    â”‚
+â”‚          returns | Secure checkout")               â”‚
+â”œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¤
+â”‚  HERO: Social proof ("Trusted by 10,000+")        â”‚
+â”œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¤
+â”‚  PRODUCT: Reviews visible, security badges         â”‚
+â”œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¤
+â”‚  CHECKOUT: Payment icons, SSL badge, guarantee     â”‚
+â”œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¤
+â”‚  FOOTER: Contact info, policies, certifications    â”‚
+â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
+```
+
+### Trust-Building CSS Patterns
+
+```css
+/* Trust badge styling */
+.trust-badge {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 16px;
+  background: #F0FDF4;  /* Light green = security */
+  border-radius: 2px; /* Sharp for trust = precision feel */
+  font-size: 14px;
+  color: #166534;
+}
+
+/* Secure form indicator */
+.secure-form::before {
+  content: 'ðŸ”’ Secure form';
+  display: block;
+  font-size: 12px;
+  color: #166534;
+  margin-bottom: 8px;
+}
+
+/* Testimonial card */
+.testimonial {
+  display: flex;
+  gap: 16px;
+  padding: 24px;
+  background: white;
+  border-radius: 16px; /* Friendly = larger radius */
+  box-shadow: var(--shadow-sm);
+}
+
+.testimonial-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;  /* Real photos > initials */
+}
+```
+
+---
+
+## 4. Cognitive Load Management
+
+### Three Types of Cognitive Load
+
+| Type | Definition | Designer's Role |
+|------|------------|-----------------|
+| **Intrinsic** | Inherent complexity of task | Break into smaller steps |
+| **Extraneous** | Load from poor design | Eliminate this! |
+| **Germane** | Effort for learning | Support and encourage |
+
+### Reduction Strategies
+
+**1. Simplify (Reduce Extraneous)**
+```css
+/* Visual noise â†’ Clean */
+.card-busy {
+  border: 2px solid red;
+  background: linear-gradient(...);
+  box-shadow: 0 0 20px ...;
+  /* Too much! */
+}
+
+.card-clean {
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px -10px rgba(0,0,0,0.1);
+  /* Calm, focused */
+}
+```
+
+**2. Chunk Information**
+```html
+<!-- Overwhelming -->
+<form>
+  <!-- 15 fields at once -->
+</form>
+
+<!-- Chunked -->
+<form>
+  <fieldset>
+    <legend>Step 1: Personal Info</legend>
+    <!-- 3-4 fields -->
+  </fieldset>
+  <fieldset>
+    <legend>Step 2: Shipping</legend>
+    <!-- 3-4 fields -->
+  </fieldset>
+</form>
+```
+
+**3. Progressive Disclosure**
+```html
+<!-- Hide complexity until needed -->
+<div class="filters">
+  <div class="filters-basic">
+    <!-- Common filters visible -->
+  </div>
+  <button onclick="toggleAdvanced()">
+    Advanced Options â–¼
+  </button>
+  <div class="filters-advanced" hidden>
+    <!-- Complex filters hidden -->
+  </div>
+</div>
+```
+
+**4. Use Familiar Patterns**
+```
+âœ… Standard navigation placement
+âœ… Expected icon meanings (ðŸ” = search)
+âœ… Conventional form layouts
+âœ… Common gesture patterns (swipe, pinch)
+```
+
+**5. Offload Information**
+```html
+<!-- Don't make users remember -->
+<label>
+  Card Number
+  <input type="text" inputmode="numeric" 
+         autocomplete="cc-number" 
+         placeholder="1234 5678 9012 3456">
+</label>
+
+<!-- Show what they entered -->
+<div class="order-summary">
+  <p>Shipping to: <strong>John Doe, 123 Main St...</strong></p>
+  <a href="#">Edit</a>
+</div>
+```
+
+---
+
+## 5. Persuasive Design (Ethical)
+
+### Ethical Persuasion Techniques
+
+| Technique | Ethical Use | Dark Pattern (Avoid) |
+|-----------|-------------|----------------------|
+| **Scarcity** | Real stock levels | Fake countdown timers |
+| **Social Proof** | Genuine reviews | Fake testimonials |
+| **Authority** | Real credentials | Misleading badges |
+| **Urgency** | Real deadlines | Manufactured FOMO |
+| **Commitment** | Progress saving | Guilt-tripping |
+
+### Nudge Patterns
+
+**Smart Defaults:**
+```html
+<!-- Pre-select the recommended option -->
+<input type="radio" name="plan" value="monthly">
+<input type="radio" name="plan" value="annual" checked>
+  Annual (Save 20%)
+```
+
+**Anchoring:**
+```html
+<!-- Show original price to frame discount -->
+<div class="price">
+  <span class="original">$99</span>
+  <span class="current">$79</span>
+  <span class="savings">Save 20%</span>
+</div>
+```
+
+**Social Proof:**
+```html
+<!-- Real-time activity -->
+<div class="activity">
+  <span class="avatar">ðŸ‘¤</span>
+  <span>Sarah from NYC just purchased</span>
+</div>
+
+<!-- Aggregate proof -->
+<p>Join 50,000+ designers who use our tool</p>
+```
+
+**Progress & Commitment:**
+```html
+<!-- Show progress to encourage completion -->
+<div class="progress">
+  <div class="progress-bar" style="width: 60%"></div>
+  <span>60% complete - almost there!</span>
+</div>
+```
+
+---
+
+## 6. User Persona Quick Reference
+
+### Gen Z (Born 1997-2012)
+
+```
+CHARACTERISTICS:
+- Digital natives, mobile-first
+- Value authenticity, diversity
+- Short attention spans
+- Visual learners
+
+DESIGN APPROACH:
+â”œâ”€â”€ Colors: Vibrant, hypercolor, bold gradients
+â”œâ”€â”€ Typography: Large, variable, experimental
+â”œâ”€â”€ Layout: Vertical scroll, mobile-native
+â”œâ”€â”€ Interactions: Fast, gamified, gesture-based
+â”œâ”€â”€ Content: Short-form video, memes, stories
+â””â”€â”€ Trust: Peer reviews > authority
+```
+
+### Millennials (Born 1981-1996)
+
+```
+CHARACTERISTICS:
+- Value experiences over things
+- Research before buying
+- Socially conscious
+- Price-sensitive but quality-aware
+
+DESIGN APPROACH:
+â”œâ”€â”€ Colors: Muted pastels, earth tones
+â”œâ”€â”€ Typography: Clean, readable sans-serif
+â”œâ”€â”€ Layout: Responsive, card-based
+â”œâ”€â”€ Interactions: Smooth, purposeful animations
+â”œâ”€â”€ Content: Value-driven, transparent
+â””â”€â”€ Trust: Reviews, sustainability, values
+```
+
+### Gen X (Born 1965-1980)
+
+```
+CHARACTERISTICS:
+- Independent, self-reliant
+- Value efficiency
+- Skeptical of marketing
+- Balanced tech comfort
+
+DESIGN APPROACH:
+â”œâ”€â”€ Colors: Professional, trustworthy
+â”œâ”€â”€ Typography: Familiar, conservative
+â”œâ”€â”€ Layout: Clear hierarchy, traditional
+â”œâ”€â”€ Interactions: Functional, not flashy
+â”œâ”€â”€ Content: Direct, fact-based
+â””â”€â”€ Trust: Expertise, track record
+```
+
+### Baby Boomers (Born 1946-1964)
+
+```
+CHARACTERISTICS:
+- Detail-oriented
+- Loyal when trusted
+- Value personal service
+- Less tech-confident
+
+DESIGN APPROACH:
+â”œâ”€â”€ Colors: High contrast, simple palette
+â”œâ”€â”€ Typography: Large (18px+), high contrast
+â”œâ”€â”€ Layout: Simple, linear, spacious
+â”œâ”€â”€ Interactions: Minimal, clear feedback
+â”œâ”€â”€ Content: Comprehensive, detailed
+â””â”€â”€ Trust: Phone numbers, real people
+```
+
+---
+
+## 7. Emotion Color Mapping
+
+```
+â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
+â”‚  EMOTION          â”‚  COLORS           â”‚  USE       â”‚
+â”œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¼â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¼â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¤
+â”‚  Trust            â”‚  Blue, Green      â”‚  Finance   â”‚
+â”‚  Excitement       â”‚  Red, Orange      â”‚  Sales     â”‚
+â”‚  Calm             â”‚  Blue, Soft green â”‚  Wellness  â”‚
+â”‚  Luxury           â”‚  Black, Gold      â”‚  Premium   â”‚
+â”‚  Creativity       â”‚  Teal, Pink       â”‚  Art       â”‚
+â”‚  Energy           â”‚  Yellow, Orange   â”‚  Sports    â”‚
+â”‚  Nature           â”‚  Green, Brown     â”‚  Eco       â”‚
+â”‚  Happiness        â”‚  Yellow, Orange   â”‚  Kids      â”‚
+â”‚  Sophistication   â”‚  Gray, Navy       â”‚  Corporate â”‚
+â”‚  Urgency          â”‚  Red              â”‚  Errors    â”‚
+â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”´â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”´â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
+```
+
+---
+
+## 8. Psychology Checklist
+
+### Before Launch
+
+- [ ] **Hick's Law:** No more than 7 choices in navigation
+- [ ] **Fitts' Law:** Primary CTAs are large and reachable
+- [ ] **Miller's Law:** Content is chunked appropriately
+- [ ] **Von Restorff:** CTAs stand out from surroundings
+- [ ] **Trust:** Security badges, reviews, policies visible
+- [ ] **Emotional:** Design evokes intended feeling
+- [ ] **Cognitive Load:** Interface is clean, not overwhelming
+- [ ] **Familiar Patterns:** Standard conventions used
+- [ ] **Feedback:** All actions have clear responses
+- [ ] **Accessibility:** Inclusive for all users
+
+---
+
+âš¡ PikaKit v3.9.105
+
+---
+
+## ðŸ”— Related
+
+| File | When to Read |
+|------|-------------|
+| [decision-trees.md](decision-trees.md) | Apply UX laws to design decisions |
+| [color-system.md](color-system.md) | Emotion-color mapping for trust/urgency |
+| [animation-guide.md](animation-guide.md) | Feedback animation timing |
+| [../SKILL.md](../SKILL.md) | Anti-pattern bans and quick reference |
+
+---
+
+### Rule: visual-effects
+
+---
+name: visual-effects
+description: Glassmorphism, neumorphism, shadow hierarchy, gradients, glow, overlays, modern CSS techniques
+---
+
+# Visual Effects Reference
+
+> Modern CSS effect principles and techniques - learn the concepts, create variations.
+> **No fixed values to copy - understand the patterns.**
+
+---
+
+## 1. Glassmorphism Principles
+
+### What Makes Glassmorphism Work
+
+```
+Key Properties:
+â”œâ”€â”€ Semi-transparent background (not solid)
+â”œâ”€â”€ Backdrop blur (frosted glass effect)
+â”œâ”€â”€ Subtle border (for definition)
+â””â”€â”€ Often: light shadow for depth
+```
+
+### The Pattern (Customize Values)
+
+```css
+.glass {
+  /* Transparency: adjust opacity based on content readability */
+  background: rgba(R, G, B, OPACITY);
+  /* OPACITY: 0.1-0.3 for dark bg, 0.5-0.8 for light bg */
+  
+  /* Blur: higher = more frosted */
+  backdrop-filter: blur(AMOUNT);
+  /* AMOUNT: 8-12px subtle, 16-24px strong */
+  
+  /* Border: defines edges */
+  border: 1px solid rgba(255, 255, 255, OPACITY);
+  /* OPACITY: 0.1-0.3 typically */
+  
+  /* Radius: match your design system */
+  border-radius: YOUR_RADIUS;
+}
+```
+
+### When to Use Glassmorphism
+- âœ… Over colorful/image backgrounds
+- âœ… Modals, overlays, cards
+- âœ… Navigation bars with scrolling content behind
+- âŒ Text-heavy content (readability issues)
+- âŒ Simple solid backgrounds (pointless)
+
+### When NOT to Use
+- Low contrast situations
+- Accessibility-critical content
+- Performance-constrained devices
+
+---
+
+## 2. Neomorphism Principles
+
+### What Makes Neomorphism Work
+
+```
+Key Concept: Soft, extruded elements using DUAL shadows
+â”œâ”€â”€ Light shadow (from light source direction)
+â”œâ”€â”€ Dark shadow (opposite direction)
+â””â”€â”€ Background matches surrounding (same color)
+```
+
+### The Pattern
+
+```css
+.neo-raised {
+  /* Background MUST match parent */
+  background: SAME_AS_PARENT;
+  
+  /* Two shadows: light direction + dark direction */
+  box-shadow: 
+    OFFSET OFFSET BLUR rgba(light-color),
+    -OFFSET -OFFSET BLUR rgba(dark-color);
+  
+  /* OFFSET: typically 6-12px */
+  /* BLUR: typically 12-20px */
+}
+
+.neo-pressed {
+  /* Inset creates "pushed in" effect */
+  box-shadow: 
+    inset OFFSET OFFSET BLUR rgba(dark-color),
+    inset -OFFSET -OFFSET BLUR rgba(light-color);
+}
+```
+
+### Accessibility Warning
+âš ï¸ **Low contrast** - use sparingly, ensure clear boundaries
+
+### When to Use
+- Decorative elements
+- Subtle interactive states
+- Minimalist UI with flat colors
+
+---
+
+## 3. Shadow Hierarchy Principles
+
+### Concept: Shadows Indicate Elevation
+
+```
+Higher elevation = larger shadow
+â”œâ”€â”€ Level 0: No shadow (flat on surface)
+â”œâ”€â”€ Level 1: Subtle shadow (slightly raised)
+â”œâ”€â”€ Level 2: Medium shadow (cards, buttons)
+â”œâ”€â”€ Level 3: Large shadow (modals, dropdowns)
+â””â”€â”€ Level 4: Deep shadow (floating elements)
+```
+
+### Shadow Properties to Adjust
+
+```css
+box-shadow: OFFSET-X OFFSET-Y BLUR SPREAD COLOR;
+
+/* Offset: direction of shadow */
+/* Blur: softness (larger = softer) */
+/* Spread: size expansion */
+/* Color: typically black with low opacity */
+```
+
+### Principles for Natural Shadows
+
+1. **Y-offset larger than X** (light comes from above)
+2. **Low opacity** (5-15% for subtle, 15-25% for pronounced)
+3. **Multiple layers** for realism (ambient + direct)
+4. **Blur scales with offset** (larger offset = larger blur)
+
+### Dark Mode Shadows
+- Shadows less visible on dark backgrounds
+- May need to increase opacity
+- Or use glow/highlight instead
+
+---
+
+## 4. Gradient Principles
+
+### Types and When to Use
+
+| Type | Pattern | Use Case |
+|------|---------|----------|
+| **Linear** | Color A â†’ Color B along line | Backgrounds, buttons, headers |
+| **Radial** | Center â†’ outward | Spotlights, focal points |
+| **Conic** | Around center | Pie charts, creative effects |
+
+### Creating Harmonious Gradients
+
+```
+Good Gradient Rules:
+â”œâ”€â”€ Use ADJACENT colors on wheel (analogous)
+â”œâ”€â”€ Or same hue with different lightness
+â”œâ”€â”€ Avoid complementary (can look harsh)
+â””â”€â”€ Add middle stops for smoother transitions
+```
+
+### Gradient Syntax Pattern
+
+```css
+.gradient {
+  background: linear-gradient(
+    DIRECTION,           /* angle or to-keyword */
+    COLOR-STOP-1,        /* color + optional position */
+    COLOR-STOP-2,
+    /* ... more stops */
+  );
+}
+
+/* DIRECTION examples: */
+/* 90deg, 135deg, to right, to bottom right */
+```
+
+### Mesh Gradients
+
+```
+Multiple radial gradients overlapped:
+â”œâ”€â”€ Each at different position
+â”œâ”€â”€ Each with transparent falloff
+â”œâ”€â”€ **Mandatory for "Wow" factor in Hero sections**
+â””â”€â”€ Creates organic, colorful effect (Search: "Aurora Gradient CSS")
+```
+
+---
+
+## 5. Border Effects Principles
+
+### Gradient Borders
+
+```
+Technique: Pseudo-element with gradient background
+â”œâ”€â”€ Element has padding = border width
+â”œâ”€â”€ Pseudo-element fills with gradient
+â””â”€â”€ Mask or clip creates border effect
+```
+
+### Animated Borders
+
+```
+Technique: Rotating gradient or conic sweep
+â”œâ”€â”€ Pseudo-element larger than content
+â”œâ”€â”€ Animation rotates the gradient
+â””â”€â”€ Overflow hidden clips to shape
+```
+
+### Glow Borders
+
+```css
+/* Multiple box-shadows create glow */
+box-shadow:
+  0 0 SMALL-BLUR COLOR,
+  0 0 MEDIUM-BLUR COLOR,
+  0 0 LARGE-BLUR COLOR;
+
+/* Each layer adds to the glow */
+```
+
+---
+
+## 6. Glow Effects Principles
+
+### Text Glow
+
+```css
+text-shadow: 
+  0 0 BLUR-1 COLOR,
+  0 0 BLUR-2 COLOR,
+  0 0 BLUR-3 COLOR;
+
+/* Multiple layers = stronger glow */
+/* Larger blur = softer spread */
+```
+
+### Element Glow
+
+```css
+box-shadow:
+  0 0 BLUR-1 COLOR,
+  0 0 BLUR-2 COLOR;
+
+/* Use color matching element for realistic glow */
+/* Lower opacity for subtle, higher for neon */
+```
+
+### Pulsing Glow Animation
+
+```css
+@keyframes glow-pulse {
+  0%, 100% { box-shadow: 0 0 SMALL-BLUR COLOR; }
+  50% { box-shadow: 0 0 LARGE-BLUR COLOR; }
+}
+
+/* Easing and duration affect feel */
+```
+
+---
+
+## 7. Overlay Techniques
+
+### Gradient Overlay on Images
+
+```
+Purpose: Improve text readability over images
+Pattern: Gradient from transparent to opaque
+Position: Where text will appear
+```
+
+```css
+.overlay::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    DIRECTION,
+    transparent PERCENTAGE,
+    rgba(0,0,0,OPACITY) 100%
+  );
+}
+```
+
+### Colored Overlay
+
+```css
+/* Blend mode or layered gradient */
+background: 
+  linear-gradient(YOUR-COLOR-WITH-OPACITY),
+  url('image.jpg');
+```
+
+---
+
+## 8. Modern CSS Techniques
+
+### Container Queries (Concept)
+
+```
+Instead of viewport breakpoints:
+â”œâ”€â”€ Component responds to ITS container
+â”œâ”€â”€ Truly modular, reusable components
+â””â”€â”€ Syntax: @container (condition) { }
+```
+
+### :has() Selector (Concept)
+
+```
+Parent styling based on children:
+â”œâ”€â”€ "Parent that has X child"
+â”œâ”€â”€ Enables previously impossible patterns
+â””â”€â”€ Progressive enhancement approach
+```
+
+### Scroll-Driven Animations (Concept)
+
+```
+Animation progress tied to scroll:
+â”œâ”€â”€ Entry/exit animations on scroll
+â”œâ”€â”€ Parallax effects
+â”œâ”€â”€ Progress indicators
+â””â”€â”€ View-based or scroll-based timeline
+```
+
+---
+
+## 9. Performance Principles
+
+### GPU-Accelerated Properties
+
+```
+CHEAP to animate (GPU):
+â”œâ”€â”€ transform (translate, scale, rotate)
+â””â”€â”€ opacity
+
+EXPENSIVE to animate (CPU):
+â”œâ”€â”€ width, height
+â”œâ”€â”€ top, left, right, bottom
+â”œâ”€â”€ margin, padding
+â””â”€â”€ box-shadow (recalculates)
+```
+
+### will-change Usage
+
+```css
+/* Use sparingly, only for heavy animations */
+.heavy-animation {
+  will-change: transform;
+}
+
+/* Remove after animation if possible */
+```
+
+### Reduced Motion
+
+```css
+@media (prefers-reduced-motion: reduce) {
+  /* Disable or minimize animations */
+  /* Respect user preference */
+}
+```
+
+---
+
+## 10. Effect Selection Checklist
+
+Before applying any effect:
+
+- [ ] **Does it serve a purpose?** (not just decoration)
+- [ ] **Is it appropriate for the context?** (brand, audience)
+- [ ] **Have you varied from previous projects?** (avoid repetition)
+- [ ] **Is it accessible?** (contrast, motion sensitivity)
+- [ ] **Is it performant?** (especially on mobile)
+- [ ] **Did you ask user preference?** (if style open-ended)
+
+### Anti-Patterns
+
+- âŒ Glassmorphism on every element (kitsch)
+- âŒ Dark + neon as default (lazy AI look)
+- âŒ **Static/Flat designs with no depth (FAILED)**
+- âŒ Effects that hurt readability
+- âŒ Animations without purpose
+
+---
+
+> **Remember**: Effects enhance meaning. Choose based on purpose and context, not because it "looks cool."
+
+---
+
+âš¡ PikaKit v3.9.105
+
+---
+
+## ðŸ”— Related
+
+| File | When to Read |
+|------|-------------|
+| [animation-guide.md](animation-guide.md) | Animation timing for effects |
+| [motion-graphics.md](motion-graphics.md) | Advanced Lottie, GSAP, 3D effects |
+| [color-system.md](color-system.md) | Color for gradients and glows |
+| [../SKILL.md](../SKILL.md) | Anti-pattern bans |
