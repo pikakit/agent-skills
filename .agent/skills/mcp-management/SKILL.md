@@ -140,6 +140,44 @@ npx tsx cli.ts list-resources  # Available resources
 
 ---
 
+## Rule Categories by Priority
+
+| Priority | Category | Impact | Prefix |
+|----------|----------|--------|--------|
+| 1 | Cli | LOW | `cli-` |
+| 2 | Engineering Spec | LOW | `engineering-` |
+| 3 | General | LOW | `general-` |
+
+## Quick Reference
+
+### 1. Cli (LOW)
+
+- `cli-usage` - MCP CLI Usage
+
+### 2. Engineering Spec (LOW)
+
+- `engineering-spec` - MCP Management — Engineering Specification
+
+### 3. General (LOW)
+
+- `protocol` - MCP Protocol Reference
+
+## How to Use
+
+Read individual rule files for detailed explanations and code examples:
+
+```
+rules/cli-usage.md
+rules/engineering-spec.md
+```
+
+Each rule file contains:
+- Brief explanation of why it matters
+- Incorrect code example with explanation
+- Correct code example with explanation
+- Additional context and references
+
+
 ## ðŸ“‘ Content Map
 
 | File | Description | When to Read |

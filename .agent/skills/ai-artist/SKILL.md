@@ -160,6 +160,50 @@ Unknown model â†’ generic format (no model-specific parameters injected).
 
 ---
 
+## Rule Categories by Priority
+
+| Priority | Category | Impact | Prefix |
+|----------|----------|--------|--------|
+| 1 | Domain | LOW | `domain-` |
+| 2 | Engineering Spec | LOW | `engineering-` |
+| 3 | Image | LOW | `image-` |
+| 4 | Model | LOW | `model-` |
+
+## Quick Reference
+
+### 1. Domain (LOW)
+
+- `domain-code` - Code Generation Prompt Patterns
+- `domain-marketing` - Marketing Prompt Patterns
+
+### 2. Engineering Spec (LOW)
+
+- `engineering-spec` - AI Artist â€” Engineering Specification
+
+### 3. Image (LOW)
+
+- `image-prompts` - Image Generation Prompts
+
+### 4. Model (LOW)
+
+- `model-syntax` - Model-Specific Syntax
+
+## How to Use
+
+Read individual rule files for detailed explanations and code examples:
+
+```
+rules/domain-code.md
+rules/domain-marketing.md
+```
+
+Each rule file contains:
+- Brief explanation of why it matters
+- Incorrect code example with explanation
+- Correct code example with explanation
+- Additional context and references
+
+
 ## ðŸ“‘ Content Map
 
 | File | Description | When to Read |

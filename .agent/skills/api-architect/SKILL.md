@@ -131,6 +131,64 @@ Before designing an API, confirm:
 
 ---
 
+## Rule Categories by Priority
+
+| Priority | Category | Impact | Prefix |
+|----------|----------|--------|--------|
+| 1 | General | HIGH | `general-` |
+| 2 | Api | LOW | `api-` |
+| 3 | Engineering Spec | LOW | `engineering-` |
+| 4 | Rate | LOW | `rate-` |
+| 5 | Security | LOW | `security-` |
+
+## Quick Reference
+
+### 1. General (HIGH)
+
+- `auth` - Authentication Patterns
+- `documentation` - API Documentation Principles
+- `graphql` - GraphQL Principles
+- `response` - Response Format Principles
+- `rest` - REST Principles
+- `trpc` - tRPC Principles
+- `versioning` - Versioning Strategies
+
+### 2. Api (LOW)
+
+- `api-style` - API Style Selection
+
+### 3. Engineering Spec (LOW)
+
+- `engineering-spec` - API Architect â€” Engineering Specification
+
+### 4. Rate (LOW)
+
+- `rate-limiting` - Rate Limiting Principles
+
+### 5. Security (LOW)
+
+- `security-testing` - API Security Testing
+
+## How to Use
+
+Read individual rule files for detailed explanations and code examples:
+
+```
+rules/api-style.md
+rules/auth.md
+```
+
+Each rule file contains:
+- Brief explanation of why it matters
+- Incorrect code example with explanation
+- Correct code example with explanation
+- Additional context and references
+
+## Full Compiled Document
+
+For the complete guide with all rules expanded: `AGENTS.md`
+
+
 ## ðŸ“‘ Content Map
 
 | File | Description | When to Read |

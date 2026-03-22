@@ -134,6 +134,44 @@ metadata:
 
 ---
 
+## Rule Categories by Priority
+
+| Priority | Category | Impact | Prefix |
+|----------|----------|--------|--------|
+| 1 | Architecture | LOW | `architecture-` |
+| 2 | Dynamic | LOW | `dynamic-` |
+| 3 | Engineering Spec | LOW | `engineering-` |
+
+## Quick Reference
+
+### 1. Architecture (LOW)
+
+- `architecture-debate` - Architecture Debate Process
+
+### 2. Dynamic (LOW)
+
+- `dynamic-questioning` - Dynamic Question Generation
+
+### 3. Engineering Spec (LOW)
+
+- `engineering-spec` - Idea Storm — Engineering Specification
+
+## How to Use
+
+Read individual rule files for detailed explanations and code examples:
+
+```
+rules/architecture-debate.md
+rules/dynamic-questioning.md
+```
+
+Each rule file contains:
+- Brief explanation of why it matters
+- Incorrect code example with explanation
+- Correct code example with explanation
+- Additional context and references
+
+
 ## ðŸ“‘ Content Map
 
 | File | Description | When to Read |

@@ -114,6 +114,73 @@ What are you building?
 
 ---
 
+## Rule Categories by Priority
+
+| Priority | Category | Impact | Prefix |
+|----------|----------|--------|--------|
+| 1 | Architecture | LOW | `architecture-` |
+| 2 | Eliminating Waterfalls | LOW | `async-` |
+| 3 | Engineering Spec | LOW | `engineering-` |
+| 4 | Error | LOW | `error-` |
+| 5 | Framework | LOW | `framework-` |
+| 6 | Runtime | LOW | `runtime-` |
+| 7 | Testing | LOW | `testing-` |
+| 8 | Validation | LOW | `validation-` |
+
+## Quick Reference
+
+### 1. Architecture (LOW)
+
+- `architecture-patterns` - Architecture Patterns
+
+### 2. Eliminating Waterfalls (LOW)
+
+- `async-patterns` - Async Patterns
+
+### 3. Engineering Spec (LOW)
+
+- `engineering-spec` - Node.js Pro â€” Engineering Specification
+
+### 4. Error (LOW)
+
+- `error-handling` - Error Handling
+
+### 5. Framework (LOW)
+
+- `framework-selection` - Framework Selection (2025)
+
+### 6. Runtime (LOW)
+
+- `runtime-modules` - Runtime & Module System
+
+### 7. Testing (LOW)
+
+- `testing-strategy` - Testing Strategy
+
+### 8. Validation (LOW)
+
+- `validation-security` - Validation & Security
+
+## How to Use
+
+Read individual rule files for detailed explanations and code examples:
+
+```
+rules/architecture-patterns.md
+rules/async-patterns.md
+```
+
+Each rule file contains:
+- Brief explanation of why it matters
+- Incorrect code example with explanation
+- Correct code example with explanation
+- Additional context and references
+
+## Full Compiled Document
+
+For the complete guide with all rules expanded: `AGENTS.md`
+
+
 ## ðŸ“‘ Content Map
 
 | File | Description | When to Read |

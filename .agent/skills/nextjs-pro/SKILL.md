@@ -111,6 +111,127 @@ Need useState / useEffect / event handlers?
 
 ---
 
+## Rule Categories by Priority
+
+| Priority | Category | Impact | Prefix |
+|----------|----------|--------|--------|
+| 1 | JavaScript Performance | HIGH | `js-` |
+| 2 | Re-render Optimization | HIGH | `rerender-` |
+| 3 | Rendering Performance | HIGH | `rendering-` |
+| 4 | Server-Side Performance | HIGH | `server-` |
+| 5 | Eliminating Waterfalls | MEDIUM | `async-` |
+| 6 | Bundle Size Optimization | MEDIUM | `bundle-` |
+| 7 | Client-Side Data Fetching | MEDIUM | `client-` |
+| 8 | Advanced Patterns | MEDIUM | `advanced-` |
+| 9 | Engineering Spec | LOW | `engineering-` |
+
+## Quick Reference
+
+### 1. JavaScript Performance (HIGH)
+
+- `js-batch-dom-css` - js-batch-dom-css
+- `js-cache-function-results` - js-cache-function-results
+- `js-cache-property-access` - js-cache-property-access
+- `js-cache-storage` - js-cache-storage
+- `js-combine-iterations` - js-combine-iterations
+- `js-early-exit` - js-early-exit
+- `js-hoist-regexp` - js-hoist-regexp
+- `js-index-maps` - js-index-maps
+- `js-length-check-first` - js-length-check-first
+- `js-min-max-loop` - js-min-max-loop
+- `js-set-map-lookups` - js-set-map-lookups
+- `js-tosorted-immutable` - js-tosorted-immutable
+
+### 2. Re-render Optimization (HIGH)
+
+- `rerender-defer-reads` - rerender-defer-reads
+- `rerender-dependencies` - rerender-dependencies
+- `rerender-derived-state-no-effect` - rerender-derived-state-no-effect
+- `rerender-derived-state` - rerender-derived-state
+- `rerender-functional-setstate` - rerender-functional-setstate
+- `rerender-lazy-state-init` - rerender-lazy-state-init
+- `rerender-memo-with-default-value` - rerender-memo-with-default-value
+- `rerender-memo` - rerender-memo
+- `rerender-move-effect-to-event` - rerender-move-effect-to-event
+- `rerender-simple-expression-in-memo` - rerender-simple-expression-in-memo
+- `rerender-transitions` - rerender-transitions
+- `rerender-use-ref-transient-values` - rerender-use-ref-transient-values
+
+### 3. Rendering Performance (HIGH)
+
+- `rendering-activity` - rendering-activity
+- `rendering-animate-svg-wrapper` - rendering-animate-svg-wrapper
+- `rendering-conditional-render` - rendering-conditional-render
+- `rendering-content-visibility` - rendering-content-visibility
+- `rendering-hoist-jsx` - rendering-hoist-jsx
+- `rendering-hydration-no-flicker` - rendering-hydration-no-flicker
+- `rendering-hydration-suppress-warning` - rendering-hydration-suppress-warning
+- `rendering-svg-precision` - rendering-svg-precision
+- `rendering-usetransition-loading` - rendering-usetransition-loading
+
+### 4. Server-Side Performance (HIGH)
+
+- `server-after-nonblocking` - server-after-nonblocking
+- `server-auth-actions` - server-auth-actions
+- `server-cache-lru` - server-cache-lru
+- `server-cache-react` - server-cache-react
+- `server-dedup-props` - server-dedup-props
+- `server-parallel-fetching` - server-parallel-fetching
+- `server-serialization` - server-serialization
+
+### 5. Eliminating Waterfalls (MEDIUM)
+
+- `async-api-routes` - async-api-routes
+- `async-defer-await` - async-defer-await
+- `async-dependencies` - async-dependencies
+- `async-parallel` - async-parallel
+- `async-suspense-boundaries` - async-suspense-boundaries
+
+### 6. Bundle Size Optimization (MEDIUM)
+
+- `bundle-barrel-imports` - bundle-barrel-imports
+- `bundle-conditional` - bundle-conditional
+- `bundle-defer-third-party` - bundle-defer-third-party
+- `bundle-dynamic-imports` - bundle-dynamic-imports
+- `bundle-preload` - bundle-preload
+
+### 7. Client-Side Data Fetching (MEDIUM)
+
+- `client-event-listeners` - client-event-listeners
+- `client-localstorage-schema` - client-localstorage-schema
+- `client-passive-event-listeners` - client-passive-event-listeners
+- `client-swr-dedup` - client-swr-dedup
+
+### 8. Advanced Patterns (MEDIUM)
+
+- `advanced-event-handler-refs` - advanced-event-handler-refs
+- `advanced-init-once` - advanced-init-once
+- `advanced-use-latest` - advanced-use-latest
+
+### 9. Engineering Spec (LOW)
+
+- `engineering-spec` - Next.js Pro â€” Engineering Specification
+
+## How to Use
+
+Read individual rule files for detailed explanations and code examples:
+
+```
+rules/advanced-event-handler-refs.md
+rules/advanced-init-once.md
+```
+
+Each rule file contains:
+- Brief explanation of why it matters
+- Incorrect code example with explanation
+- Correct code example with explanation
+- Additional context and references
+
+## Full Compiled Document
+
+For the complete guide with all rules expanded: `AGENTS.md`
+
+
 ## ðŸ“‘ Content Map
 
 | Category | Files | Focus | When to Read |

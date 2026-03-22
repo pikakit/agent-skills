@@ -136,6 +136,48 @@ gitops-repo/
 
 ---
 
+## Rule Categories by Priority
+
+| Priority | Category | Impact | Prefix |
+|----------|----------|--------|--------|
+| 1 | Argocd | LOW | `argocd-` |
+| 2 | Engineering Spec | LOW | `engineering-` |
+| 3 | Sync | LOW | `sync-` |
+
+## Quick Reference
+
+### 1. Argocd (LOW)
+
+- `argocd-setup` - ArgoCD Setup and Configuration
+
+### 2. Engineering Spec (LOW)
+
+- `engineering-spec` - GitOps Workflow â€” Engineering Specification
+
+### 3. Sync (LOW)
+
+- `sync-policies` - GitOps Sync Policies
+
+## How to Use
+
+Read individual rule files for detailed explanations and code examples:
+
+```
+rules/argocd-setup.md
+rules/engineering-spec.md
+```
+
+Each rule file contains:
+- Brief explanation of why it matters
+- Incorrect code example with explanation
+- Correct code example with explanation
+- Additional context and references
+
+## Full Compiled Document
+
+For the complete guide with all rules expanded: `AGENTS.md`
+
+
 ## ðŸ“‘ Content Map
 
 | File | Description | When to Read |

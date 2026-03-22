@@ -122,6 +122,90 @@ node .agent/skills/studio/scripts-js/search.js "<query>" --domain style
 
 ---
 
+## Rule Categories by Priority
+
+| Priority | Category | Impact | Prefix |
+|----------|----------|--------|--------|
+| 1 | Color | LOW | `color-` |
+| 2 | Motion | LOW | `motion-` |
+| 3 | Animation | LOW | `animation-` |
+| 4 | Decision | LOW | `decision-` |
+| 5 | Design | LOW | `design-` |
+| 6 | Engineering Spec | LOW | `engineering-` |
+| 7 | Spatial | LOW | `spatial-` |
+| 8 | Typography | LOW | `typography-` |
+| 9 | General | LOW | `general-` |
+| 10 | Ux | LOW | `ux-` |
+| 11 | Visual | LOW | `visual-` |
+
+## Quick Reference
+
+### 1. Color (LOW)
+
+- `color-system` - Color System Reference
+- `color-systems` - Color Systems
+
+### 2. Motion (LOW)
+
+- `motion-design` - Motion Design
+- `motion-graphics` - Motion Graphics Reference
+
+### 3. Animation (LOW)
+
+- `animation-guide` - Animation Guidelines Reference
+
+### 4. Decision (LOW)
+
+- `decision-trees` - Decision Trees & Context Templates
+
+### 5. Design (LOW)
+
+- `design-extraction` - Design Extraction from Screenshots
+
+### 6. Engineering Spec (LOW)
+
+- `engineering-spec` - Frontend Design — Engineering Specification
+
+### 7. Spatial (LOW)
+
+- `spatial-composition` - Spatial Composition
+
+### 8. Typography (LOW)
+
+- `typography-system` - Typography System Reference
+
+### 9. General (LOW)
+
+- `typography` - Typography for Distinctive Design
+
+### 10. Ux (LOW)
+
+- `ux-psychology` - UX Psychology Reference
+
+### 11. Visual (LOW)
+
+- `visual-effects` - Visual Effects Reference
+
+## How to Use
+
+Read individual rule files for detailed explanations and code examples:
+
+```
+rules/animation-guide.md
+rules/color-system.md
+```
+
+Each rule file contains:
+- Brief explanation of why it matters
+- Incorrect code example with explanation
+- Correct code example with explanation
+- Additional context and references
+
+## Full Compiled Document
+
+For the complete guide with all rules expanded: `AGENTS.md`
+
+
 ## ðŸ“‘ Content Map
 
 | File | Description | When to Read |

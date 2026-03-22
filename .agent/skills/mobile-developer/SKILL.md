@@ -145,6 +145,97 @@ metadata:
 
 ---
 
+## Rule Categories by Priority
+
+| Priority | Category | Impact | Prefix |
+|----------|----------|--------|--------|
+| 1 | Mobile | HIGH | `mobile-` |
+| 2 | General | LOW | `general-` |
+| 3 | Platform | LOW | `platform-` |
+| 4 | Anti | LOW | `anti-` |
+| 5 | App | LOW | `app-` |
+| 6 | Decision | LOW | `decision-` |
+| 7 | Deep | LOW | `deep-` |
+| 8 | Engineering Spec | LOW | `engineering-` |
+| 9 | Push | LOW | `push-` |
+| 10 | React | LOW | `react-` |
+| 11 | Touch | LOW | `touch-` |
+
+## Quick Reference
+
+### 1. Mobile (HIGH)
+
+- `mobile-backend` - Mobile Backend Patterns
+- `mobile-color-system` - Mobile Color System Reference
+- `mobile-debugging` - Mobile Debugging Guide
+- `mobile-design-thinking` - Mobile Design Thinking
+- `mobile-navigation` - Mobile Navigation Reference
+- `mobile-performance` - Mobile Performance Reference
+- `mobile-testing` - Mobile Testing Patterns
+- `mobile-typography` - Mobile Typography Reference
+
+### 2. General (LOW)
+
+- `flutter` - Flutter Patterns
+- `native` - Native Development Patterns
+
+### 3. Platform (LOW)
+
+- `platform-android` - Android Platform Guidelines
+- `platform-ios` - iOS Platform Guidelines
+
+### 4. Anti (LOW)
+
+- `anti-patterns` - Mobile Anti-Patterns
+
+### 5. App (LOW)
+
+- `app-store-optimization` - App Store Optimization (ASO)
+
+### 6. Decision (LOW)
+
+- `decision-trees` - Mobile Decision Trees
+
+### 7. Deep (LOW)
+
+- `deep-linking` - Deep Linking
+
+### 8. Engineering Spec (LOW)
+
+- `engineering-spec` - Mobile First â€” Engineering Specification
+
+### 9. Push (LOW)
+
+- `push-notifications` - Push Notifications
+
+### 10. React (LOW)
+
+- `react-native` - React Native Patterns
+
+### 11. Touch (LOW)
+
+- `touch-psychology` - Touch Psychology Reference
+
+## How to Use
+
+Read individual rule files for detailed explanations and code examples:
+
+```
+rules/anti-patterns.md
+rules/app-store-optimization.md
+```
+
+Each rule file contains:
+- Brief explanation of why it matters
+- Incorrect code example with explanation
+- Correct code example with explanation
+- Additional context and references
+
+## Full Compiled Document
+
+For the complete guide with all rules expanded: `AGENTS.md`
+
+
 ## ðŸ“‘ Content Map
 
 | File | Description | When to Read |

@@ -131,6 +131,64 @@ metadata:
 
 ---
 
+## Rule Categories by Priority
+
+| Priority | Category | Impact | Prefix |
+|----------|----------|--------|--------|
+| 1 | General | LOW | `general-` |
+| 2 | Component Patterns | LOW | `component-` |
+| 3 | Data Management | LOW | `data-` |
+| 4 | Engineering Spec | LOW | `engineering-` |
+| 5 | File Organization | LOW | `file-` |
+| 6 | MUI Styling | LOW | `mui-` |
+
+## Quick Reference
+
+### 1. General (LOW)
+
+- `patterns` - React Advanced Patterns
+- `performance` - Performance Optimization
+
+### 2. Component Patterns (LOW)
+
+- `component-patterns` - Component Patterns
+
+### 3. Data Management (LOW)
+
+- `data-fetching` - Data Fetching with TanStack Query
+
+### 4. Engineering Spec (LOW)
+
+- `engineering-spec` - Frontend Development — Engineering Specification
+
+### 5. File Organization (LOW)
+
+- `file-organization` - File Organization
+
+### 6. MUI Styling (LOW)
+
+- `mui-styling` - MUI v7 Styling
+
+## How to Use
+
+Read individual rule files for detailed explanations and code examples:
+
+```
+rules/component-patterns.md
+rules/data-fetching.md
+```
+
+Each rule file contains:
+- Brief explanation of why it matters
+- Incorrect code example with explanation
+- Correct code example with explanation
+- Additional context and references
+
+## Full Compiled Document
+
+For the complete guide with all rules expanded: `AGENTS.md`
+
+
 ## ðŸ“‘ Content Map
 
 | File | Description | When to Read |

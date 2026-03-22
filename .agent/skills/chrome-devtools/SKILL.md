@@ -133,6 +133,48 @@ node navigate.js --close true
 
 ---
 
+## Rule Categories by Priority
+
+| Priority | Category | Impact | Prefix |
+|----------|----------|--------|--------|
+| 1 | Aria | LOW | `aria-` |
+| 2 | Engineering Spec | LOW | `engineering-` |
+| 3 | Scripts | LOW | `scripts-` |
+
+## Quick Reference
+
+### 1. Aria (LOW)
+
+- `aria-snapshot` - ARIA Snapshot Format
+
+### 2. Engineering Spec (LOW)
+
+- `engineering-spec` - Chrome DevTools â€” Engineering Specification
+
+### 3. Scripts (LOW)
+
+- `scripts-guide` - Scripts Guide
+
+## How to Use
+
+Read individual rule files for detailed explanations and code examples:
+
+```
+rules/aria-snapshot.md
+rules/engineering-spec.md
+```
+
+Each rule file contains:
+- Brief explanation of why it matters
+- Incorrect code example with explanation
+- Correct code example with explanation
+- Additional context and references
+
+## Full Compiled Document
+
+For the complete guide with all rules expanded: `AGENTS.md`
+
+
 ## ðŸ“‘ Content Map
 
 | File | Description | When to Read |
