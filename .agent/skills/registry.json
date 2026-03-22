@@ -1,1376 +1,456 @@
-﻿{
-    "updatedAt":  "2026-03-05T08:08:00.000Z",
-    "version":  "2.0.0",
-    "skills":  [
-                   {
-                       "name":  "execution-reporter",
-                       "category":  "core",
-                       "triggers":  [
-                                        "task start",
-                                        "agent routing",
-                                        "skill loading",
-                                        "task completion"
-                                    ],
-                       "coordinates_with":  [
-                                                "lifecycle-orchestrator"
-                                            ],
-                       "success_metrics":  "notification displayed, audit logged",
-                       "access_level":  "universal"
-                   },
-                   {
-                       "name":  "api-architect",
-                       "category":  "architecture",
-                       "triggers":  [
-                                        "API design",
-                                        "REST",
-                                        "GraphQL",
-                                        "tRPC",
-                                        "endpoint",
-                                        "versioning"
-                                    ],
-                       "coordinates_with":  [
-                                                "data-modeler",
-                                                "security-scanner",
-                                                "auth-patterns"
-                                            ],
-                       "success_metrics":  "API documentation complete, endpoints validated",
-                       "rules":  [
-                                     "api-style.md",
-                                     "auth.md",
-                                     "documentation.md",
-                                     "graphql.md",
-                                     "rate-limiting.md",
-                                     "response.md",
-                                     "rest.md",
-                                     "security-testing.md",
-                                     "trpc.md",
-                                     "versioning.md"
-                                 ],
-                       "scripts":  [
-                                       "api_validator.py"
-                                   ],
-                       "access_level":  "domain"
-                   },
-                   {
-                       "name":  "app-scaffold",
-                       "category":  "core",
-                       "triggers":  [
-                                        "build app",
-                                        "create project",
-                                        "new application",
-                                        "scaffold",
-                                        "full-stack"
-                                    ],
-                       "coordinates_with":  [
-                                                "project-planner",
-                                                "code-craft",
-                                                "test-architect",
-                                                "design-system"
-                                            ],
-                       "success_metrics":  "project structure created, dependencies installed",
-                       "access_level":  "domain"
-                   },
-                   {
-                       "name":  "cicd-pipeline",
-                       "category":  "devops",
-                       "triggers":  [
-                                        "deploy",
-                                        "deployment",
-                                        "CI/CD",
-                                        "pipeline",
-                                        "rollback",
-                                        "release"
-                                    ],
-                       "coordinates_with":  [
-                                                "git-workflow",
-                                                "security-scanner"
-                                            ],
-                       "success_metrics":  "pipeline passing, deployment successful",
-                       "access_level":  "domain"
-                   },
-                   {
-                       "name":  "code-constitution",
-                       "category":  "core",
-                       "triggers":  [
-                                        "architecture review",
-                                        "critical data",
-                                        "breaking change",
-                                        "governance",
-                                        "doctrine"
-                                    ],
-                       "coordinates_with":  [
-                                                "code-review",
-                                                "security-scanner"
-                                            ],
-                       "success_metrics":  "doctrine checks pass, no governance violations",
-                       "scripts":  [
-                                       "audit_pr.js",
-                                       "learn.js",
-                                       "validate_doctrine.js"
-                                   ],
-                       "access_level":  "universal"
-                   },
-                   {
-                       "name":  "code-craft",
-                       "category":  "core",
-                       "triggers":  [
-                                        "code style",
-                                        "clean code",
-                                        "best practices",
-                                        "naming conventions",
-                                        "SRP",
-                                        "DRY",
-                                        "KISS"
-                                    ],
-                       "coordinates_with":  [
-                                                "code-review",
-                                                "test-architect"
-                                            ],
-                       "success_metrics":  "code adheres to standards, no linting errors",
-                       "access_level":  "universal"
-                   },
-                   {
-                       "name":  "code-review",
-                       "category":  "core",
-                       "triggers":  [
-                                        "review",
-                                        "PR",
-                                        "pull request",
-                                        "audit",
-                                        "code quality",
-                                        "security check"
-                                    ],
-                       "coordinates_with":  [
-                                                "code-craft",
-                                                "security-scanner",
-                                                "test-architect"
-                                            ],
-                       "success_metrics":  "all blocking issues resolved, security verified",
-                       "access_level":  "domain"
-                   },
-                   {
-                       "name":  "data-modeler",
-                       "category":  "architecture",
-                       "triggers":  [
-                                        "database",
-                                        "schema",
-                                        "Prisma",
-                                        "Drizzle",
-                                        "SQL",
-                                        "migration",
-                                        "indexing"
-                                    ],
-                       "coordinates_with":  [
-                                                "api-architect",
-                                                "security-scanner",
-                                                "nodejs-pro"
-                                            ],
-                       "success_metrics":  "schema validated, migrations applied",
-                       "scripts":  [
-                                       "schema_validator.py"
-                                   ],
-                       "access_level":  "domain"
-                   },
-                   {
-                       "name":  "debug-pro",
-                       "category":  "core",
-                       "triggers":  [
-                                        "debug",
-                                        "bug",
-                                        "error",
-                                        "crash",
-                                        "exception",
-                                        "root cause"
-                                    ],
-                       "coordinates_with":  [
-                                                "test-architect",
-                                                "code-review"
-                                            ],
-                       "success_metrics":  "bug fixed, root cause identified",
-                       "access_level":  "domain"
-                   },
-                   {
-                       "name":  "design-system",
-                       "category":  "architecture",
-                       "triggers":  [
-                                        "design",
-                                        "UI",
-                                        "UX",
-                                        "color palette",
-                                        "typography",
-                                        "component design"
-                                    ],
-                       "coordinates_with":  [
-                                                "tailwind-kit",
-                                                "studio",
-                                                "frontend-design"
-                                            ],
-                       "success_metrics":  "design system consistent, components documented",
-                       "rules":  [
-                                     "animation-guide.md",
-                                     "color-system.md",
-                                     "decision-trees.md",
-                                     "motion-graphics.md",
-                                     "typography-system.md",
-                                     "ux-psychology.md",
-                                     "visual-effects.md"
-                                 ],
-                       "scripts":  [
-                                       "accessibility_checker.py",
-                                       "ux_audit.py"
-                                   ],
-                       "access_level":  "domain"
-                   },
-                   {
-                       "name":  "doc-templates",
-                       "category":  "specialized",
-                       "triggers":  [
-                                        "template",
-                                        "README",
-                                        "documentation",
-                                        "API docs",
-                                        "changelog"
-                                    ],
-                       "coordinates_with":  [
-                                                "project-planner",
-                                                "code-craft"
-                                            ],
-                       "success_metrics":  "template applied, documentation complete",
-                       "access_level":  "domain"
-                   },
-                   {
-                       "name":  "e2e-automation",
-                       "category":  "testing",
-                       "triggers":  [
-                                        "E2E test",
-                                        "Playwright",
-                                        "browser test",
-                                        "visual testing",
-                                        "automation"
-                                    ],
-                       "coordinates_with":  [
-                                                "test-architect",
-                                                "perf-optimizer",
-                                                "cicd-pipeline"
-                                            ],
-                       "success_metrics":  "E2E tests pass, coverage adequate",
-                       "scripts":  [
-                                       "playwright_runner.py"
-                                   ],
-                       "access_level":  "domain"
-                   },
-                   {
-                       "name":  "geo-spatial",
-                       "category":  "specialized",
-                       "triggers":  [
-                                        "GEO",
-                                        "AI search",
-                                        "citations",
-                                        "Perplexity",
-                                        "AI visibility"
-                                    ],
-                       "coordinates_with":  [
-                                                "seo-optimizer",
-                                                "copywriting"
-                                            ],
-                       "success_metrics":  "AI citation rate improved, content structured",
-                       "scripts":  [
-                                       "geo_checker.py"
-                                   ],
-                       "access_level":  "domain"
-                   },
-                   {
-                       "name":  "idea-storm",
-                       "category":  "core",
-                       "triggers":  [
-                                        "brainstorm",
-                                        "understand requirements",
-                                        "clarify",
-                                        "unclear",
-                                        "complex request"
-                                    ],
-                       "coordinates_with":  [
-                                                "project-planner",
-                                                "app-scaffold"
-                                            ],
-                       "success_metrics":  "requirements clear, approach defined",
-                       "access_level":  "domain"
-                   },
-                   {
-                       "name":  "mobile-first",
-                       "category":  "framework",
-                       "triggers":  [
-                                        "mobile",
-                                        "responsive",
-                                        "touch",
-                                        "React Native",
-                                        "Flutter"
-                                    ],
-                       "coordinates_with":  [
-                                                "mobile-developer",
-                                                "mobile-design",
-                                                "design-system",
-                                                "perf-optimizer"
-                                            ],
-                       "success_metrics":  "mobile audit passed, responsive design",
-                       "scripts":  [
-                                       "mobile_audit.py"
-                                   ],
-                       "access_level":  "domain"
-                   },
-                   {
-                       "name":  "nextjs-pro",
-                       "category":  "framework",
-                       "triggers":  [
-                                        "Next.js",
-                                        "App Router",
-                                        "RSC",
-                                        "server actions",
-                                        "SSR",
-                                        "SSG"
-                                    ],
-                       "coordinates_with":  [
-                                                "design-system",
-                                                "tailwind-kit",
-                                                "react-architect"
-                                            ],
-                       "success_metrics":  "build passes, pages render",
-                       "access_level":  "domain"
-                   },
-                   {
-                       "name":  "nodejs-pro",
-                       "category":  "framework",
-                       "triggers":  [
-                                        "Node.js",
-                                        "Express",
-                                        "backend",
-                                        "server",
-                                        "API"
-                                    ],
-                       "coordinates_with":  [
-                                                "api-architect",
-                                                "data-modeler"
-                                            ],
-                       "success_metrics":  "server runs, no memory leaks",
-                       "access_level":  "domain"
-                   },
-                   {
-                       "name":  "offensive-sec",
-                       "category":  "devops",
-                       "triggers":  [
-                                        "pentest",
-                                        "red team",
-                                        "exploit",
-                                        "vulnerability",
-                                        "hacking"
-                                    ],
-                       "coordinates_with":  [
-                                                "security-scanner",
-                                                "code-review"
-                                            ],
-                       "success_metrics":  "vulnerabilities found, report complete",
-                       "access_level":  "domain"
-                   },
-                   {
-                       "name":  "perf-optimizer",
-                       "category":  "devops",
-                       "triggers":  [
-                                        "performance",
-                                        "slow",
-                                        "Lighthouse",
-                                        "bundle size",
-                                        "Core Web Vitals"
-                                    ],
-                       "coordinates_with":  [
-                                                "e2e-automation"
-                                            ],
-                       "success_metrics":  "Core Web Vitals pass, performance improved",
-                       "scripts":  [
-                                       "lighthouse_audit.py"
-                                   ],
-                       "access_level":  "domain"
-                   },
-                   {
-                       "name":  "project-planner",
-                       "category":  "core",
-                       "triggers":  [
-                                        "plan",
-                                        "breakdown",
-                                        "tasks",
-                                        "implementation strategy",
-                                        "project scope"
-                                    ],
-                       "coordinates_with":  [
-                                                "app-scaffold",
-                                                "code-craft",
-                                                "test-architect"
-                                            ],
-                       "success_metrics":  "plan created, tasks prioritized",
-                       "access_level":  "domain"
-                   },
-                   {
-                       "name":  "python-pro",
-                       "category":  "framework",
-                       "triggers":  [
-                                        "Python",
-                                        "pip",
-                                        "FastAPI",
-                                        "Django",
-                                        "Flask"
-                                    ],
-                       "coordinates_with":  [
-                                                "test-architect",
-                                                "api-architect"
-                                            ],
-                       "success_metrics":  "tests pass, type hints complete",
-                       "access_level":  "domain"
-                   },
-                   {
-                       "name":  "react-architect",
-                       "category":  "architecture",
-                       "triggers":  [
-                                        "React",
-                                        "component",
-                                        "hooks",
-                                        "state management",
-                                        "Redux",
-                                        "Zustand"
-                                    ],
-                       "coordinates_with":  [
-                                                "nextjs-pro",
-                                                "design-system",
-                                                "typescript-expert"
-                                            ],
-                       "success_metrics":  "components render, no prop drilling",
-                       "access_level":  "domain"
-                   },
-                   {
-                       "name":  "security-scanner",
-                       "category":  "devops",
-                       "triggers":  [
-                                        "security",
-                                        "vulnerability",
-                                        "OWASP",
-                                        "pentest",
-                                        "threat modeling"
-                                    ],
-                       "coordinates_with":  [
-                                                "code-review",
-                                                "cicd-pipeline",
-                                                "api-architect"
-                                            ],
-                       "success_metrics":  "no critical vulnerabilities, scan complete",
-                       "scripts":  [
-                                       "security_scan.js"
-                                   ],
-                       "access_level":  "domain"
-                   },
-                   {
-                       "name":  "seo-optimizer",
-                       "category":  "specialized",
-                       "triggers":  [
-                                        "SEO",
-                                        "meta tags",
-                                        "sitemap",
-                                        "search ranking",
-                                        "OpenGraph"
-                                    ],
-                       "coordinates_with":  [
-                                                "perf-optimizer",
-                                                "geo-spatial"
-                                            ],
-                       "success_metrics":  "SEO score improved, meta tags complete",
-                       "scripts":  [
-                                       "seo_checker.js"
-                                   ],
-                       "access_level":  "domain"
-                   },
-                   {
-                       "name":  "server-ops",
-                       "category":  "devops",
-                       "triggers":  [
-                                        "server",
-                                        "DevOps",
-                                        "infrastructure",
-                                        "deployment",
-                                        "hosting"
-                                    ],
-                       "coordinates_with":  [
-                                                "cicd-pipeline",
-                                                "security-scanner"
-                                            ],
-                       "success_metrics":  "server running, uptime maintained",
-                       "access_level":  "domain"
-                   },
-                   {
-                       "name":  "shell-script",
-                       "category":  "framework",
-                       "triggers":  [
-                                        "shell",
-                                        "bash",
-                                        "script",
-                                        "automation",
-                                        "CLI"
-                                    ],
-                       "coordinates_with":  [
-                                                "cicd-pipeline",
-                                                "server-ops"
-                                            ],
-                       "success_metrics":  "script runs, no errors",
-                       "access_level":  "domain"
-                   },
-                   {
-                       "name":  "system-design",
-                       "category":  "architecture",
-                       "triggers":  [
-                                        "architecture",
-                                        "system design",
-                                        "scalability",
-                                        "microservices"
-                                    ],
-                       "coordinates_with":  [
-                                                "api-architect",
-                                                "data-modeler"
-                                            ],
-                       "success_metrics":  "architecture documented, scalability validated",
-                       "access_level":  "domain"
-                   },
-                   {
-                       "name":  "tailwind-kit",
-                       "category":  "architecture",
-                       "triggers":  [
-                                        "Tailwind",
-                                        "CSS",
-                                        "styling",
-                                        "utility classes"
-                                    ],
-                       "coordinates_with":  [
-                                                "design-system"
-                                            ],
-                       "success_metrics":  "styles applied, design consistent",
-                       "access_level":  "domain"
-                   },
-                   {
-                       "name":  "test-architect",
-                       "category":  "testing",
-                       "triggers":  [
-                                        "test",
-                                        "testing",
-                                        "unit test",
-                                        "coverage",
-                                        "mocking",
-                                        "AAA pattern"
-                                    ],
-                       "coordinates_with":  [
-                                                "code-craft",
-                                                "e2e-automation",
-                                                "code-review"
-                                            ],
-                       "success_metrics":  "tests pass, coverage adequate",
-                       "scripts":  [
-                                       "test_runner.js"
-                                   ],
-                       "access_level":  "domain"
-                   },
-                   {
-                       "name":  "test-driven-dev",
-                       "category":  "testing",
-                       "triggers":  [
-                                        "TDD",
-                                        "test first",
-                                        "red-green-refactor"
-                                    ],
-                       "coordinates_with":  [
-                                                "test-architect",
-                                                "code-craft"
-                                            ],
-                       "success_metrics":  "tests written before code, coverage high",
-                       "access_level":  "domain"
-                   },
-                   {
-                       "name":  "problem-checker",
-                       "category":  "core",
-                       "triggers":  [
-                                        "before notify_user",
-                                        "before task completion",
-                                        "IDE errors",
-                                        "check problems"
-                                    ],
-                       "coordinates_with":  [
-                                                "auto-learned"
-                                            ],
-                       "success_metrics":  "IDE errors = 0, auto-fix success rate \u003e 80%",
-                       "scripts":  [
-                                       "check_problems.js"
-                                   ],
-                       "access_level":  "universal"
-                   },
-                   {
-                       "name":  "lifecycle-orchestrator",
-                       "category":  "core",
-                       "triggers":  [
-                                        "complex multi-phase",
-                                        "autopilot",
-                                        "full lifecycle"
-                                    ],
-                       "coordinates_with":  [
-                                                "problem-checker"
-                                            ],
-                       "success_metrics":  "all phases complete, no failures",
-                       "access_level":  "meta"
-                   },
-                   {
-                       "name":  "observability",
-                       "category":  "observability",
-                       "triggers":  [
-                                        "monitoring",
-                                        "observability",
-                                        "OpenTelemetry",
-                                        "telemetry"
-                                    ],
-                       "coordinates_with":  [
-                                                "server-ops",
-                                                "cicd-pipeline"
-                                            ],
-                       "success_metrics":  "observability stack configured",
-                       "access_level":  "domain"
-                   },
-                   {
-                       "name":  "studio",
-                       "category":  "design",
-                       "triggers":  [
-                                        "design system",
-                                        "UI design",
-                                        "color palette",
-                                        "typography"
-                                    ],
-                       "coordinates_with":  [
-                                                "frontend-specialist",
-                                                "design-system"
-                                            ],
-                       "success_metrics":  "design system generated",
-                       "scripts":  [
-                                       "search.js",
-                                       "design_system.js"
-                                   ],
-                       "access_level":  "domain"
-                   },
-                   {
-                       "name":  "typescript-expert",
-                       "category":  "framework",
-                       "triggers":  [
-                                        "TypeScript",
-                                        "JavaScript",
-                                        "type error",
-                                        "tsconfig",
-                                        "monorepo"
-                                    ],
-                       "coordinates_with":  [
-                                                "nextjs-pro",
-                                                "react-architect",
-                                                "code-review"
-                                            ],
-                       "success_metrics":  "tsc passes, no type errors",
-                       "scripts":  [
-                                       "ts_diagnostic.js"
-                                   ],
-                       "access_level":  "domain"
-                   },
-                   {
-                       "name":  "gitops",
-                       "category":  "devops",
-                       "triggers":  [
-                                        "GitOps",
-                                        "ArgoCD",
-                                        "Flux",
-                                        "Kubernetes deployment",
-                                        "declarative infrastructure"
-                                    ],
-                       "coordinates_with":  [
-                                                "cicd-pipeline",
-                                                "server-ops",
-                                                "git-workflow"
-                                            ],
-                       "success_metrics":  "GitOps workflow configured, sync working",
-                       "access_level":  "domain"
-                   },
-                   {
-                       "name":  "mobile-developer",
-                       "category":  "framework",
-                       "triggers":  [
-                                        "mobile app",
-                                        "React Native",
-                                        "Flutter",
-                                        "iOS app",
-                                        "Android app",
-                                        "cross-platform mobile",
-                                        "Expo"
-                                    ],
-                       "coordinates_with":  [
-                                                "mobile-first",
-                                                "mobile-design",
-                                                "perf-optimizer"
-                                            ],
-                       "success_metrics":  "mobile app builds, tests pass, app store ready",
-                       "access_level":  "domain"
-                   },
-                   {
-                       "name":  "mobile-design",
-                       "category":  "design",
-                       "triggers":  [
-                                        "mobile UI",
-                                        "touch design",
-                                        "mobile UX",
-                                        "responsive mobile",
-                                        "MFRI",
-                                        "touch targets"
-                                    ],
-                       "coordinates_with":  [
-                                                "mobile-first",
-                                                "mobile-developer",
-                                                "design-system"
-                                            ],
-                       "success_metrics":  "MFRI score â‰¥3, touch targets validated",
-                       "access_level":  "domain"
-                   },
-                   {
-                       "name":  "mobile-security-coder",
-                       "category":  "security",
-                       "triggers":  [
-                                        "mobile security",
-                                        "WebView security",
-                                        "biometric auth",
-                                        "secure storage",
-                                        "OWASP MASVS"
-                                    ],
-                       "coordinates_with":  [
-                                                "mobile-developer",
-                                                "security-scanner",
-                                                "mobile-first"
-                                            ],
-                       "success_metrics":  "OWASP MASVS compliance, no security vulnerabilities",
-                       "access_level":  "domain"
-                   },
-                   {
-                       "name":  "game-development",
-                       "category":  "framework",
-                       "triggers":  [
-                                        "game development",
-                                        "2D game",
-                                        "3D game",
-                                        "game loop",
-                                        "game physics",
-                                        "game AI"
-                                    ],
-                       "coordinates_with":  [
-                                                "mobile-developer",
-                                                "perf-optimizer",
-                                                "shader"
-                                            ],
-                       "success_metrics":  "game runs 60fps, no crashes",
-                       "sub_skills":  [
-                                          "2d-games",
-                                          "3d-games",
-                                          "mobile-games",
-                                          "web-games",
-                                          "pc-games",
-                                          "game-design",
-                                          "game-art",
-                                          "game-audio",
-                                          "multiplayer"
-                                      ],
-                       "access_level":  "domain"
-                   },
-                   {
-                       "name":  "vercel-deploy",
-                       "category":  "devops",
-                       "triggers":  [
-                                        "deploy",
-                                        "vercel",
-                                        "push live",
-                                        "production",
-                                        "preview"
-                                    ],
-                       "coordinates_with":  [
-                                                "cicd-pipeline",
-                                                "nextjs-pro"
-                                            ],
-                       "success_metrics":  "preview URL returned, deployment claimable",
-                       "scripts":  [
-                                       "deploy.sh"
-                                   ],
-                       "access_level":  "domain"
-                   },
-                   {
-                       "name":  "auto-learned",
-                       "category":  "core",
-                       "triggers":  [
-                                        "auto-learn",
-                                        "pattern",
-                                        "learned",
-                                        "error fix"
-                                    ],
-                       "coordinates_with":  [
-                                                "problem-checker",
-                                                "skill-generator"
-                                            ],
-                       "success_metrics":  "patterns matched, auto-fixes applied",
-                       "hierarchical":  true,
-                       "sub_skills":  [
-                                          "import-patterns",
-                                          "type-patterns",
-                                          "syntax-patterns",
-                                          "logic-patterns",
-                                          "style-patterns"
-                                      ],
-                       "access_level":  "universal"
-                   },
-                   {
-                       "name":  "payment-patterns",
-                       "category":  "integration",
-                       "triggers":  [
-                                        "payment",
-                                        "SePay",
-                                        "Polar",
-                                        "VietQR",
-                                        "subscription",
-                                        "checkout",
-                                        "webhook"
-                                    ],
-                       "coordinates_with":  [
-                                                "api-architect",
-                                                "security-scanner"
-                                            ],
-                       "success_metrics":  "webhook verified, idempotent, subscription handled",
-                       "references":  [
-                                          "sepay/overview.md",
-                                          "sepay/sdk.md",
-                                          "sepay/webhooks.md",
-                                          "polar/overview.md",
-                                          "polar/products.md",
-                                          "polar/checkouts.md",
-                                          "polar/webhooks.md",
-                                          "polar/benefits.md"
-                                      ],
-                       "scripts":  [
-                                       "sepay-webhook-verify.js",
-                                       "polar-webhook-verify.js"
-                                   ],
-                       "access_level":  "domain"
-                   },
-                   {
-                       "name":  "ai-artist",
-                       "category":  "ai",
-                       "triggers":  [
-                                        "prompt",
-                                        "AI prompt",
-                                        "image generation",
-                                        "Midjourney",
-                                        "DALL-E",
-                                        "Stable Diffusion",
-                                        "Flux"
-                                    ],
-                       "coordinates_with":  [
-                                                "studio",
-                                                "media-processing"
-                                            ],
-                       "success_metrics":  "prompt produces desired output, minimal iterations",
-                       "references":  [
-                                          "image-prompts.md",
-                                          "model-syntax.md",
-                                          "domain-marketing.md",
-                                          "domain-code.md"
-                                      ],
-                       "access_level":  "domain"
-                   },
-                   {
-                       "name":  "google-adk-python",
-                       "category":  "ai",
-                       "triggers":  [
-                                        "Google ADK",
-                                        "agent development",
-                                        "multi-agent",
-                                        "agent orchestration",
-                                        "workflow automation"
-                                    ],
-                       "coordinates_with":  [
-                                                "python-pro",
-                                                "api-architect"
-                                            ],
-                       "success_metrics":  "agent runs, tools execute, deployment successful",
-                       "references":  [
-                                          "multi-agent.md",
-                                          "tools.md",
-                                          "deployment.md"
-                                      ],
-                       "access_level":  "domain"
-                   },
-                   {
-                       "name":  "plans-kanban",
-                       "category":  "tools",
-                       "triggers":  [
-                                        "kanban",
-                                        "dashboard",
-                                        "plan progress",
-                                        "timeline",
-                                        "gantt"
-                                    ],
-                       "coordinates_with":  [
-                                                "project-planner",
-                                                "lifecycle-orchestrator"
-                                            ],
-                       "success_metrics":  "server starts, dashboard renders, plans displayed",
-                       "scripts":  [
-                                       "server.cjs"
-                                   ],
-                       "access_level":  "domain"
-                   },
-                   {
-                       "name":  "markdown-novel-viewer",
-                       "category":  "tools",
-                       "triggers":  [
-                                        "preview",
-                                        "markdown viewer",
-                                        "view plans",
-                                        "documentation",
-                                        "mermaid"
-                                    ],
-                       "coordinates_with":  [
-                                                "plans-kanban",
-                                                "doc-templates"
-                                            ],
-                       "success_metrics":  "server starts, markdown renders, mermaid works",
-                       "scripts":  [
-                                       "server.cjs"
-                                   ],
-                       "access_level":  "domain"
-                   },
-                   {
-                       "name":  "mermaid-editor",
-                       "category":  "tools",
-                       "triggers":  [
-                                        "mermaid",
-                                        "diagram editor",
-                                        "mmd",
-                                        "flowchart editor",
-                                        "sequence diagram",
-                                        "class diagram"
-                                    ],
-                       "coordinates_with":  [
-                                                "system-design",
-                                                "doc-templates",
-                                                "markdown-novel-viewer"
-                                            ],
-                       "success_metrics":  "editor starts, diagrams render, export works",
-                       "scripts":  [
-                                       "editor-server.cjs"
-                                   ],
-                       "access_level":  "domain"
-                   },
-                   {
-                       "name":  "frontend-design",
-                       "category":  "design",
-                       "triggers":  [
-                                        "frontend design",
-                                        "UI design",
-                                        "landing page",
-                                        "design from screenshot",
-                                        "anti-generic"
-                                    ],
-                       "coordinates_with":  [
-                                                "design-system",
-                                                "studio",
-                                                "ai-artist"
-                                            ],
-                       "success_metrics":  "distinctive design, no generic aesthetics",
-                       "access_level":  "domain"
-                   },
-                   {
-                       "name":  "frontend-development",
-                       "category":  "framework",
-                       "triggers":  [
-                                        "React",
-                                        "TypeScript",
-                                        "TanStack Query",
-                                        "MUI",
-                                        "useSuspenseQuery",
-                                        "component"
-                                    ],
-                       "coordinates_with":  [
-                                                "frontend-design",
-                                                "react-architect",
-                                                "typescript-expert"
-                                            ],
-                       "success_metrics":  "no early returns, useSuspenseQuery used",
-                       "access_level":  "domain"
-                   },
-                   {
-                       "name":  "mcp-builder",
-                       "category":  "framework",
-                       "triggers":  [
-                                        "build MCP",
-                                        "create MCP server",
-                                        "MCP development",
-                                        "MCP",
-                                        "Model Context Protocol",
-                                        "agent tools"
-                                    ],
-                       "coordinates_with":  [
-                                                "api-architect",
-                                                "typescript-expert",
-                                                "mcp-management"
-                                            ],
-                       "success_metrics":  "MCP server functional, evaluations pass",
-                       "access_level":  "domain"
-                   },
-                   {
-                       "name":  "mcp-management",
-                       "category":  "framework",
-                       "triggers":  [
-                                        "MCP tools",
-                                        "server discovery",
-                                        "tool execution",
-                                        "multi-server"
-                                    ],
-                       "coordinates_with":  [
-                                                "mcp-builder"
-                                            ],
-                       "success_metrics":  "tools discovered, execution successful",
-                       "access_level":  "domain"
-                   },
-                   {
-                       "name":  "agent-browser",
-                       "category":  "testing",
-                       "triggers":  [
-                                        "browser automation",
-                                        "web testing",
-                                        "scraping",
-                                        "UI verification"
-                                    ],
-                       "coordinates_with":  [
-                                                "e2e-automation",
-                                                "chrome-devtools",
-                                                "test-architect"
-                                            ],
-                       "success_metrics":  "test passes, context efficient",
-                       "access_level":  "domain"
-                   },
-                   {
-                       "name":  "chrome-devtools",
-                       "category":  "testing",
-                       "triggers":  [
-                                        "screenshot",
-                                        "browser",
-                                        "puppeteer",
-                                        "devtools",
-                                        "performance"
-                                    ],
-                       "coordinates_with":  [
-                                                "agent-browser",
-                                                "e2e-automation",
-                                                "perf-optimizer"
-                                            ],
-                       "success_metrics":  "screenshot captured, JSON output",
-                       "access_level":  "domain"
-                   },
-                   {
-                       "name":  "context-engineering",
-                       "category":  "architecture",
-                       "triggers":  [
-                                        "context usage",
-                                        "token limit",
-                                        "agent architecture",
-                                        "memory system"
-                                    ],
-                       "coordinates_with":  [
-                                                "lifecycle-orchestrator",
-                                                "system-design"
-                                            ],
-                       "success_metrics":  "token usage \u003c70%, quality maintained",
-                       "access_level":  "meta"
-                   },
-                   {
-                       "name":  "copywriting",
-                       "category":  "marketing",
-                       "triggers":  [
-                                        "copywriting",
-                                        "headlines",
-                                        "landing page",
-                                        "email",
-                                        "marketing"
-                                    ],
-                       "coordinates_with":  [
-                                                "seo-optimizer",
-                                                "studio",
-                                                "ai-artist"
-                                            ],
-                       "success_metrics":  "conversion-focused, formulas applied",
-                       "access_level":  "domain"
-                   },
-                   {
-                       "name":  "git-workflow",
-                       "category":  "devops",
-                       "triggers":  [
-                                        "git",
-                                        "commit",
-                                        "push",
-                                        "PR",
-                                        "merge"
-                                    ],
-                       "coordinates_with":  [
-                                                "cicd-pipeline",
-                                                "code-review",
-                                                "security-scanner"
-                                            ],
-                       "success_metrics":  "clean history, no secrets",
-                       "access_level":  "domain"
-                   },
-                   {
-                       "name":  "knowledge-graph",
-                       "category":  "architecture",
-                       "triggers":  [
-                                        "find usages",
-                                        "code graph",
-                                        "semantic search",
-                                        "impact analysis"
-                                    ],
-                       "coordinates_with":  [
-                                                "code-review",
-                                                "system-design"
-                                            ],
-                       "success_metrics":  "precise references found",
-                       "access_level":  "domain"
-                   },
-                   {
-                       "name":  "remotion",
-                       "category":  "media",
-                       "triggers":  [
-                                        "Remotion",
-                                        "video creation",
-                                        "programmatic video",
-                                        "React animation"
-                                    ],
-                       "coordinates_with":  [
-                                                "react-architect",
-                                                "media-processing",
-                                                "ai-artist"
-                                            ],
-                       "success_metrics":  "video renders, animations smooth",
-                       "access_level":  "domain"
-                   },
-                   {
-                       "name":  "scout",
-                       "category":  "development",
-                       "triggers":  [
-                                        "find files",
-                                        "locate",
-                                        "codebase structure",
-                                        "explore",
-                                        "search"
-                                    ],
-                       "coordinates_with":  [
-                                                "knowledge-graph",
-                                                "code-review"
-                                            ],
-                       "success_metrics":  "files found, structure understood",
-                       "access_level":  "domain"
-                   },
-                   {
-                       "name":  "shader",
-                       "category":  "graphics",
-                       "triggers":  [
-                                        "shader",
-                                        "GLSL",
-                                        "procedural",
-                                        "texture",
-                                        "visual effect"
-                                    ],
-                       "coordinates_with":  [
-                                                "game-development",
-                                                "media-processing"
-                                            ],
-                       "success_metrics":  "shader compiles, visuals render",
-                       "access_level":  "domain"
-                   },
-                   {
-                       "name":  "web-design-guidelines",
-                       "category":  "quality",
-                       "triggers":  [
-                                        "UI review",
-                                        "accessibility",
-                                        "design audit",
-                                        "UX",
-                                        "WCAG"
-                                    ],
-                       "coordinates_with":  [
-                                                "design-system",
-                                                "frontend-design",
-                                                "code-review"
-                                            ],
-                       "success_metrics":  "violations found, actionable fixes",
-                       "access_level":  "domain"
-                   },
-                   {
-                       "name":  "auth-patterns",
-                       "category":  "security",
-                       "triggers":  [
-                                        "auth",
-                                        "login",
-                                        "OAuth",
-                                        "JWT",
-                                        "RBAC",
-                                        "permissions",
-                                        "MFA",
-                                        "passkey",
-                                        "SSO"
-                                    ],
-                       "coordinates_with":  [
-                                                "api-architect",
-                                                "security-scanner",
-                                                "data-modeler"
-                                            ],
-                       "success_metrics":  "auth flow secure, tokens rotated, permissions enforced",
-                       "references":  [
-                                          "references/oauth2.md",
-                                          "references/jwt-deep.md",
-                                          "references/rbac-abac.md",
-                                          "references/mfa.md",
-                                          "references/session.md",
-                                          "references/passkey.md"
-                                      ],
-                       "access_level":  "domain"
-                   },
-                   {
-                       "name":  "caching-strategy",
-                       "category":  "architecture",
-                       "triggers":  [
-                                        "cache",
-                                        "Redis",
-                                        "CDN",
-                                        "service worker",
-                                        "SWR",
-                                        "memoization",
-                                        "TTL",
-                                        "invalidation"
-                                    ],
-                       "coordinates_with":  [
-                                                "perf-optimizer",
-                                                "api-architect",
-                                                "server-ops"
-                                            ],
-                       "success_metrics":  "cache hit rate \u003e80%, latency reduced, invalidation working",
-                       "references":  [
-                                          "references/redis.md",
-                                          "references/cdn.md",
-                                          "references/browser-cache.md",
-                                          "references/application-cache.md"
-                                      ],
-                       "access_level":  "domain"
-                   },
-                   {
-                       "name":  "event-driven",
-                       "category":  "architecture",
-                       "triggers":  [
-                                        "event-driven",
-                                        "message queue",
-                                        "Kafka",
-                                        "RabbitMQ",
-                                        "pub/sub",
-                                        "CQRS",
-                                        "event sourcing",
-                                        "saga"
-                                    ],
-                       "coordinates_with":  [
-                                                "api-architect",
-                                                "system-design",
-                                                "caching-strategy"
-                                            ],
-                       "success_metrics":  "messages delivered, idempotent consumers, no data loss",
-                       "references":  [
-                                          "references/patterns.md",
-                                          "references/message-queues.md",
-                                          "references/pubsub.md",
-                                          "references/webhooks.md"
-                                      ],
-                       "access_level":  "domain"
-                   },
-                   {
-                       "name":  "media-processing",
-                       "category":  "devops",
-                       "triggers":  [
-                                        "video",
-                                        "audio",
-                                        "image",
-                                        "compress",
-                                        "resize",
-                                        "convert",
-                                        "ffmpeg",
-                                        "imagemagick",
-                                        "rmbg"
-                                    ],
-                       "coordinates_with":  [
-                                                "perf-optimizer",
-                                                "studio"
-                                            ],
-                       "success_metrics":  "correct tool selected, valid command generated, destructive flagged",
-                       "scripts":  [
-                                       "ffmpeg_runner.py",
-                                       "imagemagick_runner.py"
-                                   ],
-                       "access_level":  "domain"
-                   },
-                   {
-                       "name":  "skill-generator",
-                       "category":  "evolution",
-                       "triggers":  [
-                                        "generate skill",
-                                        "create skill",
-                                        "pattern to skill",
-                                        "auto-generate"
-                                    ],
-                       "coordinates_with":  [
-                                                "problem-checker",
-                                                "code-constitution"
-                                            ],
-                       "success_metrics":  "â‰¥80% generated skills pass validation",
-                       "scripts":  [
-                                       "generate.js",
-                                       "validate.js",
-                                       "promote.js"
-                                   ],
-                       "access_level":  "domain"
-                   },
-                   {
-                       "name":  "smart-router",
-                       "category":  "core",
-                       "triggers":  [
-                                        "agent routing",
-                                        "request classification",
-                                        "multi-agent selection"
-                                    ],
-                       "coordinates_with":  [
-                                                "lifecycle-orchestrator",
-                                                "execution-reporter"
-                                            ],
-                       "success_metrics":  "correct agent selected, routing transparent",
-                       "access_level":  "meta"
-                   },
-                   {
-                       "name":  "auto-learner",
-                       "category":  "core",
-                       "triggers":  [
-                                        "auto-learn",
-                                        "mistake",
-                                        "error fix",
-                                        "pattern extraction"
-                                    ],
-                       "coordinates_with":  [
-                                                "auto-learned",
-                                                "problem-checker",
-                                                "skill-generator"
-                                            ],
-                       "success_metrics":  "pattern extracted, lesson saved, no duplicates",
-                       "access_level":  "universal"
-                   }
-               ]
+{
+  "updatedAt": "2026-03-22T04:34:00.000Z",
+  "version": "3.1.0",
+  "skills": [
+    {
+      "name": "agent-browser",
+      "category": "testing",
+      "triggers": ["browser automation", "web testing", "scraping", "UI verification"],
+      "coordinates_with": ["e2e-automation", "chrome-devtools", "test-architect"],
+      "success_metrics": "test passes, context efficient",
+      "access_level": "domain"
+    },
+    {
+      "name": "ai-artist",
+      "category": "ai",
+      "triggers": ["prompt", "AI prompt", "image generation", "Midjourney", "DALL-E", "Stable Diffusion", "Flux"],
+      "coordinates_with": ["studio", "media-processing"],
+      "success_metrics": "prompt produces desired output, minimal iterations",
+      "references": ["image-prompts.md", "model-syntax.md", "domain-marketing.md", "domain-code.md"],
+      "access_level": "domain"
+    },
+    {
+      "name": "api-architect",
+      "category": "architecture",
+      "triggers": ["API design", "REST", "GraphQL", "tRPC", "endpoint", "versioning"],
+      "coordinates_with": ["data-modeler", "security-scanner", "auth-patterns"],
+      "success_metrics": "API documentation complete, endpoints validated",
+      "rules": ["api-style.md", "auth.md", "documentation.md", "graphql.md", "rate-limiting.md", "response.md", "rest.md", "security-testing.md", "trpc.md", "versioning.md"],
+      "scripts": ["api_validator.py"],
+      "agent_roles": ["api-architect"],
+      "access_level": "domain"
+    },
+    {
+      "name": "auth-patterns",
+      "category": "security",
+      "triggers": ["auth", "login", "OAuth", "JWT", "RBAC", "permissions", "MFA", "passkey", "SSO"],
+      "coordinates_with": ["api-architect", "security-scanner", "data-modeler"],
+      "success_metrics": "auth flow secure, tokens rotated, permissions enforced",
+      "references": ["references/oauth2.md", "references/jwt-deep.md", "references/rbac-abac.md", "references/mfa.md", "references/session.md", "references/passkey.md"],
+      "access_level": "domain"
+    },
+    {
+      "name": "auto-learned",
+      "category": "core",
+      "triggers": ["auto-learn", "pattern", "learned", "error fix"],
+      "coordinates_with": ["problem-checker", "auto-learner"],
+      "success_metrics": "patterns matched, auto-fixes applied",
+      "hierarchical": true,
+      "sub_skills": ["import-patterns", "type-patterns", "syntax-patterns", "logic-patterns", "style-patterns"],
+      "access_level": "universal",
+      "writable": true
+    },
+    {
+      "name": "auto-learner",
+      "category": "core",
+      "triggers": ["auto-learn", "mistake", "error fix", "pattern extraction"],
+      "coordinates_with": ["auto-learned", "problem-checker"],
+      "success_metrics": "pattern extracted, lesson saved, no duplicates",
+      "access_level": "universal",
+      "meta_role": "learner"
+    },
+    {
+      "name": "chrome-devtools",
+      "category": "testing",
+      "triggers": ["screenshot", "browser", "puppeteer", "devtools", "performance"],
+      "coordinates_with": ["agent-browser", "e2e-automation", "perf-optimizer"],
+      "success_metrics": "screenshot captured, JSON output",
+      "access_level": "domain"
+    },
+    {
+      "name": "cicd-pipeline",
+      "category": "devops",
+      "triggers": ["deploy", "deployment", "CI/CD", "pipeline", "rollback", "release"],
+      "coordinates_with": ["git-workflow", "security-scanner"],
+      "success_metrics": "pipeline passing, deployment successful",
+      "agent_roles": ["devops-engineer"],
+      "access_level": "domain"
+    },
+    {
+      "name": "code-constitution",
+      "category": "core",
+      "triggers": ["architecture review", "critical data", "breaking change", "governance", "doctrine"],
+      "coordinates_with": ["code-review", "security-scanner"],
+      "success_metrics": "doctrine checks pass, no governance violations",
+      "scripts": ["audit_pr.js", "learn.js", "validate_doctrine.js"],
+      "agent_roles": ["legacy-specialist"],
+      "access_level": "universal"
+    },
+    {
+      "name": "code-craft",
+      "category": "core",
+      "triggers": ["code style", "clean code", "best practices", "naming conventions", "SRP", "DRY", "KISS"],
+      "coordinates_with": ["code-review", "test-architect"],
+      "success_metrics": "code adheres to standards, no linting errors",
+      "access_level": "universal"
+    },
+    {
+      "name": "code-review",
+      "category": "core",
+      "triggers": ["review", "PR", "pull request", "audit", "code quality", "security check"],
+      "coordinates_with": ["code-craft", "security-scanner", "test-architect"],
+      "success_metrics": "all blocking issues resolved, security verified",
+      "access_level": "domain"
+    },
+    {
+      "name": "context-engineering",
+      "category": "architecture",
+      "triggers": ["context usage", "token limit", "agent architecture", "memory system"],
+      "coordinates_with": ["lifecycle-orchestrator", "system-design"],
+      "success_metrics": "token usage <70%, quality maintained",
+      "access_level": "meta"
+    },
+    {
+      "name": "copywriting",
+      "category": "marketing",
+      "triggers": ["copywriting", "headlines", "landing page", "email", "marketing"],
+      "coordinates_with": ["seo-optimizer", "studio", "ai-artist"],
+      "success_metrics": "conversion-focused, formulas applied",
+      "access_level": "domain"
+    },
+    {
+      "name": "data-modeler",
+      "category": "architecture",
+      "triggers": ["database", "schema", "Prisma", "Drizzle", "SQL", "migration", "indexing"],
+      "coordinates_with": ["api-architect", "security-scanner", "nodejs-pro"],
+      "success_metrics": "schema validated, migrations applied",
+      "scripts": ["schema_validator.py"],
+      "agent_roles": ["database-architect"],
+      "access_level": "domain"
+    },
+    {
+      "name": "debug-pro",
+      "category": "core",
+      "triggers": ["debug", "bug", "error", "crash", "exception", "root cause"],
+      "coordinates_with": ["test-architect", "code-review"],
+      "success_metrics": "bug fixed, root cause identified",
+      "agent_roles": ["debugger"],
+      "access_level": "domain"
+    },
+    {
+      "name": "design-system",
+      "category": "architecture",
+      "triggers": ["design", "UI", "UX", "color palette", "typography", "component design"],
+      "coordinates_with": ["tailwind-kit", "studio"],
+      "success_metrics": "design system consistent, components documented",
+      "rules": ["animation-guide.md", "color-system.md", "decision-trees.md", "motion-graphics.md", "typography-system.md", "ux-psychology.md", "visual-effects.md"],
+      "scripts": ["accessibility_checker.py", "ux_audit.py"],
+      "access_level": "domain"
+    },
+    {
+      "name": "doc-templates",
+      "category": "specialized",
+      "triggers": ["template", "README", "documentation", "API docs", "changelog"],
+      "coordinates_with": ["project-planner", "code-craft"],
+      "success_metrics": "template applied, documentation complete",
+      "agent_roles": ["documentation-writer"],
+      "access_level": "domain"
+    },
+    {
+      "name": "e2e-automation",
+      "category": "testing",
+      "triggers": ["E2E test", "Playwright", "browser test", "visual testing", "automation"],
+      "coordinates_with": ["test-architect", "perf-optimizer", "cicd-pipeline"],
+      "success_metrics": "E2E tests pass, coverage adequate",
+      "scripts": ["playwright_runner.py"],
+      "access_level": "domain"
+    },
+    {
+      "name": "execution-reporter",
+      "category": "core",
+      "triggers": ["task start", "agent routing", "skill loading", "task completion"],
+      "coordinates_with": ["lifecycle-orchestrator"],
+      "success_metrics": "notification displayed, audit logged",
+      "access_level": "universal"
+    },
+    {
+      "name": "game-development",
+      "category": "framework",
+      "triggers": ["game development", "2D game", "3D game", "game loop", "game physics", "game AI"],
+      "coordinates_with": ["mobile-developer", "perf-optimizer"],
+      "success_metrics": "game runs 60fps, no crashes",
+      "sub_skills": ["2d-games", "3d-games", "mobile-games", "web-games", "pc-games", "game-design", "game-art", "game-audio", "multiplayer"],
+      "agent_roles": ["game-developer"],
+      "access_level": "domain"
+    },
+    {
+      "name": "git-workflow",
+      "category": "devops",
+      "triggers": ["git", "commit", "push", "PR", "merge"],
+      "coordinates_with": ["cicd-pipeline", "code-review", "security-scanner"],
+      "success_metrics": "clean history, no secrets",
+      "access_level": "domain"
+    },
+    {
+      "name": "gitops",
+      "category": "devops",
+      "triggers": ["GitOps", "ArgoCD", "Flux", "Kubernetes deployment", "declarative infrastructure"],
+      "coordinates_with": ["cicd-pipeline", "server-ops", "git-workflow"],
+      "success_metrics": "GitOps workflow configured, sync working",
+      "access_level": "domain"
+    },
+    {
+      "name": "google-adk-python",
+      "category": "ai",
+      "triggers": ["Google ADK", "agent development", "multi-agent", "agent orchestration", "workflow automation"],
+      "coordinates_with": ["python-pro", "api-architect"],
+      "success_metrics": "agent runs, tools execute, deployment successful",
+      "references": ["multi-agent.md", "tools.md", "deployment.md"],
+      "access_level": "domain"
+    },
+    {
+      "name": "idea-storm",
+      "category": "core",
+      "triggers": ["brainstorm", "understand requirements", "clarify", "unclear", "complex request"],
+      "coordinates_with": ["project-planner"],
+      "success_metrics": "requirements clear, approach defined",
+      "access_level": "domain"
+    },
+    {
+      "name": "knowledge-graph",
+      "category": "architecture",
+      "triggers": ["find usages", "code graph", "semantic search", "impact analysis"],
+      "coordinates_with": ["code-review", "system-design"],
+      "success_metrics": "precise references found",
+      "agent_roles": ["explorer-agent"],
+      "access_level": "domain"
+    },
+    {
+      "name": "lifecycle-orchestrator",
+      "category": "core",
+      "triggers": ["complex multi-phase", "autopilot", "full lifecycle"],
+      "coordinates_with": ["problem-checker"],
+      "success_metrics": "all phases complete, no failures",
+      "access_level": "meta",
+      "meta_role": "orchestrator"
+    },
+    {
+      "name": "mcp-builder",
+      "category": "framework",
+      "triggers": ["build MCP", "create MCP server", "MCP development", "MCP", "Model Context Protocol", "agent tools"],
+      "coordinates_with": ["api-architect", "typescript-expert", "mcp-management"],
+      "success_metrics": "MCP server functional, evaluations pass",
+      "access_level": "domain"
+    },
+    {
+      "name": "mcp-management",
+      "category": "framework",
+      "triggers": ["MCP tools", "server discovery", "tool execution", "multi-server"],
+      "coordinates_with": ["mcp-builder"],
+      "success_metrics": "tools discovered, execution successful",
+      "access_level": "domain"
+    },
+    {
+      "name": "media-processing",
+      "category": "devops",
+      "triggers": ["video", "audio", "image", "compress", "resize", "convert", "ffmpeg", "imagemagick", "rmbg"],
+      "coordinates_with": ["perf-optimizer", "studio"],
+      "success_metrics": "correct tool selected, valid command generated, destructive flagged",
+      "scripts": ["ffmpeg_runner.py", "imagemagick_runner.py"],
+      "access_level": "domain"
+    },
+    {
+      "name": "mobile-design",
+      "category": "design",
+      "triggers": ["mobile UI", "touch design", "mobile UX", "responsive mobile", "MFRI", "touch targets"],
+      "coordinates_with": ["mobile-developer", "design-system"],
+      "success_metrics": "MFRI score ≥3, touch targets validated",
+      "access_level": "domain"
+    },
+    {
+      "name": "mobile-developer",
+      "category": "framework",
+      "triggers": ["mobile app", "React Native", "Flutter", "iOS app", "Android app", "cross-platform mobile", "Expo"],
+      "coordinates_with": ["mobile-design", "perf-optimizer"],
+      "success_metrics": "mobile app builds, tests pass, app store ready",
+      "agent_roles": ["mobile-developer"],
+      "access_level": "domain"
+    },
+    {
+      "name": "nextjs-pro",
+      "category": "framework",
+      "triggers": ["Next.js", "App Router", "RSC", "server actions", "SSR", "SSG"],
+      "coordinates_with": ["design-system", "tailwind-kit", "react-pro"],
+      "success_metrics": "build passes, pages render",
+      "access_level": "domain"
+    },
+    {
+      "name": "nodejs-pro",
+      "category": "framework",
+      "triggers": ["Node.js", "Express", "backend", "server", "API"],
+      "coordinates_with": ["api-architect", "data-modeler"],
+      "success_metrics": "server runs, no memory leaks",
+      "agent_roles": ["backend-specialist"],
+      "access_level": "domain"
+    },
+    {
+      "name": "observability",
+      "category": "observability",
+      "triggers": ["monitoring", "observability", "OpenTelemetry", "telemetry"],
+      "coordinates_with": ["server-ops", "cicd-pipeline"],
+      "success_metrics": "observability stack configured",
+      "access_level": "domain"
+    },
+    {
+      "name": "offensive-sec",
+      "category": "devops",
+      "triggers": ["pentest", "red team", "exploit", "vulnerability", "hacking"],
+      "coordinates_with": ["security-scanner", "code-review"],
+      "success_metrics": "vulnerabilities found, report complete",
+      "agent_roles": ["penetration-tester"],
+      "access_level": "domain"
+    },
+    {
+      "name": "perf-optimizer",
+      "category": "devops",
+      "triggers": ["performance", "slow", "Lighthouse", "bundle size", "Core Web Vitals"],
+      "coordinates_with": ["e2e-automation"],
+      "success_metrics": "Core Web Vitals pass, performance improved",
+      "scripts": ["lighthouse_audit.py"],
+      "agent_roles": ["performance-optimizer"],
+      "access_level": "domain"
+    },
+    {
+      "name": "problem-checker",
+      "category": "core",
+      "triggers": ["before notify_user", "before task completion", "IDE errors", "check problems"],
+      "coordinates_with": ["auto-learned"],
+      "success_metrics": "IDE errors = 0, auto-fix success rate > 80%",
+      "scripts": ["check_problems.js"],
+      "access_level": "universal"
+    },
+    {
+      "name": "project-planner",
+      "category": "core",
+      "triggers": ["plan", "breakdown", "tasks", "implementation strategy", "project scope"],
+      "coordinates_with": ["code-craft", "test-architect"],
+      "success_metrics": "plan created, tasks prioritized",
+      "agent_roles": ["project-planner"],
+      "access_level": "domain"
+    },
+    {
+      "name": "python-pro",
+      "category": "framework",
+      "triggers": ["Python", "pip", "FastAPI", "Django", "Flask"],
+      "coordinates_with": ["test-architect", "api-architect"],
+      "success_metrics": "tests pass, type hints complete",
+      "access_level": "domain"
+    },
+    {
+      "name": "react-pro",
+      "category": "architecture",
+      "triggers": ["React", "component", "hooks", "state management", "Redux", "Zustand", "TypeScript", "TanStack Query", "MUI", "frontend"],
+      "coordinates_with": ["nextjs-pro", "design-system", "typescript-expert"],
+      "success_metrics": "components render, no prop drilling, state correctly scoped, lazy loading active",
+      "agent_roles": ["frontend-specialist"],
+      "access_level": "domain"
+    },
+    {
+      "name": "security-scanner",
+      "category": "devops",
+      "triggers": ["security", "vulnerability", "OWASP", "pentest", "threat modeling"],
+      "coordinates_with": ["code-review", "cicd-pipeline", "api-architect"],
+      "success_metrics": "no critical vulnerabilities, scan complete",
+      "scripts": ["security_scan.js"],
+      "agent_roles": ["security-auditor"],
+      "access_level": "domain"
+    },
+    {
+      "name": "seo-optimizer",
+      "category": "specialized",
+      "triggers": ["SEO", "meta tags", "sitemap", "search ranking", "OpenGraph"],
+      "coordinates_with": ["perf-optimizer"],
+      "success_metrics": "SEO score improved, meta tags complete",
+      "scripts": ["seo_checker.js"],
+      "agent_roles": ["seo-specialist"],
+      "access_level": "domain"
+    },
+    {
+      "name": "server-ops",
+      "category": "devops",
+      "triggers": ["server", "DevOps", "infrastructure", "deployment", "hosting"],
+      "coordinates_with": ["cicd-pipeline", "security-scanner"],
+      "success_metrics": "server running, uptime maintained",
+      "access_level": "domain"
+    },
+    {
+      "name": "shell-script",
+      "category": "framework",
+      "triggers": ["shell", "bash", "script", "automation", "CLI"],
+      "coordinates_with": ["cicd-pipeline", "server-ops"],
+      "success_metrics": "script runs, no errors",
+      "access_level": "domain"
+    },
+    {
+      "name": "smart-router",
+      "category": "core",
+      "triggers": ["agent routing", "request classification", "multi-agent selection"],
+      "coordinates_with": ["lifecycle-orchestrator", "execution-reporter"],
+      "success_metrics": "correct agent selected, routing transparent",
+      "access_level": "meta"
+    },
+    {
+      "name": "studio",
+      "category": "design",
+      "triggers": ["design system", "UI design", "color palette", "typography"],
+      "coordinates_with": ["design-system"],
+      "success_metrics": "design system generated",
+      "scripts": ["search.js", "design_system.js"],
+      "access_level": "domain"
+    },
+    {
+      "name": "system-design",
+      "category": "architecture",
+      "triggers": ["architecture", "system design", "scalability", "microservices"],
+      "coordinates_with": ["api-architect", "data-modeler"],
+      "success_metrics": "architecture documented, scalability validated",
+      "access_level": "domain"
+    },
+    {
+      "name": "tailwind-kit",
+      "category": "architecture",
+      "triggers": ["Tailwind", "CSS", "styling", "utility classes"],
+      "coordinates_with": ["design-system"],
+      "success_metrics": "styles applied, design consistent",
+      "access_level": "domain"
+    },
+    {
+      "name": "test-architect",
+      "category": "testing",
+      "triggers": ["test", "testing", "unit test", "coverage", "mocking", "AAA pattern"],
+      "coordinates_with": ["code-craft", "e2e-automation", "code-review"],
+      "success_metrics": "tests pass, coverage adequate",
+      "scripts": ["test_runner.js"],
+      "agent_roles": ["test-engineer"],
+      "access_level": "domain"
+    },
+    {
+      "name": "typescript-expert",
+      "category": "framework",
+      "triggers": ["TypeScript", "JavaScript", "type error", "tsconfig", "monorepo"],
+      "coordinates_with": ["nextjs-pro", "react-pro", "code-review"],
+      "success_metrics": "tsc passes, no type errors",
+      "scripts": ["ts_diagnostic.js"],
+      "access_level": "domain"
+    },
+    {
+      "name": "vercel-deploy",
+      "category": "devops",
+      "triggers": ["deploy", "vercel", "push live", "production", "preview"],
+      "coordinates_with": ["cicd-pipeline", "nextjs-pro"],
+      "success_metrics": "preview URL returned, deployment claimable",
+      "scripts": ["deploy.sh"],
+      "access_level": "domain"
+    }
+  ]
 }
