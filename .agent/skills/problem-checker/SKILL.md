@@ -6,7 +6,7 @@ description: >-
   modification, IDE errors.
 metadata:
   author: pikakit
-  version: "3.9.105"
+  version: "3.9.106"
 ---
 
 # Problem Checker â€” Automated IDE Error Gate
@@ -140,4 +140,4 @@ npx tsc --noEmit <file>
 
 ---
 
-âš¡ PikaKit v3.9.105
+âš¡ PikaKit v3.9.106

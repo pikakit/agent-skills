@@ -6,7 +6,7 @@ description: >-
   iOS, Android, touch, responsive mobile.
 metadata:
   author: pikakit
-  version: "3.9.105"
+  version: "3.9.106"
 ---
 
 # Mobile Design â€” Mobile-First Design Doctrine
@@ -219,4 +219,4 @@ For the complete guide with all rules expanded: `AGENTS.md`
 
 ---
 
-âš¡ PikaKit v3.9.105
+âš¡ PikaKit v3.9.106

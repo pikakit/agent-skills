@@ -5,7 +5,7 @@ description: >-
   prioritization. Triggers on: security, vulnerability, OWASP, pentest, threat modeling.
 metadata:
   author: pikakit
-  version: "3.9.105"
+  version: "3.9.106"
 ---
 
 # Security Scanner â€” Vulnerability Analysis & OWASP
@@ -149,4 +149,4 @@ Is it actively exploited (EPSS > 0.5)?
 
 ---
 
-âš¡ PikaKit v3.9.105
+âš¡ PikaKit v3.9.106

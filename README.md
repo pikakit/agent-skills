@@ -4,7 +4,7 @@
 
 ### Your AI writes code. PikaKit makes it *senior-level*.
 
-[![npm version](https://img.shields.io/badge/npm-v3.9.105-7c3aed?style=for-the-badge&logo=npm&logoColor=white&labelColor=18181b)](https://www.npmjs.com/package/pikakit)
+[![npm version](https://img.shields.io/badge/npm-v3.9.106-7c3aed?style=for-the-badge&logo=npm&logoColor=white&labelColor=18181b)](https://www.npmjs.com/package/pikakit)
 [![Skills](https://img.shields.io/badge/51_skills-06b6d4?style=for-the-badge&labelColor=18181b)](https://github.com/pikakit/agent-skills)
 [![Workflows](https://img.shields.io/badge/18_workflows-10b981?style=for-the-badge&labelColor=18181b)](https://github.com/pikakit/agent-skills)
 [![Cross-Platform](https://img.shields.io/badge/15+_AI_tools-f59e0b?style=for-the-badge&labelColor=18181b)](https://github.com/pikakit/agent-skills)
@@ -285,7 +285,7 @@ Lessons are saved in `lessons-learned.yaml` and checked before every action. You
 
 <div align="center">
 
-**⚡ PikaKit v3.9.105**
+**⚡ PikaKit v3.9.106**
 
 *Your AI writes code. PikaKit makes it senior-level.*
 

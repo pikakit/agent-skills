@@ -8,7 +8,7 @@ description: >-
   push live.
 metadata:
   author: pikakit
-  version: "3.9.105"
+  version: "3.9.106"
 ---
 
 # Vercel Deploy â€” Zero-Auth Deployment
@@ -146,4 +146,4 @@ Auto-detects from `package.json`:
 
 ---
 
-âš¡ PikaKit v3.9.105
+âš¡ PikaKit v3.9.106

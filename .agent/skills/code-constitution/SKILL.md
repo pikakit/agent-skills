@@ -6,7 +6,7 @@ description: >-
   architecture review, critical data, breaking change, governance, doctrine.
 metadata:
   author: pikakit
-  version: "3.9.105"
+  version: "3.9.106"
 ---
 
 # PikaKit Governance â€” Code Constitution
@@ -184,4 +184,4 @@ Validation scripts: `scripts/validate_doctrine.js` | PR audit: `scripts/audit_pr
 
 ---
 
-âš¡ PikaKit v3.9.105
+âš¡ PikaKit v3.9.106

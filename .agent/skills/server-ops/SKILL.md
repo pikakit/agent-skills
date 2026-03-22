@@ -5,7 +5,7 @@ description: >-
   scaling decisions. Triggers on: server, DevOps, infrastructure, deployment, hosting.
 metadata:
   author: pikakit
-  version: "3.9.105"
+  version: "3.9.106"
 ---
 
 # Server Ops â€” Production Server Management
@@ -161,4 +161,4 @@ Route by load balancer needs.
 
 ---
 
-âš¡ PikaKit v3.9.105
+âš¡ PikaKit v3.9.106

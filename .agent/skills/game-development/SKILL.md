@@ -6,7 +6,7 @@ description: >-
   game, game development, Unity, Godot, Phaser, game engine.
 metadata:
   author: pikakit
-  version: "3.9.105"
+  version: "3.9.106"
 ---
 
 # Game Development â€” Orchestrator
@@ -171,4 +171,4 @@ RENDER â†’ Draw the frame (interpolated)
 
 ---
 
-âš¡ PikaKit v3.9.105
+âš¡ PikaKit v3.9.106

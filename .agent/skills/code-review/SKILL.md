@@ -6,7 +6,7 @@ description: >-
   review, PR, lint, format, validate, types, audit, security check.
 metadata:
   author: pikakit
-  version: "3.9.105"
+  version: "3.9.106"
 ---
 
 # Code Review & Quality
@@ -145,4 +145,4 @@ metadata:
 
 ---
 
-âš¡ PikaKit v3.9.105
+âš¡ PikaKit v3.9.106

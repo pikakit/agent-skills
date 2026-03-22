@@ -6,7 +6,7 @@ description: >-
   exception, root cause, investigation, not working.
 metadata:
   author: pikakit
-  version: "3.9.105"
+  version: "3.9.106"
 ---
 
 # Debug Pro â€” Systematic Debugging
@@ -162,4 +162,4 @@ ANY_PHASE â†’ REPRODUCE   [red flag detected]
 
 ---
 
-âš¡ PikaKit v3.9.105
+âš¡ PikaKit v3.9.106

@@ -6,7 +6,7 @@ description: >-
   optimization. Triggers on: React Native, Flutter, iOS, Android, mobile app, cross-platform.
 metadata:
   author: pikakit
-  version: "3.9.105"
+  version: "3.9.106"
 ---
 
 # Mobile Developer â€” Cross-Platform & Native Expert
@@ -254,4 +254,4 @@ For the complete guide with all rules expanded: `AGENTS.md`
 
 ---
 
-âš¡ PikaKit v3.9.105
+âš¡ PikaKit v3.9.106

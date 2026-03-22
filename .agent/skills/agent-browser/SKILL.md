@@ -7,7 +7,7 @@ description: >-
   verification, headless.
 metadata:
   author: pikakit
-  version: "3.9.105"
+  version: "3.9.106"
 ---
 
 # Agent Browser
@@ -187,4 +187,4 @@ agent-browser fill @e2 "email@example.com"
 
 ---
 
-âš¡ PikaKit v3.9.105
+âš¡ PikaKit v3.9.106

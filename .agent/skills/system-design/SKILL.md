@@ -6,7 +6,7 @@ description: >-
   on: architecture, system design, scalability, microservices.
 metadata:
   author: pikakit
-  version: "3.9.105"
+  version: "3.9.106"
 ---
 
 # System Design â€” Architecture Decision Framework
@@ -121,4 +121,4 @@ metadata:
 
 ---
 
-âš¡ PikaKit v3.9.105
+âš¡ PikaKit v3.9.106

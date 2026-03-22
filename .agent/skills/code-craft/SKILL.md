@@ -6,7 +6,7 @@ description: >-
   practices, naming conventions, SRP, DRY, KISS.
 metadata:
   author: pikakit
-  version: "3.9.105"
+  version: "3.9.106"
 ---
 
 # Code Craft â€” Pragmatic Coding Standards
@@ -163,4 +163,4 @@ metadata:
 
 ---
 
-âš¡ PikaKit v3.9.105
+âš¡ PikaKit v3.9.106

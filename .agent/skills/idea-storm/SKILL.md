@@ -6,7 +6,7 @@ description: >-
   on: brainstorm, understand requirements, clarify, unclear, complex request.
 metadata:
   author: pikakit
-  version: "3.9.105"
+  version: "3.9.106"
 ---
 
 # Idea Storm â€” Socratic Requirement Clarification
@@ -192,4 +192,4 @@ Each rule file contains:
 
 ---
 
-âš¡ PikaKit v3.9.105
+âš¡ PikaKit v3.9.106

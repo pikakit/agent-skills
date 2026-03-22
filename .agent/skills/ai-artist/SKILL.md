@@ -7,7 +7,7 @@ description: >-
   prompt, AI prompt, image generation, Midjourney, DALL-E, Stable Diffusion, Flux.
 metadata:
   author: pikakit
-  version: "3.9.105"
+  version: "3.9.106"
 ---
 
 # AI Artist â€” Prompt Engineering
@@ -226,4 +226,4 @@ Each rule file contains:
 
 ---
 
-âš¡ PikaKit v3.9.105
+âš¡ PikaKit v3.9.106

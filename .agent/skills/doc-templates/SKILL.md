@@ -8,7 +8,7 @@ description: >-
   kanban, dashboard.
 metadata:
   author: pikakit
-  version: "3.9.105"
+  version: "3.9.106"
 ---
 
 # Doc Templates â€” Documentation, Diagrams & Preview
@@ -255,5 +255,5 @@ node .agent/skills/plans-kanban/scripts/kanban-server.js --dir ./docs/plans --op
 
 ---
 
-âš¡ PikaKit v3.9.105
+âš¡ PikaKit v3.9.106
 
