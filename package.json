@@ -2,7 +2,6 @@
   "name": "agent-skill-kit",
   "version": "3.9.111",
   "description": "PikaKit AI Skills Repository",
-  "private": true,
   "type": "module",
   "scripts": {
     "version:sync": "node .agent/scripts-js/version-sync.mjs"
