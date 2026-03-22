@@ -1,5 +1,7 @@
 ---
 description: Local development sandbox — auto-detect services, orchestrate multi-service startup with dependency ordering, resolve port conflicts, integrate Docker Compose, and monitor health.
+skills: [server-ops, cicd-pipeline]
+agents: [orchestrator, assessor, recovery]
 ---
 
 # /stage - Development Sandbox
@@ -54,6 +56,13 @@ health_check → learner.log(config)
 ---
 
 ## 🔴 MANDATORY: Development Sandbox Protocol
+
+### Phase 0: Pre-flight & Auto-Learned Context
+
+> **Rule 0.5-K:** Auto-learned pattern check.
+
+1. Read `.agent/skills/auto-learned/patterns/` for past failures before proceeding.
+2. Trigger `recovery` agent to run Checkpoint (`git commit -m "chore(checkpoint): pre-stage"`).
 
 ### Phase 1: Environment Detection
 

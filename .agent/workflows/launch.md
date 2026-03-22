@@ -1,6 +1,8 @@
 ---
 description: Zero-downtime production release pipeline — pre-flight security gates, automated build verification, health-check monitoring, and instant rollback on failure.
 chain: deploy-production
+skills: [cicd-pipeline, server-ops, security-scanner, code-review]
+agents: [orchestrator, assessor, recovery]
 ---
 
 # /launch - Zero-Downtime Release
@@ -53,6 +55,13 @@ recovery.restore(checkpoint) → learner.log(failure)
 ---
 
 ## 🔴 MANDATORY: Deployment Protocol
+
+### Phase 0: Pre-flight & Auto-Learned Context
+
+> **Rule 0.5-K:** Auto-learned pattern check.
+
+1. Read `.agent/skills/auto-learned/patterns/` for past failures before proceeding.
+2. Trigger `recovery` agent to run Checkpoint (`git commit -m "chore(checkpoint): pre-launch"`).
 
 ### Phase 1: Pre-Flight Gates
 

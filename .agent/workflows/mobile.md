@@ -1,5 +1,7 @@
 ---
 description: End-to-end mobile development — React Native, Flutter, or native iOS/Android with push notifications, deep linking, offline-first architecture, and app store submission.
+skills: [mobile-first, mobile-developer, mobile-design, mobile-security-coder, idea-storm, cicd-pipeline, perf-optimizer]
+agents: [orchestrator, assessor, recovery]
 ---
 
 # /mobile - Mobile App Development
@@ -38,6 +40,13 @@ verify → learner.log(patterns)
 ---
 
 ## 🔴 MANDATORY: Mobile Development Protocol
+
+### Phase 0: Pre-flight & Auto-Learned Context
+
+> **Rule 0.5-K:** Auto-learned pattern check.
+
+1. Read `.agent/skills/auto-learned/patterns/` for past failures before proceeding.
+2. Trigger `recovery` agent to run Checkpoint (`git commit -m "chore(checkpoint): pre-mobile"`).
 
 ### Phase 1: Requirements & Platform Selection
 

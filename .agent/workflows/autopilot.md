@@ -1,6 +1,8 @@
 ---
 description: Autonomous multi-agent orchestration — coordinate 3+ specialist agents in parallel with automated verification, conflict resolution, and continuous execution.
 chain: build-web-app
+skills: [lifecycle-orchestrator, execution-reporter, context-engineering, project-planner, studio, problem-checker, idea-storm, design-system, test-architect, security-scanner]
+agents: [orchestrator, assessor, recovery]
 ---
 
 # /autopilot - Multi-Agent Command Center
@@ -44,6 +46,13 @@ success → learner.log(patterns)
 ---
 
 ## 🔴 MANDATORY: Multi-Agent Orchestration Protocol
+
+### Phase 0: Pre-flight & Auto-Learned Context
+
+> **Rule 0.5-K:** Auto-learned pattern check.
+
+1. Read `.agent/skills/auto-learned/patterns/` for past failures before proceeding.
+2. Trigger `recovery` agent to run Checkpoint (`git commit -m "chore(checkpoint): pre-autopilot"`).
 
 ### Phase 1: Planning & Agent Selection
 

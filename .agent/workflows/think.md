@@ -1,5 +1,7 @@
 ---
 description: Strategic decision engine — generate 3+ distinct alternatives with weighted scoring matrices, risk assessments, and actionable recommendations before writing any code.
+skills: [idea-storm, system-design, project-planner]
+agents: [orchestrator, assessor, recovery]
 ---
 
 # /think - Strategic Decision Engine
@@ -32,6 +34,13 @@ decision made → recommendation + next steps
 ---
 
 ## 🔴 MANDATORY: Decision Framework
+
+### Phase 0: Pre-flight & Auto-Learned Context
+
+> **Rule 0.5-K:** Auto-learned pattern check.
+
+1. Read `.agent/skills/auto-learned/patterns/` for past failures before proceeding.
+2. Trigger `recovery` agent to run Checkpoint (`git commit -m "chore(checkpoint): pre-think"`).
 
 ### Phase 1: Problem Framing
 

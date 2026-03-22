@@ -1,6 +1,8 @@
 ---
 description: Rapid-fire implementation — execute targeted coding tasks directly from instructions or plans with minimal overhead, following existing patterns and verified output.
 chain: build-web-app
+skills: [code-craft, problem-checker]
+agents: [orchestrator, assessor, recovery]
 ---
 
 # /cook - The Implementer
@@ -40,6 +42,13 @@ instruction → implement → verify → learner.log() → done
 ---
 
 ## 🔴 MANDATORY: Cooking Protocol
+
+### Phase 0: Pre-flight & Auto-Learned Context
+
+> **Rule 0.5-K:** Auto-learned pattern check.
+
+1. Read `.agent/skills/auto-learned/patterns/` for past failures before proceeding.
+2. Trigger `recovery` agent to run Checkpoint (`git commit -m "chore(checkpoint): pre-cook"`).
 
 ### Phase 1: Mise en Place (Preparation)
 

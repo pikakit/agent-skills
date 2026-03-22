@@ -1,5 +1,7 @@
 ---
 description: Full-lifecycle game development — platform-specific engine routing, core loop architecture, asset pipeline optimization, multiplayer networking, and store-ready builds.
+skills: [game-development, shader, perf-optimizer, idea-storm]
+agents: [orchestrator, assessor, recovery]
 ---
 
 # /game - Game Development
@@ -54,6 +56,13 @@ verify → learner.log(patterns)
 ---
 
 ## 🔴 MANDATORY: Game Development Protocol
+
+### Phase 0: Pre-flight & Auto-Learned Context
+
+> **Rule 0.5-K:** Auto-learned pattern check.
+
+1. Read `.agent/skills/auto-learned/patterns/` for past failures before proceeding.
+2. Trigger `recovery` agent to run Checkpoint (`git commit -m "chore(checkpoint): pre-game"`).
 
 ### Phase 1: Requirements & Scope
 

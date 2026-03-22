@@ -1,6 +1,8 @@
 ---
 description: Systematic root cause analysis — hypothesis-driven debugging with ranked probability testing, evidence-based verification, and prevention-first resolution.
 chain: debug-complex
+skills: [debug-pro, code-review, code-craft]
+agents: [orchestrator, assessor, recovery]
 ---
 
 # /diagnose - Root Cause Detective
@@ -39,6 +41,13 @@ recovery.restore()
 ---
 
 ## 🔴 MANDATORY: 5-Phase Investigation Protocol
+
+### Phase 0: Pre-flight & Auto-Learned Context
+
+> **Rule 0.5-K:** Auto-learned pattern check.
+
+1. Read `.agent/skills/auto-learned/patterns/` for past failures before proceeding.
+2. Trigger `recovery` agent to run Checkpoint (`git commit -m "chore(checkpoint): pre-diagnose"`).
 
 ### Phase 1: Symptom Collection
 

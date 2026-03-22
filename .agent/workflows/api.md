@@ -1,6 +1,8 @@
 ---
 description: End-to-end API development pipeline — design, implement, and ship production-grade REST, GraphQL, or tRPC services with OpenAPI specs, Prisma ORM, and full test coverage.
 chain: api-development
+skills: [api-architect, data-modeler, nodejs-pro, test-architect, security-scanner, auth-patterns]
+agents: [orchestrator, assessor, recovery]
 ---
 
 # /api - API Development Pipeline
@@ -37,6 +39,13 @@ learner.log(patterns)
 ---
 
 ## 🔴 MANDATORY: API Development Protocol
+
+### Phase 0: Pre-flight & Auto-Learned Context
+
+> **Rule 0.5-K:** Auto-learned pattern check.
+
+1. Read `.agent/skills/auto-learned/patterns/` for past failures before proceeding.
+2. Trigger `recovery` agent to run Checkpoint (`git commit -m "chore(checkpoint): pre-api"`).
 
 ### Phase 1: Requirements & API Design
 

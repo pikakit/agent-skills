@@ -1,6 +1,6 @@
 # Workflow Design Guide
 
-> **PikaKit v3.9.110** | Standard formula for creating new workflows
+> **PikaKit v3.9.111** | Standard formula for creating new FAANG-Grade workflows
 
 ---
 
@@ -10,11 +10,11 @@
 graph TD
     A[YAML Frontmatter] --> B[Title & Arguments]
     B --> C[Purpose Section]
-    C --> D[Meta-Agents Integration]
-    D --> E[Phases/Protocol]
-    E --> F[Output Format]
-    F --> G[Examples]
-    G --> H[Key Principles]
+    C --> D[Meta-Agents Integration & Flow]
+    D --> E[Phases & Context Handoff]
+    E --> F[Rollback & Resilience]
+    F --> G[Exit Gates & Certification]
+    G --> H[Output Format]
     H --> I[Workflow Chain]
 ```
 
@@ -24,10 +24,14 @@ graph TD
 
 ### 1. YAML Frontmatter (REQUIRED)
 
+> **FAANG RULE:** Explicit Dependency Injection. You must declare required skills and agents.
+
 ```yaml
 ---
 description: One-line summary. Action verb + outcome + method.
 chain: optional-chain-id  # For auto-chaining
+skills: [skill-A, skill-B] # Explicit dependencies (NEW)
+agents: [orchestrator, domain-agent] # Required Meta-Agents/Domain Agents (NEW)
 ---
 ```
 
@@ -54,20 +58,16 @@ $ARGUMENTS
 
 ---
 
-### 3. Meta-Agents Integration (RECOMMENDED)
+### 3. Meta-Agents Integration (REQUIRED)
 
 ```markdown
 ## 🤖 Meta-Agents Integration
 
 | Phase | Agent | Action |
 | ----- | ----- | ------ |
-| **Pre-Execute** | `assessor` | Evaluate risk |
+| **Pre-Execute** | `assessor` | Evaluate risk and check Auto-Learned Patterns |
 | **Execution** | `recovery` | Save checkpoints |
 | **Post-Execute** | `learner` | Log patterns |
-
-```
-Flow diagram (text or mermaid)
-```
 ```
 
 **Available Meta-Agents:**
@@ -79,46 +79,27 @@ Flow diagram (text or mermaid)
 
 ---
 
-## 2️⃣ security-audit Chain
+### 4. Phases & Context Handoff (CORE)
 
-> **Purpose:** Comprehensive security review
-
-### 🔧 Skills (4)
-
-1. `security-scanner` - Vulnerability scanning
-2. `code-review` - Security-focused code review
-3. `offensive-sec` - Penetration testing
-4. `cicd-pipeline` - CI/CD security integration
-
----
-
-## ⚡ Task-Oriented Workflows (Tactical Layer)
-
-> **Purpose:** High-speed execution for specific tasks. Bypasses deep planning.
-
-| Workflow | Use Case |
-| :--- | :--- |
-| **`/cook`** | **Implementer:** Execute instructions directly. |
-| **`/fix`** | **Mechanic:** Repair specific errors. |
-
-**Characteristics:**
-- **Input:** Specific instruction or error (not broad goals)
-- **Scope:** Single file/component
-- **Overhead:** Minimal (few meta-agents)
-- **Speed:** < 2 mins
-
----
-
-### 4. Phases/Protocol (CORE)
+> **FAANG RULE:** Context Preservation (0.5-I). Input and Output passed between agents must be strictly defined.
 
 ```markdown
 ## 🔴 MANDATORY: [Protocol Name]
 
-### Phase 1: [Name] (Optional time estimate)
-[Clear steps with checkboxes or code blocks]
+### Phase 1: Pre-Execute & Self-Healing
+> **Rule 0.5-K:** Auto-learned pattern check.
+1. Check `.agent/skills/auto-learned/patterns/` for past failures before proceeding.
 
 ### Phase 2: [Name]
-[Continue pattern...]
+
+| Field | Value |
+|-------|-------|
+| **INPUT** | Original Request, Previous Work, Current Plan |
+| **OUTPUT** | Concrete Deliverable |
+| **AGENTS** | `domain-agent` |
+| **SKILLS** | `skill-A` |
+
+[Clear steps with checkboxes or code blocks]
 
 ### Phase N: [Final Phase]
 [Verification/completion criteria]
@@ -128,11 +109,56 @@ Flow diagram (text or mermaid)
 - Use `🔴 MANDATORY` for critical phases
 - Include `// turbo` comments for auto-executable steps
 - Number phases sequentially
-- Each phase should have clear INPUT → OUTPUT
+- Each phase should have clear INPUT → OUTPUT mappings
 
 ---
 
-### 5. Output Format (REQUIRED)
+### 5. OpenTelemetry & Audit Logging (FAANG OBS)
+
+> **FAANG RULE:** All executable scripts and `// turbo` shell commands should be logged.
+
+Whenever making automated shell commands, prefix with telemetry (if available) or assume wrapping scripts will log execution. 
+
+**Example Node script execution:**
+```bash
+// turbo
+node .agent/skills/context-engineering/scripts/context_analyzer.js --telemetry-span="phase-name"
+```
+Or simply mandate immutable logging behavior natively inside the invoked scripts.
+
+---
+
+### 6. Rollback & Resilience (FAANG RESILIENCE)
+
+> **FAANG RULE:** Failed workflows must never leave the repository in a broken state.
+
+```markdown
+## 🔙 Rollback & Recovery
+- **Checkpoint Gate:** Stash existing changes or trigger `git commit -m "chore(checkpoint): pre-workflow"` before altering files.
+- **Rollback Condition:** If any Phase fails and cannot auto-fix, run `git checkout -- .` (or equivalent) and invoke `learner` meta-agent.
+```
+
+---
+
+### 7. Problem Verification / Exit Gates (ZERO-TRUST)
+
+> **FAANG RULE:** Never complete a workflow or notify user if verification fails. (Tier 0.5-G)
+
+```markdown
+## ⛔ MANDATORY: Exit Gates
+
+Before completing the workflow, ensure the following strictly passes:
+1. `@[current_problems] == 0` (Auto-fix minor issues first)
+2. Compilations / Tests Pass
+3. (If Applicable) Project builds/runs.
+
+**CRITICAL: Do not trigger Completion or notify_user until these gates pass.**
+If `@[current_problems] > 0` after auto-fix, stop and notify user. Do not mark workflow as Complete.
+```
+
+---
+
+### 8. Output Format (REQUIRED)
 
 ```markdown
 ## Output Format
@@ -140,13 +166,10 @@ Flow diagram (text or mermaid)
 \```markdown
 ## 🎯 [Workflow Output Title]
 
-### [Section 1]
+### Status
 | Column | Data |
 |--------|------|
 | Key | Value |
-
-### [Section 2]
-[Template content...]
 
 ### Next Steps
 - [ ] Action item 1
@@ -154,41 +177,9 @@ Flow diagram (text or mermaid)
 \```
 ```
 
-**Include:**
-- Table of findings/decisions
-- Actionable next steps
-- Status indicators (✅ ❌ ⏳)
-
 ---
 
-### 6. Examples
-
-```markdown
-## Examples
-
-\```
-/workflow-name argument1
-/workflow-name complex multi-word argument
-/workflow-name subcommand
-\```
-```
-
-Provide 3-5 realistic examples.
-
----
-
-### 7. Key Principles (OPTIONAL)
-
-```markdown
-## Key Principles
-
-1. **Principle Name** - brief explanation
-2. **Another Principle** - brief explanation
-```
-
----
-
-### 8. Workflow Chain (REQUIRED)
+### 9. Workflow Chain (REQUIRED)
 
 ```markdown
 ## 🔗 Workflow Chain
@@ -218,6 +209,8 @@ graph LR
 ```markdown
 ---
 description: [Action verb] + [outcome] + [method/differentiator].
+skills: [skill-A, skill-B]
+agents: [orchestrator, domain-agent]
 ---
 
 # /workflow-name - Descriptive Title
@@ -236,53 +229,58 @@ $ARGUMENTS
 
 | Phase | Agent | Action |
 | ----- | ----- | ------ |
-| **[Phase]** | `agent` | Action description |
-
-\```
-Flow:
-step1 → step2
-       ↓
-step3 → step4
-\```
+| **Pre-Flight** | `assessor` | Evaluate risk & auto-learned patterns |
+| **Execution** | `orchestrator`| Assign domain agents |
+| **Safety** | `recovery` | Save checkpoint |
 
 ---
 
 ## 🔴 MANDATORY: [Protocol Name]
 
-### Phase 1: [Name]
+### Phase 1: Pre-flight & Auto-Learned Context
+1. Read `.agent/skills/auto-learned/patterns/` relevant to this workflow.
+2. Trigger `recovery` agent to run Checkpoint (`git commit -m "chore(checkpoint): pre-workflow-name"`).
+
+### Phase 2: [Execution Phase]
+
+| Field | Value |
+|-------|-------|
+| **INPUT** | $ARGUMENTS & Learned Context |
+| **OUTPUT** | Structured Plan / Mod |
+| **AGENTS** | `domain-agent` |
+| **SKILLS** | `skill-A` |
+
 [Steps...]
 
-### Phase 2: [Name]
-[Steps...]
+---
+
+## ⛔ MANDATORY: Exit Gates / Certification
+
+**CRITICAL: Do not trigger Completion or notify_user until these gates pass.**
+1. Read `@[current_problems]`. Auto-fix if `> 0`. 
+2. If `@[current_problems] > 0` after auto-fix, stop and notify user. Do not mark workflow as Complete.
+
+---
+
+## 🔙 Rollback Path
+
+If the Exit Gates fail and cannot be resolved automatically:
+1. Restore to pre-workflow checkpoint.
+2. Log failure via `learner` meta-agent.
 
 ---
 
 ## Output Format
 
 \```markdown
-## [Emoji] [Output Title]
+## 🎯 [Output Title]
 
-### [Section]
-[Content template...]
+### Status
+[Checklist of completed items]
 
-### Next Steps
-- [ ] Action 1
+### Next Steps    
+[Actionable items]
 \```
-
----
-
-## Examples
-
-\```
-/workflow-name example1
-/workflow-name example2
-\```
-
----
-
-## Key Principles
-
-- **Principle** - explanation
 
 ---
 
@@ -309,18 +307,19 @@ Completion message.
 
 ## Checklist
 
-Before publishing a workflow:
+Before publishing a FAANG-grade workflow:
 
-- [ ] Frontmatter has clear `description`
+- [ ] Frontmatter includes explicit `skills` and `agents` (Dependency Injection)
 - [ ] Purpose section explains the "what" and "why"
-- [ ] Meta-agents integrated if workflow is complex
-- [ ] Phases are numbered and sequential
-- [ ] Output format is copy-paste ready
-- [ ] 3-5 examples provided
+- [ ] Meta-agents integrated for Pre-flight, Execution, Safety
+- [ ] Phase 1 enforces Auto-Learned pattern checks
+- [ ] Context handoff (Input/Output/Agents/Skills) explicitly mapped per Phase
+- [ ] Exit Gates strictly enforces `@[current_problems] == 0`
+- [ ] Rollback path is defined
+- [ ] Telemetry logging wrapped for `// turbo` shell scripts
 - [ ] Workflow chain shows before/after connections
-- [ ] Handoff message included
 
 ---
 
-⚡ PikaKit v3.9.110
+⚡ PikaKit v3.9.111
 Composable Skills. Coordinated Agents. Intelligent Execution.

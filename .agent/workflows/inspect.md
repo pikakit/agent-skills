@@ -1,6 +1,8 @@
 ---
 description: Defense-in-depth code review — four-layer validation across build, tests, security, and logic to eliminate false completion claims with evidence-based verification.
 chain: security-audit
+skills: [security-scanner, code-review]
+agents: [orchestrator, assessor, recovery]
 ---
 
 # /inspect - Defense-in-Depth Review
@@ -45,6 +47,13 @@ report → learner.log(patterns)
 ---
 
 ## 🔴 MANDATORY: 4-Layer Validation Protocol
+
+### Phase 0: Pre-flight & Auto-Learned Context
+
+> **Rule 0.5-K:** Auto-learned pattern check.
+
+1. Read `.agent/skills/auto-learned/patterns/` for past failures before proceeding.
+2. Trigger `recovery` agent to run Checkpoint (`git commit -m "chore(checkpoint): pre-inspect"`).
 
 ### Phase 1: Build Verification
 

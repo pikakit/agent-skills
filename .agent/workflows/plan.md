@@ -1,5 +1,7 @@
 ---
 description: Project blueprint generator — requirements discovery, architecture decisions, hierarchical task breakdown, agent assignment, and PLAN.md creation without writing code.
+skills: [idea-storm, project-planner, system-design]
+agents: [orchestrator, assessor, recovery]
 ---
 
 # /plan - Project Blueprint
@@ -35,6 +37,13 @@ handoff to /build
 ---
 
 ## 🔴 MANDATORY: 4-Phase Planning Protocol
+
+### Phase 0: Pre-flight & Auto-Learned Context
+
+> **Rule 0.5-K:** Auto-learned pattern check.
+
+1. Read `.agent/skills/auto-learned/patterns/` for past failures before proceeding.
+2. Trigger `recovery` agent to run Checkpoint (`git commit -m "chore(checkpoint): pre-plan"`).
 
 ### Phase 1: Requirements Discovery
 

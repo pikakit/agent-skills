@@ -1,5 +1,7 @@
 ---
 description: AI-powered design system generator — 50+ styles, 97 color palettes, 57 font pairings, and anti-AI-slop intelligence across 10 technology stacks with searchable database.
+skills: [studio, design-system, frontend-design, idea-storm]
+agents: [orchestrator, assessor, recovery]
 ---
 
 # /studio - Design Intelligence
@@ -33,6 +35,13 @@ verify(accessibility, contrast) → learner.log(patterns)
 ---
 
 ## 🔴 MANDATORY: Design System Protocol
+
+### Phase 0: Pre-flight & Auto-Learned Context
+
+> **Rule 0.5-K:** Auto-learned pattern check.
+
+1. Read `.agent/skills/auto-learned/patterns/` for past failures before proceeding.
+2. Trigger `recovery` agent to run Checkpoint (`git commit -m "chore(checkpoint): pre-studio"`).
 
 ### Phase 1: Requirements Analysis
 

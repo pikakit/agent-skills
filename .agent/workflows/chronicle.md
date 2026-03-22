@@ -1,5 +1,7 @@
 ---
 description: Automated documentation engine — generate README, OpenAPI specs, ADRs, Storybook stories, operational runbooks, and inline comments directly from source code analysis.
+skills: [doc-templates, markdown-novel-viewer]
+agents: [orchestrator, assessor, recovery]
 ---
 
 # /chronicle - Documentation Engine
@@ -49,6 +51,13 @@ learner.log(templates, patterns)
 ---
 
 ## 🔴 MANDATORY: Documentation Generation Protocol
+
+### Phase 0: Pre-flight & Auto-Learned Context
+
+> **Rule 0.5-K:** Auto-learned pattern check.
+
+1. Read `.agent/skills/auto-learned/patterns/` for past failures before proceeding.
+2. Trigger `recovery` agent to run Checkpoint (`git commit -m "chore(checkpoint): pre-chronicle"`).
 
 ### Phase 1: Codebase Analysis
 

@@ -1,6 +1,8 @@
 ---
 description: Targeted error remediation — triage, patch, and verify specific errors, lint failures, or broken tests with minimal diff and automatic rollback safety.
 chain: debug-complex
+skills: [debug-pro, code-craft, problem-checker]
+agents: [orchestrator, assessor, recovery]
 ---
 
 # /fix - The Mechanic
@@ -52,6 +54,13 @@ learner.log(pattern)
 ---
 
 ## 🔴 MANDATORY: Repair Protocol
+
+### Phase 0: Pre-flight & Auto-Learned Context
+
+> **Rule 0.5-K:** Auto-learned pattern check.
+
+1. Read `.agent/skills/auto-learned/patterns/` for past failures before proceeding.
+2. Trigger `recovery` agent to run Checkpoint (`git commit -m "chore(checkpoint): pre-fix"`).
 
 ### Phase 1: Triage
 

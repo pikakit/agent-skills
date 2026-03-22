@@ -1,6 +1,8 @@
 ---
 description: Full-stack application factory — transform natural language descriptions into production-ready apps with multi-agent coordination, smart stack defaults, and automated verification.
 chain: build-web-app
+skills: [app-scaffold, project-planner, studio, design-system, code-craft, data-modeler, api-architect, test-architect, idea-storm, nodejs-pro, problem-checker]
+agents: [orchestrator, assessor, recovery]
 ---
 
 # /build - Application Factory
@@ -42,6 +44,13 @@ success → learner.log(patterns)
 ---
 
 ## 🔴 MANDATORY: Build Pipeline
+
+### Phase 0: Pre-flight & Auto-Learned Context
+
+> **Rule 0.5-K:** Auto-learned pattern check.
+
+1. Read `.agent/skills/auto-learned/patterns/` for past failures before proceeding.
+2. Trigger `recovery` agent to run Checkpoint (`git commit -m "chore(checkpoint): pre-build"`).
 
 ### Phase 1: Requirements Discovery
 

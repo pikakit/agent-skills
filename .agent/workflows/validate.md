@@ -1,5 +1,7 @@
 ---
 description: Comprehensive test automation suite — generate, execute, and analyze tests with Vitest/Playwright using AAA pattern, mutation testing, visual regression, and contract verification.
+skills: [test-architect, e2e-automation, code-review]
+agents: [orchestrator, assessor, recovery]
 ---
 
 # /validate - Test Automation Suite
@@ -48,6 +50,13 @@ learner.log(failure_patterns)
 ---
 
 ## 🔴 MANDATORY: Test Automation Protocol
+
+### Phase 0: Pre-flight & Auto-Learned Context
+
+> **Rule 0.5-K:** Auto-learned pattern check.
+
+1. Read `.agent/skills/auto-learned/patterns/` for past failures before proceeding.
+2. Trigger `recovery` agent to run Checkpoint (`git commit -m "chore(checkpoint): pre-validate"`).
 
 ### Phase 1: Test Generation
 

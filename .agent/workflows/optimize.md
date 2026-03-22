@@ -1,5 +1,7 @@
 ---
 description: Full-stack performance optimization — profile bottlenecks, fix N+1 queries, configure Redis caching, reduce bundle size, and validate with k6 load testing.
+skills: [perf-optimizer, data-modeler, caching-strategy]
+agents: [orchestrator, assessor, recovery]
 ---
 
 # /optimize - Performance Optimization
@@ -33,6 +35,13 @@ learner.log(optimization_patterns)
 ---
 
 ## 🔴 MANDATORY: Performance Optimization Protocol
+
+### Phase 0: Pre-flight & Auto-Learned Context
+
+> **Rule 0.5-K:** Auto-learned pattern check.
+
+1. Read `.agent/skills/auto-learned/patterns/` for past failures before proceeding.
+2. Trigger `recovery` agent to run Checkpoint (`git commit -m "chore(checkpoint): pre-optimize"`).
 
 ### Phase 1: Performance Profiling
 
