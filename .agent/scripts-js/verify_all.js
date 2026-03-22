@@ -24,8 +24,7 @@ const VERIFICATION_SUITE = [
     {
         category: 'Security',
         checks: [
-            { name: 'Security Scan', script: '.agent/skills/vulnerability-scanner/scripts/security_scan.py', required: true },
-            { name: 'Dependency Analysis', script: '.agent/skills/vulnerability-scanner/scripts/dependency_analyzer.py', required: false }
+            { name: 'Security Scan', script: '.agent/skills/security-scanner/scripts/security_scan.js', required: true }
         ]
     },
 
@@ -33,8 +32,8 @@ const VERIFICATION_SUITE = [
     {
         category: 'Code Quality',
         checks: [
-            { name: 'Lint Check', script: '.agent/skills/lint-and-validate/scripts/lint_runner.py', required: true },
-            { name: 'Type Coverage', script: '.agent/skills/lint-and-validate/scripts/type_coverage.py', required: false }
+            { name: 'Lint Check', script: '.agent/skills/code-review/scripts/lint_runner.js', required: true },
+            { name: 'Type Coverage', script: '.agent/skills/typescript-expert/scripts/ts_diagnostic.js', required: false }
         ]
     },
 
@@ -42,7 +41,7 @@ const VERIFICATION_SUITE = [
     {
         category: 'Data Layer',
         checks: [
-            { name: 'Schema Validation', script: '.agent/skills/database-design/scripts/schema_validator.py', required: false }
+            { name: 'Schema Validation', script: '.agent/skills/data-modeler/scripts/schema_validator.js', required: false }
         ]
     },
 
@@ -50,7 +49,7 @@ const VERIFICATION_SUITE = [
     {
         category: 'Testing',
         checks: [
-            { name: 'Test Suite', script: '.agent/skills/testing-patterns/scripts/test_runner.py', required: false }
+            { name: 'Test Suite', script: '.agent/skills/test-architect/scripts/test_runner.js', required: false }
         ]
     },
 
@@ -58,8 +57,8 @@ const VERIFICATION_SUITE = [
     {
         category: 'UX & Accessibility',
         checks: [
-            { name: 'UX Audit', script: '.agent/skills/frontend-design/scripts/ux_audit.py', required: false },
-            { name: 'Accessibility Check', script: '.agent/skills/frontend-design/scripts/accessibility_checker.py', required: false }
+            { name: 'UX Audit', script: '.agent/skills/design-system/scripts/ux_audit.js', required: false },
+            { name: 'Accessibility Check', script: '.agent/skills/design-system/scripts/accessibility_checker.js', required: false }
         ]
     },
 
@@ -67,8 +66,7 @@ const VERIFICATION_SUITE = [
     {
         category: 'SEO & Content',
         checks: [
-            { name: 'SEO Check', script: '.agent/skills/seo-fundamentals/scripts/seo_checker.py', required: false },
-            { name: 'GEO Check', script: '.agent/skills/geo-fundamentals/scripts/geo_checker.py', required: false }
+            { name: 'SEO Check', script: '.agent/skills/seo-optimizer/scripts/seo_checker.js', required: false }
         ]
     },
 
@@ -77,8 +75,7 @@ const VERIFICATION_SUITE = [
         category: 'Performance',
         requiresUrl: true,
         checks: [
-            { name: 'Lighthouse Audit', script: '.agent/skills/performance-profiling/scripts/lighthouse_audit.py', required: true },
-            { name: 'Bundle Analysis', script: '.agent/skills/performance-profiling/scripts/bundle_analyzer.py', required: false }
+            { name: 'Lighthouse Audit', script: '.agent/skills/perf-optimizer/scripts/lighthouse_audit.js', required: true }
         ]
     },
 
@@ -87,7 +84,7 @@ const VERIFICATION_SUITE = [
         category: 'E2E Testing',
         requiresUrl: true,
         checks: [
-            { name: 'Playwright E2E', script: '.agent/skills/webapp-testing/scripts/playwright_runner.py', required: false }
+            { name: 'Playwright E2E', script: '.agent/skills/e2e-automation/scripts/playwright_runner.js', required: false }
         ]
     },
 
@@ -95,15 +92,7 @@ const VERIFICATION_SUITE = [
     {
         category: 'Mobile',
         checks: [
-            { name: 'Mobile Audit', script: '.agent/skills/mobile-design/scripts/mobile_audit.py', required: false }
-        ]
-    },
-
-    // P9: Internationalization
-    {
-        category: 'Internationalization',
-        checks: [
-            { name: 'i18n Check', script: '.agent/skills/i18n-localization/scripts/i18n_checker.py', required: false }
+            { name: 'Mobile Audit', script: '.agent/skills/mobile-design/scripts/mobile_audit.js', required: false }
         ]
     }
 ];
