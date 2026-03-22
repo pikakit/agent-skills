@@ -135,69 +135,61 @@ metadata:
 
 | Priority | Category | Impact | Prefix |
 |----------|----------|--------|--------|
-| 1 | General | LOW | `general-` |
-| 2 | Component Patterns | LOW | `component-` |
-| 3 | Data Management | LOW | `data-` |
-| 4 | Engineering Spec | LOW | `engineering-` |
-| 5 | File Organization | LOW | `file-` |
-| 6 | MUI Styling | LOW | `mui-` |
+| 1 | React 19 Patterns | HIGH | `react19-` |
+| 2 | Composition | HIGH | `composition-` |
+| 3 | State Management | HIGH | `state-` |
+| 4 | Error Handling | HIGH | `error-` |
+| 5 | Component Patterns | HIGH | `component-` |
+| 6 | Data Fetching | HIGH | `data-` |
+| 7 | Performance | HIGH | `performance-` |
+| 8 | Custom Hooks | MEDIUM | `hooks-` |
+| 9 | Testing | MEDIUM | `testing-` |
+| 10 | File Organization | MEDIUM | `file-` |
+| 11 | MUI Styling | MEDIUM | `mui-` |
+| 12 | Engineering Spec | MEDIUM | `engineering-` |
 
 ## Quick Reference
 
-### 1. General (LOW)
+### Architecture & Patterns (HIGH)
 
-- `patterns` - React Advanced Patterns
-- `performance` - Performance Optimization
+- `react19-hooks` - useActionState & useOptimistic
+- `composition-compound` - Compound components with context
+- `state-management` - Zustand (global) & React Query (server)
+- `error-boundary` - Error boundary with fallback UI
+- `component-patterns` - Component type classification
+- `data-fetching` - TanStack Query patterns
 
-### 2. Component Patterns (LOW)
+### Optimization (HIGH-MEDIUM)
 
-- `component-patterns` - Component Patterns
+- `performance-optimization` - Waterfalls, bundle, re-renders, virtualization
+- `hooks-custom` - useDebounce, useLocalStorage, extraction criteria
+- `testing-patterns` - React Testing Library + userEvent
 
-### 3. Data Management (LOW)
+### Structure (MEDIUM)
 
-- `data-fetching` - Data Fetching with TanStack Query
-
-### 4. Engineering Spec (LOW)
-
-- `engineering-spec` - Frontend Development — Engineering Specification
-
-### 5. File Organization (LOW)
-
-- `file-organization` - File Organization
-
-### 6. MUI Styling (LOW)
-
-- `mui-styling` - MUI v7 Styling
+- `file-organization` - Project file structure
+- `mui-styling` - MUI v7 styling patterns
+- `engineering-spec` - Full architecture specification
 
 ## How to Use
 
 Read individual rule files for detailed explanations and code examples:
 
 ```
-rules/component-patterns.md
-rules/data-fetching.md
+rules/react19-hooks.md
+rules/state-management.md
 ```
 
 Each rule file contains:
 - Brief explanation of why it matters
-- Incorrect code example with explanation
-- Correct code example with explanation
-- Additional context and references
+- Code examples with correct patterns
+- Anti-patterns to avoid
+
+**Selective reading:** Read ONLY the category relevant to current task.
 
 ## Full Compiled Document
 
-For the complete guide with all rules expanded: `AGENTS.md`
-
-
-## ðŸ“‘ Content Map
-
-| File | Description | When to Read |
-|------|-------------|--------------|
-| [patterns.md](rules/patterns.md) | React 19, Composition, Performance, TypeScript, Testing | Advanced patterns |
-| [engineering-spec.md](rules/engineering-spec.md) | Full spec | Architecture review |
-
----
-
+For the complete guide with all rules expanded: AGENTS.md\n
 ## ðŸ”— Related
 
 | Item | Type | Purpose |
