@@ -5,7 +5,7 @@ description: >-
   Triggers on: monitoring, observability, OpenTelemetry, telemetry, instrumentation.
 metadata:
   author: pikakit
-  version: "3.9.106"
+  version: "3.9.107"
 ---
 
 # Observability â€” Unified Telemetry with OpenTelemetry
@@ -145,4 +145,4 @@ metadata:
 
 ---
 
-âš¡ PikaKit v3.9.106
+âš¡ PikaKit v3.9.107

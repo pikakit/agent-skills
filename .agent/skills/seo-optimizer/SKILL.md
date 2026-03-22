@@ -5,7 +5,7 @@ description: >-
   SEO, meta tags, sitemap, search ranking, OpenGraph.
 metadata:
   author: pikakit
-  version: "3.9.106"
+  version: "3.9.107"
 ---
 
 # SEO Optimizer â€” Search Engine Visibility
@@ -147,4 +147,4 @@ metadata:
 
 ---
 
-âš¡ PikaKit v3.9.106
+âš¡ PikaKit v3.9.107

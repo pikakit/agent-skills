@@ -6,7 +6,7 @@ description: >-
   routing, skill loading, task completion.
 metadata:
   author: pikakit
-  version: "3.9.106"
+  version: "3.9.107"
 ---
 
 # Execution Reporter â€” Task Notifications
@@ -50,7 +50,7 @@ metadata:
 ### Full Template (> 3 skills)
 
 ```
-ðŸ¤– PikaKit v3.9.106
+ðŸ¤– PikaKit v3.9.107
 ðŸ“‹ Task: {task_description}
 â—† Agent: @{agent_name}
 â—‡ Skills: {skill_1}, {skill_2}, ...
@@ -67,7 +67,7 @@ metadata:
 
 ```
 âœ… Done â€¢ Agent: @{agent_name} â€¢ Skills: {count} â€¢ Files: {count} â€¢ {duration}s
-âš¡ PikaKit v3.9.106
+âš¡ PikaKit v3.9.107
 ```
 
 ### Script Run Template
@@ -145,4 +145,4 @@ metadata:
 
 ---
 
-âš¡ PikaKit v3.9.106
+âš¡ PikaKit v3.9.107

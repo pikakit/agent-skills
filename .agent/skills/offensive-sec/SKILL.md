@@ -5,7 +5,7 @@ description: >-
   reporting. Triggers on: pentest, red team, exploit, vulnerability, hacking.
 metadata:
   author: pikakit
-  version: "3.9.106"
+  version: "3.9.107"
 ---
 
 # Offensive Security â€” Red Team Tactics (MITRE ATT&CK)
@@ -158,4 +158,4 @@ LATERAL â†’ COLLECTION â†’ C2 â†’ EXFILTRATION â†’ IMPACT
 
 ---
 
-âš¡ PikaKit v3.9.106
+âš¡ PikaKit v3.9.107

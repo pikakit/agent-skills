@@ -6,7 +6,7 @@ description: >-
   Express, backend, server, API.
 metadata:
   author: pikakit
-  version: "3.9.106"
+  version: "3.9.107"
 ---
 
 # Node.js Pro â€” Backend Decision Framework
@@ -208,4 +208,4 @@ For the complete guide with all rules expanded: `AGENTS.md`
 
 ---
 
-âš¡ PikaKit v3.9.106
+âš¡ PikaKit v3.9.107

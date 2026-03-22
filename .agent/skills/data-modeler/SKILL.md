@@ -5,7 +5,7 @@ description: >-
   selection. Triggers on: database, schema, Prisma, Drizzle, SQL, migration, indexing.
 metadata:
   author: pikakit
-  version: "3.9.106"
+  version: "3.9.107"
 ---
 
 # Data Modeler â€” Database Design
@@ -163,4 +163,4 @@ metadata:
 
 ---
 
-âš¡ PikaKit v3.9.106
+âš¡ PikaKit v3.9.107

@@ -5,7 +5,7 @@ description: >-
   working on macOS or Linux systems. Triggers on: shell, bash, script, automation, CLI.
 metadata:
   author: pikakit
-  version: "3.9.106"
+  version: "3.9.107"
 ---
 
 # Shell Script â€” Bash/Linux Patterns
@@ -172,4 +172,4 @@ trap 'rm -f /tmp/tempfile' EXIT
 
 ---
 
-âš¡ PikaKit v3.9.106
+âš¡ PikaKit v3.9.107

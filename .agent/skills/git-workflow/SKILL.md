@@ -6,7 +6,7 @@ description: >-
   conventional commits.
 metadata:
   author: pikakit
-  version: "3.9.106"
+  version: "3.9.107"
 ---
 
 # Git Workflow â€” Conventional Commits + Secret Detection
@@ -174,4 +174,4 @@ REBASING â†’ CONFLICT         [merge conflicts]  // terminal
 
 ---
 
-âš¡ PikaKit v3.9.106
+âš¡ PikaKit v3.9.107

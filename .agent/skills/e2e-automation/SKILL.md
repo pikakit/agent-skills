@@ -5,7 +5,7 @@ description: >-
   strategies. Triggers on: E2E test, Playwright, browser test, visual testing, automation.
 metadata:
   author: pikakit
-  version: "3.9.106"
+  version: "3.9.107"
 ---
 
 # E2E Automation â€” Playwright Testing
@@ -167,4 +167,4 @@ NAVIGATING â†’ ERROR        [target unreachable]  // terminal
 
 ---
 
-âš¡ PikaKit v3.9.106
+âš¡ PikaKit v3.9.107
