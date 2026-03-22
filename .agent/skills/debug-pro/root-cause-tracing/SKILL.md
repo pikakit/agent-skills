@@ -1,13 +1,9 @@
 ---
 name: Root Cause Tracing
 description: Systematically trace bugs backward through call stack to find original trigger
-when_to_use: when errors occur deep in execution and you need to trace back to find the original trigger
-version: 1.1.0
-languages: all
 metadata:
-  category: "core"
+  author: pikakit
   version: "1.1.0"
-  triggers: "root cause, trace, error chain, debugging origin"
 ---
 
 # Root Cause Tracing

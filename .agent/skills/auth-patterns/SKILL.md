@@ -1,17 +1,13 @@
-﻿---
+---
 name: auth-patterns
 description: >-
-  Authentication and authorization patterns for production applications.
-  OAuth2, JWT, RBAC/ABAC, MFA, Passkeys, session management.
-  Fail-closed design: ambiguity â†’ deny access. Defense in depth required.
-  Triggers on: auth, login, OAuth, JWT, RBAC, permissions, MFA, passkey.
-  Coordinates with: api-architect, security-scanner, data-modeler.
+  Authentication and authorization patterns for production applications. OAuth2, JWT,
+  RBAC/ABAC, MFA, Passkeys, session management. Fail-closed design: ambiguity â†’ deny access.
+  Defense in depth required. Triggers on: auth, login, OAuth, JWT, RBAC, permissions, MFA,
+  passkey.
 metadata:
+  author: pikakit
   version: "2.0.0"
-  category: "security"
-  triggers: "auth, login, OAuth, JWT, RBAC, permissions, MFA, passkey, SSO"
-  success_metrics: "fail-closed defaults enforced, token TTL â‰¤ 15min, zero implicit allow"
-  coordinates_with: "api-architect, security-scanner, data-modeler"
 ---
 
 # Auth Patterns

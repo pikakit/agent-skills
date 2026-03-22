@@ -1,15 +1,11 @@
-﻿---
+---
 name: server-ops
 description: >-
-  Server management principles and decision-making. Process management, monitoring strategy, scaling decisions.
-  Triggers on: server, DevOps, infrastructure, deployment, hosting.
-  Coordinates with: cicd-pipeline, security-scanner.
+  Server management principles and decision-making. Process management, monitoring strategy,
+  scaling decisions. Triggers on: server, DevOps, infrastructure, deployment, hosting.
 metadata:
+  author: pikakit
   version: "2.0.0"
-  category: "devops"
-  triggers: "server, DevOps, infrastructure, deployment, hosting, PM2"
-  success_metrics: "server running, uptime maintained"
-  coordinates_with: "cicd-pipeline, security-scanner"
 ---
 
 # Server Ops â€” Production Server Management

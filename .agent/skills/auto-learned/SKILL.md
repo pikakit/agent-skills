@@ -1,19 +1,13 @@
-﻿---
+---
 name: auto-learned
 description: >-
-  Hierarchical skill containing all auto-learned patterns from IDE errors
-  and code analysis. Organizes patterns by category (import, type, syntax, etc.)
-  with subskills in patterns/ folder. Writable by authorized agents only.
-  Triggers on: auto-learn, pattern, learned, error fix.
-  Coordinates with: problem-checker, skill-generator, auto-learner.
+  Hierarchical skill containing all auto-learned patterns from IDE errors and code analysis.
+  Organizes patterns by category (import, type, syntax, etc.) with subskills in patterns/
+  folder. Writable by authorized agents only. Triggers on: auto-learn, pattern, learned, error
+  fix.
 metadata:
+  author: pikakit
   version: "2.0.0"
-  category: "evolution"
-  triggers: "auto-learn, pattern, learned, error fix"
-  success_metrics: "zero repeated errors for recorded patterns, sub-50ms lookup"
-  coordinates_with: "problem-checker, skill-generator, auto-learner"
-  generated_by: "skill-generator"
-  hierarchical: true
 ---
 
 # Auto-Learned â€” Pattern Repository

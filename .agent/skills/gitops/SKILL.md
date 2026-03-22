@@ -1,16 +1,12 @@
-﻿---
+---
 name: gitops-workflow
 description: >-
-  Implement GitOps workflows with ArgoCD and Flux for automated, declarative
-  Kubernetes deployments with continuous reconciliation.
-  Triggers on: GitOps, ArgoCD, Flux, Kubernetes, declarative deployment.
-  Coordinates with: cicd-pipeline, server-ops, git-workflow.
+  Implement GitOps workflows with ArgoCD and Flux for automated, declarative Kubernetes
+  deployments with continuous reconciliation. Triggers on: GitOps, ArgoCD, Flux, Kubernetes,
+  declarative deployment.
 metadata:
+  author: pikakit
   version: "2.0.0"
-  category: "devops"
-  triggers: "GitOps, ArgoCD, Flux, Kubernetes, declarative deployment"
-  success_metrics: "Git is source of truth, reconciliation active, zero secrets in Git"
-  coordinates_with: "cicd-pipeline, server-ops, git-workflow"
 ---
 
 # GitOps Workflow â€” Declarative Kubernetes Delivery

@@ -1,12 +1,10 @@
 ---
 name: mobile-games
-description: Mobile game development principles. Touch input, battery, performance, app stores.
+description: >-
+  Mobile game development principles. Touch input, battery, performance, app stores.
 metadata:
-  category: "game-development"
+  author: pikakit
   version: "1.0.0"
-  triggers: "mobile game, touch input, app store, iOS game, Android game"
-  success_metrics: "44pt touch targets, thermal management, 30 FPS stable, store compliance"
-  coordinates_with: "game-development, mobile-developer, 2d-games, game-audio"
 ---
 
 # Mobile Game Development

@@ -1,16 +1,12 @@
-﻿---
+---
 name: test-architect
 description: >-
-  Testing patterns and principles - unit, integration, E2E, and mocking strategies.
-  Use when writing tests, improving coverage, or establishing testing standards.
-  Triggers on: test, testing, unit test, coverage, mocking, AAA pattern.
-  Coordinates with: code-craft, e2e-automation, code-review.
+  Testing patterns and principles - unit, integration, E2E, and mocking strategies. Use when
+  writing tests, improving coverage, or establishing testing standards. Triggers on: test,
+  testing, unit test, coverage, mocking, AAA pattern.
 metadata:
+  author: pikakit
   version: "2.0.0"
-  category: "testing"
-  triggers: "test, unit test, coverage, mocking, AAA, jest, vitest"
-  success_metrics: "test coverage >80%, all tests pass"
-  coordinates_with: "code-craft, e2e-automation, code-review"
 ---
 
 # Test Architect â€” Testing Patterns & Principles

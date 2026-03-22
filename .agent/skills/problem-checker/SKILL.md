@@ -1,15 +1,12 @@
-﻿---
+---
 name: problem-checker
 description: >-
   Automated IDE problem detection and auto-fix before task completion. Checks
-  @[current_problems] and auto-fixes common issues. Triggers on: before notify_user,
-  after code modification, IDE errors. Coordinates with: auto-learned, auto-learner.
+  @[current_problems] and auto-fixes common issues. Triggers on: before notify_user, after code
+  modification, IDE errors.
 metadata:
-  category: "evolution"
+  author: pikakit
   version: "2.0.0"
-  triggers: "before notify_user, IDE errors, after code modification"
-  success_metrics: "0 IDE errors at completion, auto-fix rate >80%"
-  coordinates_with: "auto-learned, auto-learner"
 ---
 
 # Problem Checker â€” Automated IDE Error Gate

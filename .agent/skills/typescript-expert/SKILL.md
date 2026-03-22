@@ -1,18 +1,14 @@
-﻿---
+---
 name: typescript-expert
 description: >-
-  TypeScript and JavaScript expert with deep knowledge of type-level programming,
-  performance tuning, monorepo management, migration strategies, and modern tooling.
-  Use PROACTIVELY for any TypeScript/JavaScript issues including complex type gymnastics,
-  build performance, debugging, and architectural decisions.
-  Triggers on: TypeScript, JavaScript, type error, tsconfig, monorepo.
-  Coordinates with: nextjs-pro, react-architect, code-review.
+  TypeScript and JavaScript expert with deep knowledge of type-level programming, performance
+  tuning, monorepo management, migration strategies, and modern tooling. Use PROACTIVELY for
+  any TypeScript/JavaScript issues including complex type gymnastics, build performance,
+  debugging, and architectural decisions. Triggers on: TypeScript, JavaScript, type error,
+  tsconfig, monorepo.
 metadata:
+  author: pikakit
   version: "2.0.0"
-  category: "framework"
-  triggers: "TypeScript, JavaScript, type error, tsconfig, monorepo"
-  success_metrics: "tsc passes, no type errors"
-  coordinates_with: "nextjs-pro, react-architect, code-review"
 ---
 
 # TypeScript Expert â€” Advanced TS Problem-Solving

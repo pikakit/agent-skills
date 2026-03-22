@@ -1,16 +1,12 @@
-﻿---
+---
 name: mobile-developer
 description: >-
   Develop React Native, Flutter, or native mobile apps with modern architecture patterns.
-  Masters cross-platform development, native integrations, offline sync, and app store optimization.
-  Triggers on: React Native, Flutter, iOS, Android, mobile app, cross-platform.
-  Coordinates with: mobile-first, mobile-design, perf-optimizer.
+  Masters cross-platform development, native integrations, offline sync, and app store
+  optimization. Triggers on: React Native, Flutter, iOS, Android, mobile app, cross-platform.
 metadata:
+  author: pikakit
   version: "2.0.0"
-  category: "mobile-games"
-  triggers: "React Native, Flutter, iOS, Android, mobile app"
-  success_metrics: "framework selected, architecture matched, security checklist passed"
-  coordinates_with: "mobile-first, mobile-design, perf-optimizer"
 ---
 
 # Mobile Developer â€” Cross-Platform & Native Expert

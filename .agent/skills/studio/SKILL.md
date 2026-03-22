@@ -1,15 +1,12 @@
-﻿---
+---
 name: studio
 description: >-
-  AI-powered design intelligence with 50+ styles, 97 color palettes, 57 font pairings,
-  and anti-AI-slop design system generation. Triggers on: design system, UI design,
-  color palette, typography, style guide. Coordinates with: frontend-specialist, design-system.
+  AI-powered design intelligence with 50+ styles, 97 color palettes, 57 font pairings, and
+  anti-AI-slop design system generation. Triggers on: design system, UI design, color palette,
+  typography, style guide.
 metadata:
+  author: pikakit
   version: "2.0.0"
-  category: "design"
-  triggers: "design system, UI design, color palette, typography, style guide"
-  success_metrics: "design system generated, styles matched"
-  coordinates_with: "frontend-specialist, design-system"
 ---
 
 # Studio â€” Design Intelligence

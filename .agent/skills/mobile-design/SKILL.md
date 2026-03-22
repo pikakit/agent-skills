@@ -1,16 +1,12 @@
-﻿---
+---
 name: mobile-design
 description: >-
-  Mobile-first design and engineering doctrine for iOS and Android apps.
-  Covers touch interaction, performance, platform conventions, offline behavior.
-  Triggers on: mobile design, iOS, Android, touch, responsive mobile.
-  Coordinates with: mobile-first, mobile-developer, design-system.
+  Mobile-first design and engineering doctrine for iOS and Android apps. Covers touch
+  interaction, performance, platform conventions, offline behavior. Triggers on: mobile design,
+  iOS, Android, touch, responsive mobile.
 metadata:
-  category: "mobile-games"
+  author: pikakit
   version: "2.0.0"
-  triggers: "mobile design, iOS, Android, touch, responsive"
-  success_metrics: "MFRI > 5, platform guidelines followed, touch targets met"
-  coordinates_with: "mobile-first, mobile-developer, design-system"
 ---
 
 # Mobile Design â€” Mobile-First Design Doctrine

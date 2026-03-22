@@ -1,16 +1,12 @@
-﻿---
+---
 name: nodejs-pro
 description: >-
-  Node.js development principles and decision-making. Framework selection (Hono/Fastify/Express/NestJS),
-  async patterns, security, architecture.
-  Triggers on: Node.js, Express, backend, server, API.
-  Coordinates with: api-architect, data-modeler.
+  Node.js development principles and decision-making. Framework selection
+  (Hono/Fastify/Express/NestJS), async patterns, security, architecture. Triggers on: Node.js,
+  Express, backend, server, API.
 metadata:
+  author: pikakit
   version: "2.0.0"
-  category: "framework"
-  triggers: "Node.js, Express, Fastify, Hono, backend, server, API"
-  success_metrics: "framework selected, async-first, no sync in production, validated inputs"
-  coordinates_with: "api-architect, data-modeler"
 ---
 
 # Node.js Pro â€” Backend Decision Framework

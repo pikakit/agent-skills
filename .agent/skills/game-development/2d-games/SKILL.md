@@ -2,11 +2,8 @@
 name: 2d-games
 description: 2D game development principles. Sprites, tilemaps, physics, camera.
 metadata:
-  category: "game-development"
+  author: pikakit
   version: "1.0.0"
-  triggers: "2D game, sprites, tilemaps, platformer, side-scroller"
-  success_metrics: "atlased sprites, simplified collision, smooth camera, fixed timestep"
-  coordinates_with: "game-development, game-art, web-games, mobile-games"
 ---
 
 # 2D Game Development

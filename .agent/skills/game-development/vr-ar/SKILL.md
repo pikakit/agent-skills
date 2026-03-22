@@ -2,11 +2,8 @@
 name: vr-ar
 description: VR/AR development principles. Comfort, interaction, performance requirements.
 metadata:
-  category: "game-development"
+  author: pikakit
   version: "1.0.0"
-  triggers: "VR, AR, virtual reality, augmented reality, XR"
-  success_metrics: "90 FPS maintained, comfort options, 1m=1unit scale, hand tracking support"
-  coordinates_with: "game-development, 3d-games, game-audio, perf-optimizer"
 ---
 
 # VR/AR Development

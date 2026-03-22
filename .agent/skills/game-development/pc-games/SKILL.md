@@ -1,12 +1,11 @@
 ---
 name: pc-games
-description: PC and console game development principles. Engine selection, platform features, optimization strategies.
+description: >-
+  PC and console game development principles. Engine selection, platform features, optimization
+  strategies.
 metadata:
-  category: "game-development"
+  author: pikakit
   version: "1.0.0"
-  triggers: "PC game, Steam, desktop game, controller support"
-  success_metrics: "engine matched to project, input abstraction, profiling-first, certification ready"
-  coordinates_with: "game-development, 3d-games, multiplayer, shader"
 ---
 
 # PC/Console Game Development

@@ -1,17 +1,13 @@
-﻿---
+---
 name: ai-artist
 description: >-
-  Prompt engineering for AI text and image generation models.
-  LLM prompting (Claude, GPT, Gemini), image generation (Midjourney, DALL-E, Stable Diffusion, Flux).
-  Deterministic prompt construction with domain-specific templates and model-aware parameter injection.
-  Triggers on: prompt, AI prompt, image generation, Midjourney, DALL-E, Stable Diffusion, Flux.
-  Coordinates with: studio, media-processing.
+  Prompt engineering for AI text and image generation models. LLM prompting (Claude, GPT,
+  Gemini), image generation (Midjourney, DALL-E, Stable Diffusion, Flux). Deterministic prompt
+  construction with domain-specific templates and model-aware parameter injection. Triggers on:
+  prompt, AI prompt, image generation, Midjourney, DALL-E, Stable Diffusion, Flux.
 metadata:
+  author: pikakit
   version: "2.0.0"
-  category: "ai"
-  triggers: "prompt, AI prompt, image generation, Midjourney, DALL-E, Stable Diffusion, Flux"
-  success_metrics: "same inputs = same prompt output, â‰¤ 3 refinement iterations, zero silent failures"
-  coordinates_with: "studio, media-processing"
 ---
 
 # AI Artist â€” Prompt Engineering

@@ -1,16 +1,11 @@
-﻿---
+---
 name: shell-script
 description: >-
-  Bash/Linux terminal patterns. Critical commands, piping, error handling, scripting.
-  Use when working on macOS or Linux systems.
-  Triggers on: shell, bash, script, automation, CLI.
-  Coordinates with: cicd-pipeline, server-ops.
+  Bash/Linux terminal patterns. Critical commands, piping, error handling, scripting. Use when
+  working on macOS or Linux systems. Triggers on: shell, bash, script, automation, CLI.
 metadata:
+  author: pikakit
   version: "2.0.0"
-  category: "framework"
-  triggers: "shell, bash, script, automation, CLI, Linux, macOS"
-  success_metrics: "script runs, no errors"
-  coordinates_with: "cicd-pipeline, server-ops"
 ---
 
 # Shell Script â€” Bash/Linux Patterns

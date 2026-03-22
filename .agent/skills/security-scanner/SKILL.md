@@ -1,15 +1,11 @@
-﻿---
+---
 name: security-scanner
 description: >-
-  Advanced vulnerability analysis principles. OWASP 2025, Supply Chain Security, risk prioritization.
-  Triggers on: security, vulnerability, OWASP, pentest, threat modeling.
-  Coordinates with: code-review, cicd-pipeline, api-architect.
+  Advanced vulnerability analysis principles. OWASP 2025, Supply Chain Security, risk
+  prioritization. Triggers on: security, vulnerability, OWASP, pentest, threat modeling.
 metadata:
-  category: "devops"
+  author: pikakit
   version: "2.0.0"
-  triggers: "security, vulnerability, OWASP, pentest, threat modeling"
-  success_metrics: "no critical vulnerabilities, OWASP passed"
-  coordinates_with: "code-review, cicd-pipeline, api-architect"
 ---
 
 # Security Scanner â€” Vulnerability Analysis & OWASP

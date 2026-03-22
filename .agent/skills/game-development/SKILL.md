@@ -1,16 +1,12 @@
-﻿---
+---
 name: game-development
 description: >-
   Game development orchestrator. Routes to platform-specific skills based on project needs.
-  Core principles for game loop, performance, patterns, AI, collision, input.
-  Triggers on: game, game development, Unity, Godot, Phaser, game engine.
-  Coordinates with: mobile-developer, perf-optimizer, shader.
+  Core principles for game loop, performance, patterns, AI, collision, input. Triggers on:
+  game, game development, Unity, Godot, Phaser, game engine.
 metadata:
+  author: pikakit
   version: "2.0.0"
-  category: "game"
-  triggers: "game, game development, Unity, Godot, Phaser, game engine"
-  success_metrics: "correct sub-skill routed, 16.67ms frame budget, fixed timestep"
-  coordinates_with: "mobile-developer, perf-optimizer, shader"
 ---
 
 # Game Development â€” Orchestrator

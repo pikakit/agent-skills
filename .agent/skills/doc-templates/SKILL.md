@@ -1,19 +1,14 @@
-﻿---
+---
 name: doc-templates
 description: >-
-  Documentation templates, structure guidelines, Mermaid diagram editing,
-  markdown preview, and plan dashboards. README, API docs, code comments,
-  AI-friendly documentation, live diagram editor, and documentation preview server.
-  Triggers on: template, README, documentation, API docs, changelog, ADR,
-  mermaid, diagram, flowchart, preview, markdown viewer, view plans, kanban, dashboard.
-  Coordinates with: project-planner, code-craft, system-design.
+  Documentation templates, structure guidelines, Mermaid diagram editing, markdown preview, and
+  plan dashboards. README, API docs, code comments, AI-friendly documentation, live diagram
+  editor, and documentation preview server. Triggers on: template, README, documentation, API
+  docs, changelog, ADR, mermaid, diagram, flowchart, preview, markdown viewer, view plans,
+  kanban, dashboard.
 metadata:
+  author: pikakit
   version: "3.0.0"
-  category: "specialized"
-  triggers: "template, README, documentation, API docs, changelog, ADR, mermaid, diagram, preview, kanban"
-  success_metrics: "template applied, all required sections present, diagrams render"
-  coordinates_with: "project-planner, code-craft, system-design"
-  absorbs: "mermaid-editor@2.0.0, markdown-novel-viewer@2.0.0, plans-kanban@2.0.0"
 ---
 
 # Doc Templates â€” Documentation, Diagrams & Preview

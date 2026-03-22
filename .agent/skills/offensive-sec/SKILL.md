@@ -1,15 +1,11 @@
-﻿---
+---
 name: offensive-sec
 description: >-
-  Red team tactics principles based on MITRE ATT&CK. Attack phases, detection evasion, reporting.
-  Triggers on: pentest, red team, exploit, vulnerability, hacking.
-  Coordinates with: security-scanner, code-review.
+  Red team tactics principles based on MITRE ATT&CK. Attack phases, detection evasion,
+  reporting. Triggers on: pentest, red team, exploit, vulnerability, hacking.
 metadata:
-  category: "devops"
+  author: pikakit
   version: "2.0.0"
-  triggers: "pentest, red team, exploit, vulnerability, hacking"
-  success_metrics: "phases covered, scope enforced, report complete"
-  coordinates_with: "security-scanner, code-review"
 ---
 
 # Offensive Security â€” Red Team Tactics (MITRE ATT&CK)

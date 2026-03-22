@@ -1,12 +1,10 @@
 ---
 name: web-games
-description: Web browser game development principles. Framework selection, WebGPU, optimization, PWA.
+description: >-
+  Web browser game development principles. Framework selection, WebGPU, optimization, PWA.
 metadata:
-  category: "game-development"
+  author: pikakit
   version: "1.0.0"
-  triggers: "web game, HTML5, WebGL, Phaser, browser game"
-  success_metrics: "framework matched, WebGPU with fallback, <2MB startup, progressive loading"
-  coordinates_with: "game-development, 2d-games, 3d-games, perf-optimizer"
 ---
 
 # Web Browser Game Development

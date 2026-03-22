@@ -2,11 +2,8 @@
 name: 3d-games
 description: 3D game development principles. Rendering, shaders, physics, cameras.
 metadata:
-  category: "game-development"
+  author: pikakit
   version: "1.0.0"
-  triggers: "3D game, rendering, shaders, meshes, cameras"
-  success_metrics: "frustum culling, LOD strategy, simplified colliders, baked shadows"
-  coordinates_with: "game-development, shader, game-art, pc-games"
 ---
 
 # 3D Game Development

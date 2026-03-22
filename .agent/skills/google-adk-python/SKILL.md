@@ -1,16 +1,12 @@
-﻿---
+---
 name: google-adk-python
 description: >-
-  Build, evaluate, and deploy AI agents with Google's Agent Development Kit.
-  Tool integration, multi-agent orchestration, workflow automation.
-  Triggers on: Google ADK, agent development, multi-agent, agent orchestration.
-  Coordinates with: python-pro, api-architect.
+  Build, evaluate, and deploy AI agents with Google's Agent Development Kit. Tool integration,
+  multi-agent orchestration, workflow automation. Triggers on: Google ADK, agent development,
+  multi-agent, agent orchestration.
 metadata:
+  author: pikakit
   version: "2.0.0"
-  category: "ai"
-  triggers: "Google ADK, agent development, multi-agent, agent orchestration"
-  success_metrics: "correct agent type, â‰¤5 tools/agent, typed tool functions"
-  coordinates_with: "python-pro, api-architect"
 ---
 
 # Google ADK Python â€” AI Agent Development

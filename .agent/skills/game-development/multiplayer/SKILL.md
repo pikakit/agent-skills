@@ -1,12 +1,10 @@
 ---
 name: multiplayer
-description: Multiplayer game development principles. Architecture, networking, synchronization.
+description: >-
+  Multiplayer game development principles. Architecture, networking, synchronization.
 metadata:
-  category: "game-development"
+  author: pikakit
   version: "1.0.0"
-  triggers: "multiplayer, networking, netcode, lobby, matchmaking"
-  success_metrics: "server authority, lag compensation, delta compression, validated movement"
-  coordinates_with: "game-development, game-design, web-games, pc-games"
 ---
 
 # Multiplayer Game Development

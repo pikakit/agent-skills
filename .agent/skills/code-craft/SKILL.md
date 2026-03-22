@@ -1,17 +1,12 @@
-﻿---
+---
 name: code-craft
 description: >-
-  Pragmatic coding standards â€” concise, direct, no over-engineering.
-  Fixed thresholds: 20 lines/function, 3 args max, 2 nesting levels.
-  Triggers on: code style, clean code, best practices, naming conventions, SRP, DRY, KISS.
-  Coordinates with: code-review, test-architect.
+  Pragmatic coding standards â€” concise, direct, no over-engineering. Fixed thresholds: 20
+  lines/function, 3 args max, 2 nesting levels. Triggers on: code style, clean code, best
+  practices, naming conventions, SRP, DRY, KISS.
 metadata:
+  author: pikakit
   version: "2.0.0"
-  priority: "CRITICAL"
-  category: "core"
-  triggers: "code style, clean code, best practices, naming conventions, SRP, DRY, KISS"
-  success_metrics: "lint errors = 0, all naming rules followed, functions â‰¤ 20 lines"
-  coordinates_with: "code-review, test-architect"
 ---
 
 # Code Craft â€” Pragmatic Coding Standards

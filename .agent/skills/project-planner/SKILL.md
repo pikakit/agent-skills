@@ -1,16 +1,12 @@
-﻿---
+---
 name: project-planner
 description: >-
-  Structured task planning with clear breakdowns, dependencies, and verification criteria.
-  Use when implementing features, refactoring, or any multi-step work requiring planning.
-  Triggers on: plan, breakdown, tasks, implementation strategy, project scope.
-  Coordinates with: app-scaffold, code-craft, test-architect.
+  Structured task planning with clear breakdowns, dependencies, and verification criteria. Use
+  when implementing features, refactoring, or any multi-step work requiring planning. Triggers
+  on: plan, breakdown, tasks, implementation strategy, project scope.
 metadata:
-  category: "planning"
+  author: pikakit
   version: "2.0.0"
-  triggers: "plan, breakdown, tasks, strategy, scope, implementation"
-  success_metrics: "plan approved, all tasks verifiable, max 10 tasks"
-  coordinates_with: "app-scaffold, code-craft, test-architect"
 ---
 
 # Project Planner â€” Structured Task Breakdown

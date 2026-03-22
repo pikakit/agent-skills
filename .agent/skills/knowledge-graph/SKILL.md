@@ -1,16 +1,12 @@
-﻿---
+---
 name: knowledge-graph
 description: >-
-  Semantic code analysis with AST parsing. Go-to-definition, find-usages,
-  impact analysis, architecture visualization.
-  Triggers on: find usages, code graph, semantic search, impact analysis.
-  Coordinates with: code-review, system-design.
+  Semantic code analysis with AST parsing. Go-to-definition, find-usages, impact analysis,
+  architecture visualization. Triggers on: find usages, code graph, semantic search, impact
+  analysis.
 metadata:
+  author: pikakit
   version: "2.0.0"
-  category: "architecture"
-  triggers: "find usages, code graph, semantic search, impact analysis, definition"
-  success_metrics: "zero false positives, all impact categories enumerated"
-  coordinates_with: "code-review, system-design"
 ---
 
 # Knowledge Graph â€” Semantic Code Analysis

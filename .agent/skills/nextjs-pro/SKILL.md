@@ -1,16 +1,12 @@
-﻿---
+---
 name: nextjs-pro
 description: >-
-  Next.js App Router & React performance patterns. Server Components, data fetching,
-  routing, caching, and 57 optimization rules across 8 categories.
-  Triggers on: Next.js, App Router, RSC, React, frontend, performance, SSR, SSG.
-  Coordinates with: design-system, tailwind-kit, react-architect.
+  Next.js App Router & React performance patterns. Server Components, data fetching, routing,
+  caching, and 57 optimization rules across 8 categories. Triggers on: Next.js, App Router,
+  RSC, React, frontend, performance, SSR, SSG.
 metadata:
-  category: "framework"
+  author: pikakit
   version: "2.0.0"
-  triggers: "Next.js, React, App Router, RSC, frontend, performance"
-  success_metrics: "LCP < 2.5s, INP < 200ms, CLS < 0.1, build passes"
-  coordinates_with: "design-system, tailwind-kit, react-architect"
 ---
 
 # Next.js Pro â€” App Router & React Performance

@@ -1,15 +1,11 @@
-﻿---
+---
 name: e2e-automation
 description: >-
-  Web application testing principles. E2E, Playwright, visual testing, and deep audit strategies.
-  Triggers on: E2E test, Playwright, browser test, visual testing, automation.
-  Coordinates with: test-architect, perf-optimizer, cicd-pipeline.
+  Web application testing principles. E2E, Playwright, visual testing, and deep audit
+  strategies. Triggers on: E2E test, Playwright, browser test, visual testing, automation.
 metadata:
+  author: pikakit
   version: "2.0.0"
-  category: "testing"
-  triggers: "E2E, Playwright, browser test, visual testing, automation"
-  success_metrics: "critical paths tested, flake rate < 1%, zero orphaned browsers"
-  coordinates_with: "test-architect, perf-optimizer, cicd-pipeline"
 ---
 
 # E2E Automation â€” Playwright Testing

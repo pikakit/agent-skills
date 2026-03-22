@@ -1,15 +1,11 @@
-﻿---
+---
 name: design-system
 description: >-
-  Design thinking and decision-making for web UI. Color theory, typography, visual effects, and UX psychology.
-  Triggers on: design, UI, UX, color palette, typography, component design.
-  Coordinates with: tailwind-kit, studio, frontend-design.
+  Design thinking and decision-making for web UI. Color theory, typography, visual effects, and
+  UX psychology. Triggers on: design, UI, UX, color palette, typography, component design.
 metadata:
+  author: pikakit
   version: "2.0.0"
-  category: "architecture"
-  triggers: "design, UI, UX, color palette, typography, component design"
-  success_metrics: "design system documented, zero anti-patterns, UX audit passed"
-  coordinates_with: "tailwind-kit, studio, frontend-design"
 ---
 
 # Design System â€” UI Design Decisions

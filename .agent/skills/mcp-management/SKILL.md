@@ -1,16 +1,12 @@
-﻿---
+---
 name: mcp-management
 description: >-
-  Discover, analyze, and execute tools from configured MCP servers.
-  Progressive disclosure: load only the tools you need, when you need them.
-  Triggers on: MCP tools, server discovery, tool execution, multi-server.
-  Coordinates with: mcp-builder, mcp-server.
+  Discover, analyze, and execute tools from configured MCP servers. Progressive disclosure:
+  load only the tools you need, when you need them. Triggers on: MCP tools, server discovery,
+  tool execution, multi-server.
 metadata:
+  author: pikakit
   version: "2.0.0"
-  category: "framework"
-  triggers: "MCP tools, server discovery, tool execution, multi-server, orchestration"
-  success_metrics: "tools discovered, structured JSON response, method fallback works"
-  coordinates_with: "mcp-builder, mcp-server"
 ---
 
 # MCP Management â€” Tool Discovery, Routing & Execution

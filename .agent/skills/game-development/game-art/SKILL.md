@@ -2,11 +2,8 @@
 name: game-art
 description: Game art principles. Visual style selection, asset pipeline, animation workflow.
 metadata:
-  category: "game-development"
+  author: pikakit
   version: "1.0.0"
-  triggers: "game art, visual style, asset pipeline, animation, sprites"
-  success_metrics: "consistent art style, optimized atlases, readable silhouettes, proper naming"
-  coordinates_with: "game-development, 2d-games, 3d-games, ai-artist"
 ---
 
 # Game Art Principles

@@ -1,15 +1,11 @@
-﻿---
+---
 name: media-processing
 description: >-
-  Process video, audio, image with FFmpeg, ImageMagick, RMBG.
-  Triggers on: video, audio, image, compress, resize, convert, background removal.
-  Coordinates with: perf-optimizer, studio.
+  Process video, audio, image with FFmpeg, ImageMagick, RMBG. Triggers on: video, audio, image,
+  compress, resize, convert, background removal.
 metadata:
-  category: "devops"
+  author: pikakit
   version: "2.0.0"
-  triggers: "video, audio, image, compress, resize, convert, ffmpeg, imagemagick, rmbg"
-  success_metrics: "correct tool selected, valid command generated, destructive flagged"
-  coordinates_with: "perf-optimizer, studio"
 ---
 
 # Media Processing â€” FFmpeg + ImageMagick + RMBG

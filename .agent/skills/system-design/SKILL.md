@@ -1,16 +1,12 @@
-﻿---
+---
 name: system-design
 description: >-
-  Architectural decision-making framework. Requirements analysis, trade-off evaluation, ADR documentation.
-  Use when making architecture decisions or analyzing system design.
-  Triggers on: architecture, system design, scalability, microservices.
-  Coordinates with: api-architect, data-modeler.
+  Architectural decision-making framework. Requirements analysis, trade-off evaluation, ADR
+  documentation. Use when making architecture decisions or analyzing system design. Triggers
+  on: architecture, system design, scalability, microservices.
 metadata:
+  author: pikakit
   version: "2.0.0"
-  category: "architecture"
-  triggers: "architecture, system design, scalability, microservices, ADR"
-  success_metrics: "architecture documented, scalability validated"
-  coordinates_with: "api-architect, data-modeler"
 ---
 
 # System Design â€” Architecture Decision Framework

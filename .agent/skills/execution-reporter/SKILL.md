@@ -1,16 +1,12 @@
-﻿---
+---
 name: execution-reporter
 description: >-
-  Display agent routing, skill loading, and execution context at task start.
-  Provides transparency and audit trail for agent operations.
-  Triggers on: every task start, agent routing, skill loading, task completion.
-  Coordinates with: smart-router, lifecycle-orchestrator, auto-learner.
+  Display agent routing, skill loading, and execution context at task start. Provides
+  transparency and audit trail for agent operations. Triggers on: every task start, agent
+  routing, skill loading, task completion.
 metadata:
+  author: pikakit
   version: "2.0.0"
-  category: "core"
-  triggers: "task start, agent routing, skill loading, task completion"
-  success_metrics: "100% task visibility, one notification per phase, consistent branding"
-  coordinates_with: "smart-router, lifecycle-orchestrator, auto-learner"
 ---
 
 # Execution Reporter â€” Task Notifications

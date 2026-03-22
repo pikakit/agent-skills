@@ -1,16 +1,13 @@
-﻿---
+---
 name: react-pro
 description: >-
   Modern React patterns, component architecture, state management, TypeScript best practices,
   and modern React development with Suspense, TanStack Query, MUI v7, and lazy loading.
-  Triggers on: React, component, hooks, state management, Redux, Zustand, TypeScript, TanStack Query, MUI, frontend.
-  Coordinates with: nextjs-pro, design-system, typescript-expert.
+  Triggers on: React, component, hooks, state management, Redux, Zustand, TypeScript, TanStack
+  Query, MUI, frontend.
 metadata:
+  author: pikakit
   version: "2.0.0"
-  category: "architecture"
-  triggers: "React, component, hooks, state management, Redux, Zustand, TypeScript, TanStack Query, MUI, frontend"
-  success_metrics: "components render, no prop drilling, state correctly scoped, lazy loading active"
-  coordinates_with: "nextjs-pro, design-system, typescript-expert"
 ---
 
 # React Architect â€” Component & State Architecture

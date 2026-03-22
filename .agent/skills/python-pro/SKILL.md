@@ -1,16 +1,12 @@
-﻿---
+---
 name: python-pro
 description: >-
-  Python development principles and decision-making. Framework selection (FastAPI/Django/Flask),
-  async patterns, type hints, project structure.
-  Triggers on: Python, pip, FastAPI, Django, Flask.
-  Coordinates with: test-architect, api-architect.
+  Python development principles and decision-making. Framework selection
+  (FastAPI/Django/Flask), async patterns, type hints, project structure. Triggers on: Python,
+  pip, FastAPI, Django, Flask.
 metadata:
+  author: pikakit
   version: "2.0.0"
-  category: "framework"
-  triggers: "Python, pip, FastAPI, Django, Flask, async"
-  success_metrics: "framework selected, type hints complete, tests pass"
-  coordinates_with: "test-architect, api-architect"
 ---
 
 # Python Pro â€” Framework Selection & Architecture

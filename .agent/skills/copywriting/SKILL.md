@@ -1,16 +1,12 @@
-﻿---
+---
 name: copywriting
 description: >-
-  Conversion copywriting formulas, headline templates, email patterns.
-  AIDA, PAS, BAB, 4Ps, 4Us, FAB formulas for high-converting copy.
-  Triggers on: copywriting, headlines, landing page, email, marketing.
-  Coordinates with: seo-optimizer, studio, ai-artist.
+  Conversion copywriting formulas, headline templates, email patterns. AIDA, PAS, BAB, 4Ps,
+  4Us, FAB formulas for high-converting copy. Triggers on: copywriting, headlines, landing
+  page, email, marketing.
 metadata:
+  author: pikakit
   version: "2.0.0"
-  category: "marketing"
-  triggers: "copywriting, headlines, landing page, email, marketing copy, CTA"
-  success_metrics: "proven formula applied, benefit-first, single CTA, specific claims"
-  coordinates_with: "seo-optimizer, studio, ai-artist"
 ---
 
 # Copywriting â€” Conversion Formulas

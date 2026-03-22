@@ -1,15 +1,11 @@
-﻿---
+---
 name: observability
 description: >-
   OpenTelemetry-based observability for production applications. Unified logs, metrics, traces.
   Triggers on: monitoring, observability, OpenTelemetry, telemetry, instrumentation.
-  Coordinates with: logging, metrics, tracing, incident-response.
 metadata:
-  category: "devops"
+  author: pikakit
   version: "2.0.0"
-  triggers: "monitoring, observability, OpenTelemetry, telemetry"
-  success_metrics: "SDK configured, sampling set, provider selected"
-  coordinates_with: "server-ops, cicd-pipeline"
 ---
 
 # Observability â€” Unified Telemetry with OpenTelemetry

@@ -1,16 +1,12 @@
-﻿---
+---
 name: idea-storm
 description: >-
-  Socratic questioning protocol + user communication. MANDATORY for complex requests,
-  new features, or unclear requirements. Includes progress reporting and error handling.
-  Triggers on: brainstorm, understand requirements, clarify, unclear, complex request.
-  Coordinates with: project-planner, app-scaffold.
+  Socratic questioning protocol + user communication. MANDATORY for complex requests, new
+  features, or unclear requirements. Includes progress reporting and error handling. Triggers
+  on: brainstorm, understand requirements, clarify, unclear, complex request.
 metadata:
+  author: pikakit
   version: "2.0.0"
-  category: "planning"
-  triggers: "brainstorm, requirements, clarify, unclear, complex, think"
-  success_metrics: "â‰¥3 questions asked, 3 dimensions covered, gate passed"
-  coordinates_with: "project-planner, app-scaffold"
 ---
 
 # Idea Storm â€” Socratic Requirement Clarification

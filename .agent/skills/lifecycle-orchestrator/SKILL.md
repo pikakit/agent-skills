@@ -1,16 +1,12 @@
-﻿---
+---
 name: lifecycle-orchestrator
 description: >-
-  End-to-end task lifecycle management with state rollback capability. Coordinates
-  full task lifecycle from input to completion with checkpoint/restore safety.
-  Triggers on: complex multi-phase requests, /autopilot, /build workflows, rollback.
-  Coordinates with: smart-router, multi-agent, problem-checker.
+  End-to-end task lifecycle management with state rollback capability. Coordinates full task
+  lifecycle from input to completion with checkpoint/restore safety. Triggers on: complex
+  multi-phase requests, /autopilot, /build workflows, rollback.
 metadata:
+  author: pikakit
   version: "2.0.0"
-  category: "core"
-  triggers: "complex multi-phase requests, /autopilot, /build, rollback, undo"
-  success_metrics: "all phases complete, 100% restore accuracy, state save <1s"
-  coordinates_with: "smart-router, multi-agent, problem-checker"
 ---
 
 # Lifecycle Orchestrator â€” Pipeline + Checkpoint/Restore

@@ -1,16 +1,12 @@
-﻿---
+---
 name: debug-pro
 description: >-
   Unified debugging skill combining systematic 4-phase methodology with advanced frameworks
-  (defense-in-depth, root-cause tracing, verification).
-  Triggers on: debug, bug, error, crash, exception, root cause, investigation, not working.
-  Coordinates with: test-architect, code-review, recovery-agent.
+  (defense-in-depth, root-cause tracing, verification). Triggers on: debug, bug, error, crash,
+  exception, root cause, investigation, not working.
 metadata:
+  author: pikakit
   version: "2.0.0"
-  category: "core"
-  triggers: "debug, bug, error, crash, exception, root cause, investigation, not working"
-  success_metrics: "root cause identified, bug fixed, regression test added"
-  coordinates_with: "test-architect, code-review, recovery-agent"
 ---
 
 # Debug Pro â€” Systematic Debugging

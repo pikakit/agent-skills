@@ -1,16 +1,12 @@
-﻿---
+---
 name: cicd-pipeline
 description: >-
-  Production deployment principles and decision-making. Safe deployment workflows,
-  rollback strategies. 5-phase lifecycle: Prepare â†’ Backup â†’ Deploy â†’ Verify â†’ Confirm.
-  Triggers on: deploy, deployment, CI/CD, pipeline, rollback, release.
-  Coordinates with: git-workflow, security-scanner, feature-flags.
+  Production deployment principles and decision-making. Safe deployment workflows, rollback
+  strategies. 5-phase lifecycle: Prepare â†’ Backup â†’ Deploy â†’ Verify â†’ Confirm. Triggers
+  on: deploy, deployment, CI/CD, pipeline, rollback, release.
 metadata:
+  author: pikakit
   version: "2.0.0"
-  category: "devops"
-  triggers: "deploy, CI/CD, pipeline, rollback, release"
-  success_metrics: "zero-downtime deploy, rollback â‰¤ 5min, 15min post-deploy monitoring"
-  coordinates_with: "git-workflow, security-scanner, feature-flags"
 ---
 
 # CI/CD Pipeline

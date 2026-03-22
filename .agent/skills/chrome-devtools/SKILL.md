@@ -1,16 +1,12 @@
-﻿---
+---
 name: chrome-devtools
 description: >-
-  Puppeteer CLI scripts for browser automation, screenshots, debugging.
-  Session persistence, JSON output, Core Web Vitals.
-  Triggers on: screenshot, browser, puppeteer, devtools, performance.
-  Coordinates with: agent-browser, e2e-automation, perf-optimizer.
+  Puppeteer CLI scripts for browser automation, screenshots, debugging. Session persistence,
+  JSON output, Core Web Vitals. Triggers on: screenshot, browser, puppeteer, devtools,
+  performance.
 metadata:
+  author: pikakit
   version: "2.0.0"
-  category: "testing"
-  triggers: "screenshot, browser, puppeteer, devtools, performance, console, network"
-  success_metrics: "JSON output on all scripts, screenshots â‰¤ 5MB, session persists across scripts"
-  coordinates_with: "agent-browser, e2e-automation, perf-optimizer"
 ---
 
 # Chrome DevTools â€” Puppeteer CLI

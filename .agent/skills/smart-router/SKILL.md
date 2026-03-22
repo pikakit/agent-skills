@@ -1,16 +1,12 @@
 ---
 name: smart-router
-description: >
+description: >-
   Intelligent agent routing based on request analysis. Maps user intent to specialist agents
-  using domain detection and keyword matching. Triggers on: agent routing, request classification,
-  multi-agent selection. Coordinates with: lifecycle-orchestrator, execution-reporter.
-type: knowledge
-version: 1.0.0
-triggers:
-  - agent routing
-  - request classification
-  - multi-agent selection
-coordinates_with: "lifecycle-orchestrator, execution-reporter"
+  using domain detection and keyword matching. Triggers on: agent routing, request
+  classification, multi-agent selection.
+metadata:
+  author: pikakit
+  version: "1.0.0"
 ---
 
 # Smart Router

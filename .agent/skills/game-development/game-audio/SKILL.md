@@ -2,11 +2,8 @@
 name: game-audio
 description: Game audio principles. Sound design, music integration, adaptive audio systems.
 metadata:
-  category: "game-development"
+  author: pikakit
   version: "1.0.0"
-  triggers: "game audio, sound design, music, adaptive audio"
-  success_metrics: "priority hierarchy, sound variations, adaptive music, proper ducking"
-  coordinates_with: "game-development, game-design, web-games, mobile-games"
 ---
 
 # Game Audio Principles

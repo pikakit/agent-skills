@@ -1,17 +1,13 @@
-﻿---
+---
 name: api-architect
 description: >-
-  API design principles and decision-making. REST vs GraphQL vs tRPC selection,
-  response formats, versioning, pagination, auth patterns, rate limiting.
-  Deterministic decision trees produce context-specific API design choices.
-  Triggers on: API design, REST, GraphQL, tRPC, endpoint, versioning.
-  Coordinates with: data-modeler, security-scanner, auth-patterns.
+  API design principles and decision-making. REST vs GraphQL vs tRPC selection, response
+  formats, versioning, pagination, auth patterns, rate limiting. Deterministic decision trees
+  produce context-specific API design choices. Triggers on: API design, REST, GraphQL, tRPC,
+  endpoint, versioning.
 metadata:
+  author: pikakit
   version: "2.0.0"
-  category: "architecture"
-  triggers: "API design, REST, GraphQL, tRPC, endpoint, versioning, pagination"
-  success_metrics: "context-specific API style selected, OWASP checklist completed, versioning defined"
-  coordinates_with: "data-modeler, security-scanner, auth-patterns"
 ---
 
 # API Architect

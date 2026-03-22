@@ -1,16 +1,12 @@
-﻿---
+---
 name: git-workflow
 description: >-
-  Git operations with conventional commits, auto-split logic, secret detection.
-  Stage, commit, push, PR, merge with security scanning.
-  Triggers on: git, commit, push, PR, merge, conventional commits.
-  Coordinates with: cicd-pipeline, code-review, security-scanner.
+  Git operations with conventional commits, auto-split logic, secret detection. Stage, commit,
+  push, PR, merge with security scanning. Triggers on: git, commit, push, PR, merge,
+  conventional commits.
 metadata:
+  author: pikakit
   version: "2.0.0"
-  category: "devops"
-  triggers: "git, commit, push, PR, merge, branch, conventional commits"
-  success_metrics: "zero secrets committed, 100% conventional format, clean history"
-  coordinates_with: "cicd-pipeline, code-review, security-scanner"
 ---
 
 # Git Workflow â€” Conventional Commits + Secret Detection

@@ -1,16 +1,12 @@
-﻿---
+---
 name: context-engineering
 description: >-
   Monitor context usage, design efficient agent architectures, control token consumption.
-  Four-bucket strategy: Write, Select, Compress, Isolate. Fixed thresholds: 70% warning, 80% critical.
-  Triggers on: context usage, token limit, agent architecture, memory system.
-  Coordinates with: lifecycle-orchestrator, multi-agent, system-design.
+  Four-bucket strategy: Write, Select, Compress, Isolate. Fixed thresholds: 70% warning, 80%
+  critical. Triggers on: context usage, token limit, agent architecture, memory system.
 metadata:
+  author: pikakit
   version: "2.0.0"
-  category: "architecture"
-  triggers: "context usage, token limit, agent architecture, memory, compression"
-  success_metrics: "token usage <70%, compression 50-70% with <5% quality loss"
-  coordinates_with: "lifecycle-orchestrator, multi-agent, system-design"
 ---
 
 # Context Engineering
