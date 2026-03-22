@@ -137,7 +137,7 @@ const result = await db
 
 ---
 
-⚡ PikaKit v3.9.105
+
 
 ---
 
@@ -149,3 +149,7 @@ const result = await db
 | [schema-design.md](schema-design.md) | Schema patterns after ORM selected |
 | [optimization.md](optimization.md) | N+1 and query optimization |
 | [SKILL.md](SKILL.md) | Decision checklist |
+
+---
+
+⚡ PikaKit v3.9.110

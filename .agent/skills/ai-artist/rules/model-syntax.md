@@ -102,10 +102,6 @@ purple sky, volumetric lighting, movie quality
 
 ---
 
-⚡ PikaKit v3.9.105
-
----
-
 ## 🔗 Related
 
 | File | When to Read |
@@ -113,3 +109,7 @@ purple sky, volumetric lighting, movie quality
 | [image-prompts.md](image-prompts.md) | Image prompt techniques and recipes |
 | [domain-code.md](domain-code.md) | Code generation prompt patterns |
 | [../SKILL.md](../SKILL.md) | Supported models quick reference |
+
+---
+
+⚡ PikaKit v3.9.110

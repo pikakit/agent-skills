@@ -1,6 +1,6 @@
 # Workflow Design Guide
 
-> **PikaKit v3.9.108** | Standard formula for creating new workflows
+> **PikaKit v3.9.110** | Standard formula for creating new workflows
 
 ---
 
@@ -322,5 +322,5 @@ Before publishing a workflow:
 
 ---
 
-⚡ PikaKit v3.9.108
+⚡ PikaKit v3.9.110
 Composable Skills. Coordinated Agents. Intelligent Execution.

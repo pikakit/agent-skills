@@ -2,15 +2,31 @@
 name: shell-script
 description: >-
   Bash/Linux terminal patterns. Critical commands, piping, error handling, scripting. Use when
-  working on macOS or Linux systems. Triggers on: shell, bash, script, automation, CLI.
+  working on macOS or Linux systems.
+category: shell-scripter
+triggers: ["shell", "bash", "script", "automation", "CLI"]
+coordinates_with: ["cicd-pipeline", "server-ops", "auto-learned", "problem-checker"]
+success_metrics: ["Script Reliability", "Cross-Platform Compatibility", "Error Handling Coverage"]
 metadata:
   author: pikakit
-  version: "3.9.108"
+  version: "3.9.110"
 ---
 
 # Shell Script — Bash/Linux Patterns
 
 > `set -euo pipefail` always. Quote variables. Trap cleanup. Think Unix.
+
+---
+
+## 5 Must-Ask Questions (Before Scripting)
+
+| # | Question | Options |
+|---|----------|---------|
+| 1 | Task? | Automation / File Ops / Process / Network |
+| 2 | Platform? | Linux / macOS / Cross-platform |
+| 3 | Shell? | Bash / Zsh / sh (POSIX) |
+| 4 | Dependencies? | coreutils / curl / jq / custom tools |
+| 5 | Current State? | New script / Modifying existing / Debugging |
 
 ---
 
@@ -144,6 +160,19 @@ trap 'rm -f /tmp/tempfile' EXIT
 
 ---
 
+## Audit Logging (OpenTelemetry)
+
+| Event | Metadata Payload | Severity |
+|-------|------------------|----------|
+| `script_analysis_started` | `{"task": "automation", "platform": "linux"}` | `INFO` |
+| `command_recommended` | `{"purpose": "text_processing", "tool": "awk"}` | `INFO` |
+| `template_generated` | `{"shebang": "#!/bin/bash", "flags": "euo pipefail"}` | `INFO` |
+| `analysis_completed` | `{"lines_generated": 25, "security_flags_set": true}` | `INFO` |
+
+All script outputs MUST emit `script_analysis_started` and `analysis_completed` events.
+
+---
+
 ## Anti-Patterns
 
 | ❌ Don't | ✅ Do |
@@ -172,4 +201,4 @@ trap 'rm -f /tmp/tempfile' EXIT
 
 ---
 
-⚡ PikaKit v3.9.108
+⚡ PikaKit v3.9.110

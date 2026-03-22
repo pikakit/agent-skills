@@ -2,16 +2,31 @@
 name: problem-checker
 description: >-
   Automated IDE problem detection and auto-fix before task completion. Checks
-  @[current_problems] and auto-fixes common issues. Triggers on: before notify_user, after code
-  modification, IDE errors.
+  @[current_problems] and auto-fixes common issues.
+category: system-tool
+triggers: ["before notify_user", "after code modification", "IDE errors", "check for errors"]
+coordinates_with: ["auto-learned", "skill-generator", "code-review"]
+success_metrics: ["0 IDE Errors", "Clean notify_user"]
 metadata:
   author: pikakit
-  version: "3.9.108"
+  version: "3.9.110"
 ---
 
 # Problem Checker — Automated IDE Error Gate
 
 > 4 auto-fix patterns. 3 escalation categories. Max 3 cycles. Hard-block on errors.
+
+---
+
+## 5 Must-Ask Questions (Before Execution)
+
+| # | Question | Options |
+|---|----------|---------|
+| 1 | Target Scope? | Single file / Directory / Workspace |
+| 2 | Current State? | All files saved? |
+| 3 | Max Cycles? | 3 (default) vs custom override |
+| 4 | Escalation Policy? | Hard Block (default) vs Warn only |
+| 5 | Environment? | TypeScript / JavaScript / CSS / Config |
 
 ---
 
@@ -109,6 +124,36 @@ VERIFYING → BLOCKED           [cycles >= max OR only non-fixable]  // terminal
 
 ---
 
+## Audit Logging (OpenTelemetry)
+
+| Event | Metadata Payload | Severity |
+|-------|------------------|----------|
+| `check_started` | `{"scope": "...", "max_cycles": 3}` | `INFO` |
+| `auto_fix_applied` | `{"pattern": "...", "file": "..."}` | `WARN` |
+| `check_escalated` | `{"unfixed_count": 2, "reason": "logic error"}` | `ERROR` |
+| `check_completed_clean` | `{"errors_fixed": 1}` | `INFO` |
+
+All executions MUST emit `check_completed_clean` or `check_escalated` upon completion.
+
+---
+
+## Required Output Schema
+
+Since this is a system script invoked by agents, it must yield the following JSON structure to confirm execution compliance:
+
+```json
+{
+  "code_quality": {
+    "problem_checker_run": true,
+    "errors_fixed": 1,
+    "unresolved_errors": 0,
+    "status": "CLEAN"
+  }
+}
+```
+
+---
+
 ## Quick Reference
 
 ```bash
@@ -140,4 +185,4 @@ npx tsc --noEmit <file>
 
 ---
 
-⚡ PikaKit v3.9.108
+⚡ PikaKit v3.9.110

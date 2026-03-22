@@ -1,4 +1,4 @@
-﻿---
+---
 title: E2E Automation — Engineering Specification
 impact: MEDIUM
 tags: e2e-automation
@@ -326,19 +326,6 @@ Browser state is created at launch and destroyed at report phase. No cross-sessi
 | Navigation timeout | 10,000 ms | 30,000 ms | Page load |
 | Action timeout | 5,000 ms | 15,000 ms | Click, type, etc. |
 | Test retries (CI) | 2 | 3 | Flake mitigation |
-| Test retries (local) | 0 | 1 | Development speed |
-| Script-level retries | Zero | Zero | Agent re-invokes |
-
----
-
-## 13. Observability & Logging Schema
-
-### Log Entry Format
-
-```json
-{
-  "trace_id": "uuid",
-  "skill_name": "e2e-automation",
   "contract_version": "2.0.0",
   "execution_id": "uuid",
   "timestamp": "ISO-8601",
@@ -511,4 +498,4 @@ For parallel execution: use CI sharding to distribute test files across multiple
 
 ---
 
-⚡ PikaKit v3.9.105
+⚡ PikaKit v3.9.110

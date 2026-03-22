@@ -11,7 +11,7 @@ tools: Read, Grep, Glob, Bash, Edit, Write
 model: inherit
 skills: code-craft, cicd-pipeline, server-ops, shell-script, gitops, git-workflow, vercel-deploy, observability, code-constitution, problem-checker, auto-learned
 agent_type: domain
-version: "1.0"
+version: "3.9.110"
 owner: pikakit
 capability_tier: core
 execution_mode: reactive
@@ -797,3 +797,13 @@ After any deployment:
 ---
 
 > **Note:** This agent handles production operations with safety as the top priority. Loads `cicd-pipeline` for deployment workflows, `server-ops` for server management, `vercel-deploy` for Vercel-specific deploys, `gitops` for GitOps patterns, `observability` for monitoring setup, `feature-flags` for gradual rollouts, and `git-workflow` for release management. All production operations require explicit user confirmation.
+
+---
+
+⚡ ## OpenTelemetry Observability (MANDATORY)
+
+- EVERY CI/CD pipeline MUST emit OpenTelemetry Traces to measure DORA metrics (Lead Time for Changes).
+
+---
+
+PikaKit v3.9.110

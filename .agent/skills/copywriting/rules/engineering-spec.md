@@ -126,6 +126,9 @@ Data: {
     }>
     passed: boolean
   } | null
+  security: {
+    rules_of_engagement_followed: boolean
+  } | null
   metadata: {
     contract_version: string
     backward_compatibility: string
@@ -295,23 +298,39 @@ Each invocation produces an identical output for identical inputs. No session, n
 
 ## 13. Observability & Logging Schema
 
-### Log Entry Format
+### Log Entry Format (OpenTelemetry Event Array)
 
 ```json
 {
-  "trace_id": "uuid",
-  "skill_name": "copywriting",
-  "contract_version": "2.0.0",
-  "execution_id": "uuid",
-  "timestamp": "ISO-8601",
-  "request_type": "string",
-  "content_type": "string",
-  "formula_selected": "string|null",
-  "validation_passed": "boolean|null",
-  "violations_count": "number|null",
-  "status": "success|violations|error",
-  "error_code": "string|null",
-  "duration_ms": "number"
+  "traceId": "uuid",
+  "spanId": "uuid",
+  "events": [
+    {
+      "name": "formula_selected",
+      "timestamp": "ISO8601",
+      "attributes": {
+        "formula": "PAS",
+        "content_type": "email"
+      }
+    },
+    {
+      "name": "validation_passed",
+      "timestamp": "ISO8601",
+      "attributes": {
+        "content_type": "headline",
+        "score": "4/4"
+      }
+    },
+    {
+      "name": "violations_found",
+      "timestamp": "ISO8601",
+      "attributes": {
+        "rule": "benefit-first",
+        "severity": "error",
+        "violations_count": 1
+      }
+    }
+  ]
 }
 ```
 
@@ -436,4 +455,11 @@ All resources scoped to invocation. No persistent handles.
 
 ---
 
-⚡ PikaKit v3.9.105
+⚡ ## OpenTelemetry Observability (MANDATORY)
+
+- **Copy Quality Tracking**: EVERY copy validation MUST emit an OpenTelemetry Histogram metric recording the 4Us headline score and the count of copy formulation warnings.
+- **A/B Test Tracing**: OTel spans MUST tag the chosen copywriting formula (e.g., AIDA, PAS) to correlate formula usage with downstream conversion events.
+
+---
+
+PikaKit v3.9.110

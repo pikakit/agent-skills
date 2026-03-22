@@ -504,4 +504,12 @@ Auth Patterns maintains zero persistent state. Every invocation starts from a cl
 
 ---
 
-⚡ PikaKit v3.9.105
+⚡ ## Security Audit Logging (MANDATORY)
+
+- **SIEM Integration**: EVERY sensitive auth event MUST be audited to a centralized SIEM system.
+- **Log Determinism**: All auth audit logs MUST contain ip_address, user_agent, 	imestamp (ISO-8601), and a correlation_id.
+- **Immutability**: Audit logs must be append-only and immutable.
+
+---
+
+PikaKit v3.9.110

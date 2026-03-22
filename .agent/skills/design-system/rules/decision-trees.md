@@ -428,10 +428,6 @@ Complex workflows
 
 ---
 
-⚡ PikaKit v3.9.105
-
----
-
 ## 🔗 Related
 
 | File | When to Read |
@@ -440,3 +436,7 @@ Complex workflows
 | [color-system.md](color-system.md) | HSL palette generation after color decision |
 | [typography-system.md](typography-system.md) | Font selection after type decision |
 | [../SKILL.md](../SKILL.md) | Anti-pattern bans and quick reference |
+
+---
+
+⚡ PikaKit v3.9.110

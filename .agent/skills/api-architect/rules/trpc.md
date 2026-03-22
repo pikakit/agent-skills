@@ -123,3 +123,7 @@ function UserProfile({ id }: { id: string }) {
 | [api-style.md](api-style.md) | REST vs GraphQL vs tRPC decision |
 | [auth.md](auth.md) | Auth middleware patterns |
 | [SKILL.md](../SKILL.md) | Full decision framework |
+
+---
+
+⚡ PikaKit v3.9.110

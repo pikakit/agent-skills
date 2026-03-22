@@ -437,10 +437,6 @@ All resources scoped to invocation. No persistent handles.
 
 ---
 
-⚡ PikaKit v3.9.105
-
----
-
 ## 🔗 Related
 
 | File | When to Read |
@@ -451,3 +447,7 @@ All resources scoped to invocation. No persistent handles.
 | [mui-styling.md](mui-styling.md) | MUI v7 styling |
 | [performance.md](performance.md) | Lazy loading and memo |
 | [../SKILL.md](../SKILL.md) | Quick reference and core rules |
+
+---
+
+⚡ PikaKit v3.9.110

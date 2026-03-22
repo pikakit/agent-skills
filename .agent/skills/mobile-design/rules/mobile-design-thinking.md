@@ -364,9 +364,6 @@ Platform: iOS / Android / Both
 ---
 
 > **Remember:** If you chose a solution "because that's how it's always done," you chose WITHOUT THINKING. Every project is unique. Every context is different. Every user behavior is specific. **THINK, then code.**
----
-
-⚡ PikaKit v3.9.105
 
 ---
 
@@ -378,3 +375,7 @@ Platform: iOS / Android / Both
 | [decision-trees.md](decision-trees.md) | Decision frameworks |
 | [touch-psychology.md](touch-psychology.md) | Touch UX psychology |
 | [engineering-spec.md](engineering-spec.md) | Full engineering spec |
+
+---
+
+⚡ PikaKit v3.9.110

@@ -128,3 +128,7 @@ const tokens = await fetch('https://provider.com/token', {
 | [security-testing.md](security-testing.md) | Auth testing patterns |
 | [rate-limiting.md](rate-limiting.md) | Rate limit auth endpoints |
 | [SKILL.md](../SKILL.md) | Full decision framework |
+
+---
+
+⚡ PikaKit v3.9.110

@@ -149,7 +149,7 @@ LIMIT 20;
 
 ---
 
-⚡ PikaKit v3.9.105
+
 
 ---
 
@@ -160,3 +160,7 @@ LIMIT 20;
 | [optimization.md](optimization.md) | EXPLAIN ANALYZE for query tuning |
 | [schema-design.md](schema-design.md) | Schema that indexes support |
 | [SKILL.md](SKILL.md) | Index type quick reference |
+
+---
+
+⚡ PikaKit v3.9.110

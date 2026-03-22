@@ -91,10 +91,6 @@ my-mcp-server/
 
 ---
 
-⚡ PikaKit v3.9.105
-
----
-
 ## 🔗 Related
 
 | File | When to Read |
@@ -103,3 +99,7 @@ my-mcp-server/
 | [quickstart.md](quickstart.md) | Setup guides (Python/TypeScript) |
 | [best-practices.md](best-practices.md) | Workflow design, error patterns |
 | [engineering-spec.md](engineering-spec.md) | Full engineering spec |
+
+---
+
+⚡ PikaKit v3.9.110

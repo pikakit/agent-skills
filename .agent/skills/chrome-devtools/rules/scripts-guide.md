@@ -161,10 +161,6 @@ node performance.js --url https://example.com | jq '.vitals'
 
 ---
 
-⚡ PikaKit v3.9.105
-
----
-
 ## 🔗 Related
 
 | File | When to Read |
@@ -172,3 +168,7 @@ node performance.js --url https://example.com | jq '.vitals'
 | [aria-snapshot.md](aria-snapshot.md) | ARIA tree format for element discovery |
 | [engineering-spec.md](engineering-spec.md) | Full contracts and architecture |
 | [SKILL.md](../SKILL.md) | Quick reference and error taxonomy |
+
+---
+
+⚡ PikaKit v3.9.110

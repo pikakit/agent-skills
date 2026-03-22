@@ -363,9 +363,6 @@ Before writing tests, answer:
 5. **What happens offline?** → Test that scenario
 
 > **Remember:** Good mobile testing is about testing the RIGHT things, not EVERYTHING. A flaky E2E test is worse than no test. A failing unit test that catches a bug is worth 100 passing trivial tests.
----
-
-⚡ PikaKit v3.9.105
 
 ---
 
@@ -377,3 +374,7 @@ Before writing tests, answer:
 | [mobile-debugging.md](mobile-debugging.md) | Debugging strategies |
 | [mobile-performance.md](mobile-performance.md) | Performance testing |
 | [engineering-spec.md](engineering-spec.md) | Full engineering spec |
+
+---
+
+⚡ PikaKit v3.9.110

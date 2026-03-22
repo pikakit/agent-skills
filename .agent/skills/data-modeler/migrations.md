@@ -158,7 +158,7 @@ ALTER TABLE users DROP COLUMN full_name;
 
 ---
 
-⚡ PikaKit v3.9.105
+
 
 ---
 
@@ -170,3 +170,7 @@ ALTER TABLE users DROP COLUMN full_name;
 | [indexing.md](indexing.md) | Index migrations |
 | [database-selection.md](database-selection.md) | Serverless DB features |
 | [SKILL.md](SKILL.md) | Decision checklist |
+
+---
+
+⚡ PikaKit v3.9.110

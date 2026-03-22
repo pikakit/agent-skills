@@ -53,3 +53,7 @@ function useWindowEvent(event: string, handler: (e) => void) {
 ```
 
 `useEffectEvent` provides a cleaner API for the same pattern: it creates a stable function reference that always calls the latest version of the handler.
+
+---
+
+⚡ PikaKit v3.9.110

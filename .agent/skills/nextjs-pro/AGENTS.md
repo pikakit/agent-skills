@@ -141,7 +141,46 @@ Need useState / useEffect / event handlers?
 
 ---
 
-⚡ PikaKit v3.9.105
+## Agent Contract
+
+### Output Schema (JSON)
+
+Agents executing `nextjs-pro` patterns must output this execution metadata:
+
+```json
+{
+  "agent": "nextjs-pro",
+  "status": "success | failure | escalate",
+  "result": {
+    "rendering_strategy": "ssr | ssg | isr | csr",
+    "data_volatility": "static | periodic | dynamic",
+    "cwv_passed": true,
+    "code_quality": { "problem_checker_run": true, "errors_fixed": 0 }
+  },
+  "artifacts": ["path/to/page.tsx", "path/to/layout.tsx"]
+}
+```
+
+### Audit Logging (OpenTelemetry Mapped)
+
+```json
+{
+  "traceId": "uuid",
+  "spanId": "uuid",
+  "parentSpanId": "uuid | null",
+  "name": "nextjs-pro.execution",
+  "kind": "AGENT",
+  "events": [
+    { "name": "start", "timestamp": "ISO8601" },
+    { "name": "architecture_decision", "timestamp": "ISO8601", "attributes": {"rendering": "ssr"} },
+    { "name": "build_verification", "timestamp": "ISO8601", "attributes": {"build_status": "success"} }
+  ],
+  "status": {
+    "code": "OK | ERROR",
+    "description": "string | null"
+  }
+}
+```
 
 ---
 
@@ -1581,7 +1620,7 @@ All resources scoped to invocation. No persistent handles.
 
 ---
 
-⚡ PikaKit v3.9.105
+
 
 ---
 
@@ -3887,3 +3926,7 @@ function Profile({ name }: { name: string }) {
   return <div>{name}</div>
 }
 ```
+
+---
+
+⚡ PikaKit v3.9.110

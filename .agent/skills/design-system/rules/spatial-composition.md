@@ -171,10 +171,6 @@ Don't default to centered, symmetrical layouts. Create visual tension:
 
 ---
 
-⚡ PikaKit v3.9.105
-
----
-
 ## 🔗 Related
 
 | File | When to Read |
@@ -182,3 +178,7 @@ Don't default to centered, symmetrical layouts. Create visual tension:
 | [motion-design.md](motion-design.md) | Animate layout transitions |
 | [typography.md](typography.md) | Typography scale for layout hierarchy |
 | [../SKILL.md](../SKILL.md) | Aesthetic directions and constraints |
+
+---
+
+⚡ PikaKit v3.9.110

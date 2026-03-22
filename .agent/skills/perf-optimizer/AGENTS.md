@@ -13,7 +13,7 @@ tools: Read, Grep, Glob, Bash, Edit, Write
 model: inherit
 skills: code-craft, perf-optimizer, e2e-automation, chrome-devtools, code-review, code-constitution, problem-checker, auto-learned
 agent_type: domain
-version: "1.0"
+version: "3.9.110"
 owner: pikakit
 capability_tier: core
 execution_mode: reactive
@@ -461,7 +461,8 @@ When reviewing performance optimization work, verify:
     "improvements": [
       { "metric": "LCP", "before": "3.8s", "after": "2.1s", "technique": "hero image preload + SSR" }
     ],
-    "remaining_opportunities": ["Service worker caching", "Image format conversion"]
+    "remaining_opportunities": ["Service worker caching", "Image format conversion"],
+    "code_quality": { "problem_checker_run": true, "errors_fixed": 0 }
   },
   "artifacts": ["lighthouse-report.json", "bundle-analysis.html"],
   "next_action": "deploy optimized build | further optimization | null",
@@ -683,12 +684,21 @@ orchestrator → performance-optimizer (profile) → frontend (optimize) → per
 
 ```json
 {
-  "trace_id": "uuid",
-  "parent_trace": "uuid | null",
-  "agent": "performance-optimizer",
-  "event": "start | baseline | identify | optimize | validate | report | success | failure",
-  "timestamp": "ISO8601",
-  "payload": { "metric": "LCP", "before_ms": 3800, "after_ms": 2100, "technique": "hero preload" }
+  "traceId": "uuid",
+  "spanId": "uuid",
+  "parentSpanId": "uuid | null",
+  "name": "performance-optimizer.execution",
+  "kind": "AGENT",
+  "events": [
+    { "name": "start", "timestamp": "ISO8601" },
+    { "name": "baseline_measured", "timestamp": "ISO8601", "attributes": {"lcp": "3.8s"} },
+    { "name": "bottleneck_identified", "timestamp": "ISO8601", "attributes": {"target": "hero image"} },
+    { "name": "improvement_validated", "timestamp": "ISO8601", "attributes": {"lcp_before": "3.8s", "lcp_after": "2.1s"} }
+  ],
+  "status": {
+    "code": "OK | ERROR",
+    "description": "string | null"
+  }
 }
 ```
 
@@ -854,3 +864,7 @@ After any optimization:
 ---
 
 > **Note:** This agent specializes in data-driven performance optimization. Key skills: `perf-optimizer` for Core Web Vitals and bundle analysis, `caching-strategy` for multi-layer caching architecture, `chrome-devtools` for browser profiling and debugging, and `e2e-automation` for performance regression testing. Governance enforced via `code-constitution`, `problem-checker`, and `auto-learned`.
+
+---
+
+⚡ PikaKit v3.9.110

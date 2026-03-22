@@ -2,15 +2,31 @@
 name: security-scanner
 description: >-
   Advanced vulnerability analysis principles. OWASP 2025, Supply Chain Security, risk
-  prioritization. Triggers on: security, vulnerability, OWASP, pentest, threat modeling.
+  prioritization.
+category: security-auditor
+triggers: ["security", "vulnerability", "OWASP", "pentest", "threat modeling"]
+coordinates_with: ["offensive-sec", "auth-patterns", "cicd-pipeline", "code-review", "problem-checker", "auto-learned"]
+success_metrics: ["Vulnerability Detection Rate", "OWASP Coverage", "Remediation Completeness"]
 metadata:
   author: pikakit
-  version: "3.9.108"
+  version: "3.9.110"
 ---
 
 # Security Scanner — Vulnerability Analysis & OWASP
 
 > Think like an attacker. Prioritize by exploitability (EPSS), not just severity (CVSS).
+
+---
+
+## 5 Must-Ask Questions (Before Scanning)
+
+| # | Question | Options |
+|---|----------|---------|
+| 1 | Target Assets? | User data / API keys / PII / Financial / Source code |
+| 2 | Threat Actors? | Automated bots / Insider threats / Nation-state / Script kiddies |
+| 3 | Attack Vectors? | Web app / API / Supply chain / Social engineering |
+| 4 | Business Impact? | Data breach / Downtime / Regulatory fines / Reputation |
+| 5 | Compliance Requirements? | GDPR / HIPAA / SOC2 / PCI-DSS / None |
 
 ---
 
@@ -117,6 +133,19 @@ Is it actively exploited (EPSS > 0.5)?
 
 ---
 
+## Audit Logging (OpenTelemetry)
+
+| Event | Metadata Payload | Severity |
+|-------|------------------|----------|
+| `scan_started` | `{"scope": "full_audit", "owasp_focus": ["A01", "A05"]}` | `INFO` |
+| `vulnerability_found` | `{"owasp_category": "A05", "pattern": "sql_injection", "file": "src/db.ts"}` | `WARN` |
+| `risk_classified` | `{"severity": "critical", "cvss": 9.8, "epss": 0.7}` | `WARN` |
+| `scan_completed` | `{"findings_total": 8, "critical": 1, "high": 2}` | `INFO` |
+
+All scan outputs MUST emit `scan_started` and `scan_completed` events.
+
+---
+
 ## Anti-Patterns
 
 | ❌ Don't | ✅ Do |
@@ -149,4 +178,4 @@ Is it actively exploited (EPSS > 0.5)?
 
 ---
 
-⚡ PikaKit v3.9.108
+⚡ PikaKit v3.9.110

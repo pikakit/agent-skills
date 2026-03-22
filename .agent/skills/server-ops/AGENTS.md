@@ -163,7 +163,7 @@ Route by load balancer needs.
 
 ---
 
-⚡ PikaKit v3.9.105
+
 
 ---
 
@@ -316,6 +316,12 @@ Data: {
     step: number
     action: string
   }> | null
+  security: {
+    rules_of_engagement_followed: boolean
+  } | null
+  code_quality: {
+    problem_checker_run: boolean
+  } | null
   metadata: {
     contract_version: string
     backward_compatibility: string
@@ -483,23 +489,38 @@ Stateless. Fully idempotent. No persistent state.
 
 ## 13. Observability & Logging Schema
 
-### Log Entry Format
+### Log Entry Format (OpenTelemetry Event Array)
 
 ```json
 {
-  "trace_id": "uuid",
-  "skill_name": "server-ops",
-  "contract_version": "2.0.0",
-  "execution_id": "uuid",
-  "timestamp": "ISO-8601",
-  "request_type": "string",
-  "runtime": "string|null",
-  "environment": "string|null",
-  "tool_recommended": "string|null",
-  "scaling_strategy": "string|null",
-  "status": "success|error",
-  "error_code": "string|null",
-  "duration_ms": "number"
+  "traceId": "uuid",
+  "spanId": "uuid",
+  "events": [
+    {
+      "name": "server_analysis_started",
+      "timestamp": "ISO8601",
+      "attributes": {
+        "runtime": "nodejs",
+        "environment": "container"
+      }
+    },
+    {
+      "name": "tool_selected",
+      "timestamp": "ISO8601",
+      "attributes": {
+        "category": "process_manager",
+        "tool": "docker"
+      }
+    },
+    {
+      "name": "analysis_completed",
+      "timestamp": "ISO8601",
+      "attributes": {
+        "recommendations_count": 3,
+        "warnings": 1
+      }
+    }
+  ]
 }
 ```
 
@@ -619,4 +640,4 @@ All resources scoped to invocation. No persistent handles.
 
 ---
 
-⚡ PikaKit v3.9.105
+⚡ PikaKit v3.9.110

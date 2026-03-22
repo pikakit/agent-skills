@@ -46,3 +46,7 @@ useEffect(() => {
 **Use passive when:** tracking/analytics, logging, any listener that doesn't call `preventDefault()`.
 
 **Don't use passive when:** implementing custom swipe gestures, custom zoom controls, or any listener that needs `preventDefault()`.
+
+---
+
+⚡ PikaKit v3.9.110

@@ -11,7 +11,7 @@ tools: Read, Grep, Glob, Bash, Edit, Write
 model: inherit
 skills: code-craft, mobile-design, mobile-developer, test-architect, perf-optimizer, code-review, code-constitution, problem-checker, auto-learned
 agent_type: domain
-version: "1.0"
+version: "3.9.110"
 owner: pikakit
 capability_tier: core
 execution_mode: reactive
@@ -488,7 +488,8 @@ When reviewing mobile code, verify:
     "screens_created": ["HomeScreen", "ProfileScreen"],
     "build_status": { "android": "success", "ios": "success" },
     "performance": { "fps": "60", "list_virtualized": true },
-    "security": { "token_storage": "SecureStore", "ssl_pinning": true }
+    "security": { "token_storage": "SecureStore", "ssl_pinning": true, "masvs_compliant": true },
+    "code_quality": { "problem_checker_run": true, "errors_fixed": 0 }
   },
   "artifacts": ["src/screens/HomeScreen.tsx", "android/build.gradle"],
   "next_action": "/validate or app store submission | null",
@@ -707,18 +708,27 @@ orchestrator → /mobile → mobile-developer + backend + database → full-stac
 
 ---
 
-## Observability
+## Audit Logging (OpenTelemetry Mapped)
 
 ### Log Schema
 
 ```json
 {
-  "trace_id": "uuid",
-  "parent_trace": "uuid | null",
-  "agent": "mobile-developer",
-  "event": "start | checkpoint | build | platform_check | security | success | failure",
-  "timestamp": "ISO8601",
-  "payload": { "platform": "both", "framework": "react-native", "build_status": "success" }
+  "traceId": "uuid",
+  "spanId": "uuid",
+  "parentSpanId": "uuid | null",
+  "name": "mobile-developer.execution",
+  "kind": "AGENT",
+  "events": [
+    { "name": "start", "timestamp": "ISO8601" },
+    { "name": "checkpoint", "timestamp": "ISO8601", "attributes": {"platform": "both"} },
+    { "name": "security_audit", "timestamp": "ISO8601", "attributes": {"masvs_compliant": true} },
+    { "name": "build_verification", "timestamp": "ISO8601", "attributes": {"build_status": "success"} }
+  ],
+  "status": {
+    "code": "OK | ERROR",
+    "description": "string | null"
+  }
 }
 ```
 
@@ -888,3 +898,7 @@ After editing any mobile file:
 ---
 
 > **Note:** This agent specializes in mobile native development. Key skills: `mobile-developer` for implementation patterns, `mobile-first` for platform-specific decision trees, `mobile-design` for touch psychology and mobile UX, `mobile-security-coder` for OWASP MASVS compliance, `perf-optimizer` for 60fps performance, and `test-architect` for mobile testing strategy. Governance enforced via `code-constitution`, `problem-checker`, and `auto-learned`.
+
+---
+
+⚡ PikaKit v3.9.110

@@ -3,11 +3,14 @@ name: agent-browser
 description: >-
   AI-optimized browser automation with context-efficient @ref element handles. Reduces LLM
   context consumption by 93% compared to full DOM passing. 4-phase lifecycle: Navigate →
-  Snapshot → Interact → Verify. Triggers on: browser automation, web testing, scraping, UI
-  verification, headless.
+  Snapshot → Interact → Verify.
+category: automation
+triggers: ["browser automation", "web testing", "scraping", "UI verification", "headless"]
+coordinates_with: ["e2e-automation", "chrome-devtools", "observability"]
+success_metrics: ["Reduces LLM context consumption by 90%", "Zero dependency on full DOM serialization"]
 metadata:
   author: pikakit
-  version: "3.9.108"
+  version: "3.9.110"
 ---
 
 # Agent Browser
@@ -187,4 +190,4 @@ agent-browser fill @e2 "email@example.com"
 
 ---
 
-⚡ PikaKit v3.9.108
+⚡ PikaKit v3.9.110

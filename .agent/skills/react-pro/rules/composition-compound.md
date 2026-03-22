@@ -76,3 +76,7 @@ Tabs.Panel = TabPanel
   <Tabs.Panel id="settings">Settings content</Tabs.Panel>
 </Tabs>
 ```
+
+---
+
+⚡ PikaKit v3.9.110

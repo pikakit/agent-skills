@@ -155,7 +155,7 @@ node navigate.js --close true
 
 ---
 
-⚡ PikaKit v3.9.105
+
 
 ---
 
@@ -246,7 +246,7 @@ node select-ref.js --ref e1 --action screenshot --output ./element.png
 
 ---
 
-⚡ PikaKit v3.9.105
+
 
 ---
 
@@ -764,7 +764,7 @@ Transitions:
 
 ---
 
-⚡ PikaKit v3.9.105
+
 
 ---
 
@@ -929,7 +929,7 @@ node performance.js --url https://example.com | jq '.vitals'
 
 ---
 
-⚡ PikaKit v3.9.105
+
 
 ---
 
@@ -940,3 +940,13 @@ node performance.js --url https://example.com | jq '.vitals'
 | [aria-snapshot.md](aria-snapshot.md) | ARIA tree format for element discovery |
 | [engineering-spec.md](engineering-spec.md) | Full contracts and architecture |
 | [SKILL.md](../SKILL.md) | Quick reference and error taxonomy |
+
+---
+
+⚡ ## OpenTelemetry Observability (MANDATORY)
+
+- EVERY DevTools script MUST propagate W3C Trace Context via OpenTelemetry and record Web Vitals as OTel Metrics.
+
+---
+
+PikaKit v3.9.110

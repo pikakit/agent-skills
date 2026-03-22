@@ -82,10 +82,6 @@ node select-ref.js --ref e1 --action screenshot --output ./element.png
 
 ---
 
-⚡ PikaKit v3.9.105
-
----
-
 ## 🔗 Related
 
 | File | When to Read |
@@ -93,3 +89,7 @@ node select-ref.js --ref e1 --action screenshot --output ./element.png
 | [scripts-guide.md](scripts-guide.md) | All script options and examples |
 | [engineering-spec.md](engineering-spec.md) | Full contracts and architecture |
 | [SKILL.md](../SKILL.md) | Quick reference and error taxonomy |
+
+---
+
+⚡ PikaKit v3.9.110

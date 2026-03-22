@@ -1,9 +1,13 @@
 ---
 name: Verification Before Completion
 description: Run verification commands and confirm output before claiming success
+category: debugging-subskill
+triggers: ["verify", "verification", "check it", "did you test it", "are you sure"]
+coordinates_with: ["debug-pro", "test-architect"]
+success_metrics: ["0 false claims of completion", "100% features have evidence"]
 metadata:
   author: pikakit
-  version: "1.1.0"
+  version: "3.9.110"
 ---
 
 # Verification Before Completion
@@ -143,10 +147,6 @@ This is non-negotiable.
 
 ---
 
-⚡ PikaKit v3.9.105
-
----
-
 ## 🔗 Related
 
 | File | When to Read |
@@ -154,3 +154,7 @@ This is non-negotiable.
 | [../root-cause-tracing/SKILL.md](../root-cause-tracing/SKILL.md) | Trace root cause before claiming fix |
 | [../defense-in-depth/SKILL.md](../defense-in-depth/SKILL.md) | Add validation layers for robust fix |
 | [../SKILL.md](../SKILL.md) | 4-phase methodology overview |
+
+---
+
+⚡ PikaKit v3.9.110

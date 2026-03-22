@@ -10,7 +10,7 @@ tools: Read, Grep, Glob, Bash, Edit, Write
 model: inherit
 skills: code-craft, data-modeler, code-review, typescript-expert, code-constitution, problem-checker, auto-learned
 agent_type: domain
-version: "1.0"
+version: "3.9.110"
 owner: pikakit
 capability_tier: core
 execution_mode: reactive
@@ -401,7 +401,9 @@ When reviewing database work, verify:
   "artifacts": ["prisma/schema.prisma", "migrations/001_initial.sql"],
   "next_action": "/validate or backend integration",
   "escalation_target": "backend | null",
-  "failure_reason": "string | null"
+  "failure_reason": "string | null",
+  "security": { "rules_of_engagement_followed": true },
+  "code_quality": { "problem_checker_run": true }
 }
 ```
 
@@ -605,16 +607,40 @@ orchestrator → /api → backend-specialist + database-architect + testing
 
 ## Observability
 
-### Log Schema
+### Log Schema (OpenTelemetry Event Array)
 
 ```json
 {
-  "trace_id": "uuid",
-  "parent_trace": "uuid | null",
-  "agent": "database-architect",
-  "event": "start | plan | skill_call | migration | success | failure",
-  "timestamp": "ISO8601",
-  "payload": { "platform": "postgresql", "tables": 5, "indexes": 8, "migration_reversible": true }
+  "traceId": "uuid",
+  "spanId": "uuid",
+  "events": [
+    {
+      "name": "schema_designed",
+      "timestamp": "ISO8601",
+      "attributes": {
+        "tables_count": 5,
+        "normalization": "3NF",
+        "platform": "postgresql"
+      }
+    },
+    {
+      "name": "platform_selected",
+      "timestamp": "ISO8601",
+      "attributes": {
+        "platform": "neon",
+        "deployment": "serverless"
+      }
+    },
+    {
+      "name": "migration_planned",
+      "timestamp": "ISO8601",
+      "attributes": {
+        "type": "additive",
+        "tables_affected": 2,
+        "reversible": true
+      }
+    }
+  ]
 }
 ```
 
@@ -782,3 +808,7 @@ After any database schema change:
 ---
 
 > **Note:** This agent designs database schemas and migrations. Loads `data-modeler` for schema design, normalization, and index strategy. Uses `typescript-expert` for ORM type safety (Prisma/Drizzle), `code-review` for schema quality audits, and `code-craft` for migration file standards. Governance enforced via `code-constitution`, `problem-checker`, and `auto-learned`.
+
+---
+
+⚡ PikaKit v3.9.110

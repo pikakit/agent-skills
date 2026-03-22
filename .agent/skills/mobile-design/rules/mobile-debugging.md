@@ -129,9 +129,6 @@ Web Debugging:      Mobile Debugging:
 - [ ] **Did you check the native logs?** (Not just terminal output)
 
 > **Remember:** If JavaScript looks perfect but the app fails, look closer at the Native side.
----
-
-⚡ PikaKit v3.9.105
 
 ---
 
@@ -143,3 +140,7 @@ Web Debugging:      Mobile Debugging:
 | [mobile-testing.md](mobile-testing.md) | Testing strategies |
 | [mobile-performance.md](mobile-performance.md) | Performance debugging |
 | [engineering-spec.md](engineering-spec.md) | Full engineering spec |
+
+---
+
+⚡ PikaKit v3.9.110

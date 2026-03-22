@@ -18,3 +18,7 @@ tags: deprecated, redirect
 | Custom Hooks | [hooks-custom.md](hooks-custom.md) |
 | Performance | [performance-optimization.md](performance-optimization.md) |
 | Testing | [testing-patterns.md](testing-patterns.md) |
+
+---
+
+⚡ PikaKit v3.9.110

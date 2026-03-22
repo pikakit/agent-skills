@@ -120,10 +120,6 @@ OIDC = OAuth 2.0 + Identity Layer
 
 ---
 
-⚡ PikaKit v3.9.105
-
----
-
 ## 🔗 Related
 
 | File | When to Read |
@@ -132,3 +128,7 @@ OIDC = OAuth 2.0 + Identity Layer
 | [session.md](session.md) | Session-based alternative |
 | [passkey.md](passkey.md) | Passwordless alternative |
 | [SKILL.md](../SKILL.md) | Auth strategy decision tree |
+
+---
+
+⚡ PikaKit v3.9.110

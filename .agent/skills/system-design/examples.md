@@ -174,3 +174,7 @@ graph TB
 | [context-discovery.md](context-discovery.md) | Classify your project |
 | [pattern-selection.md](pattern-selection.md) | Choose patterns |
 | [trade-off-analysis.md](trade-off-analysis.md) | Document decisions |
+
+---
+
+⚡ PikaKit v3.9.110

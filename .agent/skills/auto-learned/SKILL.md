@@ -3,16 +3,31 @@ name: auto-learned
 description: >-
   Hierarchical skill containing all auto-learned patterns from IDE errors and code analysis.
   Organizes patterns by category (import, type, syntax, etc.) with subskills in patterns/
-  folder. Writable by authorized agents only. Triggers on: auto-learn, pattern, learned, error
-  fix.
+  folder. Writable by authorized agents only.
+category: autonomous-learning
+triggers: ["auto-learn", "pattern", "learned", "error fix"]
+coordinates_with: ["problem-checker", "auto-learner", "skill-generator"]
+success_metrics: ["Pattern Ingestion Rate", "Duplicate Prevention Accuracy", "Pattern Match Rate"]
 metadata:
   author: pikakit
-  version: "3.9.108"
+  version: "3.9.110"
 ---
 
 # Auto-Learned — Pattern Repository
 
 > Living repository of patterns learned from IDE errors. Append-only. Agents read to prevent; agents write to record.
+
+---
+
+## 5 Must-Ask Questions (Socratic Gate)
+
+| # | Question | Options |
+|---|----------|---------|
+| 1 | Pattern Category? | Import / Type / Syntax / Logic / Style |
+| 2 | Error Signature? | Exact Match / Regex Match |
+| 3 | Confidence Level? | High / Medium / Low |
+| 4 | Current Context? | React / Node / Next.js / Static |
+| 5 | Proposed Solution? | Clear Fix / Workaround |
 
 ---
 
@@ -112,6 +127,18 @@ All phases synchronous. Append-only writes. Deduplication returns `duplicate: tr
 
 ---
 
+## Audit Logging (OpenTelemetry)
+
+| Event | Metadata Payload | Severity |
+|-------|------------------|----------|
+| `pattern_lookup_executed` | `{"category": "type", "matches_found": 2}` | `INFO` |
+| `pattern_ingested_successfully` | `{"pattern_id": "TYP-005", "confidence": "high"}` | `INFO` |
+| `duplicate_pattern_rejected` | `{"category": "import", "error_signature": "React not defined"}` | `WARN` |
+
+All auto-learned outputs MUST emit `pattern_lookup_executed`, `pattern_ingested_successfully`, or `duplicate_pattern_rejected` events when applicable.
+
+---
+
 ## 📑 Content Map
 
 | File | Description | When to Read |
@@ -149,4 +176,4 @@ All phases synchronous. Append-only writes. Deduplication returns `duplicate: tr
 
 ---
 
-⚡ PikaKit v3.9.108
+⚡ PikaKit v3.9.110

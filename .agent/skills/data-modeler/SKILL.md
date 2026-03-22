@@ -2,15 +2,31 @@
 name: data-modeler
 description: >-
   Database design principles and decision-making. Schema design, indexing strategy, ORM
-  selection. Triggers on: database, schema, Prisma, Drizzle, SQL, migration, indexing.
+  selection.
+category: database-architecture
+triggers: ["database", "schema", "Prisma", "Drizzle", "SQL", "migration", "indexing"]
+coordinates_with: ["api-architect", "nodejs-pro", "python-pro", "security-scanner"]
+success_metrics: ["0 N+1 query warnings", "100% indexed foreign keys"]
 metadata:
   author: pikakit
-  version: "3.9.108"
+  version: "3.9.110"
 ---
 
 # Data Modeler — Database Design
 
 > Context-specific decisions. Ask before assuming. Never default to PostgreSQL blindly.
+
+---
+
+## 5 Must-Ask Questions (Socratic Gate)
+
+| # | Question | Options |
+|---|----------|---------|
+| 1 | Database Platform? | PostgreSQL / SQLite / Turso / Neon |
+| 2 | ORM Preference? | Drizzle / Prisma / Kysely / Raw SQL |
+| 3 | Deployment Target? | Serverless / Edge / VPS / Managed |
+| 4 | Expected Scale? | Prototype / Mid-tier / High-traffic |
+| 5 | Migration Strategy? | Greenfield / Existing Schema |
 
 ---
 
@@ -130,6 +146,18 @@ metadata:
 
 ---
 
+## Audit Logging (OpenTelemetry)
+
+| Event | Metadata Payload | Severity |
+|-------|------------------|----------|
+| `schema_designed` | `{"tables_count": 5, "normalization": "3NF"}` | `INFO` |
+| `platform_selected` | `{"platform": "neon", "deployment": "serverless"}` | `INFO` |
+| `migration_planned` | `{"type": "additive", "tables_affected": 2}` | `INFO` |
+
+All data-modeler outputs MUST emit `schema_designed`, `platform_selected`, or `migration_planned` events when applicable.
+
+---
+
 ## 📑 Content Map
 
 | File | Description | When to Read |
@@ -163,4 +191,4 @@ metadata:
 
 ---
 
-⚡ PikaKit v3.9.108
+⚡ PikaKit v3.9.110

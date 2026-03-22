@@ -105,10 +105,6 @@ function processPayment(amount: number, currency: string): PaymentResult
 
 ---
 
-⚡ PikaKit v3.9.105
-
----
-
 ## 🔗 Related
 
 | File | When to Read |
@@ -116,3 +112,7 @@ function processPayment(amount: number, currency: string): PaymentResult
 | [domain-marketing.md](domain-marketing.md) | Marketing copy prompt patterns |
 | [model-syntax.md](model-syntax.md) | Model-specific parameters |
 | [../SKILL.md](../SKILL.md) | LLM prompt pattern and anti-patterns |
+
+---
+
+⚡ PikaKit v3.9.110

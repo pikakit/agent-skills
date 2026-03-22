@@ -107,6 +107,9 @@ Data: {
   }>
   total_patterns: number
   categories_searched: Array<string>
+  security: {
+    rules_of_engagement_followed: boolean
+  }
   metadata: {
     version: string
     last_updated: string    # ISO-8601
@@ -152,6 +155,9 @@ Data: {
   category_file: string     # File the pattern was written to
   total_patterns: number    # Category total after ingestion
   duplicate: boolean        # Whether pattern already existed (merged, not duplicated)
+  security: {
+    rules_of_engagement_followed: boolean
+  }
 }
 Error: ErrorSchema | null
 ```
@@ -357,24 +363,40 @@ Auto-Learned maintains persistent state across sessions:
 
 ## 13. Observability & Logging Schema
 
-### Log Entry Format
+### Log Entry Format (OpenTelemetry Event Array)
 
 ```json
 {
-  "trace_id": "uuid",
-  "skill_name": "auto-learned",
-  "contract_version": "2.0.0",
-  "execution_id": "uuid",
-  "timestamp": "ISO-8601",
-  "operation": "lookup|ingest",
-  "category": "string|null",
-  "status": "success|error",
-  "error_code": "string|null",
-  "matches_found": "number",
-  "pattern_id": "string|null",
-  "duplicate": "boolean|null",
-  "agent": "string",
-  "duration_ms": "number"
+  "traceId": "uuid",
+  "spanId": "uuid",
+  "events": [
+    {
+      "name": "pattern_lookup_executed",
+      "timestamp": "ISO8601",
+      "attributes": {
+        "category": "type",
+        "matches_found": 2,
+        "duration_ms": 15
+      }
+    },
+    {
+      "name": "pattern_ingested_successfully",
+      "timestamp": "ISO8601",
+      "attributes": {
+        "pattern_id": "TYP-005",
+        "confidence": "high",
+        "agent": "skill-generator"
+      }
+    },
+    {
+      "name": "duplicate_pattern_rejected",
+      "timestamp": "ISO8601",
+      "attributes": {
+        "category": "import",
+        "error_signature": "React not defined"
+      }
+    }
+  ]
 }
 ```
 
@@ -537,4 +559,4 @@ Auto-Learned maintains persistent state across sessions:
 
 ---
 
-⚡ PikaKit v3.9.105
+⚡ PikaKit v3.9.110

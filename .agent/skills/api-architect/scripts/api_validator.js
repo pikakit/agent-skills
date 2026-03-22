@@ -5,7 +5,7 @@
  *
  * Usage: node api_validator.js <project_path> [--json] [--help] [--version]
  *
- * @version 2.0.0
+ * @version 2.0.1
  * @skill api-architect
  */
 
@@ -13,7 +13,7 @@ import { readFile, readdir } from 'node:fs/promises';
 import { existsSync } from 'node:fs';
 import { resolve, relative, extname } from 'node:path';
 
-const VERSION = '2.0.0';
+const VERSION = '2.0.2';
 
 const HELP = `
 API Validator v${VERSION}
@@ -297,7 +297,10 @@ function printResults(results, projectPath) {
 }
 
 function jsonResults(results, projectPath) {
-    return {
+    const criticalCount = results.reduce((s, r) => s + r.issues.filter(i => i.startsWith('[X]')).length, 0);
+    const hasError = criticalCount > 0;
+
+    const data = {
         version: VERSION,
         projectPath,
         timestamp: new Date().toISOString(),
@@ -312,9 +315,27 @@ function jsonResults(results, projectPath) {
         summary: {
             totalFiles: results.length,
             totalPassed: results.reduce((s, r) => s + r.passed.length, 0),
-            totalIssues: results.reduce((s, r) => s + r.issues.filter(i => i.startsWith('[X]')).length, 0),
+            totalIssues: criticalCount,
             totalWarnings: results.reduce((s, r) => s + r.issues.filter(i => i.startsWith('[!]')).length, 0),
         },
+    };
+
+    if (hasError) {
+        return {
+            status: 'error',
+            data,
+            error: {
+                code: 'ERR_VALIDATOR_FAILED',
+                phase: 'validate',
+                message: `Found ${criticalCount} critical API issues. Fix before deployment.`
+            }
+        };
+    }
+
+    return {
+        status: 'success',
+        data,
+        error: null
     };
 }
 
@@ -345,7 +366,11 @@ async function main() {
 
     if (apiFiles.length === 0) {
         if (isJson) {
-            console.log(JSON.stringify({ version: VERSION, files: [], summary: { totalFiles: 0 } }, null, 2));
+            console.log(JSON.stringify({
+                status: 'success',
+                data: { version: VERSION, files: [], summary: { totalFiles: 0 } },
+                error: null
+            }, null, 2));
         } else {
             console.log('[!] No API files found.');
             console.log('    Looking for: routes/, controllers/, api/, openapi.json/yaml');
@@ -374,6 +399,14 @@ async function main() {
 }
 
 main().catch(err => {
-    console.error(`[FATAL] ${err.message}`);
+    if (process.argv.includes('--json')) {
+        console.error(JSON.stringify({
+            status: 'error',
+            data: null,
+            error: { code: 'ERR_FATAL', phase: 'execution', message: err.message }
+        }, null, 2));
+    } else {
+        console.error(`[FATAL] ${err.message}`);
+    }
     process.exit(1);
 });

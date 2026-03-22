@@ -469,4 +469,11 @@ All resources scoped to invocation. No persistent handles.
 
 ---
 
-⚡ PikaKit v3.9.105
+⚡ ## OpenTelemetry Observability (MANDATORY)
+
+- **Schema Health Metrics**: EVERY schema validation MUST emit OpenTelemetry Spans containing metadata such as table count, column count, and ratio of indexed foreign keys vs unindexed.
+- **Bad Practice Events**: Missing primary keys, unindexed foreign keys, or missing JSON constraints MUST trigger OTel Events attached to the main Trace ID.
+
+---
+
+PikaKit v3.9.110

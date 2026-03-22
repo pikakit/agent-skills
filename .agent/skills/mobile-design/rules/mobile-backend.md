@@ -498,9 +498,6 @@ ALERTS:
 ---
 
 > **Remember:** Mobile backend must be resilient to bad networks, respect battery life, and handle interrupted sessions gracefully. The client cannot be trusted, but it also cannot be hung up—provide offline capabilities and clear error recovery paths.
----
-
-⚡ PikaKit v3.9.105
 
 ---
 
@@ -513,3 +510,7 @@ ALERTS:
 | [mobile-testing.md](mobile-testing.md) | Backend integration testing |
 | [engineering-spec.md](engineering-spec.md) | Full engineering spec |
 | `api-architect` | API design patterns |
+
+---
+
+⚡ PikaKit v3.9.110

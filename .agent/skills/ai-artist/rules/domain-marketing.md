@@ -92,10 +92,6 @@ Bad: "These headphones have good noise cancellation features."
 
 ---
 
-⚡ PikaKit v3.9.105
-
----
-
 ## 🔗 Related
 
 | File | When to Read |
@@ -103,3 +99,7 @@ Bad: "These headphones have good noise cancellation features."
 | [domain-code.md](domain-code.md) | Code generation prompt patterns |
 | [image-prompts.md](image-prompts.md) | Visual prompts for marketing assets |
 | [../SKILL.md](../SKILL.md) | LLM prompt pattern and anti-patterns |
+
+---
+
+⚡ PikaKit v3.9.110

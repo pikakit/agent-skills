@@ -229,10 +229,6 @@ await fetch('/api/auth/passkey/login/verify', {
 
 ---
 
-⚡ PikaKit v3.9.105
-
----
-
 ## 🔗 Related
 
 | File | When to Read |
@@ -241,3 +237,7 @@ await fetch('/api/auth/passkey/login/verify', {
 | [oauth2.md](oauth2.md) | OAuth alternative to passkeys |
 | [session.md](session.md) | Session after passkey auth |
 | [SKILL.md](../SKILL.md) | Auth strategy decision tree |
+
+---
+
+⚡ PikaKit v3.9.110

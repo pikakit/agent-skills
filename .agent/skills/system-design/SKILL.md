@@ -2,16 +2,31 @@
 name: system-design
 description: >-
   Architectural decision-making framework. Requirements analysis, trade-off evaluation, ADR
-  documentation. Use when making architecture decisions or analyzing system design. Triggers
-  on: architecture, system design, scalability, microservices.
+  documentation. Use when making architecture decisions or analyzing system design.
+category: architectural-decision
+triggers: ["architecture", "system design", "scalability", "microservices"]
+coordinates_with: ["api-architect", "data-modeler", "cicd-pipeline"]
+success_metrics: ["Architecture Robustness", "ADR Coverage", "Simplicity Score"]
 metadata:
   author: pikakit
-  version: "3.9.108"
+  version: "3.9.110"
 ---
 
 # System Design — Architecture Decision Framework
 
 > Requirements drive architecture. Trade-offs inform decisions. ADRs capture rationale.
+
+---
+
+## 5 Must-Ask Questions (Socratic Gate)
+
+| # | Question | Options |
+|---|----------|---------|
+| 1 | Project Type? | MVP / SaaS / Enterprise Internal |
+| 2 | Scale Target? | Startup (1k) / Growth (100k) / Enterprise (1M+) |
+| 3 | Constraints? | Latency / Security / Budget / Team Size |
+| 4 | Current Stack? | Typescript / Python / Go / Legacy Java |
+| 5 | Key Non-Functional Req? | High Availability / Eventual Consistency / Strong Consistency |
 
 ---
 
@@ -98,6 +113,19 @@ metadata:
 
 ---
 
+## Audit Logging (OpenTelemetry)
+
+| Event | Metadata Payload | Severity |
+|-------|------------------|----------|
+| `architecture_analysis_started` | `{"project_type": "saas", "scale": "growth"}` | `INFO` |
+| `pattern_recommended` | `{"pattern": "event-driven", "rationale": "decoupling"}` | `INFO` |
+| `adr_generated` | `{"decision_topic": "database_selection", "status": "proposed"}` | `INFO` |
+| `analysis_completed` | `{"validation_passed": true, "trade_offs_analyzed": 3}` | `INFO` |
+
+All system-design outputs MUST emit `architecture_analysis_started` and `analysis_completed` events.
+
+---
+
 ## 📑 Content Map
 
 | File | Description | When to Read |
@@ -121,4 +149,4 @@ metadata:
 
 ---
 
-⚡ PikaKit v3.9.108
+⚡ PikaKit v3.9.110

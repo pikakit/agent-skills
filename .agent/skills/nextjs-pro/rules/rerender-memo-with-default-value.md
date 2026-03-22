@@ -36,3 +36,7 @@ const UserAvatar = memo(function UserAvatar({ onClick = NOOP }: { onClick?: () =
 // Used without optional onClick
 <UserAvatar />
 ```
+
+---
+
+⚡ PikaKit v3.9.110

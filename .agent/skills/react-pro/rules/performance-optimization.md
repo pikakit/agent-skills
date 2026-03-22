@@ -59,3 +59,7 @@ function VirtualList({ items }: { items: Item[] }) {
 | Premature `useMemo`/`useCallback` | Profile first (React Compiler handles most) |
 | Barrel file re-exports | Direct imports for smaller bundles |
 | God components (> 300 lines) | Split at 150 lines |
+
+---
+
+⚡ PikaKit v3.9.110

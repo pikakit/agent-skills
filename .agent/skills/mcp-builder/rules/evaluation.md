@@ -90,10 +90,6 @@ This requires:
 
 ---
 
-⚡ PikaKit v3.9.105
-
----
-
 ## 🔗 Related
 
 | File | When to Read |
@@ -101,3 +97,7 @@ This requires:
 | [../SKILL.md](../SKILL.md) | Phase 4 overview |
 | [best-practices.md](best-practices.md) | Design patterns to test |
 | [engineering-spec.md](engineering-spec.md) | Evaluation contracts |
+
+---
+
+⚡ PikaKit v3.9.110

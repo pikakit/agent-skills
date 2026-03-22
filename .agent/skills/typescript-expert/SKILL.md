@@ -4,16 +4,31 @@ description: >-
   TypeScript and JavaScript expert with deep knowledge of type-level programming, performance
   tuning, monorepo management, migration strategies, and modern tooling. Use PROACTIVELY for
   any TypeScript/JavaScript issues including complex type gymnastics, build performance,
-  debugging, and architectural decisions. Triggers on: TypeScript, JavaScript, type error,
-  tsconfig, monorepo.
+  debugging, and architectural decisions.
+category: typesystem-engineering
+triggers: ["TypeScript", "JavaScript", "type error", "tsconfig", "monorepo"]
+coordinates_with: ["nextjs-pro", "react-architect", "code-review"]
+success_metrics: ["Type Coverage", "Build Performance", "Determinism"]
 metadata:
   author: pikakit
-  version: "3.9.108"
+  version: "3.9.110"
 ---
 
 # TypeScript Expert — Advanced TS Problem-Solving
 
 > Strict mode. ESM-first. Type-level patterns. Deterministic error routing.
+
+---
+
+## 5 Must-Ask Questions (Socratic Gate)
+
+| # | Question | Options |
+|---|----------|---------|
+| 1 | TS Version? | 5.0+ / Legacy |
+| 2 | Build System? | Vite / Next.js / tsc / tsup |
+| 3 | Project Structure? | Monorepo / Polyrepo |
+| 4 | Module Target? | ESM / CJS / Dual |
+| 5 | Strictness Level? | Full Strict / Gradual Migration |
 
 ---
 
@@ -145,6 +160,18 @@ const config = {
 
 ---
 
+## Audit Logging (OpenTelemetry)
+
+| Event | Metadata Payload | Severity |
+|-------|------------------|----------|
+| `type_pattern_recommended` | `{"pattern": "branded_types", "use_case": "ids"}` | `INFO` |
+| `error_resolved` | `{"error_code": "TS2322", "fix_applied": "type_assertion"}` | `INFO` |
+| `config_recommended` | `{"project_type": "monorepo", "settings": ["projectReferences"]}` | `INFO` |
+
+All typescript-expert outputs MUST emit `type_pattern_recommended`, `error_resolved`, or `config_recommended` events when applicable.
+
+---
+
 ## 📑 Content Map
 
 | File | Description | When to Read |
@@ -171,4 +198,4 @@ const config = {
 
 ---
 
-⚡ PikaKit v3.9.108
+⚡ PikaKit v3.9.110

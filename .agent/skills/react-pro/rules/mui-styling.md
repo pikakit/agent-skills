@@ -125,10 +125,6 @@ sx={{
 
 ---
 
-⚡ PikaKit v3.9.105
-
----
-
 ## 🔗 Related
 
 | File | When to Read |
@@ -136,3 +132,7 @@ sx={{
 | [component-patterns.md](component-patterns.md) | Component structure with MUI |
 | [performance.md](performance.md) | Lazy load heavy MUI components |
 | [../SKILL.md](../SKILL.md) | MUI v7 Grid breaking change |
+
+---
+
+⚡ PikaKit v3.9.110

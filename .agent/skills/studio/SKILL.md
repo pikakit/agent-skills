@@ -2,16 +2,31 @@
 name: studio
 description: >-
   AI-powered design intelligence with 50+ styles, 97 color palettes, 57 font pairings, and
-  anti-AI-slop design system generation. Triggers on: design system, UI design, color palette,
-  typography, style guide.
+  anti-AI-slop design system generation.
+category: design-intelligence
+triggers: ["design system", "UI design", "color palette", "typography", "style guide"]
+coordinates_with: ["frontend-specialist", "design-system", "ai-artist"]
+success_metrics: ["Aesthetic Consistency", "Slop Avoidance Rate", "Typography Contrast Ratio"]
 metadata:
   author: pikakit
-  version: "3.9.108"
+  version: "3.9.110"
 ---
 
 # Studio — Design Intelligence
 
 > 50+ styles. 97 palettes. 57 font pairings. Anti-AI-Slop by default.
+
+---
+
+## 5 Must-Ask Questions (Before Recommendations)
+
+| # | Question | Options |
+|---|----------|---------|
+| 1 | Industry/Domain? | Fintech / SaaS / Healthcare / E-commerce / Creative |
+| 2 | Brand Mood? | Dark & Tech / Light & Minimal / Playful / Elegant |
+| 3 | Target Audience? | B2B Professional / Gen Z / General Consumer |
+| 4 | Current Stack? | React / Tailwind / Generic CSS |
+| 5 | Specific Needs? | Full Design System / Just Colors / Just Fonts |
 
 ---
 
@@ -127,6 +142,18 @@ node .agent/skills/studio/scripts-js/search.js "modern tech" --category typograp
 
 ---
 
+## Audit Logging (OpenTelemetry)
+
+| Event | Metadata Payload | Severity |
+|-------|------------------|----------|
+| `design_search_started` | `{"query": "fintech dark", "category": "colors"}` | `INFO` |
+| `anti_slop_rules_checked` | `{"rule_count": 11, "violations_prevented": 3}` | `INFO` |
+| `design_system_generated` | `{"project": "Auth", "palettes_included": 4}` | `INFO` |
+
+All studio outputs MUST emit `design_search_started` and `design_system_generated` (or `analysis_completed`) events.
+
+---
+
 ## 📑 Content Map
 
 | File | Description | When to Read |
@@ -147,4 +174,4 @@ node .agent/skills/studio/scripts-js/search.js "modern tech" --category typograp
 
 ---
 
-⚡ PikaKit v3.9.108
+⚡ PikaKit v3.9.110

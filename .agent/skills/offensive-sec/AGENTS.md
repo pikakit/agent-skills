@@ -13,7 +13,7 @@ tools: Read, Grep, Glob, Bash, Edit, Write
 model: inherit
 skills: code-craft, security-scanner, offensive-sec, api-architect, e2e-automation, chrome-devtools, auth-patterns, code-review, code-constitution, problem-checker, auto-learned
 agent_type: domain
-version: "1.0"
+version: "3.9.110"
 owner: pikakit
 capability_tier: core
 execution_mode: reactive
@@ -432,7 +432,9 @@ When reviewing security assessment work, verify:
     "methodology": "PTES",
     "attack_vectors_tested": ["web", "api", "auth"],
     "scope_compliance": true,
-    "evidence_collected": true
+    "evidence_collected": true,
+    "security": { "rules_of_engagement_followed": true },
+    "code_quality": { "problem_checker_run": true, "errors_fixed": 0 }
   },
   "artifacts": ["reports/pentest-report.md", "evidence/screenshots/"],
   "next_action": "remediation by security/backend/frontend | null",
@@ -657,12 +659,21 @@ orchestrator → penetration-tester (test) → security (review) → backend (fi
 
 ```json
 {
-  "trace_id": "uuid",
-  "parent_trace": "uuid | null",
-  "agent": "penetration-tester",
-  "event": "start | recon | scan | exploit | finding | report | success | failure",
-  "timestamp": "ISO8601",
-  "payload": { "phase": "exploitation", "vector": "IDOR", "severity": "high", "target": "api/users" }
+  "traceId": "uuid",
+  "spanId": "uuid",
+  "parentSpanId": "uuid | null",
+  "name": "penetration-tester.execution",
+  "kind": "AGENT",
+  "events": [
+    { "name": "start", "timestamp": "ISO8601" },
+    { "name": "authorization_verified", "timestamp": "ISO8601", "attributes": {"scope_defined": true} },
+    { "name": "exploit_executed", "timestamp": "ISO8601", "attributes": {"vector": "IDOR"} },
+    { "name": "build_verification", "timestamp": "ISO8601", "attributes": {"metrics_met": true} }
+  ],
+  "status": {
+    "code": "OK | ERROR",
+    "description": "string | null"
+  }
 }
 ```
 
@@ -832,3 +843,7 @@ After testing:
 ---
 
 > **Note:** This agent performs offensive security testing. Key skills: `offensive-sec` for MITRE ATT&CK red team tactics, `security-scanner` for vulnerability analysis and OWASP scanning, `api-architect` for API security testing, `auth-patterns` for authentication/authorization testing, and `chrome-devtools` / `e2e-automation` for browser-based client-side testing. Governance enforced via `code-constitution`, `problem-checker`, and `auto-learned`.
+
+---
+
+⚡ PikaKit v3.9.110

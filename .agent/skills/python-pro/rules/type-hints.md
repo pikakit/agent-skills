@@ -153,3 +153,7 @@ settings = Settings()  # Auto-reads from .env + environment
 | [fastapi-patterns.md](fastapi-patterns.md) | Pydantic with FastAPI |
 | [testing-patterns.md](testing-patterns.md) | Testing typed code |
 | [project-structure.md](project-structure.md) | Where to put models |
+
+---
+
+⚡ PikaKit v3.9.110

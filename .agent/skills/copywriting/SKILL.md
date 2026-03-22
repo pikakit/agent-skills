@@ -2,16 +2,31 @@
 name: copywriting
 description: >-
   Conversion copywriting formulas, headline templates, email patterns. AIDA, PAS, BAB, 4Ps,
-  4Us, FAB formulas for high-converting copy. Triggers on: copywriting, headlines, landing
-  page, email, marketing.
+  4Us, FAB formulas for high-converting copy.
+category: content
+triggers: ["copywriting", "headlines", "landing page", "email", "marketing"]
+coordinates_with: ["seo-optimizer", "studio", "ai-artist"]
+success_metrics: ["4/4 headline Us score", "0 copy validation failures"]
 metadata:
   author: pikakit
-  version: "3.9.108"
+  version: "3.9.110"
 ---
 
 # Copywriting — Conversion Formulas
 
 > 6 proven formulas. Benefit-first. Specific claims. One CTA per piece.
+
+---
+
+## 5 Must-Ask Questions (Socratic Gate)
+
+| # | Question | Options |
+|---|----------|---------|
+| 1 | Target Audience? | Demographics / Pain points / Role |
+| 2 | Core Product Value? | Primary benefit / USP |
+| 3 | Content Type? | Landing / Email / Ad / Headline |
+| 4 | Primary CTA? | Buy / Sign Up / Read More |
+| 5 | Brand Tone? | Professional / Casual / Urgent |
 
 ---
 
@@ -139,7 +154,19 @@ metadata:
 
 ---
 
-## ï¿½ Content Map
+## Audit Logging (OpenTelemetry)
+
+| Event | Metadata Payload | Severity |
+|-------|------------------|----------|
+| `formula_selected` | `{"formula": "PAS", "content_type": "email"}` | `INFO` |
+| `validation_passed` | `{"content_type": "headline", "score": "4/4"}` | `INFO` |
+| `violations_found` | `{"rule": "benefit-first", "severity": "error"}` | `WARN` |
+
+All copywriting outputs MUST emit `formula_selected`, `validation_passed`, or `violations_found` events when applicable.
+
+---
+
+## 📁 Content Map
 
 | File | Description | When to Read |
 |------|-------------|--------------|
@@ -147,7 +174,7 @@ metadata:
 
 ---
 
-## ï¿½ðŸ”— Related
+## 🔗 Related
 
 | Item | Type | Purpose |
 |------|------|---------|
@@ -157,4 +184,4 @@ metadata:
 
 ---
 
-⚡ PikaKit v3.9.108
+⚡ PikaKit v3.9.110

@@ -523,9 +523,6 @@ API cache?           → Query library
 ---
 
 > **Remember:** These trees are guides for THINKING, not rules to follow blindly. Every project has unique constraints. ASK clarifying questions when requirements are vague, and choose based on actual needs, not defaults.
----
-
-⚡ PikaKit v3.9.105
 
 ---
 
@@ -537,3 +534,7 @@ API cache?           → Query library
 | [mobile-design-thinking.md](mobile-design-thinking.md) | Design methodology |
 | [mobile-navigation.md](mobile-navigation.md) | Navigation decision details |
 | [engineering-spec.md](engineering-spec.md) | Full engineering spec |
+
+---
+
+⚡ PikaKit v3.9.110

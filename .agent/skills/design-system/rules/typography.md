@@ -111,10 +111,6 @@ For advanced control:
 
 ---
 
-⚡ PikaKit v3.9.105
-
----
-
 ## 🔗 Related
 
 | File | When to Read |
@@ -122,3 +118,7 @@ For advanced control:
 | [color-systems.md](color-systems.md) | Color palette to complement typography |
 | [spatial-composition.md](spatial-composition.md) | Layout for text-heavy pages |
 | [../SKILL.md](../SKILL.md) | Design constraints and anti-slop bans |
+
+---
+
+⚡ PikaKit v3.9.110

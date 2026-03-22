@@ -193,10 +193,6 @@ function evaluatePolicy(ctx: PolicyContext): boolean {
 
 ---
 
-⚡ PikaKit v3.9.105
-
----
-
 ## 🔗 Related
 
 | File | When to Read |
@@ -204,3 +200,7 @@ function evaluatePolicy(ctx: PolicyContext): boolean {
 | [jwt-deep.md](jwt-deep.md) | Role/permission claims in JWT |
 | [session.md](session.md) | Session-based permission checks |
 | [SKILL.md](../SKILL.md) | Auth strategy decision tree |
+
+---
+
+⚡ PikaKit v3.9.110

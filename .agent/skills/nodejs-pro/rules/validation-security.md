@@ -199,3 +199,7 @@ app.use('*', rateLimiter({ windowMs: 60_000, limit: 100 }))
 | [framework-selection.md](framework-selection.md) | Framework-specific validation |
 | [architecture-patterns.md](architecture-patterns.md) | Where validation sits in layers |
 | [testing-strategy.md](testing-strategy.md) | Testing validation schemas |
+
+---
+
+⚡ PikaKit v3.9.110

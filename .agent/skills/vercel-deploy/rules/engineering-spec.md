@@ -449,10 +449,6 @@ Sequential pipeline. One deployment per invocation.
 
 ---
 
-⚡ PikaKit v3.9.105
-
----
-
 ## 🔗 Related
 
 | File | When to Read |
@@ -461,3 +457,7 @@ Sequential pipeline. One deployment per invocation.
 | [../scripts/deploy.sh](../scripts/deploy.sh) | Deploy script implementation |
 | `cicd-pipeline` | Full CI/CD pipelines |
 | `nextjs-pro` | Next.js deployment specifics |
+
+---
+
+⚡ PikaKit v3.9.110

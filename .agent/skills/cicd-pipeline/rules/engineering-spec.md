@@ -467,4 +467,11 @@ All resources scoped to invocation. No persistent handles.
 
 ---
 
-⚡ PikaKit v3.9.105
+⚡ ## OpenTelemetry Observability (MANDATORY)
+
+- **DORA Metrics**: EVERY CI/CD pipeline job MUST emit OpenTelemetry Spans to calculate DORA Metrics (Deployment Frequency, Lead Time for Changes).
+- **Distributed Tracing**: Trace context MUST be propagated from PR creation through the entire deployment pipeline to production.
+
+---
+
+PikaKit v3.9.110

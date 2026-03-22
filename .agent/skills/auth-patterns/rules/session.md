@@ -169,10 +169,6 @@ async function invalidateAllSessions(userId: string) {
 
 ---
 
-⚡ PikaKit v3.9.105
-
----
-
 ## 🔗 Related
 
 | File | When to Read |
@@ -181,3 +177,7 @@ async function invalidateAllSessions(userId: string) {
 | [oauth2.md](oauth2.md) | OAuth sessions |
 | [mfa.md](mfa.md) | MFA with sessions |
 | [SKILL.md](../SKILL.md) | Auth strategy decision tree |
+
+---
+
+⚡ PikaKit v3.9.110

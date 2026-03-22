@@ -2,15 +2,30 @@
 name: perf-optimizer
 description: >-
   Performance profiling principles. Core Web Vitals, bundle analysis, runtime profiling.
-  Triggers on: performance, slow, Lighthouse, bundle size, Core Web Vitals.
+category: code-quality
+triggers: ["performance", "optimize", "speed", "slow", "memory", "cpu", "Lighthouse", "bundle size", "Core Web Vitals", "LCP", "INP", "CLS", "latency"]
+coordinates_with: ["code-craft", "e2e-automation", "chrome-devtools", "problem-checker", "auto-learned"]
+success_metrics: ["Baseline Measured", "Improvement Validated", "No Regressions"]
 metadata:
   author: pikakit
-  version: "3.9.108"
+  version: "3.9.110"
 ---
 
 # Performance Profiler — Core Web Vitals & Profiling
 
 > Measure first. Profile second. Fix third. Validate last.
+
+---
+
+## 5 Must-Ask Questions (Before Any Optimization)
+
+| # | Question | Options |
+|---|----------|---------|
+| 1 | Baseline Metrics? | Yes (record data), No (block until measured) |
+| 2 | Target Goal? | Specific threshold (e.g., LCP < 2.5s) |
+| 3 | Identified Bottleneck? | What is the proven root cause? |
+| 4 | Impact vs Effort? | High impact / Low impact? |
+| 5 | Environment? | Prod, Staging, Local Lab? |
 
 ---
 
@@ -120,8 +135,21 @@ metadata:
 | `ERR_INVALID_REQUEST_TYPE` | No | Request type not supported |
 | `ERR_UNKNOWN_SYMPTOM` | Yes | Symptom not in known set |
 | `ERR_UNKNOWN_FRAMEWORK` | Yes | Framework not recognized |
+| `ERR_MISSING_BASELINE` | No | Optimization requested without baseline data |
 
 **Zero internal retries.** Same symptom = same recommendation.
+
+---
+
+## Audit Logging (OpenTelemetry)
+
+| Event | Metadata Payload | Severity |
+|-------|------------------|----------|
+| `baseline_measured` | `{"lcp": "...", "inp": "...", "cls": "...", "bundle": "..."}` | `INFO` |
+| `bottleneck_identified` | `{"target": "...", "impact_estimate": "..."}` | `INFO` |
+| `improvement_validated` | `{"lcp_before": "...", "lcp_after": "..."}` | `INFO` |
+
+All executions MUST emit the `improvement_validated` span before reporting completion.
 
 ---
 
@@ -133,6 +161,7 @@ metadata:
 | Micro-adjust non-critical paths | Fix the biggest issue |
 | Skip baseline measurement | Always measure before/after |
 | Ignore real user data | Use RUM in production |
+| Ignore IDE warnings/errors | Call `problem-checker` to auto-fix |
 
 ---
 
@@ -155,4 +184,4 @@ metadata:
 
 ---
 
-⚡ PikaKit v3.9.108
+⚡ PikaKit v3.9.110

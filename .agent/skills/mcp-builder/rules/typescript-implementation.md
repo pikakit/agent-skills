@@ -264,10 +264,6 @@ npx @modelcontextprotocol/inspector node dist/index.js
 
 ---
 
-⚡ PikaKit v3.9.105
-
----
-
 ## 🔗 Related
 
 | File | When to Read |
@@ -278,3 +274,7 @@ npx @modelcontextprotocol/inspector node dist/index.js
 | [best-practices.md](best-practices.md) | Workflow design patterns |
 | [evaluation.md](evaluation.md) | Phase 4 testing |
 | `typescript-expert` | Advanced TypeScript patterns |
+
+---
+
+⚡ PikaKit v3.9.110

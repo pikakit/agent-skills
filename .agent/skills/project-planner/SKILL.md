@@ -2,16 +2,31 @@
 name: project-planner
 description: >-
   Structured task planning with clear breakdowns, dependencies, and verification criteria. Use
-  when implementing features, refactoring, or any multi-step work requiring planning. Triggers
-  on: plan, breakdown, tasks, implementation strategy, project scope.
+  when implementing features, refactoring, or any multi-step work requiring planning.
+category: project-planning
+triggers: ["plan", "breakdown", "tasks", "implementation strategy", "project scope"]
+coordinates_with: ["idea-storm", "smart-router", "app-scaffold", "problem-checker", "auto-learned"]
+success_metrics: ["Verifiable Tasks", "Correct Delegations"]
 metadata:
   author: pikakit
-  version: "3.9.108"
+  version: "3.9.110"
 ---
 
 # Project Planner — Structured Task Breakdown
 
 > Max 10 tasks. 2-5 min each. Action + Verify format. Dependencies explicit.
+
+---
+
+## 5 Must-Ask Questions (Before Planning)
+
+| # | Question | Options |
+|---|----------|---------|
+| 1 | Project Type? | Web / Mobile / Backend / Game |
+| 2 | Target Goal? | What is the core issue/feature being planned? |
+| 3 | Current Context? | Starting from scratch vs extending existing? |
+| 4 | Complexity/Scale? | Single file vs architecture wide? |
+| 5 | Constraints? | Target frameworks, strict dependencies, budget? |
 
 ---
 
@@ -106,6 +121,17 @@ One sentence: What are we building/fixing?
 
 ---
 
+## Audit Logging (OpenTelemetry)
+
+| Event | Metadata Payload | Severity |
+|-------|------------------|----------|
+| `plan_started` | `{"project_type": "...", "target_goal": "..."}` | `INFO` |
+| `tasks_decomposed` | `{"task_count": 5, "dependencies_mapped": true}` | `INFO` |
+| `plan_completed` | `{"plan_file": "{task-slug}.md", "agents_assigned": [...]}` | `INFO` |
+| `plan_failed` | `{"reason": "ERR_SCOPE_TOO_LARGE"}` | `ERROR` |
+
+---
+
 ## Anti-Patterns
 
 | ❌ Don't | ✅ Do |
@@ -136,4 +162,4 @@ One sentence: What are we building/fixing?
 
 ---
 
-⚡ PikaKit v3.9.108
+⚡ PikaKit v3.9.110

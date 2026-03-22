@@ -2,10 +2,13 @@
 name: observability
 description: >-
   OpenTelemetry-based observability for production applications. Unified logs, metrics, traces.
-  Triggers on: monitoring, observability, OpenTelemetry, telemetry, instrumentation.
+category: devops-architect
+triggers: ["monitoring", "observability", "OpenTelemetry", "telemetry", "instrumentation"]
+coordinates_with: ["server-ops", "cicd-pipeline", "problem-checker"]
+success_metrics: ["0 Telemetry Errors", "100% Correlation"]
 metadata:
   author: pikakit
-  version: "3.9.108"
+  version: "3.9.110"
 ---
 
 # Observability — Unified Telemetry with OpenTelemetry
@@ -13,6 +16,18 @@ metadata:
 > 3 pillars. Vendor-agnostic. Fixed sampling. Auto-instrumentation first.
 
 **Key:** Set up once, benefit everywhere (logs, metrics, traces share same SDK).
+
+---
+
+## 5 Must-Ask Questions (Before Any Setup)
+
+| # | Question | Options |
+|---|----------|---------|
+| 1 | Runtime Environment? | Node.js, Python, Go |
+| 2 | Telemetry Provider? | Datadog, Grafana, Sentry, OSS |
+| 3 | Desired Coverage? | Logs, Metrics, Traces or All |
+| 4 | Deployment Target? | K8s, Serverless, VM |
+| 5 | Privacy Constraints? | PII masking, GDPR, HIPAA |
 
 ---
 
@@ -91,6 +106,18 @@ metadata:
 
 ---
 
+## Audit Logging (OpenTelemetry)
+
+| Event | Metadata Payload | Severity |
+|-------|------------------|----------|
+| `architecture_decision` | `{"runtime": "...", "provider": "..."}` | `INFO` |
+| `instrumentation_plan` | `{"auto_captured": 5, "manual": 2}` | `INFO` |
+| `build_verification` | `{"status": "pass|fail", "metrics_met": true}` | `INFO` |
+
+All executions MUST emit the `build_verification` span before reporting completion.
+
+---
+
 ## Error Taxonomy
 
 | Code | Recoverable | Trigger |
@@ -113,6 +140,7 @@ metadata:
 | Hardcode SERVICE_NAME | Use environment variable |
 | Sample 100% in production | Use 1-10% for production |
 | Ignore errors in telemetry | Log all exceptions |
+| Ignore IDE warnings/errors | Call `problem-checker` to auto-fix |
 
 ---
 
@@ -145,4 +173,4 @@ metadata:
 
 ---
 
-⚡ PikaKit v3.9.108
+⚡ PikaKit v3.9.110

@@ -316,6 +316,11 @@ Session-based. Not fully idempotent. Side effects: process spawning, file writes
 
 ## 13. Observability & Logging Schema
 
+### OpenTelemetry Observability (MANDATORY)
+
+- **Tool Execution Telemetry**: Regardless of the method used (CLI or Subagent), any time a tool is executed on an external MCP server, the orchestrator MUST wrap it in an OpenTelemetry Span (`mcp_tool_execution_duration`) containing the `server` and `tool` name to measure server latency.
+- **Method Fallback Events**: If the system fails to execute a tool via the primary method (Gemini CLI) and cascades to a fallback method (Direct CLI or Subagent), it MUST emit an OTel Event (`MCP_METHOD_FALLBACK`). This is a critical indicator of infrastructure degradation.
+
 ### Log Entry Format
 
 ```json
@@ -482,10 +487,6 @@ Single execution per invocation. Concurrent invocations to different servers are
 
 ---
 
-⚡ PikaKit v3.9.105
-
----
-
 ## 🔗 Related
 
 | File | When to Read |
@@ -494,3 +495,7 @@ Single execution per invocation. Concurrent invocations to different servers are
 | [protocol.md](protocol.md) | JSON-RPC protocol details |
 | [cli-usage.md](cli-usage.md) | CLI commands and examples |
 | `mcp-builder` | Building MCP servers |
+
+---
+
+⚡ PikaKit v3.9.110

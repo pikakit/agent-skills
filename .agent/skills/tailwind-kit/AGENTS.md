@@ -142,7 +142,7 @@ March 2026
 
 ---
 
-⚡ PikaKit v3.9.105
+
 
 ---
 
@@ -515,6 +515,12 @@ Data: {
     css: string               # @theme block
     description: string
   } | null
+  security: {
+    rules_of_engagement_followed: boolean
+  } | null
+  code_quality: {
+    problem_checker_run: boolean
+  } | null
   metadata: {
     contract_version: string
     backward_compatibility: string
@@ -681,22 +687,37 @@ Stateless. Fully idempotent. No persistent state.
 
 ## 13. Observability & Logging Schema
 
-### Log Entry Format
+### Log Entry Format (OpenTelemetry Event Array)
 
 ```json
 {
-  "trace_id": "uuid",
-  "skill_name": "tailwind-kit",
-  "contract_version": "2.0.0",
-  "execution_id": "uuid",
-  "timestamp": "ISO-8601",
-  "request_type": "string",
-  "tailwind_version": "string|null",
-  "use_case": "string|null",
-  "layout_type": "string|null",
-  "status": "success|error",
-  "error_code": "string|null",
-  "duration_ms": "number"
+  "traceId": "uuid",
+  "spanId": "uuid",
+  "events": [
+    {
+      "name": "css_class_recommended",
+      "timestamp": "ISO8601",
+      "attributes": {
+        "component": "button",
+        "pattern": "variants"
+      }
+    },
+    {
+      "name": "layout_pattern_generated",
+      "timestamp": "ISO8601",
+      "attributes": {
+        "type": "auto-grid",
+        "responsive": true
+      }
+    },
+    {
+      "name": "v3_v4_migration_started",
+      "timestamp": "ISO8601",
+      "attributes": {
+        "legacy_theme_keys": 4
+      }
+    }
+  ]
 }
 ```
 
@@ -816,7 +837,7 @@ All resources scoped to invocation. No persistent handles.
 
 ---
 
-⚡ PikaKit v3.9.105
+
 
 ---
 
@@ -1108,3 +1129,7 @@ oklch(lightness chroma hue)
 - **Lightness:** 0 = black, 1 = white
 - **Chroma:** 0 = gray, higher = more colorful
 - **Hue:** 0 = red, 120 = green, 240 = blue
+
+---
+
+⚡ PikaKit v3.9.110

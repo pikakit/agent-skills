@@ -3,9 +3,13 @@ name: pc-games
 description: >-
   PC and console game development principles. Engine selection, platform features, optimization
   strategies.
+category: game-development-subskill
+triggers: ["pc game", "console game", "engine selection", "platform features", "optimization"]
+coordinates_with: ["game-development", "unity", "unreal", "godot"]
+success_metrics: ["100% games support controllers", "0 performance regressions"]
 metadata:
   author: pikakit
-  version: "1.0.0"
+  version: "3.9.110"
 ---
 
 # PC/Console Game Development
@@ -149,10 +153,6 @@ Map ACTIONS, not buttons:
 
 ---
 
-⚡ PikaKit v3.9.105
-
----
-
 ## 🔗 Related
 
 | Item | Type | When to Read |
@@ -161,3 +161,7 @@ Map ACTIONS, not buttons:
 | `game-development/3d-games` | Sibling | 3D rendering and LOD |
 | `game-development/multiplayer` | Sibling | Online PC game networking |
 | `shader` | Skill | Custom GLSL shaders |
+
+---
+
+⚡ PikaKit v3.9.110

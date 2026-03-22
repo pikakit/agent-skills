@@ -343,13 +343,13 @@ return active;
 
 ---
 
-⚡ PikaKit v3.9.105
-
----
-
 ## 🔗 Related
 
 | File | When to Read |
 |------|-------------|
 | [engineering-spec.md](engineering-spec.md) | Full engineering spec and contracts |
 | [../SKILL.md](../SKILL.md) | Quick reference and anti-patterns |
+
+---
+
+⚡ PikaKit v3.9.110

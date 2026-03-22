@@ -97,10 +97,6 @@ npx ts-node server.ts
 
 ---
 
-⚡ PikaKit v3.9.105
-
----
-
 ## 🔗 Related
 
 | File | When to Read |
@@ -109,3 +105,7 @@ npx ts-node server.ts
 | [python-implementation.md](python-implementation.md) | Full Python server template |
 | [typescript-implementation.md](typescript-implementation.md) | Full TypeScript server template |
 | [design-principles.md](design-principles.md) | MCP concepts |
+
+---
+
+⚡ PikaKit v3.9.110

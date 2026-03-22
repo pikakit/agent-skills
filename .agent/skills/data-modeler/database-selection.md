@@ -107,7 +107,7 @@ const db = new Database('app.db');
 
 ---
 
-⚡ PikaKit v3.9.105
+
 
 ---
 
@@ -118,3 +118,7 @@ const db = new Database('app.db');
 | [orm-selection.md](orm-selection.md) | ORM for chosen database |
 | [schema-design.md](schema-design.md) | Schema after DB selected |
 | [SKILL.md](SKILL.md) | Decision checklist |
+
+---
+
+⚡ PikaKit v3.9.110

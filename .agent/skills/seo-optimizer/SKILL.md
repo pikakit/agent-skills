@@ -1,16 +1,31 @@
 ---
 name: seo-optimizer
 description: >-
-  SEO fundamentals, E-E-A-T, Core Web Vitals, and Google algorithm principles. Triggers on:
-  SEO, meta tags, sitemap, search ranking, OpenGraph.
+  SEO fundamentals, E-E-A-T, Core Web Vitals, and Google algorithm principles.
+category: seo-specialist
+triggers: ["SEO", "meta tags", "sitemap", "search ranking", "OpenGraph"]
+coordinates_with: ["perf-optimizer", "copywriting", "nextjs-pro", "problem-checker", "auto-learned"]
+success_metrics: ["Lighthouse SEO Score", "Core Web Vitals Pass Rate", "Schema Markup Validity"]
 metadata:
   author: pikakit
-  version: "3.9.108"
+  version: "3.9.110"
 ---
 
 # SEO Optimizer — Search Engine Visibility
 
 > E-E-A-T for trust. CWV for speed. Schema for rich snippets. Content rules for ranking.
+
+---
+
+## 5 Must-Ask Questions (Before SEO Optimization)
+
+| # | Question | Options |
+|---|----------|---------|
+| 1 | Target? | Traditional SEO / GEO (AI citations) / Both |
+| 2 | Current State? | Lighthouse score / Search Console data / No baseline |
+| 3 | Priority? | Technical SEO fixes / Content optimization / Schema markup |
+| 4 | Audience? | B2B / B2C / Developer / General consumer |
+| 5 | Platform? | Next.js / Vite / Static HTML / WordPress |
 
 ---
 
@@ -118,6 +133,19 @@ metadata:
 
 ---
 
+## Audit Logging (OpenTelemetry)
+
+| Event | Metadata Payload | Severity |
+|-------|------------------|----------|
+| `audit_started` | `{"scope": "full_audit", "url": "..."}` | `INFO` |
+| `cwv_measured` | `{"lcp_ms": 1800, "inp_ms": 120, "cls": 0.05}` | `INFO` |
+| `schema_added` | `{"type": "Article", "page": "/blog/post-1"}` | `INFO` |
+| `audit_completed` | `{"lighthouse_seo": 98, "fixes_applied": 12}` | `INFO` |
+
+All SEO outputs MUST emit `audit_started` and `audit_completed` events.
+
+---
+
 ## Anti-Patterns
 
 | ❌ Don't | ✅ Do |
@@ -147,4 +175,4 @@ metadata:
 
 ---
 
-⚡ PikaKit v3.9.108
+⚡ PikaKit v3.9.110

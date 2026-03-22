@@ -1,4 +1,4 @@
-﻿---
+---
 title: GitOps Workflow — Engineering Specification
 impact: MEDIUM
 tags: gitops
@@ -296,6 +296,11 @@ Stateless. Fully idempotent. No persistent state.
 
 ## 13. Observability & Logging Schema
 
+### OpenTelemetry Observability (MANDATORY)
+
+- **Decision Telemetry**: Every time the agent evaluates the tool selection (ArgoCD vs Flux) or sync policy, it MUST emit an OpenTelemetry Span (`gitops_decision_latency`) to measure the evaluation latency.
+- **Policy Violation Alerts**: If the input context or user request attempts to assign an `Auto Sync` policy to the `Production` environment, the agent MUST immediately emit an OTel Event (`PRODUCTION_AUTO_SYNC_ATTEMPT`) with CRITICAL severity.
+
 ### Log Entry Format
 
 ```json
@@ -442,4 +447,4 @@ All resources scoped to invocation. No persistent handles.
 
 ---
 
-⚡ PikaKit v3.9.105
+⚡ PikaKit v3.9.110

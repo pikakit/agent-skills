@@ -551,4 +551,11 @@ No skill, agent, or workflow may override a constitutional decision. Authority i
 
 ---
 
-⚡ PikaKit v3.9.105
+⚡ ## OpenTelemetry Observability (MANDATORY)
+
+- **Immutable Audit Logging**: EVERY decision (Approve/Refuse) made by Code Constitution MUST emit an OpenTelemetry Span with an Immutable flag. These logs must be pushed to a Centralized SIEM to ensure no governance bypass occurs undetected.
+- **Distributed Tracing**: The 	race_id of the governance decision MUST be attached to the resulting deployment or PR merge event.
+
+---
+
+PikaKit v3.9.110

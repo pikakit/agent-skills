@@ -2,16 +2,31 @@
 name: test-architect
 description: >-
   Testing patterns and principles - unit, integration, E2E, and mocking strategies. Use when
-  writing tests, improving coverage, or establishing testing standards. Triggers on: test,
-  testing, unit test, coverage, mocking, AAA pattern.
+  writing tests, improving coverage, or establishing testing standards.
+category: testing-strategy
+triggers: ["test", "testing", "unit test", "coverage", "mocking", "AAA pattern", "TDD"]
+coordinates_with: ["e2e-automation", "test-driven-dev", "code-craft"]
+success_metrics: ["Test Suite Reliability", "Mutation Score", "Coverage Increase"]
 metadata:
   author: pikakit
-  version: "3.9.108"
+  version: "3.9.110"
 ---
 
 # Test Architect — Testing Patterns & Principles
 
 > Pyramid/Trophy/Honeycomb strategy. AAA structure. FIRST principles. Mock routing.
+
+---
+
+## 5 Must-Ask Questions (Socratic Gate)
+
+| # | Question | Options |
+|---|----------|---------|
+| 1 | Project Architecture? | Monolith / Microservices / Modern SPA |
+| 2 | Testing Framework? | Vitest / Jest / Pytest / Testing Library |
+| 3 | Current Coverage Needs? | <50% / 80%+ / Critical Paths Only |
+| 4 | Mocking Preferences? | MSW / jest.mock / pytest_mock |
+| 5 | Critical Paths? | Payment / Auth / Data Integrity |
 
 ---
 
@@ -126,6 +141,18 @@ metadata:
 
 ---
 
+## Audit Logging (OpenTelemetry)
+
+| Event | Metadata Payload | Severity |
+|-------|------------------|----------|
+| `testing_strategy_recommended` | `{"model": "pyramid", "coverage_target": 80}` | `INFO` |
+| `mocking_pattern_selected` | `{"type": "spy", "target": "external api"}` | `INFO` |
+| `analysis_completed` | `{"framework": "vitest", "decision_made": "aaa_pattern"}` | `INFO` |
+
+All test-architect outputs MUST emit `testing_strategy_recommended` and `analysis_completed` events.
+
+---
+
 ## 📑 Content Map
 
 | File | Description | When to Read |
@@ -145,4 +172,4 @@ metadata:
 
 ---
 
-⚡ PikaKit v3.9.108
+⚡ PikaKit v3.9.110

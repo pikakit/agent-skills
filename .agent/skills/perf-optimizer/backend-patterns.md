@@ -306,3 +306,7 @@ const db = drizzle(pool, { logger: true })
 | [scripts/lighthouse_audit.js](scripts/lighthouse_audit.js) | Frontend performance audit |
 | [SKILL.md](SKILL.md) | Core Web Vitals targets |
 | [rules/engineering-spec.md](rules/engineering-spec.md) | Full architecture spec |
+
+---
+
+⚡ PikaKit v3.9.110

@@ -1,4 +1,4 @@
-﻿---
+---
 title: Lifecycle Orchestrator — Engineering Specification
 impact: MEDIUM
 tags: lifecycle-orchestrator
@@ -344,6 +344,11 @@ Pipeline state. Not idempotent. State persisted in `.agent/state/{task_id}/`.
 
 ## 13. Observability & Logging Schema
 
+### OpenTelemetry Observability (MANDATORY)
+
+- **Phase Transition Telemetry**: Every time the orchestrator advances to a new phase or completes a phase, it MUST emit an OpenTelemetry Span (`lifecycle_phase_duration`) to measure the end-to-end execution time of that phase.
+- **Rollback Tracking**: Any time a rollback is triggered (either by an error or user request), the orchestrator MUST emit an OTel Event (`LIFECYCLE_ROLLBACK`) detailing the `checkpoint_id` and the phase that failed.
+
 ### Log Entry Format
 
 ```json
@@ -517,4 +522,4 @@ Single-thread per task. Concurrent tasks are independent.
 
 ---
 
-⚡ PikaKit v3.9.105
+⚡ PikaKit v3.9.110

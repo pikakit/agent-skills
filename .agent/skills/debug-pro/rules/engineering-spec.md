@@ -481,4 +481,11 @@ All resources scoped to invocation. No persistent handles.
 
 ---
 
-⚡ PikaKit v3.9.105
+⚡ ## OpenTelemetry Observability (MANDATORY)
+
+- **Resolution Time Tracking**: EVERY completed debug verification MUST emit an OpenTelemetry Histogram metric recording Mean Time To Resolution (MTTR).
+- **Red Flag Events**: Any detected Red Flags (e.g., skip phase attempt, missing 5-Whys) MUST trigger OTel Events attached to the main debugging Trace ID to enforce accountability.
+
+---
+
+PikaKit v3.9.110

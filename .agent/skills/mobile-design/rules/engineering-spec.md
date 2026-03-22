@@ -307,6 +307,11 @@ Stateless. Fully idempotent. No persistent state.
 
 ## 13. Observability & Logging Schema
 
+### OpenTelemetry Observability (MANDATORY)
+
+- **MFRI Assessment Telemetry**: Every time the decision engine calculates an MFRI score, it MUST emit an OpenTelemetry Span (`mobile_mfri_assessment_duration`) capturing the length of the evaluation, with `mfri_score` and `platform` as dimensions.
+- **Platform Guide Generation Events**: Emit an OTel Event (`MOBILE_PLATFORM_GUIDE_ISSUED`) when outputting iOS HIG or Android Material guidelines, capturing the requested platform to audit adherence tracking.
+
 ### Log Entry Format
 
 ```json
@@ -447,10 +452,6 @@ All resources scoped to invocation. No persistent handles.
 
 ---
 
-⚡ PikaKit v3.9.105
-
----
-
 ## 🔗 Related
 
 | File | When to Read |
@@ -460,3 +461,7 @@ All resources scoped to invocation. No persistent handles.
 | [platform-android.md](platform-android.md) | Material Design guidelines |
 | [touch-psychology.md](touch-psychology.md) | Touch interaction patterns |
 | [../scripts/mobile_audit.js](../scripts/mobile_audit.js) | MFRI audit script |
+
+---
+
+⚡ PikaKit v3.9.110

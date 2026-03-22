@@ -2,15 +2,31 @@
 name: design-system
 description: >-
   Design thinking and decision-making for web UI. Color theory, typography, visual effects, and
-  UX psychology. Triggers on: design, UI, UX, color palette, typography, component design.
+  UX psychology.
+category: design-architecture
+triggers: ["design", "UI", "UX", "color palette", "typography", "component design"]
+coordinates_with: ["studio", "tailwind-kit", "frontend-design"]
+success_metrics: ["0 WCAG accessibility violations", "100% Hick's law compliance"]
 metadata:
   author: pikakit
-  version: "3.9.108"
+  version: "3.9.110"
 ---
 
 # Design System — UI Design Decisions
 
 > Every pixel has purpose. Restraint is luxury. User psychology drives decisions.
+
+---
+
+## 5 Must-Ask Questions (Socratic Gate)
+
+| # | Question | Options |
+|---|----------|---------|
+| 1 | Project Type? | SaaS / E-commerce / Portfolio / Dashboard |
+| 2 | Brand Mood? | Professional / Playful / Luxury / Minimal |
+| 3 | Light or Dark Mode? | Light / Dark / Both / User preference |
+| 4 | Target Audience? | Enterprise / Consumer / Developer / Creative |
+| 5 | Component Scope? | Full system / Color only / Typography only |
 
 ---
 
@@ -228,6 +244,18 @@ For the complete guide with all rules expanded: `AGENTS.md`
 
 ---
 
+## Audit Logging (OpenTelemetry)
+
+| Event | Metadata Payload | Severity |
+|-------|------------------|----------|
+| `palette_generated` | `{"harmony": "complementary", "brand_mood": "professional"}` | `INFO` |
+| `typography_selected` | `{"heading_font": "Inter", "scale_ratio": 1.25}` | `INFO` |
+| `ux_audit_completed` | `{"violations": 0, "laws_checked": ["Hicks", "Fitts"]}` | `INFO` |
+
+All design-system outputs MUST emit `palette_generated`, `typography_selected`, or `ux_audit_completed` events when applicable.
+
+---
+
 ## 🔗 Related
 
 | Item | Type | Purpose |
@@ -239,4 +267,4 @@ For the complete guide with all rules expanded: `AGENTS.md`
 
 ---
 
-⚡ PikaKit v3.9.108
+⚡ PikaKit v3.9.110

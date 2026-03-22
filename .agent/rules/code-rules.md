@@ -23,14 +23,14 @@ trigger: always_on
 
 1. **Analyze** (Silent): Detect domains from request
 2. **Select Skill(s)**: Choose specialist skill(s) matching the domain
-3. **Inform**: Display routing (e.g., `🤖 **Applying knowledge of** @react-pro...`)
+3. **Inform**: Display routing (e.g., `🤖 **PikaKit Loading Skill:** @react-pro`)
 4. **Apply**: Read skill's SKILL.md + AGENTS.md and follow its rules
 
 **Rules:** Silent analysis (no "I am analyzing..."), professional tone, respect `@skill` overrides.
 
 ### 📢 NOTIFICATION ENFORCEMENT (MANDATORY)
 
-At task START: `🤖 **Applying knowledge of** @{skill}...`  
+At task START: `🤖 **PikaKit Loading Skill:** @{skill}`  
 At task END: `✅ **Complete** | Skills: {count} | Files: {count}`
 
 Config: `.agent/config/notification-config.json` (enabled: true, verbosity: minimal/normal/verbose)
@@ -43,7 +43,7 @@ Config: `.agent/config/notification-config.json` (enabled: true, verbosity: mini
 |------|-------|--------------| 
 | 1 | Did I identify the correct skill for this domain? | → STOP. Analyze request domain first. |
 | 2 | Did I READ the skill's AGENTS.md (or recall its rules)? | → STOP. Open `.agent/skills/{skill}/AGENTS.md` |
-| 3 | Did I announce `🤖 Applying knowledge of @{skill}...`? | → STOP. Add announcement before response. |
+| 3 | Did I announce `🤖 PikaKit Loading Skill: @{skill}`? | → STOP. Add announcement before response. |
 | 4 | Did I load required skills from `coordinates_with`? | → STOP. Check `coordinates_with` field and read them. |
 
 **Failure Conditions:**

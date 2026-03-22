@@ -406,7 +406,7 @@ All resources scoped to invocation. No persistent handles.
 
 ---
 
-⚡ PikaKit v3.9.105
+
 
 ---
 
@@ -416,3 +416,7 @@ All resources scoped to invocation. No persistent handles.
 |------|-------------|
 | [doc.md](doc.md) | Full templates with examples |
 | [../SKILL.md](../SKILL.md) | Quick reference and anti-patterns |
+
+---
+
+⚡ PikaKit v3.9.110

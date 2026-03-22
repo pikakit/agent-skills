@@ -2,16 +2,31 @@
 name: debug-pro
 description: >-
   Unified debugging skill combining systematic 4-phase methodology with advanced frameworks
-  (defense-in-depth, root-cause tracing, verification). Triggers on: debug, bug, error, crash,
-  exception, root cause, investigation, not working.
+  (defense-in-depth, root-cause tracing, verification).
+category: debugging
+triggers: ["debug", "bug", "error", "crash", "exception", "root cause", "investigation", "not working"]
+coordinates_with: ["test-architect", "code-review"]
+success_metrics: ["100% bugs have root cause identified", "< 15m MTTR"]
 metadata:
   author: pikakit
-  version: "3.9.108"
+  version: "3.9.110"
 ---
 
 # Debug Pro — Systematic Debugging
 
 > 4 phases. 5 Whys. No random changes. Never claim "fixed" without verification.
+
+---
+
+## 5 Must-Ask Questions (Socratic Gate)
+
+| # | Question | Options |
+|---|----------|---------|
+| 1 | Exact Error Message? | Stack trace / Console output / HTTP status |
+| 2 | Reproduction Steps? | Step-by-step to trigger the bug |
+| 3 | Expected vs Actual? | What should happen vs what happens |
+| 4 | Environment? | Browser / OS / Node version / Staging vs Prod |
+| 5 | Recent Changes? | New deploy / Dependency update / Config change |
 
 ---
 
@@ -141,6 +156,18 @@ ANY_PHASE → REPRODUCE   [red flag detected]
 
 ---
 
+## Audit Logging (OpenTelemetry)
+
+| Event | Metadata Payload | Severity |
+|-------|------------------|----------|
+| `investigation_started` | `{"bug_category": "runtime", "phase": "reproduce"}` | `INFO` |
+| `root_cause_identified` | `{"root_cause": "null check missing", "confidence": "HIGH"}` | `INFO` |
+| `fix_verified` | `{"regression_test_added": true, "similar_patterns": 0}` | `INFO` |
+
+All debug-pro outputs MUST emit `investigation_started`, `root_cause_identified`, or `fix_verified` events when applicable.
+
+---
+
 ## 📑 Content Map
 
 | File | Description | When to Read |
@@ -162,4 +189,4 @@ ANY_PHASE → REPRODUCE   [red flag detected]
 
 ---
 
-⚡ PikaKit v3.9.108
+⚡ PikaKit v3.9.110

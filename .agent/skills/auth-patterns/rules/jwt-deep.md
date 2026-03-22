@@ -182,10 +182,6 @@ async function refreshTokens(oldRefreshToken: string) {
 
 ---
 
-⚡ PikaKit v3.9.105
-
----
-
 ## 🔗 Related
 
 | File | When to Read |
@@ -194,3 +190,7 @@ async function refreshTokens(oldRefreshToken: string) {
 | [session.md](session.md) | Stateful alternative to JWT |
 | [rbac-abac.md](rbac-abac.md) | Permission claims in JWT |
 | [SKILL.md](../SKILL.md) | Auth strategy decision tree |
+
+---
+
+⚡ PikaKit v3.9.110

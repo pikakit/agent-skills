@@ -360,10 +360,6 @@ Based on your Instagram clone request:
 
 ---
 
-⚡ PikaKit v3.9.105
-
----
-
 ## 🔗 Related
 
 | File | When to Read |
@@ -372,3 +368,7 @@ Based on your Instagram clone request:
 | [architecture-debate.md](architecture-debate.md) | 8-phase debate, YAGNI/KISS/DRY |
 | [engineering-spec.md](engineering-spec.md) | Full engineering spec, contracts |
 | `project-planner` | Post-gate task planning |
+
+---
+
+⚡ PikaKit v3.9.110

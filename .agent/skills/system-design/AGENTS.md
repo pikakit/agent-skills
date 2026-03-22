@@ -122,7 +122,7 @@ March 2026
 
 ---
 
-⚡ PikaKit v3.9.105
+
 
 ---
 
@@ -268,6 +268,12 @@ Data: {
     type: string              # "mvp" | "saas" | "enterprise"
     architecture: string
     patterns_used: Array<string>
+  } | null
+  security: {
+    rules_of_engagement_followed: boolean
+  } | null
+  code_quality: {
+    problem_checker_run: boolean
   } | null
   metadata: {
     contract_version: string
@@ -428,23 +434,46 @@ Stateless. Fully idempotent. No persistent state.
 
 ## 13. Observability & Logging Schema
 
-### Log Entry Format
+### Log Entry Format (OpenTelemetry Event Array)
 
 ```json
 {
-  "trace_id": "uuid",
-  "skill_name": "system-design",
-  "contract_version": "2.0.0",
-  "execution_id": "uuid",
-  "timestamp": "ISO-8601",
-  "request_type": "string",
-  "project_type": "string|null",
-  "scale": "string|null",
-  "pattern_recommended": "string|null",
-  "validation_passed": "boolean|null",
-  "status": "success|error",
-  "error_code": "string|null",
-  "duration_ms": "number"
+  "traceId": "uuid",
+  "spanId": "uuid",
+  "events": [
+    {
+      "name": "architecture_analysis_started",
+      "timestamp": "ISO8601",
+      "attributes": {
+        "project_type": "saas",
+        "scale": "growth"
+      }
+    },
+    {
+      "name": "pattern_recommended",
+      "timestamp": "ISO8601",
+      "attributes": {
+        "pattern": "event-driven",
+        "rationale": "decoupling"
+      }
+    },
+    {
+      "name": "adr_generated",
+      "timestamp": "ISO8601",
+      "attributes": {
+        "decision_topic": "database_selection",
+        "status": "proposed"
+      }
+    },
+    {
+      "name": "analysis_completed",
+      "timestamp": "ISO8601",
+      "attributes": {
+        "validation_passed": true,
+        "trade_offs_analyzed": 3
+      }
+    }
+  ]
 }
 ```
 
@@ -565,4 +594,4 @@ All resources scoped to invocation. No persistent handles.
 
 ---
 
-⚡ PikaKit v3.9.105
+⚡ PikaKit v3.9.110

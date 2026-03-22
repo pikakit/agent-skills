@@ -139,10 +139,6 @@ Compare implementation to original:
 
 ---
 
-⚡ PikaKit v3.9.105
-
----
-
 ## 🔗 Related
 
 | File | When to Read |
@@ -150,3 +146,7 @@ Compare implementation to original:
 | [color-systems.md](color-systems.md) | Extracted color systematization |
 | [typography.md](typography.md) | Identify extracted font pairings |
 | [../SKILL.md](../SKILL.md) | Workflow 1: From Screenshots |
+
+---
+
+⚡ PikaKit v3.9.110

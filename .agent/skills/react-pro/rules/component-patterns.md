@@ -131,10 +131,6 @@ export default MyComponent;
 
 ---
 
-⚡ PikaKit v3.9.105
-
----
-
 ## 🔗 Related
 
 | File | When to Read |
@@ -143,3 +139,7 @@ export default MyComponent;
 | [mui-styling.md](mui-styling.md) | MUI v7 sx prop patterns |
 | [file-organization.md](file-organization.md) | Where to place components |
 | [../SKILL.md](../SKILL.md) | Core rules and anti-patterns |
+
+---
+
+⚡ PikaKit v3.9.110

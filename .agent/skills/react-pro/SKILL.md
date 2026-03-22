@@ -3,16 +3,30 @@ name: react-pro
 description: >-
   Modern React patterns, component architecture, state management, TypeScript best practices,
   and modern React development with Suspense, TanStack Query, MUI v7, and lazy loading.
-  Triggers on: React, component, hooks, state management, Redux, Zustand, TypeScript, TanStack
-  Query, MUI, frontend.
+category: frontend-specialist
+triggers: ["React", "component", "hooks", "state management", "Redux", "Zustand", "TypeScript", "TanStack Query", "MUI", "frontend"]
+coordinates_with: ["nextjs-pro", "typescript-expert", "design-system", "tailwind-kit", "problem-checker", "auto-learned"]
+success_metrics: ["Component Render Efficiency", "Accessibility Score", "Core Web Vitals"]
 metadata:
   author: pikakit
-  version: "3.9.108"
+  version: "3.9.110"
 ---
 
 # React Architect — Component & State Architecture
 
 > 4 component types. 4 state levels. Composition over inheritance. Profile before memoizing.
+
+---
+
+## 5 Must-Ask Questions (Before Architecture Decision)
+
+| # | Question | Options |
+|---|----------|---------|
+| 1 | Target Framework? | React SPA / Next.js App Router / Vite / Vue |
+| 2 | Styling Approach? | Tailwind / CSS Modules / Styled Components / MUI |
+| 3 | State Complexity? | Local only / Shared subtree / Server state / Global |
+| 4 | Render Strategy? | CSR / SSR / SSG / Streaming |
+| 5 | Accessibility Needs? | Standard WCAG / Enhanced (screen reader, focus mgmt) |
 
 ---
 
@@ -119,6 +133,20 @@ metadata:
 
 ---
 
+## Audit Logging (OpenTelemetry)
+
+| Event | Metadata Payload | Severity |
+|-------|------------------|----------|
+| `architecture_started` | `{"framework": "...", "component_count": 0}` | `INFO` |
+| `component_type_classified` | `{"type": "Server", "reason": "..."}` | `INFO` |
+| `state_management_selected` | `{"solution": "zustand", "complexity": "global"}` | `INFO` |
+| `performance_signal_detected` | `{"signal": "slow_renders", "action": "profile"}` | `WARN` |
+| `architecture_completed` | `{"components_designed": 5, "hooks_extracted": 2}` | `INFO` |
+
+All architecture outputs MUST emit `architecture_started` and `architecture_completed` events.
+
+---
+
 ## Anti-Patterns
 
 | ❌ Don't | ✅ Do |
@@ -200,4 +228,4 @@ For the complete guide with all rules expanded: AGENTS.md\n
 
 ---
 
-⚡ PikaKit v3.9.108
+⚡ PikaKit v3.9.110

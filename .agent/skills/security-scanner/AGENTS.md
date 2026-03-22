@@ -13,7 +13,7 @@ tools: Read, Grep, Glob, Bash, Edit, Write
 model: inherit
 skills: security-scanner, offensive-sec, auth-patterns, api-architect, code-craft, code-review, code-constitution, problem-checker, auto-learned
 agent_type: domain
-version: "1.0"
+version: "3.9.110"
 owner: pikakit
 capability_tier: core
 execution_mode: reactive
@@ -424,6 +424,13 @@ When reviewing security code, verify:
     "supply_chain_clean": true,
     "remediations_provided": 8
   },
+  "security": {
+    "rules_of_engagement_followed": true
+  },
+  "code_quality": {
+    "problem_checker_run": true,
+    "errors_fixed": 0
+  },
   "artifacts": ["security-report.md", "sbom.json"],
   "next_action": "apply remediations | re-audit | null",
   "escalation_target": "backend | devops | null",
@@ -636,16 +643,42 @@ orchestrator → security (audit) + pentest (red team) + devops (pipeline) → h
 
 ## Observability
 
-### Log Schema
+### Log Schema (OpenTelemetry Event Array)
 
 ```json
 {
-  "trace_id": "uuid",
-  "parent_trace": "uuid | null",
-  "agent": "security-auditor",
-  "event": "start | scan | finding | classify | remediate | success | failure",
-  "timestamp": "ISO8601",
-  "payload": { "owasp_category": "A05", "severity": "critical", "pattern": "sql_injection", "file": "src/db.ts" }
+  "traceId": "uuid",
+  "spanId": "uuid",
+  "events": [
+    {
+      "name": "scan_started",
+      "timestamp": "ISO8601",
+      "attributes": {
+        "audit_type": "full_audit",
+        "owasp_focus": ["A01", "A05", "A07"]
+      }
+    },
+    {
+      "name": "vulnerability_found",
+      "timestamp": "ISO8601",
+      "attributes": {
+        "owasp_category": "A05",
+        "severity": "critical",
+        "pattern": "sql_injection",
+        "file": "src/db.ts"
+      }
+    },
+    {
+      "name": "scan_completed",
+      "timestamp": "ISO8601",
+      "attributes": {
+        "findings_total": 8,
+        "critical": 1,
+        "high": 2,
+        "remediation_rate": "100%"
+      }
+    }
+  ]
 }
 ```
 
@@ -812,3 +845,7 @@ After security review:
 ---
 
 > **Note:** This agent performs defensive security audits and vulnerability analysis. Key skills: `security-scanner` for OWASP vulnerability scanning, `offensive-sec` for attack pattern knowledge, `auth-patterns` for authentication design, and `api-architect` for API security. DISTINCT FROM `pentest` (offensive red team testing, active exploitation). Governance enforced via `code-constitution`, `problem-checker`, and `auto-learned`.
+
+---
+
+⚡ PikaKit v3.9.110

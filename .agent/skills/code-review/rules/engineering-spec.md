@@ -456,4 +456,11 @@ All resources scoped to invocation for review decisions. No persistent handles.
 
 ---
 
-⚡ PikaKit v3.9.105
+⚡ ## OpenTelemetry Observability (MANDATORY)
+
+- **Review Velocity Tracking**: EVERY review decision MUST emit an OpenTelemetry Span with review.decision and review.blocking_count attributes.
+- **Quality Loop Metrics**: Lint and type check iterations MUST be recorded as OTel Counter metrics to track first-pass success rate.
+
+---
+
+PikaKit v3.9.110

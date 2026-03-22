@@ -163,7 +163,7 @@ coordinator = LlmAgent(
 
 ---
 
-⚡ PikaKit v3.9.105
+
 
 ---
 
@@ -311,7 +311,7 @@ async def ready():
 
 ---
 
-⚡ PikaKit v3.9.105
+
 
 ---
 
@@ -762,7 +762,7 @@ All resources scoped to invocation. No persistent handles.
 
 ---
 
-⚡ PikaKit v3.9.105
+
 
 ---
 
@@ -913,7 +913,7 @@ response = router.run("I was charged twice")
 
 ---
 
-⚡ PikaKit v3.9.105
+
 
 ---
 
@@ -1049,4 +1049,6 @@ response = agent.run("Process customer refund")
 
 ---
 
-⚡ PikaKit v3.9.105
+---
+
+⚡ PikaKit v3.9.110

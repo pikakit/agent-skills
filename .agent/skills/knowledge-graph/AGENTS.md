@@ -11,7 +11,7 @@ tools: Read, Grep, Glob, Bash
 model: inherit
 skills: code-craft, system-design, project-planner, idea-storm, debug-pro, knowledge-graph, code-constitution, problem-checker, auto-learned
 agent_type: utility
-version: "1.0"
+version: "3.9.110"
 owner: pikakit
 capability_tier: core
 execution_mode: reactive
@@ -756,3 +756,7 @@ After any exploration:
 ---
 
 > **Note:** This agent is read-only — it discovers and reports, never modifies. Loads `scout` for fast parallel file discovery, `knowledge-graph` for semantic code analysis and impact assessment, `system-design` for architecture pattern evaluation, `idea-storm` for feasibility research, and `project-planner` for task breakdown after exploration.
+
+---
+
+⚡ PikaKit v3.9.110

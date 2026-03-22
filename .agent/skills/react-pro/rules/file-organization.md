@@ -145,10 +145,6 @@ Problem: Related code scattered across folders.
 
 ---
 
-⚡ PikaKit v3.9.105
-
----
-
 ## 🔗 Related
 
 | File | When to Read |
@@ -156,3 +152,7 @@ Problem: Related code scattered across folders.
 | [component-patterns.md](component-patterns.md) | Component structure within features |
 | [data-fetching.md](data-fetching.md) | API service layer per feature |
 | [../SKILL.md](../SKILL.md) | Features directory requirement |
+
+---
+
+⚡ PikaKit v3.9.110

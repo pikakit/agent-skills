@@ -2,11 +2,14 @@
 name: mcp-management
 description: >-
   Discover, analyze, and execute tools from configured MCP servers. Progressive disclosure:
-  load only the tools you need, when you need them. Triggers on: MCP tools, server discovery,
-  tool execution, multi-server.
+  load only the tools you need, when you need them.
+category: agent-tooling
+triggers: ["MCP tools", "server discovery", "tool execution", "multi-server"]
+coordinates_with: ["mcp-builder"]
+success_metrics: ["100% tool discovery", "<1000ms execution latency"]
 metadata:
   author: pikakit
-  version: "3.9.108"
+  version: "3.9.110"
 ---
 
 # MCP Management — Tool Discovery, Routing & Execution
@@ -196,4 +199,4 @@ Each rule file contains:
 
 ---
 
-⚡ PikaKit v3.9.108
+⚡ PikaKit v3.9.110

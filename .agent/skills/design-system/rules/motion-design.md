@@ -148,10 +148,6 @@ tl
 
 ---
 
-⚡ PikaKit v3.9.105
-
----
-
 ## 🔗 Related
 
 | File | When to Read |
@@ -159,3 +155,7 @@ tl
 | [spatial-composition.md](spatial-composition.md) | Layout to animate |
 | [color-systems.md](color-systems.md) | Color transitions |
 | [../SKILL.md](../SKILL.md) | 1 orchestrated entrance rule |
+
+---
+
+⚡ PikaKit v3.9.110

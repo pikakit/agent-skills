@@ -3,12 +3,14 @@ name: doc-templates
 description: >-
   Documentation templates, structure guidelines, Mermaid diagram editing, markdown preview, and
   plan dashboards. README, API docs, code comments, AI-friendly documentation, live diagram
-  editor, and documentation preview server. Triggers on: template, README, documentation, API
-  docs, changelog, ADR, mermaid, diagram, flowchart, preview, markdown viewer, view plans,
-  kanban, dashboard.
+  editor, and documentation preview server.
+category: documentation
+triggers: ["template", "README", "documentation", "API docs", "changelog", "ADR", "mermaid", "diagram", "flowchart", "preview", "markdown viewer", "view plans", "kanban", "dashboard"]
+coordinates_with: ["project-planner", "code-craft", "system-design"]
+success_metrics: ["100% templates follow required sections", "100% diagrams render correctly"]
 metadata:
   author: pikakit
-  version: "3.9.108"
+  version: "3.9.110"
 ---
 
 # Doc Templates — Documentation, Diagrams & Preview
@@ -255,5 +257,4 @@ node .agent/skills/plans-kanban/scripts/kanban-server.js --dir ./docs/plans --op
 
 ---
 
-⚡ PikaKit v3.9.108
-
+⚡ PikaKit v3.9.110

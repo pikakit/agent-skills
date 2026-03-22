@@ -132,3 +132,7 @@ interface CursorMeta {
 | [rest.md](rest.md) | HTTP methods + status codes |
 | [rate-limiting.md](rate-limiting.md) | 429 response format |
 | [SKILL.md](../SKILL.md) | Full decision framework |
+
+---
+
+⚡ PikaKit v3.9.110

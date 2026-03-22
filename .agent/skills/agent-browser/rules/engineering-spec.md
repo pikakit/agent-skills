@@ -1,4 +1,4 @@
-﻿---
+---
 title: Agent Browser — Engineering Specification
 impact: MEDIUM
 tags: agent-browser
@@ -281,6 +281,12 @@ Transitions:
 
 **Invariant:** Every failure returns a structured error. No command fails silently.
 
+**Auto-Recovery Protocol (Self-Healing):**
+Agents MUST implement deterministic self-healing when encountering `ERR_REF_STALE` or `ERR_REF_NOT_FOUND`:
+1. **Never** fail immediately or prompt the user for help on stale refs.
+2. **Auto-Recover**: The agent must automatically trigger `snapshot -i` to force the `session_manager` to evaluate the new DOM layout and retrieve fresh `@refs`.
+3. Retry the intended action with the newly mapped `@ref`.
+
 ---
 
 ## 11. Error Taxonomy
@@ -316,6 +322,13 @@ Transitions:
 ---
 
 ## 13. Observability & Logging Schema
+
+### OpenTelemetry Integration (MANDATORY)
+
+Agent Browser MUST coordinate with `@[skills/observability]` to emit distributed traces for all operations.
+- **Span Naming**: `browser/{command}` (e.g., `browser/open`, `browser/click`).
+- **Context Propagation**: The `trace_id` and `session_id` MUST be injected into all log entries and traces.
+- **Span Attributes**: All fields in the 'Log Entry Format' must be attached as span attributes.
 
 ### Log Entry Format
 
@@ -512,4 +525,4 @@ Blocked protocols return `ERR_INVALID_URL`.
 
 ---
 
-⚡ PikaKit v3.9.105
+⚡ PikaKit v3.9.110

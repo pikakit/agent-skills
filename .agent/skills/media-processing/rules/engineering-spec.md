@@ -437,10 +437,6 @@ All resources scoped to invocation. No persistent handles.
 
 ---
 
-⚡ PikaKit v3.9.105
-
----
-
 ## 🔗 Related
 
 | File | When to Read |
@@ -450,3 +446,7 @@ All resources scoped to invocation. No persistent handles.
 | [../scripts/optimize-image.js](../scripts/optimize-image.js) | ImageMagick image optimizer script |
 | `perf-optimizer` | Performance profiling |
 | `studio` | Design assets |
+
+---
+
+⚡ PikaKit v3.9.110

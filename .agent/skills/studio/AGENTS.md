@@ -148,7 +148,7 @@ node .agent/skills/studio/scripts-js/search.js "modern tech" --category typograp
 
 ---
 
-⚡ PikaKit v3.9.105
+
 
 ---
 
@@ -279,6 +279,12 @@ Data: {
     shadows: string           # CSS shadow guidance
     backgrounds: string       # Background guidance
     animations: string        # Animation guidance
+  } | null
+  security: {
+    rules_of_engagement_followed: boolean
+  } | null
+  design_compliance: {
+    anti_slop_enforced: boolean
   } | null
   metadata: {
     contract_version: string
@@ -452,24 +458,38 @@ CSV databases are read-only. No writes during any operation.
 
 ## 13. Observability & Logging Schema
 
-### Log Entry Format
+### Log Entry Format (OpenTelemetry Event Array)
 
 ```json
 {
-  "trace_id": "uuid",
-  "skill_name": "studio",
-  "contract_version": "2.0.0",
-  "execution_id": "uuid",
-  "timestamp": "ISO-8601",
-  "request_type": "string",
-  "query": "string",
-  "category": "string|null",
-  "results_count": "number",
-  "industry": "string|null",
-  "anti_slop_applied": "boolean",
-  "status": "success|error",
-  "error_code": "string|null",
-  "duration_ms": "number"
+  "traceId": "uuid",
+  "spanId": "uuid",
+  "events": [
+    {
+      "name": "design_search_started",
+      "timestamp": "ISO8601",
+      "attributes": {
+        "query": "fintech dark",
+        "category": "colors"
+      }
+    },
+    {
+      "name": "anti_slop_rules_checked",
+      "timestamp": "ISO8601",
+      "attributes": {
+        "rule_count": 11,
+        "violations_prevented": 3
+      }
+    },
+    {
+      "name": "design_system_generated",
+      "timestamp": "ISO8601",
+      "attributes": {
+        "project": "Auth",
+        "palettes_included": 4
+      }
+    }
+  ]
 }
 ```
 
@@ -596,7 +616,7 @@ CSV data may be cached in memory for performance but is never mutated.
 
 ---
 
-⚡ PikaKit v3.9.105
+
 
 ---
 
@@ -610,3 +630,7 @@ CSV data may be cached in memory for performance but is never mutated.
 | [../scripts-js/design_system.js](../scripts-js/design_system.js) | Design system generator |
 | `design-system` | Companion design skill |
 | `frontend-specialist` | Uses studio for UI work |
+
+---
+
+⚡ PikaKit v3.9.110

@@ -145,10 +145,6 @@ Server exposes HTTP endpoint with Server-Sent Events.
 
 ---
 
-⚡ PikaKit v3.9.105
-
----
-
 ## 🔗 Related
 
 | File | When to Read |
@@ -157,3 +153,7 @@ Server exposes HTTP endpoint with Server-Sent Events.
 | [cli-usage.md](cli-usage.md) | CLI commands and examples |
 | [engineering-spec.md](engineering-spec.md) | Full engineering spec |
 | `mcp-builder` | Building MCP servers |
+
+---
+
+⚡ PikaKit v3.9.110

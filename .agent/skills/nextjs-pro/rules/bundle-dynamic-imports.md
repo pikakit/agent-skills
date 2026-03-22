@@ -33,3 +33,7 @@ function CodePanel({ code }: { code: string }) {
   return <MonacoEditor value={code} />
 }
 ```
+
+---
+
+⚡ PikaKit v3.9.110

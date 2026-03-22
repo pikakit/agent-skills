@@ -437,4 +437,11 @@ All resources scoped to invocation. No persistent handles.
 
 ---
 
-⚡ PikaKit v3.9.105
+⚡ ## OpenTelemetry Observability (MANDATORY)
+
+- **Quality Trend Tracking**: EVERY code quality scan MUST emit OpenTelemetry Histogram metrics (violations per file, per rule) attached to the current 	race_id and commit SHA.
+- **Distributed Tracing**: Quality check spans MUST be linked to the CI/CD pipeline trace for end-to-end visibility from code change to deployment.
+
+---
+
+PikaKit v3.9.110

@@ -12,7 +12,7 @@ tools: Read, Write, Edit, Bash, Grep, Glob
 model: inherit
 skills: code-craft, game-development, perf-optimizer, test-architect, code-constitution, problem-checker, auto-learned
 agent_type: domain
-version: "1.0"
+version: "3.9.110"
 owner: pikakit
 capability_tier: core
 execution_mode: reactive
@@ -777,3 +777,7 @@ After game development work:
 ---
 
 > **Note:** This agent specializes in multi-platform game development. Loads `game-development` for engine-specific patterns, core loop design, and platform routing, `shader` for GLSL fragment shaders and procedural graphics, `perf-optimizer` for frame time analysis and optimization, and `test-architect` for game testing strategy. Governance enforced via `code-constitution`, `problem-checker`, and `auto-learned`.
+
+---
+
+⚡ PikaKit v3.9.110

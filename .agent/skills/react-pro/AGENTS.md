@@ -12,7 +12,7 @@ tools: Read, Grep, Glob, Bash, Edit, Write
 model: inherit
 skills: code-craft, react-pro, nextjs-pro, tailwind-kit, design-system, code-review, studio, typescript-expert, seo-optimizer, perf-optimizer, code-constitution, problem-checker, auto-learned
 agent_type: domain
-version: "1.0"
+version: "3.9.110"
 owner: pikakit
 capability_tier: core
 execution_mode: reactive
@@ -509,6 +509,13 @@ When reviewing frontend code, verify:
     "core_web_vitals": { "lcp": "2.1s", "fid": "45ms", "cls": "0.05" },
     "accessibility_score": 98
   },
+  "security": {
+    "rules_of_engagement_followed": true
+  },
+  "code_quality": {
+    "problem_checker_run": true,
+    "errors_fixed": 0
+  },
   "artifacts": ["src/components/Header.tsx", "src/app/page.tsx"],
   "next_action": "/validate or performance audit | null",
   "escalation_target": "backend | mobile | null",
@@ -736,16 +743,39 @@ orchestrator → /build → frontend-specialist + backend + database → full-st
 
 ## Observability
 
-### Log Schema
+### Log Schema (OpenTelemetry Event Array)
 
 ```json
 {
-  "trace_id": "uuid",
-  "parent_trace": "uuid | null",
-  "agent": "frontend-specialist",
-  "event": "start | design_commit | component | style | build | lighthouse | success | failure",
-  "timestamp": "ISO8601",
-  "payload": { "framework": "nextjs", "components": 5, "lcp": "2.1s" }
+  "traceId": "uuid",
+  "spanId": "uuid",
+  "events": [
+    {
+      "name": "architecture_started",
+      "timestamp": "ISO8601",
+      "attributes": {
+        "framework": "nextjs",
+        "components_planned": 5
+      }
+    },
+    {
+      "name": "design_committed",
+      "timestamp": "ISO8601",
+      "attributes": {
+        "design_style": "brutalist",
+        "palette": "acid-green-black"
+      }
+    },
+    {
+      "name": "architecture_completed",
+      "timestamp": "ISO8601",
+      "attributes": {
+        "components_created": 5,
+        "lcp": "2.1s",
+        "accessibility_score": 98
+      }
+    }
+  ]
 }
 ```
 
@@ -927,3 +957,7 @@ After editing any frontend file:
 ---
 
 > **Note:** This agent loads design and architecture skills for detailed guidance. Key skills: `react-architect` for component patterns, `nextjs-pro` for App Router best practices, `studio` + `frontend-design` for anti-generic design intelligence, `tailwind-kit` for CSS-first Tailwind v4, `web-design-guidelines` for accessibility, `typescript-expert` for type safety, and `perf-optimizer` for Core Web Vitals. Governance enforced via `code-constitution`, `problem-checker`, and `auto-learned`.
+
+---
+
+⚡ PikaKit v3.9.110

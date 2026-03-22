@@ -1,9 +1,13 @@
 ---
 name: game-art
 description: Game art principles. Visual style selection, asset pipeline, animation workflow.
+category: game-development-subskill
+triggers: ["game art", "art style", "asset pipeline", "animation workflow"]
+coordinates_with: ["game-development", "game-audio", "ai-artist"]
+success_metrics: ["100% assets follow style guide", "0 animation frame drops"]
 metadata:
   author: pikakit
-  version: "1.0.0"
+  version: "3.9.110"
 ---
 
 # Game Art Principles
@@ -188,10 +192,6 @@ assets/
 
 ---
 
-⚡ PikaKit v3.9.105
-
----
-
 ## 🔗 Related
 
 | Item | Type | When to Read |
@@ -201,3 +201,7 @@ assets/
 | `game-development/3d-games` | Sibling | 3D rendering and LOD |
 | `game-development/game-audio` | Sibling | Audio to complement visuals |
 | `ai-artist` | Skill | AI-generated game assets |
+
+---
+
+⚡ PikaKit v3.9.110

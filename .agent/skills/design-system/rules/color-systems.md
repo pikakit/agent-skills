@@ -120,10 +120,6 @@ Don't distribute color evenly. Choose:
 
 ---
 
-⚡ PikaKit v3.9.105
-
----
-
 ## 🔗 Related
 
 | File | When to Read |
@@ -131,3 +127,7 @@ Don't distribute color evenly. Choose:
 | [typography.md](typography.md) | Font pairings that complement colors |
 | [motion-design.md](motion-design.md) | Animate color transitions |
 | [../SKILL.md](../SKILL.md) | Max 3 brand colors constraint |
+
+---
+
+⚡ PikaKit v3.9.110

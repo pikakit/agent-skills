@@ -439,10 +439,6 @@ CSV data may be cached in memory for performance but is never mutated.
 
 ---
 
-⚡ PikaKit v3.9.105
-
----
-
 ## 🔗 Related
 
 | File | When to Read |
@@ -453,3 +449,7 @@ CSV data may be cached in memory for performance but is never mutated.
 | [../scripts-js/design_system.js](../scripts-js/design_system.js) | Design system generator |
 | `design-system` | Companion design skill |
 | `frontend-specialist` | Uses studio for UI work |
+
+---
+
+⚡ PikaKit v3.9.110

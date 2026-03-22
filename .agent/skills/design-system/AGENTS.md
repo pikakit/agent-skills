@@ -157,7 +157,7 @@ node .agent/skills/studio/scripts-js/search.js "<query>" --domain style
 
 ---
 
-⚡ PikaKit v3.9.105
+
 
 ---
 
@@ -507,7 +507,7 @@ Before adding animation:
 
 ---
 
-⚡ PikaKit v3.9.105
+
 
 ---
 
@@ -843,7 +843,7 @@ Before finalizing any color choice, verify:
 
 ---
 
-⚡ PikaKit v3.9.105
+
 
 ---
 
@@ -978,7 +978,7 @@ Don't distribute color evenly. Choose:
 
 ---
 
-⚡ PikaKit v3.9.105
+
 
 ---
 
@@ -1420,7 +1420,7 @@ Complex workflows
 
 ---
 
-⚡ PikaKit v3.9.105
+
 
 ---
 
@@ -1574,7 +1574,7 @@ Compare implementation to original:
 
 ---
 
-⚡ PikaKit v3.9.105
+
 
 ---
 
@@ -2049,7 +2049,7 @@ All resources scoped to invocation. No persistent handles.
 
 ---
 
-⚡ PikaKit v3.9.105
+
 
 ---
 
@@ -2214,7 +2214,7 @@ tl
 
 ---
 
-⚡ PikaKit v3.9.105
+
 
 ---
 
@@ -2544,7 +2544,7 @@ What animation do you need?
 
 ---
 
-⚡ PikaKit v3.9.105
+
 
 ---
 
@@ -2730,7 +2730,7 @@ Don't default to centered, symmetrical layouts. Create visual tension:
 
 ---
 
-⚡ PikaKit v3.9.105
+
 
 ---
 
@@ -2855,7 +2855,7 @@ For advanced control:
 
 ---
 
-⚡ PikaKit v3.9.105
+
 
 ---
 
@@ -3224,7 +3224,7 @@ Before finalizing typography:
 
 ---
 
-⚡ PikaKit v3.9.105
+
 
 ---
 
@@ -3790,7 +3790,7 @@ DESIGN APPROACH:
 
 ---
 
-⚡ PikaKit v3.9.105
+
 
 ---
 
@@ -4198,7 +4198,7 @@ Before applying any effect:
 
 ---
 
-⚡ PikaKit v3.9.105
+
 
 ---
 
@@ -4210,3 +4210,7 @@ Before applying any effect:
 | [motion-graphics.md](motion-graphics.md) | Advanced Lottie, GSAP, 3D effects |
 | [color-system.md](color-system.md) | Color for gradients and glows |
 | [../SKILL.md](../SKILL.md) | Anti-pattern bans |
+
+---
+
+⚡ PikaKit v3.9.110

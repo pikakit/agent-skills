@@ -316,10 +316,6 @@ What animation do you need?
 
 ---
 
-⚡ PikaKit v3.9.105
-
----
-
 ## 🔗 Related
 
 | File | When to Read |
@@ -328,3 +324,7 @@ What animation do you need?
 | [visual-effects.md](visual-effects.md) | CSS glassmorphism, gradients, shadows |
 | [ux-psychology.md](ux-psychology.md) | Emotional design and feedback psychology |
 | [../SKILL.md](../SKILL.md) | Animation categories quick reference |
+
+---
+
+⚡ PikaKit v3.9.110

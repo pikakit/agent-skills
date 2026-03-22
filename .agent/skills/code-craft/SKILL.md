@@ -2,11 +2,14 @@
 name: code-craft
 description: >-
   Pragmatic coding standards — concise, direct, no over-engineering. Fixed thresholds: 20
-  lines/function, 3 args max, 2 nesting levels. Triggers on: code style, clean code, best
-  practices, naming conventions, SRP, DRY, KISS.
+  lines/function, 3 args max, 2 nesting levels.
+category: code-quality
+triggers: ["code style", "clean code", "best practices", "naming conventions", "SRP", "DRY", "KISS"]
+coordinates_with: ["code-review", "test-architect", "code-constitution"]
+success_metrics: ["0 functions > 20 lines", "0 nesting > 2 levels", "0 magic numbers"]
 metadata:
   author: pikakit
-  version: "3.9.108"
+  version: "3.9.110"
 ---
 
 # Code Craft — Pragmatic Coding Standards
@@ -163,4 +166,4 @@ metadata:
 
 ---
 
-⚡ PikaKit v3.9.108
+⚡ PikaKit v3.9.110

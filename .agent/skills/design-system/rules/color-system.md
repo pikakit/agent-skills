@@ -321,10 +321,6 @@ Before finalizing any color choice, verify:
 
 ---
 
-⚡ PikaKit v3.9.105
-
----
-
 ## 🔗 Related
 
 | File | When to Read |
@@ -333,3 +329,7 @@ Before finalizing any color choice, verify:
 | [decision-trees.md](decision-trees.md) | Color selection decision tree |
 | [visual-effects.md](visual-effects.md) | Gradient and glow effects using palette |
 | [../SKILL.md](../SKILL.md) | Purple Ban enforcement |
+
+---
+
+⚡ PikaKit v3.9.110

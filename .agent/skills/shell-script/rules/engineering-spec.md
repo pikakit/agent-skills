@@ -126,6 +126,12 @@ Data: {
     bash: string
     powershell: string
   } | null
+  security: {
+    rules_of_engagement_followed: boolean
+  } | null
+  code_quality: {
+    problem_checker_run: boolean
+  } | null
   metadata: {
     contract_version: string
     backward_compatibility: string
@@ -287,22 +293,46 @@ Stateless. Fully idempotent. No persistent state.
 
 ## 13. Observability & Logging Schema
 
-### Log Entry Format
+### Log Entry Format (OpenTelemetry Event Array)
 
 ```json
 {
-  "trace_id": "uuid",
-  "skill_name": "shell-script",
-  "contract_version": "2.0.0",
-  "execution_id": "uuid",
-  "timestamp": "ISO-8601",
-  "request_type": "string",
-  "platform": "string|null",
-  "task": "string|null",
-  "tool_recommended": "string|null",
-  "status": "success|error",
-  "error_code": "string|null",
-  "duration_ms": "number"
+  "traceId": "uuid",
+  "spanId": "uuid",
+  "events": [
+    {
+      "name": "script_analysis_started",
+      "timestamp": "ISO8601",
+      "attributes": {
+        "task": "automation",
+        "platform": "linux"
+      }
+    },
+    {
+      "name": "command_recommended",
+      "timestamp": "ISO8601",
+      "attributes": {
+        "purpose": "text_processing",
+        "tool": "awk"
+      }
+    },
+    {
+      "name": "template_generated",
+      "timestamp": "ISO8601",
+      "attributes": {
+        "shebang": "#!/bin/bash",
+        "flags": "euo pipefail"
+      }
+    },
+    {
+      "name": "analysis_completed",
+      "timestamp": "ISO8601",
+      "attributes": {
+        "lines_generated": 25,
+        "security_flags_set": true
+      }
+    }
+  ]
 }
 ```
 
@@ -430,4 +460,4 @@ All resources scoped to invocation. No persistent handles.
 
 ---
 
-⚡ PikaKit v3.9.105
+⚡ PikaKit v3.9.110

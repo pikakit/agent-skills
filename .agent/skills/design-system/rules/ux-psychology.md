@@ -551,10 +551,6 @@ DESIGN APPROACH:
 
 ---
 
-⚡ PikaKit v3.9.105
-
----
-
 ## 🔗 Related
 
 | File | When to Read |
@@ -563,3 +559,7 @@ DESIGN APPROACH:
 | [color-system.md](color-system.md) | Emotion-color mapping for trust/urgency |
 | [animation-guide.md](animation-guide.md) | Feedback animation timing |
 | [../SKILL.md](../SKILL.md) | Anti-pattern bans and quick reference |
+
+---
+
+⚡ PikaKit v3.9.110

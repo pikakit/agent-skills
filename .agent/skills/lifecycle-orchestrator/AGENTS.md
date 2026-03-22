@@ -13,7 +13,7 @@ tools: Read, Grep, Glob, Bash, Edit, Write, Agent
 model: inherit
 skills: lifecycle-orchestrator, smart-router, execution-reporter, context-engineering, git-workflow, debug-pro, code-craft, code-constitution, problem-checker, auto-learned
 agent_type: meta
-version: "1.0"
+version: "3.9.110"
 owner: pikakit
 capability_tier: core
 execution_mode: workflow-driven
@@ -983,3 +983,7 @@ After execution completes:
 ---
 
 > **Note:** This agent manages runtime execution mechanics for the agent ecosystem. DISTINCT FROM `lead-orchestrator` which owns strategic planning. Key skills: `lifecycle-orchestrator` for end-to-end execution lifecycle, `smart-router` for intelligent agent selection, `execution-reporter` for transparency, and `context-engineering` for token budget management. Governance enforced via `code-constitution`, `problem-checker`, and `auto-learned`.
+
+---
+
+⚡ PikaKit v3.9.110

@@ -108,10 +108,6 @@ tags: architecture, debate
 
 ---
 
-⚡ PikaKit v3.9.105
-
----
-
 ## 🔗 Related
 
 | File | When to Read |
@@ -120,3 +116,7 @@ tags: architecture, debate
 | [dynamic-questioning.md](dynamic-questioning.md) | Domain-specific question banks, algorithm |
 | [engineering-spec.md](engineering-spec.md) | Full engineering spec, contracts |
 | `system-design` | Architecture decision frameworks |
+
+---
+
+⚡ PikaKit v3.9.110

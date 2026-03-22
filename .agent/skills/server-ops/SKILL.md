@@ -2,15 +2,31 @@
 name: server-ops
 description: >-
   Server management principles and decision-making. Process management, monitoring strategy,
-  scaling decisions. Triggers on: server, DevOps, infrastructure, deployment, hosting.
+  scaling decisions.
+category: server-management
+triggers: ["server", "DevOps", "infrastructure", "deployment", "hosting"]
+coordinates_with: ["cicd-pipeline", "observability", "security-scanner"]
+success_metrics: ["Uptime Consistency", "Resource Efficiency", "Incident Resolution Time"]
 metadata:
   author: pikakit
-  version: "3.9.108"
+  version: "3.9.110"
 ---
 
 # Server Ops — Production Server Management
 
 > Boring servers = well-managed servers. Auto-restart. Monitor day one. Rotate logs.
+
+---
+
+## 5 Must-Ask Questions (Before Recommendations)
+
+| # | Question | Options |
+|---|----------|---------|
+| 1 | Runtime? | Node.js / Python / Java / Generic Linux |
+| 2 | Environment? | Bare-metal / VM / Container / Kubernetes |
+| 3 | Scale? | Single instance / Small cluster / Large cluster |
+| 4 | Symptom? | High CPU / High Memory / Slow Response / Traffic Spike |
+| 5 | Current Monitoring? | Yes / No / Partial |
 
 ---
 
@@ -131,6 +147,19 @@ Route by load balancer needs.
 
 ---
 
+## Audit Logging (OpenTelemetry)
+
+| Event | Metadata Payload | Severity |
+|-------|------------------|----------|
+| `server_analysis_started` | `{"runtime": "nodejs", "environment": "container"}` | `INFO` |
+| `tool_selected` | `{"category": "process_manager", "tool": "docker"}` | `INFO` |
+| `scaling_decided` | `{"symptom": "high-cpu", "strategy": "horizontal"}` | `INFO` |
+| `analysis_completed` | `{"recommendations_count": 3, "warnings": 1}` | `INFO` |
+
+All server ops outputs MUST emit `server_analysis_started` and `analysis_completed` events.
+
+---
+
 ## Anti-Patterns
 
 | ❌ Don't | ✅ Do |
@@ -161,4 +190,4 @@ Route by load balancer needs.
 
 ---
 
-⚡ PikaKit v3.9.108
+⚡ PikaKit v3.9.110

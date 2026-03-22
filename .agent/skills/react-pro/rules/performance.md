@@ -124,10 +124,6 @@ npm run build
 
 ---
 
-⚡ PikaKit v3.9.105
-
----
-
 ## 🔗 Related
 
 | File | When to Read |
@@ -135,3 +131,7 @@ npm run build
 | [component-patterns.md](component-patterns.md) | useCallback rules for components |
 | [data-fetching.md](data-fetching.md) | Query caching for performance |
 | [../SKILL.md](../SKILL.md) | Lazy load heavy components rule |
+
+---
+
+⚡ PikaKit v3.9.110

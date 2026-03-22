@@ -1,9 +1,13 @@
 ---
 name: Defense-in-Depth Validation
 description: Validate at every layer data passes through to make bugs impossible
+category: debugging-subskill
+triggers: ["defense in depth", "validation layers", "prevent bug", "structural fix"]
+coordinates_with: ["debug-pro", "security-scanner", "test-architect"]
+success_metrics: ["0 recurrent bugs", "4 layers of validation applied"]
 metadata:
   author: pikakit
-  version: "1.1.0"
+  version: "3.9.110"
 ---
 
 # Defense-in-Depth Validation
@@ -131,10 +135,6 @@ All four layers were necessary. During testing, each layer caught bugs the other
 
 ---
 
-⚡ PikaKit v3.9.105
-
----
-
 ## 🔗 Related
 
 | File | When to Read |
@@ -142,3 +142,7 @@ All four layers were necessary. During testing, each layer caught bugs the other
 | [../root-cause-tracing/SKILL.md](../root-cause-tracing/SKILL.md) | Trace to original trigger before adding layers |
 | [../verification-before-completion/SKILL.md](../verification-before-completion/SKILL.md) | Verify fix after adding defense layers |
 | [../SKILL.md](../SKILL.md) | 4-phase methodology overview |
+
+---
+
+⚡ PikaKit v3.9.110

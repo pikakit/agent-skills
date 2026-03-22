@@ -435,3 +435,7 @@ adb shell am start -a android.intent.action.VIEW -d "https://example.com/product
 | [../frameworks/react-native.md](../frameworks/react-native.md) | RN navigation config |
 | [../frameworks/flutter.md](../frameworks/flutter.md) | GoRouter deep linking |
 | [../frameworks/native.md](../frameworks/native.md) | SwiftUI/Compose navigation |
+
+---
+
+⚡ PikaKit v3.9.110

@@ -142,10 +142,6 @@ async def list_items(page: int = 1, per_page: int = 20) -> str:
 
 ---
 
-⚡ PikaKit v3.9.105
-
----
-
 ## 🔗 Related
 
 | File | When to Read |
@@ -155,3 +151,7 @@ async def list_items(page: int = 1, per_page: int = 20) -> str:
 | [python-implementation.md](python-implementation.md) | Python patterns |
 | [typescript-implementation.md](typescript-implementation.md) | TypeScript patterns |
 | [evaluation.md](evaluation.md) | Phase 4 testing |
+
+---
+
+⚡ PikaKit v3.9.110

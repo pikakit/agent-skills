@@ -12,7 +12,7 @@ tools: Read, Grep, Glob, Bash, Edit, Write
 model: inherit
 skills: test-architect, e2e-automation, code-craft, code-review, code-constitution, problem-checker, auto-learned
 agent_type: domain
-version: "1.0"
+version: "3.9.110"
 owner: pikakit
 capability_tier: core
 execution_mode: reactive
@@ -439,7 +439,10 @@ When reviewing test code, verify:
   "artifacts": ["src/__tests__/", "vitest.config.ts"],
   "next_action": "run full suite | improve coverage | null",
   "escalation_target": "qa | debug | null",
-  "failure_reason": "string | null"
+  "failure_reason": "string | null",
+  "security": {
+    "rules_of_engagement_followed": true
+  }
 }
 ```
 
@@ -644,16 +647,38 @@ orchestrator → test-engineer (unit/integration) + qa (E2E) + debug (regression
 
 ## Observability
 
-### Log Schema
+### Log Schema (OpenTelemetry Event Array)
 
 ```json
 {
-  "trace_id": "uuid",
-  "parent_trace": "uuid | null",
-  "agent": "test-engineer",
-  "event": "start | analyze | write_test | run_suite | coverage_check | success | failure",
-  "timestamp": "ISO8601",
-  "payload": { "framework": "vitest", "tests": 15, "passing": 15, "failing": 0, "coverage_pct": 85 }
+  "traceId": "uuid",
+  "spanId": "uuid",
+  "events": [
+    {
+      "name": "analyze",
+      "timestamp": "ISO8601",
+      "attributes": {
+        "framework": "vitest",
+        "tests": 15
+      }
+    },
+    {
+      "name": "write_test",
+      "timestamp": "ISO8601",
+      "attributes": {
+        "file": "user.spec.ts"
+      }
+    },
+    {
+      "name": "run_suite",
+      "timestamp": "ISO8601",
+      "attributes": {
+        "passing": 15,
+        "failing": 0,
+        "coverage_pct": 85
+      }
+    }
+  ]
 }
 ```
 
@@ -820,3 +845,7 @@ After writing tests:
 ---
 
 > **Note:** This agent writes unit and integration tests. Key skills: `test-architect` for test strategy and suite architecture, `test-driven-dev` for TDD Red-Green-Refactor workflow, and `code-review` for test quality. DISTINCT FROM `qa` (E2E browser tests, CI pipelines, visual regression). Governance enforced via `code-constitution`, `problem-checker`, and `auto-learned`.
+
+---
+
+⚡ PikaKit v3.9.110

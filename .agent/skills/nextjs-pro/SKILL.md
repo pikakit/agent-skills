@@ -2,11 +2,14 @@
 name: nextjs-pro
 description: >-
   Next.js App Router & React performance patterns. Server Components, data fetching, routing,
-  caching, and 57 optimization rules across 8 categories. Triggers on: Next.js, App Router,
-  RSC, React, frontend, performance, SSR, SSG.
+  caching, and 57 optimization rules across 8 categories.
+category: frontend-architect
+triggers: ["Next.js", "App Router", "RSC", "React", "frontend", "SSR"]
+coordinates_with: ["react-architect", "tailwind-kit", "perf-optimizer", "problem-checker", "code-craft"]
+success_metrics: ["100% CWV Targets Met", "0 Server/Client Boundaries Errors", "0 IDE/Lint Errors"]
 metadata:
   author: pikakit
-  version: "3.9.108"
+  version: "3.9.110"
 ---
 
 # Next.js Pro — App Router & React Performance
@@ -14,6 +17,18 @@ metadata:
 > Server-first. 3 data strategies. 4 route files. 57 rules. 8 categories. CWV targets.
 
 **Philosophy:** Performance is a feature. Waterfalls are the enemy. Server first.
+
+---
+
+## 5 Must-Ask Questions (Before Any Development)
+
+| # | Question | Options |
+|---|----------|---------|
+| 1 | Rendering Strategy? | SSR, SSG, ISR, CSR |
+| 2 | Data Volatility? | Static, Periodic, Real-time |
+| 3 | Authentication? | Middleware, Server Actions, Client |
+| 4 | SEO/Metadata? | Dynamic metadata, sitemap |
+| 5 | Interactivity Level? | Mostly static vs Highly interactive |
 
 ---
 
@@ -87,6 +102,18 @@ Need useState / useEffect / event handlers?
 
 ---
 
+## Audit Logging (OpenTelemetry)
+
+| Event | Metadata Payload | Severity |
+|-------|------------------|----------|
+| `architecture_decision` | `{"component_type": "server|client", "reason": "..."}` | `INFO` |
+| `data_fetching_audit` | `{"strategy": "static|isr|dynamic", "volatility": "..."}` | `INFO` |
+| `build_verification` | `{"status": "pass|fail", "cwv_metrics_met": true}` | `INFO` |
+
+All executions MUST emit the `build_verification` span before reporting completion.
+
+---
+
 ## Error Taxonomy
 
 | Code | Recoverable | Trigger |
@@ -108,6 +135,7 @@ Need useState / useEffect / event handlers?
 | Barrel imports (`index.js`) | Direct imports |
 | Nested awaits (waterfall) | `Promise.all()` (parallel) |
 | Skip loading/error states | Use loading.tsx + error.tsx |
+| Ignore IDE warnings/errors | Call `problem-checker` to auto-fix |
 
 ---
 
@@ -261,4 +289,4 @@ For the complete guide with all rules expanded: `AGENTS.md`
 
 ---
 
-⚡ PikaKit v3.9.108
+⚡ PikaKit v3.9.110

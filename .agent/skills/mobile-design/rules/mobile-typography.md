@@ -442,4 +442,8 @@ Long text: 1.5-1.75
 > **Remember:** If users can't read your text, your app is broken. Typography isn't decoration—it's the primary interface. Test on real devices, in real conditions, with accessibility settings enabled.
 ---
 
-⚡ PikaKit v3.9.105\r\n\r\n---\r\n\r\n## 🔗 Related\r\n\r\n| File | When to Read |\r\n|------|-------------|\r\n| [../SKILL.md](../SKILL.md) | Platform differences (SF Pro/Roboto) |\r\n| [platform-ios.md](platform-ios.md) | iOS SF Pro usage |\r\n| [platform-android.md](platform-android.md) | Android Roboto usage |\r\n| [mobile-color-system.md](mobile-color-system.md) | Color + typography harmony |\r\n| [engineering-spec.md](engineering-spec.md) | Full engineering spec |
+\r\n\r\n---\r\n\r\n## 🔗 Related\r\n\r\n| File | When to Read |\r\n|------|-------------|\r\n| [../SKILL.md](../SKILL.md) | Platform differences (SF Pro/Roboto) |\r\n| [platform-ios.md](platform-ios.md) | iOS SF Pro usage |\r\n| [platform-android.md](platform-android.md) | Android Roboto usage |\r\n| [mobile-color-system.md](mobile-color-system.md) | Color + typography harmony |\r\n| [engineering-spec.md](engineering-spec.md) | Full engineering spec |
+
+---
+
+⚡ PikaKit v3.9.110

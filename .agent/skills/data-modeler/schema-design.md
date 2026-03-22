@@ -144,7 +144,7 @@ const activeUsers = await db
 
 ---
 
-⚡ PikaKit v3.9.105
+
 
 ---
 
@@ -156,3 +156,7 @@ const activeUsers = await db
 | [migrations.md](migrations.md) | Migrate schema changes safely |
 | [orm-selection.md](orm-selection.md) | ORM for schema definition |
 | [SKILL.md](SKILL.md) | Decision checklist |
+
+---
+
+⚡ PikaKit v3.9.110

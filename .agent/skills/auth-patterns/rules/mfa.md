@@ -160,10 +160,6 @@ User cannot access MFA device?
 
 ---
 
-⚡ PikaKit v3.9.105
-
----
-
 ## 🔗 Related
 
 | File | When to Read |
@@ -172,3 +168,7 @@ User cannot access MFA device?
 | [jwt-deep.md](jwt-deep.md) | Token lifecycle after MFA |
 | [session.md](session.md) | Session management with MFA |
 | [SKILL.md](../SKILL.md) | Auth strategy decision tree |
+
+---
+
+⚡ PikaKit v3.9.110

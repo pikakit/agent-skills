@@ -2,11 +2,14 @@
 name: mcp-builder
 description: >-
   Complete guide for building MCP servers for AI agents. Includes design principles, 4-phase
-  build process, and evaluation framework. Triggers on: build MCP, create MCP server, MCP
-  development, MCP, Model Context Protocol, agent tools.
+  build process, and evaluation framework.
+category: agent-tooling
+triggers: ["build MCP", "create MCP server", "MCP development", "Model Context Protocol", "agent tools"]
+coordinates_with: ["mcp-management", "api-architect", "typescript-expert"]
+success_metrics: ["100% 4-phase completion", "10 evaluation questions generated"]
 metadata:
   author: pikakit
-  version: "3.9.108"
+  version: "3.9.110"
 ---
 
 # MCP Builder — Build MCP Servers for AI Agents
@@ -218,4 +221,4 @@ For the complete guide with all rules expanded: `AGENTS.md`
 
 ---
 
-⚡ PikaKit v3.9.108
+⚡ PikaKit v3.9.110

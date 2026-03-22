@@ -114,3 +114,7 @@ Historical data is **append-only from the backend**.
 Realtime data is **ephemeral display-only in the frontend**.
 
 Stop, separate, and preserve chart truthfulness.
+
+---
+
+⚡ PikaKit v3.9.110

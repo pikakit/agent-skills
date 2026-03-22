@@ -2,10 +2,14 @@
 name: offensive-sec
 description: >-
   Red team tactics principles based on MITRE ATT&CK. Attack phases, detection evasion,
-  reporting. Triggers on: pentest, red team, exploit, vulnerability, hacking.
+  reporting.
+category: security-auditor
+triggers: ["pentest", "red team", "exploit", "vulnerability", "hacking"]
+coordinates_with: ["security-scanner", "api-architect", "auth-patterns", "problem-checker"]
+success_metrics: ["0 Out of Scope Actions", "100% Validated Exploits"]
 metadata:
   author: pikakit
-  version: "3.9.108"
+  version: "3.9.110"
 ---
 
 # Offensive Security — Red Team Tactics (MITRE ATT&CK)
@@ -13,6 +17,18 @@ metadata:
 > 13 phases. 4 access vectors. Authorization mandatory. Guidance only — no execution.
 
 **Remember:** Red team simulates attackers to improve defenses, not to cause harm.
+
+---
+
+## 5 Must-Ask Questions (Before Any Testing)
+
+| # | Question | Options |
+|---|----------|---------|
+| 1 | Authorization? | Yes (proceed), No (block) |
+| 2 | Target Scope? | Explicitly define In-Scope / Out-of-Scope |
+| 3 | Rules of Engagement? | DoS allowed? Social engineering? |
+| 4 | Environment? | Production, Staging, Test Lab |
+| 5 | Critical Assets? | Any off-limits data or fragile systems? |
 
 ---
 
@@ -115,6 +131,18 @@ LATERAL → COLLECTION → C2 → EXFILTRATION → IMPACT
 
 ---
 
+## Audit Logging (OpenTelemetry)
+
+| Event | Metadata Payload | Severity |
+|-------|------------------|----------|
+| `authorization_verified` | `{"scope_defined": true, "environment": "..."}` | `INFO` |
+| `exploit_executed` | `{"vector": "...", "target": "..."}` | `WARN` |
+| `build_verification` | `{"status": "pass|fail", "metrics_met": true}` | `INFO` |
+
+All executions MUST emit the `build_verification` span before reporting completion.
+
+---
+
 ## Error Taxonomy
 
 | Code | Recoverable | Trigger |
@@ -137,6 +165,7 @@ LATERAL → COLLECTION → C2 → EXFILTRATION → IMPACT
 | Cause damage | Minimize impact to production |
 | Skip documentation | Document every action with timestamps |
 | Test beyond scope | Verify scope before each phase |
+| Ignore IDE warnings/errors | Call `problem-checker` to auto-fix |
 
 ---
 
@@ -158,4 +187,4 @@ LATERAL → COLLECTION → C2 → EXFILTRATION → IMPACT
 
 ---
 
-⚡ PikaKit v3.9.108
+⚡ PikaKit v3.9.110

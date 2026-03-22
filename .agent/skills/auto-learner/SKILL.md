@@ -2,16 +2,33 @@
 name: auto-learner
 description: >-
   Autonomous learning agent that extracts patterns from IDE errors, user corrections, and agent
-  failures. Writes structured patterns to auto-learned skill. Triggers on: auto-learn, mistake,
-  error fix, pattern extraction.
+  failures. Writes structured patterns to auto-learned skill.
+category: autonomous-learning
+triggers: ["auto-learn", "mistake", "error fix", "pattern extraction"]
+coordinates_with: ["auto-learned", "problem-checker", "skill-generator"]
+success_metrics: ["Actionable Lesson Rate", "Lesson Extraction Speed", "False Positive Rate"]
 metadata:
   author: pikakit
-  version: "3.9.108"
+  version: "3.9.110"
 ---
 
 # Auto-Learner
 
 Autonomous learning engine that extracts patterns from errors, corrections, and failures.
+
+---
+
+## 5 Must-Ask Questions (Socratic Gate)
+
+| # | Question | Options |
+|---|----------|---------|
+| 1 | Exact Error Message? | Raw IDE error / User correction text |
+| 2 | Component Context? | File type / Framework / Language |
+| 3 | Attempted Fix? | What was changed to correct the error? |
+| 4 | Fix Success Status? | Verified working / Still failing |
+| 5 | Core Lesson Learned? | The underlying pattern to prevent this |
+
+---
 
 ## Scope
 
@@ -79,3 +96,19 @@ Autonomous learning engine that extracts patterns from errors, corrections, and 
 
 > **Note:** This skill codifies the auto-learning protocol from GEMINI.md § Auto-Learn Protocol.
 > The `learner` agent is its primary executor. Patterns are stored in `auto-learned/patterns/`.
+
+---
+
+## Audit Logging (OpenTelemetry)
+
+| Event | Metadata Payload | Severity |
+|-------|------------------|----------|
+| `lesson_extraction_started` | `{"trigger": "user_correction", "error_type": "type_mismatch"}` | `INFO` |
+| `lesson_extracted_successfully` | `{"lesson_id": "LEARN-001", "severity": "HIGH"}` | `INFO` |
+| `lesson_extraction_failed` | `{"reason": "ambiguous_fix", "error_signature": "unknown"}` | `WARN` |
+
+All auto-learner outputs MUST emit `lesson_extraction_started` and either `lesson_extracted_successfully` or `lesson_extraction_failed`.
+
+---
+
+⚡ PikaKit v3.9.110

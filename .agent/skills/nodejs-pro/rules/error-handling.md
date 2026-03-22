@@ -251,3 +251,7 @@ logger.error({ err, userId, requestId, path: req.url }, 'User fetch failed')
 | [async-patterns.md](async-patterns.md) | Async error handling |
 | [validation-security.md](validation-security.md) | Validation errors at boundary |
 | [framework-selection.md](framework-selection.md) | Framework-specific error behavior |
+
+---
+
+⚡ PikaKit v3.9.110

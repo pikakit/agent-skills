@@ -102,33 +102,41 @@ contract_version: string      # "2.0.0"
 #### Output Schema
 
 ```
-Status: "success" | "error"
-Data: {
-  framework: {
-    recommended: string       # "fastapi" | "django" | "flask"
-    rationale: string
-    with_celery: boolean      # Background task recommendation
-  } | null
-  async_decision: {
-    mode: string              # "async" | "sync" | "mixed"
-    rationale: string
-    warnings: Array<string>   # e.g., "Do not use sync DB drivers in async"
-  } | null
-  structure: {
-    layout: string            # "flat" | "layered" | "domain-driven"
-    layers: Array<string>     # ["routes", "services", "repositories"]
-  } | null
-  type_hints: {
-    coverage: string          # "all-public" | "full"
-    validation: string        # "pydantic"
-  } | null
-  reference_files: Array<string> | null  # Relevant reference file paths
-  metadata: {
-    contract_version: string
-    backward_compatibility: string
-  }
-}
-Error: ErrorSchema | null
+"agent": "python-pro",
+  "trace_id": "uuid",
+  "status": "success | failure | escalate",
+  "result": {
+    "framework": {
+      "recommended": "fastapi | django | flask",
+      "rationale": "...",
+      "with_celery": false
+    },
+    "async_decision": {
+      "mode": "async | sync | mixed",
+      "rationale": "...",
+      "warnings": []
+    },
+    "structure": {
+      "layout": "flat | layered | domain-driven",
+      "layers": ["routes", "services", "repositories"]
+    },
+    "type_hints": {
+      "coverage": "all-public | full",
+      "validation": "pydantic"
+    },
+    "reference_files": []
+  },
+  "security": {
+    "rules_of_engagement_followed": true
+  },
+  "code_quality": {
+    "problem_checker_run": true,
+    "errors_fixed": 0
+  },
+  "artifacts": ["architecture_decision.md"],
+  "next_action": "user approval | orchestrator execution",
+  "escalation_target": "lead | orchestrator | null",
+  "failure_reason": "string | null"
 ```
 
 #### Error Schema
@@ -291,18 +299,27 @@ Stateless. Fully idempotent. No persistent state.
 
 ```json
 {
-  "trace_id": "uuid",
-  "skill_name": "python-pro",
-  "contract_version": "2.0.0",
-  "execution_id": "uuid",
-  "timestamp": "ISO-8601",
-  "request_type": "string",
-  "project_type": "string",
-  "framework_recommended": "string|null",
-  "async_mode": "string|null",
-  "status": "success|error",
-  "error_code": "string|null",
-  "duration_ms": "number"
+  "traceId": "uuid",
+  "spanId": "uuid",
+  "events": [
+    {
+      "name": "decision_started",
+      "timestamp": "ISO-8601",
+      "attributes": {
+        "project_type": "api",
+        "scale": "medium"
+      }
+    },
+    {
+      "name": "arch_recommendation_provided",
+      "timestamp": "ISO-8601",
+      "attributes": {
+        "framework_recommended": "fastapi",
+        "async_mode": "async",
+        "duration_ms": 15
+      }
+    }
+  ]
 }
 ```
 
@@ -422,4 +439,4 @@ All resources scoped to invocation. No persistent handles.
 
 ---
 
-⚡ PikaKit v3.9.105
+⚡ PikaKit v3.9.110

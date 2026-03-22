@@ -453,4 +453,11 @@ All resources scoped to invocation. No persistent handles.
 
 ---
 
-⚡ PikaKit v3.9.105
+⚡ ## OpenTelemetry Observability (MANDATORY)
+
+- **Context Utilization Gauge**: EVERY context analysis MUST emit an OpenTelemetry Gauge metric recording token utilization percentage and signal quality distribution.
+- **Threshold Alerts**: Utilization crossing 70% or 80% MUST trigger an OTel Event with recommended bucket strategy.
+
+---
+
+PikaKit v3.9.110

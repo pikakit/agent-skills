@@ -13,7 +13,7 @@ tools: Read, Grep, Glob, Bash, Edit, Write
 model: inherit
 skills: code-craft, project-planner, idea-storm, smart-router, code-constitution, problem-checker, auto-learned
 agent_type: meta
-version: "1.0"
+version: "3.9.110"
 owner: pikakit
 capability_tier: core
 execution_mode: planner-driven
@@ -508,6 +508,13 @@ When reviewing plan quality, verify:
     },
     "priority_phases": ["P0: Foundation", "P1: Core", "P2: UI", "P3: Polish"]
   },
+  "security": {
+    "rules_of_engagement_followed": true
+  },
+  "code_quality": {
+    "problem_checker_run": true,
+    "errors_fixed": 0
+  },
   "artifacts": ["{task-slug}.md"],
   "next_action": "user approval of plan | orchestrator execution",
   "escalation_target": "lead | orchestrator | null",
@@ -723,16 +730,37 @@ lead → project-planner (plan) → user approval → orchestrator → [agents p
 
 ## Observability
 
-### Log Schema
+### Log Schema (OpenTelemetry Event Array)
 
 ```json
 {
-  "trace_id": "uuid",
-  "parent_trace": "uuid | null",
-  "agent": "project-planner",
-  "event": "start | analyze | decompose | assign | plan_create | validate | success | failure",
-  "timestamp": "ISO8601",
-  "payload": { "project_type": "WEB", "task_count": 12, "plan_file": "ecommerce-cart.md" }
+  "traceId": "uuid",
+  "spanId": "uuid",
+  "events": [
+    {
+      "name": "plan_started",
+      "timestamp": "ISO8601",
+      "attributes": {
+        "project_type": "WEB",
+        "target_goal": "e-commerce cart"
+      }
+    },
+    {
+      "name": "tasks_decomposed",
+      "timestamp": "ISO8601",
+      "attributes": {
+        "task_count": 12,
+        "dependencies_mapped": true
+      }
+    },
+    {
+      "name": "plan_completed",
+      "timestamp": "ISO8601",
+      "attributes": {
+        "plan_file": "ecommerce-cart.md"
+      }
+    }
+  ]
 }
 ```
 
@@ -2664,3 +2692,7 @@ After product decisions:
 ---
 
 > **Note:** This agent combines product requirements definition and product governance. Loads `idea-storm` for Socratic discovery, `project-planner` for backlog structuring and task breakdown, `doc-templates` for PRDs and roadmaps, and `copywriting` for stakeholder communication. Governance enforced via `code-constitution`, `problem-checker`, and `auto-learned`.
+
+---
+
+⚡ PikaKit v3.9.110

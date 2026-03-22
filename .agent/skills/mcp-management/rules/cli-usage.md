@@ -132,10 +132,6 @@ cat assets/tools.json | jq '.[] | {server: .server, tools: .tools[].name}'
 
 ---
 
-⚡ PikaKit v3.9.105
-
----
-
 ## 🔗 Related
 
 | File | When to Read |
@@ -144,3 +140,7 @@ cat assets/tools.json | jq '.[] | {server: .server, tools: .tools[].name}'
 | [protocol.md](protocol.md) | JSON-RPC protocol details |
 | [engineering-spec.md](engineering-spec.md) | Full engineering spec |
 | `mcp-builder` | Building MCP servers |
+
+---
+
+⚡ PikaKit v3.9.110

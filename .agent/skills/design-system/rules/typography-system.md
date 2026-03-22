@@ -355,10 +355,6 @@ Before finalizing typography:
 
 ---
 
-⚡ PikaKit v3.9.105
-
----
-
 ## 🔗 Related
 
 | File | When to Read |
@@ -367,3 +363,7 @@ Before finalizing typography:
 | [ux-psychology.md](ux-psychology.md) | Readability psychology and cognitive load |
 | [color-system.md](color-system.md) | Text contrast and accessibility |
 | [../SKILL.md](../SKILL.md) | Typography quick rules |
+
+---
+
+⚡ PikaKit v3.9.110

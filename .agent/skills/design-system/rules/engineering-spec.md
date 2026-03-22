@@ -461,10 +461,6 @@ All resources scoped to invocation. No persistent handles.
 
 ---
 
-⚡ PikaKit v3.9.105
-
----
-
 ## 🔗 Related
 
 | File | When to Read |
@@ -475,3 +471,14 @@ All resources scoped to invocation. No persistent handles.
 | [spatial-composition.md](spatial-composition.md) | Layout innovation |
 | [design-extraction.md](design-extraction.md) | Screenshot analysis |
 | [../SKILL.md](../SKILL.md) | Quick reference and anti-slop bans |
+
+---
+
+⚡ ## OpenTelemetry Observability (MANDATORY)
+
+- **UX & Accessibility Audits**: EVERY run of ux_audit.js and ccessibility_checker.js MUST emit an OpenTelemetry Span recording the compliance score (e.g., WCAG AA/AAA passing rate).
+- **Anti-Pattern Alerts**: Any detection of banned anti-patterns (e.g., Purple Ban, Bento grid without justification, Contrast Ratio failure) MUST trigger an OTel Event attached to the design Trace ID.
+
+---
+
+PikaKit v3.9.110

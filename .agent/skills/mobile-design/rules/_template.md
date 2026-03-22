@@ -26,3 +26,7 @@ const good = example()
 ```
 
 Reference: [Link to documentation or resource](https://example.com)
+
+---
+
+⚡ PikaKit v3.9.110

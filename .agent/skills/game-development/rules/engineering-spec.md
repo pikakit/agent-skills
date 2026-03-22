@@ -313,6 +313,11 @@ The orchestrator routes but does not invoke. No pipeline state, no session track
 
 ## 13. Observability & Logging Schema
 
+### OpenTelemetry Observability (MANDATORY)
+
+- **Routing Telemetry**: EVERY time the Orchestrator makes a routing decision (platform + dimension → sub-skill), it MUST emit an OpenTelemetry Span recording `routing_latency` to track decision speed.
+- **Analytics Events**: The Orchestrator MUST trigger an OTel Event detailing the selected context (platform, dimension, specialty, target_fps) whenever a sub-skill is activated, to feed FAANG-grade usage analytics.
+
 ### Log Entry Format
 
 ```json
@@ -454,10 +459,6 @@ Sub-skill SKILL.md files are read by the caller, not by this skill.
 
 ---
 
-⚡ PikaKit v3.9.105
-
----
-
 ## 🔗 Related
 
 | Item | Type | When to Read |
@@ -473,3 +474,7 @@ Sub-skill SKILL.md files are read by the caller, not by this skill.
 | `game-development/multiplayer` | Sub-skill | Networking architecture |
 | `game-development/game-art` | Sub-skill | Visual style and pipeline |
 | `game-development/game-audio` | Sub-skill | Sound design and adaptive audio |
+
+---
+
+⚡ PikaKit v3.9.110

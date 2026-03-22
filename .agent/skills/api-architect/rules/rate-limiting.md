@@ -70,3 +70,7 @@ if (current > maxRequests) {
 | [security-testing.md](security-testing.md) | Rate limit bypass testing |
 | [auth.md](auth.md) | Auth endpoint limits |
 | [SKILL.md](../SKILL.md) | Full decision framework |
+
+---
+
+⚡ PikaKit v3.9.110

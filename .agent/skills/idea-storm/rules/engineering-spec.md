@@ -310,6 +310,11 @@ Gate tracking (how many answers received) is the caller's responsibility.
 
 ## 13. Observability & Logging Schema
 
+### OpenTelemetry Observability (MANDATORY)
+
+- **Socratic Gate Telemetry**: The agent MUST emit an OpenTelemetry Span (`socratic_gate_duration`) encompassing the entire interaction from intercepting the vague request to receiving all mandatory answers.
+- **Clarification Events**: Each time the agent asks a structured question (Purpose, Users, Scope), it MUST emit an OTel Event (`QUESTION_GENERATED`) containing the dimension and priority.
+
 ### Log Entry Format
 
 ```json
@@ -446,10 +451,6 @@ All resources scoped to invocation. No persistent handles.
 
 ---
 
-⚡ PikaKit v3.9.105
-
----
-
 ## 🔗 Related
 
 | File | When to Read |
@@ -459,3 +460,7 @@ All resources scoped to invocation. No persistent handles.
 | [dynamic-questioning.md](dynamic-questioning.md) | Domain question banks, algorithm |
 | `project-planner` | Post-gate task planning |
 | `app-scaffold` | Post-gate project scaffolding |
+
+---
+
+⚡ PikaKit v3.9.110

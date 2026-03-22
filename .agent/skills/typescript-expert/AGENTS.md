@@ -170,7 +170,7 @@ const config = {
 
 ---
 
-⚡ PikaKit v3.9.105
+
 
 ---
 
@@ -313,6 +313,12 @@ Data: {
   diagnostics: {
     command: string
     purpose: string
+  } | null
+  security: {
+    rules_of_engagement_followed: boolean
+  } | null
+  code_quality: {
+    problem_checker_run: boolean
   } | null
   metadata: {
     contract_version: string
@@ -477,23 +483,38 @@ Stateless. Fully idempotent. No persistent state.
 
 ## 13. Observability & Logging Schema
 
-### Log Entry Format
+### Log Entry Format (OpenTelemetry Event Array)
 
 ```json
 {
-  "trace_id": "uuid",
-  "skill_name": "typescript-expert",
-  "contract_version": "2.0.0",
-  "execution_id": "uuid",
-  "timestamp": "ISO-8601",
-  "request_type": "string",
-  "ts_version": "string|null",
-  "project_type": "string|null",
-  "error_resolved": "string|null",
-  "config_recommended": "string|null",
-  "status": "success|error",
-  "error_code": "string|null",
-  "duration_ms": "number"
+  "traceId": "uuid",
+  "spanId": "uuid",
+  "events": [
+    {
+      "name": "type_pattern_recommended",
+      "timestamp": "ISO8601",
+      "attributes": {
+        "pattern": "branded_types",
+        "use_case": "ids"
+      }
+    },
+    {
+      "name": "error_resolved",
+      "timestamp": "ISO8601",
+      "attributes": {
+        "error_code": "TS2322",
+        "fix_applied": "type_assertion"
+      }
+    },
+    {
+      "name": "config_recommended",
+      "timestamp": "ISO8601",
+      "attributes": {
+        "project_type": "monorepo",
+        "settings": ["projectReferences"]
+      }
+    }
+  ]
 }
 ```
 
@@ -613,7 +634,7 @@ All resources scoped to invocation. No persistent handles.
 
 ---
 
-⚡ PikaKit v3.9.105
+
 
 ---
 
@@ -1018,3 +1039,7 @@ data.anything.goes.wrong  // No type safety
 | [utility-types.js](utility-types.js) | Runtime utility helpers |
 | [ts_diagnostic.js](../scripts/ts_diagnostic.js) | Project health scan |
 | [SKILL.md](../SKILL.md) | Error routing, patterns |
+
+---
+
+⚡ PikaKit v3.9.110

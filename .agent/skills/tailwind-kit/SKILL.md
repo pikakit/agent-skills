@@ -2,15 +2,30 @@
 name: tailwind-kit
 description: >-
   Tailwind CSS v4 principles. CSS-first configuration, container queries, modern patterns.
-  Triggers on: Tailwind, CSS, styling, utility classes.
+category: frontend-styling
+triggers: ["Tailwind", "CSS", "styling", "utility classes", "oklch"]
+coordinates_with: ["frontend-specialist", "nextjs-pro", "design-system"]
+success_metrics: ["Component Consistency", "DOM Optimization", "Responsive Robustness"]
 metadata:
   author: pikakit
-  version: "3.9.108"
+  version: "3.9.110"
 ---
 
 # Tailwind Kit — Tailwind CSS v4 Patterns
 
 > CSS-first `@theme`. OKLCH colors. Container queries. Mobile-first responsive.
+
+---
+
+## 5 Must-Ask Questions (Socratic Gate)
+
+| # | Question | Options |
+|---|----------|---------|
+| 1 | Project Stack? | Next.js / React+Vite / Angular / Vanilla HTML |
+| 2 | Tailwind Version? | v4 / Migrating from v3 |
+| 3 | Design System Context? | Strict / Loose / Arbitrary Values Allowed |
+| 4 | Responsive Need? | Mobile-first / Desktop-heavy |
+| 5 | Specific Component? | Button / Card / Input / Generic Layout |
 
 ---
 
@@ -119,6 +134,18 @@ metadata:
 
 ---
 
+## Audit Logging (OpenTelemetry)
+
+| Event | Metadata Payload | Severity |
+|-------|------------------|----------|
+| `css_class_recommended` | `{"component": "button", "pattern": "variants"}` | `INFO` |
+| `layout_pattern_generated` | `{"type": "auto-grid", "responsive": true}` | `INFO` |
+| `v3_v4_migration_started` | `{"legacy_theme_keys": 4}` | `INFO` |
+
+All tailwind-kit outputs MUST emit `css_class_recommended` and `layout_pattern_generated` events when applicable.
+
+---
+
 ## Rule Categories by Priority
 
 | Priority | Category | Impact | Prefix |
@@ -179,4 +206,4 @@ For the complete guide with all rules expanded: `AGENTS.md`
 
 ---
 
-⚡ PikaKit v3.9.108
+⚡ PikaKit v3.9.110

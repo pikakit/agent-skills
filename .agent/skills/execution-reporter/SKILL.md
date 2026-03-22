@@ -2,11 +2,14 @@
 name: execution-reporter
 description: >-
   Display agent routing, skill loading, and execution context at task start. Provides
-  transparency and audit trail for agent operations. Triggers on: every task start, agent
-  routing, skill loading, task completion.
+  transparency and audit trail for agent operations.
+category: system-orchestration
+triggers: ["every task start", "agent routing", "skill loading", "task completion"]
+coordinates_with: ["lifecycle-orchestrator", "smart-router"]
+success_metrics: ["100% phases have standard notification", "0 missed execution logs"]
 metadata:
   author: pikakit
-  version: "3.9.108"
+  version: "3.9.110"
 ---
 
 # Execution Reporter — Task Notifications
@@ -38,7 +41,7 @@ metadata:
 |---------------------|-----------|
 | Notification string formatting (4 templates) | Task execution (→ lifecycle-orchestrator) |
 | Verbosity level filtering (3 levels) | Agent routing (→ smart-router) |
-| PikaKit branding (v3.9.68) | Error detection (→ problem-checker) |
+| PikaKit branding (v3.9.110) | Error detection (→ problem-checker) |
 | Complexity threshold (> 3 skills → full) | Notification delivery |
 
 **Pure function skill:** Returns formatted strings. Zero side effects.
@@ -50,7 +53,7 @@ metadata:
 ### Full Template (> 3 skills)
 
 ```
-🤖 PikaKit v3.9.108
+🤖 PikaKit v3.9.110
 📋 Task: {task_description}
 ◆ Agent: @{agent_name}
 ◇ Skills: {skill_1}, {skill_2}, ...
@@ -67,7 +70,7 @@ metadata:
 
 ```
 ✅ Done ⬢ Agent: @{agent_name} ⬢ Skills: {count} ⬢ Files: {count} ⬢ {duration}s
-⚡ PikaKit v3.9.108
+
 ```
 
 ### Script Run Template
@@ -145,4 +148,4 @@ metadata:
 
 ---
 
-⚡ PikaKit v3.9.108
+⚡ PikaKit v3.9.110

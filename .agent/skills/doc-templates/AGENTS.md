@@ -13,7 +13,7 @@ tools: Read, Grep, Glob, Bash, Edit, Write
 model: inherit
 skills: code-craft, doc-templates, copywriting, seo-optimizer, code-constitution, problem-checker, auto-learned
 agent_type: utility
-version: "1.0"
+version: "3.9.110"
 owner: pikakit
 capability_tier: core
 execution_mode: reactive
@@ -814,3 +814,7 @@ After writing documentation:
 ---
 
 > **Note:** This agent specializes in technical documentation. Key skills: `doc-templates` for structured documentation templates, `mermaid-editor` for architecture diagrams, `markdown-novel-viewer` for documentation preview, `copywriting` for clear prose, and `seo-optimizer` for discoverability. MUST NOT auto-invoke during normal development — explicit request only. Governance enforced via `code-constitution`, `problem-checker`, and `auto-learned`.
+
+---
+
+⚡ PikaKit v3.9.110

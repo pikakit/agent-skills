@@ -2,16 +2,33 @@
 name: smart-router
 description: >-
   Intelligent agent routing based on request analysis. Maps user intent to specialist agents
-  using domain detection and keyword matching. Triggers on: agent routing, request
-  classification, multi-agent selection.
+  using domain detection and keyword matching.
+category: meta-agent
+triggers: ["agent routing", "request classification", "multi-agent selection"]
+coordinates_with: ["lifecycle-orchestrator", "execution-reporter"]
+success_metrics: ["Routing Accuracy", "Routing Latency", "Tool Execution Success"]
 metadata:
   author: pikakit
-  version: "3.9.108"
+  version: "3.9.110"
 ---
 
 # Smart Router
 
 Intelligent agent routing protocol embedded in `GEMINI.md → TIER 0: INTELLIGENT AGENT ROUTING`.
+
+## Internal Validation Checklist (Silent)
+
+> **SILENT MODE REQUIRED:** Do NOT ask the user these questions! The router must internally assess these 5 axes from the user's prompt *before* selecting an agent:
+
+| # | Check | Example Thought Process |
+|---|-------|-------------------------|
+| 1 | Domain? | Is this Web, Mobile, Data, Ops, or Security? |
+| 2 | Action? | Are we building, fixing, planning, or just answering? |
+| 3 | Language? | Is the stack Node, Python, generic shell, etc.? |
+| 4 | Complexity? | Multi-file architecture or single-file typo? |
+| 5 | Constraints? | Did the user explicitly specify `@agent` or overrides? |
+
+---
 
 ## Scope
 
@@ -59,3 +76,19 @@ Intelligent agent routing protocol embedded in `GEMINI.md → TIER 0: INTELLIGEN
 
 > **Note:** This skill codifies the routing logic defined in GEMINI.md § INTELLIGENT AGENT ROUTING.
 > It does NOT contain executable scripts — routing is performed inline by the AI agent.
+
+---
+
+## Audit Logging (OpenTelemetry)
+
+Even while operating silently, the router must emit routing telemetry:
+
+| Event | Metadata Payload | Severity |
+|-------|------------------|----------|
+| `routing_analysis_started` | `{"prompt_length": 150, "keywords_detected": ["react", "api"]}` | `DEBUG` |
+| `domain_detected` | `{"primary_domain": "frontend", "secondary_domain": "backend"}` | `DEBUG` |
+| `agent_engaged` | `{"agent_id": "react-pro", "confidence_score": 0.95}` | `INFO` |
+
+---
+
+⚡ PikaKit v3.9.110

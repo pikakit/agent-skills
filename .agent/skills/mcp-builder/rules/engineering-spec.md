@@ -306,6 +306,11 @@ Stateless. Fully idempotent. No persistent state.
 
 ## 13. Observability & Logging Schema
 
+### OpenTelemetry Observability (MANDATORY)
+
+- **Decision Telemetry**: When evaluating which framework to select (FastMCP vs TypeScript SDK), emit an OpenTelemetry Span (`mcpbuilder_decision_duration`).
+- **Phase Guide Events**: Emit an OTel Event (`PHASE_GUIDE_ISSUED`) each time a Phase guide is returned to the user, capturing the target phase number as a dimension.
+
 ### Log Entry Format
 
 ```json
@@ -450,7 +455,7 @@ All resources scoped to invocation. No persistent handles.
 
 ---
 
-⚡ PikaKit v3.9.105
+⚡ PikaKit v3.9.110
 
 ---
 

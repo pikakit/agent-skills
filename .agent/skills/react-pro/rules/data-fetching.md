@@ -119,10 +119,6 @@ export const postsApi = {
 
 ---
 
-⚡ PikaKit v3.9.105
-
----
-
 ## 🔗 Related
 
 | File | When to Read |
@@ -131,3 +127,7 @@ export const postsApi = {
 | [performance.md](performance.md) | Lazy loading and memoization |
 | [file-organization.md](file-organization.md) | Where to place api/ services |
 | [../SKILL.md](../SKILL.md) | No early returns rule |
+
+---
+
+⚡ PikaKit v3.9.110

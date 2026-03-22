@@ -2,9 +2,13 @@
 name: web-games
 description: >-
   Web browser game development principles. Framework selection, WebGPU, optimization, PWA.
+category: game-development-subskill
+triggers: ["web game", "browser game", "Phaser", "PixiJS", "Three.js", "Babylon.js"]
+coordinates_with: ["game-development", "multiplayer", "perf-optimizer"]
+success_metrics: ["100% games support WebGPU", "0 audio autoplay violations"]
 metadata:
   author: pikakit
-  version: "1.0.0"
+  version: "3.9.110"
 ---
 
 # Web Browser Game Development
@@ -154,10 +158,6 @@ What type of game?
 
 ---
 
-⚡ PikaKit v3.9.105
-
----
-
 ## 🔗 Related
 
 | Item | Type | When to Read |
@@ -167,3 +167,7 @@ What type of game?
 | `game-development/multiplayer` | Sibling | WebSocket multiplayer |
 | `game-development/game-audio` | Sibling | Web Audio API constraints |
 | `perf-optimizer` | Skill | Browser performance profiling |
+
+---
+
+⚡ PikaKit v3.9.110

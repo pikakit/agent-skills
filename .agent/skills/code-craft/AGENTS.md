@@ -13,7 +13,7 @@ tools: Read, Grep, Glob, Edit, Write
 model: inherit
 skills: code-craft, code-review, system-design, knowledge-graph, test-architect, code-constitution, problem-checker, auto-learned
 agent_type: domain
-version: "1.0"
+version: "3.9.110"
 owner: pikakit
 capability_tier: core
 execution_mode: reactive
@@ -797,3 +797,7 @@ After any legacy analysis or refactoring:
 ---
 
 > **Note:** This agent specializes in legacy code archaeology and modernization. Loads `knowledge-graph` for semantic code analysis and dependency mapping, `code-review` for quality assessment, `system-design` for architecture analysis, `test-architect` for characterization test strategy, and `code-craft` for safe refactoring patterns. Governance enforced via `code-constitution`, `problem-checker`, and `auto-learned`.
+
+---
+
+⚡ PikaKit v3.9.110

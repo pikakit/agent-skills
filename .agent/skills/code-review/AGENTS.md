@@ -13,7 +13,7 @@ tools: Read, Grep, Glob, Bash, Edit, Write
 model: inherit
 skills: e2e-automation, test-architect, agent-browser, chrome-devtools, code-craft, code-review, code-constitution, problem-checker, auto-learned
 agent_type: domain
-version: "1.0"
+version: "3.9.110"
 owner: pikakit
 capability_tier: core
 execution_mode: reactive
@@ -1657,4 +1657,8 @@ After completing any evaluation:
 
 > **Note:** This agent combines risk analysis and conflict arbitration. Loads `code-review` for dependency/evidence analysis, `project-planner` for mitigation design, `code-constitution` for governance compliance, and `auto-learned` for pattern matching. Merges capabilities of former `assessor` and `critic` agents.
 
-> ⚡ PikaKit v3.9.105
+>
+
+---
+
+⚡ PikaKit v3.9.110

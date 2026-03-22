@@ -675,4 +675,8 @@ if (reduceMotion) {
 > **Remember:** Android users expect Material Design. Custom designs that ignore Material patterns feel foreign and broken. Use Material components as your foundation, customize thoughtfully.
 ---
 
-⚡ PikaKit v3.9.105\r\n\r\n---\r\n\r\n## 🔗 Related\r\n\r\n| File | When to Read |\r\n|------|-------------|\r\n| [../SKILL.md](../SKILL.md) | MFRI scoring, platform differences |\r\n| [platform-ios.md](platform-ios.md) | iOS counterpart |\r\n| [touch-psychology.md](touch-psychology.md) | Touch interaction patterns |\r\n| [mobile-typography.md](mobile-typography.md) | Roboto details |\r\n| [engineering-spec.md](engineering-spec.md) | Full engineering spec |
+\r\n\r\n---\r\n\r\n## 🔗 Related\r\n\r\n| File | When to Read |\r\n|------|-------------|\r\n| [../SKILL.md](../SKILL.md) | MFRI scoring, platform differences |\r\n| [platform-ios.md](platform-ios.md) | iOS counterpart |\r\n| [touch-psychology.md](touch-psychology.md) | Touch interaction patterns |\r\n| [mobile-typography.md](mobile-typography.md) | Roboto details |\r\n| [engineering-spec.md](engineering-spec.md) | Full engineering spec |
+
+---
+
+⚡ PikaKit v3.9.110

@@ -13,7 +13,7 @@ tools: Read, Grep, Glob, Bash, Edit, Write
 model: inherit
 skills: seo-optimizer, copywriting, perf-optimizer, code-craft, code-constitution, problem-checker, auto-learned
 agent_type: utility
-version: "1.0"
+version: "3.9.110"
 owner: pikakit
 capability_tier: core
 execution_mode: reactive
@@ -411,6 +411,13 @@ When reviewing SEO implementation, verify:
     "schema_types_added": ["Article", "FAQPage", "BreadcrumbList"],
     "geo_optimizations": 5
   },
+  "security": {
+    "rules_of_engagement_followed": true
+  },
+  "code_quality": {
+    "problem_checker_run": true,
+    "errors_fixed": 0
+  },
   "artifacts": ["sitemap.xml", "robots.txt", "schema.json"],
   "next_action": "rerun Lighthouse | submit to Search Console | null",
   "escalation_target": "frontend | perf | null",
@@ -619,16 +626,47 @@ orchestrator → seo (meta/schema) + frontend (components) + perf (CWV) → full
 
 ## Observability
 
-### Log Schema
+### Log Schema (OpenTelemetry Event Array)
 
 ```json
 {
-  "trace_id": "uuid",
-  "parent_trace": "uuid | null",
-  "agent": "seo-specialist",
-  "event": "start | audit | fix | schema_add | geo_optimize | success | failure",
-  "timestamp": "ISO8601",
-  "payload": { "lighthouse_seo": 98, "cwv_lcp_ms": 1800, "fixes": 12, "schemas": 3 }
+  "traceId": "uuid",
+  "spanId": "uuid",
+  "events": [
+    {
+      "name": "audit_started",
+      "timestamp": "ISO8601",
+      "attributes": {
+        "scope": "full_audit",
+        "url": "https://example.com"
+      }
+    },
+    {
+      "name": "cwv_measured",
+      "timestamp": "ISO8601",
+      "attributes": {
+        "lcp_ms": 1800,
+        "inp_ms": 120,
+        "cls": 0.05
+      }
+    },
+    {
+      "name": "schema_added",
+      "timestamp": "ISO8601",
+      "attributes": {
+        "type": "Article",
+        "page": "/blog/post-1"
+      }
+    },
+    {
+      "name": "audit_completed",
+      "timestamp": "ISO8601",
+      "attributes": {
+        "lighthouse_seo": 98,
+        "fixes_applied": 12
+      }
+    }
+  ]
 }
 ```
 
@@ -795,3 +833,7 @@ After SEO optimization:
 ---
 
 > **Note:** This agent optimizes for both traditional search engines and AI-powered search. Key skills: `seo-optimizer` for technical SEO audits, `geo-spatial` for AI citation strategies, `copywriting` for content optimization, and `perf-optimizer` for Core Web Vitals. DISTINCT FROM `perf` (runtime/bundle performance) and `docs` (content creation). Governance enforced via `code-constitution`, `problem-checker`, and `auto-learned`.
+
+---
+
+⚡ PikaKit v3.9.110

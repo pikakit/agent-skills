@@ -2,11 +2,14 @@
 name: nodejs-pro
 description: >-
   Node.js development principles and decision-making. Framework selection
-  (Hono/Fastify/Express/NestJS), async patterns, security, architecture. Triggers on: Node.js,
-  Express, backend, server, API.
+  (Hono/Fastify/Express/NestJS), async patterns, security, architecture.
+category: backend-architect
+triggers: ["Node.js", "Express", "Fastify", "Hono", "backend", "server", "API"]
+coordinates_with: ["api-architect", "data-modeler", "auth-patterns", "problem-checker", "auto-learned", "typescript-expert"]
+success_metrics: ["0 Security Vulnerabilities", "0 IDE/Lint Errors", "0 Unhandled Promise Rejections"]
 metadata:
   author: pikakit
-  version: "3.9.108"
+  version: "3.9.110"
 ---
 
 # Node.js Pro — Backend Decision Framework
@@ -14,6 +17,18 @@ metadata:
 > 5 frameworks. Async-first. Validate at boundary. No sync in production.
 
 **Philosophy:** Learn to THINK, not memorize. Choose framework by context.
+
+---
+
+## 5 Must-Ask Questions (Before Any Development)
+
+| # | Question | Options |
+|---|----------|---------|
+| 1 | Who are the Consumers? | SPA, mobile, third-party, internal |
+| 2 | Runtime / Target? | Edge (Hono/Bun), Node.js, Serverless |
+| 3 | Framework Preference? | Hono, Fastify, Express, NestJS |
+| 4 | Database & ORM? | PostgreSQL/Neon, Turso/SQLite, Prisma/Drizzle |
+| 5 | Authentication? | JWT, Session, OAuth2, None |
 
 ---
 
@@ -78,6 +93,18 @@ What are you building?
 
 ---
 
+## Audit Logging (OpenTelemetry)
+
+| Event | Metadata Payload | Severity |
+|-------|------------------|----------|
+| `architecture_decision` | `{"runtime": "nodejs|edge", "framework": "..."}` | `INFO` |
+| `framework_selection` | `{"reason": "...", "database": "..."}` | `INFO` |
+| `build_verification` | `{"status": "pass|fail", "metrics_met": true}` | `INFO` |
+
+All executions MUST emit the `build_verification` span before reporting completion.
+
+---
+
 ## Error Taxonomy
 
 | Code | Recoverable | Trigger |
@@ -100,6 +127,7 @@ What are you building?
 | Skip input validation | Validate all inputs at boundary |
 | Block event loop with CPU work | Use worker threads |
 | Hardcode secrets | Use environment variables |
+| Ignore IDE warnings/errors | Call `problem-checker` to auto-fix |
 
 ---
 
@@ -208,4 +236,4 @@ For the complete guide with all rules expanded: `AGENTS.md`
 
 ---
 
-⚡ PikaKit v3.9.108
+⚡ PikaKit v3.9.110

@@ -140,3 +140,7 @@ tags: security, testing
 | [rate-limiting.md](rate-limiting.md) | Rate limit bypass testing |
 | [graphql.md](graphql.md) | GraphQL-specific security |
 | [SKILL.md](../SKILL.md) | Full decision framework |
+
+---
+
+⚡ PikaKit v3.9.110

@@ -593,3 +593,7 @@ messaging().setBackgroundMessageHandler(async remoteMessage => {
 | [../frameworks/react-native.md](../frameworks/react-native.md) | RN notification setup |
 | [../frameworks/flutter.md](../frameworks/flutter.md) | Flutter notification setup |
 | [../frameworks/native.md](../frameworks/native.md) | Native iOS/Android handlers |
+
+---
+
+⚡ PikaKit v3.9.110

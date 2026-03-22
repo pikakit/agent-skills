@@ -304,6 +304,13 @@ API Architect maintains zero persistent state. Every invocation starts from a cl
 
 ## 13. Observability & Logging Schema
 
+### OpenTelemetry Integration (MANDATORY)
+
+- **Distributed Tracing**: EVERY API endpoint designed via this skill MUST propagate tracing headers (e.g., X-B3-TraceId or W3C 	raceparent).
+- **Telemetry Emission**: The pi_validator.js script MUST emit traces via OpenTelemetry SDK during its execution.
+- **Log Correlation**: All JSON outputs from the validation layer MUST contain the current 	race_id.
+
+
 ### Log Entry Format
 
 ```json
@@ -495,4 +502,4 @@ API Architect maintains zero persistent state. Every invocation starts from a cl
 
 ---
 
-⚡ PikaKit v3.9.105
+⚡ PikaKit v3.9.110

@@ -158,7 +158,7 @@ What type of application?
 
 ---
 
-⚡ PikaKit v3.9.105
+
 
 ---
 
@@ -675,7 +675,7 @@ Auth Patterns maintains zero persistent state. Every invocation starts from a cl
 
 ---
 
-⚡ PikaKit v3.9.105
+
 
 ---
 
@@ -861,7 +861,7 @@ async function refreshTokens(oldRefreshToken: string) {
 
 ---
 
-⚡ PikaKit v3.9.105
+
 
 ---
 
@@ -1036,7 +1036,7 @@ User cannot access MFA device?
 
 ---
 
-⚡ PikaKit v3.9.105
+
 
 ---
 
@@ -1171,7 +1171,7 @@ OIDC = OAuth 2.0 + Identity Layer
 
 ---
 
-⚡ PikaKit v3.9.105
+
 
 ---
 
@@ -1415,7 +1415,7 @@ await fetch('/api/auth/passkey/login/verify', {
 
 ---
 
-⚡ PikaKit v3.9.105
+
 
 ---
 
@@ -1623,7 +1623,7 @@ function evaluatePolicy(ctx: PolicyContext): boolean {
 
 ---
 
-⚡ PikaKit v3.9.105
+
 
 ---
 
@@ -1806,7 +1806,7 @@ async function invalidateAllSessions(userId: string) {
 
 ---
 
-⚡ PikaKit v3.9.105
+
 
 ---
 
@@ -1818,3 +1818,13 @@ async function invalidateAllSessions(userId: string) {
 | [oauth2.md](oauth2.md) | OAuth sessions |
 | [mfa.md](mfa.md) | MFA with sessions |
 | [SKILL.md](../SKILL.md) | Auth strategy decision tree |
+
+---
+
+⚡ ## Security Audit Logging (MANDATORY)
+
+- EVERY sensitive auth event MUST be audited to SIEM with ip_address and 	imestamp.
+
+---
+
+PikaKit v3.9.110

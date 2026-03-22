@@ -500,4 +500,11 @@ Transitions:
 
 ---
 
-⚡ PikaKit v3.9.105
+⚡ ## OpenTelemetry Observability (MANDATORY)
+
+- **Distributed Tracing**: EVERY Chrome DevTools script invocation MUST be traced via OpenTelemetry. W3C Trace Context must be propagated through Puppeteer to the target page.
+- **Metrics**: Core Web Vitals (FCP, LCP, CLS, TTFB) MUST be recorded as OTel Histogram metrics attached to the current 	race_id.
+
+---
+
+PikaKit v3.9.110

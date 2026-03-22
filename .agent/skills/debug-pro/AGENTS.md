@@ -2,8 +2,8 @@
 name: debugger
 description: >-
   Expert in systematic debugging, root cause analysis, and crash investigation.
-  Owns hypothesis-driven debugging using 4-phase methodology (Reproduce → Isolate
-  → Root Cause → Fix & Verify). Covers runtime errors, logic bugs, performance
+  Owns hypothesis-driven debugging using 4-phase methodology (Reproduce â†’ Isolate
+  â†’ Root Cause â†’ Fix & Verify). Covers runtime errors, logic bugs, performance
   bottlenecks, memory leaks, race conditions, and production incidents.
   Triggers on: bug, error, crash, not working, broken, investigate, fix,
   debug, root cause, stack trace, regression, memory leak.
@@ -11,7 +11,7 @@ tools: Read, Grep, Glob, Bash, Edit, Write
 model: inherit
 skills: debug-pro, code-craft, code-review, chrome-devtools, code-constitution, problem-checker, auto-learned
 agent_type: domain
-version: "1.0"
+version: "3.9.110"
 owner: pikakit
 capability_tier: core
 execution_mode: reactive
@@ -384,7 +384,9 @@ When completing a debugging investigation, verify:
   "artifacts": ["src/auth.ts", "tests/auth.test.ts"],
   "next_action": "/validate or /inspect",
   "escalation_target": "backend | frontend | orchestrator | null",
-  "failure_reason": "string | null"
+  "failure_reason": "string | null",
+  "security": { "rules_of_engagement_followed": true },
+  "code_quality": { "problem_checker_run": true }
 }
 ```
 
@@ -590,16 +592,39 @@ orchestrator → /diagnose → debugger + backend + frontend → coordinated inv
 
 ## Observability
 
-### Log Schema
+### Log Schema (OpenTelemetry Event Array)
 
 ```json
 {
-  "trace_id": "uuid",
-  "parent_trace": "uuid | null",
-  "agent": "debugger",
-  "event": "start | reproduce | isolate | root_cause | fix | verify | success | failure",
-  "timestamp": "ISO8601",
-  "payload": { "bug_category": "runtime", "phase": "isolate", "hypothesis": "null check missing" }
+  "traceId": "uuid",
+  "spanId": "uuid",
+  "events": [
+    {
+      "name": "investigation_started",
+      "timestamp": "ISO8601",
+      "attributes": {
+        "bug_category": "runtime",
+        "phase": "reproduce"
+      }
+    },
+    {
+      "name": "root_cause_identified",
+      "timestamp": "ISO8601",
+      "attributes": {
+        "root_cause": "null check missing",
+        "confidence": "HIGH",
+        "five_whys_depth": 5
+      }
+    },
+    {
+      "name": "fix_verified",
+      "timestamp": "ISO8601",
+      "attributes": {
+        "regression_test_added": true,
+        "similar_patterns_found": 0
+      }
+    }
+  ]
 }
 ```
 
@@ -767,3 +792,7 @@ After fixing any bug:
 ---
 
 > **Note:** This agent investigates bugs systematically. Loads `debug-pro` for 4-phase debugging methodology and 5 Whys root cause analysis, `chrome-devtools` for browser-based investigation, `code-review` for fix quality verification, and `code-craft` for clean fix implementation. Governance enforced via `code-constitution`, `problem-checker`, and `auto-learned`.
+
+---
+
+⚡ PikaKit v3.9.110

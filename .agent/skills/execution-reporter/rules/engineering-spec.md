@@ -1,4 +1,4 @@
-﻿---
+---
 title: Execution Reporter — Engineering Specification
 impact: MEDIUM
 tags: execution-reporter
@@ -128,7 +128,7 @@ Recoverable: boolean
   - minimal: routing + completion only
   - normal: routing + skills + completion
   - verbose: routing + skills + scripts + completion
-- PikaKit branding is always included (version: v3.9.68).
+- PikaKit branding is always included (version: v3.9.110).
 - One notification per phase; no duplication.
 
 #### What Agents May Assume
@@ -218,7 +218,7 @@ All phases synchronous. No async pipeline.
 |-----------|-------------|
 | Fixed template set | 4 templates: full, compact, complete, script |
 | Fixed verbosity levels | 3 levels: minimal, normal, verbose |
-| Fixed branding | PikaKit v3.9.105; not configurable |
+| Fixed branding | PikaKit v3.9.110; not configurable |
 | Fixed complexity threshold | > 3 skills → full template; ≤ 3 → compact |
 | One notification per phase | No duplicate or overlapping notifications |
 | No content generation | Templates are structural; values are interpolated |
@@ -261,19 +261,6 @@ Each invocation produces an identical notification for identical inputs. No noti
 
 | Parameter | Default | Maximum | Rationale |
 |-----------|---------|---------|-----------|
-| Render timeout | N/A | N/A | Synchronous; < 5ms |
-| Internal retries | Zero | Zero | Deterministic output |
-
----
-
-## 13. Observability & Logging Schema
-
-### Log Entry Format
-
-```json
-{
-  "trace_id": "uuid",
-  "skill_name": "execution-reporter",
   "contract_version": "2.0.0",
   "execution_id": "uuid",
   "timestamp": "ISO-8601",
@@ -382,7 +369,7 @@ All resources scoped to invocation. No persistent handles.
 |----------|-------|--------|
 | **Functionality** | 4 notification types (task-start, task-complete, compact, script-run) | ✅ |
 | **Functionality** | 3 verbosity levels (minimal, normal, verbose) | ✅ |
-| **Functionality** | PikaKit branding (v3.9.68) on all notifications | ✅ |
+| **Functionality** | PikaKit branding (v3.9.110) on all notifications | ✅ |
 | **Functionality** | Complexity threshold (> 3 skills → full template) | ✅ |
 | **Contracts** | Input/output/error schemas in pseudo-schema format | ✅ |
 | **Contracts** | Contract versioning with semver | ✅ |
@@ -399,4 +386,4 @@ All resources scoped to invocation. No persistent handles.
 
 ---
 
-⚡ PikaKit v3.9.105
+⚡ PikaKit v3.9.110

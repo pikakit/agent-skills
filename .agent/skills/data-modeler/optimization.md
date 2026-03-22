@@ -144,7 +144,7 @@ SELECT reltuples AS estimate FROM pg_class WHERE relname = 'orders';
 
 ---
 
-⚡ PikaKit v3.9.105
+
 
 ---
 
@@ -155,3 +155,7 @@ SELECT reltuples AS estimate FROM pg_class WHERE relname = 'orders';
 | [indexing.md](indexing.md) | Create indexes for slow queries |
 | [orm-selection.md](orm-selection.md) | ORM-level N+1 prevention |
 | [SKILL.md](SKILL.md) | Decision checklist |
+
+---
+
+⚡ PikaKit v3.9.110

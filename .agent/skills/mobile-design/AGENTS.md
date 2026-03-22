@@ -160,7 +160,7 @@ Touch-first → Battery-conscious → Platform-respectful → Offline-capable
 
 ---
 
-⚡ PikaKit v3.9.105
+
 
 ---
 
@@ -694,7 +694,7 @@ API cache?           → Query library
 > **Remember:** These trees are guides for THINKING, not rules to follow blindly. Every project has unique constraints. ASK clarifying questions when requirements are vague, and choose based on actual needs, not defaults.
 ---
 
-⚡ PikaKit v3.9.105
+
 
 ---
 
@@ -1156,7 +1156,7 @@ All resources scoped to invocation. No persistent handles.
 
 ---
 
-⚡ PikaKit v3.9.105
+
 
 ---
 
@@ -1672,7 +1672,7 @@ ALERTS:
 > **Remember:** Mobile backend must be resilient to bad networks, respect battery life, and handle interrupted sessions gracefully. The client cannot be trusted, but it also cannot be hung up—provide offline capabilities and clear error recovery paths.
 ---
 
-⚡ PikaKit v3.9.105
+
 
 ---
 
@@ -2117,7 +2117,7 @@ Ideal:       7:1 (AAA)
 > **Remember:** Color on mobile must work in the worst conditions—bright sun, tired eyes, colorblindness, low battery. Pretty colors that fail these tests are useless colors.
 ---
 
-⚡ PikaKit v3.9.105\r\n\r\n---\r\n\r\n## 🔗 Related\r\n\r\n| File | When to Read |\r\n|------|-------------|\r\n| [../SKILL.md](../SKILL.md) | Platform differences |\r\n| [mobile-typography.md](mobile-typography.md) | Color + typography harmony |\r\n| [platform-ios.md](platform-ios.md) | iOS system colors |\r\n| [platform-android.md](platform-android.md) | Material You dynamic color |\r\n| [engineering-spec.md](engineering-spec.md) | Full engineering spec |
+\r\n\r\n---\r\n\r\n## 🔗 Related\r\n\r\n| File | When to Read |\r\n|------|-------------|\r\n| [../SKILL.md](../SKILL.md) | Platform differences |\r\n| [mobile-typography.md](mobile-typography.md) | Color + typography harmony |\r\n| [platform-ios.md](platform-ios.md) | iOS system colors |\r\n| [platform-android.md](platform-android.md) | Material You dynamic color |\r\n| [engineering-spec.md](engineering-spec.md) | Full engineering spec |
 
 ---
 
@@ -2252,7 +2252,7 @@ Web Debugging:      Mobile Debugging:
 > **Remember:** If JavaScript looks perfect but the app fails, look closer at the Native side.
 ---
 
-⚡ PikaKit v3.9.105
+
 
 ---
 
@@ -2633,7 +2633,7 @@ Platform: iOS / Android / Both
 > **Remember:** If you chose a solution "because that's how it's always done," you chose WITHOUT THINKING. Every project is unique. Every context is different. Every user behavior is specific. **THINK, then code.**
 ---
 
-⚡ PikaKit v3.9.105
+
 
 ---
 
@@ -3115,7 +3115,7 @@ Don't reinvent navigation.
 > **Remember:** Navigation is invisible when done right. Users shouldn't think about HOW to get somewhere—they just get there. If they notice navigation, something is wrong.
 ---
 
-⚡ PikaKit v3.9.105\r\n\r\n---\r\n\r\n## 🔗 Related\r\n\r\n| File | When to Read |\r\n|------|-------------|\r\n| [../SKILL.md](../SKILL.md) | 5 must-ask questions (navigation) |\r\n| [platform-ios.md](platform-ios.md) | iOS tab bars, nav bars |\r\n| [platform-android.md](platform-android.md) | Android bottom nav, drawer |\r\n| [touch-psychology.md](touch-psychology.md) | Gesture-based navigation |\r\n| [engineering-spec.md](engineering-spec.md) | Full engineering spec |
+\r\n\r\n---\r\n\r\n## 🔗 Related\r\n\r\n| File | When to Read |\r\n|------|-------------|\r\n| [../SKILL.md](../SKILL.md) | 5 must-ask questions (navigation) |\r\n| [platform-ios.md](platform-ios.md) | iOS tab bars, nav bars |\r\n| [platform-android.md](platform-android.md) | Android bottom nav, drawer |\r\n| [touch-psychology.md](touch-psychology.md) | Gesture-based navigation |\r\n| [engineering-spec.md](engineering-spec.md) | Full engineering spec |
 
 ---
 
@@ -3895,7 +3895,7 @@ Low-end Android ← Test device
 > **Remember:** Performance is not optimization—it's baseline quality. A slow app is a broken app. Test on the worst device your users have, not the best device you have.
 ---
 
-⚡ PikaKit v3.9.105\r\n\r\n---\r\n\r\n## 🔗 Related\r\n\r\n| File | When to Read |\r\n|------|-------------|\r\n| [../SKILL.md](../SKILL.md) | MFRI performance risk dimension |\r\n| [mobile-testing.md](mobile-testing.md) | Performance testing strategies |\r\n| [mobile-debugging.md](mobile-debugging.md) | Performance debugging |\r\n| [mobile-backend.md](mobile-backend.md) | API performance, caching |\r\n| [engineering-spec.md](engineering-spec.md) | Full engineering spec |
+\r\n\r\n---\r\n\r\n## 🔗 Related\r\n\r\n| File | When to Read |\r\n|------|-------------|\r\n| [../SKILL.md](../SKILL.md) | MFRI performance risk dimension |\r\n| [mobile-testing.md](mobile-testing.md) | Performance testing strategies |\r\n| [mobile-debugging.md](mobile-debugging.md) | Performance debugging |\r\n| [mobile-backend.md](mobile-backend.md) | API performance, caching |\r\n| [engineering-spec.md](engineering-spec.md) | Full engineering spec |
 
 ---
 
@@ -4264,7 +4264,7 @@ Before writing tests, answer:
 > **Remember:** Good mobile testing is about testing the RIGHT things, not EVERYTHING. A flaky E2E test is worse than no test. A failing unit test that catches a bug is worth 100 passing trivial tests.
 ---
 
-⚡ PikaKit v3.9.105
+
 
 ---
 
@@ -4721,7 +4721,7 @@ Long text: 1.5-1.75
 > **Remember:** If users can't read your text, your app is broken. Typography isn't decoration—it's the primary interface. Test on real devices, in real conditions, with accessibility settings enabled.
 ---
 
-⚡ PikaKit v3.9.105\r\n\r\n---\r\n\r\n## 🔗 Related\r\n\r\n| File | When to Read |\r\n|------|-------------|\r\n| [../SKILL.md](../SKILL.md) | Platform differences (SF Pro/Roboto) |\r\n| [platform-ios.md](platform-ios.md) | iOS SF Pro usage |\r\n| [platform-android.md](platform-android.md) | Android Roboto usage |\r\n| [mobile-color-system.md](mobile-color-system.md) | Color + typography harmony |\r\n| [engineering-spec.md](engineering-spec.md) | Full engineering spec |
+\r\n\r\n---\r\n\r\n## 🔗 Related\r\n\r\n| File | When to Read |\r\n|------|-------------|\r\n| [../SKILL.md](../SKILL.md) | Platform differences (SF Pro/Roboto) |\r\n| [platform-ios.md](platform-ios.md) | iOS SF Pro usage |\r\n| [platform-android.md](platform-android.md) | Android Roboto usage |\r\n| [mobile-color-system.md](mobile-color-system.md) | Color + typography harmony |\r\n| [engineering-spec.md](engineering-spec.md) | Full engineering spec |
 
 ---
 
@@ -5400,7 +5400,7 @@ if (reduceMotion) {
 > **Remember:** Android users expect Material Design. Custom designs that ignore Material patterns feel foreign and broken. Use Material components as your foundation, customize thoughtfully.
 ---
 
-⚡ PikaKit v3.9.105\r\n\r\n---\r\n\r\n## 🔗 Related\r\n\r\n| File | When to Read |\r\n|------|-------------|\r\n| [../SKILL.md](../SKILL.md) | MFRI scoring, platform differences |\r\n| [platform-ios.md](platform-ios.md) | iOS counterpart |\r\n| [touch-psychology.md](touch-psychology.md) | Touch interaction patterns |\r\n| [mobile-typography.md](mobile-typography.md) | Roboto details |\r\n| [engineering-spec.md](engineering-spec.md) | Full engineering spec |
+\r\n\r\n---\r\n\r\n## 🔗 Related\r\n\r\n| File | When to Read |\r\n|------|-------------|\r\n| [../SKILL.md](../SKILL.md) | MFRI scoring, platform differences |\r\n| [platform-ios.md](platform-ios.md) | iOS counterpart |\r\n| [touch-psychology.md](touch-psychology.md) | Touch interaction patterns |\r\n| [mobile-typography.md](mobile-typography.md) | Roboto details |\r\n| [engineering-spec.md](engineering-spec.md) | Full engineering spec |
 
 ---
 
@@ -5974,7 +5974,7 @@ AccessibilityInfo.isReduceMotionEnabled()
 > **Remember:** iOS users have strong expectations from other iOS apps. Deviating from HIG patterns feels "broken" to them. When in doubt, use the native component.
 ---
 
-⚡ PikaKit v3.9.105\r\n\r\n---\r\n\r\n## 🔗 Related\r\n\r\n| File | When to Read |\r\n|------|-------------|\r\n| [../SKILL.md](../SKILL.md) | MFRI scoring, platform differences |\r\n| [platform-android.md](platform-android.md) | Android counterpart |\r\n| [touch-psychology.md](touch-psychology.md) | Touch interaction patterns |\r\n| [mobile-typography.md](mobile-typography.md) | SF Pro details |\r\n| [engineering-spec.md](engineering-spec.md) | Full engineering spec |
+\r\n\r\n---\r\n\r\n## 🔗 Related\r\n\r\n| File | When to Read |\r\n|------|-------------|\r\n| [../SKILL.md](../SKILL.md) | MFRI scoring, platform differences |\r\n| [platform-android.md](platform-android.md) | Android counterpart |\r\n| [touch-psychology.md](touch-psychology.md) | Touch interaction patterns |\r\n| [mobile-typography.md](mobile-typography.md) | SF Pro details |\r\n| [engineering-spec.md](engineering-spec.md) | Full engineering spec |
 
 ---
 
@@ -6524,4 +6524,8 @@ Warning:  Attention needed
 > **Remember:** Every touch is a conversation between user and device. Make it feel natural, responsive, and respectful of human fingers—not precise cursor points.
 ---
 
-⚡ PikaKit v3.9.105\r\n\r\n---\r\n\r\n## 🔗 Related\r\n\r\n| File | When to Read |\r\n|------|-------------|\r\n| [../SKILL.md](../SKILL.md) | Touch target standards (44pt/48dp) |\r\n| [platform-ios.md](platform-ios.md) | iOS haptics, gestures |\r\n| [platform-android.md](platform-android.md) | Android touch feedback |\r\n| [mobile-navigation.md](mobile-navigation.md) | Gesture-based navigation |\r\n| [engineering-spec.md](engineering-spec.md) | Full engineering spec |
+\r\n\r\n---\r\n\r\n## 🔗 Related\r\n\r\n| File | When to Read |\r\n|------|-------------|\r\n| [../SKILL.md](../SKILL.md) | Touch target standards (44pt/48dp) |\r\n| [platform-ios.md](platform-ios.md) | iOS haptics, gestures |\r\n| [platform-android.md](platform-android.md) | Android touch feedback |\r\n| [mobile-navigation.md](mobile-navigation.md) | Gesture-based navigation |\r\n| [engineering-spec.md](engineering-spec.md) | Full engineering spec |
+
+---
+
+⚡ PikaKit v3.9.110

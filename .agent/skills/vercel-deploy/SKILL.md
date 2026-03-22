@@ -4,16 +4,31 @@ description: >-
   Deploy applications and websites to Vercel. Use this skill when the user requests deployment
   actions such as "Deploy my app", "Deploy this to production", "Create a preview deployment",
   "Deploy and give me the link", or "Push this live". No authentication required - returns
-  preview URL and claimable deployment link. Triggers on: deploy, vercel, production, preview,
-  push live.
+  preview URL and claimable deployment link.
+category: cicd-deployment
+triggers: ["deploy", "vercel", "production", "preview", "push live"]
+coordinates_with: ["cicd-pipeline", "nextjs-pro", "test-architect"]
+success_metrics: ["Deployment Success Rate", "Time to Preview", "Framework Detection Accuracy"]
 metadata:
   author: pikakit
-  version: "3.9.108"
+  version: "3.9.110"
 ---
 
 # Vercel Deploy — Zero-Auth Deployment
 
 > Package → Detect Framework → Upload → Preview URL + Claim URL
+
+---
+
+## 5 Must-Ask Questions (Socratic Gate)
+
+| # | Question | Options |
+|---|----------|---------|
+| 1 | Framework/Tooling? | Next.js / Vite / Nuxt / Static |
+| 2 | Build Output Directory? | `.next` / `dist` / `build` |
+| 3 | Environment Variables? | Required / None |
+| 4 | Egress Network Allowed? | Yes (deploy now) / No |
+| 5 | Pre-deploy Checks Passed? | Lint+Test Passed / Skip Checks |
 
 ---
 
@@ -116,6 +131,18 @@ Auto-detects from `package.json`:
 
 ---
 
+## Audit Logging (OpenTelemetry)
+
+| Event | Metadata Payload | Severity |
+|-------|------------------|----------|
+| `packaging_started` | `{"directory": "src", "framework_hint": "react"}` | `INFO` |
+| `upload_completed` | `{"deploymentId": "dpl_abc", "bytes": 102400}` | `INFO` |
+| `deployment_failed` | `{"error_code": "ERR_UPLOAD_TIMEOUT", "retry": 1}` | `ERROR` |
+
+All vercel-deploy outputs MUST emit `packaging_started` and either `upload_completed` or `deployment_failed`.
+
+---
+
 ## Troubleshooting
 
 | Problem | Solution |
@@ -146,4 +173,4 @@ Auto-detects from `package.json`:
 
 ---
 
-⚡ PikaKit v3.9.108
+⚡ PikaKit v3.9.110

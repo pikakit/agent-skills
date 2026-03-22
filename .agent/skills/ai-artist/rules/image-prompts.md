@@ -182,10 +182,6 @@ data visualization art, 8k render --ar 16:9 --style raw
 
 ---
 
-⚡ PikaKit v3.9.105
-
----
-
 ## 🔗 Related
 
 | File | When to Read |
@@ -193,3 +189,7 @@ data visualization art, 8k render --ar 16:9 --style raw
 | [model-syntax.md](model-syntax.md) | Model-specific parameters (--ar, --style, etc.) |
 | [domain-marketing.md](domain-marketing.md) | Marketing visual prompts |
 | [../SKILL.md](../SKILL.md) | Image prompt pattern and anti-patterns |
+
+---
+
+⚡ PikaKit v3.9.110

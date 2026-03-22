@@ -1,4 +1,4 @@
-﻿---
+---
 title: Google ADK Python — Engineering Specification
 impact: MEDIUM
 tags: google-adk-python
@@ -296,6 +296,11 @@ Stateless. Fully idempotent. No persistent state.
 
 ## 13. Observability & Logging Schema
 
+### OpenTelemetry Observability (MANDATORY)
+
+- **Agent Delegation Telemetry**: Every time a Coordinator Agent delegates a sub-task to a Specialist Agent, the orchestration framework MUST wrap the call in an OpenTelemetry Span (`agent_delegation_duration`) to track multi-agent communication latency.
+- **Tool Invocation Tracking**: Any time an Agent invokes a tool, the framework MUST emit an OTel Event (`TOOL_INVOKED`) containing the tool name and input context. This is required for tracking tool usage frequency and failure rates.
+
 ### Log Entry Format
 
 ```json
@@ -443,4 +448,4 @@ All resources scoped to invocation. No persistent handles.
 
 ---
 
-⚡ PikaKit v3.9.105
+⚡ PikaKit v3.9.110

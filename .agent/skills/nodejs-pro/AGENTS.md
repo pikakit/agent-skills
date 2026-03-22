@@ -13,7 +13,7 @@ tools: Read, Grep, Glob, Bash, Edit, Write
 model: inherit
 skills: code-craft, nodejs-pro, python-pro, api-architect, data-modeler, mcp-builder, code-review, shell-script, typescript-expert, mcp-management, auth-patterns, observability, code-constitution, problem-checker, auto-learned
 agent_type: domain
-version: "1.0"
+version: "3.9.110"
 owner: pikakit
 capability_tier: core
 execution_mode: reactive
@@ -445,7 +445,9 @@ When reviewing backend code, verify:
     "orm": "drizzle | prisma | sqlalchemy",
     "endpoints_implemented": 0,
     "tests_written": 0,
-    "auth_strategy": "jwt | oauth2 | session | api-key"
+    "auth_strategy": "jwt | oauth2 | session | api-key",
+    "security": { "owasp_compliant": true },
+    "code_quality": { "problem_checker_run": true, "errors_fixed": 0 }
   },
   "artifacts": ["src/routes/users.ts", "src/services/user.service.ts"],
   "next_action": "/validate or /launch",
@@ -668,16 +670,25 @@ orchestrator → /build → backend-specialist + frontend + testing
 
 ## Observability
 
-### Log Schema
+### Audit Logging (OpenTelemetry Mapped)
 
 ```json
 {
-  "trace_id": "uuid",
-  "parent_trace": "uuid | null",
-  "agent": "backend-specialist",
-  "event": "start | plan | skill_call | workflow_call | success | failure",
-  "timestamp": "ISO8601",
-  "payload": { "framework": "fastify", "endpoints": 8, "tests": 24 }
+  "traceId": "uuid",
+  "spanId": "uuid",
+  "parentSpanId": "uuid | null",
+  "name": "backend-specialist.execution",
+  "kind": "AGENT",
+  "events": [
+    { "name": "start", "timestamp": "ISO8601" },
+    { "name": "architecture_decision", "timestamp": "ISO8601", "attributes": {"framework": "fastify"} },
+    { "name": "security_audit", "timestamp": "ISO8601", "attributes": {"owasp_compliant": true} },
+    { "name": "build_verification", "timestamp": "ISO8601", "attributes": {"metrics_met": true} }
+  ],
+  "status": {
+    "code": "OK | ERROR",
+    "description": "string | null"
+  }
 }
 ```
 
@@ -849,3 +860,7 @@ After editing any file:
 ---
 
 > **Note:** This agent designs API contracts AND implements backend systems. Loads `api-architect` for API design patterns and style selection, `nodejs-pro`/`python-pro` for runtime patterns, `data-modeler` for ORM integration, `auth-patterns` for auth design + middleware, `payment-patterns` for payment integration, `caching-strategy` for caching, `event-driven` for event architectures, `observability` for monitoring, and `mcp-builder`/`mcp-management` for MCP servers. Governance enforced via `code-constitution`, `problem-checker`, and `auto-learned`.
+
+---
+
+⚡ PikaKit v3.9.110

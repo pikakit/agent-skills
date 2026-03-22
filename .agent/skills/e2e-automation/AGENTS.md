@@ -169,7 +169,7 @@ NAVIGATING → ERROR        [target unreachable]  // terminal
 
 ---
 
-⚡ PikaKit v3.9.105
+
 
 ---
 
@@ -879,4 +879,4 @@ For parallel execution: use CI sharding to distribute test files across multiple
 
 ---
 
-⚡ PikaKit v3.9.105
+⚡ PikaKit v3.9.110

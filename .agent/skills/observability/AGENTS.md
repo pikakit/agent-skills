@@ -147,7 +147,7 @@ March 2026
 
 ---
 
-⚡ PikaKit v3.9.105
+
 
 ---
 
@@ -289,6 +289,12 @@ Data: {
   metadata: {
     contract_version: string
     backward_compatibility: string
+  }
+  security: {
+    pii_sanitized: boolean
+  }
+  code_quality: {
+    problem_checker_run: boolean
   }
 }
 Error: ErrorSchema | null
@@ -451,23 +457,24 @@ Stateless. Fully idempotent. No persistent state.
 
 ## 13. Observability & Logging Schema
 
-### Log Entry Format
+### Audit Logging (OpenTelemetry Mapped)
 
 ```json
 {
-  "trace_id": "uuid",
-  "skill_name": "observability",
-  "contract_version": "2.0.0",
-  "execution_id": "uuid",
-  "timestamp": "ISO-8601",
-  "request_type": "string",
-  "runtime": "string",
-  "environment": "string",
-  "provider": "string|null",
-  "sampling_rate": "number|null",
-  "status": "success|error",
-  "error_code": "string|null",
-  "duration_ms": "number"
+  "traceId": "uuid",
+  "spanId": "uuid",
+  "parentSpanId": "uuid | null",
+  "name": "observability.execution",
+  "kind": "AGENT",
+  "events": [
+    { "name": "start", "timestamp": "ISO8601" },
+    { "name": "architecture_decision", "timestamp": "ISO8601", "attributes": {"provider": "datadog"} },
+    { "name": "build_verification", "timestamp": "ISO8601", "attributes": {"metrics_met": true} }
+  ],
+  "status": {
+    "code": "OK | ERROR",
+    "description": "string | null"
+  }
 }
 ```
 
@@ -597,4 +604,4 @@ All resources scoped to invocation. No persistent handles.
 
 ---
 
-⚡ PikaKit v3.9.105
+⚡ PikaKit v3.9.110

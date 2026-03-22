@@ -3,15 +3,31 @@ name: mobile-developer
 description: >-
   Develop React Native, Flutter, or native mobile apps with modern architecture patterns.
   Masters cross-platform development, native integrations, offline sync, and app store
-  optimization. Triggers on: React Native, Flutter, iOS, Android, mobile app, cross-platform.
+  optimization.
+category: mobile-architect
+triggers: ["React Native", "Flutter", "iOS", "Android", "mobile app", "cross-platform", "native app"]
+coordinates_with: ["mobile-first", "mobile-design", "test-architect", "perf-optimizer", "mobile-security-coder", "code-craft", "problem-checker"]
+success_metrics: ["100% Build Pass", "0 IDE/Lint Errors", "OWASP MASVS Compliant"]
 metadata:
   author: pikakit
-  version: "3.9.108"
+  version: "3.9.110"
 ---
 
 # Mobile Developer — Cross-Platform & Native Expert
 
 > 4 frameworks. 4 architectures. 4 test levels. 6 security items. 60fps target.
+
+---
+
+## 5 Must-Ask Questions (Before Any Development)
+
+| # | Question | Options |
+|---|----------|---------|
+| 1 | Platform? | iOS, Android, or both |
+| 2 | Framework? | React Native, Flutter, native |
+| 3 | Navigation? | Tabs, stack, drawer |
+| 4 | Offline? | Must work offline? |
+| 5 | Devices? | Phone only or tablet too |
 
 ---
 
@@ -108,6 +124,18 @@ metadata:
 
 ---
 
+## Audit Logging (OpenTelemetry)
+
+| Event | Metadata Payload | Severity |
+|-------|------------------|----------|
+| `build_verification` | `{"framework": "...", "platform": "...", "status": "pass/fail"}` | `INFO` |
+| `architecture_decision` | `{"state_management": "...", "storage": "..."}` | `INFO` |
+| `security_audit` | `{"masvs_compliant": true, "token_storage": "SecureStore"}` | `INFO` |
+
+All executions MUST emit the `build_verification` span before reporting completion.
+
+---
+
 ## Error Taxonomy
 
 | Code | Recoverable | Trigger |
@@ -130,6 +158,7 @@ metadata:
 | Assume network availability | Design offline-first |
 | Skip security for MVP | OWASP MASVS from day 1 |
 | Test only on simulator | Include real device testing |
+| Ignore IDE errors without fixing | Call `problem-checker` to auto-fix |
 
 ---
 
@@ -254,4 +283,4 @@ For the complete guide with all rules expanded: `AGENTS.md`
 
 ---
 
-⚡ PikaKit v3.9.108
+⚡ PikaKit v3.9.110

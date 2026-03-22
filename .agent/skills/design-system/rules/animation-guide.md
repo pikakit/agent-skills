@@ -341,10 +341,6 @@ Before adding animation:
 
 ---
 
-⚡ PikaKit v3.9.105
-
----
-
 ## 🔗 Related
 
 | File | When to Read |
@@ -353,3 +349,7 @@ Before adding animation:
 | [visual-effects.md](visual-effects.md) | CSS effects to animate |
 | [ux-psychology.md](ux-psychology.md) | Feedback psychology for micro-interactions |
 | [../SKILL.md](../SKILL.md) | Animation categories quick reference |
+
+---
+
+⚡ PikaKit v3.9.110

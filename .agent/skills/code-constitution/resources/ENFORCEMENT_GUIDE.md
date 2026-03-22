@@ -240,3 +240,7 @@ Use checklists:
 > Agents do NOT exist to replace architectural judgment, accelerate unsafe change, or bypass review or law.
 > 
 > **If in doubt — REFUSE.**
+
+---
+
+⚡ PikaKit v3.9.110

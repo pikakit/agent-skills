@@ -2,16 +2,31 @@
 name: python-pro
 description: >-
   Python development principles and decision-making. Framework selection
-  (FastAPI/Django/Flask), async patterns, type hints, project structure. Triggers on: Python,
-  pip, FastAPI, Django, Flask.
+  (FastAPI/Django/Flask), async patterns, type hints, project structure.
+category: backend-specialist
+triggers: ["Python", "pip", "FastAPI", "Django", "Flask"]
+coordinates_with: ["api-architect", "test-architect", "data-modeler", "problem-checker", "auto-learned"]
+success_metrics: ["Correct Framework Selection", "Type Hint Coverage"]
 metadata:
   author: pikakit
-  version: "3.9.108"
+  version: "3.9.110"
 ---
 
 # Python Pro — Framework Selection & Architecture
 
 > Decision-making principles. Not patterns to copy. Ask, classify, decide.
+
+---
+
+## 5 Must-Ask Questions (Before Decision)
+
+| # | Question | Options |
+|---|----------|---------|
+| 1 | Target Scope? | Single Script / API / Full-Stack / Workers |
+| 2 | Project Scale? | MVP / Production / FAANG Scale |
+| 3 | Current Framework? | Green field vs Legacy modification? |
+| 4 | Async Requirements? | High I/O throughput vs CPU heavy? |
+| 5 | DB Dependencies? | Relational vs NoSQL, Async DB drivers? |
 
 ---
 
@@ -109,6 +124,19 @@ Routes (HTTP handlers)
 | `ERR_UNKNOWN_FRAMEWORK` | Yes | Framework not fastapi/django/flask |
 
 **Zero internal retries.** Same context = same recommendation.
+
+---
+
+## Audit Logging (OpenTelemetry)
+
+| Event | Metadata Payload | Severity |
+|-------|------------------|----------|
+| `decision_started` | `{"project_type": "...", "scale": "..."}` | `INFO` |
+| `framework_selected` | `{"framework": "fastapi", "rationale": "..."}` | `INFO` |
+| `async_sync_classified` | `{"mode": "async", "mix_workload": false}` | `WARN` |
+| `arch_recommendation_provided` | `{"layer_complexity": "high"}` | `INFO` |
+
+All architectural decision outputs MUST emit a `decision_started` and `arch_recommendation_provided` event.
 
 ---
 
@@ -218,4 +246,4 @@ For the complete guide with all rules expanded: `AGENTS.md`
 
 ---
 
-⚡ PikaKit v3.9.108
+⚡ PikaKit v3.9.110

@@ -10,6 +10,12 @@ March 2026
 
 ---
 
+## Observability Requirements
+
+- **OpenTelemetry Integration (MANDATORY)**: EVERY API endpoint MUST propagate tracing headers (e.g., X-B3-TraceId or W3C 	raceparent). JSON outputs from validation MUST contain 	race_id.
+
+---
+
 # API Architect
 
 > Context-aware API design decisions. Learn to THINK about API style for THIS project, not default to REST.
@@ -169,7 +175,7 @@ Before designing an API, confirm:
 
 ---
 
-⚡ PikaKit v3.9.105
+
 
 ---
 
@@ -1048,7 +1054,7 @@ API Architect maintains zero persistent state. Every invocation starts from a cl
 
 ---
 
-⚡ PikaKit v3.9.105
+
 
 ---
 
@@ -1884,3 +1890,7 @@ app.use('/api/v1', (req, res, next) => {
 | [rest.md](rest.md) | REST endpoint design |
 | [documentation.md](documentation.md) | Documenting versions |
 | [api-style.md](api-style.md) | API style decision |
+
+---
+
+⚡ PikaKit v3.9.110

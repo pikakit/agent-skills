@@ -393,10 +393,6 @@ Before applying any effect:
 
 ---
 
-⚡ PikaKit v3.9.105
-
----
-
 ## 🔗 Related
 
 | File | When to Read |
@@ -405,3 +401,7 @@ Before applying any effect:
 | [motion-graphics.md](motion-graphics.md) | Advanced Lottie, GSAP, 3D effects |
 | [color-system.md](color-system.md) | Color for gradients and glows |
 | [../SKILL.md](../SKILL.md) | Anti-pattern bans |
+
+---
+
+⚡ PikaKit v3.9.110
