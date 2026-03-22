@@ -6,7 +6,7 @@ description: >-
   error fix, pattern extraction.
 metadata:
   author: pikakit
-  version: "1.0.0"
+  version: "3.9.105"
 ---
 
 # Auto-Learner

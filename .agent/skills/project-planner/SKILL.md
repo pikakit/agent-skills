@@ -6,7 +6,7 @@ description: >-
   on: plan, breakdown, tasks, implementation strategy, project scope.
 metadata:
   author: pikakit
-  version: "2.0.0"
+  version: "3.9.105"
 ---
 
 # Project Planner â€” Structured Task Breakdown

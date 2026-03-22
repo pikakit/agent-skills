@@ -1,6 +1,6 @@
 # Workflow Design Guide
 
-> **PikaKit v3.2** | Standard formula for creating new workflows
+> **PikaKit v3.9.105** | Standard formula for creating new workflows
 
 ---
 

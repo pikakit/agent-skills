@@ -8,7 +8,7 @@ description: >-
   tsconfig, monorepo.
 metadata:
   author: pikakit
-  version: "2.0.0"
+  version: "3.9.105"
 ---
 
 # TypeScript Expert â€” Advanced TS Problem-Solving

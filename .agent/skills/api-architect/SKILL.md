@@ -7,7 +7,7 @@ description: >-
   endpoint, versioning.
 metadata:
   author: pikakit
-  version: "2.0.0"
+  version: "3.9.105"
 ---
 
 # API Architect

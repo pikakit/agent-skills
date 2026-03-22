@@ -8,7 +8,7 @@ description: >-
   kanban, dashboard.
 metadata:
   author: pikakit
-  version: "3.0.0"
+  version: "3.9.105"
 ---
 
 # Doc Templates â€” Documentation, Diagrams & Preview

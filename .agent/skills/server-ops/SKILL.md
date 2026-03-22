@@ -5,7 +5,7 @@ description: >-
   scaling decisions. Triggers on: server, DevOps, infrastructure, deployment, hosting.
 metadata:
   author: pikakit
-  version: "2.0.0"
+  version: "3.9.105"
 ---
 
 # Server Ops â€” Production Server Management

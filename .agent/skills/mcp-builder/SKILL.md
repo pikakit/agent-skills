@@ -6,7 +6,7 @@ description: >-
   development, MCP, Model Context Protocol, agent tools.
 metadata:
   author: pikakit
-  version: "2.0.0"
+  version: "3.9.105"
 ---
 
 # MCP Builder â€” Build MCP Servers for AI Agents

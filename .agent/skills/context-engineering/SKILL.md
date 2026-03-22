@@ -6,7 +6,7 @@ description: >-
   critical. Triggers on: context usage, token limit, agent architecture, memory system.
 metadata:
   author: pikakit
-  version: "2.0.0"
+  version: "3.9.105"
 ---
 
 # Context Engineering

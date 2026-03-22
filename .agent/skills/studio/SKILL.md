@@ -6,7 +6,7 @@ description: >-
   typography, style guide.
 metadata:
   author: pikakit
-  version: "2.0.0"
+  version: "3.9.105"
 ---
 
 # Studio â€” Design Intelligence

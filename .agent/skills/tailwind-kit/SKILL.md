@@ -5,7 +5,7 @@ description: >-
   Triggers on: Tailwind, CSS, styling, utility classes.
 metadata:
   author: pikakit
-  version: "2.0.0"
+  version: "3.9.105"
 ---
 
 # Tailwind Kit â€” Tailwind CSS v4 Patterns

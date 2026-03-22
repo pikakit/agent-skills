@@ -5,7 +5,7 @@ description: >-
   Triggers on: performance, slow, Lighthouse, bundle size, Core Web Vitals.
 metadata:
   author: pikakit
-  version: "2.0.0"
+  version: "3.9.105"
 ---
 
 # Performance Profiler â€” Core Web Vitals & Profiling

@@ -6,7 +6,7 @@ description: >-
   multi-agent, agent orchestration.
 metadata:
   author: pikakit
-  version: "2.0.0"
+  version: "3.9.105"
 ---
 
 # Google ADK Python â€” AI Agent Development

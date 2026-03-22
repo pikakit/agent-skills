@@ -5,7 +5,7 @@ description: >-
   strategies. Triggers on: E2E test, Playwright, browser test, visual testing, automation.
 metadata:
   author: pikakit
-  version: "2.0.0"
+  version: "3.9.105"
 ---
 
 # E2E Automation â€” Playwright Testing

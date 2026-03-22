@@ -5,7 +5,7 @@ description: >-
   UX psychology. Triggers on: design, UI, UX, color palette, typography, component design.
 metadata:
   author: pikakit
-  version: "2.0.0"
+  version: "3.9.105"
 ---
 
 # Design System â€” UI Design Decisions

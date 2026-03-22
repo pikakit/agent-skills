@@ -6,7 +6,7 @@ description: >-
   RSC, React, frontend, performance, SSR, SSG.
 metadata:
   author: pikakit
-  version: "2.0.0"
+  version: "3.9.105"
 ---
 
 # Next.js Pro â€” App Router & React Performance

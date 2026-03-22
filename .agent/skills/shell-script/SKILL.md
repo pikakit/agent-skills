@@ -5,7 +5,7 @@ description: >-
   working on macOS or Linux systems. Triggers on: shell, bash, script, automation, CLI.
 metadata:
   author: pikakit
-  version: "2.0.0"
+  version: "3.9.105"
 ---
 
 # Shell Script â€” Bash/Linux Patterns
