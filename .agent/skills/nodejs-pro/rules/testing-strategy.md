@@ -1,7 +1,7 @@
 ---
 name: testing-strategy
 description: Node.js testing with Vitest and node:test — unit/integration/E2E patterns, mocking, and CI integration
-title: "Testing Strategy"
+title: "Test the right things: critical paths, edge cases, error handling. Don't test framework code."
 impact: MEDIUM
 impactDescription: "Moderate improvement to quality or maintainability"
 tags: testing, strategy

@@ -1,7 +1,7 @@
 ---
 name: motion-design
 description: Orchestrated entrances — CSS stagger, Framer Motion variants, Anime.js timeline, duration guide
-title: "Motion Design"
+title: "One orchestrated animation > many scattered micro-interactions."
 impact: MEDIUM
 impactDescription: "Moderate improvement to quality or maintainability"
 tags: motion, design

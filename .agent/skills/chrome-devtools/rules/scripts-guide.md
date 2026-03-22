@@ -1,7 +1,7 @@
 ---
 name: scripts-guide
 description: Complete Puppeteer CLI script reference — navigation, screenshot, form automation, JS execution, ARIA, performance
-title: "Scripts Guide"
+title: "All Puppeteer CLI scripts with options."
 impact: MEDIUM
 impactDescription: "Moderate improvement to quality or maintainability"
 tags: scripts, guide

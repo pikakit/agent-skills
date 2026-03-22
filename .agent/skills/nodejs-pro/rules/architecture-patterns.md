@@ -1,7 +1,7 @@
 ---
 name: architecture-patterns
 description: Layered architecture — Controller/Service/Repository with code examples, DI, project structure, and anti-patterns
-title: "Architecture Patterns"
+title: "Layered separation is not bureaucracy — it's testability, swappability, and clarity."
 impact: MEDIUM
 impactDescription: "Moderate improvement to quality or maintainability"
 tags: architecture, patterns

@@ -1,7 +1,7 @@
 ---
 name: push-notifications
 description: FCM, APNs, server-side sending, cross-framework setup, notification strategies, and compliance
-title: "Push Notifications"
+title: "Philosophy: Respect the user's attention. Every notification should provide value."
 impact: MEDIUM
 impactDescription: "Moderate improvement to quality or maintainability"
 tags: push, notifications

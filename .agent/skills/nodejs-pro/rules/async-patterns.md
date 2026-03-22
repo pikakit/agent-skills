@@ -1,7 +1,7 @@
 ---
 name: async-patterns
 description: Async/await patterns, Promise utilities, AbortController, streams, worker threads, and event loop protection
-title: "Async Patterns"
+title: "Node.js is async-first. The event loop is everything. Block it and your entire server stops."
 impact: CRITICAL
 impactDescription: "Significant performance or security impact"
 tags: async, patterns

@@ -1,7 +1,7 @@
 ---
 name: error-handling
 description: Centralized error handling — custom error classes, framework middleware, async patterns, and structured logging
-title: "Error Handling"
+title: "Every error must be caught, classified, and communicated. No silent failures."
 impact: MEDIUM
 impactDescription: "Moderate improvement to quality or maintainability"
 tags: error, handling

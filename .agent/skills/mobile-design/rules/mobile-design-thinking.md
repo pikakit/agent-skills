@@ -1,7 +1,7 @@
 ---
 name: mobile-design-thinking
 description: Mobile design methodology — user research, prototyping, usability testing, design sprints, mobile-specific UX
-title: "Mobile Design Thinking"
+title: "This file prevents AI from using memorized patterns and forces genuine thinking."
 impact: MEDIUM
 impactDescription: "Moderate improvement to quality or maintainability"
 tags: mobile, design, thinking
