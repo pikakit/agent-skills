@@ -1,6 +1,10 @@
 ---
 name: decision-trees
 description: Framework selection, state management, storage, navigation, offline, and auth decision trees for mobile projects
+title: "Mobile Decision Trees"
+impact: HIGH
+impactDescription: "Important architectural or correctness impact"
+tags: decision, trees
 ---
 
 # Mobile Decision Trees

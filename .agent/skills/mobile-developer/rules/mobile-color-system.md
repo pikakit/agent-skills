@@ -1,6 +1,10 @@
 ---
 name: mobile-color-system
 description: OLED optimization, dark mode, battery-aware colors, outdoor visibility, and color accessibility
+title: "Mobile Color System Reference"
+impact: MEDIUM
+impactDescription: "Moderate improvement to quality or maintainability"
+tags: mobile, color, system
 ---
 
 # Mobile Color System Reference

@@ -1,6 +1,10 @@
 ---
 name: mobile-design-engineering-spec
 description: Full 21-section engineering spec — MFRI scoring, platform guidelines, touch targets, 4 error codes
+title: "Mobile Design - Engineering Specification"
+impact: MEDIUM
+impactDescription: "Moderate improvement to quality or maintainability"
+tags: engineering, spec
 ---
 
 # Mobile Design — Engineering Specification

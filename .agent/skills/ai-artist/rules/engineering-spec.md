@@ -1,6 +1,10 @@
-﻿---
+---
 name: ai-artist-engineering-spec
 description: Full 21-section engineering spec â€” contracts, deterministic design, compliance matrix, production checklist
+title: "AI Artist --” Engineering Specification"
+impact: MEDIUM
+impactDescription: "Moderate improvement to quality or maintainability"
+tags: engineering, spec
 ---
 
 # AI Artist â€” Engineering Specification

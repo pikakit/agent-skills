@@ -1,6 +1,10 @@
 ---
 name: mobile-decision-trees
 description: Mobile design decision frameworks — platform selection, navigation, state management, offline strategy, testing
+title: "Mobile Decision Trees"
+impact: HIGH
+impactDescription: "Important architectural or correctness impact"
+tags: decision, trees
 ---
 
 # Mobile Decision Trees

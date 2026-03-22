@@ -1,6 +1,10 @@
 ---
 name: components
 description: Tailwind CSS v4 component patterns — cva variants, cn() utility, Button/Card/Input extraction, class ordering, TypeScript props
+title: "Component Extraction"
+impact: MEDIUM
+impactDescription: "Moderate improvement to quality or maintainability"
+tags: components
 ---
 
 # Component Extraction

@@ -1,6 +1,10 @@
 ---
 name: react-patterns
 description: React advanced patterns — React 19 hooks, composition, state management (Zustand/React Query), Error Boundary, custom hooks, performance, testing
+title: "React Advanced Patterns"
+impact: MEDIUM
+impactDescription: "Moderate improvement to quality or maintainability"
+tags: patterns
 ---
 
 # React Advanced Patterns

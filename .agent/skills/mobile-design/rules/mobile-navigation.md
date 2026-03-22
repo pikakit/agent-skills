@@ -1,6 +1,10 @@
 ---
 name: mobile-navigation
 description: Mobile navigation patterns — tab bars, stack navigation, drawers, deep linking, platform-specific conventions
+title: "Mobile Navigation Reference"
+impact: MEDIUM
+impactDescription: "Moderate improvement to quality or maintainability"
+tags: mobile, navigation
 ---
 
 # Mobile Navigation Reference

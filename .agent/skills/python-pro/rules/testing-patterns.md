@@ -1,6 +1,10 @@
 ---
 name: testing-patterns
 description: Python testing patterns — pytest, async tests, fixtures, mocking, FastAPI/Django test clients, coverage
+title: "Python Testing Patterns"
+impact: MEDIUM
+impactDescription: "Moderate improvement to quality or maintainability"
+tags: testing, patterns
 ---
 
 # Python Testing Patterns

@@ -1,6 +1,10 @@
 ---
 name: mobile-backend
 description: Backend/API patterns specific to mobile clients — push, sync, versioning, auth, media, and security
+title: "Mobile Backend Patterns"
+impact: MEDIUM
+impactDescription: "Moderate improvement to quality or maintainability"
+tags: mobile, backend
 ---
 
 # Mobile Backend Patterns

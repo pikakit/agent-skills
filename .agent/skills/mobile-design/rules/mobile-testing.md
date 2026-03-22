@@ -1,6 +1,10 @@
 ---
 name: mobile-testing
 description: Mobile testing strategies — unit, integration, E2E, device testing, accessibility testing, CI/CD
+title: "Mobile Testing Patterns"
+impact: MEDIUM
+impactDescription: "Moderate improvement to quality or maintainability"
+tags: mobile, testing
 ---
 
 # Mobile Testing Patterns

@@ -1,6 +1,10 @@
 ---
 name: mobile-backend
 description: Mobile backend integration — API design, offline sync, push notifications, real-time, caching strategies
+title: "Mobile Backend Patterns"
+impact: MEDIUM
+impactDescription: "Moderate improvement to quality or maintainability"
+tags: mobile, backend
 ---
 
 # Mobile Backend Patterns

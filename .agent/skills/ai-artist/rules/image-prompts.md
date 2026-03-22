@@ -1,6 +1,10 @@
 ---
 name: image-prompts
 description: Image generation techniques — subject types, style keywords, composition, quality boosters, negative prompts, weighted tokens, recipes
+title: "Image Generation Prompts"
+impact: MEDIUM
+impactDescription: "Moderate improvement to quality or maintainability"
+tags: image, prompts
 ---
 
 # Image Generation Prompts

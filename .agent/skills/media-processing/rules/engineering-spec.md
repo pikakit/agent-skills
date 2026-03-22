@@ -1,6 +1,10 @@
 ---
 name: media-processing-engineering-spec
 description: Full 21-section engineering spec — 3-tool routing, CRF quality guide, RMBG model selection, destructive warnings
+title: "Media Processing - Engineering Specification"
+impact: MEDIUM
+impactDescription: "Moderate improvement to quality or maintainability"
+tags: engineering, spec
 ---
 
 # Media Processing — Engineering Specification

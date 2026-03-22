@@ -1,6 +1,10 @@
 ---
 name: mobile-testing
 description: Mobile testing pyramid, tool selection, platform-specific testing, offline/network/performance/accessibility testing
+title: "Mobile Testing Patterns"
+impact: MEDIUM
+impactDescription: "Moderate improvement to quality or maintainability"
+tags: mobile, testing
 ---
 
 # Mobile Testing Patterns

@@ -1,6 +1,10 @@
 ---
 name: versioning
 description: API versioning strategies — URI, header, query; deprecation and sunset policies
+title: "Versioning Strategies"
+impact: MEDIUM
+impactDescription: "Moderate improvement to quality or maintainability"
+tags: versioning
 ---
 
 # Versioning Strategies

@@ -1,6 +1,10 @@
 ---
 name: react-native-patterns
 description: React Native and Expo best practices, New Architecture, navigation, performance, testing, and security
+title: "React Native Patterns"
+impact: MEDIUM
+impactDescription: "Moderate improvement to quality or maintainability"
+tags: react, native
 ---
 
 # React Native Patterns

@@ -1,6 +1,10 @@
 ---
 name: rbac-abac
 description: Role-Based and Attribute-Based access control — Prisma schema, middleware, ABAC policy engine
+title: "RBAC & ABAC - Access Control"
+impact: MEDIUM
+impactDescription: "Moderate improvement to quality or maintainability"
+tags: rbac, abac
 ---
 
 # RBAC & ABAC — Access Control

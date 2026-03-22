@@ -1,6 +1,10 @@
 ---
 name: mcp-cli-usage
 description: CLI commands for MCP tool discovery and execution — list-tools, call-tool, Gemini CLI stdin pipe
+title: "MCP CLI Usage"
+impact: MEDIUM
+impactDescription: "Moderate improvement to quality or maintainability"
+tags: cli, usage
 ---
 
 # MCP CLI Usage

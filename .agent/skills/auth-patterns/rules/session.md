@@ -1,6 +1,10 @@
 ---
 name: session
 description: Cookie sessions, Redis store, stateless vs stateful, session lifecycle and security
+title: "Session Management"
+impact: MEDIUM
+impactDescription: "Moderate improvement to quality or maintainability"
+tags: session
 ---
 
 # Session Management

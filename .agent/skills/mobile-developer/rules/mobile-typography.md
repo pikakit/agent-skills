@@ -1,6 +1,10 @@
 ---
 name: mobile-typography
 description: Type scale, system fonts, Dynamic Type, accessibility, dark mode typography, and font performance
+title: "Mobile Typography Reference"
+impact: MEDIUM
+impactDescription: "Moderate improvement to quality or maintainability"
+tags: mobile, typography
 ---
 
 # Mobile Typography Reference

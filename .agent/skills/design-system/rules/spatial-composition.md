@@ -1,6 +1,10 @@
 ---
 name: spatial-composition
 description: Layout innovation — asymmetric grids, overlapping elements, diagonal flow, negative space
+title: "Spatial Composition"
+impact: MEDIUM
+impactDescription: "Moderate improvement to quality or maintainability"
+tags: spatial, composition
 ---
 
 # Spatial Composition

@@ -1,6 +1,10 @@
 ---
 name: native-patterns
 description: SwiftUI (iOS) and Kotlin Compose (Android) native development patterns, testing, accessibility, and security
+title: "Native Development Patterns"
+impact: MEDIUM
+impactDescription: "Moderate improvement to quality or maintainability"
+tags: native
 ---
 
 # Native Development Patterns

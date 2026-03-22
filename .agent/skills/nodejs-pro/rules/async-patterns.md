@@ -1,6 +1,10 @@
 ---
 name: async-patterns
 description: Async/await patterns, Promise utilities, AbortController, streams, worker threads, and event loop protection
+title: "Async Patterns"
+impact: CRITICAL
+impactDescription: "Significant performance or security impact"
+tags: async, patterns
 ---
 
 # Async Patterns

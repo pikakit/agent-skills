@@ -1,6 +1,10 @@
 ---
 name: mcp-management-engineering-spec
 description: Full 21-section engineering spec — 3-method execution, progressive disclosure, method fallback contracts
+title: "MCP Management - Engineering Specification"
+impact: MEDIUM
+impactDescription: "Moderate improvement to quality or maintainability"
+tags: engineering, spec
 ---
 
 # MCP Management — Engineering Specification

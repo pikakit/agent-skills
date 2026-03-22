@@ -1,6 +1,10 @@
 ---
 name: oauth2
 description: OAuth 2.0 + OpenID Connect flows, PKCE, scopes, provider integration
+title: "OAuth 2.0 & OpenID Connect"
+impact: MEDIUM
+impactDescription: "Moderate improvement to quality or maintainability"
+tags: oauth2
 ---
 
 # OAuth 2.0 & OpenID Connect

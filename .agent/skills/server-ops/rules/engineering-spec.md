@@ -1,4 +1,4 @@
-﻿---
+---
 name: server-ops
 version: "2.0.0"
 description: >-
@@ -8,6 +8,10 @@ metadata:
   triggers: "server management, process management, monitoring, logging, scaling, health checks, security, troubleshooting"
   success_metrics: "process management, monitoring, logging, scaling, health checks, security, troubleshooting"
   coordinates_with: "cicd-pipeline, observability, security-scanner"
+title: "Overview"
+impact: MEDIUM
+impactDescription: "Moderate improvement to quality or maintainability"
+tags: engineering, spec
 ---
 
 ## 1. Overview

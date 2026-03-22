@@ -1,6 +1,10 @@
 ---
 name: domain-marketing
 description: Marketing copy prompt patterns — headlines (AIDA/PAS/4U), product descriptions, email sequences, ad copy, social media
+title: "Marketing Prompt Patterns"
+impact: MEDIUM
+impactDescription: "Moderate improvement to quality or maintainability"
+tags: domain, marketing
 ---
 
 # Marketing Prompt Patterns

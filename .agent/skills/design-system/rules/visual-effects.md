@@ -1,6 +1,10 @@
 ---
 name: visual-effects
 description: Glassmorphism, neumorphism, shadow hierarchy, gradients, glow, overlays, modern CSS techniques
+title: "Visual Effects Reference"
+impact: LOW
+impactDescription: "Minor optimization or best practice"
+tags: visual, effects
 ---
 
 # Visual Effects Reference

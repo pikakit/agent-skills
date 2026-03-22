@@ -1,6 +1,10 @@
 ---
 name: model-syntax
 description: Model-specific parameters — Midjourney, DALL-E 3, Stable Diffusion, Flux, Imagen/Veo
+title: "Model-Specific Syntax"
+impact: MEDIUM
+impactDescription: "Moderate improvement to quality or maintainability"
+tags: model, syntax
 ---
 
 # Model-Specific Syntax

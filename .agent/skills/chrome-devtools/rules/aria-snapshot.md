@@ -1,6 +1,10 @@
 ---
 name: aria-snapshot
 description: YAML accessibility tree format with ref handles for element interaction
+title: "ARIA Snapshot Format"
+impact: MEDIUM
+impactDescription: "Moderate improvement to quality or maintainability"
+tags: aria, snapshot
 ---
 
 # ARIA Snapshot Format

@@ -1,6 +1,10 @@
 ---
 name: security-testing
 description: OWASP API Top 10, JWT testing, BOLA/IDOR, authorization and input validation testing
+title: "API Security Testing"
+impact: HIGH
+impactDescription: "Important architectural or correctness impact"
+tags: security, testing
 ---
 
 # API Security Testing

@@ -1,6 +1,10 @@
 ---
 name: jwt-deep
 description: JWT signing, rotation, claims, refresh token patterns, JWKS endpoint
+title: "JWT Deep Dive"
+impact: MEDIUM
+impactDescription: "Moderate improvement to quality or maintainability"
+tags: jwt, deep
 ---
 
 # JWT Deep Dive

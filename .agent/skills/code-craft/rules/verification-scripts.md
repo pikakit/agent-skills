@@ -1,6 +1,10 @@
 ---
 name: verification-scripts
 description: Agent-to-script mapping for running validation scripts — output protocol, rules
+title: "Verification Scripts Reference"
+impact: MEDIUM
+impactDescription: "Moderate improvement to quality or maintainability"
+tags: verification, scripts
 ---
 
 # Verification Scripts Reference

@@ -1,6 +1,10 @@
 ---
 name: doc-templates-reference
 description: Full templates and examples for README, API docs, ADR, changelog, llms.txt, and comment guidelines
+title: "Doc Templates - Full Reference"
+impact: MEDIUM
+impactDescription: "Moderate improvement to quality or maintainability"
+tags: doc
 ---
 
 # Doc Templates — Full Reference

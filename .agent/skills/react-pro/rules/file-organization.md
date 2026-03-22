@@ -1,6 +1,10 @@
 ---
 name: file-organization
 description: Features directory structure — organize by feature not type, import aliases, public exports
+title: "File Organization"
+impact: MEDIUM
+impactDescription: "Moderate improvement to quality or maintainability"
+tags: file, organization
 ---
 
 # File Organization

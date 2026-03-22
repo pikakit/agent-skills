@@ -1,6 +1,10 @@
 ---
 name: animation-guide
 description: Animation principles — duration psychology, easing, micro-interactions, loading states, scroll animations
+title: "Animation Guidelines Reference"
+impact: MEDIUM
+impactDescription: "Moderate improvement to quality or maintainability"
+tags: animation, guide
 ---
 
 # Animation Guidelines Reference

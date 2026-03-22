@@ -1,6 +1,10 @@
 ---
 name: architecture-debate
 description: 8-phase debate process for technical decisions. YAGNI + KISS + DRY trinity with analysis template.
+title: "Architecture Debate Process"
+impact: MEDIUM
+impactDescription: "Moderate improvement to quality or maintainability"
+tags: architecture, debate
 ---
 
 # Architecture Debate Process

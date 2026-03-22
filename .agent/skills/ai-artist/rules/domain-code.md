@@ -1,6 +1,10 @@
 ---
 name: domain-code
 description: Code generation prompt patterns — function gen, code review, refactoring, debugging, API design
+title: "Code Generation Prompt Patterns"
+impact: MEDIUM
+impactDescription: "Moderate improvement to quality or maintainability"
+tags: domain, code
 ---
 
 # Code Generation Prompt Patterns

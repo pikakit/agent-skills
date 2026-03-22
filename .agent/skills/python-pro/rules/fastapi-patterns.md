@@ -1,6 +1,10 @@
 ---
 name: fastapi-patterns
 description: FastAPI patterns — dependency injection, middleware, error handling, lifespan, and Pydantic integration
+title: "FastAPI Patterns"
+impact: MEDIUM
+impactDescription: "Moderate improvement to quality or maintainability"
+tags: fastapi, patterns
 ---
 
 # FastAPI Patterns

@@ -1,6 +1,10 @@
 ---
 name: typescript-cheatsheet
 description: TypeScript quick reference — primitives, generics, utility types, conditionals, mapped types, type guards, branded types, module declarations, tsconfig
+title: "TypeScript Cheatsheet"
+impact: MEDIUM
+impactDescription: "Moderate improvement to quality or maintainability"
+tags: typescript, cheatsheet
 ---
 
 # TypeScript Cheatsheet

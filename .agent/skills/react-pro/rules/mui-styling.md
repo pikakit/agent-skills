@@ -1,6 +1,10 @@
 ---
 name: mui-styling
 description: MUI v7 styling — sx prop, Grid size syntax, inline vs separate files, theme access
+title: "MUI v7 Styling"
+impact: MEDIUM
+impactDescription: "Moderate improvement to quality or maintainability"
+tags: mui, styling
 ---
 
 # MUI v7 Styling

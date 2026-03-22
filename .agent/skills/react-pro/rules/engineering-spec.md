@@ -1,6 +1,10 @@
 ---
 name: frontend-development-engineering-spec
 description: Full 21-section engineering spec — contracts, Suspense-first rules, compliance matrix, production checklist
+title: "Frontend Development - Engineering Specification"
+impact: MEDIUM
+impactDescription: "Moderate improvement to quality or maintainability"
+tags: engineering, spec
 ---
 
 # Frontend Development — Engineering Specification

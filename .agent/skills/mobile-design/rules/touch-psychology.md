@@ -1,6 +1,10 @@
 ---
 name: mobile-touch-psychology
 description: Touch interaction patterns — Fitts’s Law, gesture taxonomy, haptic feedback, thumb zones, motor accessibility
+title: "Touch Psychology Reference"
+impact: MEDIUM
+impactDescription: "Moderate improvement to quality or maintainability"
+tags: touch, psychology
 ---
 
 # Touch Psychology Reference

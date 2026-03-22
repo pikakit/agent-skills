@@ -1,6 +1,10 @@
 ---
 name: rest
 description: REST API design — resource naming, HTTP methods, status codes, filtering, sorting
+title: "REST Principles"
+impact: MEDIUM
+impactDescription: "Moderate improvement to quality or maintainability"
+tags: rest
 ---
 
 # REST Principles

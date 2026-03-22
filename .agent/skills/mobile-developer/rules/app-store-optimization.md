@@ -1,6 +1,10 @@
 ---
 name: app-store-optimization
 description: ASO strategies for iOS App Store and Google Play Store — visibility, conversion, compliance, and automation
+title: "App Store Optimization (ASO)"
+impact: MEDIUM
+impactDescription: "Moderate improvement to quality or maintainability"
+tags: app, store, optimization
 ---
 
 # App Store Optimization (ASO)

@@ -1,6 +1,10 @@
 ---
 name: design-extraction
 description: Screenshot analysis process — 4-step extract-document-implement-verify workflow
+title: "Design Extraction from Screenshots"
+impact: MEDIUM
+impactDescription: "Moderate improvement to quality or maintainability"
+tags: design, extraction
 ---
 
 # Design Extraction from Screenshots

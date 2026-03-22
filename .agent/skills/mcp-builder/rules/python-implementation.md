@@ -1,6 +1,10 @@
 ---
 name: mcp-python-implementation
 description: Python MCP server with FastMCP — tool annotations, error helpers, pagination, quality checklist
+title: "Python MCP Server Implementation"
+impact: MEDIUM
+impactDescription: "Moderate improvement to quality or maintainability"
+tags: python, implementation
 ---
 
 # Python MCP Server Implementation

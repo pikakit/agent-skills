@@ -1,6 +1,10 @@
 ---
 name: django-patterns
 description: Django patterns — models, views, DRF serializers, async views, query optimization, signals, and migrations
+title: "Django Patterns (2025)"
+impact: MEDIUM
+impactDescription: "Moderate improvement to quality or maintainability"
+tags: django, patterns
 ---
 
 # Django Patterns (2025)

@@ -1,6 +1,10 @@
 ---
 name: mfa
 description: Multi-factor authentication — TOTP setup, backup codes, WebAuthn for MFA, recovery flows
+title: "Multi-Factor Authentication (MFA)"
+impact: MEDIUM
+impactDescription: "Moderate improvement to quality or maintainability"
+tags: mfa
 ---
 
 # Multi-Factor Authentication (MFA)

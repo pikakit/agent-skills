@@ -1,6 +1,10 @@
 ---
 name: mobile-debugging
 description: Mobile crash triage, native profiling, memory leak detection, network debugging, and platform-specific tools
+title: "Mobile Debugging Guide"
+impact: MEDIUM
+impactDescription: "Moderate improvement to quality or maintainability"
+tags: mobile, debugging
 ---
 
 # Mobile Debugging Guide

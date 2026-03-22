@@ -1,6 +1,10 @@
 ---
 name: rate-limiting
 description: Rate limiting strategies — token bucket, sliding window, Redis implementation, recommended limits
+title: "Rate Limiting Principles"
+impact: MEDIUM
+impactDescription: "Moderate improvement to quality or maintainability"
+tags: rate, limiting
 ---
 
 # Rate Limiting Principles

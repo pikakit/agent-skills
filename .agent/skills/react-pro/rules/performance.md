@@ -1,6 +1,10 @@
 ---
 name: performance
 description: React performance — lazy loading, React.memo, useMemo, useCallback, bundle analysis
+title: "Performance Optimization"
+impact: MEDIUM
+impactDescription: "Moderate improvement to quality or maintainability"
+tags: performance
 ---
 
 # Performance Optimization

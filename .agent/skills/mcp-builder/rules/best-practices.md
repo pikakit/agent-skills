@@ -1,6 +1,10 @@
 ---
 name: mcp-best-practices
 description: MCP design patterns — workflow over endpoints, concise/detailed output, actionable errors, naming conventions
+title: "MCP Best Practices"
+impact: MEDIUM
+impactDescription: "Moderate improvement to quality or maintainability"
+tags: best, practices
 ---
 
 # MCP Best Practices

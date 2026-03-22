@@ -1,6 +1,10 @@
 ---
 name: component-patterns
 description: React.FC with TypeScript — Suspense-first, useCallback rules, props patterns, named/default exports
+title: "Component Patterns"
+impact: HIGH
+impactDescription: "Important architectural or correctness impact"
+tags: component, patterns
 ---
 
 # Component Patterns

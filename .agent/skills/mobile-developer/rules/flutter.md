@@ -1,6 +1,10 @@
 ---
 name: flutter-patterns
 description: Flutter and Dart best practices, Riverpod state management, widget patterns, testing, and security
+title: "Flutter Patterns"
+impact: MEDIUM
+impactDescription: "Moderate improvement to quality or maintainability"
+tags: flutter
 ---
 
 # Flutter Patterns

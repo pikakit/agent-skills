@@ -1,6 +1,10 @@
 ---
 name: mobile-debugging
 description: Mobile debugging patterns — React Native Flipper, Flutter DevTools, Xcode/Android Studio, crash diagnostics
+title: "Mobile Debugging Guide"
+impact: MEDIUM
+impactDescription: "Moderate improvement to quality or maintainability"
+tags: mobile, debugging
 ---
 
 # Mobile Debugging Guide

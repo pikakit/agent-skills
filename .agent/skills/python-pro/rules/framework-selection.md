@@ -1,6 +1,10 @@
 ---
 name: framework-selection
 description: Python framework comparison — FastAPI vs Django vs Flask with decision tree, benchmarks, and minimal app examples
+title: "Framework Selection (2025)"
+impact: MEDIUM
+impactDescription: "Moderate improvement to quality or maintainability"
+tags: framework, selection
 ---
 
 # Framework Selection (2025)

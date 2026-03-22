@@ -1,6 +1,10 @@
 ---
 name: frontend-design-engineering-spec
 description: Full 21-section engineering spec — contracts, anti-slop enforcement, compliance matrix, production checklist
+title: "Frontend Design - Engineering Specification"
+impact: MEDIUM
+impactDescription: "Moderate improvement to quality or maintainability"
+tags: engineering, spec
 ---
 
 # Frontend Design — Engineering Specification

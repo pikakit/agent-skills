@@ -1,6 +1,10 @@
 ---
 name: responsive
 description: Tailwind CSS v4 responsive patterns — breakpoints, container queries, responsive grid/typography/images, hide/show, full layout example
+title: "Responsive & Container Queries"
+impact: MEDIUM
+impactDescription: "Moderate improvement to quality or maintainability"
+tags: responsive
 ---
 
 # Responsive & Container Queries

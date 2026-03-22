@@ -1,6 +1,10 @@
 ---
 name: mobile-typography
 description: Mobile typography systems — SF Pro, Roboto, type scales, Dynamic Type, responsive font sizing
+title: "Mobile Typography Reference"
+impact: MEDIUM
+impactDescription: "Moderate improvement to quality or maintainability"
+tags: mobile, typography
 ---
 
 # Mobile Typography Reference

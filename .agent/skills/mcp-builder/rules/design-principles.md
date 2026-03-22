@@ -1,6 +1,10 @@
 ---
 name: mcp-design-principles
 description: Core MCP concepts — tool/resource/prompt design, transport selection, error handling, security patterns
+title: "MCP Server Design Principles"
+impact: MEDIUM
+impactDescription: "Moderate improvement to quality or maintainability"
+tags: design, principles
 ---
 
 # MCP Server Design Principles

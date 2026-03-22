@@ -1,6 +1,10 @@
 ---
 name: mcp-evaluation
 description: 10-question evaluation framework for MCP servers — complex, read-only, verifiable test questions
+title: "MCP Evaluation Guide"
+impact: MEDIUM
+impactDescription: "Moderate improvement to quality or maintainability"
+tags: evaluation
 ---
 
 # MCP Evaluation Guide

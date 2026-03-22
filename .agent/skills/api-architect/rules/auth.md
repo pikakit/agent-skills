@@ -1,6 +1,10 @@
 ---
 name: auth
 description: API authentication patterns — JWT, OAuth2 PKCE, API Keys, Passkeys, token refresh
+title: "Authentication Patterns"
+impact: MEDIUM
+impactDescription: "Moderate improvement to quality or maintainability"
+tags: auth
 ---
 
 # Authentication Patterns

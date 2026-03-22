@@ -1,6 +1,10 @@
-﻿---
+---
 name: mcp-builder-engineering-spec
 description: Full 21-section engineering spec â€” 4-phase build contracts, framework selection, evaluation framework
+title: "MCP Builder --” Engineering Specification"
+impact: MEDIUM
+impactDescription: "Moderate improvement to quality or maintainability"
+tags: engineering, spec
 ---
 
 # MCP Builder â€” Engineering Specification

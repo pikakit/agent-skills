@@ -1,6 +1,10 @@
 ---
 name: mobile-platform-ios
 description: iOS Human Interface Guidelines — SF Pro typography, safe areas, navigation bars, haptics, Dynamic Type
+title: "iOS Platform Guidelines"
+impact: MEDIUM
+impactDescription: "Moderate improvement to quality or maintainability"
+tags: platform, ios
 ---
 
 # iOS Platform Guidelines

@@ -1,6 +1,10 @@
 ---
 name: color-systems
 description: Color commitment strategy — dominant + accent + neutral, 4 aesthetic palettes, dark mode
+title: "Color Systems"
+impact: MEDIUM
+impactDescription: "Moderate improvement to quality or maintainability"
+tags: color, systems
 ---
 
 # Color Systems

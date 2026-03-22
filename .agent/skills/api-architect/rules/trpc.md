@@ -1,6 +1,10 @@
 ---
 name: trpc
 description: tRPC router patterns, Zod validation, React Query client for TypeScript monorepos
+title: "tRPC Principles"
+impact: MEDIUM
+impactDescription: "Moderate improvement to quality or maintainability"
+tags: trpc
 ---
 
 # tRPC Principles

@@ -1,6 +1,10 @@
 ---
 name: type-hints
 description: Python type hints — modern syntax, Pydantic v2, generics, TypeVar, and validation patterns
+title: "Python Type Hints & Validation"
+impact: MEDIUM
+impactDescription: "Moderate improvement to quality or maintainability"
+tags: type, hints
 ---
 
 # Python Type Hints & Validation

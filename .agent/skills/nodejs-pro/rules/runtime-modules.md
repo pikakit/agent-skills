@@ -1,6 +1,10 @@
 ---
 name: runtime-modules
 description: Node.js runtime selection, ESM vs CJS, native TypeScript, node prefix, and module interop
+title: "Runtime & Module System"
+impact: MEDIUM
+impactDescription: "Moderate improvement to quality or maintainability"
+tags: runtime, modules
 ---
 
 # Runtime & Module System

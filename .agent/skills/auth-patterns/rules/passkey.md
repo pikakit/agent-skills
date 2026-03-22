@@ -1,6 +1,10 @@
 ---
 name: passkey
 description: WebAuthn/FIDO2 passkeys — registration, authentication, browser + server implementation
+title: "Passkeys (WebAuthn / FIDO2)"
+impact: MEDIUM
+impactDescription: "Moderate improvement to quality or maintainability"
+tags: passkey
 ---
 
 # Passkeys (WebAuthn / FIDO2)

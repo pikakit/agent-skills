@@ -1,6 +1,10 @@
 ---
 name: ux-psychology
 description: Core UX laws (Hick's, Fitts', Miller's, Von Restorff), emotional design, trust signals, cognitive load, persona guide
+title: "UX Psychology Reference"
+impact: MEDIUM
+impactDescription: "Moderate improvement to quality or maintainability"
+tags: ux, psychology
 ---
 
 # UX Psychology Reference

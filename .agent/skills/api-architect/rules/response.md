@@ -1,6 +1,10 @@
 ---
 name: response
 description: API response envelope pattern, error format, pagination, TypeScript types
+title: "Response Format Principles"
+impact: MEDIUM
+impactDescription: "Moderate improvement to quality or maintainability"
+tags: response
 ---
 
 # Response Format Principles

@@ -1,6 +1,10 @@
 ---
 name: deep-linking
 description: Universal Links (iOS), App Links (Android), deferred deep linking, and cross-framework configuration
+title: "Deep Linking"
+impact: MEDIUM
+impactDescription: "Moderate improvement to quality or maintainability"
+tags: deep, linking
 ---
 
 # Deep Linking

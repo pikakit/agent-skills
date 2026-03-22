@@ -1,6 +1,10 @@
 ---
 name: mcp-quickstart
 description: Setup guides for Python FastMCP and TypeScript MCP SDK servers with minimal templates
+title: "MCP Builder Quick Start"
+impact: MEDIUM
+impactDescription: "Moderate improvement to quality or maintainability"
+tags: quickstart
 ---
 
 # MCP Builder Quick Start

@@ -1,6 +1,10 @@
 ---
 name: documentation
 description: OpenAPI 3.1 specs, Swagger UI setup, API documentation best practices
+title: "API Documentation Principles"
+impact: MEDIUM
+impactDescription: "Moderate improvement to quality or maintainability"
+tags: documentation
 ---
 
 # API Documentation Principles

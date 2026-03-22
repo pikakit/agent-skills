@@ -1,6 +1,10 @@
 ---
 name: graphql
 description: GraphQL schema design, resolver patterns, N+1 prevention, security
+title: "GraphQL Principles"
+impact: MEDIUM
+impactDescription: "Moderate improvement to quality or maintainability"
+tags: graphql
 ---
 
 # GraphQL Principles

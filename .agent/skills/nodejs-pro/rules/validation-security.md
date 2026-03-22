@@ -1,6 +1,10 @@
 ---
 name: validation-security
 description: Input validation with Zod, security middleware, rate limiting, CORS, secrets management, and security checklist
+title: "Validation & Security"
+impact: MEDIUM
+impactDescription: "Moderate improvement to quality or maintainability"
+tags: validation, security
 ---
 
 # Validation & Security

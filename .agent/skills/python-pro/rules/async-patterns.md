@@ -1,6 +1,10 @@
 ---
 name: async-patterns
 description: Python async patterns — asyncio, gather, TaskGroup, run_in_executor, and async library selection
+title: "Python Async Patterns"
+impact: CRITICAL
+impactDescription: "Significant performance or security impact"
+tags: async, patterns
 ---
 
 # Python Async Patterns

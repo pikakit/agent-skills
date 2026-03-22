@@ -1,6 +1,10 @@
 ---
 name: typography-system
 description: Modular scale, font pairing, line height/length, fluid typography, weight hierarchy, F-pattern reading
+title: "Typography System Reference"
+impact: MEDIUM
+impactDescription: "Moderate improvement to quality or maintainability"
+tags: typography, system
 ---
 
 # Typography System Reference

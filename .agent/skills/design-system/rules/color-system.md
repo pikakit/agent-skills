@@ -1,6 +1,10 @@
 ---
 name: color-system
 description: Color theory, 60-30-10 rule, HSL palette generation, dark mode, WCAG accessibility, Purple Ban
+title: "Color System Reference"
+impact: MEDIUM
+impactDescription: "Moderate improvement to quality or maintainability"
+tags: color, system
 ---
 
 # Color System Reference

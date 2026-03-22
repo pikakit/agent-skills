@@ -1,6 +1,10 @@
 ---
 name: motion-graphics
 description: Advanced motion — Lottie, GSAP, SVG animation, 3D CSS, particles, scroll-driven animations
+title: "Motion Graphics Reference"
+impact: MEDIUM
+impactDescription: "Moderate improvement to quality or maintainability"
+tags: motion, graphics
 ---
 
 # Motion Graphics Reference

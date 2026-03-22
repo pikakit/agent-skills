@@ -1,6 +1,10 @@
 ---
 name: system-design-engineering-spec
 description: Full 21-section engineering spec — context discovery, ADR format, pattern selection, 6-item validation checklist
+title: "System Design - Engineering Specification"
+impact: MEDIUM
+impactDescription: "Moderate improvement to quality or maintainability"
+tags: engineering, spec
 ---
 
 # System Design — Engineering Specification

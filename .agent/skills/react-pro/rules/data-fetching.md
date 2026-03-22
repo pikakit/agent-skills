@@ -1,6 +1,10 @@
 ---
 name: data-fetching
 description: TanStack Query patterns — useSuspenseQuery, mutations, query keys, API service layer
+title: "Data Fetching with TanStack Query"
+impact: HIGH
+impactDescription: "Important architectural or correctness impact"
+tags: data, fetching
 ---
 
 # Data Fetching with TanStack Query

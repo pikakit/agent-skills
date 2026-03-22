@@ -1,6 +1,10 @@
 ---
 name: mobile-performance
 description: Mobile performance guidelines — list virtualization, image optimization, battery, memory management, profiling tools
+title: "Mobile Performance Reference"
+impact: MEDIUM
+impactDescription: "Moderate improvement to quality or maintainability"
+tags: mobile, performance
 ---
 
 # Mobile Performance Reference

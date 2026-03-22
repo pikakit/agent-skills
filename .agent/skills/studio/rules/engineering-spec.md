@@ -1,6 +1,10 @@
 ---
 name: studio-engineering-spec
 description: Full 21-section engineering spec — BM25 search, 6 CSV categories, design system generation, Anti-AI-Slop rules
+title: "Studio - Engineering Specification"
+impact: MEDIUM
+impactDescription: "Moderate improvement to quality or maintainability"
+tags: engineering, spec
 ---
 
 # Studio — Engineering Specification

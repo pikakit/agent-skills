@@ -1,6 +1,10 @@
 ---
 name: anti-patterns
 description: Quick-reference anti-pattern table for mobile development — performance, UX, security, architecture
+title: "Mobile Anti-Patterns"
+impact: MEDIUM
+impactDescription: "Moderate improvement to quality or maintainability"
+tags: anti, patterns
 ---
 
 # Mobile Anti-Patterns

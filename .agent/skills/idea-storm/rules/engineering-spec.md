@@ -1,6 +1,10 @@
 ---
 name: idea-storm-engineering-spec
 description: Full 21-section engineering spec — Socratic gate contracts, question schema, progress/error protocols
+title: "Idea Storm - Engineering Specification"
+impact: MEDIUM
+impactDescription: "Moderate improvement to quality or maintainability"
+tags: engineering, spec
 ---
 
 # Idea Storm — Engineering Specification

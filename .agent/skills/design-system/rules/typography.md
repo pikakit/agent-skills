@@ -1,6 +1,10 @@
 ---
 name: typography
 description: Distinctive font pairings, fluid typography scale, display vs body rules, variable fonts
+title: "Typography for Distinctive Design"
+impact: MEDIUM
+impactDescription: "Moderate improvement to quality or maintainability"
+tags: typography
 ---
 
 # Typography for Distinctive Design

@@ -1,6 +1,10 @@
 ---
 name: mobile-design-thinking
 description: Mobile design methodology — user research, prototyping, usability testing, design sprints, mobile-specific UX
+title: "Mobile Design Thinking"
+impact: MEDIUM
+impactDescription: "Moderate improvement to quality or maintainability"
+tags: mobile, design, thinking
 ---
 
 # Mobile Design Thinking

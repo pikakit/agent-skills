@@ -1,6 +1,10 @@
 ---
 name: game-development-engineering-spec
 description: Full 21-section engineering spec — routing contracts, game loop, perf budget, AI/collision selection
+title: "Game Development - Engineering Specification"
+impact: MEDIUM
+impactDescription: "Moderate improvement to quality or maintainability"
+tags: engineering, spec
 ---
 
 # Game Development — Engineering Specification

@@ -1,6 +1,10 @@
 ---
 name: api-style
 description: REST vs GraphQL vs tRPC decision tree with code comparisons
+title: "API Style Selection"
+impact: HIGH
+impactDescription: "Important architectural or correctness impact"
+tags: api, style
 ---
 
 # API Style Selection

@@ -1,6 +1,10 @@
 ---
 name: push-notifications
 description: FCM, APNs, server-side sending, cross-framework setup, notification strategies, and compliance
+title: "Push Notifications"
+impact: MEDIUM
+impactDescription: "Moderate improvement to quality or maintainability"
+tags: push, notifications
 ---
 
 # Push Notifications

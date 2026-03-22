@@ -1,6 +1,10 @@
 ---
 name: mobile-platform-android
 description: Material Design 3 guidelines — Roboto typography, bottom navigation, dynamic color, elevation system
+title: "Android Platform Guidelines"
+impact: MEDIUM
+impactDescription: "Moderate improvement to quality or maintainability"
+tags: platform, android
 ---
 
 # Android Platform Guidelines

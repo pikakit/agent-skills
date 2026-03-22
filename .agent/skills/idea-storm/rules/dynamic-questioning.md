@@ -1,6 +1,10 @@
 ---
 name: dynamic-questioning
 description: Dynamic question generation algorithm with domain-specific banks (e-commerce, auth, real-time, CMS) and full examples.
+title: "Dynamic Question Generation"
+impact: MEDIUM
+impactDescription: "Moderate improvement to quality or maintainability"
+tags: dynamic, questioning
 ---
 
 # Dynamic Question Generation

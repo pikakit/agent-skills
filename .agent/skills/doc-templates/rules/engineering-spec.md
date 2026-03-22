@@ -1,6 +1,10 @@
-﻿---
+---
 name: doc-templates-engineering-spec
 description: Full 21-section engineering spec â€” contracts, deterministic design, compliance matrix
+title: "Doc Templates --” Engineering Specification"
+impact: MEDIUM
+impactDescription: "Moderate improvement to quality or maintainability"
+tags: engineering, spec
 ---
 
 # Doc Templates â€” Engineering Specification

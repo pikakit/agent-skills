@@ -1,6 +1,10 @@
 ---
 name: decision-trees
 description: Design decision framework — master tree, audience routing, color/typography/layout selection, page templates
+title: "Decision Trees & Context Templates"
+impact: HIGH
+impactDescription: "Important architectural or correctness impact"
+tags: decision, trees
 ---
 
 # Decision Trees & Context Templates

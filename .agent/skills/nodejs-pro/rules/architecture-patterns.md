@@ -1,6 +1,10 @@
 ---
 name: architecture-patterns
 description: Layered architecture — Controller/Service/Repository with code examples, DI, project structure, and anti-patterns
+title: "Architecture Patterns"
+impact: MEDIUM
+impactDescription: "Moderate improvement to quality or maintainability"
+tags: architecture, patterns
 ---
 
 # Architecture Patterns

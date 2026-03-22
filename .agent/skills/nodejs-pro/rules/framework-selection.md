@@ -1,6 +1,10 @@
 ---
 name: framework-selection
 description: Node.js framework decision criteria — Hono, Fastify, Express, NestJS with code examples, middleware, and migration paths
+title: "Framework Selection (2025)"
+impact: MEDIUM
+impactDescription: "Moderate improvement to quality or maintainability"
+tags: framework, selection
 ---
 
 # Framework Selection (2025)

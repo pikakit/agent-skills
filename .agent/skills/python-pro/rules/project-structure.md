@@ -1,6 +1,10 @@
 ---
 name: project-structure
 description: Python project structure — directory layouts for small/medium/large apps, FastAPI vs Django, pyproject.toml
+title: "Project Structure"
+impact: MEDIUM
+impactDescription: "Moderate improvement to quality or maintainability"
+tags: project, structure
 ---
 
 # Project Structure

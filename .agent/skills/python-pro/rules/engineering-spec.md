@@ -1,6 +1,10 @@
 ---
 name: python-pro-engineering-spec
 description: Full 21-section engineering spec — FastAPI/Django/Flask selection, async/sync classification, type hints, architecture layering
+title: "Python Pro - Engineering Specification"
+impact: MEDIUM
+impactDescription: "Moderate improvement to quality or maintainability"
+tags: engineering, spec
 ---
 
 # Python Pro — Engineering Specification

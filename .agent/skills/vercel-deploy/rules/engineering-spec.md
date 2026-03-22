@@ -1,6 +1,10 @@
 ---
 name: vercel-deploy-engineering-spec
 description: Full 21-section engineering spec — zero-auth deployment, 4-stage pipeline, 40+ framework detection, tarball packaging
+title: "Vercel Deploy - Engineering Specification"
+impact: MEDIUM
+impactDescription: "Moderate improvement to quality or maintainability"
+tags: engineering, spec
 ---
 
 # Vercel Deploy — Engineering Specification

@@ -1,6 +1,10 @@
 ---
 name: mobile-color-system
 description: Mobile color palettes — platform-specific colors, dark mode, dynamic color (Android), accessibility contrast
+title: "Mobile Color System Reference"
+impact: MEDIUM
+impactDescription: "Moderate improvement to quality or maintainability"
+tags: mobile, color, system
 ---
 
 # Mobile Color System Reference

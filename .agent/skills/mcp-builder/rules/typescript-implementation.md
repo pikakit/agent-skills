@@ -1,6 +1,10 @@
 ---
 name: mcp-typescript-implementation
 description: TypeScript MCP server with Zod validation — tool annotations, strict mode, build/test workflow
+title: "TypeScript MCP Server Implementation"
+impact: MEDIUM
+impactDescription: "Moderate improvement to quality or maintainability"
+tags: typescript, implementation
 ---
 
 # TypeScript MCP Server Implementation

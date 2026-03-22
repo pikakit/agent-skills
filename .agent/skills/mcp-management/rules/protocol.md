@@ -1,6 +1,10 @@
 ---
 name: mcp-protocol
 description: JSON-RPC 2.0 protocol reference — message types, 6 MCP methods, error codes, stdio/SSE transports
+title: "MCP Protocol Reference"
+impact: MEDIUM
+impactDescription: "Moderate improvement to quality or maintainability"
+tags: protocol
 ---
 
 # MCP Protocol Reference
