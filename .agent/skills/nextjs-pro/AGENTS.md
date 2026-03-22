@@ -10,7 +10,7 @@ March 2026
 
 ---
 
-# Next.js Pro â€” App Router & React Performance
+# Next.js Pro — App Router & React Performance
 
 > Server-first. 3 data strategies. 4 route files. 57 rules. 8 categories. CWV targets.
 
@@ -33,10 +33,10 @@ March 2026
 
 | Owned by This Skill | NOT Owned |
 |---------------------|-----------|
-| Server/Client component decision | React architecture (â†’ react-architect) |
-| Data fetching strategy (3 options) | CSS/styling (â†’ tailwind-kit) |
-| Routing conventions (4 files) | Design system (â†’ design-system) |
-| 57 performance rules (8 categories) | Performance profiling (â†’ perf-optimizer) |
+| Server/Client component decision | React architecture (→ react-architect) |
+| Data fetching strategy (3 options) | CSS/styling (→ tailwind-kit) |
+| Routing conventions (4 files) | Design system (→ design-system) |
+| 57 performance rules (8 categories) | Performance profiling (→ perf-optimizer) |
 
 **Expert decision skill:** Produces patterns and rule references. Does not write code.
 
@@ -46,8 +46,8 @@ March 2026
 
 ```
 Need useState / useEffect / event handlers?
-â”œâ”€â”€ YES â†’ 'use client'
-â””â”€â”€ NO  â†’ Server Component (default, no directive)
+├── YES → 'use client'
+└── NO  → Server Component (default, no directive)
 ```
 
 | Type | Use For |
@@ -57,7 +57,7 @@ Need useState / useEffect / event handlers?
 
 ---
 
-## Data Fetching (3 Strategies â€” Fixed)
+## Data Fetching (3 Strategies — Fixed)
 
 | Volatility | Strategy | Cache Config | Use Case |
 |-----------|----------|-------------|----------|
@@ -67,7 +67,7 @@ Need useState / useEffect / event handlers?
 
 ---
 
-## Route Conventions (4 Files â€” Fixed)
+## Route Conventions (4 Files — Fixed)
 
 | File | Purpose | Required |
 |------|---------|----------|
@@ -102,7 +102,7 @@ Need useState / useEffect / event handlers?
 
 ## Anti-Patterns
 
-| âŒ Don't | âœ… Do |
+| ❌ Don't | ✅ Do |
 |---------|-------|
 | `'use client'` everywhere | Server Component by default |
 | Fetch data in Client Components | Fetch in Server Components |
@@ -112,7 +112,7 @@ Need useState / useEffect / event handlers?
 
 ---
 
-## ðŸ“‘ Content Map
+## 📑 Content Map
 
 | Category | Files | Focus | When to Read |
 |----------|-------|-------|--------------|
@@ -131,7 +131,7 @@ Need useState / useEffect / event handlers?
 
 ---
 
-## ðŸ”— Related
+## 🔗 Related
 
 | Item | Type | Purpose |
 |------|------|---------|
@@ -141,7 +141,7 @@ Need useState / useEffect / event handlers?
 
 ---
 
-âš¡ PikaKit v3.9.105
+⚡ PikaKit v3.9.105
 
 ---
 
@@ -306,7 +306,7 @@ function SearchInput({ onSearch }: { onSearch: (q: string) => void }) {
 ---
 title: Prevent Waterfall Chains in API Routes
 impact: CRITICAL
-impactDescription: 2-10Ã— improvement
+impactDescription: 2-10× improvement
 tags: api-routes, server-actions, waterfalls, parallelization
 ---
 
@@ -434,7 +434,7 @@ This optimization is especially valuable when the skipped branch is frequently t
 ---
 title: Dependency-Based Parallelization
 impact: CRITICAL
-impactDescription: 2-10Ã— improvement
+impactDescription: 2-10× improvement
 tags: async, parallelization, dependencies, better-all
 ---
 
@@ -490,7 +490,7 @@ Reference: [https://github.com/shuding/better-all](https://github.com/shuding/be
 ---
 title: Promise.all() for Independent Operations
 impact: CRITICAL
-impactDescription: 2-10Ã— improvement
+impactDescription: 2-10× improvement
 tags: async, parallelization, promises, waterfalls
 ---
 
@@ -616,7 +616,7 @@ Both components share the same promise, so only one fetch occurs. Layout renders
 - Critical data needed for layout decisions (affects positioning)
 - SEO-critical content above the fold
 - Small, fast queries where suspense overhead isn't worth it
-- When you want to avoid layout shift (loading â†’ content jump)
+- When you want to avoid layout shift (loading → content jump)
 
 **Trade-off:** Faster initial paint vs potential layout shift. Choose based on your UX priorities.
 
@@ -1143,12 +1143,12 @@ Reference: [https://swr.vercel.app](https://swr.vercel.app)
 ### Rule: engineering-spec
 
 ---
-title: Next.js Pro â€” Engineering Specification
+title: Next.js Pro — Engineering Specification
 impact: MEDIUM
 tags: nextjs-pro
 ---
 
-# Next.js Pro â€” Engineering Specification
+# Next.js Pro — Engineering Specification
 
 > Production-grade specification for Next.js App Router and React performance patterns at FAANG scale.
 
@@ -1156,11 +1156,11 @@ tags: nextjs-pro
 
 ## 1. Overview
 
-Next.js Pro provides structured decision frameworks for Next.js App Router development: Server vs Client component routing, data fetching strategy (static/ISR/dynamic), routing conventions, caching patterns, and 60+ performance rules. The skill operates as an **Expert (decision tree)** â€” it produces component type decisions, data fetching strategy selections, routing guidance, and performance recommendations. It does not create projects, write components, or execute builds.
+Next.js Pro provides structured decision frameworks for Next.js App Router development: Server vs Client component routing, data fetching strategy (static/ISR/dynamic), routing conventions, caching patterns, and 60+ performance rules. The skill operates as an **Expert (decision tree)** — it produces component type decisions, data fetching strategy selections, routing guidance, and performance recommendations. It does not create projects, write components, or execute builds.
 
 **Contract Version:** 2.0.0
 **Backward Compatibility:** breaking (first hardened version)
-**Breaking Changes:** None â€” new spec for first hardening
+**Breaking Changes:** None — new spec for first hardening
 
 ---
 
@@ -1183,7 +1183,7 @@ Next.js Pro eliminates these with Server-first defaults (no directive = Server C
 
 | ID | Goal | Measurable Constraint |
 |----|------|-----------------------|
-| G1 | Server/Client decision tree | Binary: needs useState/useEffect/events â†’ client; else â†’ server |
+| G1 | Server/Client decision tree | Binary: needs useState/useEffect/events → client; else → server |
 | G2 | Data fetching routing | 3 strategies: static (default), ISR (revalidate: 60), dynamic (no-store) |
 | G3 | Route conventions | 4 files: page.tsx, layout.tsx, loading.tsx, error.tsx |
 | G4 | 60+ performance rules | 7 categories: async, bundle, server, client, rendering, rerender, js |
@@ -1289,8 +1289,8 @@ Recoverable: boolean
 
 #### Deterministic Guarantees
 
-- Component type is binary: needs_interactivity=true â†’ `'use client'`; false â†’ Server Component (no directive).
-- Data fetching is deterministic: static â†’ default cache, periodic â†’ `revalidate: N`, real-time â†’ `no-store`.
+- Component type is binary: needs_interactivity=true → `'use client'`; false → Server Component (no directive).
+- Data fetching is deterministic: static → default cache, periodic → `revalidate: N`, real-time → `no-store`.
 - Route conventions are fixed: page.tsx, layout.tsx, loading.tsx, error.tsx.
 - Rule categories are fixed: 7 categories with fixed file counts.
 - Core Web Vitals targets are fixed: LCP < 2.5s, INP < 200ms, CLS < 0.1.
@@ -1386,7 +1386,7 @@ All phases synchronous. No async pipeline.
 | Principle | Enforcement |
 |-----------|-------------|
 | Server-first | No directive = Server Component; explicit `'use client'` required |
-| Binary component decision | needs_interactivity â†’ client; else â†’ server |
+| Binary component decision | needs_interactivity → client; else → server |
 | Fixed data strategies | static (default), ISR (revalidate: 60), dynamic (no-store) |
 | Fixed route files | page.tsx, layout.tsx, loading.tsx, error.tsx |
 | Fixed CWV targets | LCP < 2.5s, INP < 200ms, CLS < 0.1 |
@@ -1525,7 +1525,7 @@ All resources scoped to invocation. No persistent handles.
 | Data strategy decision | < 1 ms | < 3 ms | 10 ms |
 | Rule category listing | < 2 ms | < 5 ms | 20 ms |
 | Full guide | < 10 ms | < 30 ms | 50 ms |
-| Output size | â‰¤ 1,500 chars | â‰¤ 4,000 chars | 6,000 chars |
+| Output size | ≤ 1,500 chars | ≤ 4,000 chars | 6,000 chars |
 
 ---
 
@@ -1545,16 +1545,16 @@ All resources scoped to invocation. No persistent handles.
 
 | Requirement | Status | Evidence |
 |-------------|--------|----------|
-| YAML frontmatter complete | âœ… | name, description, metadata with category, version, triggers, coordinates_with, success_metrics |
-| SKILL.md < 200 lines | âœ… | Entry point under 200 lines |
-| Prerequisites documented | âœ… | No external dependencies (knowledge skill) |
-| When to Use section | âœ… | Situation-based routing table |
-| Core content matches skill type | âœ… | Expert type: decision trees, pattern guidance |
-| Troubleshooting section | âœ… | Anti-patterns table |
-| Related section | âœ… | Cross-links to react-architect, tailwind-kit, perf-optimizer |
-| Content Map for multi-file | âœ… | Links to 7 rule categories + engineering-spec.md |
-| Contract versioning | âœ… | contract_version, backward_compatibility, breaking_changes |
-| Compliance matrix structured | âœ… | This table with âœ…/âŒ + evidence |
+| YAML frontmatter complete | ✅ | name, description, metadata with category, version, triggers, coordinates_with, success_metrics |
+| SKILL.md < 200 lines | ✅ | Entry point under 200 lines |
+| Prerequisites documented | ✅ | No external dependencies (knowledge skill) |
+| When to Use section | ✅ | Situation-based routing table |
+| Core content matches skill type | ✅ | Expert type: decision trees, pattern guidance |
+| Troubleshooting section | ✅ | Anti-patterns table |
+| Related section | ✅ | Cross-links to react-architect, tailwind-kit, perf-optimizer |
+| Content Map for multi-file | ✅ | Links to 7 rule categories + engineering-spec.md |
+| Contract versioning | ✅ | contract_version, backward_compatibility, breaking_changes |
+| Compliance matrix structured | ✅ | This table with ✅/❌ + evidence |
 
 ---
 
@@ -1562,26 +1562,26 @@ All resources scoped to invocation. No persistent handles.
 
 | Category | Check | Status |
 |----------|-------|--------|
-| **Functionality** | Server/Client binary decision tree | âœ… |
-| **Functionality** | Data fetching (3 strategies: static, ISR, dynamic) | âœ… |
-| **Functionality** | Route conventions (4 files) | âœ… |
-| **Functionality** | 60+ rules across 7 categories | âœ… |
-| **Functionality** | Core Web Vitals targets (LCP, INP, CLS) | âœ… |
-| **Contracts** | Input/output/error schemas in pseudo-schema format | âœ… |
-| **Contracts** | Contract versioning with semver | âœ… |
-| **Failure** | Error taxonomy with 3 categorized codes | âœ… |
-| **Failure** | Zero internal retries | âœ… |
-| **Determinism** | Fixed component decision, fixed strategies, fixed rules | âœ… |
-| **Security** | No credentials, no PII, no file access | âœ… |
-| **Observability** | Structured log schema with 5 mandatory fields | âœ… |
-| **Observability** | 4 metrics defined | âœ… |
-| **Performance** | P50/P99 targets for all operations | âœ… |
-| **Scalability** | Stateless; unlimited parallel | âœ… |
-| **Compliance** | All skill-design-guide.md sections mapped with evidence | âœ… |
+| **Functionality** | Server/Client binary decision tree | ✅ |
+| **Functionality** | Data fetching (3 strategies: static, ISR, dynamic) | ✅ |
+| **Functionality** | Route conventions (4 files) | ✅ |
+| **Functionality** | 60+ rules across 7 categories | ✅ |
+| **Functionality** | Core Web Vitals targets (LCP, INP, CLS) | ✅ |
+| **Contracts** | Input/output/error schemas in pseudo-schema format | ✅ |
+| **Contracts** | Contract versioning with semver | ✅ |
+| **Failure** | Error taxonomy with 3 categorized codes | ✅ |
+| **Failure** | Zero internal retries | ✅ |
+| **Determinism** | Fixed component decision, fixed strategies, fixed rules | ✅ |
+| **Security** | No credentials, no PII, no file access | ✅ |
+| **Observability** | Structured log schema with 5 mandatory fields | ✅ |
+| **Observability** | 4 metrics defined | ✅ |
+| **Performance** | P50/P99 targets for all operations | ✅ |
+| **Scalability** | Stateless; unlimited parallel | ✅ |
+| **Compliance** | All skill-design-guide.md sections mapped with evidence | ✅ |
 
 ---
 
-âš¡ PikaKit v3.9.105
+⚡ PikaKit v3.9.105
 
 ---
 
@@ -1795,7 +1795,7 @@ tags: javascript, loops, optimization, caching
 
 Cache object property lookups in hot paths.
 
-**Incorrect (3 lookups Ã— N iterations):**
+**Incorrect (3 lookups × N iterations):**
 
 ```typescript
 for (let i = 0; i < arr.length; i++) {
@@ -2070,7 +2070,7 @@ function processOrders(orders: Order[], users: User[]) {
 ```
 
 Build map once (O(n)), then all lookups are O(1).
-For 1000 orders Ã— 1000 users: 1M ops â†’ 2K ops.
+For 1000 orders × 1000 users: 1M ops → 2K ops.
 
 ---
 
@@ -2473,7 +2473,7 @@ function MessageList({ messages }: { messages: Message[] }) {
 }
 ```
 
-For 1000 messages, browser skips layout/paint for ~990 off-screen items (10Ã— faster initial render).
+For 1000 messages, browser skips layout/paint for ~990 off-screen items (10× faster initial render).
 
 ---
 
@@ -2626,7 +2626,7 @@ tags: rendering, hydration, ssr, nextjs
 
 ## Suppress Expected Hydration Mismatches
 
-In SSR frameworks (e.g., Next.js), some values are intentionally different on server vs client (random IDs, dates, locale/timezone formatting). For these *expected* mismatches, wrap the dynamic text in an element with `suppressHydrationWarning` to prevent noisy warnings. Do not use this to hide real bugs. Donâ€™t overuse it.
+In SSR frameworks (e.g., Next.js), some values are intentionally different on server vs client (random IDs, dates, locale/timezone formatting). For these *expected* mismatches, wrap the dynamic text in an element with `suppressHydrationWarning` to prevent noisy warnings. Do not use this to hide real bugs. Don’t overuse it.
 
 **Incorrect (known mismatch warnings):**
 
@@ -2958,18 +2958,18 @@ function TodoList() {
   // Callback must depend on items, recreated on every items change
   const addItems = useCallback((newItems: Item[]) => {
     setItems([...items, ...newItems])
-  }, [items])  // âŒ items dependency causes recreations
+  }, [items])  // ❌ items dependency causes recreations
   
   // Risk of stale closure if dependency is forgotten
   const removeItem = useCallback((id: string) => {
     setItems(items.filter(item => item.id !== id))
-  }, [])  // âŒ Missing items dependency - will use stale items!
+  }, [])  // ❌ Missing items dependency - will use stale items!
   
   return <ItemsEditor items={items} onAdd={addItems} onRemove={removeItem} />
 }
 ```
 
-The first callback is recreated every time `items` changes, which can cause child components to re-render unnecessarily. The second callback has a stale closure bugâ€”it will always reference the initial `items` value.
+The first callback is recreated every time `items` changes, which can cause child components to re-render unnecessarily. The second callback has a stale closure bug—it will always reference the initial `items` value.
 
 **Correct (stable callbacks, no stale closures):**
 
@@ -2980,12 +2980,12 @@ function TodoList() {
   // Stable callback, never recreated
   const addItems = useCallback((newItems: Item[]) => {
     setItems(curr => [...curr, ...newItems])
-  }, [])  // âœ… No dependencies needed
+  }, [])  // ✅ No dependencies needed
   
   // Always uses latest state, no stale closure risk
   const removeItem = useCallback((id: string) => {
     setItems(curr => curr.filter(item => item.id !== id))
-  }, [])  // âœ… Safe and stable
+  }, [])  // ✅ Safe and stable
   
   return <ItemsEditor items={items} onAdd={addItems} onRemove={removeItem} />
 }
@@ -3474,7 +3474,7 @@ tags: server, server-actions, authentication, security, authorization
 
 **Impact: CRITICAL (prevents unauthorized access to server mutations)**
 
-Server Actions (functions with `"use server"`) are exposed as public endpoints, just like API routes. Always verify authentication and authorization **inside** each Server Actionâ€”do not rely solely on middleware, layout guards, or page-level checks, as Server Actions can be invoked directly.
+Server Actions (functions with `"use server"`) are exposed as public endpoints, just like API routes. Always verify authentication and authorization **inside** each Server Action—do not rely solely on middleware, layout guards, or page-level checks, as Server Actions can be invoked directly.
 
 Next.js documentation explicitly states: "Treat Server Actions with the same security considerations as public-facing API endpoints, and verify if the user is allowed to perform a mutation."
 
@@ -3702,12 +3702,12 @@ tags: server, rsc, serialization, props, client-components
 
 **Impact: LOW (reduces network payload by avoiding duplicate serialization)**
 
-RSCâ†’client serialization deduplicates by object reference, not value. Same reference = serialized once; new reference = serialized again. Do transformations (`.toSorted()`, `.filter()`, `.map()`) in client, not server.
+RSC→client serialization deduplicates by object reference, not value. Same reference = serialized once; new reference = serialized again. Do transformations (`.toSorted()`, `.filter()`, `.map()`) in client, not server.
 
 **Incorrect (duplicates array):**
 
 ```tsx
-// RSC: sends 6 strings (2 arrays Ã— 3 items)
+// RSC: sends 6 strings (2 arrays × 3 items)
 <ClientList usernames={usernames} usernamesOrdered={usernames.toSorted()} />
 ```
 
@@ -3745,11 +3745,11 @@ users={[{id:1},{id:2}]} sorted={users.toSorted()} // sends 2 arrays + 2 unique o
 **More examples:**
 
 ```tsx
-// âŒ Bad
+// â Œ Bad
 <C users={users} active={users.filter(u => u.active)} />
 <C product={product} productName={product.name} />
 
-// âœ… Good
+// ✅ Good
 <C users={users} />
 <C product={product} />
 // Do filtering/destructuring in client

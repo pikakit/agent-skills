@@ -127,7 +127,7 @@ router = LlmAgent(
 
 # Router auto-delegates based on query
 response = router.run("I was charged twice")
-# â†’ Routes to billing_agent
+# → Routes to billing_agent
 ```
 
 ---
@@ -143,4 +143,4 @@ response = router.run("I was charged twice")
 
 ---
 
-âš¡ PikaKit v3.9.105
+⚡ PikaKit v3.9.105

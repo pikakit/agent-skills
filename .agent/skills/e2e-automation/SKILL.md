@@ -5,10 +5,10 @@ description: >-
   strategies. Triggers on: E2E test, Playwright, browser test, visual testing, automation.
 metadata:
   author: pikakit
-  version: "3.9.107"
+  version: "3.9.108"
 ---
 
-# E2E Automation â€” Playwright Testing
+# E2E Automation — Playwright Testing
 
 > Behavior-driven E2E tests. `data-testid` selectors. Auto-wait, never sleep. Zero flake tolerance.
 
@@ -40,10 +40,10 @@ npm install playwright && npx playwright install chromium
 
 | Owned by This Skill | NOT Owned |
 |---------------------|-----------|
-| Playwright test runner (`scripts/playwright_runner.js`) | Unit/integration patterns (â†’ test-architect) |
-| Screenshot capture (on-failure + on-demand) | Performance benchmarking (â†’ perf-optimizer) |
-| Accessibility audit (axe-core via `--a11y`) | CI/CD pipeline config (â†’ cicd-pipeline) |
-| ARIA snapshot testing reference | Browser scraping (â†’ agent-browser) |
+| Playwright test runner (`scripts/playwright_runner.js`) | Unit/integration patterns (→ test-architect) |
+| Screenshot capture (on-failure + on-demand) | Performance benchmarking (→ perf-optimizer) |
+| Accessibility audit (axe-core via `--a11y`) | CI/CD pipeline config (→ cicd-pipeline) |
+| ARIA snapshot testing reference | Browser scraping (→ agent-browser) |
 | Test organization structure | Test content authoring |
 
 **Automation skill:** Launches browser, navigates pages, captures screenshots. Session-based with side effects.
@@ -93,10 +93,10 @@ node .agent/skills/e2e-automation/scripts/playwright_runner.js <url> --a11y
 
 ```
 tests/
-â”œâ”€â”€ e2e/           # Full user flows
-â”œâ”€â”€ integration/   # API, data
-â”œâ”€â”€ component/     # UI units
-â””â”€â”€ fixtures/      # Shared test data
+├── e2e/           # Full user flows
+├── integration/   # API, data
+├── component/     # UI units
+└── fixtures/      # Shared test data
 ```
 
 ---
@@ -104,14 +104,14 @@ tests/
 ## Session Lifecycle
 
 ```
-IDLE â†’ LAUNCHING          [run-tests invoked]
-LAUNCHING â†’ NAVIGATING    [browser started]
-NAVIGATING â†’ EXECUTING    [target loaded]
-EXECUTING â†’ CAPTURING     [screenshot/trace needed]
-CAPTURING â†’ REPORTING     [artifacts saved]
-REPORTING â†’ COMPLETED     [results output]  // terminal
-LAUNCHING â†’ ERROR         [browser launch failed]  // terminal
-NAVIGATING â†’ ERROR        [target unreachable]  // terminal
+IDLE → LAUNCHING          [run-tests invoked]
+LAUNCHING → NAVIGATING    [browser started]
+NAVIGATING → EXECUTING    [target loaded]
+EXECUTING → CAPTURING     [screenshot/trace needed]
+CAPTURING → REPORTING     [artifacts saved]
+REPORTING → COMPLETED     [results output]  // terminal
+LAUNCHING → ERROR         [browser launch failed]  // terminal
+NAVIGATING → ERROR        [target unreachable]  // terminal
 ```
 
 **Invariant:** Browser process ALWAYS terminated in Report phase. No orphaned processes.
@@ -134,7 +134,7 @@ NAVIGATING â†’ ERROR        [target unreachable]  // terminal
 
 ## Anti-Patterns
 
-| âŒ Don't | âœ… Do |
+| ❌ Don't | ✅ Do |
 |---------|-------|
 | Test implementation details | Test user-visible behavior |
 | Hardcode waits (`sleep`) | Use Playwright auto-wait |
@@ -144,7 +144,7 @@ NAVIGATING â†’ ERROR        [target unreachable]  // terminal
 
 ---
 
-## ðŸ“‘ Content Map
+## 📑 Content Map
 
 | File | Description | When to Read |
 |------|-------------|--------------|
@@ -157,7 +157,7 @@ NAVIGATING â†’ ERROR        [target unreachable]  // terminal
 
 ---
 
-## ðŸ”— Related
+## 🔗 Related
 
 | Item | Type | Purpose |
 |------|------|---------|
@@ -167,4 +167,4 @@ NAVIGATING â†’ ERROR        [target unreachable]  // terminal
 
 ---
 
-âš¡ PikaKit v3.9.107
+⚡ PikaKit v3.9.108

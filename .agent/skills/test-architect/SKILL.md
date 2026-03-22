@@ -6,10 +6,10 @@ description: >-
   testing, unit test, coverage, mocking, AAA pattern.
 metadata:
   author: pikakit
-  version: "3.9.107"
+  version: "3.9.108"
 ---
 
-# Test Architect â€” Testing Patterns & Principles
+# Test Architect — Testing Patterns & Principles
 
 > Pyramid/Trophy/Honeycomb strategy. AAA structure. FIRST principles. Mock routing.
 
@@ -31,16 +31,16 @@ metadata:
 
 | Owned by This Skill | NOT Owned |
 |---------------------|-----------|
-| Strategy selection (3 models) | E2E browser testing (â†’ e2e-automation) |
-| AAA pattern + FIRST principles | TDD workflow (â†’ test-driven-dev) |
-| Mock type routing (4 types) | Code quality (â†’ code-craft) |
+| Strategy selection (3 models) | E2E browser testing (→ e2e-automation) |
+| AAA pattern + FIRST principles | TDD workflow (→ test-driven-dev) |
+| Mock type routing (4 types) | Code quality (→ code-craft) |
 | Naming conventions (3 patterns) | Test execution / coverage tooling |
 
 **Expert decision skill:** Produces testing guidance. Does not write or execute tests.
 
 ---
 
-## Strategy Selection (3 Models â€” Deterministic)
+## Strategy Selection (3 Models — Deterministic)
 
 | Model | Distribution | Best For |
 |-------|-------------|----------|
@@ -60,7 +60,7 @@ metadata:
 
 ---
 
-## FIRST Principles (5 â€” Fixed)
+## FIRST Principles (5 — Fixed)
 
 | Principle | Constraint |
 |-----------|-----------|
@@ -72,7 +72,7 @@ metadata:
 
 ---
 
-## Mock Types (4 â€” Deterministic)
+## Mock Types (4 — Deterministic)
 
 | Type | Use When |
 |------|----------|
@@ -83,7 +83,7 @@ metadata:
 
 ### What to Mock vs Not
 
-| âœ… Mock | âŒ Don't Mock |
+| ✅ Mock | ❌ Don't Mock |
 |---------|--------------|
 | External APIs | Code under test |
 | Database (unit) | Pure functions |
@@ -117,7 +117,7 @@ metadata:
 
 ## Anti-Patterns
 
-| âŒ Don't | âœ… Do |
+| ❌ Don't | ✅ Do |
 |---------|-------|
 | Test implementation details | Test behavior |
 | Duplicate test code | Use factories |
@@ -126,7 +126,7 @@ metadata:
 
 ---
 
-## ðŸ“‘ Content Map
+## 📑 Content Map
 
 | File | Description | When to Read |
 |------|-------------|--------------|
@@ -135,7 +135,7 @@ metadata:
 
 ---
 
-## ðŸ”— Related
+## 🔗 Related
 
 | Item | Type | Purpose |
 |------|------|---------|
@@ -145,4 +145,4 @@ metadata:
 
 ---
 
-âš¡ PikaKit v3.9.107
+⚡ PikaKit v3.9.108

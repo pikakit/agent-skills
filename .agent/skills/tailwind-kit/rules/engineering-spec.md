@@ -1,10 +1,10 @@
 ﻿---
-title: Tailwind Kit â€” Engineering Specification
+title: Tailwind Kit — Engineering Specification
 impact: MEDIUM
 tags: tailwind-kit
 ---
 
-# Tailwind Kit â€” Engineering Specification
+# Tailwind Kit — Engineering Specification
 
 > Production-grade specification for Tailwind CSS v4 patterns at FAANG scale.
 
@@ -12,11 +12,11 @@ tags: tailwind-kit
 
 ## 1. Overview
 
-Tailwind Kit provides structured guidance for Tailwind CSS v4: CSS-first configuration (`@theme` directive), v3â†’v4 migration (3 breaking changes), core patterns (theme, container queries, dark mode, responsive), layout patterns (4: center, vertical stack, space between, auto-fit grid), OKLCH color system (3 layers: primitive, semantic, component), typography scale (5 sizes), animation classes (4), and anti-patterns (5). The skill operates as an **Expert (decision tree)** â€” it produces Tailwind class recommendations, configuration guidance, and migration paths. It does not write CSS files, install packages, or modify codebases.
+Tailwind Kit provides structured guidance for Tailwind CSS v4: CSS-first configuration (`@theme` directive), v3→v4 migration (3 breaking changes), core patterns (theme, container queries, dark mode, responsive), layout patterns (4: center, vertical stack, space between, auto-fit grid), OKLCH color system (3 layers: primitive, semantic, component), typography scale (5 sizes), animation classes (4), and anti-patterns (5). The skill operates as an **Expert (decision tree)** — it produces Tailwind class recommendations, configuration guidance, and migration paths. It does not write CSS files, install packages, or modify codebases.
 
 **Contract Version:** 2.0.0
 **Backward Compatibility:** breaking (first hardened version)
-**Breaking Changes:** None â€” new spec for first hardening
+**Breaking Changes:** None — new spec for first hardening
 
 ---
 
@@ -40,7 +40,7 @@ Tailwind Kit eliminates these with CSS-first `@theme` configuration, design syst
 | ID | Goal | Measurable Constraint |
 |----|------|-----------------------|
 | G1 | CSS-first configuration | `@theme` directive with OKLCH colors |
-| G2 | v3 â†’ v4 migration | 3 breaking changes documented |
+| G2 | v3 → v4 migration | 3 breaking changes documented |
 | G3 | Core patterns | 4 patterns: theme, container queries, dark mode, responsive |
 | G4 | Layout patterns | 4 composable layouts |
 | G5 | Color system | 3 layers: primitive, semantic, component |
@@ -68,7 +68,7 @@ Tailwind Kit eliminates these with CSS-first `@theme` configuration, design syst
 |----------|-------|-----------|
 | @theme configuration | CSS-first setup with OKLCH | CSS processing |
 | Utility class guidance | Class selection by pattern | DOM manipulation |
-| v3 â†’ v4 migration | 3 breaking changes | Automated migration |
+| v3 → v4 migration | 3 breaking changes | Automated migration |
 | Layout patterns | 4 composable flex/grid layouts | Component implementation |
 | Color system | 3-layer token architecture | Color generation |
 
@@ -150,11 +150,11 @@ Recoverable: boolean
 
 #### Deterministic Guarantees
 
-- Layout routing is fixed: center â†’ `flex items-center justify-center`; vertical stack â†’ `flex flex-col gap-4`; space between â†’ `flex justify-between items-center`; auto-grid â†’ `grid grid-cols-[repeat(auto-fit,minmax(250px,1fr))]`.
-- Responsive routing is fixed: viewport â†’ `md:`; container â†’ `@md:`.
-- Color system is fixed: 3 layers (primitive â†’ semantic â†’ component).
+- Layout routing is fixed: center → `flex items-center justify-center`; vertical stack → `flex flex-col gap-4`; space between → `flex justify-between items-center`; auto-grid → `grid grid-cols-[repeat(auto-fit,minmax(250px,1fr))]`.
+- Responsive routing is fixed: viewport → `md:`; container → `@md:`.
+- Color system is fixed: 3 layers (primitive → semantic → component).
 - Typography is fixed: 5 sizes (xs=0.75rem, sm=0.875rem, base=1rem, lg=1.125rem, xl+=1.25rem+).
-- v3â†’v4 migration is fixed: 3 breaking changes.
+- v3→v4 migration is fixed: 3 breaking changes.
 - Same use case = same class recommendation.
 
 #### What Agents May Assume
@@ -244,14 +244,14 @@ All phases synchronous. No async pipeline.
 | Principle | Enforcement |
 |-----------|-------------|
 | Configuration | v4: CSS-first `@theme { }` with OKLCH; v3: `tailwind.config.js` (legacy) |
-| v3â†’v4 migration | `tailwind.config.js` â†’ CSS `@theme`; PostCSS plugin â†’ Oxide engine (10Ã— faster); JIT mode â†’ native, always-on |
+| v3→v4 migration | `tailwind.config.js` → CSS `@theme`; PostCSS plugin → Oxide engine (10× faster); JIT mode → native, always-on |
 | Responsive | Viewport: `md:`, `lg:`; Container: `@md:`, `@lg:` (responds to parent width) |
 | Dark mode | `dark:` prefix: `bg-white dark:bg-zinc-900 text-zinc-900 dark:text-white` |
 | Layout center | `flex items-center justify-center` |
 | Layout vertical | `flex flex-col gap-4` |
 | Layout space-between | `flex justify-between items-center` |
 | Layout auto-grid | `grid grid-cols-[repeat(auto-fit,minmax(250px,1fr))]` |
-| Color layers | Primitive (`--blue-500`) â†’ Semantic (`--color-primary`) â†’ Component (`--button-bg`) |
+| Color layers | Primitive (`--blue-500`) → Semantic (`--color-primary`) → Component (`--button-bg`) |
 | Typography | xs=0.75rem, sm=0.875rem, base=1rem, lg=1.125rem, xl+=1.25rem+ |
 | Animation | spin (rotation), pulse (opacity), `transition-all duration-200`, `hover:scale-105` |
 
@@ -377,7 +377,7 @@ All resources scoped to invocation. No persistent handles.
 | Layout recommendation | < 2 ms | < 5 ms | 20 ms |
 | Migration guidance | < 5 ms | < 15 ms | 50 ms |
 | Full guide | < 15 ms | < 40 ms | 50 ms |
-| Output size | â‰¤ 3,000 chars | â‰¤ 6,000 chars | 10,000 chars |
+| Output size | ≤ 3,000 chars | ≤ 6,000 chars | 10,000 chars |
 
 ---
 
@@ -396,16 +396,16 @@ All resources scoped to invocation. No persistent handles.
 
 | Requirement | Status | Evidence |
 |-------------|--------|----------|
-| YAML frontmatter complete | âœ… | name, description, metadata with category, version, triggers, coordinates_with, success_metrics |
-| SKILL.md < 200 lines | âœ… | Entry point under 200 lines |
-| Prerequisites documented | âœ… | Tailwind CSS v4 installed |
-| When to Use section | âœ… | Situation-based routing table |
-| Core content matches skill type | âœ… | Expert type: class recommendations, config guidance, migration paths |
-| Troubleshooting section | âœ… | Anti-patterns table |
-| Related section | âœ… | Cross-links to design-system, nextjs-pro, studio |
-| Content Map for multi-file | âœ… | Links to rules/ + engineering-spec.md |
-| Contract versioning | âœ… | contract_version, backward_compatibility, breaking_changes |
-| Compliance matrix structured | âœ… | This table with âœ…/âŒ + evidence |
+| YAML frontmatter complete | ✅ | name, description, metadata with category, version, triggers, coordinates_with, success_metrics |
+| SKILL.md < 200 lines | ✅ | Entry point under 200 lines |
+| Prerequisites documented | ✅ | Tailwind CSS v4 installed |
+| When to Use section | ✅ | Situation-based routing table |
+| Core content matches skill type | ✅ | Expert type: class recommendations, config guidance, migration paths |
+| Troubleshooting section | ✅ | Anti-patterns table |
+| Related section | ✅ | Cross-links to design-system, nextjs-pro, studio |
+| Content Map for multi-file | ✅ | Links to rules/ + engineering-spec.md |
+| Contract versioning | ✅ | contract_version, backward_compatibility, breaking_changes |
+| Compliance matrix structured | ✅ | This table with ✅/❌ + evidence |
 
 ---
 
@@ -413,23 +413,23 @@ All resources scoped to invocation. No persistent handles.
 
 | Category | Check | Status |
 |----------|-------|--------|
-| **Functionality** | CSS-first @theme configuration | âœ… |
-| **Functionality** | v3â†’v4 migration (3 breaking changes) | âœ… |
-| **Functionality** | 4 core patterns (theme, container queries, dark mode, responsive) | âœ… |
-| **Functionality** | 4 layout patterns | âœ… |
-| **Functionality** | 3-layer OKLCH color system | âœ… |
-| **Functionality** | 5 typography sizes + 4 animation classes | âœ… |
-| **Contracts** | Input/output/error schemas in pseudo-schema format | âœ… |
-| **Contracts** | Contract versioning with semver | âœ… |
-| **Failure** | Error taxonomy with 4 categorized codes | âœ… |
-| **Failure** | Zero internal retries | âœ… |
-| **Determinism** | Fixed layout classes, fixed color layers, fixed migration | âœ… |
-| **Security** | No files, no network, no packages | âœ… |
-| **Observability** | Structured log schema with 5 mandatory fields | âœ… |
-| **Observability** | 4 metrics defined | âœ… |
-| **Performance** | P50/P99 targets for all operations | âœ… |
-| **Compliance** | All skill-design-guide.md sections mapped with evidence | âœ… |
+| **Functionality** | CSS-first @theme configuration | ✅ |
+| **Functionality** | v3→v4 migration (3 breaking changes) | ✅ |
+| **Functionality** | 4 core patterns (theme, container queries, dark mode, responsive) | ✅ |
+| **Functionality** | 4 layout patterns | ✅ |
+| **Functionality** | 3-layer OKLCH color system | ✅ |
+| **Functionality** | 5 typography sizes + 4 animation classes | ✅ |
+| **Contracts** | Input/output/error schemas in pseudo-schema format | ✅ |
+| **Contracts** | Contract versioning with semver | ✅ |
+| **Failure** | Error taxonomy with 4 categorized codes | ✅ |
+| **Failure** | Zero internal retries | ✅ |
+| **Determinism** | Fixed layout classes, fixed color layers, fixed migration | ✅ |
+| **Security** | No files, no network, no packages | ✅ |
+| **Observability** | Structured log schema with 5 mandatory fields | ✅ |
+| **Observability** | 4 metrics defined | ✅ |
+| **Performance** | P50/P99 targets for all operations | ✅ |
+| **Compliance** | All skill-design-guide.md sections mapped with evidence | ✅ |
 
 ---
 
-âš¡ PikaKit v3.9.105
+⚡ PikaKit v3.9.105

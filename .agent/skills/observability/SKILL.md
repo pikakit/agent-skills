@@ -5,10 +5,10 @@ description: >-
   Triggers on: monitoring, observability, OpenTelemetry, telemetry, instrumentation.
 metadata:
   author: pikakit
-  version: "3.9.107"
+  version: "3.9.108"
 ---
 
-# Observability â€” Unified Telemetry with OpenTelemetry
+# Observability — Unified Telemetry with OpenTelemetry
 
 > 3 pillars. Vendor-agnostic. Fixed sampling. Auto-instrumentation first.
 
@@ -40,9 +40,9 @@ metadata:
 
 | Owned by This Skill | NOT Owned |
 |---------------------|-----------|
-| SDK configuration (Node.js, Python) | Infrastructure provisioning (â†’ server-ops) |
-| Sampling strategy (3 environments) | Alerting rules (â†’ /monitor workflow) |
-| Provider routing (3 providers) | CI/CD monitoring (â†’ cicd-pipeline) |
+| SDK configuration (Node.js, Python) | Infrastructure provisioning (→ server-ops) |
+| Sampling strategy (3 environments) | Alerting rules (→ /monitor workflow) |
+| Provider routing (3 providers) | CI/CD monitoring (→ cicd-pipeline) |
 | Auto-instrumentation guidance | Dashboard design |
 
 **Expert decision skill:** Produces configuration guidance. Does not install packages.
@@ -106,7 +106,7 @@ metadata:
 
 ## Anti-Patterns
 
-| âŒ Don't | âœ… Do |
+| ❌ Don't | ✅ Do |
 |---------|-------|
 | Create excessive custom spans | Use auto-instrumentation first |
 | Put sensitive data in span tags | Sanitize all tags before export |
@@ -127,7 +127,7 @@ metadata:
 
 ---
 
-## ðŸ“‘ Content Map
+## 📑 Content Map
 
 | File | Description | When to Read |
 |------|-------------|--------------|
@@ -135,7 +135,7 @@ metadata:
 
 ---
 
-## ðŸ”— Related
+## 🔗 Related
 
 | Item | Type | Purpose |
 |------|------|---------|
@@ -145,4 +145,4 @@ metadata:
 
 ---
 
-âš¡ PikaKit v3.9.107
+⚡ PikaKit v3.9.108

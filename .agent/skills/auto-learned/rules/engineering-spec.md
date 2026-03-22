@@ -1,10 +1,10 @@
 ﻿---
-title: Auto-Learned â€” Engineering Specification
+title: Auto-Learned — Engineering Specification
 impact: MEDIUM
 tags: auto-learned
 ---
 
-# Auto-Learned â€” Engineering Specification
+# Auto-Learned — Engineering Specification
 
 > Production-grade specification for the hierarchical auto-learned pattern repository at FAANG scale.
 
@@ -12,7 +12,7 @@ tags: auto-learned
 
 ## 1. Overview
 
-Auto-Learned is a hierarchical skill that serves as the living repository for all patterns automatically learned from IDE errors, code analysis, and agent corrections. Unlike static knowledge skills, Auto-Learned is a **writable** skill â€” other agents (`problem-checker`, `auto-learner`, `skill-generator`) write patterns into it during normal operation.
+Auto-Learned is a hierarchical skill that serves as the living repository for all patterns automatically learned from IDE errors, code analysis, and agent corrections. Unlike static knowledge skills, Auto-Learned is a **writable** skill — other agents (`problem-checker`, `auto-learner`, `skill-generator`) write patterns into it during normal operation.
 
 The skill organizes patterns by category (import, type, syntax, logic, style) with subskill files in the `patterns/` directory. It also maintains structured data files (`patterns.json`, `config.json`) for dashboard consumption and configuration.
 
@@ -24,7 +24,7 @@ Agent-based development systems face four quantified problems with repeated erro
 
 | Problem | Measurement | Impact |
 |---------|-------------|--------|
-| Repeated identical errors | Same import/type error recurs 3â€“5 times per session | 40â€“60% wasted fix cycles |
+| Repeated identical errors | Same import/type error recurs 3–5 times per session | 40–60% wasted fix cycles |
 | No institutional memory | Fixes are session-local; lost after conversation ends | Zero learning accumulation |
 | Pattern fragmentation | Error fixes scattered across conversations | No queryable knowledge base |
 | No error prevention | Agents react to errors instead of preventing them | Higher iteration count per task |
@@ -62,11 +62,11 @@ Auto-Learned eliminates these by providing a persistent, categorized, queryable 
 
 | Boundary | Owned | Not Owned |
 |----------|-------|-----------|
-| Pattern storage | Categorized markdown files + JSON index | Error detection (â†’ problem-checker) |
-| Pattern lookup | Category-based file reading | Pattern extraction logic (â†’ auto-learner) |
-| Pattern indexing | patterns.json maintenance | Dashboard rendering (â†’ external tooling) |
-| Configuration | config.json for auto-learn settings | Extension settings (â†’ PikaKit extension) |
-| Category management | Category file creation/maintenance | Skill generation from patterns (â†’ skill-generator) |
+| Pattern storage | Categorized markdown files + JSON index | Error detection (→ problem-checker) |
+| Pattern lookup | Category-based file reading | Pattern extraction logic (→ auto-learner) |
+| Pattern indexing | patterns.json maintenance | Dashboard rendering (→ external tooling) |
+| Configuration | config.json for auto-learn settings | Extension settings (→ PikaKit extension) |
+| Category management | Category file creation/maintenance | Skill generation from patterns (→ skill-generator) |
 
 **Side-effect boundary:** Auto-Learned is a **writable** skill. External agents write new patterns into `patterns/*.md` and update `patterns.json`. The skill itself (when consulted) is read-only. Write operations are always initiated by authorized agents, never by the skill itself.
 
@@ -119,7 +119,7 @@ Error: ErrorSchema | null
 
 **Contract Version:** 2.0.0
 **Backward Compatibility:** breaking (first hardened version)
-**Breaking Changes:** None â€” new spec for first hardening
+**Breaking Changes:** None — new spec for first hardening
 
 #### Write Contract (Pattern Ingestion)
 
@@ -297,18 +297,18 @@ All phases synchronous. No async pipeline.
 ```
 States: IDLE, READING, WRITING
 Transitions:
-  IDLE    â†’ READING  (lookup invoked)
-  IDLE    â†’ WRITING  (ingest invoked)
-  READING â†’ IDLE     (results returned)
-  WRITING â†’ IDLE     (write confirmed)
+  IDLE    → READING  (lookup invoked)
+  IDLE    → WRITING  (ingest invoked)
+  READING → IDLE     (results returned)
+  WRITING → IDLE     (write confirmed)
 ```
 
 ### Persistent State
 
 Auto-Learned maintains persistent state across sessions:
-- `patterns/*.md` â€” categorized pattern files (authoritative source)
-- `patterns.json` â€” JSON index (derived from markdown files)
-- `config.json` â€” configuration (auto-learn enabled, categories, thresholds)
+- `patterns/*.md` — categorized pattern files (authoritative source)
+- `patterns.json` — JSON index (derived from markdown files)
+- `config.json` — configuration (auto-learn enabled, categories, thresholds)
 
 `patterns.json` is a derived artifact. If corrupted, it can be regenerated from `patterns/*.md`.
 
@@ -434,9 +434,9 @@ Auto-Learned maintains persistent state across sessions:
 
 | Dimension | Constraint | Mitigation |
 |-----------|-----------|------------|
-| Pattern count | Linear growth; ~10â€“50 patterns per project | Category files remain small (< 10 KB each) |
+| Pattern count | Linear growth; ~10–50 patterns per project | Category files remain small (< 10 KB each) |
 | Lookup throughput | File read; < 50ms | OS-level file caching |
-| Write throughput | Sequential per category | Low write frequency (1â€“5 per session) |
+| Write throughput | Sequential per category | Low write frequency (1–5 per session) |
 | Category count | Fixed at 5 | New categories require schema change |
 | Storage | < 100 KB total (all files) | Negligible disk footprint |
 
@@ -476,7 +476,7 @@ Auto-Learned maintains persistent state across sessions:
 | All-category lookup | < 25 ms | < 50 ms | 200 ms |
 | Pattern ingest | < 50 ms | < 200 ms | 5,000 ms |
 | Index regeneration | < 500 ms | < 2,000 ms | 10,000 ms |
-| Pattern file size | â‰¤ 5 KB | â‰¤ 10 KB | 50 KB |
+| Pattern file size | ≤ 5 KB | ≤ 10 KB | 50 KB |
 
 ---
 
@@ -496,17 +496,17 @@ Auto-Learned maintains persistent state across sessions:
 
 | Requirement | Status | Evidence |
 |-------------|--------|----------|
-| YAML frontmatter complete | âœ… | name, description, metadata with category, version, triggers, coordinates_with, success_metrics |
-| SKILL.md < 200 lines | âœ… | Entry point under 200 lines |
-| Prerequisites documented | âœ… | No external dependencies |
-| When to Use section | âœ… | Lookup/ingest decision matrix |
-| Quick Reference | âœ… | Pattern categories table |
-| Core content matches skill type | âœ… | Repository type: pattern storage, lookup, ingestion |
-| Troubleshooting section | âœ… | Error taxonomy table |
-| Related section | âœ… | Cross-links to problem-checker, skill-generator, auto-learner |
-| Content Map | âœ… | Links to patterns/, config.json, patterns.json |
-| Contract versioning | âœ… | contract_version, backward_compatibility, breaking_changes |
-| Compliance matrix structured | âœ… | This table with âœ…/âŒ + evidence |
+| YAML frontmatter complete | ✅ | name, description, metadata with category, version, triggers, coordinates_with, success_metrics |
+| SKILL.md < 200 lines | ✅ | Entry point under 200 lines |
+| Prerequisites documented | ✅ | No external dependencies |
+| When to Use section | ✅ | Lookup/ingest decision matrix |
+| Quick Reference | ✅ | Pattern categories table |
+| Core content matches skill type | ✅ | Repository type: pattern storage, lookup, ingestion |
+| Troubleshooting section | ✅ | Error taxonomy table |
+| Related section | ✅ | Cross-links to problem-checker, skill-generator, auto-learner |
+| Content Map | ✅ | Links to patterns/, config.json, patterns.json |
+| Contract versioning | ✅ | contract_version, backward_compatibility, breaking_changes |
+| Compliance matrix structured | ✅ | This table with ✅/❌ + evidence |
 
 ---
 
@@ -514,27 +514,27 @@ Auto-Learned maintains persistent state across sessions:
 
 | Category | Check | Status |
 |----------|-------|--------|
-| **Functionality** | 5 pattern categories defined | âœ… |
-| **Functionality** | Read (lookup) and write (ingest) contracts defined | âœ… |
-| **Functionality** | Dual format: markdown + JSON index | âœ… |
-| **Contracts** | Input/output/error schemas for both operations | âœ… |
-| **Contracts** | Agent assumptions and non-assumptions documented | âœ… |
-| **Contracts** | Workflow invocation patterns for lookup and ingest | âœ… |
-| **Failure** | Error taxonomy with 7 categorized error codes | âœ… |
-| **Failure** | Append-only writes; no silent data loss | âœ… |
-| **Failure** | Index regeneration from authoritative markdown | âœ… |
-| **Determinism** | Sequential IDs, deduplication, sorted output | âœ… |
-| **Security** | 3-agent authorization list for writes | âœ… |
-| **Security** | No code execution from stored patterns | âœ… |
-| **Observability** | Structured log schema with 6 log points | âœ… |
-| **Observability** | 6 metrics defined with types and units | âœ… |
-| **Performance** | P50/P99 targets for lookup and ingest | âœ… |
-| **Scalability** | Linear growth bounded by category count | âœ… |
-| **Concurrency** | Parallel reads; serialized writes per category | âœ… |
-| **Resources** | Append-only files; no temporary resources | âœ… |
-| **Idempotency** | Lookups idempotent; duplicate ingests return `duplicate: true` | âœ… |
-| **Compliance** | All skill-design-guide.md sections present | âœ… |
+| **Functionality** | 5 pattern categories defined | ✅ |
+| **Functionality** | Read (lookup) and write (ingest) contracts defined | ✅ |
+| **Functionality** | Dual format: markdown + JSON index | ✅ |
+| **Contracts** | Input/output/error schemas for both operations | ✅ |
+| **Contracts** | Agent assumptions and non-assumptions documented | ✅ |
+| **Contracts** | Workflow invocation patterns for lookup and ingest | ✅ |
+| **Failure** | Error taxonomy with 7 categorized error codes | ✅ |
+| **Failure** | Append-only writes; no silent data loss | ✅ |
+| **Failure** | Index regeneration from authoritative markdown | ✅ |
+| **Determinism** | Sequential IDs, deduplication, sorted output | ✅ |
+| **Security** | 3-agent authorization list for writes | ✅ |
+| **Security** | No code execution from stored patterns | ✅ |
+| **Observability** | Structured log schema with 6 log points | ✅ |
+| **Observability** | 6 metrics defined with types and units | ✅ |
+| **Performance** | P50/P99 targets for lookup and ingest | ✅ |
+| **Scalability** | Linear growth bounded by category count | ✅ |
+| **Concurrency** | Parallel reads; serialized writes per category | ✅ |
+| **Resources** | Append-only files; no temporary resources | ✅ |
+| **Idempotency** | Lookups idempotent; duplicate ingests return `duplicate: true` | ✅ |
+| **Compliance** | All skill-design-guide.md sections present | ✅ |
 
 ---
 
-âš¡ PikaKit v3.9.105
+⚡ PikaKit v3.9.105

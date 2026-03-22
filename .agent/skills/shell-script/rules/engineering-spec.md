@@ -1,10 +1,10 @@
 ﻿---
-title: Shell Script â€” Engineering Specification
+title: Shell Script — Engineering Specification
 impact: MEDIUM
 tags: shell-script
 ---
 
-# Shell Script â€” Engineering Specification
+# Shell Script — Engineering Specification
 
 > Production-grade specification for Bash/Linux terminal patterns at FAANG scale.
 
@@ -12,11 +12,11 @@ tags: shell-script
 
 ## 1. Overview
 
-Shell Script provides structured guidance for Bash scripting on Linux/macOS: operator syntax (4 operators: `;`, `&&`, `||`, `|`), file operations (5 commands), process management (5 commands), text processing (4 tools: grep, sed, awk, cut), environment variables (3 tasks), network commands (4 tasks), script template (`set -euo pipefail` + main pattern), common patterns (4 patterns), and Bash vs PowerShell comparison (3 equivalencies). The skill operates as an **Expert (decision tree)** â€” it produces command recommendations, script patterns, and syntax guidance. It does not execute commands, modify files, or access the shell.
+Shell Script provides structured guidance for Bash scripting on Linux/macOS: operator syntax (4 operators: `;`, `&&`, `||`, `|`), file operations (5 commands), process management (5 commands), text processing (4 tools: grep, sed, awk, cut), environment variables (3 tasks), network commands (4 tasks), script template (`set -euo pipefail` + main pattern), common patterns (4 patterns), and Bash vs PowerShell comparison (3 equivalencies). The skill operates as an **Expert (decision tree)** — it produces command recommendations, script patterns, and syntax guidance. It does not execute commands, modify files, or access the shell.
 
 **Contract Version:** 2.0.0
 **Backward Compatibility:** breaking (first hardened version)
-**Breaking Changes:** None â€” new spec for first hardening
+**Breaking Changes:** None — new spec for first hardening
 
 ---
 
@@ -71,7 +71,7 @@ Shell Script eliminates these with a fixed script template (mandatory `set -euo 
 | Process management | Command routing by task | Process control |
 | Text processing | Tool routing (grep/sed/awk/cut) | Text file access |
 | Script template | set -euo pipefail + main | Script execution |
-| Cross-platform | Bash â†” PowerShell mapping | PowerShell expertise |
+| Cross-platform | Bash ↔ PowerShell mapping | PowerShell expertise |
 
 **Side-effect boundary:** Shell Script produces command recommendations, script patterns, and syntax guidance. It does not execute commands, access files, or modify the shell environment.
 
@@ -145,8 +145,8 @@ Recoverable: boolean
 
 #### Deterministic Guarantees
 
-- Operator routing is fixed: sequential â†’ `;`; conditional success â†’ `&&`; conditional failure â†’ `||`; pipe output â†’ `|`.
-- Text tool routing is fixed: search â†’ `grep`; replace â†’ `sed`; column extraction â†’ `awk`; field cutting â†’ `cut`.
+- Operator routing is fixed: sequential → `;`; conditional success → `&&`; conditional failure → `||`; pipe output → `|`.
+- Text tool routing is fixed: search → `grep`; replace → `sed`; column extraction → `awk`; field cutting → `cut`.
 - Script template is fixed: `#!/bin/bash` + `set -euo pipefail` + log functions + main pattern.
 - Bash vs PowerShell mapping is fixed for 3 tasks: list files, env vars, pipeline type.
 - Same task = same command recommendation.
@@ -238,12 +238,12 @@ All phases synchronous. No async pipeline.
 
 | Principle | Enforcement |
 |-----------|-------------|
-| Operator routing | Sequential â†’ `;`; Conditional success â†’ `&&`; Conditional failure â†’ `\|\|`; Pipe â†’ `\|` |
-| File operations | List â†’ `ls -la`; Find â†’ `find . -name "pattern" -type f`; Search â†’ `grep -r "pattern"`; Size â†’ `du -sh *`; Head/Tail â†’ `head -n N` / `tail -n N` |
-| Process management | List â†’ `ps aux`; Find by name â†’ `ps aux \| grep name`; Kill â†’ `kill -9 PID`; Find port â†’ `lsof -i :PORT`; Kill port â†’ `kill -9 $(lsof -t -i :PORT)` |
-| Text processing | Search â†’ `grep -rn`; Replace â†’ `sed -i 's/old/new/g'`; Columns â†’ `awk '{print $N}'`; Cut fields â†’ `cut -d',' -fN` |
+| Operator routing | Sequential → `;`; Conditional success → `&&`; Conditional failure → `\|\|`; Pipe → `\|` |
+| File operations | List → `ls -la`; Find → `find . -name "pattern" -type f`; Search → `grep -r "pattern"`; Size → `du -sh *`; Head/Tail → `head -n N` / `tail -n N` |
+| Process management | List → `ps aux`; Find by name → `ps aux \| grep name`; Kill → `kill -9 PID`; Find port → `lsof -i :PORT`; Kill port → `kill -9 $(lsof -t -i :PORT)` |
+| Text processing | Search → `grep -rn`; Replace → `sed -i 's/old/new/g'`; Columns → `awk '{print $N}'`; Cut fields → `cut -d',' -fN` |
 | Script template | `#!/bin/bash` + `set -euo pipefail` + `log_info()` + `log_error()` + `main() { ... }` + `main "$@"` |
-| Common patterns | Command check â†’ `command -v name &> /dev/null`; Default value â†’ `${1:-"default"}`; Loop files â†’ `for file in *.ext; do ...; done`; Cleanup trap â†’ `trap 'cleanup' EXIT` |
+| Common patterns | Command check → `command -v name &> /dev/null`; Default value → `${1:-"default"}`; Loop files → `for file in *.ext; do ...; done`; Cleanup trap → `trap 'cleanup' EXIT` |
 | Bash vs PowerShell | List files: `ls` vs `Get-ChildItem`; Env var: `$VAR` vs `$env:VAR`; Pipeline: text-based vs object-based |
 
 ---
@@ -374,7 +374,7 @@ All resources scoped to invocation. No persistent handles.
 | Command recommendation | < 2 ms | < 5 ms | 20 ms |
 | Template generation | < 2 ms | < 5 ms | 20 ms |
 | Full guide | < 10 ms | < 30 ms | 50 ms |
-| Output size | â‰¤ 2,000 chars | â‰¤ 5,000 chars | 8,000 chars |
+| Output size | ≤ 2,000 chars | ≤ 5,000 chars | 8,000 chars |
 
 ---
 
@@ -384,7 +384,7 @@ All resources scoped to invocation. No persistent handles.
 |------|-----------|--------|------------|
 | BSD vs GNU flag differences | Medium | macOS commands differ | Document Linux/macOS variants |
 | Bash version differences | Low | Feature unavailability | Target Bash 4+ |
-| Shell deprecation (sh â†’ bash) | Low | Compatibility issues | Explicit `#!/bin/bash` shebang |
+| Shell deprecation (sh → bash) | Low | Compatibility issues | Explicit `#!/bin/bash` shebang |
 | coreutils availability | Low | Missing commands | Document required packages |
 
 ---
@@ -393,16 +393,16 @@ All resources scoped to invocation. No persistent handles.
 
 | Requirement | Status | Evidence |
 |-------------|--------|----------|
-| YAML frontmatter complete | âœ… | name, description, metadata with category, version, triggers, coordinates_with, success_metrics |
-| SKILL.md < 200 lines | âœ… | Entry point under 200 lines |
-| Prerequisites documented | âœ… | Bash shell on Linux/macOS |
-| When to Use section | âœ… | Situation-based routing table |
-| Core content matches skill type | âœ… | Expert type: operator routing, command guidance, templates |
-| Troubleshooting section | âœ… | Anti-patterns table |
-| Related section | âœ… | Cross-links to cicd-pipeline, server-ops |
-| Content Map for multi-file | âœ… | Link to engineering-spec.md |
-| Contract versioning | âœ… | contract_version, backward_compatibility, breaking_changes |
-| Compliance matrix structured | âœ… | This table with âœ…/âŒ + evidence |
+| YAML frontmatter complete | ✅ | name, description, metadata with category, version, triggers, coordinates_with, success_metrics |
+| SKILL.md < 200 lines | ✅ | Entry point under 200 lines |
+| Prerequisites documented | ✅ | Bash shell on Linux/macOS |
+| When to Use section | ✅ | Situation-based routing table |
+| Core content matches skill type | ✅ | Expert type: operator routing, command guidance, templates |
+| Troubleshooting section | ✅ | Anti-patterns table |
+| Related section | ✅ | Cross-links to cicd-pipeline, server-ops |
+| Content Map for multi-file | ✅ | Link to engineering-spec.md |
+| Contract versioning | ✅ | contract_version, backward_compatibility, breaking_changes |
+| Compliance matrix structured | ✅ | This table with ✅/❌ + evidence |
 
 ---
 
@@ -410,24 +410,24 @@ All resources scoped to invocation. No persistent handles.
 
 | Category | Check | Status |
 |----------|-------|--------|
-| **Functionality** | 4 operators with semantics | âœ… |
-| **Functionality** | 5 file operation commands | âœ… |
-| **Functionality** | 5 process management commands | âœ… |
-| **Functionality** | 4 text processing tools (grep/sed/awk/cut) | âœ… |
-| **Functionality** | Script template with set -euo pipefail | âœ… |
-| **Functionality** | 4 common patterns | âœ… |
-| **Functionality** | Bash vs PowerShell mapping | âœ… |
-| **Contracts** | Input/output/error schemas in pseudo-schema format | âœ… |
-| **Contracts** | Contract versioning with semver | âœ… |
-| **Failure** | Error taxonomy with 3 categorized codes | âœ… |
-| **Failure** | Zero internal retries | âœ… |
-| **Determinism** | Fixed operator routing, fixed tool routing, fixed template | âœ… |
-| **Security** | No command execution, no credentials, set -euo pipefail enforced | âœ… |
-| **Observability** | Structured log schema with 5 mandatory fields | âœ… |
-| **Observability** | 4 metrics defined | âœ… |
-| **Performance** | P50/P99 targets for all operations | âœ… |
-| **Compliance** | All skill-design-guide.md sections mapped with evidence | âœ… |
+| **Functionality** | 4 operators with semantics | ✅ |
+| **Functionality** | 5 file operation commands | ✅ |
+| **Functionality** | 5 process management commands | ✅ |
+| **Functionality** | 4 text processing tools (grep/sed/awk/cut) | ✅ |
+| **Functionality** | Script template with set -euo pipefail | ✅ |
+| **Functionality** | 4 common patterns | ✅ |
+| **Functionality** | Bash vs PowerShell mapping | ✅ |
+| **Contracts** | Input/output/error schemas in pseudo-schema format | ✅ |
+| **Contracts** | Contract versioning with semver | ✅ |
+| **Failure** | Error taxonomy with 3 categorized codes | ✅ |
+| **Failure** | Zero internal retries | ✅ |
+| **Determinism** | Fixed operator routing, fixed tool routing, fixed template | ✅ |
+| **Security** | No command execution, no credentials, set -euo pipefail enforced | ✅ |
+| **Observability** | Structured log schema with 5 mandatory fields | ✅ |
+| **Observability** | 4 metrics defined | ✅ |
+| **Performance** | P50/P99 targets for all operations | ✅ |
+| **Compliance** | All skill-design-guide.md sections mapped with evidence | ✅ |
 
 ---
 
-âš¡ PikaKit v3.9.105
+⚡ PikaKit v3.9.105

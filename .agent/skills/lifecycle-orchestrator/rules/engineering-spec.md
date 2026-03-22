@@ -1,10 +1,10 @@
 ﻿---
-title: Lifecycle Orchestrator â€” Engineering Specification
+title: Lifecycle Orchestrator — Engineering Specification
 impact: MEDIUM
 tags: lifecycle-orchestrator
 ---
 
-# Lifecycle Orchestrator â€” Engineering Specification
+# Lifecycle Orchestrator — Engineering Specification
 
 > Production-grade specification for end-to-end task lifecycle management with state rollback at FAANG scale.
 
@@ -12,11 +12,11 @@ tags: lifecycle-orchestrator
 
 ## 1. Overview
 
-Lifecycle Orchestrator coordinates multi-phase task execution from input to completion with mandatory checkpoint/restore safety. It manages 7 pipeline phases (Inputâ†’Planâ†’Executeâ†’Verifyâ†’Deployâ†’Learnâ†’Complete), state persistence via checkpoint saves before risky operations, rollback on failure or user request, context token monitoring, and multi-agent handoff coordination. The skill operates as an **Orchestrator** â€” it manages pipeline state, invokes agents per phase, creates checkpoints, and restores state on rollback. It has side effects: file writes to `.agent/state/`, agent invocation, checkpoint management.
+Lifecycle Orchestrator coordinates multi-phase task execution from input to completion with mandatory checkpoint/restore safety. It manages 7 pipeline phases (Input→Plan→Execute→Verify→Deploy→Learn→Complete), state persistence via checkpoint saves before risky operations, rollback on failure or user request, context token monitoring, and multi-agent handoff coordination. The skill operates as an **Orchestrator** — it manages pipeline state, invokes agents per phase, creates checkpoints, and restores state on rollback. It has side effects: file writes to `.agent/state/`, agent invocation, checkpoint management.
 
 **Contract Version:** 2.0.0
 **Backward Compatibility:** breaking (first hardened version)
-**Breaking Changes:** None â€” new spec for first hardening
+**Breaking Changes:** None — new spec for first hardening
 
 ---
 
@@ -31,7 +31,7 @@ Multi-phase task orchestration at scale faces four quantified problems:
 | State loss on failure | 45% of interrupted tasks lose progress | Wasted work |
 | Context token exhaustion | 25% of long tasks exceed context limits | Agent cannot continue |
 
-Lifecycle Orchestrator eliminates these with mandatory checkpoints before every phase, phase ordering enforcement (Planâ†’Executeâ†’Verify), 100% restore accuracy, and token monitoring at 70%/80% thresholds.
+Lifecycle Orchestrator eliminates these with mandatory checkpoints before every phase, phase ordering enforcement (Plan→Execute→Verify), 100% restore accuracy, and token monitoring at 70%/80% thresholds.
 
 ---
 
@@ -39,7 +39,7 @@ Lifecycle Orchestrator eliminates these with mandatory checkpoints before every 
 
 | ID | Goal | Measurable Constraint |
 |----|------|-----------------------|
-| G1 | 7-phase pipeline | Inputâ†’Planâ†’Executeâ†’Verifyâ†’Deployâ†’Learnâ†’Complete |
+| G1 | 7-phase pipeline | Input→Plan→Execute→Verify→Deploy→Learn→Complete |
 | G2 | Checkpoint before risk | Save state before >3 file changes or risky refactoring |
 | G3 | 100% restore accuracy | Rollback restores exact file state |
 | G4 | State save < 1s | Checkpoint creation within 1 second |
@@ -141,12 +141,12 @@ Recoverable: boolean
 
 #### Deterministic Guarantees
 
-- Phase order is fixed: Inputâ†’Planâ†’Executeâ†’Verifyâ†’Deployâ†’Learnâ†’Complete.
+- Phase order is fixed: Input→Plan→Execute→Verify→Deploy→Learn→Complete.
 - Cannot advance past Verify without 0 errors from `problem-checker`.
 - Checkpoint is mandatory before: >3 file changes, risky refactoring, Deploy phase.
 - Restore always uses the most recent checkpoint unless specific `checkpoint_id` given.
 - Context thresholds are fixed: <70% = normal, 70-80% = warning, >80% = critical.
-- Context actions are fixed: normal â†’ continue, warning â†’ compress, critical â†’ isolate.
+- Context actions are fixed: normal → continue, warning → compress, critical → isolate.
 
 #### What Agents May Assume
 
@@ -181,30 +181,30 @@ Recoverable: boolean
 ```
 1. Invoke "start" with task_id
 2. Invoke "checkpoint" before Plan phase
-3. Invoke "advance" to Plan â†’ delegate to project-planner
+3. Invoke "advance" to Plan → delegate to project-planner
 4. Invoke "checkpoint" before Execute phase
-5. Invoke "advance" to Execute â†’ delegate to domain agents
+5. Invoke "advance" to Execute → delegate to domain agents
 6. Invoke "checkpoint" before Verify phase
-7. Invoke "advance" to Verify â†’ delegate to problem-checker
-8. If errors â†’ invoke "rollback" or fix
+7. Invoke "advance" to Verify → delegate to problem-checker
+8. If errors → invoke "rollback" or fix
 9. Invoke "advance" to Deploy (if verified)
-10. Invoke "advance" to Learn â†’ Complete
+10. Invoke "advance" to Learn → Complete
 ```
 
 #### State Transitions
 
 ```
-IDLE â†’ INPUT                [start invoked]
-INPUT â†’ PLANNING            [advance, task defined]
-PLANNING â†’ EXECUTING        [advance, PLAN.md approved]
-EXECUTING â†’ VERIFYING       [advance, code complete]
-VERIFYING â†’ EXECUTING       [errors found, rollback to execute]
-VERIFYING â†’ DEPLOYING       [advance, 0 errors]
-DEPLOYING â†’ LEARNING        [advance, deploy complete]
-LEARNING â†’ COMPLETED        [advance, lessons captured]  // terminal
-VERIFYING â†’ ROLLED_BACK     [rollback invoked]  // terminal â€” restart from checkpoint
-EXECUTING â†’ ROLLED_BACK     [rollback invoked]  // terminal â€” restart from checkpoint
-ANY â†’ FAILED                [unrecoverable error]  // terminal
+IDLE → INPUT                [start invoked]
+INPUT → PLANNING            [advance, task defined]
+PLANNING → EXECUTING        [advance, PLAN.md approved]
+EXECUTING → VERIFYING       [advance, code complete]
+VERIFYING → EXECUTING       [errors found, rollback to execute]
+VERIFYING → DEPLOYING       [advance, 0 errors]
+DEPLOYING → LEARNING        [advance, deploy complete]
+LEARNING → COMPLETED        [advance, lessons captured]  // terminal
+VERIFYING → ROLLED_BACK     [rollback invoked]  // terminal — restart from checkpoint
+EXECUTING → ROLLED_BACK     [rollback invoked]  // terminal — restart from checkpoint
+ANY → FAILED                [unrecoverable error]  // terminal
 ```
 
 #### Execution Guarantees
@@ -266,8 +266,8 @@ ANY â†’ FAILED                [unrecoverable error]  // terminal
 
 | Principle | Enforcement |
 |-----------|-------------|
-| Fixed phase order | Inputâ†’Planâ†’Executeâ†’Verifyâ†’Deployâ†’Learnâ†’Complete |
-| Mandatory checkpoints | Before Execute, Verify, Deploy â€” never skipped |
+| Fixed phase order | Input→Plan→Execute→Verify→Deploy→Learn→Complete |
+| Mandatory checkpoints | Before Execute, Verify, Deploy — never skipped |
 | 100% restore accuracy | Byte-for-byte file restoration |
 | Phase exit criteria | Plan: PLAN.md approved; Execute: code complete; Verify: 0 errors |
 | Fixed context thresholds | 70% warning, 80% critical |
@@ -291,10 +291,10 @@ Pipeline state. Not idempotent. State persisted in `.agent/state/{task_id}/`.
 
 ```
 .agent/state/{task_id}/
-â”œâ”€â”€ checkpoint_{n}/
-â”‚   â”œâ”€â”€ manifest.json      # Files, timestamp, phase
-â”‚   â””â”€â”€ files/             # Exact file copies
-â””â”€â”€ pipeline.json          # Current phase, history
+├── checkpoint_{n}/
+│   ├── manifest.json      # Files, timestamp, phase
+│   └── files/             # Exact file copies
+└── pipeline.json          # Current phase, history
 ```
 
 ---
@@ -453,7 +453,7 @@ Single-thread per task. Concurrent tasks are independent.
 
 | Operation | P50 Target | P99 Target | Hard Limit |
 |-----------|-----------|-----------|------------|
-| Checkpoint save (â‰¤10 files) | < 200 ms | < 500 ms | 1,000 ms |
+| Checkpoint save (≤10 files) | < 200 ms | < 500 ms | 1,000 ms |
 | Checkpoint save (>10 files) | < 500 ms | < 2,000 ms | 5,000 ms |
 | Restore | < 500 ms | < 3,000 ms | 10,000 ms |
 | Phase advance | < 50 ms | < 200 ms | 500 ms |
@@ -478,16 +478,16 @@ Single-thread per task. Concurrent tasks are independent.
 
 | Requirement | Status | Evidence |
 |-------------|--------|----------|
-| YAML frontmatter complete | âœ… | name, description, metadata with category, version, triggers, coordinates_with, success_metrics |
-| SKILL.md < 200 lines | âœ… | Entry point under 200 lines |
-| Prerequisites documented | âœ… | Node.js for state_manager.js |
-| When to Use section | âœ… | Situation-based routing table |
-| Core content matches skill type | âœ… | Orchestrator type: pipeline phases, checkpoints, state transitions |
-| Troubleshooting section | âœ… | Anti-patterns table |
-| Related section | âœ… | Cross-links to execution-reporter, problem-checker, /autopilot |
-| Content Map for multi-file | âœ… | Link to engineering-spec.md |
-| Contract versioning | âœ… | contract_version, backward_compatibility, breaking_changes |
-| Compliance matrix structured | âœ… | This table with âœ…/âŒ + evidence |
+| YAML frontmatter complete | ✅ | name, description, metadata with category, version, triggers, coordinates_with, success_metrics |
+| SKILL.md < 200 lines | ✅ | Entry point under 200 lines |
+| Prerequisites documented | ✅ | Node.js for state_manager.js |
+| When to Use section | ✅ | Situation-based routing table |
+| Core content matches skill type | ✅ | Orchestrator type: pipeline phases, checkpoints, state transitions |
+| Troubleshooting section | ✅ | Anti-patterns table |
+| Related section | ✅ | Cross-links to execution-reporter, problem-checker, /autopilot |
+| Content Map for multi-file | ✅ | Link to engineering-spec.md |
+| Contract versioning | ✅ | contract_version, backward_compatibility, breaking_changes |
+| Compliance matrix structured | ✅ | This table with ✅/❌ + evidence |
 
 ---
 
@@ -495,26 +495,26 @@ Single-thread per task. Concurrent tasks are independent.
 
 | Category | Check | Status |
 |----------|-------|--------|
-| **Functionality** | 7-phase pipeline (Inputâ†’Planâ†’Executeâ†’Verifyâ†’Deployâ†’Learnâ†’Complete) | âœ… |
-| **Functionality** | Checkpoint save/restore/rollback | âœ… |
-| **Functionality** | Phase enforcement (no skipping verify) | âœ… |
-| **Functionality** | Context monitoring (70%/80% thresholds) | âœ… |
-| **Functionality** | Safety hierarchy enforced | âœ… |
-| **Contracts** | Input/output/error schemas in pseudo-schema format | âœ… |
-| **Contracts** | Pipeline state transitions with arrow notation | âœ… |
-| **Contracts** | Contract versioning with semver | âœ… |
-| **Failure** | Error taxonomy with 7 categorized codes | âœ… |
-| **Failure** | No silent phase skipping | âœ… |
-| **Failure** | Phase retries capped at 2 | âœ… |
-| **Security** | Checkpoints scoped to task_id | âœ… |
-| **Security** | No auto-delete of checkpoints | âœ… |
-| **Observability** | Structured log schema with 5 mandatory fields + 8 log points | âœ… |
-| **Observability** | 6 metrics defined | âœ… |
-| **Performance** | P50/P99/hard limits for all operations | âœ… |
-| **Concurrency** | Single-thread per task; exclusive restore lock | âœ… |
-| **Scalability** | Independent task pipelines; < 10 MB per task | âœ… |
-| **Compliance** | All skill-design-guide.md sections mapped with evidence | âœ… |
+| **Functionality** | 7-phase pipeline (Input→Plan→Execute→Verify→Deploy→Learn→Complete) | ✅ |
+| **Functionality** | Checkpoint save/restore/rollback | ✅ |
+| **Functionality** | Phase enforcement (no skipping verify) | ✅ |
+| **Functionality** | Context monitoring (70%/80% thresholds) | ✅ |
+| **Functionality** | Safety hierarchy enforced | ✅ |
+| **Contracts** | Input/output/error schemas in pseudo-schema format | ✅ |
+| **Contracts** | Pipeline state transitions with arrow notation | ✅ |
+| **Contracts** | Contract versioning with semver | ✅ |
+| **Failure** | Error taxonomy with 7 categorized codes | ✅ |
+| **Failure** | No silent phase skipping | ✅ |
+| **Failure** | Phase retries capped at 2 | ✅ |
+| **Security** | Checkpoints scoped to task_id | ✅ |
+| **Security** | No auto-delete of checkpoints | ✅ |
+| **Observability** | Structured log schema with 5 mandatory fields + 8 log points | ✅ |
+| **Observability** | 6 metrics defined | ✅ |
+| **Performance** | P50/P99/hard limits for all operations | ✅ |
+| **Concurrency** | Single-thread per task; exclusive restore lock | ✅ |
+| **Scalability** | Independent task pipelines; < 10 MB per task | ✅ |
+| **Compliance** | All skill-design-guide.md sections mapped with evidence | ✅ |
 
 ---
 
-âš¡ PikaKit v3.9.105
+⚡ PikaKit v3.9.105

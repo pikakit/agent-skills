@@ -1,10 +1,10 @@
 ﻿---
-title: API Architect â€” Engineering Specification
+title: API Architect — Engineering Specification
 impact: MEDIUM
 tags: api-architect
 ---
 
-# API Architect â€” Engineering Specification
+# API Architect — Engineering Specification
 
 > Production-grade specification for API design decision-making and pattern selection at FAANG scale.
 
@@ -37,7 +37,7 @@ API Architect eliminates these by providing context-aware decision trees that pr
 
 | ID | Goal | Measurable Constraint |
 |----|------|-----------------------|
-| G1 | Context-aware style selection | Decision tree produces one of REST/GraphQL/tRPC based on â‰¤ 5 input criteria |
+| G1 | Context-aware style selection | Decision tree produces one of REST/GraphQL/tRPC based on ≤ 5 input criteria |
 | G2 | Consistent response format | Single envelope pattern per API; format documented before first endpoint |
 | G3 | Versioning from day one | Versioning strategy defined and documented before API implementation begins |
 | G4 | Security-first design | OWASP API Top 10 checklist completed before API goes to production |
@@ -65,10 +65,10 @@ API Architect eliminates these by providing context-aware decision trees that pr
 | API style selection | REST/GraphQL/tRPC decision tree | Implementation framework selection |
 | Response format design | Envelope pattern, error format, pagination | Serialization libraries |
 | Versioning strategy | URI/Header/Query versioning decision | Version deployment mechanics |
-| Auth pattern selection | JWT/OAuth/Passkey/API Key decision | Auth implementation (â†’ auth-patterns) |
+| Auth pattern selection | JWT/OAuth/Passkey/API Key decision | Auth implementation (→ auth-patterns) |
 | Rate limiting strategy | Token bucket/sliding window selection | Rate limiter implementation |
 | API documentation | OpenAPI/Swagger structure standards | Doc hosting/rendering |
-| Security design | OWASP API Top 10 checklist | Penetration testing execution (â†’ security-scanner) |
+| Security design | OWASP API Top 10 checklist | Penetration testing execution (→ security-scanner) |
 
 **Side-effect boundary:** API Architect produces design documents, decision records, and API specifications. It does not create API endpoints, modify server configurations, or make network requests.
 
@@ -120,7 +120,7 @@ Error: ErrorSchema | null
 
 **Contract Version:** 2.0.0
 **Backward Compatibility:** breaking (first hardened version)
-**Breaking Changes:** None â€” new spec for first hardening
+**Breaking Changes:** None — new spec for first hardening
 
 #### Error Schema
 
@@ -134,7 +134,7 @@ Recoverable: boolean
 #### Deterministic Guarantees
 
 - Same `Request_Type` + `Context` = identical `decision` + `rationale` output.
-- Decision trees follow fixed evaluation order (project_type â†’ consumers â†’ data_complexity â†’ team_expertise â†’ scale).
+- Decision trees follow fixed evaluation order (project_type → consumers → data_complexity → team_expertise → scale).
 - Reference file selection is deterministic based on request_type.
 - No randomization, no A/B selection, no heuristic weighting.
 
@@ -167,14 +167,14 @@ Recoverable: boolean
 
 ```
 1. Define project context (type, consumers, complexity, scale)
-2. Select request type (style-selection â†’ response-format â†’ versioning â†’ auth â†’ documentation)
+2. Select request type (style-selection → response-format → versioning → auth → documentation)
 3. Receive decision with rationale and checklist
 4. Review and apply decision (caller's responsibility)
 5. Run api_validator.js for implementation validation (optional)
 6. Repeat for adjacent decisions referenced in related_decisions
 ```
 
-**Recommended ordering:** style-selection â†’ endpoint-design â†’ response-format â†’ versioning â†’ auth-selection â†’ rate-limiting â†’ documentation â†’ security-audit.
+**Recommended ordering:** style-selection → endpoint-design → response-format → versioning → auth-selection → rate-limiting → documentation → security-audit.
 
 #### Execution Guarantees
 
@@ -233,7 +233,7 @@ All phases execute synchronously in a single invocation. No async pipeline.
 
 | Principle | Enforcement |
 |-----------|-------------|
-| Fixed decision tree ordering | project_type â†’ consumers â†’ data_complexity â†’ team_expertise â†’ scale |
+| Fixed decision tree ordering | project_type → consumers → data_complexity → team_expertise → scale |
 | No external calls | Decisions use only local reference files and input context |
 | No ambient state | Each invocation operates solely on explicit inputs |
 | No randomization | Decision trees are deterministic if-then-else chains |
@@ -246,8 +246,8 @@ All phases execute synchronously in a single invocation. No async pipeline.
 ### State Machine
 
 ```
-States: IDLE (single state â€” skill is stateless)
-Transitions: None â€” each invocation is independent
+States: IDLE (single state — skill is stateless)
+Transitions: None — each invocation is independent
 ```
 
 API Architect maintains zero persistent state. Every invocation starts from a clean state. Invoking N times with identical inputs produces N identical outputs.
@@ -393,7 +393,7 @@ API Architect maintains zero persistent state. Every invocation starts from a cl
 |--------|---------------|----------|
 | CPU | < 10 ms computation | 100,000+ invocations/second |
 | Memory | < 1 MB | Bound only by concurrent invocations |
-| Disk I/O | 1â€“2 rule file reads (~1â€“3 KB each) | Cached by OS after first read |
+| Disk I/O | 1–2 rule file reads (~1–3 KB each) | Cached by OS after first read |
 | Network | Zero | Zero |
 
 ---
@@ -402,7 +402,7 @@ API Architect maintains zero persistent state. Every invocation starts from a cl
 
 | Scope | Model | Behavior |
 |-------|-------|----------|
-| Within invocation | Sequential | Classify â†’ Evaluate â†’ Enrich â†’ Emit |
+| Within invocation | Sequential | Classify → Evaluate → Enrich → Emit |
 | Across invocations | Fully parallel | No shared state, no coordination |
 | Reference access | Read-only shared | Multiple concurrent reads safe |
 | Validator script | Isolated per invocation | Each run scans independently |
@@ -432,7 +432,7 @@ API Architect maintains zero persistent state. Every invocation starts from a cl
 | Rule file read | < 1 ms | < 5 ms | 1,000 ms |
 | Full design (8 request types) | < 40 ms | < 160 ms | 400 ms |
 | Validator script execution | < 5,000 ms | < 15,000 ms | 30,000 ms |
-| Output decision size | â‰¤ 500 chars | â‰¤ 2,000 chars | 5,000 chars |
+| Output decision size | ≤ 500 chars | ≤ 2,000 chars | 5,000 chars |
 
 ---
 
@@ -452,18 +452,18 @@ API Architect maintains zero persistent state. Every invocation starts from a cl
 
 | Requirement | Status | Evidence |
 |-------------|--------|----------|
-| YAML frontmatter complete | âœ… | name, description, metadata with category, version, triggers, coordinates_with, success_metrics |
-| SKILL.md < 200 lines | âœ… | Entry point under 200 lines; details in rules/ |
-| Prerequisites documented | âœ… | No external dependencies |
-| When to Use section | âœ… | Request-type-based decision matrix |
-| Quick Reference | âœ… | Decision checklist and content map |
-| Core content matches skill type | âœ… | Expert type: decision trees, checklists |
-| Troubleshooting section | âœ… | Anti-patterns table |
-| Related section | âœ… | Cross-links to data-modeler, security-scanner, auth-patterns |
-| Content Map for multi-file | âœ… | Links to 10 rule files + engineering-spec.md |
-| Scripts documented | âœ… | api_validator.js with command example |
-| Contract versioning | âœ… | contract_version, backward_compatibility, breaking_changes |
-| Compliance matrix structured | âœ… | This table with âœ…/âŒ + evidence |
+| YAML frontmatter complete | ✅ | name, description, metadata with category, version, triggers, coordinates_with, success_metrics |
+| SKILL.md < 200 lines | ✅ | Entry point under 200 lines; details in rules/ |
+| Prerequisites documented | ✅ | No external dependencies |
+| When to Use section | ✅ | Request-type-based decision matrix |
+| Quick Reference | ✅ | Decision checklist and content map |
+| Core content matches skill type | ✅ | Expert type: decision trees, checklists |
+| Troubleshooting section | ✅ | Anti-patterns table |
+| Related section | ✅ | Cross-links to data-modeler, security-scanner, auth-patterns |
+| Content Map for multi-file | ✅ | Links to 10 rule files + engineering-spec.md |
+| Scripts documented | ✅ | api_validator.js with command example |
+| Contract versioning | ✅ | contract_version, backward_compatibility, breaking_changes |
+| Compliance matrix structured | ✅ | This table with ✅/❌ + evidence |
 
 ---
 
@@ -471,28 +471,28 @@ API Architect maintains zero persistent state. Every invocation starts from a cl
 
 | Category | Check | Status |
 |----------|-------|--------|
-| **Functionality** | 8 request types specified | âœ… |
-| **Functionality** | 3 API styles (REST/GraphQL/tRPC) with decision tree | âœ… |
-| **Functionality** | 10 reference files covering all API design concerns | âœ… |
-| **Contracts** | Input/output/error schemas defined | âœ… |
-| **Contracts** | Agent assumptions and non-assumptions documented | âœ… |
-| **Contracts** | Workflow invocation pattern with recommended ordering | âœ… |
-| **Failure** | Error taxonomy with 7 categorized error codes | âœ… |
-| **Failure** | No silent failures; every error returns structured response | âœ… |
-| **Failure** | Retry policy: zero internal retries | âœ… |
-| **Determinism** | Fixed decision tree ordering | âœ… |
-| **Determinism** | No randomization, no external calls | âœ… |
-| **Security** | OWASP API Top 10 checklist integrated | âœ… |
-| **Security** | No credential handling; design-time only | âœ… |
-| **Observability** | Structured log schema with 5 log points | âœ… |
-| **Observability** | 6 metrics defined with types and units | âœ… |
-| **Performance** | P50/P99 targets for all operations | âœ… |
-| **Scalability** | Stateless; unlimited parallel invocations | âœ… |
-| **Concurrency** | No shared state; read-only reference access | âœ… |
-| **Resources** | All resources scoped to invocation lifetime | âœ… |
-| **Idempotency** | Fully idempotent â€” all operations are pure functions | âœ… |
-| **Compliance** | All skill-design-guide.md sections present | âœ… |
+| **Functionality** | 8 request types specified | ✅ |
+| **Functionality** | 3 API styles (REST/GraphQL/tRPC) with decision tree | ✅ |
+| **Functionality** | 10 reference files covering all API design concerns | ✅ |
+| **Contracts** | Input/output/error schemas defined | ✅ |
+| **Contracts** | Agent assumptions and non-assumptions documented | ✅ |
+| **Contracts** | Workflow invocation pattern with recommended ordering | ✅ |
+| **Failure** | Error taxonomy with 7 categorized error codes | ✅ |
+| **Failure** | No silent failures; every error returns structured response | ✅ |
+| **Failure** | Retry policy: zero internal retries | ✅ |
+| **Determinism** | Fixed decision tree ordering | ✅ |
+| **Determinism** | No randomization, no external calls | ✅ |
+| **Security** | OWASP API Top 10 checklist integrated | ✅ |
+| **Security** | No credential handling; design-time only | ✅ |
+| **Observability** | Structured log schema with 5 log points | ✅ |
+| **Observability** | 6 metrics defined with types and units | ✅ |
+| **Performance** | P50/P99 targets for all operations | ✅ |
+| **Scalability** | Stateless; unlimited parallel invocations | ✅ |
+| **Concurrency** | No shared state; read-only reference access | ✅ |
+| **Resources** | All resources scoped to invocation lifetime | ✅ |
+| **Idempotency** | Fully idempotent — all operations are pure functions | ✅ |
+| **Compliance** | All skill-design-guide.md sections present | ✅ |
 
 ---
 
-âš¡ PikaKit v3.9.105
+⚡ PikaKit v3.9.105

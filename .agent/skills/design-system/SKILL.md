@@ -5,10 +5,10 @@ description: >-
   UX psychology. Triggers on: design, UI, UX, color palette, typography, component design.
 metadata:
   author: pikakit
-  version: "3.9.107"
+  version: "3.9.108"
 ---
 
-# Design System â€” UI Design Decisions
+# Design System — UI Design Decisions
 
 > Every pixel has purpose. Restraint is luxury. User psychology drives decisions.
 
@@ -16,7 +16,7 @@ metadata:
 
 ## Prerequisites
 
-**Required:** None â€” Design System is a knowledge-based skill with no external dependencies.
+**Required:** None — Design System is a knowledge-based skill with no external dependencies.
 
 ---
 
@@ -38,22 +38,22 @@ metadata:
 
 | Owned by This Skill | NOT Owned |
 |---------------------|-----------|
-| Color theory (3 harmony types + semantic palette) | CSS/Tailwind generation (â†’ tailwind-kit) |
-| Typography system (max 2 families, modular scale) | AI style recommendations (â†’ studio) |
+| Color theory (3 harmony types + semantic palette) | CSS/Tailwind generation (→ tailwind-kit) |
+| Typography system (max 2 families, modular scale) | AI style recommendations (→ studio) |
 | Visual effects selection criteria | Component implementation |
-| Animation principles (3 functional categories) | WCAG accessibility (â†’ web-design-guidelines) |
-| UX psychology audit (Hick's, Fitts's, Gestalt) | Image/asset generation (â†’ ai-artist) |
-| 3 design anti-pattern bans | Frontend code architecture (â†’ frontend-design) |
+| Animation principles (3 functional categories) | WCAG accessibility (→ web-design-guidelines) |
+| UX psychology audit (Hick's, Fitts's, Gestalt) | Image/asset generation (→ ai-artist) |
+| 3 design anti-pattern bans | Frontend code architecture (→ frontend-design) |
 
 **Pure decision skill:** Produces design specifications. Zero side effects (except UX audit script reads files).
 
 ---
 
-## âš ï¸ Anti-Pattern Bans (Enforced on ALL Outputs)
+## ⚠️ Anti-Pattern Bans (Enforced on ALL Outputs)
 
 | # | Ban | Reason |
 |---|-----|--------|
-| 1 | **Purple Ban** | Do not use generic purple themes (AI-generated clichÃ©) |
+| 1 | **Purple Ban** | Do not use generic purple themes (AI-generated cliché) |
 | 2 | **Bento Ban** | Do not default to Bento grids without explicit justification |
 | 3 | **Dark Mode Default** | Do not assume dark mode unless `dark_mode_requested = true` |
 
@@ -77,7 +77,7 @@ Every palette includes: primary, secondary, accent, 5 neutrals, 4 semantic (succ
 |------|-----------|
 | Max font families | 2 (heading + body) |
 | Scale | Modular ratio (1.25 or 1.333) |
-| Line height | 1.4â€“1.6 for body text |
+| Line height | 1.4–1.6 for body text |
 
 ---
 
@@ -85,9 +85,9 @@ Every palette includes: primary, secondary, accent, 5 neutrals, 4 semantic (succ
 
 | Category | Purpose | Duration |
 |----------|---------|----------|
-| **Feedback** | Confirm user action | 100â€“200ms |
-| **Orientation** | Guide spatial awareness | 200â€“400ms |
-| **Continuity** | Connect state transitions | 300â€“500ms |
+| **Feedback** | Confirm user action | 100–200ms |
+| **Orientation** | Guide spatial awareness | 200–400ms |
+| **Continuity** | Connect state transitions | 300–500ms |
 
 Every animation must serve one of these 3 functions. Decorative-only motion is not allowed.
 
@@ -206,11 +206,11 @@ Each rule file contains:
 For the complete guide with all rules expanded: `AGENTS.md`
 
 
-## ðŸ“‘ Content Map
+## 📑 Content Map
 
 | File | Description | When to Read |
 |------|-------------|--------------|
-| [ux-psychology.md](rules/ux-psychology.md) | ðŸ”´ **REQUIRED** â€” Core UX psychology laws | Always |
+| [ux-psychology.md](rules/ux-psychology.md) | 🔴 **REQUIRED** — Core UX psychology laws | Always |
 | [color-system.md](rules/color-system.md) | Color theory and palette selection | Color decisions |
 | [typography-system.md](rules/typography-system.md) | Font pairing and scale | Typography |
 | [visual-effects.md](rules/visual-effects.md) | Shadows, gradients, glassmorphism | Effects selection |
@@ -228,7 +228,7 @@ For the complete guide with all rules expanded: `AGENTS.md`
 
 ---
 
-## ðŸ”— Related
+## 🔗 Related
 
 | Item | Type | Purpose |
 |------|------|---------|
@@ -239,4 +239,4 @@ For the complete guide with all rules expanded: `AGENTS.md`
 
 ---
 
-âš¡ PikaKit v3.9.107
+⚡ PikaKit v3.9.108

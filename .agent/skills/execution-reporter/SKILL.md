@@ -6,10 +6,10 @@ description: >-
   routing, skill loading, task completion.
 metadata:
   author: pikakit
-  version: "3.9.107"
+  version: "3.9.108"
 ---
 
-# Execution Reporter â€” Task Notifications
+# Execution Reporter — Task Notifications
 
 > Fixed templates. One notification per phase. PikaKit branding mandatory.
 
@@ -17,7 +17,7 @@ metadata:
 
 ## Prerequisites
 
-**Required:** None â€” Execution Reporter is a pure formatting function with no external dependencies.
+**Required:** None — Execution Reporter is a pure formatting function with no external dependencies.
 
 ---
 
@@ -26,7 +26,7 @@ metadata:
 | Event | Template | Condition |
 |-------|----------|-----------|
 | Task start (complex) | Full template | > 3 skills loaded |
-| Task start (simple) | Compact template | â‰¤ 3 skills loaded |
+| Task start (simple) | Compact template | ≤ 3 skills loaded |
 | Script execution | Script template | Script invoked |
 | Task complete | Complete template | Task finished |
 
@@ -36,10 +36,10 @@ metadata:
 
 | Owned by This Skill | NOT Owned |
 |---------------------|-----------|
-| Notification string formatting (4 templates) | Task execution (â†’ lifecycle-orchestrator) |
-| Verbosity level filtering (3 levels) | Agent routing (â†’ smart-router) |
-| PikaKit branding (v3.9.68) | Error detection (â†’ problem-checker) |
-| Complexity threshold (> 3 skills â†’ full) | Notification delivery |
+| Notification string formatting (4 templates) | Task execution (→ lifecycle-orchestrator) |
+| Verbosity level filtering (3 levels) | Agent routing (→ smart-router) |
+| PikaKit branding (v3.9.68) | Error detection (→ problem-checker) |
+| Complexity threshold (> 3 skills → full) | Notification delivery |
 
 **Pure function skill:** Returns formatted strings. Zero side effects.
 
@@ -50,30 +50,30 @@ metadata:
 ### Full Template (> 3 skills)
 
 ```
-ðŸ¤– PikaKit v3.9.107
-ðŸ“‹ Task: {task_description}
-â—† Agent: @{agent_name}
-â—‡ Skills: {skill_1}, {skill_2}, ...
-ðŸ“‚ Workflow: /{workflow_name}
+🤖 PikaKit v3.9.108
+📋 Task: {task_description}
+◆ Agent: @{agent_name}
+◇ Skills: {skill_1}, {skill_2}, ...
+📂 Workflow: /{workflow_name}
 ```
 
-### Compact Template (â‰¤ 3 skills)
+### Compact Template (≤ 3 skills)
 
 ```
-ðŸ¤– PikaKit â€¢ @{agent} â†’ {skill_1}, {skill_2}
+🤖 PikaKit ⬢ @{agent} → {skill_1}, {skill_2}
 ```
 
 ### Task Complete Template
 
 ```
-âœ… Done â€¢ Agent: @{agent_name} â€¢ Skills: {count} â€¢ Files: {count} â€¢ {duration}s
-âš¡ PikaKit v3.9.107
+✅ Done ⬢ Agent: @{agent_name} ⬢ Skills: {count} ⬢ Files: {count} ⬢ {duration}s
+⚡ PikaKit v3.9.108
 ```
 
 ### Script Run Template
 
 ```
-âš¡ {skill_name} â€¢ running {script_name}
+⚡ {skill_name} ⬢ running {script_name}
 ```
 
 ---
@@ -82,9 +82,9 @@ metadata:
 
 | Level | Routing | Skills | Scripts | Complete |
 |-------|---------|--------|---------|----------|
-| `minimal` | âœ… | âŒ | âŒ | âœ… |
-| `normal` | âœ… | âœ… | âŒ | âœ… |
-| `verbose` | âœ… | âœ… | âœ… | âœ… |
+| `minimal` | ✅ | ❌ | ❌ | ✅ |
+| `normal` | ✅ | ✅ | ❌ | ✅ |
+| `verbose` | ✅ | ✅ | ✅ | ✅ |
 
 **Default:** `normal`. Config: `.agent/config/notification-config.json`
 
@@ -95,7 +95,7 @@ metadata:
 | # | Rule | Enforcement |
 |---|------|------------|
 | 1 | One notification per phase | No duplicate notifications for same event |
-| 2 | > 3 skills â†’ full template | Complexity threshold is fixed |
+| 2 | > 3 skills → full template | Complexity threshold is fixed |
 | 3 | PikaKit branding mandatory | Header and/or footer on every notification |
 | 4 | Templates fit 65-char width | No terminal wrapping |
 
@@ -116,7 +116,7 @@ metadata:
 
 ## Anti-Patterns
 
-| âŒ Don't | âœ… Do |
+| ❌ Don't | ✅ Do |
 |---------|-------|
 | Notify on every tool call | One notification per phase |
 | Custom branding per agent | PikaKit branding only |
@@ -126,7 +126,7 @@ metadata:
 
 ---
 
-## ðŸ“‘ Content Map
+## 📑 Content Map
 
 | File | Description | When to Read |
 |------|-------------|--------------|
@@ -134,7 +134,7 @@ metadata:
 
 ---
 
-## ðŸ”— Related
+## 🔗 Related
 
 | Item | Type | Purpose |
 |------|------|---------|
@@ -145,4 +145,4 @@ metadata:
 
 ---
 
-âš¡ PikaKit v3.9.107
+⚡ PikaKit v3.9.108

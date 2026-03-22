@@ -5,10 +5,10 @@ description: >-
   Triggers on: Tailwind, CSS, styling, utility classes.
 metadata:
   author: pikakit
-  version: "3.9.107"
+  version: "3.9.108"
 ---
 
-# Tailwind Kit â€” Tailwind CSS v4 Patterns
+# Tailwind Kit — Tailwind CSS v4 Patterns
 
 > CSS-first `@theme`. OKLCH colors. Container queries. Mobile-first responsive.
 
@@ -22,7 +22,7 @@ metadata:
 | Theme setup | CSS-first `@theme` |
 | Dark mode | Use `dark:` prefix |
 | Responsive | Mobile-first breakpoints |
-| Migrating v3 â†’ v4 | Check migration table |
+| Migrating v3 → v4 | Check migration table |
 
 ---
 
@@ -30,26 +30,26 @@ metadata:
 
 | Owned by This Skill | NOT Owned |
 |---------------------|-----------|
-| Tailwind class recommendations | Design theory (â†’ design-system) |
-| @theme configuration (OKLCH) | Next.js integration (â†’ nextjs-pro) |
-| v3 â†’ v4 migration paths | AI design (â†’ studio) |
+| Tailwind class recommendations | Design theory (→ design-system) |
+| @theme configuration (OKLCH) | Next.js integration (→ nextjs-pro) |
+| v3 → v4 migration paths | AI design (→ studio) |
 | Layout + responsive patterns | CSS processing pipeline |
 
 **Expert decision skill:** Produces class recommendations. Does not write files.
 
 ---
 
-## v3 â†’ v4 Migration (3 Breaking Changes)
+## v3 → v4 Migration (3 Breaking Changes)
 
 | v3 (Legacy) | v4 (Current) |
 |-------------|-------------|
 | `tailwind.config.js` | CSS-based `@theme` |
-| PostCSS plugin | Oxide engine (10Ã— faster) |
+| PostCSS plugin | Oxide engine (10× faster) |
 | JIT mode | Native, always-on |
 
 ---
 
-## Core Patterns (4 â€” Fixed)
+## Core Patterns (4 — Fixed)
 
 ### Theme (CSS-First)
 ```css
@@ -73,7 +73,7 @@ metadata:
 
 ---
 
-## Layout Patterns (4 â€” Deterministic)
+## Layout Patterns (4 — Deterministic)
 
 | Pattern | Classes |
 |---------|---------|
@@ -109,7 +109,7 @@ metadata:
 
 ## Anti-Patterns
 
-| âŒ Don't | âœ… Do |
+| ❌ Don't | ✅ Do |
 |---------|-------|
 | Arbitrary values everywhere | Use design system scale |
 | `!important` | Fix specificity |
@@ -136,7 +136,7 @@ metadata:
 
 ### 2. Engineering Spec (LOW)
 
-- `engineering-spec` - Tailwind Kit â€” Engineering Specification
+- `engineering-spec` - Tailwind Kit — Engineering Specification
 
 ## How to Use
 
@@ -158,7 +158,7 @@ Each rule file contains:
 For the complete guide with all rules expanded: `AGENTS.md`
 
 
-## ðŸ“‘ Content Map
+## 📑 Content Map
 
 | File | Description | When to Read |
 |------|-------------|--------------|
@@ -169,7 +169,7 @@ For the complete guide with all rules expanded: `AGENTS.md`
 
 ---
 
-## ðŸ”— Related
+## 🔗 Related
 
 | Item | Type | Purpose |
 |------|------|---------|
@@ -179,4 +179,4 @@ For the complete guide with all rules expanded: `AGENTS.md`
 
 ---
 
-âš¡ PikaKit v3.9.107
+⚡ PikaKit v3.9.108

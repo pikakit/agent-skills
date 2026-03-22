@@ -10,7 +10,7 @@ March 2026
 
 ---
 
-# Python Pro â€” Framework Selection & Architecture
+# Python Pro — Framework Selection & Architecture
 
 > Decision-making principles. Not patterns to copy. Ask, classify, decide.
 
@@ -31,9 +31,9 @@ March 2026
 
 | Owned by This Skill | NOT Owned |
 |---------------------|-----------|
-| Framework selection (5 branches) | API design (â†’ api-architect) |
-| Async/sync classification | Testing strategy (â†’ test-architect) |
-| Type hint rules | Database schema (â†’ data-modeler) |
+| Framework selection (5 branches) | API design (→ api-architect) |
+| Async/sync classification | Testing strategy (→ test-architect) |
+| Type hint rules | Database schema (→ data-modeler) |
 | Architecture layering | Code implementation |
 
 **Expert decision skill:** Produces recommendations. Does not write code.
@@ -44,15 +44,15 @@ March 2026
 
 ```
 What are you building?
-â”‚
-â”œâ”€â”€ API-first / Microservices  â†’ FastAPI
-â”œâ”€â”€ Full-stack web / CMS       â†’ Django
-â”œâ”€â”€ Simple / Script / Learning â†’ Flask
-â”œâ”€â”€ AI/ML API serving          â†’ FastAPI
-â””â”€â”€ Background workers         â†’ Celery + any
+│
+├── API-first / Microservices  → FastAPI
+├── Full-stack web / CMS       → Django
+├── Simple / Script / Learning → Flask
+├── AI/ML API serving          → FastAPI
+└── Background workers         → Celery + any
 ```
 
-**If user has explicit preference â†’ respect it.** Ask when unclear.
+**If user has explicit preference → respect it.** Ask when unclear.
 
 ---
 
@@ -72,8 +72,8 @@ What are you building?
 
 ```
 Routes (HTTP handlers)
-  â””â†’ Services (business logic)
-      â””â†’ Repositories (data access)
+  └→ Services (business logic)
+      └→ Repositories (data access)
 ```
 
 **Rule:** No business logic in routes/views. Routes delegate to services.
@@ -115,17 +115,17 @@ Routes (HTTP handlers)
 
 ## Anti-Patterns
 
-| âŒ Don't | âœ… Do |
+| ❌ Don't | ✅ Do |
 |---------|-------|
 | Default to Django for simple APIs | Choose framework per context |
 | Use sync libraries in async code | Use async-compatible libraries |
 | Skip type hints on public APIs | Annotate all public functions |
-| Put business logic in routes/views | Separate: routes â†’ services â†’ repos |
+| Put business logic in routes/views | Separate: routes → services → repos |
 | Always pick the same framework | Ask user, evaluate context |
 
 ---
 
-## ðŸ“‘ Content Map
+## 📑 Content Map
 
 | File | Description | When to Read |
 |------|-------------|--------------|
@@ -142,7 +142,7 @@ Routes (HTTP handlers)
 
 ---
 
-## ðŸ”— Related
+## 🔗 Related
 
 | Item | Type | Purpose |
 |------|------|---------|
@@ -152,7 +152,7 @@ Routes (HTTP handlers)
 
 ---
 
-âš¡ PikaKit v3.9.105
+⚡ PikaKit v3.9.105
 
 ---
 
@@ -165,12 +165,12 @@ Routes (HTTP handlers)
 
 ---
 name: async-patterns
-description: Python async patterns â€” asyncio, gather, TaskGroup, run_in_executor, and async library selection
+description: Python async patterns — asyncio, gather, TaskGroup, run_in_executor, and async library selection
 ---
 
 # Python Async Patterns
 
-> I/O-bound â†’ async. CPU-bound â†’ sync + multiprocessing. Never mix carelessly.
+> I/O-bound → async. CPU-bound → sync + multiprocessing. Never mix carelessly.
 
 ---
 
@@ -203,7 +203,7 @@ async def fetch_user(user_id: int) -> dict:
 
 ```python
 async def fetch_all_users(user_ids: list[int]) -> list[dict]:
-    """Fetch multiple users concurrently â€” much faster than sequential."""
+    """Fetch multiple users concurrently — much faster than sequential."""
     async with httpx.AsyncClient() as client:
         tasks = [
             client.get(f"https://api.example.com/users/{uid}")
@@ -272,7 +272,7 @@ async def process_file(file_path: str) -> str:
 | File I/O | open() | **aiofiles** |
 | ORM | SQLAlchemy sync | **SQLAlchemy 2.0** async / **Tortoise** |
 | MongoDB | pymongo | **motor** |
-| WebSockets | â€” | **websockets** |
+| WebSockets | — | **websockets** |
 
 ---
 
@@ -283,19 +283,19 @@ from fastapi import FastAPI
 
 app = FastAPI()
 
-# âœ… Use async def â€” for I/O-bound with async drivers
+# ✅ Use async def — for I/O-bound with async drivers
 @app.get("/users/{user_id}")
 async def get_user(user_id: int):
     user = await db.fetch_one("SELECT * FROM users WHERE id = $1", user_id)
     return user
 
-# âœ… Use def â€” for sync operations (FastAPI runs in threadpool automatically)
+# ✅ Use def — for sync operations (FastAPI runs in threadpool automatically)
 @app.get("/report")
 def generate_report():
     # This blocks, but FastAPI handles it in a thread
     return create_pdf_report()
 
-# âŒ Don't â€” use sync DB driver in async def (blocks event loop!)
+# ❌ Don't — use sync DB driver in async def (blocks event loop!)
 @app.get("/bad")
 async def bad_example():
     user = db.execute("SELECT ...")  # BLOCKS the entire event loop!
@@ -306,7 +306,7 @@ async def bad_example():
 
 ## Anti-Patterns
 
-| âŒ Don't | âœ… Do |
+| ❌ Don't | ✅ Do |
 |---------|-------|
 | Use `requests` in async code | Use `httpx` (async) |
 | `await` CPU-bound functions | Use `run_in_executor` |
@@ -316,7 +316,7 @@ async def bad_example():
 
 ---
 
-## ðŸ”— Related
+## 🔗 Related
 
 | File | When to Read |
 |------|-------------|
@@ -330,7 +330,7 @@ async def bad_example():
 
 ---
 name: django-patterns
-description: Django patterns â€” models, views, DRF serializers, async views, query optimization, signals, and migrations
+description: Django patterns — models, views, DRF serializers, async views, query optimization, signals, and migrations
 ---
 
 # Django Patterns (2025)
@@ -346,7 +346,7 @@ from django.db import models
 from django.utils import timezone
 
 class UserManager(models.Manager):
-    """Custom manager â€” encapsulate common queries."""
+    """Custom manager — encapsulate common queries."""
     def active(self):
         return self.filter(is_active=True)
 
@@ -451,22 +451,22 @@ async def external_api_view(request):
 ## Query Optimization
 
 ```python
-# âŒ N+1 Problem
+# ❌ N+1 Problem
 users = User.objects.all()
 for user in users:
     print(user.profile.bio)      # Each access = 1 query!
     print(user.posts.count())    # Each access = 1 query!
 
-# âœ… Fix: select_related (ForeignKey / OneToOne)
+# ✅ Fix: select_related (ForeignKey / OneToOne)
 users = User.objects.select_related("profile").all()
 
-# âœ… Fix: prefetch_related (ManyToMany / Reverse FK)
+# ✅ Fix: prefetch_related (ManyToMany / Reverse FK)
 users = User.objects.prefetch_related("posts").all()
 
-# âœ… Select specific fields
+# ✅ Select specific fields
 users = User.objects.only("id", "email", "name").all()
 
-# âœ… Annotate counts without extra queries
+# ✅ Annotate counts without extra queries
 from django.db.models import Count
 users = User.objects.annotate(post_count=Count("posts")).all()
 ```
@@ -495,7 +495,7 @@ def create_user_profile(sender, instance, created, **kwargs):
 
 ## Anti-Patterns
 
-| âŒ Don't | âœ… Do |
+| ❌ Don't | ✅ Do |
 |---------|-------|
 | Business logic in views | Fat models, thin views |
 | Raw SQL everywhere | Use ORM + managers |
@@ -506,7 +506,7 @@ def create_user_profile(sender, instance, created, **kwargs):
 
 ---
 
-## ðŸ”— Related
+## 🔗 Related
 
 | File | When to Read |
 |------|-------------|
@@ -521,10 +521,10 @@ def create_user_profile(sender, instance, created, **kwargs):
 
 ---
 name: python-pro-engineering-spec
-description: Full 21-section engineering spec â€” FastAPI/Django/Flask selection, async/sync classification, type hints, architecture layering
+description: Full 21-section engineering spec — FastAPI/Django/Flask selection, async/sync classification, type hints, architecture layering
 ---
 
-# Python Pro â€” Engineering Specification
+# Python Pro — Engineering Specification
 
 > Production-grade specification for Python development principles at FAANG scale.
 
@@ -532,11 +532,11 @@ description: Full 21-section engineering spec â€” FastAPI/Django/Flask sele
 
 ## 1. Overview
 
-Python Pro provides structured decision frameworks for Python development: framework selection (FastAPI, Django, Flask), async vs sync routing (I/O-bound â†’ async, CPU-bound â†’ sync + multiprocessing), type hint strategy, project structure, and architecture patterns (routes â†’ services â†’ repos). The skill operates as an **Expert (decision tree)** â€” it produces framework recommendations, architecture decisions, and pattern guidance. It does not write code, install packages, or execute Python scripts.
+Python Pro provides structured decision frameworks for Python development: framework selection (FastAPI, Django, Flask), async vs sync routing (I/O-bound → async, CPU-bound → sync + multiprocessing), type hint strategy, project structure, and architecture patterns (routes → services → repos). The skill operates as an **Expert (decision tree)** — it produces framework recommendations, architecture decisions, and pattern guidance. It does not write code, install packages, or execute Python scripts.
 
 **Contract Version:** 2.0.0
 **Backward Compatibility:** breaking (first hardened version)
-**Breaking Changes:** None â€” new spec for first hardening
+**Breaking Changes:** None — new spec for first hardening
 
 ---
 
@@ -551,7 +551,7 @@ Python project decisions at scale face four quantified problems:
 | Missing type hints | 50% of public APIs lack type annotations | Runtime errors, poor DX |
 | Business logic in routes | 45% of projects embed logic in views/routes | Untestable, tightly coupled |
 
-Python Pro eliminates these with deterministic framework routing (5-branch decision tree), async/sync classification (I/O vs CPU), mandatory type hint rules, and layered architecture (routes â†’ services â†’ repos).
+Python Pro eliminates these with deterministic framework routing (5-branch decision tree), async/sync classification (I/O vs CPU), mandatory type hint rules, and layered architecture (routes → services → repos).
 
 ---
 
@@ -559,10 +559,10 @@ Python Pro eliminates these with deterministic framework routing (5-branch decis
 
 | ID | Goal | Measurable Constraint |
 |----|------|-----------------------|
-| G1 | Framework selection | 5-branch decision tree: APIâ†’FastAPI, Webâ†’Django, Simpleâ†’Flask, AI/MLâ†’FastAPI, Workersâ†’Celery |
-| G2 | Async/sync routing | I/O-bound â†’ async; CPU-bound â†’ sync + multiprocessing |
+| G1 | Framework selection | 5-branch decision tree: API→FastAPI, Web→Django, Simple→Flask, AI/ML→FastAPI, Workers→Celery |
+| G2 | Async/sync routing | I/O-bound → async; CPU-bound → sync + multiprocessing |
 | G3 | Type hint coverage | All public APIs, Pydantic models, function signatures |
-| G4 | Project structure | Layered: routes â†’ services â†’ repositories |
+| G4 | Project structure | Layered: routes → services → repositories |
 | G5 | Validation | Pydantic for all input/output boundaries |
 | G6 | Reference collection | 7 reference files for deep-dive patterns |
 
@@ -659,10 +659,10 @@ Recoverable: boolean
 
 #### Deterministic Guarantees
 
-- Framework selection is deterministic: project_type â†’ framework.
-- Async/sync classification is deterministic: I/O-bound â†’ async; CPU-bound â†’ sync.
+- Framework selection is deterministic: project_type → framework.
+- Async/sync classification is deterministic: I/O-bound → async; CPU-bound → sync.
 - Type hint rules are fixed: all public APIs use type annotations.
-- Architecture layers are fixed: routes â†’ services â†’ repositories.
+- Architecture layers are fixed: routes → services → repositories.
 - Validation is fixed: Pydantic for all boundaries.
 - Same project context = same recommendations.
 
@@ -754,12 +754,12 @@ All phases synchronous. No async pipeline.
 
 | Principle | Enforcement |
 |-----------|-------------|
-| Framework routing | API/microservices â†’ FastAPI; Full-stack/CMS/admin â†’ Django; Simple/scripts â†’ Flask; AI/ML serving â†’ FastAPI; Background workers â†’ Celery + any |
-| Async classification | I/O-bound (HTTP, DB, file) â†’ async; CPU-bound (compute) â†’ sync + multiprocessing |
+| Framework routing | API/microservices → FastAPI; Full-stack/CMS/admin → Django; Simple/scripts → Flask; AI/ML serving → FastAPI; Background workers → Celery + any |
+| Async classification | I/O-bound (HTTP, DB, file) → async; CPU-bound (compute) → sync + multiprocessing |
 | Async constraints | Never mix sync libraries in async code; never force async for CPU work |
 | Type hints mandatory | All public APIs, all function signatures, all Pydantic models |
 | Validation | Pydantic at all boundaries (input/output) |
-| Architecture layering | Routes (HTTP) â†’ Services (business logic) â†’ Repositories (data access) |
+| Architecture layering | Routes (HTTP) → Services (business logic) → Repositories (data access) |
 | No logic in routes | Routes delegate to services; services contain business logic |
 | User preference respected | Explicit preference overrides decision tree |
 
@@ -884,7 +884,7 @@ All resources scoped to invocation. No persistent handles.
 | Framework selection | < 2 ms | < 5 ms | 20 ms |
 | Async/sync routing | < 2 ms | < 5 ms | 20 ms |
 | Full guide | < 10 ms | < 30 ms | 50 ms |
-| Output size | â‰¤ 2,000 chars | â‰¤ 5,000 chars | 8,000 chars |
+| Output size | ≤ 2,000 chars | ≤ 5,000 chars | 8,000 chars |
 
 ---
 
@@ -903,16 +903,16 @@ All resources scoped to invocation. No persistent handles.
 
 | Requirement | Status | Evidence |
 |-------------|--------|----------|
-| YAML frontmatter complete | âœ… | name, description, metadata with category, version, triggers, coordinates_with, success_metrics |
-| SKILL.md < 200 lines | âœ… | Entry point under 200 lines |
-| Prerequisites documented | âœ… | No external dependencies for guidance |
-| When to Use section | âœ… | Situation-based routing table |
-| Core content matches skill type | âœ… | Expert type: framework decision tree, async routing |
-| Troubleshooting section | âœ… | Anti-patterns with fix examples |
-| Related section | âœ… | Cross-links to api-architect, test-architect, data-modeler |
-| Content Map for multi-file | âœ… | Links to 7 reference files + engineering-spec.md |
-| Contract versioning | âœ… | contract_version, backward_compatibility, breaking_changes |
-| Compliance matrix structured | âœ… | This table with âœ…/âŒ + evidence |
+| YAML frontmatter complete | ✅ | name, description, metadata with category, version, triggers, coordinates_with, success_metrics |
+| SKILL.md < 200 lines | ✅ | Entry point under 200 lines |
+| Prerequisites documented | ✅ | No external dependencies for guidance |
+| When to Use section | ✅ | Situation-based routing table |
+| Core content matches skill type | ✅ | Expert type: framework decision tree, async routing |
+| Troubleshooting section | ✅ | Anti-patterns with fix examples |
+| Related section | ✅ | Cross-links to api-architect, test-architect, data-modeler |
+| Content Map for multi-file | ✅ | Links to 7 reference files + engineering-spec.md |
+| Contract versioning | ✅ | contract_version, backward_compatibility, breaking_changes |
+| Compliance matrix structured | ✅ | This table with ✅/❌ + evidence |
 
 ---
 
@@ -920,26 +920,26 @@ All resources scoped to invocation. No persistent handles.
 
 | Category | Check | Status |
 |----------|-------|--------|
-| **Functionality** | 5-branch framework decision tree | âœ… |
-| **Functionality** | Async/sync classification | âœ… |
-| **Functionality** | Type hint rules | âœ… |
-| **Functionality** | Architecture layering (routes â†’ services â†’ repos) | âœ… |
-| **Functionality** | Pydantic validation guidance | âœ… |
-| **Functionality** | 7 reference files | âœ… |
-| **Contracts** | Input/output/error schemas in pseudo-schema format | âœ… |
-| **Contracts** | Contract versioning with semver | âœ… |
-| **Failure** | Error taxonomy with 3 categorized codes | âœ… |
-| **Failure** | Zero internal retries | âœ… |
-| **Determinism** | Fixed framework routing, fixed async rules | âœ… |
-| **Security** | No credentials, no PII, no network access | âœ… |
-| **Observability** | Structured log schema with 5 mandatory fields | âœ… |
-| **Observability** | 4 metrics defined | âœ… |
-| **Performance** | P50/P99 targets for all operations | âœ… |
-| **Compliance** | All skill-design-guide.md sections mapped with evidence | âœ… |
+| **Functionality** | 5-branch framework decision tree | ✅ |
+| **Functionality** | Async/sync classification | ✅ |
+| **Functionality** | Type hint rules | ✅ |
+| **Functionality** | Architecture layering (routes → services → repos) | ✅ |
+| **Functionality** | Pydantic validation guidance | ✅ |
+| **Functionality** | 7 reference files | ✅ |
+| **Contracts** | Input/output/error schemas in pseudo-schema format | ✅ |
+| **Contracts** | Contract versioning with semver | ✅ |
+| **Failure** | Error taxonomy with 3 categorized codes | ✅ |
+| **Failure** | Zero internal retries | ✅ |
+| **Determinism** | Fixed framework routing, fixed async rules | ✅ |
+| **Security** | No credentials, no PII, no network access | ✅ |
+| **Observability** | Structured log schema with 5 mandatory fields | ✅ |
+| **Observability** | 4 metrics defined | ✅ |
+| **Performance** | P50/P99 targets for all operations | ✅ |
+| **Compliance** | All skill-design-guide.md sections mapped with evidence | ✅ |
 
 ---
 
-âš¡ PikaKit v3.9.105
+⚡ PikaKit v3.9.105
 
 ---
 
@@ -947,7 +947,7 @@ All resources scoped to invocation. No persistent handles.
 
 ---
 name: fastapi-patterns
-description: FastAPI patterns â€” dependency injection, middleware, error handling, lifespan, and Pydantic integration
+description: FastAPI patterns — dependency injection, middleware, error handling, lifespan, and Pydantic integration
 ---
 
 # FastAPI Patterns
@@ -982,7 +982,7 @@ async def get_current_user(
         raise HTTPException(status_code=401, detail="Invalid token")
     return user
 
-# Use in route â€” clean, testable
+# Use in route — clean, testable
 @app.get("/users/me")
 async def get_me(user: User = Depends(get_current_user)) -> UserResponse:
     return UserResponse.model_validate(user)
@@ -1098,7 +1098,7 @@ app = FastAPI(lifespan=lifespan)
 
 ## Anti-Patterns
 
-| âŒ Don't | âœ… Do |
+| ❌ Don't | ✅ Do |
 |---------|-------|
 | Business logic in routes | Delegate to service layer |
 | Catch all exceptions silently | Use domain exceptions + handlers |
@@ -1108,7 +1108,7 @@ app = FastAPI(lifespan=lifespan)
 
 ---
 
-## ðŸ”— Related
+## 🔗 Related
 
 | File | When to Read |
 |------|-------------|
@@ -1123,7 +1123,7 @@ app = FastAPI(lifespan=lifespan)
 
 ---
 name: framework-selection
-description: Python framework comparison â€” FastAPI vs Django vs Flask with decision tree, benchmarks, and minimal app examples
+description: Python framework comparison — FastAPI vs Django vs Flask with decision tree, benchmarks, and minimal app examples
 ---
 
 # Framework Selection (2025)
@@ -1136,15 +1136,15 @@ description: Python framework comparison â€” FastAPI vs Django vs Flask wit
 
 ```
 What are you building?
-â”‚
-â”œâ”€â”€ API-first / Microservices   â†’ FastAPI
-â”œâ”€â”€ Full-stack web / CMS        â†’ Django
-â”œâ”€â”€ Simple / Script / Learning  â†’ Flask
-â”œâ”€â”€ AI/ML API serving           â†’ FastAPI
-â””â”€â”€ Background workers          â†’ Celery + any framework
+│
+├── API-first / Microservices   → FastAPI
+├── Full-stack web / CMS        → Django
+├── Simple / Script / Learning  → Flask
+├── AI/ML API serving           → FastAPI
+└── Background workers          → Celery + any framework
 ```
 
-**If user has explicit preference â†’ respect it.** Ask when unclear.
+**If user has explicit preference → respect it.** Ask when unclear.
 
 ---
 
@@ -1153,7 +1153,7 @@ What are you building?
 | Factor | FastAPI | Django | Flask |
 |--------|---------|--------|-------|
 | **Best for** | APIs, microservices, ML | Full-stack, CMS, admin | Simple, learning, prototyping |
-| **Performance** | â­â­â­ (Starlette/uvicorn) | â­â­ (improved in 5.x) | â­â­ (Werkzeug) |
+| **Performance** | ⭐⭐⭐ (Starlette/uvicorn) | ⭐⭐ (improved in 5.x) | ⭐⭐ (Werkzeug) |
 | **Async** | Native | Django 5.0+ (partial) | Via extensions (Quart) |
 | **Admin** | Manual | Built-in (excellent) | Flask-Admin |
 | **ORM** | SQLAlchemy / Tortoise | Django ORM (built-in) | SQLAlchemy |
@@ -1263,7 +1263,7 @@ dev = [
 
 ## Anti-Patterns
 
-| âŒ Don't | âœ… Do |
+| ❌ Don't | ✅ Do |
 |---------|-------|
 | Default to Django for simple APIs | Use FastAPI for API-first |
 | Use Flask for complex apps | Use Django (batteries included) |
@@ -1272,7 +1272,7 @@ dev = [
 
 ---
 
-## ðŸ”— Related
+## 🔗 Related
 
 | File | When to Read |
 |------|-------------|
@@ -1287,7 +1287,7 @@ dev = [
 
 ---
 name: project-structure
-description: Python project structure â€” directory layouts for small/medium/large apps, FastAPI vs Django, pyproject.toml
+description: Python project structure — directory layouts for small/medium/large apps, FastAPI vs Django, pyproject.toml
 ---
 
 # Project Structure
@@ -1302,66 +1302,66 @@ description: Python project structure â€” directory layouts for small/mediu
 
 ```
 myapp/
-â”œâ”€â”€ main.py
-â”œâ”€â”€ utils.py
-â”œâ”€â”€ pyproject.toml
-â””â”€â”€ README.md
+├── main.py
+├── utils.py
+├── pyproject.toml
+└── README.md
 ```
 
 ### Medium (API / Service)
 
 ```
 myapp/
-â”œâ”€â”€ app/
-â”‚   â”œâ”€â”€ __init__.py
-â”‚   â”œâ”€â”€ main.py              # App entry + lifespan
-â”‚   â”œâ”€â”€ config.py             # Pydantic Settings
-â”‚   â”œâ”€â”€ dependencies.py       # Shared DI (db session, auth)
-â”‚   â”œâ”€â”€ models/               # SQLAlchemy / DB models
-â”‚   â”‚   â”œâ”€â”€ __init__.py
-â”‚   â”‚   â””â”€â”€ user.py
-â”‚   â”œâ”€â”€ schemas/              # Pydantic request/response
-â”‚   â”‚   â”œâ”€â”€ __init__.py
-â”‚   â”‚   â””â”€â”€ user.py
-â”‚   â”œâ”€â”€ routes/               # API routes
-â”‚   â”‚   â”œâ”€â”€ __init__.py
-â”‚   â”‚   â””â”€â”€ users.py
-â”‚   â””â”€â”€ services/             # Business logic
-â”‚       â”œâ”€â”€ __init__.py
-â”‚       â””â”€â”€ user_service.py
-â”œâ”€â”€ tests/
-â”‚   â”œâ”€â”€ conftest.py           # Shared fixtures
-â”‚   â”œâ”€â”€ test_users.py
-â”‚   â””â”€â”€ test_services.py
-â”œâ”€â”€ alembic/                  # DB migrations
-â”œâ”€â”€ pyproject.toml
-â”œâ”€â”€ .env.example
-â””â”€â”€ README.md
+├── app/
+│   ├── __init__.py
+│   ├── main.py              # App entry + lifespan
+│   ├── config.py             # Pydantic Settings
+│   ├── dependencies.py       # Shared DI (db session, auth)
+│   ├── models/               # SQLAlchemy / DB models
+│   │   ├── __init__.py
+│   │   └── user.py
+│   ├── schemas/              # Pydantic request/response
+│   │   ├── __init__.py
+│   │   └── user.py
+│   ├── routes/               # API routes
+│   │   ├── __init__.py
+│   │   └── users.py
+│   └── services/             # Business logic
+│       ├── __init__.py
+│       └── user_service.py
+├── tests/
+│   ├── conftest.py           # Shared fixtures
+│   ├── test_users.py
+│   └── test_services.py
+├── alembic/                  # DB migrations
+├── pyproject.toml
+├── .env.example
+└── README.md
 ```
 
 ### Large (Monolith / Multiple Domains)
 
 ```
 src/
-â””â”€â”€ myapp/
-    â”œâ”€â”€ core/                 # Shared kernel
-    â”‚   â”œâ”€â”€ config.py
-    â”‚   â”œâ”€â”€ database.py
-    â”‚   â”œâ”€â”€ security.py
-    â”‚   â””â”€â”€ exceptions.py
-    â”œâ”€â”€ users/                # Feature module
-    â”‚   â”œâ”€â”€ models.py
-    â”‚   â”œâ”€â”€ schemas.py
-    â”‚   â”œâ”€â”€ routes.py
-    â”‚   â”œâ”€â”€ service.py
-    â”‚   â””â”€â”€ repository.py
-    â”œâ”€â”€ products/             # Feature module
-    â”‚   â””â”€â”€ ...
-    â””â”€â”€ main.py
+└── myapp/
+    ├── core/                 # Shared kernel
+    │   ├── config.py
+    │   ├── database.py
+    │   ├── security.py
+    │   └── exceptions.py
+    ├── users/                # Feature module
+    │   ├── models.py
+    │   ├── schemas.py
+    │   ├── routes.py
+    │   ├── service.py
+    │   └── repository.py
+    ├── products/             # Feature module
+    │   └── ...
+    └── main.py
 tests/
-â”œâ”€â”€ users/
-â”œâ”€â”€ products/
-â””â”€â”€ conftest.py
+├── users/
+├── products/
+└── conftest.py
 pyproject.toml
 ```
 
@@ -1400,30 +1400,30 @@ app.include_router(products.router, prefix="/api/v1/products", tags=["products"]
 
 ```
 myproject/
-â”œâ”€â”€ manage.py
-â”œâ”€â”€ myproject/
-â”‚   â”œâ”€â”€ __init__.py
-â”‚   â”œâ”€â”€ settings/
-â”‚   â”‚   â”œâ”€â”€ __init__.py
-â”‚   â”‚   â”œâ”€â”€ base.py           # Shared settings
-â”‚   â”‚   â”œâ”€â”€ dev.py            # Development
-â”‚   â”‚   â””â”€â”€ prod.py           # Production
-â”‚   â”œâ”€â”€ urls.py
-â”‚   â””â”€â”€ wsgi.py / asgi.py
-â”œâ”€â”€ users/                    # Django app
-â”‚   â”œâ”€â”€ models.py
-â”‚   â”œâ”€â”€ views.py / viewsets.py
-â”‚   â”œâ”€â”€ serializers.py
-â”‚   â”œâ”€â”€ urls.py
-â”‚   â”œâ”€â”€ admin.py
-â”‚   â”œâ”€â”€ tests.py
-â”‚   â””â”€â”€ migrations/
-â”œâ”€â”€ products/                 # Django app
-â”‚   â””â”€â”€ ...
-â””â”€â”€ requirements/
-    â”œâ”€â”€ base.txt
-    â”œâ”€â”€ dev.txt
-    â””â”€â”€ prod.txt
+├── manage.py
+├── myproject/
+│   ├── __init__.py
+│   ├── settings/
+│   │   ├── __init__.py
+│   │   ├── base.py           # Shared settings
+│   │   ├── dev.py            # Development
+│   │   └── prod.py           # Production
+│   ├── urls.py
+│   └── wsgi.py / asgi.py
+├── users/                    # Django app
+│   ├── models.py
+│   ├── views.py / viewsets.py
+│   ├── serializers.py
+│   ├── urls.py
+│   ├── admin.py
+│   ├── tests.py
+│   └── migrations/
+├── products/                 # Django app
+│   └── ...
+└── requirements/
+    ├── base.txt
+    ├── dev.txt
+    └── prod.txt
 ```
 
 ---
@@ -1432,26 +1432,26 @@ myproject/
 
 | Solution | Best For | Async | Persistence |
 |----------|----------|:-----:|:-----------:|
-| **BackgroundTasks** (FastAPI) | Quick, in-process | âœ… | âŒ |
-| **Celery** | Distributed workflows | âŒ | âœ… |
-| **ARQ** | Async + Redis | âœ… | âœ… |
-| **Dramatiq** | Actor-based | âŒ | âœ… |
-| **RQ** | Simple Redis queue | âŒ | âœ… |
+| **BackgroundTasks** (FastAPI) | Quick, in-process | ✅ | ❌ |
+| **Celery** | Distributed workflows | ❌ | ✅ |
+| **ARQ** | Async + Redis | ✅ | ✅ |
+| **Dramatiq** | Actor-based | ❌ | ✅ |
+| **RQ** | Simple Redis queue | ❌ | ✅ |
 
 ---
 
 ## Anti-Patterns
 
-| âŒ Don't | âœ… Do |
+| ❌ Don't | ✅ Do |
 |---------|-------|
 | Flat file dump (all in root) | Organize by feature/layer |
-| Business logic in routes | Routes â†’ services â†’ repos |
+| Business logic in routes | Routes → services → repos |
 | `settings.py` with hardcoded values | Pydantic Settings + `.env` |
 | Skip `__init__.py` | Always include (explicit packages) |
 
 ---
 
-## ðŸ”— Related
+## 🔗 Related
 
 | File | When to Read |
 |------|-------------|
@@ -1465,7 +1465,7 @@ myproject/
 
 ---
 name: testing-patterns
-description: Python testing patterns â€” pytest, async tests, fixtures, mocking, FastAPI/Django test clients, coverage
+description: Python testing patterns — pytest, async tests, fixtures, mocking, FastAPI/Django test clients, coverage
 ---
 
 # Python Testing Patterns
@@ -1478,9 +1478,9 @@ description: Python testing patterns â€” pytest, async tests, fixtures, moc
 
 | Type | Purpose | Tools | Speed |
 |------|---------|-------|:-----:|
-| **Unit** | Business logic / services | pytest | âš¡ Fast |
-| **Integration** | API endpoints + DB | pytest + httpx/TestClient | ðŸ”„ Medium |
-| **E2E** | Full workflows | pytest + real DB | ðŸ¢ Slow |
+| **Unit** | Business logic / services | pytest | ⚡ Fast |
+| **Integration** | API endpoints + DB | pytest + httpx/TestClient | 🔄 Medium |
+| **E2E** | Full workflows | pytest + real DB | 🐢 Slow |
 
 ---
 
@@ -1558,7 +1558,7 @@ from app.models import User
 
 @pytest.fixture
 def sample_user(db) -> User:
-    """Create a test user â€” available to all tests."""
+    """Create a test user — available to all tests."""
     return User.objects.create(
         email="fixture@test.com",
         name="Fixture User",
@@ -1648,18 +1648,18 @@ pytest -m "not slow"            # Skip slow tests
 
 ## Anti-Patterns
 
-| âŒ Don't | âœ… Do |
+| ❌ Don't | ✅ Do |
 |---------|-------|
-| Test implementation details | Test behavior (inputs â†’ outputs) |
+| Test implementation details | Test behavior (inputs → outputs) |
 | Mock everything | Mock only boundaries (DB, APIs, email) |
 | Share state between tests | Each test is independent |
 | Skip error path tests | Test both success AND failure |
-| Ignore coverage | Aim for â‰¥80% with `fail_under` |
+| Ignore coverage | Aim for ≥80% with `fail_under` |
 | Use `print()` for debugging | Use `pytest --pdb` or `breakpoint()` |
 
 ---
 
-## ðŸ”— Related
+## 🔗 Related
 
 | File | When to Read |
 |------|-------------|
@@ -1674,7 +1674,7 @@ pytest -m "not slow"            # Skip slow tests
 
 ---
 name: type-hints
-description: Python type hints â€” modern syntax, Pydantic v2, generics, TypeVar, and validation patterns
+description: Python type hints — modern syntax, Pydantic v2, generics, TypeVar, and validation patterns
 ---
 
 # Python Type Hints & Validation
@@ -1686,7 +1686,7 @@ description: Python type hints â€” modern syntax, Pydantic v2, generics, Ty
 ## Modern Type Syntax (Python 3.12+)
 
 ```python
-# âœ… Modern â€” use built-in generics (no typing import needed)
+# ✅ Modern — use built-in generics (no typing import needed)
 def get_items() -> list[dict[str, int]]:
     ...
 
@@ -1696,7 +1696,7 @@ def find_user(user_id: int) -> User | None:  # Union syntax
 def process(data: str | bytes) -> None:
     ...
 
-# âŒ Legacy â€” avoid in new code
+# ❌ Legacy — avoid in new code
 from typing import Optional, Union, List, Dict
 def get_items() -> List[Dict[str, int]]:  # Old style
     ...
@@ -1755,7 +1755,7 @@ class UserCreate(BaseModel):
         return v.strip()
 
 class UserResponse(BaseModel):
-    """Output serialization â€” never expose internal fields."""
+    """Output serialization — never expose internal fields."""
     id: int
     name: str
     email: str
@@ -1764,7 +1764,7 @@ class UserResponse(BaseModel):
     model_config = {"from_attributes": True}  # Enable ORM mode
 
 class UserUpdate(BaseModel):
-    """Partial update â€” all fields optional."""
+    """Partial update — all fields optional."""
     name: str | None = None
     email: EmailStr | None = None
     age: int | None = Field(default=None, ge=0, le=150)
@@ -1805,7 +1805,7 @@ settings = Settings()  # Auto-reads from .env + environment
 
 ## Anti-Patterns
 
-| âŒ Don't | âœ… Do |
+| ❌ Don't | ✅ Do |
 |---------|-------|
 | `Any` in public APIs | Use specific types or `TypeVar` |
 | `typing.Optional[X]` | `X \| None` (Python 3.10+) |
@@ -1816,7 +1816,7 @@ settings = Settings()  # Auto-reads from .env + environment
 
 ---
 
-## ðŸ”— Related
+## 🔗 Related
 
 | File | When to Read |
 |------|-------------|

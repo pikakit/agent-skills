@@ -6,12 +6,12 @@ description: >-
   iOS, Android, touch, responsive mobile.
 metadata:
   author: pikakit
-  version: "3.9.107"
+  version: "3.9.108"
 ---
 
-# Mobile Design â€” Mobile-First Design Doctrine
+# Mobile Design — Mobile-First Design Doctrine
 
-> Touch-first. Platform-respectful. MFRI scored. 44Ã—44pt / 48Ã—48dp minimum.
+> Touch-first. Platform-respectful. MFRI scored. 44×44pt / 48×48dp minimum.
 
 **Core Law:** Mobile is NOT a small desktop.
 
@@ -32,10 +32,10 @@ metadata:
 
 | Owned by This Skill | NOT Owned |
 |---------------------|-----------|
-| MFRI scoring (5 dimensions) | Mobile orchestration (â†’ mobile-first) |
-| Platform guidelines (iOS/Android) | Mobile implementation (â†’ mobile-developer) |
-| Touch target standards | Design system components (â†’ design-system) |
-| Typography routing (SF Pro/Roboto) | API design (â†’ api-architect) |
+| MFRI scoring (5 dimensions) | Mobile orchestration (→ mobile-first) |
+| Platform guidelines (iOS/Android) | Mobile implementation (→ mobile-developer) |
+| Touch target standards | Design system components (→ design-system) |
+| Typography routing (SF Pro/Roboto) | API design (→ api-architect) |
 
 **Expert decision skill:** Produces design decisions. Does not write code or create components.
 
@@ -65,10 +65,10 @@ metadata:
 
 | Score | Action |
 |-------|--------|
-| 6-10 | âœ… Safe â€” proceed |
-| 3-5 | âš ï¸ Add validation |
-| 0-2 | ðŸ”´ Simplify first |
-| < 0 | âŒ Redesign required |
+| 6-10 | ✅ Safe — proceed |
+| 3-5 | ⚠️ Add validation |
+| 0-2 | 🔴 Simplify first |
+| < 0 | ❌ Redesign required |
 
 ---
 
@@ -87,8 +87,8 @@ metadata:
 
 | Standard | Minimum |
 |----------|---------|
-| **iOS** | 44Ã—44 pt |
-| **Android** | 48Ã—48 dp |
+| **iOS** | 44×44 pt |
+| **Android** | 48×48 dp |
 | **Spacing** | 8dp between targets |
 
 ---
@@ -96,7 +96,7 @@ metadata:
 ## Core Philosophy (Fixed Order)
 
 ```
-Touch-first â†’ Battery-conscious â†’ Platform-respectful â†’ Offline-capable
+Touch-first → Battery-conscious → Platform-respectful → Offline-capable
 ```
 
 ---
@@ -116,11 +116,11 @@ Touch-first â†’ Battery-conscious â†’ Platform-respectful â†’ Off
 
 ## Anti-Patterns
 
-| âŒ Don't | âœ… Do |
+| ❌ Don't | ✅ Do |
 |---------|-------|
 | Apply desktop patterns | Touch-first design |
 | Use hover states | Tap and press states |
-| Small tap targets | 44Ã—44pt (iOS) / 48Ã—48dp (Android) |
+| Small tap targets | 44×44pt (iOS) / 48×48dp (Android) |
 | Assume network | Design for offline |
 | Mix platform conventions | Respect iOS HIG / Material Design |
 
@@ -186,7 +186,7 @@ Each rule file contains:
 For the complete guide with all rules expanded: `AGENTS.md`
 
 
-## ðŸ“‘ Content Map
+## 📑 Content Map
 
 | File | Description | When to Read |
 |------|-------------|--------------|
@@ -209,7 +209,7 @@ For the complete guide with all rules expanded: `AGENTS.md`
 
 ---
 
-## ðŸ”— Related
+## 🔗 Related
 
 | Item | Type | Purpose |
 |------|------|---------|
@@ -219,4 +219,4 @@ For the complete guide with all rules expanded: `AGENTS.md`
 
 ---
 
-âš¡ PikaKit v3.9.107
+⚡ PikaKit v3.9.108

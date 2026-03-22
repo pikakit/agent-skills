@@ -8,10 +8,10 @@ description: >-
   kanban, dashboard.
 metadata:
   author: pikakit
-  version: "3.9.107"
+  version: "3.9.108"
 ---
 
-# Doc Templates â€” Documentation, Diagrams & Preview
+# Doc Templates — Documentation, Diagrams & Preview
 
 > Fixed templates per document type. Mermaid diagrams. Markdown preview. Plan dashboards.
 
@@ -43,12 +43,12 @@ metadata:
 | Owned by This Skill | NOT Owned |
 |---------------------|-----------|
 | Template structure (5 document types) | Content writing |
-| Section order and requirements | Auto-documentation (â†’ /chronicle) |
-| Comment guidelines (why vs what) | Project structure (â†’ project-planner) |
-| AI-friendly doc format (llms.txt) | Code quality (â†’ code-craft) |
-| Mermaid diagram editing (9 types) | Architecture decisions (â†’ system-design) |
+| Section order and requirements | Auto-documentation (→ /chronicle) |
+| Comment guidelines (why vs what) | Project structure (→ project-planner) |
+| AI-friendly doc format (llms.txt) | Code quality (→ code-craft) |
+| Mermaid diagram editing (9 types) | Architecture decisions (→ system-design) |
 | Markdown preview server | File system permissions |
-| Plan dashboard server | Plan creation (â†’ project-planner) |
+| Plan dashboard server | Plan creation (→ project-planner) |
 
 **Hybrid skill:** Templates are pure decision; diagram/preview are automation (HTTP servers).
 
@@ -126,7 +126,7 @@ What are the trade-offs?
 
 ## Comment Guidelines
 
-| âœ… Comment | âŒ Don't Comment |
+| ✅ Comment | ❌ Don't Comment |
 |-----------|--------------------|
 | Why (business logic) | What (obvious code) |
 | Complex algorithms | Every line |
@@ -136,7 +136,7 @@ What are the trade-offs?
 
 ## Mermaid Diagram Editor (Absorbed from mermaid-editor)
 
-### Diagram Types (9 â€” Fixed)
+### Diagram Types (9 — Fixed)
 
 | # | Type | Keyword |
 |---|------|---------|
@@ -165,10 +165,10 @@ node .agent/skills/mermaid-editor/scripts/editor-server.js --stop
 
 | Option | Default | Description |
 |--------|---------|-------------|
-| `--file <path>` | â€” | Open .mmd file |
+| `--file <path>` | — | Open .mmd file |
 | `--port <n>` | 3457 | Server port |
 | `--open` | false | Auto-open browser |
-| `--stop` | â€” | Stop all servers |
+| `--stop` | — | Stop all servers |
 
 ---
 
@@ -187,11 +187,11 @@ node .agent/skills/markdown-novel-viewer/scripts/server.js --stop
 
 | Option | Default | Description |
 |--------|---------|-------------|
-| `--file <path>` | â€” | Markdown file |
-| `--dir <path>` | â€” | Directory to browse |
+| `--file <path>` | — | Markdown file |
+| `--dir <path>` | — | Directory to browse |
 | `--port <n>` | 3456 | Server port (3456-3500) |
 | `--open` | false | Auto-open browser |
-| `--stop` | â€” | Stop all servers |
+| `--stop` | — | Stop all servers |
 
 **Theme:** Libre Baskerville (headings), Inter (body), JetBrains Mono (code). Light/dark toggle.
 
@@ -220,7 +220,7 @@ node .agent/skills/plans-kanban/scripts/kanban-server.js --dir ./docs/plans --op
 
 ## Anti-Patterns
 
-| âŒ Don't | âœ… Do |
+| ❌ Don't | ✅ Do |
 |---------|-------|
 | Skip Quick Start in README | Always include Quick Start |
 | Undocumented API parameters | Document all params with types |
@@ -232,7 +232,7 @@ node .agent/skills/plans-kanban/scripts/kanban-server.js --dir ./docs/plans --op
 
 ---
 
-## ðŸ“‘ Content Map
+## 📑 Content Map
 
 | File | Description | When to Read |
 |------|-------------|--------------|
@@ -244,7 +244,7 @@ node .agent/skills/plans-kanban/scripts/kanban-server.js --dir ./docs/plans --op
 
 ---
 
-## ðŸ”— Related
+## 🔗 Related
 
 | Item | Type | Purpose |
 |------|------|---------|
@@ -255,5 +255,5 @@ node .agent/skills/plans-kanban/scripts/kanban-server.js --dir ./docs/plans --op
 
 ---
 
-âš¡ PikaKit v3.9.107
+⚡ PikaKit v3.9.108
 

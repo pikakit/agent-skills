@@ -5,10 +5,10 @@ description: >-
   Triggers on: performance, slow, Lighthouse, bundle size, Core Web Vitals.
 metadata:
   author: pikakit
-  version: "3.9.107"
+  version: "3.9.108"
 ---
 
-# Performance Profiler â€” Core Web Vitals & Profiling
+# Performance Profiler — Core Web Vitals & Profiling
 
 > Measure first. Profile second. Fix third. Validate last.
 
@@ -31,7 +31,7 @@ metadata:
 | Owned by This Skill | NOT Owned |
 |---------------------|-----------|
 | Core Web Vitals targets | Measurement execution |
-| Tool selection (symptom â†’ tool) | Tool installation |
+| Tool selection (symptom → tool) | Tool installation |
 | Bundle analysis guidance | Bundle build |
 | Quick win prioritization | Code modification |
 
@@ -58,10 +58,10 @@ metadata:
 ## 4-Step Profiling Workflow (Fixed)
 
 ```
-1. BASELINE  â†’ Measure current state
-2. IDENTIFY  â†’ Find the bottleneck
-3. FIX       â†’ Make targeted change
-4. VALIDATE  â†’ Confirm improvement
+1. BASELINE  → Measure current state
+2. IDENTIFY  → Find the bottleneck
+3. FIX       → Make targeted change
+4. VALIDATE  → Confirm improvement
 ```
 
 ---
@@ -78,7 +78,7 @@ metadata:
 
 ---
 
-## Bundle Analysis (4 Issues â†’ 4 Actions)
+## Bundle Analysis (4 Issues → 4 Actions)
 
 | Issue | Indicator | Action |
 |-------|-----------|--------|
@@ -127,7 +127,7 @@ metadata:
 
 ## Anti-Patterns
 
-| âŒ Don't | âœ… Do |
+| ❌ Don't | ✅ Do |
 |---------|-------|
 | Guess at bottlenecks | Profile first, then fix |
 | Micro-adjust non-critical paths | Fix the biggest issue |
@@ -136,7 +136,7 @@ metadata:
 
 ---
 
-## ðŸ“‘ Content Map
+## 📑 Content Map
 
 | File | Description | When to Read |
 |------|-------------|--------------|
@@ -146,7 +146,7 @@ metadata:
 
 ---
 
-## ðŸ”— Related
+## 🔗 Related
 
 | Item | Type | Purpose |
 |------|------|---------|
@@ -155,4 +155,4 @@ metadata:
 
 ---
 
-âš¡ PikaKit v3.9.107
+⚡ PikaKit v3.9.108

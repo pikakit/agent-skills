@@ -2,12 +2,12 @@
 name: auth-patterns
 description: >-
   Authentication and authorization patterns for production applications. OAuth2, JWT,
-  RBAC/ABAC, MFA, Passkeys, session management. Fail-closed design: ambiguity â†’ deny access.
+  RBAC/ABAC, MFA, Passkeys, session management. Fail-closed design: ambiguity → deny access.
   Defense in depth required. Triggers on: auth, login, OAuth, JWT, RBAC, permissions, MFA,
   passkey.
 metadata:
   author: pikakit
-  version: "3.9.107"
+  version: "3.9.108"
 ---
 
 # Auth Patterns
@@ -18,7 +18,7 @@ metadata:
 
 ## Prerequisites
 
-**Required:** None â€” Auth Patterns is a knowledge-based skill with no external dependencies.
+**Required:** None — Auth Patterns is a knowledge-based skill with no external dependencies.
 
 **Optional:**
 - `security-scanner` skill (for implementation validation)
@@ -49,9 +49,9 @@ metadata:
 |---------------------|-----------|
 | Auth strategy selection (JWT/Session/OAuth/Passkey) | Auth library implementation |
 | Token lifecycle design (TTL, rotation, revocation) | Secret/key generation |
-| Permission model architecture (RBAC/ABAC) | Users/roles DB schema (â†’ data-modeler) |
+| Permission model architecture (RBAC/ABAC) | Users/roles DB schema (→ data-modeler) |
 | MFA strategy selection (TOTP/WebAuthn) | MFA provider integration |
-| Session config (cookie, store, invalidation) | Session store provisioning (â†’ server-ops) |
+| Session config (cookie, store, invalidation) | Session store provisioning (→ server-ops) |
 
 **Pure decision skill:** Produces security guidance. Zero network calls, zero credential handling, zero side effects.
 
@@ -61,10 +61,10 @@ metadata:
 
 | Principle | Enforcement |
 |-----------|-------------|
-| **Fail Closed** | Auth error or ambiguity â†’ deny access. Never implicit allow. |
-| **Defense in Depth** | Every recommendation includes â‰¥ 3 controls: auth + authz + rate limit + monitoring |
+| **Fail Closed** | Auth error or ambiguity → deny access. Never implicit allow. |
+| **Defense in Depth** | Every recommendation includes ≥ 3 controls: auth + authz + rate limit + monitoring |
 | **Least Privilege** | Grant minimum permissions; default to no-access |
-| **Token Hygiene** | Access token â‰¤ 15 min. Refresh token rotated on use. httpOnly storage. |
+| **Token Hygiene** | Access token ≤ 15 min. Refresh token rotated on use. httpOnly storage. |
 | **Zero Trust** | Verify every request. No implicit trust for internal services. |
 
 ---
@@ -73,18 +73,18 @@ metadata:
 
 ```
 What type of application?
-â”œâ”€â”€ SPA / Mobile App
-â”‚   â”œâ”€â”€ First-party only â†’ JWT (â‰¤15min access) + Refresh Token (httpOnly cookie)
-â”‚   â””â”€â”€ Third-party login â†’ OAuth 2.0 + PKCE (mandatory for public clients)
-â”œâ”€â”€ Traditional Web (SSR)
-â”‚   â””â”€â”€ Session-based (httpOnly secure cookies, SameSite=Strict)
-â”œâ”€â”€ API / Microservices
-â”‚   â”œâ”€â”€ Service-to-service â†’ mTLS or API Keys + HMAC
-â”‚   â””â”€â”€ User-facing â†’ JWT with gateway validation
-â”œâ”€â”€ Enterprise / B2B
-â”‚   â””â”€â”€ SAML 2.0 or OIDC (SSO)
-â””â”€â”€ Modern Passwordless
-    â””â”€â”€ Passkeys (WebAuthn/FIDO2)
+├── SPA / Mobile App
+│   ├── First-party only → JWT (≤15min access) + Refresh Token (httpOnly cookie)
+│   └── Third-party login → OAuth 2.0 + PKCE (mandatory for public clients)
+├── Traditional Web (SSR)
+│   └── Session-based (httpOnly secure cookies, SameSite=Strict)
+├── API / Microservices
+│   ├── Service-to-service → mTLS or API Keys + HMAC
+│   └── User-facing → JWT with gateway validation
+├── Enterprise / B2B
+│   └── SAML 2.0 or OIDC (SSO)
+└── Modern Passwordless
+    └── Passkeys (WebAuthn/FIDO2)
 ```
 
 ---
@@ -108,8 +108,8 @@ What type of application?
 ## Decision Checklist
 
 - [ ] **Auth strategy chosen for THIS app type?** (JWT / Session / OAuth / Passkey)
-- [ ] **Token storage decided?** (httpOnly secure cookie â€” NOT localStorage)
-- [ ] **Access token TTL â‰¤ 15 minutes?**
+- [ ] **Token storage decided?** (httpOnly secure cookie — NOT localStorage)
+- [ ] **Access token TTL ≤ 15 minutes?**
 - [ ] **Refresh token rotation configured?** (rotate on every use)
 - [ ] **Permission model chosen?** (RBAC / ABAC / hybrid)
 - [ ] **MFA required for sensitive operations?** (high/critical sensitivity)
@@ -121,10 +121,10 @@ What type of application?
 
 ## Anti-Patterns
 
-| âŒ Don't | âœ… Do |
+| ❌ Don't | ✅ Do |
 |---------|-------|
 | Store JWT in localStorage | Use httpOnly secure cookies |
-| Access tokens with 24h+ expiry | Access token â‰¤ 15 min + refresh token |
+| Access tokens with 24h+ expiry | Access token ≤ 15 min + refresh token |
 | Roll your own crypto | Use battle-tested libraries (jose, passport) |
 | Same signing key for all services | Per-service signing keys |
 | Skip PKCE for public clients | PKCE mandatory for SPA/mobile OAuth |
@@ -153,7 +153,7 @@ What type of application?
 
 ### 2. Engineering Spec (LOW)
 
-- `engineering-spec` - Auth Patterns â€” Engineering Specification
+- `engineering-spec` - Auth Patterns — Engineering Specification
 
 ### 3. Jwt (LOW)
 
@@ -183,7 +183,7 @@ Each rule file contains:
 For the complete guide with all rules expanded: `AGENTS.md`
 
 
-## ðŸ“‘ Content Map
+## 📑 Content Map
 
 | File | Description | When to Read |
 |------|-------------|--------------|
@@ -197,7 +197,7 @@ For the complete guide with all rules expanded: `AGENTS.md`
 
 ---
 
-## ðŸ”— Related
+## 🔗 Related
 
 | Item | Type | Purpose |
 |------|------|---------|
@@ -208,4 +208,4 @@ For the complete guide with all rules expanded: `AGENTS.md`
 
 ---
 
-âš¡ PikaKit v3.9.107
+⚡ PikaKit v3.9.108

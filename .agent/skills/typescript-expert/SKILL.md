@@ -8,10 +8,10 @@ description: >-
   tsconfig, monorepo.
 metadata:
   author: pikakit
-  version: "3.9.107"
+  version: "3.9.108"
 ---
 
-# TypeScript Expert â€” Advanced TS Problem-Solving
+# TypeScript Expert — Advanced TS Problem-Solving
 
 > Strict mode. ESM-first. Type-level patterns. Deterministic error routing.
 
@@ -33,9 +33,9 @@ metadata:
 
 | Owned by This Skill | NOT Owned |
 |---------------------|-----------|
-| Type-level patterns (3) | Next.js integration (â†’ nextjs-pro) |
-| Error â†’ fix routing (4 errors) | React patterns (â†’ react-architect) |
-| Performance config (3 settings) | Code review (â†’ code-review) |
+| Type-level patterns (3) | Next.js integration (→ nextjs-pro) |
+| Error → fix routing (4 errors) | React patterns (→ react-architect) |
+| Performance config (3 settings) | Code review (→ code-review) |
 | Strict config + ESM-first | Build tooling (Vite/webpack) |
 
 **Expert decision skill:** Produces TS guidance. Does not execute compilers.
@@ -52,7 +52,7 @@ metadata:
 
 ---
 
-## Common Errors (4 â€” Deterministic Routing)
+## Common Errors (4 — Deterministic Routing)
 
 | Error | Fix |
 |-------|-----|
@@ -88,7 +88,7 @@ const config = {
 
 ---
 
-## Strict Config (Recommended â€” Fixed)
+## Strict Config (Recommended — Fixed)
 
 ```json
 {
@@ -111,7 +111,7 @@ const config = {
 
 ---
 
-## Performance Settings (3 â€” Fixed)
+## Performance Settings (3 — Fixed)
 
 | Setting | Effect |
 |---------|--------|
@@ -145,7 +145,7 @@ const config = {
 
 ---
 
-## ðŸ“‘ Content Map
+## 📑 Content Map
 
 | File | Description | When to Read |
 |------|-------------|--------------|
@@ -161,7 +161,7 @@ const config = {
 
 ---
 
-## ðŸ”— Related
+## 🔗 Related
 
 | Item | Type | Purpose |
 |------|------|---------|
@@ -171,4 +171,4 @@ const config = {
 
 ---
 
-âš¡ PikaKit v3.9.107
+⚡ PikaKit v3.9.108

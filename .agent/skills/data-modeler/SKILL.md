@@ -5,10 +5,10 @@ description: >-
   selection. Triggers on: database, schema, Prisma, Drizzle, SQL, migration, indexing.
 metadata:
   author: pikakit
-  version: "3.9.107"
+  version: "3.9.108"
 ---
 
-# Data Modeler â€” Database Design
+# Data Modeler — Database Design
 
 > Context-specific decisions. Ask before assuming. Never default to PostgreSQL blindly.
 
@@ -16,7 +16,7 @@ metadata:
 
 ## Prerequisites
 
-**Required:** None â€” Data Modeler is a knowledge-based skill with no external dependencies.
+**Required:** None — Data Modeler is a knowledge-based skill with no external dependencies.
 
 ---
 
@@ -38,10 +38,10 @@ metadata:
 
 | Owned by This Skill | NOT Owned |
 |---------------------|-----------|
-| Database selection (PostgreSQL/Neon/Turso/SQLite) | Database provisioning (â†’ server-ops) |
-| ORM selection (Drizzle/Prisma/Kysely) | API endpoint design (â†’ api-architect) |
-| Schema design (normalization, PKs, relationships) | Security scanning (â†’ security-scanner) |
-| Index strategy (B-tree/hash/GIN/GiST) | Database monitoring (â†’ observability) |
+| Database selection (PostgreSQL/Neon/Turso/SQLite) | Database provisioning (→ server-ops) |
+| ORM selection (Drizzle/Prisma/Kysely) | API endpoint design (→ api-architect) |
+| Schema design (normalization, PKs, relationships) | Security scanning (→ security-scanner) |
+| Index strategy (B-tree/hash/GIN/GiST) | Database monitoring (→ observability) |
 | Migration safety (additive/destructive/multi-phase) | SQL execution |
 
 **Pure decision skill:** Produces database architecture decisions. Zero side effects.
@@ -119,7 +119,7 @@ metadata:
 
 ## Anti-Patterns
 
-| âŒ Don't | âœ… Do |
+| ❌ Don't | ✅ Do |
 |---------|-------|
 | Default to PostgreSQL for simple apps | Choose SQLite when it suffices |
 | Skip index planning | Plan indexes for every known query pattern |
@@ -130,7 +130,7 @@ metadata:
 
 ---
 
-## ðŸ“‘ Content Map
+## 📑 Content Map
 
 | File | Description | When to Read |
 |------|-------------|--------------|
@@ -152,7 +152,7 @@ metadata:
 
 ---
 
-## ðŸ”— Related
+## 🔗 Related
 
 | Item | Type | Purpose |
 |------|------|---------|
@@ -163,4 +163,4 @@ metadata:
 
 ---
 
-âš¡ PikaKit v3.9.107
+⚡ PikaKit v3.9.108

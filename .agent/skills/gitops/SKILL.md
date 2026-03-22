@@ -6,10 +6,10 @@ description: >-
   declarative deployment.
 metadata:
   author: pikakit
-  version: "3.9.107"
+  version: "3.9.108"
 ---
 
-# GitOps Workflow â€” Declarative Kubernetes Delivery
+# GitOps Workflow — Declarative Kubernetes Delivery
 
 > Git is the single source of truth. Continuous reconciliation. No auto-sync to production.
 
@@ -28,7 +28,7 @@ metadata:
 | K8s deployment needed | Choose ArgoCD or Flux via decision tree |
 | CD pipeline setup | Configure sync policies per environment |
 | Secret management | Use Sealed Secrets or External Secrets (no plaintext) |
-| Multi-environment | Set up staging â†’ production promotion |
+| Multi-environment | Set up staging → production promotion |
 | Architecture review | Read `rules/engineering-spec.md` |
 
 ---
@@ -37,9 +37,9 @@ metadata:
 
 | Owned by This Skill | NOT Owned |
 |---------------------|-----------|
-| ArgoCD vs Flux decision (4 criteria) | CI pipeline (â†’ cicd-pipeline) |
-| Sync policy selection (4 policies) | Server management (â†’ server-ops) |
-| Repository structure template | Git operations (â†’ git-workflow) |
+| ArgoCD vs Flux decision (4 criteria) | CI pipeline (→ cicd-pipeline) |
+| Sync policy selection (4 policies) | Server management (→ server-ops) |
+| Repository structure template | Git operations (→ git-workflow) |
 | OpenGitOps compliance (4 principles) | Cluster provisioning |
 | Secret management strategy | Helm chart development |
 
@@ -47,7 +47,7 @@ metadata:
 
 ---
 
-## OpenGitOps Principles (4 â€” All Required)
+## OpenGitOps Principles (4 — All Required)
 
 | # | Principle | Requirement |
 |---|-----------|-------------|
@@ -62,12 +62,12 @@ metadata:
 
 | Criterion | ArgoCD | Flux |
 |-----------|--------|------|
-| Web UI | âœ… Rich dashboard | âŒ CLI only |
-| Multi-cluster | âœ… Native support | âš ï¸ Requires setup |
-| Helm support | âœ… Native | âœ… Native |
+| Web UI | ✅ Rich dashboard | ❌ CLI only |
+| Multi-cluster | ✅ Native support | ⚠️ Requires setup |
+| Helm support | ✅ Native | ✅ Native |
 | Learning curve | Medium | Lower |
 
-**Rule:** needs_ui=true OR cluster_count>1 â†’ **ArgoCD**. Otherwise â†’ **Flux**.
+**Rule:** needs_ui=true OR cluster_count>1 → **ArgoCD**. Otherwise → **Flux**.
 
 ---
 
@@ -88,14 +88,14 @@ metadata:
 
 ```
 gitops-repo/
-â”œâ”€â”€ apps/
-â”‚   â”œâ”€â”€ production/
-â”‚   â””â”€â”€ staging/
-â”œâ”€â”€ infrastructure/
-â”‚   â”œâ”€â”€ ingress-nginx/
-â”‚   â””â”€â”€ cert-manager/
-â””â”€â”€ argocd/
-    â””â”€â”€ applications/
+├── apps/
+│   ├── production/
+│   └── staging/
+├── infrastructure/
+│   ├── ingress-nginx/
+│   └── cert-manager/
+└── argocd/
+    └── applications/
 ```
 
 ---
@@ -126,7 +126,7 @@ gitops-repo/
 
 ## Anti-Patterns
 
-| âŒ Don't | âœ… Do |
+| ❌ Don't | ✅ Do |
 |---------|-------|
 | Auto-sync to production | Manual sync with approval |
 | Store secrets in Git | Sealed Secrets / External Secrets |
@@ -152,7 +152,7 @@ gitops-repo/
 
 ### 2. Engineering Spec (LOW)
 
-- `engineering-spec` - GitOps Workflow â€” Engineering Specification
+- `engineering-spec` - GitOps Workflow — Engineering Specification
 
 ### 3. Sync (LOW)
 
@@ -178,7 +178,7 @@ Each rule file contains:
 For the complete guide with all rules expanded: `AGENTS.md`
 
 
-## ðŸ“‘ Content Map
+## 📑 Content Map
 
 | File | Description | When to Read |
 |------|-------------|--------------|
@@ -188,7 +188,7 @@ For the complete guide with all rules expanded: `AGENTS.md`
 
 ---
 
-## ðŸ”— Related
+## 🔗 Related
 
 | Item | Type | Purpose |
 |------|------|---------|
@@ -199,4 +199,4 @@ For the complete guide with all rules expanded: `AGENTS.md`
 
 ---
 
-âš¡ PikaKit v3.9.107
+⚡ PikaKit v3.9.108

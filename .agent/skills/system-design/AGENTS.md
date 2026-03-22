@@ -10,7 +10,7 @@ March 2026
 
 ---
 
-# System Design â€” Architecture Decision Framework
+# System Design — Architecture Decision Framework
 
 > Requirements drive architecture. Trade-offs inform decisions. ADRs capture rationale.
 
@@ -31,9 +31,9 @@ March 2026
 
 | Owned by This Skill | NOT Owned |
 |---------------------|-----------|
-| Context discovery (project classification) | API design (â†’ api-architect) |
-| Trade-off analysis (ADR format) | Database design (â†’ data-modeler) |
-| Pattern selection (decision trees) | Deployment (â†’ cicd-pipeline) |
+| Context discovery (project classification) | API design (→ api-architect) |
+| Trade-off analysis (ADR format) | Database design (→ data-modeler) |
+| Pattern selection (decision trees) | Deployment (→ cicd-pipeline) |
 | Architecture validation (6-item checklist) | Code implementation |
 
 **Expert decision skill:** Produces architecture recommendations. Does not write code.
@@ -51,7 +51,7 @@ March 2026
 
 ---
 
-## ADR Format (6 Sections â€” Fixed)
+## ADR Format (6 Sections — Fixed)
 
 | Section | Purpose |
 |---------|---------|
@@ -64,7 +64,7 @@ March 2026
 
 ---
 
-## Validation Checklist (6 Items â€” Fixed)
+## Validation Checklist (6 Items — Fixed)
 
 - [ ] Requirements clearly understood
 - [ ] Constraints identified
@@ -90,7 +90,7 @@ March 2026
 
 ## Anti-Patterns
 
-| âŒ Don't | âœ… Do |
+| ❌ Don't | ✅ Do |
 |---------|-------|
 | Over-engineer from day one | Start simple, add complexity when needed |
 | Skip trade-off analysis | Document pros/cons for every option |
@@ -99,7 +99,7 @@ March 2026
 
 ---
 
-## ðŸ“‘ Content Map
+## 📑 Content Map
 
 | File | Description | When to Read |
 |------|-------------|--------------|
@@ -112,7 +112,7 @@ March 2026
 
 ---
 
-## ðŸ”— Related
+## 🔗 Related
 
 | Item | Type | Purpose |
 |------|------|---------|
@@ -122,7 +122,7 @@ March 2026
 
 ---
 
-âš¡ PikaKit v3.9.105
+⚡ PikaKit v3.9.105
 
 ---
 
@@ -135,10 +135,10 @@ March 2026
 
 ---
 name: system-design-engineering-spec
-description: Full 21-section engineering spec â€” context discovery, ADR format, pattern selection, 6-item validation checklist
+description: Full 21-section engineering spec — context discovery, ADR format, pattern selection, 6-item validation checklist
 ---
 
-# System Design â€” Engineering Specification
+# System Design — Engineering Specification
 
 > Production-grade specification for architectural decision-making at FAANG scale.
 
@@ -146,11 +146,11 @@ description: Full 21-section engineering spec â€” context discovery, ADR fo
 
 ## 1. Overview
 
-System Design provides a structured framework for architectural decision-making: requirements analysis (via context-discovery), trade-off evaluation (via ADR format), pattern selection (via decision trees), and architecture validation (6-item checklist). The skill operates as an **Expert (decision tree)** â€” it produces architecture recommendations, trade-off analyses, ADR documents, and pattern selections. It does not implement systems, write code, or deploy infrastructure.
+System Design provides a structured framework for architectural decision-making: requirements analysis (via context-discovery), trade-off evaluation (via ADR format), pattern selection (via decision trees), and architecture validation (6-item checklist). The skill operates as an **Expert (decision tree)** — it produces architecture recommendations, trade-off analyses, ADR documents, and pattern selections. It does not implement systems, write code, or deploy infrastructure.
 
 **Contract Version:** 2.0.0
 **Backward Compatibility:** breaking (first hardened version)
-**Breaking Changes:** None â€” new spec for first hardening
+**Breaking Changes:** None — new spec for first hardening
 
 ---
 
@@ -511,7 +511,7 @@ All resources scoped to invocation. No persistent handles.
 | Trade-off analysis | < 5 ms | < 15 ms | 50 ms |
 | Validation | < 2 ms | < 5 ms | 20 ms |
 | Full review | < 15 ms | < 40 ms | 50 ms |
-| Output size | â‰¤ 5,000 chars | â‰¤ 10,000 chars | 15,000 chars |
+| Output size | ≤ 5,000 chars | ≤ 10,000 chars | 15,000 chars |
 
 ---
 
@@ -530,16 +530,16 @@ All resources scoped to invocation. No persistent handles.
 
 | Requirement | Status | Evidence |
 |-------------|--------|----------|
-| YAML frontmatter complete | âœ… | name, description, metadata with category, version, triggers, coordinates_with, success_metrics |
-| SKILL.md < 200 lines | âœ… | Entry point under 200 lines |
-| Prerequisites documented | âœ… | No external dependencies |
-| When to Use section | âœ… | Situation-based routing table |
-| Core content matches skill type | âœ… | Expert type: context discovery, trade-off analysis, pattern selection |
-| Troubleshooting section | âœ… | Anti-patterns table |
-| Related section | âœ… | Cross-links to api-architect, data-modeler |
-| Content Map for multi-file | âœ… | Links to 5 reference files + engineering-spec.md |
-| Contract versioning | âœ… | contract_version, backward_compatibility, breaking_changes |
-| Compliance matrix structured | âœ… | This table with âœ…/âŒ + evidence |
+| YAML frontmatter complete | ✅ | name, description, metadata with category, version, triggers, coordinates_with, success_metrics |
+| SKILL.md < 200 lines | ✅ | Entry point under 200 lines |
+| Prerequisites documented | ✅ | No external dependencies |
+| When to Use section | ✅ | Situation-based routing table |
+| Core content matches skill type | ✅ | Expert type: context discovery, trade-off analysis, pattern selection |
+| Troubleshooting section | ✅ | Anti-patterns table |
+| Related section | ✅ | Cross-links to api-architect, data-modeler |
+| Content Map for multi-file | ✅ | Links to 5 reference files + engineering-spec.md |
+| Contract versioning | ✅ | contract_version, backward_compatibility, breaking_changes |
+| Compliance matrix structured | ✅ | This table with ✅/❌ + evidence |
 
 ---
 
@@ -547,22 +547,22 @@ All resources scoped to invocation. No persistent handles.
 
 | Category | Check | Status |
 |----------|-------|--------|
-| **Functionality** | Context discovery with project classification | âœ… |
-| **Functionality** | Trade-off analysis with ADR format | âœ… |
-| **Functionality** | Pattern selection with decision trees | âœ… |
-| **Functionality** | Architecture validation (6-item checklist) | âœ… |
-| **Functionality** | 3 example types (MVP, SaaS, Enterprise) | âœ… |
-| **Contracts** | Input/output/error schemas in pseudo-schema format | âœ… |
-| **Contracts** | Contract versioning with semver | âœ… |
-| **Failure** | Error taxonomy with 4 categorized codes | âœ… |
-| **Failure** | Zero internal retries | âœ… |
-| **Determinism** | Fixed ADR format, fixed checklist, fixed decision trees | âœ… |
-| **Security** | No credentials, no infrastructure, no code | âœ… |
-| **Observability** | Structured log schema with 5 mandatory fields | âœ… |
-| **Observability** | 4 metrics defined | âœ… |
-| **Performance** | P50/P99 targets for all operations | âœ… |
-| **Compliance** | All skill-design-guide.md sections mapped with evidence | âœ… |
+| **Functionality** | Context discovery with project classification | ✅ |
+| **Functionality** | Trade-off analysis with ADR format | ✅ |
+| **Functionality** | Pattern selection with decision trees | ✅ |
+| **Functionality** | Architecture validation (6-item checklist) | ✅ |
+| **Functionality** | 3 example types (MVP, SaaS, Enterprise) | ✅ |
+| **Contracts** | Input/output/error schemas in pseudo-schema format | ✅ |
+| **Contracts** | Contract versioning with semver | ✅ |
+| **Failure** | Error taxonomy with 4 categorized codes | ✅ |
+| **Failure** | Zero internal retries | ✅ |
+| **Determinism** | Fixed ADR format, fixed checklist, fixed decision trees | ✅ |
+| **Security** | No credentials, no infrastructure, no code | ✅ |
+| **Observability** | Structured log schema with 5 mandatory fields | ✅ |
+| **Observability** | 4 metrics defined | ✅ |
+| **Performance** | P50/P99 targets for all operations | ✅ |
+| **Compliance** | All skill-design-guide.md sections mapped with evidence | ✅ |
 
 ---
 
-âš¡ PikaKit v3.9.105
+⚡ PikaKit v3.9.105

@@ -45,16 +45,16 @@ March 2026
 # 1. Navigate
 agent-browser open https://example.com
 
-# 2. Snapshot â€” get @ref handles
+# 2. Snapshot — get @ref handles
 agent-browser snapshot -i
 # Output: @e1=button[Login] @e2=input[email] @e3=input[password]
 
-# 3. Interact â€” use @refs directly
+# 3. Interact — use @refs directly
 agent-browser fill @e2 "user@example.com"
 agent-browser fill @e3 "password123"
 agent-browser click @e1
 
-# 4. Verify â€” re-snapshot to confirm state change
+# 4. Verify — re-snapshot to confirm state change
 agent-browser snapshot -i
 ```
 
@@ -67,12 +67,12 @@ agent-browser snapshot -i
 | Browser session lifecycle | Browser binary installation |
 | @ref element handles | Full DOM serialization |
 | Click, fill, screenshot, record | JavaScript injection |
-| Structured error codes | Visual regression testing (â†’ e2e-automation) |
+| Structured error codes | Visual regression testing (→ e2e-automation) |
 | Session isolation | Network interception |
 
 ---
 
-## Execution Model â€” 4-Phase Lifecycle
+## Execution Model — 4-Phase Lifecycle
 
 | Phase | Commands | State Effect |
 |-------|----------|-------------|
@@ -81,7 +81,7 @@ agent-browser snapshot -i
 | **Interact** | `click @ref`, `fill @ref "text"` | Mutates page state, invalidates @refs |
 | **Verify** | `snapshot -i`, `screenshot [path]` | Captures new state |
 
-**State:** `NO_SESSION â†’ [open] â†’ SESSION_ACTIVE â†’ [close/timeout] â†’ SESSION_CLOSED`
+**State:** `NO_SESSION → [open] → SESSION_ACTIVE → [close/timeout] → SESSION_CLOSED`
 
 ---
 
@@ -103,7 +103,7 @@ agent-browser fill @e2 "email@example.com"
 
 | Property | Constraint |
 |----------|-----------|
-| Output size | â‰¤ 500 chars for â‰¤ 50 elements |
+| Output size | ≤ 500 chars for ≤ 50 elements |
 | Validity | Until next snapshot, navigation, or session close |
 | Stale access | Returns `ERR_REF_STALE` (never silent) |
 | ID format | Sequential: `@e1`, `@e2`, ...; resets per snapshot |
@@ -169,7 +169,7 @@ agent-browser fill @e2 "email@example.com"
 
 ---
 
-## ðŸ“‘ Content Map
+## 📑 Content Map
 
 | File | Description | When to Read |
 |------|-------------|--------------| 
@@ -177,7 +177,7 @@ agent-browser fill @e2 "email@example.com"
 
 ---
 
-## ðŸ”— Related
+## 🔗 Related
 
 | Item | Type | Purpose |
 |------|------|---------|
@@ -187,7 +187,7 @@ agent-browser fill @e2 "email@example.com"
 
 ---
 
-âš¡ PikaKit v3.9.105
+⚡ PikaKit v3.9.105
 
 ---
 
@@ -199,12 +199,12 @@ agent-browser fill @e2 "email@example.com"
 ### Rule: engineering-spec
 
 ---
-title: Agent Browser â€” Engineering Specification
+title: Agent Browser — Engineering Specification
 impact: MEDIUM
 tags: agent-browser
 ---
 
-# Agent Browser â€” Engineering Specification
+# Agent Browser — Engineering Specification
 
 > Production-grade specification for AI-optimized browser automation at FAANG scale.
 
@@ -214,7 +214,7 @@ tags: agent-browser
 
 Agent Browser provides AI agents with browser automation through context-efficient element references (@refs). Instead of passing full DOM trees (8KB+ per snapshot), the @ref system compresses interactive elements into ~280 character handles, reducing LLM context consumption by 93%.
 
-The skill wraps Playwright to expose a 4-phase execution lifecycle: Navigate â†’ Snapshot â†’ Interact â†’ Verify. Every operation maps to one of these phases.
+The skill wraps Playwright to expose a 4-phase execution lifecycle: Navigate → Snapshot → Interact → Verify. Every operation maps to one of these phases.
 
 ---
 
@@ -224,8 +224,8 @@ AI agents consuming browser state face three quantified problems:
 
 | Problem | Measurement | Impact |
 |---------|-------------|--------|
-| Context overflow | Full DOM = 8,000â€“50,000 chars per page | Exceeds LLM context windows within 2â€“3 pages |
-| Selector instability | CSS/XPath selectors break on 40â€“60% of page updates | Test flakiness, false failures |
+| Context overflow | Full DOM = 8,000–50,000 chars per page | Exceeds LLM context windows within 2–3 pages |
+| Selector instability | CSS/XPath selectors break on 40–60% of page updates | Test flakiness, false failures |
 | Session state loss | No persistence across agent turns | Repeated navigation, wasted execution time |
 
 Agent Browser eliminates these by providing stable, compact element handles that survive page re-renders and persist within a browser session.
@@ -236,7 +236,7 @@ Agent Browser eliminates these by providing stable, compact element handles that
 
 | ID | Goal | Measurable Constraint |
 |----|------|-----------------------|
-| G1 | Minimize context consumption | Snapshot output â‰¤ 500 characters for pages with â‰¤ 50 interactive elements |
+| G1 | Minimize context consumption | Snapshot output ≤ 500 characters for pages with ≤ 50 interactive elements |
 | G2 | Stable element references | @refs survive DOM mutations that preserve element identity |
 | G3 | Deterministic command execution | Same command + same page state = same result |
 | G4 | Session persistence | Browser state persists until explicit close or timeout |
@@ -308,7 +308,7 @@ Error: ErrorSchema | null
 
 **Contract Version:** 2.0.0
 **Backward Compatibility:** breaking (first hardened version)
-**Breaking Changes:** None â€” new spec for first hardening
+**Breaking Changes:** None — new spec for first hardening
 
 #### Error Schema
 
@@ -415,16 +415,16 @@ Failures do not propagate across sessions. A crashed session does not affect oth
 
 | Phase | Commands | State Transition |
 |-------|----------|------------------|
-| **Navigate** | `open <url>` | NO_SESSION â†’ SESSION_ACTIVE |
-| **Snapshot** | `snapshot -i` | SESSION_ACTIVE â†’ SESSION_ACTIVE (refs populated) |
-| **Interact** | `click`, `fill` | SESSION_ACTIVE â†’ SESSION_ACTIVE (refs invalidated) |
-| **Verify** | `snapshot`, `screenshot` | SESSION_ACTIVE â†’ SESSION_ACTIVE (refs refreshed) |
+| **Navigate** | `open <url>` | NO_SESSION → SESSION_ACTIVE |
+| **Snapshot** | `snapshot -i` | SESSION_ACTIVE → SESSION_ACTIVE (refs populated) |
+| **Interact** | `click`, `fill` | SESSION_ACTIVE → SESSION_ACTIVE (refs invalidated) |
+| **Verify** | `snapshot`, `screenshot` | SESSION_ACTIVE → SESSION_ACTIVE (refs refreshed) |
 
 **State Diagram:**
 
 ```
-NO_SESSION â†’ [open] â†’ SESSION_ACTIVE â†’ [close/timeout] â†’ SESSION_CLOSED
-                            â†‘ â†“
+NO_SESSION → [open] → SESSION_ACTIVE → [close/timeout] → SESSION_CLOSED
+                            ↑ ↓
                       [snapshot/interact/verify cycle]
 ```
 
@@ -451,11 +451,11 @@ Commands issued in `NO_SESSION` or `SESSION_CLOSED` state return `ERR_SESSION_CL
 ```
 States: NO_SESSION, SESSION_ACTIVE, SESSION_CLOSED
 Transitions:
-  NO_SESSION     + open      â†’ SESSION_ACTIVE
-  SESSION_ACTIVE + close     â†’ SESSION_CLOSED
-  SESSION_ACTIVE + timeout   â†’ SESSION_CLOSED
-  SESSION_ACTIVE + crash     â†’ SESSION_CLOSED
-  SESSION_CLOSED + any       â†’ ERR_SESSION_CLOSED
+  NO_SESSION     + open      → SESSION_ACTIVE
+  SESSION_ACTIVE + close     → SESSION_CLOSED
+  SESSION_ACTIVE + timeout   → SESSION_CLOSED
+  SESSION_ACTIVE + crash     → SESSION_CLOSED
+  SESSION_CLOSED + any       → ERR_SESSION_CLOSED
 ```
 
 ### @ref Lifecycle
@@ -596,7 +596,7 @@ Blocked protocols return `ERR_INVALID_URL`.
 
 | Dimension | Constraint | Mitigation |
 |-----------|-----------|------------|
-| Concurrent sessions | Bound by available memory (each Chromium context â‰ˆ 50â€“150 MB) | Enforce max_concurrent_sessions per node |
+| Concurrent sessions | Bound by available memory (each Chromium context ≈ 50–150 MB) | Enforce max_concurrent_sessions per node |
 | Session throughput | Sequential command execution within session | Parallelism across sessions, not within |
 | Snapshot size | Proportional to interactive element count | Cap at 200 elements per snapshot; truncate with warning |
 | Storage (screenshots/recordings) | Disk I/O bound | Write to configurable output directory; caller manages cleanup |
@@ -605,7 +605,7 @@ Blocked protocols return `ERR_INVALID_URL`.
 
 | Metric | Per Session | Per Node (16 GB RAM) |
 |--------|-------------|---------------------|
-| Memory | 50â€“150 MB | ~100 concurrent sessions |
+| Memory | 50–150 MB | ~100 concurrent sessions |
 | CPU | 1 core per active session | Bound by core count |
 | Disk | ~2 MB/screenshot, ~5 MB/min recording | Caller-managed cleanup |
 
@@ -649,7 +649,7 @@ Blocked protocols return `ERR_INVALID_URL`.
 | `click` | < 100 ms | < 500 ms | `element_wait_timeout` |
 | `fill` (100 chars) | < 200 ms | < 1,000 ms | `element_wait_timeout` |
 | `screenshot` (1920x1080) | < 500 ms | < 2,000 ms | `screenshot_timeout` |
-| Snapshot output size | â‰¤ 280 chars | â‰¤ 500 chars | 2,000 chars |
+| Snapshot output size | ≤ 280 chars | ≤ 500 chars | 2,000 chars |
 
 ---
 
@@ -670,17 +670,17 @@ Blocked protocols return `ERR_INVALID_URL`.
 
 | Requirement | Status | Evidence |
 |-------------|--------|----------|
-| YAML frontmatter complete | âœ… | name, description, metadata with category, version, triggers, coordinates_with, success_metrics |
-| SKILL.md < 200 lines | âœ… | Entry point SKILL.md under 200 lines; details in rules/ |
-| Prerequisites documented | âœ… | Node.js 18+, Playwright, optional Browserbase |
-| When to Use section | âœ… | Decision matrix vs chrome-devtools |
-| Quick Reference with commands | âœ… | 4-step workflow with copy-paste commands |
-| Core content matches skill type | âœ… | Automation type: commands table, @ref system, execution model |
-| Troubleshooting section | âœ… | Problem/solution table |
-| Related section | âœ… | Cross-links to e2e-automation, chrome-devtools, test-architect |
-| Content Map for multi-file | âœ… | Links to rules/engineering-spec.md |
-| Contract versioning | âœ… | contract_version, backward_compatibility, breaking_changes |
-| Compliance matrix structured | âœ… | This table with âœ…/âŒ + evidence |
+| YAML frontmatter complete | ✅ | name, description, metadata with category, version, triggers, coordinates_with, success_metrics |
+| SKILL.md < 200 lines | ✅ | Entry point SKILL.md under 200 lines; details in rules/ |
+| Prerequisites documented | ✅ | Node.js 18+, Playwright, optional Browserbase |
+| When to Use section | ✅ | Decision matrix vs chrome-devtools |
+| Quick Reference with commands | ✅ | 4-step workflow with copy-paste commands |
+| Core content matches skill type | ✅ | Automation type: commands table, @ref system, execution model |
+| Troubleshooting section | ✅ | Problem/solution table |
+| Related section | ✅ | Cross-links to e2e-automation, chrome-devtools, test-architect |
+| Content Map for multi-file | ✅ | Links to rules/engineering-spec.md |
+| Contract versioning | ✅ | contract_version, backward_compatibility, breaking_changes |
+| Compliance matrix structured | ✅ | This table with ✅/❌ + evidence |
 
 ---
 
@@ -688,28 +688,28 @@ Blocked protocols return `ERR_INVALID_URL`.
 
 | Category | Check | Status |
 |----------|-------|--------|
-| **Functionality** | All 7 commands (open, snapshot, click, fill, screenshot, record, close) specified | âœ… |
-| **Functionality** | @ref lifecycle defined with explicit invalidation rules | âœ… |
-| **Contracts** | Input/output/error schemas defined | âœ… |
-| **Contracts** | Agent assumptions and non-assumptions documented | âœ… |
-| **Contracts** | Workflow invocation pattern specified | âœ… |
-| **Failure** | Error taxonomy with 12 categorized error codes | âœ… |
-| **Failure** | No silent failures; every error returns structured response | âœ… |
-| **Failure** | Retry policy: zero internal retries, caller-owned | âœ… |
-| **Timeouts** | 4 timeout parameters with defaults, min, max bounds | âœ… |
-| **Security** | URL allowlist with blocked protocols | âœ… |
-| **Security** | Credential redaction in logs | âœ… |
-| **Security** | Session isolation with UUID identifiers | âœ… |
-| **Observability** | Structured log schema with 5 log points | âœ… |
-| **Observability** | 6 metrics defined with types and units | âœ… |
-| **Performance** | P50/P99 targets for all operations | âœ… |
-| **Scalability** | Capacity planning per session and per node | âœ… |
-| **Concurrency** | Sequential within session, parallel across sessions | âœ… |
-| **Resources** | Lifecycle for 5 resource types with destruction triggers | âœ… |
-| **Idempotency** | Per-command idempotency classification | âœ… |
-| **Determinism** | 5 deterministic design principles enforced | âœ… |
-| **Compliance** | All skill-design-guide.md sections present | âœ… |
+| **Functionality** | All 7 commands (open, snapshot, click, fill, screenshot, record, close) specified | ✅ |
+| **Functionality** | @ref lifecycle defined with explicit invalidation rules | ✅ |
+| **Contracts** | Input/output/error schemas defined | ✅ |
+| **Contracts** | Agent assumptions and non-assumptions documented | ✅ |
+| **Contracts** | Workflow invocation pattern specified | ✅ |
+| **Failure** | Error taxonomy with 12 categorized error codes | ✅ |
+| **Failure** | No silent failures; every error returns structured response | ✅ |
+| **Failure** | Retry policy: zero internal retries, caller-owned | ✅ |
+| **Timeouts** | 4 timeout parameters with defaults, min, max bounds | ✅ |
+| **Security** | URL allowlist with blocked protocols | ✅ |
+| **Security** | Credential redaction in logs | ✅ |
+| **Security** | Session isolation with UUID identifiers | ✅ |
+| **Observability** | Structured log schema with 5 log points | ✅ |
+| **Observability** | 6 metrics defined with types and units | ✅ |
+| **Performance** | P50/P99 targets for all operations | ✅ |
+| **Scalability** | Capacity planning per session and per node | ✅ |
+| **Concurrency** | Sequential within session, parallel across sessions | ✅ |
+| **Resources** | Lifecycle for 5 resource types with destruction triggers | ✅ |
+| **Idempotency** | Per-command idempotency classification | ✅ |
+| **Determinism** | 5 deterministic design principles enforced | ✅ |
+| **Compliance** | All skill-design-guide.md sections present | ✅ |
 
 ---
 
-âš¡ PikaKit v3.9.105
+⚡ PikaKit v3.9.105

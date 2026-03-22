@@ -6,16 +6,16 @@ description: >-
   modification, IDE errors.
 metadata:
   author: pikakit
-  version: "3.9.107"
+  version: "3.9.108"
 ---
 
-# Problem Checker â€” Automated IDE Error Gate
+# Problem Checker — Automated IDE Error Gate
 
 > 4 auto-fix patterns. 3 escalation categories. Max 3 cycles. Hard-block on errors.
 
 ---
 
-## ðŸš¨ Critical Rule
+## 🚨 Critical Rule
 
 **NEVER mark a task complete if `@[current_problems]` shows errors.**
 
@@ -36,10 +36,10 @@ metadata:
 
 | Owned by This Skill | NOT Owned |
 |---------------------|-----------|
-| IDE problem detection (`@[current_problems]`) | Pattern storage (â†’ auto-learned) |
-| Auto-fix (4 patterns) | Skill generation (â†’ skill-generator) |
-| Fix-verify loop (max 3 cycles) | Full test execution (â†’ /validate) |
-| Completion gate (hard-block) | Code review (â†’ code-review) |
+| IDE problem detection (`@[current_problems]`) | Pattern storage (→ auto-learned) |
+| Auto-fix (4 patterns) | Skill generation (→ skill-generator) |
+| Fix-verify loop (max 3 cycles) | Full test execution (→ /validate) |
+| Completion gate (hard-block) | Code review (→ code-review) |
 
 **Automation (scripted):** Reads IDE state, modifies files (auto-fix), re-checks. Sequential only.
 
@@ -49,12 +49,12 @@ metadata:
 
 ```
 Read @[current_problems]
-â”œâ”€â”€ 0 problems â†’ CLEAN (proceed)
-â””â”€â”€ Problems found â†’ Classify each:
-    â”œâ”€â”€ Auto-fixable â†’ Fix â†’ Re-check (max 3 cycles)
-    â”‚   â”œâ”€â”€ 0 remaining â†’ CLEAN (proceed)
-    â”‚   â””â”€â”€ Still remaining â†’ BLOCKED (escalate)
-    â””â”€â”€ Not fixable â†’ BLOCKED (escalate)
+├── 0 problems → CLEAN (proceed)
+└── Problems found → Classify each:
+    ├── Auto-fixable → Fix → Re-check (max 3 cycles)
+    │   ├── 0 remaining → CLEAN (proceed)
+    │   └── Still remaining → BLOCKED (escalate)
+    └── Not fixable → BLOCKED (escalate)
 ```
 
 ---
@@ -62,19 +62,19 @@ Read @[current_problems]
 ## State Transitions
 
 ```
-IDLE â†’ CHECKING               [action received]
-CHECKING â†’ CLEAN              [0 problems]  // terminal
-CHECKING â†’ FIXING             [auto-fixable found]
-CHECKING â†’ BLOCKED            [only non-fixable]  // terminal
-FIXING â†’ VERIFYING            [fix applied]
-VERIFYING â†’ CLEAN             [0 remaining]  // terminal
-VERIFYING â†’ FIXING            [fixable + cycles < max]
-VERIFYING â†’ BLOCKED           [cycles >= max OR only non-fixable]  // terminal
+IDLE → CHECKING               [action received]
+CHECKING → CLEAN              [0 problems]  // terminal
+CHECKING → FIXING             [auto-fixable found]
+CHECKING → BLOCKED            [only non-fixable]  // terminal
+FIXING → VERIFYING            [fix applied]
+VERIFYING → CLEAN             [0 remaining]  // terminal
+VERIFYING → FIXING            [fixable + cycles < max]
+VERIFYING → BLOCKED           [cycles >= max OR only non-fixable]  // terminal
 ```
 
 ---
 
-## Auto-Fixable Patterns (4 â€” Fixed)
+## Auto-Fixable Patterns (4 — Fixed)
 
 | Pattern | IDE Message Match | Fix Action |
 |---------|------------------|------------|
@@ -85,7 +85,7 @@ VERIFYING â†’ BLOCKED           [cycles >= max OR only non-fixable]  // ter
 
 ---
 
-## Escalation Categories (3 â€” Fixed)
+## Escalation Categories (3 — Fixed)
 
 | Category | Indicators | Action |
 |----------|-----------|--------|
@@ -105,7 +105,7 @@ VERIFYING â†’ BLOCKED           [cycles >= max OR only non-fixable]  // ter
 | `ERR_FIX_REGRESSION` | Yes | Fix introduced new error |
 | `ERR_BLOCKED` | No | Unfixed errors remain |
 
-**Fix regression:** If auto-fix introduces new errors â†’ revert fix â†’ escalate.
+**Fix regression:** If auto-fix introduces new errors → revert fix → escalate.
 
 ---
 
@@ -121,7 +121,7 @@ npx tsc --noEmit <file>
 
 ---
 
-## ðŸ“‘ Content Map
+## 📑 Content Map
 
 | File | Description | When to Read |
 |------|-------------|--------------|
@@ -130,7 +130,7 @@ npx tsc --noEmit <file>
 
 ---
 
-## ðŸ”— Related
+## 🔗 Related
 
 | Item | Type | Purpose |
 |------|------|---------|
@@ -140,4 +140,4 @@ npx tsc --noEmit <file>
 
 ---
 
-âš¡ PikaKit v3.9.107
+⚡ PikaKit v3.9.108

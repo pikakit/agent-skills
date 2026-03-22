@@ -1,10 +1,10 @@
 ﻿---
-title: Performance Profiler â€” Engineering Specification
+title: Performance Profiler — Engineering Specification
 impact: MEDIUM
 tags: perf-optimizer
 ---
 
-# Performance Profiler â€” Engineering Specification
+# Performance Profiler — Engineering Specification
 
 > Production-grade specification for performance profiling and Core Web Vitals at FAANG scale.
 
@@ -12,11 +12,11 @@ tags: perf-optimizer
 
 ## 1. Overview
 
-Performance Profiler provides structured performance analysis: Core Web Vitals targeting (LCP < 2.5s, INP < 200ms, CLS < 0.1), profiling tool selection (5 tools), 4-step profiling workflow (Baseline â†’ Identify â†’ Fix â†’ Validate), bundle analysis (4 issues, 4 actions), runtime profiling (4 task patterns, 3 memory patterns), bottleneck diagnosis (4 symptomâ†’cause mappings), and prioritized quick wins (5 ranked). The skill operates as an **Expert (decision tree)** â€” it produces profiling methodologies, tool recommendations, and fix strategies. It does not execute profiling tools, modify code, or run Lighthouse.
+Performance Profiler provides structured performance analysis: Core Web Vitals targeting (LCP < 2.5s, INP < 200ms, CLS < 0.1), profiling tool selection (5 tools), 4-step profiling workflow (Baseline → Identify → Fix → Validate), bundle analysis (4 issues, 4 actions), runtime profiling (4 task patterns, 3 memory patterns), bottleneck diagnosis (4 symptom→cause mappings), and prioritized quick wins (5 ranked). The skill operates as an **Expert (decision tree)** — it produces profiling methodologies, tool recommendations, and fix strategies. It does not execute profiling tools, modify code, or run Lighthouse.
 
 **Contract Version:** 2.0.0
 **Backward Compatibility:** breaking (first hardened version)
-**Breaking Changes:** None â€” new spec for first hardening
+**Breaking Changes:** None — new spec for first hardening
 
 ---
 
@@ -31,7 +31,7 @@ Performance work at scale faces four quantified problems:
 | Guessing at bottlenecks | 50% of changes target non-critical paths | Wasted effort |
 | Missing Core Web Vitals | 35% of sites exceed LCP 4.0s threshold | Poor user experience, SEO penalty |
 
-Performance Profiler eliminates these with mandatory baseline measurement, deterministic tool selection (symptom â†’ tool), bottleneck diagnosis (symptom â†’ cause), and fixed Core Web Vitals targets.
+Performance Profiler eliminates these with mandatory baseline measurement, deterministic tool selection (symptom → tool), bottleneck diagnosis (symptom → cause), and fixed Core Web Vitals targets.
 
 ---
 
@@ -40,7 +40,7 @@ Performance Profiler eliminates these with mandatory baseline measurement, deter
 | ID | Goal | Measurable Constraint |
 |----|------|-----------------------|
 | G1 | Core Web Vitals targets | LCP < 2.5s, INP < 200ms, CLS < 0.1 |
-| G2 | 4-step profiling workflow | Baseline â†’ Identify â†’ Fix â†’ Validate |
+| G2 | 4-step profiling workflow | Baseline → Identify → Fix → Validate |
 | G3 | Tool selection | 5 tools mapped to 5 problem types |
 | G4 | Bundle analysis | 4 issues with 4 fix actions |
 | G5 | Runtime profiling | 4 task patterns + 3 memory patterns |
@@ -66,7 +66,7 @@ Performance Profiler eliminates these with mandatory baseline measurement, deter
 | Boundary | Owned | Not Owned |
 |----------|-------|-----------|
 | Core Web Vitals targets | Threshold definitions | Measurement execution |
-| Profiling tool selection | Tool â†’ problem mapping | Tool installation |
+| Profiling tool selection | Tool → problem mapping | Tool installation |
 | Bundle analysis guidance | Issue identification + fix actions | Bundle build |
 | Runtime profiling guidance | Pattern recognition | DevTools execution |
 | Quick win prioritization | Ranked actions | Implementation |
@@ -149,7 +149,7 @@ Recoverable: boolean
 
 - Core Web Vitals targets are fixed: LCP < 2.5s, INP < 200ms, CLS < 0.1.
 - Profiling workflow is fixed: 4 steps in defined order.
-- Tool selection is deterministic: symptom â†’ tool mapping.
+- Tool selection is deterministic: symptom → tool mapping.
 - Bundle issues/actions are fixed: 4 issues, 4 actions.
 - Quick wins are fixed: 5 priorities in ranked order.
 - Same symptom = same tool recommendation.
@@ -244,9 +244,9 @@ All phases synchronous. No async pipeline.
 | Principle | Enforcement |
 |-----------|-------------|
 | Core Web Vitals fixed | LCP < 2.5s (good), > 4.0s (poor); INP < 200ms (good), > 500ms (poor); CLS < 0.1 (good), > 0.25 (poor) |
-| 4-step workflow fixed | Baseline â†’ Identify â†’ Fix â†’ Validate |
-| Tool selection deterministic | Page load â†’ Lighthouse; Bundle â†’ Analyzer; Runtime â†’ DevTools Perf; Memory â†’ DevTools Memory; Network â†’ DevTools Network |
-| Bundle issues fixed | Large deps â†’ import specific; Duplicates â†’ dedupe; Unused â†’ tree-shake; Missing splits â†’ code split |
+| 4-step workflow fixed | Baseline → Identify → Fix → Validate |
+| Tool selection deterministic | Page load → Lighthouse; Bundle → Analyzer; Runtime → DevTools Perf; Memory → DevTools Memory; Network → DevTools Network |
+| Bundle issues fixed | Large deps → import specific; Duplicates → dedupe; Unused → tree-shake; Missing splits → code split |
 | Quick wins ranked | 1: Compression, 2: Lazy images, 3: Code split, 4: Cache static, 5: Image formats |
 | Long task threshold | > 50ms = UI blocking |
 | Measure before fixing | Baseline mandatory; no guessing |
@@ -371,7 +371,7 @@ All resources scoped to invocation. No persistent handles.
 | Tool selection | < 2 ms | < 5 ms | 20 ms |
 | Vitals assessment | < 2 ms | < 5 ms | 20 ms |
 | Full guide | < 10 ms | < 30 ms | 50 ms |
-| Output size | â‰¤ 2,000 chars | â‰¤ 5,000 chars | 8,000 chars |
+| Output size | ≤ 2,000 chars | ≤ 5,000 chars | 8,000 chars |
 
 ---
 
@@ -390,16 +390,16 @@ All resources scoped to invocation. No persistent handles.
 
 | Requirement | Status | Evidence |
 |-------------|--------|----------|
-| YAML frontmatter complete | âœ… | name, description, metadata with category, version, triggers, coordinates_with, success_metrics |
-| SKILL.md < 200 lines | âœ… | Entry point under 200 lines |
-| Prerequisites documented | âœ… | No external dependencies for guidance |
-| When to Use section | âœ… | Situation-based routing table |
-| Core content matches skill type | âœ… | Expert type: tool selection, profiling workflow, vitals targets |
-| Troubleshooting section | âœ… | Anti-patterns table |
-| Related section | âœ… | Cross-links to e2e-automation, /optimize |
-| Content Map for multi-file | âœ… | Links to backend-patterns.md, scripts/, engineering-spec.md |
-| Contract versioning | âœ… | contract_version, backward_compatibility, breaking_changes |
-| Compliance matrix structured | âœ… | This table with âœ…/âŒ + evidence |
+| YAML frontmatter complete | ✅ | name, description, metadata with category, version, triggers, coordinates_with, success_metrics |
+| SKILL.md < 200 lines | ✅ | Entry point under 200 lines |
+| Prerequisites documented | ✅ | No external dependencies for guidance |
+| When to Use section | ✅ | Situation-based routing table |
+| Core content matches skill type | ✅ | Expert type: tool selection, profiling workflow, vitals targets |
+| Troubleshooting section | ✅ | Anti-patterns table |
+| Related section | ✅ | Cross-links to e2e-automation, /optimize |
+| Content Map for multi-file | ✅ | Links to backend-patterns.md, scripts/, engineering-spec.md |
+| Contract versioning | ✅ | contract_version, backward_compatibility, breaking_changes |
+| Compliance matrix structured | ✅ | This table with ✅/❌ + evidence |
 
 ---
 
@@ -407,22 +407,22 @@ All resources scoped to invocation. No persistent handles.
 
 | Category | Check | Status |
 |----------|-------|--------|
-| **Functionality** | Core Web Vitals (LCP, INP, CLS) with thresholds | âœ… |
-| **Functionality** | 4-step profiling workflow | âœ… |
-| **Functionality** | 5 profiling tools with symptom mapping | âœ… |
-| **Functionality** | Bundle analysis (4 issues + 4 actions) | âœ… |
-| **Functionality** | Quick wins (5 ranked by impact) | âœ… |
-| **Contracts** | Input/output/error schemas in pseudo-schema format | âœ… |
-| **Contracts** | Contract versioning with semver | âœ… |
-| **Failure** | Error taxonomy with 3 categorized codes | âœ… |
-| **Failure** | Zero internal retries | âœ… |
-| **Determinism** | Fixed thresholds, fixed rankings, fixed tool mappings | âœ… |
-| **Security** | No credentials, no PII, no network access | âœ… |
-| **Observability** | Structured log schema with 5 mandatory fields | âœ… |
-| **Observability** | 4 metrics defined | âœ… |
-| **Performance** | P50/P99 targets for all operations | âœ… |
-| **Compliance** | All skill-design-guide.md sections mapped with evidence | âœ… |
+| **Functionality** | Core Web Vitals (LCP, INP, CLS) with thresholds | ✅ |
+| **Functionality** | 4-step profiling workflow | ✅ |
+| **Functionality** | 5 profiling tools with symptom mapping | ✅ |
+| **Functionality** | Bundle analysis (4 issues + 4 actions) | ✅ |
+| **Functionality** | Quick wins (5 ranked by impact) | ✅ |
+| **Contracts** | Input/output/error schemas in pseudo-schema format | ✅ |
+| **Contracts** | Contract versioning with semver | ✅ |
+| **Failure** | Error taxonomy with 3 categorized codes | ✅ |
+| **Failure** | Zero internal retries | ✅ |
+| **Determinism** | Fixed thresholds, fixed rankings, fixed tool mappings | ✅ |
+| **Security** | No credentials, no PII, no network access | ✅ |
+| **Observability** | Structured log schema with 5 mandatory fields | ✅ |
+| **Observability** | 4 metrics defined | ✅ |
+| **Performance** | P50/P99 targets for all operations | ✅ |
+| **Compliance** | All skill-design-guide.md sections mapped with evidence | ✅ |
 
 ---
 
-âš¡ PikaKit v3.9.105
+⚡ PikaKit v3.9.105

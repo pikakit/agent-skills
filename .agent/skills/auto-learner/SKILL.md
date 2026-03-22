@@ -6,7 +6,7 @@ description: >-
   error fix, pattern extraction.
 metadata:
   author: pikakit
-  version: "3.9.107"
+  version: "3.9.108"
 ---
 
 # Auto-Learner
@@ -29,7 +29,7 @@ Autonomous learning engine that extracts patterns from errors, corrections, and 
 2. ANALYZE → Extract root cause (5 Whys)
 3. CATEGORIZE → Assign category + severity + ID
 4. WRITE → Store pattern in auto-learned/patterns/
-5. CONFIRM → Output: 📚 Learned: [LEARN-XXX]
+5. CONFIRM → Output: ⚕ Learned: [LEARN-XXX]
 ```
 
 ## Trigger Words

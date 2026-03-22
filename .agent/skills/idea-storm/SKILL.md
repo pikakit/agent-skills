@@ -6,18 +6,18 @@ description: >-
   on: brainstorm, understand requirements, clarify, unclear, complex request.
 metadata:
   author: pikakit
-  version: "3.9.107"
+  version: "3.9.108"
 ---
 
-# Idea Storm â€” Socratic Requirement Clarification
+# Idea Storm — Socratic Requirement Clarification
 
-> STOP â†’ ASK â‰¥ 3 questions â†’ WAIT for answers â†’ then implement. Never skip the gate.
+> STOP → ASK ≥ 3 questions → WAIT for answers → then implement. Never skip the gate.
 
 ---
 
 ## Prerequisites
 
-**Required:** None â€” protocol skill with no external dependencies.
+**Required:** None — protocol skill with no external dependencies.
 
 ---
 
@@ -25,10 +25,10 @@ metadata:
 
 | Situation | Action |
 |-----------|--------|
-| "Build/Create [thing]" without details | ðŸ›‘ ASK â‰¥ 3 questions |
-| Complex feature or architecture | ðŸ›‘ Clarify before implementing |
-| Update/change request | ðŸ›‘ Confirm scope |
-| Vague requirements | ðŸ›‘ Ask purpose, users, constraints |
+| "Build/Create [thing]" without details | 🛑 ASK ≥ 3 questions |
+| Complex feature or architecture | 🛑 Clarify before implementing |
+| Update/change request | 🛑 Confirm scope |
+| Vague requirements | 🛑 Ask purpose, users, constraints |
 | Simple, clear request | Skip gate; proceed directly |
 
 ---
@@ -37,29 +37,29 @@ metadata:
 
 | Owned by This Skill | NOT Owned |
 |---------------------|-----------|
-| 3-question gate (STOP â†’ ASK â†’ WAIT) | Task planning (â†’ project-planner) |
-| Structured question format | Architecture decisions (â†’ system-design) |
-| Progress reporting (5 icons) | Project scaffolding (â†’ app-scaffold) |
+| 3-question gate (STOP → ASK → WAIT) | Task planning (→ project-planner) |
+| Structured question format | Architecture decisions (→ system-design) |
+| Progress reporting (5 icons) | Project scaffolding (→ app-scaffold) |
 | Error communication (4-step) | Implementation code |
 
 **Expert skill:** Produces structured questions. Does not answer them or implement code.
 
 ---
 
-## ðŸ›‘ SOCRATIC GATE (Mandatory)
+## 🛑 SOCRATIC GATE (Mandatory)
 
-### Protocol: STOP â†’ ASK â†’ WAIT
+### Protocol: STOP → ASK → WAIT
 
-1. **STOP** â€” Do NOT start coding
-2. **ASK** â€” Minimum 3 questions, covering 3 dimensions:
+1. **STOP** — Do NOT start coding
+2. **ASK** — Minimum 3 questions, covering 3 dimensions:
 
 | Priority | Dimension | Example Question |
 |----------|-----------|-----------------|
-| P0 | ðŸŽ¯ Purpose | What problem are you solving? |
-| P0 | ðŸ‘¥ Users | Who will use this? |
-| P1 | ðŸ“¦ Scope | Must-have vs nice-to-have? |
+| P0 | 🎯 Purpose | What problem are you solving? |
+| P0 | 👥 Users | Who will use this? |
+| P1 | 📦 Scope | Must-have vs nice-to-have? |
 
-3. **WAIT** â€” Get responses before proceeding
+3. **WAIT** — Get responses before proceeding
 
 **Limits:** Minimum 3 questions, maximum 5 per round.
 
@@ -84,7 +84,7 @@ metadata:
 **If Not Specified:** [Default + rationale]
 ```
 
-**Rules:** Every question has â‰¥ 2 options with pros/cons AND a default.
+**Rules:** Every question has ≥ 2 options with pros/cons AND a default.
 
 ---
 
@@ -92,11 +92,11 @@ metadata:
 
 | Icon | Status |
 |------|--------|
-| âœ… | Completed |
-| ðŸ”„ | Running |
-| â³ | Waiting |
-| âŒ | Error |
-| âš ï¸ | Warning |
+| ✅ | Completed |
+| 🔄 | Running |
+| ⏳ | Waiting |
+| ❌ | Error |
+| ⚠️ | Warning |
 
 ---
 
@@ -124,9 +124,9 @@ metadata:
 
 ## Anti-Patterns
 
-| âŒ Don't | âœ… Do |
+| ❌ Don't | ✅ Do |
 |---------|-------|
-| Jump to solutions | Ask â‰¥ 3 questions first |
+| Jump to solutions | Ask ≥ 3 questions first |
 | Assume requirements | Clarify with structured questions |
 | Over-engineer v1 | Start with scope (must-have vs nice-to-have) |
 | Use "I think" phrases | Ask questions with options instead |
@@ -172,7 +172,7 @@ Each rule file contains:
 - Additional context and references
 
 
-## ðŸ“‘ Content Map
+## 📑 Content Map
 
 | File | Description | When to Read |
 |------|-------------|--------------|
@@ -182,7 +182,7 @@ Each rule file contains:
 
 ---
 
-## ðŸ”— Related
+## 🔗 Related
 
 | Item | Type | Purpose |
 |------|------|---------|
@@ -192,4 +192,4 @@ Each rule file contains:
 
 ---
 
-âš¡ PikaKit v3.9.107
+⚡ PikaKit v3.9.108

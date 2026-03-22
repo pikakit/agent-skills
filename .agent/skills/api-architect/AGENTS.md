@@ -18,10 +18,10 @@ March 2026
 
 ## Prerequisites
 
-**Required:** None â€” API Architect is a knowledge-based skill with no external dependencies.
+**Required:** None — API Architect is a knowledge-based skill with no external dependencies.
 
 **Optional:**
-- `scripts/api_validator.js` â€” run `node scripts/api_validator.js <project_path>` for endpoint validation
+- `scripts/api_validator.js` — run `node scripts/api_validator.js <project_path>` for endpoint validation
 
 ---
 
@@ -49,23 +49,23 @@ March 2026
 
 | Owned by This Skill | NOT Owned |
 |---------------------|-----------|
-| API style selection (REST/GraphQL/tRPC) | API implementation code (â†’ backend-specialist) |
-| Response format and envelope design | Database schema (â†’ data-modeler) |
-| Versioning strategy selection | Auth implementation (â†’ auth-patterns) |
-| Rate limiting pattern selection | Security pen testing (â†’ security-scanner) |
-| OWASP API Top 10 checklist | Infrastructure / deployment (â†’ server-ops) |
+| API style selection (REST/GraphQL/tRPC) | API implementation code (→ backend-specialist) |
+| Response format and envelope design | Database schema (→ data-modeler) |
+| Versioning strategy selection | Auth implementation (→ auth-patterns) |
+| Rate limiting pattern selection | Security pen testing (→ security-scanner) |
+| OWASP API Top 10 checklist | Infrastructure / deployment (→ server-ops) |
 | OpenAPI documentation standards | Client-side consumption |
 
 **Pure decision skill:** Produces design documents and specifications. Zero code generation, zero network calls.
 
 ---
 
-## Execution Model â€” 4-Phase Lifecycle
+## Execution Model — 4-Phase Lifecycle
 
 | Phase | Action | Output |
 |-------|--------|--------|
 | **Classify** | Validate request type and project context | Validated input or error |
-| **Evaluate** | Traverse decision tree (project_type â†’ consumers â†’ complexity â†’ scale) | Selected pattern |
+| **Evaluate** | Traverse decision tree (project_type → consumers → complexity → scale) | Selected pattern |
 | **Enrich** | Attach checklist, anti-patterns, related decisions | Complete decision |
 | **Emit** | Return structured output with rationale | Decision with metadata |
 
@@ -83,7 +83,7 @@ All phases synchronous. Decision tree ordering is fixed and deterministic.
 | Simple CRUD, single consumer | **REST** | Minimal complexity, HTTP semantics sufficient |
 | Real-time data requirements | **GraphQL** (subscriptions) or **WebSocket** | Native subscription support |
 
-**Constraint:** `existing_api` context field takes precedence â€” avoid mixing styles unless justified.
+**Constraint:** `existing_api` context field takes precedence — avoid mixing styles unless justified.
 
 ---
 
@@ -108,9 +108,9 @@ All phases synchronous. Decision tree ordering is fixed and deterministic.
 Before designing an API, confirm:
 
 - [ ] **Consumers identified?** (web-spa, mobile, third-party, internal-service, cli)
-- [ ] **API style chosen for THIS context?** (REST/GraphQL/tRPC â€” not defaulted)
+- [ ] **API style chosen for THIS context?** (REST/GraphQL/tRPC — not defaulted)
 - [ ] **Response envelope format defined?** (consistent across all endpoints)
-- [ ] **Versioning strategy selected?** (URI/Header/Query â€” before first endpoint)
+- [ ] **Versioning strategy selected?** (URI/Header/Query — before first endpoint)
 - [ ] **Auth pattern selected?** (JWT/OAuth/Passkey/API Key)
 - [ ] **Rate limiting strategy defined?** (token bucket/sliding window)
 - [ ] **OpenAPI documentation approach set?**
@@ -120,7 +120,7 @@ Before designing an API, confirm:
 
 ## Anti-Patterns
 
-| âŒ Don't | âœ… Do |
+| ❌ Don't | ✅ Do |
 |---------|-------|
 | Default to REST for every project | Choose API style based on project context |
 | Use verbs in REST endpoints (`/getUsers`) | Use resource nouns (`/users`) with HTTP methods |
@@ -131,7 +131,7 @@ Before designing an API, confirm:
 
 ---
 
-## ðŸ“‘ Content Map
+## 📑 Content Map
 
 | File | Description | When to Read |
 |------|-------------|--------------|
@@ -157,7 +157,7 @@ Before designing an API, confirm:
 
 ---
 
-## ðŸ”— Related
+## 🔗 Related
 
 | Item | Type | Purpose |
 |------|------|---------|
@@ -169,7 +169,7 @@ Before designing an API, confirm:
 
 ---
 
-âš¡ PikaKit v3.9.105
+⚡ PikaKit v3.9.105
 
 ---
 
@@ -187,7 +187,7 @@ description: REST vs GraphQL vs tRPC decision tree with code comparisons
 
 # API Style Selection
 
-> Choose API style for THIS project's context â€” don't default to REST.
+> Choose API style for THIS project's context — don't default to REST.
 
 ---
 
@@ -195,21 +195,21 @@ description: REST vs GraphQL vs tRPC decision tree with code comparisons
 
 ```
 Who are the API consumers?
-â”‚
-â”œâ”€â”€ Public API / Multiple platforms
-â”‚   â””â”€â”€ REST + OpenAPI (widest compatibility)
-â”‚
-â”œâ”€â”€ Complex data needs / Multiple frontends
-â”‚   â””â”€â”€ GraphQL (flexible queries)
-â”‚
-â”œâ”€â”€ TypeScript frontend + backend (monorepo)
-â”‚   â””â”€â”€ tRPC (end-to-end type safety)
-â”‚
-â”œâ”€â”€ Real-time / Event-driven
-â”‚   â””â”€â”€ WebSocket + AsyncAPI
-â”‚
-â””â”€â”€ Internal microservices
-    â””â”€â”€ gRPC (performance) or REST (simplicity)
+│
+├── Public API / Multiple platforms
+│   └── REST + OpenAPI (widest compatibility)
+│
+├── Complex data needs / Multiple frontends
+│   └── GraphQL (flexible queries)
+│
+├── TypeScript frontend + backend (monorepo)
+│   └── tRPC (end-to-end type safety)
+│
+├── Real-time / Event-driven
+│   └── WebSocket + AsyncAPI
+│
+└── Internal microservices
+    └── gRPC (performance) or REST (simplicity)
 ```
 
 ## Comparison
@@ -225,7 +225,7 @@ Who are the API consumers?
 | **Versioning** | URI/Header | Schema evolution | Type inference |
 | **Tooling maturity** | Excellent | Good | Growing |
 
-## Code Comparison â€” Same Endpoint
+## Code Comparison — Same Endpoint
 
 ### REST
 
@@ -262,7 +262,7 @@ export const userRouter = router({
 
 ## Anti-Patterns
 
-| âŒ Don't | âœ… Do |
+| ❌ Don't | ✅ Do |
 |---------|-------|
 | Default to REST for every project | Evaluate consumers + context first |
 | Mix API styles without justification | Pick one, document reasoning |
@@ -279,7 +279,7 @@ export const userRouter = router({
 
 ---
 
-## ðŸ”— Related
+## 🔗 Related
 
 | File | When to Read |
 |------|-------------|
@@ -294,7 +294,7 @@ export const userRouter = router({
 
 ---
 name: auth
-description: API authentication patterns â€” JWT, OAuth2 PKCE, API Keys, Passkeys, token refresh
+description: API authentication patterns — JWT, OAuth2 PKCE, API Keys, Passkeys, token refresh
 ---
 
 # Authentication Patterns
@@ -318,7 +318,7 @@ description: API authentication patterns â€” JWT, OAuth2 PKCE, API Keys, Pa
 ```typescript
 import jwt from 'jsonwebtoken';
 
-// Sign â€” keep payload minimal
+// Sign — keep payload minimal
 function signTokens(userId: string) {
   const accessToken = jwt.sign(
     { sub: userId, type: 'access' },
@@ -354,18 +354,18 @@ function authMiddleware(req: Request, res: Response, next: NextFunction) {
 
 ```
 Client                        Server
-  â”‚                              â”‚
-  â”œâ”€â”€ Request + Access Token â”€â”€â†’ â”‚
-  â”‚                              â”œâ”€â”€ Verify token
-  â”‚ â†â”€â”€ 401 Token Expired â”€â”€â”€â”€â”€â”€â”¤
-  â”‚                              â”‚
-  â”œâ”€â”€ POST /auth/refresh â”€â”€â”€â”€â”€â”€â†’ â”‚
-  â”‚    { refreshToken }          â”œâ”€â”€ Verify refresh token
-  â”‚                              â”œâ”€â”€ Issue new access + refresh
-  â”‚ â†â”€â”€ { accessToken,          â”‚
-  â”‚       refreshToken } â”€â”€â”€â”€â”€â”€â”€â”¤
-  â”‚                              â”‚
-  â”œâ”€â”€ Retry original request â”€â”€â†’ â”‚
+  │                              │
+  ├── Request + Access Token ──→ │
+  │                              ├── Verify token
+  │ ←── 401 Token Expired ──────┤
+  │                              │
+  ├── POST /auth/refresh ──────→ │
+  │    { refreshToken }          ├── Verify refresh token
+  │                              ├── Issue new access + refresh
+  │ ←── { accessToken,          │
+  │       refreshToken } ───────┤
+  │                              │
+  ├── Retry original request ──→ │
 ```
 
 ## OAuth 2.0 PKCE (for SPAs/Mobile)
@@ -401,7 +401,7 @@ const tokens = await fetch('https://provider.com/token', {
 
 ## Anti-Patterns
 
-| âŒ Don't | âœ… Do |
+| ❌ Don't | ✅ Do |
 |---------|-------|
 | Store sensitive data in JWT payload | Include only `sub`, `type`, `exp` |
 | Use long-lived access tokens (>1h) | Short access (15m) + refresh (7d) |
@@ -411,7 +411,7 @@ const tokens = await fetch('https://provider.com/token', {
 
 ---
 
-## ðŸ”— Related
+## 🔗 Related
 
 | File | When to Read |
 |------|-------------|
@@ -530,7 +530,7 @@ app.use('/docs', swaggerUi.serve, swaggerUi.setup(spec, {
 
 ## Anti-Patterns
 
-| âŒ Don't | âœ… Do |
+| ❌ Don't | ✅ Do |
 |---------|-------|
 | Write docs after shipping | Generate from OpenAPI spec |
 | Skip request/response examples | Include full JSON examples |
@@ -539,7 +539,7 @@ app.use('/docs', swaggerUi.serve, swaggerUi.setup(spec, {
 
 ---
 
-## ðŸ”— Related
+## 🔗 Related
 
 | File | When to Read |
 |------|-------------|
@@ -552,12 +552,12 @@ app.use('/docs', swaggerUi.serve, swaggerUi.setup(spec, {
 ### Rule: engineering-spec
 
 ---
-title: API Architect â€” Engineering Specification
+title: API Architect — Engineering Specification
 impact: MEDIUM
 tags: api-architect
 ---
 
-# API Architect â€” Engineering Specification
+# API Architect — Engineering Specification
 
 > Production-grade specification for API design decision-making and pattern selection at FAANG scale.
 
@@ -590,7 +590,7 @@ API Architect eliminates these by providing context-aware decision trees that pr
 
 | ID | Goal | Measurable Constraint |
 |----|------|-----------------------|
-| G1 | Context-aware style selection | Decision tree produces one of REST/GraphQL/tRPC based on â‰¤ 5 input criteria |
+| G1 | Context-aware style selection | Decision tree produces one of REST/GraphQL/tRPC based on ≤ 5 input criteria |
 | G2 | Consistent response format | Single envelope pattern per API; format documented before first endpoint |
 | G3 | Versioning from day one | Versioning strategy defined and documented before API implementation begins |
 | G4 | Security-first design | OWASP API Top 10 checklist completed before API goes to production |
@@ -618,10 +618,10 @@ API Architect eliminates these by providing context-aware decision trees that pr
 | API style selection | REST/GraphQL/tRPC decision tree | Implementation framework selection |
 | Response format design | Envelope pattern, error format, pagination | Serialization libraries |
 | Versioning strategy | URI/Header/Query versioning decision | Version deployment mechanics |
-| Auth pattern selection | JWT/OAuth/Passkey/API Key decision | Auth implementation (â†’ auth-patterns) |
+| Auth pattern selection | JWT/OAuth/Passkey/API Key decision | Auth implementation (→ auth-patterns) |
 | Rate limiting strategy | Token bucket/sliding window selection | Rate limiter implementation |
 | API documentation | OpenAPI/Swagger structure standards | Doc hosting/rendering |
-| Security design | OWASP API Top 10 checklist | Penetration testing execution (â†’ security-scanner) |
+| Security design | OWASP API Top 10 checklist | Penetration testing execution (→ security-scanner) |
 
 **Side-effect boundary:** API Architect produces design documents, decision records, and API specifications. It does not create API endpoints, modify server configurations, or make network requests.
 
@@ -673,7 +673,7 @@ Error: ErrorSchema | null
 
 **Contract Version:** 2.0.0
 **Backward Compatibility:** breaking (first hardened version)
-**Breaking Changes:** None â€” new spec for first hardening
+**Breaking Changes:** None — new spec for first hardening
 
 #### Error Schema
 
@@ -687,7 +687,7 @@ Recoverable: boolean
 #### Deterministic Guarantees
 
 - Same `Request_Type` + `Context` = identical `decision` + `rationale` output.
-- Decision trees follow fixed evaluation order (project_type â†’ consumers â†’ data_complexity â†’ team_expertise â†’ scale).
+- Decision trees follow fixed evaluation order (project_type → consumers → data_complexity → team_expertise → scale).
 - Reference file selection is deterministic based on request_type.
 - No randomization, no A/B selection, no heuristic weighting.
 
@@ -720,14 +720,14 @@ Recoverable: boolean
 
 ```
 1. Define project context (type, consumers, complexity, scale)
-2. Select request type (style-selection â†’ response-format â†’ versioning â†’ auth â†’ documentation)
+2. Select request type (style-selection → response-format → versioning → auth → documentation)
 3. Receive decision with rationale and checklist
 4. Review and apply decision (caller's responsibility)
 5. Run api_validator.js for implementation validation (optional)
 6. Repeat for adjacent decisions referenced in related_decisions
 ```
 
-**Recommended ordering:** style-selection â†’ endpoint-design â†’ response-format â†’ versioning â†’ auth-selection â†’ rate-limiting â†’ documentation â†’ security-audit.
+**Recommended ordering:** style-selection → endpoint-design → response-format → versioning → auth-selection → rate-limiting → documentation → security-audit.
 
 #### Execution Guarantees
 
@@ -786,7 +786,7 @@ All phases execute synchronously in a single invocation. No async pipeline.
 
 | Principle | Enforcement |
 |-----------|-------------|
-| Fixed decision tree ordering | project_type â†’ consumers â†’ data_complexity â†’ team_expertise â†’ scale |
+| Fixed decision tree ordering | project_type → consumers → data_complexity → team_expertise → scale |
 | No external calls | Decisions use only local reference files and input context |
 | No ambient state | Each invocation operates solely on explicit inputs |
 | No randomization | Decision trees are deterministic if-then-else chains |
@@ -799,8 +799,8 @@ All phases execute synchronously in a single invocation. No async pipeline.
 ### State Machine
 
 ```
-States: IDLE (single state â€” skill is stateless)
-Transitions: None â€” each invocation is independent
+States: IDLE (single state — skill is stateless)
+Transitions: None — each invocation is independent
 ```
 
 API Architect maintains zero persistent state. Every invocation starts from a clean state. Invoking N times with identical inputs produces N identical outputs.
@@ -946,7 +946,7 @@ API Architect maintains zero persistent state. Every invocation starts from a cl
 |--------|---------------|----------|
 | CPU | < 10 ms computation | 100,000+ invocations/second |
 | Memory | < 1 MB | Bound only by concurrent invocations |
-| Disk I/O | 1â€“2 rule file reads (~1â€“3 KB each) | Cached by OS after first read |
+| Disk I/O | 1–2 rule file reads (~1–3 KB each) | Cached by OS after first read |
 | Network | Zero | Zero |
 
 ---
@@ -955,7 +955,7 @@ API Architect maintains zero persistent state. Every invocation starts from a cl
 
 | Scope | Model | Behavior |
 |-------|-------|----------|
-| Within invocation | Sequential | Classify â†’ Evaluate â†’ Enrich â†’ Emit |
+| Within invocation | Sequential | Classify → Evaluate → Enrich → Emit |
 | Across invocations | Fully parallel | No shared state, no coordination |
 | Reference access | Read-only shared | Multiple concurrent reads safe |
 | Validator script | Isolated per invocation | Each run scans independently |
@@ -985,7 +985,7 @@ API Architect maintains zero persistent state. Every invocation starts from a cl
 | Rule file read | < 1 ms | < 5 ms | 1,000 ms |
 | Full design (8 request types) | < 40 ms | < 160 ms | 400 ms |
 | Validator script execution | < 5,000 ms | < 15,000 ms | 30,000 ms |
-| Output decision size | â‰¤ 500 chars | â‰¤ 2,000 chars | 5,000 chars |
+| Output decision size | ≤ 500 chars | ≤ 2,000 chars | 5,000 chars |
 
 ---
 
@@ -1005,18 +1005,18 @@ API Architect maintains zero persistent state. Every invocation starts from a cl
 
 | Requirement | Status | Evidence |
 |-------------|--------|----------|
-| YAML frontmatter complete | âœ… | name, description, metadata with category, version, triggers, coordinates_with, success_metrics |
-| SKILL.md < 200 lines | âœ… | Entry point under 200 lines; details in rules/ |
-| Prerequisites documented | âœ… | No external dependencies |
-| When to Use section | âœ… | Request-type-based decision matrix |
-| Quick Reference | âœ… | Decision checklist and content map |
-| Core content matches skill type | âœ… | Expert type: decision trees, checklists |
-| Troubleshooting section | âœ… | Anti-patterns table |
-| Related section | âœ… | Cross-links to data-modeler, security-scanner, auth-patterns |
-| Content Map for multi-file | âœ… | Links to 10 rule files + engineering-spec.md |
-| Scripts documented | âœ… | api_validator.js with command example |
-| Contract versioning | âœ… | contract_version, backward_compatibility, breaking_changes |
-| Compliance matrix structured | âœ… | This table with âœ…/âŒ + evidence |
+| YAML frontmatter complete | ✅ | name, description, metadata with category, version, triggers, coordinates_with, success_metrics |
+| SKILL.md < 200 lines | ✅ | Entry point under 200 lines; details in rules/ |
+| Prerequisites documented | ✅ | No external dependencies |
+| When to Use section | ✅ | Request-type-based decision matrix |
+| Quick Reference | ✅ | Decision checklist and content map |
+| Core content matches skill type | ✅ | Expert type: decision trees, checklists |
+| Troubleshooting section | ✅ | Anti-patterns table |
+| Related section | ✅ | Cross-links to data-modeler, security-scanner, auth-patterns |
+| Content Map for multi-file | ✅ | Links to 10 rule files + engineering-spec.md |
+| Scripts documented | ✅ | api_validator.js with command example |
+| Contract versioning | ✅ | contract_version, backward_compatibility, breaking_changes |
+| Compliance matrix structured | ✅ | This table with ✅/❌ + evidence |
 
 ---
 
@@ -1024,31 +1024,31 @@ API Architect maintains zero persistent state. Every invocation starts from a cl
 
 | Category | Check | Status |
 |----------|-------|--------|
-| **Functionality** | 8 request types specified | âœ… |
-| **Functionality** | 3 API styles (REST/GraphQL/tRPC) with decision tree | âœ… |
-| **Functionality** | 10 reference files covering all API design concerns | âœ… |
-| **Contracts** | Input/output/error schemas defined | âœ… |
-| **Contracts** | Agent assumptions and non-assumptions documented | âœ… |
-| **Contracts** | Workflow invocation pattern with recommended ordering | âœ… |
-| **Failure** | Error taxonomy with 7 categorized error codes | âœ… |
-| **Failure** | No silent failures; every error returns structured response | âœ… |
-| **Failure** | Retry policy: zero internal retries | âœ… |
-| **Determinism** | Fixed decision tree ordering | âœ… |
-| **Determinism** | No randomization, no external calls | âœ… |
-| **Security** | OWASP API Top 10 checklist integrated | âœ… |
-| **Security** | No credential handling; design-time only | âœ… |
-| **Observability** | Structured log schema with 5 log points | âœ… |
-| **Observability** | 6 metrics defined with types and units | âœ… |
-| **Performance** | P50/P99 targets for all operations | âœ… |
-| **Scalability** | Stateless; unlimited parallel invocations | âœ… |
-| **Concurrency** | No shared state; read-only reference access | âœ… |
-| **Resources** | All resources scoped to invocation lifetime | âœ… |
-| **Idempotency** | Fully idempotent â€” all operations are pure functions | âœ… |
-| **Compliance** | All skill-design-guide.md sections present | âœ… |
+| **Functionality** | 8 request types specified | ✅ |
+| **Functionality** | 3 API styles (REST/GraphQL/tRPC) with decision tree | ✅ |
+| **Functionality** | 10 reference files covering all API design concerns | ✅ |
+| **Contracts** | Input/output/error schemas defined | ✅ |
+| **Contracts** | Agent assumptions and non-assumptions documented | ✅ |
+| **Contracts** | Workflow invocation pattern with recommended ordering | ✅ |
+| **Failure** | Error taxonomy with 7 categorized error codes | ✅ |
+| **Failure** | No silent failures; every error returns structured response | ✅ |
+| **Failure** | Retry policy: zero internal retries | ✅ |
+| **Determinism** | Fixed decision tree ordering | ✅ |
+| **Determinism** | No randomization, no external calls | ✅ |
+| **Security** | OWASP API Top 10 checklist integrated | ✅ |
+| **Security** | No credential handling; design-time only | ✅ |
+| **Observability** | Structured log schema with 5 log points | ✅ |
+| **Observability** | 6 metrics defined with types and units | ✅ |
+| **Performance** | P50/P99 targets for all operations | ✅ |
+| **Scalability** | Stateless; unlimited parallel invocations | ✅ |
+| **Concurrency** | No shared state; read-only reference access | ✅ |
+| **Resources** | All resources scoped to invocation lifetime | ✅ |
+| **Idempotency** | Fully idempotent — all operations are pure functions | ✅ |
+| **Compliance** | All skill-design-guide.md sections present | ✅ |
 
 ---
 
-âš¡ PikaKit v3.9.105
+⚡ PikaKit v3.9.105
 
 ---
 
@@ -1068,18 +1068,18 @@ description: GraphQL schema design, resolver patterns, N+1 prevention, security
 ## When to Use
 
 ```
-âœ… Good fit:
-â”œâ”€â”€ Complex, interconnected data
-â”œâ”€â”€ Multiple frontend platforms
-â”œâ”€â”€ Clients need flexible queries
-â”œâ”€â”€ Evolving data requirements
-â””â”€â”€ Reducing over-fetching matters
+✅ Good fit:
+├── Complex, interconnected data
+├── Multiple frontend platforms
+├── Clients need flexible queries
+├── Evolving data requirements
+└── Reducing over-fetching matters
 
-âŒ Poor fit:
-â”œâ”€â”€ Simple CRUD operations
-â”œâ”€â”€ File upload heavy
-â”œâ”€â”€ HTTP caching important
-â””â”€â”€ Team unfamiliar with GraphQL
+❌ Poor fit:
+├── Simple CRUD operations
+├── File upload heavy
+├── HTTP caching important
+└── Team unfamiliar with GraphQL
 ```
 
 ## Schema Design
@@ -1133,7 +1133,7 @@ const resolvers = {
       ctx.dataSources.users.getConnection(args),
   },
 
-  // Field resolver â€” handles N+1 via DataLoader
+  // Field resolver — handles N+1 via DataLoader
   User: {
     posts: (parent: User, args: PaginationArgs, ctx: Context) =>
       ctx.dataSources.posts.getByAuthor(parent.id, args),
@@ -1141,7 +1141,7 @@ const resolvers = {
 };
 ```
 
-## N+1 Prevention â€” DataLoader
+## N+1 Prevention — DataLoader
 
 ```typescript
 import DataLoader from 'dataloader';
@@ -1153,7 +1153,7 @@ const userLoader = new DataLoader<string, User>(async (ids) => {
   return ids.map(id => map.get(id)!);
 });
 
-// In resolver â€” automatically batched
+// In resolver — automatically batched
 const resolvers = {
   Post: {
     author: (post: Post) => userLoader.load(post.authorId),
@@ -1184,7 +1184,7 @@ const server = new ApolloServer({
 
 ## Anti-Patterns
 
-| âŒ Don't | âœ… Do |
+| ❌ Don't | ✅ Do |
 |---------|-------|
 | Expose database schema directly | Design schema for clients |
 | One mega-query resolver | Keep resolvers small + composable |
@@ -1193,7 +1193,7 @@ const server = new ApolloServer({
 
 ---
 
-## ðŸ”— Related
+## 🔗 Related
 
 | File | When to Read |
 |------|-------------|
@@ -1207,7 +1207,7 @@ const server = new ApolloServer({
 
 ---
 name: rate-limiting
-description: Rate limiting strategies â€” token bucket, sliding window, Redis implementation, recommended limits
+description: Rate limiting strategies — token bucket, sliding window, Redis implementation, recommended limits
 ---
 
 # Rate Limiting Principles
@@ -1218,10 +1218,10 @@ description: Rate limiting strategies â€” token bucket, sliding window, Red
 
 ```
 Protect against:
-â”œâ”€â”€ Brute force attacks
-â”œâ”€â”€ Resource exhaustion
-â”œâ”€â”€ Cost overruns (if pay-per-use)
-â””â”€â”€ Unfair usage
+├── Brute force attacks
+├── Resource exhaustion
+├── Cost overruns (if pay-per-use)
+└── Unfair usage
 ```
 
 ## Strategy Selection
@@ -1236,10 +1236,10 @@ Protect against:
 
 ```
 Include in headers:
-â”œâ”€â”€ X-RateLimit-Limit (max requests)
-â”œâ”€â”€ X-RateLimit-Remaining (requests left)
-â”œâ”€â”€ X-RateLimit-Reset (when limit resets)
-â””â”€â”€ Return 429 when exceeded
+├── X-RateLimit-Limit (max requests)
+├── X-RateLimit-Remaining (requests left)
+├── X-RateLimit-Reset (when limit resets)
+└── Return 429 when exceeded
 ```
 
 ## Redis Implementation Pattern
@@ -1266,7 +1266,7 @@ if (current > maxRequests) {
 
 ---
 
-## ðŸ”— Related
+## 🔗 Related
 
 | File | When to Read |
 |------|-------------|
@@ -1285,7 +1285,7 @@ description: API response envelope pattern, error format, pagination, TypeScript
 
 # Response Format Principles
 
-> One envelope pattern for ALL endpoints â€” consistency is key.
+> One envelope pattern for ALL endpoints — consistency is key.
 
 ---
 
@@ -1385,14 +1385,14 @@ interface CursorMeta {
 
 ### Selection Guide
 
-1. Dataset < 10K rows â†’ Offset pagination
-2. Dataset > 10K, infinite scroll â†’ Cursor pagination
-3. Performance critical â†’ Keyset pagination
-4. Data frequently changing â†’ Cursor (avoids skip drift)
+1. Dataset < 10K rows → Offset pagination
+2. Dataset > 10K, infinite scroll → Cursor pagination
+3. Performance critical → Keyset pagination
+4. Data frequently changing → Cursor (avoids skip drift)
 
 ## Anti-Patterns
 
-| âŒ Don't | âœ… Do |
+| ❌ Don't | ✅ Do |
 |---------|-------|
 | Different formats per endpoint | One envelope for all endpoints |
 | Expose stack traces in errors | Map to safe client-facing codes |
@@ -1401,7 +1401,7 @@ interface CursorMeta {
 
 ---
 
-## ðŸ”— Related
+## 🔗 Related
 
 | File | When to Read |
 |------|-------------|
@@ -1415,12 +1415,12 @@ interface CursorMeta {
 
 ---
 name: rest
-description: REST API design â€” resource naming, HTTP methods, status codes, filtering, sorting
+description: REST API design — resource naming, HTTP methods, status codes, filtering, sorting
 ---
 
 # REST Principles
 
-> Resource-based API design â€” nouns not verbs.
+> Resource-based API design — nouns not verbs.
 
 ---
 
@@ -1428,30 +1428,30 @@ description: REST API design â€” resource naming, HTTP methods, status code
 
 ```
 Principles:
-â”œâ”€â”€ Use NOUNS, not verbs (resources, not actions)
-â”œâ”€â”€ Use PLURAL forms (/users not /user)
-â”œâ”€â”€ Use lowercase with hyphens (/user-profiles)
-â”œâ”€â”€ Nest for relationships (/users/123/posts)
-â””â”€â”€ Keep shallow (max 3 levels deep)
+├── Use NOUNS, not verbs (resources, not actions)
+├── Use PLURAL forms (/users not /user)
+├── Use lowercase with hyphens (/user-profiles)
+├── Nest for relationships (/users/123/posts)
+└── Keep shallow (max 3 levels deep)
 ```
 
 ### Endpoint Examples
 
 ```
-âœ… Good:
-GET    /users              â†’ List users
-GET    /users/123          â†’ Get user 123
-POST   /users              â†’ Create user
-PUT    /users/123          â†’ Replace user 123
-PATCH  /users/123          â†’ Partial update user 123
-DELETE /users/123          â†’ Delete user 123
-GET    /users/123/posts    â†’ User 123's posts
+✅ Good:
+GET    /users              → List users
+GET    /users/123          → Get user 123
+POST   /users              → Create user
+PUT    /users/123          → Replace user 123
+PATCH  /users/123          → Partial update user 123
+DELETE /users/123          → Delete user 123
+GET    /users/123/posts    → User 123's posts
 
-âŒ Bad:
-GET    /getUsers           â†’ Verb in URL
-POST   /createUser         â†’ Verb in URL
-GET    /user               â†’ Singular
-GET    /users/123/posts/456/comments/789/likes  â†’ Too deep (>3 levels)
+❌ Bad:
+GET    /getUsers           → Verb in URL
+POST   /createUser         → Verb in URL
+GET    /user               → Singular
+GET    /users/123/posts/456/comments/789/likes  → Too deep (>3 levels)
 ```
 
 ## HTTP Method Selection
@@ -1483,13 +1483,13 @@ GET    /users/123/posts/456/comments/789/likes  â†’ Too deep (>3 levels)
 ## Filtering, Sorting & Search
 
 ```typescript
-// Filtering â€” use query params
+// Filtering — use query params
 GET /users?role=admin&status=active
 
-// Sorting â€” prefix with - for descending
+// Sorting — prefix with - for descending
 GET /users?sort=-created_at,name
 
-// Search â€” use q parameter
+// Search — use q parameter
 GET /users?q=john
 
 // Fields projection (sparse fieldsets)
@@ -1501,7 +1501,7 @@ GET /users?role=admin&sort=-created_at&fields=id,name&page=2&limit=20
 
 ## Anti-Patterns
 
-| âŒ Don't | âœ… Do |
+| ❌ Don't | ✅ Do |
 |---------|-------|
 | `/getUsers`, `/deleteUser/123` | `GET /users`, `DELETE /users/123` |
 | `/user` (singular) | `/users` (plural) |
@@ -1511,7 +1511,7 @@ GET /users?role=admin&sort=-created_at&fields=id,name&page=2&limit=20
 
 ---
 
-## ðŸ”— Related
+## 🔗 Related
 
 | File | When to Read |
 |------|-------------|
@@ -1653,7 +1653,7 @@ description: OWASP API Top 10, JWT testing, BOLA/IDOR, authorization and input v
 
 ---
 
-## ðŸ”— Related
+## 🔗 Related
 
 | File | When to Read |
 |------|-------------|
@@ -1673,31 +1673,31 @@ description: tRPC router patterns, Zod validation, React Query client for TypeSc
 
 # tRPC Principles
 
-> End-to-end type safety for TypeScript monorepos â€” zero code generation.
+> End-to-end type safety for TypeScript monorepos — zero code generation.
 
 ---
 
 ## When to Use
 
 ```
-âœ… Perfect fit:
-â”œâ”€â”€ TypeScript on both ends
-â”œâ”€â”€ Monorepo structure
-â”œâ”€â”€ Internal tools / dashboards
-â”œâ”€â”€ Rapid development
-â””â”€â”€ Type safety is critical
+✅ Perfect fit:
+├── TypeScript on both ends
+├── Monorepo structure
+├── Internal tools / dashboards
+├── Rapid development
+└── Type safety is critical
 
-âŒ Poor fit:
-â”œâ”€â”€ Non-TypeScript clients
-â”œâ”€â”€ Public API (need OpenAPI docs)
-â”œâ”€â”€ Need REST conventions (caching)
-â””â”€â”€ Multiple language backends
+❌ Poor fit:
+├── Non-TypeScript clients
+├── Public API (need OpenAPI docs)
+├── Need REST conventions (caching)
+└── Multiple language backends
 ```
 
 ## Router Definition
 
 ```typescript
-// server/trpc.ts â€” Base setup
+// server/trpc.ts — Base setup
 import { initTRPC, TRPCError } from '@trpc/server';
 import { z } from 'zod';
 
@@ -1709,7 +1709,7 @@ export const protectedProcedure = t.procedure.use(isAuthed);
 ```
 
 ```typescript
-// server/routers/user.ts â€” Router with Zod validation
+// server/routers/user.ts — Router with Zod validation
 export const userRouter = router({
   getById: publicProcedure
     .input(z.string().uuid())
@@ -1748,7 +1748,7 @@ export const userRouter = router({
 ## Client Usage (React Query)
 
 ```typescript
-// Client â€” fully typed, zero codegen
+// Client — fully typed, zero codegen
 import { trpc } from '~/utils/trpc';
 
 function UserProfile({ id }: { id: string }) {
@@ -1771,7 +1771,7 @@ function UserProfile({ id }: { id: string }) {
 
 ## Anti-Patterns
 
-| âŒ Don't | âœ… Do |
+| ❌ Don't | ✅ Do |
 |---------|-------|
 | Use tRPC for public APIs | Use REST + OpenAPI for public |
 | Skip Zod validation | Always validate with `.input(z.object(...))` |
@@ -1780,7 +1780,7 @@ function UserProfile({ id }: { id: string }) {
 
 ---
 
-## ðŸ”— Related
+## 🔗 Related
 
 | File | When to Read |
 |------|-------------|
@@ -1794,7 +1794,7 @@ function UserProfile({ id }: { id: string }) {
 
 ---
 name: versioning
-description: API versioning strategies â€” URI, header, query; deprecation and sunset policies
+description: API versioning strategies — URI, header, query; deprecation and sunset policies
 ---
 
 # Versioning Strategies
@@ -1816,23 +1816,23 @@ description: API versioning strategies â€” URI, header, query; deprecation 
 
 ```
 Is it a public REST API?
-â”œâ”€â”€ Yes â†’ URI versioning (/v1/users)
-â”‚         Most discoverable, best tooling support
-â”‚
-â”œâ”€â”€ Internal REST only? â†’ Header versioning
-â”‚         Cleaner URLs, version-aware clients
-â”‚
-â”œâ”€â”€ GraphQL? â†’ No versioning (evolve schema)
-â”‚         Add fields, deprecate old ones
-â”‚
-â””â”€â”€ tRPC? â†’ No versioning (types enforce compat)
+├── Yes → URI versioning (/v1/users)
+│         Most discoverable, best tooling support
+│
+├── Internal REST only? → Header versioning
+│         Cleaner URLs, version-aware clients
+│
+├── GraphQL? → No versioning (evolve schema)
+│         Add fields, deprecate old ones
+│
+└── tRPC? → No versioning (types enforce compat)
           Breaking changes caught at compile time
 ```
 
 ## URI Versioning Example
 
 ```typescript
-// Express â€” version in path
+// Express — version in path
 import { Router } from 'express';
 
 const v1 = Router();
@@ -1863,12 +1863,12 @@ app.use('/api/v1', (req, res, next) => {
 1. Announce deprecation with `Deprecation: true` header
 2. Set `Sunset` date (minimum 6 months for public APIs)
 3. Include `Link` header pointing to successor
-4. Monitor usage â€” notify active consumers
+4. Monitor usage — notify active consumers
 5. Remove after sunset date
 
 ## Anti-Patterns
 
-| âŒ Don't | âœ… Do |
+| ❌ Don't | ✅ Do |
 |---------|-------|
 | Version after breaking changes | Define strategy before first endpoint |
 | Remove old version without notice | Sunset with 6+ months warning |
@@ -1877,7 +1877,7 @@ app.use('/api/v1', (req, res, next) => {
 
 ---
 
-## ðŸ”— Related
+## 🔗 Related
 
 | File | When to Read |
 |------|-------------|

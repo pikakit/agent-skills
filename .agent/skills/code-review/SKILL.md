@@ -6,7 +6,7 @@ description: >-
   review, PR, lint, format, validate, types, audit, security check.
 metadata:
   author: pikakit
-  version: "3.9.107"
+  version: "3.9.108"
 ---
 
 # Code Review & Quality
@@ -39,11 +39,11 @@ metadata:
 
 | Owned by This Skill | NOT Owned |
 |---------------------|-----------|
-| Quality loop (editâ†’checkâ†’fixâ†’repeat) | Coding standards (â†’ code-craft) |
-| 5-category review checklist (14 items) | Deep security scanning (â†’ security-scanner) |
-| 4-level comment taxonomy (ðŸ”´/ðŸŸ¡/ðŸŸ¢/â“) | Test writing (â†’ test-architect) |
-| Lint/type quick commands per language | PR management (â†’ git-workflow) |
-| Lint runner + type coverage scripts | Performance profiling (â†’ perf-optimizer) |
+| Quality loop (edit→check→fix→repeat) | Coding standards (→ code-craft) |
+| 5-category review checklist (14 items) | Deep security scanning (→ security-scanner) |
+| 4-level comment taxonomy (🔴/🟡/🟢/❓) | Test writing (→ test-architect) |
+| Lint/type quick commands per language | PR management (→ git-workflow) |
+| Lint runner + type coverage scripts | Performance profiling (→ perf-optimizer) |
 
 **Hybrid skill:** Expert review decisions (stateless) + automation scripts (filesystem read).
 
@@ -63,7 +63,7 @@ metadata:
 
 ---
 
-## Quick Reference â€” Commands
+## Quick Reference — Commands
 
 | Language | Lint | Types | Security |
 |----------|------|-------|----------|
@@ -88,10 +88,10 @@ metadata:
 
 | Level | Prefix | Meaning | Blocks Merge |
 |-------|--------|---------|-------------|
-| ðŸ”´ | `BLOCKING` | Must fix before merge | Yes |
-| ðŸŸ¡ | `SUGGESTION` | Recommended improvement | No |
-| ðŸŸ¢ | `NIT` | Minor style preference | No |
-| â“ | `QUESTION` | Needs clarification | Depends |
+| 🔴 | `BLOCKING` | Must fix before merge | Yes |
+| 🟡 | `SUGGESTION` | Recommended improvement | No |
+| 🟢 | `NIT` | Minor style preference | No |
+| ❓ | `QUESTION` | Needs clarification | Depends |
 
 **Merge gate:** `merge_ready = (blocking_count === 0)`. Deterministic; no override.
 
@@ -108,24 +108,24 @@ metadata:
 | `WARN_UNKNOWN_LANGUAGE` | Yes | Language not recognized; generic applied |
 | `WARN_NO_CONFIG` | Yes | No lint/type config found |
 
-**Zero internal retries.** Quality loop is caller-driven (editâ†’checkâ†’fixâ†’repeat).
+**Zero internal retries.** Quality loop is caller-driven (edit→check→fix→repeat).
 
 ---
 
 ## Anti-Patterns
 
-| âŒ Don't | âœ… Do |
+| ❌ Don't | ✅ Do |
 |---------|-------|
 | Commit with lint errors | Run quality loop until pass |
 | Review only code style | Check all 5 categories |
-| Leave ambiguous comments | Use 4-level taxonomy (ðŸ”´/ðŸŸ¡/ðŸŸ¢/â“) |
+| Leave ambiguous comments | Use 4-level taxonomy (🔴/🟡/🟢/❓) |
 | Skip security review | Check inputs, secrets, injection |
-| Override blocking issues | Resolve all ðŸ”´ before merge |
+| Override blocking issues | Resolve all 🔴 before merge |
 | Walk away after approval | Re-check if code changed after review |
 
 ---
 
-## ðŸ“‘ Content Map
+## 📑 Content Map
 
 | File | Description | When to Read |
 |------|-------------|--------------|
@@ -134,7 +134,7 @@ metadata:
 
 ---
 
-## ðŸ”— Related
+## 🔗 Related
 
 | Item | Type | Purpose |
 |------|------|---------|
@@ -145,4 +145,4 @@ metadata:
 
 ---
 
-âš¡ PikaKit v3.9.107
+⚡ PikaKit v3.9.108

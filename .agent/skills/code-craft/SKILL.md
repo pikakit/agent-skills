@@ -1,15 +1,15 @@
 ---
 name: code-craft
 description: >-
-  Pragmatic coding standards â€” concise, direct, no over-engineering. Fixed thresholds: 20
+  Pragmatic coding standards — concise, direct, no over-engineering. Fixed thresholds: 20
   lines/function, 3 args max, 2 nesting levels. Triggers on: code style, clean code, best
   practices, naming conventions, SRP, DRY, KISS.
 metadata:
   author: pikakit
-  version: "3.9.107"
+  version: "3.9.108"
 ---
 
-# Code Craft â€” Pragmatic Coding Standards
+# Code Craft — Pragmatic Coding Standards
 
 > Concise. Direct. Measurable. Fixed thresholds: 20 lines/function, 3 args, 2 nesting levels.
 
@@ -17,7 +17,7 @@ metadata:
 
 ## Prerequisites
 
-**Required:** None â€” Code Craft is a knowledge-based skill with no external dependencies.
+**Required:** None — Code Craft is a knowledge-based skill with no external dependencies.
 
 ---
 
@@ -37,9 +37,9 @@ metadata:
 
 | Owned by This Skill | NOT Owned |
 |---------------------|-----------|
-| Naming conventions (4 rules) | Lint/format execution (â†’ code-review) |
-| Function design (5 rules with thresholds) | Test writing (â†’ test-architect) |
-| Code structure (4 patterns) | Constitutional governance (â†’ code-constitution) |
+| Naming conventions (4 rules) | Lint/format execution (→ code-review) |
+| Function design (5 rules with thresholds) | Test writing (→ test-architect) |
+| Code structure (4 patterns) | Constitutional governance (→ code-constitution) |
 | Dependency awareness protocol | Language-specific style guides |
 | Pre-completion self-check (4 items) | Automated code modification |
 
@@ -74,10 +74,10 @@ metadata:
 
 | Rule | Threshold |
 |------|-----------|
-| **Size** | Max 20 lines; target 5â€“10 |
+| **Size** | Max 20 lines; target 5–10 |
 | **Responsibility** | Does one thing only |
 | **Abstraction** | One level of abstraction per function |
-| **Arguments** | Max 3; prefer 0â€“2 |
+| **Arguments** | Max 3; prefer 0–2 |
 | **Side Effects** | Don't mutate inputs unexpectedly |
 
 ---
@@ -101,7 +101,7 @@ metadata:
 | **What does this file import?** | Interface changes propagate |
 | **What tests cover this?** | Tests might fail |
 
-> ðŸ”´ **Rule:** Edit the file + ALL dependent files in the SAME task.
+> 🔴 **Rule:** Edit the file + ALL dependent files in the SAME task.
 
 ---
 
@@ -109,12 +109,12 @@ metadata:
 
 | # | Check | Question |
 |---|-------|----------|
-| 1 | âœ… Goal met? | Did I do exactly what user asked? |
-| 2 | âœ… Files complete? | Did I modify all necessary files? |
-| 3 | âœ… Code works? | Did I verify the change? |
-| 4 | âœ… No errors? | Lint and TypeScript pass? |
+| 1 | ✅ Goal met? | Did I do exactly what user asked? |
+| 2 | ✅ Files complete? | Did I modify all necessary files? |
+| 3 | ✅ Code works? | Did I verify the change? |
+| 4 | ✅ No errors? | Lint and TypeScript pass? |
 
-> ðŸ”´ **Rule:** If ANY check fails, fix it before completing.
+> 🔴 **Rule:** If ANY check fails, fix it before completing.
 
 ---
 
@@ -134,7 +134,7 @@ metadata:
 
 ## Anti-Patterns
 
-| âŒ Don't | âœ… Do |
+| ❌ Don't | ✅ Do |
 |---------|-------|
 | Comment every line | Delete obvious comments |
 | Helper for one-liner | Inline the code |
@@ -144,7 +144,7 @@ metadata:
 
 ---
 
-## ðŸ“‘ Content Map
+## 📑 Content Map
 
 | File | Description | When to Read |
 |------|-------------|--------------|
@@ -153,7 +153,7 @@ metadata:
 
 ---
 
-## ðŸ”— Related
+## 🔗 Related
 
 | Item | Type | Purpose |
 |------|------|---------|
@@ -163,4 +163,4 @@ metadata:
 
 ---
 
-âš¡ PikaKit v3.9.107
+⚡ PikaKit v3.9.108

@@ -17,22 +17,22 @@ tags: mobile-developer
 
 ```
 MATERIAL AS METAPHOR:
-â”œâ”€â”€ Surfaces exist in 3D space
-â”œâ”€â”€ Light and shadow define hierarchy
-â”œâ”€â”€ Motion provides continuity
-â””â”€â”€ Bold, graphic, intentional design
+├── Surfaces exist in 3D space
+├── Light and shadow define hierarchy
+├── Motion provides continuity
+└── Bold, graphic, intentional design
 
 ADAPTIVE DESIGN:
-â”œâ”€â”€ Responds to device capabilities
-â”œâ”€â”€ One UI for all form factors
-â”œâ”€â”€ Dynamic color from wallpaper
-â””â”€â”€ Personalized per user
+├── Responds to device capabilities
+├── One UI for all form factors
+├── Dynamic color from wallpaper
+└── Personalized per user
 
 ACCESSIBLE BY DEFAULT:
-â”œâ”€â”€ Large touch targets
-â”œâ”€â”€ Clear visual hierarchy
-â”œâ”€â”€ Semantic colors
-â””â”€â”€ Motion respects preferences
+├── Large touch targets
+├── Clear visual hierarchy
+├── Semantic colors
+└── Motion respects preferences
 ```
 
 ### Material Design Values
@@ -53,11 +53,11 @@ ACCESSIBLE BY DEFAULT:
 
 ```
 Android System Fonts:
-â”œâ”€â”€ Roboto: Default sans-serif
-â”œâ”€â”€ Roboto Flex: Variable font (API 33+)
-â”œâ”€â”€ Roboto Serif: Serif alternative
-â”œâ”€â”€ Roboto Mono: Monospace
-â””â”€â”€ Google Sans: Google products (special license)
+├── Roboto: Default sans-serif
+├── Roboto Flex: Variable font (API 33+)
+├── Roboto Serif: Serif alternative
+├── Roboto Mono: Monospace
+└── Google Sans: Google products (special license)
 ```
 
 ### Material Type Scale
@@ -86,9 +86,9 @@ Android System Fonts:
 sp = Scale-independent pixels
 
 sp automatically scales with:
-â”œâ”€â”€ User font size preference
-â”œâ”€â”€ Display density
-â””â”€â”€ Accessibility settings
+├── User font size preference
+├── Display density
+└── Accessibility settings
 
 RULE: ALWAYS use sp for text, dp for everything else.
 ```
@@ -110,14 +110,14 @@ RULE: ALWAYS use sp for text, dp for everything else.
 ```
 Android 12+ Dynamic Color:
 
-User's wallpaper â†’ Color extraction â†’ App theme
+User's wallpaper → Color extraction → App theme
 
 Your app automatically adapts to:
-â”œâ”€â”€ Primary color (from wallpaper)
-â”œâ”€â”€ Secondary color (complementary)
-â”œâ”€â”€ Tertiary color (accent)
-â”œâ”€â”€ Surface colors (derived)
-â””â”€â”€ All semantic colors adjust
+├── Primary color (from wallpaper)
+├── Secondary color (complementary)
+├── Tertiary color (accent)
+├── Surface colors (derived)
+└── All semantic colors adjust
 
 RULE: Implement dynamic color for personalized feel.
 ```
@@ -126,22 +126,22 @@ RULE: Implement dynamic color for personalized feel.
 
 ```
 Surface Colors:
-â”œâ”€â”€ Surface â†’ Main background
-â”œâ”€â”€ SurfaceVariant â†’ Cards, containers
-â”œâ”€â”€ SurfaceTint â†’ Elevation overlay
-â”œâ”€â”€ InverseSurface â†’ Snackbars, tooltips
+├── Surface → Main background
+├── SurfaceVariant → Cards, containers
+├── SurfaceTint → Elevation overlay
+├── InverseSurface → Snackbars, tooltips
 
 On-Surface Colors:
-â”œâ”€â”€ OnSurface â†’ Primary text
-â”œâ”€â”€ OnSurfaceVariant â†’ Secondary text
-â”œâ”€â”€ Outline â†’ Borders, dividers
-â”œâ”€â”€ OutlineVariant â†’ Subtle dividers
+├── OnSurface → Primary text
+├── OnSurfaceVariant → Secondary text
+├── Outline → Borders, dividers
+├── OutlineVariant → Subtle dividers
 
 Primary Colors:
-â”œâ”€â”€ Primary â†’ Key actions, FAB
-â”œâ”€â”€ OnPrimary â†’ Text on primary
-â”œâ”€â”€ PrimaryContainer â†’ Less emphasis
-â”œâ”€â”€ OnPrimaryContainer â†’ Text on container
+├── Primary → Key actions, FAB
+├── OnPrimary → Text on primary
+├── PrimaryContainer → Less emphasis
+├── OnPrimaryContainer → Text on container
 
 Secondary/Tertiary: Similar pattern
 ```
@@ -159,19 +159,19 @@ Secondary/Tertiary: Similar pattern
 ```
 Material Dark Theme:
 
-â”œâ”€â”€ Background: #121212 (not pure black by default)
-â”œâ”€â”€ Surface: #1E1E1E, #232323, etc. (elevation)
-â”œâ”€â”€ Elevation: Higher = lighter overlay
-â”œâ”€â”€ Reduce saturation on colors
-â””â”€â”€ Check contrast ratios
+├── Background: #121212 (not pure black by default)
+├── Surface: #1E1E1E, #232323, etc. (elevation)
+├── Elevation: Higher = lighter overlay
+├── Reduce saturation on colors
+└── Check contrast ratios
 
 Elevation overlays (dark mode):
-â”œâ”€â”€ 0dp â†’ 0% overlay
-â”œâ”€â”€ 1dp â†’ 5% overlay
-â”œâ”€â”€ 3dp â†’ 8% overlay
-â”œâ”€â”€ 6dp â†’ 11% overlay
-â”œâ”€â”€ 8dp â†’ 12% overlay
-â”œâ”€â”€ 12dp â†’ 14% overlay
+├── 0dp → 0% overlay
+├── 1dp → 5% overlay
+├── 3dp → 8% overlay
+├── 6dp → 11% overlay
+├── 8dp → 12% overlay
+├── 12dp → 14% overlay
 ```
 
 ---
@@ -184,16 +184,16 @@ Elevation overlays (dark mode):
 Android uses 8dp baseline grid:
 
 All spacing in multiples of 8dp:
-â”œâ”€â”€ 4dp: Component internal (half-step)
-â”œâ”€â”€ 8dp: Minimum spacing
-â”œâ”€â”€ 16dp: Standard spacing
-â”œâ”€â”€ 24dp: Section spacing
-â”œâ”€â”€ 32dp: Large spacing
+├── 4dp: Component internal (half-step)
+├── 8dp: Minimum spacing
+├── 16dp: Standard spacing
+├── 24dp: Section spacing
+├── 32dp: Large spacing
 
 Margins:
-â”œâ”€â”€ Compact (phone): 16dp
-â”œâ”€â”€ Medium (small tablet): 24dp
-â”œâ”€â”€ Expanded (large): 24dp+ or columns
+├── Compact (phone): 16dp
+├── Medium (small tablet): 24dp
+├── Expanded (large): 24dp+ or columns
 ```
 
 ### Responsive Layout
@@ -202,19 +202,19 @@ Margins:
 Window Size Classes:
 
 COMPACT (< 600dp width):
-â”œâ”€â”€ Phones in portrait
-â”œâ”€â”€ Single column layout
-â”œâ”€â”€ Bottom navigation
+├── Phones in portrait
+├── Single column layout
+├── Bottom navigation
 
 MEDIUM (600-840dp width):
-â”œâ”€â”€ Tablets, foldables
-â”œâ”€â”€ Consider 2 columns
-â”œâ”€â”€ Navigation rail option
+├── Tablets, foldables
+├── Consider 2 columns
+├── Navigation rail option
 
 EXPANDED (> 840dp width):
-â”œâ”€â”€ Large tablets, desktop
-â”œâ”€â”€ Multi-column layouts
-â”œâ”€â”€ Navigation drawer
+├── Large tablets, desktop
+├── Multi-column layouts
+├── Navigation drawer
 ```
 
 ### Canonical Layouts
@@ -241,58 +241,58 @@ EXPANDED (> 840dp width):
 ### Bottom Navigation
 
 ```
-â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
-â”‚                                     â”‚
-â”‚         Content Area                â”‚
-â”‚                                     â”‚
-â”œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¤
-â”‚  ðŸ      ðŸ”     âž•     â¤ï¸     ðŸ‘¤    â”‚ â† 80dp height
-â”‚ Home   Search  FAB   Saved  Profileâ”‚
-â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
+┌─────────────────────────────────────┐
+│                                     │
+│         Content Area                │
+│                                     │
+├─────────────────────────────────────┤
+│  🏠     🔍     ➕     d️     👤    │ ← 80dp height
+│ Home   Search  FAB   Saved  Profile│
+└─────────────────────────────────────┘
 
 Rules:
-â”œâ”€â”€ 3-5 destinations
-â”œâ”€â”€ Icons: Material Symbols (24dp)
-â”œâ”€â”€ Labels: Always visible (accessibility)
-â”œâ”€â”€ Active: Filled icon + indicator pill
-â”œâ”€â”€ Badge: For notifications
-â”œâ”€â”€ FAB can integrate (optional)
+├── 3-5 destinations
+├── Icons: Material Symbols (24dp)
+├── Labels: Always visible (accessibility)
+├── Active: Filled icon + indicator pill
+├── Badge: For notifications
+├── FAB can integrate (optional)
 ```
 
 ### Top App Bar
 
 ```
 Types:
-â”œâ”€â”€ Center-aligned: Logo apps, simple
-â”œâ”€â”€ Small: Compact, scrolls away
-â”œâ”€â”€ Medium: Title + actions, collapses
-â”œâ”€â”€ Large: Display title, collapses to small
+├── Center-aligned: Logo apps, simple
+├── Small: Compact, scrolls away
+├── Medium: Title + actions, collapses
+├── Large: Display title, collapses to small
 
-â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
-â”‚  â˜°   App Title              ðŸ”” â‹®  â”‚ â† 64dp (small)
-â”œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¤
-â”‚                                     â”‚
-â”‚         Content Area                â”‚
-â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
+┌─────────────────────────────────────┐
+│  ☰   App Title              🔔 ⋮  │ ← 64dp (small)
+├─────────────────────────────────────┤
+│                                     │
+│         Content Area                │
+└─────────────────────────────────────┘
 
-Actions: Max 3 icons, overflow menu ( â‹® ) for more
+Actions: Max 3 icons, overflow menu ( ⋮ ) for more
 ```
 
 ### Navigation Rail (Tablets)
 
 ```
-â”Œâ”€â”€â”€â”€â”€â”€â”€â”¬â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
-â”‚  â‰¡    â”‚                             â”‚
-â”‚       â”‚                             â”‚
-â”‚  ðŸ    â”‚                             â”‚
-â”‚ Home  â”‚       Content Area          â”‚
-â”‚       â”‚                             â”‚
-â”‚  ðŸ”   â”‚                             â”‚
-â”‚Search â”‚                             â”‚
-â”‚       â”‚                             â”‚
-â”‚  ðŸ‘¤   â”‚                             â”‚
-â”‚Profileâ”‚                             â”‚
-â””â”€â”€â”€â”€â”€â”€â”€â”´â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
+┌───────┬─────────────────────────────┐
+│  ≡    │                             │
+│       │                             │
+│  🏠   │                             │
+│ Home  │       Content Area          │
+│       │                             │
+│  🔍   │                             │
+│Search │                             │
+│       │                             │
+│  👤   │                             │
+│Profile│                             │
+└───────┴─────────────────────────────┘
 
 Width: 80dp
 Icons: 24dp
@@ -304,15 +304,15 @@ FAB: Can be at top
 
 ```
 Android provides system back:
-â”œâ”€â”€ Back button (3-button nav)
-â”œâ”€â”€ Back gesture (swipe from edge)
-â”œâ”€â”€ Predictive back (Android 14+)
+├── Back button (3-button nav)
+├── Back gesture (swipe from edge)
+├── Predictive back (Android 14+)
 
 Your app must:
-â”œâ”€â”€ Handle back correctly (pop stack)
-â”œâ”€â”€ Support predictive back animation
-â”œâ”€â”€ Never hijack/override back unexpectedly
-â””â”€â”€ Confirm before discarding unsaved work
+├── Handle back correctly (pop stack)
+├── Support predictive back animation
+├── Never hijack/override back unexpectedly
+└── Confirm before discarding unsaved work
 ```
 
 ---
@@ -324,24 +324,24 @@ Your app must:
 ```
 Button Types:
 
-â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
-â”‚    Filled Button     â”‚  â† Primary action
-â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
+┌──────────────────────┐
+│    Filled Button     │  ← Primary action
+└──────────────────────┘
 
-â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
-â”‚    Tonal Button      â”‚  â† Secondary, less emphasis
-â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
+┌──────────────────────┐
+│    Tonal Button      │  ← Secondary, less emphasis
+└──────────────────────┘
 
-â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
-â”‚   Outlined Button    â”‚  â† Tertiary, lower emphasis
-â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
+┌──────────────────────┐
+│   Outlined Button    │  ← Tertiary, lower emphasis
+└──────────────────────┘
 
-    Text Button           â† Lowest emphasis
+    Text Button           ← Lowest emphasis
 
 Heights:
-â”œâ”€â”€ Small: 40dp (when constrained)
-â”œâ”€â”€ Standard: 40dp
-â”œâ”€â”€ Large: 56dp (FAB size when needed)
+├── Small: 40dp (when constrained)
+├── Standard: 40dp
+├── Large: 56dp (FAB size when needed)
 
 Min touch target: 48dp (even if visual is smaller)
 ```
@@ -350,43 +350,43 @@ Min touch target: 48dp (even if visual is smaller)
 
 ```
 FAB Types:
-â”œâ”€â”€ Standard: 56dp diameter
-â”œâ”€â”€ Small: 40dp diameter
-â”œâ”€â”€ Large: 96dp diameter
-â”œâ”€â”€ Extended: Icon + text, variable width
+├── Standard: 56dp diameter
+├── Small: 40dp diameter
+├── Large: 96dp diameter
+├── Extended: Icon + text, variable width
 
 Position: Bottom right, 16dp from edges
 Elevation: Floats above content
 
-â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
-â”‚                                     â”‚
-â”‚         Content                     â”‚
-â”‚                                     â”‚
-â”‚                              â”Œâ”€â”€â”€â”€â” â”‚
-â”‚                              â”‚ âž• â”‚ â”‚ â† FAB
-â”‚                              â””â”€â”€â”€â”€â”˜ â”‚
-â”œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¤
-â”‚       Bottom Navigation             â”‚
-â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
+┌─────────────────────────────────────┐
+│                                     │
+│         Content                     │
+│                                     │
+│                              ┌────┐ │
+│                              │ ➕ │ │ ← FAB
+│                              └────┘ │
+├─────────────────────────────────────┤
+│       Bottom Navigation             │
+└─────────────────────────────────────┘
 ```
 
 ### Cards
 
 ```
 Card Types:
-â”œâ”€â”€ Elevated: Shadow, resting state
-â”œâ”€â”€ Filled: Background color, no shadow
-â”œâ”€â”€ Outlined: Border, no shadow
+├── Elevated: Shadow, resting state
+├── Filled: Background color, no shadow
+├── Outlined: Border, no shadow
 
 Card Anatomy:
-â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
-â”‚           Header Image              â”‚ â† Optional
-â”œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¤
-â”‚  Title / Headline                   â”‚
-â”‚  Subhead / Supporting text          â”‚
-â”œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¤
-â”‚      [ Action ]    [ Action ]       â”‚ â† Optional actions
-â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
+┌─────────────────────────────────────┐
+│           Header Image              │ ← Optional
+├─────────────────────────────────────┤
+│  Title / Headline                   │
+│  Subhead / Supporting text          │
+├─────────────────────────────────────┤
+│      [ Action ]    [ Action ]       │ ← Optional actions
+└─────────────────────────────────────┘
 
 Corner radius: 12dp (M3 default)
 Padding: 16dp
@@ -396,16 +396,16 @@ Padding: 16dp
 
 ```
 Types:
-â”œâ”€â”€ Filled: Background fill, underline
-â”œâ”€â”€ Outlined: Border all around
+├── Filled: Background fill, underline
+├── Outlined: Border all around
 
-â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
-â”‚  Label                              â”‚ â† Floats up on focus
-â”‚  ________________________________________________
-â”‚  â”‚     Input text here...          â”‚ â† Leading/trailing icons
-â”‚  â€¾â€¾â€¾â€¾â€¾â€¾â€¾â€¾â€¾â€¾â€¾â€¾â€¾â€¾â€¾â€¾â€¾â€¾â€¾â€¾â€¾â€¾â€¾â€¾â€¾â€¾â€¾â€¾â€¾â€¾â€¾â€¾â€¾â€¾â€¾â€¾â€¾â€¾â€¾â€¾â€¾â€¾â€¾â€¾â€¾â€¾â€¾â€¾
-â”‚  Supporting text or error           â”‚
-â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
+┌─────────────────────────────────────┐
+│  Label                              │ ← Floats up on focus
+│  ________________________________________________
+│  │     Input text here...          │ ← Leading/trailing icons
+│  ⬾⬾⬾⬾⬾⬾⬾⬾⬾⬾⬾⬾⬾⬾⬾⬾⬾⬾⬾⬾⬾⬾⬾⬾⬾⬾⬾⬾⬾⬾⬾⬾⬾⬾⬾⬾⬾⬾⬾⬾⬾⬾⬾⬾⬾⬾⬾⬾
+│  Supporting text or error           │
+└─────────────────────────────────────┘
 
 Height: 56dp
 Label: Animates from placeholder to top
@@ -416,14 +416,14 @@ Error: Red color + icon + message
 
 ```
 Types:
-â”œâ”€â”€ Assist: Smart actions (directions, call)
-â”œâ”€â”€ Filter: Toggle filters
-â”œâ”€â”€ Input: Represent entities (tags, contacts)
-â”œâ”€â”€ Suggestion: Dynamic recommendations
+├── Assist: Smart actions (directions, call)
+├── Filter: Toggle filters
+├── Input: Represent entities (tags, contacts)
+├── Suggestion: Dynamic recommendations
 
-â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
-â”‚  ðŸ·ï¸ Filter   â”‚  â† 32dp height, 8dp corner radius
-â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
+┌───────────────┐
+│  🏷️ Filter   │  ← 32dp height, 8dp corner radius
+└───────────────┘
 
 States: Unselected, Selected, Disabled
 ```
@@ -439,38 +439,38 @@ Position: Bottom, above navigation
 Duration: 4-10 seconds
 Action: One optional text action
 
-â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
-â”‚  Archived 1 item                    [ UNDO ]    â”‚
-â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
+┌─────────────────────────────────────────────────┐
+│  Archived 1 item                    [ UNDO ]    │
+└─────────────────────────────────────────────────┘
 
 Rules:
-â”œâ”€â”€ Brief message, single line if possible
-â”œâ”€â”€ Max 2 lines
-â”œâ”€â”€ One action (text, not icon)
-â”œâ”€â”€ Can be dismissed by swipe
-â””â”€â”€ Don't stack, queue them
+├── Brief message, single line if possible
+├── Max 2 lines
+├── One action (text, not icon)
+├── Can be dismissed by swipe
+└── Don't stack, queue them
 ```
 
 ### Bottom Sheets
 
 ```
 Types:
-â”œâ”€â”€ Standard: Interactive content
-â”œâ”€â”€ Modal: Blocks background (with scrim)
+├── Standard: Interactive content
+├── Modal: Blocks background (with scrim)
 
 Modal Bottom Sheet:
-â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
-â”‚                                     â”‚
-â”‚        (Scrim over content)         â”‚
-â”‚                                     â”‚
-â”œâ•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â”¤
-â”‚  â”€â”€â”€â”€â”€  (Drag handle, optional)     â”‚
-â”‚                                     â”‚
-â”‚        Sheet Content                â”‚
-â”‚                                     â”‚
-â”‚        Actions / Options            â”‚
-â”‚                                     â”‚
-â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
+┌─────────────────────────────────────┐
+│                                     │
+│        (Scrim over content)         │
+│                                     │
+├═════════════════════════════════════┤
+│  ─────  (Drag handle, optional)     │
+│                                     │
+│        Sheet Content                │
+│                                     │
+│        Actions / Options            │
+│                                     │
+└─────────────────────────────────────┘
 
 Corner radius: 28dp (top corners)
 ```
@@ -479,25 +479,25 @@ Corner radius: 28dp (top corners)
 
 ```
 Types:
-â”œâ”€â”€ Basic: Title + content + actions
-â”œâ”€â”€ Full-screen: Complex editing (mobile)
-â”œâ”€â”€ Date/Time picker
-â”œâ”€â”€ Confirmation dialog
+├── Basic: Title + content + actions
+├── Full-screen: Complex editing (mobile)
+├── Date/Time picker
+├── Confirmation dialog
 
-â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
-â”‚              Title                  â”‚
-â”‚                                     â”‚
-â”‚       Supporting text that          â”‚
-â”‚       explains the dialog           â”‚
-â”‚                                     â”‚
-â”‚           [ Cancel ]  [ Confirm ]   â”‚
-â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
+┌─────────────────────────────────────┐
+│              Title                  │
+│                                     │
+│       Supporting text that          │
+│       explains the dialog           │
+│                                     │
+│           [ Cancel ]  [ Confirm ]   │
+└─────────────────────────────────────┘
 
 Rules:
-â”œâ”€â”€ Centered on screen
-â”œâ”€â”€ Scrim behind (dim background)
-â”œâ”€â”€ Max 2 actions aligned right
-â”œâ”€â”€ Destructive action can be on left
+├── Centered on screen
+├── Scrim behind (dim background)
+├── Max 2 actions aligned right
+├── Destructive action can be on left
 ```
 
 ### Pull to Refresh
@@ -505,13 +505,13 @@ Rules:
 ```
 Android uses SwipeRefreshLayout pattern:
 
-â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
-â”‚         â—‹ (Spinner)                 â”‚ â† Circular progress
-â”œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¤
-â”‚                                     â”‚
-â”‚         Content                     â”‚
-â”‚                                     â”‚
-â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
+┌─────────────────────────────────────┐
+│         ○ (Spinner)                 │ ← Circular progress
+├─────────────────────────────────────┤
+│                                     │
+│         Content                     │
+│                                     │
+└─────────────────────────────────────┘
 
 Spinner: Material circular indicator
 Position: Top center, pulls down with content
@@ -522,13 +522,13 @@ Position: Top center, pulls down with content
 ```
 Every touchable element needs ripple:
 
-Touch down â†’ Ripple expands from touch point
-Touch up â†’ Ripple completes and fades
+Touch down → Ripple expands from touch point
+Touch up → Ripple completes and fades
 
 Color: 
-â”œâ”€â”€ On light: Black at ~12% opacity
-â”œâ”€â”€ On dark: White at ~12% opacity
-â”œâ”€â”€ On colored: Appropriate contrast
+├── On light: Black at ~12% opacity
+├── On dark: White at ~12% opacity
+├── On colored: Appropriate contrast
 
 This is MANDATORY for Android feel.
 ```
@@ -543,15 +543,15 @@ This is MANDATORY for Android feel.
 Material Symbols: Google's icon library
 
 Styles:
-â”œâ”€â”€ Outlined: Default, most common
-â”œâ”€â”€ Rounded: Softer, friendly
-â”œâ”€â”€ Sharp: Angular, precise
+├── Outlined: Default, most common
+├── Rounded: Softer, friendly
+├── Sharp: Angular, precise
 
 Variable font axes:
-â”œâ”€â”€ FILL: 0 (outline) to 1 (filled)
-â”œâ”€â”€ wght: 100-700 (weight)
-â”œâ”€â”€ GRAD: -25 to 200 (emphasis)
-â”œâ”€â”€ opsz: 20, 24, 40, 48 (optical size)
+├── FILL: 0 (outline) to 1 (filled)
+├── wght: 100-700 (weight)
+├── GRAD: -25 to 200 (emphasis)
+├── opsz: 20, 24, 40, 48 (optical size)
 ```
 
 ### Icon Sizes
@@ -567,14 +567,14 @@ Variable font axes:
 
 ```
 Icon States:
-â”œâ”€â”€ Default: Full opacity
-â”œâ”€â”€ Disabled: 38% opacity
-â”œâ”€â”€ Hover/Focus: Container highlight
-â”œâ”€â”€ Selected: Filled variant + tint
+├── Default: Full opacity
+├── Disabled: 38% opacity
+├── Hover/Focus: Container highlight
+├── Selected: Filled variant + tint
 
 Active vs Inactive:
-â”œâ”€â”€ Inactive: Outlined
-â”œâ”€â”€ Active: Filled + indicator
+├── Inactive: Outlined
+├── Active: Filled + indicator
 ```
 
 ---
@@ -585,10 +585,10 @@ Active vs Inactive:
 
 ```
 Every interactive element needs:
-â”œâ”€â”€ contentDescription (what it is)
-â”œâ”€â”€ Correct semantics (button, checkbox, etc.)
-â”œâ”€â”€ State announcements (selected, disabled)
-â””â”€â”€ Grouping where logical
+├── contentDescription (what it is)
+├── Correct semantics (button, checkbox, etc.)
+├── State announcements (selected, disabled)
+└── Grouping where logical
 
 Jetpack Compose:
 Modifier.semantics {
@@ -605,12 +605,12 @@ accessibilityState={{ disabled: false }}
 ### Touch Target Size
 
 ```
-MANDATORY: 48dp Ã— 48dp minimum
+MANDATORY: 48dp × 48dp minimum
 
 Even if visual element is smaller:
-â”œâ”€â”€ Icon: 24dp visual, 48dp touch area
-â”œâ”€â”€ Checkbox: 20dp visual, 48dp touch area
-â””â”€â”€ Add padding to reach 48dp
+├── Icon: 24dp visual, 48dp touch area
+├── Checkbox: 20dp visual, 48dp touch area
+└── Add padding to reach 48dp
 
 Spacing between targets: 8dp minimum
 ```
@@ -619,10 +619,10 @@ Spacing between targets: 8dp minimum
 
 ```
 Android supports font scaling:
-â”œâ”€â”€ 85% (smaller)
-â”œâ”€â”€ 100% (default)
-â”œâ”€â”€ 115%, 130%, 145%...
-â”œâ”€â”€ Up to 200% (largest)
+├── 85% (smaller)
+├── 100% (default)
+├── 115%, 130%, 145%...
+├── Up to 200% (largest)
 
 RULE: Test your UI at 200% font scale.
 Use sp units and avoid fixed heights.
@@ -650,7 +650,7 @@ if (reduceMotion) {
 ### Before Every Android Screen
 
 - [ ] Using Material 3 components
-- [ ] Touch targets â‰¥ 48dp
+- [ ] Touch targets ≥ 48dp
 - [ ] Ripple effect on all touchables
 - [ ] Roboto or Material type scale
 - [ ] Semantic colors (dynamic color support)

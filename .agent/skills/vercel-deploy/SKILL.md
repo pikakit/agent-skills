@@ -8,12 +8,12 @@ description: >-
   push live.
 metadata:
   author: pikakit
-  version: "3.9.107"
+  version: "3.9.108"
 ---
 
-# Vercel Deploy â€” Zero-Auth Deployment
+# Vercel Deploy — Zero-Auth Deployment
 
-> Package â†’ Detect Framework â†’ Upload â†’ Preview URL + Claim URL
+> Package → Detect Framework → Upload → Preview URL + Claim URL
 
 ---
 
@@ -33,8 +33,8 @@ metadata:
 | Situation | Approach |
 |-----------|----------|
 | Deploy app | `bash scripts/deploy.sh [path]` |
-| Preview deployment | Deploy â†’ get preview URL |
-| Production deploy | Deploy â†’ claim via claim URL |
+| Preview deployment | Deploy → get preview URL |
+| Production deploy | Deploy → claim via claim URL |
 | Quick demo | Instant deploy, no auth |
 
 ---
@@ -43,8 +43,8 @@ metadata:
 
 | Owned by This Skill | NOT Owned |
 |---------------------|-----------|
-| Tarball packaging (excl. node_modules/.git) | CI/CD pipeline (â†’ cicd-pipeline) |
-| Framework auto-detection (40+ frameworks) | Release workflow (â†’ /launch) |
+| Tarball packaging (excl. node_modules/.git) | CI/CD pipeline (→ cicd-pipeline) |
+| Framework auto-detection (40+ frameworks) | Release workflow (→ /launch) |
 | Upload to Vercel API | Custom domains / env vars |
 | Preview URL + Claim URL output | Deployment claiming |
 
@@ -55,12 +55,12 @@ metadata:
 ## 4-Stage Pipeline
 
 ```
-INIT â†’ PACKAGING [path provided]
-PACKAGING â†’ DETECTING [tarball created]
-DETECTING â†’ UPLOADING [framework identified]
-UPLOADING â†’ DEPLOYED [upload successful]     // terminal
-UPLOADING â†’ FAILED [upload error]            // terminal
-PACKAGING â†’ FAILED [no project files]        // terminal
+INIT → PACKAGING [path provided]
+PACKAGING → DETECTING [tarball created]
+DETECTING → UPLOADING [framework identified]
+UPLOADING → DEPLOYED [upload successful]     // terminal
+UPLOADING → FAILED [upload error]            // terminal
+PACKAGING → FAILED [no project files]        // terminal
 ```
 
 ---
@@ -97,7 +97,7 @@ Auto-detects from `package.json`:
 - **Other:** Astro, Solid, Angular, Ember, Preact, Docusaurus
 - **Backend:** Express, Hono, Fastify, NestJS, Elysia, h3
 - **Build:** Vite, Parcel
-- **Static HTML:** No package.json â†’ framework: null
+- **Static HTML:** No package.json → framework: null
 
 ---
 
@@ -123,11 +123,11 @@ Auto-detects from `package.json`:
 | Network egress error | Allowlist `*.vercel.com` in network settings |
 | Large project timeout | Exclude node_modules (automatic); increase timeout |
 | Static HTML not at root | Single non-index.html auto-renamed to index.html |
-| Claude.ai egress blocked | Settings â†’ Capabilities â†’ Add *.vercel.com |
+| Claude.ai egress blocked | Settings → Capabilities → Add *.vercel.com |
 
 ---
 
-## ðŸ“‘ Content Map
+## 📑 Content Map
 
 | File | Description | When to Read |
 |------|-------------|--------------|
@@ -136,7 +136,7 @@ Auto-detects from `package.json`:
 
 ---
 
-## ðŸ”— Related
+## 🔗 Related
 
 | Item | Type | Purpose |
 |------|------|---------|
@@ -146,4 +146,4 @@ Auto-detects from `package.json`:
 
 ---
 
-âš¡ PikaKit v3.9.107
+⚡ PikaKit v3.9.108

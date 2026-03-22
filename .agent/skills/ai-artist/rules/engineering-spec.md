@@ -1,13 +1,13 @@
 ---
 name: ai-artist-engineering-spec
-description: Full 21-section engineering spec â€” contracts, deterministic design, compliance matrix, production checklist
+description: Full 21-section engineering spec — contracts, deterministic design, compliance matrix, production checklist
 title: "AI Artist --” Engineering Specification"
 impact: MEDIUM
 impactDescription: "Moderate improvement to quality or maintainability"
 tags: engineering, spec
 ---
 
-# AI Artist â€” Engineering Specification
+# AI Artist — Engineering Specification
 
 > Production-grade specification for AI prompt engineering across text and image generation models at FAANG scale.
 
@@ -27,7 +27,7 @@ AI prompt engineering at scale faces four quantified problems:
 
 | Problem | Measurement | Impact |
 |---------|-------------|--------|
-| Prompt inconsistency | Same intent produces divergent outputs across sessions | 40â€“60% iteration waste on prompt refinement |
+| Prompt inconsistency | Same intent produces divergent outputs across sessions | 40–60% iteration waste on prompt refinement |
 | Domain knowledge fragmentation | Prompt patterns scattered across teams/docs | Duplicated effort, no institutional learning |
 | Model-specific syntax errors | Wrong parameters for target model | Failed generations, wasted API credits |
 | No quality feedback loop | No structured way to track prompt effectiveness | Cannot measure improvement over time |
@@ -42,8 +42,8 @@ AI Artist eliminates these by providing versioned, domain-specific prompt templa
 |----|------|-----------------------|
 | G1 | Deterministic prompt construction | Same inputs + same template = identical prompt output |
 | G2 | Model-portable patterns | Core prompt structure works across Claude, GPT, Gemini without modification |
-| G3 | Domain-specific specialization | Separate reference files for code, marketing, image domains (â‰¤ 4 reference files per domain) |
-| G4 | Minimal iteration cycles | Target â‰¤ 3 refinement iterations to reach desired output quality |
+| G3 | Domain-specific specialization | Separate reference files for code, marketing, image domains (≤ 4 reference files per domain) |
+| G4 | Minimal iteration cycles | Target ≤ 3 refinement iterations to reach desired output quality |
 | G5 | Measurable prompt quality | Every prompt includes explicit success criteria the output can be validated against |
 
 ---
@@ -111,7 +111,7 @@ Data: {
   model: string             # Target model the prompt is formatted for
   domain: string            # Domain used
   template: string          # Template applied
-  token_estimate: number    # Estimated token count (approximate, Â±10%)
+  token_estimate: number    # Estimated token count (approximate, ±10%)
   success_criteria: Array<string>  # Measurable criteria extracted from constraints
   metadata: {
     version: string         # Prompt template version
@@ -125,7 +125,7 @@ Error: ErrorSchema | null
 
 **Contract Version:** 2.0.0
 **Backward Compatibility:** breaking (first hardened version)
-**Breaking Changes:** None â€” new spec for first hardening
+**Breaking Changes:** None — new spec for first hardening
 
 #### Error Schema
 
@@ -140,7 +140,7 @@ Recoverable: boolean
 
 - Same `Domain` + `Template` + `Parameters` = identical `prompt` output, character-for-character.
 - Template selection is deterministic: no randomization, no A/B selection.
-- Model parameter injection follows fixed ordering rules (subject â†’ style â†’ composition â†’ quality â†’ model_params).
+- Model parameter injection follows fixed ordering rules (subject → style → composition → quality → model_params).
 - Token estimates use a fixed heuristic (4 chars per token for English text); no external API calls.
 
 #### What Agents May Assume
@@ -153,7 +153,7 @@ Recoverable: boolean
 #### What Agents Must NOT Assume
 
 - The generated prompt will produce the desired output from the target model (model behavior is non-deterministic).
-- Token estimates are exact; they are heuristic-based with Â±10% variance.
+- Token estimates are exact; they are heuristic-based with ±10% variance.
 - Prompt templates are compatible across model versions (model syntax may change across versions).
 - The skill validates prompt content for safety, bias, or policy compliance.
 
@@ -240,7 +240,7 @@ Failures are isolated to the current invocation. No state carries between invoca
 | No randomization | Template selection, parameter ordering, and output formatting are fixed |
 | No external calls | Prompt construction uses only local template files and input parameters |
 | No ambient state | Each invocation operates solely on explicit inputs |
-| Fixed parameter ordering | Image prompts: subject â†’ style â†’ composition â†’ quality â†’ model_params |
+| Fixed parameter ordering | Image prompts: subject → style → composition → quality → model_params |
 | Reproducible output | Input parameters are echoed in output metadata for full reproducibility |
 
 ---
@@ -250,8 +250,8 @@ Failures are isolated to the current invocation. No state carries between invoca
 ### State Machine
 
 ```
-States: IDLE (single state â€” skill is stateless)
-Transitions: None â€” each invocation is independent
+States: IDLE (single state — skill is stateless)
+Transitions: None — each invocation is independent
 ```
 
 AI Artist maintains zero persistent state. Every invocation starts from a clean state and produces output solely from inputs + template files. This makes the skill fully idempotent: invoking it N times with identical inputs produces N identical outputs.
@@ -409,7 +409,7 @@ AI Artist maintains zero persistent state. Every invocation starts from a clean 
 
 | Scope | Model | Behavior |
 |-------|-------|----------|
-| Within invocation | Sequential | Parse â†’ Compose â†’ Emit, no internal parallelism |
+| Within invocation | Sequential | Parse → Compose → Emit, no internal parallelism |
 | Across invocations | Fully parallel | No shared state, no locks, no coordination needed |
 | Template access | Read-only shared | Multiple concurrent reads are safe; no write contention |
 
@@ -437,8 +437,8 @@ AI Artist maintains zero persistent state. Every invocation starts from a clean 
 | Full prompt construction | < 5 ms | < 20 ms | 50 ms |
 | Template file read | < 1 ms | < 5 ms | 1,000 ms |
 | Token estimation | < 1 ms | < 1 ms | 5 ms |
-| Output prompt size (text) | â‰¤ 500 chars | â‰¤ 2,000 chars | 10,000 chars |
-| Output prompt size (image) | â‰¤ 200 chars | â‰¤ 500 chars | 2,000 chars |
+| Output prompt size (text) | ≤ 500 chars | ≤ 2,000 chars | 10,000 chars |
+| Output prompt size (image) | ≤ 200 chars | ≤ 500 chars | 2,000 chars |
 
 ---
 
@@ -449,7 +449,7 @@ AI Artist maintains zero persistent state. Every invocation starts from a clean 
 | Model syntax changes | Medium | Prompts use outdated parameters | Version model syntax in `rules/model-syntax.md`; update on model releases |
 | Prompt injection via parameters | Medium | Malicious content in generated prompts | Caller responsibility; AI Artist does literal interpolation, not evaluation |
 | Template file corruption | Low | Construction failures | `ERR_TEMPLATE_NOT_FOUND`; re-install skill from source |
-| Over-reliance on token estimates | High | Prompts exceed model context window | Estimates are Â±10%; callers must validate against actual model limits |
+| Over-reliance on token estimates | High | Prompts exceed model context window | Estimates are ±10%; callers must validate against actual model limits |
 | Domain pattern staleness | Medium | Patterns become less effective over time | Periodic review cycle; version bumps signal updates |
 
 ---
@@ -458,17 +458,17 @@ AI Artist maintains zero persistent state. Every invocation starts from a clean 
 
 | Requirement | Status | Evidence |
 |-------------|--------|----------|
-| YAML frontmatter complete | âœ… | name, description, metadata with category, version, triggers, coordinates_with, success_metrics |
-| SKILL.md < 200 lines | âœ… | Entry point SKILL.md under 200 lines; details in rules/ |
-| Prerequisites documented | âœ… | No external dependencies required |
-| When to Use section | âœ… | Domain-based decision matrix |
-| Quick Reference with patterns | âœ… | LLM and image prompt patterns with examples |
-| Core content matches skill type | âœ… | Expert type: domain knowledge tables, prompt patterns |
-| Troubleshooting section | âœ… | Problem/solution table |
-| Related section | âœ… | Cross-links to studio, media-processing |
-| Content Map for multi-file | âœ… | Links to 4 reference files + engineering-spec.md |
-| Contract versioning | âœ… | contract_version, backward_compatibility, breaking_changes |
-| Compliance matrix structured | âœ… | This table with âœ…/âŒ + evidence |
+| YAML frontmatter complete | ✅ | name, description, metadata with category, version, triggers, coordinates_with, success_metrics |
+| SKILL.md < 200 lines | ✅ | Entry point SKILL.md under 200 lines; details in rules/ |
+| Prerequisites documented | ✅ | No external dependencies required |
+| When to Use section | ✅ | Domain-based decision matrix |
+| Quick Reference with patterns | ✅ | LLM and image prompt patterns with examples |
+| Core content matches skill type | ✅ | Expert type: domain knowledge tables, prompt patterns |
+| Troubleshooting section | ✅ | Problem/solution table |
+| Related section | ✅ | Cross-links to studio, media-processing |
+| Content Map for multi-file | ✅ | Links to 4 reference files + engineering-spec.md |
+| Contract versioning | ✅ | contract_version, backward_compatibility, breaking_changes |
+| Compliance matrix structured | ✅ | This table with ✅/❌ + evidence |
 
 ---
 
@@ -476,35 +476,35 @@ AI Artist maintains zero persistent state. Every invocation starts from a clean 
 
 | Category | Check | Status |
 |----------|-------|--------|
-| **Functionality** | All 4 domains (text, image, code, marketing) specified | âœ… |
-| **Functionality** | All 4 templates (role-task, subject-style, chain-of-thought, few-shot) specified | âœ… |
-| **Functionality** | 7 model targets specified with fallback behavior | âœ… |
-| **Contracts** | Input/output/error schemas defined | âœ… |
-| **Contracts** | Agent assumptions and non-assumptions documented | âœ… |
-| **Contracts** | Workflow invocation pattern specified | âœ… |
-| **Failure** | Error taxonomy with 7 categorized error codes | âœ… |
-| **Failure** | No silent failures; every error returns structured response | âœ… |
-| **Failure** | Retry policy: zero internal retries, caller-owned | âœ… |
-| **Determinism** | Same inputs = same output guaranteed | âœ… |
-| **Determinism** | No randomization, no external calls, no ambient state | âœ… |
-| **Security** | No credential handling; no content filtering (explicit boundary) | âœ… |
-| **Security** | Input sanitization: literal interpolation, no eval | âœ… |
-| **Observability** | Structured log schema with 4 log points | âœ… |
-| **Observability** | 6 metrics defined with types and units | âœ… |
-| **Performance** | P50/P99 targets for all operations | âœ… |
-| **Scalability** | Stateless; unlimited parallel invocations | âœ… |
-| **Concurrency** | No shared state; read-only template access | âœ… |
-| **Resources** | All resources scoped to invocation lifetime | âœ… |
-| **Idempotency** | Fully idempotent â€” all operations are pure functions | âœ… |
-| **Compliance** | All skill-design-guide.md sections present | âœ… |
+| **Functionality** | All 4 domains (text, image, code, marketing) specified | ✅ |
+| **Functionality** | All 4 templates (role-task, subject-style, chain-of-thought, few-shot) specified | ✅ |
+| **Functionality** | 7 model targets specified with fallback behavior | ✅ |
+| **Contracts** | Input/output/error schemas defined | ✅ |
+| **Contracts** | Agent assumptions and non-assumptions documented | ✅ |
+| **Contracts** | Workflow invocation pattern specified | ✅ |
+| **Failure** | Error taxonomy with 7 categorized error codes | ✅ |
+| **Failure** | No silent failures; every error returns structured response | ✅ |
+| **Failure** | Retry policy: zero internal retries, caller-owned | ✅ |
+| **Determinism** | Same inputs = same output guaranteed | ✅ |
+| **Determinism** | No randomization, no external calls, no ambient state | ✅ |
+| **Security** | No credential handling; no content filtering (explicit boundary) | ✅ |
+| **Security** | Input sanitization: literal interpolation, no eval | ✅ |
+| **Observability** | Structured log schema with 4 log points | ✅ |
+| **Observability** | 6 metrics defined with types and units | ✅ |
+| **Performance** | P50/P99 targets for all operations | ✅ |
+| **Scalability** | Stateless; unlimited parallel invocations | ✅ |
+| **Concurrency** | No shared state; read-only template access | ✅ |
+| **Resources** | All resources scoped to invocation lifetime | ✅ |
+| **Idempotency** | Fully idempotent — all operations are pure functions | ✅ |
+| **Compliance** | All skill-design-guide.md sections present | ✅ |
 
 ---
 
-âš¡ PikaKit v3.9.105
+⚡ PikaKit v3.9.105
 
 ---
 
-## ðŸ”— Related
+## 🔗 Related
 
 | File | When to Read |
 |------|-------------|

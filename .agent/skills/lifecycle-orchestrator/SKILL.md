@@ -6,10 +6,10 @@ description: >-
   multi-phase requests, /autopilot, /build workflows, rollback.
 metadata:
   author: pikakit
-  version: "3.9.107"
+  version: "3.9.108"
 ---
 
-# Lifecycle Orchestrator â€” Pipeline + Checkpoint/Restore
+# Lifecycle Orchestrator — Pipeline + Checkpoint/Restore
 
 > 7 phases. Checkpoint before risk. 100% restore. No phase skipping.
 
@@ -36,10 +36,10 @@ metadata:
 
 | Owned by This Skill | NOT Owned |
 |---------------------|-----------|
-| 7-phase pipeline management | Task planning (â†’ project-planner) |
-| Checkpoint save/restore/rollback | Code execution (â†’ domain agents) |
-| Phase enforcement (no skip verify) | Error detection (â†’ problem-checker) |
-| Context monitoring (70%/80%) | Agent routing (â†’ smart-router) |
+| 7-phase pipeline management | Task planning (→ project-planner) |
+| Checkpoint save/restore/rollback | Code execution (→ domain agents) |
+| Phase enforcement (no skip verify) | Error detection (→ problem-checker) |
+| Context monitoring (70%/80%) | Agent routing (→ smart-router) |
 
 **Orchestrator skill:** Manages pipeline state, invokes agents, creates checkpoints. Non-idempotent.
 
@@ -53,7 +53,7 @@ Safety > Recoverability > Correctness > Cleanliness > Convenience
 
 ---
 
-## Pipeline Phases (7 â€” Fixed Order)
+## Pipeline Phases (7 — Fixed Order)
 
 | Phase | Owner | Exit Criteria |
 |-------|-------|--------------|
@@ -72,17 +72,17 @@ Safety > Recoverability > Correctness > Cleanliness > Convenience
 ## State Transitions
 
 ```
-IDLE â†’ INPUT                [start invoked]
-INPUT â†’ PLANNING            [advance, task defined]
-PLANNING â†’ EXECUTING        [advance, PLAN.md approved]
-EXECUTING â†’ VERIFYING       [advance, code complete]
-VERIFYING â†’ EXECUTING       [errors found, rollback]
-VERIFYING â†’ DEPLOYING       [advance, 0 errors]
-DEPLOYING â†’ LEARNING        [advance, deploy complete]
-LEARNING â†’ COMPLETED        [advance, lessons captured]  // terminal
-VERIFYING â†’ ROLLED_BACK     [rollback invoked]  // terminal
-EXECUTING â†’ ROLLED_BACK     [rollback invoked]  // terminal
-ANY â†’ FAILED                [unrecoverable error]  // terminal
+IDLE → INPUT                [start invoked]
+INPUT → PLANNING            [advance, task defined]
+PLANNING → EXECUTING        [advance, PLAN.md approved]
+EXECUTING → VERIFYING       [advance, code complete]
+VERIFYING → EXECUTING       [errors found, rollback]
+VERIFYING → DEPLOYING       [advance, 0 errors]
+DEPLOYING → LEARNING        [advance, deploy complete]
+LEARNING → COMPLETED        [advance, lessons captured]  // terminal
+VERIFYING → ROLLED_BACK     [rollback invoked]  // terminal
+EXECUTING → ROLLED_BACK     [rollback invoked]  // terminal
+ANY → FAILED                [unrecoverable error]  // terminal
 ```
 
 ---
@@ -110,8 +110,8 @@ node state_manager.js list
 | Usage | Threshold | Action |
 |-------|-----------|--------|
 | < 70% | Normal | Continue |
-| 70-80% | âš ï¸ Warning | Compress context |
-| > 80% | ðŸ”´ Critical | Isolate sub-tasks |
+| 70-80% | ⚠️ Warning | Compress context |
+| > 80% | 🔴 Critical | Isolate sub-tasks |
 
 ---
 
@@ -133,7 +133,7 @@ node state_manager.js list
 
 ## Anti-Patterns
 
-| âŒ Don't | âœ… Do |
+| ❌ Don't | ✅ Do |
 |---------|-------|
 | Skip verification phase | Complete verify with 0 errors |
 | Deploy without checkpoint | Save state before every deploy |
@@ -143,7 +143,7 @@ node state_manager.js list
 
 ---
 
-## ðŸ“‘ Content Map
+## 📑 Content Map
 
 | File | Description | When to Read |
 |------|-------------|--------------|
@@ -151,7 +151,7 @@ node state_manager.js list
 
 ---
 
-## ðŸ”— Related
+## 🔗 Related
 
 | Item | Type | Purpose |
 |------|------|---------|
@@ -162,4 +162,4 @@ node state_manager.js list
 
 ---
 
-âš¡ PikaKit v3.9.107
+⚡ PikaKit v3.9.108

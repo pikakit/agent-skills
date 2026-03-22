@@ -6,10 +6,10 @@ description: >-
   page, email, marketing.
 metadata:
   author: pikakit
-  version: "3.9.107"
+  version: "3.9.108"
 ---
 
-# Copywriting â€” Conversion Formulas
+# Copywriting — Conversion Formulas
 
 > 6 proven formulas. Benefit-first. Specific claims. One CTA per piece.
 
@@ -17,7 +17,7 @@ metadata:
 
 ## Prerequisites
 
-**Required:** None â€” Copywriting is a knowledge-based skill with no external dependencies.
+**Required:** None — Copywriting is a knowledge-based skill with no external dependencies.
 
 ---
 
@@ -25,12 +25,12 @@ metadata:
 
 | Content Type | Formula | Steps |
 |-------------|---------|-------|
-| Landing pages, ads | **AIDA** | Attention â†’ Interest â†’ Desire â†’ Action |
-| Email, sales pages | **PAS** | Problem â†’ Agitate â†’ Solution |
-| Testimonials, case studies | **BAB** | Before â†’ After â†’ Bridge |
-| Long-form sales | **4Ps** | Promise â†’ Picture â†’ Proof â†’ Push |
+| Landing pages, ads | **AIDA** | Attention → Interest → Desire → Action |
+| Email, sales pages | **PAS** | Problem → Agitate → Solution |
+| Testimonials, case studies | **BAB** | Before → After → Bridge |
+| Long-form sales | **4Ps** | Promise → Picture → Proof → Push |
 | Headlines | **4Us** | Urgent + Unique + Useful + Ultra-specific |
-| Product descriptions | **FAB** | Feature â†’ Advantage â†’ Benefit |
+| Product descriptions | **FAB** | Feature → Advantage → Benefit |
 
 **Selection is deterministic:** same content type = same formula, every time.
 
@@ -40,10 +40,10 @@ metadata:
 
 | Owned by This Skill | NOT Owned |
 |---------------------|-----------|
-| Formula selection per content type | SEO keyword research (â†’ seo-optimizer) |
-| Headline validation (4Us) | Visual design (â†’ studio) |
+| Formula selection per content type | SEO keyword research (→ seo-optimizer) |
+| Headline validation (4Us) | Visual design (→ studio) |
 | Copy validation (5 rules) | A/B test infrastructure |
-| Anti-pattern detection | Image generation for ads (â†’ ai-artist) |
+| Anti-pattern detection | Image generation for ads (→ ai-artist) |
 
 **Pure decision skill:** Produces formula frameworks and validation. Zero side effects.
 
@@ -96,8 +96,8 @@ metadata:
 | **U**ltra-specific | What exactly? | Binary |
 
 ```
-âŒ "Our Product is Great"           â†’ 0/4 Us
-âœ… "Cut Build Time by 73% in 48 Hours" â†’ 4/4 Us
+❌ "Our Product is Great"           → 0/4 Us
+✅ "Cut Build Time by 73% in 48 Hours" → 4/4 Us
 ```
 
 ---
@@ -130,7 +130,7 @@ metadata:
 
 ## Anti-Patterns
 
-| âŒ Don't | âœ… Do |
+| ❌ Don't | ✅ Do |
 |---------|-------|
 | Features first | Benefits first |
 | Multiple CTAs | One clear action |
@@ -157,4 +157,4 @@ metadata:
 
 ---
 
-âš¡ PikaKit v3.9.107
+⚡ PikaKit v3.9.108

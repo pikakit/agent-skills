@@ -6,10 +6,10 @@ description: >-
   optimization. Triggers on: React Native, Flutter, iOS, Android, mobile app, cross-platform.
 metadata:
   author: pikakit
-  version: "3.9.107"
+  version: "3.9.108"
 ---
 
-# Mobile Developer â€” Cross-Platform & Native Expert
+# Mobile Developer — Cross-Platform & Native Expert
 
 > 4 frameworks. 4 architectures. 4 test levels. 6 security items. 60fps target.
 
@@ -31,10 +31,10 @@ metadata:
 
 | Owned by This Skill | NOT Owned |
 |---------------------|-----------|
-| Framework selection (4 options) | Mobile design (â†’ mobile-design) |
-| Architecture routing (4 patterns) | Mobile orchestration (â†’ mobile-first) |
-| Testing strategy (4 levels) | Security code review (â†’ mobile-security-coder) |
-| Security checklist (6 items) | Performance profiling (â†’ perf-optimizer) |
+| Framework selection (4 options) | Mobile design (→ mobile-design) |
+| Architecture routing (4 patterns) | Mobile orchestration (→ mobile-first) |
+| Testing strategy (4 levels) | Security code review (→ mobile-security-coder) |
+| Security checklist (6 items) | Performance profiling (→ perf-optimizer) |
 
 **Expert decision skill:** Produces recommendations and checklists. Does not write code.
 
@@ -97,7 +97,7 @@ metadata:
 
 ---
 
-## Security Checklist (OWASP MASVS â€” 6 Items)
+## Security Checklist (OWASP MASVS — 6 Items)
 
 - [ ] OWASP MASVS compliance
 - [ ] Certificate pinning
@@ -123,7 +123,7 @@ metadata:
 
 ## Anti-Patterns
 
-| âŒ Don't | âœ… Do |
+| ❌ Don't | ✅ Do |
 |---------|-------|
 | Pick framework without criteria | Use framework selection tree |
 | Skip architecture for "simple" apps | At minimum use Repository pattern |
@@ -202,7 +202,7 @@ metadata:
 
 ### 8. Engineering Spec (LOW)
 
-- `engineering-spec` - Mobile First â€” Engineering Specification
+- `engineering-spec` - Mobile First — Engineering Specification
 
 ### 9. Push (LOW)
 
@@ -236,7 +236,7 @@ Each rule file contains:
 For the complete guide with all rules expanded: `AGENTS.md`
 
 
-## ðŸ“‘ Content Map
+## 📑 Content Map
 
 | File | Description | When to Read |
 |------|-------------|--------------|
@@ -244,7 +244,7 @@ For the complete guide with all rules expanded: `AGENTS.md`
 
 ---
 
-## ðŸ”— Related
+## 🔗 Related
 
 | Item | Type | Purpose |
 |------|------|---------|
@@ -254,4 +254,4 @@ For the complete guide with all rules expanded: `AGENTS.md`
 
 ---
 
-âš¡ PikaKit v3.9.107
+⚡ PikaKit v3.9.108

@@ -7,10 +7,10 @@ description: >-
   Query, MUI, frontend.
 metadata:
   author: pikakit
-  version: "3.9.107"
+  version: "3.9.108"
 ---
 
-# React Architect â€” Component & State Architecture
+# React Architect — Component & State Architecture
 
 > 4 component types. 4 state levels. Composition over inheritance. Profile before memoizing.
 
@@ -21,9 +21,9 @@ metadata:
 | Situation | Approach |
 |-----------|----------|
 | Component design | Check component type classification |
-| State management | Use complexity â†’ solution routing |
+| State management | Use complexity → solution routing |
 | Hook reuse | Check extraction criteria |
-| Performance issues | Use signal â†’ action mapping |
+| Performance issues | Use signal → action mapping |
 
 ---
 
@@ -31,16 +31,16 @@ metadata:
 
 | Owned by This Skill | NOT Owned |
 |---------------------|-----------|
-| Component classification (4 types) | Next.js patterns (â†’ nextjs-pro) |
-| State management routing (4 levels) | TypeScript patterns (â†’ typescript-expert) |
-| Hook extraction criteria | UI design (â†’ design-system) |
-| Performance signalâ†’action | Code implementation |
+| Component classification (4 types) | Next.js patterns (→ nextjs-pro) |
+| State management routing (4 levels) | TypeScript patterns (→ typescript-expert) |
+| Hook extraction criteria | UI design (→ design-system) |
+| Performance signal→action | Code implementation |
 
 **Expert decision skill:** Produces architecture decisions. Does not write code.
 
 ---
 
-## Component Types (4 â€” Deterministic)
+## Component Types (4 — Deterministic)
 
 | Type | Use For | State Model |
 |------|---------|-------------|
@@ -50,7 +50,7 @@ metadata:
 | **Container** | Logic/orchestration | Heavy state |
 
 **Design Rules:**
-- One responsibility per component (â‰¤ 150 lines)
+- One responsibility per component (≤ 150 lines)
 - Props down, events up
 - Composition over inheritance
 
@@ -96,7 +96,7 @@ metadata:
 
 ---
 
-## Performance Signals (4 â€” Fixed)
+## Performance Signals (4 — Fixed)
 
 | Signal | Action |
 |--------|--------|
@@ -121,13 +121,13 @@ metadata:
 
 ## Anti-Patterns
 
-| âŒ Don't | âœ… Do |
+| ❌ Don't | ✅ Do |
 |---------|-------|
 | Use global state for local concerns | Start with useState, escalate as needed |
 | Prop drill > 3 levels | Use Context or state library |
 | Memoize everything | Profile first, memoize measured bottlenecks |
 | Mix data fetching with UI | Separate server/container from presentational |
-| Create God components (> 300 lines) | Split into focused components (â‰¤ 150 lines) |
+| Create God components (> 300 lines) | Split into focused components (≤ 150 lines) |
 
 ---
 
@@ -190,7 +190,7 @@ Each rule file contains:
 ## Full Compiled Document
 
 For the complete guide with all rules expanded: AGENTS.md\n
-## ðŸ”— Related
+## 🔗 Related
 
 | Item | Type | Purpose |
 |------|------|---------|
@@ -200,4 +200,4 @@ For the complete guide with all rules expanded: AGENTS.md\n
 
 ---
 
-âš¡ PikaKit v3.9.107
+⚡ PikaKit v3.9.108

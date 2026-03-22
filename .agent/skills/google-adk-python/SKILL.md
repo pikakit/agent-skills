@@ -6,12 +6,12 @@ description: >-
   multi-agent, agent orchestration.
 metadata:
   author: pikakit
-  version: "3.9.107"
+  version: "3.9.108"
 ---
 
-# Google ADK Python â€” AI Agent Development
+# Google ADK Python — AI Agent Development
 
-> Code-first. â‰¤ 5 tools per agent. Typed functions. Deterministic type selection.
+> Code-first. ≤ 5 tools per agent. Typed functions. Deterministic type selection.
 
 ---
 
@@ -37,9 +37,9 @@ metadata:
 
 | Owned by This Skill | NOT Owned |
 |---------------------|-----------|
-| Agent type selection (4 types) | Python project setup (â†’ python-pro) |
-| Model selection (3 tiers) | API architecture (â†’ api-architect) |
-| Tool creation patterns | Prompt engineering (â†’ ai-artist) |
+| Agent type selection (4 types) | Python project setup (→ python-pro) |
+| Model selection (3 tiers) | API architecture (→ api-architect) |
+| Tool creation patterns | Prompt engineering (→ ai-artist) |
 | Multi-agent composition | Cloud project config |
 | Deployment guidance | Model hosting |
 
@@ -106,7 +106,7 @@ def calculate_roi(revenue: float, cost: float) -> float:
 coordinator = LlmAgent(
     name="Coordinator",
     instruction="Delegate to specialists.",
-    sub_agents=[researcher, writer]  # â‰¤ 5
+    sub_agents=[researcher, writer]  # ≤ 5
 )
 ```
 
@@ -129,7 +129,7 @@ coordinator = LlmAgent(
 
 ## Anti-Patterns
 
-| âŒ Don't | âœ… Do |
+| ❌ Don't | ✅ Do |
 |---------|-------|
 | Use pro-high for simple tasks | Match complexity to model tier |
 | Put > 5 tools on one agent | Split into coordinator + specialists |
@@ -156,7 +156,7 @@ coordinator = LlmAgent(
 
 ### 2. Engineering Spec (LOW)
 
-- `engineering-spec` - Google ADK Python â€” Engineering Specification
+- `engineering-spec` - Google ADK Python — Engineering Specification
 
 ### 3. Multi (LOW)
 
@@ -182,7 +182,7 @@ Each rule file contains:
 For the complete guide with all rules expanded: `AGENTS.md`
 
 
-## ðŸ“‘ Content Map
+## 📑 Content Map
 
 | File | Description | When to Read |
 |------|-------------|--------------|
@@ -195,7 +195,7 @@ For the complete guide with all rules expanded: `AGENTS.md`
 
 ---
 
-## ðŸ”— Related
+## 🔗 Related
 
 | Item | Type | Purpose |
 |------|------|---------|
@@ -205,4 +205,4 @@ For the complete guide with all rules expanded: `AGENTS.md`
 
 ---
 
-âš¡ PikaKit v3.9.107
+⚡ PikaKit v3.9.108

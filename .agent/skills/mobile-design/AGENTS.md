@@ -10,9 +10,9 @@ March 2026
 
 ---
 
-# Mobile Design â€” Mobile-First Design Doctrine
+# Mobile Design — Mobile-First Design Doctrine
 
-> Touch-first. Platform-respectful. MFRI scored. 44Ã—44pt / 48Ã—48dp minimum.
+> Touch-first. Platform-respectful. MFRI scored. 44×44pt / 48×48dp minimum.
 
 **Core Law:** Mobile is NOT a small desktop.
 
@@ -33,10 +33,10 @@ March 2026
 
 | Owned by This Skill | NOT Owned |
 |---------------------|-----------|
-| MFRI scoring (5 dimensions) | Mobile orchestration (â†’ mobile-first) |
-| Platform guidelines (iOS/Android) | Mobile implementation (â†’ mobile-developer) |
-| Touch target standards | Design system components (â†’ design-system) |
-| Typography routing (SF Pro/Roboto) | API design (â†’ api-architect) |
+| MFRI scoring (5 dimensions) | Mobile orchestration (→ mobile-first) |
+| Platform guidelines (iOS/Android) | Mobile implementation (→ mobile-developer) |
+| Touch target standards | Design system components (→ design-system) |
+| Typography routing (SF Pro/Roboto) | API design (→ api-architect) |
 
 **Expert decision skill:** Produces design decisions. Does not write code or create components.
 
@@ -66,10 +66,10 @@ March 2026
 
 | Score | Action |
 |-------|--------|
-| 6-10 | âœ… Safe â€” proceed |
-| 3-5 | âš ï¸ Add validation |
-| 0-2 | ðŸ”´ Simplify first |
-| < 0 | âŒ Redesign required |
+| 6-10 | ✅ Safe — proceed |
+| 3-5 | ⚠️ Add validation |
+| 0-2 | 🔴 Simplify first |
+| < 0 | ❌ Redesign required |
 
 ---
 
@@ -88,8 +88,8 @@ March 2026
 
 | Standard | Minimum |
 |----------|---------|
-| **iOS** | 44Ã—44 pt |
-| **Android** | 48Ã—48 dp |
+| **iOS** | 44×44 pt |
+| **Android** | 48×48 dp |
 | **Spacing** | 8dp between targets |
 
 ---
@@ -97,7 +97,7 @@ March 2026
 ## Core Philosophy (Fixed Order)
 
 ```
-Touch-first â†’ Battery-conscious â†’ Platform-respectful â†’ Offline-capable
+Touch-first → Battery-conscious → Platform-respectful → Offline-capable
 ```
 
 ---
@@ -117,17 +117,17 @@ Touch-first â†’ Battery-conscious â†’ Platform-respectful â†’ Off
 
 ## Anti-Patterns
 
-| âŒ Don't | âœ… Do |
+| ❌ Don't | ✅ Do |
 |---------|-------|
 | Apply desktop patterns | Touch-first design |
 | Use hover states | Tap and press states |
-| Small tap targets | 44Ã—44pt (iOS) / 48Ã—48dp (Android) |
+| Small tap targets | 44×44pt (iOS) / 48×48dp (Android) |
 | Assume network | Design for offline |
 | Mix platform conventions | Respect iOS HIG / Material Design |
 
 ---
 
-## ðŸ“‘ Content Map
+## 📑 Content Map
 
 | File | Description | When to Read |
 |------|-------------|--------------|
@@ -150,7 +150,7 @@ Touch-first â†’ Battery-conscious â†’ Platform-respectful â†’ Off
 
 ---
 
-## ðŸ”— Related
+## 🔗 Related
 
 | Item | Type | Purpose |
 |------|------|---------|
@@ -160,7 +160,7 @@ Touch-first â†’ Battery-conscious â†’ Platform-respectful â†’ Off
 
 ---
 
-âš¡ PikaKit v3.9.105
+⚡ PikaKit v3.9.105
 
 ---
 
@@ -173,7 +173,7 @@ Touch-first â†’ Battery-conscious â†’ Platform-respectful â†’ Off
 
 ---
 name: mobile-decision-trees
-description: Mobile design decision frameworks â€” platform selection, navigation, state management, offline strategy, testing
+description: Mobile design decision frameworks — platform selection, navigation, state management, offline strategy, testing
 ---
 
 # Mobile Decision Trees
@@ -189,78 +189,78 @@ description: Mobile design decision frameworks â€” platform selection, navi
 
 ```
 WHAT ARE YOU BUILDING?
-        â”‚
-        â”œâ”€â”€ Need OTA updates without app store review?
-        â”‚   â”‚
-        â”‚   â”œâ”€â”€ Yes â†’ React Native + Expo
-        â”‚   â”‚         â”œâ”€â”€ Expo Go for development
-        â”‚   â”‚         â”œâ”€â”€ EAS Update for production OTA
-        â”‚   â”‚         â””â”€â”€ Best for: rapid iteration, web teams
-        â”‚   â”‚
-        â”‚   â””â”€â”€ No â†’ Continue â–¼
-        â”‚
-        â”œâ”€â”€ Need pixel-perfect custom UI across platforms?
-        â”‚   â”‚
-        â”‚   â”œâ”€â”€ Yes â†’ Flutter
-        â”‚   â”‚         â”œâ”€â”€ Custom rendering engine
-        â”‚   â”‚         â”œâ”€â”€ Single UI for iOS + Android
-        â”‚   â”‚         â””â”€â”€ Best for: branded, visual apps
-        â”‚   â”‚
-        â”‚   â””â”€â”€ No â†’ Continue â–¼
-        â”‚
-        â”œâ”€â”€ Heavy native features (ARKit, HealthKit, specific sensors)?
-        â”‚   â”‚
-        â”‚   â”œâ”€â”€ iOS only â†’ SwiftUI / UIKit
-        â”‚   â”‚              â””â”€â”€ Maximum native capability
-        â”‚   â”‚
-        â”‚   â”œâ”€â”€ Android only â†’ Kotlin + Jetpack Compose
-        â”‚   â”‚                  â””â”€â”€ Maximum native capability
-        â”‚   â”‚
-        â”‚   â””â”€â”€ Both â†’ Consider native with shared logic
-        â”‚              â””â”€â”€ Kotlin Multiplatform for shared
-        â”‚
-        â”œâ”€â”€ Existing web team + TypeScript codebase?
-        â”‚   â”‚
-        â”‚   â””â”€â”€ Yes â†’ React Native
-        â”‚             â”œâ”€â”€ Familiar paradigm for React devs
-        â”‚             â”œâ”€â”€ Share code with web (limited)
-        â”‚             â””â”€â”€ Large ecosystem
-        â”‚
-        â””â”€â”€ Enterprise with existing Flutter team?
-            â”‚
-            â””â”€â”€ Yes â†’ Flutter
-                      â””â”€â”€ Leverage existing expertise
+        │
+        ├── Need OTA updates without app store review?
+        │   │
+        │   ├── Yes → React Native + Expo
+        │   │         ├── Expo Go for development
+        │   │         ├── EAS Update for production OTA
+        │   │         └── Best for: rapid iteration, web teams
+        │   │
+        │   └── No → Continue ▼
+        │
+        ├── Need pixel-perfect custom UI across platforms?
+        │   │
+        │   ├── Yes → Flutter
+        │   │         ├── Custom rendering engine
+        │   │         ├── Single UI for iOS + Android
+        │   │         └── Best for: branded, visual apps
+        │   │
+        │   └── No → Continue ▼
+        │
+        ├── Heavy native features (ARKit, HealthKit, specific sensors)?
+        │   │
+        │   ├── iOS only → SwiftUI / UIKit
+        │   │              └── Maximum native capability
+        │   │
+        │   ├── Android only → Kotlin + Jetpack Compose
+        │   │                  └── Maximum native capability
+        │   │
+        │   └── Both → Consider native with shared logic
+        │              └── Kotlin Multiplatform for shared
+        │
+        ├── Existing web team + TypeScript codebase?
+        │   │
+        │   └── Yes → React Native
+        │             ├── Familiar paradigm for React devs
+        │             ├── Share code with web (limited)
+        │             └── Large ecosystem
+        │
+        └── Enterprise with existing Flutter team?
+            │
+            └── Yes → Flutter
+                      └── Leverage existing expertise
 ```
 
 ### Framework Comparison
 
 | Factor | React Native | Flutter | Native (Swift/Kotlin) |
 |--------|-------------|---------|----------------------|
-| **OTA Updates** | âœ… Expo | âŒ No | âŒ No |
+| **OTA Updates** | ✅ Expo | ❌ No | ❌ No |
 | **Learning Curve** | Low (React devs) | Medium | Higher |
 | **Performance** | Good | Excellent | Best |
 | **UI Consistency** | Platform-native | Identical | Platform-native |
 | **Bundle Size** | Medium | Larger | Smallest |
 | **Native Access** | Via bridges | Via channels | Direct |
-| **Hot Reload** | âœ… | âœ… | âœ… (Xcode 15+) |
+| **Hot Reload** | ✅ | ✅ | ✅ (Xcode 15+) |
 
 ### When to Choose Native
 
 ```
 CHOOSE NATIVE WHEN:
-â”œâ”€â”€ Maximum performance required (games, 3D)
-â”œâ”€â”€ Deep OS integration needed
-â”œâ”€â”€ Platform-specific features are core
-â”œâ”€â”€ Team has native expertise
-â”œâ”€â”€ App store presence is primary
-â””â”€â”€ Long-term maintenance priority
+├── Maximum performance required (games, 3D)
+├── Deep OS integration needed
+├── Platform-specific features are core
+├── Team has native expertise
+├── App store presence is primary
+└── Long-term maintenance priority
 
 AVOID NATIVE WHEN:
-â”œâ”€â”€ Limited budget/time
-â”œâ”€â”€ Need rapid iteration
-â”œâ”€â”€ Identical UI on both platforms
-â”œâ”€â”€ Team is web-focused
-â””â”€â”€ Cross-platform is priority
+├── Limited budget/time
+├── Need rapid iteration
+├── Identical UI on both platforms
+├── Team is web-focused
+└── Cross-platform is priority
 ```
 
 ---
@@ -271,89 +271,89 @@ AVOID NATIVE WHEN:
 
 ```
 WHAT'S YOUR STATE COMPLEXITY?
-        â”‚
-        â”œâ”€â”€ Simple app, few screens, minimal shared state
-        â”‚   â”‚
-        â”‚   â””â”€â”€ Zustand (or just useState/Context)
-        â”‚       â”œâ”€â”€ Minimal boilerplate
-        â”‚       â”œâ”€â”€ Easy to understand
-        â”‚       â””â”€â”€ Scales OK to medium
-        â”‚
-        â”œâ”€â”€ Primarily server data (API-driven)
-        â”‚   â”‚
-        â”‚   â””â”€â”€ TanStack Query (React Query) + Zustand
-        â”‚       â”œâ”€â”€ Query for server state
-        â”‚       â”œâ”€â”€ Zustand for UI state
-        â”‚       â””â”€â”€ Excellent caching, refetching
-        â”‚
-        â”œâ”€â”€ Complex app with many features
-        â”‚   â”‚
-        â”‚   â””â”€â”€ Redux Toolkit + RTK Query
-        â”‚       â”œâ”€â”€ Predicable, debuggable
-        â”‚       â”œâ”€â”€ RTK Query for API
-        â”‚       â””â”€â”€ Good for large teams
-        â”‚
-        â””â”€â”€ Atomic, granular state needs
-            â”‚
-            â””â”€â”€ Jotai
-                â”œâ”€â”€ Atom-based (like Recoil)
-                â”œâ”€â”€ Minimizes re-renders
-                â””â”€â”€ Good for derived state
+        │
+        ├── Simple app, few screens, minimal shared state
+        │   │
+        │   └── Zustand (or just useState/Context)
+        │       ├── Minimal boilerplate
+        │       ├── Easy to understand
+        │       └── Scales OK to medium
+        │
+        ├── Primarily server data (API-driven)
+        │   │
+        │   └── TanStack Query (React Query) + Zustand
+        │       ├── Query for server state
+        │       ├── Zustand for UI state
+        │       └── Excellent caching, refetching
+        │
+        ├── Complex app with many features
+        │   │
+        │   └── Redux Toolkit + RTK Query
+        │       ├── Predicable, debuggable
+        │       ├── RTK Query for API
+        │       └── Good for large teams
+        │
+        └── Atomic, granular state needs
+            │
+            └── Jotai
+                ├── Atom-based (like Recoil)
+                ├── Minimizes re-renders
+                └── Good for derived state
 ```
 
 ### Flutter State Decision
 
 ```
 WHAT'S YOUR STATE COMPLEXITY?
-        â”‚
-        â”œâ”€â”€ Simple app, learning Flutter
-        â”‚   â”‚
-        â”‚   â””â”€â”€ Provider (or setState)
-        â”‚       â”œâ”€â”€ Official, simple
-        â”‚       â”œâ”€â”€ Built into Flutter
-        â”‚       â””â”€â”€ Good for small apps
-        â”‚
-        â”œâ”€â”€ Modern, type-safe, testable
-        â”‚   â”‚
-        â”‚   â””â”€â”€ Riverpod 2.0
-        â”‚       â”œâ”€â”€ Compile-time safety
-        â”‚       â”œâ”€â”€ Code generation
-        â”‚       â”œâ”€â”€ Excellent for medium-large apps
-        â”‚       â””â”€â”€ Recommended for new projects
-        â”‚
-        â”œâ”€â”€ Enterprise, strict patterns needed
-        â”‚   â”‚
-        â”‚   â””â”€â”€ BLoC
-        â”‚       â”œâ”€â”€ Event â†’ State pattern
-        â”‚       â”œâ”€â”€ Very testable
-        â”‚       â”œâ”€â”€ More boilerplate
-        â”‚       â””â”€â”€ Good for large teams
-        â”‚
-        â””â”€â”€ Quick prototyping
-            â”‚
-            â””â”€â”€ GetX (with caution)
-                â”œâ”€â”€ Fast to implement
-                â”œâ”€â”€ Less strict patterns
-                â””â”€â”€ Can become messy at scale
+        │
+        ├── Simple app, learning Flutter
+        │   │
+        │   └── Provider (or setState)
+        │       ├── Official, simple
+        │       ├── Built into Flutter
+        │       └── Good for small apps
+        │
+        ├── Modern, type-safe, testable
+        │   │
+        │   └── Riverpod 2.0
+        │       ├── Compile-time safety
+        │       ├── Code generation
+        │       ├── Excellent for medium-large apps
+        │       └── Recommended for new projects
+        │
+        ├── Enterprise, strict patterns needed
+        │   │
+        │   └── BLoC
+        │       ├── Event → State pattern
+        │       ├── Very testable
+        │       ├── More boilerplate
+        │       └── Good for large teams
+        │
+        └── Quick prototyping
+            │
+            └── GetX (with caution)
+                ├── Fast to implement
+                ├── Less strict patterns
+                └── Can become messy at scale
 ```
 
 ### State Management Anti-Patterns
 
 ```
-âŒ DON'T:
-â”œâ”€â”€ Use global state for everything
-â”œâ”€â”€ Mix state management approaches
-â”œâ”€â”€ Store server state in local state
-â”œâ”€â”€ Skip state normalization
-â”œâ”€â”€ Overuse Context (re-render heavy)
-â””â”€â”€ Put navigation state in app state
+❌ DON'T:
+├── Use global state for everything
+├── Mix state management approaches
+├── Store server state in local state
+├── Skip state normalization
+├── Overuse Context (re-render heavy)
+└── Put navigation state in app state
 
-âœ… DO:
-â”œâ”€â”€ Server state â†’ Query library
-â”œâ”€â”€ UI state â†’ Minimal, local first
-â”œâ”€â”€ Lift state only when needed
-â”œâ”€â”€ Choose ONE approach per project
-â””â”€â”€ Keep state close to where it's used
+✅ DO:
+├── Server state → Query library
+├── UI state → Minimal, local first
+├── Lift state only when needed
+├── Choose ONE approach per project
+└── Keep state close to where it's used
 ```
 
 ---
@@ -362,25 +362,25 @@ WHAT'S YOUR STATE COMPLEXITY?
 
 ```
 HOW MANY TOP-LEVEL DESTINATIONS?
-        â”‚
-        â”œâ”€â”€ 2 destinations
-        â”‚   â””â”€â”€ Consider: Top tabs or simple stack
-        â”‚
-        â”œâ”€â”€ 3-5 destinations (equal importance)
-        â”‚   â””â”€â”€ âœ… Tab Bar / Bottom Navigation
-        â”‚       â”œâ”€â”€ Most common pattern
-        â”‚       â””â”€â”€ Easy discovery
-        â”‚
-        â”œâ”€â”€ 5+ destinations
-        â”‚   â”‚
-        â”‚   â”œâ”€â”€ All important â†’ Drawer Navigation
-        â”‚   â”‚                   â””â”€â”€ Hidden but many options
-        â”‚   â”‚
-        â”‚   â””â”€â”€ Some less important â†’ Tab bar + drawer hybrid
-        â”‚
-        â””â”€â”€ Single linear flow?
-            â””â”€â”€ Stack Navigation only
-                â””â”€â”€ Onboarding, checkout, etc.
+        │
+        ├── 2 destinations
+        │   └── Consider: Top tabs or simple stack
+        │
+        ├── 3-5 destinations (equal importance)
+        │   └── ✅ Tab Bar / Bottom Navigation
+        │       ├── Most common pattern
+        │       └── Easy discovery
+        │
+        ├── 5+ destinations
+        │   │
+        │   ├── All important → Drawer Navigation
+        │   │                   └── Hidden but many options
+        │   │
+        │   └── Some less important → Tab bar + drawer hybrid
+        │
+        └── Single linear flow?
+            └── Stack Navigation only
+                └── Onboarding, checkout, etc.
 ```
 
 ### Navigation by App Type
@@ -400,48 +400,48 @@ HOW MANY TOP-LEVEL DESTINATIONS?
 
 ```
 WHAT TYPE OF DATA?
-        â”‚
-        â”œâ”€â”€ Sensitive (tokens, passwords, keys)
-        â”‚   â”‚
-        â”‚   â””â”€â”€ âœ… Secure Storage
-        â”‚       â”œâ”€â”€ iOS: Keychain
-        â”‚       â”œâ”€â”€ Android: EncryptedSharedPreferences
-        â”‚       â””â”€â”€ RN: expo-secure-store / react-native-keychain
-        â”‚
-        â”œâ”€â”€ User preferences (settings, theme)
-        â”‚   â”‚
-        â”‚   â””â”€â”€ âœ… Key-Value Storage
-        â”‚       â”œâ”€â”€ iOS: UserDefaults
-        â”‚       â”œâ”€â”€ Android: SharedPreferences
-        â”‚       â””â”€â”€ RN: AsyncStorage / MMKV
-        â”‚
-        â”œâ”€â”€ Structured data (entities, relationships)
-        â”‚   â”‚
-        â”‚   â””â”€â”€ âœ… Database
-        â”‚       â”œâ”€â”€ SQLite (expo-sqlite, sqflite)
-        â”‚       â”œâ”€â”€ Realm (NoSQL, reactive)
-        â”‚       â””â”€â”€ WatermelonDB (large datasets)
-        â”‚
-        â”œâ”€â”€ Large files (images, documents)
-        â”‚   â”‚
-        â”‚   â””â”€â”€ âœ… File System
-        â”‚       â”œâ”€â”€ iOS: Documents / Caches directory
-        â”‚       â”œâ”€â”€ Android: Internal/External storage
-        â”‚       â””â”€â”€ RN: react-native-fs / expo-file-system
-        â”‚
-        â””â”€â”€ Cached API data
-            â”‚
-            â””â”€â”€ âœ… Query Library Cache
-                â”œâ”€â”€ TanStack Query (RN)
-                â”œâ”€â”€ Riverpod async (Flutter)
-                â””â”€â”€ Automatic invalidation
+        │
+        ├── Sensitive (tokens, passwords, keys)
+        │   │
+        │   └── ✅ Secure Storage
+        │       ├── iOS: Keychain
+        │       ├── Android: EncryptedSharedPreferences
+        │       └── RN: expo-secure-store / react-native-keychain
+        │
+        ├── User preferences (settings, theme)
+        │   │
+        │   └── ✅ Key-Value Storage
+        │       ├── iOS: UserDefaults
+        │       ├── Android: SharedPreferences
+        │       └── RN: AsyncStorage / MMKV
+        │
+        ├── Structured data (entities, relationships)
+        │   │
+        │   └── ✅ Database
+        │       ├── SQLite (expo-sqlite, sqflite)
+        │       ├── Realm (NoSQL, reactive)
+        │       └── WatermelonDB (large datasets)
+        │
+        ├── Large files (images, documents)
+        │   │
+        │   └── ✅ File System
+        │       ├── iOS: Documents / Caches directory
+        │       ├── Android: Internal/External storage
+        │       └── RN: react-native-fs / expo-file-system
+        │
+        └── Cached API data
+            │
+            └── ✅ Query Library Cache
+                ├── TanStack Query (RN)
+                ├── Riverpod async (Flutter)
+                └── Automatic invalidation
 ```
 
 ### Storage Comparison
 
 | Storage | Speed | Security | Capacity | Use Case |
 |---------|-------|----------|----------|----------|
-| Secure Storage | Medium | ðŸ”’ High | Small | Tokens, secrets |
+| Secure Storage | Medium | 🔒 High | Small | Tokens, secrets |
 | Key-Value | Fast | Low | Medium | Settings |
 | SQLite | Fast | Low | Large | Structured data |
 | File System | Medium | Low | Very Large | Media, documents |
@@ -453,41 +453,41 @@ WHAT TYPE OF DATA?
 
 ```
 HOW CRITICAL IS OFFLINE?
-        â”‚
-        â”œâ”€â”€ Nice to have (works when possible)
-        â”‚   â”‚
-        â”‚   â””â”€â”€ Cache last data + show stale
-        â”‚       â”œâ”€â”€ Simple implementation
-        â”‚       â”œâ”€â”€ TanStack Query with staleTime
-        â”‚       â””â”€â”€ Show "last updated" timestamp
-        â”‚
-        â”œâ”€â”€ Essential (core functionality offline)
-        â”‚   â”‚
-        â”‚   â””â”€â”€ Offline-first architecture
-        â”‚       â”œâ”€â”€ Local database as source of truth
-        â”‚       â”œâ”€â”€ Sync to server when online
-        â”‚       â”œâ”€â”€ Conflict resolution strategy
-        â”‚       â””â”€â”€ Queue actions for later sync
-        â”‚
-        â””â”€â”€ Real-time critical (collaboration, chat)
-            â”‚
-            â””â”€â”€ WebSocket + local queue
-                â”œâ”€â”€ Optimistic updates
-                â”œâ”€â”€ Eventual consistency
-                â””â”€â”€ Complex conflict handling
+        │
+        ├── Nice to have (works when possible)
+        │   │
+        │   └── Cache last data + show stale
+        │       ├── Simple implementation
+        │       ├── TanStack Query with staleTime
+        │       └── Show "last updated" timestamp
+        │
+        ├── Essential (core functionality offline)
+        │   │
+        │   └── Offline-first architecture
+        │       ├── Local database as source of truth
+        │       ├── Sync to server when online
+        │       ├── Conflict resolution strategy
+        │       └── Queue actions for later sync
+        │
+        └── Real-time critical (collaboration, chat)
+            │
+            └── WebSocket + local queue
+                ├── Optimistic updates
+                ├── Eventual consistency
+                └── Complex conflict handling
 ```
 
 ### Offline Implementation Patterns
 
 ```
 1. CACHE-FIRST (Simple)
-   Request â†’ Check cache â†’ If stale, fetch â†’ Update cache
+   Request → Check cache → If stale, fetch → Update cache
    
 2. STALE-WHILE-REVALIDATE
-   Request â†’ Return cached â†’ Fetch update â†’ Update UI
+   Request → Return cached → Fetch update → Update UI
    
 3. OFFLINE-FIRST (Complex)
-   Action â†’ Write to local DB â†’ Queue sync â†’ Sync when online
+   Action → Write to local DB → Queue sync → Sync when online
    
 4. SYNC ENGINE
    Use: Firebase, Realm Sync, Supabase realtime
@@ -500,49 +500,49 @@ HOW CRITICAL IS OFFLINE?
 
 ```
 WHAT AUTH TYPE NEEDED?
-        â”‚
-        â”œâ”€â”€ Simple email/password
-        â”‚   â”‚
-        â”‚   â””â”€â”€ Token-based (JWT)
-        â”‚       â”œâ”€â”€ Store refresh token securely
-        â”‚       â”œâ”€â”€ Access token in memory
-        â”‚       â””â”€â”€ Silent refresh flow
-        â”‚
-        â”œâ”€â”€ Social login (Google, Apple, etc.)
-        â”‚   â”‚
-        â”‚   â””â”€â”€ OAuth 2.0 + PKCE
-        â”‚       â”œâ”€â”€ Use platform SDKs
-        â”‚       â”œâ”€â”€ Deep link callback
-        â”‚       â””â”€â”€ Apple Sign-In required for iOS
-        â”‚
-        â”œâ”€â”€ Enterprise/SSO
-        â”‚   â”‚
-        â”‚   â””â”€â”€ OIDC / SAML
-        â”‚       â”œâ”€â”€ Web view or system browser
-        â”‚       â””â”€â”€ Handle redirect properly
-        â”‚
-        â””â”€â”€ Biometric (FaceID, fingerprint)
-            â”‚
-            â””â”€â”€ Local auth + secure token
-                â”œâ”€â”€ Biometrics unlock stored token
-                â”œâ”€â”€ Not a replacement for server auth
-                â””â”€â”€ Fallback to PIN/password
+        │
+        ├── Simple email/password
+        │   │
+        │   └── Token-based (JWT)
+        │       ├── Store refresh token securely
+        │       ├── Access token in memory
+        │       └── Silent refresh flow
+        │
+        ├── Social login (Google, Apple, etc.)
+        │   │
+        │   └── OAuth 2.0 + PKCE
+        │       ├── Use platform SDKs
+        │       ├── Deep link callback
+        │       └── Apple Sign-In required for iOS
+        │
+        ├── Enterprise/SSO
+        │   │
+        │   └── OIDC / SAML
+        │       ├── Web view or system browser
+        │       └── Handle redirect properly
+        │
+        └── Biometric (FaceID, fingerprint)
+            │
+            └── Local auth + secure token
+                ├── Biometrics unlock stored token
+                ├── Not a replacement for server auth
+                └── Fallback to PIN/password
 ```
 
 ### Auth Token Storage
 
 ```
-âŒ NEVER store tokens in:
-â”œâ”€â”€ AsyncStorage (plain text)
-â”œâ”€â”€ Redux/state (not persisted correctly)
-â”œâ”€â”€ Local storage equivalent
-â””â”€â”€ Logs or debug output
+❌ NEVER store tokens in:
+├── AsyncStorage (plain text)
+├── Redux/state (not persisted correctly)
+├── Local storage equivalent
+└── Logs or debug output
 
-âœ… ALWAYS store tokens in:
-â”œâ”€â”€ iOS: Keychain
-â”œâ”€â”€ Android: EncryptedSharedPreferences
-â”œâ”€â”€ Expo: SecureStore
-â”œâ”€â”€ Biometric-protected if available
+✅ ALWAYS store tokens in:
+├── iOS: Keychain
+├── Android: EncryptedSharedPreferences
+├── Expo: SecureStore
+├── Biometric-protected if available
 ```
 
 ---
@@ -553,54 +553,54 @@ WHAT AUTH TYPE NEEDED?
 
 ```
 RECOMMENDED STACK:
-â”œâ”€â”€ Framework: React Native + Expo (OTA for pricing)
-â”œâ”€â”€ Navigation: Tab bar (Home, Search, Cart, Account)
-â”œâ”€â”€ State: TanStack Query (products) + Zustand (cart)
-â”œâ”€â”€ Storage: SecureStore (auth) + SQLite (cart cache)
-â”œâ”€â”€ Offline: Cache products, queue cart actions
-â””â”€â”€ Auth: Email/password + Social + Apple Pay
+├── Framework: React Native + Expo (OTA for pricing)
+├── Navigation: Tab bar (Home, Search, Cart, Account)
+├── State: TanStack Query (products) + Zustand (cart)
+├── Storage: SecureStore (auth) + SQLite (cart cache)
+├── Offline: Cache products, queue cart actions
+└── Auth: Email/password + Social + Apple Pay
 
 KEY DECISIONS:
-â”œâ”€â”€ Product images: Lazy load, cache aggressively
-â”œâ”€â”€ Cart: Sync across devices via API
-â”œâ”€â”€ Checkout: Secure, minimal steps
-â””â”€â”€ Deep links: Product shares, marketing
+├── Product images: Lazy load, cache aggressively
+├── Cart: Sync across devices via API
+├── Checkout: Secure, minimal steps
+└── Deep links: Product shares, marketing
 ```
 
 ### Social/Content App
 
 ```
 RECOMMENDED STACK:
-â”œâ”€â”€ Framework: React Native or Flutter
-â”œâ”€â”€ Navigation: Tab bar (Feed, Search, Create, Notifications, Profile)
-â”œâ”€â”€ State: TanStack Query (feed) + Zustand (UI)
-â”œâ”€â”€ Storage: SQLite (feed cache, drafts)
-â”œâ”€â”€ Offline: Cache feed, queue posts
-â””â”€â”€ Auth: Social login primary, Apple required
+├── Framework: React Native or Flutter
+├── Navigation: Tab bar (Feed, Search, Create, Notifications, Profile)
+├── State: TanStack Query (feed) + Zustand (UI)
+├── Storage: SQLite (feed cache, drafts)
+├── Offline: Cache feed, queue posts
+└── Auth: Social login primary, Apple required
 
 KEY DECISIONS:
-â”œâ”€â”€ Feed: Infinite scroll, memoized items
-â”œâ”€â”€ Media: Upload queuing, background upload
-â”œâ”€â”€ Push: Deep link to content
-â””â”€â”€ Real-time: WebSocket for notifications
+├── Feed: Infinite scroll, memoized items
+├── Media: Upload queuing, background upload
+├── Push: Deep link to content
+└── Real-time: WebSocket for notifications
 ```
 
 ### Productivity/SaaS App
 
 ```
 RECOMMENDED STACK:
-â”œâ”€â”€ Framework: Flutter (consistent UI) or RN
-â”œâ”€â”€ Navigation: Drawer or Tab bar
-â”œâ”€â”€ State: Riverpod/BLoC or Redux Toolkit
-â”œâ”€â”€ Storage: SQLite (offline), SecureStore (auth)
-â”œâ”€â”€ Offline: Full offline editing, sync
-â””â”€â”€ Auth: SSO/OIDC for enterprise
+├── Framework: Flutter (consistent UI) or RN
+├── Navigation: Drawer or Tab bar
+├── State: Riverpod/BLoC or Redux Toolkit
+├── Storage: SQLite (offline), SecureStore (auth)
+├── Offline: Full offline editing, sync
+└── Auth: SSO/OIDC for enterprise
 
 KEY DECISIONS:
-â”œâ”€â”€ Data sync: Conflict resolution strategy
-â”œâ”€â”€ Collaborative: Real-time or eventual?
-â”œâ”€â”€ Files: Large file handling
-â””â”€â”€ Enterprise: MDM, compliance
+├── Data sync: Conflict resolution strategy
+├── Collaborative: Real-time or eventual?
+├── Files: Large file handling
+└── Enterprise: MDM, compliance
 ```
 
 ---
@@ -624,29 +624,29 @@ KEY DECISIONS:
 If project details are vague, ASK:
 
 1. "Will this need OTA updates without app store review?"
-   â†’ Affects framework choice (Expo = yes)
+   → Affects framework choice (Expo = yes)
 
 2. "Do iOS and Android need identical UI?"
-   â†’ Affects framework (Flutter = identical)
+   → Affects framework (Flutter = identical)
 
 3. "What's the offline requirement?"
-   â†’ Affects architecture complexity
+   → Affects architecture complexity
 
 4. "Is there an existing backend/auth system?"
-   â†’ Affects auth and API approach
+   → Affects auth and API approach
 
 5. "What devices? Phone only, or tablet?"
-   â†’ Affects navigation and layout
+   → Affects navigation and layout
 
 6. "Enterprise or consumer?"
-   â†’ Affects auth (SSO), security, compliance
+   → Affects auth (SSO), security, compliance
 ```
 
 ---
 
 ## 9. Anti-Pattern Decisions
 
-### âŒ Decision Anti-Patterns
+### ❌ Decision Anti-Patterns
 
 | Anti-Pattern | Why It's Bad | Better Approach |
 |--------------|--------------|-----------------|
@@ -664,29 +664,29 @@ If project details are vague, ASK:
 ### Framework Quick Pick
 
 ```
-OTA needed?           â†’ React Native + Expo
-Identical UI?         â†’ Flutter
-Maximum performance?  â†’ Native
-Web team?            â†’ React Native
-Quick prototype?     â†’ Expo
+OTA needed?           → React Native + Expo
+Identical UI?         → Flutter
+Maximum performance?  → Native
+Web team?            → React Native
+Quick prototype?     → Expo
 ```
 
 ### State Quick Pick
 
 ```
-Simple app?          â†’ Zustand / Provider
-Server-heavy?        â†’ TanStack Query / Riverpod
-Enterprise?          â†’ Redux / BLoC
-Atomic state?        â†’ Jotai
+Simple app?          → Zustand / Provider
+Server-heavy?        → TanStack Query / Riverpod
+Enterprise?          → Redux / BLoC
+Atomic state?        → Jotai
 ```
 
 ### Storage Quick Pick
 
 ```
-Secrets?             â†’ SecureStore / Keychain
-Settings?            â†’ AsyncStorage / UserDefaults
-Structured data?     â†’ SQLite
-API cache?           â†’ Query library
+Secrets?             → SecureStore / Keychain
+Settings?            → AsyncStorage / UserDefaults
+Structured data?     → SQLite
+API cache?           → Query library
 ```
 
 ---
@@ -694,11 +694,11 @@ API cache?           â†’ Query library
 > **Remember:** These trees are guides for THINKING, not rules to follow blindly. Every project has unique constraints. ASK clarifying questions when requirements are vague, and choose based on actual needs, not defaults.
 ---
 
-âš¡ PikaKit v3.9.105
+⚡ PikaKit v3.9.105
 
 ---
 
-## ðŸ”— Related
+## 🔗 Related
 
 | File | When to Read |
 |------|-------------|
@@ -713,10 +713,10 @@ API cache?           â†’ Query library
 
 ---
 name: mobile-design-engineering-spec
-description: Full 21-section engineering spec â€” MFRI scoring, platform guidelines, touch targets, 4 error codes
+description: Full 21-section engineering spec — MFRI scoring, platform guidelines, touch targets, 4 error codes
 ---
 
-# Mobile Design â€” Engineering Specification
+# Mobile Design — Engineering Specification
 
 > Production-grade specification for mobile-first design and engineering doctrine at FAANG scale.
 
@@ -724,11 +724,11 @@ description: Full 21-section engineering spec â€” MFRI scoring, platform gu
 
 ## 1. Overview
 
-Mobile Design provides structured decision frameworks for mobile-first UI/UX: MFRI scoring (Mobile Feasibility & Risk Index), platform-specific guidelines (iOS vs Android), touch target sizing, navigation patterns, typography selection, color systems, accessibility compliance, and offline-capable design. The skill operates as an **Expert (decision tree)** â€” it produces design decisions, platform guidelines, and MFRI assessments. It does not create UI components, write code, or implement designs.
+Mobile Design provides structured decision frameworks for mobile-first UI/UX: MFRI scoring (Mobile Feasibility & Risk Index), platform-specific guidelines (iOS vs Android), touch target sizing, navigation patterns, typography selection, color systems, accessibility compliance, and offline-capable design. The skill operates as an **Expert (decision tree)** — it produces design decisions, platform guidelines, and MFRI assessments. It does not create UI components, write code, or implement designs.
 
 **Contract Version:** 2.0.0
 **Backward Compatibility:** breaking (first hardened version)
-**Breaking Changes:** None â€” new spec for first hardening
+**Breaking Changes:** None — new spec for first hardening
 
 ---
 
@@ -740,7 +740,7 @@ Mobile design at scale faces four quantified problems:
 |---------|-------------|--------|
 | Desktop patterns on mobile | 45% of mobile screens use hover states or small targets | Poor touch UX |
 | Wrong platform conventions | 35% of cross-platform apps ignore iOS/Android differences | User confusion |
-| Touch targets too small | 30% of tappable elements below 44Ã—44pt (iOS) / 48Ã—48dp (Android) | Missed taps |
+| Touch targets too small | 30% of tappable elements below 44×44pt (iOS) / 48×48dp (Android) | Missed taps |
 | No offline consideration | 40% of mobile apps break without network | Users lose data |
 
 Mobile Design eliminates these with MFRI scoring, fixed platform guidelines, mandatory touch target minimums, and offline-first evaluation.
@@ -752,9 +752,9 @@ Mobile Design eliminates these with MFRI scoring, fixed platform guidelines, man
 | ID | Goal | Measurable Constraint |
 |----|------|-----------------------|
 | G1 | MFRI scoring | 5 dimensions, score 0-10, fixed thresholds (6+: safe, 3-5: validate, 0-2: simplify, <0: redesign) |
-| G2 | Platform-specific guidelines | iOS (HIG) vs Android (Material) â€” fixed tables |
-| G3 | Touch target minimums | iOS: 44Ã—44pt, Android: 48Ã—48dp, spacing: 8dp |
-| G4 | Core philosophy | Touch-first â†’ Battery-conscious â†’ Platform-respectful â†’ Offline-capable |
+| G2 | Platform-specific guidelines | iOS (HIG) vs Android (Material) — fixed tables |
+| G3 | Touch target minimums | iOS: 44×44pt, Android: 48×48dp, spacing: 8dp |
+| G4 | Core philosophy | Touch-first → Battery-conscious → Platform-respectful → Offline-capable |
 | G5 | Typography routing | iOS: SF Pro, Android: Roboto |
 | G6 | 5 must-ask questions | Platform, Framework, Navigation, Offline, Devices |
 
@@ -833,8 +833,8 @@ Data: {
       android: string         # "Roboto"
     }
     touch_targets: {
-      ios: string             # "44Ã—44pt"
-      android: string         # "48Ã—48dp"
+      ios: string             # "44×44pt"
+      android: string         # "48×48dp"
       spacing: string         # "8dp"
     }
   } | null
@@ -867,10 +867,10 @@ Recoverable: boolean
 #### Deterministic Guarantees
 
 - MFRI thresholds are fixed: 6-10 (safe), 3-5 (validate), 0-2 (simplify), <0 (redesign).
-- Touch targets are fixed: iOS 44Ã—44pt, Android 48Ã—48dp, spacing 8dp.
-- Typography is fixed: iOS â†’ SF Pro, Android â†’ Roboto.
+- Touch targets are fixed: iOS 44×44pt, Android 48×48dp, spacing 8dp.
+- Typography is fixed: iOS → SF Pro, Android → Roboto.
 - Platform differences are fixed tables (back button, navigation, radius).
-- Core philosophy order is fixed: Touch-first â†’ Battery-conscious â†’ Platform-respectful â†’ Offline-capable.
+- Core philosophy order is fixed: Touch-first → Battery-conscious → Platform-respectful → Offline-capable.
 - 5 must-ask questions are fixed: Platform, Framework, Navigation, Offline, Devices.
 
 #### What Agents May Assume
@@ -965,9 +965,9 @@ All phases synchronous. No async pipeline.
 | Principle | Enforcement |
 |-----------|-------------|
 | Core law | Mobile is NOT a small desktop |
-| Fixed philosophy | Touch-first â†’ Battery-conscious â†’ Platform-respectful â†’ Offline-capable |
+| Fixed philosophy | Touch-first → Battery-conscious → Platform-respectful → Offline-capable |
 | Fixed MFRI thresholds | 6+ safe, 3-5 validate, 0-2 simplify, <0 redesign |
-| Fixed touch targets | iOS: 44Ã—44pt, Android: 48Ã—48dp, spacing: 8dp |
+| Fixed touch targets | iOS: 44×44pt, Android: 48×48dp, spacing: 8dp |
 | Fixed typography | iOS: SF Pro, Android: Roboto |
 | Fixed platform tables | Back button, navigation, radius per platform |
 | 5 must-ask questions | Platform, Framework, Navigation, Offline, Devices |
@@ -1099,7 +1099,7 @@ All resources scoped to invocation. No persistent handles.
 | MFRI scoring | < 3 ms | < 10 ms | 30 ms |
 | Platform guide | < 2 ms | < 5 ms | 20 ms |
 | Full audit | < 10 ms | < 30 ms | 50 ms |
-| Output size | â‰¤ 1,500 chars | â‰¤ 4,000 chars | 6,000 chars |
+| Output size | ≤ 1,500 chars | ≤ 4,000 chars | 6,000 chars |
 
 ---
 
@@ -1111,7 +1111,7 @@ All resources scoped to invocation. No persistent handles.
 | MFRI score gives false confidence | Low | Poor design approved | MFRI is advisory, not approval |
 | Cross-platform compromise | High | Neither platform feels native | Separate per-platform guidance |
 | Touch target ignored | Medium | Accessibility failure | Fixed minimums enforced |
-| Desktop patterns applied | High | Poor mobile UX | Core law: mobile â‰  small desktop |
+| Desktop patterns applied | High | Poor mobile UX | Core law: mobile ≠ small desktop |
 
 ---
 
@@ -1119,16 +1119,16 @@ All resources scoped to invocation. No persistent handles.
 
 | Requirement | Status | Evidence |
 |-------------|--------|----------|
-| YAML frontmatter complete | âœ… | name, description, metadata with category, version, triggers, coordinates_with, success_metrics |
-| SKILL.md < 200 lines | âœ… | Entry point under 200 lines |
-| Prerequisites documented | âœ… | No external dependencies (knowledge skill) |
-| When to Use section | âœ… | Situation-based routing table |
-| Core content matches skill type | âœ… | Expert type: decision trees, MFRI scoring |
-| Troubleshooting section | âœ… | Anti-patterns table |
-| Related section | âœ… | Cross-links to mobile-first, mobile-developer, design-system |
-| Content Map for multi-file | âœ… | Links to 12 reference files + engineering-spec.md |
-| Contract versioning | âœ… | contract_version, backward_compatibility, breaking_changes |
-| Compliance matrix structured | âœ… | This table with âœ…/âŒ + evidence |
+| YAML frontmatter complete | ✅ | name, description, metadata with category, version, triggers, coordinates_with, success_metrics |
+| SKILL.md < 200 lines | ✅ | Entry point under 200 lines |
+| Prerequisites documented | ✅ | No external dependencies (knowledge skill) |
+| When to Use section | ✅ | Situation-based routing table |
+| Core content matches skill type | ✅ | Expert type: decision trees, MFRI scoring |
+| Troubleshooting section | ✅ | Anti-patterns table |
+| Related section | ✅ | Cross-links to mobile-first, mobile-developer, design-system |
+| Content Map for multi-file | ✅ | Links to 12 reference files + engineering-spec.md |
+| Contract versioning | ✅ | contract_version, backward_compatibility, breaking_changes |
+| Compliance matrix structured | ✅ | This table with ✅/❌ + evidence |
 
 ---
 
@@ -1136,31 +1136,31 @@ All resources scoped to invocation. No persistent handles.
 
 | Category | Check | Status |
 |----------|-------|--------|
-| **Functionality** | MFRI scoring (5 dimensions, fixed thresholds) | âœ… |
-| **Functionality** | Platform guidelines (iOS HIG + Android Material) | âœ… |
-| **Functionality** | Touch target standards (44Ã—44pt, 48Ã—48dp, 8dp) | âœ… |
-| **Functionality** | Typography routing (SF Pro / Roboto) | âœ… |
-| **Functionality** | 5 must-ask questions enforced | âœ… |
-| **Contracts** | Input/output/error schemas in pseudo-schema format | âœ… |
-| **Contracts** | Contract versioning with semver | âœ… |
-| **Failure** | Error taxonomy with 4 categorized codes | âœ… |
-| **Failure** | No partial assessments on error | âœ… |
-| **Failure** | Zero internal retries | âœ… |
-| **Determinism** | Fixed MFRI thresholds, fixed touch targets, fixed typography | âœ… |
-| **Security** | No credentials, no PII | âœ… |
-| **Observability** | Structured log schema with 5 mandatory fields | âœ… |
-| **Observability** | 4 metrics defined | âœ… |
-| **Performance** | P50/P99 targets for all operations | âœ… |
-| **Scalability** | Stateless; unlimited parallel | âœ… |
-| **Compliance** | All skill-design-guide.md sections mapped with evidence | âœ… |
+| **Functionality** | MFRI scoring (5 dimensions, fixed thresholds) | ✅ |
+| **Functionality** | Platform guidelines (iOS HIG + Android Material) | ✅ |
+| **Functionality** | Touch target standards (44×44pt, 48×48dp, 8dp) | ✅ |
+| **Functionality** | Typography routing (SF Pro / Roboto) | ✅ |
+| **Functionality** | 5 must-ask questions enforced | ✅ |
+| **Contracts** | Input/output/error schemas in pseudo-schema format | ✅ |
+| **Contracts** | Contract versioning with semver | ✅ |
+| **Failure** | Error taxonomy with 4 categorized codes | ✅ |
+| **Failure** | No partial assessments on error | ✅ |
+| **Failure** | Zero internal retries | ✅ |
+| **Determinism** | Fixed MFRI thresholds, fixed touch targets, fixed typography | ✅ |
+| **Security** | No credentials, no PII | ✅ |
+| **Observability** | Structured log schema with 5 mandatory fields | ✅ |
+| **Observability** | 4 metrics defined | ✅ |
+| **Performance** | P50/P99 targets for all operations | ✅ |
+| **Scalability** | Stateless; unlimited parallel | ✅ |
+| **Compliance** | All skill-design-guide.md sections mapped with evidence | ✅ |
 
 ---
 
-âš¡ PikaKit v3.9.105
+⚡ PikaKit v3.9.105
 
 ---
 
-## ðŸ”— Related
+## 🔗 Related
 
 | File | When to Read |
 |------|-------------|
@@ -1176,7 +1176,7 @@ All resources scoped to invocation. No persistent handles.
 
 ---
 name: mobile-backend
-description: Mobile backend integration â€” API design, offline sync, push notifications, real-time, caching strategies
+description: Mobile backend integration — API design, offline sync, push notifications, real-time, caching strategies
 ---
 
 # Mobile Backend Patterns
@@ -1187,27 +1187,27 @@ description: Mobile backend integration â€” API design, offline sync, push 
 
 ---
 
-## ðŸ§  MOBILE BACKEND MINDSET
+## 🧠 MOBILE BACKEND MINDSET
 
 ```
 Mobile clients are DIFFERENT from web clients:
-â”œâ”€â”€ Unreliable network (2G, subway, elevator)
-â”œâ”€â”€ Battery constraints (minimize wake-ups)
-â”œâ”€â”€ Limited storage (can't cache everything)
-â”œâ”€â”€ Interrupted sessions (calls, notifications)
-â”œâ”€â”€ Diverse devices (old phones to flagships)
-â””â”€â”€ Binary updates are slow (App Store review)
+├── Unreliable network (2G, subway, elevator)
+├── Battery constraints (minimize wake-ups)
+├── Limited storage (can't cache everything)
+├── Interrupted sessions (calls, notifications)
+├── Diverse devices (old phones to flagships)
+└── Binary updates are slow (App Store review)
 ```
 
 **Your backend must compensate for ALL of these.**
 
 ---
 
-## ðŸš« AI MOBILE BACKEND ANTI-PATTERNS
+## 🚫 AI MOBILE BACKEND ANTI-PATTERNS
 
 ### These are common AI mistakes when building mobile backends:
 
-| âŒ AI Default | Why It's Wrong | âœ… Mobile-Correct |
+| ❌ AI Default | Why It's Wrong | ✅ Mobile-Correct |
 |---------------|----------------|-------------------|
 | Same API for web and mobile | Mobile needs compact responses | Separate mobile endpoints OR field selection |
 | Full object responses | Wastes bandwidth, battery | Partial responses, pagination |
@@ -1225,22 +1225,22 @@ Mobile clients are DIFFERENT from web clients:
 ### Platform Architecture
 
 ```
-â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
-â”‚                    YOUR BACKEND                                  â”‚
-â”œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¤
-â”‚                         â”‚                                        â”‚
-â”‚              â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”´â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”                            â”‚
-â”‚              â–¼                     â–¼                            â”‚
-â”‚    â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”   â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”                    â”‚
-â”‚    â”‚   FCM (Google)  â”‚   â”‚  APNs (Apple)   â”‚                    â”‚
-â”‚    â”‚   Firebase      â”‚   â”‚  Direct or FCM  â”‚                    â”‚
-â”‚    â””â”€â”€â”€â”€â”€â”€â”€â”€â”¬â”€â”€â”€â”€â”€â”€â”€â”€â”˜   â””â”€â”€â”€â”€â”€â”€â”€â”€â”¬â”€â”€â”€â”€â”€â”€â”€â”€â”˜                    â”‚
-â”‚             â”‚                     â”‚                              â”‚
-â”‚             â–¼                     â–¼                              â”‚
-â”‚    â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”   â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”                    â”‚
-â”‚    â”‚ Android Device  â”‚   â”‚   iOS Device    â”‚                    â”‚
-â”‚    â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜   â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜                    â”‚
-â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
+┌─────────────────────────────────────────────────────────────────┐
+│                    YOUR BACKEND                                  │
+├─────────────────────────────────────────────────────────────────┤
+│                         │                                        │
+│              ┌──────────┴──────────┐                            │
+│              ▼                     ▼                            │
+│    ┌─────────────────┐   ┌─────────────────┐                    │
+│    │   FCM (Google)  │   │  APNs (Apple)   │                    │
+│    │   Firebase      │   │  Direct or FCM  │                    │
+│    └────────┬────────┘   └────────┬────────┘                    │
+│             │                     │                              │
+│             ▼                     ▼                              │
+│    ┌─────────────────┐   ┌─────────────────┐                    │
+│    │ Android Device  │   │   iOS Device    │                    │
+│    └─────────────────┘   └─────────────────┘                    │
+└─────────────────────────────────────────────────────────────────┘
 ```
 
 ### Push Types
@@ -1253,7 +1253,7 @@ Mobile clients are DIFFERENT from web clients:
 
 ### Anti-Patterns
 
-| âŒ NEVER | âœ… ALWAYS |
+| ❌ NEVER | ✅ ALWAYS |
 |----------|----------|
 | Send sensitive data in push | Push says "New message", app fetches content |
 | Overload with pushes | Batch, dedupe, respect quiet hours |
@@ -1265,11 +1265,11 @@ Mobile clients are DIFFERENT from web clients:
 
 ```
 TOKEN LIFECYCLE:
-â”œâ”€â”€ App registers â†’ Get token â†’ Send to backend
-â”œâ”€â”€ Token can change â†’ App must re-register on start
-â”œâ”€â”€ Token expires â†’ Clean from database
-â”œâ”€â”€ User uninstalls â†’ Token becomes invalid (detect via error)
-â””â”€â”€ Multiple devices â†’ Store multiple tokens per user
+├── App registers → Get token → Send to backend
+├── Token can change → App must re-register on start
+├── Token expires → Clean from database
+├── User uninstalls → Token becomes invalid (detect via error)
+└── Multiple devices → Store multiple tokens per user
 ```
 
 ---
@@ -1280,22 +1280,22 @@ TOKEN LIFECYCLE:
 
 ```
 WHAT TYPE OF DATA?
-        â”‚
-        â”œâ”€â”€ Read-only (news, catalog)
-        â”‚   â””â”€â”€ Simple cache + TTL
-        â”‚       â””â”€â”€ ETag/Last-Modified for invalidation
-        â”‚
-        â”œâ”€â”€ User-owned (notes, todos)
-        â”‚   â””â”€â”€ Last-write-wins (simple)
-        â”‚       â””â”€â”€ Or timestamp-based merge
-        â”‚
-        â”œâ”€â”€ Collaborative (shared docs)
-        â”‚   â””â”€â”€ CRDT or OT required
-        â”‚       â””â”€â”€ Consider Firebase/Supabase
-        â”‚
-        â””â”€â”€ Critical (payments, inventory)
-            â””â”€â”€ Server is source of truth
-                â””â”€â”€ Optimistic UI + server confirmation
+        │
+        ├── Read-only (news, catalog)
+        │   └── Simple cache + TTL
+        │       └── ETag/Last-Modified for invalidation
+        │
+        ├── User-owned (notes, todos)
+        │   └── Last-write-wins (simple)
+        │       └── Or timestamp-based merge
+        │
+        ├── Collaborative (shared docs)
+        │   └── CRDT or OT required
+        │       └── Consider Firebase/Supabase
+        │
+        └── Critical (payments, inventory)
+            └── Server is source of truth
+                └── Optimistic UI + server confirmation
 ```
 
 ### Conflict Resolution Strategies
@@ -1312,19 +1312,19 @@ WHAT TYPE OF DATA?
 
 ```
 CLIENT SIDE:
-â”œâ”€â”€ User makes change â†’ Write to local DB
-â”œâ”€â”€ Add to sync queue â†’ { action, data, timestamp, retries }
-â”œâ”€â”€ Network available â†’ Process queue FIFO
-â”œâ”€â”€ Success â†’ Remove from queue
-â”œâ”€â”€ Failure â†’ Retry with backoff (max 5 retries)
-â””â”€â”€ Conflict â†’ Apply resolution strategy
+├── User makes change → Write to local DB
+├── Add to sync queue → { action, data, timestamp, retries }
+├── Network available → Process queue FIFO
+├── Success → Remove from queue
+├── Failure → Retry with backoff (max 5 retries)
+└── Conflict → Apply resolution strategy
 
 SERVER SIDE:
-â”œâ”€â”€ Accept change with client timestamp
-â”œâ”€â”€ Compare with server version
-â”œâ”€â”€ Apply conflict resolution
-â”œâ”€â”€ Return merged state
-â””â”€â”€ Client updates local with server response
+├── Accept change with client timestamp
+├── Compare with server version
+├── Apply conflict resolution
+├── Return merged state
+└── Client updates local with server response
 ```
 
 ---
@@ -1345,17 +1345,17 @@ SERVER SIDE:
 
 ```
 OFFSET (Bad for mobile):
-â”œâ”€â”€ Page 1: OFFSET 0 LIMIT 20
-â”œâ”€â”€ Page 2: OFFSET 20 LIMIT 20
-â”œâ”€â”€ Problem: New item added â†’ duplicates!
-â””â”€â”€ Problem: Large offset = slow query
+├── Page 1: OFFSET 0 LIMIT 20
+├── Page 2: OFFSET 20 LIMIT 20
+├── Problem: New item added → duplicates!
+└── Problem: Large offset = slow query
 
 CURSOR (Good for mobile):
-â”œâ”€â”€ First: ?limit=20
-â”œâ”€â”€ Next: ?limit=20&after=cursor_abc123
-â”œâ”€â”€ Cursor = encoded (id + sort values)
-â”œâ”€â”€ No duplicates on data changes
-â””â”€â”€ Consistent performance
+├── First: ?limit=20
+├── Next: ?limit=20&after=cursor_abc123
+├── Cursor = encoded (id + sort values)
+├── No duplicates on data changes
+└── Consistent performance
 ```
 
 ### Batch Requests
@@ -1409,15 +1409,15 @@ Response:
 
 ```
 CLIENT VERSION vs MINIMUM VERSION:
-â”œâ”€â”€ client >= minimum â†’ Continue normally
-â”œâ”€â”€ client < minimum â†’ Show force update screen
-â”‚   â””â”€â”€ Block app usage until updated
-â””â”€â”€ client < latest â†’ Show optional update prompt
+├── client >= minimum → Continue normally
+├── client < minimum → Show force update screen
+│   └── Block app usage until updated
+└── client < latest → Show optional update prompt
 
 FEATURE FLAGS:
-â”œâ”€â”€ Enable/disable features without app update
-â”œâ”€â”€ A/B testing by version/device
-â””â”€â”€ Gradual rollout (10% â†’ 50% â†’ 100%)
+├── Enable/disable features without app update
+├── A/B testing by version/device
+└── Gradual rollout (10% → 50% → 100%)
 ```
 
 ---
@@ -1428,38 +1428,38 @@ FEATURE FLAGS:
 
 ```
 ACCESS TOKEN:
-â”œâ”€â”€ Short-lived (15 min - 1 hour)
-â”œâ”€â”€ Stored in memory (not persistent)
-â”œâ”€â”€ Used for API requests
-â””â”€â”€ Refresh when expired
+├── Short-lived (15 min - 1 hour)
+├── Stored in memory (not persistent)
+├── Used for API requests
+└── Refresh when expired
 
 REFRESH TOKEN:
-â”œâ”€â”€ Long-lived (30-90 days)
-â”œâ”€â”€ Stored in SecureStore/Keychain
-â”œâ”€â”€ Used only to get new access token
-â””â”€â”€ Rotate on each use (security)
+├── Long-lived (30-90 days)
+├── Stored in SecureStore/Keychain
+├── Used only to get new access token
+└── Rotate on each use (security)
 
 DEVICE TOKEN:
-â”œâ”€â”€ Identifies this device
-â”œâ”€â”€ Allows "log out all devices"
-â”œâ”€â”€ Stored alongside refresh token
-â””â”€â”€ Server tracks active devices
+├── Identifies this device
+├── Allows "log out all devices"
+├── Stored alongside refresh token
+└── Server tracks active devices
 ```
 
 ### Silent Re-authentication
 
 ```
 REQUEST FLOW:
-â”œâ”€â”€ Make request with access token
-â”œâ”€â”€ 401 Unauthorized?
-â”‚   â”œâ”€â”€ Have refresh token?
-â”‚   â”‚   â”œâ”€â”€ Yes â†’ Call /auth/refresh
-â”‚   â”‚   â”‚   â”œâ”€â”€ Success â†’ Retry original request
-â”‚   â”‚   â”‚   â””â”€â”€ Failure â†’ Force logout
-â”‚   â”‚   â””â”€â”€ No â†’ Force logout
-â”‚   â””â”€â”€ Token just expired (not invalid)
-â”‚       â””â”€â”€ Auto-refresh, user doesn't notice
-â””â”€â”€ Success â†’ Continue
+├── Make request with access token
+├── 401 Unauthorized?
+│   ├── Have refresh token?
+│   │   ├── Yes → Call /auth/refresh
+│   │   │   ├── Success → Retry original request
+│   │   │   └── Failure → Force logout
+│   │   └── No → Force logout
+│   └── Token just expired (not invalid)
+│       └── Auto-refresh, user doesn't notice
+└── Success → Continue
 ```
 
 ---
@@ -1510,11 +1510,11 @@ CLIENT REQUEST:
 GET /images/{id}?w=400&h=300&q=80&format=webp
 
 SERVER RESPONSE:
-â”œâ”€â”€ Resize on-the-fly OR use CDN
-â”œâ”€â”€ WebP for Android (smaller)
-â”œâ”€â”€ HEIC for iOS 14+ (if supported)
-â”œâ”€â”€ JPEG fallback
-â””â”€â”€ Cache-Control: max-age=31536000
+├── Resize on-the-fly OR use CDN
+├── WebP for Android (smaller)
+├── HEIC for iOS 14+ (if supported)
+├── JPEG fallback
+└── Cache-Control: max-age=31536000
 ```
 
 ### Chunked Upload (Large Files)
@@ -1523,31 +1523,31 @@ SERVER RESPONSE:
 UPLOAD FLOW:
 1. POST /uploads/init
    { filename, size, mime_type }
-   â†’ { upload_id, chunk_size }
+   → { upload_id, chunk_size }
 
 2. PUT /uploads/{upload_id}/chunks/{n}
-   â†’ Upload each chunk (1-5 MB)
-   â†’ Can resume if interrupted
+   → Upload each chunk (1-5 MB)
+   → Can resume if interrupted
 
 3. POST /uploads/{upload_id}/complete
-   â†’ Server assembles chunks
-   â†’ Return final file URL
+   → Server assembles chunks
+   → Return final file URL
 ```
 
 ### Streaming Audio/Video
 
 ```
 REQUIREMENTS:
-â”œâ”€â”€ HLS (HTTP Live Streaming) for iOS
-â”œâ”€â”€ DASH or HLS for Android
-â”œâ”€â”€ Multiple quality levels (adaptive bitrate)
-â”œâ”€â”€ Range request support (seeking)
-â””â”€â”€ Offline download chunks
+├── HLS (HTTP Live Streaming) for iOS
+├── DASH or HLS for Android
+├── Multiple quality levels (adaptive bitrate)
+├── Range request support (seeking)
+└── Offline download chunks
 
 ENDPOINTS:
-GET /media/{id}/manifest.m3u8  â†’ HLS manifest
-GET /media/{id}/segment_{n}.ts â†’ Video segment
-GET /media/{id}/download       â†’ Full file for offline
+GET /media/{id}/manifest.m3u8  → HLS manifest
+GET /media/{id}/segment_{n}.ts → Video segment
+GET /media/{id}/download       → Full file for offline
 ```
 
 ---
@@ -1558,37 +1558,37 @@ GET /media/{id}/download       â†’ Full file for offline
 
 ```
 VERIFY REAL DEVICE (not emulator/bot):
-â”œâ”€â”€ iOS: DeviceCheck API
-â”‚   â””â”€â”€ Server verifies with Apple
-â”œâ”€â”€ Android: Play Integrity API (replaces SafetyNet)
-â”‚   â””â”€â”€ Server verifies with Google
-â””â”€â”€ Fail closed: Reject if attestation fails
+├── iOS: DeviceCheck API
+│   └── Server verifies with Apple
+├── Android: Play Integrity API (replaces SafetyNet)
+│   └── Server verifies with Google
+└── Fail closed: Reject if attestation fails
 ```
 
 ### Request Signing
 
 ```
 CLIENT:
-â”œâ”€â”€ Create signature = HMAC(timestamp + path + body, secret)
-â”œâ”€â”€ Send: X-Signature: {signature}
-â”œâ”€â”€ Send: X-Timestamp: {timestamp}
-â””â”€â”€ Send: X-Device-ID: {device_id}
+├── Create signature = HMAC(timestamp + path + body, secret)
+├── Send: X-Signature: {signature}
+├── Send: X-Timestamp: {timestamp}
+└── Send: X-Device-ID: {device_id}
 
 SERVER:
-â”œâ”€â”€ Validate timestamp (within 5 minutes)
-â”œâ”€â”€ Recreate signature with same inputs
-â”œâ”€â”€ Compare signatures
-â””â”€â”€ Reject if mismatch (tampering detected)
+├── Validate timestamp (within 5 minutes)
+├── Recreate signature with same inputs
+├── Compare signatures
+└── Reject if mismatch (tampering detected)
 ```
 
 ### Rate Limiting
 
 ```
 MOBILE-SPECIFIC LIMITS:
-â”œâ”€â”€ Per device (X-Device-ID)
-â”œâ”€â”€ Per user (after auth)
-â”œâ”€â”€ Per endpoint (stricter for sensitive)
-â””â”€â”€ Sliding window preferred
+├── Per device (X-Device-ID)
+├── Per user (after auth)
+├── Per endpoint (stricter for sensitive)
+└── Sliding window preferred
 
 HEADERS:
 X-RateLimit-Limit: 100
@@ -1605,37 +1605,37 @@ Retry-After: 60 (when 429)
 
 ```
 Every mobile request should include:
-â”œâ”€â”€ X-App-Version: 2.1.0
-â”œâ”€â”€ X-Platform: ios | android
-â”œâ”€â”€ X-OS-Version: 17.0
-â”œâ”€â”€ X-Device-Model: iPhone15,2
-â”œâ”€â”€ X-Device-ID: uuid (persistent)
-â”œâ”€â”€ X-Request-ID: uuid (per request, for tracing)
-â”œâ”€â”€ Accept-Language: tr-TR
-â””â”€â”€ X-Timezone: Europe/Istanbul
+├── X-App-Version: 2.1.0
+├── X-Platform: ios | android
+├── X-OS-Version: 17.0
+├── X-Device-Model: iPhone15,2
+├── X-Device-ID: uuid (persistent)
+├── X-Request-ID: uuid (per request, for tracing)
+├── Accept-Language: tr-TR
+└── X-Timezone: Europe/Istanbul
 ```
 
 ### What to Log
 
 ```
 FOR EACH REQUEST:
-â”œâ”€â”€ All headers above
-â”œâ”€â”€ Endpoint, method, status
-â”œâ”€â”€ Response time
-â”œâ”€â”€ Error details (if any)
-â””â”€â”€ User ID (if authenticated)
+├── All headers above
+├── Endpoint, method, status
+├── Response time
+├── Error details (if any)
+└── User ID (if authenticated)
 
 ALERTS:
-â”œâ”€â”€ Error rate > 5% per version
-â”œâ”€â”€ P95 latency > 2 seconds
-â”œâ”€â”€ Specific version crash spike
-â”œâ”€â”€ Auth failure spike (attack?)
-â””â”€â”€ Push delivery failure spike
+├── Error rate > 5% per version
+├── P95 latency > 2 seconds
+├── Specific version crash spike
+├── Auth failure spike (attack?)
+└── Push delivery failure spike
 ```
 
 ---
 
-## ðŸ“ MOBILE BACKEND CHECKLIST
+## 📝 MOBILE BACKEND CHECKLIST
 
 ### Before API Design
 - [ ] Identified mobile-specific requirements?
@@ -1669,14 +1669,14 @@ ALERTS:
 
 ---
 
-> **Remember:** Mobile backend must be resilient to bad networks, respect battery life, and handle interrupted sessions gracefully. The client cannot be trusted, but it also cannot be hung upâ€”provide offline capabilities and clear error recovery paths.
+> **Remember:** Mobile backend must be resilient to bad networks, respect battery life, and handle interrupted sessions gracefully. The client cannot be trusted, but it also cannot be hung up—provide offline capabilities and clear error recovery paths.
 ---
 
-âš¡ PikaKit v3.9.105
+⚡ PikaKit v3.9.105
 
 ---
 
-## ðŸ”— Related
+## 🔗 Related
 
 | File | When to Read |
 |------|-------------|
@@ -1692,13 +1692,13 @@ ALERTS:
 
 ---
 name: mobile-color-system
-description: Mobile color palettes â€” platform-specific colors, dark mode, dynamic color (Android), accessibility contrast
+description: Mobile color palettes — platform-specific colors, dark mode, dynamic color (Android), accessibility contrast
 ---
 
 # Mobile Color System Reference
 
 > OLED optimization, dark mode, battery-aware colors, and outdoor visibility.
-> **Color on mobile isn't just aestheticsâ€”it's battery life and usability.**
+> **Color on mobile isn't just aesthetics—it's battery life and usability.**
 
 ---
 
@@ -1708,11 +1708,11 @@ description: Mobile color palettes â€” platform-specific colors, dark mode,
 
 ```
 DESKTOP:                           MOBILE:
-â”œâ”€â”€ LCD screens (backlit)          â”œâ”€â”€ OLED common (self-emissive)
-â”œâ”€â”€ Controlled lighting            â”œâ”€â”€ Outdoor, bright sun
-â”œâ”€â”€ Stable power                   â”œâ”€â”€ Battery matters
-â”œâ”€â”€ Personal preference            â”œâ”€â”€ System-wide dark mode
-â””â”€â”€ Static viewing                 â””â”€â”€ Variable angles, motion
+├── LCD screens (backlit)          ├── OLED common (self-emissive)
+├── Controlled lighting            ├── Outdoor, bright sun
+├── Stable power                   ├── Battery matters
+├── Personal preference            ├── System-wide dark mode
+└── Static viewing                 └── Variable angles, motion
 ```
 
 ### Mobile Color Priorities
@@ -1733,16 +1733,16 @@ DESKTOP:                           MOBILE:
 
 ```
 LCD (Liquid Crystal Display):
-â”œâ”€â”€ Backlight always on
-â”œâ”€â”€ Black = backlight through dark filter
-â”œâ”€â”€ Energy use = constant
-â””â”€â”€ Dark mode = no battery savings
+├── Backlight always on
+├── Black = backlight through dark filter
+├── Energy use = constant
+└── Dark mode = no battery savings
 
 OLED (Organic LED):
-â”œâ”€â”€ Each pixel emits own light
-â”œâ”€â”€ Black = pixel OFF (zero power)
-â”œâ”€â”€ Energy use = brighter pixels use more
-â””â”€â”€ Dark mode = significant battery savings
+├── Each pixel emits own light
+├── Black = pixel OFF (zero power)
+├── Energy use = brighter pixels use more
+└── Dark mode = significant battery savings
 ```
 
 ### Battery Savings with OLED
@@ -1750,33 +1750,33 @@ OLED (Organic LED):
 ```
 Color energy consumption (relative):
 
-#000000 (True Black)  â–ˆâ–ˆâ–ˆâ–ˆâ–‘â–‘â–‘â–‘â–‘â–‘  0%
-#1A1A1A (Near Black)  â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–‘â–‘â–‘â–‘â–‘  ~15%
-#333333 (Dark Gray)   â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–‘â–‘â–‘â–‘  ~30%
-#666666 (Medium Gray) â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–‘â–‘â–‘  ~50%
-#FFFFFF (White)       â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆ  100%
+#000000 (True Black)  ████░░░░░░  0%
+#1A1A1A (Near Black)  █████░░░░░  ~15%
+#333333 (Dark Gray)   ██████░░░░  ~30%
+#666666 (Medium Gray) ███████░░░  ~50%
+#FFFFFF (White)       ██████████  100%
 
 Saturated colors also use significant power:
-â”œâ”€â”€ Blue pixels: Most efficient
-â”œâ”€â”€ Green pixels: Medium
-â”œâ”€â”€ Red pixels: Least efficient
-â””â”€â”€ Desaturated colors save more
+├── Blue pixels: Most efficient
+├── Green pixels: Medium
+├── Red pixels: Least efficient
+└── Desaturated colors save more
 ```
 
 ### True Black vs Near Black
 
 ```
 #000000 (True Black):
-â”œâ”€â”€ Maximum battery savings
-â”œâ”€â”€ Can cause "black smear" on scroll
-â”œâ”€â”€ Sharp contrast (may be harsh)
-â””â”€â”€ Used by Apple in pure dark mode
+├── Maximum battery savings
+├── Can cause "black smear" on scroll
+├── Sharp contrast (may be harsh)
+└── Used by Apple in pure dark mode
 
 #121212 or #1A1A1A (Near Black):
-â”œâ”€â”€ Still good battery savings
-â”œâ”€â”€ Smoother scrolling (no smear)
-â”œâ”€â”€ Slightly softer on eyes
-â””â”€â”€ Material Design recommendation
+├── Still good battery savings
+├── Smoother scrolling (no smear)
+├── Slightly softer on eyes
+└── Material Design recommendation
 
 RECOMMENDATION: #000000 for backgrounds, #0D0D0D-#1A1A1A for surfaces
 ```
@@ -1789,32 +1789,32 @@ RECOMMENDATION: #000000 for backgrounds, #0D0D0D-#1A1A1A for surfaces
 
 ```
 Users enable dark mode for:
-â”œâ”€â”€ Battery savings (OLED)
-â”œâ”€â”€ Reduced eye strain (low light)
-â”œâ”€â”€ Personal preference
-â”œâ”€â”€ AMOLED aesthetic
-â””â”€â”€ Accessibility (light sensitivity)
+├── Battery savings (OLED)
+├── Reduced eye strain (low light)
+├── Personal preference
+├── AMOLED aesthetic
+└── Accessibility (light sensitivity)
 ```
 
 ### Dark Mode Color Strategy
 
 ```
 LIGHT MODE                      DARK MODE
-â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€                      â”€â”€â”€â”€â”€â”€â”€â”€â”€
-Background: #FFFFFF      â†’      #000000 or #121212
-Surface:    #F5F5F5      â†’      #1E1E1E
-Surface 2:  #EEEEEE      â†’      #2C2C2C
+──────────                      ─────────
+Background: #FFFFFF      →      #000000 or #121212
+Surface:    #F5F5F5      →      #1E1E1E
+Surface 2:  #EEEEEE      →      #2C2C2C
 
-Primary:    #1976D2      â†’      #90CAF9 (lighter)
-Text:       #212121      â†’      #E0E0E0 (not pure white)
-Secondary:  #757575      â†’      #9E9E9E
+Primary:    #1976D2      →      #90CAF9 (lighter)
+Text:       #212121      →      #E0E0E0 (not pure white)
+Secondary:  #757575      →      #9E9E9E
 
 Elevation in dark mode:
-â”œâ”€â”€ Higher = slightly lighter surface
-â”œâ”€â”€ 0dp â†’  0% overlay
-â”œâ”€â”€ 4dp â†’  9% overlay
-â”œâ”€â”€ 8dp â†’  12% overlay
-â””â”€â”€ Creates depth without shadows
+├── Higher = slightly lighter surface
+├── 0dp →  0% overlay
+├── 4dp →  9% overlay
+├── 8dp →  12% overlay
+└── Creates depth without shadows
 ```
 
 ### Text Colors in Dark Mode
@@ -1830,16 +1830,16 @@ Elevation in dark mode:
 
 ```
 DON'T just invert colors:
-â”œâ”€â”€ Saturated colors become eye-burning
-â”œâ”€â”€ Semantic colors lose meaning
-â”œâ”€â”€ Brand colors may break
-â””â”€â”€ Contrast ratios change unpredictably
+├── Saturated colors become eye-burning
+├── Semantic colors lose meaning
+├── Brand colors may break
+└── Contrast ratios change unpredictably
 
 DO create intentional dark palette:
-â”œâ”€â”€ Desaturate primary colors
-â”œâ”€â”€ Use lighter tints for emphasis
-â”œâ”€â”€ Maintain semantic color meanings
-â”œâ”€â”€ Check contrast ratios independently
+├── Desaturate primary colors
+├── Use lighter tints for emphasis
+├── Maintain semantic color meanings
+├── Check contrast ratios independently
 ```
 
 ---
@@ -1850,16 +1850,16 @@ DO create intentional dark palette:
 
 ```
 Screen visibility outdoors:
-â”œâ”€â”€ Bright sun washes out low contrast
-â”œâ”€â”€ Glare reduces readability
-â”œâ”€â”€ Polarized sunglasses affect
-â””â”€â”€ Users shield screen with hand
+├── Bright sun washes out low contrast
+├── Glare reduces readability
+├── Polarized sunglasses affect
+└── Users shield screen with hand
 
 Affected elements:
-â”œâ”€â”€ Light gray text on white
-â”œâ”€â”€ Subtle color differences
-â”œâ”€â”€ Low opacity overlays
-â””â”€â”€ Pastel colors
+├── Light gray text on white
+├── Subtle color differences
+├── Low opacity overlays
+└── Pastel colors
 ```
 
 ### High Contrast Strategies
@@ -1868,21 +1868,21 @@ Affected elements:
 For outdoor visibility:
 
 MINIMUM CONTRAST RATIOS:
-â”œâ”€â”€ Normal text: 4.5:1 (WCAG AA)
-â”œâ”€â”€ Large text: 3:1 (WCAG AA)
-â”œâ”€â”€ Recommended: 7:1+ (AAA)
+├── Normal text: 4.5:1 (WCAG AA)
+├── Large text: 3:1 (WCAG AA)
+├── Recommended: 7:1+ (AAA)
 
 AVOID:
-â”œâ”€â”€ #999 on #FFF (fails AA)
-â”œâ”€â”€ #BBB on #FFF (fails)
-â”œâ”€â”€ Pale colors on light backgrounds
-â””â”€â”€ Subtle gradients for critical info
+├── #999 on #FFF (fails AA)
+├── #BBB on #FFF (fails)
+├── Pale colors on light backgrounds
+└── Subtle gradients for critical info
 
 DO:
-â”œâ”€â”€ Use system semantic colors
-â”œâ”€â”€ Test in bright environment
-â”œâ”€â”€ Provide high contrast mode
-â””â”€â”€ Use solid colors for critical UI
+├── Use system semantic colors
+├── Test in bright environment
+├── Provide high contrast mode
+└── Use solid colors for critical UI
 ```
 
 ---
@@ -1902,34 +1902,34 @@ DO:
 
 ```
 NEVER use semantic colors for:
-â”œâ”€â”€ Branding (confuses meaning)
-â”œâ”€â”€ Decoration (reduces impact)
-â”œâ”€â”€ Arbitrary styling
-â””â”€â”€ Status indicators (use icons too)
+├── Branding (confuses meaning)
+├── Decoration (reduces impact)
+├── Arbitrary styling
+└── Status indicators (use icons too)
 
 ALWAYS:
-â”œâ”€â”€ Pair with icons (colorblind users)
-â”œâ”€â”€ Maintain across light/dark modes
-â”œâ”€â”€ Keep consistent throughout app
-â””â”€â”€ Follow platform conventions
+├── Pair with icons (colorblind users)
+├── Maintain across light/dark modes
+├── Keep consistent throughout app
+└── Follow platform conventions
 ```
 
 ### Error State Colors
 
 ```
 Error states need:
-â”œâ”€â”€ Red-ish color (semantic)
-â”œâ”€â”€ High contrast against background
-â”œâ”€â”€ Icon reinforcement
-â”œâ”€â”€ Clear text explanation
+├── Red-ish color (semantic)
+├── High contrast against background
+├── Icon reinforcement
+├── Clear text explanation
 
 iOS:
-â”œâ”€â”€ Light: #FF3B30
-â”œâ”€â”€ Dark: #FF453A
+├── Light: #FF3B30
+├── Dark: #FF453A
 
 Android:
-â”œâ”€â”€ Light: #B3261E
-â”œâ”€â”€ Dark: #F2B8B5 (on error container)
+├── Light: #B3261E
+├── Dark: #F2B8B5 (on error container)
 ```
 
 ---
@@ -1941,14 +1941,14 @@ Android:
 ```
 Android 12+ Dynamic Color:
 
-User's wallpaper â†’ Color extraction â†’ App theme
+User's wallpaper → Color extraction → App theme
 
 Your app automatically gets:
-â”œâ”€â”€ Primary (from wallpaper dominant)
-â”œâ”€â”€ Secondary (complementary)
-â”œâ”€â”€ Tertiary (accent)
-â”œâ”€â”€ Surface colors (neutral, derived)
-â”œâ”€â”€ On-colors (text on each)
+├── Primary (from wallpaper dominant)
+├── Secondary (complementary)
+├── Tertiary (accent)
+├── Surface colors (neutral, derived)
+├── On-colors (text on each)
 ```
 
 ### Supporting Dynamic Color
@@ -1968,15 +1968,15 @@ MaterialTheme(
 
 ```
 When dynamic color unavailable:
-â”œâ”€â”€ Android < 12
-â”œâ”€â”€ User disabled
-â”œâ”€â”€ Non-supporting launchers
+├── Android < 12
+├── User disabled
+├── Non-supporting launchers
 
 Provide static color scheme:
-â”œâ”€â”€ Define your brand colors
-â”œâ”€â”€ Test in both modes
-â”œâ”€â”€ Match dynamic color roles
-â””â”€â”€ Support light + dark
+├── Define your brand colors
+├── Test in both modes
+├── Match dynamic color roles
+└── Support light + dark
 ```
 
 ---
@@ -1989,27 +1989,27 @@ Provide static color scheme:
 ~8% of men, ~0.5% of women are colorblind
 
 Types:
-â”œâ”€â”€ Protanopia (red weakness)
-â”œâ”€â”€ Deuteranopia (green weakness)
-â”œâ”€â”€ Tritanopia (blue weakness)
-â”œâ”€â”€ Monochromacy (rare, no color)
+├── Protanopia (red weakness)
+├── Deuteranopia (green weakness)
+├── Tritanopia (blue weakness)
+├── Monochromacy (rare, no color)
 
 Design rules:
-â”œâ”€â”€ Never rely on color alone
-â”œâ”€â”€ Use patterns, icons, text
-â”œâ”€â”€ Test with simulation tools
-â”œâ”€â”€ Avoid red/green distinctions only
+├── Never rely on color alone
+├── Use patterns, icons, text
+├── Test with simulation tools
+├── Avoid red/green distinctions only
 ```
 
 ### Contrast Testing Tools
 
 ```
 Use these to verify:
-â”œâ”€â”€ Built-in accessibility inspector (Xcode)
-â”œâ”€â”€ Accessibility Scanner (Android)
-â”œâ”€â”€ Contrast ratio calculators
-â”œâ”€â”€ Colorblind simulation
-â””â”€â”€ Test on actual devices in sunlight
+├── Built-in accessibility inspector (Xcode)
+├── Accessibility Scanner (Android)
+├── Contrast ratio calculators
+├── Colorblind simulation
+└── Test on actual devices in sunlight
 ```
 
 ### Sufficient Contrast
@@ -2018,13 +2018,13 @@ Use these to verify:
 WCAG Guidelines:
 
 AA (Minimum)
-â”œâ”€â”€ Normal text: 4.5:1
-â”œâ”€â”€ Large text (18pt+): 3:1
-â”œâ”€â”€ UI components: 3:1
+├── Normal text: 4.5:1
+├── Large text (18pt+): 3:1
+├── UI components: 3:1
 
 AAA (Enhanced)
-â”œâ”€â”€ Normal text: 7:1
-â”œâ”€â”€ Large text: 4.5:1
+├── Normal text: 7:1
+├── Large text: 4.5:1
 
 Mobile recommendation: Meet AA, aim for AAA
 ```
@@ -2033,7 +2033,7 @@ Mobile recommendation: Meet AA, aim for AAA
 
 ## 8. Color Anti-Patterns
 
-### âŒ Common Mistakes
+### ❌ Common Mistakes
 
 | Mistake | Problem | Fix |
 |---------|---------|-----|
@@ -2044,17 +2044,17 @@ Mobile recommendation: Meet AA, aim for AAA
 | **Semantic colors for brand** | Confusing meaning | Use neutral for brand |
 | **Ignoring system dark mode** | Jarring experience | Support both modes |
 
-### âŒ AI Color Mistakes
+### ❌ AI Color Mistakes
 
 ```
 AI tends to:
-â”œâ”€â”€ Use same colors for light/dark
-â”œâ”€â”€ Ignore OLED battery implications
-â”œâ”€â”€ Skip contrast calculations
-â”œâ”€â”€ Default to purple/violet (BANNED)
-â”œâ”€â”€ Use low contrast "aesthetic" grays
-â”œâ”€â”€ Not test in outdoor conditions
-â””â”€â”€ Forget colorblind users
+├── Use same colors for light/dark
+├── Ignore OLED battery implications
+├── Skip contrast calculations
+├── Default to purple/violet (BANNED)
+├── Use low contrast "aesthetic" grays
+├── Not test in outdoor conditions
+└── Forget colorblind users
 
 RULE: Design for the worst case.
 Test in bright sunlight, with colorblindness simulation.
@@ -2114,10 +2114,10 @@ Ideal:       7:1 (AAA)
 
 ---
 
-> **Remember:** Color on mobile must work in the worst conditionsâ€”bright sun, tired eyes, colorblindness, low battery. Pretty colors that fail these tests are useless colors.
+> **Remember:** Color on mobile must work in the worst conditions—bright sun, tired eyes, colorblindness, low battery. Pretty colors that fail these tests are useless colors.
 ---
 
-âš¡ PikaKit v3.9.105\r\n\r\n---\r\n\r\n## ðŸ”— Related\r\n\r\n| File | When to Read |\r\n|------|-------------|\r\n| [../SKILL.md](../SKILL.md) | Platform differences |\r\n| [mobile-typography.md](mobile-typography.md) | Color + typography harmony |\r\n| [platform-ios.md](platform-ios.md) | iOS system colors |\r\n| [platform-android.md](platform-android.md) | Material You dynamic color |\r\n| [engineering-spec.md](engineering-spec.md) | Full engineering spec |
+⚡ PikaKit v3.9.105\r\n\r\n---\r\n\r\n## 🔗 Related\r\n\r\n| File | When to Read |\r\n|------|-------------|\r\n| [../SKILL.md](../SKILL.md) | Platform differences |\r\n| [mobile-typography.md](mobile-typography.md) | Color + typography harmony |\r\n| [platform-ios.md](platform-ios.md) | iOS system colors |\r\n| [platform-android.md](platform-android.md) | Material You dynamic color |\r\n| [engineering-spec.md](engineering-spec.md) | Full engineering spec |
 
 ---
 
@@ -2125,7 +2125,7 @@ Ideal:       7:1 (AAA)
 
 ---
 name: mobile-debugging
-description: Mobile debugging patterns â€” React Native Flipper, Flutter DevTools, Xcode/Android Studio, crash diagnostics
+description: Mobile debugging patterns — React Native Flipper, Flutter DevTools, Xcode/Android Studio, crash diagnostics
 ---
 
 # Mobile Debugging Guide
@@ -2136,16 +2136,16 @@ description: Mobile debugging patterns â€” React Native Flipper, Flutter De
 
 ---
 
-## ðŸ§  MOBILE DEBUGGING MINDSET
+## 🧠 MOBILE DEBUGGING MINDSET
 
 ```
 Web Debugging:      Mobile Debugging:
-â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”    â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
-â”‚  Browser     â”‚    â”‚  JS Bridge   â”‚
-â”‚  DevTools    â”‚    â”‚  Native UI   â”‚
-â”‚  Network Tab â”‚    â”‚  GPU/Memory  â”‚
-â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜    â”‚  Threads     â”‚
-                    â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
+┌──────────────┐    ┌──────────────┐
+│  Browser     │    │  JS Bridge   │
+│  DevTools    │    │  Native UI   │
+│  Network Tab │    │  GPU/Memory  │
+└──────────────┘    │  Threads     │
+                    └──────────────┘
 ```
 
 **Key Differences:**
@@ -2156,9 +2156,9 @@ Web Debugging:      Mobile Debugging:
 
 ---
 
-## ðŸš« AI DEBUGGING ANTI-PATTERNS
+## 🚫 AI DEBUGGING ANTI-PATTERNS
 
-| âŒ Default | âœ… Mobile-Correct |
+| ❌ Default | ✅ Mobile-Correct |
 |------------|-------------------|
 | "Add console.logs" | Use Flipper / Reactotron |
 | "Check network tab" | Use Charles Proxy / Proxyman |
@@ -2170,7 +2170,7 @@ Web Debugging:      Mobile Debugging:
 
 ## 1. The Toolset
 
-### âš¡ React Native & Expo
+### ⚡ React Native & Expo
 
 | Tool | Purpose | Best For |
 |------|---------|----------|
@@ -2178,7 +2178,7 @@ Web Debugging:      Mobile Debugging:
 | **Flipper** | Layout/Network/db | Native + JS bridge |
 | **Expo Tools** | Element inspector | Quick UI checks |
 
-### ðŸ› ï¸ Native Layer (The Deep Dive)
+### 🛠️ Native Layer (The Deep Dive)
 
 | Tool | Platform | Command | Why Use? |
 |------|----------|---------|----------|
@@ -2191,7 +2191,7 @@ Web Debugging:      Mobile Debugging:
 
 ## 2. Common Debugging Workflows
 
-### ðŸ•µï¸ "The App Just Crashed" (Red Screen vs Crash to Home)
+### 🕵️ "The App Just Crashed" (Red Screen vs Crash to Home)
 
 **Scenario A: Red Screen (JS Error)**
 - **Cause:** Undefined is not an object, import error.
@@ -2201,13 +2201,13 @@ Web Debugging:      Mobile Debugging:
 - **Cause:** Native module failure, memory OOM, permission usage without declaration.
 - **Tools:**
     - **Android:** `adb logcat *:E` (Filter for Errors)
-    - **iOS:** Open Xcode â†’ Window â†’ Devices â†’ View Device Logs
+    - **iOS:** Open Xcode → Window → Devices → View Device Logs
 
-> **ðŸ’¡ Pro Tip:** If app crashes immediately on launch, it's almost 100% a native configuration issue (Info.plist, AndroidManifest.xml).
+> **💡 Pro Tip:** If app crashes immediately on launch, it's almost 100% a native configuration issue (Info.plist, AndroidManifest.xml).
 
-### ðŸŒ "API Request Failed" (Network)
+### 🌐 "API Request Failed" (Network)
 
-**Web:** Open Chrome DevTools â†’ Network.
+**Web:** Open Chrome DevTools → Network.
 **Mobile:** *You usually can't see this easily.*
 
 **Solution 1: Reactotron/Flipper**
@@ -2217,7 +2217,7 @@ Web Debugging:      Mobile Debugging:
 - **Hard but powerful.** See ALL traffic even from native SDKs.
 - Requires installing SSL cert on device.
 
-### ðŸ¢ "The UI is Laggy" (Performance)
+### 🐢 "The UI is Laggy" (Performance)
 
 **Don't guess.** measure.
 - **React Native:** Performance Monitor (Shake menu).
@@ -2238,11 +2238,11 @@ Web Debugging:      Mobile Debugging:
 ### iOS
 - **Pod Issues:** `pod deintegrate && pod install`.
 - **Signing Errors:** Check Team ID and Bundle Identifier.
-- **Cache:** Xcode â†’ Product â†’ Clean Build Folder.
+- **Cache:** Xcode → Product → Clean Build Folder.
 
 ---
 
-## ðŸ“ DEBUGGING CHECKLIST
+## 📝 DEBUGGING CHECKLIST
 
 - [ ] **Is it a JS or Native crash?** (Red screen or home screen?)
 - [ ] **Did you clean build?** (Native caches are aggressive)
@@ -2252,11 +2252,11 @@ Web Debugging:      Mobile Debugging:
 > **Remember:** If JavaScript looks perfect but the app fails, look closer at the Native side.
 ---
 
-âš¡ PikaKit v3.9.105
+⚡ PikaKit v3.9.105
 
 ---
 
-## ðŸ”— Related
+## 🔗 Related
 
 | File | When to Read |
 |------|-------------|
@@ -2271,7 +2271,7 @@ Web Debugging:      Mobile Debugging:
 
 ---
 name: mobile-design-thinking
-description: Mobile design methodology â€” user research, prototyping, usability testing, design sprints, mobile-specific UX
+description: Mobile design methodology — user research, prototyping, usability testing, design sprints, mobile-specific UX
 ---
 
 # Mobile Design Thinking
@@ -2282,41 +2282,41 @@ description: Mobile design methodology â€” user research, prototyping, usab
 
 ---
 
-## ðŸ§  DEEP MOBILE THINKING PROTOCOL
+## 🧠 DEEP MOBILE THINKING PROTOCOL
 
 ### This Process is Mandatory Before Every Mobile Project
 
 ```
-â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
-â”‚                    DEEP MOBILE THINKING                         â”‚
-â”œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¤
-â”‚                                                                 â”‚
-â”‚  1ï¸âƒ£ CONTEXT SCAN                                               â”‚
-â”‚     â””â”€â”€ What are my assumptions for this project?               â”‚
-â”‚         â””â”€â”€ QUESTION these assumptions                          â”‚
-â”‚                                                                 â”‚
-â”‚  2ï¸âƒ£ ANTI-DEFAULT ANALYSIS                                      â”‚
-â”‚     â””â”€â”€ Am I applying a memorized pattern?                      â”‚
-â”‚         â””â”€â”€ Is this pattern REALLY the best for THIS project?   â”‚
-â”‚                                                                 â”‚
-â”‚  3ï¸âƒ£ PLATFORM DECOMPOSITION                                     â”‚
-â”‚     â””â”€â”€ Did I think about iOS and Android separately?           â”‚
-â”‚         â””â”€â”€ What are the platform-specific patterns?            â”‚
-â”‚                                                                 â”‚
-â”‚  4ï¸âƒ£ TOUCH INTERACTION BREAKDOWN                                â”‚
-â”‚     â””â”€â”€ Did I analyze each interaction individually?            â”‚
-â”‚         â””â”€â”€ Did I apply Fitts' Law, Thumb Zone?                 â”‚
-â”‚                                                                 â”‚
-â”‚  5ï¸âƒ£ PERFORMANCE IMPACT ANALYSIS                                â”‚
-â”‚     â””â”€â”€ Did I consider performance impact of each component?    â”‚
-â”‚         â””â”€â”€ Is the default solution performant?                 â”‚
-â”‚                                                                 â”‚
-â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
+┌─────────────────────────────────────────────────────────────────┐
+│                    DEEP MOBILE THINKING                         │
+├─────────────────────────────────────────────────────────────────┤
+│                                                                 │
+│  1ï¸⒣ CONTEXT SCAN                                               │
+│     └── What are my assumptions for this project?               │
+│         └── QUESTION these assumptions                          │
+│                                                                 │
+│  2ï¸⒣ ANTI-DEFAULT ANALYSIS                                      │
+│     └── Am I applying a memorized pattern?                      │
+│         └── Is this pattern REALLY the best for THIS project?   │
+│                                                                 │
+│  3ï¸⒣ PLATFORM DECOMPOSITION                                     │
+│     └── Did I think about iOS and Android separately?           │
+│         └── What are the platform-specific patterns?            │
+│                                                                 │
+│  4ï¸⒣ TOUCH INTERACTION BREAKDOWN                                │
+│     └── Did I analyze each interaction individually?            │
+│         └── Did I apply Fitts' Law, Thumb Zone?                 │
+│                                                                 │
+│  5ï¸⒣ PERFORMANCE IMPACT ANALYSIS                                │
+│     └── Did I consider performance impact of each component?    │
+│         └── Is the default solution performant?                 │
+│                                                                 │
+└─────────────────────────────────────────────────────────────────┘
 ```
 
 ---
 
-## ðŸš« AI MOBILE DEFAULTS (FORBIDDEN LIST)
+## 🚫 AI MOBILE DEFAULTS (FORBIDDEN LIST)
 
 ### Using These Patterns Automatically is FORBIDDEN!
 
@@ -2324,41 +2324,41 @@ The following patterns are "defaults" that AIs learned from training data.
 Before using any of these, **QUESTION them and CONSIDER ALTERNATIVES!**
 
 ```
-â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
-â”‚                 ðŸš« AI MOBILE SAFE HARBOR                        â”‚
-â”‚           (Default Patterns - Never Use Without Questioning)    â”‚
-â”œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¤
-â”‚                                                                 â”‚
-â”‚  NAVIGATION DEFAULTS:                                           â”‚
-â”‚  â”œâ”€â”€ Tab bar for every project (Would drawer be better?)        â”‚
-â”‚  â”œâ”€â”€ Fixed 5 tabs (Are 3 enough? For 6+, drawer?)               â”‚
-â”‚  â”œâ”€â”€ "Home" tab on left (What does user behavior say?)          â”‚
-â”‚  â””â”€â”€ Hamburger menu (Is it outdated now?)                       â”‚
-â”‚                                                                 â”‚
-â”‚  STATE MANAGEMENT DEFAULTS:                                     â”‚
-â”‚  â”œâ”€â”€ Redux everywhere (Is Zustand/Jotai sufficient?)            â”‚
-â”‚  â”œâ”€â”€ Global state for everything (Isn't local state enough?)   â”‚
-â”‚  â”œâ”€â”€ Context Provider hell (Is atom-based better?)              â”‚
-â”‚  â””â”€â”€ BLoC for every Flutter project (Is Riverpod more modern?)  â”‚
-â”‚                                                                 â”‚
-â”‚  LIST IMPLEMENTATION DEFAULTS:                                  â”‚
-â”‚  â”œâ”€â”€ FlatList as default (Is FlashList more performant?)        â”‚
-â”‚  â”œâ”€â”€ windowSize=21 (Is it really needed?)                       â”‚
-â”‚  â”œâ”€â”€ removeClippedSubviews (Always?)                            â”‚
-â”‚  â””â”€â”€ ListView.builder (Is ListView.separated better?)           â”‚
-â”‚                                                                 â”‚
-â”‚  UI PATTERN DEFAULTS:                                           â”‚
-â”‚  â”œâ”€â”€ FAB bottom-right (Is bottom-left more accessible?)         â”‚
-â”‚  â”œâ”€â”€ Pull-to-refresh on every list (Is it needed everywhere?)   â”‚
-â”‚  â”œâ”€â”€ Swipe-to-delete from left (Is right better?)               â”‚
-â”‚  â””â”€â”€ Bottom sheet for every modal (Is full screen better?)      â”‚
-â”‚                                                                 â”‚
-â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
+┌─────────────────────────────────────────────────────────────────┐
+│                 🚫 AI MOBILE SAFE HARBOR                        │
+│           (Default Patterns - Never Use Without Questioning)    │
+├─────────────────────────────────────────────────────────────────┤
+│                                                                 │
+│  NAVIGATION DEFAULTS:                                           │
+│  ├── Tab bar for every project (Would drawer be better?)        │
+│  ├── Fixed 5 tabs (Are 3 enough? For 6+, drawer?)               │
+│  ├── "Home" tab on left (What does user behavior say?)          │
+│  └── Hamburger menu (Is it outdated now?)                       │
+│                                                                 │
+│  STATE MANAGEMENT DEFAULTS:                                     │
+│  ├── Redux everywhere (Is Zustand/Jotai sufficient?)            │
+│  ├── Global state for everything (Isn't local state enough?)   │
+│  ├── Context Provider hell (Is atom-based better?)              │
+│  └── BLoC for every Flutter project (Is Riverpod more modern?)  │
+│                                                                 │
+│  LIST IMPLEMENTATION DEFAULTS:                                  │
+│  ├── FlatList as default (Is FlashList more performant?)        │
+│  ├── windowSize=21 (Is it really needed?)                       │
+│  ├── removeClippedSubviews (Always?)                            │
+│  └── ListView.builder (Is ListView.separated better?)           │
+│                                                                 │
+│  UI PATTERN DEFAULTS:                                           │
+│  ├── FAB bottom-right (Is bottom-left more accessible?)         │
+│  ├── Pull-to-refresh on every list (Is it needed everywhere?)   │
+│  ├── Swipe-to-delete from left (Is right better?)               │
+│  └── Bottom sheet for every modal (Is full screen better?)      │
+│                                                                 │
+└─────────────────────────────────────────────────────────────────┘
 ```
 
 ---
 
-## ðŸ” COMPONENT DECOMPOSITION (MANDATORY)
+## 🔍 COMPONENT DECOMPOSITION (MANDATORY)
 
 ### Decomposition Analysis for Every Screen
 
@@ -2366,41 +2366,41 @@ Before designing any screen, perform this analysis:
 
 ```
 SCREEN: [Screen Name]
-â”œâ”€â”€ PRIMARY ACTION: [What is the main action?]
-â”‚   â””â”€â”€ Is it in thumb zone? [Yes/No â†’ Why?]
-â”‚
-â”œâ”€â”€ TOUCH TARGETS: [All tappable elements]
-â”‚   â”œâ”€â”€ [Element 1]: [Size]pt â†’ Sufficient?
-â”‚   â”œâ”€â”€ [Element 2]: [Size]pt â†’ Sufficient?
-â”‚   â””â”€â”€ Spacing: [Gap]pt â†’ Accidental tap risk?
-â”‚
-â”œâ”€â”€ SCROLLABLE CONTENT:
-â”‚   â”œâ”€â”€ Is it a list? â†’ FlatList/FlashList [Why this choice?]
-â”‚   â”œâ”€â”€ Item count: ~[N] â†’ Performance consideration?
-â”‚   â””â”€â”€ Fixed height? â†’ Is getItemLayout needed?
-â”‚
-â”œâ”€â”€ STATE REQUIREMENTS:
-â”‚   â”œâ”€â”€ Is local state sufficient?
-â”‚   â”œâ”€â”€ Do I need to lift state?
-â”‚   â””â”€â”€ Is global required? [Why?]
-â”‚
-â”œâ”€â”€ PLATFORM DIFFERENCES:
-â”‚   â”œâ”€â”€ iOS: [Anything different needed?]
-â”‚   â””â”€â”€ Android: [Anything different needed?]
-â”‚
-â”œâ”€â”€ OFFLINE CONSIDERATION:
-â”‚   â”œâ”€â”€ Should this screen work offline?
-â”‚   â””â”€â”€ Cache strategy: [Yes/No/Which one?]
-â”‚
-â””â”€â”€ PERFORMANCE IMPACT:
-    â”œâ”€â”€ Any heavy components?
-    â”œâ”€â”€ Is memoization needed?
-    â””â”€â”€ Animation performance?
+├── PRIMARY ACTION: [What is the main action?]
+│   └── Is it in thumb zone? [Yes/No → Why?]
+│
+├── TOUCH TARGETS: [All tappable elements]
+│   ├── [Element 1]: [Size]pt → Sufficient?
+│   ├── [Element 2]: [Size]pt → Sufficient?
+│   └── Spacing: [Gap]pt → Accidental tap risk?
+│
+├── SCROLLABLE CONTENT:
+│   ├── Is it a list? → FlatList/FlashList [Why this choice?]
+│   ├── Item count: ~[N] → Performance consideration?
+│   └── Fixed height? → Is getItemLayout needed?
+│
+├── STATE REQUIREMENTS:
+│   ├── Is local state sufficient?
+│   ├── Do I need to lift state?
+│   └── Is global required? [Why?]
+│
+├── PLATFORM DIFFERENCES:
+│   ├── iOS: [Anything different needed?]
+│   └── Android: [Anything different needed?]
+│
+├── OFFLINE CONSIDERATION:
+│   ├── Should this screen work offline?
+│   └── Cache strategy: [Yes/No/Which one?]
+│
+└── PERFORMANCE IMPACT:
+    ├── Any heavy components?
+    ├── Is memoization needed?
+    └── Animation performance?
 ```
 
 ---
 
-## ðŸŽ¯ PATTERN QUESTIONING MATRIX
+## 🎯 PATTERN QUESTIONING MATRIX
 
 Ask these questions for every default pattern:
 
@@ -2408,7 +2408,7 @@ Ask these questions for every default pattern:
 
 | Assumption | Question | Alternative |
 |------------|----------|-------------|
-| "I'll use tab bar" | How many destinations? | 3 â†’ minimal tabs, 6+ â†’ drawer |
+| "I'll use tab bar" | How many destinations? | 3 → minimal tabs, 6+ → drawer |
 | "5 tabs" | Are all equally important? | "More" tab? Drawer hybrid? |
 | "Bottom nav" | iPad/tablet support? | Navigation rail alternative |
 | "Stack navigation" | Did I consider deep links? | URL structure = navigation structure |
@@ -2442,87 +2442,87 @@ Ask these questions for every default pattern:
 
 ---
 
-## ðŸ§ª ANTI-MEMORIZATION TEST
+## 🧪 ANTI-MEMORIZATION TEST
 
 ### Ask Yourself Before Every Solution
 
 ```
-â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
-â”‚                    ANTI-MEMORIZATION CHECKLIST                  â”‚
-â”œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¤
-â”‚                                                                 â”‚
-â”‚  â–¡ Did I pick this solution "because I always do it this way"?  â”‚
-â”‚    â†’ If YES: STOP. Consider alternatives.                       â”‚
-â”‚                                                                 â”‚
-â”‚  â–¡ Is this a pattern I've seen frequently in training data?     â”‚
-â”‚    â†’ If YES: Is it REALLY suitable for THIS project?            â”‚
-â”‚                                                                 â”‚
-â”‚  â–¡ Did I write this solution automatically without thinking?    â”‚
-â”‚    â†’ If YES: Step back, do decomposition.                       â”‚
-â”‚                                                                 â”‚
-â”‚  â–¡ Did I consider an alternative approach?                      â”‚
-â”‚    â†’ If NO: Think of at least 2 alternatives, then decide.      â”‚
-â”‚                                                                 â”‚
-â”‚  â–¡ Did I think platform-specifically?                           â”‚
-â”‚    â†’ If NO: Analyze iOS and Android separately.                 â”‚
-â”‚                                                                 â”‚
-â”‚  â–¡ Did I consider performance impact of this solution?          â”‚
-â”‚    â†’ If NO: What is the memory, CPU, battery impact?            â”‚
-â”‚                                                                 â”‚
-â”‚  â–¡ Is this solution suitable for THIS project's CONTEXT?        â”‚
-â”‚    â†’ If NO: Customize based on context.                         â”‚
-â”‚                                                                 â”‚
-â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
+┌─────────────────────────────────────────────────────────────────┐
+│                    ANTI-MEMORIZATION CHECKLIST                  │
+├─────────────────────────────────────────────────────────────────┤
+│                                                                 │
+│  □ Did I pick this solution "because I always do it this way"?  │
+│    → If YES: STOP. Consider alternatives.                       │
+│                                                                 │
+│  □ Is this a pattern I've seen frequently in training data?     │
+│    → If YES: Is it REALLY suitable for THIS project?            │
+│                                                                 │
+│  □ Did I write this solution automatically without thinking?    │
+│    → If YES: Step back, do decomposition.                       │
+│                                                                 │
+│  □ Did I consider an alternative approach?                      │
+│    → If NO: Think of at least 2 alternatives, then decide.      │
+│                                                                 │
+│  □ Did I think platform-specifically?                           │
+│    → If NO: Analyze iOS and Android separately.                 │
+│                                                                 │
+│  □ Did I consider performance impact of this solution?          │
+│    → If NO: What is the memory, CPU, battery impact?            │
+│                                                                 │
+│  □ Is this solution suitable for THIS project's CONTEXT?        │
+│    → If NO: Customize based on context.                         │
+│                                                                 │
+└─────────────────────────────────────────────────────────────────┘
 ```
 
 ---
 
-## ðŸ“Š CONTEXT-BASED DECISION PROTOCOL
+## 📊 CONTEXT-BASED DECISION PROTOCOL
 
 ### Think Differently Based on Project Type
 
 ```
 DETERMINE PROJECT TYPE:
-        â”‚
-        â”œâ”€â”€ E-Commerce App
-        â”‚   â”œâ”€â”€ Navigation: Tab (Home, Search, Cart, Account)
-        â”‚   â”œâ”€â”€ Lists: Product grids (memoized, image optimized)
-        â”‚   â”œâ”€â”€ Performance: Image caching CRITICAL
-        â”‚   â”œâ”€â”€ Offline: Cart persistence, product cache
-        â”‚   â””â”€â”€ Special: Checkout flow, payment security
-        â”‚
-        â”œâ”€â”€ Social/Content App
-        â”‚   â”œâ”€â”€ Navigation: Tab (Feed, Search, Create, Notify, Profile)
-        â”‚   â”œâ”€â”€ Lists: Infinite scroll, complex items
-        â”‚   â”œâ”€â”€ Performance: Feed rendering CRITICAL
-        â”‚   â”œâ”€â”€ Offline: Feed cache, draft posts
-        â”‚   â””â”€â”€ Special: Real-time updates, media handling
-        â”‚
-        â”œâ”€â”€ Productivity/SaaS App
-        â”‚   â”œâ”€â”€ Navigation: Drawer or adaptive (mobile tab, tablet rail)
-        â”‚   â”œâ”€â”€ Lists: Data tables, forms
-        â”‚   â”œâ”€â”€ Performance: Data sync
-        â”‚   â”œâ”€â”€ Offline: Full offline editing
-        â”‚   â””â”€â”€ Special: Conflict resolution, background sync
-        â”‚
-        â”œâ”€â”€ Utility App
-        â”‚   â”œâ”€â”€ Navigation: Minimal (stack-only possible)
-        â”‚   â”œâ”€â”€ Lists: Probably minimal
-        â”‚   â”œâ”€â”€ Performance: Fast startup
-        â”‚   â”œâ”€â”€ Offline: Core feature offline
-        â”‚   â””â”€â”€ Special: Widget, shortcuts
-        â”‚
-        â””â”€â”€ Media/Streaming App
-            â”œâ”€â”€ Navigation: Tab (Home, Search, Library, Profile)
-            â”œâ”€â”€ Lists: Horizontal carousels, vertical feeds
-            â”œâ”€â”€ Performance: Preloading, buffering
-            â”œâ”€â”€ Offline: Download management
-            â””â”€â”€ Special: Background playback, casting
+        │
+        ├── E-Commerce App
+        │   ├── Navigation: Tab (Home, Search, Cart, Account)
+        │   ├── Lists: Product grids (memoized, image optimized)
+        │   ├── Performance: Image caching CRITICAL
+        │   ├── Offline: Cart persistence, product cache
+        │   └── Special: Checkout flow, payment security
+        │
+        ├── Social/Content App
+        │   ├── Navigation: Tab (Feed, Search, Create, Notify, Profile)
+        │   ├── Lists: Infinite scroll, complex items
+        │   ├── Performance: Feed rendering CRITICAL
+        │   ├── Offline: Feed cache, draft posts
+        │   └── Special: Real-time updates, media handling
+        │
+        ├── Productivity/SaaS App
+        │   ├── Navigation: Drawer or adaptive (mobile tab, tablet rail)
+        │   ├── Lists: Data tables, forms
+        │   ├── Performance: Data sync
+        │   ├── Offline: Full offline editing
+        │   └── Special: Conflict resolution, background sync
+        │
+        ├── Utility App
+        │   ├── Navigation: Minimal (stack-only possible)
+        │   ├── Lists: Probably minimal
+        │   ├── Performance: Fast startup
+        │   ├── Offline: Core feature offline
+        │   └── Special: Widget, shortcuts
+        │
+        └── Media/Streaming App
+            ├── Navigation: Tab (Home, Search, Library, Profile)
+            ├── Lists: Horizontal carousels, vertical feeds
+            ├── Performance: Preloading, buffering
+            ├── Offline: Download management
+            └── Special: Background playback, casting
 ```
 
 ---
 
-## ðŸ”„ INTERACTION BREAKDOWN
+## 🔄 INTERACTION BREAKDOWN
 
 ### Analysis for Every Gesture
 
@@ -2530,42 +2530,42 @@ Before adding any gesture:
 
 ```
 GESTURE: [Gesture Type]
-â”œâ”€â”€ DISCOVERABILITY:
-â”‚   â””â”€â”€ How will users discover this gesture?
-â”‚       â”œâ”€â”€ Is there a visual hint?
-â”‚       â”œâ”€â”€ Will it be shown in onboarding?
-â”‚       â””â”€â”€ Is there a button alternative? (MANDATORY)
-â”‚
-â”œâ”€â”€ PLATFORM CONVENTION:
-â”‚   â”œâ”€â”€ What does this gesture mean on iOS?
-â”‚   â”œâ”€â”€ What does this gesture mean on Android?
-â”‚   â””â”€â”€ Am I deviating from platform convention?
-â”‚
-â”œâ”€â”€ ACCESSIBILITY:
-â”‚   â”œâ”€â”€ Can motor-impaired users perform this gesture?
-â”‚   â”œâ”€â”€ Is there a VoiceOver/TalkBack alternative?
-â”‚   â””â”€â”€ Does it work with switch control?
-â”‚
-â”œâ”€â”€ CONFLICT CHECK:
-â”‚   â”œâ”€â”€ Does it conflict with system gestures?
-â”‚   â”‚   â”œâ”€â”€ iOS: Edge swipe back
-â”‚   â”‚   â”œâ”€â”€ Android: Back gesture
-â”‚   â”‚   â””â”€â”€ Home indicator swipe
-â”‚   â””â”€â”€ Is it consistent with other app gestures?
-â”‚
-â””â”€â”€ FEEDBACK:
-    â”œâ”€â”€ Is haptic feedback defined?
-    â”œâ”€â”€ Is visual feedback sufficient?
-    â””â”€â”€ Is audio feedback needed?
+├── DISCOVERABILITY:
+│   └── How will users discover this gesture?
+│       ├── Is there a visual hint?
+│       ├── Will it be shown in onboarding?
+│       └── Is there a button alternative? (MANDATORY)
+│
+├── PLATFORM CONVENTION:
+│   ├── What does this gesture mean on iOS?
+│   ├── What does this gesture mean on Android?
+│   └── Am I deviating from platform convention?
+│
+├── ACCESSIBILITY:
+│   ├── Can motor-impaired users perform this gesture?
+│   ├── Is there a VoiceOver/TalkBack alternative?
+│   └── Does it work with switch control?
+│
+├── CONFLICT CHECK:
+│   ├── Does it conflict with system gestures?
+│   │   ├── iOS: Edge swipe back
+│   │   ├── Android: Back gesture
+│   │   └── Home indicator swipe
+│   └── Is it consistent with other app gestures?
+│
+└── FEEDBACK:
+    ├── Is haptic feedback defined?
+    ├── Is visual feedback sufficient?
+    └── Is audio feedback needed?
 ```
 
 ---
 
-## ðŸŽ­ SPIRIT OVER CHECKLIST (Mobile Edition)
+## 🎭 SPIRIT OVER CHECKLIST (Mobile Edition)
 
 ### Passing the Checklist is Not Enough!
 
-| âŒ Self-Deception | âœ… Honest Assessment |
+| ❌ Self-Deception | ✅ Honest Assessment |
 |-------------------|----------------------|
 | "Touch target is 44px" (but on edge, unreachable) | "Can user reach it one-handed?" |
 | "I used FlatList" (but didn't memoize) | "Is scroll smooth?" |
@@ -2573,59 +2573,59 @@ GESTURE: [Gesture Type]
 | "Offline support exists" (but error message is generic) | "What can user actually do offline?" |
 | "Loading state exists" (but just a spinner) | "Does user know how long to wait?" |
 
-> ðŸ”´ **Passing the checklist is NOT the goal. Creating great mobile UX IS the goal.**
+> 🔴 **Passing the checklist is NOT the goal. Creating great mobile UX IS the goal.**
 
 ---
 
-## ðŸ“ MOBILE DESIGN COMMITMENT
+## 📝 MOBILE DESIGN COMMITMENT
 
 ### Fill This at the Start of Every Mobile Project
 
 ```
-ðŸ“± MOBILE DESIGN COMMITMENT
+📱 MOBILE DESIGN COMMITMENT
 
 Project: _______________
 Platform: iOS / Android / Both
 
 1. Default pattern I will NOT use in this project:
-   â””â”€â”€ _______________
+   └── _______________
    
 2. Context-specific focus for this project:
-   â””â”€â”€ _______________
+   └── _______________
 
 3. Platform-specific differences I will implement:
-   â””â”€â”€ iOS: _______________
-   â””â”€â”€ Android: _______________
+   └── iOS: _______________
+   └── Android: _______________
 
 4. Area I will specifically optimize for performance:
-   â””â”€â”€ _______________
+   └── _______________
 
 5. Unique challenge of this project:
-   â””â”€â”€ _______________
+   └── _______________
 
-ðŸ§  If I can't fill this commitment â†’ I don't understand the project well enough.
-   â†’ Go back, understand context better, ask the user.
+🧠 If I can't fill this commitment → I don't understand the project well enough.
+   → Go back, understand context better, ask the user.
 ```
 
 ---
 
-## ðŸš¨ MANDATORY: Before Every Mobile Work
+## 🚨 MANDATORY: Before Every Mobile Work
 
 ```
-â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
-â”‚                    PRE-WORK VALIDATION                          â”‚
-â”œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¤
-â”‚                                                                 â”‚
-â”‚  â–¡ Did I complete Component Decomposition?                      â”‚
-â”‚  â–¡ Did I fill the Pattern Questioning Matrix?                   â”‚
-â”‚  â–¡ Did I pass the Anti-Memorization Test?                       â”‚
-â”‚  â–¡ Did I make context-based decisions?                          â”‚
-â”‚  â–¡ Did I analyze Interaction Breakdown?                         â”‚
-â”‚  â–¡ Did I fill the Mobile Design Commitment?                     â”‚
-â”‚                                                                 â”‚
-â”‚  âš ï¸ Do not write code without completing these!                 â”‚
-â”‚                                                                 â”‚
-â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
+┌─────────────────────────────────────────────────────────────────┐
+│                    PRE-WORK VALIDATION                          │
+├─────────────────────────────────────────────────────────────────┤
+│                                                                 │
+│  □ Did I complete Component Decomposition?                      │
+│  □ Did I fill the Pattern Questioning Matrix?                   │
+│  □ Did I pass the Anti-Memorization Test?                       │
+│  □ Did I make context-based decisions?                          │
+│  □ Did I analyze Interaction Breakdown?                         │
+│  □ Did I fill the Mobile Design Commitment?                     │
+│                                                                 │
+│  ⚠️ Do not write code without completing these!                 │
+│                                                                 │
+└─────────────────────────────────────────────────────────────────┘
 ```
 
 ---
@@ -2633,11 +2633,11 @@ Platform: iOS / Android / Both
 > **Remember:** If you chose a solution "because that's how it's always done," you chose WITHOUT THINKING. Every project is unique. Every context is different. Every user behavior is specific. **THINK, then code.**
 ---
 
-âš¡ PikaKit v3.9.105
+⚡ PikaKit v3.9.105
 
 ---
 
-## ðŸ”— Related
+## 🔗 Related
 
 | File | When to Read |
 |------|-------------|
@@ -2652,13 +2652,13 @@ Platform: iOS / Android / Both
 
 ---
 name: mobile-navigation
-description: Mobile navigation patterns â€” tab bars, stack navigation, drawers, deep linking, platform-specific conventions
+description: Mobile navigation patterns — tab bars, stack navigation, drawers, deep linking, platform-specific conventions
 ---
 
 # Mobile Navigation Reference
 
 > Navigation patterns, deep linking, back handling, and tab/stack/drawer decisions.
-> **Navigation is the skeleton of your appâ€”get it wrong and everything feels broken.**
+> **Navigation is the skeleton of your app—get it wrong and everything feels broken.**
 
 ---
 
@@ -2666,25 +2666,25 @@ description: Mobile navigation patterns â€” tab bars, stack navigation, dra
 
 ```
 WHAT TYPE OF APP?
-        â”‚
-        â”œâ”€â”€ 3-5 top-level sections (equal importance)
-        â”‚   â””â”€â”€ âœ… Tab Bar / Bottom Navigation
-        â”‚       Examples: Social, E-commerce, Utility
-        â”‚
-        â”œâ”€â”€ Deep hierarchical content (drill down)
-        â”‚   â””â”€â”€ âœ… Stack Navigation
-        â”‚       Examples: Settings, Email folders
-        â”‚
-        â”œâ”€â”€ Many destinations (>5 top-level)
-        â”‚   â””â”€â”€ âœ… Drawer Navigation
-        â”‚       Examples: Gmail, complex enterprise
-        â”‚
-        â”œâ”€â”€ Single linear flow
-        â”‚   â””â”€â”€ âœ… Stack only (wizard/onboarding)
-        â”‚       Examples: Checkout, Setup flow
-        â”‚
-        â””â”€â”€ Tablet/Foldable
-            â””â”€â”€ âœ… Navigation Rail + List-Detail
+        │
+        ├── 3-5 top-level sections (equal importance)
+        │   └── ✅ Tab Bar / Bottom Navigation
+        │       Examples: Social, E-commerce, Utility
+        │
+        ├── Deep hierarchical content (drill down)
+        │   └── ✅ Stack Navigation
+        │       Examples: Settings, Email folders
+        │
+        ├── Many destinations (>5 top-level)
+        │   └── ✅ Drawer Navigation
+        │       Examples: Gmail, complex enterprise
+        │
+        ├── Single linear flow
+        │   └── ✅ Stack only (wizard/onboarding)
+        │       Examples: Checkout, Setup flow
+        │
+        └── Tablet/Foldable
+            └── ✅ Navigation Rail + List-Detail
                 Examples: Mail, Notes on iPad
 ```
 
@@ -2695,36 +2695,36 @@ WHAT TYPE OF APP?
 ### When to Use
 
 ```
-âœ… USE Tab Bar when:
-â”œâ”€â”€ 3-5 top-level destinations
-â”œâ”€â”€ Destinations are of equal importance
-â”œâ”€â”€ User frequently switches between them
-â”œâ”€â”€ Each tab has independent navigation stack
-â””â”€â”€ App is used in short sessions
+✅ USE Tab Bar when:
+├── 3-5 top-level destinations
+├── Destinations are of equal importance
+├── User frequently switches between them
+├── Each tab has independent navigation stack
+└── App is used in short sessions
 
-âŒ AVOID Tab Bar when:
-â”œâ”€â”€ More than 5 destinations
-â”œâ”€â”€ Destinations have clear hierarchy
-â”œâ”€â”€ Tabs would be used very unequally
-â””â”€â”€ Content flows in a sequence
+❌ AVOID Tab Bar when:
+├── More than 5 destinations
+├── Destinations have clear hierarchy
+├── Tabs would be used very unequally
+└── Content flows in a sequence
 ```
 
 ### Tab Bar Best Practices
 
 ```
 iOS Tab Bar:
-â”œâ”€â”€ Height: 49pt (83pt with home indicator)
-â”œâ”€â”€ Max items: 5
-â”œâ”€â”€ Icons: SF Symbols, 25Ã—25pt
-â”œâ”€â”€ Labels: Always show (accessibility)
-â”œâ”€â”€ Active indicator: Tint color
+├── Height: 49pt (83pt with home indicator)
+├── Max items: 5
+├── Icons: SF Symbols, 25×25pt
+├── Labels: Always show (accessibility)
+├── Active indicator: Tint color
 
 Android Bottom Navigation:
-â”œâ”€â”€ Height: 80dp
-â”œâ”€â”€ Max items: 5 (3-5 ideal)
-â”œâ”€â”€ Icons: Material Symbols, 24dp
-â”œâ”€â”€ Labels: Always show
-â”œâ”€â”€ Active indicator: Pill shape + filled icon
+├── Height: 80dp
+├── Max items: 5 (3-5 ideal)
+├── Icons: Material Symbols, 24dp
+├── Labels: Always show
+├── Active indicator: Pill shape + filled icon
 ```
 
 ### Tab State Preservation
@@ -2733,15 +2733,15 @@ Android Bottom Navigation:
 RULE: Each tab maintains its own navigation stack.
 
 User journey:
-1. Home tab â†’ Drill into item â†’ Add to cart
+1. Home tab → Drill into item → Add to cart
 2. Switch to Profile tab
 3. Switch back to Home tab
-â†’ Should return to "Add to cart" screen, NOT home root
+→ Should return to "Add to cart" screen, NOT home root
 
 Implementation:
-â”œâ”€â”€ React Navigation: Each tab has own navigator
-â”œâ”€â”€ Flutter: IndexedStack for state preservation
-â””â”€â”€ Never reset tab stack on switch
+├── React Navigation: Each tab has own navigator
+├── Flutter: IndexedStack for state preservation
+└── Never reset tab stack on switch
 ```
 
 ---
@@ -2775,22 +2775,22 @@ Back: Screen slides out to right
 
 ```
 iOS:
-â”œâ”€â”€ Edge swipe from left (system)
-â”œâ”€â”€ Back button in nav bar (optional)
-â”œâ”€â”€ Interactive pop gesture
-â””â”€â”€ Never override swipe back without good reason
+├── Edge swipe from left (system)
+├── Back button in nav bar (optional)
+├── Interactive pop gesture
+└── Never override swipe back without good reason
 
 Android:
-â”œâ”€â”€ System back button/gesture
-â”œâ”€â”€ Up button in toolbar (optional, for drill-down)
-â”œâ”€â”€ Predictive back animation (Android 14+)
-â””â”€â”€ Must handle back correctly (Activity/Fragment)
+├── System back button/gesture
+├── Up button in toolbar (optional, for drill-down)
+├── Predictive back animation (Android 14+)
+└── Must handle back correctly (Activity/Fragment)
 
 Cross-Platform Rule:
-â”œâ”€â”€ Back ALWAYS navigates up the stack
-â”œâ”€â”€ Never hijack back for other purposes
-â”œâ”€â”€ Confirm before discarding unsaved data
-â””â”€â”€ Deep links should allow full back traversal
+├── Back ALWAYS navigates up the stack
+├── Never hijack back for other purposes
+├── Confirm before discarding unsaved data
+└── Deep links should allow full back traversal
 ```
 
 ---
@@ -2800,40 +2800,40 @@ Cross-Platform Rule:
 ### When to Use
 
 ```
-âœ… USE Drawer when:
-â”œâ”€â”€ More than 5 top-level destinations
-â”œâ”€â”€ Less frequently accessed destinations
-â”œâ”€â”€ Complex app with many features
-â”œâ”€â”€ Need for branding/user info in nav
-â””â”€â”€ Tablet/large screen with persistent drawer
+✅ USE Drawer when:
+├── More than 5 top-level destinations
+├── Less frequently accessed destinations
+├── Complex app with many features
+├── Need for branding/user info in nav
+└── Tablet/large screen with persistent drawer
 
-âŒ AVOID Drawer when:
-â”œâ”€â”€ 5 or fewer destinations (use tabs)
-â”œâ”€â”€ All destinations equally important
-â”œâ”€â”€ Mobile-first simple app
-â””â”€â”€ Discoverability is critical (drawer is hidden)
+❌ AVOID Drawer when:
+├── 5 or fewer destinations (use tabs)
+├── All destinations equally important
+├── Mobile-first simple app
+└── Discoverability is critical (drawer is hidden)
 ```
 
 ### Drawer Patterns
 
 ```
 Modal Drawer:
-â”œâ”€â”€ Opens over content (scrim behind)
-â”œâ”€â”€ Swipe to open from edge
-â”œâ”€â”€ Hamburger icon ( â˜° ) triggers
-â””â”€â”€ Most common on mobile
+├── Opens over content (scrim behind)
+├── Swipe to open from edge
+├── Hamburger icon ( ☰ ) triggers
+└── Most common on mobile
 
 Permanent Drawer:
-â”œâ”€â”€ Always visible (large screens)
-â”œâ”€â”€ Content shifts over
-â”œâ”€â”€ Good for productivity apps
-â””â”€â”€ Tablets, desktops
+├── Always visible (large screens)
+├── Content shifts over
+├── Good for productivity apps
+└── Tablets, desktops
 
 Navigation Rail (Android):
-â”œâ”€â”€ Narrow vertical strip
-â”œâ”€â”€ Icons + optional labels
-â”œâ”€â”€ For tablets in portrait
-â””â”€â”€ 80dp width
+├── Narrow vertical strip
+├── Icons + optional labels
+├── For tablets in portrait
+└── 80dp width
 ```
 
 ---
@@ -2844,18 +2844,18 @@ Navigation Rail (Android):
 
 ```
 PUSH (Stack):                    MODAL:
-â”œâ”€â”€ Horizontal slide             â”œâ”€â”€ Vertical slide up (sheet)
-â”œâ”€â”€ Part of hierarchy            â”œâ”€â”€ Separate task
-â”œâ”€â”€ Back returns                 â”œâ”€â”€ Dismiss (X) returns
-â”œâ”€â”€ Same navigation context      â”œâ”€â”€ Own navigation context
-â””â”€â”€ "Drill in"                   â””â”€â”€ "Focus on task"
+├── Horizontal slide             ├── Vertical slide up (sheet)
+├── Part of hierarchy            ├── Separate task
+├── Back returns                 ├── Dismiss (X) returns
+├── Same navigation context      ├── Own navigation context
+└── "Drill in"                   └── "Focus on task"
 
 USE MODAL for:
-â”œâ”€â”€ Creating new content
-â”œâ”€â”€ Settings/preferences
-â”œâ”€â”€ Completing a transaction
-â”œâ”€â”€ Self-contained workflows
-â”œâ”€â”€ Quick actions
+├── Creating new content
+├── Settings/preferences
+├── Completing a transaction
+├── Self-contained workflows
+├── Quick actions
 ```
 
 ### Modal Types
@@ -2871,11 +2871,11 @@ USE MODAL for:
 
 ```
 Users expect to dismiss modals by:
-â”œâ”€â”€ Tapping X / Close button
-â”œâ”€â”€ Swiping down (sheet)
-â”œâ”€â”€ Tapping scrim (non-critical)
-â”œâ”€â”€ System back (Android)
-â”œâ”€â”€ Hardware back (old Android)
+├── Tapping X / Close button
+├── Swiping down (sheet)
+├── Tapping scrim (non-critical)
+├── System back (Android)
+├── Hardware back (old Android)
 
 RULE: Only block dismissal for unsaved data.
 ```
@@ -2888,18 +2888,18 @@ RULE: Only block dismissal for unsaved data.
 
 ```
 Deep links enable:
-â”œâ”€â”€ Push notification navigation
-â”œâ”€â”€ Sharing content
-â”œâ”€â”€ Marketing campaigns
-â”œâ”€â”€ Spotlight/Search integration
-â”œâ”€â”€ Widget navigation
-â”œâ”€â”€ External app integration
+├── Push notification navigation
+├── Sharing content
+├── Marketing campaigns
+├── Spotlight/Search integration
+├── Widget navigation
+├── External app integration
 
 Building later is HARD:
-â”œâ”€â”€ Requires navigation refactor
-â”œâ”€â”€ Screen dependencies unclear
-â”œâ”€â”€ Parameter passing complex
-â””â”€â”€ Always plan deep links at start
+├── Requires navigation refactor
+├── Screen dependencies unclear
+├── Parameter passing complex
+└── Always plan deep links at start
 ```
 
 ### URL Structure
@@ -2908,16 +2908,16 @@ Building later is HARD:
 Scheme://host/path?params
 
 Examples:
-â”œâ”€â”€ myapp://product/123
-â”œâ”€â”€ https://myapp.com/product/123 (Universal/App Link)
-â”œâ”€â”€ myapp://checkout?promo=SAVE20
-â”œâ”€â”€ myapp://tab/profile/settings
+├── myapp://product/123
+├── https://myapp.com/product/123 (Universal/App Link)
+├── myapp://checkout?promo=SAVE20
+├── myapp://tab/profile/settings
 
 Hierarchy should match navigation:
-â”œâ”€â”€ myapp://home
-â”œâ”€â”€ myapp://home/product/123
-â”œâ”€â”€ myapp://home/product/123/reviews
-â””â”€â”€ URL path = navigation path
+├── myapp://home
+├── myapp://home/product/123
+├── myapp://home/product/123/reviews
+└── URL path = navigation path
 ```
 
 ### Deep Link Navigation Rules
@@ -2925,27 +2925,27 @@ Hierarchy should match navigation:
 ```
 1. FULL STACK CONSTRUCTION
    Deep link to myapp://product/123 should:
-   â”œâ”€â”€ Put Home at root of stack
-   â”œâ”€â”€ Push Product screen on top
-   â””â”€â”€ Back button returns to Home
+   ├── Put Home at root of stack
+   ├── Push Product screen on top
+   └── Back button returns to Home
 
 2. AUTHENTICATION AWARENESS
    If deep link requires auth:
-   â”œâ”€â”€ Save intended destination
-   â”œâ”€â”€ Redirect to login
-   â”œâ”€â”€ After login, navigate to destination
+   ├── Save intended destination
+   ├── Redirect to login
+   ├── After login, navigate to destination
 
 3. INVALID LINKS
    If deep link target doesn't exist:
-   â”œâ”€â”€ Navigate to fallback (home)
-   â”œâ”€â”€ Show error message
-   â””â”€â”€ Never crash or blank screen
+   ├── Navigate to fallback (home)
+   ├── Show error message
+   └── Never crash or blank screen
 
 4. STATEFUL NAVIGATION
    Deep link during active session:
-   â”œâ”€â”€ Don't blow away current stack
-   â”œâ”€â”€ Push on top OR
-   â”œâ”€â”€ Ask user if should navigate away
+   ├── Don't blow away current stack
+   ├── Push on top OR
+   ├── Ask user if should navigate away
 ```
 
 ---
@@ -2956,17 +2956,17 @@ Hierarchy should match navigation:
 
 ```
 SHOULD persist:
-â”œâ”€â”€ Current tab selection
-â”œâ”€â”€ Scroll position in lists
-â”œâ”€â”€ Form draft data
-â”œâ”€â”€ Recent navigation stack
-â””â”€â”€ User preferences
+├── Current tab selection
+├── Scroll position in lists
+├── Form draft data
+├── Recent navigation stack
+└── User preferences
 
 SHOULD NOT persist:
-â”œâ”€â”€ Modal states (dialogs)
-â”œâ”€â”€ Temporary UI states
-â”œâ”€â”€ Stale data (refresh on return)
-â”œâ”€â”€ Authentication state (use secure storage)
+├── Modal states (dialogs)
+├── Temporary UI states
+├── Stale data (refresh on return)
+├── Authentication state (use secure storage)
 ```
 
 ### Implementation
@@ -3003,32 +3003,32 @@ const handleStateChange = (state) => {
 
 ```
 iOS Transitions:
-â”œâ”€â”€ Push: Slide from right
-â”œâ”€â”€ Modal: Slide from bottom (sheet) or fade
-â”œâ”€â”€ Tab switch: Cross-fade
-â”œâ”€â”€ Interactive: Swipe to go back
+├── Push: Slide from right
+├── Modal: Slide from bottom (sheet) or fade
+├── Tab switch: Cross-fade
+├── Interactive: Swipe to go back
 
 Android Transitions:
-â”œâ”€â”€ Push: Fade + slide from right
-â”œâ”€â”€ Modal: Slide from bottom
-â”œâ”€â”€ Tab switch: Cross-fade or none
-â”œâ”€â”€ Shared element: Hero animations
+├── Push: Fade + slide from right
+├── Modal: Slide from bottom
+├── Tab switch: Cross-fade or none
+├── Shared element: Hero animations
 ```
 
 ### Custom Transitions
 
 ```
 When to custom:
-â”œâ”€â”€ Brand identity requires it
-â”œâ”€â”€ Shared element connections
-â”œâ”€â”€ Special reveal effects
-â””â”€â”€ Keep it subtle, <300ms
+├── Brand identity requires it
+├── Shared element connections
+├── Special reveal effects
+└── Keep it subtle, <300ms
 
 When to use default:
-â”œâ”€â”€ Most of the time
-â”œâ”€â”€ Standard drill-down
-â”œâ”€â”€ Platform consistency
-â””â”€â”€ Performance critical paths
+├── Most of the time
+├── Standard drill-down
+├── Platform consistency
+└── Performance critical paths
 ```
 
 ### Shared Element Transitions
@@ -3037,23 +3037,23 @@ When to use default:
 Connect elements between screens:
 
 Screen A: Product card with image
-            â†“ (tap)
+            ↓ (tap)
 Screen B: Product detail with same image (expanded)
 
 Image animates from card position to detail position.
 
 Implementation:
-â”œâ”€â”€ React Navigation: shared element library
-â”œâ”€â”€ Flutter: Hero widget
-â”œâ”€â”€ SwiftUI: matchedGeometryEffect
-â””â”€â”€ Compose: Shared element transitions
+├── React Navigation: shared element library
+├── Flutter: Hero widget
+├── SwiftUI: matchedGeometryEffect
+└── Compose: Shared element transitions
 ```
 
 ---
 
 ## 9. Navigation Anti-Patterns
 
-### âŒ Navigation Sins
+### ❌ Navigation Sins
 
 | Anti-Pattern | Problem | Solution |
 |--------------|---------|----------|
@@ -3065,16 +3065,16 @@ Implementation:
 | **Tab stack reset** | Work lost on switch | Preserve tab states |
 | **Modal for primary flow** | Can't back track | Use stack navigation |
 
-### âŒ AI Navigation Mistakes
+### ❌ AI Navigation Mistakes
 
 ```
 AI tends to:
-â”œâ”€â”€ Use modals for everything (wrong)
-â”œâ”€â”€ Forget tab state preservation (wrong)
-â”œâ”€â”€ Skip deep linking (wrong)
-â”œâ”€â”€ Override platform back behavior (wrong)
-â”œâ”€â”€ Reset stack on tab switch (wrong)
-â””â”€â”€ Ignore predictive back (Android 14+)
+├── Use modals for everything (wrong)
+├── Forget tab state preservation (wrong)
+├── Skip deep linking (wrong)
+├── Override platform back behavior (wrong)
+├── Reset stack on tab switch (wrong)
+└── Ignore predictive back (Android 14+)
 
 RULE: Use platform navigation patterns.
 Don't reinvent navigation.
@@ -3112,10 +3112,10 @@ Don't reinvent navigation.
 
 ---
 
-> **Remember:** Navigation is invisible when done right. Users shouldn't think about HOW to get somewhereâ€”they just get there. If they notice navigation, something is wrong.
+> **Remember:** Navigation is invisible when done right. Users shouldn't think about HOW to get somewhere—they just get there. If they notice navigation, something is wrong.
 ---
 
-âš¡ PikaKit v3.9.105\r\n\r\n---\r\n\r\n## ðŸ”— Related\r\n\r\n| File | When to Read |\r\n|------|-------------|\r\n| [../SKILL.md](../SKILL.md) | 5 must-ask questions (navigation) |\r\n| [platform-ios.md](platform-ios.md) | iOS tab bars, nav bars |\r\n| [platform-android.md](platform-android.md) | Android bottom nav, drawer |\r\n| [touch-psychology.md](touch-psychology.md) | Gesture-based navigation |\r\n| [engineering-spec.md](engineering-spec.md) | Full engineering spec |
+⚡ PikaKit v3.9.105\r\n\r\n---\r\n\r\n## 🔗 Related\r\n\r\n| File | When to Read |\r\n|------|-------------|\r\n| [../SKILL.md](../SKILL.md) | 5 must-ask questions (navigation) |\r\n| [platform-ios.md](platform-ios.md) | iOS tab bars, nav bars |\r\n| [platform-android.md](platform-android.md) | Android bottom nav, drawer |\r\n| [touch-psychology.md](touch-psychology.md) | Gesture-based navigation |\r\n| [engineering-spec.md](engineering-spec.md) | Full engineering spec |
 
 ---
 
@@ -3123,7 +3123,7 @@ Don't reinvent navigation.
 
 ---
 name: mobile-performance
-description: Mobile performance guidelines â€” list virtualization, image optimization, battery, memory management, profiling tools
+description: Mobile performance guidelines — list virtualization, image optimization, battery, memory management, profiling tools
 ---
 
 # Mobile Performance Reference
@@ -3139,34 +3139,34 @@ description: Mobile performance guidelines â€” list virtualization, image o
 
 ```
 DESKTOP:                          MOBILE:
-â”œâ”€â”€ Unlimited power               â”œâ”€â”€ Battery matters
-â”œâ”€â”€ Abundant RAM                  â”œâ”€â”€ RAM is shared, limited
-â”œâ”€â”€ Stable network                â”œâ”€â”€ Network is unreliable
-â”œâ”€â”€ CPU always available          â”œâ”€â”€ CPU throttles when hot
-â””â”€â”€ User expects fast anyway      â””â”€â”€ User expects INSTANT
+├── Unlimited power               ├── Battery matters
+├── Abundant RAM                  ├── RAM is shared, limited
+├── Stable network                ├── Network is unreliable
+├── CPU always available          ├── CPU throttles when hot
+└── User expects fast anyway      └── User expects INSTANT
 ```
 
 ### Performance Budget Concept
 
 ```
 Every frame must complete in:
-â”œâ”€â”€ 60fps â†’ 16.67ms per frame
-â”œâ”€â”€ 120fps (ProMotion) â†’ 8.33ms per frame
+├── 60fps → 16.67ms per frame
+├── 120fps (ProMotion) → 8.33ms per frame
 
 If your code takes longer:
-â”œâ”€â”€ Frame drops â†’ Janky scroll/animation
-â”œâ”€â”€ User perceives as "slow" or "broken"
-â””â”€â”€ They WILL uninstall your app
+├── Frame drops → Janky scroll/animation
+├── User perceives as "slow" or "broken"
+└── They WILL uninstall your app
 ```
 
 ---
 
 ## 2. React Native Performance
 
-### ðŸš« The #1 AI Mistake: ScrollView for Lists
+### 🚫 The #1 AI Mistake: ScrollView for Lists
 
 ```javascript
-// âŒ NEVER DO THIS - AI's favorite mistake
+// ❌ NEVER DO THIS - AI's favorite mistake
 <ScrollView>
   {items.map(item => (
     <ItemComponent key={item.id} item={item} />
@@ -3174,12 +3174,12 @@ If your code takes longer:
 </ScrollView>
 
 // Why it's catastrophic:
-// â”œâ”€â”€ Renders ALL items immediately (1000 items = 1000 renders)
-// â”œâ”€â”€ Memory explodes
-// â”œâ”€â”€ Initial render takes seconds
-// â””â”€â”€ Scroll becomes janky
+// ├── Renders ALL items immediately (1000 items = 1000 renders)
+// ├── Memory explodes
+// ├── Initial render takes seconds
+// └── Scroll becomes janky
 
-// âœ… ALWAYS USE FlatList
+// ✅ ALWAYS USE FlatList
 <FlatList
   data={items}
   renderItem={renderItem}
@@ -3190,7 +3190,7 @@ If your code takes longer:
 ### FlatList Optimization Checklist
 
 ```javascript
-// âœ… CORRECT: All optimizations applied
+// ✅ CORRECT: All optimizations applied
 
 // 1. Memoize the item component
 const ListItem = React.memo(({ item }: { item: Item }) => {
@@ -3239,13 +3239,13 @@ const getItemLayout = useCallback(
 
 | Optimization | What It Prevents | Impact |
 |--------------|------------------|--------|
-| `React.memo` | Re-render on parent change | ðŸ”´ Critical |
-| `useCallback renderItem` | New function every render | ðŸ”´ Critical |
-| Stable `keyExtractor` | Wrong item recycling | ðŸ”´ Critical |
-| `getItemLayout` | Async layout calculation | ðŸŸ¡ High |
-| `removeClippedSubviews` | Memory from off-screen | ðŸŸ¡ High |
-| `maxToRenderPerBatch` | Blocking main thread | ðŸŸ¢ Medium |
-| `windowSize` | Memory usage | ðŸŸ¢ Medium |
+| `React.memo` | Re-render on parent change | 🔴 Critical |
+| `useCallback renderItem` | New function every render | 🔴 Critical |
+| Stable `keyExtractor` | Wrong item recycling | 🔴 Critical |
+| `getItemLayout` | Async layout calculation | 🟡 High |
+| `removeClippedSubviews` | Memory from off-screen | 🟡 High |
+| `maxToRenderPerBatch` | Blocking main thread | 🟢 Medium |
+| `windowSize` | Memory usage | 🟢 Medium |
 
 ### FlashList: The Better Option
 
@@ -3261,23 +3261,23 @@ import { FlashList } from "@shopify/flash-list";
 />
 
 // Benefits over FlatList:
-// â”œâ”€â”€ Faster recycling
-// â”œâ”€â”€ Better memory management
-// â”œâ”€â”€ Simpler API
-// â””â”€â”€ Fewer optimization props needed
+// ├── Faster recycling
+// ├── Better memory management
+// ├── Simpler API
+// └── Fewer optimization props needed
 ```
 
 ### Animation Performance
 
 ```javascript
-// âŒ JS-driven animation (blocks JS thread)
+// ❌ JS-driven animation (blocks JS thread)
 Animated.timing(value, {
   toValue: 1,
   duration: 300,
   useNativeDriver: false, // BAD!
 }).start();
 
-// âœ… Native-driver animation (runs on UI thread)
+// ✅ Native-driver animation (runs on UI thread)
 Animated.timing(value, {
   toValue: 1,
   duration: 300,
@@ -3285,14 +3285,14 @@ Animated.timing(value, {
 }).start();
 
 // Native driver supports ONLY:
-// â”œâ”€â”€ transform (translate, scale, rotate)
-// â””â”€â”€ opacity
+// ├── transform (translate, scale, rotate)
+// └── opacity
 // 
 // Does NOT support:
-// â”œâ”€â”€ width, height
-// â”œâ”€â”€ backgroundColor
-// â”œâ”€â”€ borderRadius changes
-// â””â”€â”€ margin, padding
+// ├── width, height
+// ├── backgroundColor
+// ├── borderRadius changes
+// └── margin, padding
 ```
 
 ### Reanimated for Complex Animations
@@ -3317,16 +3317,16 @@ const Component = () => {
 };
 
 // Benefits:
-// â”œâ”€â”€ Runs on UI thread (60fps guaranteed)
-// â”œâ”€â”€ Can animate any property
-// â”œâ”€â”€ Gesture-driven animations
-// â””â”€â”€ Worklets for complex logic
+// ├── Runs on UI thread (60fps guaranteed)
+// ├── Can animate any property
+// ├── Gesture-driven animations
+// └── Worklets for complex logic
 ```
 
 ### Memory Leak Prevention
 
 ```javascript
-// âŒ Memory leak: uncleared interval
+// ❌ Memory leak: uncleared interval
 useEffect(() => {
   const interval = setInterval(() => {
     fetchData();
@@ -3334,7 +3334,7 @@ useEffect(() => {
   // Missing cleanup!
 }, []);
 
-// âœ… Proper cleanup
+// ✅ Proper cleanup
 useEffect(() => {
   const interval = setInterval(() => {
     fetchData();
@@ -3344,11 +3344,11 @@ useEffect(() => {
 }, []);
 
 // Common memory leak sources:
-// â”œâ”€â”€ Timers (setInterval, setTimeout)
-// â”œâ”€â”€ Event listeners
-// â”œâ”€â”€ Subscriptions (WebSocket, PubSub)
-// â”œâ”€â”€ Async operations that update state after unmount
-// â””â”€â”€ Image caching without limits
+// ├── Timers (setInterval, setTimeout)
+// ├── Event listeners
+// ├── Subscriptions (WebSocket, PubSub)
+// ├── Async operations that update state after unmount
+// └── Image caching without limits
 ```
 
 ### React Native Performance Checklist
@@ -3378,10 +3378,10 @@ useEffect(() => {
 
 ## 3. Flutter Performance
 
-### ðŸš« The #1 AI Mistake: setState Overuse
+### 🚫 The #1 AI Mistake: setState Overuse
 
 ```dart
-// âŒ WRONG: setState rebuilds ENTIRE widget tree
+// ❌ WRONG: setState rebuilds ENTIRE widget tree
 class BadCounter extends StatefulWidget {
   @override
   State<BadCounter> createState() => _BadCounterState();
@@ -3412,7 +3412,7 @@ class _BadCounterState extends State<BadCounter> {
 ### The `const` Constructor Revolution
 
 ```dart
-// âœ… CORRECT: const prevents rebuilds
+// ✅ CORRECT: const prevents rebuilds
 
 class GoodCounter extends StatefulWidget {
   const GoodCounter({super.key}); // CONST constructor!
@@ -3442,10 +3442,10 @@ class _GoodCounterState extends State<GoodCounter> {
 ### Targeted State Management
 
 ```dart
-// âŒ setState rebuilds whole tree
+// ❌ setState rebuilds whole tree
 setState(() => _value = newValue);
 
-// âœ… ValueListenableBuilder: surgical rebuilds
+// ✅ ValueListenableBuilder: surgical rebuilds
 class TargetedState extends StatelessWidget {
   final ValueNotifier<int> counter = ValueNotifier(0);
   
@@ -3469,13 +3469,13 @@ class TargetedState extends StatelessWidget {
 ### Riverpod/Provider Best Practices
 
 ```dart
-// âŒ WRONG: Reading entire provider in build
+// ❌ WRONG: Reading entire provider in build
 Widget build(BuildContext context) {
   final state = ref.watch(myProvider); // Rebuilds on ANY change
   return Text(state.name);
 }
 
-// âœ… CORRECT: Select only what you need
+// ✅ CORRECT: Select only what you need
 Widget build(BuildContext context) {
   final name = ref.watch(myProvider.select((s) => s.name));
   return Text(name); // Only rebuilds when name changes
@@ -3485,12 +3485,12 @@ Widget build(BuildContext context) {
 ### ListView Optimization
 
 ```dart
-// âŒ WRONG: ListView without builder (renders all)
+// ❌ WRONG: ListView without builder (renders all)
 ListView(
   children: items.map((item) => ItemWidget(item)).toList(),
 )
 
-// âœ… CORRECT: ListView.builder (lazy rendering)
+// ✅ CORRECT: ListView.builder (lazy rendering)
 ListView.builder(
   itemCount: items.length,
   itemBuilder: (context, index) => ItemWidget(items[index]),
@@ -3499,7 +3499,7 @@ ListView.builder(
   cacheExtent: 100, // Pre-render distance
 )
 
-// âœ… EVEN BETTER: ListView.separated for dividers
+// ✅ EVEN BETTER: ListView.separated for dividers
 ListView.separated(
   itemCount: items.length,
   itemBuilder: (context, index) => ItemWidget(items[index]),
@@ -3510,10 +3510,10 @@ ListView.separated(
 ### Image Optimization
 
 ```dart
-// âŒ WRONG: No caching, full resolution
+// ❌ WRONG: No caching, full resolution
 Image.network(url)
 
-// âœ… CORRECT: Cached with proper sizing
+// ✅ CORRECT: Cached with proper sizing
 CachedNetworkImage(
   imageUrl: url,
   width: 100,
@@ -3595,12 +3595,12 @@ class _MyWidgetState extends State<MyWidget> {
 
 ```
 Human eye detects:
-â”œâ”€â”€ < 24 fps â†’ "Slideshow" (broken)
-â”œâ”€â”€ 24-30 fps â†’ "Choppy" (uncomfortable)
-â”œâ”€â”€ 30-45 fps â†’ "Noticeably not smooth"
-â”œâ”€â”€ 45-60 fps â†’ "Smooth" (acceptable)
-â”œâ”€â”€ 60 fps â†’ "Buttery" (target)
-â””â”€â”€ 120 fps â†’ "Premium" (ProMotion devices)
+├── < 24 fps → "Slideshow" (broken)
+├── 24-30 fps → "Choppy" (uncomfortable)
+├── 30-45 fps → "Noticeably not smooth"
+├── 45-60 fps → "Smooth" (acceptable)
+├── 60 fps → "Buttery" (target)
+└── 120 fps → "Premium" (ProMotion devices)
 
 NEVER ship < 60fps animations.
 ```
@@ -3609,11 +3609,11 @@ NEVER ship < 60fps animations.
 
 ```
 GPU-ACCELERATED (FAST):          CPU-BOUND (SLOW):
-â”œâ”€â”€ transform: translate          â”œâ”€â”€ width, height
-â”œâ”€â”€ transform: scale              â”œâ”€â”€ top, left, right, bottom
-â”œâ”€â”€ transform: rotate             â”œâ”€â”€ margin, padding
-â”œâ”€â”€ opacity                       â”œâ”€â”€ border-radius (animated)
-â””â”€â”€ (Composited, off main)        â””â”€â”€ box-shadow (animated)
+├── transform: translate          ├── width, height
+├── transform: scale              ├── top, left, right, bottom
+├── transform: rotate             ├── margin, padding
+├── opacity                       ├── border-radius (animated)
+└── (Composited, off main)        └── box-shadow (animated)
 
 RULE: Only animate transform and opacity.
 Everything else causes layout recalculation.
@@ -3675,12 +3675,12 @@ SpringSimulation(
 ### Image Memory
 
 ```
-Image memory = width Ã— height Ã— 4 bytes (RGBA)
+Image memory = width × height × 4 bytes (RGBA)
 
-1080p image = 1920 Ã— 1080 Ã— 4 = 8.3 MB
-4K image = 3840 Ã— 2160 Ã— 4 = 33.2 MB
+1080p image = 1920 × 1080 × 4 = 8.3 MB
+4K image = 3840 × 2160 × 4 = 33.2 MB
 
-10 4K images = 332 MB â†’ App crash!
+10 4K images = 332 MB → App crash!
 
 RULE: Always resize images to display size (or 2-3x for retina).
 ```
@@ -3689,14 +3689,14 @@ RULE: Always resize images to display size (or 2-3x for retina).
 
 ```
 React Native:
-â”œâ”€â”€ Flipper â†’ Memory tab
-â”œâ”€â”€ Xcode Instruments (iOS)
-â””â”€â”€ Android Studio Profiler
+├── Flipper → Memory tab
+├── Xcode Instruments (iOS)
+└── Android Studio Profiler
 
 Flutter:
-â”œâ”€â”€ DevTools â†’ Memory tab
-â”œâ”€â”€ Observatory
-â””â”€â”€ flutter run --profile
+├── DevTools → Memory tab
+├── Observatory
+└── flutter run --profile
 ```
 
 ---
@@ -3707,12 +3707,12 @@ Flutter:
 
 | Source | Impact | Mitigation |
 |--------|--------|------------|
-| **Screen on** | ðŸ”´ Highest | Dark mode on OLED |
-| **GPS continuous** | ðŸ”´ Very high | Use significant change |
-| **Network requests** | ðŸŸ¡ High | Batch, cache aggressively |
-| **Animations** | ðŸŸ¡ Medium | Reduce when low battery |
-| **Background work** | ðŸŸ¡ Medium | Defer non-critical |
-| **CPU computation** | ðŸŸ¢ Lower | Offload to backend |
+| **Screen on** | 🔴 Highest | Dark mode on OLED |
+| **GPS continuous** | 🔴 Very high | Use significant change |
+| **Network requests** | 🟡 High | Batch, cache aggressively |
+| **Animations** | 🟡 Medium | Reduce when low battery |
+| **Background work** | 🟡 Medium | Defer non-critical |
+| **CPU computation** | 🟢 Lower | Offload to backend |
 
 ### OLED Battery Saving
 
@@ -3720,10 +3720,10 @@ Flutter:
 OLED screens: Black pixels = OFF = 0 power
 
 Dark mode savings:
-â”œâ”€â”€ True black (#000000) â†’ Maximum savings
-â”œâ”€â”€ Dark gray (#1a1a1a) â†’ Slight savings
-â”œâ”€â”€ Any color â†’ Some power
-â””â”€â”€ White (#FFFFFF) â†’ Maximum power
+├── True black (#000000) → Maximum savings
+├── Dark gray (#1a1a1a) → Slight savings
+├── Any color → Some power
+└── White (#FFFFFF) → Maximum power
 
 RULE: On dark mode, use true black for backgrounds.
 ```
@@ -3732,16 +3732,16 @@ RULE: On dark mode, use true black for backgrounds.
 
 ```
 iOS:
-â”œâ”€â”€ Background refresh: Limited, system-scheduled
-â”œâ”€â”€ Push notifications: Use for important updates
-â”œâ”€â”€ Background modes: Location, audio, VoIP only
-â””â”€â”€ Background tasks: Max ~30 seconds
+├── Background refresh: Limited, system-scheduled
+├── Push notifications: Use for important updates
+├── Background modes: Location, audio, VoIP only
+└── Background tasks: Max ~30 seconds
 
 Android:
-â”œâ”€â”€ WorkManager: System-scheduled, battery-aware
-â”œâ”€â”€ Foreground service: Visible to user, continuous
-â”œâ”€â”€ JobScheduler: Batch network operations
-â””â”€â”€ Doze mode: Respect it, batch operations
+├── WorkManager: System-scheduled, battery-aware
+├── Foreground service: Visible to user, continuous
+├── JobScheduler: Batch network operations
+└── Doze mode: Respect it, batch operations
 ```
 
 ---
@@ -3751,42 +3751,42 @@ Android:
 ### Offline-First Architecture
 
 ```
-                    â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
-                    â”‚     UI       â”‚
-                    â””â”€â”€â”€â”€â”€â”€â”¬â”€â”€â”€â”€â”€â”€â”€â”˜
-                           â”‚
-                    â”Œâ”€â”€â”€â”€â”€â”€â–¼â”€â”€â”€â”€â”€â”€â”€â”
-                    â”‚   Cache      â”‚ â† Read from cache FIRST
-                    â””â”€â”€â”€â”€â”€â”€â”¬â”€â”€â”€â”€â”€â”€â”€â”˜
-                           â”‚
-                    â”Œâ”€â”€â”€â”€â”€â”€â–¼â”€â”€â”€â”€â”€â”€â”€â”
-                    â”‚   Network    â”‚ â† Update cache from network
-                    â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
+                    ┌──────────────┐
+                    │     UI       │
+                    └──────┬───────┘
+                           │
+                    ┌──────▼───────┐
+                    │   Cache      │ ← Read from cache FIRST
+                    └──────┬───────┘
+                           │
+                    ┌──────▼───────┐
+                    │   Network    │ ← Update cache from network
+                    └──────────────┘
 
 Benefits:
-â”œâ”€â”€ Instant UI (no loading spinner for cached data)
-â”œâ”€â”€ Works offline
-â”œâ”€â”€ Reduces data usage
-â””â”€â”€ Better UX on slow networks
+├── Instant UI (no loading spinner for cached data)
+├── Works offline
+├── Reduces data usage
+└── Better UX on slow networks
 ```
 
 ### Request Optimization
 
 ```
 BATCH: Combine multiple requests into one
-â”œâ”€â”€ 10 small requests â†’ 1 batch request
-â”œâ”€â”€ Reduces connection overhead
-â””â”€â”€ Better for battery (radio on once)
+├── 10 small requests → 1 batch request
+├── Reduces connection overhead
+└── Better for battery (radio on once)
 
 CACHE: Don't re-fetch unchanged data
-â”œâ”€â”€ ETag/If-None-Match headers
-â”œâ”€â”€ Cache-Control headers
-â””â”€â”€ Stale-while-revalidate pattern
+├── ETag/If-None-Match headers
+├── Cache-Control headers
+└── Stale-while-revalidate pattern
 
 COMPRESS: Reduce payload size
-â”œâ”€â”€ gzip/brotli compression
-â”œâ”€â”€ Request only needed fields (GraphQL)
-â””â”€â”€ Paginate large lists
+├── gzip/brotli compression
+├── Request only needed fields (GraphQL)
+└── Paginate large lists
 ```
 
 ---
@@ -3797,7 +3797,7 @@ COMPRESS: Reduce payload size
 
 | Metric | Target | Tool |
 |--------|--------|------|
-| **Frame rate** | â‰¥ 60fps | Performance overlay |
+| **Frame rate** | ≥ 60fps | Performance overlay |
 | **Memory** | Stable, no growth | Profiler |
 | **Cold start** | < 2s | Manual timing |
 | **TTI (Time to Interactive)** | < 3s | Lighthouse |
@@ -3807,16 +3807,16 @@ COMPRESS: Reduce payload size
 ### Test on Real Devices
 
 ```
-âš ï¸ NEVER trust only:
-â”œâ”€â”€ Simulator/emulator (faster than real)
-â”œâ”€â”€ Dev mode (slower than release)
-â”œâ”€â”€ High-end devices only
+⚠️ NEVER trust only:
+├── Simulator/emulator (faster than real)
+├── Dev mode (slower than release)
+├── High-end devices only
 
-âœ… ALWAYS test on:
-â”œâ”€â”€ Low-end Android (< $200 phone)
-â”œâ”€â”€ Older iOS device (iPhone 8 or SE)
-â”œâ”€â”€ Release/profile build
-â””â”€â”€ With real data (not 10 items)
+✅ ALWAYS test on:
+├── Low-end Android (< $200 phone)
+├── Older iOS device (iPhone 8 or SE)
+├── Release/profile build
+└── With real data (not 10 items)
 ```
 
 ### Performance Monitoring Checklist
@@ -3884,18 +3884,18 @@ void dispose() {
 ### Animation Targets
 
 ```
-Transform/Opacity only â† What to animate
-16.67ms per frame â† Time budget
-60fps minimum â† Target
-Low-end Android â† Test device
+Transform/Opacity only ← What to animate
+16.67ms per frame ← Time budget
+60fps minimum ← Target
+Low-end Android ← Test device
 ```
 
 ---
 
-> **Remember:** Performance is not optimizationâ€”it's baseline quality. A slow app is a broken app. Test on the worst device your users have, not the best device you have.
+> **Remember:** Performance is not optimization—it's baseline quality. A slow app is a broken app. Test on the worst device your users have, not the best device you have.
 ---
 
-âš¡ PikaKit v3.9.105\r\n\r\n---\r\n\r\n## ðŸ”— Related\r\n\r\n| File | When to Read |\r\n|------|-------------|\r\n| [../SKILL.md](../SKILL.md) | MFRI performance risk dimension |\r\n| [mobile-testing.md](mobile-testing.md) | Performance testing strategies |\r\n| [mobile-debugging.md](mobile-debugging.md) | Performance debugging |\r\n| [mobile-backend.md](mobile-backend.md) | API performance, caching |\r\n| [engineering-spec.md](engineering-spec.md) | Full engineering spec |
+⚡ PikaKit v3.9.105\r\n\r\n---\r\n\r\n## 🔗 Related\r\n\r\n| File | When to Read |\r\n|------|-------------|\r\n| [../SKILL.md](../SKILL.md) | MFRI performance risk dimension |\r\n| [mobile-testing.md](mobile-testing.md) | Performance testing strategies |\r\n| [mobile-debugging.md](mobile-debugging.md) | Performance debugging |\r\n| [mobile-backend.md](mobile-backend.md) | API performance, caching |\r\n| [engineering-spec.md](engineering-spec.md) | Full engineering spec |
 
 ---
 
@@ -3903,7 +3903,7 @@ Low-end Android â† Test device
 
 ---
 name: mobile-testing
-description: Mobile testing strategies â€” unit, integration, E2E, device testing, accessibility testing, CI/CD
+description: Mobile testing strategies — unit, integration, E2E, device testing, accessibility testing, CI/CD
 ---
 
 # Mobile Testing Patterns
@@ -3914,24 +3914,24 @@ description: Mobile testing strategies â€” unit, integration, E2E, device t
 
 ---
 
-## ðŸ§  MOBILE TESTING MINDSET
+## 🧠 MOBILE TESTING MINDSET
 
 ```
 Mobile testing differs from web:
-â”œâ”€â”€ Real devices matter (emulators hide bugs)
-â”œâ”€â”€ Platform differences (iOS vs Android behavior)
-â”œâ”€â”€ Network conditions vary wildly
-â”œâ”€â”€ Battery/performance under test
-â”œâ”€â”€ App lifecycle (background, killed, restored)
-â”œâ”€â”€ Permissions and system dialogs
-â””â”€â”€ Touch interactions vs clicks
+├── Real devices matter (emulators hide bugs)
+├── Platform differences (iOS vs Android behavior)
+├── Network conditions vary wildly
+├── Battery/performance under test
+├── App lifecycle (background, killed, restored)
+├── Permissions and system dialogs
+└── Touch interactions vs clicks
 ```
 
 ---
 
-## ðŸš« AI MOBILE TESTING ANTI-PATTERNS
+## 🚫 AI MOBILE TESTING ANTI-PATTERNS
 
-| âŒ AI Default | Why It's Wrong | âœ… Mobile-Correct |
+| ❌ AI Default | Why It's Wrong | ✅ Mobile-Correct |
 |---------------|----------------|-------------------|
 | Jest-only testing | Misses native layer | Jest + E2E on device |
 | Enzyme patterns | Deprecated, web-focused | React Native Testing Library |
@@ -3951,59 +3951,59 @@ Mobile testing differs from web:
 
 ```
 WHAT ARE YOU TESTING?
-        â”‚
-        â”œâ”€â”€ Pure functions, utilities, helpers
-        â”‚   â””â”€â”€ Jest (unit tests)
-        â”‚       â””â”€â”€ No special mobile setup needed
-        â”‚
-        â”œâ”€â”€ Individual components (isolated)
-        â”‚   â”œâ”€â”€ React Native â†’ React Native Testing Library
-        â”‚   â””â”€â”€ Flutter â†’ flutter_test (widget tests)
-        â”‚
-        â”œâ”€â”€ Components with hooks, context, navigation
-        â”‚   â”œâ”€â”€ React Native â†’ RNTL + mocked providers
-        â”‚   â””â”€â”€ Flutter â†’ integration_test package
-        â”‚
-        â”œâ”€â”€ Full user flows (login, checkout, etc.)
-        â”‚   â”œâ”€â”€ Detox (React Native, fast, reliable)
-        â”‚   â”œâ”€â”€ Maestro (Cross-platform, YAML-based)
-        â”‚   â””â”€â”€ Appium (Legacy, slow, last resort)
-        â”‚
-        â””â”€â”€ Performance, memory, battery
-            â”œâ”€â”€ Flashlight (RN performance)
-            â”œâ”€â”€ Flutter DevTools
-            â””â”€â”€ Real device profiling (Xcode/Android Studio)
+        │
+        ├── Pure functions, utilities, helpers
+        │   └── Jest (unit tests)
+        │       └── No special mobile setup needed
+        │
+        ├── Individual components (isolated)
+        │   ├── React Native → React Native Testing Library
+        │   └── Flutter → flutter_test (widget tests)
+        │
+        ├── Components with hooks, context, navigation
+        │   ├── React Native → RNTL + mocked providers
+        │   └── Flutter → integration_test package
+        │
+        ├── Full user flows (login, checkout, etc.)
+        │   ├── Detox (React Native, fast, reliable)
+        │   ├── Maestro (Cross-platform, YAML-based)
+        │   └── Appium (Legacy, slow, last resort)
+        │
+        └── Performance, memory, battery
+            ├── Flashlight (RN performance)
+            ├── Flutter DevTools
+            └── Real device profiling (Xcode/Android Studio)
 ```
 
 ### Tool Comparison
 
 | Tool | Platform | Speed | Reliability | Use When |
 |------|----------|-------|-------------|----------|
-| **Jest** | RN | âš¡âš¡âš¡ | âš¡âš¡âš¡ | Unit tests, logic |
-| **RNTL** | RN | âš¡âš¡âš¡ | âš¡âš¡ | Component tests |
-| **flutter_test** | Flutter | âš¡âš¡âš¡ | âš¡âš¡âš¡ | Widget tests |
-| **Detox** | RN | âš¡âš¡ | âš¡âš¡âš¡ | E2E, critical flows |
-| **Maestro** | Both | âš¡âš¡ | âš¡âš¡ | E2E, cross-platform |
-| **Appium** | Both | âš¡ | âš¡ | Legacy, last resort |
+| **Jest** | RN | ⚡⚡⚡ | ⚡⚡⚡ | Unit tests, logic |
+| **RNTL** | RN | ⚡⚡⚡ | ⚡⚡ | Component tests |
+| **flutter_test** | Flutter | ⚡⚡⚡ | ⚡⚡⚡ | Widget tests |
+| **Detox** | RN | ⚡⚡ | ⚡⚡⚡ | E2E, critical flows |
+| **Maestro** | Both | ⚡⚡ | ⚡⚡ | E2E, cross-platform |
+| **Appium** | Both | ⚡ | ⚡ | Legacy, last resort |
 
 ---
 
 ## 2. Testing Pyramid for Mobile
 
 ```
-                    â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
-                    â”‚    E2E Tests  â”‚  10%
-                    â”‚  (Real device) â”‚  Slow, expensive, essential
-                    â”œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¤
-                    â”‚  Integration  â”‚  20%
-                    â”‚    Tests      â”‚  Component + context
-                    â”œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¤
-                    â”‚  Component    â”‚  30%
-                    â”‚    Tests      â”‚  Isolated UI
-                    â”œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¤
-                    â”‚   Unit Tests  â”‚  40%
-                    â”‚    (Jest)     â”‚  Pure logic
-                    â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
+                    ┌───────────────┐
+                    │    E2E Tests  │  10%
+                    │  (Real device) │  Slow, expensive, essential
+                    ├───────────────┤
+                    │  Integration  │  20%
+                    │    Tests      │  Component + context
+                    ├───────────────┤
+                    │  Component    │  30%
+                    │    Tests      │  Isolated UI
+                    ├───────────────┤
+                    │   Unit Tests  │  40%
+                    │    (Jest)     │  Pure logic
+                    └───────────────┘
 ```
 
 ### Why This Distribution?
@@ -4015,7 +4015,7 @@ WHAT ARE YOU TESTING?
 | **Component 30%** | Fast feedback on UI changes |
 | **Unit 40%** | Fastest, most stable, logic coverage |
 
-> ðŸ”´ **If you have 90% unit tests and 0% E2E, you're testing the wrong things.**
+> 🔴 **If you have 90% unit tests and 0% E2E, you're testing the wrong things.**
 
 ---
 
@@ -4024,69 +4024,69 @@ WHAT ARE YOU TESTING?
 ### Unit Tests (Jest)
 
 ```
-âœ… TEST:
-â”œâ”€â”€ Utility functions (formatDate, calculatePrice)
-â”œâ”€â”€ State reducers (Redux, Zustand stores)
-â”œâ”€â”€ API response transformers
-â”œâ”€â”€ Validation logic
-â””â”€â”€ Business rules
+✅ TEST:
+├── Utility functions (formatDate, calculatePrice)
+├── State reducers (Redux, Zustand stores)
+├── API response transformers
+├── Validation logic
+└── Business rules
 
-âŒ DON'T TEST:
-â”œâ”€â”€ Component rendering (use component tests)
-â”œâ”€â”€ Navigation (use integration tests)
-â”œâ”€â”€ Native modules (mock them)
-â””â”€â”€ Third-party libraries
+❌ DON'T TEST:
+├── Component rendering (use component tests)
+├── Navigation (use integration tests)
+├── Native modules (mock them)
+└── Third-party libraries
 ```
 
 ### Component Tests (RNTL / flutter_test)
 
 ```
-âœ… TEST:
-â”œâ”€â”€ Component renders correctly
-â”œâ”€â”€ User interactions (tap, type, swipe)
-â”œâ”€â”€ Loading/error/empty states
-â”œâ”€â”€ Accessibility labels exist
-â””â”€â”€ Props change behavior
+✅ TEST:
+├── Component renders correctly
+├── User interactions (tap, type, swipe)
+├── Loading/error/empty states
+├── Accessibility labels exist
+└── Props change behavior
 
-âŒ DON'T TEST:
-â”œâ”€â”€ Internal implementation details
-â”œâ”€â”€ Snapshot everything (only key components)
-â”œâ”€â”€ Styling specifics (brittle)
-â””â”€â”€ Third-party component internals
+❌ DON'T TEST:
+├── Internal implementation details
+├── Snapshot everything (only key components)
+├── Styling specifics (brittle)
+└── Third-party component internals
 ```
 
 ### Integration Tests
 
 ```
-âœ… TEST:
-â”œâ”€â”€ Form submission flows
-â”œâ”€â”€ Navigation between screens
-â”œâ”€â”€ State persistence across screens
-â”œâ”€â”€ API integration (with mocked server)
-â””â”€â”€ Context/provider interactions
+✅ TEST:
+├── Form submission flows
+├── Navigation between screens
+├── State persistence across screens
+├── API integration (with mocked server)
+└── Context/provider interactions
 
-âŒ DON'T TEST:
-â”œâ”€â”€ Every possible path (use unit tests)
-â”œâ”€â”€ Third-party services (mock them)
-â””â”€â”€ Backend logic (backend tests)
+❌ DON'T TEST:
+├── Every possible path (use unit tests)
+├── Third-party services (mock them)
+└── Backend logic (backend tests)
 ```
 
 ### E2E Tests
 
 ```
-âœ… TEST:
-â”œâ”€â”€ Critical user journeys (login, purchase, signup)
-â”œâ”€â”€ Offline â†’ online transitions
-â”œâ”€â”€ Deep link handling
-â”œâ”€â”€ Push notification navigation
-â”œâ”€â”€ Permission flows
-â””â”€â”€ Payment flows
+✅ TEST:
+├── Critical user journeys (login, purchase, signup)
+├── Offline → online transitions
+├── Deep link handling
+├── Push notification navigation
+├── Permission flows
+└── Payment flows
 
-âŒ DON'T TEST:
-â”œâ”€â”€ Every edge case (too slow)
-â”œâ”€â”€ Visual regression (use snapshot tests)
-â”œâ”€â”€ Non-critical features
-â””â”€â”€ Backend-only logic
+❌ DON'T TEST:
+├── Every edge case (too slow)
+├── Visual regression (use snapshot tests)
+├── Non-critical features
+└── Backend-only logic
 ```
 
 ---
@@ -4097,24 +4097,24 @@ WHAT ARE YOU TESTING?
 
 | Area | iOS Behavior | Android Behavior | Test Both? |
 |------|--------------|------------------|------------|
-| **Back navigation** | Edge swipe | System back button | âœ… YES |
-| **Permissions** | Ask once, settings | Ask each time, rationale | âœ… YES |
-| **Keyboard** | Different appearance | Different behavior | âœ… YES |
-| **Date picker** | Wheel/modal | Material dialog | âš ï¸ If custom UI |
-| **Push format** | APNs payload | FCM payload | âœ… YES |
-| **Deep links** | Universal Links | App Links | âœ… YES |
-| **Gestures** | Some unique | Material gestures | âš ï¸ If custom |
+| **Back navigation** | Edge swipe | System back button | ✅ YES |
+| **Permissions** | Ask once, settings | Ask each time, rationale | ✅ YES |
+| **Keyboard** | Different appearance | Different behavior | ✅ YES |
+| **Date picker** | Wheel/modal | Material dialog | ⚠️ If custom UI |
+| **Push format** | APNs payload | FCM payload | ✅ YES |
+| **Deep links** | Universal Links | App Links | ✅ YES |
+| **Gestures** | Some unique | Material gestures | ⚠️ If custom |
 
 ### Platform Testing Strategy
 
 ```
 FOR EACH PLATFORM:
-â”œâ”€â”€ Run unit tests (same on both)
-â”œâ”€â”€ Run component tests (same on both)
-â”œâ”€â”€ Run E2E on REAL DEVICE
-â”‚   â”œâ”€â”€ iOS: iPhone (not just simulator)
-â”‚   â””â”€â”€ Android: Mid-range device (not flagship)
-â””â”€â”€ Test platform-specific features separately
+├── Run unit tests (same on both)
+├── Run component tests (same on both)
+├── Run E2E on REAL DEVICE
+│   ├── iOS: iPhone (not just simulator)
+│   └── Android: Mid-range device (not flagship)
+└── Test platform-specific features separately
 ```
 
 ---
@@ -4135,11 +4135,11 @@ FOR EACH PLATFORM:
 
 ```
 APPROACH:
-â”œâ”€â”€ Unit tests: Mock NetInfo, test logic
-â”œâ”€â”€ Integration: Mock API responses, test UI
-â”œâ”€â”€ E2E (Detox): Use device.setURLBlacklist()
-â”œâ”€â”€ E2E (Maestro): Use network conditions
-â””â”€â”€ Manual: Use Charles Proxy / Network Link Conditioner
+├── Unit tests: Mock NetInfo, test logic
+├── Integration: Mock API responses, test UI
+├── E2E (Detox): Use device.setURLBlacklist()
+├── E2E (Maestro): Use network conditions
+└── Manual: Use Charles Proxy / Network Link Conditioner
 ```
 
 ---
@@ -4160,17 +4160,17 @@ APPROACH:
 
 ```
 PERFORMANCE TEST:
-â”œâ”€â”€ Before release (required)
-â”œâ”€â”€ After adding heavy features
-â”œâ”€â”€ After upgrading dependencies
-â”œâ”€â”€ When users report slowness
-â””â”€â”€ On CI (optional, automated benchmarks)
+├── Before release (required)
+├── After adding heavy features
+├── After upgrading dependencies
+├── When users report slowness
+└── On CI (optional, automated benchmarks)
 
 WHERE TO TEST:
-â”œâ”€â”€ Real device (REQUIRED)
-â”œâ”€â”€ Low-end device (Galaxy A series, old iPhone)
-â”œâ”€â”€ NOT on emulator (lies about performance)
-â””â”€â”€ With production-like data (not 3 items)
+├── Real device (REQUIRED)
+├── Low-end device (Galaxy A series, old iPhone)
+├── NOT on emulator (lies about performance)
+└── With production-like data (not 3 items)
 ```
 
 ---
@@ -4185,22 +4185,22 @@ WHERE TO TEST:
 | Images | Have alt text or decorative flag |
 | Forms | Labels linked to inputs |
 | Buttons | Role = button |
-| Touch targets | â‰¥ 44x44 (iOS) / 48x48 (Android) |
+| Touch targets | ≥ 44x44 (iOS) / 48x48 (Android) |
 | Color contrast | WCAG AA minimum |
 
 ### How to Test
 
 ```
 AUTOMATED:
-â”œâ”€â”€ React Native: jest-axe
-â”œâ”€â”€ Flutter: Accessibility checker in tests
-â””â”€â”€ Lint rules for missing labels
+├── React Native: jest-axe
+├── Flutter: Accessibility checker in tests
+└── Lint rules for missing labels
 
 MANUAL:
-â”œâ”€â”€ Enable VoiceOver (iOS) / TalkBack (Android)
-â”œâ”€â”€ Navigate entire app with screen reader
-â”œâ”€â”€ Test with increased text size
-â””â”€â”€ Test with reduced motion
+├── Enable VoiceOver (iOS) / TalkBack (Android)
+├── Navigate entire app with screen reader
+├── Test with increased text size
+└── Test with reduced motion
 ```
 
 ---
@@ -4227,7 +4227,7 @@ MANUAL:
 
 ---
 
-## ðŸ“ MOBILE TESTING CHECKLIST
+## 📝 MOBILE TESTING CHECKLIST
 
 ### Before PR
 - [ ] Unit tests for new logic
@@ -4251,24 +4251,24 @@ MANUAL:
 
 ---
 
-## ðŸŽ¯ Testing Questions to Ask
+## 🎯 Testing Questions to Ask
 
 Before writing tests, answer:
 
-1. **What could break?** â†’ Test that
-2. **What's critical for users?** â†’ E2E test that
-3. **What's complex logic?** â†’ Unit test that
-4. **What's platform-specific?** â†’ Test on both platforms
-5. **What happens offline?** â†’ Test that scenario
+1. **What could break?** → Test that
+2. **What's critical for users?** → E2E test that
+3. **What's complex logic?** → Unit test that
+4. **What's platform-specific?** → Test on both platforms
+5. **What happens offline?** → Test that scenario
 
 > **Remember:** Good mobile testing is about testing the RIGHT things, not EVERYTHING. A flaky E2E test is worse than no test. A failing unit test that catches a bug is worth 100 passing trivial tests.
 ---
 
-âš¡ PikaKit v3.9.105
+⚡ PikaKit v3.9.105
 
 ---
 
-## ðŸ”— Related
+## 🔗 Related
 
 | File | When to Read |
 |------|-------------|
@@ -4283,7 +4283,7 @@ Before writing tests, answer:
 
 ---
 name: mobile-typography
-description: Mobile typography systems â€” SF Pro, Roboto, type scales, Dynamic Type, responsive font sizing
+description: Mobile typography systems — SF Pro, Roboto, type scales, Dynamic Type, responsive font sizing
 ---
 
 # Mobile Typography Reference
@@ -4299,12 +4299,12 @@ description: Mobile typography systems â€” SF Pro, Roboto, type scales, Dyn
 
 ```
 DESKTOP:                        MOBILE:
-â”œâ”€â”€ 20-30" viewing distance     â”œâ”€â”€ 12-15" viewing distance
-â”œâ”€â”€ Large viewport              â”œâ”€â”€ Small viewport, narrow
-â”œâ”€â”€ Hover for details           â”œâ”€â”€ Tap/scroll for details
-â”œâ”€â”€ Controlled lighting         â”œâ”€â”€ Variable (outdoor, etc.)
-â”œâ”€â”€ Fixed font size             â”œâ”€â”€ User-controlled sizing
-â””â”€â”€ Long reading sessions       â””â”€â”€ Quick scanning
+├── 20-30" viewing distance     ├── 12-15" viewing distance
+├── Large viewport              ├── Small viewport, narrow
+├── Hover for details           ├── Tap/scroll for details
+├── Controlled lighting         ├── Variable (outdoor, etc.)
+├── Fixed font size             ├── User-controlled sizing
+└── Long reading sessions       └── Quick scanning
 ```
 
 ### Mobile Type Rules
@@ -4325,63 +4325,63 @@ DESKTOP:                        MOBILE:
 
 ```
 San Francisco (SF) Family:
-â”œâ”€â”€ SF Pro Display: Large text (â‰¥ 20pt)
-â”œâ”€â”€ SF Pro Text: Body text (< 20pt)
-â”œâ”€â”€ SF Pro Rounded: Friendly contexts
-â”œâ”€â”€ SF Mono: Monospace
-â””â”€â”€ SF Compact: Apple Watch, compact UI
+├── SF Pro Display: Large text (≥ 20pt)
+├── SF Pro Text: Body text (< 20pt)
+├── SF Pro Rounded: Friendly contexts
+├── SF Mono: Monospace
+└── SF Compact: Apple Watch, compact UI
 
 Features:
-â”œâ”€â”€ Optical sizing (auto-adjusts)
-â”œâ”€â”€ Dynamic tracking (spacing)
-â”œâ”€â”€ Tabular/proportional figures
-â”œâ”€â”€ Excellent legibility
+├── Optical sizing (auto-adjusts)
+├── Dynamic tracking (spacing)
+├── Tabular/proportional figures
+├── Excellent legibility
 ```
 
 ### Android: Roboto Family
 
 ```
 Roboto Family:
-â”œâ”€â”€ Roboto: Default sans-serif
-â”œâ”€â”€ Roboto Flex: Variable font
-â”œâ”€â”€ Roboto Serif: Serif option
-â”œâ”€â”€ Roboto Mono: Monospace
-â”œâ”€â”€ Roboto Condensed: Narrow spaces
+├── Roboto: Default sans-serif
+├── Roboto Flex: Variable font
+├── Roboto Serif: Serif option
+├── Roboto Mono: Monospace
+├── Roboto Condensed: Narrow spaces
 
 Features:
-â”œâ”€â”€ Optimized for screens
-â”œâ”€â”€ Wide language support
-â”œâ”€â”€ Multiple weights
-â”œâ”€â”€ Good at small sizes
+├── Optimized for screens
+├── Wide language support
+├── Multiple weights
+├── Good at small sizes
 ```
 
 ### When to Use System Fonts
 
 ```
-âœ… USE system fonts when:
-â”œâ”€â”€ Brand doesn't mandate custom font
-â”œâ”€â”€ Reading efficiency is priority
-â”œâ”€â”€ App feels native/integrated important
-â”œâ”€â”€ Performance is critical
-â”œâ”€â”€ Wide language support needed
+✅ USE system fonts when:
+├── Brand doesn't mandate custom font
+├── Reading efficiency is priority
+├── App feels native/integrated important
+├── Performance is critical
+├── Wide language support needed
 
-âŒ AVOID system fonts when:
-â”œâ”€â”€ Brand identity requires custom
-â”œâ”€â”€ Design differentiation needed
-â”œâ”€â”€ Editorial/magazine style
-â””â”€â”€ (But still support accessibility)
+❌ AVOID system fonts when:
+├── Brand identity requires custom
+├── Design differentiation needed
+├── Editorial/magazine style
+└── (But still support accessibility)
 ```
 
 ### Custom Font Considerations
 
 ```
 If using custom fonts:
-â”œâ”€â”€ Include all weights needed
-â”œâ”€â”€ Subset for file size
-â”œâ”€â”€ Test at all Dynamic Type sizes
-â”œâ”€â”€ Provide fallback to system
-â”œâ”€â”€ Test rendering quality
-â””â”€â”€ Check language support
+├── Include all weights needed
+├── Subset for file size
+├── Test at all Dynamic Type sizes
+├── Provide fallback to system
+├── Test rendering quality
+└── Check language support
 ```
 
 ---
@@ -4430,21 +4430,21 @@ If using custom fonts:
 If creating custom scale, use modular ratio:
 
 Recommended ratios:
-â”œâ”€â”€ 1.125 (Major second): Dense UI
-â”œâ”€â”€ 1.200 (Minor third): Compact
-â”œâ”€â”€ 1.250 (Major third): Balanced (common)
-â”œâ”€â”€ 1.333 (Perfect fourth): Spacious
-â””â”€â”€ 1.500 (Perfect fifth): Dramatic
+├── 1.125 (Major second): Dense UI
+├── 1.200 (Minor third): Compact
+├── 1.250 (Major third): Balanced (common)
+├── 1.333 (Perfect fourth): Spacious
+└── 1.500 (Perfect fifth): Dramatic
 
 Example with 1.25 ratio, 16px base:
-â”œâ”€â”€ xs: 10px (16 Ã· 1.25 Ã· 1.25)
-â”œâ”€â”€ sm: 13px (16 Ã· 1.25)
-â”œâ”€â”€ base: 16px
-â”œâ”€â”€ lg: 20px (16 Ã— 1.25)
-â”œâ”€â”€ xl: 25px (16 Ã— 1.25 Ã— 1.25)
-â”œâ”€â”€ 2xl: 31px
-â”œâ”€â”€ 3xl: 39px
-â””â”€â”€ 4xl: 49px
+├── xs: 10px (16 ÷ 1.25 ÷ 1.25)
+├── sm: 13px (16 ÷ 1.25)
+├── base: 16px
+├── lg: 20px (16 × 1.25)
+├── xl: 25px (16 × 1.25 × 1.25)
+├── 2xl: 31px
+├── 3xl: 39px
+└── 4xl: 49px
 ```
 
 ---
@@ -4454,11 +4454,11 @@ Example with 1.25 ratio, 16px base:
 ### iOS Dynamic Type (MANDATORY)
 
 ```swift
-// âŒ WRONG: Fixed size (doesn't scale)
+// ❌ WRONG: Fixed size (doesn't scale)
 Text("Hello")
     .font(.system(size: 17))
 
-// âœ… CORRECT: Dynamic Type
+// ✅ CORRECT: Dynamic Type
 Text("Hello")
     .font(.body) // Scales with user setting
 
@@ -4471,13 +4471,13 @@ Text("Hello")
 
 ```
 ALWAYS use sp for text:
-â”œâ”€â”€ sp = Scale-independent pixels
-â”œâ”€â”€ Scales with user font preference
-â”œâ”€â”€ dp does NOT scale (don't use for text)
+├── sp = Scale-independent pixels
+├── Scales with user font preference
+├── dp does NOT scale (don't use for text)
 
 User can scale from 85% to 200%:
-â”œâ”€â”€ Default (100%): 14sp = 14dp
-â”œâ”€â”€ Largest (200%): 14sp = 28dp
+├── Default (100%): 14sp = 14dp
+├── Largest (200%): 14sp = 28dp
 
 Test at 200%!
 ```
@@ -4486,17 +4486,17 @@ Test at 200%!
 
 ```
 Problems at large text sizes:
-â”œâ”€â”€ Text overflows containers
-â”œâ”€â”€ Buttons become too tall
-â”œâ”€â”€ Icons look small relative to text
-â”œâ”€â”€ Layouts break
+├── Text overflows containers
+├── Buttons become too tall
+├── Icons look small relative to text
+├── Layouts break
 
 Solutions:
-â”œâ”€â”€ Use flexible containers (not fixed height)
-â”œâ”€â”€ Allow text wrapping
-â”œâ”€â”€ Scale icons with text
-â”œâ”€â”€ Test at extremes during development
-â”œâ”€â”€ Use scrollable containers for long text
+├── Use flexible containers (not fixed height)
+├── Allow text wrapping
+├── Scale icons with text
+├── Test at extremes during development
+├── Use scrollable containers for long text
 ```
 
 ---
@@ -4517,12 +4517,12 @@ Solutions:
 
 ```
 Normal text (< 18pt or < 14pt bold):
-â”œâ”€â”€ AA: 4.5:1 ratio minimum
-â”œâ”€â”€ AAA: 7:1 ratio recommended
+├── AA: 4.5:1 ratio minimum
+├── AAA: 7:1 ratio recommended
 
-Large text (â‰¥ 18pt or â‰¥ 14pt bold):
-â”œâ”€â”€ AA: 3:1 ratio minimum
-â”œâ”€â”€ AAA: 4.5:1 ratio recommended
+Large text (≥ 18pt or ≥ 14pt bold):
+├── AA: 3:1 ratio minimum
+├── AAA: 4.5:1 ratio recommended
 
 Logos/decorative: No requirement
 ```
@@ -4532,15 +4532,15 @@ Logos/decorative: No requirement
 ```
 WCAG Success Criterion 1.4.12:
 
-Line height (line spacing): â‰¥ 1.5Ã—
-Paragraph spacing: â‰¥ 2Ã— font size
-Letter spacing: â‰¥ 0.12Ã— font size
-Word spacing: â‰¥ 0.16Ã— font size
+Line height (line spacing): ≥ 1.5×
+Paragraph spacing: ≥ 2× font size
+Letter spacing: ≥ 0.12× font size
+Word spacing: ≥ 0.16× font size
 
 Mobile recommendation:
-â”œâ”€â”€ Body: 1.4-1.6 line height
-â”œâ”€â”€ Headings: 1.2-1.3 line height
-â”œâ”€â”€ Never below 1.2
+├── Body: 1.4-1.6 line height
+├── Headings: 1.2-1.3 line height
+├── Never below 1.2
 ```
 
 ---
@@ -4551,10 +4551,10 @@ Mobile recommendation:
 
 ```
 Light Mode:               Dark Mode:
-â”œâ”€â”€ Black text (#000)     â”œâ”€â”€ White/light gray (#E0E0E0)
-â”œâ”€â”€ High contrast         â”œâ”€â”€ Slightly reduced contrast
-â”œâ”€â”€ Full saturation       â”œâ”€â”€ Desaturated colors
-â””â”€â”€ Dark = emphasis       â””â”€â”€ Light = emphasis
+├── Black text (#000)     ├── White/light gray (#E0E0E0)
+├── High contrast         ├── Slightly reduced contrast
+├── Full saturation       ├── Desaturated colors
+└── Dark = emphasis       └── Light = emphasis
 
 RULE: Don't use pure white (#FFF) on dark.
 Use off-white (#E0E0E0 to #F0F0F0) to reduce eye strain.
@@ -4576,17 +4576,17 @@ Dark mode text appears thinner due to halation
 (light bleeding into dark background)
 
 Consider:
-â”œâ”€â”€ Using medium weight for body (instead of regular)
-â”œâ”€â”€ Increasing letter-spacing slightly
-â”œâ”€â”€ Testing on actual OLED displays
-â””â”€â”€ Using slightly bolder weight than light mode
+├── Using medium weight for body (instead of regular)
+├── Increasing letter-spacing slightly
+├── Testing on actual OLED displays
+└── Using slightly bolder weight than light mode
 ```
 
 ---
 
 ## 7. Typography Anti-Patterns
 
-### âŒ Common Mistakes
+### ❌ Common Mistakes
 
 | Mistake | Problem | Fix |
 |---------|---------|-----|
@@ -4594,22 +4594,22 @@ Consider:
 | **Too small text** | Unreadable | Min 14pt/sp |
 | **Low contrast** | Invisible in sunlight | Min 4.5:1 |
 | **Long lines** | Hard to track | Max 60 chars |
-| **Tight line height** | Cramped, hard to read | Min 1.4Ã— |
+| **Tight line height** | Cramped, hard to read | Min 1.4× |
 | **Too many sizes** | Visual chaos | Max 5-7 sizes |
 | **All caps body** | Hard to read | Headlines only |
 | **Light gray on white** | Impossible in bright light | Higher contrast |
 
-### âŒ AI Typography Mistakes
+### ❌ AI Typography Mistakes
 
 ```
 AI tends to:
-â”œâ”€â”€ Use fixed px values instead of pt/sp
-â”œâ”€â”€ Skip Dynamic Type support
-â”œâ”€â”€ Use too small text (12-14px body)
-â”œâ”€â”€ Ignore line height settings
-â”œâ”€â”€ Use low contrast "aesthetic" grays
-â”œâ”€â”€ Apply same scale to mobile as desktop
-â””â”€â”€ Skip testing at large text sizes
+├── Use fixed px values instead of pt/sp
+├── Skip Dynamic Type support
+├── Use too small text (12-14px body)
+├── Ignore line height settings
+├── Use low contrast "aesthetic" grays
+├── Apply same scale to mobile as desktop
+└── Skip testing at large text sizes
 
 RULE: Typography must SCALE.
 Test at smallest and largest settings.
@@ -4623,23 +4623,23 @@ Test at smallest and largest settings.
 
 ```
 Font file sizes matter on mobile:
-â”œâ”€â”€ Full font: 100-300KB per weight
-â”œâ”€â”€ Subset (Latin): 15-40KB per weight
-â”œâ”€â”€ Variable font: 100-200KB (all weights)
+├── Full font: 100-300KB per weight
+├── Subset (Latin): 15-40KB per weight
+├── Variable font: 100-200KB (all weights)
 
 Recommendations:
-â”œâ”€â”€ Subset to needed characters
-â”œâ”€â”€ Use WOFF2 format
-â”œâ”€â”€ Max 2-3 font files
-â”œâ”€â”€ Consider variable fonts
-â”œâ”€â”€ Cache fonts appropriately
+├── Subset to needed characters
+├── Use WOFF2 format
+├── Max 2-3 font files
+├── Consider variable fonts
+├── Cache fonts appropriately
 ```
 
 ### Loading Strategy
 
 ```
 1. SYSTEM FONT FALLBACK
-   Show system font â†’ swap when custom loads
+   Show system font → swap when custom loads
    
 2. FONT DISPLAY SWAP
    font-display: swap (CSS)
@@ -4657,9 +4657,9 @@ Recommendations:
 
 ### Before Any Text Design
 
-- [ ] Body text â‰¥ 16px/pt/sp?
-- [ ] Line height â‰¥ 1.4?
-- [ ] Line length â‰¤ 60 chars?
+- [ ] Body text ≥ 16px/pt/sp?
+- [ ] Line height ≥ 1.4?
+- [ ] Line length ≤ 60 chars?
 - [ ] Type scale defined (max 5-7 sizes)?
 - [ ] Using pt (iOS) or sp (Android)?
 
@@ -4718,10 +4718,10 @@ Long text: 1.5-1.75
 
 ---
 
-> **Remember:** If users can't read your text, your app is broken. Typography isn't decorationâ€”it's the primary interface. Test on real devices, in real conditions, with accessibility settings enabled.
+> **Remember:** If users can't read your text, your app is broken. Typography isn't decoration—it's the primary interface. Test on real devices, in real conditions, with accessibility settings enabled.
 ---
 
-âš¡ PikaKit v3.9.105\r\n\r\n---\r\n\r\n## ðŸ”— Related\r\n\r\n| File | When to Read |\r\n|------|-------------|\r\n| [../SKILL.md](../SKILL.md) | Platform differences (SF Pro/Roboto) |\r\n| [platform-ios.md](platform-ios.md) | iOS SF Pro usage |\r\n| [platform-android.md](platform-android.md) | Android Roboto usage |\r\n| [mobile-color-system.md](mobile-color-system.md) | Color + typography harmony |\r\n| [engineering-spec.md](engineering-spec.md) | Full engineering spec |
+⚡ PikaKit v3.9.105\r\n\r\n---\r\n\r\n## 🔗 Related\r\n\r\n| File | When to Read |\r\n|------|-------------|\r\n| [../SKILL.md](../SKILL.md) | Platform differences (SF Pro/Roboto) |\r\n| [platform-ios.md](platform-ios.md) | iOS SF Pro usage |\r\n| [platform-android.md](platform-android.md) | Android Roboto usage |\r\n| [mobile-color-system.md](mobile-color-system.md) | Color + typography harmony |\r\n| [engineering-spec.md](engineering-spec.md) | Full engineering spec |
 
 ---
 
@@ -4729,7 +4729,7 @@ Long text: 1.5-1.75
 
 ---
 name: mobile-platform-android
-description: Material Design 3 guidelines â€” Roboto typography, bottom navigation, dynamic color, elevation system
+description: Material Design 3 guidelines — Roboto typography, bottom navigation, dynamic color, elevation system
 ---
 
 # Android Platform Guidelines
@@ -4745,22 +4745,22 @@ description: Material Design 3 guidelines â€” Roboto typography, bottom nav
 
 ```
 MATERIAL AS METAPHOR:
-â”œâ”€â”€ Surfaces exist in 3D space
-â”œâ”€â”€ Light and shadow define hierarchy
-â”œâ”€â”€ Motion provides continuity
-â””â”€â”€ Bold, graphic, intentional design
+├── Surfaces exist in 3D space
+├── Light and shadow define hierarchy
+├── Motion provides continuity
+└── Bold, graphic, intentional design
 
 ADAPTIVE DESIGN:
-â”œâ”€â”€ Responds to device capabilities
-â”œâ”€â”€ One UI for all form factors
-â”œâ”€â”€ Dynamic color from wallpaper
-â””â”€â”€ Personalized per user
+├── Responds to device capabilities
+├── One UI for all form factors
+├── Dynamic color from wallpaper
+└── Personalized per user
 
 ACCESSIBLE BY DEFAULT:
-â”œâ”€â”€ Large touch targets
-â”œâ”€â”€ Clear visual hierarchy
-â”œâ”€â”€ Semantic colors
-â””â”€â”€ Motion respects preferences
+├── Large touch targets
+├── Clear visual hierarchy
+├── Semantic colors
+└── Motion respects preferences
 ```
 
 ### Material Design Values
@@ -4781,11 +4781,11 @@ ACCESSIBLE BY DEFAULT:
 
 ```
 Android System Fonts:
-â”œâ”€â”€ Roboto: Default sans-serif
-â”œâ”€â”€ Roboto Flex: Variable font (API 33+)
-â”œâ”€â”€ Roboto Serif: Serif alternative
-â”œâ”€â”€ Roboto Mono: Monospace
-â””â”€â”€ Google Sans: Google products (special license)
+├── Roboto: Default sans-serif
+├── Roboto Flex: Variable font (API 33+)
+├── Roboto Serif: Serif alternative
+├── Roboto Mono: Monospace
+└── Google Sans: Google products (special license)
 ```
 
 ### Material Type Scale
@@ -4814,9 +4814,9 @@ Android System Fonts:
 sp = Scale-independent pixels
 
 sp automatically scales with:
-â”œâ”€â”€ User font size preference
-â”œâ”€â”€ Display density
-â””â”€â”€ Accessibility settings
+├── User font size preference
+├── Display density
+└── Accessibility settings
 
 RULE: ALWAYS use sp for text, dp for everything else.
 ```
@@ -4838,14 +4838,14 @@ RULE: ALWAYS use sp for text, dp for everything else.
 ```
 Android 12+ Dynamic Color:
 
-User's wallpaper â†’ Color extraction â†’ App theme
+User's wallpaper → Color extraction → App theme
 
 Your app automatically adapts to:
-â”œâ”€â”€ Primary color (from wallpaper)
-â”œâ”€â”€ Secondary color (complementary)
-â”œâ”€â”€ Tertiary color (accent)
-â”œâ”€â”€ Surface colors (derived)
-â””â”€â”€ All semantic colors adjust
+├── Primary color (from wallpaper)
+├── Secondary color (complementary)
+├── Tertiary color (accent)
+├── Surface colors (derived)
+└── All semantic colors adjust
 
 RULE: Implement dynamic color for personalized feel.
 ```
@@ -4854,22 +4854,22 @@ RULE: Implement dynamic color for personalized feel.
 
 ```
 Surface Colors:
-â”œâ”€â”€ Surface â†’ Main background
-â”œâ”€â”€ SurfaceVariant â†’ Cards, containers
-â”œâ”€â”€ SurfaceTint â†’ Elevation overlay
-â”œâ”€â”€ InverseSurface â†’ Snackbars, tooltips
+├── Surface → Main background
+├── SurfaceVariant → Cards, containers
+├── SurfaceTint → Elevation overlay
+├── InverseSurface → Snackbars, tooltips
 
 On-Surface Colors:
-â”œâ”€â”€ OnSurface â†’ Primary text
-â”œâ”€â”€ OnSurfaceVariant â†’ Secondary text
-â”œâ”€â”€ Outline â†’ Borders, dividers
-â”œâ”€â”€ OutlineVariant â†’ Subtle dividers
+├── OnSurface → Primary text
+├── OnSurfaceVariant → Secondary text
+├── Outline → Borders, dividers
+├── OutlineVariant → Subtle dividers
 
 Primary Colors:
-â”œâ”€â”€ Primary â†’ Key actions, FAB
-â”œâ”€â”€ OnPrimary â†’ Text on primary
-â”œâ”€â”€ PrimaryContainer â†’ Less emphasis
-â”œâ”€â”€ OnPrimaryContainer â†’ Text on container
+├── Primary → Key actions, FAB
+├── OnPrimary → Text on primary
+├── PrimaryContainer → Less emphasis
+├── OnPrimaryContainer → Text on container
 
 Secondary/Tertiary: Similar pattern
 ```
@@ -4887,19 +4887,19 @@ Secondary/Tertiary: Similar pattern
 ```
 Material Dark Theme:
 
-â”œâ”€â”€ Background: #121212 (not pure black by default)
-â”œâ”€â”€ Surface: #1E1E1E, #232323, etc. (elevation)
-â”œâ”€â”€ Elevation: Higher = lighter overlay
-â”œâ”€â”€ Reduce saturation on colors
-â””â”€â”€ Check contrast ratios
+├── Background: #121212 (not pure black by default)
+├── Surface: #1E1E1E, #232323, etc. (elevation)
+├── Elevation: Higher = lighter overlay
+├── Reduce saturation on colors
+└── Check contrast ratios
 
 Elevation overlays (dark mode):
-â”œâ”€â”€ 0dp â†’ 0% overlay
-â”œâ”€â”€ 1dp â†’ 5% overlay
-â”œâ”€â”€ 3dp â†’ 8% overlay
-â”œâ”€â”€ 6dp â†’ 11% overlay
-â”œâ”€â”€ 8dp â†’ 12% overlay
-â”œâ”€â”€ 12dp â†’ 14% overlay
+├── 0dp → 0% overlay
+├── 1dp → 5% overlay
+├── 3dp → 8% overlay
+├── 6dp → 11% overlay
+├── 8dp → 12% overlay
+├── 12dp → 14% overlay
 ```
 
 ---
@@ -4912,16 +4912,16 @@ Elevation overlays (dark mode):
 Android uses 8dp baseline grid:
 
 All spacing in multiples of 8dp:
-â”œâ”€â”€ 4dp: Component internal (half-step)
-â”œâ”€â”€ 8dp: Minimum spacing
-â”œâ”€â”€ 16dp: Standard spacing
-â”œâ”€â”€ 24dp: Section spacing
-â”œâ”€â”€ 32dp: Large spacing
+├── 4dp: Component internal (half-step)
+├── 8dp: Minimum spacing
+├── 16dp: Standard spacing
+├── 24dp: Section spacing
+├── 32dp: Large spacing
 
 Margins:
-â”œâ”€â”€ Compact (phone): 16dp
-â”œâ”€â”€ Medium (small tablet): 24dp
-â”œâ”€â”€ Expanded (large): 24dp+ or columns
+├── Compact (phone): 16dp
+├── Medium (small tablet): 24dp
+├── Expanded (large): 24dp+ or columns
 ```
 
 ### Responsive Layout
@@ -4930,19 +4930,19 @@ Margins:
 Window Size Classes:
 
 COMPACT (< 600dp width):
-â”œâ”€â”€ Phones in portrait
-â”œâ”€â”€ Single column layout
-â”œâ”€â”€ Bottom navigation
+├── Phones in portrait
+├── Single column layout
+├── Bottom navigation
 
 MEDIUM (600-840dp width):
-â”œâ”€â”€ Tablets, foldables
-â”œâ”€â”€ Consider 2 columns
-â”œâ”€â”€ Navigation rail option
+├── Tablets, foldables
+├── Consider 2 columns
+├── Navigation rail option
 
 EXPANDED (> 840dp width):
-â”œâ”€â”€ Large tablets, desktop
-â”œâ”€â”€ Multi-column layouts
-â”œâ”€â”€ Navigation drawer
+├── Large tablets, desktop
+├── Multi-column layouts
+├── Navigation drawer
 ```
 
 ### Canonical Layouts
@@ -4969,58 +4969,58 @@ EXPANDED (> 840dp width):
 ### Bottom Navigation
 
 ```
-â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
-â”‚                                     â”‚
-â”‚         Content Area                â”‚
-â”‚                                     â”‚
-â”œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¤
-â”‚  ðŸ      ðŸ”     âž•     â¤ï¸     ðŸ‘¤    â”‚ â† 80dp height
-â”‚ Home   Search  FAB   Saved  Profileâ”‚
-â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
+┌─────────────────────────────────────┐
+│                                     │
+│         Content Area                │
+│                                     │
+├─────────────────────────────────────┤
+│  🏠     🔍     ➕     d️     👤    │ ← 80dp height
+│ Home   Search  FAB   Saved  Profile│
+└─────────────────────────────────────┘
 
 Rules:
-â”œâ”€â”€ 3-5 destinations
-â”œâ”€â”€ Icons: Material Symbols (24dp)
-â”œâ”€â”€ Labels: Always visible (accessibility)
-â”œâ”€â”€ Active: Filled icon + indicator pill
-â”œâ”€â”€ Badge: For notifications
-â”œâ”€â”€ FAB can integrate (optional)
+├── 3-5 destinations
+├── Icons: Material Symbols (24dp)
+├── Labels: Always visible (accessibility)
+├── Active: Filled icon + indicator pill
+├── Badge: For notifications
+├── FAB can integrate (optional)
 ```
 
 ### Top App Bar
 
 ```
 Types:
-â”œâ”€â”€ Center-aligned: Logo apps, simple
-â”œâ”€â”€ Small: Compact, scrolls away
-â”œâ”€â”€ Medium: Title + actions, collapses
-â”œâ”€â”€ Large: Display title, collapses to small
+├── Center-aligned: Logo apps, simple
+├── Small: Compact, scrolls away
+├── Medium: Title + actions, collapses
+├── Large: Display title, collapses to small
 
-â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
-â”‚  â˜°   App Title              ðŸ”” â‹®  â”‚ â† 64dp (small)
-â”œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¤
-â”‚                                     â”‚
-â”‚         Content Area                â”‚
-â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
+┌─────────────────────────────────────┐
+│  ☰   App Title              🔔 ⋮  │ ← 64dp (small)
+├─────────────────────────────────────┤
+│                                     │
+│         Content Area                │
+└─────────────────────────────────────┘
 
-Actions: Max 3 icons, overflow menu ( â‹® ) for more
+Actions: Max 3 icons, overflow menu ( ⋮ ) for more
 ```
 
 ### Navigation Rail (Tablets)
 
 ```
-â”Œâ”€â”€â”€â”€â”€â”€â”€â”¬â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
-â”‚  â‰¡    â”‚                             â”‚
-â”‚       â”‚                             â”‚
-â”‚  ðŸ    â”‚                             â”‚
-â”‚ Home  â”‚       Content Area          â”‚
-â”‚       â”‚                             â”‚
-â”‚  ðŸ”   â”‚                             â”‚
-â”‚Search â”‚                             â”‚
-â”‚       â”‚                             â”‚
-â”‚  ðŸ‘¤   â”‚                             â”‚
-â”‚Profileâ”‚                             â”‚
-â””â”€â”€â”€â”€â”€â”€â”€â”´â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
+┌───────┬─────────────────────────────┐
+│  ≡    │                             │
+│       │                             │
+│  🏠   │                             │
+│ Home  │       Content Area          │
+│       │                             │
+│  🔍   │                             │
+│Search │                             │
+│       │                             │
+│  👤   │                             │
+│Profile│                             │
+└───────┴─────────────────────────────┘
 
 Width: 80dp
 Icons: 24dp
@@ -5032,15 +5032,15 @@ FAB: Can be at top
 
 ```
 Android provides system back:
-â”œâ”€â”€ Back button (3-button nav)
-â”œâ”€â”€ Back gesture (swipe from edge)
-â”œâ”€â”€ Predictive back (Android 14+)
+├── Back button (3-button nav)
+├── Back gesture (swipe from edge)
+├── Predictive back (Android 14+)
 
 Your app must:
-â”œâ”€â”€ Handle back correctly (pop stack)
-â”œâ”€â”€ Support predictive back animation
-â”œâ”€â”€ Never hijack/override back unexpectedly
-â””â”€â”€ Confirm before discarding unsaved work
+├── Handle back correctly (pop stack)
+├── Support predictive back animation
+├── Never hijack/override back unexpectedly
+└── Confirm before discarding unsaved work
 ```
 
 ---
@@ -5052,24 +5052,24 @@ Your app must:
 ```
 Button Types:
 
-â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
-â”‚    Filled Button     â”‚  â† Primary action
-â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
+┌──────────────────────┐
+│    Filled Button     │  ← Primary action
+└──────────────────────┘
 
-â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
-â”‚    Tonal Button      â”‚  â† Secondary, less emphasis
-â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
+┌──────────────────────┐
+│    Tonal Button      │  ← Secondary, less emphasis
+└──────────────────────┘
 
-â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
-â”‚   Outlined Button    â”‚  â† Tertiary, lower emphasis
-â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
+┌──────────────────────┐
+│   Outlined Button    │  ← Tertiary, lower emphasis
+└──────────────────────┘
 
-    Text Button           â† Lowest emphasis
+    Text Button           ← Lowest emphasis
 
 Heights:
-â”œâ”€â”€ Small: 40dp (when constrained)
-â”œâ”€â”€ Standard: 40dp
-â”œâ”€â”€ Large: 56dp (FAB size when needed)
+├── Small: 40dp (when constrained)
+├── Standard: 40dp
+├── Large: 56dp (FAB size when needed)
 
 Min touch target: 48dp (even if visual is smaller)
 ```
@@ -5078,43 +5078,43 @@ Min touch target: 48dp (even if visual is smaller)
 
 ```
 FAB Types:
-â”œâ”€â”€ Standard: 56dp diameter
-â”œâ”€â”€ Small: 40dp diameter
-â”œâ”€â”€ Large: 96dp diameter
-â”œâ”€â”€ Extended: Icon + text, variable width
+├── Standard: 56dp diameter
+├── Small: 40dp diameter
+├── Large: 96dp diameter
+├── Extended: Icon + text, variable width
 
 Position: Bottom right, 16dp from edges
 Elevation: Floats above content
 
-â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
-â”‚                                     â”‚
-â”‚         Content                     â”‚
-â”‚                                     â”‚
-â”‚                              â”Œâ”€â”€â”€â”€â” â”‚
-â”‚                              â”‚ âž• â”‚ â”‚ â† FAB
-â”‚                              â””â”€â”€â”€â”€â”˜ â”‚
-â”œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¤
-â”‚       Bottom Navigation             â”‚
-â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
+┌─────────────────────────────────────┐
+│                                     │
+│         Content                     │
+│                                     │
+│                              ┌────┐ │
+│                              │ ➕ │ │ ← FAB
+│                              └────┘ │
+├─────────────────────────────────────┤
+│       Bottom Navigation             │
+└─────────────────────────────────────┘
 ```
 
 ### Cards
 
 ```
 Card Types:
-â”œâ”€â”€ Elevated: Shadow, resting state
-â”œâ”€â”€ Filled: Background color, no shadow
-â”œâ”€â”€ Outlined: Border, no shadow
+├── Elevated: Shadow, resting state
+├── Filled: Background color, no shadow
+├── Outlined: Border, no shadow
 
 Card Anatomy:
-â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
-â”‚           Header Image              â”‚ â† Optional
-â”œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¤
-â”‚  Title / Headline                   â”‚
-â”‚  Subhead / Supporting text          â”‚
-â”œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¤
-â”‚      [ Action ]    [ Action ]       â”‚ â† Optional actions
-â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
+┌─────────────────────────────────────┐
+│           Header Image              │ ← Optional
+├─────────────────────────────────────┤
+│  Title / Headline                   │
+│  Subhead / Supporting text          │
+├─────────────────────────────────────┤
+│      [ Action ]    [ Action ]       │ ← Optional actions
+└─────────────────────────────────────┘
 
 Corner radius: 12dp (M3 default)
 Padding: 16dp
@@ -5124,16 +5124,16 @@ Padding: 16dp
 
 ```
 Types:
-â”œâ”€â”€ Filled: Background fill, underline
-â”œâ”€â”€ Outlined: Border all around
+├── Filled: Background fill, underline
+├── Outlined: Border all around
 
-â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
-â”‚  Label                              â”‚ â† Floats up on focus
-â”‚  ________________________________________________
-â”‚  â”‚     Input text here...          â”‚ â† Leading/trailing icons
-â”‚  â€¾â€¾â€¾â€¾â€¾â€¾â€¾â€¾â€¾â€¾â€¾â€¾â€¾â€¾â€¾â€¾â€¾â€¾â€¾â€¾â€¾â€¾â€¾â€¾â€¾â€¾â€¾â€¾â€¾â€¾â€¾â€¾â€¾â€¾â€¾â€¾â€¾â€¾â€¾â€¾â€¾â€¾â€¾â€¾â€¾â€¾â€¾â€¾
-â”‚  Supporting text or error           â”‚
-â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
+┌─────────────────────────────────────┐
+│  Label                              │ ← Floats up on focus
+│  ________________________________________________
+│  │     Input text here...          │ ← Leading/trailing icons
+│  ⬾⬾⬾⬾⬾⬾⬾⬾⬾⬾⬾⬾⬾⬾⬾⬾⬾⬾⬾⬾⬾⬾⬾⬾⬾⬾⬾⬾⬾⬾⬾⬾⬾⬾⬾⬾⬾⬾⬾⬾⬾⬾⬾⬾⬾⬾⬾⬾
+│  Supporting text or error           │
+└─────────────────────────────────────┘
 
 Height: 56dp
 Label: Animates from placeholder to top
@@ -5144,14 +5144,14 @@ Error: Red color + icon + message
 
 ```
 Types:
-â”œâ”€â”€ Assist: Smart actions (directions, call)
-â”œâ”€â”€ Filter: Toggle filters
-â”œâ”€â”€ Input: Represent entities (tags, contacts)
-â”œâ”€â”€ Suggestion: Dynamic recommendations
+├── Assist: Smart actions (directions, call)
+├── Filter: Toggle filters
+├── Input: Represent entities (tags, contacts)
+├── Suggestion: Dynamic recommendations
 
-â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
-â”‚  ðŸ·ï¸ Filter   â”‚  â† 32dp height, 8dp corner radius
-â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
+┌───────────────┐
+│  🏷️ Filter   │  ← 32dp height, 8dp corner radius
+└───────────────┘
 
 States: Unselected, Selected, Disabled
 ```
@@ -5167,38 +5167,38 @@ Position: Bottom, above navigation
 Duration: 4-10 seconds
 Action: One optional text action
 
-â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
-â”‚  Archived 1 item                    [ UNDO ]    â”‚
-â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
+┌─────────────────────────────────────────────────┐
+│  Archived 1 item                    [ UNDO ]    │
+└─────────────────────────────────────────────────┘
 
 Rules:
-â”œâ”€â”€ Brief message, single line if possible
-â”œâ”€â”€ Max 2 lines
-â”œâ”€â”€ One action (text, not icon)
-â”œâ”€â”€ Can be dismissed by swipe
-â””â”€â”€ Don't stack, queue them
+├── Brief message, single line if possible
+├── Max 2 lines
+├── One action (text, not icon)
+├── Can be dismissed by swipe
+└── Don't stack, queue them
 ```
 
 ### Bottom Sheets
 
 ```
 Types:
-â”œâ”€â”€ Standard: Interactive content
-â”œâ”€â”€ Modal: Blocks background (with scrim)
+├── Standard: Interactive content
+├── Modal: Blocks background (with scrim)
 
 Modal Bottom Sheet:
-â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
-â”‚                                     â”‚
-â”‚        (Scrim over content)         â”‚
-â”‚                                     â”‚
-â”œâ•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â”¤
-â”‚  â”€â”€â”€â”€â”€  (Drag handle, optional)     â”‚
-â”‚                                     â”‚
-â”‚        Sheet Content                â”‚
-â”‚                                     â”‚
-â”‚        Actions / Options            â”‚
-â”‚                                     â”‚
-â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
+┌─────────────────────────────────────┐
+│                                     │
+│        (Scrim over content)         │
+│                                     │
+├═════════════════════════════════════┤
+│  ─────  (Drag handle, optional)     │
+│                                     │
+│        Sheet Content                │
+│                                     │
+│        Actions / Options            │
+│                                     │
+└─────────────────────────────────────┘
 
 Corner radius: 28dp (top corners)
 ```
@@ -5207,25 +5207,25 @@ Corner radius: 28dp (top corners)
 
 ```
 Types:
-â”œâ”€â”€ Basic: Title + content + actions
-â”œâ”€â”€ Full-screen: Complex editing (mobile)
-â”œâ”€â”€ Date/Time picker
-â”œâ”€â”€ Confirmation dialog
+├── Basic: Title + content + actions
+├── Full-screen: Complex editing (mobile)
+├── Date/Time picker
+├── Confirmation dialog
 
-â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
-â”‚              Title                  â”‚
-â”‚                                     â”‚
-â”‚       Supporting text that          â”‚
-â”‚       explains the dialog           â”‚
-â”‚                                     â”‚
-â”‚           [ Cancel ]  [ Confirm ]   â”‚
-â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
+┌─────────────────────────────────────┐
+│              Title                  │
+│                                     │
+│       Supporting text that          │
+│       explains the dialog           │
+│                                     │
+│           [ Cancel ]  [ Confirm ]   │
+└─────────────────────────────────────┘
 
 Rules:
-â”œâ”€â”€ Centered on screen
-â”œâ”€â”€ Scrim behind (dim background)
-â”œâ”€â”€ Max 2 actions aligned right
-â”œâ”€â”€ Destructive action can be on left
+├── Centered on screen
+├── Scrim behind (dim background)
+├── Max 2 actions aligned right
+├── Destructive action can be on left
 ```
 
 ### Pull to Refresh
@@ -5233,13 +5233,13 @@ Rules:
 ```
 Android uses SwipeRefreshLayout pattern:
 
-â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
-â”‚         â—‹ (Spinner)                 â”‚ â† Circular progress
-â”œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¤
-â”‚                                     â”‚
-â”‚         Content                     â”‚
-â”‚                                     â”‚
-â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
+┌─────────────────────────────────────┐
+│         ○ (Spinner)                 │ ← Circular progress
+├─────────────────────────────────────┤
+│                                     │
+│         Content                     │
+│                                     │
+└─────────────────────────────────────┘
 
 Spinner: Material circular indicator
 Position: Top center, pulls down with content
@@ -5250,13 +5250,13 @@ Position: Top center, pulls down with content
 ```
 Every touchable element needs ripple:
 
-Touch down â†’ Ripple expands from touch point
-Touch up â†’ Ripple completes and fades
+Touch down → Ripple expands from touch point
+Touch up → Ripple completes and fades
 
 Color: 
-â”œâ”€â”€ On light: Black at ~12% opacity
-â”œâ”€â”€ On dark: White at ~12% opacity
-â”œâ”€â”€ On colored: Appropriate contrast
+├── On light: Black at ~12% opacity
+├── On dark: White at ~12% opacity
+├── On colored: Appropriate contrast
 
 This is MANDATORY for Android feel.
 ```
@@ -5271,15 +5271,15 @@ This is MANDATORY for Android feel.
 Material Symbols: Google's icon library
 
 Styles:
-â”œâ”€â”€ Outlined: Default, most common
-â”œâ”€â”€ Rounded: Softer, friendly
-â”œâ”€â”€ Sharp: Angular, precise
+├── Outlined: Default, most common
+├── Rounded: Softer, friendly
+├── Sharp: Angular, precise
 
 Variable font axes:
-â”œâ”€â”€ FILL: 0 (outline) to 1 (filled)
-â”œâ”€â”€ wght: 100-700 (weight)
-â”œâ”€â”€ GRAD: -25 to 200 (emphasis)
-â”œâ”€â”€ opsz: 20, 24, 40, 48 (optical size)
+├── FILL: 0 (outline) to 1 (filled)
+├── wght: 100-700 (weight)
+├── GRAD: -25 to 200 (emphasis)
+├── opsz: 20, 24, 40, 48 (optical size)
 ```
 
 ### Icon Sizes
@@ -5295,14 +5295,14 @@ Variable font axes:
 
 ```
 Icon States:
-â”œâ”€â”€ Default: Full opacity
-â”œâ”€â”€ Disabled: 38% opacity
-â”œâ”€â”€ Hover/Focus: Container highlight
-â”œâ”€â”€ Selected: Filled variant + tint
+├── Default: Full opacity
+├── Disabled: 38% opacity
+├── Hover/Focus: Container highlight
+├── Selected: Filled variant + tint
 
 Active vs Inactive:
-â”œâ”€â”€ Inactive: Outlined
-â”œâ”€â”€ Active: Filled + indicator
+├── Inactive: Outlined
+├── Active: Filled + indicator
 ```
 
 ---
@@ -5313,10 +5313,10 @@ Active vs Inactive:
 
 ```
 Every interactive element needs:
-â”œâ”€â”€ contentDescription (what it is)
-â”œâ”€â”€ Correct semantics (button, checkbox, etc.)
-â”œâ”€â”€ State announcements (selected, disabled)
-â””â”€â”€ Grouping where logical
+├── contentDescription (what it is)
+├── Correct semantics (button, checkbox, etc.)
+├── State announcements (selected, disabled)
+└── Grouping where logical
 
 Jetpack Compose:
 Modifier.semantics {
@@ -5333,12 +5333,12 @@ accessibilityState={{ disabled: false }}
 ### Touch Target Size
 
 ```
-MANDATORY: 48dp Ã— 48dp minimum
+MANDATORY: 48dp × 48dp minimum
 
 Even if visual element is smaller:
-â”œâ”€â”€ Icon: 24dp visual, 48dp touch area
-â”œâ”€â”€ Checkbox: 20dp visual, 48dp touch area
-â””â”€â”€ Add padding to reach 48dp
+├── Icon: 24dp visual, 48dp touch area
+├── Checkbox: 20dp visual, 48dp touch area
+└── Add padding to reach 48dp
 
 Spacing between targets: 8dp minimum
 ```
@@ -5347,10 +5347,10 @@ Spacing between targets: 8dp minimum
 
 ```
 Android supports font scaling:
-â”œâ”€â”€ 85% (smaller)
-â”œâ”€â”€ 100% (default)
-â”œâ”€â”€ 115%, 130%, 145%...
-â”œâ”€â”€ Up to 200% (largest)
+├── 85% (smaller)
+├── 100% (default)
+├── 115%, 130%, 145%...
+├── Up to 200% (largest)
 
 RULE: Test your UI at 200% font scale.
 Use sp units and avoid fixed heights.
@@ -5378,7 +5378,7 @@ if (reduceMotion) {
 ### Before Every Android Screen
 
 - [ ] Using Material 3 components
-- [ ] Touch targets â‰¥ 48dp
+- [ ] Touch targets ≥ 48dp
 - [ ] Ripple effect on all touchables
 - [ ] Roboto or Material type scale
 - [ ] Semantic colors (dynamic color support)
@@ -5400,7 +5400,7 @@ if (reduceMotion) {
 > **Remember:** Android users expect Material Design. Custom designs that ignore Material patterns feel foreign and broken. Use Material components as your foundation, customize thoughtfully.
 ---
 
-âš¡ PikaKit v3.9.105\r\n\r\n---\r\n\r\n## ðŸ”— Related\r\n\r\n| File | When to Read |\r\n|------|-------------|\r\n| [../SKILL.md](../SKILL.md) | MFRI scoring, platform differences |\r\n| [platform-ios.md](platform-ios.md) | iOS counterpart |\r\n| [touch-psychology.md](touch-psychology.md) | Touch interaction patterns |\r\n| [mobile-typography.md](mobile-typography.md) | Roboto details |\r\n| [engineering-spec.md](engineering-spec.md) | Full engineering spec |
+⚡ PikaKit v3.9.105\r\n\r\n---\r\n\r\n## 🔗 Related\r\n\r\n| File | When to Read |\r\n|------|-------------|\r\n| [../SKILL.md](../SKILL.md) | MFRI scoring, platform differences |\r\n| [platform-ios.md](platform-ios.md) | iOS counterpart |\r\n| [touch-psychology.md](touch-psychology.md) | Touch interaction patterns |\r\n| [mobile-typography.md](mobile-typography.md) | Roboto details |\r\n| [engineering-spec.md](engineering-spec.md) | Full engineering spec |
 
 ---
 
@@ -5408,7 +5408,7 @@ if (reduceMotion) {
 
 ---
 name: mobile-platform-ios
-description: iOS Human Interface Guidelines â€” SF Pro typography, safe areas, navigation bars, haptics, Dynamic Type
+description: iOS Human Interface Guidelines — SF Pro typography, safe areas, navigation bars, haptics, Dynamic Type
 ---
 
 # iOS Platform Guidelines
@@ -5424,29 +5424,29 @@ description: iOS Human Interface Guidelines â€” SF Pro typography, safe are
 
 ```
 CLARITY:
-â”œâ”€â”€ Text is legible at every size
-â”œâ”€â”€ Icons are precise and lucid
-â”œâ”€â”€ Adornments are subtle and appropriate
-â””â”€â”€ Focus on functionality drives design
+├── Text is legible at every size
+├── Icons are precise and lucid
+├── Adornments are subtle and appropriate
+└── Focus on functionality drives design
 
 DEFERENCE:
-â”œâ”€â”€ UI helps people understand and interact
-â”œâ”€â”€ Content fills the screen
-â”œâ”€â”€ UI never competes with content
-â””â”€â”€ Translucency hints at more content
+├── UI helps people understand and interact
+├── Content fills the screen
+├── UI never competes with content
+└── Translucency hints at more content
 
 DEPTH:
-â”œâ”€â”€ Distinct visual layers convey hierarchy
-â”œâ”€â”€ Transitions provide sense of depth
-â”œâ”€â”€ Touch reveals functionality
-â””â”€â”€ Content is elevated over UI
+├── Distinct visual layers convey hierarchy
+├── Transitions provide sense of depth
+├── Touch reveals functionality
+└── Content is elevated over UI
 ```
 
 ### iOS Design Values
 
 | Value | Implementation |
 |-------|----------------|
-| **Aesthetic Integrity** | Design matches function (game â‰  productivity) |
+| **Aesthetic Integrity** | Design matches function (game ≠ productivity) |
 | **Consistency** | Use system controls, familiar patterns |
 | **Direct Manipulation** | Touch directly affects content |
 | **Feedback** | Actions are acknowledged |
@@ -5461,11 +5461,11 @@ DEPTH:
 
 ```
 iOS System Fonts:
-â”œâ”€â”€ SF Pro Text: Body text (< 20pt)
-â”œâ”€â”€ SF Pro Display: Large titles (â‰¥ 20pt)
-â”œâ”€â”€ SF Pro Rounded: Friendly contexts
-â”œâ”€â”€ SF Mono: Code, tabular data
-â””â”€â”€ SF Compact: Apple Watch, smaller screens
+├── SF Pro Text: Body text (< 20pt)
+├── SF Pro Display: Large titles (≥ 20pt)
+├── SF Pro Rounded: Friendly contexts
+├── SF Mono: Code, tabular data
+└── SF Compact: Apple Watch, smaller screens
 ```
 
 ### iOS Type Scale (Dynamic Type)
@@ -5487,16 +5487,16 @@ iOS System Fonts:
 ### Dynamic Type Support (MANDATORY)
 
 ```swift
-// âŒ WRONG: Fixed font size
+// ❌ WRONG: Fixed font size
 Text("Hello")
     .font(.system(size: 17))
 
-// âœ… CORRECT: Dynamic Type
+// ✅ CORRECT: Dynamic Type
 Text("Hello")
     .font(.body) // Scales with user settings
 
 // React Native equivalent
-<Text style={{ fontSize: 17 }}> // âŒ Fixed
+<Text style={{ fontSize: 17 }}> // ❌ Fixed
 <Text style={styles.body}> // Use a dynamic scale system
 ```
 
@@ -5520,21 +5520,21 @@ Text("Hello")
 Use semantic colors for automatic dark mode:
 
 Primary:
-â”œâ”€â”€ .label â†’ Primary text
-â”œâ”€â”€ .secondaryLabel â†’ Secondary text
-â”œâ”€â”€ .tertiaryLabel â†’ Tertiary text
-â”œâ”€â”€ .quaternaryLabel â†’ Watermarks
+├── .label → Primary text
+├── .secondaryLabel → Secondary text
+├── .tertiaryLabel → Tertiary text
+├── .quaternaryLabel → Watermarks
 
 Backgrounds:
-â”œâ”€â”€ .systemBackground â†’ Main background
-â”œâ”€â”€ .secondarySystemBackground â†’ Grouped content
-â”œâ”€â”€ .tertiarySystemBackground â†’ Elevated content
+├── .systemBackground → Main background
+├── .secondarySystemBackground → Grouped content
+├── .tertiarySystemBackground → Elevated content
 
 Fills:
-â”œâ”€â”€ .systemFill â†’ Large shapes
-â”œâ”€â”€ .secondarySystemFill â†’ Medium shapes
-â”œâ”€â”€ .tertiarySystemFill â†’ Small shapes
-â”œâ”€â”€ .quaternarySystemFill â†’ Subtle shapes
+├── .systemFill → Large shapes
+├── .secondarySystemFill → Medium shapes
+├── .tertiarySystemFill → Small shapes
+├── .quaternarySystemFill → Subtle shapes
 ```
 
 ### System Accent Colors
@@ -5556,10 +5556,10 @@ Fills:
 iOS Dark Mode is not inverted light mode:
 
 LIGHT MODE:              DARK MODE:
-â”œâ”€â”€ White backgrounds    â”œâ”€â”€ True black (#000) or near-black
-â”œâ”€â”€ High saturation      â”œâ”€â”€ Desaturated colors
-â”œâ”€â”€ Black text           â”œâ”€â”€ White/light gray text
-â””â”€â”€ Drop shadows         â””â”€â”€ Glows or no shadows
+├── White backgrounds    ├── True black (#000) or near-black
+├── High saturation      ├── Desaturated colors
+├── Black text           ├── White/light gray text
+└── Drop shadows         └── Glows or no shadows
 
 RULE: Always use semantic colors for automatic adaptation.
 ```
@@ -5571,17 +5571,17 @@ RULE: Always use semantic colors for automatic adaptation.
 ### Safe Areas
 
 ```
-â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
-â”‚â–‘â–‘â–‘â–‘â–‘â–‘â–‘â–‘â–‘â–‘â–‘ Status Bar â–‘â–‘â–‘â–‘â–‘â–‘â–‘â–‘â–‘â–‘â–‘â–‘â–‘â”‚ â† Top safe area inset
-â”œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¤
-â”‚                                     â”‚
-â”‚                                     â”‚
-â”‚         Safe Content Area           â”‚
-â”‚                                     â”‚
-â”‚                                     â”‚
-â”œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¤
-â”‚â–‘â–‘â–‘â–‘â–‘â–‘â–‘â–‘â–‘ Home Indicator â–‘â–‘â–‘â–‘â–‘â–‘â–‘â–‘â–‘â–‘â–‘â”‚ â† Bottom safe area inset
-â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
+┌─────────────────────────────────────┐
+│░░░░░░░░░░░ Status Bar ░░░░░░░░░░░░░│ ← Top safe area inset
+├─────────────────────────────────────┤
+│                                     │
+│                                     │
+│         Safe Content Area           │
+│                                     │
+│                                     │
+├─────────────────────────────────────┤
+│░░░░░░░░░ Home Indicator ░░░░░░░░░░░│ ← Bottom safe area inset
+└─────────────────────────────────────┘
 
 RULE: Never place interactive content in unsafe areas.
 ```
@@ -5590,7 +5590,7 @@ RULE: Never place interactive content in unsafe areas.
 
 | Element | Margin | Notes |
 |---------|--------|-------|
-| Screen edge â†’ content | 16pt | Standard horizontal margin |
+| Screen edge → content | 16pt | Standard horizontal margin |
 | Grouped table sections | 16pt top/bottom | Breathing room |
 | List item padding | 16pt horizontal | Standard cell padding |
 | Card internal padding | 16pt | Content within cards |
@@ -5600,17 +5600,17 @@ RULE: Never place interactive content in unsafe areas.
 
 ```
 iPhone Grid (Standard):
-â”œâ”€â”€ 16pt margins (left/right)
-â”œâ”€â”€ 8pt minimum spacing
-â”œâ”€â”€ Content in 8pt multiples
+├── 16pt margins (left/right)
+├── 8pt minimum spacing
+├── Content in 8pt multiples
 
 iPhone Grid (Compact):
-â”œâ”€â”€ 8pt margins (when needed)
-â”œâ”€â”€ 4pt minimum spacing
+├── 8pt margins (when needed)
+├── 4pt minimum spacing
 
 iPad Grid:
-â”œâ”€â”€ 20pt margins (or more)
-â”œâ”€â”€ Consider multi-column layouts
+├── 20pt margins (or more)
+├── Consider multi-column layouts
 ```
 
 ---
@@ -5629,40 +5629,40 @@ iPad Grid:
 ### Tab Bar Guidelines
 
 ```
-â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
-â”‚                                     â”‚
-â”‚         Content Area                â”‚
-â”‚                                     â”‚
-â”œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¤
-â”‚  ðŸ      ðŸ”     âž•     â¤ï¸     ðŸ‘¤    â”‚ â† Tab bar (49pt height)
-â”‚ Home   Search  New   Saved  Profile â”‚
-â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
+┌─────────────────────────────────────┐
+│                                     │
+│         Content Area                │
+│                                     │
+├─────────────────────────────────────┤
+│  🏠     🔍     ➕     d️     👤    │ ← Tab bar (49pt height)
+│ Home   Search  New   Saved  Profile │
+└─────────────────────────────────────┘
 
 Rules:
-â”œâ”€â”€ 3-5 items maximum
-â”œâ”€â”€ Icons: SF Symbols or custom (25Ã—25pt)
-â”œâ”€â”€ Labels: Always include (accessibility)
-â”œâ”€â”€ Active state: Filled icon + tint color
-â””â”€â”€ Tab bar always visible (don't hide on scroll)
+├── 3-5 items maximum
+├── Icons: SF Symbols or custom (25×25pt)
+├── Labels: Always include (accessibility)
+├── Active state: Filled icon + tint color
+└── Tab bar always visible (don't hide on scroll)
 ```
 
 ### Navigation Bar Guidelines
 
 ```
-â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
-â”‚ < Back     Page Title      Edit    â”‚ â† Navigation bar (44pt)
-â”œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¤
-â”‚                                     â”‚
-â”‚         Content Area                â”‚
-â”‚                                     â”‚
-â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
+┌─────────────────────────────────────┐
+│ < Back     Page Title      Edit    │ ← Navigation bar (44pt)
+├─────────────────────────────────────┤
+│                                     │
+│         Content Area                │
+│                                     │
+└─────────────────────────────────────┘
 
 Rules:
-â”œâ”€â”€ Back button: System chevron + previous title (or "Back")
-â”œâ”€â”€ Title: Centered, dynamic font
-â”œâ”€â”€ Right actions: Max 2 items
-â”œâ”€â”€ Large title: Collapses on scroll (optional)
-â””â”€â”€ Prefer text buttons over icons (clarity)
+├── Back button: System chevron + previous title (or "Back")
+├── Title: Centered, dynamic font
+├── Right actions: Max 2 items
+├── Large title: Collapses on scroll (optional)
+└── Prefer text buttons over icons (clarity)
 ```
 
 ### Modal Presentations
@@ -5694,19 +5694,19 @@ Rules:
 ```
 Button Styles (UIKit/SwiftUI):
 
-â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
-â”‚         Tinted               â”‚ â† Primary action (filled)
-â”œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¤
-â”‚         Bordered             â”‚ â† Secondary action (outline)
-â”œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¤
-â”‚         Plain                â”‚ â† Tertiary action (text only)
-â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
+┌──────────────────────────────┐
+│         Tinted               │ ← Primary action (filled)
+├──────────────────────────────┤
+│         Bordered             │ ← Secondary action (outline)
+├──────────────────────────────┤
+│         Plain                │ ← Tertiary action (text only)
+└──────────────────────────────┘
 
 Sizes:
-â”œâ”€â”€ Mini: Tight spaces
-â”œâ”€â”€ Small: Compact UI
-â”œâ”€â”€ Medium: Inline actions
-â”œâ”€â”€ Large: Primary CTAs (44pt minimum height)
+├── Mini: Tight spaces
+├── Small: Compact UI
+├── Medium: Inline actions
+├── Large: Primary CTAs (44pt minimum height)
 ```
 
 ### Lists & Tables
@@ -5714,17 +5714,17 @@ Sizes:
 ```
 List Styles:
 
-.plain         â†’ No separators, edge-to-edge
-.insetGrouped  â†’ Rounded cards (default iOS 14+)
-.grouped       â†’ Full-width sections
-.sidebar       â†’ iPad sidebar navigation
+.plain         → No separators, edge-to-edge
+.insetGrouped  → Rounded cards (default iOS 14+)
+.grouped       → Full-width sections
+.sidebar       → iPad sidebar navigation
 
 Cell Accessories:
-â”œâ”€â”€ Disclosure indicator (>) â†’ Navigates to detail
-â”œâ”€â”€ Detail button (i) â†’ Shows info without navigation
-â”œâ”€â”€ Checkmark (âœ“) â†’ Selection
-â”œâ”€â”€ Reorder (â‰¡) â†’ Drag to reorder
-â””â”€â”€ Delete (-) â†’ Swipe/edit mode delete
+├── Disclosure indicator (>) → Navigates to detail
+├── Detail button (i) → Shows info without navigation
+├── Checkmark (✓) → Selection
+├── Reorder (≡) → Drag to reorder
+└── Delete (-) → Swipe/edit mode delete
 ```
 
 ### Text Fields
@@ -5732,10 +5732,10 @@ Cell Accessories:
 ```
 iOS Text Field Anatomy:
 
-â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
-â”‚ ðŸ” Search...                    âœ•  â”‚
-â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
-  â†‘                               â†‘
+┌─────────────────────────────────────┐
+│ 🔍 Search...                    ✕  │
+└─────────────────────────────────────┘
+  ↑                               ↑
   Leading icon                   Clear button
 
 Borders: Rounded rectangle
@@ -5748,19 +5748,19 @@ Clear button: Appears when has text
 
 ```
 When to Use:
-â”œâ”€â”€ 2-5 related options
-â”œâ”€â”€ Filter content
-â”œâ”€â”€ Switch views
+├── 2-5 related options
+├── Filter content
+├── Switch views
 
-â”Œâ”€â”€â”€â”€â”€â”€â”€â”¬â”€â”€â”€â”€â”€â”€â”€â”¬â”€â”€â”€â”€â”€â”€â”€â”
-â”‚  All  â”‚ Activeâ”‚ Done  â”‚
-â””â”€â”€â”€â”€â”€â”€â”€â”´â”€â”€â”€â”€â”€â”€â”€â”´â”€â”€â”€â”€â”€â”€â”€â”˜
+┌───────┬───────┬───────┐
+│  All  │ Active│ Done  │
+└───────┴───────┴───────┘
 
 Rules:
-â”œâ”€â”€ Equal width segments
-â”œâ”€â”€ Text or icons (not both mixed)
-â”œâ”€â”€ Max 5 segments
-â””â”€â”€ Consider tabs if more complex
+├── Equal width segments
+├── Text or icons (not both mixed)
+├── Max 5 segments
+└── Consider tabs if more complex
 ```
 
 ---
@@ -5771,10 +5771,10 @@ Rules:
 
 ```
 Native UIRefreshControl behavior:
-â”œâ”€â”€ Pull beyond threshold â†’ Spinner appears
-â”œâ”€â”€ Release â†’ Refresh action triggered
-â”œâ”€â”€ Loading state â†’ Spinner spins
-â”œâ”€â”€ Complete â†’ Spinner disappears
+├── Pull beyond threshold → Spinner appears
+├── Release → Refresh action triggered
+├── Loading state → Spinner spins
+├── Complete → Spinner disappears
 
 RULE: Always use native UIRefreshControl (don't custom build).
 ```
@@ -5784,10 +5784,10 @@ RULE: Always use native UIRefreshControl (don't custom build).
 ```
 iOS swipe actions:
 
-â† Swipe Left (Destructive)      Swipe Right (Constructive) â†’
-â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
-â”‚                    List Item Content                        â”‚
-â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
+← Swipe Left (Destructive)      Swipe Right (Constructive) →
+┌─────────────────────────────────────────────────────────────┐
+│                    List Item Content                        │
+└─────────────────────────────────────────────────────────────┘
 
 Left swipe reveals: Archive, Delete, Flag
 Right swipe reveals: Pin, Star, Mark as Read
@@ -5798,23 +5798,23 @@ Full swipe: Triggers first action
 ### Context Menus
 
 ```
-Long press â†’ Context menu appears
+Long press → Context menu appears
 
-â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
-â”‚       Preview Card          â”‚
-â”œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¤
-â”‚  ðŸ“‹ Copy                    â”‚
-â”‚  ðŸ“¤ Share                   â”‚
-â”‚  âž• Add to...               â”‚
-â”œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¤
-â”‚  ðŸ—‘ï¸ Delete          (Red)   â”‚
-â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
+┌─────────────────────────────┐
+│       Preview Card          │
+├─────────────────────────────┤
+│  📋 Copy                    │
+│  📤 Share                   │
+│  ➕ Add to...               │
+├─────────────────────────────┤
+│  🗑️ Delete          (Red)   │
+└─────────────────────────────┘
 
 Rules:
-â”œâ”€â”€ Preview: Show enlarged content
-â”œâ”€â”€ Actions: Related to content
-â”œâ”€â”€ Destructive: Last, in red
-â””â”€â”€ Max ~8 actions (scrollable if more)
+├── Preview: Show enlarged content
+├── Actions: Related to content
+├── Destructive: Last, in red
+└── Max ~8 actions (scrollable if more)
 ```
 
 ### Sheets & Half-Sheets
@@ -5822,22 +5822,22 @@ Rules:
 ```
 iOS 15+ Sheets:
 
-â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
-â”‚                                     â”‚
-â”‚        Parent View (dimmed)          â”‚
-â”‚                                     â”‚
-â”œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¤
-â”‚  â•â•â•  (Grabber)                     â”‚ â† Drag to resize
-â”‚                                     â”‚
-â”‚        Sheet Content                â”‚
-â”‚                                     â”‚
-â”‚                                     â”‚
-â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
+┌─────────────────────────────────────┐
+│                                     │
+│        Parent View (dimmed)          │
+│                                     │
+├─────────────────────────────────────┤
+│  ═══  (Grabber)                     │ ← Drag to resize
+│                                     │
+│        Sheet Content                │
+│                                     │
+│                                     │
+└─────────────────────────────────────┘
 
 Detents:
-â”œâ”€â”€ .medium â†’ Half screen
-â”œâ”€â”€ .large â†’ Full screen (with safe area)
-â”œâ”€â”€ Custom â†’ Specific height
+├── .medium → Half screen
+├── .large → Full screen (with safe area)
+├── Custom → Specific height
 ```
 
 ---
@@ -5850,14 +5850,14 @@ Detents:
 SF Symbols: Apple's icon library (5000+ icons)
 
 Weights: Match text weight
-â”œâ”€â”€ Ultralight / Thin / Light
-â”œâ”€â”€ Regular / Medium / Semibold
-â”œâ”€â”€ Bold / Heavy / Black
+├── Ultralight / Thin / Light
+├── Regular / Medium / Semibold
+├── Bold / Heavy / Black
 
 Scales:
-â”œâ”€â”€ .small â†’ Inline with small text
-â”œâ”€â”€ .medium â†’ Standard UI
-â”œâ”€â”€ .large â†’ Emphasis, standalone
+├── .small → Inline with small text
+├── .medium → Standard UI
+├── .large → Emphasis, standalone
 ```
 
 ### Symbol Configurations
@@ -5894,10 +5894,10 @@ Image(systemName: "checkmark.circle")
 
 ```
 Every interactive element needs:
-â”œâ”€â”€ Accessibility label (what it is)
-â”œâ”€â”€ Accessibility hint (what it does) - optional
-â”œâ”€â”€ Accessibility traits (button, link, etc.)
-â””â”€â”€ Accessibility value (current state)
+├── Accessibility label (what it is)
+├── Accessibility hint (what it does) - optional
+├── Accessibility traits (button, link, etc.)
+└── Accessibility value (current state)
 
 SwiftUI:
 .accessibilityLabel("Play")
@@ -5915,14 +5915,14 @@ accessibilityRole="button"
 MANDATORY: Support Dynamic Type
 
 Users can set text size from:
-â”œâ”€â”€ xSmall â†’ 14pt body
-â”œâ”€â”€ Small â†’ 15pt body
-â”œâ”€â”€ Medium â†’ 16pt body
-â”œâ”€â”€ Large (Default) â†’ 17pt body
-â”œâ”€â”€ xLarge â†’ 19pt body
-â”œâ”€â”€ xxLarge â†’ 21pt body
-â”œâ”€â”€ xxxLarge â†’ 23pt body
-â”œâ”€â”€ Accessibility sizes â†’ up to 53pt
+├── xSmall → 14pt body
+├── Small → 15pt body
+├── Medium → 16pt body
+├── Large (Default) → 17pt body
+├── xLarge → 19pt body
+├── xxLarge → 21pt body
+├── xxxLarge → 23pt body
+├── Accessibility sizes → up to 53pt
 
 Your app MUST scale gracefully at all sizes.
 ```
@@ -5955,8 +5955,8 @@ AccessibilityInfo.isReduceMotionEnabled()
 - [ ] Dynamic Type supported
 - [ ] Safe areas respected
 - [ ] Navigation follows HIG (back gesture works)
-- [ ] Tab bar items â‰¤ 5
-- [ ] Touch targets â‰¥ 44pt
+- [ ] Tab bar items ≤ 5
+- [ ] Touch targets ≥ 44pt
 
 ### Before iOS Release
 
@@ -5974,7 +5974,7 @@ AccessibilityInfo.isReduceMotionEnabled()
 > **Remember:** iOS users have strong expectations from other iOS apps. Deviating from HIG patterns feels "broken" to them. When in doubt, use the native component.
 ---
 
-âš¡ PikaKit v3.9.105\r\n\r\n---\r\n\r\n## ðŸ”— Related\r\n\r\n| File | When to Read |\r\n|------|-------------|\r\n| [../SKILL.md](../SKILL.md) | MFRI scoring, platform differences |\r\n| [platform-android.md](platform-android.md) | Android counterpart |\r\n| [touch-psychology.md](touch-psychology.md) | Touch interaction patterns |\r\n| [mobile-typography.md](mobile-typography.md) | SF Pro details |\r\n| [engineering-spec.md](engineering-spec.md) | Full engineering spec |
+⚡ PikaKit v3.9.105\r\n\r\n---\r\n\r\n## 🔗 Related\r\n\r\n| File | When to Read |\r\n|------|-------------|\r\n| [../SKILL.md](../SKILL.md) | MFRI scoring, platform differences |\r\n| [platform-android.md](platform-android.md) | Android counterpart |\r\n| [touch-psychology.md](touch-psychology.md) | Touch interaction patterns |\r\n| [mobile-typography.md](mobile-typography.md) | SF Pro details |\r\n| [engineering-spec.md](engineering-spec.md) | Full engineering spec |
 
 ---
 
@@ -5982,7 +5982,7 @@ AccessibilityInfo.isReduceMotionEnabled()
 
 ---
 name: mobile-touch-psychology
-description: Touch interaction patterns â€” Fittsâ€™s Law, gesture taxonomy, haptic feedback, thumb zones, motor accessibility
+description: Touch interaction patterns — Fitts’s Law, gesture taxonomy, haptic feedback, thumb zones, motor accessibility
 ---
 
 # Touch Psychology Reference
@@ -5998,54 +5998,54 @@ description: Touch interaction patterns â€” Fittsâ€™s Law, gesture tax
 
 ```
 DESKTOP (Mouse/Trackpad):
-â”œâ”€â”€ Cursor size: 1 pixel (precision)
-â”œâ”€â”€ Visual feedback: Hover states
-â”œâ”€â”€ Error cost: Low (easy to retry)
-â””â”€â”€ Target acquisition: Fast, precise
+├── Cursor size: 1 pixel (precision)
+├── Visual feedback: Hover states
+├── Error cost: Low (easy to retry)
+└── Target acquisition: Fast, precise
 
 MOBILE (Finger):
-â”œâ”€â”€ Contact area: ~7mm diameter (imprecise)
-â”œâ”€â”€ Visual feedback: No hover, only tap
-â”œâ”€â”€ Error cost: High (frustrating retries)
-â”œâ”€â”€ Occlusion: Finger covers the target
-â””â”€â”€ Target acquisition: Slower, needs larger targets
+├── Contact area: ~7mm diameter (imprecise)
+├── Visual feedback: No hover, only tap
+├── Error cost: High (frustrating retries)
+├── Occlusion: Finger covers the target
+└── Target acquisition: Slower, needs larger targets
 ```
 
 ### Fitts' Law Formula Adapted
 
 ```
-Touch acquisition time = a + b Ã— logâ‚‚(1 + D/W)
+Touch acquisition time = a + b × log₂(1 + D/W)
 
 Where:
-â”œâ”€â”€ D = Distance to target
-â”œâ”€â”€ W = Width of target
-â””â”€â”€ For touch: W must be MUCH larger than desktop
+├── D = Distance to target
+├── W = Width of target
+└── For touch: W must be MUCH larger than desktop
 ```
 
 ### Minimum Touch Target Sizes
 
 | Platform | Minimum | Recommended | Use For |
 |----------|---------|-------------|---------|
-| **iOS (HIG)** | 44pt Ã— 44pt | 48pt+ | All tappable elements |
-| **Android (Material)** | 48dp Ã— 48dp | 56dp+ | All tappable elements |
-| **WCAG 2.2** | 44px Ã— 44px | - | Accessibility compliance |
+| **iOS (HIG)** | 44pt × 44pt | 48pt+ | All tappable elements |
+| **Android (Material)** | 48dp × 48dp | 56dp+ | All tappable elements |
+| **WCAG 2.2** | 44px × 44px | - | Accessibility compliance |
 | **Critical Actions** | - | 56-64px | Primary CTAs, destructive actions |
 
 ### Visual Size vs Hit Area
 
 ```
-â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
-â”‚                                     â”‚
-â”‚    â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”      â”‚
-â”‚    â”‚                         â”‚      â”‚
-â”‚    â”‚    [  BUTTON  ]         â”‚ â† Visual: 36px
-â”‚    â”‚                         â”‚      â”‚
-â”‚    â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜      â”‚
-â”‚                                     â”‚ â† Hit area: 48px (padding extends)
-â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
+┌─────────────────────────────────────┐
+│                                     │
+│    ┌─────────────────────────┐      │
+│    │                         │      │
+│    │    [  BUTTON  ]         │ ← Visual: 36px
+│    │                         │      │
+│    └─────────────────────────┘      │
+│                                     │ ← Hit area: 48px (padding extends)
+└─────────────────────────────────────┘
 
-âœ… CORRECT: Visual can be smaller if hit area is minimum 44-48px
-âŒ WRONG: Making hit area same as small visual element
+✅ CORRECT: Visual can be smaller if hit area is minimum 44-48px
+❌ WRONG: Making hit area same as small visual element
 ```
 
 ### Application Rules
@@ -6068,26 +6068,26 @@ Where:
 ```
 Research shows: 49% of users hold phone one-handed.
 
-â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
-â”‚                                     â”‚
-â”‚  â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”    â”‚
-â”‚  â”‚       HARD TO REACH         â”‚    â”‚ â† Status bar, top nav
-â”‚  â”‚      (requires stretch)     â”‚    â”‚    Put: Back, menu, settings
-â”‚  â”‚                             â”‚    â”‚
-â”‚  â”œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¤    â”‚
-â”‚  â”‚                             â”‚    â”‚
-â”‚  â”‚       OK TO REACH           â”‚    â”‚ â† Content area
-â”‚  â”‚      (comfortable)          â”‚    â”‚    Put: Secondary actions, content
-â”‚  â”‚                             â”‚    â”‚
-â”‚  â”œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¤    â”‚
-â”‚  â”‚                             â”‚    â”‚
-â”‚  â”‚       EASY TO REACH         â”‚    â”‚ â† Tab bar, FAB zone
-â”‚  â”‚      (thumb's arc)          â”‚    â”‚    Put: PRIMARY CTAs!
-â”‚  â”‚                             â”‚    â”‚
-â”‚  â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜    â”‚
-â”‚                                     â”‚
-â”‚          [    HOME    ]             â”‚
-â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
+┌─────────────────────────────────────┐
+│                                     │
+│  ┌─────────────────────────────┐    │
+│  │       HARD TO REACH         │    │ ← Status bar, top nav
+│  │      (requires stretch)     │    │    Put: Back, menu, settings
+│  │                             │    │
+│  ├─────────────────────────────┤    │
+│  │                             │    │
+│  │       OK TO REACH           │    │ ← Content area
+│  │      (comfortable)          │    │    Put: Secondary actions, content
+│  │                             │    │
+│  ├─────────────────────────────┤    │
+│  │                             │    │
+│  │       EASY TO REACH         │    │ ← Tab bar, FAB zone
+│  │      (thumb's arc)          │    │    Put: PRIMARY CTAs!
+│  │                             │    │
+│  └─────────────────────────────┘    │
+│                                     │
+│          [    HOME    ]             │
+└─────────────────────────────────────┘
 ```
 
 ### Thumb Arc (Right-Handed User)
@@ -6095,18 +6095,18 @@ Research shows: 49% of users hold phone one-handed.
 ```
 Right hand holding phone:
 
-â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
-â”‚  STRETCH      STRETCH    OK   â”‚
-â”‚                               â”‚
-â”‚  STRETCH        OK       EASY â”‚
-â”‚                               â”‚
-â”‚    OK          EASY      EASY â”‚
-â”‚                               â”‚
-â”‚   EASY         EASY      EASY â”‚
-â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
+┌───────────────────────────────┐
+│  STRETCH      STRETCH    OK   │
+│                               │
+│  STRETCH        OK       EASY │
+│                               │
+│    OK          EASY      EASY │
+│                               │
+│   EASY         EASY      EASY │
+└───────────────────────────────┘
 
 Left hand is mirrored.
-â†’ Design for BOTH hands or assume right-dominant
+→ Design for BOTH hands or assume right-dominant
 ```
 
 ### Placement Guidelines
@@ -6127,11 +6127,11 @@ Left hand is mirrored.
 On large phones, top 40% becomes "dead zone" for one-handed use.
 
 Solutions:
-â”œâ”€â”€ Reachability features (iOS)
-â”œâ”€â”€ Pull-down interfaces (drawer pulls content down)
-â”œâ”€â”€ Bottom sheet navigation
-â”œâ”€â”€ Floating action buttons
-â””â”€â”€ Gesture-based alternatives to top actions
+├── Reachability features (iOS)
+├── Pull-down interfaces (drawer pulls content down)
+├── Bottom sheet navigation
+├── Floating action buttons
+└── Gesture-based alternatives to top actions
 ```
 
 ---
@@ -6143,7 +6143,7 @@ Solutions:
 | Aspect | Click (Desktop) | Touch (Mobile) |
 |--------|-----------------|----------------|
 | **Feedback timing** | Can wait 100ms | Expect instant (<50ms) |
-| **Visual feedback** | Hover â†’ Click | Immediate tap response |
+| **Visual feedback** | Hover → Click | Immediate tap response |
 | **Error tolerance** | Easy retry | Frustrating, feels broken |
 | **Precision** | High | Low |
 | **Context menu** | Right-click | Long press |
@@ -6152,33 +6152,33 @@ Solutions:
 ### Touch Feedback Requirements
 
 ```
-Tap â†’ Immediate visual change (< 50ms)
-â”œâ”€â”€ Highlight state (background color change)
-â”œâ”€â”€ Scale down slightly (0.95-0.98)
-â”œâ”€â”€ Ripple effect (Android Material)
-â”œâ”€â”€ Haptic feedback for confirmation
-â””â”€â”€ Never nothing!
+Tap → Immediate visual change (< 50ms)
+├── Highlight state (background color change)
+├── Scale down slightly (0.95-0.98)
+├── Ripple effect (Android Material)
+├── Haptic feedback for confirmation
+└── Never nothing!
 
-Loading â†’ Show within 100ms
-â”œâ”€â”€ If action takes > 100ms
-â”œâ”€â”€ Show spinner/progress
-â”œâ”€â”€ Disable button (prevent double tap)
-â””â”€â”€ Optimistic UI when possible
+Loading → Show within 100ms
+├── If action takes > 100ms
+├── Show spinner/progress
+├── Disable button (prevent double tap)
+└── Optimistic UI when possible
 ```
 
 ### The "Fat Finger" Problem
 
 ```
 Problem: Finger occludes target during tap
-â”œâ”€â”€ User can't see exactly where they're tapping
-â”œâ”€â”€ Visual feedback appears UNDER finger
-â””â”€â”€ Increases error rate
+├── User can't see exactly where they're tapping
+├── Visual feedback appears UNDER finger
+└── Increases error rate
 
 Solutions:
-â”œâ”€â”€ Show feedback ABOVE touch point (tooltips)
-â”œâ”€â”€ Use cursor-like offset for precision tasks
-â”œâ”€â”€ Magnification loupe for text selection
-â””â”€â”€ Large enough targets that precision doesn't matter
+├── Show feedback ABOVE touch point (tooltips)
+├── Use cursor-like offset for precision tasks
+├── Magnification loupe for text selection
+└── Large enough targets that precision doesn't matter
 ```
 
 ---
@@ -6189,16 +6189,16 @@ Solutions:
 
 ```
 Problem: Gestures are INVISIBLE.
-â”œâ”€â”€ User must discover/remember them
-â”œâ”€â”€ No hover/visual hint
-â”œâ”€â”€ Different mental model than tap
-â””â”€â”€ Many users never discover gestures
+├── User must discover/remember them
+├── No hover/visual hint
+├── Different mental model than tap
+└── Many users never discover gestures
 
 Solution: Always provide visible alternative
-â”œâ”€â”€ Swipe to delete â†’ Also show delete button or menu
-â”œâ”€â”€ Pull to refresh â†’ Also show refresh button
-â”œâ”€â”€ Pinch to zoom â†’ Also show zoom controls
-â””â”€â”€ Gestures as shortcuts, not only way
+├── Swipe to delete → Also show delete button or menu
+├── Pull to refresh → Also show refresh button
+├── Pinch to zoom → Also show zoom controls
+└── Gestures as shortcuts, not only way
 ```
 
 ### Common Gesture Conventions
@@ -6218,16 +6218,16 @@ Solution: Always provide visible alternative
 ```
 Swipe actions need visual hints:
 
-â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
-â”‚  â”Œâ”€â”€â”€â”                                  â”‚
-â”‚  â”‚ â‰¡ â”‚  Item with hidden actions...   â†’ â”‚ â† Edge hint (partial color)
-â”‚  â””â”€â”€â”€â”˜                                  â”‚
-â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
+┌─────────────────────────────────────────┐
+│  ┌───┐                                  │
+│  │ ≡ │  Item with hidden actions...   → │ ← Edge hint (partial color)
+│  └───┘                                  │
+└─────────────────────────────────────────┘
 
-âœ… Good: Slight color peek at edge suggesting swipe
-âœ… Good: Drag handle icon ( â‰¡ ) suggesting reorder
-âœ… Good: Onboarding tooltip explaining gesture
-âŒ Bad: Hidden gestures with no visual affordance
+✅ Good: Slight color peek at edge suggesting swipe
+✅ Good: Drag handle icon ( ≡ ) suggesting reorder
+✅ Good: Onboarding tooltip explaining gesture
+❌ Bad: Hidden gestures with no visual affordance
 ```
 
 ### Platform Gesture Differences
@@ -6248,16 +6248,16 @@ Swipe actions need visual hints:
 
 ```
 Haptics provide:
-â”œâ”€â”€ Confirmation without looking
-â”œâ”€â”€ Richer, more premium feel
-â”œâ”€â”€ Accessibility (blind users)
-â”œâ”€â”€ Reduced error rate
-â””â”€â”€ Emotional satisfaction
+├── Confirmation without looking
+├── Richer, more premium feel
+├── Accessibility (blind users)
+├── Reduced error rate
+└── Emotional satisfaction
 
 Without haptics:
-â”œâ”€â”€ Feels "cheap" or web-like
-â”œâ”€â”€ User unsure if action registered
-â””â”€â”€ Missed opportunity for delight
+├── Feels "cheap" or web-like
+├── User unsure if action registered
+└── Missed opportunity for delight
 ```
 
 ### iOS Haptic Types
@@ -6286,22 +6286,22 @@ Without haptics:
 ### Haptic Usage Guidelines
 
 ```
-âœ… DO use haptics for:
-â”œâ”€â”€ Button taps
-â”œâ”€â”€ Toggle switches
-â”œâ”€â”€ Picker/slider values
-â”œâ”€â”€ Pull to refresh trigger
-â”œâ”€â”€ Successful action completion
-â”œâ”€â”€ Errors and warnings
-â”œâ”€â”€ Swipe action thresholds
-â””â”€â”€ Important state changes
+✅ DO use haptics for:
+├── Button taps
+├── Toggle switches
+├── Picker/slider values
+├── Pull to refresh trigger
+├── Successful action completion
+├── Errors and warnings
+├── Swipe action thresholds
+└── Important state changes
 
-âŒ DON'T use haptics for:
-â”œâ”€â”€ Every scroll position
-â”œâ”€â”€ Every list item
-â”œâ”€â”€ Background events
-â”œâ”€â”€ Passive displays
-â””â”€â”€ Too frequently (haptic fatigue)
+❌ DON'T use haptics for:
+├── Every scroll position
+├── Every list item
+├── Background events
+├── Passive displays
+└── Too frequently (haptic fatigue)
 ```
 
 ### Haptic Intensity Mapping
@@ -6332,29 +6332,29 @@ Without haptics:
 
 ```
 1. ONE PRIMARY ACTION per screen
-   â””â”€â”€ Clear what to do next
+   └── Clear what to do next
    
 2. PROGRESSIVE DISCLOSURE
-   â””â”€â”€ Show only what's needed now
+   └── Show only what's needed now
    
 3. SMART DEFAULTS
-   â””â”€â”€ Pre-fill what you can
+   └── Pre-fill what you can
    
 4. CHUNKING
-   â””â”€â”€ Break long forms into steps
+   └── Break long forms into steps
    
 5. RECOGNITION over RECALL
-   â””â”€â”€ Show options, don't make user remember
+   └── Show options, don't make user remember
    
 6. CONTEXT PERSISTENCE
-   â””â”€â”€ Save state on interrupt/background
+   └── Save state on interrupt/background
 ```
 
 ### Miller's Law for Mobile
 
 ```
-Desktop: 7Â±2 items in working memory
-Mobile: Reduce to 5Â±1 (more distractions)
+Desktop: 7±2 items in working memory
+Mobile: Reduce to 5±1 (more distractions)
 
 Navigation: Max 5 tab bar items
 Options: Max 5 per menu level
@@ -6367,16 +6367,16 @@ Steps: Max 5 visible steps in progress
 More choices = slower decisions
 
 Mobile impact: Even worse than desktop
-â”œâ”€â”€ Smaller screen = less overview
-â”œâ”€â”€ Scrolling required = items forgotten
-â”œâ”€â”€ Interruptions = lost context
-â””â”€â”€ Decision fatigue faster
+├── Smaller screen = less overview
+├── Scrolling required = items forgotten
+├── Interruptions = lost context
+└── Decision fatigue faster
 
 Solution: Progressive disclosure
-â”œâ”€â”€ Start with 3-5 options
-â”œâ”€â”€ "More" for additional
-â”œâ”€â”€ Smart ordering (most used first)
-â””â”€â”€ Previous selections remembered
+├── Start with 3-5 options
+├── "More" for additional
+├── Smart ordering (most used first)
+└── Previous selections remembered
 ```
 
 ---
@@ -6387,18 +6387,18 @@ Solution: Progressive disclosure
 
 ```
 Users with motor impairments may:
-â”œâ”€â”€ Have tremors (need larger targets)
-â”œâ”€â”€ Use assistive devices (different input method)
-â”œâ”€â”€ Have limited reach (one-handed necessity)
-â”œâ”€â”€ Need more time (avoid timeouts)
-â””â”€â”€ Make accidental touches (need confirmation)
+├── Have tremors (need larger targets)
+├── Use assistive devices (different input method)
+├── Have limited reach (one-handed necessity)
+├── Need more time (avoid timeouts)
+└── Make accidental touches (need confirmation)
 
 Design responses:
-â”œâ”€â”€ Generous touch targets (48dp+)
-â”œâ”€â”€ Adjustable timing for gestures
-â”œâ”€â”€ Undo for destructive actions
-â”œâ”€â”€ Switch control support
-â””â”€â”€ Voice control support
+├── Generous touch targets (48dp+)
+├── Adjustable timing for gestures
+├── Undo for destructive actions
+├── Switch control support
+└── Voice control support
 ```
 
 ### Touch Target Spacing (A11y)
@@ -6407,14 +6407,14 @@ Design responses:
 WCAG 2.2 Success Criterion 2.5.8:
 
 Touch targets MUST have:
-â”œâ”€â”€ Width: â‰¥ 44px
-â”œâ”€â”€ Height: â‰¥ 44px
-â”œâ”€â”€ Spacing: â‰¥ 8px from adjacent targets
+├── Width: ≥ 44px
+├── Height: ≥ 44px
+├── Spacing: ≥ 8px from adjacent targets
 
 OR the target is:
-â”œâ”€â”€ Inline (within text)
-â”œâ”€â”€ User-controlled (user can resize)
-â”œâ”€â”€ Essential (no alternative design)
+├── Inline (within text)
+├── User-controlled (user can resize)
+├── Essential (no alternative design)
 ```
 
 ### Accessible Touch Patterns
@@ -6435,12 +6435,12 @@ OR the target is:
 
 ```
 What makes touch feel "premium":
-â”œâ”€â”€ Instant response (< 50ms)
-â”œâ”€â”€ Appropriate haptic feedback
-â”œâ”€â”€ Smooth 60fps animations
-â”œâ”€â”€ Correct resistance/physics
-â”œâ”€â”€ Sound feedback (when appropriate)
-â””â”€â”€ Attention to spring physics
+├── Instant response (< 50ms)
+├── Appropriate haptic feedback
+├── Smooth 60fps animations
+├── Correct resistance/physics
+├── Sound feedback (when appropriate)
+└── Attention to spring physics
 ```
 
 ### Emotional Touch Feedback
@@ -6457,11 +6457,11 @@ What makes touch feel "premium":
 
 ```
 Trust signals in touch interactions:
-â”œâ”€â”€ Consistent behavior (same action = same response)
-â”œâ”€â”€ Reliable feedback (never fails silently)
-â”œâ”€â”€ Secure feel for sensitive actions
-â”œâ”€â”€ Professional animations (not janky)
-â””â”€â”€ No accidental actions (confirmation for destructive)
+├── Consistent behavior (same action = same response)
+├── Reliable feedback (never fails silently)
+├── Secure feel for sensitive actions
+├── Professional animations (not janky)
+└── No accidental actions (confirmation for destructive)
 ```
 
 ---
@@ -6470,7 +6470,7 @@ Trust signals in touch interactions:
 
 ### Before Every Screen
 
-- [ ] **All touch targets â‰¥ 44-48px?**
+- [ ] **All touch targets ≥ 44-48px?**
 - [ ] **Primary CTA in thumb zone?**
 - [ ] **Destructive actions require confirmation?**
 - [ ] **Gesture alternatives exist (visible buttons)?**
@@ -6521,7 +6521,7 @@ Warning:  Attention needed
 
 ---
 
-> **Remember:** Every touch is a conversation between user and device. Make it feel natural, responsive, and respectful of human fingersâ€”not precise cursor points.
+> **Remember:** Every touch is a conversation between user and device. Make it feel natural, responsive, and respectful of human fingers—not precise cursor points.
 ---
 
-âš¡ PikaKit v3.9.105\r\n\r\n---\r\n\r\n## ðŸ”— Related\r\n\r\n| File | When to Read |\r\n|------|-------------|\r\n| [../SKILL.md](../SKILL.md) | Touch target standards (44pt/48dp) |\r\n| [platform-ios.md](platform-ios.md) | iOS haptics, gestures |\r\n| [platform-android.md](platform-android.md) | Android touch feedback |\r\n| [mobile-navigation.md](mobile-navigation.md) | Gesture-based navigation |\r\n| [engineering-spec.md](engineering-spec.md) | Full engineering spec |
+⚡ PikaKit v3.9.105\r\n\r\n---\r\n\r\n## 🔗 Related\r\n\r\n| File | When to Read |\r\n|------|-------------|\r\n| [../SKILL.md](../SKILL.md) | Touch target standards (44pt/48dp) |\r\n| [platform-ios.md](platform-ios.md) | iOS haptics, gestures |\r\n| [platform-android.md](platform-android.md) | Android touch feedback |\r\n| [mobile-navigation.md](mobile-navigation.md) | Gesture-based navigation |\r\n| [engineering-spec.md](engineering-spec.md) | Full engineering spec |

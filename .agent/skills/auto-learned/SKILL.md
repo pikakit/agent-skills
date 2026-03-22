@@ -7,10 +7,10 @@ description: >-
   fix.
 metadata:
   author: pikakit
-  version: "3.9.107"
+  version: "3.9.108"
 ---
 
-# Auto-Learned â€” Pattern Repository
+# Auto-Learned — Pattern Repository
 
 > Living repository of patterns learned from IDE errors. Append-only. Agents read to prevent; agents write to record.
 
@@ -18,7 +18,7 @@ metadata:
 
 ## Prerequisites
 
-**Required:** None â€” patterns are stored as local markdown and JSON files.
+**Required:** None — patterns are stored as local markdown and JSON files.
 
 **Write access:** Restricted to authorized agents: `problem-checker`, `auto-learner`, `skill-generator`.
 
@@ -41,10 +41,10 @@ metadata:
 
 | Owned by This Skill | NOT Owned |
 |---------------------|-----------|
-| Pattern storage (categorized markdown) | Error detection (â†’ problem-checker) |
-| Pattern lookup by category + context | Pattern extraction (â†’ auto-learner) |
-| JSON index maintenance (patterns.json) | Skill generation from patterns (â†’ skill-generator) |
-| Deduplication on ingest | Dashboard rendering (â†’ external tooling) |
+| Pattern storage (categorized markdown) | Error detection (→ problem-checker) |
+| Pattern lookup by category + context | Pattern extraction (→ auto-learner) |
+| JSON index maintenance (patterns.json) | Skill generation from patterns (→ skill-generator) |
+| Deduplication on ingest | Dashboard rendering (→ external tooling) |
 
 **Writable skill:** Authorized agents write patterns into `patterns/*.md` and update `patterns.json`. The skill is read-only when consulted by other agents.
 
@@ -52,7 +52,7 @@ metadata:
 
 ## Execution Model
 
-### Lookup (Read) â€” 3 Phases
+### Lookup (Read) — 3 Phases
 
 | Phase | Action | Side Effects |
 |-------|--------|-------------|
@@ -60,7 +60,7 @@ metadata:
 | **Search** | Read category file(s), match error signature | None |
 | **Emit** | Return matches sorted by occurrence count | None |
 
-### Ingest (Write) â€” 4 Phases
+### Ingest (Write) — 4 Phases
 
 | Phase | Action | Side Effects |
 |-------|--------|-------------|
@@ -112,7 +112,7 @@ All phases synchronous. Append-only writes. Deduplication returns `duplicate: tr
 
 ---
 
-## ðŸ“‘ Content Map
+## 📑 Content Map
 
 | File | Description | When to Read |
 |------|-------------|--------------|
@@ -129,17 +129,17 @@ All phases synchronous. Append-only writes. Deduplication returns `duplicate: tr
 
 ## Anti-Patterns
 
-| âŒ Don't | âœ… Do |
+| ❌ Don't | ✅ Do |
 |---------|-------|
 | Ignore pattern matches before coding | Always check relevant category before writing code |
 | Apply low-confidence patterns blindly | Verify solution in pattern context matches current context |
-| Write patterns from unauthorized agents | Only use problem-checker â†’ auto-learner â†’ skill-generator pipeline |
+| Write patterns from unauthorized agents | Only use problem-checker → auto-learner → skill-generator pipeline |
 | Edit patterns.json directly | Let ingest update JSON automatically |
 | Delete patterns without user approval | Patterns are append-only; deletion requires explicit approval |
 
 ---
 
-## ðŸ”— Related
+## 🔗 Related
 
 | Item | Type | Purpose |
 |------|------|---------|
@@ -149,4 +149,4 @@ All phases synchronous. Append-only writes. Deduplication returns `duplicate: tr
 
 ---
 
-âš¡ PikaKit v3.9.107
+⚡ PikaKit v3.9.108

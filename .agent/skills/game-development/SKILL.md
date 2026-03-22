@@ -6,10 +6,10 @@ description: >-
   game, game development, Unity, Godot, Phaser, game engine.
 metadata:
   author: pikakit
-  version: "3.9.107"
+  version: "3.9.108"
 ---
 
-# Game Development â€” Orchestrator
+# Game Development — Orchestrator
 
 > Route to right sub-skill. Fixed timestep. 16.67ms budget. Input abstraction.
 
@@ -17,7 +17,7 @@ metadata:
 
 ## Prerequisites
 
-**Required:** None â€” Game Development is a routing and principles skill.
+**Required:** None — Game Development is a routing and principles skill.
 
 ---
 
@@ -36,11 +36,11 @@ metadata:
 
 | Owned by This Skill | NOT Owned |
 |---------------------|-----------|
-| Sub-skill routing (10 sub-skills) | Platform-specific code (â†’ sub-skills) |
-| Game loop pattern (INPUTâ†’UPDATEâ†’RENDER) | Engine configuration |
-| Performance budget (16.67ms at 60 FPS) | Profiling tools (â†’ perf-optimizer) |
-| Pattern selection (6 patterns) | Shader code (â†’ shader) |
-| AI type selection (4 types) | Mobile builds (â†’ mobile-developer) |
+| Sub-skill routing (10 sub-skills) | Platform-specific code (→ sub-skills) |
+| Game loop pattern (INPUT→UPDATE→RENDER) | Engine configuration |
+| Performance budget (16.67ms at 60 FPS) | Profiling tools (→ perf-optimizer) |
+| Pattern selection (6 patterns) | Shader code (→ shader) |
+| AI type selection (4 types) | Mobile builds (→ mobile-developer) |
 
 **Orchestrator skill:** Routes to sub-skills. Does NOT invoke them automatically.
 
@@ -78,9 +78,9 @@ metadata:
 ## Game Loop (Universal)
 
 ```
-INPUT  â†’ Read player actions
-UPDATE â†’ Process game logic (fixed timestep: 50Hz)
-RENDER â†’ Draw the frame (interpolated)
+INPUT  → Read player actions
+UPDATE → Process game logic (fixed timestep: 50Hz)
+RENDER → Draw the frame (interpolated)
 ```
 
 **Fixed timestep mandatory.** Physics at 50Hz. Render interpolated. No variable delta for physics.
@@ -104,7 +104,7 @@ RENDER â†’ Draw the frame (interpolated)
 
 | Pattern | Use When |
 |---------|----------|
-| **State Machine** | 3-5 discrete states (DEFAULT â€” start here) |
+| **State Machine** | 3-5 discrete states (DEFAULT — start here) |
 | **Object Pooling** | Frequent spawn/destroy (bullets, particles) |
 | **Observer/Events** | Cross-system communication |
 | **ECS** | 1000+ similar entities (RTS units) |
@@ -129,7 +129,7 @@ RENDER â†’ Draw the frame (interpolated)
 
 ## Anti-Patterns
 
-| âŒ Don't | âœ… Do |
+| ❌ Don't | ✅ Do |
 |---------|-------|
 | Update everything every frame | Use events, dirty flags |
 | Create objects in hot loops | Object pooling |
@@ -139,7 +139,7 @@ RENDER â†’ Draw the frame (interpolated)
 
 ---
 
-## ðŸ“‘ Content Map
+## 📑 Content Map
 
 | File | Description | When to Read |
 |------|-------------|--------------|
@@ -160,7 +160,7 @@ RENDER â†’ Draw the frame (interpolated)
 
 ---
 
-## ðŸ”— Related
+## 🔗 Related
 
 | Item | Type | Purpose |
 |------|------|---------|
@@ -171,4 +171,4 @@ RENDER â†’ Draw the frame (interpolated)
 
 ---
 
-âš¡ PikaKit v3.9.107
+⚡ PikaKit v3.9.108

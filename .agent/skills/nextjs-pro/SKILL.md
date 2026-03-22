@@ -6,10 +6,10 @@ description: >-
   RSC, React, frontend, performance, SSR, SSG.
 metadata:
   author: pikakit
-  version: "3.9.107"
+  version: "3.9.108"
 ---
 
-# Next.js Pro â€” App Router & React Performance
+# Next.js Pro — App Router & React Performance
 
 > Server-first. 3 data strategies. 4 route files. 57 rules. 8 categories. CWV targets.
 
@@ -32,10 +32,10 @@ metadata:
 
 | Owned by This Skill | NOT Owned |
 |---------------------|-----------|
-| Server/Client component decision | React architecture (â†’ react-architect) |
-| Data fetching strategy (3 options) | CSS/styling (â†’ tailwind-kit) |
-| Routing conventions (4 files) | Design system (â†’ design-system) |
-| 57 performance rules (8 categories) | Performance profiling (â†’ perf-optimizer) |
+| Server/Client component decision | React architecture (→ react-architect) |
+| Data fetching strategy (3 options) | CSS/styling (→ tailwind-kit) |
+| Routing conventions (4 files) | Design system (→ design-system) |
+| 57 performance rules (8 categories) | Performance profiling (→ perf-optimizer) |
 
 **Expert decision skill:** Produces patterns and rule references. Does not write code.
 
@@ -45,8 +45,8 @@ metadata:
 
 ```
 Need useState / useEffect / event handlers?
-â”œâ”€â”€ YES â†’ 'use client'
-â””â”€â”€ NO  â†’ Server Component (default, no directive)
+├── YES → 'use client'
+└── NO  → Server Component (default, no directive)
 ```
 
 | Type | Use For |
@@ -56,7 +56,7 @@ Need useState / useEffect / event handlers?
 
 ---
 
-## Data Fetching (3 Strategies â€” Fixed)
+## Data Fetching (3 Strategies — Fixed)
 
 | Volatility | Strategy | Cache Config | Use Case |
 |-----------|----------|-------------|----------|
@@ -66,7 +66,7 @@ Need useState / useEffect / event handlers?
 
 ---
 
-## Route Conventions (4 Files â€” Fixed)
+## Route Conventions (4 Files — Fixed)
 
 | File | Purpose | Required |
 |------|---------|----------|
@@ -101,7 +101,7 @@ Need useState / useEffect / event handlers?
 
 ## Anti-Patterns
 
-| âŒ Don't | âœ… Do |
+| ❌ Don't | ✅ Do |
 |---------|-------|
 | `'use client'` everywhere | Server Component by default |
 | Fetch data in Client Components | Fetch in Server Components |
@@ -210,7 +210,7 @@ Need useState / useEffect / event handlers?
 
 ### 9. Engineering Spec (LOW)
 
-- `engineering-spec` - Next.js Pro â€” Engineering Specification
+- `engineering-spec` - Next.js Pro — Engineering Specification
 
 ## How to Use
 
@@ -232,7 +232,7 @@ Each rule file contains:
 For the complete guide with all rules expanded: `AGENTS.md`
 
 
-## ðŸ“‘ Content Map
+## 📑 Content Map
 
 | Category | Files | Focus | When to Read |
 |----------|-------|-------|--------------|
@@ -251,7 +251,7 @@ For the complete guide with all rules expanded: `AGENTS.md`
 
 ---
 
-## ðŸ”— Related
+## 🔗 Related
 
 | Item | Type | Purpose |
 |------|------|---------|
@@ -261,4 +261,4 @@ For the complete guide with all rules expanded: `AGENTS.md`
 
 ---
 
-âš¡ PikaKit v3.9.107
+⚡ PikaKit v3.9.108

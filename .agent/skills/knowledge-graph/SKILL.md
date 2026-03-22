@@ -6,10 +6,10 @@ description: >-
   analysis.
 metadata:
   author: pikakit
-  version: "3.9.107"
+  version: "3.9.108"
 ---
 
-# Knowledge Graph â€” Semantic Code Analysis
+# Knowledge Graph — Semantic Code Analysis
 
 > AST > grep. Precision > recall. 3-category impact. Scope-aware resolution.
 
@@ -37,8 +37,8 @@ metadata:
 
 | Owned by This Skill | NOT Owned |
 |---------------------|-----------|
-| Analysis strategy (4 capabilities) | Code review (â†’ code-review) |
-| Language support matrix (4 full + 2 partial) | Architecture design (â†’ system-design) |
+| Analysis strategy (4 capabilities) | Code review (→ code-review) |
+| Language support matrix (4 full + 2 partial) | Architecture design (→ system-design) |
 | Tool selection (4 tools) | LSP/Tree-sitter installation |
 | Impact enumeration (3 categories) | Automated refactoring |
 
@@ -61,12 +61,12 @@ metadata:
 
 | Language | Tier |
 |----------|------|
-| TypeScript | âœ… Full |
-| JavaScript | âœ… Full |
-| Python | âœ… Full |
-| Ruby | âœ… Full |
-| Java | ðŸš§ Partial |
-| Kotlin | ðŸš§ Partial |
+| TypeScript | ✅ Full |
+| JavaScript | ✅ Full |
+| Python | ✅ Full |
+| Ruby | ✅ Full |
+| Java | 🚧 Partial |
+| Kotlin | 🚧 Partial |
 
 ---
 
@@ -97,13 +97,13 @@ All 3 categories always enumerated. Never partial impact analysis.
 
 ```
 "Where is authenticate used?"
-â†’ Strategy: semantic find-usages, include re-exports, include tests
+→ Strategy: semantic find-usages, include re-exports, include tests
 
 "Definition of User class"
-â†’ Strategy: scope-aware symbol lookup, LSP preferred
+→ Strategy: scope-aware symbol lookup, LSP preferred
 
 "What breaks if I change validateEmail signature?"
-â†’ Strategy: 3-category impact (direct: call sites, indirect: re-exports, tests: test files)
+→ Strategy: 3-category impact (direct: call sites, indirect: re-exports, tests: test files)
 ```
 
 ---
@@ -124,7 +124,7 @@ All 3 categories always enumerated. Never partial impact analysis.
 
 ## Anti-Patterns
 
-| âŒ Don't | âœ… Do |
+| ❌ Don't | ✅ Do |
 |---------|-------|
 | Use grep for symbol analysis | Use AST-based semantic search |
 | Skip re-export tracking (TS/JS) | Always include barrel exports |
@@ -134,7 +134,7 @@ All 3 categories always enumerated. Never partial impact analysis.
 
 ---
 
-## ðŸ“‘ Content Map
+## 📑 Content Map
 
 | File | Description | When to Read |
 |------|-------------|--------------|
@@ -142,7 +142,7 @@ All 3 categories always enumerated. Never partial impact analysis.
 
 ---
 
-## ðŸ”— Related
+## 🔗 Related
 
 | Item | Type | Purpose |
 |------|------|---------|
@@ -151,4 +151,4 @@ All 3 categories always enumerated. Never partial impact analysis.
 
 ---
 
-âš¡ PikaKit v3.9.107
+⚡ PikaKit v3.9.108

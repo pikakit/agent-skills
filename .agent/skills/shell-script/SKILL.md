@@ -5,10 +5,10 @@ description: >-
   working on macOS or Linux systems. Triggers on: shell, bash, script, automation, CLI.
 metadata:
   author: pikakit
-  version: "3.9.107"
+  version: "3.9.108"
 ---
 
-# Shell Script â€” Bash/Linux Patterns
+# Shell Script — Bash/Linux Patterns
 
 > `set -euo pipefail` always. Quote variables. Trap cleanup. Think Unix.
 
@@ -29,8 +29,8 @@ metadata:
 
 | Owned by This Skill | NOT Owned |
 |---------------------|-----------|
-| Operator syntax (4 operators) | CI/CD scripts (â†’ cicd-pipeline) |
-| File/process/text commands | Server management (â†’ server-ops) |
+| Operator syntax (4 operators) | CI/CD scripts (→ cicd-pipeline) |
+| File/process/text commands | Server management (→ server-ops) |
 | Script template + patterns | Command execution |
 | Bash vs PowerShell mapping | PowerShell expertise |
 
@@ -38,7 +38,7 @@ metadata:
 
 ---
 
-## Operator Syntax (4 â€” Fixed)
+## Operator Syntax (4 — Fixed)
 
 | Operator | Meaning | Example |
 |----------|---------|---------|
@@ -73,7 +73,7 @@ metadata:
 
 ---
 
-## Text Processing (4 Tools â€” Deterministic)
+## Text Processing (4 Tools — Deterministic)
 
 | Tool | Purpose | Example |
 |------|---------|---------|
@@ -146,7 +146,7 @@ trap 'rm -f /tmp/tempfile' EXIT
 
 ## Anti-Patterns
 
-| âŒ Don't | âœ… Do |
+| ❌ Don't | ✅ Do |
 |---------|-------|
 | Skip error handling | Always `set -euo pipefail` |
 | Unquoted variables | Quote: `"$VAR"` |
@@ -155,7 +155,7 @@ trap 'rm -f /tmp/tempfile' EXIT
 
 ---
 
-## ðŸ“‘ Content Map
+## 📑 Content Map
 
 | File | Description | When to Read |
 |------|-------------|--------------|
@@ -163,7 +163,7 @@ trap 'rm -f /tmp/tempfile' EXIT
 
 ---
 
-## ðŸ”— Related
+## 🔗 Related
 
 | Item | Type | Purpose |
 |------|------|---------|
@@ -172,4 +172,4 @@ trap 'rm -f /tmp/tempfile' EXIT
 
 ---
 
-âš¡ PikaKit v3.9.107
+⚡ PikaKit v3.9.108

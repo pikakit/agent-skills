@@ -1,10 +1,10 @@
 ﻿---
-title: Security Scanner â€” Engineering Specification
+title: Security Scanner — Engineering Specification
 impact: MEDIUM
 tags: security-scanner
 ---
 
-# Security Scanner â€” Engineering Specification
+# Security Scanner — Engineering Specification
 
 > Production-grade specification for vulnerability analysis and OWASP compliance at FAANG scale.
 
@@ -12,11 +12,11 @@ tags: security-scanner
 
 ## 1. Overview
 
-Security Scanner provides structured vulnerability analysis: OWASP Top 10:2025 checklist (10 categories), risk prioritization (EPSS + CVSS decision tree), high-risk code pattern detection (5 patterns), secret detection (4 categories), supply chain security, and 5 core security principles. The skill operates as an **Expert (decision tree)** â€” it produces vulnerability classifications, risk priorities, and remediation guidance. It does not execute scans, modify code, or install security tools.
+Security Scanner provides structured vulnerability analysis: OWASP Top 10:2025 checklist (10 categories), risk prioritization (EPSS + CVSS decision tree), high-risk code pattern detection (5 patterns), secret detection (4 categories), supply chain security, and 5 core security principles. The skill operates as an **Expert (decision tree)** — it produces vulnerability classifications, risk priorities, and remediation guidance. It does not execute scans, modify code, or install security tools.
 
 **Contract Version:** 2.0.0
 **Backward Compatibility:** breaking (first hardened version)
-**Breaking Changes:** None â€” new spec for first hardening
+**Breaking Changes:** None — new spec for first hardening
 
 ---
 
@@ -40,7 +40,7 @@ Security Scanner eliminates these with EPSS + CVSS risk prioritization (3-tier t
 | ID | Goal | Measurable Constraint |
 |----|------|-----------------------|
 | G1 | OWASP Top 10:2025 coverage | All 10 categories |
-| G2 | Risk prioritization | 3-tier tree: EPSS > 0.5 â†’ CRITICAL, CVSS â‰¥ 9.0 â†’ HIGH, 7.0-8.9 â†’ check asset |
+| G2 | Risk prioritization | 3-tier tree: EPSS > 0.5 → CRITICAL, CVSS ≥ 9.0 → HIGH, 7.0-8.9 → check asset |
 | G3 | High-risk code patterns | 5 patterns detected |
 | G4 | Secret detection | 4 categories (API keys, tokens, credentials, cloud) |
 | G5 | Core principles | 5 principles enforced |
@@ -148,7 +148,7 @@ Recoverable: boolean
 
 #### Deterministic Guarantees
 
-- Risk prioritization is deterministic: EPSS > 0.5 â†’ CRITICAL; CVSS â‰¥ 9.0 â†’ HIGH; CVSS 7.0-8.9 â†’ check asset value; CVSS < 7.0 â†’ schedule.
+- Risk prioritization is deterministic: EPSS > 0.5 → CRITICAL; CVSS ≥ 9.0 → HIGH; CVSS 7.0-8.9 → check asset value; CVSS < 7.0 → schedule.
 - OWASP mapping is fixed: 10 categories (A01-A10) with defined indicators.
 - Code patterns are fixed: 5 patterns with deterministic detection.
 - Secret categories are fixed: 4 types with defined indicators.
@@ -242,9 +242,9 @@ All phases synchronous. No async pipeline.
 
 | Principle | Enforcement |
 |-----------|-------------|
-| Risk prioritization tree | EPSS > 0.5 â†’ CRITICAL (immediate); CVSS â‰¥ 9.0 â†’ HIGH; CVSS 7.0-8.9 â†’ check asset value; CVSS < 7.0 â†’ schedule later |
+| Risk prioritization tree | EPSS > 0.5 → CRITICAL (immediate); CVSS ≥ 9.0 → HIGH; CVSS 7.0-8.9 → check asset value; CVSS < 7.0 → schedule later |
 | OWASP mapping fixed | A01: Broken Access Control; A02: Security Misconfiguration; A03: Supply Chain; A04: Cryptographic Failures; A05: Injection; A06: Insecure Design; A07: Auth Failures; A08: Integrity Failures; A09: Logging & Alerting; A10: Exceptional Conditions |
-| Code patterns fixed | String concat in queries â†’ Injection; eval()/exec() â†’ RCE; pickle.loads() â†’ Deserialization; User input in paths â†’ Traversal; verify=False â†’ Security disabled |
+| Code patterns fixed | String concat in queries → Injection; eval()/exec() → RCE; pickle.loads() → Deserialization; User input in paths → Traversal; verify=False → Security disabled |
 | Secret patterns fixed | API keys (api_key, high entropy); Tokens (bearer, jwt); Credentials (password, secret); Cloud (AWS_, AZURE_, GCP_) |
 | Principles fixed | Assume Breach, Zero Trust, Defense in Depth, Least Privilege, Fail Secure |
 | Prioritize by exploitability | EPSS score > CVSS score for urgency |
@@ -382,7 +382,7 @@ All resources scoped to invocation. No persistent handles.
 | OWASP mapping | < 2 ms | < 5 ms | 20 ms |
 | Code pattern scan | < 5 ms | < 15 ms | 30 ms |
 | Full audit | < 15 ms | < 40 ms | 50 ms |
-| Output size | â‰¤ 3,000 chars | â‰¤ 6,000 chars | 10,000 chars |
+| Output size | ≤ 3,000 chars | ≤ 6,000 chars | 10,000 chars |
 
 ---
 
@@ -401,16 +401,16 @@ All resources scoped to invocation. No persistent handles.
 
 | Requirement | Status | Evidence |
 |-------------|--------|----------|
-| YAML frontmatter complete | âœ… | name, description, metadata with category, version, triggers, coordinates_with, success_metrics |
-| SKILL.md < 200 lines | âœ… | Entry point under 200 lines |
-| Prerequisites documented | âœ… | No external dependencies for guidance |
-| When to Use section | âœ… | Situation-based routing table |
-| Core content matches skill type | âœ… | Expert type: OWASP mapping, risk tree, pattern detection |
-| Troubleshooting section | âœ… | Anti-patterns table |
-| Related section | âœ… | Cross-links to cicd-pipeline, code-review, offensive-sec |
-| Content Map for multi-file | âœ… | Links to auth-patterns.md, checklists.md, scripts/, engineering-spec.md |
-| Contract versioning | âœ… | contract_version, backward_compatibility, breaking_changes |
-| Compliance matrix structured | âœ… | This table with âœ…/âŒ + evidence |
+| YAML frontmatter complete | ✅ | name, description, metadata with category, version, triggers, coordinates_with, success_metrics |
+| SKILL.md < 200 lines | ✅ | Entry point under 200 lines |
+| Prerequisites documented | ✅ | No external dependencies for guidance |
+| When to Use section | ✅ | Situation-based routing table |
+| Core content matches skill type | ✅ | Expert type: OWASP mapping, risk tree, pattern detection |
+| Troubleshooting section | ✅ | Anti-patterns table |
+| Related section | ✅ | Cross-links to cicd-pipeline, code-review, offensive-sec |
+| Content Map for multi-file | ✅ | Links to auth-patterns.md, checklists.md, scripts/, engineering-spec.md |
+| Contract versioning | ✅ | contract_version, backward_compatibility, breaking_changes |
+| Compliance matrix structured | ✅ | This table with ✅/❌ + evidence |
 
 ---
 
@@ -418,23 +418,23 @@ All resources scoped to invocation. No persistent handles.
 
 | Category | Check | Status |
 |----------|-------|--------|
-| **Functionality** | OWASP Top 10:2025 (10 categories) | âœ… |
-| **Functionality** | Risk prioritization (EPSS + CVSS tree) | âœ… |
-| **Functionality** | 5 high-risk code patterns | âœ… |
-| **Functionality** | 4 secret detection categories | âœ… |
-| **Functionality** | 5 core security principles | âœ… |
-| **Functionality** | Supply chain guidance (A03) | âœ… |
-| **Contracts** | Input/output/error schemas in pseudo-schema format | âœ… |
-| **Contracts** | Contract versioning with semver | âœ… |
-| **Failure** | Error taxonomy with 4 categorized codes | âœ… |
-| **Failure** | Zero internal retries | âœ… |
-| **Determinism** | Fixed risk tree, fixed OWASP, fixed patterns | âœ… |
-| **Security** | No secrets extracted, no network, scoped to invocation | âœ… |
-| **Observability** | Structured log schema with 5 mandatory fields | âœ… |
-| **Observability** | 5 metrics defined | âœ… |
-| **Performance** | P50/P99 targets for all operations | âœ… |
-| **Compliance** | All skill-design-guide.md sections mapped with evidence | âœ… |
+| **Functionality** | OWASP Top 10:2025 (10 categories) | ✅ |
+| **Functionality** | Risk prioritization (EPSS + CVSS tree) | ✅ |
+| **Functionality** | 5 high-risk code patterns | ✅ |
+| **Functionality** | 4 secret detection categories | ✅ |
+| **Functionality** | 5 core security principles | ✅ |
+| **Functionality** | Supply chain guidance (A03) | ✅ |
+| **Contracts** | Input/output/error schemas in pseudo-schema format | ✅ |
+| **Contracts** | Contract versioning with semver | ✅ |
+| **Failure** | Error taxonomy with 4 categorized codes | ✅ |
+| **Failure** | Zero internal retries | ✅ |
+| **Determinism** | Fixed risk tree, fixed OWASP, fixed patterns | ✅ |
+| **Security** | No secrets extracted, no network, scoped to invocation | ✅ |
+| **Observability** | Structured log schema with 5 mandatory fields | ✅ |
+| **Observability** | 5 metrics defined | ✅ |
+| **Performance** | P50/P99 targets for all operations | ✅ |
+| **Compliance** | All skill-design-guide.md sections mapped with evidence | ✅ |
 
 ---
 
-âš¡ PikaKit v3.9.105
+⚡ PikaKit v3.9.105

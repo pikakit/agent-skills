@@ -10,7 +10,7 @@ March 2026
 
 ---
 
-# TypeScript Expert â€” Advanced TS Problem-Solving
+# TypeScript Expert — Advanced TS Problem-Solving
 
 > Strict mode. ESM-first. Type-level patterns. Deterministic error routing.
 
@@ -32,9 +32,9 @@ March 2026
 
 | Owned by This Skill | NOT Owned |
 |---------------------|-----------|
-| Type-level patterns (3) | Next.js integration (â†’ nextjs-pro) |
-| Error â†’ fix routing (4 errors) | React patterns (â†’ react-architect) |
-| Performance config (3 settings) | Code review (â†’ code-review) |
+| Type-level patterns (3) | Next.js integration (→ nextjs-pro) |
+| Error → fix routing (4 errors) | React patterns (→ react-architect) |
+| Performance config (3 settings) | Code review (→ code-review) |
 | Strict config + ESM-first | Build tooling (Vite/webpack) |
 
 **Expert decision skill:** Produces TS guidance. Does not execute compilers.
@@ -51,7 +51,7 @@ March 2026
 
 ---
 
-## Common Errors (4 â€” Deterministic Routing)
+## Common Errors (4 — Deterministic Routing)
 
 | Error | Fix |
 |-------|-----|
@@ -87,7 +87,7 @@ const config = {
 
 ---
 
-## Strict Config (Recommended â€” Fixed)
+## Strict Config (Recommended — Fixed)
 
 ```json
 {
@@ -110,7 +110,7 @@ const config = {
 
 ---
 
-## Performance Settings (3 â€” Fixed)
+## Performance Settings (3 — Fixed)
 
 | Setting | Effect |
 |---------|--------|
@@ -144,7 +144,7 @@ const config = {
 
 ---
 
-## ðŸ“‘ Content Map
+## 📑 Content Map
 
 | File | Description | When to Read |
 |------|-------------|--------------|
@@ -160,7 +160,7 @@ const config = {
 
 ---
 
-## ðŸ”— Related
+## 🔗 Related
 
 | Item | Type | Purpose |
 |------|------|---------|
@@ -170,7 +170,7 @@ const config = {
 
 ---
 
-âš¡ PikaKit v3.9.105
+⚡ PikaKit v3.9.105
 
 ---
 
@@ -182,12 +182,12 @@ const config = {
 ### Rule: engineering-spec
 
 ---
-title: TypeScript Expert â€” Engineering Specification
+title: TypeScript Expert — Engineering Specification
 impact: MEDIUM
 tags: typescript-expert
 ---
 
-# TypeScript Expert â€” Engineering Specification
+# TypeScript Expert — Engineering Specification
 
 > Production-grade specification for TypeScript/JavaScript expertise at FAANG scale.
 
@@ -195,11 +195,11 @@ tags: typescript-expert
 
 ## 1. Overview
 
-TypeScript Expert provides structured guidance for TypeScript and JavaScript: type-level patterns (3: branded types, deep readonly, satisfies), common error resolution (4 error types with fixes), performance configuration (3 settings: skipLibCheck, incremental, project references), strict config (3 strict options), ESM-first configuration, tsconfig decision routing, monorepo management, and migration strategies. The skill operates as an **Expert (decision tree)** â€” it produces type pattern recommendations, error fixes, config guidance, and migration paths. It does not write TypeScript files, execute compilers, or modify tsconfig.
+TypeScript Expert provides structured guidance for TypeScript and JavaScript: type-level patterns (3: branded types, deep readonly, satisfies), common error resolution (4 error types with fixes), performance configuration (3 settings: skipLibCheck, incremental, project references), strict config (3 strict options), ESM-first configuration, tsconfig decision routing, monorepo management, and migration strategies. The skill operates as an **Expert (decision tree)** — it produces type pattern recommendations, error fixes, config guidance, and migration paths. It does not write TypeScript files, execute compilers, or modify tsconfig.
 
 **Contract Version:** 2.0.0
 **Backward Compatibility:** breaking (first hardened version)
-**Breaking Changes:** None â€” new spec for first hardening
+**Breaking Changes:** None — new spec for first hardening
 
 ---
 
@@ -214,7 +214,7 @@ TypeScript development at scale faces four quantified problems:
 | Weak config defaults | 50% of projects miss strict mode | Runtime type safety gaps |
 | ESM/CJS module confusion | 40% of projects have module resolution issues | Build failures |
 
-TypeScript Expert eliminates these with deterministic errorâ†’fix routing, performance configuration guidance (skipLibCheck + incremental + project references), strict config enforcement, and ESM-first module resolution.
+TypeScript Expert eliminates these with deterministic error→fix routing, performance configuration guidance (skipLibCheck + incremental + project references), strict config enforcement, and ESM-first module resolution.
 
 ---
 
@@ -333,8 +333,8 @@ Recoverable: boolean
 
 #### Deterministic Guarantees
 
-- Error routing is fixed: "Cannot be named" â†’ export type explicitly; "Excessive depth" â†’ limit recursion, use interface; "Cannot find module" â†’ check moduleResolution; missing types â†’ add ambient declaration.
-- Performance routing is fixed: slow builds â†’ skipLibCheck + incremental + project references.
+- Error routing is fixed: "Cannot be named" → export type explicitly; "Excessive depth" → limit recursion, use interface; "Cannot find module" → check moduleResolution; missing types → add ambient declaration.
+- Performance routing is fixed: slow builds → skipLibCheck + incremental + project references.
 - Strict config is fixed: `strict: true` + `noUncheckedIndexedAccess: true` + `noImplicitOverride: true`.
 - ESM-first is fixed: `"type": "module"` + `moduleResolution: "bundler"`.
 - Same error = same fix. Same project type = same config.
@@ -427,7 +427,7 @@ All phases synchronous. No async pipeline.
 
 | Principle | Enforcement |
 |-----------|-------------|
-| Error routing | "Cannot be named" â†’ export type; "Excessive depth" â†’ limit recursion, use interface; "Cannot find module" â†’ check moduleResolution; missing types â†’ ambient declaration |
+| Error routing | "Cannot be named" → export type; "Excessive depth" → limit recursion, use interface; "Cannot find module" → check moduleResolution; missing types → ambient declaration |
 | Performance | `skipLibCheck: true` (skip library checks); `incremental: true` (cache builds); project references (monorepo) |
 | Strict config | `strict: true` + `noUncheckedIndexedAccess: true` + `noImplicitOverride: true` |
 | ESM-first | `"type": "module"` in package.json + `moduleResolution: "bundler"` in tsconfig |
@@ -558,7 +558,7 @@ All resources scoped to invocation. No persistent handles.
 | Config recommendation | < 2 ms | < 5 ms | 20 ms |
 | Type pattern | < 2 ms | < 5 ms | 20 ms |
 | Full guide | < 10 ms | < 30 ms | 50 ms |
-| Output size | â‰¤ 3,000 chars | â‰¤ 8,000 chars | 12,000 chars |
+| Output size | ≤ 3,000 chars | ≤ 8,000 chars | 12,000 chars |
 
 ---
 
@@ -577,16 +577,16 @@ All resources scoped to invocation. No persistent handles.
 
 | Requirement | Status | Evidence |
 |-------------|--------|----------|
-| YAML frontmatter complete | âœ… | name, description, metadata with category, version, triggers, coordinates_with, success_metrics |
-| SKILL.md < 200 lines | âœ… | Entry point under 200 lines |
-| Prerequisites documented | âœ… | TypeScript 5.0+ |
-| When to Use section | âœ… | Situation-based routing table |
-| Core content matches skill type | âœ… | Expert type: error routing, type patterns, config guidance |
-| Troubleshooting section | âœ… | Error table + troubleshooting table |
-| Related section | âœ… | Cross-links to nextjs-pro, react-architect, code-review |
-| Content Map for multi-file | âœ… | Links to rules/ + scripts/ + engineering-spec.md |
-| Contract versioning | âœ… | contract_version, backward_compatibility, breaking_changes |
-| Compliance matrix structured | âœ… | This table with âœ…/âŒ + evidence |
+| YAML frontmatter complete | ✅ | name, description, metadata with category, version, triggers, coordinates_with, success_metrics |
+| SKILL.md < 200 lines | ✅ | Entry point under 200 lines |
+| Prerequisites documented | ✅ | TypeScript 5.0+ |
+| When to Use section | ✅ | Situation-based routing table |
+| Core content matches skill type | ✅ | Expert type: error routing, type patterns, config guidance |
+| Troubleshooting section | ✅ | Error table + troubleshooting table |
+| Related section | ✅ | Cross-links to nextjs-pro, react-architect, code-review |
+| Content Map for multi-file | ✅ | Links to rules/ + scripts/ + engineering-spec.md |
+| Contract versioning | ✅ | contract_version, backward_compatibility, breaking_changes |
+| Compliance matrix structured | ✅ | This table with ✅/❌ + evidence |
 
 ---
 
@@ -594,26 +594,26 @@ All resources scoped to invocation. No persistent handles.
 
 | Category | Check | Status |
 |----------|-------|--------|
-| **Functionality** | 3 type-level patterns (branded, deep readonly, satisfies) | âœ… |
-| **Functionality** | 4 common error â†’ fix routing | âœ… |
-| **Functionality** | 3 performance settings | âœ… |
-| **Functionality** | Strict config (3 options) | âœ… |
-| **Functionality** | ESM-first module config | âœ… |
-| **Functionality** | 3 diagnostic CLI commands | âœ… |
-| **Contracts** | Input/output/error schemas in pseudo-schema format | âœ… |
-| **Contracts** | Contract versioning with semver | âœ… |
-| **Failure** | Error taxonomy with 4 categorized codes | âœ… |
-| **Failure** | Zero internal retries | âœ… |
-| **Determinism** | Fixed error routing, fixed config, fixed patterns | âœ… |
-| **Security** | No source code execution, no files, no network | âœ… |
-| **Observability** | Structured log schema with 5 mandatory fields | âœ… |
-| **Observability** | 4 metrics defined | âœ… |
-| **Performance** | P50/P99 targets for all operations | âœ… |
-| **Compliance** | All skill-design-guide.md sections mapped with evidence | âœ… |
+| **Functionality** | 3 type-level patterns (branded, deep readonly, satisfies) | ✅ |
+| **Functionality** | 4 common error → fix routing | ✅ |
+| **Functionality** | 3 performance settings | ✅ |
+| **Functionality** | Strict config (3 options) | ✅ |
+| **Functionality** | ESM-first module config | ✅ |
+| **Functionality** | 3 diagnostic CLI commands | ✅ |
+| **Contracts** | Input/output/error schemas in pseudo-schema format | ✅ |
+| **Contracts** | Contract versioning with semver | ✅ |
+| **Failure** | Error taxonomy with 4 categorized codes | ✅ |
+| **Failure** | Zero internal retries | ✅ |
+| **Determinism** | Fixed error routing, fixed config, fixed patterns | ✅ |
+| **Security** | No source code execution, no files, no network | ✅ |
+| **Observability** | Structured log schema with 5 mandatory fields | ✅ |
+| **Observability** | 4 metrics defined | ✅ |
+| **Performance** | P50/P99 targets for all operations | ✅ |
+| **Compliance** | All skill-design-guide.md sections mapped with evidence | ✅ |
 
 ---
 
-âš¡ PikaKit v3.9.105
+⚡ PikaKit v3.9.105
 
 ---
 
@@ -621,7 +621,7 @@ All resources scoped to invocation. No persistent handles.
 
 ---
 name: typescript-cheatsheet
-description: TypeScript quick reference â€” primitives, generics, utility types, conditionals, mapped types, type guards, branded types, module declarations, tsconfig
+description: TypeScript quick reference — primitives, generics, utility types, conditionals, mapped types, type guards, branded types, module declarations, tsconfig
 ---
 
 # TypeScript Cheatsheet
@@ -653,8 +653,8 @@ const value: string | number = 'hello'
 const direction: 'up' | 'down' | 'left' | 'right' = 'up'
 
 // Any vs Unknown
-const anyValue: any = 'anything'     // âŒ Avoid
-const unknownValue: unknown = 'safe' // âœ… Prefer, requires narrowing
+const anyValue: any = 'anything'     // ❌ Avoid
+const unknownValue: unknown = 'safe' // ✅ Prefer, requires narrowing
 ```
 
 ## Type Aliases & Interfaces
@@ -915,8 +915,8 @@ function getOrder(orderId: OrderId, userId: UserId) {}
 const userId = createUserId('user-123')
 const orderId = createOrderId('order-456')
 
-getOrder(orderId, userId)  // âœ… OK
-// getOrder(userId, orderId)  // âŒ Error - types don't match
+getOrder(orderId, userId)  // ✅ OK
+// getOrder(userId, orderId)  // ❌ Error - types don't match
 ```
 
 ## Module Declarations
@@ -978,39 +978,39 @@ declare global {
 ## Best Practices
 
 ```typescript
-// âœ… Prefer interface for objects
+// ✅ Prefer interface for objects
 interface User {
   name: string
 }
 
-// âœ… Use const assertions
+// ✅ Use const assertions
 const routes = ['home', 'about'] as const
 
-// âœ… Use satisfies for validation
+// ✅ Use satisfies for validation
 const config = {
   api: 'https://api.example.com'
 } satisfies Record<string, string>
 
-// âœ… Use unknown over any
+// ✅ Use unknown over any
 function parse(input: unknown) {
   if (typeof input === 'string') {
     return JSON.parse(input)
   }
 }
 
-// âœ… Explicit return types for public APIs
+// ✅ Explicit return types for public APIs
 export function getUser(id: string): User | null {
   // ...
 }
 
-// âŒ Avoid
+// ❌ Avoid
 const data: any = fetchData()
 data.anything.goes.wrong  // No type safety
 ```
 
 ---
 
-## ðŸ”— Related
+## 🔗 Related
 
 | File | When to Read |
 |------|-------------|

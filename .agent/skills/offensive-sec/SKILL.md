@@ -5,12 +5,12 @@ description: >-
   reporting. Triggers on: pentest, red team, exploit, vulnerability, hacking.
 metadata:
   author: pikakit
-  version: "3.9.107"
+  version: "3.9.108"
 ---
 
-# Offensive Security â€” Red Team Tactics (MITRE ATT&CK)
+# Offensive Security — Red Team Tactics (MITRE ATT&CK)
 
-> 13 phases. 4 access vectors. Authorization mandatory. Guidance only â€” no execution.
+> 13 phases. 4 access vectors. Authorization mandatory. Guidance only — no execution.
 
 **Remember:** Red team simulates attackers to improve defenses, not to cause harm.
 
@@ -39,23 +39,23 @@ metadata:
 
 | Owned by This Skill | NOT Owned |
 |---------------------|-----------|
-| ATT&CK phase guidance (13 phases) | Vulnerability scanning (â†’ security-scanner) |
-| Initial access vectors (4) | Code security review (â†’ code-review) |
-| Priv esc checklists (Win + Linux) | Mobile security (â†’ mobile-security-coder) |
+| ATT&CK phase guidance (13 phases) | Vulnerability scanning (→ security-scanner) |
+| Initial access vectors (4) | Code security review (→ code-review) |
+| Priv esc checklists (Win + Linux) | Mobile security (→ mobile-security-coder) |
 | AD attack paths (3) | Exploit development |
 
 **Expert decision skill:** Produces methodology and checklists. Does NOT execute exploits.
 
 ---
 
-## MITRE ATT&CK Phases (13 â€” Fixed Order)
+## MITRE ATT&CK Phases (13 — Fixed Order)
 
 ```
-RECON â†’ INITIAL ACCESS â†’ EXECUTION â†’ PERSISTENCE
-   â†“          â†“              â†“            â†“
-PRIV ESC â†’ DEFENSE EVASION â†’ CRED ACCESS â†’ DISCOVERY
-   â†“          â†“              â†“            â†“
-LATERAL â†’ COLLECTION â†’ C2 â†’ EXFILTRATION â†’ IMPACT
+RECON → INITIAL ACCESS → EXECUTION → PERSISTENCE
+   ↓          ↓              ↓            ↓
+PRIV ESC → DEFENSE EVASION → CRED ACCESS → DISCOVERY
+   ↓          ↓              ↓            ↓
+LATERAL → COLLECTION → C2 → EXFILTRATION → IMPACT
 ```
 
 | Phase | Objective |
@@ -70,7 +70,7 @@ LATERAL â†’ COLLECTION â†’ C2 â†’ EXFILTRATION â†’ IMPACT
 
 ---
 
-## Initial Access Vectors (4 â€” Fixed)
+## Initial Access Vectors (4 — Fixed)
 
 | Vector | When to Use |
 |--------|-------------|
@@ -94,7 +94,7 @@ LATERAL â†’ COLLECTION â†’ C2 â†’ EXFILTRATION â†’ IMPACT
 
 ---
 
-## AD Attacks (3 â€” Fixed)
+## AD Attacks (3 — Fixed)
 
 | Attack | Target |
 |--------|--------|
@@ -106,7 +106,7 @@ LATERAL â†’ COLLECTION â†’ C2 â†’ EXFILTRATION â†’ IMPACT
 
 ## Ethical Boundaries (Non-Negotiable)
 
-| âœ… Always | âŒ Never |
+| ✅ Always | ❌ Never |
 |----------|---------|
 | Stay within scope | Destroy production data |
 | Minimize impact | Access beyond proof of concept |
@@ -125,13 +125,13 @@ LATERAL â†’ COLLECTION â†’ C2 â†’ EXFILTRATION â†’ IMPACT
 | `ERR_UNKNOWN_PLATFORM` | Yes | Platform not recognized |
 | `ERR_INVALID_REQUEST_TYPE` | No | Request type not supported |
 
-**Zero internal retries.** `authorized: false` â†’ hard block, no output.
+**Zero internal retries.** `authorized: false` → hard block, no output.
 
 ---
 
 ## Anti-Patterns
 
-| âŒ Don't | âœ… Do |
+| ❌ Don't | ✅ Do |
 |---------|-------|
 | Rush to exploitation | Follow MITRE ATT&CK phases in order |
 | Cause damage | Minimize impact to production |
@@ -140,7 +140,7 @@ LATERAL â†’ COLLECTION â†’ C2 â†’ EXFILTRATION â†’ IMPACT
 
 ---
 
-## ðŸ“‘ Content Map
+## 📑 Content Map
 
 | File | Description | When to Read |
 |------|-------------|--------------|
@@ -148,7 +148,7 @@ LATERAL â†’ COLLECTION â†’ C2 â†’ EXFILTRATION â†’ IMPACT
 
 ---
 
-## ðŸ”— Related
+## 🔗 Related
 
 | Item | Type | Purpose |
 |------|------|---------|
@@ -158,4 +158,4 @@ LATERAL â†’ COLLECTION â†’ C2 â†’ EXFILTRATION â†’ IMPACT
 
 ---
 
-âš¡ PikaKit v3.9.107
+⚡ PikaKit v3.9.108

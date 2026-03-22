@@ -1,10 +1,10 @@
 ﻿---
-title: Mobile First â€” Engineering Specification
+title: Mobile First — Engineering Specification
 impact: MEDIUM
 tags: mobile-developer
 ---
 
-# Mobile First â€” Engineering Specification
+# Mobile First — Engineering Specification
 
 > Production-grade specification for mobile development orchestration at FAANG scale.
 
@@ -12,11 +12,11 @@ tags: mobile-developer
 
 ## 1. Overview
 
-Mobile First is the orchestrator for mobile development. It routes requests to framework-specific sub-skills (React Native, Flutter, Native), publishing sub-skills (ASO, deep linking, push notifications), design references, and runtime audit scripts. The skill operates as an **Orchestrator** â€” it invokes sub-skills, coordinates framework selection routing, enforces 4 must-ask questions, and delegates implementation to `mobile-developer` and design to `mobile-design`. It produces routing decisions and delegates execution.
+Mobile First is the orchestrator for mobile development. It routes requests to framework-specific sub-skills (React Native, Flutter, Native), publishing sub-skills (ASO, deep linking, push notifications), design references, and runtime audit scripts. The skill operates as an **Orchestrator** — it invokes sub-skills, coordinates framework selection routing, enforces 4 must-ask questions, and delegates implementation to `mobile-developer` and design to `mobile-design`. It produces routing decisions and delegates execution.
 
 **Contract Version:** 2.0.0
 **Backward Compatibility:** breaking (first hardened version)
-**Breaking Changes:** None â€” new spec for first hardening
+**Breaking Changes:** None — new spec for first hardening
 
 ---
 
@@ -41,8 +41,8 @@ Mobile First eliminates these with deterministic sub-skill routing (3 framework 
 |----|------|-----------------------|
 | G1 | Framework routing | 3 sub-skills: react-native.md, flutter.md, native.md |
 | G2 | Publishing routing | 3 sub-skills: ASO, deep linking, push notifications |
-| G3 | 4 must-ask questions | Platform, Framework, Navigation, Offline â€” mandatory |
-| G4 | Framework decision tree | 5 branches: OTA â†’ RN, custom UI â†’ Flutter, iOS-deep â†’ SwiftUI, Android-deep â†’ Kotlin, existing â†’ match |
+| G3 | 4 must-ask questions | Platform, Framework, Navigation, Offline — mandatory |
+| G4 | Framework decision tree | 5 branches: OTA → RN, custom UI → Flutter, iOS-deep → SwiftUI, Android-deep → Kotlin, existing → match |
 | G5 | Selective loading | Read only relevant sub-skill; never all |
 | G6 | Runtime audit | `mobile_audit.js` for UX/touch audit |
 
@@ -146,11 +146,11 @@ Recoverable: boolean
 
 #### Deterministic Guarantees
 
-- Framework decision tree is fixed: OTA â†’ RN+Expo, custom UI â†’ Flutter, iOS-deep â†’ SwiftUI, Android-deep â†’ Kotlin+Compose, existing â†’ match current.
-- Sub-skill routing is fixed: framework name â†’ specific file path.
-- Publishing routing is fixed: ASO â†’ app-store-optimization.md, deep linking â†’ deep-linking.md, push â†’ push-notifications.md.
+- Framework decision tree is fixed: OTA → RN+Expo, custom UI → Flutter, iOS-deep → SwiftUI, Android-deep → Kotlin+Compose, existing → match current.
+- Sub-skill routing is fixed: framework name → specific file path.
+- Publishing routing is fixed: ASO → app-store-optimization.md, deep linking → deep-linking.md, push → push-notifications.md.
 - 4 must-ask questions are fixed: Platform, Framework, Navigation, Offline.
-- Platform defaults are fixed: iOS (SF Pro, 44Ã—44pt, edge swipe), Android (Roboto, 48Ã—48dp, system back).
+- Platform defaults are fixed: iOS (SF Pro, 44×44pt, edge swipe), Android (Roboto, 48×48dp, system back).
 
 #### What Agents May Assume
 
@@ -182,25 +182,25 @@ Recoverable: boolean
 #### Invocation Pattern
 
 ```
-1. Invoke with empty context â†’ returns must_ask questions
+1. Invoke with empty context → returns must_ask questions
 2. Collect answers from user (platform, framework, navigation, offline)
-3. Invoke decision-tree with answers â†’ returns framework + sub-skill path
+3. Invoke decision-tree with answers → returns framework + sub-skill path
 4. Read the routed sub-skill file (caller's responsibility)
 5. Optionally invoke route-publishing for ASO/push/deep-link
 6. Optionally invoke audit with project_path
 7. Invoke checkpoint for pre-development template
-8. Proceed to implementation (â†’ mobile-developer)
+8. Proceed to implementation (→ mobile-developer)
 ```
 
 #### State Transitions
 
 ```
-IDLE â†’ ASKING                [context incomplete]
-ASKING â†’ ROUTING             [4 questions answered]
-ROUTING â†’ ROUTED             [sub-skill path determined]  // terminal for routing
-IDLE â†’ AUDITING              [audit invoked with project_path]
-AUDITING â†’ AUDIT_COMPLETE    [script finished]  // terminal
-AUDITING â†’ AUDIT_FAILED      [script error]  // terminal
+IDLE → ASKING                [context incomplete]
+ASKING → ROUTING             [4 questions answered]
+ROUTING → ROUTED             [sub-skill path determined]  // terminal for routing
+IDLE → AUDITING              [audit invoked with project_path]
+AUDITING → AUDIT_COMPLETE    [script finished]  // terminal
+AUDITING → AUDIT_FAILED      [script error]  // terminal
 ```
 
 #### Execution Guarantees
@@ -256,13 +256,13 @@ AUDITING â†’ AUDIT_FAILED      [script error]  // terminal
 
 | Principle | Enforcement |
 |-----------|-------------|
-| 4 must-ask questions | Platform, Framework, Navigation, Offline â€” always |
+| 4 must-ask questions | Platform, Framework, Navigation, Offline — always |
 | Fixed decision tree | 5 branches with explicit criteria |
 | Fixed sub-skill paths | 3 framework + 3 publishing + 5+ design references |
 | Selective loading | Read only routed sub-skill; never all files |
 | Platform defaults fixed | iOS (SF Pro, 44pt, swipe), Android (Roboto, 48dp, back button) |
 | Core principle | Mobile is NOT a small desktop |
-| Philosophy order | Touch-first â†’ Battery-conscious â†’ Platform-respectful â†’ Offline-capable |
+| Philosophy order | Touch-first → Battery-conscious → Platform-respectful → Offline-capable |
 
 ---
 
@@ -418,7 +418,7 @@ Routing is fully parallel (stateless). Audit is serial per project.
 | Framework routing | < 2 ms | < 5 ms | 20 ms |
 | Decision tree traversal | < 3 ms | < 10 ms | 30 ms |
 | Audit execution | < 10,000 ms | < 60,000 ms | 120,000 ms |
-| Output size | â‰¤ 1,000 chars | â‰¤ 3,000 chars | 5,000 chars |
+| Output size | ≤ 1,000 chars | ≤ 3,000 chars | 5,000 chars |
 
 ---
 
@@ -438,16 +438,16 @@ Routing is fully parallel (stateless). Audit is serial per project.
 
 | Requirement | Status | Evidence |
 |-------------|--------|----------|
-| YAML frontmatter complete | âœ… | name, description, metadata with category, version, triggers, coordinates_with, success_metrics |
-| SKILL.md < 200 lines | âœ… | Entry point under 200 lines |
-| Prerequisites documented | âœ… | Node.js for audit script |
-| When to Use section | âœ… | Situation-based routing table |
-| Core content matches skill type | âœ… | Orchestrator: sub-skill routing, decision tree |
-| Troubleshooting section | âœ… | Anti-patterns table |
-| Related section | âœ… | Cross-links to mobile-developer, mobile-design |
-| Content Map for multi-file | âœ… | Links to 6 sub-skills + 5 design references + audit |
-| Contract versioning | âœ… | contract_version, backward_compatibility, breaking_changes |
-| Compliance matrix structured | âœ… | This table with âœ…/âŒ + evidence |
+| YAML frontmatter complete | ✅ | name, description, metadata with category, version, triggers, coordinates_with, success_metrics |
+| SKILL.md < 200 lines | ✅ | Entry point under 200 lines |
+| Prerequisites documented | ✅ | Node.js for audit script |
+| When to Use section | ✅ | Situation-based routing table |
+| Core content matches skill type | ✅ | Orchestrator: sub-skill routing, decision tree |
+| Troubleshooting section | ✅ | Anti-patterns table |
+| Related section | ✅ | Cross-links to mobile-developer, mobile-design |
+| Content Map for multi-file | ✅ | Links to 6 sub-skills + 5 design references + audit |
+| Contract versioning | ✅ | contract_version, backward_compatibility, breaking_changes |
+| Compliance matrix structured | ✅ | This table with ✅/❌ + evidence |
 
 ---
 
@@ -455,23 +455,23 @@ Routing is fully parallel (stateless). Audit is serial per project.
 
 | Category | Check | Status |
 |----------|-------|--------|
-| **Functionality** | Framework routing (3 sub-skills) | âœ… |
-| **Functionality** | Publishing routing (3 sub-skills) | âœ… |
-| **Functionality** | Decision tree (5 branches) | âœ… |
-| **Functionality** | 4 must-ask questions enforced | âœ… |
-| **Functionality** | Runtime audit script | âœ… |
-| **Functionality** | Pre-development checkpoint | âœ… |
-| **Contracts** | Input/output/error schemas in pseudo-schema format | âœ… |
-| **Contracts** | State transitions with terminal states | âœ… |
-| **Contracts** | Contract versioning with semver | âœ… |
-| **Failure** | Error taxonomy with 5 categorized codes | âœ… |
-| **Security** | Audit read-only, no credentials | âœ… |
-| **Observability** | Structured log schema with 5 mandatory fields | âœ… |
-| **Observability** | 5 metrics defined | âœ… |
-| **Performance** | P50/P99/hard limits for all operations | âœ… |
-| **Concurrency** | Routing parallel; audit serial | âœ… |
-| **Compliance** | All skill-design-guide.md sections mapped with evidence | âœ… |
+| **Functionality** | Framework routing (3 sub-skills) | ✅ |
+| **Functionality** | Publishing routing (3 sub-skills) | ✅ |
+| **Functionality** | Decision tree (5 branches) | ✅ |
+| **Functionality** | 4 must-ask questions enforced | ✅ |
+| **Functionality** | Runtime audit script | ✅ |
+| **Functionality** | Pre-development checkpoint | ✅ |
+| **Contracts** | Input/output/error schemas in pseudo-schema format | ✅ |
+| **Contracts** | State transitions with terminal states | ✅ |
+| **Contracts** | Contract versioning with semver | ✅ |
+| **Failure** | Error taxonomy with 5 categorized codes | ✅ |
+| **Security** | Audit read-only, no credentials | ✅ |
+| **Observability** | Structured log schema with 5 mandatory fields | ✅ |
+| **Observability** | 5 metrics defined | ✅ |
+| **Performance** | P50/P99/hard limits for all operations | ✅ |
+| **Concurrency** | Routing parallel; audit serial | ✅ |
+| **Compliance** | All skill-design-guide.md sections mapped with evidence | ✅ |
 
 ---
 
-âš¡ PikaKit v3.9.105
+⚡ PikaKit v3.9.105

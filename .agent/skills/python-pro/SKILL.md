@@ -6,10 +6,10 @@ description: >-
   pip, FastAPI, Django, Flask.
 metadata:
   author: pikakit
-  version: "3.9.107"
+  version: "3.9.108"
 ---
 
-# Python Pro â€” Framework Selection & Architecture
+# Python Pro — Framework Selection & Architecture
 
 > Decision-making principles. Not patterns to copy. Ask, classify, decide.
 
@@ -30,9 +30,9 @@ metadata:
 
 | Owned by This Skill | NOT Owned |
 |---------------------|-----------|
-| Framework selection (5 branches) | API design (â†’ api-architect) |
-| Async/sync classification | Testing strategy (â†’ test-architect) |
-| Type hint rules | Database schema (â†’ data-modeler) |
+| Framework selection (5 branches) | API design (→ api-architect) |
+| Async/sync classification | Testing strategy (→ test-architect) |
+| Type hint rules | Database schema (→ data-modeler) |
 | Architecture layering | Code implementation |
 
 **Expert decision skill:** Produces recommendations. Does not write code.
@@ -43,15 +43,15 @@ metadata:
 
 ```
 What are you building?
-â”‚
-â”œâ”€â”€ API-first / Microservices  â†’ FastAPI
-â”œâ”€â”€ Full-stack web / CMS       â†’ Django
-â”œâ”€â”€ Simple / Script / Learning â†’ Flask
-â”œâ”€â”€ AI/ML API serving          â†’ FastAPI
-â””â”€â”€ Background workers         â†’ Celery + any
+│
+├── API-first / Microservices  → FastAPI
+├── Full-stack web / CMS       → Django
+├── Simple / Script / Learning → Flask
+├── AI/ML API serving          → FastAPI
+└── Background workers         → Celery + any
 ```
 
-**If user has explicit preference â†’ respect it.** Ask when unclear.
+**If user has explicit preference → respect it.** Ask when unclear.
 
 ---
 
@@ -71,8 +71,8 @@ What are you building?
 
 ```
 Routes (HTTP handlers)
-  â””â†’ Services (business logic)
-      â””â†’ Repositories (data access)
+  └→ Services (business logic)
+      └→ Repositories (data access)
 ```
 
 **Rule:** No business logic in routes/views. Routes delegate to services.
@@ -114,12 +114,12 @@ Routes (HTTP handlers)
 
 ## Anti-Patterns
 
-| âŒ Don't | âœ… Do |
+| ❌ Don't | ✅ Do |
 |---------|-------|
 | Default to Django for simple APIs | Choose framework per context |
 | Use sync libraries in async code | Use async-compatible libraries |
 | Skip type hints on public APIs | Annotate all public functions |
-| Put business logic in routes/views | Separate: routes â†’ services â†’ repos |
+| Put business logic in routes/views | Separate: routes → services → repos |
 | Always pick the same framework | Ask user, evaluate context |
 
 ---
@@ -191,7 +191,7 @@ Each rule file contains:
 For the complete guide with all rules expanded: `AGENTS.md`
 
 
-## ðŸ“‘ Content Map
+## 📑 Content Map
 
 | File | Description | When to Read |
 |------|-------------|--------------|
@@ -208,7 +208,7 @@ For the complete guide with all rules expanded: `AGENTS.md`
 
 ---
 
-## ðŸ”— Related
+## 🔗 Related
 
 | Item | Type | Purpose |
 |------|------|---------|
@@ -218,4 +218,4 @@ For the complete guide with all rules expanded: `AGENTS.md`
 
 ---
 
-âš¡ PikaKit v3.9.107
+⚡ PikaKit v3.9.108

@@ -6,10 +6,10 @@ description: >-
   on: plan, breakdown, tasks, implementation strategy, project scope.
 metadata:
   author: pikakit
-  version: "3.9.107"
+  version: "3.9.108"
 ---
 
-# Project Planner â€” Structured Task Breakdown
+# Project Planner — Structured Task Breakdown
 
 > Max 10 tasks. 2-5 min each. Action + Verify format. Dependencies explicit.
 
@@ -30,10 +30,10 @@ metadata:
 
 | Owned by This Skill | NOT Owned |
 |---------------------|-----------|
-| Task breakdown (max 10) | Requirements gathering (â†’ idea-storm) |
-| Verification criteria | Project scaffolding (â†’ app-scaffold) |
+| Task breakdown (max 10) | Requirements gathering (→ idea-storm) |
+| Verification criteria | Project scaffolding (→ app-scaffold) |
 | Dependency ordering | Code implementation |
-| Plan template | Test execution (â†’ test-architect) |
+| Plan template | Test execution (→ test-architect) |
 
 **Expert decision skill:** Produces plan documents. Does not write code.
 
@@ -60,9 +60,9 @@ metadata:
 One sentence: What are we building/fixing?
 
 ## Tasks
-- [ ] Task 1: [Specific action] â†’ Verify: [How to check]
-- [ ] Task 2: [Specific action] â†’ Verify: [How to check]
-- [ ] Task 3: [Specific action] â†’ Verify: [How to check]
+- [ ] Task 1: [Specific action] → Verify: [How to check]
+- [ ] Task 2: [Specific action] → Verify: [How to check]
+- [ ] Task 3: [Specific action] → Verify: [How to check]
 
 ## Done When
 - [ ] [Main success criteria]
@@ -72,7 +72,7 @@ One sentence: What are we building/fixing?
 
 ## Specificity Rules (Non-Negotiable)
 
-| âŒ Vague | âœ… Specific |
+| ❌ Vague | ✅ Specific |
 |----------|-----------|
 | "Set up project" | "Run `npx create-next-app`" |
 | "Add authentication" | "Install next-auth, create auth route" |
@@ -108,7 +108,7 @@ One sentence: What are we building/fixing?
 
 ## Anti-Patterns
 
-| âŒ Don't | âœ… Do |
+| ❌ Don't | ✅ Do |
 |---------|-------|
 | Create plans with > 10 tasks | Split into sub-plans |
 | Use vague task descriptions | Be specific: command, file, action |
@@ -118,7 +118,7 @@ One sentence: What are we building/fixing?
 
 ---
 
-## ðŸ“‘ Content Map
+## 📑 Content Map
 
 | File | Description | When to Read |
 |------|-------------|--------------|
@@ -126,7 +126,7 @@ One sentence: What are we building/fixing?
 
 ---
 
-## ðŸ”— Related
+## 🔗 Related
 
 | Item | Type | Purpose |
 |------|------|---------|
@@ -136,4 +136,4 @@ One sentence: What are we building/fixing?
 
 ---
 
-âš¡ PikaKit v3.9.107
+⚡ PikaKit v3.9.108

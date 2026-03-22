@@ -6,10 +6,10 @@ description: >-
   development, MCP, Model Context Protocol, agent tools.
 metadata:
   author: pikakit
-  version: "3.9.107"
+  version: "3.9.108"
 ---
 
-# MCP Builder â€” Build MCP Servers for AI Agents
+# MCP Builder — Build MCP Servers for AI Agents
 
 > 4 phases. Workflow over endpoints. 10-question evaluation. Context-aware output.
 
@@ -37,9 +37,9 @@ metadata:
 
 | Owned by This Skill | NOT Owned |
 |---------------------|-----------|
-| 4-phase build process | MCP tool discovery (â†’ mcp-management) |
-| Framework selection (2 options) | API design (â†’ api-architect) |
-| Review checklist (4 items) | TypeScript patterns (â†’ typescript-expert) |
+| 4-phase build process | MCP tool discovery (→ mcp-management) |
+| Framework selection (2 options) | API design (→ api-architect) |
+| Review checklist (4 items) | TypeScript patterns (→ typescript-expert) |
 | Evaluation framework (10 questions) | Server hosting/deployment |
 
 **Expert decision skill:** Produces build guidance. Does not create files or run code.
@@ -124,7 +124,7 @@ Create 10 test questions that are:
 
 ## Anti-Patterns
 
-| âŒ Don't | âœ… Do |
+| ❌ Don't | ✅ Do |
 |---------|-------|
 | Mirror API endpoints as tools | Design workflow-oriented tools |
 | Skip evaluation phase | Create 10 test questions |
@@ -162,7 +162,7 @@ Create 10 test questions that are:
 
 ### 4. Engineering Spec (LOW)
 
-- `engineering-spec` - MCP Builder â€” Engineering Specification
+- `engineering-spec` - MCP Builder — Engineering Specification
 
 ### 5. Python (LOW)
 
@@ -192,7 +192,7 @@ Each rule file contains:
 For the complete guide with all rules expanded: `AGENTS.md`
 
 
-## ðŸ“‘ Content Map
+## 📑 Content Map
 
 | File | Description | When to Read |
 |------|-------------|--------------|
@@ -208,7 +208,7 @@ For the complete guide with all rules expanded: `AGENTS.md`
 
 ---
 
-## ðŸ”— Related
+## 🔗 Related
 
 | Item | Type | Purpose |
 |------|------|---------|
@@ -218,4 +218,4 @@ For the complete guide with all rules expanded: `AGENTS.md`
 
 ---
 
-âš¡ PikaKit v3.9.107
+⚡ PikaKit v3.9.108

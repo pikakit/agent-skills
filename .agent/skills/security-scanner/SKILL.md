@@ -5,10 +5,10 @@ description: >-
   prioritization. Triggers on: security, vulnerability, OWASP, pentest, threat modeling.
 metadata:
   author: pikakit
-  version: "3.9.107"
+  version: "3.9.108"
 ---
 
-# Security Scanner â€” Vulnerability Analysis & OWASP
+# Security Scanner — Vulnerability Analysis & OWASP
 
 > Think like an attacker. Prioritize by exploitability (EPSS), not just severity (CVSS).
 
@@ -30,16 +30,16 @@ metadata:
 
 | Owned by This Skill | NOT Owned |
 |---------------------|-----------|
-| OWASP Top 10:2025 mapping | Red team execution (â†’ offensive-sec) |
-| Risk prioritization (EPSS + CVSS) | CI/CD configuration (â†’ cicd-pipeline) |
-| High-risk code patterns (5) | Authentication design (â†’ auth-patterns) |
+| OWASP Top 10:2025 mapping | Red team execution (→ offensive-sec) |
+| Risk prioritization (EPSS + CVSS) | CI/CD configuration (→ cicd-pipeline) |
+| High-risk code patterns (5) | Authentication design (→ auth-patterns) |
 | Secret detection guidance (4 types) | Code fixes |
 
 **Expert decision skill:** Produces vulnerability assessments. Does not run scans.
 
 ---
 
-## Core Principles (5 â€” Fixed)
+## Core Principles (5 — Fixed)
 
 | Principle | Application |
 |-----------|-------------|
@@ -55,11 +55,11 @@ metadata:
 
 ```
 Is it actively exploited (EPSS > 0.5)?
-â”œâ”€â”€ YES â†’ CRITICAL: Immediate remediation
-â””â”€â”€ NO  â†’ Check CVSS score:
-         â”œâ”€â”€ â‰¥ 9.0        â†’ HIGH
-         â”œâ”€â”€ 7.0 - 8.9    â†’ Check asset value â†’ MEDIUM or HIGH
-         â””â”€â”€ < 7.0        â†’ LOW: Schedule later
+├── YES → CRITICAL: Immediate remediation
+└── NO  → Check CVSS score:
+         ├── ≥ 9.0        → HIGH
+         ├── 7.0 - 8.9    → Check asset value → MEDIUM or HIGH
+         └── < 7.0        → LOW: Schedule later
 ```
 
 ---
@@ -70,18 +70,18 @@ Is it actively exploited (EPSS > 0.5)?
 |------|----------|---------------|
 | A01 | Broken Access Control | IDOR, SSRF, privilege escalation |
 | A02 | Security Misconfiguration | Default creds, missing headers |
-| A03 | Supply Chain ðŸ†• | Compromised deps, CI/CD tampering |
+| A03 | Supply Chain 🆕 | Compromised deps, CI/CD tampering |
 | A04 | Cryptographic Failures | Weak crypto, exposed secrets |
-| A05 | Injection | String concat in queries, userâ†’commands |
+| A05 | Injection | String concat in queries, user→commands |
 | A06 | Insecure Design | Missing threat model |
 | A07 | Auth Failures | Broken sessions, weak credentials |
 | A08 | Integrity Failures | Unsigned updates, untrusted pipelines |
 | A09 | Logging & Alerting | Missing audit trail |
-| A10 | Exceptional Conditions ðŸ†• | Unhandled errors exposing internals |
+| A10 | Exceptional Conditions 🆕 | Unhandled errors exposing internals |
 
 ---
 
-## High-Risk Code Patterns (5 â€” Fixed)
+## High-Risk Code Patterns (5 — Fixed)
 
 | Pattern | Risk | Fix |
 |---------|------|-----|
@@ -119,7 +119,7 @@ Is it actively exploited (EPSS > 0.5)?
 
 ## Anti-Patterns
 
-| âŒ Don't | âœ… Do |
+| ❌ Don't | ✅ Do |
 |---------|-------|
 | Scan without understanding | Map attack surface first |
 | Alert on every CVE | Prioritize by EPSS exploitability |
@@ -128,7 +128,7 @@ Is it actively exploited (EPSS > 0.5)?
 
 ---
 
-## ðŸ“‘ Content Map
+## 📑 Content Map
 
 | File | Description | When to Read |
 |------|-------------|--------------|
@@ -139,7 +139,7 @@ Is it actively exploited (EPSS > 0.5)?
 
 ---
 
-## ðŸ”— Related
+## 🔗 Related
 
 | Item | Type | Purpose |
 |------|------|---------|
@@ -149,4 +149,4 @@ Is it actively exploited (EPSS > 0.5)?
 
 ---
 
-âš¡ PikaKit v3.9.107
+⚡ PikaKit v3.9.108

@@ -10,7 +10,7 @@ March 2026
 
 ---
 
-# Studio â€” Design Intelligence
+# Studio — Design Intelligence
 
 > 50+ styles. 97 palettes. 57 font pairings. Anti-AI-Slop by default.
 
@@ -31,9 +31,9 @@ March 2026
 
 | Owned by This Skill | NOT Owned |
 |---------------------|-----------|
-| Searchable design database (6 categories) | CSS implementation (â†’ frontend agents) |
-| Anti-AI-Slop avoidance rules | Design theory (â†’ design-system) |
-| Design system config generation | Image assets (â†’ ai-artist) |
+| Searchable design database (6 categories) | CSS implementation (→ frontend agents) |
+| Anti-AI-Slop avoidance rules | Design theory (→ design-system) |
+| Design system config generation | Image assets (→ ai-artist) |
 | Priority-ranked recommendations | Component coding |
 
 **Expert decision skill:** Produces design recommendations. Does not write CSS or code.
@@ -49,13 +49,13 @@ March 2026
 | Typography | 57 | `data/typography.csv` |
 | UX Guidelines | 99 | `data/ux-guidelines.csv` |
 | Charts | 25 | `data/charts.csv` |
-| Icons | â€” | `data/icons.csv` |
-| Landing Pages | â€” | `data/landing.csv` |
-| Products | â€” | `data/products.csv` |
-| Prompts | â€” | `data/prompts.csv` |
-| React Performance | â€” | `data/react-performance.csv` |
-| UI Reasoning | â€” | `data/ui-reasoning.csv` |
-| Web Interface | â€” | `data/web-interface.csv` |
+| Icons | — | `data/icons.csv` |
+| Landing Pages | — | `data/landing.csv` |
+| Products | — | `data/products.csv` |
+| Prompts | — | `data/prompts.csv` |
+| React Performance | — | `data/react-performance.csv` |
+| UI Reasoning | — | `data/ui-reasoning.csv` |
+| Web Interface | — | `data/web-interface.csv` |
 | Stacks | 12 | `data/stacks/*.csv` (React, Next.js, Vue, Nuxt, Svelte, Flutter, SwiftUI, etc.) |
 
 ---
@@ -78,7 +78,7 @@ node .agent/skills/studio/scripts-js/search.js "modern tech" --category typograp
 
 ### Fonts to AVOID
 
-| âŒ Don't Use | âœ… Use Instead |
+| ❌ Don't Use | ✅ Use Instead |
 |-------------|---------------|
 | Inter | Playfair Display, Cormorant |
 | Roboto | Syne, Outfit |
@@ -87,7 +87,7 @@ node .agent/skills/studio/scripts-js/search.js "modern tech" --category typograp
 
 ### Colors to AVOID
 
-| âŒ Don't Use | âœ… Use Instead |
+| ❌ Don't Use | ✅ Use Instead |
 |-------------|---------------|
 | #FF0000 (pure red) | #DC2626, #EF4444 |
 | #00FF00 (pure green) | #10B981, #059669 |
@@ -96,7 +96,7 @@ node .agent/skills/studio/scripts-js/search.js "modern tech" --category typograp
 
 ### Patterns to AVOID
 
-| âŒ Don't | âœ… Do |
+| ❌ Don't | ✅ Do |
 |---------|-------|
 | Generic `box-shadow: 0 2px 4px rgba(0,0,0,0.1)` | Dramatic: `0 25px 50px -12px rgba(0,0,0,0.25)` |
 | Solid #FFFFFF / #000000 backgrounds | Gradients, noise textures, glass effects |
@@ -128,7 +128,7 @@ node .agent/skills/studio/scripts-js/search.js "modern tech" --category typograp
 
 ---
 
-## ðŸ“‘ Content Map
+## 📑 Content Map
 
 | File | Description | When to Read |
 |------|-------------|--------------|
@@ -138,7 +138,7 @@ node .agent/skills/studio/scripts-js/search.js "modern tech" --category typograp
 
 ---
 
-## ðŸ”— Related
+## 🔗 Related
 
 | Item | Type | Purpose |
 |------|------|---------|
@@ -148,7 +148,7 @@ node .agent/skills/studio/scripts-js/search.js "modern tech" --category typograp
 
 ---
 
-âš¡ PikaKit v3.9.105
+⚡ PikaKit v3.9.105
 
 ---
 
@@ -161,10 +161,10 @@ node .agent/skills/studio/scripts-js/search.js "modern tech" --category typograp
 
 ---
 name: studio-engineering-spec
-description: Full 21-section engineering spec â€” BM25 search, 6 CSV categories, design system generation, Anti-AI-Slop rules
+description: Full 21-section engineering spec — BM25 search, 6 CSV categories, design system generation, Anti-AI-Slop rules
 ---
 
-# Studio â€” Engineering Specification
+# Studio — Engineering Specification
 
 > Production-grade specification for AI-powered design intelligence at FAANG scale.
 
@@ -172,11 +172,11 @@ description: Full 21-section engineering spec â€” BM25 search, 6 CSV catego
 
 ## 1. Overview
 
-Studio provides a searchable design database and design system generation: 50+ design styles, 97 curated color palettes, 57 font pairings, 99 UX guidelines, 25 chart types, and 9 technology stacks. It includes Anti-AI-Slop rules to prevent generic AI-generated aesthetics (font replacements, color replacements, shadow/background/animation guidelines). The skill operates as an **Expert (decision tree)** â€” it produces design recommendations, color palettes, font pairings, and design system configurations via CLI search. It does not create CSS files, implement designs, or render UI.
+Studio provides a searchable design database and design system generation: 50+ design styles, 97 curated color palettes, 57 font pairings, 99 UX guidelines, 25 chart types, and 9 technology stacks. It includes Anti-AI-Slop rules to prevent generic AI-generated aesthetics (font replacements, color replacements, shadow/background/animation guidelines). The skill operates as an **Expert (decision tree)** — it produces design recommendations, color palettes, font pairings, and design system configurations via CLI search. It does not create CSS files, implement designs, or render UI.
 
 **Contract Version:** 2.0.0
 **Backward Compatibility:** breaking (first hardened version)
-**Breaking Changes:** None â€” new spec for first hardening
+**Breaking Changes:** None — new spec for first hardening
 
 ---
 
@@ -397,11 +397,11 @@ All phases synchronous. No async pipeline.
 
 | Principle | Enforcement |
 |-----------|-------------|
-| Anti-AI-Slop fonts | Avoid Inter â†’ use Playfair Display, Cormorant; Avoid Roboto â†’ use Syne, Outfit; Avoid Arial â†’ use Source Sans Pro, Work Sans; Avoid system fonts â†’ use Fraunces, IBM Plex |
-| Anti-AI-Slop colors | Avoid #FF0000 â†’ use #DC2626, #EF4444; Avoid #00FF00 â†’ use #10B981, #059669; Avoid #0000FF â†’ use #3B82F6, #2563EB; Avoid #800080 â†’ use #8B5CF6, #7C3AED |
-| Anti-AI-Slop shadows | Avoid generic `0 2px 4px rgba(0,0,0,0.1)` â†’ use dramatic `0 25px 50px -12px rgba(0,0,0,0.25)` |
-| Anti-AI-Slop backgrounds | Avoid solid #FFFFFF/#000000 â†’ use subtle gradients, noise textures, glass effects |
-| Anti-AI-Slop animations | Avoid scattered micro-interactions â†’ use one orchestrated page-load animation |
+| Anti-AI-Slop fonts | Avoid Inter → use Playfair Display, Cormorant; Avoid Roboto → use Syne, Outfit; Avoid Arial → use Source Sans Pro, Work Sans; Avoid system fonts → use Fraunces, IBM Plex |
+| Anti-AI-Slop colors | Avoid #FF0000 → use #DC2626, #EF4444; Avoid #00FF00 → use #10B981, #059669; Avoid #0000FF → use #3B82F6, #2563EB; Avoid #800080 → use #8B5CF6, #7C3AED |
+| Anti-AI-Slop shadows | Avoid generic `0 2px 4px rgba(0,0,0,0.1)` → use dramatic `0 25px 50px -12px rgba(0,0,0,0.25)` |
+| Anti-AI-Slop backgrounds | Avoid solid #FFFFFF/#000000 → use subtle gradients, noise textures, glass effects |
+| Anti-AI-Slop animations | Avoid scattered micro-interactions → use one orchestrated page-load animation |
 | Database coverage | 50+ styles, 97 colors, 57 typography, 99 UX, 25 charts, 9 stacks |
 | Priority ranking | 1-10 scale (10 = most relevant to query) |
 
@@ -541,7 +541,7 @@ CSV data may be cached in memory for performance but is never mutated.
 | Design system gen | < 200 ms | < 500 ms | 3 s |
 | Anti-slop rules | < 5 ms | < 20 ms | 100 ms |
 | Full guide | < 300 ms | < 800 ms | 3 s |
-| Output size | â‰¤ 5,000 chars | â‰¤ 10,000 chars | 15,000 chars |
+| Output size | ≤ 5,000 chars | ≤ 10,000 chars | 15,000 chars |
 
 ---
 
@@ -560,16 +560,16 @@ CSV data may be cached in memory for performance but is never mutated.
 
 | Requirement | Status | Evidence |
 |-------------|--------|----------|
-| YAML frontmatter complete | âœ… | name, description, metadata with category, version, triggers, coordinates_with, success_metrics |
-| SKILL.md < 200 lines | âœ… | Entry point under 200 lines |
-| Prerequisites documented | âœ… | Node.js for scripts-js/ |
-| When to Use section | âœ… | Situation-based routing table |
-| Core content matches skill type | âœ… | Expert type: design search, palette generation, anti-slop rules |
-| Troubleshooting section | âœ… | Anti-patterns + troubleshooting table |
-| Related section | âœ… | Cross-links to frontend-specialist, design-system, /studio |
-| Content Map for multi-file | âœ… | Links to data/, scripts-js/, engineering-spec.md |
-| Contract versioning | âœ… | contract_version, backward_compatibility, breaking_changes |
-| Compliance matrix structured | âœ… | This table with âœ…/âŒ + evidence |
+| YAML frontmatter complete | ✅ | name, description, metadata with category, version, triggers, coordinates_with, success_metrics |
+| SKILL.md < 200 lines | ✅ | Entry point under 200 lines |
+| Prerequisites documented | ✅ | Node.js for scripts-js/ |
+| When to Use section | ✅ | Situation-based routing table |
+| Core content matches skill type | ✅ | Expert type: design search, palette generation, anti-slop rules |
+| Troubleshooting section | ✅ | Anti-patterns + troubleshooting table |
+| Related section | ✅ | Cross-links to frontend-specialist, design-system, /studio |
+| Content Map for multi-file | ✅ | Links to data/, scripts-js/, engineering-spec.md |
+| Contract versioning | ✅ | contract_version, backward_compatibility, breaking_changes |
+| Compliance matrix structured | ✅ | This table with ✅/❌ + evidence |
 
 ---
 
@@ -577,30 +577,30 @@ CSV data may be cached in memory for performance but is never mutated.
 
 | Category | Check | Status |
 |----------|-------|--------|
-| **Functionality** | 50+ design styles searchable | âœ… |
-| **Functionality** | 97 curated color palettes | âœ… |
-| **Functionality** | 57 font pairings | âœ… |
-| **Functionality** | 99 UX guidelines | âœ… |
-| **Functionality** | Anti-AI-Slop (4 fonts + 4 colors + 3 patterns) | âœ… |
-| **Functionality** | Design system generation | âœ… |
-| **Contracts** | Input/output/error schemas in pseudo-schema format | âœ… |
-| **Contracts** | Contract versioning with semver | âœ… |
-| **Failure** | Error taxonomy with 4 categorized codes | âœ… |
-| **Failure** | Zero internal retries | âœ… |
-| **Determinism** | Fixed Anti-AI-Slop rules, static CSV database | âœ… |
-| **Security** | No PII, no network, read-only CSV | âœ… |
-| **Observability** | Structured log schema with 5 mandatory fields | âœ… |
-| **Observability** | 5 metrics defined | âœ… |
-| **Performance** | P50/P99 targets for all operations | âœ… |
-| **Compliance** | All skill-design-guide.md sections mapped with evidence | âœ… |
+| **Functionality** | 50+ design styles searchable | ✅ |
+| **Functionality** | 97 curated color palettes | ✅ |
+| **Functionality** | 57 font pairings | ✅ |
+| **Functionality** | 99 UX guidelines | ✅ |
+| **Functionality** | Anti-AI-Slop (4 fonts + 4 colors + 3 patterns) | ✅ |
+| **Functionality** | Design system generation | ✅ |
+| **Contracts** | Input/output/error schemas in pseudo-schema format | ✅ |
+| **Contracts** | Contract versioning with semver | ✅ |
+| **Failure** | Error taxonomy with 4 categorized codes | ✅ |
+| **Failure** | Zero internal retries | ✅ |
+| **Determinism** | Fixed Anti-AI-Slop rules, static CSV database | ✅ |
+| **Security** | No PII, no network, read-only CSV | ✅ |
+| **Observability** | Structured log schema with 5 mandatory fields | ✅ |
+| **Observability** | 5 metrics defined | ✅ |
+| **Performance** | P50/P99 targets for all operations | ✅ |
+| **Compliance** | All skill-design-guide.md sections mapped with evidence | ✅ |
 
 ---
 
-âš¡ PikaKit v3.9.105
+⚡ PikaKit v3.9.105
 
 ---
 
-## ðŸ”— Related
+## 🔗 Related
 
 | File | When to Read |
 |------|-------------|

@@ -6,10 +6,10 @@ description: >-
   on: architecture, system design, scalability, microservices.
 metadata:
   author: pikakit
-  version: "3.9.107"
+  version: "3.9.108"
 ---
 
-# System Design â€” Architecture Decision Framework
+# System Design — Architecture Decision Framework
 
 > Requirements drive architecture. Trade-offs inform decisions. ADRs capture rationale.
 
@@ -30,9 +30,9 @@ metadata:
 
 | Owned by This Skill | NOT Owned |
 |---------------------|-----------|
-| Context discovery (project classification) | API design (â†’ api-architect) |
-| Trade-off analysis (ADR format) | Database design (â†’ data-modeler) |
-| Pattern selection (decision trees) | Deployment (â†’ cicd-pipeline) |
+| Context discovery (project classification) | API design (→ api-architect) |
+| Trade-off analysis (ADR format) | Database design (→ data-modeler) |
+| Pattern selection (decision trees) | Deployment (→ cicd-pipeline) |
 | Architecture validation (6-item checklist) | Code implementation |
 
 **Expert decision skill:** Produces architecture recommendations. Does not write code.
@@ -50,7 +50,7 @@ metadata:
 
 ---
 
-## ADR Format (6 Sections â€” Fixed)
+## ADR Format (6 Sections — Fixed)
 
 | Section | Purpose |
 |---------|---------|
@@ -63,7 +63,7 @@ metadata:
 
 ---
 
-## Validation Checklist (6 Items â€” Fixed)
+## Validation Checklist (6 Items — Fixed)
 
 - [ ] Requirements clearly understood
 - [ ] Constraints identified
@@ -89,7 +89,7 @@ metadata:
 
 ## Anti-Patterns
 
-| âŒ Don't | âœ… Do |
+| ❌ Don't | ✅ Do |
 |---------|-------|
 | Over-engineer from day one | Start simple, add complexity when needed |
 | Skip trade-off analysis | Document pros/cons for every option |
@@ -98,7 +98,7 @@ metadata:
 
 ---
 
-## ðŸ“‘ Content Map
+## 📑 Content Map
 
 | File | Description | When to Read |
 |------|-------------|--------------|
@@ -111,7 +111,7 @@ metadata:
 
 ---
 
-## ðŸ”— Related
+## 🔗 Related
 
 | Item | Type | Purpose |
 |------|------|---------|
@@ -121,4 +121,4 @@ metadata:
 
 ---
 
-âš¡ PikaKit v3.9.107
+⚡ PikaKit v3.9.108

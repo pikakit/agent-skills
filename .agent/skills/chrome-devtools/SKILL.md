@@ -6,10 +6,10 @@ description: >-
   performance.
 metadata:
   author: pikakit
-  version: "3.9.107"
+  version: "3.9.108"
 ---
 
-# Chrome DevTools â€” Puppeteer CLI
+# Chrome DevTools — Puppeteer CLI
 
 > Direct Puppeteer CLI scripts. Session persistence. JSON output. Auto-compressed screenshots.
 
@@ -41,9 +41,9 @@ metadata:
 
 | Owned by This Skill | NOT Owned |
 |---------------------|-----------|
-| 10 Puppeteer CLI scripts | E2E test suites (â†’ e2e-automation) |
-| Session persistence (.browser-session.json) | AI @ref handle system (â†’ agent-browser) |
-| Screenshot capture + auto-compress | Performance recommendations (â†’ perf-optimizer) |
+| 10 Puppeteer CLI scripts | E2E test suites (→ e2e-automation) |
+| Session persistence (.browser-session.json) | AI @ref handle system (→ agent-browser) |
+| Screenshot capture + auto-compress | Performance recommendations (→ perf-optimizer) |
 | Core Web Vitals measurement | Cross-browser testing |
 | Console/network monitoring | Browser installation |
 
@@ -149,7 +149,7 @@ node navigate.js --close true
 
 ### 2. Engineering Spec (LOW)
 
-- `engineering-spec` - Chrome DevTools â€” Engineering Specification
+- `engineering-spec` - Chrome DevTools — Engineering Specification
 
 ### 3. Scripts (LOW)
 
@@ -175,7 +175,7 @@ Each rule file contains:
 For the complete guide with all rules expanded: `AGENTS.md`
 
 
-## ðŸ“‘ Content Map
+## 📑 Content Map
 
 | File | Description | When to Read |
 |------|-------------|--------------|
@@ -186,7 +186,7 @@ For the complete guide with all rules expanded: `AGENTS.md`
 
 ---
 
-## ðŸ”— Related
+## 🔗 Related
 
 | Item | Type | Purpose |
 |------|------|---------|
@@ -196,4 +196,4 @@ For the complete guide with all rules expanded: `AGENTS.md`
 
 ---
 
-âš¡ PikaKit v3.9.107
+⚡ PikaKit v3.9.108

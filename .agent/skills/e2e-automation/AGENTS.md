@@ -10,7 +10,7 @@ March 2026
 
 ---
 
-# E2E Automation â€” Playwright Testing
+# E2E Automation — Playwright Testing
 
 > Behavior-driven E2E tests. `data-testid` selectors. Auto-wait, never sleep. Zero flake tolerance.
 
@@ -42,10 +42,10 @@ npm install playwright && npx playwright install chromium
 
 | Owned by This Skill | NOT Owned |
 |---------------------|-----------|
-| Playwright test runner (`scripts/playwright_runner.js`) | Unit/integration patterns (â†’ test-architect) |
-| Screenshot capture (on-failure + on-demand) | Performance benchmarking (â†’ perf-optimizer) |
-| Accessibility audit (axe-core via `--a11y`) | CI/CD pipeline config (â†’ cicd-pipeline) |
-| ARIA snapshot testing reference | Browser scraping (â†’ agent-browser) |
+| Playwright test runner (`scripts/playwright_runner.js`) | Unit/integration patterns (→ test-architect) |
+| Screenshot capture (on-failure + on-demand) | Performance benchmarking (→ perf-optimizer) |
+| Accessibility audit (axe-core via `--a11y`) | CI/CD pipeline config (→ cicd-pipeline) |
+| ARIA snapshot testing reference | Browser scraping (→ agent-browser) |
 | Test organization structure | Test content authoring |
 
 **Automation skill:** Launches browser, navigates pages, captures screenshots. Session-based with side effects.
@@ -95,10 +95,10 @@ node .agent/skills/e2e-automation/scripts/playwright_runner.js <url> --a11y
 
 ```
 tests/
-â”œâ”€â”€ e2e/           # Full user flows
-â”œâ”€â”€ integration/   # API, data
-â”œâ”€â”€ component/     # UI units
-â””â”€â”€ fixtures/      # Shared test data
+├── e2e/           # Full user flows
+├── integration/   # API, data
+├── component/     # UI units
+└── fixtures/      # Shared test data
 ```
 
 ---
@@ -106,14 +106,14 @@ tests/
 ## Session Lifecycle
 
 ```
-IDLE â†’ LAUNCHING          [run-tests invoked]
-LAUNCHING â†’ NAVIGATING    [browser started]
-NAVIGATING â†’ EXECUTING    [target loaded]
-EXECUTING â†’ CAPTURING     [screenshot/trace needed]
-CAPTURING â†’ REPORTING     [artifacts saved]
-REPORTING â†’ COMPLETED     [results output]  // terminal
-LAUNCHING â†’ ERROR         [browser launch failed]  // terminal
-NAVIGATING â†’ ERROR        [target unreachable]  // terminal
+IDLE → LAUNCHING          [run-tests invoked]
+LAUNCHING → NAVIGATING    [browser started]
+NAVIGATING → EXECUTING    [target loaded]
+EXECUTING → CAPTURING     [screenshot/trace needed]
+CAPTURING → REPORTING     [artifacts saved]
+REPORTING → COMPLETED     [results output]  // terminal
+LAUNCHING → ERROR         [browser launch failed]  // terminal
+NAVIGATING → ERROR        [target unreachable]  // terminal
 ```
 
 **Invariant:** Browser process ALWAYS terminated in Report phase. No orphaned processes.
@@ -136,7 +136,7 @@ NAVIGATING â†’ ERROR        [target unreachable]  // terminal
 
 ## Anti-Patterns
 
-| âŒ Don't | âœ… Do |
+| ❌ Don't | ✅ Do |
 |---------|-------|
 | Test implementation details | Test user-visible behavior |
 | Hardcode waits (`sleep`) | Use Playwright auto-wait |
@@ -146,7 +146,7 @@ NAVIGATING â†’ ERROR        [target unreachable]  // terminal
 
 ---
 
-## ðŸ“‘ Content Map
+## 📑 Content Map
 
 | File | Description | When to Read |
 |------|-------------|--------------|
@@ -159,7 +159,7 @@ NAVIGATING â†’ ERROR        [target unreachable]  // terminal
 
 ---
 
-## ðŸ”— Related
+## 🔗 Related
 
 | Item | Type | Purpose |
 |------|------|---------|
@@ -169,7 +169,7 @@ NAVIGATING â†’ ERROR        [target unreachable]  // terminal
 
 ---
 
-âš¡ PikaKit v3.9.105
+⚡ PikaKit v3.9.105
 
 ---
 
@@ -367,12 +367,12 @@ test('user can submit form', async ({ page }) => {
 ### Rule: engineering-spec
 
 ---
-title: E2E Automation â€” Engineering Specification
+title: E2E Automation — Engineering Specification
 impact: MEDIUM
 tags: e2e-automation
 ---
 
-# E2E Automation â€” Engineering Specification
+# E2E Automation — Engineering Specification
 
 > Production-grade specification for web application E2E testing with Playwright at FAANG scale.
 
@@ -380,11 +380,11 @@ tags: e2e-automation
 
 ## 1. Overview
 
-E2E Automation provides Playwright-based end-to-end testing for web applications: test execution via runner script, screenshot capture, accessibility audits, visual regression detection, and ARIA snapshot testing. The skill operates as a session-based **Automation (scripted)** skill â€” it launches browser instances, navigates pages, captures screenshots, and produces test reports. Side effects include browser process creation, file I/O (screenshots, traces), and network requests to test targets.
+E2E Automation provides Playwright-based end-to-end testing for web applications: test execution via runner script, screenshot capture, accessibility audits, visual regression detection, and ARIA snapshot testing. The skill operates as a session-based **Automation (scripted)** skill — it launches browser instances, navigates pages, captures screenshots, and produces test reports. Side effects include browser process creation, file I/O (screenshots, traces), and network requests to test targets.
 
 **Contract Version:** 2.0.0
 **Backward Compatibility:** breaking (first hardened version)
-**Breaking Changes:** None â€” new spec for first hardening
+**Breaking Changes:** None — new spec for first hardening
 
 ---
 
@@ -561,16 +561,16 @@ Recoverable: boolean
 #### State Transitions
 
 ```
-IDLE â†’ LAUNCHING          [run-tests invoked]
-LAUNCHING â†’ NAVIGATING    [browser process started]
-NAVIGATING â†’ EXECUTING    [target URL loaded]
-EXECUTING â†’ CAPTURING     [test completed, screenshot/trace needed]
-CAPTURING â†’ REPORTING     [artifacts saved to disk]
-REPORTING â†’ COMPLETED     [results written to stdout]  // terminal state
-EXECUTING â†’ FAILED        [test assertion failed]
-FAILED â†’ CAPTURING        [failure screenshot captured]
-LAUNCHING â†’ ERROR         [browser launch failed]  // terminal state
-NAVIGATING â†’ ERROR        [target unreachable]  // terminal state
+IDLE → LAUNCHING          [run-tests invoked]
+LAUNCHING → NAVIGATING    [browser process started]
+NAVIGATING → EXECUTING    [target URL loaded]
+EXECUTING → CAPTURING     [test completed, screenshot/trace needed]
+CAPTURING → REPORTING     [artifacts saved to disk]
+REPORTING → COMPLETED     [results written to stdout]  // terminal state
+EXECUTING → FAILED        [test assertion failed]
+FAILED → CAPTURING        [failure screenshot captured]
+LAUNCHING → ERROR         [browser launch failed]  // terminal state
+NAVIGATING → ERROR        [target unreachable]  // terminal state
 ```
 
 #### Execution Guarantees
@@ -742,8 +742,8 @@ Browser state is created at launch and destroyed at report phase. No cross-sessi
 | Metric | Type | Unit |
 |--------|------|------|
 | `e2e.run.duration` | Histogram | ms |
-| `e2e.tests.pass_rate` | Gauge | 0.0â€“1.0 |
-| `e2e.tests.flake_rate` | Gauge | 0.0â€“1.0 |
+| `e2e.tests.pass_rate` | Gauge | 0.0–1.0 |
+| `e2e.tests.flake_rate` | Gauge | 0.0–1.0 |
 | `e2e.a11y.violations` | Counter | per rule |
 | `e2e.screenshots.count` | Counter | per run |
 | `e2e.browser.launch_failures` | Counter | per run |
@@ -840,16 +840,16 @@ For parallel execution: use CI sharding to distribute test files across multiple
 
 | Requirement | Status | Evidence |
 |-------------|--------|----------|
-| YAML frontmatter complete | âœ… | name, description, metadata with category, version, triggers, coordinates_with, success_metrics |
-| SKILL.md < 200 lines | âœ… | Entry point under 200 lines |
-| Prerequisites documented | âœ… | Playwright installation command |
-| When to Use section | âœ… | Situation-based routing table |
-| Core content matches skill type | âœ… | Automation type: session-based, browser side effects |
-| Troubleshooting section | âœ… | Anti-patterns table |
-| Related section | âœ… | Cross-links to test-architect, cicd-pipeline, /validate |
-| Content Map for multi-file | âœ… | Links to aria-snapshot.md, scripts, engineering-spec.md |
-| Contract versioning | âœ… | contract_version, backward_compatibility, breaking_changes |
-| Compliance matrix structured | âœ… | This table with âœ…/âŒ + evidence |
+| YAML frontmatter complete | ✅ | name, description, metadata with category, version, triggers, coordinates_with, success_metrics |
+| SKILL.md < 200 lines | ✅ | Entry point under 200 lines |
+| Prerequisites documented | ✅ | Playwright installation command |
+| When to Use section | ✅ | Situation-based routing table |
+| Core content matches skill type | ✅ | Automation type: session-based, browser side effects |
+| Troubleshooting section | ✅ | Anti-patterns table |
+| Related section | ✅ | Cross-links to test-architect, cicd-pipeline, /validate |
+| Content Map for multi-file | ✅ | Links to aria-snapshot.md, scripts, engineering-spec.md |
+| Contract versioning | ✅ | contract_version, backward_compatibility, breaking_changes |
+| Compliance matrix structured | ✅ | This table with ✅/❌ + evidence |
 
 ---
 
@@ -857,26 +857,26 @@ For parallel execution: use CI sharding to distribute test files across multiple
 
 | Category | Check | Status |
 |----------|-------|--------|
-| **Functionality** | Playwright test runner script | âœ… |
-| **Functionality** | Screenshot capture (on-failure + on-demand) | âœ… |
-| **Functionality** | Accessibility audit (axe-core via --a11y) | âœ… |
-| **Functionality** | ARIA snapshot testing reference | âœ… |
-| **Functionality** | Testing pyramid structure (e2e/integration/component/fixtures) | âœ… |
-| **Contracts** | Input/output/error schemas in pseudo-schema format | âœ… |
-| **Contracts** | Contract versioning with semver | âœ… |
-| **Contracts** | Session state transitions with arrow notation | âœ… |
-| **Failure** | Error taxonomy with 7 categorized codes | âœ… |
-| **Failure** | Browser process always terminated (no orphans) | âœ… |
-| **Failure** | Retry policy with defaults and maximums | âœ… |
-| **State** | Session-based; browser state per run | âœ… |
-| **State** | Resource lifecycle with creation/destruction | âœ… |
-| **Security** | Sandboxed browser; no credential storage | âœ… |
-| **Observability** | Structured log schema with 5 mandatory fields + 7 log points | âœ… |
-| **Observability** | 6 metrics defined | âœ… |
-| **Performance** | P50/P99/hard limits for all operations | âœ… |
-| **Scalability** | CI sharding for parallel execution | âœ… |
-| **Compliance** | All skill-design-guide.md sections mapped with evidence | âœ… |
+| **Functionality** | Playwright test runner script | ✅ |
+| **Functionality** | Screenshot capture (on-failure + on-demand) | ✅ |
+| **Functionality** | Accessibility audit (axe-core via --a11y) | ✅ |
+| **Functionality** | ARIA snapshot testing reference | ✅ |
+| **Functionality** | Testing pyramid structure (e2e/integration/component/fixtures) | ✅ |
+| **Contracts** | Input/output/error schemas in pseudo-schema format | ✅ |
+| **Contracts** | Contract versioning with semver | ✅ |
+| **Contracts** | Session state transitions with arrow notation | ✅ |
+| **Failure** | Error taxonomy with 7 categorized codes | ✅ |
+| **Failure** | Browser process always terminated (no orphans) | ✅ |
+| **Failure** | Retry policy with defaults and maximums | ✅ |
+| **State** | Session-based; browser state per run | ✅ |
+| **State** | Resource lifecycle with creation/destruction | ✅ |
+| **Security** | Sandboxed browser; no credential storage | ✅ |
+| **Observability** | Structured log schema with 5 mandatory fields + 7 log points | ✅ |
+| **Observability** | 6 metrics defined | ✅ |
+| **Performance** | P50/P99/hard limits for all operations | ✅ |
+| **Scalability** | CI sharding for parallel execution | ✅ |
+| **Compliance** | All skill-design-guide.md sections mapped with evidence | ✅ |
 
 ---
 
-âš¡ PikaKit v3.9.105
+⚡ PikaKit v3.9.105

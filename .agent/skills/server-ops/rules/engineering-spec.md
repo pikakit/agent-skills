@@ -16,11 +16,11 @@ tags: engineering, spec
 
 ## 1. Overview
 
-Server Ops provides structured decision frameworks for production server management: process management tool selection (4 tools), monitoring strategy (4 categories, 3 alert levels), log management (3 types, 4 principles), scaling decisions (4 symptoms â†’ solutions, 3 strategies), health checks (4 checks, 2 levels), security principles (5 areas), and troubleshooting priority (5-step). The skill operates as an **Expert (decision tree)** â€” it produces server management recommendations, tool selections, and scaling strategies. It does not execute commands, configure servers, or install tools.
+Server Ops provides structured decision frameworks for production server management: process management tool selection (4 tools), monitoring strategy (4 categories, 3 alert levels), log management (3 types, 4 principles), scaling decisions (4 symptoms → solutions, 3 strategies), health checks (4 checks, 2 levels), security principles (5 areas), and troubleshooting priority (5-step). The skill operates as an **Expert (decision tree)** — it produces server management recommendations, tool selections, and scaling strategies. It does not execute commands, configure servers, or install tools.
 
 **Contract Version:** 2.0.0
 **Backward Compatibility:** breaking (first hardened version)
-**Breaking Changes:** None â€” new spec for first hardening
+**Breaking Changes:** None — new spec for first hardening
 
 ---
 
@@ -44,9 +44,9 @@ Server Ops eliminates these with deterministic tool selection (4 tools by scenar
 | ID | Goal | Measurable Constraint |
 |----|------|-----------------------|
 | G1 | Process management | 4 tools by scenario (PM2, systemd, Docker, K8s) |
-| G2 | Monitoring | 4 categories Ã— 3 alert levels Ã— 4 tool options |
+| G2 | Monitoring | 4 categories × 3 alert levels × 4 tool options |
 | G3 | Log management | 3 types + 4 principles |
-| G4 | Scaling decisions | 4 symptoms â†’ 4 solutions + 3 strategies |
+| G4 | Scaling decisions | 4 symptoms → 4 solutions + 3 strategies |
 | G5 | Health checks | 4 checks + 2 levels (simple, deep) |
 | G6 | Security | 5 areas with defined principles |
 | G7 | Troubleshooting | 5-step priority order |
@@ -73,7 +73,7 @@ Server Ops eliminates these with deterministic tool selection (4 tools by scenar
 | Process manager selection | Tool routing (4 scenarios) | Tool installation |
 | Monitoring strategy | Category + alert design | Dashboard configuration |
 | Log management | Principles + type routing | Log aggregation setup |
-| Scaling decisions | Symptom â†’ solution mapping | Infrastructure provisioning |
+| Scaling decisions | Symptom → solution mapping | Infrastructure provisioning |
 | Health checks | Check design + level routing | Endpoint implementation |
 | Security principles | 5 area guidelines | Firewall configuration |
 
@@ -163,9 +163,9 @@ Recoverable: boolean
 
 #### Deterministic Guarantees
 
-- Process manager selection is deterministic: Node.js â†’ PM2; generic â†’ systemd; containerized â†’ Docker; orchestrated â†’ Kubernetes.
-- Scaling strategy is deterministic: high-cpu â†’ horizontal; high-memory â†’ vertical or fix leak; slow-response â†’ profile first; traffic-spike â†’ auto-scaling.
-- Alert levels are fixed: Critical â†’ immediate; Warning â†’ investigate; Info â†’ review daily.
+- Process manager selection is deterministic: Node.js → PM2; generic → systemd; containerized → Docker; orchestrated → Kubernetes.
+- Scaling strategy is deterministic: high-cpu → horizontal; high-memory → vertical or fix leak; slow-response → profile first; traffic-spike → auto-scaling.
+- Alert levels are fixed: Critical → immediate; Warning → investigate; Info → review daily.
 - Troubleshooting priority is fixed: 5 steps in defined order.
 - Same context = same recommendations.
 
@@ -257,13 +257,13 @@ All phases synchronous. No async pipeline.
 
 | Principle | Enforcement |
 |-----------|-------------|
-| Process manager routing | Node.js â†’ PM2; Any app â†’ systemd; Containers â†’ Docker/Podman; Orchestration â†’ Kubernetes/Swarm |
+| Process manager routing | Node.js → PM2; Any app → systemd; Containers → Docker/Podman; Orchestration → Kubernetes/Swarm |
 | Process goals | 4 goals: restart-on-crash, zero-downtime reload, clustering, persistence |
 | Monitoring categories | 4: Availability (uptime, health), Performance (response time, throughput), Errors (rate, types), Resources (CPU, memory, disk) |
-| Alert levels | Critical â†’ immediate; Warning â†’ investigate soon; Info â†’ review daily |
+| Alert levels | Critical → immediate; Warning → investigate soon; Info → review daily |
 | Log types | 3: Application (debug, audit), Access (traffic), Error (issues) |
 | Log principles | 4: Rotate to prevent disk fill; Structured (JSON); Appropriate levels; No sensitive data |
-| Scaling routing | High CPU â†’ horizontal; High memory â†’ vertical or fix leak; Slow response â†’ profile first; Traffic spikes â†’ auto-scaling |
+| Scaling routing | High CPU → horizontal; High memory → vertical or fix leak; Slow response → profile first; Traffic spikes → auto-scaling |
 | Scaling strategies | 3: Vertical (quick fix), Horizontal (sustainable), Auto (variable traffic) |
 | Health checks | Simple: return 200; Deep: check all dependencies; Route by load balancer needs |
 | Security areas | 5: SSH keys only, minimal ports, patches, env vars for secrets, audit logging |
@@ -391,7 +391,7 @@ All resources scoped to invocation. No persistent handles.
 | Tool selection | < 2 ms | < 5 ms | 20 ms |
 | Scaling strategy | < 2 ms | < 5 ms | 20 ms |
 | Full guide | < 15 ms | < 40 ms | 50 ms |
-| Output size | â‰¤ 3,000 chars | â‰¤ 6,000 chars | 10,000 chars |
+| Output size | ≤ 3,000 chars | ≤ 6,000 chars | 10,000 chars |
 
 ---
 
@@ -410,16 +410,16 @@ All resources scoped to invocation. No persistent handles.
 
 | Requirement | Status | Evidence |
 |-------------|--------|----------|
-| YAML frontmatter complete | âœ… | name, description, metadata with category, version, triggers, coordinates_with, success_metrics |
-| SKILL.md < 200 lines | âœ… | Entry point under 200 lines |
-| Prerequisites documented | âœ… | No external dependencies for guidance |
-| When to Use section | âœ… | Situation-based routing table |
-| Core content matches skill type | âœ… | Expert type: process manager routing, scaling decisions, monitoring strategy |
-| Troubleshooting section | âœ… | 5-step troubleshooting + anti-patterns |
-| Related section | âœ… | Cross-links to cicd-pipeline, observability, security-scanner |
-| Content Map for multi-file | âœ… | Links to rules/ + engineering-spec.md |
-| Contract versioning | âœ… | contract_version, backward_compatibility, breaking_changes |
-| Compliance matrix structured | âœ… | This table with âœ…/âŒ + evidence |
+| YAML frontmatter complete | ✅ | name, description, metadata with category, version, triggers, coordinates_with, success_metrics |
+| SKILL.md < 200 lines | ✅ | Entry point under 200 lines |
+| Prerequisites documented | ✅ | No external dependencies for guidance |
+| When to Use section | ✅ | Situation-based routing table |
+| Core content matches skill type | ✅ | Expert type: process manager routing, scaling decisions, monitoring strategy |
+| Troubleshooting section | ✅ | 5-step troubleshooting + anti-patterns |
+| Related section | ✅ | Cross-links to cicd-pipeline, observability, security-scanner |
+| Content Map for multi-file | ✅ | Links to rules/ + engineering-spec.md |
+| Contract versioning | ✅ | contract_version, backward_compatibility, breaking_changes |
+| Compliance matrix structured | ✅ | This table with ✅/❌ + evidence |
 
 ---
 
@@ -427,24 +427,24 @@ All resources scoped to invocation. No persistent handles.
 
 | Category | Check | Status |
 |----------|-------|--------|
-| **Functionality** | 4 process manager tools by scenario | âœ… |
-| **Functionality** | 4 monitoring categories Ã— 3 alert levels | âœ… |
-| **Functionality** | 3 log types + 4 principles | âœ… |
-| **Functionality** | 4 scaling symptoms + 3 strategies | âœ… |
-| **Functionality** | 4 health checks + 2 levels | âœ… |
-| **Functionality** | 5 security areas | âœ… |
-| **Functionality** | 5-step troubleshooting | âœ… |
-| **Contracts** | Input/output/error schemas in pseudo-schema format | âœ… |
-| **Contracts** | Contract versioning with semver | âœ… |
-| **Failure** | Error taxonomy with 4 categorized codes | âœ… |
-| **Failure** | Zero internal retries | âœ… |
-| **Determinism** | Fixed tool routing, fixed scaling tree, fixed alert levels | âœ… |
-| **Security** | No credentials, no server access, no network | âœ… |
-| **Observability** | Structured log schema with 5 mandatory fields | âœ… |
-| **Observability** | 4 metrics defined | âœ… |
-| **Performance** | P50/P99 targets for all operations | âœ… |
-| **Compliance** | All skill-design-guide.md sections mapped with evidence | âœ… |
+| **Functionality** | 4 process manager tools by scenario | ✅ |
+| **Functionality** | 4 monitoring categories × 3 alert levels | ✅ |
+| **Functionality** | 3 log types + 4 principles | ✅ |
+| **Functionality** | 4 scaling symptoms + 3 strategies | ✅ |
+| **Functionality** | 4 health checks + 2 levels | ✅ |
+| **Functionality** | 5 security areas | ✅ |
+| **Functionality** | 5-step troubleshooting | ✅ |
+| **Contracts** | Input/output/error schemas in pseudo-schema format | ✅ |
+| **Contracts** | Contract versioning with semver | ✅ |
+| **Failure** | Error taxonomy with 4 categorized codes | ✅ |
+| **Failure** | Zero internal retries | ✅ |
+| **Determinism** | Fixed tool routing, fixed scaling tree, fixed alert levels | ✅ |
+| **Security** | No credentials, no server access, no network | ✅ |
+| **Observability** | Structured log schema with 5 mandatory fields | ✅ |
+| **Observability** | 4 metrics defined | ✅ |
+| **Performance** | P50/P99 targets for all operations | ✅ |
+| **Compliance** | All skill-design-guide.md sections mapped with evidence | ✅ |
 
 ---
 
-âš¡ PikaKit v3.9.105
+⚡ PikaKit v3.9.105

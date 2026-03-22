@@ -7,10 +7,10 @@ description: >-
   prompt, AI prompt, image generation, Midjourney, DALL-E, Stable Diffusion, Flux.
 metadata:
   author: pikakit
-  version: "3.9.107"
+  version: "3.9.108"
 ---
 
-# AI Artist â€” Prompt Engineering
+# AI Artist — Prompt Engineering
 
 > Deterministic prompt construction for LLMs and image generation models. Same inputs = same output.
 
@@ -18,7 +18,7 @@ metadata:
 
 ## Prerequisites
 
-**Required:** None â€” AI Artist is a knowledge-based skill with no external dependencies.
+**Required:** None — AI Artist is a knowledge-based skill with no external dependencies.
 
 **Optional:**
 - Target model API access (Claude, GPT, Gemini, Midjourney, DALL-E, SD, Flux)
@@ -31,7 +31,7 @@ metadata:
 
 | Situation | Reference |
 |-----------|-----------|
-| Structuring LLM prompts | This file â€” LLM Prompt Pattern |
+| Structuring LLM prompts | This file — LLM Prompt Pattern |
 | Generating image prompts | `rules/image-prompts.md` |
 | Marketing/copywriting prompts | `rules/domain-marketing.md` |
 | Code generation prompts | `rules/domain-code.md` |
@@ -47,14 +47,14 @@ metadata:
 | Prompt template construction | API submission to models |
 | Domain-specific prompt patterns | Response quality evaluation |
 | Model parameter syntax | Content safety filtering |
-| Success criteria extraction | Token counting (â†’ context-engineering) |
-| Prompt versioning structure | Design systems (â†’ studio) |
+| Success criteria extraction | Token counting (→ context-engineering) |
+| Prompt versioning structure | Design systems (→ studio) |
 
 **Pure function:** This skill produces text output. Zero network calls, zero file mutations, zero side effects.
 
 ---
 
-## Execution Model â€” 3-Phase Lifecycle
+## Execution Model — 3-Phase Lifecycle
 
 | Phase | Action | Output |
 |-------|--------|--------|
@@ -87,7 +87,7 @@ Bad: [Example to avoid]
 [Subject] + [Style] + [Composition] + [Quality] + [Model Parameters]
 ```
 
-**Parameter ordering is fixed:** subject â†’ style â†’ composition â†’ quality â†’ model_params.
+**Parameter ordering is fixed:** subject → style → composition → quality → model_params.
 
 **Example:**
 ```
@@ -110,12 +110,12 @@ volumetric fog, 8k render, artstation quality --ar 16:9 --style raw
 | Model | Domain | Parameter Reference |
 |-------|--------|---------------------|
 | Claude, GPT, Gemini | Text, Code, Marketing | Core LLM pattern (above) |
-| Midjourney | Image | `rules/model-syntax.md` â€” `--ar`, `--style`, `--chaos` |
-| DALL-E | Image | `rules/model-syntax.md` â€” size, quality, style |
-| Stable Diffusion | Image | `rules/model-syntax.md` â€” steps, cfg, sampler |
-| Flux | Image | `rules/model-syntax.md` â€” guidance, steps |
+| Midjourney | Image | `rules/model-syntax.md` — `--ar`, `--style`, `--chaos` |
+| DALL-E | Image | `rules/model-syntax.md` — size, quality, style |
+| Stable Diffusion | Image | `rules/model-syntax.md` — steps, cfg, sampler |
+| Flux | Image | `rules/model-syntax.md` — guidance, steps |
 
-Unknown model â†’ generic format (no model-specific parameters injected).
+Unknown model → generic format (no model-specific parameters injected).
 
 ---
 
@@ -137,12 +137,12 @@ Unknown model â†’ generic format (no model-specific parameters injected).
 
 ## Anti-Patterns
 
-| âŒ Don't | âœ… Do |
+| ❌ Don't | ✅ Do |
 |---------|-------|
 | "Make it better" | "Increase contrast by 20%" |
 | "Professional but casual" | Choose one tone, specify explicitly |
 | Skip context/constraints | Set role, audience, constraints upfront |
-| Over-prompt with 10+ directives | Focus on 3â€“5 core requirements |
+| Over-prompt with 10+ directives | Focus on 3–5 core requirements |
 | Assume model compatibility | Check `rules/model-syntax.md` for target model |
 
 ---
@@ -178,7 +178,7 @@ Unknown model â†’ generic format (no model-specific parameters injected).
 
 ### 2. Engineering Spec (LOW)
 
-- `engineering-spec` - AI Artist â€” Engineering Specification
+- `engineering-spec` - AI Artist — Engineering Specification
 
 ### 3. Image (LOW)
 
@@ -204,7 +204,7 @@ Each rule file contains:
 - Additional context and references
 
 
-## ðŸ“‘ Content Map
+## 📑 Content Map
 
 | File | Description | When to Read |
 |------|-------------|--------------|
@@ -216,7 +216,7 @@ Each rule file contains:
 
 ---
 
-## ðŸ”— Related
+## 🔗 Related
 
 | Item | Type | Purpose |
 |------|------|---------|
@@ -226,4 +226,4 @@ Each rule file contains:
 
 ---
 
-âš¡ PikaKit v3.9.107
+⚡ PikaKit v3.9.108

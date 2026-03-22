@@ -6,10 +6,10 @@ description: >-
   Express, backend, server, API.
 metadata:
   author: pikakit
-  version: "3.9.107"
+  version: "3.9.108"
 ---
 
-# Node.js Pro â€” Backend Decision Framework
+# Node.js Pro — Backend Decision Framework
 
 > 5 frameworks. Async-first. Validate at boundary. No sync in production.
 
@@ -32,10 +32,10 @@ metadata:
 
 | Owned by This Skill | NOT Owned |
 |---------------------|-----------|
-| Framework selection (5 options) | API design (â†’ api-architect) |
-| Architecture routing | Database/ORM (â†’ data-modeler) |
-| Async pattern guidance | TypeScript patterns (â†’ typescript-expert) |
-| Error handling strategy | Performance profiling (â†’ perf-optimizer) |
+| Framework selection (5 options) | API design (→ api-architect) |
+| Architecture routing | Database/ORM (→ data-modeler) |
+| Async pattern guidance | TypeScript patterns (→ typescript-expert) |
+| Error handling strategy | Performance profiling (→ perf-optimizer) |
 
 **Expert decision skill:** Produces framework decisions and pattern guidance. Does not write code.
 
@@ -45,11 +45,11 @@ metadata:
 
 ```
 What are you building?
-â”œâ”€â”€ Edge / Serverless â†’ Hono (fastest cold starts)
-â”œâ”€â”€ High-performance API â†’ Fastify (2-3x faster than Express)
-â”œâ”€â”€ Enterprise / Large team â†’ NestJS (structured, DI)
-â”œâ”€â”€ Legacy / Max ecosystem â†’ Express
-â””â”€â”€ Full-stack â†’ Next.js API Routes or tRPC
+├── Edge / Serverless → Hono (fastest cold starts)
+├── High-performance API → Fastify (2-3x faster than Express)
+├── Enterprise / Large team → NestJS (structured, DI)
+├── Legacy / Max ecosystem → Express
+└── Full-stack → Next.js API Routes or tRPC
 ```
 
 ---
@@ -72,8 +72,8 @@ What are you building?
 | Async-first | No `*Sync()` methods in production |
 | Validate at boundary | All inputs validated before business logic |
 | Secrets via env vars | Never hardcode credentials |
-| Layered separation | Controllers â†’ Services â†’ Repositories |
-| Event loop protection | CPU work â†’ worker threads |
+| Layered separation | Controllers → Services → Repositories |
+| Event loop protection | CPU work → worker threads |
 | No `eval()` / `Function()` | Never in production |
 
 ---
@@ -92,7 +92,7 @@ What are you building?
 
 ## Anti-Patterns
 
-| âŒ Don't | âœ… Do |
+| ❌ Don't | ✅ Do |
 |---------|-------|
 | Default to Express for new projects | Choose framework by deployment target |
 | Use sync methods in production | Always use async/await |
@@ -139,7 +139,7 @@ What are you building?
 
 ### 3. Engineering Spec (LOW)
 
-- `engineering-spec` - Node.js Pro â€” Engineering Specification
+- `engineering-spec` - Node.js Pro — Engineering Specification
 
 ### 4. Error (LOW)
 
@@ -181,7 +181,7 @@ Each rule file contains:
 For the complete guide with all rules expanded: `AGENTS.md`
 
 
-## ðŸ“‘ Content Map
+## 📑 Content Map
 
 | File | Description | When to Read |
 |------|-------------|--------------|
@@ -198,7 +198,7 @@ For the complete guide with all rules expanded: `AGENTS.md`
 
 ---
 
-## ðŸ”— Related
+## 🔗 Related
 
 | Item | Type | Purpose |
 |------|------|---------|
@@ -208,4 +208,4 @@ For the complete guide with all rules expanded: `AGENTS.md`
 
 ---
 
-âš¡ PikaKit v3.9.107
+⚡ PikaKit v3.9.108

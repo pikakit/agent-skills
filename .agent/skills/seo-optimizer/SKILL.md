@@ -5,10 +5,10 @@ description: >-
   SEO, meta tags, sitemap, search ranking, OpenGraph.
 metadata:
   author: pikakit
-  version: "3.9.107"
+  version: "3.9.108"
 ---
 
-# SEO Optimizer â€” Search Engine Visibility
+# SEO Optimizer — Search Engine Visibility
 
 > E-E-A-T for trust. CWV for speed. Schema for rich snippets. Content rules for ranking.
 
@@ -29,16 +29,16 @@ metadata:
 
 | Owned by This Skill | NOT Owned |
 |---------------------|-----------|
-| E-E-A-T framework (4 principles) | AI search (â†’ geo-spatial) |
-| Content SEO (char limits) | Performance profiling (â†’ perf-optimizer) |
-| Schema routing (5 types) | Web fundamentals (â†’ web-core) |
+| E-E-A-T framework (4 principles) | AI search (→ geo-spatial) |
+| Content SEO (char limits) | Performance profiling (→ perf-optimizer) |
+| Schema routing (5 types) | Web fundamentals (→ web-core) |
 | Technical SEO checklist | HTML implementation |
 
 **Expert decision skill:** Produces SEO recommendations. Does not modify pages.
 
 ---
 
-## E-E-A-T Framework (4 Principles â€” Fixed)
+## E-E-A-T Framework (4 Principles — Fixed)
 
 | Principle | Signals |
 |-----------|---------|
@@ -82,7 +82,7 @@ metadata:
 
 ---
 
-## Schema Routing (5 Types â€” Deterministic)
+## Schema Routing (5 Types — Deterministic)
 
 | Page Type | Schema Type |
 |-----------|------------|
@@ -120,7 +120,7 @@ metadata:
 
 ## Anti-Patterns
 
-| âŒ Don't | âœ… Do |
+| ❌ Don't | ✅ Do |
 |---------|-------|
 | Keyword stuff title/alt text | Use natural language with keyword |
 | Skip meta descriptions | Write compelling 150-160 char descriptions |
@@ -129,7 +129,7 @@ metadata:
 
 ---
 
-## ðŸ“‘ Content Map
+## 📑 Content Map
 
 | File | Description | When to Read |
 |------|-------------|--------------|
@@ -138,7 +138,7 @@ metadata:
 
 ---
 
-## ðŸ”— Related
+## 🔗 Related
 
 | Item | Type | Purpose |
 |------|------|---------|
@@ -147,4 +147,4 @@ metadata:
 
 ---
 
-âš¡ PikaKit v3.9.107
+⚡ PikaKit v3.9.108

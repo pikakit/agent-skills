@@ -5,10 +5,10 @@ description: >-
   compress, resize, convert, background removal.
 metadata:
   author: pikakit
-  version: "3.9.107"
+  version: "3.9.108"
 ---
 
-# Media Processing â€” FFmpeg + ImageMagick + RMBG
+# Media Processing — FFmpeg + ImageMagick + RMBG
 
 > 3 tools. Fixed CRF. Fixed JPEG quality. Destructive always flagged.
 
@@ -44,8 +44,8 @@ npm install -g rmbg-cli
 
 | Owned by This Skill | NOT Owned |
 |---------------------|-----------|
-| Tool selection (3 tools) | Performance profiling (â†’ perf-optimizer) |
-| Command generation | Design assets (â†’ studio) |
+| Tool selection (3 tools) | Performance profiling (→ perf-optimizer) |
+| Command generation | Design assets (→ studio) |
 | Quality parameter guidance | Tool installation |
 | Destructive warnings | Command execution |
 
@@ -97,13 +97,13 @@ magick input.jpg -resize 800x600 output.jpg
 # Compress JPEG (quality 85, strip EXIF)
 magick input.jpg -quality 85 -strip output.jpg
 
-# âš ï¸ Batch resize (DESTRUCTIVE â€” modifies in-place)
+# ⚠️ Batch resize (DESTRUCTIVE — modifies in-place)
 mogrify -resize 800x -quality 85 *.jpg
 ```
 
 **Default JPEG quality:** 85. **Always include:** `-strip` for EXIF removal.
 
-**âš ï¸ mogrify:** Always backup first. Test on single file before batch.
+**⚠️ mogrify:** Always backup first. Test on single file before batch.
 
 ---
 
@@ -140,7 +140,7 @@ rmbg input.jpg -m briaai -o output.png   # Highest quality
 
 ## Anti-Patterns
 
-| âŒ Don't | âœ… Do |
+| ❌ Don't | ✅ Do |
 |---------|-------|
 | Use mogrify without backup | Backup originals first |
 | Skip `-movflags +faststart` for MP4 | Always include for web |
@@ -150,7 +150,7 @@ rmbg input.jpg -m briaai -o output.png   # Highest quality
 
 ---
 
-## ðŸ“‘ Content Map
+## 📑 Content Map
 
 | File | Description | When to Read |
 |------|-------------|--------------|
@@ -160,7 +160,7 @@ rmbg input.jpg -m briaai -o output.png   # Highest quality
 
 ---
 
-## ðŸ”— Related
+## 🔗 Related
 
 | Item | Type | Purpose |
 |------|------|---------|
@@ -169,4 +169,4 @@ rmbg input.jpg -m briaai -o output.png   # Highest quality
 
 ---
 
-âš¡ PikaKit v3.9.107
+⚡ PikaKit v3.9.108

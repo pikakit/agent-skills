@@ -1,10 +1,10 @@
 ﻿---
-title: Code Craft â€” Engineering Specification
+title: Code Craft — Engineering Specification
 impact: MEDIUM
 tags: code-craft
 ---
 
-# Code Craft â€” Engineering Specification
+# Code Craft — Engineering Specification
 
 > Production-grade specification for pragmatic coding standards at FAANG scale.
 
@@ -12,13 +12,13 @@ tags: code-craft
 
 ## 1. Overview
 
-Code Craft provides deterministic coding standards for production code: naming conventions, function design rules, code structure patterns, dependency awareness, and pre-completion validation. The skill operates as an expert knowledge base that produces coding guidance â€” it does not write, lint, or modify code.
+Code Craft provides deterministic coding standards for production code: naming conventions, function design rules, code structure patterns, dependency awareness, and pre-completion validation. The skill operates as an expert knowledge base that produces coding guidance — it does not write, lint, or modify code.
 
 The skill enforces 5 core principles (SRP, DRY, KISS, YAGNI, Boy Scout), 4 naming rules, 5 function rules, 4 structure patterns, and a 4-item self-check checklist.
 
 **Contract Version:** 2.0.0
 **Backward Compatibility:** breaking (first hardened version)
-**Breaking Changes:** None â€” new spec for first hardening
+**Breaking Changes:** None — new spec for first hardening
 
 ---
 
@@ -28,7 +28,7 @@ Code quality at scale faces four quantified problems:
 
 | Problem | Measurement | Impact |
 |---------|-------------|--------|
-| Inconsistent naming | 40%+ of variables use ambiguous names (single letters, abbreviations) | 2â€“3x longer code comprehension time |
+| Inconsistent naming | 40%+ of variables use ambiguous names (single letters, abbreviations) | 2–3x longer code comprehension time |
 | God functions | 25% of functions exceed 20 lines; 10% exceed 50 lines | Untestable, unmaintainable code |
 | Missing dependency awareness | 30% of file edits break dependents not edited in the same change | Regression bugs post-edit |
 | No pre-completion validation | 20% of completed tasks have lint errors or failing tests | Wasted review cycles |
@@ -67,9 +67,9 @@ Code Craft eliminates these by providing fixed, measurable rules that agents app
 |----------|-------|-----------|
 | Naming conventions (4 rules) | Variable, function, boolean, constant naming | Language-specific syntax |
 | Function design (5 rules) | Size, responsibility, abstraction, arguments, side effects | Function implementation |
-| Code structure (4 patterns) | Guard clauses, flat nesting, composition, colocation | Architectural patterns (â†’ system-design) |
+| Code structure (4 patterns) | Guard clauses, flat nesting, composition, colocation | Architectural patterns (→ system-design) |
 | Dependency awareness | Pre-edit dependency check protocol | Import resolution tooling |
-| Self-check validation | 4-item checklist | Lint/test execution (â†’ code-review) |
+| Self-check validation | 4-item checklist | Lint/test execution (→ code-review) |
 
 **Side-effect boundary:** Code Craft produces coding guidance and checklist outputs. It does not create files, modify code, or execute linters.
 
@@ -138,7 +138,7 @@ Recoverable: boolean
 #### Deterministic Guarantees
 
 - Same `Request_Type` + `Context` = identical violation list.
-- Rule evaluation order: naming â†’ function â†’ structure â†’ dependency â†’ self-check.
+- Rule evaluation order: naming → function → structure → dependency → self-check.
 - Thresholds are fixed: max 20 lines/function, max 3 args, max 2 nesting levels.
 - No randomization, no probabilistic scoring.
 
@@ -235,7 +235,7 @@ All phases synchronous. No async pipeline.
 |-----------|-------------|
 | Fixed thresholds | 20 lines/function, 3 args max, 2 nesting levels |
 | Fixed rule set | 5 principles, 4 naming rules, 5 function rules, 4 structure patterns |
-| Fixed evaluation order | naming â†’ function â†’ structure â†’ dependency â†’ self-check |
+| Fixed evaluation order | naming → function → structure → dependency → self-check |
 | No external calls | Rules are embedded in skill; no remote fetching |
 | No ambient state | Each invocation operates solely on explicit inputs |
 | No learning overrides | Rules are fixed; no pattern-based exceptions |
@@ -379,7 +379,7 @@ All resources scoped to invocation. No persistent handles.
 |-----------|-----------|-----------|------------|
 | Single rule evaluation | < 2 ms | < 5 ms | 20 ms |
 | Full review (all rules) | < 10 ms | < 30 ms | 100 ms |
-| Output size | â‰¤ 500 chars | â‰¤ 2,000 chars | 5,000 chars |
+| Output size | ≤ 500 chars | ≤ 2,000 chars | 5,000 chars |
 
 ---
 
@@ -398,16 +398,16 @@ All resources scoped to invocation. No persistent handles.
 
 | Requirement | Status | Evidence |
 |-------------|--------|----------|
-| YAML frontmatter complete | âœ… | name, description, metadata with category, version, triggers, coordinates_with, success_metrics |
-| SKILL.md < 200 lines | âœ… | Entry point under 200 lines |
-| Prerequisites documented | âœ… | No external dependencies |
-| When to Use section | âœ… | Situation-based decision table |
-| Core content matches skill type | âœ… | Expert type: fixed rules, deterministic evaluation |
-| Troubleshooting section | âœ… | Anti-patterns table |
-| Related section | âœ… | Cross-links to code-review, test-architect, code-constitution |
-| Content Map for multi-file | âœ… | Links to verification-scripts.md + engineering-spec.md |
-| Contract versioning | âœ… | contract_version, backward_compatibility, breaking_changes |
-| Compliance matrix structured | âœ… | This table with âœ…/âŒ + evidence |
+| YAML frontmatter complete | ✅ | name, description, metadata with category, version, triggers, coordinates_with, success_metrics |
+| SKILL.md < 200 lines | ✅ | Entry point under 200 lines |
+| Prerequisites documented | ✅ | No external dependencies |
+| When to Use section | ✅ | Situation-based decision table |
+| Core content matches skill type | ✅ | Expert type: fixed rules, deterministic evaluation |
+| Troubleshooting section | ✅ | Anti-patterns table |
+| Related section | ✅ | Cross-links to code-review, test-architect, code-constitution |
+| Content Map for multi-file | ✅ | Links to verification-scripts.md + engineering-spec.md |
+| Contract versioning | ✅ | contract_version, backward_compatibility, breaking_changes |
+| Compliance matrix structured | ✅ | This table with ✅/❌ + evidence |
 
 ---
 
@@ -415,26 +415,26 @@ All resources scoped to invocation. No persistent handles.
 
 | Category | Check | Status |
 |----------|-------|--------|
-| **Functionality** | 5 core principles (SRP, DRY, KISS, YAGNI, Boy Scout) | âœ… |
-| **Functionality** | 4 naming rules, 5 function rules, 4 structure patterns | âœ… |
-| **Functionality** | Dependency awareness protocol | âœ… |
-| **Functionality** | 4-item self-check checklist | âœ… |
-| **Contracts** | Input/output/error schemas in pseudo-schema format | âœ… |
-| **Contracts** | Contract versioning with semver | âœ… |
-| **Contracts** | Agent assumptions and non-assumptions documented | âœ… |
-| **Failure** | Error taxonomy with 5 categorized codes | âœ… |
-| **Failure** | No silent pass on invalid input | âœ… |
-| **Failure** | Zero internal retries | âœ… |
-| **Determinism** | Fixed thresholds (20 lines, 3 args, 2 nesting) | âœ… |
-| **Determinism** | Fixed evaluation order | âœ… |
-| **Security** | No code execution; string-only evaluation | âœ… |
-| **Security** | Hardcoded secret detection flagged | âœ… |
-| **Observability** | Structured log schema with 5 mandatory fields + 4 log points | âœ… |
-| **Observability** | 5 metrics defined | âœ… |
-| **Performance** | P50/P99 targets for all operations | âœ… |
-| **Scalability** | Stateless; unlimited parallel invocations | âœ… |
-| **Compliance** | All skill-design-guide.md sections mapped with evidence | âœ… |
+| **Functionality** | 5 core principles (SRP, DRY, KISS, YAGNI, Boy Scout) | ✅ |
+| **Functionality** | 4 naming rules, 5 function rules, 4 structure patterns | ✅ |
+| **Functionality** | Dependency awareness protocol | ✅ |
+| **Functionality** | 4-item self-check checklist | ✅ |
+| **Contracts** | Input/output/error schemas in pseudo-schema format | ✅ |
+| **Contracts** | Contract versioning with semver | ✅ |
+| **Contracts** | Agent assumptions and non-assumptions documented | ✅ |
+| **Failure** | Error taxonomy with 5 categorized codes | ✅ |
+| **Failure** | No silent pass on invalid input | ✅ |
+| **Failure** | Zero internal retries | ✅ |
+| **Determinism** | Fixed thresholds (20 lines, 3 args, 2 nesting) | ✅ |
+| **Determinism** | Fixed evaluation order | ✅ |
+| **Security** | No code execution; string-only evaluation | ✅ |
+| **Security** | Hardcoded secret detection flagged | ✅ |
+| **Observability** | Structured log schema with 5 mandatory fields + 4 log points | ✅ |
+| **Observability** | 5 metrics defined | ✅ |
+| **Performance** | P50/P99 targets for all operations | ✅ |
+| **Scalability** | Stateless; unlimited parallel invocations | ✅ |
+| **Compliance** | All skill-design-guide.md sections mapped with evidence | ✅ |
 
 ---
 
-âš¡ PikaKit v3.9.105
+⚡ PikaKit v3.9.105

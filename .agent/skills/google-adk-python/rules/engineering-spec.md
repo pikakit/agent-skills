@@ -1,10 +1,10 @@
 ﻿---
-title: Google ADK Python â€” Engineering Specification
+title: Google ADK Python — Engineering Specification
 impact: MEDIUM
 tags: google-adk-python
 ---
 
-# Google ADK Python â€” Engineering Specification
+# Google ADK Python — Engineering Specification
 
 > Production-grade specification for building AI agents with Google's Agent Development Kit at FAANG scale.
 
@@ -12,11 +12,11 @@ tags: google-adk-python
 
 ## 1. Overview
 
-Google ADK Python provides structured decision frameworks for building, composing, and deploying AI agents using Google's Agent Development Kit: agent type selection (4 types), model selection (3 tiers), tool integration (built-in + custom), multi-agent orchestration (delegation + sub-agents), and deployment patterns. The skill operates as an expert knowledge base with 3 reference files â€” it produces agent architecture decisions and code patterns. It does not execute agents, configure cloud projects, or manage API keys.
+Google ADK Python provides structured decision frameworks for building, composing, and deploying AI agents using Google's Agent Development Kit: agent type selection (4 types), model selection (3 tiers), tool integration (built-in + custom), multi-agent orchestration (delegation + sub-agents), and deployment patterns. The skill operates as an expert knowledge base with 3 reference files — it produces agent architecture decisions and code patterns. It does not execute agents, configure cloud projects, or manage API keys.
 
 **Contract Version:** 2.0.0
 **Backward Compatibility:** breaking (first hardened version)
-**Breaking Changes:** None â€” new spec for first hardening
+**Breaking Changes:** None — new spec for first hardening
 
 ---
 
@@ -39,11 +39,11 @@ Google ADK Python eliminates these with deterministic agent type selection, cost
 
 | ID | Goal | Measurable Constraint |
 |----|------|-----------------------|
-| G1 | Agent type selection | Task type â†’ agent type (4 types, deterministic mapping) |
-| G2 | Model cost routing | Complexity â†’ model tier (3 tiers, fixed rules) |
+| G1 | Agent type selection | Task type → agent type (4 types, deterministic mapping) |
+| G2 | Model cost routing | Complexity → model tier (3 tiers, fixed rules) |
 | G3 | Modular agent design | Max 5 tools per agent; delegate for more |
 | G4 | Tool function contracts | Typed parameters, docstring, return type mandatory |
-| G5 | Multi-agent composition | Coordinator + specialist pattern with â‰¤ 5 sub-agents |
+| G5 | Multi-agent composition | Coordinator + specialist pattern with ≤ 5 sub-agents |
 | G6 | Code-first definition | All agents defined in Python; no JSON/YAML config |
 
 ---
@@ -117,7 +117,7 @@ Data: {
   } | null
   multi_agent: {
     pattern: string           # "coordinator-specialist" | "sequential-pipeline" | "parallel-fan-out"
-    max_sub_agents: number    # Always â‰¤ 5
+    max_sub_agents: number    # Always ≤ 5
     code_template: string
   } | null
   deployment: {
@@ -144,10 +144,10 @@ Recoverable: boolean
 
 #### Deterministic Guarantees
 
-- Agent type selection is deterministic: conversational â†’ LlmAgent, pipeline â†’ SequentialAgent, fan-out â†’ ParallelAgent, iterative â†’ LoopAgent.
-- Model selection is deterministic: simple â†’ gemini-3-flash, balanced â†’ gemini-3-pro-low, complex â†’ gemini-3-pro-high.
-- Tool count > 5 â†’ multi-agent with delegation.
-- Sub-agent count â‰¤ 5 per coordinator.
+- Agent type selection is deterministic: conversational → LlmAgent, pipeline → SequentialAgent, fan-out → ParallelAgent, iterative → LoopAgent.
+- Model selection is deterministic: simple → gemini-3-flash, balanced → gemini-3-pro-low, complex → gemini-3-pro-high.
+- Tool count > 5 → multi-agent with delegation.
+- Sub-agent count ≤ 5 per coordinator.
 - Custom tools always require: typed parameters, docstring, return type annotation.
 - Code patterns always use `from google.adk.agents import` (never raw API).
 
@@ -241,10 +241,10 @@ All phases synchronous. No async pipeline.
 
 | Principle | Enforcement |
 |-----------|-------------|
-| Fixed agent type mapping | conversational â†’ LlmAgent, pipeline â†’ Sequential, fan-out â†’ Parallel, iterative â†’ Loop |
-| Fixed model routing | simple â†’ flash, balanced â†’ pro-low, complex â†’ pro-high |
-| Fixed tool limit | â‰¤ 5 tools per agent; > 5 â†’ multi-agent delegation |
-| Fixed sub-agent limit | â‰¤ 5 sub-agents per coordinator |
+| Fixed agent type mapping | conversational → LlmAgent, pipeline → Sequential, fan-out → Parallel, iterative → Loop |
+| Fixed model routing | simple → flash, balanced → pro-low, complex → pro-high |
+| Fixed tool limit | ≤ 5 tools per agent; > 5 → multi-agent delegation |
+| Fixed sub-agent limit | ≤ 5 sub-agents per coordinator |
 | Mandatory tool contract | Typed params + docstring + return type |
 | Code-first | Python definitions; no JSON/YAML agent config |
 | ADK imports only | `from google.adk.agents import`; never raw REST API |
@@ -384,8 +384,8 @@ All resources scoped to invocation. No persistent handles.
 |-----------|-----------|-----------|------------|
 | Agent type selection | < 2 ms | < 5 ms | 20 ms |
 | Full guide | < 10 ms | < 30 ms | 50 ms |
-| Code template | â‰¤ 500 chars | â‰¤ 2,000 chars | 3,000 chars |
-| Output size | â‰¤ 1,000 chars | â‰¤ 3,000 chars | 5,000 chars |
+| Code template | ≤ 500 chars | ≤ 2,000 chars | 3,000 chars |
+| Output size | ≤ 1,000 chars | ≤ 3,000 chars | 5,000 chars |
 
 ---
 
@@ -395,7 +395,7 @@ All resources scoped to invocation. No persistent handles.
 |------|-----------|--------|------------|
 | ADK API breaking changes | Medium | Templates incompatible | Version-pinned import patterns |
 | Model name deprecation | Medium | Template fails | Fixed model tier mapping |
-| Over-scoped agents | Medium | Poor performance | â‰¤ 5 tools/agent rule |
+| Over-scoped agents | Medium | Poor performance | ≤ 5 tools/agent rule |
 | Missing tool annotations | High | LLM cannot call tool | Mandatory typed params + docstring |
 | Cloud auth misconfiguration | Medium | Agent fails to start | Templates use env vars only |
 
@@ -405,16 +405,16 @@ All resources scoped to invocation. No persistent handles.
 
 | Requirement | Status | Evidence |
 |-------------|--------|----------|
-| YAML frontmatter complete | âœ… | name, description, metadata with category, version, triggers, coordinates_with, success_metrics |
-| SKILL.md < 200 lines | âœ… | Entry point under 200 lines |
-| Prerequisites documented | âœ… | google-adk, API key or Cloud credentials |
-| When to Use section | âœ… | Situation-based routing table |
-| Core content matches skill type | âœ… | Expert type: decision trees, code patterns |
-| Troubleshooting section | âœ… | Anti-patterns table |
-| Related section | âœ… | Cross-links to python-pro, api-architect |
-| Content Map for multi-file | âœ… | Links to 3 reference files + engineering-spec.md |
-| Contract versioning | âœ… | contract_version, backward_compatibility, breaking_changes |
-| Compliance matrix structured | âœ… | This table with âœ…/âŒ + evidence |
+| YAML frontmatter complete | ✅ | name, description, metadata with category, version, triggers, coordinates_with, success_metrics |
+| SKILL.md < 200 lines | ✅ | Entry point under 200 lines |
+| Prerequisites documented | ✅ | google-adk, API key or Cloud credentials |
+| When to Use section | ✅ | Situation-based routing table |
+| Core content matches skill type | ✅ | Expert type: decision trees, code patterns |
+| Troubleshooting section | ✅ | Anti-patterns table |
+| Related section | ✅ | Cross-links to python-pro, api-architect |
+| Content Map for multi-file | ✅ | Links to 3 reference files + engineering-spec.md |
+| Contract versioning | ✅ | contract_version, backward_compatibility, breaking_changes |
+| Compliance matrix structured | ✅ | This table with ✅/❌ + evidence |
 
 ---
 
@@ -422,25 +422,25 @@ All resources scoped to invocation. No persistent handles.
 
 | Category | Check | Status |
 |----------|-------|--------|
-| **Functionality** | 4 agent types with deterministic selection | âœ… |
-| **Functionality** | 3 model tiers with cost-based routing | âœ… |
-| **Functionality** | Tool creation patterns (function + built-in) | âœ… |
-| **Functionality** | Multi-agent composition (â‰¤ 5 sub-agents) | âœ… |
-| **Functionality** | Deployment guidance (local/cloud-run/vertex-ai) | âœ… |
-| **Functionality** | Quick start code template | âœ… |
-| **Contracts** | Input/output/error schemas in pseudo-schema format | âœ… |
-| **Contracts** | Contract versioning with semver | âœ… |
-| **Failure** | Error taxonomy with 6 categorized codes | âœ… |
-| **Failure** | No partial code templates on error | âœ… |
-| **Failure** | Zero internal retries | âœ… |
-| **Determinism** | Fixed type mapping, fixed model routing, fixed tool limits | âœ… |
-| **Security** | No credentials in templates | âœ… |
-| **Observability** | Structured log schema with 5 mandatory fields | âœ… |
-| **Observability** | 4 metrics defined | âœ… |
-| **Performance** | P50/P99 targets for all operations | âœ… |
-| **Scalability** | Stateless; unlimited parallel | âœ… |
-| **Compliance** | All skill-design-guide.md sections mapped with evidence | âœ… |
+| **Functionality** | 4 agent types with deterministic selection | ✅ |
+| **Functionality** | 3 model tiers with cost-based routing | ✅ |
+| **Functionality** | Tool creation patterns (function + built-in) | ✅ |
+| **Functionality** | Multi-agent composition (≤ 5 sub-agents) | ✅ |
+| **Functionality** | Deployment guidance (local/cloud-run/vertex-ai) | ✅ |
+| **Functionality** | Quick start code template | ✅ |
+| **Contracts** | Input/output/error schemas in pseudo-schema format | ✅ |
+| **Contracts** | Contract versioning with semver | ✅ |
+| **Failure** | Error taxonomy with 6 categorized codes | ✅ |
+| **Failure** | No partial code templates on error | ✅ |
+| **Failure** | Zero internal retries | ✅ |
+| **Determinism** | Fixed type mapping, fixed model routing, fixed tool limits | ✅ |
+| **Security** | No credentials in templates | ✅ |
+| **Observability** | Structured log schema with 5 mandatory fields | ✅ |
+| **Observability** | 4 metrics defined | ✅ |
+| **Performance** | P50/P99 targets for all operations | ✅ |
+| **Scalability** | Stateless; unlimited parallel | ✅ |
+| **Compliance** | All skill-design-guide.md sections mapped with evidence | ✅ |
 
 ---
 
-âš¡ PikaKit v3.9.105
+⚡ PikaKit v3.9.105

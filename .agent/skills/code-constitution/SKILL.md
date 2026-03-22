@@ -6,20 +6,20 @@ description: >-
   architecture review, critical data, breaking change, governance, doctrine.
 metadata:
   author: pikakit
-  version: "3.9.107"
+  version: "3.9.108"
 ---
 
-# PikaKit Governance â€” Code Constitution
+# PikaKit Governance — Code Constitution
 
 > Supreme authority. Zero-trust agents. Fail-closed enforcement. Doctrine-first decisions.
 
-**Status:** OFFICIAL Â· LOCKED | **Authority:** SUPREME | **Override:** NONE
+**Status:** OFFICIAL · LOCKED | **Authority:** SUPREME | **Override:** NONE
 
 ---
 
 ## Prerequisites
 
-**Required:** None â€” Code Constitution is a governance framework with no external dependencies.
+**Required:** None — Code Constitution is a governance framework with no external dependencies.
 
 **Doctrine library:** 16 rule files in `rules/` directory (required for evaluation).
 
@@ -29,13 +29,13 @@ metadata:
 
 | Scope | Activation | Default |
 |-------|-----------|---------|
-| System architecture or boundaries | **Mandatory** â€” always load | â€” |
-| Data ownership or persistence | **Mandatory** | â€” |
-| Critical business logic | **Mandatory** | â€” |
-| Breaking changes or commercial risk | **Mandatory** | â€” |
-| AI agent behavior or autonomy | **Mandatory** | â€” |
-| Ambiguous intent | **Mandatory** â€” load by default | Refuse |
-| Architecture review, contracts, security | See `rules/engineering-spec.md` | â€” |
+| System architecture or boundaries | **Mandatory** — always load | — |
+| Data ownership or persistence | **Mandatory** | — |
+| Critical business logic | **Mandatory** | — |
+| Breaking changes or commercial risk | **Mandatory** | — |
+| AI agent behavior or autonomy | **Mandatory** | — |
+| Ambiguous intent | **Mandatory** — load by default | Refuse |
+| Architecture review, contracts, security | See `rules/engineering-spec.md` | — |
 
 ---
 
@@ -45,7 +45,7 @@ metadata:
 |---------------------|-----------|
 | Agent operating mode (STRICT/PROPOSAL_ONLY/ZERO_TRUST) | Agent implementation |
 | Doctrine library (16 rules in `rules/`) | Rule execution in other skills |
-| Enforcement behavior (Stop â†’ Cite â†’ Refuse) | Automated remediation |
+| Enforcement behavior (Stop → Cite → Refuse) | Automated remediation |
 | Authority hierarchy definition | Skill priority in GEMINI.md |
 | Change Proposal review | Proposal tooling |
 
@@ -53,13 +53,13 @@ metadata:
 
 ---
 
-## Execution Model â€” 4-Phase Lifecycle
+## Execution Model — 4-Phase Lifecycle
 
 | Phase | Action | Output |
 |-------|--------|--------|
 | **Classify** | Validate request type, extract scope, identify risk level | Validated input or error |
 | **Evaluate** | Load applicable doctrines from `rules/`, check each against context | Violation list (may be empty) |
-| **Decide** | 0 violations â†’ approve; â‰¥1 blocking â†’ refuse; ambiguous â†’ escalate | Decision + conditions/violations |
+| **Decide** | 0 violations → approve; ≥1 blocking → refuse; ambiguous → escalate | Decision + conditions/violations |
 | **Emit** | Return structured output with enforcement action | Complete output schema |
 
 All phases synchronous. Fail-closed: any phase failure defaults to "refuse."
@@ -70,9 +70,9 @@ All phases synchronous. Fail-closed: any phase failure defaults to "refuse."
 
 ```
 Code Constitution (SUPREME)
-  â””â”€â”€ GEMINI.md (P0)
-        â””â”€â”€ Agent .md files (P1)
-              â””â”€â”€ Skill .md files (P2)
+  └── GEMINI.md (P0)
+        └── Agent .md files (P1)
+              └── Skill .md files (P2)
 ```
 
 No skill, agent, or workflow may override a constitutional decision.
@@ -137,7 +137,7 @@ Validation scripts: `scripts/validate_doctrine.js` | PR audit: `scripts/audit_pr
 
 ## Anti-Patterns
 
-| âŒ Don't | âœ… Do |
+| ❌ Don't | ✅ Do |
 |---------|-------|
 | Self-approve agent actions | Propose and wait for user consent |
 | Ignore governance for "quick fix" | Load constitution; validate first |
@@ -158,7 +158,7 @@ Validation scripts: `scripts/validate_doctrine.js` | PR audit: `scripts/audit_pr
 
 ---
 
-## ðŸ“‘ Content Map
+## 📑 Content Map
 
 | Folder | Content | When to Read |
 |--------|---------|--------------|
@@ -173,7 +173,7 @@ Validation scripts: `scripts/validate_doctrine.js` | PR audit: `scripts/audit_pr
 
 ---
 
-## ðŸ”— Related
+## 🔗 Related
 
 | Item | Type | Purpose |
 |------|------|---------|
@@ -184,4 +184,4 @@ Validation scripts: `scripts/validate_doctrine.js` | PR audit: `scripts/audit_pr
 
 ---
 
-âš¡ PikaKit v3.9.107
+⚡ PikaKit v3.9.108

@@ -1,10 +1,10 @@
 ﻿---
-title: Chrome DevTools â€” Engineering Specification
+title: Chrome DevTools — Engineering Specification
 impact: MEDIUM
 tags: chrome-devtools
 ---
 
-# Chrome DevTools â€” Engineering Specification
+# Chrome DevTools — Engineering Specification
 
 > Production-grade specification for Puppeteer CLI browser automation at FAANG scale.
 
@@ -24,9 +24,9 @@ Browser automation tooling at scale faces four quantified problems:
 
 | Problem | Measurement | Impact |
 |---------|-------------|--------|
-| No session persistence | Each browser script launches a new browser instance | 3â€“5 second overhead per operation; auth state lost |
+| No session persistence | Each browser script launches a new browser instance | 3–5 second overhead per operation; auth state lost |
 | Unstructured output | Raw console text output from browser scripts | Unparseable by agents; manual extraction required |
-| Screenshot size explosion | Full-page screenshots at high DPI produce 10â€“20MB files | Exceeds context limits; storage waste |
+| Screenshot size explosion | Full-page screenshots at high DPI produce 10–20MB files | Exceeds context limits; storage waste |
 | No performance baseline | Core Web Vitals measured ad-hoc with no structured format | No regression tracking; no CI/CD integration |
 
 Chrome DevTools eliminates these with session-persistent scripts, JSON-structured output, auto-compressed screenshots, and standardized Core Web Vitals measurement.
@@ -37,9 +37,9 @@ Chrome DevTools eliminates these with session-persistent scripts, JSON-structure
 
 | ID | Goal | Measurable Constraint |
 |----|------|-----------------------|
-| G1 | Session persistence | Browser instance survives across â‰¤ 50 sequential script invocations |
+| G1 | Session persistence | Browser instance survives across ≤ 50 sequential script invocations |
 | G2 | JSON-structured output | Every script outputs parseable JSON to stdout |
-| G3 | Screenshot size control | All screenshots â‰¤ 5 MB; auto-compress if exceeded |
+| G3 | Screenshot size control | All screenshots ≤ 5 MB; auto-compress if exceeded |
 | G4 | Core Web Vitals capture | FCP, LCP, CLS, TTFB measured and returned as JSON object |
 | G5 | CLI-first interface | Every operation invocable via `node <script>.js --<args>` |
 
@@ -125,7 +125,7 @@ Error: {
 
 **Contract Version:** 2.0.0
 **Backward Compatibility:** breaking (first hardened version)
-**Breaking Changes:** None â€” new spec for first hardening
+**Breaking Changes:** None — new spec for first hardening
 
 #### Deterministic Guarantees
 
@@ -228,8 +228,8 @@ Error: {
 
 | Phase | Action | Output |
 |-------|--------|--------|
-| **Connect** | Read session file â†’ connect to existing browser OR launch new browser | Browser connection |
-| **Execute** | Run script-specific action â†’ return JSON result â†’ update session file | JSON to stdout |
+| **Connect** | Read session file → connect to existing browser OR launch new browser | Browser connection |
+| **Execute** | Run script-specific action → return JSON result → update session file | JSON to stdout |
 
 All scripts follow this lifecycle. Session file is updated after every script execution.
 
@@ -256,15 +256,15 @@ All scripts follow this lifecycle. Session file is updated after every script ex
 ```
 States: NO_SESSION, ACTIVE, CLOSED
 Transitions:
-  NO_SESSION â†’ ACTIVE     (any script invoked; browser launched)
-  ACTIVE     â†’ ACTIVE     (script invoked; browser reused)
-  ACTIVE     â†’ CLOSED     (--close true)
-  CLOSED     â†’ ACTIVE     (any script invoked; new browser launched)
+  NO_SESSION → ACTIVE     (any script invoked; browser launched)
+  ACTIVE     → ACTIVE     (script invoked; browser reused)
+  ACTIVE     → CLOSED     (--close true)
+  CLOSED     → ACTIVE     (any script invoked; new browser launched)
 ```
 
 ### Persistent State
 
-- `.browser-session.json` â€” browser WebSocket endpoint, PID, launch options
+- `.browser-session.json` — browser WebSocket endpoint, PID, launch options
 - Session survives script failures (browser stays running)
 - Session file is per-working-directory; no cross-directory sharing
 
@@ -398,9 +398,9 @@ Transitions:
 
 | Dimension | Constraint | Mitigation |
 |-----------|-----------|------------|
-| Memory per session | 50â€“150 MB (Chromium process) | One session per working directory |
+| Memory per session | 50–150 MB (Chromium process) | One session per working directory |
 | Concurrent sessions | Limited by system memory | Each session in separate directory |
-| Screenshot storage | 1â€“5 MB per screenshot | `max_size` compression |
+| Screenshot storage | 1–5 MB per screenshot | `max_size` compression |
 | Session duration | Indefinite until `--close true` | Caller manages session lifecycle |
 | Script throughput | Sequential per session | No parallel script execution on same session |
 
@@ -461,16 +461,16 @@ Transitions:
 
 | Requirement | Status | Evidence |
 |-------------|--------|----------|
-| YAML frontmatter complete | âœ… | name, description, metadata with category, version, triggers, coordinates_with, success_metrics |
-| SKILL.md < 200 lines | âœ… | Entry point under 200 lines |
-| Prerequisites documented | âœ… | Node.js 18+, Puppeteer, Linux deps |
-| When to Use section | âœ… | Comparison with agent-browser |
-| Quick Reference | âœ… | Script table, session persistence, examples |
-| Troubleshooting section | âœ… | Problem/solution table |
-| Related section | âœ… | Cross-links to agent-browser, e2e-automation, perf-optimizer |
-| Content Map | âœ… | Links to references and scripts |
-| Contract versioning | âœ… | contract_version, backward_compatibility, breaking_changes |
-| Compliance matrix structured | âœ… | This table with âœ…/âŒ + evidence |
+| YAML frontmatter complete | ✅ | name, description, metadata with category, version, triggers, coordinates_with, success_metrics |
+| SKILL.md < 200 lines | ✅ | Entry point under 200 lines |
+| Prerequisites documented | ✅ | Node.js 18+, Puppeteer, Linux deps |
+| When to Use section | ✅ | Comparison with agent-browser |
+| Quick Reference | ✅ | Script table, session persistence, examples |
+| Troubleshooting section | ✅ | Problem/solution table |
+| Related section | ✅ | Cross-links to agent-browser, e2e-automation, perf-optimizer |
+| Content Map | ✅ | Links to references and scripts |
+| Contract versioning | ✅ | contract_version, backward_compatibility, breaking_changes |
+| Compliance matrix structured | ✅ | This table with ✅/❌ + evidence |
 
 ---
 
@@ -478,26 +478,26 @@ Transitions:
 
 | Category | Check | Status |
 |----------|-------|--------|
-| **Functionality** | 10 CLI scripts covering navigation, capture, interaction, monitoring | âœ… |
-| **Functionality** | Session persistence via .browser-session.json | âœ… |
-| **Functionality** | Auto-compression for screenshots > 5 MB | âœ… |
-| **Contracts** | Input arguments and JSON output schemas defined | âœ… |
-| **Contracts** | Per-script side-effect boundaries documented | âœ… |
-| **Contracts** | Per-script idempotency classification | âœ… |
-| **Failure** | Error taxonomy with 9 categorized error codes | âœ… |
-| **Failure** | JSON error output on all failures | âœ… |
-| **Failure** | Zero internal retries | âœ… |
-| **Determinism** | Fixed JSON output schemas, fixed session file location | âœ… |
-| **Determinism** | Non-determinism acknowledged (page content, network timing) | âœ… |
-| **Security** | No credential storage; JS execution risk documented | âœ… |
-| **Observability** | Structured log schema with 6 log points | âœ… |
-| **Observability** | 7 metrics including Core Web Vitals | âœ… |
-| **Performance** | P50/P99 targets for all script types | âœ… |
-| **Scalability** | One session per directory; memory-bounded | âœ… |
-| **Concurrency** | Sequential within session; parallel across directories | âœ… |
-| **Resources** | Browser process lifecycle documented; orphan risk mitigated | âœ… |
-| **Compliance** | All skill-design-guide.md sections present | âœ… |
+| **Functionality** | 10 CLI scripts covering navigation, capture, interaction, monitoring | ✅ |
+| **Functionality** | Session persistence via .browser-session.json | ✅ |
+| **Functionality** | Auto-compression for screenshots > 5 MB | ✅ |
+| **Contracts** | Input arguments and JSON output schemas defined | ✅ |
+| **Contracts** | Per-script side-effect boundaries documented | ✅ |
+| **Contracts** | Per-script idempotency classification | ✅ |
+| **Failure** | Error taxonomy with 9 categorized error codes | ✅ |
+| **Failure** | JSON error output on all failures | ✅ |
+| **Failure** | Zero internal retries | ✅ |
+| **Determinism** | Fixed JSON output schemas, fixed session file location | ✅ |
+| **Determinism** | Non-determinism acknowledged (page content, network timing) | ✅ |
+| **Security** | No credential storage; JS execution risk documented | ✅ |
+| **Observability** | Structured log schema with 6 log points | ✅ |
+| **Observability** | 7 metrics including Core Web Vitals | ✅ |
+| **Performance** | P50/P99 targets for all script types | ✅ |
+| **Scalability** | One session per directory; memory-bounded | ✅ |
+| **Concurrency** | Sequential within session; parallel across directories | ✅ |
+| **Resources** | Browser process lifecycle documented; orphan risk mitigated | ✅ |
+| **Compliance** | All skill-design-guide.md sections present | ✅ |
 
 ---
 
-âš¡ PikaKit v3.9.105
+⚡ PikaKit v3.9.105

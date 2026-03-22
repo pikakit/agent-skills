@@ -6,10 +6,10 @@ description: >-
   tool execution, multi-server.
 metadata:
   author: pikakit
-  version: "3.9.107"
+  version: "3.9.108"
 ---
 
-# MCP Management â€” Tool Discovery, Routing & Execution
+# MCP Management — Tool Discovery, Routing & Execution
 
 > Progressive disclosure. 3 execution methods. Structured JSON. Never `-p` flag.
 
@@ -37,7 +37,7 @@ metadata:
 
 | Owned by This Skill | NOT Owned |
 |---------------------|-----------|
-| Tool discovery (list-tools/prompts/resources) | MCP server development (â†’ mcp-builder) |
+| Tool discovery (list-tools/prompts/resources) | MCP server development (→ mcp-builder) |
 | 3 execution methods + fallback | Server hosting |
 | Multi-server routing from .mcp.json | Tool implementation |
 | Structured JSON response format | Server-side authorization |
@@ -54,21 +54,21 @@ metadata:
 | 2 (Secondary) | Direct CLI | `npx tsx cli.ts call-tool <server> <tool> '<json>'` |
 | 3 (Fallback) | Subagent | Delegate to mcp-manager |
 
-**âš ï¸ Gemini CLI:** Always stdin pipe. Never `-p` flag (skips MCP init).
+**⚠️ Gemini CLI:** Always stdin pipe. Never `-p` flag (skips MCP init).
 
 ---
 
 ## State Transitions
 
 ```
-IDLE â†’ DISCOVERING           [discover invoked]
-DISCOVERING â†’ CATALOG_SAVED  [tools.json written]  // terminal
-IDLE â†’ EXECUTING             [execute invoked]
-EXECUTING â†’ RESULT_RECEIVED  [server responded]  // terminal
-EXECUTING â†’ METHOD_FALLBACK  [method unavailable]
-METHOD_FALLBACK â†’ RESULT_RECEIVED  [fallback succeeded]  // terminal
-METHOD_FALLBACK â†’ ALL_METHODS_FAILED  [all 3 failed]  // terminal
-EXECUTING â†’ SERVER_FAILED   [server error/timeout]  // terminal
+IDLE → DISCOVERING           [discover invoked]
+DISCOVERING → CATALOG_SAVED  [tools.json written]  // terminal
+IDLE → EXECUTING             [execute invoked]
+EXECUTING → RESULT_RECEIVED  [server responded]  // terminal
+EXECUTING → METHOD_FALLBACK  [method unavailable]
+METHOD_FALLBACK → RESULT_RECEIVED  [fallback succeeded]  // terminal
+METHOD_FALLBACK → ALL_METHODS_FAILED  [all 3 failed]  // terminal
+EXECUTING → SERVER_FAILED   [server error/timeout]  // terminal
 ```
 
 ---
@@ -91,7 +91,7 @@ EXECUTING â†’ SERVER_FAILED   [server error/timeout]  // terminal
 ## Discovery Commands
 
 ```bash
-npx tsx cli.ts list-tools      # All tools â†’ assets/tools.json
+npx tsx cli.ts list-tools      # All tools → assets/tools.json
 npx tsx cli.ts list-prompts    # Available prompts
 npx tsx cli.ts list-resources  # Available resources
 ```
@@ -130,7 +130,7 @@ npx tsx cli.ts list-resources  # Available resources
 
 ## Anti-Patterns
 
-| âŒ Don't | âœ… Do |
+| ❌ Don't | ✅ Do |
 |---------|-------|
 | Use `gemini -p "..."` | Use `echo "..." \| gemini -y` |
 | Load all tools upfront | Progressive disclosure |
@@ -178,7 +178,7 @@ Each rule file contains:
 - Additional context and references
 
 
-## ðŸ“‘ Content Map
+## 📑 Content Map
 
 | File | Description | When to Read |
 |------|-------------|--------------|
@@ -188,7 +188,7 @@ Each rule file contains:
 
 ---
 
-## ðŸ”— Related
+## 🔗 Related
 
 | Item | Type | Purpose |
 |------|------|---------|
@@ -196,4 +196,4 @@ Each rule file contains:
 
 ---
 
-âš¡ PikaKit v3.9.107
+⚡ PikaKit v3.9.108
