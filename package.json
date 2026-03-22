@@ -1,6 +1,6 @@
 {
   "name": "agent-skill-kit",
-  "version": "3.9.111",
+  "version": "3.9.112",
   "description": "PikaKit AI Skills Repository",
   "type": "module",
   "scripts": {

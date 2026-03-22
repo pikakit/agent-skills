@@ -1,6 +1,6 @@
 ---
 description: Full-stack performance optimization — profile bottlenecks, fix N+1 queries, configure Redis caching, reduce bundle size, and validate with k6 load testing.
-skills: [perf-optimizer, data-modeler, caching-strategy]
+skills: [perf-optimizer, data-modeler]
 agents: [orchestrator, assessor, recovery]
 ---
 

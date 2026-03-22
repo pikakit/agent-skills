@@ -1,6 +1,6 @@
 ---
 description: Automated documentation engine — generate README, OpenAPI specs, ADRs, Storybook stories, operational runbooks, and inline comments directly from source code analysis.
-skills: [doc-templates, markdown-novel-viewer]
+skills: [doc-templates]
 agents: [orchestrator, assessor, recovery]
 ---
 

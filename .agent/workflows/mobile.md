@@ -1,6 +1,6 @@
 ---
 description: End-to-end mobile development — React Native, Flutter, or native iOS/Android with push notifications, deep linking, offline-first architecture, and app store submission.
-skills: [mobile-first, mobile-developer, mobile-design, mobile-security-coder, idea-storm, cicd-pipeline, perf-optimizer]
+skills: [vercel-react-native-skills, mobile-developer, mobile-design, security-scanner, idea-storm, cicd-pipeline, perf-optimizer]
 agents: [orchestrator, assessor, recovery]
 ---
 

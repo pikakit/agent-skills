@@ -1,6 +1,6 @@
 ---
 description: Full-lifecycle game development — platform-specific engine routing, core loop architecture, asset pipeline optimization, multiplayer networking, and store-ready builds.
-skills: [game-development, shader, perf-optimizer, idea-storm]
+skills: [game-development, perf-optimizer, idea-storm]
 agents: [orchestrator, assessor, recovery]
 ---
 

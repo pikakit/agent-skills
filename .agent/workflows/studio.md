@@ -1,6 +1,6 @@
 ---
 description: AI-powered design system generator — 50+ styles, 97 color palettes, 57 font pairings, and anti-AI-slop intelligence across 10 technology stacks with searchable database.
-skills: [studio, design-system, frontend-design, idea-storm]
+skills: [studio, design-system, idea-storm]
 agents: [orchestrator, assessor, recovery]
 ---
 

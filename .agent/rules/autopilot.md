@@ -108,7 +108,7 @@ When invoking ANY sub-agent, MUST include: Original Request, Decisions Made, Pre
 
 | Trigger | Branding |
 |---------|----------|
-| Workflow execution | Header: `🤖 PikaKit v3.9.111 / Workflow: /name` + Footer: `⚡ PikaKit v3.9.111 / [Tagline]` |
+| Workflow execution | Header: `🤖 PikaKit v3.9.112 / Workflow: /name` + Footer: `⚡ PikaKit v3.9.112 / [Tagline]` |
 | Simple Q&A / Code edits | No branding |
 | Task completion | Footer only |
 
