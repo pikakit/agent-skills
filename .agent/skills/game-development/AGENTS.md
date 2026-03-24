@@ -12,7 +12,7 @@ tools: Read, Write, Edit, Bash, Grep, Glob
 model: inherit
 skills: code-craft, game-development, perf-optimizer, test-architect, code-constitution, problem-checker, auto-learned
 agent_type: domain
-version: "3.9.113"
+version: "3.9.115"
 owner: pikakit
 capability_tier: core
 execution_mode: reactive
@@ -780,4 +780,4 @@ After game development work:
 
 ---
 
-⚡ PikaKit v3.9.113
+⚡ PikaKit v3.9.115

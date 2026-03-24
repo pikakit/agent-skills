@@ -7,7 +7,7 @@ coordinates_with: ["debug-pro", "test-architect"]
 success_metrics: ["100% bugs fixed at root cause", "0 side-effects from tests"]
 metadata:
   author: pikakit
-  version: "3.9.113"
+  version: "3.9.115"
 ---
 
 # Root Cause Tracing
@@ -193,4 +193,4 @@ From debugging session (2025-10-03):
 
 ---
 
-⚡ PikaKit v3.9.113
+⚡ PikaKit v3.9.115

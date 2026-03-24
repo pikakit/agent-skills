@@ -9,7 +9,7 @@ coordinates_with: ["lifecycle-orchestrator", "smart-router"]
 success_metrics: ["100% phases have standard notification", "0 missed execution logs"]
 metadata:
   author: pikakit
-  version: "3.9.113"
+  version: "3.9.115"
 ---
 
 # Execution Reporter — Task Notifications
@@ -41,7 +41,7 @@ metadata:
 |---------------------|-----------|
 | Notification string formatting (4 templates) | Task execution (→ lifecycle-orchestrator) |
 | Verbosity level filtering (3 levels) | Agent routing (→ smart-router) |
-| PikaKit branding (v3.9.113) | Error detection (→ problem-checker) |
+| PikaKit branding (v3.9.115) | Error detection (→ problem-checker) |
 | Complexity threshold (> 3 skills → full) | Notification delivery |
 
 **Pure function skill:** Returns formatted strings. Zero side effects.
@@ -53,7 +53,7 @@ metadata:
 ### Full Template (> 3 skills)
 
 ```
-🤖 PikaKit v3.9.113
+🤖 PikaKit v3.9.115
 📋 Task: {task_description}
 ◆ Agent: @{agent_name}
 ◇ Skills: {skill_1}, {skill_2}, ...
@@ -148,4 +148,4 @@ metadata:
 
 ---
 
-⚡ PikaKit v3.9.113
+⚡ PikaKit v3.9.115

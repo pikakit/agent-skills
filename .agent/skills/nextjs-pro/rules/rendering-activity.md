@@ -27,4 +27,4 @@ Avoids expensive re-renders and state loss.
 
 ---
 
-⚡ PikaKit v3.9.113
+⚡ PikaKit v3.9.115

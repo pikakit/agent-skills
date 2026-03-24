@@ -5,7 +5,7 @@ description: >-
   compress, resize, convert, background removal.
 metadata:
   author: pikakit
-  version: "3.9.113"
+  version: "3.9.115"
 ---
 
 # Media Processing — FFmpeg + ImageMagick + RMBG
@@ -169,4 +169,4 @@ rmbg input.jpg -m briaai -o output.png   # Highest quality
 
 ---
 
-⚡ PikaKit v3.9.113
+⚡ PikaKit v3.9.115

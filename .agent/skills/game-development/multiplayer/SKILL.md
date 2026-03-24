@@ -8,7 +8,7 @@ coordinates_with: ["game-development", "web-games", "event-driven"]
 success_metrics: ["100% authoritative servers", "0 desync bugs in playtests"]
 metadata:
   author: pikakit
-  version: "3.9.113"
+  version: "3.9.115"
 ---
 
 # Multiplayer Game Development
@@ -151,4 +151,4 @@ Server: Validate → did projectile actually hit?
 
 ---
 
-⚡ PikaKit v3.9.113
+⚡ PikaKit v3.9.115
