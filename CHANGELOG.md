@@ -6,6 +6,19 @@ Format: [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) · [Semantic Ve
 
 ---
 
+## [3.9.115] - 2026-03-24
+
+### 🌟 FAANG-Grade Standardization & Telemetry
+
+- **System Synchronization**: Updated system version to v3.9.115 across all repositories (51 Skills, 18 Workflows).
+- **Workflow Compliance**: Full audit of all 18 workflows to ensure compliance with `WORKFLOW_DESIGN_GUIDE.md`.
+- **OpenTelemetry Integration**: Implemented mandatory OTel telemetry wrappers for all shell commands in `// turbo` scripts.
+- **Documentation & UI**: Standardized website to reflect latest FAANG standards.
+- **Internationalization**: Full Vietnamese translation for all workflow files (`api.md`, `autopilot.md`, `build.md`, etc.).
+- **Security & Locks**: Standardized `skills-lock.json` configuration for secure agent skill fetching.
+
+---
+
 ## [3.9.78] - 2026-03-06
 
 ### 🧹 System Cleanup & Integrity
@@ -190,6 +203,7 @@ Systematic audit of skill files for FAANG-grade compliance:
 
 ---
 
+[3.9.115]: https://github.com/pikakit/agent-skills/compare/v3.9.78...v3.9.115
 [3.9.78]: https://github.com/pikakit/agent-skills/compare/v3.9.77...v3.9.78
 [3.9.77]: https://github.com/pikakit/agent-skills/compare/v3.9.76...v3.9.77
 [3.9.76]: https://github.com/pikakit/agent-skills/compare/v3.7.1...v3.9.76

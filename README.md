@@ -69,6 +69,8 @@ Antigravity, Claude Code, Cursor, Windsurf, Cline, Amp, Roo Code — **15+ AI to
 | Self-learning from mistakes | ✅ | ❌ | ❌ |
 | 51 domain skills (security, performance, patterns) | ✅ | ❌ | 3–5 |
 | Cross-platform (15+ AI tools) | ✅ | 1 tool | 1–2 tools |
+| FAANG-Grade Telemetry (OpenTelemetry) | ✅ | ❌ | ❌ |
+| Multi-language (EN/VI) Support | ✅ | ❌ | ❌ |
 | Safety protocol with rollback guarantee | ✅ | ❌ | ❌ |
 | 100% JavaScript (no Python, no dependencies hell) | ✅ | — | ❌ |
 

@@ -1,8 +1,17 @@
 {
   "name": "agent-skill-kit",
   "version": "3.9.115",
-  "description": "PikaKit AI Skills Repository",
+  "description": "PikaKit FAANG-Grade AI Skills Repository",
   "type": "module",
+  "author": "PikaKit Team",
+  "license": "Proprietary",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pikakit/agent-skills.git"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
   "scripts": {
     "version:sync": "node .agent/scripts-js/version-sync.mjs"
   }
