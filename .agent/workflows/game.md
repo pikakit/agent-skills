@@ -1,7 +1,7 @@
 ---
 description: Full-lifecycle game development — platform-specific engine routing, core loop architecture, asset pipeline optimization, multiplayer networking, and store-ready builds.
-skills: [game-development, perf-optimizer, idea-storm]
-agents: [orchestrator, assessor, recovery]
+skills: [game-development, perf-optimizer, idea-storm, problem-checker, smart-router, auto-learner, context-engineering]
+agents: [orchestrator, assessor, recovery, critic, learner, project-planner, game-developer, backend-specialist, test-engineer]
 ---
 
 # /game - Game Development
@@ -19,11 +19,11 @@ Orchestrate game development from concept to published game — routing to platf
 ## 🤖 Meta-Agents Integration
 
 | Phase | Agent | Action |
-|-------|-------|--------|
-| **Requirements** | `assessor` | Evaluate scope, platform risks, performance budget |
-| **Pre-Build** | `recovery` | Save state before major implementation changes |
-| **Parallel Build** | `orchestrator` | Coordinate parallel tasks (art + audio + code) |
-| **Design Conflicts** | `critic` | Resolve design vs performance trade-offs |
+| ----- | ----- | ------ |
+| **Pre-Flight** | `assessor` | Evaluate scope, risks, and auto-learned patterns |
+| **Execution** | `orchestrator` | Coordinate parallel tasks (art, audio, code) |
+| **Safety** | `recovery` | Save checkpoint before major game logic changes |
+| **Conflict** | `critic` | Resolve design vs performance trade-offs |
 | **Post-Build** | `learner` | Log game patterns for reuse |
 
 ```
@@ -57,21 +57,21 @@ verify → learner.log(patterns)
 
 ## 🔴 MANDATORY: Game Development Protocol
 
-### Phase 0: Pre-flight & Auto-Learned Context
+### Phase 1: Pre-flight & Auto-Learned Context
 
 > **Rule 0.5-K:** Auto-learned pattern check.
 
 1. Read `.agent/skills/auto-learned/patterns/` for past failures before proceeding.
 2. Trigger `recovery` agent to run Checkpoint (`git commit -m "chore(checkpoint): pre-game"`).
 
-### Phase 1: Requirements & Scope
+### Phase 2: Requirements & Scope
 
 | Field | Value |
 |-------|-------|
 | **INPUT** | $ARGUMENTS (game concept description) |
 | **OUTPUT** | Game design doc: platform, dimension, genre, multiplayer model, target FPS |
-| **AGENTS** | `project-planner` |
-| **SKILLS** | `game-development`, `idea-storm` |
+| **AGENTS** | `project-planner`, `assessor` |
+| **SKILLS** | `game-development`, `idea-storm`, `context-engineering` |
 
 1. Ask critical questions:
 
@@ -86,14 +86,14 @@ verify → learner.log(patterns)
 2. `assessor` evaluates scope and platform risks
 3. Select engine and architecture pattern
 
-### Phase 2: Core Game Loop & Architecture
+### Phase 3: Core Game Loop & Architecture
 
 | Field | Value |
 |-------|-------|
-| **INPUT** | Game design doc from Phase 1 |
+| **INPUT** | Game design doc from Phase 2 |
 | **OUTPUT** | Game loop implementation, architecture scaffold |
-| **AGENTS** | `game-developer` |
-| **SKILLS** | `game-development` |
+| **AGENTS** | `orchestrator`, `game-developer` |
+| **SKILLS** | `game-development`, `smart-router` |
 
 1. Implement fixed timestep game loop:
 
@@ -113,14 +113,14 @@ verify → learner.log(patterns)
 
 3. Abstract input layer (keyboard → gamepad → touch)
 
-### Phase 3: Asset Pipeline & Audio
+### Phase 4: Asset Pipeline & Audio
 
 | Field | Value |
 |-------|-------|
-| **INPUT** | Architecture scaffold from Phase 2 |
+| **INPUT** | Architecture scaffold from Phase 3 |
 | **OUTPUT** | Optimized assets in `assets/`, audio system |
 | **AGENTS** | `game-developer` |
-| **SKILLS** | `game-development`, `shader` |
+| **SKILLS** | `game-development` |
 
 1. Set up asset directory structure and optimization targets:
 
@@ -129,15 +129,15 @@ verify → learner.log(patterns)
 | Sprites | Texture atlasing | <4096×4096 per atlas |
 | 3D Models | LOD, mesh simplification | <10K tris (mobile) |
 | Audio SFX | Mono, 22kHz, OGG | <100KB per sound |
-| Shaders | GPU-efficient via `shader` skill | Platform-appropriate |
+| Shaders | GPU-efficient | Platform-appropriate |
 
 2. Audio system: pool sources (max 32), priority UI > Player > Enemies > Ambient
 
-### Phase 4: Multiplayer & Networking (if applicable)
+### Phase 5: Multiplayer & Networking (if applicable)
 
 | Field | Value |
 |-------|-------|
-| **INPUT** | Multiplayer model from Phase 1 design doc |
+| **INPUT** | Multiplayer model from Phase 2 design doc |
 | **OUTPUT** | Networking layer, lobby system, anti-cheat |
 | **AGENTS** | `game-developer`, `backend-specialist` |
 | **SKILLS** | `game-development` |
@@ -156,11 +156,11 @@ Networking checklist:
 - [ ] Anti-cheat (server-authoritative)
 - [ ] Graceful disconnect / reconnection
 
-### Phase 5: Build & Export
+### Phase 6: Build & Export
 
 | Field | Value |
 |-------|-------|
-| **INPUT** | Complete game from Phases 2-4 |
+| **INPUT** | Complete game from Phases 3-5 |
 | **OUTPUT** | Platform-specific builds, optimized bundles |
 | **AGENTS** | `game-developer` |
 | **SKILLS** | `game-development`, `perf-optimizer` |
@@ -174,14 +174,14 @@ Networking checklist:
 
 Optimization: Tree shake → Minify → Compress assets → Code split → CDN
 
-### Phase 6: Testing & Verification
+### Phase 7: Testing & Verification
 
 | Field | Value |
 |-------|-------|
-| **INPUT** | Built game from Phase 5 |
+| **INPUT** | Built game from Phase 6 |
 | **OUTPUT** | Test results: FPS, memory, platform compatibility |
-| **AGENTS** | `test-engineer` |
-| **SKILLS** | `game-development`, `perf-optimizer` |
+| **AGENTS** | `test-engineer`, `learner` |
+| **SKILLS** | `game-development`, `perf-optimizer`, `problem-checker`, `auto-learner` |
 
 Test checklist:
 - [ ] Maintains target FPS on lowest-spec device
@@ -218,6 +218,15 @@ Test checklist:
 | Lint errors | Run eslint --fix |
 
 > **Rule:** Never mark complete with errors in `@[current_problems]`.
+
+---
+
+## 🔙 Rollback & Recovery
+
+If game loop, physics engine, or multiplayer netcode breaks functionality:
+1. Restore to pre-game checkpoint (`git checkout -- .` or `git stash pop`).
+2. Log architecture failure via `learner` meta-agent.
+3. Bring in `critic` to evaluate trade-offs before retrying implementation.
 
 ---
 
@@ -288,12 +297,15 @@ Test checklist:
 
 ## 🔗 Workflow Chain
 
-**Skills Loaded (4):**
+**Skills Loaded (7):**
 
 - `game-development` - Core game development patterns and engine routing
-- `shader` - GLSL shaders for visual effects
 - `perf-optimizer` - Performance profiling and optimization
 - `idea-storm` - Requirements gathering and scope definition
+- `problem-checker` - IDE problem verification
+- `smart-router` - Request classifier and agent routing
+- `context-engineering` - Codebase parsing and context gathering
+- `auto-learner` - Learning and logging game patterns
 
 ```mermaid
 graph LR

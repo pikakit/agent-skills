@@ -1,7 +1,7 @@
 ---
 description: AI-powered design system generator — 50+ styles, 97 color palettes, 57 font pairings, and anti-AI-slop intelligence across 10 technology stacks with searchable database.
-skills: [studio, design-system, idea-storm]
-agents: [orchestrator, assessor, recovery]
+skills: [studio, design-system, frontend-design, idea-storm, context-engineering, problem-checker, auto-learner]
+agents: [orchestrator, assessor, recovery, learner, frontend-specialist]
 ---
 
 # /studio - Design Intelligence
@@ -20,8 +20,10 @@ Generate comprehensive design systems for web and mobile applications — 50+ st
 
 | Phase | Agent | Action |
 | ----- | ----- | ------ |
-| **Style Selection** | `learner` | Analyze past successful design patterns |
-| **Post-Design** | `learner` | Log design decisions for future reference |
+| **Pre-Flight** | `assessor` | Evaluate design risks and auto-learned UX patterns |
+| **Execution** | `orchestrator` | Coordinate style selection, search, and UI generation |
+| **Safety** | `recovery` | Save state checkpoint before design system implementation |
+| **Post-Design** | `learner` | Log successful design decisions and slop patterns |
 
 ```
 Flow:
@@ -36,21 +38,23 @@ verify(accessibility, contrast) → learner.log(patterns)
 
 ## 🔴 MANDATORY: Design System Protocol
 
-### Phase 0: Pre-flight & Auto-Learned Context
+### Phase 1: Pre-flight & Auto-Learned Context
 
 > **Rule 0.5-K:** Auto-learned pattern check.
 
 1. Read `.agent/skills/auto-learned/patterns/` for past failures before proceeding.
 2. Trigger `recovery` agent to run Checkpoint (`git commit -m "chore(checkpoint): pre-studio"`).
 
-### Phase 1: Requirements Analysis
+### Phase 2: Requirements Analysis
 
 | Field | Value |
 |-------|-------|
 | **INPUT** | $ARGUMENTS (UI/UX request with product type, style, industry) |
 | **OUTPUT** | Extracted requirements: product type, style keywords, industry, stack |
-| **AGENTS** | `frontend-specialist` |
-| **SKILLS** | `studio`, `idea-storm` |
+| **AGENTS** | `frontend-specialist`, `assessor` |
+| **SKILLS** | `studio`, `idea-storm`, `context-engineering` |
+
+// turbo — telemetry: phase-2-requirements
 
 Extract from user request:
 
@@ -61,25 +65,29 @@ Extract from user request:
 | Industry | healthcare, fintech, gaming, education, beauty |
 | Stack | html-tailwind (default), react, nextjs, vue, svelte |
 
-### Phase 2: Design System Generation
+### Phase 3: Design System Generation
 
 | Field | Value |
 |-------|-------|
-| **INPUT** | Requirements from Phase 1 |
+| **INPUT** | Requirements from Phase 2 |
 | **OUTPUT** | Complete design system: pattern, style, colors, typography, effects |
-| **AGENTS** | `frontend-specialist` |
+| **AGENTS** | `frontend-specialist`, `orchestrator` |
 | **SKILLS** | `studio`, `design-system` |
+
+// turbo — telemetry: phase-3-generation
 
 1. Generate design system (always start here):
 
+// turbo
 ```bash
-node .agent/skills/studio/scripts-js/search.js "<product_type> <industry> <keywords>" --design-system -p "Project Name"
+npx cross-env OTEL_SERVICE_NAME="workflow:studio" TRACE_ID="$TRACE_ID" node .agent/skills/studio/scripts-js/search.js "<product_type> <industry> <keywords>" --design-system -p "Project Name"
 ```
 
 2. Optionally persist for hierarchical retrieval:
 
+// turbo
 ```bash
-node .agent/skills/studio/scripts-js/search.js "<query>" --design-system --persist -p "Project Name"
+npx cross-env OTEL_SERVICE_NAME="workflow:studio" TRACE_ID="$TRACE_ID" node .agent/skills/studio/scripts-js/search.js "<query>" --design-system --persist -p "Project Name"
 ```
 
 Creates `design-system/MASTER.md` + optional `design-system/pages/<page>.md` overrides.
@@ -96,29 +104,34 @@ Creates `design-system/MASTER.md` + optional `design-system/pages/<page>.md` ove
 
 Available domains: `product`, `style`, `typography`, `color`, `landing`, `chart`, `ux`, `react`, `web`, `prompt`
 
-### Phase 3: Stack Guidelines & Implementation
+### Phase 4: Stack Guidelines & Implementation
 
 | Field | Value |
 |-------|-------|
-| **INPUT** | Design system from Phase 2 |
+| **INPUT** | Design system from Phase 3 |
 | **OUTPUT** | Stack-specific implementation guidelines |
 | **AGENTS** | `frontend-specialist` |
 | **SKILLS** | `studio`, `frontend-design` |
 
+// turbo — telemetry: phase-4-implementation
+
+// turbo
 ```bash
-node .agent/skills/studio/scripts-js/search.js "<keyword>" --stack html-tailwind
+npx cross-env OTEL_SERVICE_NAME="workflow:studio" TRACE_ID="$TRACE_ID" node .agent/skills/studio/scripts-js/search.js "<keyword>" --stack html-tailwind
 ```
 
 Available stacks: `html-tailwind`, `react`, `nextjs`, `vue`, `svelte`, `swiftui`, `react-native`, `flutter`, `shadcn`, `jetpack-compose`
 
-### Phase 4: Pre-Delivery Verification
+### Phase 5: Pre-Delivery Verification
 
 | Field | Value |
 |-------|-------|
-| **INPUT** | Implemented UI from Phase 3 |
+| **INPUT** | Implemented UI from Phase 4 |
 | **OUTPUT** | Verified design: accessibility, contrast, responsiveness |
-| **AGENTS** | `frontend-specialist` |
-| **SKILLS** | `frontend-design`, `design-system` |
+| **AGENTS** | `frontend-specialist`, `learner` |
+| **SKILLS** | `frontend-design`, `design-system`, `problem-checker`, `auto-learner` |
+
+// turbo — telemetry: phase-5-verification
 
 Pre-delivery checklist:
 
@@ -157,6 +170,15 @@ Pre-delivery checklist:
 | CSS issues | Fix class names, contrast |
 
 > **Rule:** Never mark complete with errors in `@[current_problems]`.
+
+---
+
+## 🔙 Rollback & Recovery
+
+If AI generates slop, inconsistent patterns, or hallucinates styling components:
+1. Revert UI file changes using `recovery` meta-agent.
+2. Provide feedback to `learner` about specific styling failures (e.g., bad contrast, unwanted emojis).
+3. Retry Phase 2 with more restrictive style constraints or specific domain filters.
 
 ---
 
@@ -222,12 +244,15 @@ Pre-delivery checklist:
 
 ## 🔗 Workflow Chain
 
-**Skills Loaded (4):**
+**Skills Loaded (7):**
 
 - `studio` - 50+ styles, 97 color palettes, 57 font pairings, searchable database
 - `design-system` - Color theory, typography, visual effects
 - `frontend-design` - Anti-AI-slop aesthetics and bold design
 - `idea-storm` - Requirements clarification
+- `context-engineering` - Codebase parsing and context extraction
+- `problem-checker` - Code problem verification
+- `auto-learner` - Learning and logging design patterns
 
 ```mermaid
 graph LR

@@ -1,8 +1,8 @@
 ---
 description: End-to-end API development pipeline — design, implement, and ship production-grade REST, GraphQL, or tRPC services with OpenAPI specs, Prisma ORM, and full test coverage.
 chain: api-development
-skills: [api-architect, data-modeler, nodejs-pro, test-architect, security-scanner, auth-patterns]
-agents: [orchestrator, assessor, recovery]
+skills: [api-architect, data-modeler, nodejs-pro, test-architect, security-scanner, auth-patterns, context-engineering, problem-checker, auto-learner]
+agents: [orchestrator, assessor, recovery, learner, backend-specialist, test-engineer]
 ---
 
 # /api - API Development Pipeline
@@ -21,9 +21,10 @@ Build well-architected APIs from specification to implementation — covering de
 
 | Phase | Agent | Action |
 | ----- | ----- | ------ |
-| **Pre-Build** | `assessor` | Evaluate API complexity and risk level |
-| **Pre-Build** | `recovery` | Save existing API state for rollback |
-| **Post-Build** | `learner` | Learn API patterns for reuse |
+| **Pre-Flight** | `assessor` | Evaluate API complexity and auto-learned backend patterns |
+| **Execution** | `orchestrator` | Coordinate API design, schema generation, and routing |
+| **Safety** | `recovery` | Save state and recover from dangling migrations |
+| **Post-Build** | `learner` | Log API architecture patterns for downstream reuse |
 
 ```
 Flow:
@@ -40,21 +41,23 @@ learner.log(patterns)
 
 ## 🔴 MANDATORY: API Development Protocol
 
-### Phase 0: Pre-flight & Auto-Learned Context
+### Phase 1: Pre-flight & Auto-Learned Context
 
 > **Rule 0.5-K:** Auto-learned pattern check.
 
 1. Read `.agent/skills/auto-learned/patterns/` for past failures before proceeding.
 2. Trigger `recovery` agent to run Checkpoint (`git commit -m "chore(checkpoint): pre-api"`).
 
-### Phase 1: Requirements & API Design
+### Phase 2: Requirements & API Design
 
 | Field | Value |
 |-------|-------|
 | **INPUT** | $ARGUMENTS (user request — API description, tech stack, requirements) |
 | **OUTPUT** | API design spec: endpoints/schema, data models, auth strategy |
-| **AGENTS** | `backend-specialist` |
-| **SKILLS** | `api-architect` |
+| **AGENTS** | `backend-specialist`, `assessor` |
+| **SKILLS** | `api-architect`, `context-engineering` |
+
+// turbo — telemetry: phase-2-design
 
 1. Clarify requirements if vague:
 
@@ -80,33 +83,37 @@ ASK if not specified:
 3. Define request/response formats, error contracts, status codes
 4. Plan pagination, filtering, and sorting strategies
 
-### Phase 2: Database Schema Design
+### Phase 3: Database Schema Design
 
 | Field | Value |
 |-------|-------|
-| **INPUT** | API design spec from Phase 1 |
+| **INPUT** | API design spec from Phase 2 |
 | **OUTPUT** | Database schema: `prisma/schema.prisma` or equivalent, migration files |
-| **AGENTS** | `backend-specialist` |
+| **AGENTS** | `backend-specialist`, `orchestrator` |
 | **SKILLS** | `data-modeler` |
+
+// turbo — telemetry: phase-3-schema
 
 1. Design data models with relationships (1:1, 1:N, M:N)
 2. Define indexes for query optimization
 3. Plan migration strategy (incremental, reversible)
 4. Generate Prisma schema or equivalent ORM config
 
-// turbo
+// turbo — telemetry: phase-2-schema-generate
 ```bash
-npx prisma generate
+npx cross-env OTEL_SERVICE_NAME="workflow:api" TRACE_ID="$TRACE_ID" npx prisma generate
 ```
 
-### Phase 3: API Implementation
+### Phase 4: API Implementation
 
 | Field | Value |
 |-------|-------|
-| **INPUT** | API design spec + database schema from Phases 1-2 |
+| **INPUT** | API design spec + database schema from Phases 2-3 |
 | **OUTPUT** | Route handlers in `src/routes/`, service layer in `src/services/`, middleware in `src/middleware/` |
 | **AGENTS** | `backend-specialist` |
 | **SKILLS** | `nodejs-pro`, `api-architect`, `auth-patterns` |
+
+// turbo — telemetry: phase-4-implement
 
 1. Scaffold project structure:
 
@@ -129,28 +136,30 @@ prisma/
 6. Add rate limiting middleware
 7. Implement pagination, filtering, sorting
 
-// turbo
+// turbo — telemetry: phase-3-typecheck
 ```bash
-npx tsc --noEmit
+npx cross-env OTEL_SERVICE_NAME="workflow:api" TRACE_ID="$TRACE_ID" npx tsc --noEmit
 ```
 
-### Phase 4: Testing
+### Phase 5: Testing
 
 | Field | Value |
 |-------|-------|
-| **INPUT** | Implemented API from Phase 3 |
+| **INPUT** | Implemented API from Phase 4 |
 | **OUTPUT** | Test suite: `src/__tests__/` with unit + integration tests passing |
 | **AGENTS** | `test-engineer` |
 | **SKILLS** | `test-architect` |
+
+// turbo — telemetry: phase-5-test
 
 1. **Unit tests** — Service layer, validators, utilities (AAA pattern)
 2. **Integration tests** — API endpoints with Supertest (actual HTTP calls)
 3. **Auth tests** — Protected routes, token validation, role-based access
 4. **Error path tests** — Invalid input, not found, unauthorized, rate limiting
 
-// turbo
+// turbo — telemetry: phase-4-test-coverage
 ```bash
-npm test -- --coverage
+npx cross-env OTEL_SERVICE_NAME="workflow:api" TRACE_ID="$TRACE_ID" npm test -- --coverage
 ```
 
 Coverage targets:
@@ -162,14 +171,16 @@ Coverage targets:
 | Route handlers | ≥ 70% |
 | Validators | ≥ 90% |
 
-### Phase 5: Security & Documentation
+### Phase 6: Security & Documentation
 
 | Field | Value |
 |-------|-------|
-| **INPUT** | Tested API from Phase 4 |
+| **INPUT** | Tested API from Phase 5 |
 | **OUTPUT** | Security validation report + OpenAPI spec + README |
-| **AGENTS** | `backend-specialist` |
-| **SKILLS** | `security-scanner`, `api-architect` |
+| **AGENTS** | `backend-specialist`, `learner` |
+| **SKILLS** | `security-scanner`, `api-architect`, `problem-checker`, `auto-learner` |
+
+// turbo — telemetry: phase-6-secure
 
 1. **Security validation** (OWASP Top 10):
    - SQL injection protection (parameterized queries via ORM)
@@ -192,9 +203,9 @@ Coverage targets:
    - API endpoint reference
    - Testing instructions
 
-// turbo
+// turbo — telemetry: phase-5-lint-typecheck
 ```bash
-npm run lint && npx tsc --noEmit
+npx cross-env OTEL_SERVICE_NAME="workflow:api" TRACE_ID="$TRACE_ID" npm run lint; npx cross-env OTEL_SERVICE_NAME="workflow:api" TRACE_ID="$TRACE_ID" npx tsc --noEmit
 ```
 
 ---
@@ -252,6 +263,15 @@ npm run lint && npx tsc --noEmit
 | Lint errors | Run eslint --fix |
 
 > **Rule:** Never mark complete with errors in `@[current_problems]`.
+
+---
+
+## 🔙 Rollback & Recovery
+
+If the Exit Gates fail and cannot be resolved automatically:
+1. Restore to pre-api checkpoint (`git checkout -- .` or `git stash pop`).
+2. Log failure via `learner` meta-agent.
+3. Notify user with failure context and recovery options.
 
 ---
 
@@ -322,13 +342,17 @@ npm run lint && npx tsc --noEmit
 
 ## 🔗 Workflow Chain
 
-**Skills Loaded (5):**
+**Skills Loaded (9):**
 
 - `api-architect` - REST/GraphQL/tRPC design patterns and endpoint design
 - `data-modeler` - Database schema design, Prisma ORM, migration strategy
 - `nodejs-pro` - Node.js best practices, async patterns, framework selection
 - `test-architect` - API testing strategies (unit, integration, coverage)
 - `security-scanner` - OWASP Top 10 validation, security audit
+- `auth-patterns` - Authentication/authorization strategies (JWT, OAuth2, API Key)
+- `context-engineering` - Codebase parsing and framework detection
+- `problem-checker` - Code problem verification
+- `auto-learner` - Learning and logging backend patterns
 
 ```mermaid
 graph LR

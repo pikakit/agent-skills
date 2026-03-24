@@ -1,8 +1,8 @@
 ---
 description: Autonomous multi-agent orchestration — coordinate 3+ specialist agents in parallel with automated verification, conflict resolution, and continuous execution.
 chain: build-web-app
-skills: [lifecycle-orchestrator, execution-reporter, context-engineering, project-planner, studio, problem-checker, idea-storm, design-system, test-architect, security-scanner]
-agents: [orchestrator, assessor, recovery]
+skills: [lifecycle-orchestrator, execution-reporter, context-engineering, project-planner, studio, problem-checker, idea-storm, design-system, test-architect, security-scanner, auto-learner]
+agents: [orchestrator, assessor, recovery, critic, learner, project-planner, frontend-specialist, backend-specialist, database-architect, security-auditor, test-engineer, devops-engineer, mobile-developer]
 ---
 
 # /autopilot - Multi-Agent Command Center
@@ -23,12 +23,10 @@ Coordinate 3+ specialist agents for complex multi-domain tasks — planning thro
 
 | Phase | Agent | Action |
 | ----- | ----- | ------ |
-| **Pre-Flight** | `orchestrator` | Initialize execution, assign agents |
-| **Pre-Flight** | `assessor` | Evaluate plan risk level |
-| **Pre-Execution** | `recovery` | Save state checkpoint before risky phases |
-| **During Execution** | `critic` | Resolve agent conflicts (QA vs speed, security vs functionality) |
-| **On Failure** | `recovery` | Auto-rollback to saved state |
-| **Post-Execution** | `learner` | Log patterns from success/failure |
+| **Pre-Flight** | `assessor` | Evaluate plan risk level and auto-learned context |
+| **Execution** | `orchestrator` / `critic` | Coordinate parallel execution and resolve agent conflicts |
+| **Safety** | `recovery` | Save state and recover from execution failures |
+| **Post-Autopilot** | `learner` | Log execution metrics and success/failure patterns |
 
 ```
 Flow:
@@ -47,21 +45,23 @@ success → learner.log(patterns)
 
 ## 🔴 MANDATORY: Multi-Agent Orchestration Protocol
 
-### Phase 0: Pre-flight & Auto-Learned Context
+### Phase 1: Pre-flight & Auto-Learned Context
 
 > **Rule 0.5-K:** Auto-learned pattern check.
 
 1. Read `.agent/skills/auto-learned/patterns/` for past failures before proceeding.
 2. Trigger `recovery` agent to run Checkpoint (`git commit -m "chore(checkpoint): pre-autopilot"`).
 
-### Phase 1: Planning & Agent Selection
+### Phase 2: Planning & Agent Selection
 
 | Field | Value |
 |-------|-------|
 | **INPUT** | $ARGUMENTS (user request — feature/app description) |
 | **OUTPUT** | PLAN.md with task breakdown, agent assignments, dependency graph |
-| **AGENTS** | `project-planner` |
-| **SKILLS** | `project-planner`, `idea-storm` |
+| **AGENTS** | `project-planner`, `assessor` |
+| **SKILLS** | `project-planner`, `idea-storm`, `context-engineering` |
+
+// turbo — telemetry: phase-2-planning
 
 1. Identify required domains → select agents:
 
@@ -80,9 +80,9 @@ success → learner.log(patterns)
 
 > 🔴 Only `project-planner` during planning.
 
-**⛔ CHECKPOINT: User approval required before Phase 2**
+**⛔ CHECKPOINT: User approval required before Phase 3**
 
-### Phase 2: Pre-Flight Safety
+### Phase 3: Pre-Flight Safety
 
 | Field | Value |
 |-------|-------|
@@ -90,6 +90,8 @@ success → learner.log(patterns)
 | **OUTPUT** | Risk assessment + state checkpoint |
 | **AGENTS** | `assessor`, `recovery` |
 | **SKILLS** | `lifecycle-orchestrator` |
+
+// turbo — telemetry: phase-3-safety
 
 1. `assessor` evaluates plan risk:
 
@@ -102,32 +104,34 @@ success → learner.log(patterns)
 
 2. `recovery` creates state checkpoint for all affected files
 
-### Phase 3: Design System (UI Apps Only)
+### Phase 4: Design System (UI Apps Only)
 
 | Field | Value |
 |-------|-------|
 | **INPUT** | Approved PLAN.md (if app has UI) |
 | **OUTPUT** | Design tokens (colors, typography, effects) |
-| **AGENTS** | `frontend-specialist` |
+| **AGENTS** | `frontend-specialist`, `orchestrator` |
 | **SKILLS** | `studio`, `design-system` |
 
 > **Skip this phase** if the task has no UI component.
 
-// turbo
+// turbo — telemetry: phase-4-studio-search
 ```bash
-node .agent/skills/studio/scripts-js/search.js "<app_type> <style> <keywords>" --design-system -p "<Project Name>"
+npx cross-env OTEL_SERVICE_NAME="workflow:autopilot" TRACE_ID="$TRACE_ID" node .agent/skills/studio/scripts-js/search.js "<app_type> <style> <keywords>" --design-system -p "<Project Name>"
 ```
 
 Apply design tokens (colors, typography, effects) before building components.
 
-### Phase 4: Parallel Execution
+### Phase 5: Parallel Execution
 
 | Field | Value |
 |-------|-------|
 | **INPUT** | Approved plan + design system tokens (if applicable) |
 | **OUTPUT** | All project artifacts: routes, components, schemas, configs |
-| **AGENTS** | 3+ domain specialists per plan |
+| **AGENTS** | `orchestrator`, `critic`, 3+ domain specialists per plan |
 | **SKILLS** | Per agent specialization |
+
+// turbo — telemetry: phase-5-execution
 
 ```mermaid
 graph TD
@@ -158,23 +162,23 @@ graph TD
 
 > ⚠️ Invoking agent without context = wrong assumptions!
 
-### Phase 5: Verification & Exit Gate
+### Phase 6: Verification & Exit Gate
 
 | Field | Value |
 |-------|-------|
-| **INPUT** | All artifacts from Phase 4 |
+| **INPUT** | All artifacts from Phase 5 |
 | **OUTPUT** | Verification report: tests, lint, types, security scan |
-| **AGENTS** | `test-engineer` |
-| **SKILLS** | `test-architect`, `problem-checker`, `security-scanner` |
+| **AGENTS** | `test-engineer`, `learner` |
+| **SKILLS** | `test-architect`, `problem-checker`, `security-scanner`, `auto-learner` |
 
-// turbo
+// turbo — telemetry: phase-6-test
 ```bash
-npm test
+npx cross-env OTEL_SERVICE_NAME="workflow:autopilot" TRACE_ID="$TRACE_ID" npm test
 ```
 
-// turbo
+// turbo — telemetry: phase-6-lint-typecheck
 ```bash
-npm run lint && npx tsc --noEmit
+npx cross-env OTEL_SERVICE_NAME="workflow:autopilot" TRACE_ID="$TRACE_ID" npm run lint; npx cross-env OTEL_SERVICE_NAME="workflow:autopilot" TRACE_ID="$TRACE_ID" npx tsc --noEmit
 ```
 
 **Exit Gate — ALL must pass:**
@@ -226,6 +230,13 @@ npm run lint && npx tsc --noEmit
 > **Rule:** Never mark complete with errors in `@[current_problems]`.
 
 ---
+
+## 🔙 Rollback & Recovery
+
+If the Exit Gates fail and cannot be resolved automatically:
+1. Restore to pre-autopilot checkpoint (`git checkout -- .` or `git stash pop`).
+2. Log failure via `learner` meta-agent.
+3. Notify user with failure context and recovery options.
 
 ---
 
@@ -296,7 +307,7 @@ npm run lint && npx tsc --noEmit
 
 ## 🔗 Workflow Chain
 
-**Skills Loaded (6):**
+**Skills Loaded (11):**
 
 - `lifecycle-orchestrator` - Multi-phase execution with checkpoint/restore
 - `execution-reporter` - Agent routing and skill loading transparency
@@ -304,6 +315,11 @@ npm run lint && npx tsc --noEmit
 - `project-planner` - Task breakdown and plan generation
 - `studio` - Design system generation for UI apps
 - `problem-checker` - IDE error detection and auto-fix
+- `idea-storm` - Brainstorming and alternative analysis
+- `design-system` - UI/UX standards and theme tokens
+- `test-architect` - Testing strategy and suite generation
+- `security-scanner` - Automated vulnerability detection
+- `auto-learner` - Learning and logging execution patterns
 
 ```mermaid
 graph LR

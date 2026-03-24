@@ -1,7 +1,7 @@
 ---
 description: Comprehensive test automation suite — generate, execute, and analyze tests with Vitest/Playwright using AAA pattern, mutation testing, visual regression, and contract verification.
-skills: [test-architect, e2e-automation, code-review]
-agents: [orchestrator, assessor, recovery]
+skills: [test-architect, e2e-automation, code-review, context-engineering, problem-checker, auto-learner]
+agents: [orchestrator, assessor, recovery, learner, test-engineer]
 ---
 
 # /validate - Test Automation Suite
@@ -19,9 +19,11 @@ Generate comprehensive tests, execute suites, and analyze coverage — supportin
 ## 🤖 Meta-Agents Integration
 
 | Phase | Agent | Action |
-|-------|-------|--------|
-| **Pre-Test** | `recovery` | Save state before test execution |
-| **Post-Test** | `learner` | Log common failure patterns |
+| ----- | ----- | ------ |
+| **Pre-Flight** | `assessor` | Evaluate test targets and auto-learned context |
+| **Execution** | `orchestrator` | Coordinate test generation, execution, and analysis |
+| **Safety** | `recovery` | Save state and recover from test execution failures |
+| **Post-Validate**| `learner` | Log test execution telemetry and failure patterns |
 
 ```
 Flow:
@@ -51,21 +53,23 @@ learner.log(failure_patterns)
 
 ## 🔴 MANDATORY: Test Automation Protocol
 
-### Phase 0: Pre-flight & Auto-Learned Context
+### Phase 1: Pre-flight & Auto-Learned Context
 
 > **Rule 0.5-K:** Auto-learned pattern check.
 
 1. Read `.agent/skills/auto-learned/patterns/` for past failures before proceeding.
 2. Trigger `recovery` agent to run Checkpoint (`git commit -m "chore(checkpoint): pre-validate"`).
 
-### Phase 1: Test Generation
+### Phase 2: Test Generation
 
 | Field | Value |
 |-------|-------|
 | **INPUT** | $ARGUMENTS (target file/feature or "all") |
 | **OUTPUT** | Test files following AAA pattern |
-| **AGENTS** | `test-engineer` |
-| **SKILLS** | `test-architect` |
+| **AGENTS** | `test-engineer`, `assessor` |
+| **SKILLS** | `test-architect`, `context-engineering` |
+
+// turbo — telemetry: phase-2-generate
 
 1. Detect test framework:
 
@@ -90,18 +94,20 @@ learner.log(failure_patterns)
 
 3. Generate tests using AAA pattern (Arrange, Act, Assert)
 
-### Phase 2: Test Execution
+### Phase 3: Test Execution
 
 | Field | Value |
 |-------|-------|
-| **INPUT** | Test files from Phase 1 |
+| **INPUT** | Test files from Phase 2 |
 | **OUTPUT** | Test results: pass/fail counts, coverage report |
-| **AGENTS** | `test-engineer` |
+| **AGENTS** | `test-engineer`, `orchestrator` |
 | **SKILLS** | `test-architect`, `e2e-automation` |
+
+// turbo — telemetry: phase-3-execute
 
 // turbo
 ```bash
-npm test -- --coverage
+npx cross-env OTEL_SERVICE_NAME="workflow:validate" TRACE_ID="$TRACE_ID" npm test -- --coverage
 ```
 
 Coverage targets:
@@ -112,38 +118,45 @@ Coverage targets:
 | Branches | ≥70% | ≥50% |
 | Mutation Score | ≥80% | ≥60% |
 
-### Phase 3: Advanced Testing
+### Phase 4: Advanced Testing
 
 | Field | Value |
 |-------|-------|
-| **INPUT** | Coverage report from Phase 2 |
+| **INPUT** | Coverage report from Phase 3 |
 | **OUTPUT** | Mutation score, visual diffs, contract results |
-| **AGENTS** | `test-engineer` |
+| **AGENTS** | `test-engineer`, `orchestrator` |
 | **SKILLS** | `test-architect`, `e2e-automation` |
 
+// turbo — telemetry: phase-4-advanced
+
 Mutation testing (if requested):
+// turbo
 ```bash
-npx stryker run
+npx cross-env OTEL_SERVICE_NAME="workflow:validate" TRACE_ID="$TRACE_ID" npx stryker run
 ```
 
 Visual regression (if requested):
+// turbo
 ```bash
-npx playwright test --project=visual
+npx cross-env OTEL_SERVICE_NAME="workflow:validate" TRACE_ID="$TRACE_ID" npx playwright test --project=visual
 ```
 
 Contract testing (if requested):
+// turbo
 ```bash
-npx pact-verifier
+npx cross-env OTEL_SERVICE_NAME="workflow:validate" TRACE_ID="$TRACE_ID" npx pact-verifier
 ```
 
-### Phase 4: Results Analysis
+### Phase 5: Results Analysis
 
 | Field | Value |
 |-------|-------|
-| **INPUT** | All test results from Phases 2-3 |
+| **INPUT** | All test results from Phases 3-4 |
 | **OUTPUT** | Test report with pass/fail, coverage, recommendations |
-| **AGENTS** | `test-engineer` |
-| **SKILLS** | `test-architect` |
+| **AGENTS** | `test-engineer`, `learner` |
+| **SKILLS** | `test-architect`, `problem-checker`, `auto-learner` |
+
+// turbo — telemetry: phase-5-analyze
 
 1. Aggregate results across all test types
 2. Compare against coverage targets
@@ -179,6 +192,15 @@ npx pact-verifier
 
 ---
 
+## 🔙 Rollback & Recovery
+
+If tests hang or mutate files in unexpected ways:
+1. Trigger `recovery` meta-agent to run `git restore .` to revert mutated source files.
+2. Force kill hanging playwright browsers and Node.js testing processes.
+3. Review `learner` logs to identify flaky logic and update test assertions before re-running.
+
+---
+
 ## Output Format
 
 ```markdown
@@ -207,7 +229,7 @@ npx pact-verifier
 ### Next Steps
 
 - [ ] Fix 2 failing tests
-- [ ] Review visual baselines
+- [ ] Review visual baseline
 - [ ] Run `/launch` when all green
 ```
 
@@ -237,11 +259,14 @@ npx pact-verifier
 
 ## 🔗 Workflow Chain
 
-**Skills Loaded (3):**
+**Skills Loaded (6):**
 
 - `test-architect` - Test patterns, AAA, coverage strategy
 - `e2e-automation` - Playwright, visual testing, browser automation
 - `code-review` - Quality validation of test code
+- `context-engineering` - Codebase parsing and framework detection
+- `problem-checker` - Code problem verification
+- `auto-learner` - Learning and logging test patterns
 
 ```mermaid
 graph LR

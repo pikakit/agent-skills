@@ -9,7 +9,7 @@ coordinates_with: ["idea-storm", "smart-router", "app-scaffold", "problem-checke
 success_metrics: ["Verifiable Tasks", "Correct Delegations"]
 metadata:
   author: pikakit
-  version: "3.9.112"
+  version: "3.9.113"
 ---
 
 # Project Planner — Structured Task Breakdown
@@ -162,4 +162,4 @@ One sentence: What are we building/fixing?
 
 ---
 
-⚡ PikaKit v3.9.112
+⚡ PikaKit v3.9.113

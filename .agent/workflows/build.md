@@ -1,8 +1,8 @@
 ---
 description: Full-stack application factory — transform natural language descriptions into production-ready apps with multi-agent coordination, smart stack defaults, and automated verification.
 chain: build-web-app
-skills: [react-pro, nextjs-pro, project-planner, studio, design-system, code-craft, data-modeler, api-architect, test-architect, idea-storm, nodejs-pro, problem-checker]
-agents: [orchestrator, assessor, recovery]
+skills: [app-scaffold, react-pro, nextjs-pro, project-planner, studio, design-system, code-craft, data-modeler, api-architect, test-architect, idea-storm, nodejs-pro, problem-checker, context-engineering, auto-learner]
+agents: [orchestrator, assessor, recovery, critic, learner, project-planner, database-architect, backend-specialist, frontend-specialist, test-engineer, mobile-developer, devops-engineer, security-auditor]
 ---
 
 # /build - Application Factory
@@ -21,12 +21,10 @@ Ship production-ready applications from natural language descriptions by coordin
 
 | Phase | Agent | Action |
 | ----- | ----- | ------ |
-| **Pre-Build** | `assessor` | Evaluate risk level of requested build |
-| **Pre-Build** | `recovery` | Save current state (if existing project) |
-| **During Build** | `orchestrator` | Coordinate parallel agent execution |
-| **On Conflict** | `critic` | Resolve agent disagreements (schema vs API design) |
-| **On Failure** | `recovery` | Restore to pre-build state |
-| **Post-Build** | `learner` | Log build patterns for reuse |
+| **Pre-Flight** | `assessor` | Evaluate build risk level and auto-learned context |
+| **Execution** | `orchestrator` / `critic` | Coordinate parallel execution and resolve schema/API conflicts |
+| **Safety** | `recovery` | Save state and recover from build failures |
+| **Post-Build** | `learner` | Log build architecture and implementation patterns |
 
 ```
 Flow:
@@ -45,21 +43,23 @@ success → learner.log(patterns)
 
 ## 🔴 MANDATORY: Build Pipeline
 
-### Phase 0: Pre-flight & Auto-Learned Context
+### Phase 1: Pre-flight & Auto-Learned Context
 
 > **Rule 0.5-K:** Auto-learned pattern check.
 
 1. Read `.agent/skills/auto-learned/patterns/` for past failures before proceeding.
 2. Trigger `recovery` agent to run Checkpoint (`git commit -m "chore(checkpoint): pre-build"`).
 
-### Phase 1: Requirements Discovery
+### Phase 2: Requirements Discovery
 
 | Field | Value |
 |-------|-------|
 | **INPUT** | $ARGUMENTS (app description — what to build) |
 | **OUTPUT** | Requirements document: app type, users, core features, stack |
-| **AGENTS** | `project-planner` |
-| **SKILLS** | `idea-storm`, `project-planner` |
+| **AGENTS** | `project-planner`, `assessor` |
+| **SKILLS** | `idea-storm`, `project-planner`, `context-engineering` |
+
+// turbo — telemetry: phase-2-requirements
 
 1. If requirements are incomplete, ask clarifying questions:
 
@@ -92,14 +92,16 @@ success → learner.log(patterns)
 | Deployment | Vercel |
 | Testing | Vitest + Playwright |
 
-### Phase 2: Planning & Design
+### Phase 3: Planning & Design
 
 | Field | Value |
 |-------|-------|
-| **INPUT** | Requirements from Phase 1 |
+| **INPUT** | Requirements from Phase 2 |
 | **OUTPUT** | PLAN.md with task breakdown, agent assignments, file structure |
 | **AGENTS** | `project-planner` |
 | **SKILLS** | `project-planner`, `app-scaffold` |
+
+// turbo — telemetry: phase-3-planning
 
 1. Create PLAN.md with:
    - Task breakdown and agent assignments
@@ -109,32 +111,34 @@ success → learner.log(patterns)
 2. `assessor` evaluates risk level of the build plan
 3. `recovery` saves current project state (if existing directory)
 
-**⛔ CHECKPOINT: User approval required before Phase 3**
+**⛔ CHECKPOINT: User approval required before Phase 4**
 
-### Phase 3: Design System (UI Apps Only)
+### Phase 4: Design System (UI Apps Only)
 
 | Field | Value |
 |-------|-------|
 | **INPUT** | Approved PLAN.md (for apps with UI) |
 | **OUTPUT** | Design tokens: colors, typography, effects |
-| **AGENTS** | `frontend-specialist` |
+| **AGENTS** | `frontend-specialist`, `orchestrator` |
 | **SKILLS** | `studio`, `design-system` |
 
 > **Skip this phase** if the app has no UI (API-only, CLI).
 
-// turbo
+// turbo — telemetry: phase-4-studio-search
 ```bash
-node .agent/skills/studio/scripts-js/search.js "<app_type> <style> <keywords>" --design-system -p "<Project Name>"
+npx cross-env OTEL_SERVICE_NAME="workflow:build" TRACE_ID="$TRACE_ID" node .agent/skills/studio/scripts-js/search.js "<app_type> <style> <keywords>" --design-system -p "<Project Name>"
 ```
 
-### Phase 4: Parallel Build
+### Phase 5: Parallel Build
 
 | Field | Value |
 |-------|-------|
 | **INPUT** | Approved plan + design system tokens |
 | **OUTPUT** | Complete application: schema, API routes, UI components, tests |
-| **AGENTS** | `database-architect`, `backend-specialist`, `frontend-specialist`, `test-engineer` |
+| **AGENTS** | `orchestrator`, `critic`, `database-architect`, `backend-specialist`, `frontend-specialist`, `test-engineer` |
 | **SKILLS** | `data-modeler`, `nodejs-pro`, `api-architect`, `code-craft`, `test-architect` |
+
+// turbo — telemetry: phase-5-build
 
 ```mermaid
 graph TD
@@ -157,28 +161,28 @@ graph TD
 | **Core** | `backend-specialist`, `frontend-specialist` | API routes + UI components |
 | **Polish** | `test-engineer` | Tests + integration |
 
-### Phase 5: Verification & Preview
+### Phase 6: Verification & Preview
 
 | Field | Value |
 |-------|-------|
-| **INPUT** | All artifacts from Phase 4 |
+| **INPUT** | All artifacts from Phase 5 |
 | **OUTPUT** | Running preview + verification report |
-| **AGENTS** | `test-engineer` |
-| **SKILLS** | `test-architect`, `problem-checker` |
+| **AGENTS** | `test-engineer`, `learner` |
+| **SKILLS** | `test-architect`, `problem-checker`, `auto-learner` |
 
-// turbo
+// turbo — telemetry: phase-6-test
 ```bash
-npm test
+npx cross-env OTEL_SERVICE_NAME="workflow:build" TRACE_ID="$TRACE_ID" npm test
 ```
 
-// turbo
+// turbo — telemetry: phase-6-lint-typecheck
 ```bash
-npm run lint && npx tsc --noEmit
+npx cross-env OTEL_SERVICE_NAME="workflow:build" TRACE_ID="$TRACE_ID" npm run lint; npx cross-env OTEL_SERVICE_NAME="workflow:build" TRACE_ID="$TRACE_ID" npx tsc --noEmit
 ```
 
-// turbo
+// turbo — telemetry: phase-6-preview
 ```bash
-npm run dev
+npx cross-env OTEL_SERVICE_NAME="workflow:build" TRACE_ID="$TRACE_ID" npm run dev
 ```
 
 **Exit Gate — ALL must pass:**
@@ -218,6 +222,15 @@ npm run dev
 | Lint errors | Run eslint --fix |
 
 > **Rule:** Never mark complete with errors in `@[current_problems]`. **NEVER mark complete without a working preview.**
+
+---
+
+## 🔙 Rollback & Recovery
+
+If the Exit Gates fail and cannot be resolved automatically:
+1. Restore to pre-build checkpoint (`git checkout -- .` or `git stash pop`).
+2. Log failure via `learner` meta-agent.
+3. Notify user with failure context and recovery options.
 
 ---
 
@@ -284,9 +297,11 @@ npm run dev
 
 ## 🔗 Workflow Chain
 
-**Skills Loaded (8):**
+**Skills Loaded (15):**
 
 - `app-scaffold` - Full-stack scaffolding from natural language
+- `react-pro` - React application development
+- `nextjs-pro` - Next.js framework expertise
 - `project-planner` - Task breakdown and architecture planning
 - `studio` - Design system generation for UI apps
 - `design-system` - UI/UX design tokens and components
@@ -294,6 +309,11 @@ npm run dev
 - `data-modeler` - Database schema design
 - `api-architect` - API design and endpoint patterns
 - `test-architect` - Testing strategies and coverage
+- `idea-storm` - Brainstorming and alternative analysis
+- `nodejs-pro` - Node.js backend development
+- `context-engineering` - Codebase parsing and framework detection
+- `problem-checker` - IDE error detection and auto-fix
+- `auto-learner` - Learning and logging execution patterns
 
 ```mermaid
 graph LR

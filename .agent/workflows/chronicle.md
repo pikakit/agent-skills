@@ -1,7 +1,7 @@
 ---
 description: Automated documentation engine — generate README, OpenAPI specs, ADRs, Storybook stories, operational runbooks, and inline comments directly from source code analysis.
-skills: [doc-templates]
-agents: [orchestrator, assessor, recovery]
+skills: [doc-templates, context-engineering, copywriting, problem-checker, auto-learner]
+agents: [orchestrator, assessor, recovery, learner, documentation-writer]
 ---
 
 # /chronicle - Documentation Engine
@@ -12,16 +12,18 @@ $ARGUMENTS
 
 ## Purpose
 
-Generate comprehensive project documentation automatically by analyzing source code, extracting types, and producing structured docs. **Differs from `/inspect` (code review and quality audit) and `/plan` (task breakdown) by focusing on written documentation — README, API specs, ADR, component docs, ops runbooks, and inline comments.** Uses `documentation-writer` for all doc generation, with `doc-templates` for structure and `markdown-novel-viewer` for preview.
+Generate comprehensive project documentation automatically by analyzing source code, extracting types, and producing structured docs. **Differs from `/inspect` (code review and quality audit) and `/plan` (task breakdown) by focusing on written documentation — README, API specs, ADR, component docs, ops runbooks, and inline comments.** Uses `documentation-writer` for all doc generation, with `doc-templates` and `copywriting` for structure and tone.
 
 ---
 
 ## 🤖 Meta-Agents Integration
 
 | Phase | Agent | Action |
-|-------|-------|--------|
-| **Pre-Analysis** | `assessor` | Evaluate documentation scope and coverage gaps |
-| **Post-Generation** | `learner` | Learn doc patterns and templates for reuse |
+| ----- | ----- | ------ |
+| **Pre-Flight** | `assessor` | Evaluate documentation scope and auto-learned context |
+| **Execution** | `orchestrator` | Assign domain agents for doc generation |
+| **Safety** | `recovery` | Save state and recover from file modification failures |
+| **Post-Chronicle** | `learner` | Log doc patterns and templates for reuse |
 
 ```
 Flow:
@@ -52,21 +54,23 @@ learner.log(templates, patterns)
 
 ## 🔴 MANDATORY: Documentation Generation Protocol
 
-### Phase 0: Pre-flight & Auto-Learned Context
+### Phase 1: Pre-flight & Auto-Learned Context
 
 > **Rule 0.5-K:** Auto-learned pattern check.
 
 1. Read `.agent/skills/auto-learned/patterns/` for past failures before proceeding.
 2. Trigger `recovery` agent to run Checkpoint (`git commit -m "chore(checkpoint): pre-chronicle"`).
 
-### Phase 1: Codebase Analysis
+### Phase 2: Codebase Analysis
 
 | Field | Value |
 |-------|-------|
 | **INPUT** | $ARGUMENTS (sub-command + optional scope) |
 | **OUTPUT** | Documentation scope: files to document, gaps identified, doc type |
-| **AGENTS** | `documentation-writer` |
-| **SKILLS** | `doc-templates` |
+| **AGENTS** | `documentation-writer`, `assessor` |
+| **SKILLS** | `context-engineering`, `auto-learner` |
+
+// turbo — telemetry: phase-2-analysis
 
 1. Scan project structure and identify:
    - Source files and their exports
@@ -74,16 +78,18 @@ learner.log(templates, patterns)
    - Component files and their props
    - Existing documentation (for update vs create)
 2. `assessor` evaluates coverage gaps
-3. Determine documentation scope based on sub-command
+3. Determine documentation scope based on sub-command (mapped from Phase 1 inputs)
 
-### Phase 2: Documentation Generation
+### Phase 3: Documentation Generation
 
 | Field | Value |
 |-------|-------|
-| **INPUT** | Scope analysis from Phase 1 |
+| **INPUT** | Scope analysis from Phase 2 |
 | **OUTPUT** | Generated documentation files |
-| **AGENTS** | `documentation-writer` |
-| **SKILLS** | `doc-templates` |
+| **AGENTS** | `documentation-writer`, `orchestrator` |
+| **SKILLS** | `doc-templates`, `copywriting` |
+
+// turbo — telemetry: phase-3-generate
 
 Generate docs based on sub-command:
 
@@ -130,14 +136,16 @@ Generate docs based on sub-command:
 ## Prevention (monitoring + alerts)
 ```
 
-### Phase 3: Verification & Coverage
+### Phase 4: Verification & Coverage
 
 | Field | Value |
 |-------|-------|
-| **INPUT** | Generated docs from Phase 2 |
+| **INPUT** | Generated docs from Phase 3 |
 | **OUTPUT** | Coverage report: documented vs total, gaps remaining |
-| **AGENTS** | `documentation-writer` |
-| **SKILLS** | `doc-templates`, `markdown-novel-viewer` |
+| **AGENTS** | `documentation-writer`, `learner` |
+| **SKILLS** | `doc-templates`, `problem-checker`, `auto-learner` |
+
+// turbo — telemetry: phase-4-verify
 
 1. Verify all generated docs are valid markdown
 2. Check documentation coverage:
@@ -172,6 +180,15 @@ Generate docs based on sub-command:
 | Lint errors | Run eslint --fix |
 
 > **Rule:** Never mark complete with errors in `@[current_problems]`.
+
+---
+
+## 🔙 Rollback & Recovery
+
+If documentation generation fails or writes corrupted files:
+1. Restore to pre-chronicle checkpoint (`git checkout -- .` or `git stash pop`).
+2. Log failure context via `learner` meta-agent.
+3. Notify user with the specific errors to fix before retrying.
 
 ---
 
@@ -233,10 +250,13 @@ Generate docs based on sub-command:
 
 ## 🔗 Workflow Chain
 
-**Skills Loaded (2):**
+**Skills Loaded (5):**
 
 - `doc-templates` - Documentation templates and structure guidelines
-- `markdown-novel-viewer` - Markdown preview and rendering
+- `context-engineering` - Codebase parsing and framework detection
+- `copywriting` - Writing style and tone guidelines
+- `problem-checker` - IDE error detection and auto-fix
+- `auto-learner` - Learning and logging execution patterns
 
 ```mermaid
 graph LR

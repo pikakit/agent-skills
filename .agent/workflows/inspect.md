@@ -1,8 +1,8 @@
 ---
 description: Defense-in-depth code review — four-layer validation across build, tests, security, and logic to eliminate false completion claims with evidence-based verification.
 chain: security-audit
-skills: [security-scanner, code-review]
-agents: [orchestrator, assessor, recovery]
+skills: [security-scanner, code-review, problem-checker, context-engineering, auto-learner]
+agents: [orchestrator, assessor, recovery, learner, security-auditor]
 ---
 
 # /inspect - Defense-in-Depth Review
@@ -32,7 +32,9 @@ Systematic code review with multi-layer validation — preventing false completi
 
 | Phase | Agent | Action |
 | ----- | ----- | ------ |
-| **Pre-Review** | `assessor` | Evaluate review scope and risk areas |
+| **Pre-Flight** | `assessor` | Evaluate review scope, risks and auto-learned patterns |
+| **Execution** | `orchestrator` | Coordinate 4-layer validation sequence |
+| **Safety** | `recovery` | Save workspace checkpoint before validation |
 | **Post-Review** | `learner` | Log review patterns for future reference |
 
 ```
@@ -48,25 +50,25 @@ report → learner.log(patterns)
 
 ## 🔴 MANDATORY: 4-Layer Validation Protocol
 
-### Phase 0: Pre-flight & Auto-Learned Context
+### Phase 1: Pre-flight & Auto-Learned Context
 
 > **Rule 0.5-K:** Auto-learned pattern check.
 
 1. Read `.agent/skills/auto-learned/patterns/` for past failures before proceeding.
 2. Trigger `recovery` agent to run Checkpoint (`git commit -m "chore(checkpoint): pre-inspect"`).
 
-### Phase 1: Build Verification
+### Phase 2: Build Verification
 
 | Field | Value |
 |-------|-------|
 | **INPUT** | $ARGUMENTS (target files/scope or current changes) |
 | **OUTPUT** | Build result: compilation status, lint errors, warnings |
-| **AGENTS** | none |
-| **SKILLS** | `code-review` |
+| **AGENTS** | `orchestrator`, `assessor` |
+| **SKILLS** | `code-review`, `context-engineering` |
 
-// turbo
+// turbo — telemetry: phase-2-build
 ```bash
-npm run build
+npx cross-env OTEL_SERVICE_NAME="workflow:inspect" TRACE_ID="$TRACE_ID" npm run build
 ```
 
 | Check | Required |
@@ -75,18 +77,18 @@ npm run build
 | No lint errors | ✅ |
 | No warnings | ⚠️ |
 
-### Phase 2: Test Verification
+### Phase 3: Test Verification
 
 | Field | Value |
 |-------|-------|
-| **INPUT** | Build result from Phase 1 |
+| **INPUT** | Build result from Phase 2 |
 | **OUTPUT** | Test result: pass/fail count, coverage, skipped tests |
-| **AGENTS** | none |
+| **AGENTS** | `orchestrator` |
 | **SKILLS** | `code-review` |
 
-// turbo
+// turbo — telemetry: phase-3-test
 ```bash
-npm test
+npx cross-env OTEL_SERVICE_NAME="workflow:inspect" TRACE_ID="$TRACE_ID" npm test
 ```
 
 | Check | Required |
@@ -95,7 +97,7 @@ npm test
 | No skipped tests | ⚠️ |
 | Coverage maintained | ⚠️ |
 
-### Phase 3: Security Scan
+### Phase 4: Security Scan
 
 | Field | Value |
 |-------|-------|
@@ -111,14 +113,14 @@ npm test
 | SQL injection safe | ✅ |
 | XSS prevention | ✅ |
 
-### Phase 4: Logic Review
+### Phase 5: Logic Review
 
 | Field | Value |
 |-------|-------|
-| **INPUT** | All results from Phases 1-3 + source code |
+| **INPUT** | All results from Phases 2-4 + source code |
 | **OUTPUT** | Logic review: issues found with severity, required actions |
-| **AGENTS** | `security-auditor` |
-| **SKILLS** | `code-review` |
+| **AGENTS** | `security-auditor`, `learner` |
+| **SKILLS** | `code-review`, `problem-checker`, `auto-learner` |
 
 | Category | Questions |
 |----------|----------|
@@ -154,6 +156,17 @@ npm test
 | Lint errors | Run eslint --fix |
 
 > **Rule:** Never mark complete with errors in `@[current_problems]`.
+
+---
+
+## 🔙 Rollback & Recovery
+
+If the inspection process (builds, scans) creates ghost artifacts or fails to complete legitimately:
+1. Restore workspace to pre-inspect checkpoint (`git reset --hard HEAD` and `git clean -fd`).
+2. Log failure via `learner` meta-agent.
+3. Automatically escalate to `/diagnose` to understand why the pipeline failed.
+
+---
 
 ### Evidence-Based Completion
 
@@ -233,10 +246,13 @@ npm test
 
 ## 🔗 Workflow Chain
 
-**Skills Loaded (2):**
+**Skills Loaded (5):**
 
 - `security-scanner` - OWASP 2025 vulnerability analysis
 - `code-review` - Multi-layer code quality validation
+- `context-engineering` - Codebase parsing and context extraction
+- `problem-checker` - IDE problem verification
+- `auto-learner` - Learning and logging review patterns
 
 ```mermaid
 graph LR

@@ -1,7 +1,7 @@
 ---
 description: Local development sandbox — auto-detect services, orchestrate multi-service startup with dependency ordering, resolve port conflicts, integrate Docker Compose, and monitor health.
-skills: [server-ops, cicd-pipeline]
-agents: [orchestrator, assessor, recovery]
+skills: [server-ops, cicd-pipeline, context-engineering, problem-checker, auto-learner]
+agents: [orchestrator, assessor, recovery, learner, devops-engineer]
 ---
 
 # /stage - Development Sandbox
@@ -19,10 +19,11 @@ Manage local development environments with multi-service orchestration — auto-
 ## 🤖 Meta-Agents Integration
 
 | Phase | Agent | Action |
-|-------|-------|--------|
-| **Pre-Start** | `recovery` | Save current server state |
-| **Port Conflict** | `assessor` | Evaluate best resolution strategy |
-| **Post-Run** | `learner` | Log configs for reuse |
+| ----- | ----- | ------ |
+| **Pre-Flight** | `assessor` | Evaluate environment, ports, and auto-learned context |
+| **Execution** | `orchestrator` | Coordinate service startup and dependency ordering |
+| **Safety** | `recovery` | Save state and recover/rollback from service startup failures |
+| **Post-Stage** | `learner` | Log sandbox execution telemetry and port patterns |
 
 ```
 Flow:
@@ -57,21 +58,23 @@ health_check → learner.log(config)
 
 ## 🔴 MANDATORY: Development Sandbox Protocol
 
-### Phase 0: Pre-flight & Auto-Learned Context
+### Phase 1: Pre-flight & Auto-Learned Context
 
 > **Rule 0.5-K:** Auto-learned pattern check.
 
 1. Read `.agent/skills/auto-learned/patterns/` for past failures before proceeding.
 2. Trigger `recovery` agent to run Checkpoint (`git commit -m "chore(checkpoint): pre-stage"`).
 
-### Phase 1: Environment Detection
+### Phase 2: Environment Detection
 
 | Field | Value |
 |-------|-------|
 | **INPUT** | $ARGUMENTS (sub-command + optional service name) |
 | **OUTPUT** | Project type, detected services, port assignments |
-| **AGENTS** | `devops-engineer` |
-| **SKILLS** | `server-ops` |
+| **AGENTS** | `devops-engineer`, `assessor` |
+| **SKILLS** | `server-ops`, `context-engineering` |
+
+// turbo — telemetry: phase-2-detect
 
 Auto-detect project type:
 
@@ -93,14 +96,16 @@ apps/api/    → Backend (port 3001)
 packages/db/ → Database service
 ```
 
-### Phase 2: Port Resolution & Service Start
+### Phase 3: Port Resolution & Service Start
 
 | Field | Value |
 |-------|-------|
-| **INPUT** | Detected services from Phase 1 |
+| **INPUT** | Detected services from Phase 2 |
 | **OUTPUT** | Running services with resolved ports |
-| **AGENTS** | `devops-engineer` |
+| **AGENTS** | `devops-engineer`, `orchestrator` |
 | **SKILLS** | `server-ops` |
+
+// turbo — telemetry: phase-3-start
 
 Port allocation:
 
@@ -135,17 +140,19 @@ Docker hybrid mode (recommended):
 
 // turbo
 ```bash
-node .agent/scripts-js/auto_preview.js start
+npx cross-env OTEL_SERVICE_NAME="workflow:stage" TRACE_ID="$TRACE_ID" node .agent/scripts-js/auto_preview.js start
 ```
 
-### Phase 3: Health Monitoring
+### Phase 4: Health Monitoring
 
 | Field | Value |
 |-------|-------|
-| **INPUT** | Running services from Phase 2 |
+| **INPUT** | Running services from Phase 3 |
 | **OUTPUT** | Health status dashboard, auto-restart on crash |
-| **AGENTS** | none |
-| **SKILLS** | `server-ops` |
+| **AGENTS** | `learner` |
+| **SKILLS** | `server-ops`, `problem-checker`, `auto-learner` |
+
+// turbo — telemetry: phase-4-health
 
 Health gates:
 
@@ -160,7 +167,7 @@ Auto-restart on crash: 3 retry attempts with error logging.
 
 // turbo
 ```bash
-node .agent/scripts-js/auto_preview.js status
+npx cross-env OTEL_SERVICE_NAME="workflow:stage" TRACE_ID="$TRACE_ID" node .agent/scripts-js/auto_preview.js status
 ```
 
 ---
@@ -181,6 +188,15 @@ node .agent/scripts-js/auto_preview.js status
 ```
 
 > **Note:** /stage manages services, not code. Problems are reported along with service health.
+
+---
+
+## 🔙 Rollback & Recovery
+
+If port orchestration fails or Docker containers hang:
+1. Trigger `recovery` meta-agent to run `docker compose down` and kill dangling Node/Python processes on target ports.
+2. Automatically select random fallback ports instead of interactive resolution.
+3. Restart safe baseline infrastructure without application services.
 
 ---
 
@@ -241,10 +257,13 @@ node .agent/scripts-js/auto_preview.js status
 
 ## 🔗 Workflow Chain
 
-**Skills Loaded (2):**
+**Skills Loaded (5):**
 
 - `server-ops` - Service management, process control, port management
 - `cicd-pipeline` - Docker Compose integration
+- `context-engineering` - Codebase parsing and environment detection
+- `problem-checker` - Service problem verification
+- `auto-learner` - Learning and logging sandbox patterns
 
 ```mermaid
 graph LR

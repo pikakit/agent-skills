@@ -1,8 +1,8 @@
 ---
 description: Rapid-fire implementation — execute targeted coding tasks directly from instructions or plans with minimal overhead, following existing patterns and verified output.
 chain: build-web-app
-skills: [code-craft, problem-checker]
-agents: [orchestrator, assessor, recovery]
+skills: [code-craft, problem-checker, smart-router, context-engineering, auto-learner]
+agents: [orchestrator, assessor, recovery, learner, backend-specialist, frontend-specialist]
 ---
 
 # /cook - The Implementer
@@ -32,6 +32,9 @@ Rapidly implement specific features, components, or logic based on clear instruc
 
 | Phase | Agent | Action |
 | ----- | ----- | ------ |
+| **Pre-Flight** | `assessor` | Evaluate risk and check auto-learned patterns |
+| **Execution** | `orchestrator` | Route tasks to specialist agents |
+| **Safety** | `recovery` | Save checkpoint before code writes |
 | **Post-Cook** | `learner` | Log execution pattern for reuse |
 
 ```
@@ -43,32 +46,32 @@ instruction → implement → verify → learner.log() → done
 
 ## 🔴 MANDATORY: Cooking Protocol
 
-### Phase 0: Pre-flight & Auto-Learned Context
+### Phase 1: Pre-flight & Auto-Learned Context
 
 > **Rule 0.5-K:** Auto-learned pattern check.
 
 1. Read `.agent/skills/auto-learned/patterns/` for past failures before proceeding.
 2. Trigger `recovery` agent to run Checkpoint (`git commit -m "chore(checkpoint): pre-cook"`).
 
-### Phase 1: Mise en Place (Preparation)
+### Phase 2: Mise en Place (Preparation)
 
 | Field | Value |
 |-------|-------|
 | **INPUT** | $ARGUMENTS (implementation instruction or plan file path) |
 | **OUTPUT** | Understanding of task, related files identified, dependencies mapped |
-| **AGENTS** | none (analysis only) |
-| **SKILLS** | `code-craft` |
+| **AGENTS** | `orchestrator`, `assessor` |
+| **SKILLS** | `context-engineering`, `smart-router` |
 
 1. Parse the instruction to understand exact scope
 2. Read related files (imports, types, dependencies)
 3. Identify existing code patterns to follow
 4. Determine which specialist agent to invoke (frontend, backend, etc.)
 
-### Phase 2: Implementation
+### Phase 3: Implementation
 
 | Field | Value |
 |-------|-------|
-| **INPUT** | Task understanding + related files from Phase 1 |
+| **INPUT** | Task understanding + related files from Phase 2 |
 | **OUTPUT** | Created/modified source files implementing the requested feature |
 | **AGENTS** | Auto-routed specialist (`backend-specialist`, `frontend-specialist`, etc.) |
 | **SKILLS** | `code-craft` |
@@ -78,18 +81,18 @@ instruction → implement → verify → learner.log() → done
 3. No whitespace changes in unrelated areas
 4. Follow `code-craft` standards: 20 lines/function, 3 args max, 2 nesting levels
 
-### Phase 3: Taste Test (Verification)
+### Phase 4: Taste Test (Verification)
 
 | Field | Value |
 |-------|-------|
-| **INPUT** | Modified/created files from Phase 2 |
+| **INPUT** | Modified/created files from Phase 3 |
 | **OUTPUT** | Verification result: lint clean, no IDE errors |
-| **AGENTS** | none |
-| **SKILLS** | `problem-checker` |
+| **AGENTS** | `learner` |
+| **SKILLS** | `problem-checker`, `auto-learner` |
 
-// turbo
+// turbo — telemetry: phase-4-lint
 ```bash
-npm run lint
+npx cross-env OTEL_SERVICE_NAME="workflow:cook" TRACE_ID="$TRACE_ID" npm run lint
 ```
 
 1. Check `@[current_problems]` for IDE errors
@@ -122,6 +125,15 @@ npm run lint
 | Lint errors | Run eslint --fix |
 
 > **Rule:** Never mark complete with errors in `@[current_problems]`.
+
+---
+
+## 🔙 Rollback & Recovery
+
+If implementation introduces errors that cannot be auto-fixed:
+1. Restore previous state (`git checkout -- .` or `git stash pop`).
+2. Log failure via `learner` meta-agent to prevent repeating the mistake.
+3. Notify user with the specific errors to rethink the approach.
 
 ---
 
@@ -176,10 +188,13 @@ npm run lint
 
 ## 🔗 Workflow Chain
 
-**Skills Loaded (2):**
+**Skills Loaded (5):**
 
 - `code-craft` - Pragmatic coding standards and clean code
 - `problem-checker` - IDE error detection and auto-fix
+- `smart-router` - Request classifier and agent routing
+- `context-engineering` - Codebase parsing and context gathering
+- `auto-learner` - Pattern reading and logging
 
 ```mermaid
 graph LR

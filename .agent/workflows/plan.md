@@ -1,7 +1,7 @@
 ---
 description: Project blueprint generator — requirements discovery, architecture decisions, hierarchical task breakdown, agent assignment, and PLAN.md creation without writing code.
-skills: [idea-storm, project-planner, system-design]
-agents: [orchestrator, assessor, recovery]
+skills: [idea-storm, project-planner, system-design, context-engineering, problem-checker, auto-learner]
+agents: [orchestrator, assessor, recovery, learner, project-planner]
 ---
 
 # /plan - Project Blueprint
@@ -20,8 +20,10 @@ Create comprehensive project plans with task breakdown, architecture decisions, 
 
 | Phase | Agent | Action |
 | ----- | ----- | ------ |
-| **Risk Evaluation** | `assessor` | Evaluate architecture risk before approval |
-| **Post-Planning** | `learner` | Learn from past architecture decisions |
+| **Pre-Flight** | `assessor` | Evaluate planning scope, risks, and auto-learned context |
+| **Execution** | `orchestrator` | Coordinate requirements, architecture, and task breakdown |
+| **Safety** | `recovery` | Save state and recover from planning failures |
+| **Post-Plan** | `learner` | Log architecture decisions and planning patterns |
 
 ```
 Flow:
@@ -38,21 +40,23 @@ handoff to /build
 
 ## 🔴 MANDATORY: 4-Phase Planning Protocol
 
-### Phase 0: Pre-flight & Auto-Learned Context
+### Phase 1: Pre-flight & Auto-Learned Context
 
 > **Rule 0.5-K:** Auto-learned pattern check.
 
 1. Read `.agent/skills/auto-learned/patterns/` for past failures before proceeding.
 2. Trigger `recovery` agent to run Checkpoint (`git commit -m "chore(checkpoint): pre-plan"`).
 
-### Phase 1: Requirements Discovery
+### Phase 2: Requirements Discovery
 
 | Field | Value |
 |-------|-------|
 | **INPUT** | $ARGUMENTS (project description) |
 | **OUTPUT** | Requirements doc: goal, users, features, constraints |
-| **AGENTS** | `project-planner` |
-| **SKILLS** | `idea-storm` |
+| **AGENTS** | `project-planner`, `assessor` |
+| **SKILLS** | `idea-storm`, `context-engineering` |
+
+// turbo — telemetry: phase-2-requirements
 
 Ask if not provided:
 
@@ -65,14 +69,16 @@ Ask if not provided:
 | TIMELINE? | Deadline or estimate |
 | CONSTRAINTS? | Budget, tech, team |
 
-### Phase 2: Architecture Decision
+### Phase 3: Architecture Decision
 
 | Field | Value |
 |-------|-------|
-| **INPUT** | Requirements from Phase 1 |
+| **INPUT** | Requirements from Phase 2 |
 | **OUTPUT** | Tech stack decisions with rationale, architecture diagram |
-| **AGENTS** | `project-planner` |
+| **AGENTS** | `project-planner`, `orchestrator` |
 | **SKILLS** | `system-design`, `project-planner` |
+
+// turbo — telemetry: phase-3-architecture
 
 | Decision | Options | Selection Criteria |
 |----------|---------|-------------------|
@@ -93,14 +99,16 @@ Architecture patterns:
 
 Generate C4 architecture diagram (mermaid) and ADR for key decisions.
 
-### Phase 3: Task Breakdown
+### Phase 4: Task Breakdown
 
 | Field | Value |
 |-------|-------|
-| **INPUT** | Architecture decisions from Phase 2 |
+| **INPUT** | Architecture decisions from Phase 3 |
 | **OUTPUT** | Hierarchical task list: Epics → Stories → Tasks → Subtasks |
 | **AGENTS** | `project-planner` |
 | **SKILLS** | `project-planner` |
+
+// turbo — telemetry: phase-4-breakdown
 
 ```
 Level 1: Epics (major features)
@@ -109,14 +117,16 @@ Level 3: Tasks (technical work)
 Level 4: Subtasks (atomic units)
 ```
 
-### Phase 4: Agent Assignment & Plan Generation
+### Phase 5: Agent Assignment & Plan Generation
 
 | Field | Value |
 |-------|-------|
-| **INPUT** | Task breakdown from Phase 3 |
+| **INPUT** | Task breakdown from Phase 4 |
 | **OUTPUT** | `docs/PLAN-{slug}.md` with execution plan |
-| **AGENTS** | `project-planner` |
-| **SKILLS** | `project-planner` |
+| **AGENTS** | `project-planner`, `learner` |
+| **SKILLS** | `project-planner`, `problem-checker`, `auto-learner` |
+
+// turbo — telemetry: phase-5-generate
 
 1. Assign agents to tasks based on capability:
 
@@ -124,7 +134,7 @@ Level 4: Subtasks (atomic units)
 |-----------|-------|-------|
 | Schema design | `database-architect` | `data-modeler` |
 | API routes | `backend-specialist` | `nodejs-pro` |
-| UI components | `frontend-specialist` | `frontend-development` |
+| UI components | `frontend-specialist` | `react-pro` |
 | Tests | `test-engineer` | `test-architect` |
 
 2. `assessor` evaluates architecture risk
@@ -148,6 +158,15 @@ Level 4: Subtasks (atomic units)
 ```
 
 > **Note:** /plan produces markdown artifacts, not code. This check applies to any generated config or schema files.
+
+---
+
+## 🔙 Rollback & Recovery
+
+If planning produces an invalid architecture or overwrites an existing valid PLAN.md:
+1. Revert the file changes using `recovery` meta-agent.
+2. Review past architecture decisions through `learner`.
+3. Prompt for correct requirements before generating the plan again.
 
 ---
 
@@ -227,11 +246,14 @@ Generated file: `docs/PLAN-{slug}.md`
 
 ## 🔗 Workflow Chain
 
-**Skills Loaded (3):**
+**Skills Loaded (6):**
 
 - `idea-storm` - Socratic questioning and requirements clarification
 - `project-planner` - Task breakdown and dependency planning
 - `system-design` - Architecture decision-making framework
+- `context-engineering` - Codebase parsing and context extraction
+- `problem-checker` - Generated config and schema problem verification
+- `auto-learner` - Learning and logging planning patterns
 
 ```mermaid
 graph LR

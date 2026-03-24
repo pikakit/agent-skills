@@ -11,7 +11,7 @@ coordinates_with: ["nextjs-pro", "react-architect", "code-review"]
 success_metrics: ["Type Coverage", "Build Performance", "Determinism"]
 metadata:
   author: pikakit
-  version: "3.9.112"
+  version: "3.9.113"
 ---
 
 # TypeScript Expert — Advanced TS Problem-Solving
@@ -198,4 +198,4 @@ All typescript-expert outputs MUST emit `type_pattern_recommended`, `error_resol
 
 ---
 
-⚡ PikaKit v3.9.112
+⚡ PikaKit v3.9.113

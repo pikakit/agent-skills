@@ -1,8 +1,8 @@
 ---
 description: Targeted error remediation — triage, patch, and verify specific errors, lint failures, or broken tests with minimal diff and automatic rollback safety.
 chain: debug-complex
-skills: [debug-pro, code-craft, problem-checker]
-agents: [orchestrator, assessor, recovery]
+skills: [debug-pro, code-craft, problem-checker, context-engineering, smart-router, auto-learner]
+agents: [orchestrator, assessor, recovery, learner, debugger, backend-specialist, frontend-specialist, test-engineer]
 ---
 
 # /fix - The Mechanic
@@ -39,8 +39,10 @@ Apply immediate, targeted fixes for known errors, lint issues, or test failures 
 
 | Phase | Agent | Action |
 | ----- | ----- | ------ |
-| **Pre-Fix** | `recovery` | Save checkpoint of affected files |
-| **Post-Fix** | `learner` | Log error pattern for future reference |
+| **Pre-Flight** | `assessor` | Evaluate fix risk and auto-learned context |
+| **Execution** | `orchestrator` | Route fix to specialist agents and coordinate repair |
+| **Safety** | `recovery` | Save state and recover from failed fixes |
+| **Post-Fix** | `learner` | Log error resolution patterns for reuse |
 
 ```
 Flow:
@@ -55,21 +57,23 @@ learner.log(pattern)
 
 ## 🔴 MANDATORY: Repair Protocol
 
-### Phase 0: Pre-flight & Auto-Learned Context
+### Phase 1: Pre-flight & Auto-Learned Context
 
 > **Rule 0.5-K:** Auto-learned pattern check.
 
 1. Read `.agent/skills/auto-learned/patterns/` for past failures before proceeding.
 2. Trigger `recovery` agent to run Checkpoint (`git commit -m "chore(checkpoint): pre-fix"`).
 
-### Phase 1: Triage
+### Phase 2: Triage
 
 | Field | Value |
 |-------|-------|
 | **INPUT** | $ARGUMENTS (error message, failing test, or issue description) |
 | **OUTPUT** | Located error: file, line, immediate context, fix type |
-| **AGENTS** | `debugger` |
-| **SKILLS** | `debug-pro` |
+| **AGENTS** | `debugger`, `assessor` |
+| **SKILLS** | `debug-pro`, `context-engineering` |
+
+// turbo — telemetry: phase-2-triage
 
 1. Read error message or failure log
 2. Locate the specific file and line
@@ -85,36 +89,38 @@ learner.log(pattern)
 
 4. `recovery` saves checkpoint of affected files
 
-### Phase 2: Apply Fix
+### Phase 3: Apply Fix
 
 | Field | Value |
 |-------|-------|
-| **INPUT** | Located error and fix type from Phase 1 |
+| **INPUT** | Located error and fix type from Phase 2 |
 | **OUTPUT** | Modified source files with the fix applied |
-| **AGENTS** | Auto-routed specialist (`backend-specialist`, `frontend-specialist`, etc.) |
-| **SKILLS** | `code-craft`, `debug-pro` |
+| **AGENTS** | `orchestrator`, Auto-routed specialist (`backend-specialist`, `frontend-specialist`, etc.) |
+| **SKILLS** | `code-craft`, `debug-pro`, `smart-router` |
+
+// turbo — telemetry: phase-3-fix
 
 1. Apply the fix following existing code patterns
 2. Minimal diff — change only what's needed
 3. No unrelated formatting or refactoring
 
-### Phase 3: Verification
+### Phase 4: Verification
 
 | Field | Value |
 |-------|-------|
-| **INPUT** | Modified files from Phase 2 |
+| **INPUT** | Modified files from Phase 3 |
 | **OUTPUT** | Verification result: error cleared, tests passing, no regressions |
-| **AGENTS** | none |
-| **SKILLS** | `problem-checker` |
+| **AGENTS** | `test-engineer`, `learner` |
+| **SKILLS** | `problem-checker`, `auto-learner` |
 
-// turbo
+// turbo — telemetry: phase-4-test
 ```bash
-npm test
+npx cross-env OTEL_SERVICE_NAME="workflow:fix" TRACE_ID="$TRACE_ID" npm test
 ```
 
-// turbo
+// turbo — telemetry: phase-4-lint-typecheck
 ```bash
-npm run lint && npx tsc --noEmit
+npx cross-env OTEL_SERVICE_NAME="workflow:fix" TRACE_ID="$TRACE_ID" npm run lint; npx cross-env OTEL_SERVICE_NAME="workflow:fix" TRACE_ID="$TRACE_ID" npx tsc --noEmit
 ```
 
 1. Verify the original error is resolved
@@ -149,6 +155,15 @@ npm run lint && npx tsc --noEmit
 | Lint errors | Run eslint --fix |
 
 > **Rule:** Never mark complete with errors in `@[current_problems]`.
+
+---
+
+## 🔙 Rollback & Recovery
+
+If the attempted fix introduces new errors or fails verification:
+1. Restore to pre-fix checkpoint (`git checkout -- .` or `git stash pop`).
+2. Log failure via `learner` meta-agent to prevent loop.
+3. Automatically escalate to `/diagnose` if root cause is unclear.
 
 ---
 
@@ -207,11 +222,14 @@ npm run lint && npx tsc --noEmit
 
 ## 🔗 Workflow Chain
 
-**Skills Loaded (3):**
+**Skills Loaded (6):**
 
 - `debug-pro` - Fix methodology and error analysis
 - `code-craft` - Coding standards for fix implementation
 - `problem-checker` - IDE error detection and auto-fix
+- `context-engineering` - Codebase parsing and error trace analysis
+- `smart-router` - Agent routing for targeted fixes
+- `auto-learner` - Learning and logging failure patterns
 
 ```mermaid
 graph LR

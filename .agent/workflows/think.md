@@ -1,7 +1,7 @@
 ---
 description: Strategic decision engine — generate 3+ distinct alternatives with weighted scoring matrices, risk assessments, and actionable recommendations before writing any code.
-skills: [idea-storm, system-design, project-planner]
-agents: [orchestrator, assessor, recovery]
+skills: [idea-storm, system-design, project-planner, context-engineering, problem-checker, auto-learner]
+agents: [orchestrator, assessor, recovery, critic, learner, project-planner]
 ---
 
 # /think - Strategic Decision Engine
@@ -20,7 +20,10 @@ Activate structured ideation mode for architecture decisions, feature planning, 
 
 | Phase | Agent | Action |
 | ----- | ----- | ------ |
-| **Decision Conflict** | `critic` | Arbitrate when option scores are too close |
+| **Pre-Flight** | `assessor` | Evaluate decision scope and auto-learned context |
+| **Execution** | `orchestrator` / `critic` | Coordinate problem framing, option generation and resolve scoring conflicts |
+| **Safety** | `recovery` | Save state and recover from decision generation failures |
+| **Post-Think** | `learner` | Log decision outcomes and scoring intelligence |
 
 ```
 Flow:
@@ -35,21 +38,23 @@ decision made → recommendation + next steps
 
 ## 🔴 MANDATORY: Decision Framework
 
-### Phase 0: Pre-flight & Auto-Learned Context
+### Phase 1: Pre-flight & Auto-Learned Context
 
 > **Rule 0.5-K:** Auto-learned pattern check.
 
 1. Read `.agent/skills/auto-learned/patterns/` for past failures before proceeding.
 2. Trigger `recovery` agent to run Checkpoint (`git commit -m "chore(checkpoint): pre-think"`).
 
-### Phase 1: Problem Framing
+### Phase 2: Problem Framing
 
 | Field | Value |
 |-------|-------|
 | **INPUT** | $ARGUMENTS (decision topic or problem statement) |
 | **OUTPUT** | Framed problem: outcome, constraints, stakeholders, risk tolerance |
-| **AGENTS** | `project-planner` |
-| **SKILLS** | `idea-storm` |
+| **AGENTS** | `project-planner`, `assessor` |
+| **SKILLS** | `idea-storm`, `context-engineering` |
+
+// turbo — telemetry: phase-2-framing
 
 Ask if not provided:
 
@@ -60,14 +65,16 @@ Ask if not provided:
 | Who are the STAKEHOLDERS? | Users, team, business |
 | What is the RISK TOLERANCE? | MVP / Production / Enterprise |
 
-### Phase 2: Generate 3+ Options
+### Phase 3: Generate 3+ Options
 
 | Field | Value |
 |-------|-------|
-| **INPUT** | Problem frame from Phase 1 |
+| **INPUT** | Problem frame from Phase 2 |
 | **OUTPUT** | 3+ distinct approaches with pros/cons |
-| **AGENTS** | `project-planner` |
+| **AGENTS** | `project-planner`, `orchestrator` |
 | **SKILLS** | `idea-storm`, `system-design` |
+
+// turbo — telemetry: phase-3-options
 
 **Minimum 3 distinct approaches. Include one "unconventional" option.**
 
@@ -76,14 +83,16 @@ For each option:
 - Pros / Cons table
 - Effort estimate (Low / Medium / High)
 
-### Phase 3: Decision Matrix & Recommendation
+### Phase 4: Decision Matrix & Recommendation
 
 | Field | Value |
 |-------|-------|
-| **INPUT** | Options from Phase 2 |
+| **INPUT** | Options from Phase 3 |
 | **OUTPUT** | Scored decision matrix, recommended option, risk assessment |
-| **AGENTS** | `project-planner` |
-| **SKILLS** | `system-design` |
+| **AGENTS** | `project-planner`, `critic`, `learner` |
+| **SKILLS** | `system-design`, `problem-checker`, `auto-learner` |
+
+// turbo — telemetry: phase-4-decision
 
 Score each option 1-5:
 
@@ -121,6 +130,15 @@ Risk assessment for top option:
 ```
 
 > **Note:** /think produces decisions, not code. This check applies only if any artifacts were generated.
+
+---
+
+## 🔙 Rollback & Recovery
+
+If the generated decision matrix is flawed, overly generic, or hallucinates constraints:
+1. Revert any generated markdown files using the `recovery` meta-agent.
+2. Feed the failed reasoning back to the `critic` agent to identify logic gaps.
+3. Retry Phase 3 with more explicit constraints or a completely different Socratic framing.
 
 ---
 
@@ -207,11 +225,14 @@ Risk assessment for top option:
 
 ## 🔗 Workflow Chain
 
-**Skills Loaded (3):**
+**Skills Loaded (6):**
 
 - `idea-storm` - Socratic questioning and brainstorming
 - `system-design` - Trade-off evaluation and ADR
 - `project-planner` - Task breakdown and feasibility
+- `context-engineering` - Codebase parsing and context extraction
+- `problem-checker` - Generated artifacts validation
+- `auto-learner` - Learning and logging decision patterns
 
 ```mermaid
 graph LR

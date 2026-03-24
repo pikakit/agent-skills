@@ -1,7 +1,7 @@
 ---
 description: Full-stack performance optimization — profile bottlenecks, fix N+1 queries, configure Redis caching, reduce bundle size, and validate with k6 load testing.
-skills: [perf-optimizer, data-modeler]
-agents: [orchestrator, assessor, recovery]
+skills: [perf-optimizer, data-modeler, server-ops, problem-checker, smart-router, context-engineering, auto-learner]
+agents: [orchestrator, assessor, recovery, learner, performance-specialist, backend-specialist]
 ---
 
 # /optimize - Performance Optimization
@@ -20,8 +20,10 @@ Profile application performance, optimize bottlenecks (database queries, bundle 
 
 | Phase | Agent | Action |
 | ----- | ----- | ------ |
-| **Pre-Optimize** | `recovery` | Save current state before changes |
-| **Post-Optimize** | `learner` | Log optimization patterns for reuse |
+| **Pre-Flight** | `assessor` | Evaluate optimization scope and auto-learned context |
+| **Execution** | `orchestrator` | Coordinate profiling, database, and cache optimization |
+| **Safety** | `recovery` | Save state and recover/rollback from performance regressions |
+| **Post-Optimize**| `learner` | Log optimization telemetry and performance patterns |
 
 ```
 Flow:
@@ -36,21 +38,23 @@ learner.log(optimization_patterns)
 
 ## 🔴 MANDATORY: Performance Optimization Protocol
 
-### Phase 0: Pre-flight & Auto-Learned Context
+### Phase 1: Pre-flight & Auto-Learned Context
 
 > **Rule 0.5-K:** Auto-learned pattern check.
 
 1. Read `.agent/skills/auto-learned/patterns/` for past failures before proceeding.
 2. Trigger `recovery` agent to run Checkpoint (`git commit -m "chore(checkpoint): pre-optimize"`).
 
-### Phase 1: Performance Profiling
+### Phase 2: Performance Profiling
 
 | Field | Value |
 |-------|-------|
 | **INPUT** | $ARGUMENTS (app/component to optimize + optional targets) |
 | **OUTPUT** | Performance audit: bottlenecks identified with metrics |
-| **AGENTS** | `performance-specialist` |
-| **SKILLS** | `perf-optimizer` |
+| **AGENTS** | `performance-specialist`, `assessor` |
+| **SKILLS** | `perf-optimizer`, `context-engineering` |
+
+// turbo — telemetry: phase-2-profile
 
 1. `recovery` saves current state before any changes
 2. Run profiling:
@@ -75,14 +79,16 @@ Performance targets:
 | LCP | <2.5s | <4s |
 | CLS | <0.1 | <0.25 |
 
-### Phase 2: Database Optimization
+### Phase 3: Database Optimization
 
 | Field | Value |
 |-------|-------|
-| **INPUT** | Bottleneck report from Phase 1 |
+| **INPUT** | Bottleneck report from Phase 2 |
 | **OUTPUT** | Optimized queries, added indexes, fixed N+1 patterns |
-| **AGENTS** | `backend-specialist` |
-| **SKILLS** | `data-modeler`, `perf-optimizer` |
+| **AGENTS** | `backend-specialist`, `orchestrator` |
+| **SKILLS** | `data-modeler`, `perf-optimizer`, `smart-router` |
+
+// turbo — telemetry: phase-3-db
 
 | Issue | Solution | Impact |
 |-------|----------|--------|
@@ -91,14 +97,16 @@ Performance targets:
 | Small connection pool | Increase to 20-50 | Eliminates timeouts |
 | Unoptimized queries | Rewrite with proper filtering | Variable |
 
-### Phase 3: Caching & Frontend
+### Phase 4: Caching & Frontend
 
 | Field | Value |
 |-------|-------|
-| **INPUT** | Optimized database from Phase 2 |
+| **INPUT** | Optimized database from Phase 3 |
 | **OUTPUT** | Redis cache configured, CDN setup, bundle optimized |
-| **AGENTS** | `performance-specialist` |
-| **SKILLS** | `perf-optimizer`, `caching-strategy` |
+| **AGENTS** | `performance-specialist`, `orchestrator` |
+| **SKILLS** | `perf-optimizer`, `server-ops`, `smart-router` |
+
+// turbo — telemetry: phase-4-cache
 
 Backend caching:
 - Redis cache-aside pattern
@@ -111,14 +119,16 @@ Frontend optimization:
 - CDN configuration (Cloudflare/Vercel)
 - HTTP caching headers
 
-### Phase 4: Load Testing & Validation
+### Phase 5: Load Testing & Validation
 
 | Field | Value |
 |-------|-------|
-| **INPUT** | Optimized application from Phase 3 |
+| **INPUT** | Optimized application from Phase 4 |
 | **OUTPUT** | Load test results: before/after comparison, go/no-go |
-| **AGENTS** | `performance-specialist` |
-| **SKILLS** | `perf-optimizer` |
+| **AGENTS** | `performance-specialist`, `learner` |
+| **SKILLS** | `perf-optimizer`, `problem-checker`, `auto-learner` |
+
+// turbo — telemetry: phase-5-loadtest
 
 1. Run realistic user scenarios at target scale
 2. Compare before/after metrics
@@ -152,6 +162,15 @@ Frontend optimization:
 | Lint errors | Run eslint --fix |
 
 > **Rule:** Never mark complete with errors in `@[current_problems]`.
+
+---
+
+## 🔙 Rollback & Recovery
+
+If performance optimization causes regression, breaks functionality, or ruins benchmarks:
+1. Revert to safe checkpoint using `recovery` meta-agent immediately.
+2. Discard unoptimized caching layers or breaking query rewrites.
+3. Log failure reason via `learner`.
 
 ---
 
@@ -218,11 +237,15 @@ Frontend optimization:
 
 ## 🔗 Workflow Chain
 
-**Skills Loaded (3):**
+**Skills Loaded (7):**
 
 - `perf-optimizer` - Performance profiling, Core Web Vitals, bundle analysis
 - `data-modeler` - Database query optimization, index recommendations
-- `caching-strategy` - Redis caching, CDN, cache-aside patterns
+- `server-ops` - Redis caching, CDN, cache-aside patterns
+- `context-engineering` - Codebase parsing and context extraction
+- `smart-router` - Dynamic agent routing for backend/frontend
+- `problem-checker` - IDE problem verification
+- `auto-learner` - Learning and logging optimization patterns
 
 ```mermaid
 graph LR

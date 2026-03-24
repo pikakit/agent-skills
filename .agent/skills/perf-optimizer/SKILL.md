@@ -8,7 +8,7 @@ coordinates_with: ["code-craft", "e2e-automation", "chrome-devtools", "problem-c
 success_metrics: ["Baseline Measured", "Improvement Validated", "No Regressions"]
 metadata:
   author: pikakit
-  version: "3.9.112"
+  version: "3.9.113"
 ---
 
 # Performance Profiler — Core Web Vitals & Profiling
@@ -184,4 +184,4 @@ All executions MUST emit the `improvement_validated` span before reporting compl
 
 ---
 
-⚡ PikaKit v3.9.112
+⚡ PikaKit v3.9.113

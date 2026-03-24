@@ -1,7 +1,17 @@
 ---
 description: Production observability stack — OpenTelemetry instrumentation, structured logging, Prometheus/Grafana dashboards, distributed tracing, and PagerDuty incident alerting.
-skills: [observability, server-ops]
-agents: [orchestrator, assessor, recovery]
+skills: [observability, server-ops, problem-checker, context-engineering, auto-learner]
+agents: [orchestrator, assessor, recovery, learner, devops-engineer]
+---
+
+# /monitor - Production Observability
+
+$ARGUMENTS
+
+---
+
+## Purpose
+
 ---
 
 # /monitor - Production Observability
@@ -20,8 +30,9 @@ Set up production observability infrastructure — OpenTelemetry SDK, structured
 
 | Phase | Agent | Action |
 | ----- | ----- | ------ |
-| **Pre-Setup** | `assessor` | Evaluate monitoring scope and provider selection |
-| **Setup** | `recovery` | Save state before infrastructure changes |
+| **Pre-Flight** | `assessor` | Evaluate monitoring scope, providers, and auto-learned patterns |
+| **Execution** | `orchestrator` | Coordinate OpenTelemetry, metrics, logs, traces, and alerts |
+| **Safety** | `recovery` | Save state checkpoint before infrastructure changes |
 | **Post-Setup** | `learner` | Log monitoring patterns for future setups |
 
 ```
@@ -47,21 +58,23 @@ learner.log(monitoring_patterns)
 
 ## 🔴 MANDATORY: Observability Setup Protocol
 
-### Phase 0: Pre-flight & Auto-Learned Context
+### Phase 1: Pre-flight & Auto-Learned Context
 
 > **Rule 0.5-K:** Auto-learned pattern check.
 
 1. Read `.agent/skills/auto-learned/patterns/` for past failures before proceeding.
 2. Trigger `recovery` agent to run Checkpoint (`git commit -m "chore(checkpoint): pre-monitor"`).
 
-### Phase 1: Foundation (OpenTelemetry)
+### Phase 2: Foundation (OpenTelemetry)
 
 | Field | Value |
 |-------|-------|
 | **INPUT** | $ARGUMENTS (app name + optional provider/requirements) |
 | **OUTPUT** | OpenTelemetry SDK initialized, provider configured, auto-instrumentation enabled |
-| **AGENTS** | `devops-engineer` |
-| **SKILLS** | `observability` |
+| **AGENTS** | `devops-engineer`, `assessor` |
+| **SKILLS** | `observability`, `context-engineering` |
+
+// turbo — telemetry: phase-2-foundation
 
 1. `assessor` evaluates monitoring scope
 2. Select provider:
@@ -77,28 +90,32 @@ learner.log(monitoring_patterns)
 3. Install OpenTelemetry SDK and configure exporters
 4. Enable auto-instrumentation (HTTP, DB, Redis)
 
-### Phase 2: Structured Logging
+### Phase 3: Structured Logging
 
 | Field | Value |
 |-------|-------|
-| **INPUT** | OpenTelemetry foundation from Phase 1 |
+| **INPUT** | OpenTelemetry foundation from Phase 2 |
 | **OUTPUT** | Structured logger with PII masking, correlation IDs, cloud aggregation |
-| **AGENTS** | `devops-engineer` |
+| **AGENTS** | `orchestrator`, `devops-engineer` |
 | **SKILLS** | `observability` |
+
+// turbo — telemetry: phase-3-logging
 
 1. Setup Pino/Winston with JSON formatting
 2. Configure PII redaction (email, phone, SSN, credit card)
 3. Cloud aggregation (Datadog Logs, CloudWatch, Loki)
 4. Enable correlation IDs for request tracing
 
-### Phase 3: Metrics & Dashboards
+### Phase 4: Metrics & Dashboards
 
 | Field | Value |
 |-------|-------|
-| **INPUT** | Logger from Phase 2 |
+| **INPUT** | Logger from Phase 3 |
 | **OUTPUT** | Prometheus `/metrics` endpoint, Golden Signals dashboard |
 | **AGENTS** | `devops-engineer` |
 | **SKILLS** | `observability`, `server-ops` |
+
+// turbo — telemetry: phase-4-metrics
 
 1. Expose Prometheus `/metrics` endpoint
 2. Configure Golden Signals:
@@ -113,11 +130,11 @@ learner.log(monitoring_patterns)
 3. Add custom business metrics (signups, orders, revenue)
 4. Create Grafana/Datadog dashboard
 
-### Phase 4: Distributed Tracing (optional)
+### Phase 5: Distributed Tracing (optional)
 
 | Field | Value |
 |-------|-------|
-| **INPUT** | Metrics from Phase 3 |
+| **INPUT** | Metrics from Phase 4 |
 | **OUTPUT** | Auto-instrumented traces with context propagation |
 | **AGENTS** | `devops-engineer` |
 | **SKILLS** | `observability` |
@@ -127,14 +144,14 @@ learner.log(monitoring_patterns)
 3. Enable W3C trace context propagation
 4. Verify traces visible in APM provider
 
-### Phase 5: Alerting & Incident Response
+### Phase 6: Alerting & Incident Response
 
 | Field | Value |
 |-------|-------|
-| **INPUT** | Full observability stack from Phases 1-4 |
+| **INPUT** | Full observability stack from Phases 2-5 |
 | **OUTPUT** | Alert rules, Slack/PagerDuty integration, runbooks |
-| **AGENTS** | `devops-engineer` |
-| **SKILLS** | `observability`, `server-ops` |
+| **AGENTS** | `devops-engineer`, `learner` |
+| **SKILLS** | `observability`, `server-ops`, `problem-checker`, `auto-learner` |
 
 Default alert rules:
 
@@ -182,75 +199,15 @@ Runbooks generated:
 
 ---
 
-## Output Format
+## 🔙 Rollback & Recovery
 
-```markdown
-## 📊 Monitoring Setup Complete
-
-### Configuration
-
-| Component | Status |
-|-----------|--------|
-| OpenTelemetry | ✅ Initialized |
-| Structured Logs | ✅ PII masking enabled |
-| Metrics | ✅ /metrics exposed |
-| Tracing | ✅ 10% sampling |
-| Alerts | ✅ 5 critical configured |
-
-### Files Created
-
-| File | Purpose |
-|------|---------|
-| `lib/observability/setup.ts` | OpenTelemetry init |
-| `lib/logger.ts` | Structured logger |
-| `lib/metrics.ts` | Prometheus metrics |
-| `alerts.yml` | Alert rules |
-| `docs/runbooks/` | 5 playbooks |
-
-### Next Steps
-
-- [ ] Test alerts in staging first
-- [ ] Add custom business metrics
-- [ ] Configure additional alert rules as needed
-- [ ] Deploy with `/launch`
-```
+If observability setup causes application crashes or aggressive memory leaks:
+1. Revert infrastructure configs/SDK wrappers using `recovery` meta-agent.
+2. Remove any auto-instrumentation hooks from startup scripts.
+3. Fallback to previous safe state before generating Output Format.
 
 ---
 
-## Examples
-
-```
-/monitor my-production-app
-/monitor production API with Datadog
-/monitor e-commerce app --provider grafana
-/monitor microservices with PagerDuty alerts
-/monitor backend API with custom business metrics
-```
-
----
-
-## Key Principles
-
-- **Golden Signals first** — always track latency, traffic, errors, saturation
-- **Monitor before production** — setup observability before going live
-- **PII masking mandatory** — redact sensitive data for GDPR/CCPA compliance
-- **Sample traces in production** — 10% default to control costs
-- **Runbooks for every alert** — never alert without a response playbook
-
----
-
-## 🔗 Workflow Chain
-
-**Skills Loaded (2):**
-
-- `observability` - OpenTelemetry, metrics, logging, tracing, alerting
-- `server-ops` - Infrastructure management and monitoring endpoints
-
-```mermaid
-graph LR
-    A["/launch"] --> B["/monitor"]
-    B --> C["/diagnose"]
-    style B fill:#10b981
 ```
 
 | After /monitor | Run | Purpose |

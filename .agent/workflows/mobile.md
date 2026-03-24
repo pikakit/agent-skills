@@ -1,7 +1,7 @@
 ---
 description: End-to-end mobile development — React Native, Flutter, or native iOS/Android with push notifications, deep linking, offline-first architecture, and app store submission.
-skills: [vercel-react-native-skills, mobile-developer, mobile-design, security-scanner, idea-storm, cicd-pipeline, perf-optimizer]
-agents: [orchestrator, assessor, recovery]
+skills: [mobile-developer, idea-storm, mobile-design, security-scanner, cicd-pipeline, perf-optimizer, problem-checker, smart-router, auto-learner, context-engineering]
+agents: [orchestrator, assessor, recovery, critic, learner, project-planner, mobile-developer, backend-specialist, security-auditor, test-engineer]
 ---
 
 # /mobile - Mobile App Development
@@ -19,12 +19,12 @@ Orchestrate mobile app development from concept to app store submission — supp
 ## 🤖 Meta-Agents Integration
 
 | Phase | Agent | Action |
-|-------|-------|--------|
-| **Requirements** | `assessor` | Evaluate platform and framework risks, MFRI score |
-| **Pre-Build** | `recovery` | Save state before major changes |
-| **Parallel Build** | `orchestrator` | Coordinate UI + API + push + offline tracks |
-| **Conflicts** | `critic` | Resolve cross-platform compatibility issues |
-| **Post-Build** | `learner` | Log mobile patterns for reuse |
+| ----- | ----- | ------ |
+| **Pre-Flight** | `assessor` | Evaluate platform risks, MFRI score, and auto-learned context |
+| **Execution** | `orchestrator` | Coordinate UI, API, push, and offline parallel tracks |
+| **Safety** | `recovery` | Save state and recover from major implementation failures |
+| **Conflict** | `critic` | Resolve cross-platform compatibility issues |
+| **Post-Build** | `learner` | Log mobile execution telemetry and build patterns |
 
 ```
 Flow:
@@ -41,21 +41,23 @@ verify → learner.log(patterns)
 
 ## 🔴 MANDATORY: Mobile Development Protocol
 
-### Phase 0: Pre-flight & Auto-Learned Context
+### Phase 1: Pre-flight & Auto-Learned Context
 
 > **Rule 0.5-K:** Auto-learned pattern check.
 
 1. Read `.agent/skills/auto-learned/patterns/` for past failures before proceeding.
 2. Trigger `recovery` agent to run Checkpoint (`git commit -m "chore(checkpoint): pre-mobile"`).
 
-### Phase 1: Requirements & Platform Selection
+### Phase 2: Requirements & Platform Selection
 
 | Field | Value |
 |-------|-------|
 | **INPUT** | $ARGUMENTS (app concept description) |
 | **OUTPUT** | Requirements doc: platform, framework, navigation, offline strategy |
-| **AGENTS** | `project-planner` |
-| **SKILLS** | `mobile-first`, `idea-storm` |
+| **AGENTS** | `project-planner`, `assessor` |
+| **SKILLS** | `mobile-developer`, `idea-storm`, `context-engineering` |
+
+// turbo — telemetry: phase-2-requirements
 
 1. Ask critical questions:
 
@@ -70,14 +72,16 @@ verify → learner.log(patterns)
 2. Calculate MFRI (Mobile Feasibility Risk Index) — MFRI < 3 → Redesign
 3. `assessor` evaluates platform and framework risks
 
-### Phase 2: Design & Architecture
+### Phase 3: Design & Architecture
 
 | Field | Value |
 |-------|-------|
-| **INPUT** | Requirements doc from Phase 1 |
+| **INPUT** | Requirements doc from Phase 2 |
 | **OUTPUT** | UI design, platform conventions, component architecture |
 | **AGENTS** | `mobile-developer` |
-| **SKILLS** | `mobile-design`, `mobile-first` |
+| **SKILLS** | `mobile-design`, `mobile-developer` |
+
+// turbo — telemetry: phase-3-design
 
 Platform conventions:
 
@@ -88,14 +92,16 @@ Platform conventions:
 | Back | Edge swipe | System back |
 | Navigation | Tab bar (bottom) | Bottom nav / drawer |
 
-### Phase 3: Core Implementation
+### Phase 4: Core Implementation
 
 | Field | Value |
 |-------|-------|
-| **INPUT** | Design + architecture from Phase 2 |
+| **INPUT** | Design + architecture from Phase 3 |
 | **OUTPUT** | App scaffold with navigation, screens, and data layer |
-| **AGENTS** | `mobile-developer` |
-| **SKILLS** | `mobile-developer`, `mobile-first` |
+| **AGENTS** | `orchestrator`, `mobile-developer` |
+| **SKILLS** | `mobile-developer`, `smart-router` |
+
+// turbo — telemetry: phase-4-core
 
 1. Initialize project:
 
@@ -112,14 +118,16 @@ Platform conventions:
    - Images: Lazy load, cache, progressive quality
    - Navigation: Lazy screens, pre-fetch next screen data
 
-### Phase 4: Mobile Features
+### Phase 5: Mobile Features
 
 | Field | Value |
 |-------|-------|
-| **INPUT** | App scaffold from Phase 3 |
+| **INPUT** | App scaffold from Phase 4 |
 | **OUTPUT** | Push notifications, deep linking, offline sync integrated |
 | **AGENTS** | `mobile-developer`, `backend-specialist` |
-| **SKILLS** | `mobile-developer`, `mobile-first` |
+| **SKILLS** | `mobile-developer` |
+
+// turbo — telemetry: phase-5-features
 
 **Push Notifications:**
 
@@ -145,14 +153,16 @@ Platform conventions:
 | **Queue + retry** | Writes must not be lost |
 | **CRDT** | Multi-device conflict resolution |
 
-### Phase 5: Security & Quality
+### Phase 6: Security & Quality
 
 | Field | Value |
 |-------|-------|
-| **INPUT** | Feature-complete app from Phase 4 |
+| **INPUT** | Feature-complete app from Phase 5 |
 | **OUTPUT** | Security hardened: secure storage, cert pinning, biometrics |
 | **AGENTS** | `security-auditor` |
-| **SKILLS** | `mobile-security-coder` |
+| **SKILLS** | `security-scanner` |
+
+// turbo — telemetry: phase-6-security
 
 Security checklist:
 - [ ] Secure storage (Keychain / Keystore)
@@ -161,14 +171,16 @@ Security checklist:
 - [ ] No sensitive data in logs
 - [ ] Root/jailbreak detection
 
-### Phase 6: CI/CD & Store Submission
+### Phase 7: CI/CD & Store Submission
 
 | Field | Value |
 |-------|-------|
-| **INPUT** | Secured app from Phase 5 |
+| **INPUT** | Secured app from Phase 6 |
 | **OUTPUT** | Platform builds, store submission assets |
 | **AGENTS** | `mobile-developer` |
 | **SKILLS** | `mobile-developer`, `cicd-pipeline` |
+
+// turbo — telemetry: phase-7-cicd
 
 | Tool | Purpose |
 |------|---------|
@@ -183,14 +195,19 @@ Security checklist:
 | App Transport Security | App bundle (AAB) |
 | TestFlight beta | Internal testing track |
 
-### Phase 7: Testing & Verification
+### Phase 8: Testing & Verification
 
 | Field | Value |
 |-------|-------|
-| **INPUT** | Built app from Phase 6 |
+| **INPUT** | Built app from Phase 7 |
 | **OUTPUT** | Test results: crash-free rate, startup time, platform tests |
-| **AGENTS** | `test-engineer` |
-| **SKILLS** | `mobile-developer`, `perf-optimizer` |
+| **AGENTS** | `test-engineer`, `learner` |
+| **SKILLS** | `mobile-developer`, `perf-optimizer`, `problem-checker`, `auto-learner` |
+
+// turbo — telemetry: phase-8-test
+```bash
+npx cross-env OTEL_SERVICE_NAME="workflow:mobile" TRACE_ID="$TRACE_ID" npm run test:mobile
+```
 
 Key metrics:
 - Crash-free rate: target > 99.5%
@@ -225,6 +242,15 @@ Key metrics:
 | Lint errors | Run eslint --fix |
 
 > **Rule:** Never mark complete with errors in `@[current_problems]`.
+
+---
+
+## 🔙 Rollback & Recovery
+
+If scaffolding or builds fail completely due to native dependencies or environment issues:
+1. Revert to safe checkpoint using `recovery` meta-agent.
+2. Trigger `diagnose` workflow to analyze framework/platform specific native errors (e.g. CocoaPods, Gradle).
+3. Do not proceed with execution until environment is stable.
 
 ---
 
@@ -293,15 +319,18 @@ Key metrics:
 
 ## 🔗 Workflow Chain
 
-**Skills Loaded (7):**
+**Skills Loaded (10):**
 
-- `mobile-first` - Mobile development orchestrator and routing
 - `mobile-developer` - React Native/Flutter/native patterns
 - `mobile-design` - Platform-specific UI/UX conventions
-- `mobile-security-coder` - Secure mobile coding practices
+- `security-scanner` - Secure mobile coding practices
 - `idea-storm` - Requirements gathering
 - `cicd-pipeline` - Mobile CI/CD and store submission
 - `perf-optimizer` - Mobile performance profiling
+- `problem-checker` - IDE problem verification
+- `smart-router` - Dynamic agent routing
+- `context-engineering` - Codebase parsing and component mapping
+- `auto-learner` - Learning and logging workflow patterns
 
 ```mermaid
 graph LR

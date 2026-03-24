@@ -9,7 +9,7 @@ coordinates_with: ["project-planner", "execution-reporter", "problem-checker"]
 success_metrics: ["100% restore accuracy", "0 skipped verification phases"]
 metadata:
   author: pikakit
-  version: "3.9.112"
+  version: "3.9.113"
 ---
 
 # Lifecycle Orchestrator — Pipeline + Checkpoint/Restore
@@ -165,4 +165,4 @@ node state_manager.js list
 
 ---
 
-⚡ PikaKit v3.9.112
+⚡ PikaKit v3.9.113

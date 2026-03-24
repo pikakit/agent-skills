@@ -1,8 +1,8 @@
 ---
 description: Systematic root cause analysis — hypothesis-driven debugging with ranked probability testing, evidence-based verification, and prevention-first resolution.
 chain: debug-complex
-skills: [debug-pro, code-review, code-craft]
-agents: [orchestrator, assessor, recovery]
+skills: [debug-pro, code-review, code-craft, problem-checker, context-engineering, auto-learner]
+agents: [orchestrator, assessor, recovery, learner, debugger]
 ---
 
 # /diagnose - Root Cause Detective
@@ -21,11 +21,10 @@ Systematic debugging using the scientific method — form hypotheses, gather evi
 
 | Phase | Agent | Action |
 | ----- | ----- | ------ |
-| **Pre-Debug** | `recovery` | Save state before debugging changes |
-| **Hypothesis** | `learner` | Check past bug patterns for similar issues |
-| **Investigation** | `assessor` | Evaluate fix risk before applying |
-| **Post-Fix** | `learner` | Log root cause for future reference |
-| **On Failure** | `recovery` | Restore if debugging makes things worse |
+| **Pre-Flight** | `assessor` | Evaluate risk, check past bugs & auto-learned patterns |
+| **Execution** | `orchestrator` | Coordinate diagnostic tasks and testing |
+| **Safety** | `recovery` | Save state before debug and restore on failure |
+| **Post-Fix** | `learner` | Log root cause and failure patterns for reuse |
 
 ```
 Flow:
@@ -42,21 +41,21 @@ recovery.restore()
 
 ## 🔴 MANDATORY: 5-Phase Investigation Protocol
 
-### Phase 0: Pre-flight & Auto-Learned Context
+### Phase 1: Pre-flight & Auto-Learned Context
 
 > **Rule 0.5-K:** Auto-learned pattern check.
 
 1. Read `.agent/skills/auto-learned/patterns/` for past failures before proceeding.
 2. Trigger `recovery` agent to run Checkpoint (`git commit -m "chore(checkpoint): pre-diagnose"`).
 
-### Phase 1: Symptom Collection
+### Phase 2: Symptom Collection
 
 | Field | Value |
 |-------|-------|
 | **INPUT** | $ARGUMENTS (bug description — error message, unexpected behavior) |
 | **OUTPUT** | Symptom report: error details, environment, reproduction steps |
-| **AGENTS** | `debugger` |
-| **SKILLS** | `debug-pro` |
+| **AGENTS** | `debugger`, `assessor` |
+| **SKILLS** | `debug-pro`, `context-engineering` |
 
 1. `recovery` saves current state before any investigation changes
 2. Gather evidence:
@@ -73,11 +72,11 @@ GATHER:
 
 3. `learner` checks past bug patterns for similar issues
 
-### Phase 2: Hypothesis Formation
+### Phase 3: Hypothesis Formation
 
 | Field | Value |
 |-------|-------|
-| **INPUT** | Symptom report from Phase 1 |
+| **INPUT** | Symptom report from Phase 2 |
 | **OUTPUT** | 3+ ranked hypotheses with likelihood and test methods |
 | **AGENTS** | `debugger` |
 | **SKILLS** | `debug-pro` |
@@ -100,11 +99,11 @@ Generate 3+ ranked hypotheses:
 | **Code** | Recent changes, missing await, wrong imports |
 | **Environment** | Env vars, versions, dependencies |
 
-### Phase 3: Evidence Gathering & Elimination
+### Phase 4: Evidence Gathering & Elimination
 
 | Field | Value |
 |-------|-------|
-| **INPUT** | Ranked hypotheses from Phase 2 |
+| **INPUT** | Ranked hypotheses from Phase 3 |
 | **OUTPUT** | Investigation log: each hypothesis tested with verdict |
 | **AGENTS** | `debugger` |
 | **SKILLS** | `debug-pro`, `code-review` |
@@ -117,11 +116,11 @@ For each hypothesis (highest likelihood first):
 4. Record **ACTUAL** result
 5. Verdict: ✅ Confirmed or ❌ Eliminated
 
-### Phase 4: Fix & Prevention
+### Phase 5: Fix & Prevention
 
 | Field | Value |
 |-------|-------|
-| **INPUT** | Confirmed root cause from Phase 3 |
+| **INPUT** | Confirmed root cause from Phase 4 |
 | **OUTPUT** | Code fix + prevention measures |
 | **AGENTS** | `debugger` |
 | **SKILLS** | `debug-pro`, `code-craft` |
@@ -135,18 +134,18 @@ For each hypothesis (highest likelihood first):
    - Add monitoring/alert if applicable
 4. `learner` logs root cause and fix for future reference
 
-### Phase 5: Verification
+### Phase 6: Verification
 
 | Field | Value |
 |-------|-------|
-| **INPUT** | Applied fix from Phase 4 |
+| **INPUT** | Applied fix from Phase 5 |
 | **OUTPUT** | Verification result: fix confirmed, no regressions |
-| **AGENTS** | `debugger` |
-| **SKILLS** | `debug-pro` |
+| **AGENTS** | `debugger`, `learner` |
+| **SKILLS** | `debug-pro`, `problem-checker`, `auto-learner` |
 
-// turbo
+// turbo — telemetry: phase-6-test
 ```bash
-npm test
+npx cross-env OTEL_SERVICE_NAME="workflow:diagnose" TRACE_ID="$TRACE_ID" npm test
 ```
 
 1. Verify the fix resolves the original symptom
@@ -180,6 +179,15 @@ npm test
 | Lint errors | Run eslint --fix |
 
 > **Rule:** Never mark complete with errors in `@[current_problems]`.
+
+---
+
+## 🔙 Rollback & Recovery
+
+If investigation causes system instability or tests fail unexpectedly:
+1. Restore to pre-diagnose checkpoint (`git checkout -- .` or `git stash pop`).
+2. Log failure via `learner` meta-agent.
+3. Notify user that debugging environment needs reset before attempting another diagnosis.
 
 ---
 
@@ -257,11 +265,14 @@ npm test
 
 ## 🔗 Workflow Chain
 
-**Skills Loaded (3):**
+**Skills Loaded (6):**
 
 - `debug-pro` - Systematic 4-phase debugging methodology
 - `code-review` - Code quality validation and analysis
 - `code-craft` - Coding standards for fix implementation
+- `context-engineering` - Codebase parsing and error trace analysis
+- `problem-checker` - IDE problem verification and auto-fixing
+- `auto-learner` - Finding past bugs and logging new patterns
 
 ```mermaid
 graph LR

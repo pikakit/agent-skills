@@ -1,8 +1,8 @@
 ---
 description: Zero-downtime production release pipeline — pre-flight security gates, automated build verification, health-check monitoring, and instant rollback on failure.
 chain: deploy-production
-skills: [cicd-pipeline, server-ops, security-scanner, code-review]
-agents: [orchestrator, assessor, recovery]
+skills: [cicd-pipeline, server-ops, security-scanner, code-review, problem-checker, context-engineering, auto-learner]
+agents: [orchestrator, assessor, recovery, learner, security-auditor, devops-engineer, test-engineer]
 ---
 
 # /launch - Zero-Downtime Release
@@ -35,11 +35,10 @@ Production deployment with automated pre-flight checks, security scanning, build
 
 | Phase | Agent | Action |
 | ----- | ----- | ------ |
-| **Pre-Deploy** | `assessor` | Evaluate deployment risk level |
-| **Pre-Deploy** | `recovery` | Save state checkpoint before deploy |
-| **Deploy** | `orchestrator` | Coordinate deploy + health check |
-| **On Failure** | `recovery` | Auto-rollback to saved state |
-| **Post-Deploy** | `learner` | Extract lessons from deploy outcome |
+| **Pre-Flight** | `assessor` | Evaluate deployment risk and auto-learned context |
+| **Execution** | `orchestrator` | Coordinate deploy pipeline and health checks |
+| **Safety** | `recovery` | Save state and recover/rollback from failed deployments |
+| **Post-Launch** | `learner` | Log deployment telemetry and success/failure patterns |
 
 ```
 Flow:
@@ -56,27 +55,27 @@ recovery.restore(checkpoint) → learner.log(failure)
 
 ## 🔴 MANDATORY: Deployment Protocol
 
-### Phase 0: Pre-flight & Auto-Learned Context
+### Phase 1: Pre-flight & Auto-Learned Context
 
 > **Rule 0.5-K:** Auto-learned pattern check.
 
 1. Read `.agent/skills/auto-learned/patterns/` for past failures before proceeding.
 2. Trigger `recovery` agent to run Checkpoint (`git commit -m "chore(checkpoint): pre-launch"`).
 
-### Phase 1: Pre-Flight Gates
+### Phase 2: Pre-Flight Gates
 
 | Field | Value |
 |-------|-------|
 | **INPUT** | $ARGUMENTS (sub-command + optional flags) |
 | **OUTPUT** | Pre-flight result: all gates pass/fail with details |
-| **AGENTS** | `security-auditor` |
-| **SKILLS** | `security-scanner`, `code-review` |
+| **AGENTS** | `security-auditor`, `assessor` |
+| **SKILLS** | `security-scanner`, `code-review`, `context-engineering` |
 
 **Gate 1: Code Quality**
 
-// turbo
+// turbo — telemetry: phase-2-preflight
 ```bash
-npx tsc --noEmit && npm run lint && npm test
+npx cross-env OTEL_SERVICE_NAME="workflow:launch" TRACE_ID="$TRACE_ID" npx tsc --noEmit; npx cross-env OTEL_SERVICE_NAME="workflow:launch" TRACE_ID="$TRACE_ID" npm run lint; npx cross-env OTEL_SERVICE_NAME="workflow:launch" TRACE_ID="$TRACE_ID" npm test
 ```
 
 | Check | Required |
@@ -105,21 +104,21 @@ npx tsc --noEmit && npm run lint && npm test
 
 > If ANY gate fails → STOP → report blockers → do not deploy.
 
-### Phase 2: Build & Checkpoint
+### Phase 3: Build & Checkpoint
 
 | Field | Value |
 |-------|-------|
-| **INPUT** | All gates passed from Phase 1 |
+| **INPUT** | All gates passed from Phase 2 |
 | **OUTPUT** | Production build + git checkpoint tag |
-| **AGENTS** | `devops-engineer` |
+| **AGENTS** | `devops-engineer`, `orchestrator` |
 | **SKILLS** | `cicd-pipeline` |
 
 1. `recovery` saves current state (git tag + commit hash)
 2. Build production bundle
 
-// turbo
+// turbo — telemetry: phase-3-build
 ```bash
-npm run build
+npx cross-env OTEL_SERVICE_NAME="workflow:launch" TRACE_ID="$TRACE_ID" npm run build
 ```
 
 3. Auto-detect platform:
@@ -132,16 +131,17 @@ npm run build
 | Netlify | `netlify deploy --prod` | Static sites |
 | AWS | `sam deploy` | SAM template |
 
-### Phase 3: Deploy & Health Check
+### Phase 4: Deploy & Health Check
 
 | Field | Value |
 |-------|-------|
-| **INPUT** | Production build + platform config from Phase 2 |
+| **INPUT** | Production build + platform config from Phase 3 |
 | **OUTPUT** | Deployed application with health check result |
 | **AGENTS** | `devops-engineer` |
 | **SKILLS** | `cicd-pipeline`, `server-ops` |
 
 1. Execute platform-specific deploy command
+// turbo — telemetry: phase-4-deploy
 2. Run health check (60s timeout):
 
 | Check | Endpoint | Expected |
@@ -150,17 +150,17 @@ npm run build
 | Database | `GET /api/health/db` | 200 OK |
 | Response Time | — | < 2000ms |
 
-3. If health check fails → Phase 4 (Auto-Rollback)
+3. If health check fails → Phase 5 (Auto-Rollback)
 4. If health check passes → `learner` logs deploy success
 
-### Phase 4: Auto-Rollback (on failure only)
+### Phase 5: Auto-Rollback (on failure only)
 
 | Field | Value |
 |-------|-------|
-| **INPUT** | Failed health check from Phase 3 |
+| **INPUT** | Failed health check from Phase 4 |
 | **OUTPUT** | Reverted to previous version, rollback report |
-| **AGENTS** | `devops-engineer` |
-| **SKILLS** | `cicd-pipeline` |
+| **AGENTS** | `devops-engineer`, `learner` |
+| **SKILLS** | `cicd-pipeline`, `auto-learner`, `problem-checker` |
 
 1. `recovery` restores checkpoint
 2. Re-deploy previous version
@@ -207,6 +207,15 @@ graph TD
 | Lint errors | Run eslint --fix |
 
 > **Rule:** Never deploy with errors in `@[current_problems]`.
+
+---
+
+## 🔙 Rollback & Recovery
+
+If deployment automation fails completely or pre-flights break the workspace:
+1. Fallback to manual deploy: trigger `recovery.restore()` and halt workflow.
+2. Auto-rollback handles post-deployment health check failures (see Phase 5).
+3. Log incident via `learner` meta-agent.
 
 ---
 
@@ -304,12 +313,15 @@ graph TD
 
 ## 🔗 Workflow Chain
 
-**Skills Loaded (4):**
+**Skills Loaded (7):**
 
 - `cicd-pipeline` - Deployment orchestration and rollback strategies
 - `server-ops` - Server management and health monitoring
 - `security-scanner` - Pre-deploy vulnerability scanning
 - `code-review` - Code quality validation
+- `context-engineering` - Codebase parsing and component mapping
+- `problem-checker` - IDE problem verification
+- `auto-learner` - Auto-learning from deployment failures
 
 ```mermaid
 graph LR

@@ -9,7 +9,7 @@ coordinates_with: ["studio", "tailwind-kit", "frontend-design"]
 success_metrics: ["0 WCAG accessibility violations", "100% Hick's law compliance"]
 metadata:
   author: pikakit
-  version: "3.9.112"
+  version: "3.9.113"
 ---
 
 # Design System — UI Design Decisions
@@ -267,4 +267,4 @@ All design-system outputs MUST emit `palette_generated`, `typography_selected`, 
 
 ---
 
-⚡ PikaKit v3.9.112
+⚡ PikaKit v3.9.113
