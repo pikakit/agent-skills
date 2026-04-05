@@ -1,6 +1,18 @@
-import fs from 'fs';
-import path from 'path';
-import { fileURLToPath } from 'url';
+// @ts-nocheck
+/**
+ * Version Sync — PikaKit
+ * Bumps version in package.json and syncs across all .md, registry.json, and root docs.
+ *
+ * Usage:
+ *   npx tsx version-sync.ts          # patch bump (default)
+ *   npx tsx version-sync.ts minor    # minor bump
+ *   npx tsx version-sync.ts major    # major bump
+ *   npx tsx version-sync.ts 4.0.0    # explicit version
+ */
+
+import * as fs from 'node:fs';
+import * as path from 'node:path';
+import { fileURLToPath } from 'node:url';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -9,9 +21,8 @@ const AGENT_DIR = path.join(ROOT_DIR, '.agent');
 
 // 1. Determine new version
 const args = process.argv.slice(2);
-let action = 'patch'; // Default
+let action = 'patch';
 
-// Find the first valid action to avoid npm garbage arguments
 for (const arg of args) {
   if (['patch', 'minor', 'major'].includes(arg) || /^[vV]?\d+\.\d+\.\d+$/.test(arg)) {
     action = arg;
@@ -21,7 +32,7 @@ for (const arg of args) {
 
 const pkgPath = path.join(ROOT_DIR, 'package.json');
 const pkg = JSON.parse(fs.readFileSync(pkgPath, 'utf-8'));
-const currentVersion = pkg.version;
+const currentVersion: string = pkg.version;
 
 let newVersion = currentVersion;
 
@@ -36,8 +47,8 @@ if (action === 'patch' || action === 'minor' || action === 'major') {
 }
 
 if (!/^\d+\.\d+\.\d+$/.test(newVersion)) {
-    console.error(`\n❌ Lỗi: Version không hợp lệ (${newVersion})`);
-    process.exit(1);
+  console.error(`\n❌ Lỗi: Version không hợp lệ (${newVersion})`);
+  process.exit(1);
 }
 
 if (newVersion === currentVersion) {
@@ -51,8 +62,8 @@ if (newVersion === currentVersion) {
 let updatedFiles = 0;
 
 // Recursive file scanner
-function scanDirectory(dir, ext = '.md') {
-  let results = [];
+function scanDirectory(dir: string, ext = '.md'): string[] {
+  let results: string[] = [];
   if (!fs.existsSync(dir)) return results;
   const list = fs.readdirSync(dir, { withFileTypes: true });
   for (const entry of list) {
@@ -72,9 +83,9 @@ const agentMdFiles = scanDirectory(AGENT_DIR, '.md');
 
 for (const filePath of agentMdFiles) {
   let content = fs.readFileSync(filePath, 'utf-8');
-  let originalContent = content;
+  const originalContent = content;
 
-  // Update YAML metadata.version if it exists
+  // Update YAML metadata.version
   const fmMatch = content.match(/^---\r?\n([\s\S]*?)\r?\n---/);
   if (fmMatch) {
     const fm = fmMatch[1];
@@ -86,23 +97,22 @@ for (const filePath of agentMdFiles) {
     }
   }
 
-  // Update PikaKit vX.X.X footprint across the file
+  // Update PikaKit vX.X.X
   if (content.match(/PikaKit v[0-9.]+/)) {
     content = content.replace(/PikaKit v[0-9.]+/g, `PikaKit v${newVersion}`);
   }
 
-  // Also replace npm-vX.X.X if it exists
+  // Update npm-vX.X.X
   if (content.match(/npm-v[0-9.]+/)) {
-      content = content.replace(/npm-v[0-9.]+/g, `npm-v${newVersion}`);
+    content = content.replace(/npm-v[0-9.]+/g, `npm-v${newVersion}`);
   }
 
-  // Catch standalone bold version patterns like **v3.9.105**
+  // Bold version patterns like **v3.9.105**
   if (content.match(/\*\*v\d+\.\d+\.\d+\*\*/)) {
     content = content.replace(/\*\*v\d+\.\d+\.\d+\*\*/g, `**v${newVersion}**`);
   }
 
-  // Catch standalone vX.X.X references (not inside words/URLs)
-  // Only match versions that look like our PikaKit semver (e.g., v3.9.XXX)
+  // Standalone vX.X.X
   const majorMinor = newVersion.split('.').slice(0, 2).join('.');
   const standalonePattern = new RegExp(`(?<![a-zA-Z0-9/:-])v${majorMinor.replace(/\./g, '\\.')}\\.\\d+(?![a-zA-Z0-9/])`, 'g');
   content = content.replace(standalonePattern, `v${newVersion}`);
@@ -126,9 +136,9 @@ if (fs.existsSync(registryPath)) {
   }
 }
 
-// 4. Update README.md and external root files
+// 4. Update root docs
 const rootMdFiles = ['README.md', 'SYSTEM_PROMPT.md', 'GEMINI.md']
-  .map(f => path.join(ROOT_DIR, f))
+  .map((f: string) => path.join(ROOT_DIR, f))
   .concat(scanDirectory(path.join(ROOT_DIR, 'docs'), '.md'));
 
 for (const filePath of rootMdFiles) {
