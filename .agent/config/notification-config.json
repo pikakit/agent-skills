@@ -1,5 +1,4 @@
 {
-  "$schema": "https://pikakit.com/schemas/notification-config.json",
   "version": "3.9.117",
   "notification": {
     "enabled": true,
