@@ -1,0 +1,16 @@
+# PikaKit — Linguist Overrides
+# Force correct language detection for GitHub stats
+
+# TypeScript files
+*.ts linguist-language=TypeScript
+*.tsx linguist-language=TypeScript
+
+# Data files — exclude from language stats
+*.csv linguist-vendored
+*.yaml linguist-vendored
+
+# Lock files — exclude from language stats
+package-lock.json linguist-generated
+
+# Shell scripts
+*.sh linguist-language=Shell
