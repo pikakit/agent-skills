@@ -1,6 +1,6 @@
 # PikaKit Skill Design Guide
 
-> **v1.0.0** — Standard structure for all PikaKit skills, based on Vercel's agent-skills architecture.
+> **PikaKit v3.9.117** — Standard structure for all PikaKit skills.
 
 ---
 

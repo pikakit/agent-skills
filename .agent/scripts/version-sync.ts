@@ -136,7 +136,34 @@ if (fs.existsSync(registryPath)) {
   }
 }
 
-// 4. Update root docs
+// 4. Update JSON config files in .agent/config/
+const configDir = path.join(AGENT_DIR, 'config');
+if (fs.existsSync(configDir)) {
+  const configFiles = fs.readdirSync(configDir).filter((f: string) => f.endsWith('.json'));
+  for (const file of configFiles) {
+    const filePath = path.join(configDir, file);
+    try {
+      const config = JSON.parse(fs.readFileSync(filePath, 'utf-8'));
+      // Check nested version fields (e.g. branding.version)
+      let changed = false;
+      if (config.version && config.version !== newVersion) {
+        config.version = newVersion;
+        changed = true;
+      }
+      if (config.branding?.version && config.branding.version !== newVersion) {
+        config.branding.version = newVersion;
+        changed = true;
+      }
+      if (changed) {
+        fs.writeFileSync(filePath, JSON.stringify(config, null, 2) + '\n', 'utf-8');
+        console.log(`✅ Updated .agent/config/${file} to v${newVersion}`);
+        updatedFiles++;
+      }
+    } catch { /* skip non-parseable files */ }
+  }
+}
+
+// 5. Update root docs
 const rootMdFiles = ['README.md', 'SYSTEM_PROMPT.md', 'GEMINI.md']
   .map((f: string) => path.join(ROOT_DIR, f))
   .concat(scanDirectory(path.join(ROOT_DIR, 'docs'), '.md'));

@@ -9,7 +9,7 @@ coordinates_with: ["perf-optimizer", "mobile-developer", "shader"]
 success_metrics: ["100% correct sub-skill routing", "<5ms routing latency"]
 metadata:
   author: pikakit
-  version: "3.9.116"
+  version: "3.9.117"
 ---
 
 # Game Development — Orchestrator
@@ -174,4 +174,4 @@ RENDER → Draw the frame (interpolated)
 
 ---
 
-⚡ PikaKit v3.9.116
+⚡ PikaKit v3.9.117

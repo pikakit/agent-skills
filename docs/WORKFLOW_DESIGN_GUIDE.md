@@ -1,6 +1,6 @@
 # Workflow Design Guide
 
-> **PikaKit v3.9.116** | Standard formula for creating new FAANG-Grade workflows
+> **PikaKit v3.9.117** | Standard formula for creating new FAANG-Grade workflows
 
 ---
 
@@ -122,7 +122,7 @@ Whenever making automated shell commands, prefix with telemetry (if available) o
 **Example Node script execution:**
 ```bash
 // turbo
-node .agent/skills/context-engineering/scripts/context_analyzer.js --telemetry-span="phase-name"
+node .agent/skills/context-engineering/scripts/context_analyzer.ts --telemetry-span="phase-name"
 ```
 Or simply mandate immutable logging behavior natively inside the invoked scripts.
 
@@ -321,5 +321,5 @@ Before publishing a FAANG-grade workflow:
 
 ---
 
-⚡ PikaKit v3.9.116
+⚡ PikaKit v3.9.117
 Composable Skills. Coordinated Agents. Intelligent Execution.

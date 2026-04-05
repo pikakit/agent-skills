@@ -13,15 +13,11 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "declaration": false,
-    "sourceMap": false,
-    "outDir": "./dist",
-    "rootDir": "."
+    "sourceMap": false
   },
   "include": [
     ".agent/global.d.ts",
     ".agent/scripts/**/*.ts",
-    ".agent/scripts/**/*.ts",
-    ".agent/skills/*/scripts/**/*.ts",
     ".agent/skills/*/scripts/**/*.ts",
     ".agent/skills/*/rules/**/*.ts"
   ],

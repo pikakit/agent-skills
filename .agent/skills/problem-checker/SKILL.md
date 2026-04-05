@@ -9,7 +9,7 @@ coordinates_with: ["auto-learned", "skill-generator", "code-review"]
 success_metrics: ["0 IDE Errors", "Clean notify_user"]
 metadata:
   author: pikakit
-  version: "3.9.116"
+  version: "3.9.117"
 ---
 
 # Problem Checker — Automated IDE Error Gate
@@ -185,4 +185,4 @@ npx tsc --noEmit <file>
 
 ---
 
-⚡ PikaKit v3.9.116
+⚡ PikaKit v3.9.117

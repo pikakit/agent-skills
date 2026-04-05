@@ -1,18 +1,37 @@
 {
-  "enabled": true,
-  "verbosity": "normal",
+  "$schema": "https://pikakit.com/schemas/notification-config.json",
+  "version": "3.9.117",
+  "notification": {
+    "enabled": true,
+    "verbosity": "normal",
+    "channels": [
+      "console"
+    ]
+  },
   "branding": {
     "name": "PikaKit",
-    "version": "3.9.115",
-    "emoji": "🤖"
-  },
-  "thresholds": {
-    "fullTemplateMinSkills": 3
+    "emoji": "🤖",
+    "tagline": "Composable Skills. Coordinated Agents. Intelligent Execution.",
+    "footer": "⚡ PikaKit v{version}"
   },
   "templates": {
-    "full": "🤖 PikaKit v{version}\n📋 Task: {task}\n◆ Agent: @{agent}\n◇ Skills: {skills}\n📂 Workflow: /{workflow}",
+    "taskStart": "🤖 **PikaKit v{version}** | Workflow: /{workflow}\n◆ Agent: @{agent}\n◇ Skills: {skills}",
+    "taskComplete": "✅ **Complete** | Agent: @{agent} | Skills: {skillCount} | Files: {fileCount} | {duration}s",
     "compact": "🤖 PikaKit ⬢ @{agent} → {skills}",
-    "complete": "✅ Done ⬢ Agent: @{agent} ⬢ Skills: {skillCount} ⬢ Files: {fileCount} ⬢ {duration}s",
-    "script": "⚡ {skill} ⬢ running {script}"
+    "skillLoad": "🤖 **PikaKit Loading Skill:** @{skill}",
+    "scriptRun": "⚡ {skill} ⬢ running {script}",
+    "error": "❌ **Failed** | Agent: @{agent} | Phase: {phase} | {error}"
+  },
+  "behavior": {
+    "showOnWorkflowExecution": true,
+    "showOnSimpleEdits": false,
+    "showFooterOnCompletion": true,
+    "suppressDuplicateSkillLoads": true,
+    "compactModeThreshold": 2
+  },
+  "telemetry": {
+    "enabled": false,
+    "traceExecution": false,
+    "logLevel": "info"
   }
 }

@@ -9,7 +9,7 @@ coordinates_with: ["nextjs-pro", "typescript-expert", "design-system", "tailwind
 success_metrics: ["Component Render Efficiency", "Accessibility Score", "Core Web Vitals"]
 metadata:
   author: pikakit
-  version: "3.9.116"
+  version: "3.9.117"
 ---
 
 # React Architect — Component & State Architecture
@@ -228,4 +228,4 @@ For the complete guide with all rules expanded: AGENTS.md\n
 
 ---
 
-⚡ PikaKit v3.9.116
+⚡ PikaKit v3.9.117

@@ -43,4 +43,4 @@ Reference: [Initializing the application](https://react.dev/learn/you-might-not-
 
 ---
 
-⚡ PikaKit v3.9.116
+⚡ PikaKit v3.9.117
