@@ -1,5 +1,5 @@
-# Agent Skill Kit - Comprehensive Ignore Patterns v3.9.115
-# Updated: 2026 - FAANG Standards
+# Agent Skill Kit - Comprehensive Ignore Patterns v3.9.116
+# Updated: 2026-04 — Full TypeScript Migration
 
 # ============================================================
 # Dependencies & Package Managers
@@ -25,6 +25,12 @@ out/
 .netlify/
 .cache/
 *.tsbuildinfo
+
+# ============================================================
+# TypeScript Build Artifacts
+# ============================================================
+*.js.map
+*.d.ts.map
 
 # ============================================================
 # AI & Brain Artifacts (Agent Skill Kit specific)
@@ -131,7 +137,7 @@ temp/
 *.rpm
 
 # ============================================================
-# Python (Skill Scripts Support)
+# Python (Legacy Support)
 # ============================================================
 __pycache__/
 *.py[cod]

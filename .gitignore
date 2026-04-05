@@ -1,5 +1,5 @@
-# Agent Skill Kit - Gitignore v3.9.115 (2026)
-# FAANG-Grade Comprehensive patterns for modern JS/TS development
+# Agent Skill Kit - Gitignore v3.9.116 (2026-04)
+# FAANG-Grade patterns for TypeScript-first development
 
 # ============================================================
 # Dependencies & Package Managers
@@ -31,6 +31,12 @@ out/
 .turbo/
 *.tsbuildinfo
 .webpack/
+
+# ============================================================
+# TypeScript Build Artifacts
+# ============================================================
+*.js.map
+*.d.ts.map
 
 # ============================================================
 # Testing & Coverage
@@ -157,3 +163,9 @@ agent.cmd
 # ============================================================
 *.vsix
 /icon.png
+
+# ============================================================
+# Temporary audit/migration scripts (do not commit)
+# ============================================================
+audit_refs.ps1
+audit_result.txt
