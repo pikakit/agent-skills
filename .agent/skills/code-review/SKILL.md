@@ -9,7 +9,7 @@ coordinates_with: ["code-craft", "security-scanner", "test-architect"]
 success_metrics: ["0 blocking issues", "100% lint pass rate", "0 type errors"]
 metadata:
   author: pikakit
-  version: "3.9.115"
+  version: "3.9.116"
 ---
 
 # Code Review & Quality
@@ -132,7 +132,7 @@ metadata:
 
 | File | Description | When to Read |
 |------|-------------|--------------|
-| [scripts/lint_runner.js](scripts/lint_runner.js) | Unified lint check script | Running automated lint |
+| [scripts/lint_runner.ts](scripts/lint_runner.ts) | Unified lint check script | Running automated lint |
 | [engineering-spec.md](rules/engineering-spec.md) | Full engineering spec: contracts, security, scalability | Architecture review |
 
 ---
@@ -148,4 +148,4 @@ metadata:
 
 ---
 
-⚡ PikaKit v3.9.115
+⚡ PikaKit v3.9.116

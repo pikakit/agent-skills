@@ -68,16 +68,16 @@ tags: aria, snapshot
 
 ```bash
 # Click
-node select-ref.js --ref e1 --action click
+node select-ref.ts --ref e1 --action click
 
 # Fill
-node select-ref.js --ref e5 --action fill --value "text"
+node select-ref.ts --ref e5 --action fill --value "text"
 
 # Get text
-node select-ref.js --ref e8 --action text
+node select-ref.ts --ref e8 --action text
 
 # Screenshot
-node select-ref.js --ref e1 --action screenshot --output ./element.png
+node select-ref.ts --ref e1 --action screenshot --output ./element.png
 ```
 
 ---
@@ -92,4 +92,4 @@ node select-ref.js --ref e1 --action screenshot --output ./element.png
 
 ---
 
-⚡ PikaKit v3.9.115
+⚡ PikaKit v3.9.116

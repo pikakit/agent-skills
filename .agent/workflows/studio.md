@@ -80,14 +80,14 @@ Extract from user request:
 
 // turbo
 ```bash
-npx cross-env OTEL_SERVICE_NAME="workflow:studio" TRACE_ID="$TRACE_ID" node .agent/skills/studio/scripts-js/search.js "<product_type> <industry> <keywords>" --design-system -p "Project Name"
+npx cross-env OTEL_SERVICE_NAME="workflow:studio" TRACE_ID="$TRACE_ID" node .agent/skills/studio/scripts/search.ts "<product_type> <industry> <keywords>" --design-system -p "Project Name"
 ```
 
 2. Optionally persist for hierarchical retrieval:
 
 // turbo
 ```bash
-npx cross-env OTEL_SERVICE_NAME="workflow:studio" TRACE_ID="$TRACE_ID" node .agent/skills/studio/scripts-js/search.js "<query>" --design-system --persist -p "Project Name"
+npx cross-env OTEL_SERVICE_NAME="workflow:studio" TRACE_ID="$TRACE_ID" node .agent/skills/studio/scripts/search.ts "<query>" --design-system --persist -p "Project Name"
 ```
 
 Creates `design-system/MASTER.md` + optional `design-system/pages/<page>.md` overrides.
@@ -117,7 +117,7 @@ Available domains: `product`, `style`, `typography`, `color`, `landing`, `chart`
 
 // turbo
 ```bash
-npx cross-env OTEL_SERVICE_NAME="workflow:studio" TRACE_ID="$TRACE_ID" node .agent/skills/studio/scripts-js/search.js "<keyword>" --stack html-tailwind
+npx cross-env OTEL_SERVICE_NAME="workflow:studio" TRACE_ID="$TRACE_ID" node .agent/skills/studio/scripts/search.ts "<keyword>" --stack html-tailwind
 ```
 
 Available stacks: `html-tailwind`, `react`, `nextjs`, `vue`, `svelte`, `swiftui`, `react-native`, `flutter`, `shadcn`, `jetpack-compose`

@@ -5,7 +5,7 @@ description: >-
   compress, resize, convert, background removal.
 metadata:
   author: pikakit
-  version: "3.9.115"
+  version: "3.9.116"
 ---
 
 # Media Processing — FFmpeg + ImageMagick + RMBG
@@ -154,8 +154,8 @@ rmbg input.jpg -m briaai -o output.png   # Highest quality
 
 | File | Description | When to Read |
 |------|-------------|--------------|
-| [convert-video.js](scripts/convert-video.js) | FFmpeg video converter CLI | Video conversion |
-| [optimize-image.js](scripts/optimize-image.js) | ImageMagick image optimizer CLI | Image optimization |
+| [convert-video.ts](scripts/convert-video.ts) | FFmpeg video converter CLI | Video conversion |
+| [optimize-image.ts](scripts/optimize-image.ts) | ImageMagick image optimizer CLI | Image optimization |
 | [engineering-spec.md](rules/engineering-spec.md) | Full engineering spec | Architecture review |
 
 ---
@@ -169,4 +169,4 @@ rmbg input.jpg -m briaai -o output.png   # Highest quality
 
 ---
 
-⚡ PikaKit v3.9.115
+⚡ PikaKit v3.9.116

@@ -10,7 +10,7 @@ coordinates_with: ["data-modeler", "security-scanner", "auth-patterns", "nodejs-
 success_metrics: ["0 breaking API changes without explicit version bump", "100% compliant with OWASP API Top 10"]
 metadata:
   author: pikakit
-  version: "3.9.115"
+  version: "3.9.116"
 ---
 
 # API Architect
@@ -24,7 +24,7 @@ metadata:
 **Required:** None — API Architect is a knowledge-based skill with no external dependencies.
 
 **Optional:**
-- `scripts/api_validator.js` — run `node scripts/api_validator.js <project_path>` for endpoint validation
+- `scripts/api_validator.ts` — run `node scripts/api_validator.ts <project_path>` for endpoint validation
 
 ---
 
@@ -99,7 +99,7 @@ All phases synchronous. Decision tree ordering is fixed and deterministic.
 | `ERR_CONSTRAINT_CONFLICT` | Yes | Contradictory constraints in input |
 | `ERR_INVALID_CONSUMER` | Yes | Consumer type not recognized |
 | `ERR_REFERENCE_NOT_FOUND` | No | Rule file missing from rules/ directory |
-| `ERR_VALIDATOR_FAILED` | Yes | api_validator.js exited with non-zero code |
+| `ERR_VALIDATOR_FAILED` | Yes | api_validator.ts exited with non-zero code |
 | `ERR_INVALID_SCALE` | No | Scale not one of: prototype, startup, growth, enterprise |
 
 **Zero internal retries.** Deterministic output; same context = same decision.
@@ -214,7 +214,7 @@ For the complete guide with all rules expanded: `AGENTS.md`
 
 | Script | Purpose | Command |
 |--------|---------|---------|
-| `scripts/api_validator.js` | API endpoint validation | `node scripts/api_validator.js <project_path>` |
+| `scripts/api_validator.ts` | API endpoint validation | `node scripts/api_validator.ts <project_path>` |
 
 ---
 
@@ -230,4 +230,4 @@ For the complete guide with all rules expanded: `AGENTS.md`
 
 ---
 
-⚡ PikaKit v3.9.115
+⚡ PikaKit v3.9.116

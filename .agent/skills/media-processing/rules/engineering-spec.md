@@ -442,11 +442,11 @@ All resources scoped to invocation. No persistent handles.
 | File | When to Read |
 |------|-------------|
 | [../SKILL.md](../SKILL.md) | Quick reference, CRF guide, RMBG models |
-| [../scripts/convert-video.js](../scripts/convert-video.js) | FFmpeg video converter script |
-| [../scripts/optimize-image.js](../scripts/optimize-image.js) | ImageMagick image optimizer script |
+| [../scripts/convert-video.ts](../scripts/convert-video.ts) | FFmpeg video converter script |
+| [../scripts/optimize-image.ts](../scripts/optimize-image.ts) | ImageMagick image optimizer script |
 | `perf-optimizer` | Performance profiling |
 | `studio` | Design assets |
 
 ---
 
-⚡ PikaKit v3.9.115
+⚡ PikaKit v3.9.116

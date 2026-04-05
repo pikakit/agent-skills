@@ -273,9 +273,9 @@ app.use('/api/auth/reset', authLimiter)
 | File | When to Read |
 |------|-------------|
 | [checklists.md](checklists.md) | Pre-deployment checklist |
-| [scripts/security_scan.js](scripts/security_scan.js) | Automated scanning |
+| [scripts/security_scan.ts](scripts/security_scan.ts) | Automated scanning |
 | [SKILL.md](SKILL.md) | OWASP 2025 mapping |
 
 ---
 
-⚡ PikaKit v3.9.115
+⚡ PikaKit v3.9.116

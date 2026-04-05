@@ -476,9 +476,9 @@ All resources scoped to invocation. No persistent handles.
 
 ⚡ ## OpenTelemetry Observability (MANDATORY)
 
-- **UX & Accessibility Audits**: EVERY run of ux_audit.js and ccessibility_checker.js MUST emit an OpenTelemetry Span recording the compliance score (e.g., WCAG AA/AAA passing rate).
+- **UX & Accessibility Audits**: EVERY run of ux_audit.ts and ccessibility_checker.js MUST emit an OpenTelemetry Span recording the compliance score (e.g., WCAG AA/AAA passing rate).
 - **Anti-Pattern Alerts**: Any detection of banned anti-patterns (e.g., Purple Ban, Bento grid without justification, Contrast Ratio failure) MUST trigger an OTel Event attached to the design Trace ID.
 
 ---
 
-PikaKit v3.9.115
+PikaKit v3.9.116

@@ -9,7 +9,7 @@ coordinates_with: ["api-architect", "nodejs-pro", "python-pro", "security-scanne
 success_metrics: ["0 N+1 query warnings", "100% indexed foreign keys"]
 metadata:
   author: pikakit
-  version: "3.9.115"
+  version: "3.9.116"
 ---
 
 # Data Modeler — Database Design
@@ -174,7 +174,7 @@ All data-modeler outputs MUST emit `schema_designed`, `platform_selected`, or `m
 
 | Script | Purpose | Command |
 |--------|---------|---------| 
-| [scripts/schema_validator.js](scripts/schema_validator.js) | Schema validation | `node scripts/schema_validator.js <project_path>` |
+| [scripts/schema_validator.ts](scripts/schema_validator.ts) | Schema validation | `node scripts/schema_validator.ts <project_path>` |
 
 **Selective reading rule:** Read ONLY files relevant to the request.
 
@@ -191,4 +191,4 @@ All data-modeler outputs MUST emit `schema_designed`, `platform_selected`, or `m
 
 ---
 
-⚡ PikaKit v3.9.115
+⚡ PikaKit v3.9.116

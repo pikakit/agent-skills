@@ -1,4 +1,4 @@
-﻿---
+---
 title: Mobile First — Engineering Specification
 impact: MEDIUM
 tags: mobile-developer
@@ -44,7 +44,7 @@ Mobile First eliminates these with deterministic sub-skill routing (3 framework 
 | G3 | 4 must-ask questions | Platform, Framework, Navigation, Offline — mandatory |
 | G4 | Framework decision tree | 5 branches: OTA → RN, custom UI → Flutter, iOS-deep → SwiftUI, Android-deep → Kotlin, existing → match |
 | G5 | Selective loading | Read only relevant sub-skill; never all |
-| G6 | Runtime audit | `mobile_audit.js` for UX/touch audit |
+| G6 | Runtime audit | `mobile_audit.ts` for UX/touch audit |
 
 ---
 
@@ -115,7 +115,7 @@ Data: {
     android: object
   } | null
   audit: {
-    script_path: string       # "scripts/mobile_audit.js"
+    script_path: string       # "scripts/mobile_audit.ts"
     command: string           # Full command to run
     project_path: string
   } | null
@@ -474,4 +474,4 @@ Routing is fully parallel (stateless). Audit is serial per project.
 
 ---
 
-⚡ PikaKit v3.9.115
+⚡ PikaKit v3.9.116

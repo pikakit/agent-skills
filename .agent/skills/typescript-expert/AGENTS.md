@@ -1,4 +1,4 @@
-﻿# typescript-expert
+# typescript-expert
 
 **Version 1.0.0**
 Engineering
@@ -155,7 +155,7 @@ const config = {
 | [performance.md](rules/performance.md) | Build performance | Slow builds |
 | [monorepo.md](rules/monorepo.md) | Monorepo setup | Project references |
 | [migration.md](rules/migration.md) | Migration strategies | Version upgrades |
-| [ts_diagnostic.js](scripts/ts_diagnostic.js) | Project health analysis | Automated diagnostics |
+| [ts_diagnostic.ts](scripts/ts_diagnostic.ts) | Project health analysis | Automated diagnostics |
 | [engineering-spec.md](rules/engineering-spec.md) | Full spec | Architecture review |
 
 ---
@@ -1037,9 +1037,9 @@ data.anything.goes.wrong  // No type safety
 |------|-------------|
 | [tsconfig-strict.json](tsconfig-strict.json) | Copy-paste strict config |
 | [utility-types.js](utility-types.js) | Runtime utility helpers |
-| [ts_diagnostic.js](../scripts/ts_diagnostic.js) | Project health scan |
+| [ts_diagnostic.ts](../scripts/ts_diagnostic.ts) | Project health scan |
 | [SKILL.md](../SKILL.md) | Error routing, patterns |
 
 ---
 
-⚡ PikaKit v3.9.115
+⚡ PikaKit v3.9.116

@@ -1,4 +1,4 @@
-﻿---
+---
 title: Code Review — Engineering Specification
 impact: MEDIUM
 tags: code-review
@@ -67,7 +67,7 @@ Code Review eliminates these with a structured 5-category review checklist, mand
 | Quality loop (edit → check → fix) | Loop definition and enforcement | Linter/compiler implementation |
 | Review checklist (5 categories, 14 items) | Checklist definition | Checklist tooling |
 | Comment taxonomy (4 levels) | Taxonomy definition | Comment storage/display |
-| Lint/type automation scripts | `lint_runner.js`, `type_coverage.js` | ESLint/TSC installation |
+| Lint/type automation scripts | `lint_runner.ts`, `type_coverage.ts` | ESLint/TSC installation |
 | Review commands (quick reference) | Command table | Script execution environment |
 
 **Side-effect boundary:** Code Review produces review decisions, checklists, and comment classifications. The automation scripts (`scripts/`) execute lint and type commands with filesystem read access. Review decisions do not modify code.
@@ -463,4 +463,4 @@ All resources scoped to invocation for review decisions. No persistent handles.
 
 ---
 
-PikaKit v3.9.115
+PikaKit v3.9.116

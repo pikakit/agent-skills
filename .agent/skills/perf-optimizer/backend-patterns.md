@@ -1,4 +1,4 @@
-﻿---
+---
 name: backend-patterns
 description: Backend performance patterns — N+1 detection, Redis caching, connection pooling, pagination, query optimization
 ---
@@ -303,10 +303,10 @@ const db = drizzle(pool, { logger: true })
 
 | File | When to Read |
 |------|-------------|
-| [scripts/lighthouse_audit.js](scripts/lighthouse_audit.js) | Frontend performance audit |
+| [scripts/lighthouse_audit.ts](scripts/lighthouse_audit.ts) | Frontend performance audit |
 | [SKILL.md](SKILL.md) | Core Web Vitals targets |
 | [rules/engineering-spec.md](rules/engineering-spec.md) | Full architecture spec |
 
 ---
 
-⚡ PikaKit v3.9.115
+⚡ PikaKit v3.9.116

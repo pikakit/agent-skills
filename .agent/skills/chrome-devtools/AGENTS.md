@@ -1,4 +1,4 @@
-﻿# chrome-devtools
+# chrome-devtools
 
 **Version 1.0.0**
 Engineering
@@ -56,16 +56,16 @@ March 2026
 
 | Script | Purpose | Side Effects | Idempotent |
 |--------|---------|-------------|-----------|
-| `navigate.js` | Navigate to URL | Browser launch, page navigation | No |
-| `screenshot.js` | Capture screenshot | File write (auto-compress > 5MB) | No |
-| `click.js` | Click element | Page state mutation | No |
-| `fill.js` | Fill form field | Form state mutation | No |
-| `evaluate.js` | Execute JavaScript | Depends on script content | Depends |
-| `aria-snapshot.js` | Get ARIA tree (YAML) | None (read-only) | Yes |
-| `select-ref.js` | Interact by ref | Page state mutation | No |
-| `console.js` | Monitor console | None (passive) | Yes |
-| `network.js` | Track HTTP requests | None (passive) | Yes |
-| `performance.js` | Core Web Vitals | Navigation + measurement | No |
+| `navigate.ts` | Navigate to URL | Browser launch, page navigation | No |
+| `screenshot.ts` | Capture screenshot | File write (auto-compress > 5MB) | No |
+| `click.ts` | Click element | Page state mutation | No |
+| `fill.ts` | Fill form field | Form state mutation | No |
+| `evaluate.ts` | Execute JavaScript | Depends on script content | Depends |
+| `aria-snapshot.ts` | Get ARIA tree (YAML) | None (read-only) | Yes |
+| `select-ref.ts` | Interact by ref | Page state mutation | No |
+| `console.ts` | Monitor console | None (passive) | Yes |
+| `network.ts` | Track HTTP requests | None (passive) | Yes |
+| `performance.ts` | Core Web Vitals | Navigation + measurement | No |
 
 ---
 
@@ -73,17 +73,17 @@ March 2026
 
 ```bash
 # 1. Launch session (browser starts)
-node navigate.js --url https://example.com/login
+node navigate.ts --url https://example.com/login
 
 # 2. Interact (browser reuses session)
-node fill.js --selector "#email" --value "user@example.com"
-node click.js --selector "button[type=submit]"
+node fill.ts --selector "#email" --value "user@example.com"
+node click.ts --selector "button[type=submit]"
 
 # 3. Capture
-node screenshot.js --output ./result.png
+node screenshot.ts --output ./result.png
 
 # 4. Close (browser terminates)
-node navigate.js --close true
+node navigate.ts --close true
 ```
 
 **State:** `.browser-session.json` in working directory. One session per directory. Delete file to reset.
@@ -127,7 +127,7 @@ node navigate.js --close true
 |---------|-------|------------|
 | `Cannot find puppeteer` | Not installed | `npm install puppeteer sharp yargs` |
 | `libnss3.so` missing | Linux deps | Run `./install-deps.sh` |
-| Element not found | Wrong selector | Use `aria-snapshot.js` to find correct selector |
+| Element not found | Wrong selector | Use `aria-snapshot.ts` to find correct selector |
 | Screenshot > 5MB | High DPI / full page | Auto-compressed; use `--max-size 3` for smaller |
 | Session stale | Browser died | Delete `.browser-session.json`, re-launch |
 | Script hangs | Page never loads | Increase `--timeout` or check URL |
@@ -232,16 +232,16 @@ description: YAML accessibility tree format with ref handles for element interac
 
 ```bash
 # Click
-node select-ref.js --ref e1 --action click
+node select-ref.ts --ref e1 --action click
 
 # Fill
-node select-ref.js --ref e5 --action fill --value "text"
+node select-ref.ts --ref e5 --action fill --value "text"
 
 # Get text
-node select-ref.js --ref e8 --action text
+node select-ref.ts --ref e8 --action text
 
 # Screenshot
-node select-ref.js --ref e1 --action screenshot --output ./element.png
+node select-ref.ts --ref e1 --action screenshot --output ./element.png
 ```
 
 ---
@@ -418,27 +418,27 @@ Error: {
 
 | Operation | Side Effects |
 |-----------|-------------|
-| navigate.js | Launches browser (if not running); navigates to URL; modifies session file |
-| screenshot.js | Writes screenshot file to disk; may compress |
-| click.js | Mutates page state (clicks element) |
-| fill.js | Mutates page state (fills form field) |
-| evaluate.js | Executes arbitrary JS in page context; may mutate page |
-| aria-snapshot.js | None (read-only page inspection) |
-| select-ref.js | Mutates page state (interacts with element) |
-| console.js | None (passive monitoring) |
-| network.js | None (passive monitoring) |
-| performance.js | Navigates and measures; reads page |
+| navigate.ts | Launches browser (if not running); navigates to URL; modifies session file |
+| screenshot.ts | Writes screenshot file to disk; may compress |
+| click.ts | Mutates page state (clicks element) |
+| fill.ts | Mutates page state (fills form field) |
+| evaluate.ts | Executes arbitrary JS in page context; may mutate page |
+| aria-snapshot.ts | None (read-only page inspection) |
+| select-ref.ts | Mutates page state (interacts with element) |
+| console.ts | None (passive monitoring) |
+| network.ts | None (passive monitoring) |
+| performance.ts | Navigates and measures; reads page |
 
 ### 6.2 Workflow Contract
 
 #### Invocation Pattern
 
 ```
-1. Launch session: node navigate.js --url <target>
-2. Interact: node fill.js / click.js / evaluate.js (sequential, reuses session)
-3. Capture: node screenshot.js --output <path>
-4. Measure: node performance.js --url <target>
-5. Close: node navigate.js --close true
+1. Launch session: node navigate.ts --url <target>
+2. Interact: node fill.ts / click.ts / evaluate.ts (sequential, reuses session)
+3. Capture: node screenshot.ts --output <path>
+4. Measure: node performance.ts --url <target>
+5. Close: node navigate.ts --close true
 ```
 
 #### Execution Guarantees
@@ -452,7 +452,7 @@ Error: {
 
 | Failure Type | Propagation | Recovery |
 |-------------|-------------|----------|
-| Element not found | Return error with selector | Use aria-snapshot.js to find correct selector |
+| Element not found | Return error with selector | Use aria-snapshot.ts to find correct selector |
 | Navigation timeout | Return error with URL and timeout | Increase timeout or verify URL |
 | Browser crash | Return error; session file preserved | Delete session file; re-launch |
 | Puppeteer not installed | Return error immediately | Run npm install |
@@ -474,15 +474,15 @@ Error: {
 
 | Operation | Idempotent | Notes |
 |-----------|-----------|-------|
-| navigate.js | No | Page state changes on navigation |
-| screenshot.js | No | File overwrite if same output path; page may differ |
-| click.js | No | Mutates page state |
-| fill.js | No | Mutates form state |
-| evaluate.js | Depends | Read-only JS is idempotent; mutation JS is not |
-| aria-snapshot.js | Yes | Read-only page inspection |
-| console.js | Yes | Passive monitoring |
-| network.js | Yes | Passive monitoring |
-| performance.js | No | Navigation + measurement produces varying values |
+| navigate.ts | No | Page state changes on navigation |
+| screenshot.ts | No | File overwrite if same output path; page may differ |
+| click.ts | No | Mutates page state |
+| fill.ts | No | Mutates form state |
+| evaluate.ts | Depends | Read-only JS is idempotent; mutation JS is not |
+| aria-snapshot.ts | Yes | Read-only page inspection |
+| console.ts | Yes | Passive monitoring |
+| network.ts | Yes | Passive monitoring |
+| performance.ts | No | Navigation + measurement produces varying values |
 
 ---
 
@@ -538,7 +538,7 @@ Transitions:
 
 | Failure Class | Behavior | Recovery |
 |---------------|----------|----------|
-| Element not found | Return `ERR_ELEMENT_NOT_FOUND` | Use aria-snapshot.js |
+| Element not found | Return `ERR_ELEMENT_NOT_FOUND` | Use aria-snapshot.ts |
 | Navigation timeout | Return `ERR_NAVIGATION_TIMEOUT` | Increase timeout |
 | Browser disconnected | Return `ERR_BROWSER_DISCONNECTED` | Delete session file; re-launch |
 | Browser crash | Return `ERR_BROWSER_CRASHED` | Delete session file; re-launch |
@@ -635,13 +635,13 @@ Transitions:
 
 ### JavaScript Execution
 
-- `evaluate.js` executes arbitrary JavaScript in the target page context.
+- `evaluate.ts` executes arbitrary JavaScript in the target page context.
 - No sandboxing beyond Chromium's own security model.
 - Callers are responsible for JS code safety; the skill does not validate script content.
 
 ### Credential Handling
 
-- Scripts may interact with login forms (fill.js) but do not store credentials.
+- Scripts may interact with login forms (fill.ts) but do not store credentials.
 - Session state (`.browser-session.json`) contains browser WebSocket endpoint, not credentials.
 - Auth cookies persist in the browser profile during the session.
 
@@ -688,7 +688,7 @@ Transitions:
 |----------|-----------|-------------|--------------|
 | Chromium process | First script in session | `--close true` or manual kill | Indefinite |
 | Session file | First script | `--close true` (auto-delete) or manual delete | Session lifetime |
-| Screenshot files | screenshot.js | Caller (manual cleanup) | Indefinite |
+| Screenshot files | screenshot.ts | Caller (manual cleanup) | Indefinite |
 | Page state | Navigation/interaction scripts | Navigation to new page or browser close | Until next navigation |
 
 **Leak prevention:** Callers must invoke `--close true` to terminate browser processes. Orphaned processes must be killed manually. Session files without running browsers are stale and should be deleted.
@@ -785,17 +785,17 @@ description: Complete Puppeteer CLI script reference — navigation, screenshot,
 
 ```bash
 # Basic navigation
-node navigate.js --url https://example.com
+node navigate.ts --url https://example.com
 
 # With timeout
-node navigate.js --url https://slow-site.com --timeout 60000
+node navigate.ts --url https://slow-site.com --timeout 60000
 
 # Wait strategy
-node navigate.js --url https://example.com --wait-until networkidle2
+node navigate.ts --url https://example.com --wait-until networkidle2
 # Options: load, domcontentloaded, networkidle0, networkidle2
 
 # Close browser when done
-node navigate.js --url about:blank --close true
+node navigate.ts --url about:blank --close true
 ```
 
 ---
@@ -804,20 +804,20 @@ node navigate.js --url about:blank --close true
 
 ```bash
 # Basic screenshot
-node screenshot.js --url https://example.com --output ./shot.png
+node screenshot.ts --url https://example.com --output ./shot.png
 
 # Full page
-node screenshot.js --url https://example.com --output ./full.png --full-page true
+node screenshot.ts --url https://example.com --output ./full.png --full-page true
 
 # Current page (no navigation)
-node screenshot.js --output ./current.png
+node screenshot.ts --output ./current.png
 
 # Specific element
-node screenshot.js --url https://example.com --selector ".main" --output ./element.png
+node screenshot.ts --url https://example.com --selector ".main" --output ./element.png
 
 # Control compression
-node screenshot.js --url https://example.com --output ./shot.png --max-size 3
-node screenshot.js --url https://example.com --output ./shot.png --no-compress
+node screenshot.ts --url https://example.com --output ./shot.png --max-size 3
+node screenshot.ts --url https://example.com --output ./shot.png --no-compress
 ```
 
 ---
@@ -826,13 +826,13 @@ node screenshot.js --url https://example.com --output ./shot.png --no-compress
 
 ```bash
 # Fill input
-node fill.js --selector "#email" --value "user@example.com"
+node fill.ts --selector "#email" --value "user@example.com"
 
 # Click element
-node click.js --selector "button[type=submit]"
+node click.ts --selector "button[type=submit]"
 
 # Wait for element
-node click.js --selector ".modal-close" --wait true
+node click.ts --selector ".modal-close" --wait true
 ```
 
 ---
@@ -841,10 +841,10 @@ node click.js --selector ".modal-close" --wait true
 
 ```bash
 # Simple expression
-node evaluate.js --script "document.title"
+node evaluate.ts --script "document.title"
 
 # Complex extraction
-node evaluate.js --script "
+node evaluate.ts --script "
   Array.from(document.querySelectorAll('.item')).map(el => ({
     title: el.querySelector('h2')?.textContent,
     link: el.querySelector('a')?.href
@@ -852,7 +852,7 @@ node evaluate.js --script "
 "
 
 # Async operation
-node evaluate.js --script "await new Promise(r => setTimeout(r, 2000))"
+node evaluate.ts --script "await new Promise(r => setTimeout(r, 2000))"
 ```
 
 ---
@@ -861,10 +861,10 @@ node evaluate.js --script "await new Promise(r => setTimeout(r, 2000))"
 
 ```bash
 # Get ARIA tree (YAML format)
-node aria-snapshot.js --url https://example.com
+node aria-snapshot.ts --url https://example.com
 
 # Save to file
-node aria-snapshot.js --url https://example.com --output ./snapshot.yaml
+node aria-snapshot.ts --url https://example.com --output ./snapshot.yaml
 ```
 
 **Output format:**
@@ -886,16 +886,16 @@ node aria-snapshot.js --url https://example.com --output ./snapshot.yaml
 
 ```bash
 # Click element
-node select-ref.js --ref e4 --action click
+node select-ref.ts --ref e4 --action click
 
 # Fill input
-node select-ref.js --ref e5 --action fill --value "search query"
+node select-ref.ts --ref e5 --action fill --value "search query"
 
 # Get text content
-node select-ref.js --ref e1 --action text
+node select-ref.ts --ref e1 --action text
 
 # Screenshot element
-node select-ref.js --ref e1 --action screenshot --output ./logo.png
+node select-ref.ts --ref e1 --action screenshot --output ./logo.png
 ```
 
 ---
@@ -904,16 +904,16 @@ node select-ref.js --ref e1 --action screenshot --output ./logo.png
 
 ```bash
 # Console messages (10 seconds)
-node console.js --url https://example.com --duration 10000
+node console.ts --url https://example.com --duration 10000
 
 # Filter by type
-node console.js --url https://example.com --types error,warn
+node console.ts --url https://example.com --types error,warn
 
 # Network requests
-node network.js --url https://example.com
+node network.ts --url https://example.com
 
 # Find failed requests
-node network.js --url https://example.com | jq '.requests[] | select(.response.status >= 400)'
+node network.ts --url https://example.com | jq '.requests[] | select(.response.status >= 400)'
 ```
 
 ---
@@ -922,7 +922,7 @@ node network.js --url https://example.com | jq '.requests[] | select(.response.s
 
 ```bash
 # Core Web Vitals
-node performance.js --url https://example.com | jq '.vitals'
+node performance.ts --url https://example.com | jq '.vitals'
 
 # Output: { FCP, LCP, CLS, TTFB }
 ```
@@ -949,4 +949,4 @@ node performance.js --url https://example.com | jq '.vitals'
 
 ---
 
-PikaKit v3.9.115
+PikaKit v3.9.116

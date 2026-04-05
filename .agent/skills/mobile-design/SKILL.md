@@ -9,7 +9,7 @@ coordinates_with: ["mobile-first", "mobile-developer", "design-system"]
 success_metrics: ["MFRI score > 5", "Touch targets >= 44pt"]
 metadata:
   author: pikakit
-  version: "3.9.115"
+  version: "3.9.116"
 ---
 
 # Mobile Design — Mobile-First Design Doctrine
@@ -205,7 +205,7 @@ For the complete guide with all rules expanded: `AGENTS.md`
 | [mobile-backend.md](rules/mobile-backend.md) | Backend integration | API decisions |
 | [mobile-design-thinking.md](rules/mobile-design-thinking.md) | Design methodology | Design process |
 | [decision-trees.md](rules/decision-trees.md) | Decision frameworks | Complex decisions |
-| [mobile_audit.js](scripts/mobile_audit.js) | Mobile design audit CLI | Design audit |
+| [mobile_audit.ts](scripts/mobile_audit.ts) | Mobile design audit CLI | Design audit |
 | [engineering-spec.md](rules/engineering-spec.md) | Full engineering spec | Architecture review |
 
 **Selective reading:** Read ONLY files relevant to current design question.
@@ -222,4 +222,4 @@ For the complete guide with all rules expanded: `AGENTS.md`
 
 ---
 
-⚡ PikaKit v3.9.115
+⚡ PikaKit v3.9.116

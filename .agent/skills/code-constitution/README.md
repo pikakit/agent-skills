@@ -110,9 +110,9 @@ code-constitution/
 │       └── playbooks/doctrine-violation-playbook.md
 │
 ├── scripts/                  # 🔧 Validation & enforcement
-│   ├── validate_doctrine.js
-│   ├── audit_pr.js
-│   └── learn.js
+│   ├── validate_doctrine.ts
+│   ├── audit_pr.ts
+│   └── learn.ts
 │
 ├── proposals/                # 🏷️ Controlled evolution (v1.1+)
 │   └── v1.1-change-proposal-template.md
@@ -256,4 +256,4 @@ it means it is working.
 
 ---
 
-⚡ PikaKit v3.9.115
+⚡ PikaKit v3.9.116

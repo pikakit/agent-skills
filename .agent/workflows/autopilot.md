@@ -117,7 +117,7 @@ success → learner.log(patterns)
 
 // turbo — telemetry: phase-4-studio-search
 ```bash
-npx cross-env OTEL_SERVICE_NAME="workflow:autopilot" TRACE_ID="$TRACE_ID" node .agent/skills/studio/scripts-js/search.js "<app_type> <style> <keywords>" --design-system -p "<Project Name>"
+npx cross-env OTEL_SERVICE_NAME="workflow:autopilot" TRACE_ID="$TRACE_ID" node .agent/skills/studio/scripts/search.ts "<app_type> <style> <keywords>" --design-system -p "<Project Name>"
 ```
 
 Apply design tokens (colors, typography, effects) before building components.

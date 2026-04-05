@@ -8,7 +8,7 @@ coordinates_with: ["code-craft", "e2e-automation", "chrome-devtools", "problem-c
 success_metrics: ["Baseline Measured", "Improvement Validated", "No Regressions"]
 metadata:
   author: pikakit
-  version: "3.9.115"
+  version: "3.9.116"
 ---
 
 # Performance Profiler — Core Web Vitals & Profiling
@@ -170,7 +170,7 @@ All executions MUST emit the `improvement_validated` span before reporting compl
 | File | Description | When to Read |
 |------|-------------|--------------|
 | [backend-patterns.md](backend-patterns.md) | N+1, caching, DB tuning | Backend performance |
-| [scripts/lighthouse_audit.js](scripts/lighthouse_audit.js) | Lighthouse runner | Automated audit |
+| [scripts/lighthouse_audit.ts](scripts/lighthouse_audit.ts) | Lighthouse runner | Automated audit |
 | [engineering-spec.md](rules/engineering-spec.md) | Full spec | Architecture review |
 
 ---
@@ -184,4 +184,4 @@ All executions MUST emit the `improvement_validated` span before reporting compl
 
 ---
 
-⚡ PikaKit v3.9.115
+⚡ PikaKit v3.9.116

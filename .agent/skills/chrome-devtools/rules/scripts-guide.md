@@ -17,17 +17,17 @@ tags: scripts, guide
 
 ```bash
 # Basic navigation
-node navigate.js --url https://example.com
+node navigate.ts --url https://example.com
 
 # With timeout
-node navigate.js --url https://slow-site.com --timeout 60000
+node navigate.ts --url https://slow-site.com --timeout 60000
 
 # Wait strategy
-node navigate.js --url https://example.com --wait-until networkidle2
+node navigate.ts --url https://example.com --wait-until networkidle2
 # Options: load, domcontentloaded, networkidle0, networkidle2
 
 # Close browser when done
-node navigate.js --url about:blank --close true
+node navigate.ts --url about:blank --close true
 ```
 
 ---
@@ -36,20 +36,20 @@ node navigate.js --url about:blank --close true
 
 ```bash
 # Basic screenshot
-node screenshot.js --url https://example.com --output ./shot.png
+node screenshot.ts --url https://example.com --output ./shot.png
 
 # Full page
-node screenshot.js --url https://example.com --output ./full.png --full-page true
+node screenshot.ts --url https://example.com --output ./full.png --full-page true
 
 # Current page (no navigation)
-node screenshot.js --output ./current.png
+node screenshot.ts --output ./current.png
 
 # Specific element
-node screenshot.js --url https://example.com --selector ".main" --output ./element.png
+node screenshot.ts --url https://example.com --selector ".main" --output ./element.png
 
 # Control compression
-node screenshot.js --url https://example.com --output ./shot.png --max-size 3
-node screenshot.js --url https://example.com --output ./shot.png --no-compress
+node screenshot.ts --url https://example.com --output ./shot.png --max-size 3
+node screenshot.ts --url https://example.com --output ./shot.png --no-compress
 ```
 
 ---
@@ -58,13 +58,13 @@ node screenshot.js --url https://example.com --output ./shot.png --no-compress
 
 ```bash
 # Fill input
-node fill.js --selector "#email" --value "user@example.com"
+node fill.ts --selector "#email" --value "user@example.com"
 
 # Click element
-node click.js --selector "button[type=submit]"
+node click.ts --selector "button[type=submit]"
 
 # Wait for element
-node click.js --selector ".modal-close" --wait true
+node click.ts --selector ".modal-close" --wait true
 ```
 
 ---
@@ -73,10 +73,10 @@ node click.js --selector ".modal-close" --wait true
 
 ```bash
 # Simple expression
-node evaluate.js --script "document.title"
+node evaluate.ts --script "document.title"
 
 # Complex extraction
-node evaluate.js --script "
+node evaluate.ts --script "
   Array.from(document.querySelectorAll('.item')).map(el => ({
     title: el.querySelector('h2')?.textContent,
     link: el.querySelector('a')?.href
@@ -84,7 +84,7 @@ node evaluate.js --script "
 "
 
 # Async operation
-node evaluate.js --script "await new Promise(r => setTimeout(r, 2000))"
+node evaluate.ts --script "await new Promise(r => setTimeout(r, 2000))"
 ```
 
 ---
@@ -93,10 +93,10 @@ node evaluate.js --script "await new Promise(r => setTimeout(r, 2000))"
 
 ```bash
 # Get ARIA tree (YAML format)
-node aria-snapshot.js --url https://example.com
+node aria-snapshot.ts --url https://example.com
 
 # Save to file
-node aria-snapshot.js --url https://example.com --output ./snapshot.yaml
+node aria-snapshot.ts --url https://example.com --output ./snapshot.yaml
 ```
 
 **Output format:**
@@ -118,16 +118,16 @@ node aria-snapshot.js --url https://example.com --output ./snapshot.yaml
 
 ```bash
 # Click element
-node select-ref.js --ref e4 --action click
+node select-ref.ts --ref e4 --action click
 
 # Fill input
-node select-ref.js --ref e5 --action fill --value "search query"
+node select-ref.ts --ref e5 --action fill --value "search query"
 
 # Get text content
-node select-ref.js --ref e1 --action text
+node select-ref.ts --ref e1 --action text
 
 # Screenshot element
-node select-ref.js --ref e1 --action screenshot --output ./logo.png
+node select-ref.ts --ref e1 --action screenshot --output ./logo.png
 ```
 
 ---
@@ -136,16 +136,16 @@ node select-ref.js --ref e1 --action screenshot --output ./logo.png
 
 ```bash
 # Console messages (10 seconds)
-node console.js --url https://example.com --duration 10000
+node console.ts --url https://example.com --duration 10000
 
 # Filter by type
-node console.js --url https://example.com --types error,warn
+node console.ts --url https://example.com --types error,warn
 
 # Network requests
-node network.js --url https://example.com
+node network.ts --url https://example.com
 
 # Find failed requests
-node network.js --url https://example.com | jq '.requests[] | select(.response.status >= 400)'
+node network.ts --url https://example.com | jq '.requests[] | select(.response.status >= 400)'
 ```
 
 ---
@@ -154,7 +154,7 @@ node network.js --url https://example.com | jq '.requests[] | select(.response.s
 
 ```bash
 # Core Web Vitals
-node performance.js --url https://example.com | jq '.vitals'
+node performance.ts --url https://example.com | jq '.vitals'
 
 # Output: { FCP, LCP, CLS, TTFB }
 ```
@@ -171,4 +171,4 @@ node performance.js --url https://example.com | jq '.vitals'
 
 ---
 
-⚡ PikaKit v3.9.115
+⚡ PikaKit v3.9.116

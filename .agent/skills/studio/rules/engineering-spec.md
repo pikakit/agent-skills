@@ -405,12 +405,12 @@ CSV data may be cached in memory for performance but is never mutated.
 |-------------|--------|----------|
 | YAML frontmatter complete | ✅ | name, description, metadata with category, version, triggers, coordinates_with, success_metrics |
 | SKILL.md < 200 lines | ✅ | Entry point under 200 lines |
-| Prerequisites documented | ✅ | Node.js for scripts-js/ |
+| Prerequisites documented | ✅ | Node.js for scripts/ |
 | When to Use section | ✅ | Situation-based routing table |
 | Core content matches skill type | ✅ | Expert type: design search, palette generation, anti-slop rules |
 | Troubleshooting section | ✅ | Anti-patterns + troubleshooting table |
 | Related section | ✅ | Cross-links to frontend-specialist, design-system, /studio |
-| Content Map for multi-file | ✅ | Links to data/, scripts-js/, engineering-spec.md |
+| Content Map for multi-file | ✅ | Links to data/, scripts/, engineering-spec.md |
 | Contract versioning | ✅ | contract_version, backward_compatibility, breaking_changes |
 | Compliance matrix structured | ✅ | This table with ✅/❌ + evidence |
 
@@ -444,12 +444,12 @@ CSV data may be cached in memory for performance but is never mutated.
 | File | When to Read |
 |------|-------------|
 | [../SKILL.md](../SKILL.md) | Quick start, Anti-AI-Slop rules, CLI commands |
-| [../scripts-js/search.js](../scripts-js/search.js) | CLI entry point |
-| [../scripts-js/core.js](../scripts-js/core.js) | BM25 search engine |
-| [../scripts-js/design_system.js](../scripts-js/design_system.js) | Design system generator |
+| [../scripts/search.ts](../scripts/search.ts) | CLI entry point |
+| [../scripts/core.ts](../scripts/core.ts) | BM25 search engine |
+| [../scripts/design_system.ts](../scripts/design_system.ts) | Design system generator |
 | `design-system` | Companion design skill |
 | `frontend-specialist` | Uses studio for UI work |
 
 ---
 
-⚡ PikaKit v3.9.115
+⚡ PikaKit v3.9.116

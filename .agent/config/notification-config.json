@@ -1,0 +1,18 @@
+{
+  "enabled": true,
+  "verbosity": "normal",
+  "branding": {
+    "name": "PikaKit",
+    "version": "3.9.115",
+    "emoji": "🤖"
+  },
+  "thresholds": {
+    "fullTemplateMinSkills": 3
+  },
+  "templates": {
+    "full": "🤖 PikaKit v{version}\n📋 Task: {task}\n◆ Agent: @{agent}\n◇ Skills: {skills}\n📂 Workflow: /{workflow}",
+    "compact": "🤖 PikaKit ⬢ @{agent} → {skills}",
+    "complete": "✅ Done ⬢ Agent: @{agent} ⬢ Skills: {skillCount} ⬢ Files: {fileCount} ⬢ {duration}s",
+    "script": "⚡ {skill} ⬢ running {script}"
+  }
+}

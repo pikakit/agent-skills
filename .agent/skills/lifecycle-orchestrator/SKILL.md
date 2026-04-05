@@ -9,7 +9,7 @@ coordinates_with: ["project-planner", "execution-reporter", "problem-checker"]
 success_metrics: ["100% restore accuracy", "0 skipped verification phases"]
 metadata:
   author: pikakit
-  version: "3.9.115"
+  version: "3.9.116"
 ---
 
 # Lifecycle Orchestrator — Pipeline + Checkpoint/Restore
@@ -20,7 +20,7 @@ metadata:
 
 ## Prerequisites
 
-**Required:** Node.js (for `state_manager.js`).
+**Required:** Node.js (for `state_manager.ts`).
 
 ---
 
@@ -99,9 +99,9 @@ ANY → FAILED                [unrecoverable error]  // terminal
 | User says "rollback"/"undo" | Restore latest checkpoint |
 
 ```bash
-node state_manager.js save --files "file1.tsx,file2.tsx"
-node state_manager.js restore --latest
-node state_manager.js list
+node state_manager.ts save --files "file1.tsx,file2.tsx"
+node state_manager.ts restore --latest
+node state_manager.ts list
 ```
 
 **Storage:** `.agent/state/{task_id}/`
@@ -165,4 +165,4 @@ node state_manager.js list
 
 ---
 
-⚡ PikaKit v3.9.115
+⚡ PikaKit v3.9.116

@@ -460,8 +460,8 @@ All resources scoped to invocation. No persistent handles.
 | [platform-ios.md](platform-ios.md) | iOS HIG guidelines |
 | [platform-android.md](platform-android.md) | Material Design guidelines |
 | [touch-psychology.md](touch-psychology.md) | Touch interaction patterns |
-| [../scripts/mobile_audit.js](../scripts/mobile_audit.js) | MFRI audit script |
+| [../scripts/mobile_audit.ts](../scripts/mobile_audit.ts) | MFRI audit script |
 
 ---
 
-⚡ PikaKit v3.9.115
+⚡ PikaKit v3.9.116

@@ -10,7 +10,7 @@ coordinates_with: ["project-planner", "code-craft", "system-design"]
 success_metrics: ["100% templates follow required sections", "100% diagrams render correctly"]
 metadata:
   author: pikakit
-  version: "3.9.115"
+  version: "3.9.116"
 ---
 
 # Doc Templates — Documentation, Diagrams & Preview
@@ -156,13 +156,13 @@ What are the trade-offs?
 
 ```bash
 # Open editor (empty)
-node .agent/skills/mermaid-editor/scripts/editor-server.js --open
+node .agent/skills/doc-templates/scripts/editor-server.ts --open
 
 # Edit existing file
-node .agent/skills/mermaid-editor/scripts/editor-server.js --file diagram.mmd --open
+node .agent/skills/doc-templates/scripts/editor-server.ts --file diagram.mmd --open
 
 # Stop server
-node .agent/skills/mermaid-editor/scripts/editor-server.js --stop
+node .agent/skills/doc-templates/scripts/editor-server.ts --stop
 ```
 
 | Option | Default | Description |
@@ -178,13 +178,13 @@ node .agent/skills/mermaid-editor/scripts/editor-server.js --stop
 
 ```bash
 # View a file
-node .agent/skills/markdown-novel-viewer/scripts/server.js --file ./README.md --open
+node .agent/skills/doc-templates/scripts/markdown-server.ts --file ./README.md --open
 
 # Browse a directory
-node .agent/skills/markdown-novel-viewer/scripts/server.js --dir ./docs --open
+node .agent/skills/doc-templates/scripts/markdown-server.ts --dir ./docs --open
 
 # Stop all servers
-node .agent/skills/markdown-novel-viewer/scripts/server.js --stop
+node .agent/skills/doc-templates/scripts/markdown-server.ts --stop
 ```
 
 | Option | Default | Description |
@@ -204,7 +204,7 @@ node .agent/skills/markdown-novel-viewer/scripts/server.js --stop
 Visual dashboard for plan directories with progress tracking and phase status indicators.
 
 ```bash
-node .agent/skills/plans-kanban/scripts/kanban-server.js --dir ./docs/plans --open
+node .agent/skills/doc-templates/scripts/kanban-server.ts --dir ./docs/plans --open
 ```
 
 ---
@@ -240,8 +240,8 @@ node .agent/skills/plans-kanban/scripts/kanban-server.js --dir ./docs/plans --op
 |------|-------------|--------------|
 | [doc.md](rules/doc.md) | Full templates and examples | Detailed template reference |
 | [engineering-spec.md](rules/engineering-spec.md) | Full engineering spec | Architecture review |
-| [editor-server.js](../mermaid-editor/scripts/editor-server.js) | Mermaid editor server | Diagram implementation |
-| [server.js](../markdown-novel-viewer/scripts/server.js) | Preview server | Preview implementation |
+| [editor-server.ts](scripts/editor-server.ts) | Mermaid editor server | Diagram implementation |
+| [markdown-server.ts](scripts/markdown-server.ts) | Preview server | Preview implementation |
 | [diagram-reference.md](../mermaid-editor/rules/diagram-reference.md) | 9 diagram types syntax | Writing diagrams |
 
 ---
@@ -257,4 +257,4 @@ node .agent/skills/plans-kanban/scripts/kanban-server.js --dir ./docs/plans --op
 
 ---
 
-⚡ PikaKit v3.9.115
+⚡ PikaKit v3.9.116

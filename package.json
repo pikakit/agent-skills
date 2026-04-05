@@ -1,6 +1,6 @@
 {
   "name": "agent-skill-kit",
-  "version": "3.9.115",
+  "version": "3.9.116",
   "description": "PikaKit FAANG-Grade AI Skills Repository",
   "type": "module",
   "author": "PikaKit Team",
@@ -13,6 +13,14 @@
     "node": ">=18.0.0"
   },
   "scripts": {
-    "version:sync": "node .agent/scripts-js/version-sync.mjs"
+    "version:sync": "node .agent/scripts/version-sync.mjs",
+    "typecheck": "tsc --noEmit",
+    "checklist:js": "tsx .agent/scripts/checklist.ts",
+    "verify": "tsx .agent/scripts/verify_all.ts"
+  },
+  "devDependencies": {
+    "typescript": "^5.7.0",
+    "tsx": "^4.19.0",
+    "@types/node": "^22.0.0"
   }
 }

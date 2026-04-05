@@ -9,7 +9,7 @@ coordinates_with: ["studio", "tailwind-kit", "frontend-design"]
 success_metrics: ["0 WCAG accessibility violations", "100% Hick's law compliance"]
 metadata:
   author: pikakit
-  version: "3.9.115"
+  version: "3.9.116"
 ---
 
 # Design System — UI Design Decisions
@@ -113,10 +113,10 @@ Every animation must serve one of these 3 functions. Decorative-only motion is n
 
 ```bash
 # Generate complete design system
-node .agent/skills/studio/scripts-js/search.js "<query>" --design-system
+node .agent/skills/studio/scripts/search.ts "<query>" --design-system
 
 # Search specific domain
-node .agent/skills/studio/scripts-js/search.js "<query>" --domain style
+node .agent/skills/studio/scripts/search.ts "<query>" --domain style
 ```
 
 **Available domains:** style, color, typography, landing, ux, chart, product
@@ -237,8 +237,8 @@ For the complete guide with all rules expanded: `AGENTS.md`
 
 | Script | Purpose |
 |--------|---------|
-| `scripts/ux_audit.js` | UX psychology audit |
-| `scripts/accessibility_checker.js` | WCAG compliance audit |
+| `scripts/ux_audit.ts` | UX psychology audit |
+| `scripts/accessibility_checker.ts` | WCAG compliance audit |
 
 **Selective reading:** Read ONLY files relevant to the request.
 
@@ -267,4 +267,4 @@ All design-system outputs MUST emit `palette_generated`, `typography_selected`, 
 
 ---
 
-⚡ PikaKit v3.9.115
+⚡ PikaKit v3.9.116

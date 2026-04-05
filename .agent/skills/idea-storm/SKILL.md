@@ -9,7 +9,7 @@ coordinates_with: ["project-planner", "app-scaffold", "system-design"]
 success_metrics: ["100% vague requests intercepted", "< 5 questions per gate"]
 metadata:
   author: pikakit
-  version: "3.9.115"
+  version: "3.9.116"
 ---
 
 # Idea Storm — Socratic Requirement Clarification
@@ -195,4 +195,4 @@ Each rule file contains:
 
 ---
 
-⚡ PikaKit v3.9.115
+⚡ PikaKit v3.9.116

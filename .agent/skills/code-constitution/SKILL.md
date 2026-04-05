@@ -9,7 +9,7 @@ coordinates_with: ["code-review", "security-scanner", "code-craft"]
 success_metrics: ["0 governance bypasses", "100% doctrine compliance"]
 metadata:
   author: pikakit
-  version: "3.9.115"
+  version: "3.9.116"
 ---
 
 # PikaKit Governance — Code Constitution
@@ -134,7 +134,7 @@ When violation detected:
 4. If refused: Stop, cite violation, do NOT proceed
 ```
 
-Validation scripts: `scripts/validate_doctrine.js` | PR audit: `scripts/audit_pr.js`
+Validation scripts: `scripts/validate_doctrine.ts` | PR audit: `scripts/audit_pr.ts`
 
 ---
 
@@ -187,4 +187,4 @@ Validation scripts: `scripts/validate_doctrine.js` | PR audit: `scripts/audit_pr
 
 ---
 
-⚡ PikaKit v3.9.115
+⚡ PikaKit v3.9.116

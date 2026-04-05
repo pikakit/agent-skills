@@ -9,7 +9,7 @@ coordinates_with: ["frontend-specialist", "design-system", "ai-artist"]
 success_metrics: ["Aesthetic Consistency", "Slop Avoidance Rate", "Typography Contrast Ratio"]
 metadata:
   author: pikakit
-  version: "3.9.115"
+  version: "3.9.116"
 ---
 
 # Studio — Design Intelligence
@@ -78,12 +78,12 @@ metadata:
 
 ```bash
 # Generate design system
-node .agent/skills/studio/scripts-js/search.js "<query>" --design-system [-p "Project Name"]
+node .agent/skills/studio/scripts/search.ts "<query>" --design-system [-p "Project Name"]
 
 # Search by category
-node .agent/skills/studio/scripts-js/search.js "fintech dark" --category colors
-node .agent/skills/studio/scripts-js/search.js "minimal professional" --category styles
-node .agent/skills/studio/scripts-js/search.js "modern tech" --category typography
+node .agent/skills/studio/scripts/search.ts "fintech dark" --category colors
+node .agent/skills/studio/scripts/search.ts "minimal professional" --category styles
+node .agent/skills/studio/scripts/search.ts "modern tech" --category typography
 ```
 
 ---
@@ -159,7 +159,7 @@ All studio outputs MUST emit `design_search_started` and `design_system_generate
 | File | Description | When to Read |
 |------|-------------|--------------|
 | [data/](data/) | 24 CSV databases | Database contents |
-| [scripts-js/](scripts-js/) | Search CLI + core logic | Running commands |
+| [scripts/](scripts/) | Search CLI + core logic | Running commands |
 | [engineering-spec.md](rules/engineering-spec.md) | Full spec | Architecture review |
 
 ---
@@ -174,4 +174,4 @@ All studio outputs MUST emit `design_search_started` and `design_system_generate
 
 ---
 
-⚡ PikaKit v3.9.115
+⚡ PikaKit v3.9.116

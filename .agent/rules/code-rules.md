@@ -154,7 +154,7 @@ Design rules are in specialist agents, NOT here.
 
 ## 📜 Scripts & Quick Reference
 
-**Master Scripts:** `checklist.js` (dev), `verify_all.js` (deploy), `auto_preview.js`, `session_manager.js`, `autopilot-runner.js`, `autopilot-metrics.js`, `preflight-assessment.js`, `adaptive-workflow.js`, `metrics-dashboard.js`, `skill-validator.js`
+**Master Scripts:** `checklist.ts` (dev), `verify_all.ts` (deploy), `auto_preview.ts`, `session_manager.ts`, `autopilot-runner.js`, `autopilot-metrics.js`, `preflight-assessment.js`, `adaptive-workflow.js`, `metrics-dashboard.js`, `skill-validator.js`
 
 **Usage:** `npm run checklist` (dev) | `npm run verify http://localhost:3000` (deploy)
 

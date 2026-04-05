@@ -9,7 +9,7 @@ coordinates_with: ["auto-learned", "skill-generator", "code-review"]
 success_metrics: ["0 IDE Errors", "Clean notify_user"]
 metadata:
   author: pikakit
-  version: "3.9.115"
+  version: "3.9.116"
 ---
 
 # Problem Checker — Automated IDE Error Gate
@@ -158,7 +158,7 @@ Since this is a system script invoked by agents, it must yield the following JSO
 
 ```bash
 # Run TypeScript check
-node .agent/skills/problem-checker/scripts/check_problems.js
+node .agent/skills/problem-checker/scripts/check_problems.ts
 
 # Check specific file
 npx tsc --noEmit <file>
@@ -170,7 +170,7 @@ npx tsc --noEmit <file>
 
 | File | Description | When to Read |
 |------|-------------|--------------|
-| [scripts/check_problems.js](scripts/check_problems.js) | Problem check script | Running checks |
+| [scripts/check_problems.ts](scripts/check_problems.ts) | Problem check script | Running checks |
 | [engineering-spec.md](rules/engineering-spec.md) | Full spec | Architecture review |
 
 ---
@@ -185,4 +185,4 @@ npx tsc --noEmit <file>
 
 ---
 
-⚡ PikaKit v3.9.115
+⚡ PikaKit v3.9.116

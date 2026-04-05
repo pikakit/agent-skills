@@ -17,19 +17,19 @@ tags: verification, scripts
 
 | Agent                     | Script          | Command                                                                     |
 | ------------------------- | --------------- | --------------------------------------------------------------------------- |
-| **frontend-specialist**   | UX Audit        | `node .agent/skills/design-system/scripts/ux_audit.js .`                    |
-| **frontend-specialist**   | A11y Check      | `node .agent/skills/design-system/scripts/accessibility_checker.js .`       |
-| **backend-specialist**    | API Validator   | `node .agent/skills/api-architect/scripts/api_validator.js .`               |
-| **mobile-developer**      | Mobile Audit    | `node .agent/skills/mobile-design/scripts/mobile_audit.js .`               |
-| **database-architect**    | Schema Validate | `node .agent/skills/data-modeler/scripts/schema_validator.js .`            |
-| **security-auditor**      | Security Scan   | `node .agent/skills/security-scanner/scripts/security_scan.js .`           |
-| **seo-specialist**        | SEO Check       | `node .agent/skills/seo-optimizer/scripts/seo_checker.js .`                |
-| **seo-specialist**        | GEO Check       | `node .agent/skills/geo-spatial/scripts/geo_checker.js .`                  |
-| **performance-optimizer** | Lighthouse      | `node .agent/skills/perf-optimizer/scripts/lighthouse_audit.js <url>`      |
-| **test-engineer**         | Test Runner     | `node .agent/skills/test-architect/scripts/test_runner.js .`               |
-| **test-engineer**         | Playwright      | `node .agent/skills/e2e-automation/scripts/playwright_runner.js <url>`     |
-| **Any agent**             | Lint Check      | `node .agent/skills/code-review/scripts/lint_runner.js .`                  |
-| **Any agent**             | Problem Check   | `node .agent/skills/problem-checker/scripts/check_problems.js .`           |
+| **frontend-specialist**   | UX Audit        | `node .agent/skills/design-system/scripts/ux_audit.ts .`                    |
+| **frontend-specialist**   | A11y Check      | `node .agent/skills/design-system/scripts/accessibility_checker.ts .`       |
+| **backend-specialist**    | API Validator   | `node .agent/skills/api-architect/scripts/api_validator.ts .`               |
+| **mobile-developer**      | Mobile Audit    | `node .agent/skills/mobile-design/scripts/mobile_audit.ts .`               |
+| **database-architect**    | Schema Validate | `node .agent/skills/data-modeler/scripts/schema_validator.ts .`            |
+| **security-auditor**      | Security Scan   | `node .agent/skills/security-scanner/scripts/security_scan.ts .`           |
+| **seo-specialist**        | SEO Check       | `node .agent/skills/seo-optimizer/scripts/seo_checker.ts .`                |
+| **seo-specialist**        | GEO Check       | `node .agent/skills/seo-optimizer/scripts/geo_checker.ts .`                |
+| **performance-optimizer** | Lighthouse      | `node .agent/skills/perf-optimizer/scripts/lighthouse_audit.ts <url>`      |
+| **test-engineer**         | Test Runner     | `node .agent/skills/test-architect/scripts/test_runner.ts .`               |
+| **test-engineer**         | Playwright      | `node .agent/skills/e2e-automation/scripts/playwright_runner.ts <url>`     |
+| **Any agent**             | Lint Check      | `node .agent/skills/code-review/scripts/lint_runner.ts .`                  |
+| **Any agent**             | Problem Check   | `node .agent/skills/problem-checker/scripts/check_problems.ts .`           |
 
 ---
 
@@ -80,4 +80,4 @@ tags: verification, scripts
 
 ---
 
-⚡ PikaKit v3.9.115
+⚡ PikaKit v3.9.116

@@ -1,4 +1,4 @@
-﻿---
+---
 title: ARIA Snapshot Pattern
 impact: MEDIUM
 tags: e2e-automation
@@ -45,12 +45,12 @@ tags: e2e-automation
 
 ```bash
 # Get ARIA snapshot first
-node aria-snapshot.js --url https://example.com
+node aria-snapshot.ts --url https://example.com
 
 # Then interact by ref
-node select-ref.js --ref e5 --action click
-node select-ref.js --ref e10 --action fill --value "text"
-node select-ref.js --ref e3 --action hover
+node select-ref.ts --ref e5 --action click
+node select-ref.ts --ref e10 --action fill --value "text"
+node select-ref.ts --ref e3 --action hover
 ```
 
 ---
@@ -71,7 +71,7 @@ node select-ref.js --ref e3 --action hover
 ## Sample ARIA Snapshot Script
 
 ```javascript
-// aria-snapshot.js
+// aria-snapshot.ts
 import { chromium } from 'playwright';
 
 async function getAriaSnapshot(url) {
@@ -113,7 +113,7 @@ getAriaSnapshot(process.argv[2] || 'https://example.com');
 ## Select By Ref Script
 
 ```javascript
-// select-ref.js
+// select-ref.ts
 import { chromium } from 'playwright';
 
 async function selectByRef(url, ref, action, value) {
@@ -182,4 +182,4 @@ test('user can submit form', async ({ page }) => {
 
 ---
 
-⚡ PikaKit v3.9.115
+⚡ PikaKit v3.9.116

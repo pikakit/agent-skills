@@ -8,7 +8,7 @@ coordinates_with: ["perf-optimizer", "copywriting", "nextjs-pro", "problem-check
 success_metrics: ["Lighthouse SEO Score", "Core Web Vitals Pass Rate", "Schema Markup Validity"]
 metadata:
   author: pikakit
-  version: "3.9.115"
+  version: "3.9.116"
 ---
 
 # SEO Optimizer — Search Engine Visibility
@@ -161,7 +161,7 @@ All SEO outputs MUST emit `audit_started` and `audit_completed` events.
 
 | File | Description | When to Read |
 |------|-------------|--------------|
-| [seo_checker.js](scripts/seo_checker.js) | Static SEO audit (title, meta, canonical, schema, robots) | Automated auditing |
+| [seo_checker.ts](scripts/seo_checker.ts) | Static SEO audit (title, meta, canonical, schema, robots) | Automated auditing |
 | [engineering-spec.md](rules/engineering-spec.md) | Full spec | Architecture review |
 
 ---
@@ -175,4 +175,4 @@ All SEO outputs MUST emit `audit_started` and `audit_completed` events.
 
 ---
 
-⚡ PikaKit v3.9.115
+⚡ PikaKit v3.9.116

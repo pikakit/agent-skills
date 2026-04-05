@@ -9,7 +9,7 @@ coordinates_with: ["agent-browser", "perf-optimizer", "e2e-automation"]
 success_metrics: ["0 ghost instances", "100% session recovery"]
 metadata:
   author: pikakit
-  version: "3.9.115"
+  version: "3.9.116"
 ---
 
 # Chrome DevTools — Puppeteer CLI
@@ -58,16 +58,16 @@ metadata:
 
 | Script | Purpose | Side Effects | Idempotent |
 |--------|---------|-------------|-----------|
-| `navigate.js` | Navigate to URL | Browser launch, page navigation | No |
-| `screenshot.js` | Capture screenshot | File write (auto-compress > 5MB) | No |
-| `click.js` | Click element | Page state mutation | No |
-| `fill.js` | Fill form field | Form state mutation | No |
-| `evaluate.js` | Execute JavaScript | Depends on script content | Depends |
-| `aria-snapshot.js` | Get ARIA tree (YAML) | None (read-only) | Yes |
-| `select-ref.js` | Interact by ref | Page state mutation | No |
-| `console.js` | Monitor console | None (passive) | Yes |
-| `network.js` | Track HTTP requests | None (passive) | Yes |
-| `performance.js` | Core Web Vitals | Navigation + measurement | No |
+| `navigate.ts` | Navigate to URL | Browser launch, page navigation | No |
+| `screenshot.ts` | Capture screenshot | File write (auto-compress > 5MB) | No |
+| `click.ts` | Click element | Page state mutation | No |
+| `fill.ts` | Fill form field | Form state mutation | No |
+| `evaluate.ts` | Execute JavaScript | Depends on script content | Depends |
+| `aria-snapshot.ts` | Get ARIA tree (YAML) | None (read-only) | Yes |
+| `select-ref.ts` | Interact by ref | Page state mutation | No |
+| `console.ts` | Monitor console | None (passive) | Yes |
+| `network.ts` | Track HTTP requests | None (passive) | Yes |
+| `performance.ts` | Core Web Vitals | Navigation + measurement | No |
 
 ---
 
@@ -75,17 +75,17 @@ metadata:
 
 ```bash
 # 1. Launch session (browser starts)
-node navigate.js --url https://example.com/login
+node navigate.ts --url https://example.com/login
 
 # 2. Interact (browser reuses session)
-node fill.js --selector "#email" --value "user@example.com"
-node click.js --selector "button[type=submit]"
+node fill.ts --selector "#email" --value "user@example.com"
+node click.ts --selector "button[type=submit]"
 
 # 3. Capture
-node screenshot.js --output ./result.png
+node screenshot.ts --output ./result.png
 
 # 4. Close (browser terminates)
-node navigate.js --close true
+node navigate.ts --close true
 ```
 
 **State:** `.browser-session.json` in working directory. One session per directory. Delete file to reset.
@@ -129,7 +129,7 @@ node navigate.js --close true
 |---------|-------|------------|
 | `Cannot find puppeteer` | Not installed | `npm install puppeteer sharp yargs` |
 | `libnss3.so` missing | Linux deps | Run `./install-deps.sh` |
-| Element not found | Wrong selector | Use `aria-snapshot.js` to find correct selector |
+| Element not found | Wrong selector | Use `aria-snapshot.ts` to find correct selector |
 | Screenshot > 5MB | High DPI / full page | Auto-compressed; use `--max-size 3` for smaller |
 | Session stale | Browser died | Delete `.browser-session.json`, re-launch |
 | Script hangs | Page never loads | Increase `--timeout` or check URL |
@@ -199,4 +199,4 @@ For the complete guide with all rules expanded: `AGENTS.md`
 
 ---
 
-⚡ PikaKit v3.9.115
+⚡ PikaKit v3.9.116

@@ -1,4 +1,4 @@
-﻿# e2e-automation
+# e2e-automation
 
 **Version 1.0.0**
 Engineering
@@ -42,7 +42,7 @@ npm install playwright && npx playwright install chromium
 
 | Owned by This Skill | NOT Owned |
 |---------------------|-----------|
-| Playwright test runner (`scripts/playwright_runner.js`) | Unit/integration patterns (→ test-architect) |
+| Playwright test runner (`scripts/playwright_runner.ts`) | Unit/integration patterns (→ test-architect) |
 | Screenshot capture (on-failure + on-demand) | Performance benchmarking (→ perf-optimizer) |
 | Accessibility audit (axe-core via `--a11y`) | CI/CD pipeline config (→ cicd-pipeline) |
 | ARIA snapshot testing reference | Browser scraping (→ agent-browser) |
@@ -56,13 +56,13 @@ npm install playwright && npx playwright install chromium
 
 ```bash
 # Run Playwright tests
-node .agent/skills/e2e-automation/scripts/playwright_runner.js https://example.com
+node .agent/skills/e2e-automation/scripts/playwright_runner.ts https://example.com
 
 # With screenshot
-node .agent/skills/e2e-automation/scripts/playwright_runner.js <url> --screenshot
+node .agent/skills/e2e-automation/scripts/playwright_runner.ts <url> --screenshot
 
 # Accessibility check
-node .agent/skills/e2e-automation/scripts/playwright_runner.js <url> --a11y
+node .agent/skills/e2e-automation/scripts/playwright_runner.ts <url> --a11y
 ```
 
 ---
@@ -155,7 +155,7 @@ NAVIGATING → ERROR        [target unreachable]  // terminal
 
 | Script | Purpose |
 |--------|---------|
-| `scripts/playwright_runner.js` | Test execution runner |
+| `scripts/playwright_runner.ts` | Test execution runner |
 
 ---
 
@@ -227,12 +227,12 @@ tags: e2e-automation
 
 ```bash
 # Get ARIA snapshot first
-node aria-snapshot.js --url https://example.com
+node aria-snapshot.ts --url https://example.com
 
 # Then interact by ref
-node select-ref.js --ref e5 --action click
-node select-ref.js --ref e10 --action fill --value "text"
-node select-ref.js --ref e3 --action hover
+node select-ref.ts --ref e5 --action click
+node select-ref.ts --ref e10 --action fill --value "text"
+node select-ref.ts --ref e3 --action hover
 ```
 
 ---
@@ -253,7 +253,7 @@ node select-ref.js --ref e3 --action hover
 ## Sample ARIA Snapshot Script
 
 ```javascript
-// aria-snapshot.js
+// aria-snapshot.ts
 import { chromium } from 'playwright';
 
 async function getAriaSnapshot(url) {
@@ -295,7 +295,7 @@ getAriaSnapshot(process.argv[2] || 'https://example.com');
 ## Select By Ref Script
 
 ```javascript
-// select-ref.js
+// select-ref.ts
 import { chromium } from 'playwright';
 
 async function selectByRef(url, ref, action, value) {
@@ -879,4 +879,4 @@ For parallel execution: use CI sharding to distribute test files across multiple
 
 ---
 
-⚡ PikaKit v3.9.115
+⚡ PikaKit v3.9.116

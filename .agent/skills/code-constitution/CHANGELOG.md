@@ -18,14 +18,14 @@ This release completes the **100/100 PikaKit Compatibility Score**.
 ---
 
 ### 🔧 Scripts Enhancement
-- Added **audit_pr.js** — Functional PR audit with pattern matching
+- Added **audit_pr.ts** — Functional PR audit with pattern matching
   - Doctrine violation detection
   - JSON output support
   - CI/CD integration ready
-- Added **validate_doctrine.js** — Single file/directory validator
+- Added **validate_doctrine.ts** — Single file/directory validator
   - Multi-doctrine support
   - Configurable severity levels
-- Added **learn.js** — Governance learning tool
+- Added **learn.ts** — Governance learning tool
   - Pattern-based lesson recording
   - YAML knowledge base management
 
@@ -213,4 +213,4 @@ it is considered **undefined and unsafe**.
 
 ---
 
-⚡ PikaKit v3.9.115
+⚡ PikaKit v3.9.116

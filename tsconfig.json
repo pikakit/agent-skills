@@ -1,0 +1,32 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "Node16",
+    "moduleResolution": "Node16",
+    "lib": ["ES2022", "DOM"],
+    "strict": true,
+    "esModuleInterop": true,
+    "allowImportingTsExtensions": true,
+    "noEmit": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "declaration": false,
+    "sourceMap": false,
+    "outDir": "./dist",
+    "rootDir": "."
+  },
+  "include": [
+    ".agent/global.d.ts",
+    ".agent/scripts/**/*.ts",
+    ".agent/scripts/**/*.ts",
+    ".agent/skills/*/scripts/**/*.ts",
+    ".agent/skills/*/scripts/**/*.ts",
+    ".agent/skills/*/rules/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist"
+  ]
+}

@@ -1,4 +1,4 @@
-﻿---
+---
 title: API Architect — Engineering Specification
 impact: MEDIUM
 tags: api-architect
@@ -50,7 +50,7 @@ API Architect eliminates these by providing context-aware decision trees that pr
 | ID | Excluded | Rationale |
 |----|----------|-----------|
 | NG1 | API implementation / code generation | This skill produces design decisions, not code; implementation is `backend-specialist` territory |
-| NG2 | Runtime API validation | Owned by `scripts/api_validator.js`; SKILL.md defines design-time patterns |
+| NG2 | Runtime API validation | Owned by `scripts/api_validator.ts`; SKILL.md defines design-time patterns |
 | NG3 | Database schema design | Owned by `data-modeler` skill |
 | NG4 | Authentication implementation | Owned by `auth-patterns` skill; this skill selects auth strategy |
 | NG5 | Infrastructure / deployment | Owned by `server-ops` and `cicd-pipeline` skills |
@@ -170,7 +170,7 @@ Recoverable: boolean
 2. Select request type (style-selection → response-format → versioning → auth → documentation)
 3. Receive decision with rationale and checklist
 4. Review and apply decision (caller's responsibility)
-5. Run api_validator.js for implementation validation (optional)
+5. Run api_validator.ts for implementation validation (optional)
 6. Repeat for adjacent decisions referenced in related_decisions
 ```
 
@@ -284,7 +284,7 @@ API Architect maintains zero persistent state. Every invocation starts from a cl
 | `ERR_CONSTRAINT_CONFLICT` | Validation | Yes | Two constraints contradict each other |
 | `ERR_INVALID_CONSUMER` | Validation | Yes | Consumer type not recognized |
 | `ERR_REFERENCE_NOT_FOUND` | Infrastructure | No | Reference file missing from rules/ directory |
-| `ERR_VALIDATOR_FAILED` | Runtime | Yes | api_validator.js exited with non-zero code |
+| `ERR_VALIDATOR_FAILED` | Runtime | Yes | api_validator.ts exited with non-zero code |
 | `ERR_INVALID_SCALE` | Validation | No | Scale value not one of: prototype, startup, growth, enterprise |
 
 ---
@@ -468,7 +468,7 @@ API Architect maintains zero persistent state. Every invocation starts from a cl
 | Troubleshooting section | ✅ | Anti-patterns table |
 | Related section | ✅ | Cross-links to data-modeler, security-scanner, auth-patterns |
 | Content Map for multi-file | ✅ | Links to 10 rule files + engineering-spec.md |
-| Scripts documented | ✅ | api_validator.js with command example |
+| Scripts documented | ✅ | api_validator.ts with command example |
 | Contract versioning | ✅ | contract_version, backward_compatibility, breaking_changes |
 | Compliance matrix structured | ✅ | This table with ✅/❌ + evidence |
 
@@ -502,4 +502,4 @@ API Architect maintains zero persistent state. Every invocation starts from a cl
 
 ---
 
-⚡ PikaKit v3.9.115
+⚡ PikaKit v3.9.116

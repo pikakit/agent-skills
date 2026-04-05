@@ -1,4 +1,4 @@
-﻿# design-system
+# design-system
 
 **Version 1.0.0**
 Engineering
@@ -99,10 +99,10 @@ Every animation must serve one of these 3 functions. Decorative-only motion is n
 
 ```bash
 # Generate complete design system
-node .agent/skills/studio/scripts-js/search.js "<query>" --design-system
+node .agent/skills/studio/scripts/search.ts "<query>" --design-system
 
 # Search specific domain
-node .agent/skills/studio/scripts-js/search.js "<query>" --domain style
+node .agent/skills/studio/scripts/search.ts "<query>" --domain style
 ```
 
 **Available domains:** style, color, typography, landing, ux, chart, product
@@ -139,8 +139,8 @@ node .agent/skills/studio/scripts-js/search.js "<query>" --domain style
 
 | Script | Purpose |
 |--------|---------|
-| `scripts/ux_audit.js` | UX psychology audit |
-| `scripts/accessibility_checker.js` | WCAG compliance audit |
+| `scripts/ux_audit.ts` | UX psychology audit |
+| `scripts/accessibility_checker.ts` | WCAG compliance audit |
 
 **Selective reading:** Read ONLY files relevant to the request.
 
@@ -4213,4 +4213,4 @@ Before applying any effect:
 
 ---
 
-⚡ PikaKit v3.9.115
+⚡ PikaKit v3.9.116

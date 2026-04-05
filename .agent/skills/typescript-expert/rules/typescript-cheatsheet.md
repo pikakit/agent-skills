@@ -399,9 +399,9 @@ data.anything.goes.wrong  // No type safety
 |------|-------------|
 | [tsconfig-strict.json](tsconfig-strict.json) | Copy-paste strict config |
 | [utility-types.js](utility-types.js) | Runtime utility helpers |
-| [ts_diagnostic.js](../scripts/ts_diagnostic.js) | Project health scan |
+| [ts_diagnostic.ts](../scripts/ts_diagnostic.ts) | Project health scan |
 | [SKILL.md](../SKILL.md) | Error routing, patterns |
 
 ---
 
-⚡ PikaKit v3.9.115
+⚡ PikaKit v3.9.116

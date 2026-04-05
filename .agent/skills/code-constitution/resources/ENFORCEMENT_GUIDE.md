@@ -214,13 +214,13 @@ Agents MUST NOT learn:
 Use validation scripts when available:
 ```bash
 # Validate doctrine compliance
-node scripts/validate_doctrine.js <file-path>
+node scripts/validate_doctrine.ts <file-path>
 
 # Audit PR for violations
-node scripts/audit_pr.js <pr-branch>
+node scripts/audit_pr.ts <pr-branch>
 
 # Check system boundaries
-node scripts/check_boundaries.js <directory>
+node scripts/check_boundaries.ts <directory>
 ```
 
 ### Manual Enforcement
@@ -243,4 +243,4 @@ Use checklists:
 
 ---
 
-⚡ PikaKit v3.9.115
+⚡ PikaKit v3.9.116

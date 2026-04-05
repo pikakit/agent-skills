@@ -9,7 +9,7 @@ coordinates_with: ["idea-storm", "smart-router", "app-scaffold", "problem-checke
 success_metrics: ["Verifiable Tasks", "Correct Delegations"]
 metadata:
   author: pikakit
-  version: "3.9.115"
+  version: "3.9.116"
 ---
 
 # Project Planner — Structured Task Breakdown
@@ -101,10 +101,10 @@ One sentence: What are we building/fixing?
 
 | Project Type | Relevant Scripts |
 |--------------|-----------------|
-| Frontend/React | `ux_audit.js`, `accessibility_checker.js` |
-| Backend/API | `api_validator.js`, `security_scan.js` |
-| Mobile | `mobile_audit.js` |
-| Database | `schema_validator.js` |
+| Frontend/React | `ux_audit.ts`, `accessibility_checker.ts` |
+| Backend/API | `api_validator.ts`, `security_scan.ts` |
+| Mobile | `mobile_audit.ts` |
+| Database | `schema_validator.ts` |
 
 ---
 
@@ -162,4 +162,4 @@ One sentence: What are we building/fixing?
 
 ---
 
-⚡ PikaKit v3.9.115
+⚡ PikaKit v3.9.116

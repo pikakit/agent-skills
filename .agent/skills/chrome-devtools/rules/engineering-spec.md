@@ -1,4 +1,4 @@
-﻿---
+---
 title: Chrome DevTools — Engineering Specification
 impact: MEDIUM
 tags: chrome-devtools
@@ -154,27 +154,27 @@ Error: {
 
 | Operation | Side Effects |
 |-----------|-------------|
-| navigate.js | Launches browser (if not running); navigates to URL; modifies session file |
-| screenshot.js | Writes screenshot file to disk; may compress |
-| click.js | Mutates page state (clicks element) |
-| fill.js | Mutates page state (fills form field) |
-| evaluate.js | Executes arbitrary JS in page context; may mutate page |
-| aria-snapshot.js | None (read-only page inspection) |
-| select-ref.js | Mutates page state (interacts with element) |
-| console.js | None (passive monitoring) |
-| network.js | None (passive monitoring) |
-| performance.js | Navigates and measures; reads page |
+| navigate.ts | Launches browser (if not running); navigates to URL; modifies session file |
+| screenshot.ts | Writes screenshot file to disk; may compress |
+| click.ts | Mutates page state (clicks element) |
+| fill.ts | Mutates page state (fills form field) |
+| evaluate.ts | Executes arbitrary JS in page context; may mutate page |
+| aria-snapshot.ts | None (read-only page inspection) |
+| select-ref.ts | Mutates page state (interacts with element) |
+| console.ts | None (passive monitoring) |
+| network.ts | None (passive monitoring) |
+| performance.ts | Navigates and measures; reads page |
 
 ### 6.2 Workflow Contract
 
 #### Invocation Pattern
 
 ```
-1. Launch session: node navigate.js --url <target>
-2. Interact: node fill.js / click.js / evaluate.js (sequential, reuses session)
-3. Capture: node screenshot.js --output <path>
-4. Measure: node performance.js --url <target>
-5. Close: node navigate.js --close true
+1. Launch session: node navigate.ts --url <target>
+2. Interact: node fill.ts / click.ts / evaluate.ts (sequential, reuses session)
+3. Capture: node screenshot.ts --output <path>
+4. Measure: node performance.ts --url <target>
+5. Close: node navigate.ts --close true
 ```
 
 #### Execution Guarantees
@@ -188,7 +188,7 @@ Error: {
 
 | Failure Type | Propagation | Recovery |
 |-------------|-------------|----------|
-| Element not found | Return error with selector | Use aria-snapshot.js to find correct selector |
+| Element not found | Return error with selector | Use aria-snapshot.ts to find correct selector |
 | Navigation timeout | Return error with URL and timeout | Increase timeout or verify URL |
 | Browser crash | Return error; session file preserved | Delete session file; re-launch |
 | Puppeteer not installed | Return error immediately | Run npm install |
@@ -210,15 +210,15 @@ Error: {
 
 | Operation | Idempotent | Notes |
 |-----------|-----------|-------|
-| navigate.js | No | Page state changes on navigation |
-| screenshot.js | No | File overwrite if same output path; page may differ |
-| click.js | No | Mutates page state |
-| fill.js | No | Mutates form state |
-| evaluate.js | Depends | Read-only JS is idempotent; mutation JS is not |
-| aria-snapshot.js | Yes | Read-only page inspection |
-| console.js | Yes | Passive monitoring |
-| network.js | Yes | Passive monitoring |
-| performance.js | No | Navigation + measurement produces varying values |
+| navigate.ts | No | Page state changes on navigation |
+| screenshot.ts | No | File overwrite if same output path; page may differ |
+| click.ts | No | Mutates page state |
+| fill.ts | No | Mutates form state |
+| evaluate.ts | Depends | Read-only JS is idempotent; mutation JS is not |
+| aria-snapshot.ts | Yes | Read-only page inspection |
+| console.ts | Yes | Passive monitoring |
+| network.ts | Yes | Passive monitoring |
+| performance.ts | No | Navigation + measurement produces varying values |
 
 ---
 
@@ -274,7 +274,7 @@ Transitions:
 
 | Failure Class | Behavior | Recovery |
 |---------------|----------|----------|
-| Element not found | Return `ERR_ELEMENT_NOT_FOUND` | Use aria-snapshot.js |
+| Element not found | Return `ERR_ELEMENT_NOT_FOUND` | Use aria-snapshot.ts |
 | Navigation timeout | Return `ERR_NAVIGATION_TIMEOUT` | Increase timeout |
 | Browser disconnected | Return `ERR_BROWSER_DISCONNECTED` | Delete session file; re-launch |
 | Browser crash | Return `ERR_BROWSER_CRASHED` | Delete session file; re-launch |
@@ -371,13 +371,13 @@ Transitions:
 
 ### JavaScript Execution
 
-- `evaluate.js` executes arbitrary JavaScript in the target page context.
+- `evaluate.ts` executes arbitrary JavaScript in the target page context.
 - No sandboxing beyond Chromium's own security model.
 - Callers are responsible for JS code safety; the skill does not validate script content.
 
 ### Credential Handling
 
-- Scripts may interact with login forms (fill.js) but do not store credentials.
+- Scripts may interact with login forms (fill.ts) but do not store credentials.
 - Session state (`.browser-session.json`) contains browser WebSocket endpoint, not credentials.
 - Auth cookies persist in the browser profile during the session.
 
@@ -424,7 +424,7 @@ Transitions:
 |----------|-----------|-------------|--------------|
 | Chromium process | First script in session | `--close true` or manual kill | Indefinite |
 | Session file | First script | `--close true` (auto-delete) or manual delete | Session lifetime |
-| Screenshot files | screenshot.js | Caller (manual cleanup) | Indefinite |
+| Screenshot files | screenshot.ts | Caller (manual cleanup) | Indefinite |
 | Page state | Navigation/interaction scripts | Navigation to new page or browser close | Until next navigation |
 
 **Leak prevention:** Callers must invoke `--close true` to terminate browser processes. Orphaned processes must be killed manually. Session files without running browsers are stale and should be deleted.
@@ -507,4 +507,4 @@ Transitions:
 
 ---
 
-PikaKit v3.9.115
+PikaKit v3.9.116

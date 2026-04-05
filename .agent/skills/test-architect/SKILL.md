@@ -9,7 +9,7 @@ coordinates_with: ["e2e-automation", "test-driven-dev", "code-craft"]
 success_metrics: ["Test Suite Reliability", "Mutation Score", "Coverage Increase"]
 metadata:
   author: pikakit
-  version: "3.9.115"
+  version: "3.9.116"
 ---
 
 # Test Architect — Testing Patterns & Principles
@@ -157,7 +157,7 @@ All test-architect outputs MUST emit `testing_strategy_recommended` and `analysi
 
 | File | Description | When to Read |
 |------|-------------|--------------|
-| [test_runner.js](scripts/test_runner.js) | Unified test execution + coverage validation | Running tests |
+| [test_runner.ts](scripts/test_runner.ts) | Unified test execution + coverage validation | Running tests |
 | [engineering-spec.md](rules/engineering-spec.md) | Full spec | Architecture review |
 
 ---
@@ -172,4 +172,4 @@ All test-architect outputs MUST emit `testing_strategy_recommended` and `analysi
 
 ---
 
-⚡ PikaKit v3.9.115
+⚡ PikaKit v3.9.116

@@ -5,7 +5,7 @@ description: Security audit checklists — OWASP 2025, API security, auth, data 
 
 # Security Checklists
 
-> Copy relevant checklists into PLAN.md or security report. Use alongside security_scan.js.
+> Copy relevant checklists into PLAN.md or security report. Use alongside security_scan.ts.
 
 ---
 
@@ -151,7 +151,7 @@ npx eslint --rule 'no-eval: error' .  # Detect eval()
 grep -rn "dangerouslySetInnerHTML" src/  # XSS vectors
 
 # Full scan (this skill)
-node .agent/skills/security-scanner/scripts/security_scan.js . --output=summary
+node .agent/skills/security-scanner/scripts/security_scan.ts . --output=summary
 
 # HTTPS/TLS
 openssl s_client -connect example.com:443  # Check TLS version
@@ -178,9 +178,9 @@ curl -I https://example.com | grep -i "strict\|content-security\|x-frame"  # Hea
 | File | When to Read |
 |------|-------------|
 | [auth-patterns.md](auth-patterns.md) | Auth implementation |
-| [scripts/security_scan.js](scripts/security_scan.js) | Automated scanning |
+| [scripts/security_scan.ts](scripts/security_scan.ts) | Automated scanning |
 | [SKILL.md](SKILL.md) | OWASP 2025 mapping, risk prioritization |
 
 ---
 
-⚡ PikaKit v3.9.115
+⚡ PikaKit v3.9.116

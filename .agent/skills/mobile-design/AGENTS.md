@@ -1,4 +1,4 @@
-﻿# mobile-design
+# mobile-design
 
 **Version 1.0.0**
 Engineering
@@ -143,7 +143,7 @@ Touch-first → Battery-conscious → Platform-respectful → Offline-capable
 | [mobile-backend.md](rules/mobile-backend.md) | Backend integration | API decisions |
 | [mobile-design-thinking.md](rules/mobile-design-thinking.md) | Design methodology | Design process |
 | [decision-trees.md](rules/decision-trees.md) | Decision frameworks | Complex decisions |
-| [mobile_audit.js](scripts/mobile_audit.js) | Mobile design audit CLI | Design audit |
+| [mobile_audit.ts](scripts/mobile_audit.ts) | Mobile design audit CLI | Design audit |
 | [engineering-spec.md](rules/engineering-spec.md) | Full engineering spec | Architecture review |
 
 **Selective reading:** Read ONLY files relevant to current design question.
@@ -1168,7 +1168,7 @@ All resources scoped to invocation. No persistent handles.
 | [platform-ios.md](platform-ios.md) | iOS HIG guidelines |
 | [platform-android.md](platform-android.md) | Material Design guidelines |
 | [touch-psychology.md](touch-psychology.md) | Touch interaction patterns |
-| [../scripts/mobile_audit.js](../scripts/mobile_audit.js) | MFRI audit script |
+| [../scripts/mobile_audit.ts](../scripts/mobile_audit.ts) | MFRI audit script |
 
 ---
 
@@ -6528,4 +6528,4 @@ Warning:  Attention needed
 
 ---
 
-⚡ PikaKit v3.9.115
+⚡ PikaKit v3.9.116

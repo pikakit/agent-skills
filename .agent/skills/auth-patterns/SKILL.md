@@ -10,7 +10,7 @@ coordinates_with: ["api-architect", "security-scanner", "data-modeler", "offensi
 success_metrics: ["0 authorization bypass vulnerabilities", "100% FAANG audit compliance"]
 metadata:
   author: pikakit
-  version: "3.9.115"
+  version: "3.9.116"
 ---
 
 # Auth Patterns
@@ -211,4 +211,4 @@ For the complete guide with all rules expanded: `AGENTS.md`
 
 ---
 
-⚡ PikaKit v3.9.115
+⚡ PikaKit v3.9.116
