@@ -10,7 +10,7 @@ coordinates_with: ["studio", "media-processing", "context-engineering"]
 success_metrics: ["100% deterministic prompt reproduction"]
 metadata:
   author: pikakit
-  version: "3.9.119"
+  version: "3.9.120"
 ---
 
 # AI Artist — Prompt Engineering
@@ -229,4 +229,4 @@ Each rule file contains:
 
 ---
 
-⚡ PikaKit v3.9.119
+⚡ PikaKit v3.9.120
