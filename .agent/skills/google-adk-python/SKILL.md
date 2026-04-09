@@ -10,7 +10,7 @@ coordinates_with: ["python-pro", "api-architect", "ai-artist"]
 success_metrics: ["100% typed parameters", "< 5 tools per agent"]
 metadata:
   author: pikakit
-  version: "3.9.123"
+  version: "3.9.124"
 ---
 
 # Google ADK Python — AI Agent Development
@@ -209,4 +209,4 @@ For the complete guide with all rules expanded: `AGENTS.md`
 
 ---
 
-⚡ PikaKit v3.9.123
+⚡ PikaKit v3.9.124

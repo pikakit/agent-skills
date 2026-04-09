@@ -6,7 +6,7 @@ description: >-
   NOT for simple text search or code implementation.
 metadata:
   author: pikakit
-  version: "3.9.123"
+  version: "3.9.124"
   category: architecture
   triggers: "find usages, code graph, semantic search, impact analysis, dependency mapping"
   coordinates_with: "code-review, system-design"
@@ -154,4 +154,4 @@ All 3 categories always enumerated. Never partial impact analysis.
 
 ---
 
-⚡ PikaKit v3.9.123
+⚡ PikaKit v3.9.124

@@ -1,6 +1,6 @@
 ---
 name: server-ops
-version: "3.9.123"
+version: "3.9.124"
 description: >-
   Production-grade specification for server management at FAANG scale.
 metadata:
@@ -447,4 +447,4 @@ All resources scoped to invocation. No persistent handles.
 
 ---
 
-⚡ PikaKit v3.9.123
+⚡ PikaKit v3.9.124

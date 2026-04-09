@@ -10,7 +10,7 @@ coordinates_with: ["auto-learned", "problem-checker", "skill-generator"]
 success_metrics: ["Actionable Lesson Rate", "Lesson Extraction Speed", "False Positive Rate"]
 metadata:
   author: pikakit
-  version: "3.9.123"
+  version: "3.9.124"
 ---
 
 # Auto-Learner
@@ -112,4 +112,4 @@ All auto-learner outputs MUST emit `lesson_extraction_started` and either `lesso
 
 ---
 
-⚡ PikaKit v3.9.123
+⚡ PikaKit v3.9.124

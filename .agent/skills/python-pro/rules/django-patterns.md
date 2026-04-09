@@ -191,4 +191,4 @@ def create_user_profile(sender, instance, created, **kwargs):
 
 ---
 
-⚡ PikaKit v3.9.123
+⚡ PikaKit v3.9.124

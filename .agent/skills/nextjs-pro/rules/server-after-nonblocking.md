@@ -74,4 +74,4 @@ Reference: [https://nextjs.org/docs/app/api-reference/functions/after](https://n
 
 ---
 
-⚡ PikaKit v3.9.123
+⚡ PikaKit v3.9.124

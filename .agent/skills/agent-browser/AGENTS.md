@@ -725,4 +725,4 @@ Blocked protocols return `ERR_INVALID_URL`.
 
 ---
 
-⚡ PikaKit v3.9.123
+⚡ PikaKit v3.9.124

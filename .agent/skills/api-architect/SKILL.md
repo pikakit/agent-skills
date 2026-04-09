@@ -10,7 +10,7 @@ coordinates_with: ["data-modeler", "security-scanner", "auth-patterns", "nodejs-
 success_metrics: ["0 breaking API changes without explicit version bump", "100% compliant with OWASP API Top 10"]
 metadata:
   author: pikakit
-  version: "3.9.123"
+  version: "3.9.124"
 ---
 
 # API Architect
@@ -230,4 +230,4 @@ For the complete guide with all rules expanded: `AGENTS.md`
 
 ---
 
-⚡ PikaKit v3.9.123
+⚡ PikaKit v3.9.124

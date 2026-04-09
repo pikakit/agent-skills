@@ -8,7 +8,7 @@ coordinates_with: ["game-development", "mobile-developer"]
 success_metrics: ["100% touch targets >= 44x44", "0 thermal throttling in normal play"]
 metadata:
   author: pikakit
-  version: "3.9.123"
+  version: "3.9.124"
 ---
 
 # Mobile Game Development
@@ -127,4 +127,4 @@ metadata:
 
 ---
 
-⚡ PikaKit v3.9.123
+⚡ PikaKit v3.9.124

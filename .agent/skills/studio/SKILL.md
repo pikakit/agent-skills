@@ -10,7 +10,7 @@ coordinates_with: ["frontend-specialist", "design-system", "ai-artist"]
 success_metrics: ["Aesthetic Consistency", "Slop Avoidance Rate", "Typography Contrast Ratio"]
 metadata:
   author: pikakit
-  version: "3.9.123"
+  version: "3.9.124"
 ---
 
 # Studio — Design Intelligence
@@ -175,4 +175,4 @@ All studio outputs MUST emit `design_search_started` and `design_system_generate
 
 ---
 
-⚡ PikaKit v3.9.123
+⚡ PikaKit v3.9.124
