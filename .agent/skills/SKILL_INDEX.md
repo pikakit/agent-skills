@@ -5,6 +5,28 @@
 
 ---
 
+## ⚡ Quick Match (Ctrl+F)
+
+```
+react jsx hooks component  →  react-pro       next ssr rsc app-router  →  nextjs-pro
+node express fastify hono   →  nodejs-pro      python fastapi django    →  python-pro
+typescript generics ts      →  typescript-expert  tailwind utility-class →  tailwind-kit
+color font typography ux    →  design-system   sql prisma drizzle schema →  data-modeler
+rest graphql trpc openapi   →  api-architect   oauth jwt auth session   →  auth-patterns
+test jest vitest coverage   →  test-architect  playwright e2e browser   →  e2e-automation
+debug error trace bug       →  debug-pro       owasp xss csrf security  →  security-scanner
+deploy ci cd pipeline       →  cicd-pipeline   git commit branch pr     →  git-workflow
+mobile flutter ios android  →  mobile-developer  game physics sprite    →  game-development
+server pm2 nginx systemd    →  server-ops      lighthouse bundle perf   →  perf-optimizer
+seo meta-tag sitemap        →  seo-optimizer   readme changelog docs    →  doc-templates
+architecture trade-off adr  →  system-design   plan roadmap breakdown   →  project-planner
+mcp tool-server             →  mcp-builder     prompt dall-e midjourney →  ai-artist
+mistake wrong fix-this      →  auto-learner    ide-error lint complete  →  problem-checker
+```
+
+---
+
+
 ## Frontend
 
 | Skill | Use When | NOT For |

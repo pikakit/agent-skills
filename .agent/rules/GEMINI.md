@@ -86,3 +86,28 @@ Safety violation → `@[skills/auto-learner]` triggered → Lesson added to `.ag
 | Full Auto | `/autopilot` | All in one |
 
 ---
+
+## ⚡ Skill Routing (MANDATORY for L1+)
+
+> 🔴 **BEFORE writing ANY code**, match your task to a skill. No match = proceed without skill.
+
+| Keywords | Skill | Keywords | Skill |
+|----------|-------|----------|-------|
+| react, jsx, hooks, component | `react-pro` | next, app-router, ssr, rsc | `nextjs-pro` |
+| node, express, fastify, backend | `nodejs-pro` | python, fastapi, django | `python-pro` |
+| typescript, generics, tsconfig | `typescript-expert` | tailwind, utility-class | `tailwind-kit` |
+| color, font, typography, ux | `design-system` | sql, prisma, drizzle, schema | `data-modeler` |
+| rest, graphql, trpc, openapi | `api-architect` | oauth, jwt, session, login | `auth-patterns` |
+| test, jest, vitest, coverage | `test-architect` | playwright, browser-test | `e2e-automation` |
+| debug, error, trace, root-cause | `debug-pro` | owasp, xss, csrf, vuln | `security-scanner` |
+| deploy, pipeline, ci, cd | `cicd-pipeline` | git, commit, branch, pr | `git-workflow` |
+| mobile, flutter, ios, android | `mobile-developer` | game, physics, sprite | `game-development` |
+| server, pm2, nginx, monitoring | `server-ops` | lighthouse, bundle, perf | `perf-optimizer` |
+| seo, meta-tag, sitemap | `seo-optimizer` | readme, changelog, docs | `doc-templates` |
+| architecture, trade-off, adr | `system-design` | plan, roadmap, breakdown | `project-planner` |
+| mistake, wrong, fix-this | `auto-learner` | ide-error, lint, pre-complete | `problem-checker` |
+
+**Protocol:** Match keyword → Read skill's `SKILL.md` → Announce `🤖 @{skill}` → Code.
+
+---
+
