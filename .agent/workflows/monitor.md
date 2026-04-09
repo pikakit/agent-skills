@@ -1,5 +1,5 @@
 ﻿---
-description: Production observability stack — OpenTelemetry instrumentation, structured logging, Prometheus/Grafana dashboards, distributed tracing, and PagerDuty incident alerting.
+description: Production observability stack â€” OpenTelemetry instrumentation, structured logging, Prometheus/Grafana dashboards, distributed tracing, and PagerDuty incident alerting.
 skills: [observability, server-ops, problem-checker, context-engineering, auto-learner]
 agents: [orchestrator, assessor, recovery, learner, devops-engineer]
 ---
@@ -22,11 +22,11 @@ $ARGUMENTS
 
 ## Purpose
 
-Set up production observability infrastructure — OpenTelemetry SDK, structured logging, Prometheus metrics, distributed tracing, and incident alerting with runbooks. **Differs from `/launch` (production deployment) and `/diagnose` (root cause analysis) by establishing the full observability foundation for production monitoring.** Uses `cicd-pipeline` with `observability` for instrumentation and `server-ops` for infrastructure configuration.
+Set up production observability infrastructure â€” OpenTelemetry SDK, structured logging, Prometheus metrics, distributed tracing, and incident alerting with runbooks. **Differs from `/launch` (production deployment) and `/diagnose` (root cause analysis) by establishing the full observability foundation for production monitoring.** Uses `cicd-pipeline` with `observability` for instrumentation and `server-ops` for infrastructure configuration.
 
 ---
 
-## 🤖 Meta-Agents Integration
+## ðŸ¤– Meta-Agents Integration
 
 | Phase | Agent | Action |
 | ----- | ----- | ------ |
@@ -37,10 +37,10 @@ Set up production observability infrastructure — OpenTelemetry SDK, structured
 
 ```
 Flow:
-assessor.evaluate(scope, provider) → recovery.save()
-       ↓
-setup OpenTelemetry → logs → metrics → traces → alerts
-       ↓
+assessor.evaluate(scope, provider) â†’ recovery.save()
+       â†“
+setup OpenTelemetry â†’ logs â†’ metrics â†’ traces â†’ alerts
+       â†“
 learner.log(monitoring_patterns)
 ```
 
@@ -56,7 +56,7 @@ learner.log(monitoring_patterns)
 
 ---
 
-## 🔴 MANDATORY: Observability Setup Protocol
+## ðŸ”´ MANDATORY: Observability Setup Protocol
 
 ### Phase 1: Pre-flight & Auto-Learned Context
 
@@ -74,7 +74,7 @@ learner.log(monitoring_patterns)
 | **AGENTS** | `cicd-pipeline`, `assessor` |
 | **SKILLS** | `observability`, `context-engineering` |
 
-// turbo — telemetry: phase-2-foundation
+// turbo â€” telemetry: phase-2-foundation
 
 1. `assessor` evaluates monitoring scope
 2. Select provider:
@@ -99,7 +99,7 @@ learner.log(monitoring_patterns)
 | **AGENTS** | `orchestrator`, `cicd-pipeline` |
 | **SKILLS** | `observability` |
 
-// turbo — telemetry: phase-3-logging
+// turbo â€” telemetry: phase-3-logging
 
 1. Setup Pino/Winston with JSON formatting
 2. Configure PII redaction (email, phone, SSN, credit card)
@@ -115,7 +115,7 @@ learner.log(monitoring_patterns)
 | **AGENTS** | `cicd-pipeline` |
 | **SKILLS** | `observability`, `server-ops` |
 
-// turbo — telemetry: phase-4-metrics
+// turbo â€” telemetry: phase-4-metrics
 
 1. Expose Prometheus `/metrics` endpoint
 2. Configure Golden Signals:
@@ -172,7 +172,7 @@ Runbooks generated:
 
 ---
 
-## ⛔ MANDATORY: Problem Verification Before Completion
+## â›” MANDATORY: Problem Verification Before Completion
 
 > **CRITICAL:** This check MUST be performed before any `notify_user` or task completion.
 
@@ -183,8 +183,8 @@ Runbooks generated:
 2. If errors/warnings > 0:
    a. Auto-fix: imports, types, lint errors
    b. Re-check @[current_problems]
-   c. If still > 0 → STOP → Notify user
-3. If count = 0 → Proceed to completion
+   c. If still > 0 â†’ STOP â†’ Notify user
+3. If count = 0 â†’ Proceed to completion
 ```
 
 ### Auto-Fixable
@@ -199,7 +199,7 @@ Runbooks generated:
 
 ---
 
-## 🔙 Rollback & Recovery
+## ðŸ”™ Rollback & Recovery
 
 If observability setup causes application crashes or aggressive memory leaks:
 1. Revert infrastructure configs/SDK wrappers using `recovery` meta-agent.
@@ -208,17 +208,25 @@ If observability setup causes application crashes or aggressive memory leaks:
 
 ---
 
+## ðŸ”— Workflow Chain
+
+```mermaid
+graph LR
+    A["/build"] --> B["/monitor"]
+    B --> C["/diagnose"]
+    B --> D["/launch"]
+    style B fill:#10b981
 ```
 
 | After /monitor | Run | Purpose |
 |---------------|-----|---------|
 | Issues detected | `/diagnose` | Root cause analysis using traces |
 | Ready to deploy | `/launch` | Deploy with monitoring |
-| Issues occur | `/diagnose` | Debug using metrics and traces |
+| Performance issues | `/optimize` | Optimize using collected metrics |
 
 **Handoff to /diagnose:**
 
 ```markdown
-📊 Monitoring configured! OpenTelemetry + logs + metrics + alerts active.
+ðŸ“Š Monitoring configured! OpenTelemetry + logs + metrics + alerts active.
 Run `/diagnose` to investigate issues or `/launch` to deploy.
 ```
