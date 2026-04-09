@@ -81,8 +81,7 @@ Storage: `.agent/metrics/` (JSON, 30-day retention).
 
 ### 0.5-G: SLO Enforcement
 
-Before ANY completion: IDE Problems = 0, Lint = 0, Type Errors = 0.  
-Auto-fixable: missing imports, unused vars, lint. If can't fix → escalate.  
+> See `code-rules.md § Problem Verification` for canonical rule.
 > **NEVER** call `notify_user` with completion if `@[current_problems]` shows errors.
 
 ### 0.5-H: Auto-Learn Triggers

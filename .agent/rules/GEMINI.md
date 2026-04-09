@@ -63,7 +63,7 @@ If broken output / regression: 1) Restore previous version 2) State what was rev
 
 ### 7. INTEGRATION WITH AUTO-LEARN
 
-Safety violation → `@[skills/auto-learner]` triggered → Lesson added to `.agent/knowledge/lessons-learned.yaml` → Pattern: `SAFE-XXX`
+Safety violation → `@[skills/auto-learner]` triggered. Full protocol: see `autopilot.md § 0.5-H`.
 
 ### 8. FORBIDDEN OPERATIONS
 

@@ -41,12 +41,7 @@ trigger: always_on
 
 ### 📢 NOTIFICATION FORMAT
 
-| Level | Start | End |
-|-------|-------|-----|
-| L0 | — | — |
-| L1 | — | `✅ @{skill}` |
-| L2 | `🤖 @{skill}` | `✅ @{skill} · {file_count} files` |
-| L3 | `🤖 @{skill}` | `✅ @{skill} · {file_count} files` |
+> See `autopilot.md § 0.5-J` for full branding table (L0–L3 + Workflow).
 
 ### ⚠️ AGENT ROUTING CHECKLIST (L2+ ONLY)
 
@@ -88,8 +83,7 @@ Skills: `.agent/skills/` | Workflows: `.agent/workflows/` | Scripts: `.agent/scr
 ### 🎓 Auto-Learn Protocol (MANDATORY)
 
 > 🔴 When user indicates mistake → invoke `@[skills/auto-learner]` immediately.
-
-1. Analyze what went wrong → 2. Extract lesson → 3. Add to `lessons-learned.yaml` → 4. Confirm: `📚 Learned: [LEARN-XXX]`
+> Full trigger words, categories, and ID patterns: see `autopilot.md § 0.5-H`.
 
 ### 🔄 Continuous Execution Rule (MANDATORY)
 
@@ -106,13 +100,13 @@ After ANY task: check `@[current_problems]` → auto-fix (CSS, imports, lint, ty
 
 ### 📱 Project Type Routing
 
-| Type | Agent | Skills |
-|------|-------|--------|
-| MOBILE | `mobile-developer` | mobile-design |
-| WEB | `frontend-specialist` | frontend-design |
-| BACKEND | `backend-specialist` | api-patterns, database-design |
+| Type | Primary Skill | Supporting Skills |
+|------|---------------|-------------------|
+| MOBILE | `mobile-developer` | `mobile-design` |
+| WEB | `react-pro` | `design-system`, `tailwind-kit` |
+| BACKEND | `nodejs-pro` | `api-architect`, `data-modeler` |
 
-> 🔴 Mobile + frontend-specialist = WRONG. Mobile = mobile-developer ONLY.
+> 🔴 Mobile + react-pro = WRONG. Mobile = `mobile-developer` ONLY.
 
 ### 🛑 SOCRATIC GATE (Proportional to Task Level)
 
@@ -164,18 +158,18 @@ Design rules are in specialist agents, NOT here.
 
 > Agents & Skills can invoke scripts via `python .agent/skills/<skill>/scripts/<script>.py`
 
-### Quick Agent Reference
+### Quick Skill Reference
 
-| Need | Agent | Skills |
-|------|-------|--------|
-| Web App | `frontend-specialist` | react-architect, nextjs-pro |
-| API | `backend-specialist` | api-architect, nodejs-pro |
-| Mobile | `mobile-developer` | mobile-first |
-| Database | `database-architect` | data-modeler |
-| Security | `security-auditor` | security-scanner, offensive-sec |
-| Testing | `test-engineer` | test-architect, e2e-automation |
-| Debug | `debugger` | debug-pro |
-| Plan | `project-planner` | idea-storm, project-planner |
+| Need | Primary Skill | Supporting Skills |
+|------|---------------|-------------------|
+| Web App | `react-pro` | `nextjs-pro`, `design-system` |
+| API | `nodejs-pro` | `api-architect`, `auth-patterns` |
+| Mobile | `mobile-developer` | `mobile-design` |
+| Database | `data-modeler` | `nodejs-pro` |
+| Security | `security-scanner` | `offensive-sec`, `auth-patterns` |
+| Testing | `test-architect` | `e2e-automation` |
+| Debug | `debug-pro` | `problem-checker` |
+| Plan | `project-planner` | `idea-storm`, `system-design` |
 
 ---
 
