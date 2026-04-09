@@ -182,7 +182,19 @@ for (const filePath of rootMdFiles) {
   }
 }
 
-// 6. Update PikaKit Extension
+// 6. Update pikakit root package (add-agent-skill-kit)
+const pikakitPkgPath = path.resolve(ROOT_DIR, '../add-agent-skill-kit/package.json');
+if (fs.existsSync(pikakitPkgPath)) {
+  const pikakitPkg = JSON.parse(fs.readFileSync(pikakitPkgPath, 'utf-8').replace(/^\uFEFF/, ''));
+  if (pikakitPkg.version !== newVersion) {
+    pikakitPkg.version = newVersion;
+    fs.writeFileSync(pikakitPkgPath, JSON.stringify(pikakitPkg, null, 2) + '\n', 'utf-8');
+    console.log(`✅ Updated pikakit package.json to v${newVersion}`);
+    updatedFiles++;
+  }
+}
+
+// 7. Update PikaKit Extension
 const extPkgPath = path.resolve(ROOT_DIR, '../add-agent-skill-kit/packages/pikakit-extension/package.json');
 if (fs.existsSync(extPkgPath)) {
   const extPkg = JSON.parse(fs.readFileSync(extPkgPath, 'utf-8').replace(/^\uFEFF/, ''));
