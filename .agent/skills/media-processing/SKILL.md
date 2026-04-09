@@ -7,6 +7,9 @@ description: >-
 metadata:
   author: pikakit
   version: "3.9.121"
+  category: devops
+  triggers: "video, audio, image, compress, resize, convert, ffmpeg, imagemagick, rmbg"
+  coordinates_with: "perf-optimizer, studio"
 ---
 
 # Media Processing — FFmpeg + ImageMagick + RMBG

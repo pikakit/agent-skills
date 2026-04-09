@@ -7,6 +7,9 @@ description: >-
 metadata:
   author: pikakit
   version: "3.9.121"
+  category: architecture
+  triggers: "find usages, code graph, semantic search, impact analysis, dependency mapping"
+  coordinates_with: "code-review, system-design"
 ---
 
 # Knowledge Graph — Semantic Code Analysis
