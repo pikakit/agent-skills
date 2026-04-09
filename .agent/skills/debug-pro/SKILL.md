@@ -1,15 +1,16 @@
 ---
 name: debug-pro
 description: >-
-  Unified debugging skill combining systematic 4-phase methodology with advanced frameworks
-  (defense-in-depth, root-cause tracing, verification).
+  Systematic debugging: 4-phase methodology, root-cause tracing, and defense-in-depth verification.
+  Use when fixing bugs, tracing errors, investigating crashes, or diagnosing unexpected behavior.
+  NOT for new feature design or code review (use code-review).
 category: debugging
 triggers: ["debug", "bug", "error", "crash", "exception", "root cause", "investigation", "not working"]
 coordinates_with: ["test-architect", "code-review"]
 success_metrics: ["100% bugs have root cause identified", "< 15m MTTR"]
 metadata:
   author: pikakit
-  version: "3.9.117"
+  version: "3.9.118"
 ---
 
 # Debug Pro — Systematic Debugging
@@ -189,4 +190,4 @@ All debug-pro outputs MUST emit `investigation_started`, `root_cause_identified`
 
 ---
 
-⚡ PikaKit v3.9.117
+⚡ PikaKit v3.9.118

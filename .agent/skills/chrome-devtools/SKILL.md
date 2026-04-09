@@ -1,15 +1,16 @@
 ---
 name: chrome-devtools
 description: >-
-  Puppeteer CLI scripts for browser automation, screenshots, debugging. Session persistence,
-  JSON output, Core Web Vitals.
+  Puppeteer CLI scripts for browser screenshots, debugging, and Core Web Vitals measurement.
+  Use when capturing screenshots, measuring performance, or debugging browser issues.
+  NOT for E2E test suites (use e2e-automation) or AI browser automation (use agent-browser).
 category: browser-automation
 triggers: ["screenshot", "browser", "puppeteer", "devtools", "performance"]
 coordinates_with: ["agent-browser", "perf-optimizer", "e2e-automation"]
 success_metrics: ["0 ghost instances", "100% session recovery"]
 metadata:
   author: pikakit
-  version: "3.9.117"
+  version: "3.9.118"
 ---
 
 # Chrome DevTools — Puppeteer CLI
@@ -199,4 +200,4 @@ For the complete guide with all rules expanded: `AGENTS.md`
 
 ---
 
-⚡ PikaKit v3.9.117
+⚡ PikaKit v3.9.118

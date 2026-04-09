@@ -1,15 +1,16 @@
 ---
 name: code-constitution-skills-governance
 description: >-
-  Constitutional governance for PikaKit. Enforces non-negotiable laws for correctness, trust,
-  and durability. Fail-closed: ambiguity = refuse. Zero-trust agent mode.
+  Constitutional governance for PikaKit: non-negotiable laws for correctness, trust, and durability.
+  Use when reviewing breaking changes, critical data operations, or governance violations.
+  NOT for general code review (use code-review) or security scanning (use security-scanner).
 category: governance
 triggers: ["architecture", "critical data", "breaking change", "governance", "doctrine"]
 coordinates_with: ["code-review", "security-scanner", "code-craft"]
 success_metrics: ["0 governance bypasses", "100% doctrine compliance"]
 metadata:
   author: pikakit
-  version: "3.9.117"
+  version: "3.9.118"
 ---
 
 # PikaKit Governance — Code Constitution
@@ -187,4 +188,4 @@ Validation scripts: `scripts/validate_doctrine.ts` | PR audit: `scripts/audit_pr
 
 ---
 
-⚡ PikaKit v3.9.117
+⚡ PikaKit v3.9.118

@@ -1,15 +1,16 @@
 ---
 name: git-workflow
 description: >-
-  Git operations with conventional commits, auto-split logic, secret detection. Stage, commit,
-  push, PR, merge with security scanning.
+  Git operations with conventional commits, branch strategies, PR workflows, and secret detection.
+  Use when committing, branching, creating PRs, or managing git history.
+  NOT for deployment pipelines (use cicd-pipeline) or code review (use code-review).
 category: version-control
 triggers: ["git", "commit", "push", "PR", "merge", "conventional commits"]
 coordinates_with: ["cicd-pipeline", "code-review", "security-scanner"]
 success_metrics: ["0 leaked secrets", "100% conventional compliance"]
 metadata:
   author: pikakit
-  version: "3.9.117"
+  version: "3.9.118"
 ---
 
 # Git Workflow — Conventional Commits + Secret Detection
@@ -177,4 +178,4 @@ REBASING → CONFLICT         [merge conflicts]  // terminal
 
 ---
 
-⚡ PikaKit v3.9.117
+⚡ PikaKit v3.9.118

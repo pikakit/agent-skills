@@ -8,7 +8,7 @@ coordinates_with: ["game-development", "game-art", "game-audio"]
 success_metrics: ["100% GDDs have all sections", "0 balancing issues in playtests"]
 metadata:
   author: pikakit
-  version: "3.9.117"
+  version: "3.9.118"
 ---
 
 # Game Design Principles
@@ -148,4 +148,4 @@ Just Right → Flow → Engagement
 
 ---
 
-⚡ PikaKit v3.9.117
+⚡ PikaKit v3.9.118

@@ -1,15 +1,16 @@
 ---
 name: design-system
 description: >-
-  Design thinking and decision-making for web UI. Color theory, typography, visual effects, and
-  UX psychology.
+  Design thinking for web UI: color theory, typography, visual effects, UX psychology, and animation.
+  Use when choosing colors, fonts, layouts, or validating UX decisions.
+  NOT for CSS implementation (use tailwind-kit) or code architecture (use react-pro).
 category: design-architecture
 triggers: ["design", "UI", "UX", "color palette", "typography", "component design"]
 coordinates_with: ["studio", "tailwind-kit", "frontend-design"]
 success_metrics: ["0 WCAG accessibility violations", "100% Hick's law compliance"]
 metadata:
   author: pikakit
-  version: "3.9.117"
+  version: "3.9.118"
 ---
 
 # Design System — UI Design Decisions
@@ -267,4 +268,4 @@ All design-system outputs MUST emit `palette_generated`, `typography_selected`, 
 
 ---
 
-⚡ PikaKit v3.9.117
+⚡ PikaKit v3.9.118

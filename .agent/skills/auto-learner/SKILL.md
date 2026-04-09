@@ -1,15 +1,16 @@
 ---
 name: auto-learner
 description: >-
-  Autonomous learning agent that extracts patterns from IDE errors, user corrections, and agent
-  failures. Writes structured patterns to auto-learned skill.
+  Autonomous learning: extracts patterns from IDE errors, user corrections, and agent failures.
+  Use when user indicates a mistake ("wrong", "fix this", "loi", "sai") to capture lessons.
+  NOT for applying existing patterns (use auto-learned) or debugging (use debug-pro).
 category: autonomous-learning
 triggers: ["auto-learn", "mistake", "error fix", "pattern extraction"]
 coordinates_with: ["auto-learned", "problem-checker", "skill-generator"]
 success_metrics: ["Actionable Lesson Rate", "Lesson Extraction Speed", "False Positive Rate"]
 metadata:
   author: pikakit
-  version: "3.9.117"
+  version: "3.9.118"
 ---
 
 # Auto-Learner
@@ -111,4 +112,4 @@ All auto-learner outputs MUST emit `lesson_extraction_started` and either `lesso
 
 ---
 
-⚡ PikaKit v3.9.117
+⚡ PikaKit v3.9.118

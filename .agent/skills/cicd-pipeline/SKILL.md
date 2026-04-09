@@ -1,15 +1,16 @@
 ---
 name: cicd-pipeline
 description: >-
-  Production deployment principles and decision-making. Safe deployment workflows, rollback
-  strategies. 5-phase lifecycle: Prepare → Backup → Deploy → Verify → Confirm.
+  Production deployment workflows, CI/CD pipelines, rollback strategies, and release management.
+  Use when deploying apps, configuring pipelines, or planning rollback procedures.
+  NOT for git operations (use git-workflow) or Vercel-specific deploys (use vercel-deploy).
 category: devops
 triggers: ["deploy", "deployment", "CI/CD", "pipeline", "rollback", "release"]
 coordinates_with: ["security-scanner", "git-workflow", "gitops"]
 success_metrics: ["0 deployment rollbacks", "< 5m rollback time", "100% CI pass rate"]
 metadata:
   author: pikakit
-  version: "3.9.117"
+  version: "3.9.118"
 ---
 
 # CI/CD Pipeline
@@ -160,4 +161,4 @@ metadata:
 
 ---
 
-⚡ PikaKit v3.9.117
+⚡ PikaKit v3.9.118

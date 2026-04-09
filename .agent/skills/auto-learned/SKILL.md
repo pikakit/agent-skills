@@ -1,16 +1,16 @@
 ---
 name: auto-learned
 description: >-
-  Hierarchical skill containing all auto-learned patterns from IDE errors and code analysis.
-  Organizes patterns by category (import, type, syntax, etc.) with subskills in patterns/
-  folder. Writable by authorized agents only.
+  Repository of auto-learned patterns from past errors organized by category.
+  Use before writing code or running commands to check for known mistake patterns.
+  NOT for learning new patterns (use auto-learner) or debugging (use debug-pro).
 category: autonomous-learning
 triggers: ["auto-learn", "pattern", "learned", "error fix"]
 coordinates_with: ["problem-checker", "auto-learner", "skill-generator"]
 success_metrics: ["Pattern Ingestion Rate", "Duplicate Prevention Accuracy", "Pattern Match Rate"]
 metadata:
   author: pikakit
-  version: "3.9.117"
+  version: "3.9.118"
 ---
 
 # Auto-Learned — Pattern Repository
@@ -176,4 +176,4 @@ All auto-learned outputs MUST emit `pattern_lookup_executed`, `pattern_ingested_
 
 ---
 
-⚡ PikaKit v3.9.117
+⚡ PikaKit v3.9.118

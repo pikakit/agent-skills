@@ -1,16 +1,16 @@
 ---
 name: mobile-developer
 description: >-
-  Develop React Native, Flutter, or native mobile apps with modern architecture patterns.
-  Masters cross-platform development, native integrations, offline sync, and app store
-  optimization.
+  Mobile development with React Native, Flutter, or native iOS/Android.
+  Use when building mobile apps, configuring native modules, or optimizing mobile performance.
+  NOT for web frontend (use react-pro) or mobile design decisions (use mobile-design).
 category: mobile-architect
 triggers: ["React Native", "Flutter", "iOS", "Android", "mobile app", "cross-platform", "native app"]
 coordinates_with: ["mobile-first", "mobile-design", "test-architect", "perf-optimizer", "mobile-security-coder", "code-craft", "problem-checker"]
 success_metrics: ["100% Build Pass", "0 IDE/Lint Errors", "OWASP MASVS Compliant"]
 metadata:
   author: pikakit
-  version: "3.9.117"
+  version: "3.9.118"
 ---
 
 # Mobile Developer — Cross-Platform & Native Expert
@@ -283,4 +283,4 @@ For the complete guide with all rules expanded: `AGENTS.md`
 
 ---
 
-⚡ PikaKit v3.9.117
+⚡ PikaKit v3.9.118

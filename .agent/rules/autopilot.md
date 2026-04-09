@@ -1,4 +1,4 @@
-﻿---
+---
 trigger: always_on
 ---
 
@@ -104,13 +104,15 @@ Auto-fixable: missing imports, unused vars, lint. If can't fix → escalate.
 When invoking ANY sub-agent, MUST include: Original Request, Decisions Made, Previous Agent Work, Current Plan.  
 > **VIOLATION:** Invoking agent without context = wrong assumptions!
 
-### 0.5-J: Output Branding
+### 0.5-J: Output Branding (Aligned with Task Levels)
 
-| Trigger | Branding |
-|---------|----------|
-| Workflow execution | Header: `🤖 PikaKit v3.9.117 / Workflow: /name` + Footer: `⚡ PikaKit v3.9.117 / [Tagline]` |
-| Simple Q&A / Code edits | No branding |
-| Task completion | Footer only |
+| Task Level | Start | End |
+|-----------|-------|-----|
+| L0 (Question) | — | — |
+| L1 (Quick fix) | — | `✅ @{skill}` |
+| L2 (Multi-file) | `🤖 @{skill}` | `✅ @{skill} · {file_count} files` |
+| L3 (Architecture) | `🤖 @{skill}` | `✅ @{skill} · {file_count} files` |
+| Workflow (/cmd) | Header: `🤖 PikaKit v3.9.118 / Workflow: /name` | Footer: `⚡ PikaKit v3.9.118` |
 
 ### 0.5-K: Auto-Learned Pattern Check (MANDATORY)
 

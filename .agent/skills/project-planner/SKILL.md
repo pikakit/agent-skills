@@ -1,15 +1,16 @@
 ---
 name: project-planner
 description: >-
-  Structured task planning with clear breakdowns, dependencies, and verification criteria. Use
-  when implementing features, refactoring, or any multi-step work requiring planning.
+  Structured task planning with breakdowns, dependencies, and verification criteria.
+  Use when planning multi-step features, refactoring, or any work requiring task decomposition.
+  NOT for quick single-file fixes or questions.
 category: project-planning
 triggers: ["plan", "breakdown", "tasks", "implementation strategy", "project scope"]
 coordinates_with: ["idea-storm", "smart-router", "app-scaffold", "problem-checker", "auto-learned"]
 success_metrics: ["Verifiable Tasks", "Correct Delegations"]
 metadata:
   author: pikakit
-  version: "3.9.117"
+  version: "3.9.118"
 ---
 
 # Project Planner — Structured Task Breakdown
@@ -162,4 +163,4 @@ One sentence: What are we building/fixing?
 
 ---
 
-⚡ PikaKit v3.9.117
+⚡ PikaKit v3.9.118

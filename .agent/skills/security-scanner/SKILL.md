@@ -1,15 +1,16 @@
 ---
 name: security-scanner
 description: >-
-  Advanced vulnerability analysis principles. OWASP 2025, Supply Chain Security, risk
-  prioritization.
+  Vulnerability analysis: OWASP 2025, supply chain security, and risk prioritization.
+  Use when scanning for vulnerabilities, auditing dependencies, or assessing security risks.
+  NOT for auth implementation (use auth-patterns) or penetration testing (use offensive-sec).
 category: security-auditor
 triggers: ["security", "vulnerability", "OWASP", "pentest", "threat modeling"]
 coordinates_with: ["offensive-sec", "auth-patterns", "cicd-pipeline", "code-review", "problem-checker", "auto-learned"]
 success_metrics: ["Vulnerability Detection Rate", "OWASP Coverage", "Remediation Completeness"]
 metadata:
   author: pikakit
-  version: "3.9.117"
+  version: "3.9.118"
 ---
 
 # Security Scanner — Vulnerability Analysis & OWASP
@@ -178,4 +179,4 @@ All scan outputs MUST emit `scan_started` and `scan_completed` events.
 
 ---
 
-⚡ PikaKit v3.9.117
+⚡ PikaKit v3.9.118

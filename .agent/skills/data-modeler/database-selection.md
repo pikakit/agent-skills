@@ -121,4 +121,4 @@ const db = new Database('app.db');
 
 ---
 
-⚡ PikaKit v3.9.117
+⚡ PikaKit v3.9.118

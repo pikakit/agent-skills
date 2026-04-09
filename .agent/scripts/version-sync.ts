@@ -31,7 +31,7 @@ for (const arg of args) {
 }
 
 const pkgPath = path.join(ROOT_DIR, 'package.json');
-const pkg = JSON.parse(fs.readFileSync(pkgPath, 'utf-8'));
+const pkg = JSON.parse(fs.readFileSync(pkgPath, 'utf-8').replace(/^\uFEFF/, ''));
 const currentVersion: string = pkg.version;
 
 let newVersion = currentVersion;
@@ -127,7 +127,7 @@ for (const filePath of agentMdFiles) {
 // 3. Update registry.json
 const registryPath = path.join(AGENT_DIR, 'skills', 'registry.json');
 if (fs.existsSync(registryPath)) {
-  const registry = JSON.parse(fs.readFileSync(registryPath, 'utf-8'));
+  const registry = JSON.parse(fs.readFileSync(registryPath, 'utf-8').replace(/^\uFEFF/, ''));
   if (registry.version !== newVersion) {
     registry.version = newVersion;
     fs.writeFileSync(registryPath, JSON.stringify(registry, null, 2) + '\n', 'utf-8');
@@ -143,7 +143,7 @@ if (fs.existsSync(configDir)) {
   for (const file of configFiles) {
     const filePath = path.join(configDir, file);
     try {
-      const config = JSON.parse(fs.readFileSync(filePath, 'utf-8'));
+      const config = JSON.parse(fs.readFileSync(filePath, 'utf-8').replace(/^\uFEFF/, ''));
       // Check nested version fields (e.g. branding.version)
       let changed = false;
       if (config.version && config.version !== newVersion) {
@@ -179,6 +179,32 @@ for (const filePath of rootMdFiles) {
       console.log(`✅ Updated ${path.relative(ROOT_DIR, filePath)} to v${newVersion}`);
       updatedFiles++;
     }
+  }
+}
+
+// 6. Update PikaKit Extension
+const extPkgPath = path.resolve(ROOT_DIR, '../add-agent-skill-kit/packages/pikakit-extension/package.json');
+if (fs.existsSync(extPkgPath)) {
+  const extPkg = JSON.parse(fs.readFileSync(extPkgPath, 'utf-8').replace(/^\uFEFF/, ''));
+  if (extPkg.version !== newVersion) {
+    extPkg.version = newVersion;
+    fs.writeFileSync(extPkgPath, JSON.stringify(extPkg, null, 2) + '\n', 'utf-8');
+    console.log(`✅ Updated extension package.json to v${newVersion}`);
+    updatedFiles++;
+  }
+}
+
+const extReadmePath = path.resolve(ROOT_DIR, '../add-agent-skill-kit/packages/pikakit-extension/README.md');
+if (fs.existsSync(extReadmePath)) {
+  let content = fs.readFileSync(extReadmePath, 'utf-8');
+  const newContent = content
+    .replace(/PikaKit Engine v[0-9.]+/g, `PikaKit Engine v${newVersion}`)
+    .replace(/pikakit-engine-[0-9.]+\.vsix/g, `pikakit-engine-${newVersion}.vsix`);
+  
+  if (content !== newContent) {
+    fs.writeFileSync(extReadmePath, newContent, 'utf-8');
+    console.log(`✅ Updated extension README.md to v${newVersion}`);
+    updatedFiles++;
   }
 }
 

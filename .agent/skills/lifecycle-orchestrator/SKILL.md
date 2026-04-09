@@ -1,15 +1,16 @@
 ---
 name: lifecycle-orchestrator
 description: >-
-  End-to-end task lifecycle management with state rollback capability. Coordinates full task
-  lifecycle from input to completion with checkpoint/restore safety.
+  End-to-end task lifecycle management with state rollback and checkpoint/restore safety.
+  Use for complex multi-phase tasks, autopilot coordination, or full lifecycle management.
+  NOT for simple single-phase tasks.
 category: system-orchestrator
 triggers: ["complex multi-phase requests", "/autopilot", "/build workflows", "rollback"]
 coordinates_with: ["project-planner", "execution-reporter", "problem-checker"]
 success_metrics: ["100% restore accuracy", "0 skipped verification phases"]
 metadata:
   author: pikakit
-  version: "3.9.117"
+  version: "3.9.118"
 ---
 
 # Lifecycle Orchestrator — Pipeline + Checkpoint/Restore
@@ -165,4 +166,4 @@ node state_manager.ts list
 
 ---
 
-⚡ PikaKit v3.9.117
+⚡ PikaKit v3.9.118

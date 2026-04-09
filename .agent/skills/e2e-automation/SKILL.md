@@ -1,15 +1,16 @@
 ---
 name: e2e-automation
 description: >-
-  Web application testing principles. E2E, Playwright, visual testing, and deep audit
-  strategies.
+  End-to-end testing with Playwright, browser automation, and visual regression testing.
+  Use when writing Playwright tests, browser automation scripts, or visual testing.
+  NOT for test architecture decisions (use test-architect) or unit tests.
 category: testing
 triggers: ["E2E test", "Playwright", "browser test", "visual testing", "automation"]
 coordinates_with: ["test-architect", "cicd-pipeline"]
 success_metrics: ["100% stable tests (0 flake)", "100% coverage on critical paths"]
 metadata:
   author: pikakit
-  version: "3.9.117"
+  version: "3.9.118"
 ---
 
 # E2E Automation — Playwright Testing
@@ -171,4 +172,4 @@ NAVIGATING → ERROR        [target unreachable]  // terminal
 
 ---
 
-⚡ PikaKit v3.9.117
+⚡ PikaKit v3.9.118

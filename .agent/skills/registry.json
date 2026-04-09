@@ -1,6 +1,6 @@
 {
-  "updatedAt": "2026-03-22T04:34:00.000Z",
-  "version": "3.9.117",
+  "updatedAt": "2026-04-09T05:14:09.953Z",
+  "version": "3.9.118",
   "skills": [
     {
       "name": "agent-browser",
@@ -17,7 +17,11 @@
         "test-architect"
       ],
       "success_metrics": "test passes, context efficient",
-      "access_level": "domain"
+      "access_level": "domain",
+      "negative_triggers": [
+        "manual testing",
+        "E2E suites"
+      ]
     },
     {
       "name": "ai-artist",
@@ -42,7 +46,11 @@
         "domain-marketing.md",
         "domain-code.md"
       ],
-      "access_level": "domain"
+      "access_level": "domain",
+      "negative_triggers": [
+        "UI design",
+        "media processing"
+      ]
     },
     {
       "name": "api-architect",
@@ -79,7 +87,11 @@
       "agent_roles": [
         "api-architect"
       ],
-      "access_level": "domain"
+      "access_level": "domain",
+      "negative_triggers": [
+        "code implementation",
+        "database schema"
+      ]
     },
     {
       "name": "auth-patterns",
@@ -109,7 +121,11 @@
         "references/session.md",
         "references/passkey.md"
       ],
-      "access_level": "domain"
+      "access_level": "domain",
+      "negative_triggers": [
+        "vulnerability scanning",
+        "API design"
+      ]
     },
     {
       "name": "auto-learned",
@@ -134,7 +150,11 @@
         "style-patterns"
       ],
       "access_level": "universal",
-      "writable": true
+      "writable": true,
+      "negative_triggers": [
+        "learning new patterns",
+        "debugging"
+      ]
     },
     {
       "name": "auto-learner",
@@ -151,7 +171,11 @@
       ],
       "success_metrics": "pattern extracted, lesson saved, no duplicates",
       "access_level": "universal",
-      "meta_role": "learner"
+      "meta_role": "learner",
+      "negative_triggers": [
+        "applying patterns",
+        "debugging"
+      ]
     },
     {
       "name": "chrome-devtools",
@@ -169,7 +193,11 @@
         "perf-optimizer"
       ],
       "success_metrics": "screenshot captured, JSON output",
-      "access_level": "domain"
+      "access_level": "domain",
+      "negative_triggers": [
+        "E2E test suites",
+        "AI browser automation"
+      ]
     },
     {
       "name": "cicd-pipeline",
@@ -190,7 +218,11 @@
       "agent_roles": [
         "devops-engineer"
       ],
-      "access_level": "domain"
+      "access_level": "domain",
+      "negative_triggers": [
+        "git operations",
+        "Vercel deploy"
+      ]
     },
     {
       "name": "code-constitution",
@@ -215,7 +247,11 @@
       "agent_roles": [
         "legacy-specialist"
       ],
-      "access_level": "universal"
+      "access_level": "universal",
+      "negative_triggers": [
+        "general code review",
+        "security scanning"
+      ]
     },
     {
       "name": "code-craft",
@@ -234,7 +270,11 @@
         "test-architect"
       ],
       "success_metrics": "code adheres to standards, no linting errors",
-      "access_level": "universal"
+      "access_level": "universal",
+      "negative_triggers": [
+        "architecture decisions",
+        "testing patterns"
+      ]
     },
     {
       "name": "code-review",
@@ -253,7 +293,11 @@
         "test-architect"
       ],
       "success_metrics": "all blocking issues resolved, security verified",
-      "access_level": "domain"
+      "access_level": "domain",
+      "negative_triggers": [
+        "quick bug fixes",
+        "testing"
+      ]
     },
     {
       "name": "context-engineering",
@@ -269,7 +313,11 @@
         "system-design"
       ],
       "success_metrics": "token usage <70%, quality maintained",
-      "access_level": "meta"
+      "access_level": "meta",
+      "negative_triggers": [
+        "code writing",
+        "feature implementation"
+      ]
     },
     {
       "name": "copywriting",
@@ -287,7 +335,11 @@
         "ai-artist"
       ],
       "success_metrics": "conversion-focused, formulas applied",
-      "access_level": "domain"
+      "access_level": "domain",
+      "negative_triggers": [
+        "technical documentation",
+        "SEO content"
+      ]
     },
     {
       "name": "data-modeler",
@@ -313,7 +365,11 @@
       "agent_roles": [
         "database-architect"
       ],
-      "access_level": "domain"
+      "access_level": "domain",
+      "negative_triggers": [
+        "API endpoints",
+        "server logic"
+      ]
     },
     {
       "name": "debug-pro",
@@ -334,7 +390,11 @@
       "agent_roles": [
         "debugger"
       ],
-      "access_level": "domain"
+      "access_level": "domain",
+      "negative_triggers": [
+        "new feature design",
+        "code review"
+      ]
     },
     {
       "name": "design-system",
@@ -365,7 +425,11 @@
         "accessibility_checker.py",
         "ux_audit.py"
       ],
-      "access_level": "domain"
+      "access_level": "domain",
+      "negative_triggers": [
+        "CSS implementation",
+        "code architecture"
+      ]
     },
     {
       "name": "doc-templates",
@@ -385,7 +449,11 @@
       "agent_roles": [
         "documentation-writer"
       ],
-      "access_level": "domain"
+      "access_level": "domain",
+      "negative_triggers": [
+        "marketing copy",
+        "code comments style"
+      ]
     },
     {
       "name": "e2e-automation",
@@ -406,7 +474,11 @@
       "scripts": [
         "playwright_runner.py"
       ],
-      "access_level": "domain"
+      "access_level": "domain",
+      "negative_triggers": [
+        "test architecture",
+        "unit tests"
+      ]
     },
     {
       "name": "execution-reporter",
@@ -421,7 +493,11 @@
         "lifecycle-orchestrator"
       ],
       "success_metrics": "notification displayed, audit logged",
-      "access_level": "universal"
+      "access_level": "universal",
+      "negative_triggers": [
+        "task execution",
+        "skill logic"
+      ]
     },
     {
       "name": "game-development",
@@ -453,7 +529,11 @@
       "agent_roles": [
         "game-developer"
       ],
-      "access_level": "domain"
+      "access_level": "domain",
+      "negative_triggers": [
+        "web applications",
+        "general performance"
+      ]
     },
     {
       "name": "git-workflow",
@@ -471,7 +551,11 @@
         "security-scanner"
       ],
       "success_metrics": "clean history, no secrets",
-      "access_level": "domain"
+      "access_level": "domain",
+      "negative_triggers": [
+        "deployment pipelines",
+        "code review"
+      ]
     },
     {
       "name": "gitops",
@@ -489,7 +573,11 @@
         "git-workflow"
       ],
       "success_metrics": "GitOps workflow configured, sync working",
-      "access_level": "domain"
+      "access_level": "domain",
+      "negative_triggers": [
+        "simple deploys",
+        "general CI/CD"
+      ]
     },
     {
       "name": "google-adk-python",
@@ -511,7 +599,11 @@
         "tools.md",
         "deployment.md"
       ],
-      "access_level": "domain"
+      "access_level": "domain",
+      "negative_triggers": [
+        "general Python",
+        "non-Google frameworks"
+      ]
     },
     {
       "name": "idea-storm",
@@ -527,7 +619,11 @@
         "project-planner"
       ],
       "success_metrics": "requirements clear, approach defined",
-      "access_level": "domain"
+      "access_level": "domain",
+      "negative_triggers": [
+        "clear requirements",
+        "quick fixes"
+      ]
     },
     {
       "name": "knowledge-graph",
@@ -546,7 +642,11 @@
       "agent_roles": [
         "explorer-agent"
       ],
-      "access_level": "domain"
+      "access_level": "domain",
+      "negative_triggers": [
+        "simple text search",
+        "code implementation"
+      ]
     },
     {
       "name": "lifecycle-orchestrator",
@@ -561,7 +661,10 @@
       ],
       "success_metrics": "all phases complete, no failures",
       "access_level": "meta",
-      "meta_role": "orchestrator"
+      "meta_role": "orchestrator",
+      "negative_triggers": [
+        "simple single-phase tasks"
+      ]
     },
     {
       "name": "mcp-builder",
@@ -580,7 +683,10 @@
         "mcp-management"
       ],
       "success_metrics": "MCP server functional, evaluations pass",
-      "access_level": "domain"
+      "access_level": "domain",
+      "negative_triggers": [
+        "using existing MCP tools"
+      ]
     },
     {
       "name": "mcp-management",
@@ -595,7 +701,10 @@
         "mcp-builder"
       ],
       "success_metrics": "tools discovered, execution successful",
-      "access_level": "domain"
+      "access_level": "domain",
+      "negative_triggers": [
+        "building new MCP servers"
+      ]
     },
     {
       "name": "media-processing",
@@ -620,7 +729,11 @@
         "ffmpeg_runner.py",
         "imagemagick_runner.py"
       ],
-      "access_level": "domain"
+      "access_level": "domain",
+      "negative_triggers": [
+        "UI image assets",
+        "AI image generation"
+      ]
     },
     {
       "name": "mobile-design",
@@ -637,8 +750,12 @@
         "mobile-developer",
         "design-system"
       ],
-      "success_metrics": "MFRI score ≥3, touch targets validated",
-      "access_level": "domain"
+      "success_metrics": "MFRI score â‰¥3, touch targets validated",
+      "access_level": "domain",
+      "negative_triggers": [
+        "mobile code",
+        "web design"
+      ]
     },
     {
       "name": "mobile-developer",
@@ -660,7 +777,11 @@
       "agent_roles": [
         "mobile-developer"
       ],
-      "access_level": "domain"
+      "access_level": "domain",
+      "negative_triggers": [
+        "web frontend",
+        "mobile design decisions"
+      ]
     },
     {
       "name": "nextjs-pro",
@@ -679,7 +800,11 @@
         "react-pro"
       ],
       "success_metrics": "build passes, pages render",
-      "access_level": "domain"
+      "access_level": "domain",
+      "negative_triggers": [
+        "plain React SPA",
+        "CSS styling"
+      ]
     },
     {
       "name": "nodejs-pro",
@@ -699,7 +824,11 @@
       "agent_roles": [
         "backend-specialist"
       ],
-      "access_level": "domain"
+      "access_level": "domain",
+      "negative_triggers": [
+        "frontend code",
+        "database schema"
+      ]
     },
     {
       "name": "observability",
@@ -715,7 +844,11 @@
         "cicd-pipeline"
       ],
       "success_metrics": "observability stack configured",
-      "access_level": "domain"
+      "access_level": "domain",
+      "negative_triggers": [
+        "server management",
+        "performance optimization"
+      ]
     },
     {
       "name": "offensive-sec",
@@ -735,7 +868,11 @@
       "agent_roles": [
         "penetration-tester"
       ],
-      "access_level": "domain"
+      "access_level": "domain",
+      "negative_triggers": [
+        "defensive scanning",
+        "auth flows"
+      ]
     },
     {
       "name": "perf-optimizer",
@@ -757,7 +894,11 @@
       "agent_roles": [
         "performance-optimizer"
       ],
-      "access_level": "domain"
+      "access_level": "domain",
+      "negative_triggers": [
+        "SEO",
+        "server scaling"
+      ]
     },
     {
       "name": "problem-checker",
@@ -775,7 +916,11 @@
       "scripts": [
         "check_problems.js"
       ],
-      "access_level": "universal"
+      "access_level": "universal",
+      "negative_triggers": [
+        "root cause analysis",
+        "code review"
+      ]
     },
     {
       "name": "project-planner",
@@ -795,7 +940,11 @@
       "agent_roles": [
         "project-planner"
       ],
-      "access_level": "domain"
+      "access_level": "domain",
+      "negative_triggers": [
+        "quick single-file fixes",
+        "questions"
+      ]
     },
     {
       "name": "python-pro",
@@ -812,7 +961,11 @@
         "api-architect"
       ],
       "success_metrics": "tests pass, type hints complete",
-      "access_level": "domain"
+      "access_level": "domain",
+      "negative_triggers": [
+        "Node.js projects",
+        "AI agent frameworks"
+      ]
     },
     {
       "name": "react-pro",
@@ -838,7 +991,11 @@
       "agent_roles": [
         "frontend-specialist"
       ],
-      "access_level": "domain"
+      "access_level": "domain",
+      "negative_triggers": [
+        "Next.js routing",
+        "CSS styling"
+      ]
     },
     {
       "name": "security-scanner",
@@ -862,7 +1019,11 @@
       "agent_roles": [
         "security-auditor"
       ],
-      "access_level": "domain"
+      "access_level": "domain",
+      "negative_triggers": [
+        "auth implementation",
+        "penetration testing"
+      ]
     },
     {
       "name": "seo-optimizer",
@@ -884,7 +1045,11 @@
       "agent_roles": [
         "seo-specialist"
       ],
-      "access_level": "domain"
+      "access_level": "domain",
+      "negative_triggers": [
+        "performance profiling",
+        "marketing copy"
+      ]
     },
     {
       "name": "server-ops",
@@ -901,7 +1066,11 @@
         "security-scanner"
       ],
       "success_metrics": "server running, uptime maintained",
-      "access_level": "domain"
+      "access_level": "domain",
+      "negative_triggers": [
+        "code debugging",
+        "deployment pipelines"
+      ]
     },
     {
       "name": "shell-script",
@@ -918,7 +1087,11 @@
         "server-ops"
       ],
       "success_metrics": "script runs, no errors",
-      "access_level": "domain"
+      "access_level": "domain",
+      "negative_triggers": [
+        "Windows PowerShell",
+        "application code"
+      ]
     },
     {
       "name": "smart-router",
@@ -933,7 +1106,11 @@
         "execution-reporter"
       ],
       "success_metrics": "correct agent selected, routing transparent",
-      "access_level": "meta"
+      "access_level": "meta",
+      "negative_triggers": [
+        "task execution",
+        "skill implementation"
+      ]
     },
     {
       "name": "studio",
@@ -952,7 +1129,11 @@
         "search.js",
         "design_system.js"
       ],
-      "access_level": "domain"
+      "access_level": "domain",
+      "negative_triggers": [
+        "design theory",
+        "CSS code"
+      ]
     },
     {
       "name": "system-design",
@@ -968,7 +1149,11 @@
         "data-modeler"
       ],
       "success_metrics": "architecture documented, scalability validated",
-      "access_level": "domain"
+      "access_level": "domain",
+      "negative_triggers": [
+        "code implementation",
+        "quick fixes"
+      ]
     },
     {
       "name": "tailwind-kit",
@@ -983,7 +1168,11 @@
         "design-system"
       ],
       "success_metrics": "styles applied, design consistent",
-      "access_level": "domain"
+      "access_level": "domain",
+      "negative_triggers": [
+        "design decisions",
+        "vanilla CSS"
+      ]
     },
     {
       "name": "test-architect",
@@ -1008,7 +1197,11 @@
       "agent_roles": [
         "test-engineer"
       ],
-      "access_level": "domain"
+      "access_level": "domain",
+      "negative_triggers": [
+        "Playwright execution",
+        "debugging"
+      ]
     },
     {
       "name": "typescript-expert",
@@ -1029,7 +1222,11 @@
       "scripts": [
         "ts_diagnostic.js"
       ],
-      "access_level": "domain"
+      "access_level": "domain",
+      "negative_triggers": [
+        "React patterns",
+        "Node.js architecture"
+      ]
     },
     {
       "name": "vercel-deploy",
@@ -1049,7 +1246,11 @@
       "scripts": [
         "deploy.sh"
       ],
-      "access_level": "domain"
+      "access_level": "domain",
+      "negative_triggers": [
+        "other platforms",
+        "GitOps"
+      ]
     }
   ]
 }

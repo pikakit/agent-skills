@@ -1,17 +1,16 @@
 ---
 name: typescript-expert
 description: >-
-  TypeScript and JavaScript expert with deep knowledge of type-level programming, performance
-  tuning, monorepo management, migration strategies, and modern tooling. Use PROACTIVELY for
-  any TypeScript/JavaScript issues including complex type gymnastics, build performance,
-  debugging, and architectural decisions.
+  TypeScript type-level programming, performance tuning, monorepo management, and tooling.
+  Use for complex type gymnastics, build performance, TypeScript migration, or TS debugging.
+  NOT for React-specific patterns (use react-pro) or Node.js architecture (use nodejs-pro).
 category: typesystem-engineering
 triggers: ["TypeScript", "JavaScript", "type error", "tsconfig", "monorepo"]
 coordinates_with: ["nextjs-pro", "react-architect", "code-review"]
 success_metrics: ["Type Coverage", "Build Performance", "Determinism"]
 metadata:
   author: pikakit
-  version: "3.9.117"
+  version: "3.9.118"
 ---
 
 # TypeScript Expert — Advanced TS Problem-Solving
@@ -198,4 +197,4 @@ All typescript-expert outputs MUST emit `type_pattern_recommended`, `error_resol
 
 ---
 
-⚡ PikaKit v3.9.117
+⚡ PikaKit v3.9.118

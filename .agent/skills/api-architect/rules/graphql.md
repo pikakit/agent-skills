@@ -151,4 +151,4 @@ const server = new ApolloServer({
 
 ---
 
-⚡ PikaKit v3.9.117
+⚡ PikaKit v3.9.118

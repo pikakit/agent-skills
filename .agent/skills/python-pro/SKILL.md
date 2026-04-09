@@ -1,15 +1,16 @@
 ---
 name: python-pro
 description: >-
-  Python development principles and decision-making. Framework selection
-  (FastAPI/Django/Flask), async patterns, type hints, project structure.
+  Python development with FastAPI, Django, or Flask. Async patterns, type hints, project structure.
+  Use when building Python backends, scripts, or choosing Python frameworks.
+  NOT for Node.js projects (use nodejs-pro) or general AI agents (use google-adk-python).
 category: backend-specialist
 triggers: ["Python", "pip", "FastAPI", "Django", "Flask"]
 coordinates_with: ["api-architect", "test-architect", "data-modeler", "problem-checker", "auto-learned"]
 success_metrics: ["Correct Framework Selection", "Type Hint Coverage"]
 metadata:
   author: pikakit
-  version: "3.9.117"
+  version: "3.9.118"
 ---
 
 # Python Pro — Framework Selection & Architecture
@@ -246,4 +247,4 @@ For the complete guide with all rules expanded: `AGENTS.md`
 
 ---
 
-⚡ PikaKit v3.9.117
+⚡ PikaKit v3.9.118

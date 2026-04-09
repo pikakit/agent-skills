@@ -1,17 +1,16 @@
 ---
 name: vercel-deploy
 description: >-
-  Deploy applications and websites to Vercel. Use this skill when the user requests deployment
-  actions such as "Deploy my app", "Deploy this to production", "Create a preview deployment",
-  "Deploy and give me the link", or "Push this live". No authentication required - returns
-  preview URL and claimable deployment link.
+  Deploy applications to Vercel with preview URLs and production releases.
+  Use when user says "deploy", "push live", "preview deployment", or "deploy to Vercel".
+  NOT for other platforms (use cicd-pipeline) or GitOps (use gitops).
 category: cicd-deployment
 triggers: ["deploy", "vercel", "production", "preview", "push live"]
 coordinates_with: ["cicd-pipeline", "nextjs-pro", "test-architect"]
 success_metrics: ["Deployment Success Rate", "Time to Preview", "Framework Detection Accuracy"]
 metadata:
   author: pikakit
-  version: "3.9.117"
+  version: "3.9.118"
 ---
 
 # Vercel Deploy — Zero-Auth Deployment
@@ -173,4 +172,4 @@ All vercel-deploy outputs MUST emit `packaging_started` and either `upload_compl
 
 ---
 
-⚡ PikaKit v3.9.117
+⚡ PikaKit v3.9.118

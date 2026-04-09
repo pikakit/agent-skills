@@ -1,15 +1,16 @@
 ---
 name: code-review
 description: >-
-  Code review and quality control covering linting, static analysis, security, and best
-  practices. 5-category review, 4-level comment taxonomy, mandatory quality loop.
+  Code review and quality control: linting, static analysis, security, and best practices.
+  Use when reviewing PRs, auditing code quality, or performing security checks on code.
+  NOT for quick bug fixes (use debug-pro) or testing (use test-architect).
 category: quality-assurance
 triggers: ["review", "PR", "lint", "format", "validate", "types", "audit", "security check"]
 coordinates_with: ["code-craft", "security-scanner", "test-architect"]
 success_metrics: ["0 blocking issues", "100% lint pass rate", "0 type errors"]
 metadata:
   author: pikakit
-  version: "3.9.117"
+  version: "3.9.118"
 ---
 
 # Code Review & Quality
@@ -148,4 +149,4 @@ metadata:
 
 ---
 
-⚡ PikaKit v3.9.117
+⚡ PikaKit v3.9.118

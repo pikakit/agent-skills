@@ -1,15 +1,16 @@
 ---
 name: game-development
 description: >-
-  Game development orchestrator. Routes to platform-specific skills based on project needs.
-  Core principles for game loop, performance, patterns, AI, collision, input.
+  Game development orchestrator: game loop, physics, AI, collision, and platform-specific routing.
+  Use when building 2D/3D games, game mechanics, or game-specific performance optimization.
+  NOT for web applications (use react-pro) or general performance (use perf-optimizer).
 category: game-development-subskill
 triggers: ["game", "game development", "Unity", "Godot", "Phaser", "game engine"]
 coordinates_with: ["perf-optimizer", "mobile-developer", "shader"]
 success_metrics: ["100% correct sub-skill routing", "<5ms routing latency"]
 metadata:
   author: pikakit
-  version: "3.9.117"
+  version: "3.9.118"
 ---
 
 # Game Development — Orchestrator
@@ -174,4 +175,4 @@ RENDER → Draw the frame (interpolated)
 
 ---
 
-⚡ PikaKit v3.9.117
+⚡ PikaKit v3.9.118

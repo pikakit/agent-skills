@@ -1,16 +1,16 @@
 ---
 name: api-architect
 description: >-
-  API design principles and decision-making. REST vs GraphQL vs tRPC selection, response
-  formats, versioning, pagination, auth patterns, rate limiting. Deterministic decision trees
-  produce context-specific API design choices.
+  API design patterns for REST, GraphQL, and tRPC services.
+  Use when designing endpoints, versioning APIs, or choosing API architecture.
+  NOT for code implementation (use nodejs-pro/python-pro) or database schema (use data-modeler).
 category: architecture
 triggers: ["API design", "REST", "GraphQL", "tRPC", "endpoint", "versioning"]
 coordinates_with: ["data-modeler", "security-scanner", "auth-patterns", "nodejs-pro"]
 success_metrics: ["0 breaking API changes without explicit version bump", "100% compliant with OWASP API Top 10"]
 metadata:
   author: pikakit
-  version: "3.9.117"
+  version: "3.9.118"
 ---
 
 # API Architect
@@ -230,4 +230,4 @@ For the complete guide with all rules expanded: `AGENTS.md`
 
 ---
 
-⚡ PikaKit v3.9.117
+⚡ PikaKit v3.9.118

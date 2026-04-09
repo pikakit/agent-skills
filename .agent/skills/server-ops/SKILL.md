@@ -1,15 +1,16 @@
 ---
 name: server-ops
 description: >-
-  Server management principles and decision-making. Process management, monitoring strategy,
-  scaling decisions.
+  Server management: process management, monitoring, scaling decisions, and infrastructure.
+  Use when managing servers, configuring processes, or planning scaling strategies.
+  NOT for code debugging (use debug-pro) or deployment pipelines (use cicd-pipeline).
 category: server-management
 triggers: ["server", "DevOps", "infrastructure", "deployment", "hosting"]
 coordinates_with: ["cicd-pipeline", "observability", "security-scanner"]
 success_metrics: ["Uptime Consistency", "Resource Efficiency", "Incident Resolution Time"]
 metadata:
   author: pikakit
-  version: "3.9.117"
+  version: "3.9.118"
 ---
 
 # Server Ops — Production Server Management
@@ -190,4 +191,4 @@ All server ops outputs MUST emit `server_analysis_started` and `analysis_complet
 
 ---
 
-⚡ PikaKit v3.9.117
+⚡ PikaKit v3.9.118

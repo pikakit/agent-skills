@@ -1,11 +1,12 @@
 ---
 name: media-processing
 description: >-
-  Process video, audio, image with FFmpeg, ImageMagick, RMBG. Triggers on: video, audio, image,
-  compress, resize, convert, background removal.
+  Process video, audio, and images with FFmpeg, ImageMagick, and RMBG.
+  Use when converting, compressing, resizing media files, or removing backgrounds.
+  NOT for UI image assets (use design-system) or prompt-based generation (use ai-artist).
 metadata:
   author: pikakit
-  version: "3.9.117"
+  version: "3.9.118"
 ---
 
 # Media Processing — FFmpeg + ImageMagick + RMBG
@@ -169,4 +170,4 @@ rmbg input.jpg -m briaai -o output.png   # Highest quality
 
 ---
 
-⚡ PikaKit v3.9.117
+⚡ PikaKit v3.9.118

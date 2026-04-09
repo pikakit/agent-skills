@@ -1,15 +1,16 @@
 ---
 name: studio
 description: >-
-  AI-powered design intelligence with 50+ styles, 97 color palettes, 57 font pairings, and
-  anti-AI-slop design system generation.
+  AI-powered design intelligence with 50+ styles, 97 color palettes, 57 font pairings.
+  Use when generating design systems, searching palettes/fonts, or applying anti-AI-slop rules.
+  NOT for design theory (use design-system) or CSS code (use tailwind-kit).
 category: design-intelligence
 triggers: ["design system", "UI design", "color palette", "typography", "style guide"]
 coordinates_with: ["frontend-specialist", "design-system", "ai-artist"]
 success_metrics: ["Aesthetic Consistency", "Slop Avoidance Rate", "Typography Contrast Ratio"]
 metadata:
   author: pikakit
-  version: "3.9.117"
+  version: "3.9.118"
 ---
 
 # Studio — Design Intelligence
@@ -174,4 +175,4 @@ All studio outputs MUST emit `design_search_started` and `design_system_generate
 
 ---
 
-⚡ PikaKit v3.9.117
+⚡ PikaKit v3.9.118

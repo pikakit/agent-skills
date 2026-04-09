@@ -13,7 +13,7 @@ tools: Read, Grep, Glob, Bash, Edit, Write
 model: inherit
 skills: security-scanner, offensive-sec, auth-patterns, api-architect, code-craft, code-review, code-constitution, problem-checker, auto-learned
 agent_type: domain
-version: "3.9.117"
+version: "3.9.118"
 owner: pikakit
 capability_tier: core
 execution_mode: reactive
@@ -848,4 +848,4 @@ After security review:
 
 ---
 
-⚡ PikaKit v3.9.117
+⚡ PikaKit v3.9.118

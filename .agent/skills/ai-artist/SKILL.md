@@ -1,16 +1,16 @@
 ---
 name: ai-artist
 description: >-
-  Prompt engineering for AI text and image generation models. LLM prompting (Claude, GPT,
-  Gemini), image generation (Midjourney, DALL-E, Stable Diffusion, Flux). Deterministic prompt
-  construction with domain-specific templates and model-aware parameter injection.
+  Prompt engineering for AI image generation: Midjourney, DALL-E, Stable Diffusion, Flux.
+  Use when writing image prompts, configuring generation parameters, or optimizing AI art output.
+  NOT for UI design decisions (use design-system) or media file processing (use media-processing).
 category: prompt-engineering
 triggers: ["prompt", "AI prompt", "image generation", "Midjourney", "DALL-E", "Stable Diffusion", "Flux"]
 coordinates_with: ["studio", "media-processing", "context-engineering"]
 success_metrics: ["100% deterministic prompt reproduction"]
 metadata:
   author: pikakit
-  version: "3.9.117"
+  version: "3.9.118"
 ---
 
 # AI Artist — Prompt Engineering
@@ -229,4 +229,4 @@ Each rule file contains:
 
 ---
 
-⚡ PikaKit v3.9.117
+⚡ PikaKit v3.9.118

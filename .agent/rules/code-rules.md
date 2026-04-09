@@ -4,56 +4,60 @@ trigger: always_on
 
 # PikaKit — Code & Design Rules
 
-## 📥 REQUEST CLASSIFIER (STEP 1)
+## 📋 TASK LEVEL CLASSIFICATION (STEP 1)
 
-| Request Type | Trigger Keywords | Active Tiers | Result |
-|-------------|-----------------|--------------|--------|
-| QUESTION | "what is", "explain" | TIER 0 only | Text |
-| SURVEY | "analyze", "overview" | TIER 0 + Explorer | Intel |
-| SIMPLE CODE | "fix", "add" (single file) | TIER 0 + TIER 1 lite | Inline Edit |
-| COMPLEX CODE | "build", "create", "implement" | TIER 0 + 1 + Agent | `{task-slug}.md` Required |
-| DESIGN/UI | "design", "UI", "dashboard" | TIER 0 + 1 + Agent | `{task-slug}.md` Required |
-| SLASH CMD | /build, /autopilot, etc. | Command-specific | Variable |
+> Classify EVERY request before acting. Default = **L2** if unsure.
+
+| Level | Criteria | Skill Protocol | Example |
+|-------|----------|---------------|--------|
+| **L0** | Question, explain, analyze | ❌ No skill needed | "giải thích hook này", "what is X?" |
+| **L1** | Single-file fix, < 10 lines, obvious intent | ⚡ Identify skill + announce footer | "fix typo", "bỏ đường gạch ngang" |
+| **L2** | Multi-file change, logic change | ✅ Read SKILL.md + announce header/footer | "add sparkline to 3 charts" |
+| **L3** | Architecture, new feature, design system | ✅ Full protocol + plan required | "redesign chart system" |
+
+**Classification Rules:**
+- Default = **L2** (safe middle ground)
+- Only L1 if ALL: single file, < 10 lines, zero ambiguity
+- If unsure → L2. If multi-file or design decision → L3
 
 ---
 
 ## 🤖 INTELLIGENT AGENT ROUTING (STEP 2)
 
-> 🔴 **MANDATORY:** Follow `@[skills/smart-router]` protocol.
+> 📋 **Quick Reference:** Scan `.agent/skills/SKILL_INDEX.md` for skill matching.
 
-1. **Analyze** (Silent): Detect domains from request
-2. **Select Skill(s)**: Choose specialist skill(s) matching the domain
-3. **Inform**: Display routing (e.g., `🤖 **PikaKit Loading Skill:** @react-pro`)
-4. **Apply**: Read skill's SKILL.md + AGENTS.md and follow its rules
+1. **Classify** task level (L0-L3) from table above
+2. **Identify** skill(s) from SKILL_INDEX.md
+3. **Execute** protocol for that level:
 
-**Rules:** Silent analysis (no "I am analyzing..."), professional tone, respect `@skill` overrides.
+| Level | Step 1: Identify | Step 2: Read | Step 3: Announce | Step 4: Apply |
+|-------|-----------------|-------------|-----------------|---------------|
+| L0 | — | — | — | — |
+| L1 | ✅ From SKILL_INDEX | ❌ Skip | ✅ Footer only | ⚡ Apply from memory |
+| L2 | ✅ From SKILL_INDEX | ✅ SKILL.md | ✅ Header + Footer | ✅ Full rules |
+| L3 | ✅ From SKILL_INDEX | ✅ SKILL.md + AGENTS.md | ✅ Header + Footer | ✅ Full rules + plan |
 
-### 📢 NOTIFICATION ENFORCEMENT (MANDATORY)
+**Rules:** Silent analysis, professional tone, respect `@skill` overrides.
 
-At task START: `🤖 **PikaKit Loading Skill:** @{skill}`  
-At task END: `✅ **Complete** | Skills: {count} | Files: {count}`
+### 📢 NOTIFICATION FORMAT
 
-Config: `.agent/config/notification-config.json` (enabled: true, verbosity: minimal/normal/verbose)
+| Level | Start | End |
+|-------|-------|-----|
+| L0 | — | — |
+| L1 | — | `✅ @{skill}` |
+| L2 | `🤖 @{skill}` | `✅ @{skill} · {file_count} files` |
+| L3 | `🤖 @{skill}` | `✅ @{skill} · {file_count} files` |
 
-### ⚠️ AGENT ROUTING CHECKLIST (MANDATORY BEFORE EVERY CODE/DESIGN RESPONSE)
+### ⚠️ AGENT ROUTING CHECKLIST (L2+ ONLY)
 
-**Before ANY code or design work, you MUST complete this mental checklist:**
+> For L2 and L3 tasks, complete this checklist before writing code:
 
 | Step | Check | If Unchecked |
-|------|-------|--------------| 
-| 1 | Did I identify the correct skill for this domain? | → STOP. Analyze request domain first. |
-| 2 | Did I READ the skill's AGENTS.md (or recall its rules)? | → STOP. Open `.agent/skills/{skill}/AGENTS.md` |
-| 3 | Did I announce `🤖 PikaKit Loading Skill: @{skill}`? | → STOP. Add announcement before response. |
-| 4 | Did I load required skills from `coordinates_with`? | → STOP. Check `coordinates_with` field and read them. |
-
-**Failure Conditions:**
-
-- ❌ Writing code without identifying a skill = **PROTOCOL VIOLATION**
-- ❌ Skipping the announcement = **USER CANNOT VERIFY SKILL WAS USED**
-- ❌ Ignoring skill-specific rules = **QUALITY FAILURE**
-
-> 🔴 **Self-Check Trigger:** Every time you are about to write code or create UI, ask yourself:
-> "Have I completed the Skill Routing Checklist?" If NO → Complete it first.
+|------|-------|--------------|
+| 1 | Did I classify the task level? | → STOP. Classify first. |
+| 2 | Did I identify the correct skill from SKILL_INDEX? | → STOP. Scan index. |
+| 3 | Did I read the skill's SKILL.md? | → STOP. Read it. |
+| 4 | Did I announce the skill? | → STOP. Add header. |
 
 ---
 
@@ -110,23 +114,23 @@ After ANY task: check `@[current_problems]` → auto-fix (CSS, imports, lint, ty
 
 > 🔴 Mobile + frontend-specialist = WRONG. Mobile = mobile-developer ONLY.
 
-### 🛑 GLOBAL SOCRATIC GATE
+### 🛑 SOCRATIC GATE (Proportional to Task Level)
 
-| Request Type | Strategy |
-|-------------|----------|
-| New Feature | ASK min 3 strategic questions |
-| Code Edit / Bug Fix | Confirm understanding + impact |
-| Vague / Simple | Ask Purpose, Users, Scope |
-| Full Orchestration | STOP until user confirms plan |
-| Direct "Proceed" | Ask 2 Edge Case questions |
+| Task Level | Strategy |
+|-----------|----------|
+| L0 (Question) | Answer directly |
+| L1 (Quick fix) | Proceed if intent is clear |
+| L2 (Multi-file) | Confirm understanding before starting |
+| L3 (Architecture) | ASK 1-3 strategic questions, then plan |
+| Vague / Ambiguous | Ask Purpose + Scope before classifying |
 
-**Never Assume.** Reference: `@[skills/idea-storm]`.
+**Never Assume.** Reference: `@[skills/idea-storm]` for complex requirements.
 
 ### 🏁 Final Checklist
 
 | Stage | Command |
 |-------|---------|
-| Development | `npm run checklist:js .` |
+| Development | `npm run checklist` |
 | Pre-Deploy | `npm run verify <URL>` |
 
 **Order:** Security → Lint → Schema → Tests → UX → SEO → Lighthouse/E2E

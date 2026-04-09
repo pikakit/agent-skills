@@ -1,15 +1,16 @@
 ---
 name: nodejs-pro
 description: >-
-  Node.js development principles and decision-making. Framework selection
-  (Hono/Fastify/Express/NestJS), async patterns, security, architecture.
+  Node.js backend development with Hono, Fastify, Express, or NestJS.
+  Use when building APIs, servers, backend logic, or choosing Node.js frameworks.
+  NOT for frontend code (use react-pro) or database schema (use data-modeler).
 category: backend-architect
 triggers: ["Node.js", "Express", "Fastify", "Hono", "backend", "server", "API"]
 coordinates_with: ["api-architect", "data-modeler", "auth-patterns", "problem-checker", "auto-learned", "typescript-expert"]
 success_metrics: ["0 Security Vulnerabilities", "0 IDE/Lint Errors", "0 Unhandled Promise Rejections"]
 metadata:
   author: pikakit
-  version: "3.9.117"
+  version: "3.9.118"
 ---
 
 # Node.js Pro — Backend Decision Framework
@@ -236,4 +237,4 @@ For the complete guide with all rules expanded: `AGENTS.md`
 
 ---
 
-⚡ PikaKit v3.9.117
+⚡ PikaKit v3.9.118

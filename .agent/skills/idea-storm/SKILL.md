@@ -1,15 +1,16 @@
 ---
 name: idea-storm
 description: >-
-  Socratic questioning protocol + user communication. MANDATORY for complex requests, new
-  features, or unclear requirements. Includes progress reporting and error handling.
+  Socratic questioning protocol for complex requirements and unclear user requests.
+  Use when requirements are vague, ambiguous, or need strategic clarification before building.
+  NOT for clear, well-defined tasks or quick fixes.
 category: verification-gate
 triggers: ["brainstorm", "understand requirements", "clarify", "unclear", "complex request"]
 coordinates_with: ["project-planner", "app-scaffold", "system-design"]
 success_metrics: ["100% vague requests intercepted", "< 5 questions per gate"]
 metadata:
   author: pikakit
-  version: "3.9.117"
+  version: "3.9.118"
 ---
 
 # Idea Storm — Socratic Requirement Clarification
@@ -195,4 +196,4 @@ Each rule file contains:
 
 ---
 
-⚡ PikaKit v3.9.117
+⚡ PikaKit v3.9.118
