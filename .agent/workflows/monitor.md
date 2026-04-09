@@ -1,4 +1,4 @@
----
+﻿---
 description: Production observability stack — OpenTelemetry instrumentation, structured logging, Prometheus/Grafana dashboards, distributed tracing, and PagerDuty incident alerting.
 skills: [observability, server-ops, problem-checker, context-engineering, auto-learner]
 agents: [orchestrator, assessor, recovery, learner, devops-engineer]
@@ -22,7 +22,7 @@ $ARGUMENTS
 
 ## Purpose
 
-Set up production observability infrastructure — OpenTelemetry SDK, structured logging, Prometheus metrics, distributed tracing, and incident alerting with runbooks. **Differs from `/launch` (production deployment) and `/diagnose` (root cause analysis) by establishing the full observability foundation for production monitoring.** Uses `devops-engineer` with `observability` for instrumentation and `server-ops` for infrastructure configuration.
+Set up production observability infrastructure — OpenTelemetry SDK, structured logging, Prometheus metrics, distributed tracing, and incident alerting with runbooks. **Differs from `/launch` (production deployment) and `/diagnose` (root cause analysis) by establishing the full observability foundation for production monitoring.** Uses `cicd-pipeline` with `observability` for instrumentation and `server-ops` for infrastructure configuration.
 
 ---
 
@@ -71,7 +71,7 @@ learner.log(monitoring_patterns)
 |-------|-------|
 | **INPUT** | $ARGUMENTS (app name + optional provider/requirements) |
 | **OUTPUT** | OpenTelemetry SDK initialized, provider configured, auto-instrumentation enabled |
-| **AGENTS** | `devops-engineer`, `assessor` |
+| **AGENTS** | `cicd-pipeline`, `assessor` |
 | **SKILLS** | `observability`, `context-engineering` |
 
 // turbo — telemetry: phase-2-foundation
@@ -96,7 +96,7 @@ learner.log(monitoring_patterns)
 |-------|-------|
 | **INPUT** | OpenTelemetry foundation from Phase 2 |
 | **OUTPUT** | Structured logger with PII masking, correlation IDs, cloud aggregation |
-| **AGENTS** | `orchestrator`, `devops-engineer` |
+| **AGENTS** | `orchestrator`, `cicd-pipeline` |
 | **SKILLS** | `observability` |
 
 // turbo — telemetry: phase-3-logging
@@ -112,7 +112,7 @@ learner.log(monitoring_patterns)
 |-------|-------|
 | **INPUT** | Logger from Phase 3 |
 | **OUTPUT** | Prometheus `/metrics` endpoint, Golden Signals dashboard |
-| **AGENTS** | `devops-engineer` |
+| **AGENTS** | `cicd-pipeline` |
 | **SKILLS** | `observability`, `server-ops` |
 
 // turbo — telemetry: phase-4-metrics
@@ -136,7 +136,7 @@ learner.log(monitoring_patterns)
 |-------|-------|
 | **INPUT** | Metrics from Phase 4 |
 | **OUTPUT** | Auto-instrumented traces with context propagation |
-| **AGENTS** | `devops-engineer` |
+| **AGENTS** | `cicd-pipeline` |
 | **SKILLS** | `observability` |
 
 1. Enable auto-instrumentation (HTTP, Prisma, Redis)
@@ -150,7 +150,7 @@ learner.log(monitoring_patterns)
 |-------|-------|
 | **INPUT** | Full observability stack from Phases 2-5 |
 | **OUTPUT** | Alert rules, Slack/PagerDuty integration, runbooks |
-| **AGENTS** | `devops-engineer`, `learner` |
+| **AGENTS** | `cicd-pipeline`, `learner` |
 | **SKILLS** | `observability`, `server-ops`, `problem-checker`, `auto-learner` |
 
 Default alert rules:

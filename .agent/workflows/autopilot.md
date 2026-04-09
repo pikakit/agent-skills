@@ -1,4 +1,4 @@
----
+﻿---
 description: Autonomous multi-agent orchestration — coordinate 3+ specialist agents in parallel with automated verification, conflict resolution, and continuous execution.
 chain: build-web-app
 skills: [lifecycle-orchestrator, execution-reporter, context-engineering, project-planner, studio, problem-checker, idea-storm, design-system, test-architect, security-scanner, auto-learner]
@@ -67,12 +67,12 @@ success → learner.log(patterns)
 
 | Domain | Agent |
 |--------|-------|
-| Backend/API | `backend-specialist` |
-| Frontend/UI | `frontend-specialist` |
-| Database | `database-architect` |
-| Security | `security-auditor` |
-| Testing | `test-engineer` |
-| DevOps | `devops-engineer` |
+| Backend/API | `nodejs-pro` |
+| Frontend/UI | `react-pro` |
+| Database | `data-modeler` |
+| Security | `security-scanner` |
+| Testing | `test-architect` |
+| DevOps | `cicd-pipeline` |
 | Mobile | `mobile-developer` |
 
 2. Select minimum 3 agents
@@ -110,7 +110,7 @@ success → learner.log(patterns)
 |-------|-------|
 | **INPUT** | Approved PLAN.md (if app has UI) |
 | **OUTPUT** | Design tokens (colors, typography, effects) |
-| **AGENTS** | `frontend-specialist`, `orchestrator` |
+| **AGENTS** | `react-pro`, `orchestrator` |
 | **SKILLS** | `studio`, `design-system` |
 
 > **Skip this phase** if the task has no UI component.
@@ -152,9 +152,9 @@ graph TD
 
 | Parallel Group | Agents | Runs After |
 |----------------|--------|------------|
-| **Foundation** | `database-architect`, `security-auditor` | Plan approved |
-| **Core** | `backend-specialist`, `frontend-specialist` | Foundation complete |
-| **Polish** | `test-engineer`, `devops-engineer` | Core complete |
+| **Foundation** | `data-modeler`, `security-scanner` | Plan approved |
+| **Core** | `nodejs-pro`, `react-pro` | Foundation complete |
+| **Polish** | `test-architect`, `cicd-pipeline` | Core complete |
 
 **Agent Selection:** Match task type to specialists. Web → frontend + backend + test. API → backend + security + test. Full Stack → all core agents.
 
@@ -168,7 +168,7 @@ graph TD
 |-------|-------|
 | **INPUT** | All artifacts from Phase 5 |
 | **OUTPUT** | Verification report: tests, lint, types, security scan |
-| **AGENTS** | `test-engineer`, `learner` |
+| **AGENTS** | `test-architect`, `learner` |
 | **SKILLS** | `test-architect`, `problem-checker`, `security-scanner`, `auto-learner` |
 
 // turbo — telemetry: phase-6-test
@@ -253,10 +253,10 @@ If the Exit Gates fail and cannot be resolved automatically:
 | Agent | Task | Duration | Status |
 |-------|------|----------|--------|
 | `project-planner` | Task breakdown | 2m | ✅ Complete |
-| `database-architect` | Schema design | 3m | ✅ Complete |
-| `backend-specialist` | API routes | 5m | ✅ Complete |
-| `frontend-specialist` | UI components | 7m | ✅ Complete |
-| `test-engineer` | E2E tests | 4m | ✅ Complete |
+| `data-modeler` | Schema design | 3m | ✅ Complete |
+| `nodejs-pro` | API routes | 5m | ✅ Complete |
+| `react-pro` | UI components | 7m | ✅ Complete |
+| `test-architect` | E2E tests | 4m | ✅ Complete |
 
 ### Execution Metrics
 

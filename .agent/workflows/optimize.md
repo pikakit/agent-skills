@@ -1,4 +1,4 @@
----
+﻿---
 description: Full-stack performance optimization — profile bottlenecks, fix N+1 queries, configure Redis caching, reduce bundle size, and validate with k6 load testing.
 skills: [perf-optimizer, data-modeler, server-ops, problem-checker, smart-router, context-engineering, auto-learner]
 agents: [orchestrator, assessor, recovery, learner, performance-specialist, backend-specialist]
@@ -12,7 +12,7 @@ $ARGUMENTS
 
 ## Purpose
 
-Profile application performance, optimize bottlenecks (database queries, bundle size, caching), and validate improvements with load testing. **Differs from `/validate` (runs test suites, no optimization) and `/monitor` (tracks production metrics) by actively identifying and fixing performance issues across frontend, backend, and infrastructure.** Uses `performance-specialist` with `perf-optimizer` for profiling and `backend-specialist` with `data-modeler` for database optimization.
+Profile application performance, optimize bottlenecks (database queries, bundle size, caching), and validate improvements with load testing. **Differs from `/validate` (runs test suites, no optimization) and `/monitor` (tracks production metrics) by actively identifying and fixing performance issues across frontend, backend, and infrastructure.** Uses `perf-optimizer` with `perf-optimizer` for profiling and `nodejs-pro` with `data-modeler` for database optimization.
 
 ---
 
@@ -51,7 +51,7 @@ learner.log(optimization_patterns)
 |-------|-------|
 | **INPUT** | $ARGUMENTS (app/component to optimize + optional targets) |
 | **OUTPUT** | Performance audit: bottlenecks identified with metrics |
-| **AGENTS** | `performance-specialist`, `assessor` |
+| **AGENTS** | `perf-optimizer`, `assessor` |
 | **SKILLS** | `perf-optimizer`, `context-engineering` |
 
 // turbo — telemetry: phase-2-profile
@@ -85,7 +85,7 @@ Performance targets:
 |-------|-------|
 | **INPUT** | Bottleneck report from Phase 2 |
 | **OUTPUT** | Optimized queries, added indexes, fixed N+1 patterns |
-| **AGENTS** | `backend-specialist`, `orchestrator` |
+| **AGENTS** | `nodejs-pro`, `orchestrator` |
 | **SKILLS** | `data-modeler`, `perf-optimizer`, `smart-router` |
 
 // turbo — telemetry: phase-3-db
@@ -103,7 +103,7 @@ Performance targets:
 |-------|-------|
 | **INPUT** | Optimized database from Phase 3 |
 | **OUTPUT** | Redis cache configured, CDN setup, bundle optimized |
-| **AGENTS** | `performance-specialist`, `orchestrator` |
+| **AGENTS** | `perf-optimizer`, `orchestrator` |
 | **SKILLS** | `perf-optimizer`, `server-ops`, `smart-router` |
 
 // turbo — telemetry: phase-4-cache
@@ -125,7 +125,7 @@ Frontend optimization:
 |-------|-------|
 | **INPUT** | Optimized application from Phase 4 |
 | **OUTPUT** | Load test results: before/after comparison, go/no-go |
-| **AGENTS** | `performance-specialist`, `learner` |
+| **AGENTS** | `perf-optimizer`, `learner` |
 | **SKILLS** | `perf-optimizer`, `problem-checker`, `auto-learner` |
 
 // turbo — telemetry: phase-5-loadtest

@@ -1,4 +1,4 @@
----
+﻿---
 description: Full-lifecycle game development — platform-specific engine routing, core loop architecture, asset pipeline optimization, multiplayer networking, and store-ready builds.
 skills: [game-development, perf-optimizer, idea-storm, problem-checker, smart-router, auto-learner, context-engineering]
 agents: [orchestrator, assessor, recovery, critic, learner, project-planner, game-developer, backend-specialist, test-engineer]
@@ -12,7 +12,7 @@ $ARGUMENTS
 
 ## Purpose
 
-Orchestrate game development from concept to published game — routing to platform-specific engines, implementing core game loops, managing asset pipelines, and handling multiplayer networking. **Differs from `/build` (general web/mobile apps) by focusing on game-specific concerns: frame budgets, physics, ECS architecture, networking models, and store submission.** Uses `game-developer` with `game-development` skill, coordinated by `orchestrator` for parallel art + audio + code pipelines.
+Orchestrate game development from concept to published game — routing to platform-specific engines, implementing core game loops, managing asset pipelines, and handling multiplayer networking. **Differs from `/build` (general web/mobile apps) by focusing on game-specific concerns: frame budgets, physics, ECS architecture, networking models, and store submission.** Uses `game-development` with `game-development` skill, coordinated by `orchestrator` for parallel art + audio + code pipelines.
 
 ---
 
@@ -92,7 +92,7 @@ verify → learner.log(patterns)
 |-------|-------|
 | **INPUT** | Game design doc from Phase 2 |
 | **OUTPUT** | Game loop implementation, architecture scaffold |
-| **AGENTS** | `orchestrator`, `game-developer` |
+| **AGENTS** | `orchestrator`, `game-development` |
 | **SKILLS** | `game-development`, `smart-router` |
 
 1. Implement fixed timestep game loop:
@@ -119,7 +119,7 @@ verify → learner.log(patterns)
 |-------|-------|
 | **INPUT** | Architecture scaffold from Phase 3 |
 | **OUTPUT** | Optimized assets in `assets/`, audio system |
-| **AGENTS** | `game-developer` |
+| **AGENTS** | `game-development` |
 | **SKILLS** | `game-development` |
 
 1. Set up asset directory structure and optimization targets:
@@ -139,7 +139,7 @@ verify → learner.log(patterns)
 |-------|-------|
 | **INPUT** | Multiplayer model from Phase 2 design doc |
 | **OUTPUT** | Networking layer, lobby system, anti-cheat |
-| **AGENTS** | `game-developer`, `backend-specialist` |
+| **AGENTS** | `game-development`, `nodejs-pro` |
 | **SKILLS** | `game-development` |
 
 | Model | Use When | Complexity |
@@ -162,7 +162,7 @@ Networking checklist:
 |-------|-------|
 | **INPUT** | Complete game from Phases 3-5 |
 | **OUTPUT** | Platform-specific builds, optimized bundles |
-| **AGENTS** | `game-developer` |
+| **AGENTS** | `game-development` |
 | **SKILLS** | `game-development`, `perf-optimizer` |
 
 | Platform | Build Tool | Distribution |
@@ -180,7 +180,7 @@ Optimization: Tree shake → Minify → Compress assets → Code split → CDN
 |-------|-------|
 | **INPUT** | Built game from Phase 6 |
 | **OUTPUT** | Test results: FPS, memory, platform compatibility |
-| **AGENTS** | `test-engineer`, `learner` |
+| **AGENTS** | `test-architect`, `learner` |
 | **SKILLS** | `game-development`, `perf-optimizer`, `problem-checker`, `auto-learner` |
 
 Test checklist:

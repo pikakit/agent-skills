@@ -1,4 +1,4 @@
----
+﻿---
 description: AI-powered design system generator — 50+ styles, 97 color palettes, 57 font pairings, and anti-AI-slop intelligence across 10 technology stacks with searchable database.
 skills: [studio, design-system, frontend-design, idea-storm, context-engineering, problem-checker, auto-learner]
 agents: [orchestrator, assessor, recovery, learner, frontend-specialist]
@@ -12,7 +12,7 @@ $ARGUMENTS
 
 ## Purpose
 
-Generate comprehensive design systems for web and mobile applications — 50+ styles, 97 color palettes, 57 font pairings, 99 UX guidelines, and chart recommendations across 10 technology stacks with AI-powered searchable database. **Differs from `/build` (implements full apps) and `/plan` (creates task breakdown) by focusing exclusively on design system generation and UI quality standards with anti-AI-slop intelligence.** Uses `frontend-specialist` with `studio` for design search and `design-system` for color theory and typography.
+Generate comprehensive design systems for web and mobile applications — 50+ styles, 97 color palettes, 57 font pairings, 99 UX guidelines, and chart recommendations across 10 technology stacks with AI-powered searchable database. **Differs from `/build` (implements full apps) and `/plan` (creates task breakdown) by focusing exclusively on design system generation and UI quality standards with anti-AI-slop intelligence.** Uses `react-pro` with `studio` for design search and `design-system` for color theory and typography.
 
 ---
 
@@ -51,7 +51,7 @@ verify(accessibility, contrast) → learner.log(patterns)
 |-------|-------|
 | **INPUT** | $ARGUMENTS (UI/UX request with product type, style, industry) |
 | **OUTPUT** | Extracted requirements: product type, style keywords, industry, stack |
-| **AGENTS** | `frontend-specialist`, `assessor` |
+| **AGENTS** | `react-pro`, `assessor` |
 | **SKILLS** | `studio`, `idea-storm`, `context-engineering` |
 
 // turbo — telemetry: phase-2-requirements
@@ -71,7 +71,7 @@ Extract from user request:
 |-------|-------|
 | **INPUT** | Requirements from Phase 2 |
 | **OUTPUT** | Complete design system: pattern, style, colors, typography, effects |
-| **AGENTS** | `frontend-specialist`, `orchestrator` |
+| **AGENTS** | `react-pro`, `orchestrator` |
 | **SKILLS** | `studio`, `design-system` |
 
 // turbo — telemetry: phase-3-generation
@@ -110,8 +110,8 @@ Available domains: `product`, `style`, `typography`, `color`, `landing`, `chart`
 |-------|-------|
 | **INPUT** | Design system from Phase 3 |
 | **OUTPUT** | Stack-specific implementation guidelines |
-| **AGENTS** | `frontend-specialist` |
-| **SKILLS** | `studio`, `frontend-design` |
+| **AGENTS** | `react-pro` |
+| **SKILLS** | `studio`, `design-system` |
 
 // turbo — telemetry: phase-4-implementation
 
@@ -120,7 +120,7 @@ Available domains: `product`, `style`, `typography`, `color`, `landing`, `chart`
 npx cross-env OTEL_SERVICE_NAME="workflow:studio" TRACE_ID="$TRACE_ID" node .agent/skills/studio/scripts/search.ts "<keyword>" --stack html-tailwind
 ```
 
-Available stacks: `html-tailwind`, `react`, `nextjs`, `vue`, `svelte`, `swiftui`, `react-native`, `flutter`, `shadcn`, `jetpack-compose`
+Available stacks: html-tailwind, `react`, `nextjs`, `vue`, `svelte`, `swiftui`, react-native, `flutter`, `shadcn`, jetpack-compose
 
 ### Phase 5: Pre-Delivery Verification
 
@@ -128,8 +128,8 @@ Available stacks: `html-tailwind`, `react`, `nextjs`, `vue`, `svelte`, `swiftui`
 |-------|-------|
 | **INPUT** | Implemented UI from Phase 4 |
 | **OUTPUT** | Verified design: accessibility, contrast, responsiveness |
-| **AGENTS** | `frontend-specialist`, `learner` |
-| **SKILLS** | `frontend-design`, `design-system`, `problem-checker`, `auto-learner` |
+| **AGENTS** | `react-pro`, `learner` |
+| **SKILLS** | `design-system`, `design-system`, `problem-checker`, `auto-learner` |
 
 // turbo — telemetry: phase-5-verification
 
@@ -138,10 +138,10 @@ Pre-delivery checklist:
 | Category | Checks |
 |----------|--------|
 | Visual | No emoji icons (use SVG), consistent icon set, correct brand logos |
-| Interaction | `cursor-pointer` on clickable, hover feedback, smooth transitions (150-300ms) |
+| Interaction | cursor-pointer on clickable, hover feedback, smooth transitions (150-300ms) |
 | Contrast | Light mode text ≥4.5:1, glass elements visible, borders in both modes |
 | Layout | Floating navbar spacing, no hidden content, responsive (375-1440px) |
-| Accessibility | Alt text, labeled inputs, color not sole indicator, `prefers-reduced-motion` |
+| Accessibility | Alt text, labeled inputs, color not sole indicator, prefers-reduced-motion |
 
 ---
 
@@ -248,7 +248,7 @@ If AI generates slop, inconsistent patterns, or hallucinates styling components:
 
 - `studio` - 50+ styles, 97 color palettes, 57 font pairings, searchable database
 - `design-system` - Color theory, typography, visual effects
-- `frontend-design` - Anti-AI-slop aesthetics and bold design
+- `design-system` - Anti-AI-slop aesthetics and bold design
 - `idea-storm` - Requirements clarification
 - `context-engineering` - Codebase parsing and context extraction
 - `problem-checker` - Code problem verification

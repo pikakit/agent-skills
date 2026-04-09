@@ -1,4 +1,4 @@
----
+﻿---
 description: Project blueprint generator — requirements discovery, architecture decisions, hierarchical task breakdown, agent assignment, and PLAN.md creation without writing code.
 skills: [idea-storm, project-planner, system-design, context-engineering, problem-checker, auto-learner]
 agents: [orchestrator, assessor, recovery, learner, project-planner]
@@ -132,10 +132,10 @@ Level 4: Subtasks (atomic units)
 
 | Task Type | Agent | Skill |
 |-----------|-------|-------|
-| Schema design | `database-architect` | `data-modeler` |
-| API routes | `backend-specialist` | `nodejs-pro` |
-| UI components | `frontend-specialist` | `react-pro` |
-| Tests | `test-engineer` | `test-architect` |
+| Schema design | `data-modeler` | `data-modeler` |
+| API routes | `nodejs-pro` | `nodejs-pro` |
+| UI components | `react-pro` | `react-pro` |
+| Tests | `test-architect` | `test-architect` |
 
 2. `assessor` evaluates architecture risk
 3. Generate `docs/PLAN-{slug}.md`
@@ -208,10 +208,10 @@ Generated file: `docs/PLAN-{slug}.md`
 
 | Phase | Agent | Task | Duration |
 |-------|-------|------|----------|
-| 1 | `database-architect` | Schema | 30m |
-| 2 | `backend-specialist` | API | 2h |
-| 3 | `frontend-specialist` | UI | 3h |
-| 4 | `test-engineer` | Tests | 1h |
+| 1 | `data-modeler` | Schema | 30m |
+| 2 | `nodejs-pro` | API | 2h |
+| 3 | `react-pro` | UI | 3h |
+| 4 | `test-architect` | Tests | 1h |
 
 ### Next Steps
 

@@ -1,4 +1,4 @@
----
+﻿---
 description: Local development sandbox — auto-detect services, orchestrate multi-service startup with dependency ordering, resolve port conflicts, integrate Docker Compose, and monitor health.
 skills: [server-ops, cicd-pipeline, context-engineering, problem-checker, auto-learner]
 agents: [orchestrator, assessor, recovery, learner, devops-engineer]
@@ -12,7 +12,7 @@ $ARGUMENTS
 
 ## Purpose
 
-Manage local development environments with multi-service orchestration — auto-detect project type, start/stop services with dependency ordering, resolve port conflicts, integrate Docker Compose for infrastructure, and monitor service health. **Differs from `/launch` (production deployment) and `/monitor` (production observability) by focusing on local development sandbox management with hot-reload and debugging support.** Uses `devops-engineer` with `server-ops` for service management.
+Manage local development environments with multi-service orchestration — auto-detect project type, start/stop services with dependency ordering, resolve port conflicts, integrate Docker Compose for infrastructure, and monitor service health. **Differs from `/launch` (production deployment) and `/monitor` (production observability) by focusing on local development sandbox management with hot-reload and debugging support.** Uses `cicd-pipeline` with `server-ops` for service management.
 
 ---
 
@@ -71,7 +71,7 @@ health_check → learner.log(config)
 |-------|-------|
 | **INPUT** | $ARGUMENTS (sub-command + optional service name) |
 | **OUTPUT** | Project type, detected services, port assignments |
-| **AGENTS** | `devops-engineer`, `assessor` |
+| **AGENTS** | `cicd-pipeline`, `assessor` |
 | **SKILLS** | `server-ops`, `context-engineering` |
 
 // turbo — telemetry: phase-2-detect
@@ -102,7 +102,7 @@ packages/db/ → Database service
 |-------|-------|
 | **INPUT** | Detected services from Phase 2 |
 | **OUTPUT** | Running services with resolved ports |
-| **AGENTS** | `devops-engineer`, `orchestrator` |
+| **AGENTS** | `cicd-pipeline`, `orchestrator` |
 | **SKILLS** | `server-ops` |
 
 // turbo — telemetry: phase-3-start

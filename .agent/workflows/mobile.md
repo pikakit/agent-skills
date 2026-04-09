@@ -1,4 +1,4 @@
----
+﻿---
 description: End-to-end mobile development — React Native, Flutter, or native iOS/Android with push notifications, deep linking, offline-first architecture, and app store submission.
 skills: [mobile-developer, idea-storm, mobile-design, security-scanner, cicd-pipeline, perf-optimizer, problem-checker, smart-router, auto-learner, context-engineering]
 agents: [orchestrator, assessor, recovery, critic, learner, project-planner, mobile-developer, backend-specialist, security-auditor, test-engineer]
@@ -12,7 +12,7 @@ $ARGUMENTS
 
 ## Purpose
 
-Orchestrate mobile app development from concept to app store submission — supporting React Native, Flutter, and native iOS/Android with push notifications, deep linking, offline sync, and CI/CD pipeline. **Differs from `/build` (general web apps) and `/game` (game-specific concerns) by focusing on mobile-specific platform conventions, touch interaction, offline-first architecture, and store submission requirements.** Uses `mobile-developer` with `mobile-first` for cross-platform development, coordinated by `orchestrator` for parallel implementation tracks.
+Orchestrate mobile app development from concept to app store submission — supporting React Native, Flutter, and native iOS/Android with push notifications, deep linking, offline sync, and CI/CD pipeline. **Differs from `/build` (general web apps) and `/game` (game-specific concerns) by focusing on mobile-specific platform conventions, touch interaction, offline-first architecture, and store submission requirements.** Uses `mobile-developer` with `mobile-design` for cross-platform development, coordinated by `orchestrator` for parallel implementation tracks.
 
 ---
 
@@ -124,7 +124,7 @@ Platform conventions:
 |-------|-------|
 | **INPUT** | App scaffold from Phase 4 |
 | **OUTPUT** | Push notifications, deep linking, offline sync integrated |
-| **AGENTS** | `mobile-developer`, `backend-specialist` |
+| **AGENTS** | `mobile-developer`, `nodejs-pro` |
 | **SKILLS** | `mobile-developer` |
 
 // turbo — telemetry: phase-5-features
@@ -141,7 +141,7 @@ Platform conventions:
 
 | Platform | Config |
 |----------|--------|
-| iOS | `apple-app-site-association` in `/.well-known/` |
+| iOS | apple-app-site-association in `/.well-known/` |
 | Android | `assetlinks.json` in `/.well-known/` |
 
 **Offline Sync (if required):**
@@ -159,7 +159,7 @@ Platform conventions:
 |-------|-------|
 | **INPUT** | Feature-complete app from Phase 5 |
 | **OUTPUT** | Security hardened: secure storage, cert pinning, biometrics |
-| **AGENTS** | `security-auditor` |
+| **AGENTS** | `security-scanner` |
 | **SKILLS** | `security-scanner` |
 
 // turbo — telemetry: phase-6-security
@@ -201,7 +201,7 @@ Security checklist:
 |-------|-------|
 | **INPUT** | Built app from Phase 7 |
 | **OUTPUT** | Test results: crash-free rate, startup time, platform tests |
-| **AGENTS** | `test-engineer`, `learner` |
+| **AGENTS** | `test-architect`, `learner` |
 | **SKILLS** | `mobile-developer`, `perf-optimizer`, `problem-checker`, `auto-learner` |
 
 // turbo — telemetry: phase-8-test

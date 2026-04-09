@@ -1,4 +1,4 @@
----
+﻿---
 description: Zero-downtime production release pipeline — pre-flight security gates, automated build verification, health-check monitoring, and instant rollback on failure.
 chain: deploy-production
 skills: [cicd-pipeline, server-ops, security-scanner, code-review, problem-checker, context-engineering, auto-learner]
@@ -13,7 +13,7 @@ $ARGUMENTS
 
 ## Purpose
 
-Production deployment with automated pre-flight checks, security scanning, build verification, health monitoring, and auto-rollback capability. **Differs from `/stage` (local development sandbox) and `/monitor` (production observability) by executing the full deployment pipeline with zero-downtime guarantees.** Uses `devops-engineer` with `cicd-pipeline` for deployment orchestration, `security-auditor` with `security-scanner` for pre-deploy validation, and `recovery` for rollback safety.
+Production deployment with automated pre-flight checks, security scanning, build verification, health monitoring, and auto-rollback capability. **Differs from `/stage` (local development sandbox) and `/monitor` (production observability) by executing the full deployment pipeline with zero-downtime guarantees.** Uses `cicd-pipeline` with `cicd-pipeline` for deployment orchestration, `security-scanner` with `security-scanner` for pre-deploy validation, and `recovery` for rollback safety.
 
 ---
 
@@ -68,7 +68,7 @@ recovery.restore(checkpoint) → learner.log(failure)
 |-------|-------|
 | **INPUT** | $ARGUMENTS (sub-command + optional flags) |
 | **OUTPUT** | Pre-flight result: all gates pass/fail with details |
-| **AGENTS** | `security-auditor`, `assessor` |
+| **AGENTS** | `security-scanner`, `assessor` |
 | **SKILLS** | `security-scanner`, `code-review`, `context-engineering` |
 
 **Gate 1: Code Quality**
@@ -110,7 +110,7 @@ npx cross-env OTEL_SERVICE_NAME="workflow:launch" TRACE_ID="$TRACE_ID" npx tsc -
 |-------|-------|
 | **INPUT** | All gates passed from Phase 2 |
 | **OUTPUT** | Production build + git checkpoint tag |
-| **AGENTS** | `devops-engineer`, `orchestrator` |
+| **AGENTS** | `cicd-pipeline`, `orchestrator` |
 | **SKILLS** | `cicd-pipeline` |
 
 1. `recovery` saves current state (git tag + commit hash)
@@ -137,7 +137,7 @@ npx cross-env OTEL_SERVICE_NAME="workflow:launch" TRACE_ID="$TRACE_ID" npm run b
 |-------|-------|
 | **INPUT** | Production build + platform config from Phase 3 |
 | **OUTPUT** | Deployed application with health check result |
-| **AGENTS** | `devops-engineer` |
+| **AGENTS** | `cicd-pipeline` |
 | **SKILLS** | `cicd-pipeline`, `server-ops` |
 
 1. Execute platform-specific deploy command
@@ -159,7 +159,7 @@ npx cross-env OTEL_SERVICE_NAME="workflow:launch" TRACE_ID="$TRACE_ID" npm run b
 |-------|-------|
 | **INPUT** | Failed health check from Phase 4 |
 | **OUTPUT** | Reverted to previous version, rollback report |
-| **AGENTS** | `devops-engineer`, `learner` |
+| **AGENTS** | `cicd-pipeline`, `learner` |
 | **SKILLS** | `cicd-pipeline`, `auto-learner`, `problem-checker` |
 
 1. `recovery` restores checkpoint

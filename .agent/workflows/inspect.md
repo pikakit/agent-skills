@@ -1,4 +1,4 @@
----
+﻿---
 description: Defense-in-depth code review — four-layer validation across build, tests, security, and logic to eliminate false completion claims with evidence-based verification.
 chain: security-audit
 skills: [security-scanner, code-review, problem-checker, context-engineering, auto-learner]
@@ -13,7 +13,7 @@ $ARGUMENTS
 
 ## Purpose
 
-Systematic code review with multi-layer validation — preventing false completion claims through evidence-based verification across build, tests, security, and logic layers. **Differs from `/validate` (runs tests) and `/diagnose` (finds bugs) by performing comprehensive quality audit across all dimensions before deployment.** Uses `security-auditor` with `security-scanner` for vulnerability scanning and `code-review` for quality validation.
+Systematic code review with multi-layer validation — preventing false completion claims through evidence-based verification across build, tests, security, and logic layers. **Differs from `/validate` (runs tests) and `/diagnose` (finds bugs) by performing comprehensive quality audit across all dimensions before deployment.** Uses `security-scanner` with `security-scanner` for vulnerability scanning and `code-review` for quality validation.
 
 ---
 
@@ -103,7 +103,7 @@ npx cross-env OTEL_SERVICE_NAME="workflow:inspect" TRACE_ID="$TRACE_ID" npm test
 |-------|-------|
 | **INPUT** | Source files in scope |
 | **OUTPUT** | Security report: vulnerabilities found, severity levels |
-| **AGENTS** | `security-auditor` |
+| **AGENTS** | `security-scanner` |
 | **SKILLS** | `security-scanner`, `code-review` |
 
 | Check | Required |
@@ -119,7 +119,7 @@ npx cross-env OTEL_SERVICE_NAME="workflow:inspect" TRACE_ID="$TRACE_ID" npm test
 |-------|-------|
 | **INPUT** | All results from Phases 2-4 + source code |
 | **OUTPUT** | Logic review: issues found with severity, required actions |
-| **AGENTS** | `security-auditor`, `learner` |
+| **AGENTS** | `security-scanner`, `learner` |
 | **SKILLS** | `code-review`, `problem-checker`, `auto-learner` |
 
 | Category | Questions |

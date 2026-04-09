@@ -1,4 +1,4 @@
----
+﻿---
 description: Rapid-fire implementation — execute targeted coding tasks directly from instructions or plans with minimal overhead, following existing patterns and verified output.
 chain: build-web-app
 skills: [code-craft, problem-checker, smart-router, context-engineering, auto-learner]
@@ -73,7 +73,7 @@ instruction → implement → verify → learner.log() → done
 |-------|-------|
 | **INPUT** | Task understanding + related files from Phase 2 |
 | **OUTPUT** | Created/modified source files implementing the requested feature |
-| **AGENTS** | Auto-routed specialist (`backend-specialist`, `frontend-specialist`, etc.) |
+| **AGENTS** | Auto-routed specialist (`nodejs-pro`, `react-pro`, etc.) |
 | **SKILLS** | `code-craft` |
 
 1. Write code following existing patterns strictly

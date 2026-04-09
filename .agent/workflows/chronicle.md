@@ -1,4 +1,4 @@
----
+﻿---
 description: Automated documentation engine — generate README, OpenAPI specs, ADRs, Storybook stories, operational runbooks, and inline comments directly from source code analysis.
 skills: [doc-templates, context-engineering, copywriting, problem-checker, auto-learner]
 agents: [orchestrator, assessor, recovery, learner, documentation-writer]
@@ -12,7 +12,7 @@ $ARGUMENTS
 
 ## Purpose
 
-Generate comprehensive project documentation automatically by analyzing source code, extracting types, and producing structured docs. **Differs from `/inspect` (code review and quality audit) and `/plan` (task breakdown) by focusing on written documentation — README, API specs, ADR, component docs, ops runbooks, and inline comments.** Uses `documentation-writer` for all doc generation, with `doc-templates` and `copywriting` for structure and tone.
+Generate comprehensive project documentation automatically by analyzing source code, extracting types, and producing structured docs. **Differs from `/inspect` (code review and quality audit) and `/plan` (task breakdown) by focusing on written documentation — README, API specs, ADR, component docs, ops runbooks, and inline comments.** Uses `doc-templates` for all doc generation, with `doc-templates` and `copywriting` for structure and tone.
 
 ---
 
@@ -67,7 +67,7 @@ learner.log(templates, patterns)
 |-------|-------|
 | **INPUT** | $ARGUMENTS (sub-command + optional scope) |
 | **OUTPUT** | Documentation scope: files to document, gaps identified, doc type |
-| **AGENTS** | `documentation-writer`, `assessor` |
+| **AGENTS** | `doc-templates`, `assessor` |
 | **SKILLS** | `context-engineering`, `auto-learner` |
 
 // turbo — telemetry: phase-2-analysis
@@ -86,7 +86,7 @@ learner.log(templates, patterns)
 |-------|-------|
 | **INPUT** | Scope analysis from Phase 2 |
 | **OUTPUT** | Generated documentation files |
-| **AGENTS** | `documentation-writer`, `orchestrator` |
+| **AGENTS** | `doc-templates`, `orchestrator` |
 | **SKILLS** | `doc-templates`, `copywriting` |
 
 // turbo — telemetry: phase-3-generate
@@ -142,7 +142,7 @@ Generate docs based on sub-command:
 |-------|-------|
 | **INPUT** | Generated docs from Phase 3 |
 | **OUTPUT** | Coverage report: documented vs total, gaps remaining |
-| **AGENTS** | `documentation-writer`, `learner` |
+| **AGENTS** | `doc-templates`, `learner` |
 | **SKILLS** | `doc-templates`, `problem-checker`, `auto-learner` |
 
 // turbo — telemetry: phase-4-verify

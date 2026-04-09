@@ -1,4 +1,4 @@
----
+﻿---
 description: Comprehensive test automation suite — generate, execute, and analyze tests with Vitest/Playwright using AAA pattern, mutation testing, visual regression, and contract verification.
 skills: [test-architect, e2e-automation, code-review, context-engineering, problem-checker, auto-learner]
 agents: [orchestrator, assessor, recovery, learner, test-engineer]
@@ -12,7 +12,7 @@ $ARGUMENTS
 
 ## Purpose
 
-Generate comprehensive tests, execute suites, and analyze coverage — supporting unit tests (Vitest/Jest), E2E (Playwright), mutation testing (Stryker), visual regression, and API contract testing. **Differs from `/inspect` (code review without execution) and `/optimize` (performance profiling) by actively generating, running, and verifying test suites with the AAA pattern.** Uses `test-engineer` with `test-architect` for test generation and `e2e-automation` for browser testing.
+Generate comprehensive tests, execute suites, and analyze coverage — supporting unit tests (Vitest/Jest), E2E (Playwright), mutation testing (Stryker), visual regression, and API contract testing. **Differs from `/inspect` (code review without execution) and `/optimize` (performance profiling) by actively generating, running, and verifying test suites with the AAA pattern.** Uses `test-architect` with `test-architect` for test generation and `e2e-automation` for browser testing.
 
 ---
 
@@ -66,7 +66,7 @@ learner.log(failure_patterns)
 |-------|-------|
 | **INPUT** | $ARGUMENTS (target file/feature or "all") |
 | **OUTPUT** | Test files following AAA pattern |
-| **AGENTS** | `test-engineer`, `assessor` |
+| **AGENTS** | `test-architect`, `assessor` |
 | **SKILLS** | `test-architect`, `context-engineering` |
 
 // turbo — telemetry: phase-2-generate
@@ -100,7 +100,7 @@ learner.log(failure_patterns)
 |-------|-------|
 | **INPUT** | Test files from Phase 2 |
 | **OUTPUT** | Test results: pass/fail counts, coverage report |
-| **AGENTS** | `test-engineer`, `orchestrator` |
+| **AGENTS** | `test-architect`, `orchestrator` |
 | **SKILLS** | `test-architect`, `e2e-automation` |
 
 // turbo — telemetry: phase-3-execute
@@ -124,7 +124,7 @@ Coverage targets:
 |-------|-------|
 | **INPUT** | Coverage report from Phase 3 |
 | **OUTPUT** | Mutation score, visual diffs, contract results |
-| **AGENTS** | `test-engineer`, `orchestrator` |
+| **AGENTS** | `test-architect`, `orchestrator` |
 | **SKILLS** | `test-architect`, `e2e-automation` |
 
 // turbo — telemetry: phase-4-advanced
@@ -153,7 +153,7 @@ npx cross-env OTEL_SERVICE_NAME="workflow:validate" TRACE_ID="$TRACE_ID" npx pac
 |-------|-------|
 | **INPUT** | All test results from Phases 3-4 |
 | **OUTPUT** | Test report with pass/fail, coverage, recommendations |
-| **AGENTS** | `test-engineer`, `learner` |
+| **AGENTS** | `test-architect`, `learner` |
 | **SKILLS** | `test-architect`, `problem-checker`, `auto-learner` |
 
 // turbo — telemetry: phase-5-analyze

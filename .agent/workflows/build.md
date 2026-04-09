@@ -1,4 +1,4 @@
----
+﻿---
 description: Full-stack application factory — transform natural language descriptions into production-ready apps with multi-agent coordination, smart stack defaults, and automated verification.
 chain: build-web-app
 skills: [app-scaffold, react-pro, nextjs-pro, project-planner, studio, design-system, code-craft, data-modeler, api-architect, test-architect, idea-storm, nodejs-pro, problem-checker, context-engineering, auto-learner]
@@ -13,7 +13,7 @@ $ARGUMENTS
 
 ## Purpose
 
-Ship production-ready applications from natural language descriptions by coordinating 4+ specialist agents with automated verification. **Differs from `/autopilot` (fully autonomous multi-domain orchestration) and `/cook` (targeted single-scope tasks) by focusing on new application creation from scratch with guided requirements discovery.** Uses `project-planner` for architecture, `database-architect` + `backend-specialist` + `frontend-specialist` for parallel implementation, and `test-engineer` for verification.
+Ship production-ready applications from natural language descriptions by coordinating 4+ specialist agents with automated verification. **Differs from `/autopilot` (fully autonomous multi-domain orchestration) and `/cook` (targeted single-scope tasks) by focusing on new application creation from scratch with guided requirements discovery.** Uses `project-planner` for architecture, `data-modeler` + `nodejs-pro` + `react-pro` for parallel implementation, and `test-architect` for verification.
 
 ---
 
@@ -99,7 +99,7 @@ success → learner.log(patterns)
 | **INPUT** | Requirements from Phase 2 |
 | **OUTPUT** | PLAN.md with task breakdown, agent assignments, file structure |
 | **AGENTS** | `project-planner` |
-| **SKILLS** | `project-planner`, `app-scaffold` |
+| **SKILLS** | `project-planner`, `code-craft` |
 
 // turbo — telemetry: phase-3-planning
 
@@ -119,7 +119,7 @@ success → learner.log(patterns)
 |-------|-------|
 | **INPUT** | Approved PLAN.md (for apps with UI) |
 | **OUTPUT** | Design tokens: colors, typography, effects |
-| **AGENTS** | `frontend-specialist`, `orchestrator` |
+| **AGENTS** | `react-pro`, `orchestrator` |
 | **SKILLS** | `studio`, `design-system` |
 
 > **Skip this phase** if the app has no UI (API-only, CLI).
@@ -135,7 +135,7 @@ npx cross-env OTEL_SERVICE_NAME="workflow:build" TRACE_ID="$TRACE_ID" node .agen
 |-------|-------|
 | **INPUT** | Approved plan + design system tokens |
 | **OUTPUT** | Complete application: schema, API routes, UI components, tests |
-| **AGENTS** | `orchestrator`, `critic`, `database-architect`, `backend-specialist`, `frontend-specialist`, `test-engineer` |
+| **AGENTS** | `orchestrator`, `critic`, `data-modeler`, `nodejs-pro`, `react-pro`, `test-architect` |
 | **SKILLS** | `data-modeler`, `nodejs-pro`, `api-architect`, `code-craft`, `test-architect` |
 
 // turbo — telemetry: phase-5-build
@@ -157,9 +157,9 @@ graph TD
 
 | Parallel Group | Agents | Task |
 |----------------|--------|------|
-| **Foundation** | `database-architect`, `security-auditor` | Schema + auth setup |
-| **Core** | `backend-specialist`, `frontend-specialist` | API routes + UI components |
-| **Polish** | `test-engineer` | Tests + integration |
+| **Foundation** | `data-modeler`, `security-scanner` | Schema + auth setup |
+| **Core** | `nodejs-pro`, `react-pro` | API routes + UI components |
+| **Polish** | `test-architect` | Tests + integration |
 
 ### Phase 6: Verification & Preview
 
@@ -167,7 +167,7 @@ graph TD
 |-------|-------|
 | **INPUT** | All artifacts from Phase 5 |
 | **OUTPUT** | Running preview + verification report |
-| **AGENTS** | `test-engineer`, `learner` |
+| **AGENTS** | `test-architect`, `learner` |
 | **SKILLS** | `test-architect`, `problem-checker`, `auto-learner` |
 
 // turbo — telemetry: phase-6-test
@@ -254,10 +254,10 @@ If the Exit Gates fail and cannot be resolved automatically:
 | Agent | Task | Status |
 |-------|------|--------|
 | `project-planner` | Architecture plan | ✅ Complete |
-| `database-architect` | Schema design | ✅ Complete |
-| `backend-specialist` | API routes | ✅ Complete |
-| `frontend-specialist` | UI components | ✅ Complete |
-| `test-engineer` | E2E tests | ✅ Complete |
+| `data-modeler` | Schema design | ✅ Complete |
+| `nodejs-pro` | API routes | ✅ Complete |
+| `react-pro` | UI components | ✅ Complete |
+| `test-architect` | E2E tests | ✅ Complete |
 
 ### Preview
 
@@ -299,7 +299,7 @@ If the Exit Gates fail and cannot be resolved automatically:
 
 **Skills Loaded (15):**
 
-- `app-scaffold` - Full-stack scaffolding from natural language
+- `code-craft` - Full-stack scaffolding from natural language
 - `react-pro` - React application development
 - `nextjs-pro` - Next.js framework expertise
 - `project-planner` - Task breakdown and architecture planning

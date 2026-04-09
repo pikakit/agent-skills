@@ -1,4 +1,4 @@
----
+﻿---
 description: Targeted error remediation — triage, patch, and verify specific errors, lint failures, or broken tests with minimal diff and automatic rollback safety.
 chain: debug-complex
 skills: [debug-pro, code-craft, problem-checker, context-engineering, smart-router, auto-learner]
@@ -95,7 +95,7 @@ learner.log(pattern)
 |-------|-------|
 | **INPUT** | Located error and fix type from Phase 2 |
 | **OUTPUT** | Modified source files with the fix applied |
-| **AGENTS** | `orchestrator`, Auto-routed specialist (`backend-specialist`, `frontend-specialist`, etc.) |
+| **AGENTS** | `orchestrator`, Auto-routed specialist (`nodejs-pro`, `react-pro`, etc.) |
 | **SKILLS** | `code-craft`, `debug-pro`, `smart-router` |
 
 // turbo — telemetry: phase-3-fix
@@ -110,7 +110,7 @@ learner.log(pattern)
 |-------|-------|
 | **INPUT** | Modified files from Phase 3 |
 | **OUTPUT** | Verification result: error cleared, tests passing, no regressions |
-| **AGENTS** | `test-engineer`, `learner` |
+| **AGENTS** | `test-architect`, `learner` |
 | **SKILLS** | `problem-checker`, `auto-learner` |
 
 // turbo — telemetry: phase-4-test

@@ -1,4 +1,4 @@
----
+﻿---
 description: End-to-end API development pipeline — design, implement, and ship production-grade REST, GraphQL, or tRPC services with OpenAPI specs, Prisma ORM, and full test coverage.
 chain: api-development
 skills: [api-architect, data-modeler, nodejs-pro, test-architect, security-scanner, auth-patterns, context-engineering, problem-checker, auto-learner]
@@ -13,7 +13,7 @@ $ARGUMENTS
 
 ## Purpose
 
-Build well-architected APIs from specification to implementation — covering design, database schema, route handlers, authentication, testing, and OpenAPI documentation. **Combines `backend-specialist` for implementation with `test-engineer` for validation, using `api-architect` for design decisions and `data-modeler` for schema design.** Differs from `/build` by focusing exclusively on API/backend without frontend.
+Build well-architected APIs from specification to implementation — covering design, database schema, route handlers, authentication, testing, and OpenAPI documentation. **Combines `nodejs-pro` for implementation with `test-architect` for validation, using `api-architect` for design decisions and `data-modeler` for schema design.** Differs from `/build` by focusing exclusively on API/backend without frontend.
 
 ---
 
@@ -54,7 +54,7 @@ learner.log(patterns)
 |-------|-------|
 | **INPUT** | $ARGUMENTS (user request — API description, tech stack, requirements) |
 | **OUTPUT** | API design spec: endpoints/schema, data models, auth strategy |
-| **AGENTS** | `backend-specialist`, `assessor` |
+| **AGENTS** | `nodejs-pro`, `assessor` |
 | **SKILLS** | `api-architect`, `context-engineering` |
 
 // turbo — telemetry: phase-2-design
@@ -89,7 +89,7 @@ ASK if not specified:
 |-------|-------|
 | **INPUT** | API design spec from Phase 2 |
 | **OUTPUT** | Database schema: `prisma/schema.prisma` or equivalent, migration files |
-| **AGENTS** | `backend-specialist`, `orchestrator` |
+| **AGENTS** | `nodejs-pro`, `orchestrator` |
 | **SKILLS** | `data-modeler` |
 
 // turbo — telemetry: phase-3-schema
@@ -110,7 +110,7 @@ npx cross-env OTEL_SERVICE_NAME="workflow:api" TRACE_ID="$TRACE_ID" npx prisma g
 |-------|-------|
 | **INPUT** | API design spec + database schema from Phases 2-3 |
 | **OUTPUT** | Route handlers in `src/routes/`, service layer in `src/services/`, middleware in `src/middleware/` |
-| **AGENTS** | `backend-specialist` |
+| **AGENTS** | `nodejs-pro` |
 | **SKILLS** | `nodejs-pro`, `api-architect`, `auth-patterns` |
 
 // turbo — telemetry: phase-4-implement
@@ -147,7 +147,7 @@ npx cross-env OTEL_SERVICE_NAME="workflow:api" TRACE_ID="$TRACE_ID" npx tsc --no
 |-------|-------|
 | **INPUT** | Implemented API from Phase 4 |
 | **OUTPUT** | Test suite: `src/__tests__/` with unit + integration tests passing |
-| **AGENTS** | `test-engineer` |
+| **AGENTS** | `test-architect` |
 | **SKILLS** | `test-architect` |
 
 // turbo — telemetry: phase-5-test
@@ -177,7 +177,7 @@ Coverage targets:
 |-------|-------|
 | **INPUT** | Tested API from Phase 5 |
 | **OUTPUT** | Security validation report + OpenAPI spec + README |
-| **AGENTS** | `backend-specialist`, `learner` |
+| **AGENTS** | `nodejs-pro`, `learner` |
 | **SKILLS** | `security-scanner`, `api-architect`, `problem-checker`, `auto-learner` |
 
 // turbo — telemetry: phase-6-secure
