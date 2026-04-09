@@ -60,4 +60,4 @@ Reference: [How we optimized package imports in Next.js](https://vercel.com/blog
 
 ---
 
-⚡ PikaKit v3.9.121
+⚡ PikaKit v3.9.122

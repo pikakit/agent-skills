@@ -10,7 +10,7 @@ coordinates_with: ["api-architect", "data-modeler", "cicd-pipeline"]
 success_metrics: ["Architecture Robustness", "ADR Coverage", "Simplicity Score"]
 metadata:
   author: pikakit
-  version: "3.9.121"
+  version: "3.9.122"
 ---
 
 # System Design — Architecture Decision Framework
@@ -150,4 +150,4 @@ All system-design outputs MUST emit `architecture_analysis_started` and `analysi
 
 ---
 
-⚡ PikaKit v3.9.121
+⚡ PikaKit v3.9.122

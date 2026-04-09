@@ -10,7 +10,7 @@ coordinates_with: ["api-architect", "data-modeler", "auth-patterns", "problem-ch
 success_metrics: ["0 Security Vulnerabilities", "0 IDE/Lint Errors", "0 Unhandled Promise Rejections"]
 metadata:
   author: pikakit
-  version: "3.9.121"
+  version: "3.9.122"
 ---
 
 # Node.js Pro — Backend Decision Framework
@@ -237,4 +237,4 @@ For the complete guide with all rules expanded: `AGENTS.md`
 
 ---
 
-⚡ PikaKit v3.9.121
+⚡ PikaKit v3.9.122
