@@ -1,5 +1,5 @@
 ---
-name: gitops-workflow
+name: gitops
 description: >-
   GitOps workflows with ArgoCD and Flux for declarative Kubernetes deployments.
   Use when setting up GitOps, ArgoCD sync, or Kubernetes declarative infrastructure.

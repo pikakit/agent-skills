@@ -1,5 +1,5 @@
 ---
-name: code-constitution-skills-governance
+name: code-constitution
 description: >-
   Constitutional governance for PikaKit: non-negotiable laws for correctness, trust, and durability.
   Use when reviewing breaking changes, critical data operations, or governance violations.
