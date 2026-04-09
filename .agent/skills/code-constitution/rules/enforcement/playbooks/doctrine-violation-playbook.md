@@ -1,6 +1,6 @@
 ---
 name: doctrine-violation-playbook
-version: "3.9.122"
+version: "3.9.123"
 status: LOCKED
 authority: ENFORCEMENT
 parent: master-constitution
@@ -233,4 +233,4 @@ PikaKit chooses:
 
 ---
 
-⚡ PikaKit v3.9.122
+⚡ PikaKit v3.9.123

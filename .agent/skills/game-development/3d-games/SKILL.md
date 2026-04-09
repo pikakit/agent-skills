@@ -7,7 +7,7 @@ coordinates_with: ["game-development", "shader", "perf-optimizer"]
 success_metrics: ["100% objects use LOD", "0 shader compilation errors"]
 metadata:
   author: pikakit
-  version: "3.9.122"
+  version: "3.9.123"
 ---
 
 # 3D Game Development
@@ -153,4 +153,4 @@ metadata:
 
 ---
 
-⚡ PikaKit v3.9.122
+⚡ PikaKit v3.9.123

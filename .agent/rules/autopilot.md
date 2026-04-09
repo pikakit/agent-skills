@@ -111,7 +111,7 @@ When invoking ANY sub-agent, MUST include: Original Request, Decisions Made, Pre
 | L1 (Quick fix) | — | `✅ @{skill}` |
 | L2 (Multi-file) | `🤖 @{skill}` | `✅ @{skill} · {file_count} files` |
 | L3 (Architecture) | `🤖 @{skill}` | `✅ @{skill} · {file_count} files` |
-| Workflow (/cmd) | Header: `🤖 PikaKit v3.9.122 / Workflow: /name` | Footer: `⚡ PikaKit v3.9.122` |
+| Workflow (/cmd) | Header: `🤖 PikaKit v3.9.123 / Workflow: /name` | Footer: `⚡ PikaKit v3.9.123` |
 
 ### 0.5-K: Auto-Learned Pattern Check (MANDATORY)
 

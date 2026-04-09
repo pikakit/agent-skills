@@ -100,4 +100,4 @@ Both components share the same promise, so only one fetch occurs. Layout renders
 
 ---
 
-⚡ PikaKit v3.9.122
+⚡ PikaKit v3.9.123

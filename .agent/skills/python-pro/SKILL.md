@@ -10,7 +10,7 @@ coordinates_with: ["api-architect", "test-architect", "data-modeler", "problem-c
 success_metrics: ["Correct Framework Selection", "Type Hint Coverage"]
 metadata:
   author: pikakit
-  version: "3.9.122"
+  version: "3.9.123"
 ---
 
 # Python Pro — Framework Selection & Architecture
@@ -247,4 +247,4 @@ For the complete guide with all rules expanded: `AGENTS.md`
 
 ---
 
-⚡ PikaKit v3.9.122
+⚡ PikaKit v3.9.123

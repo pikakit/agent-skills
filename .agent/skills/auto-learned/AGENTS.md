@@ -591,8 +591,8 @@ Auto-Learned maintains persistent state across sessions:
 
 ---
 
-⚡ PikaKit v3.9.122
+⚡ PikaKit v3.9.123
 
 ---
 
-⚡ PikaKit v3.9.122
+⚡ PikaKit v3.9.123

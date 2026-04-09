@@ -10,7 +10,7 @@ coordinates_with: ["mobile-first", "mobile-developer", "design-system"]
 success_metrics: ["MFRI score > 5", "Touch targets >= 44pt"]
 metadata:
   author: pikakit
-  version: "3.9.122"
+  version: "3.9.123"
 ---
 
 # Mobile Design — Mobile-First Design Doctrine
@@ -223,4 +223,4 @@ For the complete guide with all rules expanded: `AGENTS.md`
 
 ---
 
-⚡ PikaKit v3.9.122
+⚡ PikaKit v3.9.123
