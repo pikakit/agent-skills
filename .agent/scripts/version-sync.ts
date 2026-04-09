@@ -198,11 +198,44 @@ if (fs.existsSync(pikakitPkgPath)) {
 const extPkgPath = path.resolve(ROOT_DIR, '../add-agent-skill-kit/packages/pikakit-extension/package.json');
 if (fs.existsSync(extPkgPath)) {
   const extPkg = JSON.parse(fs.readFileSync(extPkgPath, 'utf-8').replace(/^\uFEFF/, ''));
+  let extChanged = false;
+
+  // 7a. Sync version
   if (extPkg.version !== newVersion) {
     extPkg.version = newVersion;
+    extChanged = true;
+  }
+
+  // 7b. Sync description to include version
+  const expectedDesc = `PikaKit Engine v${newVersion} — Real-time auto-learning from IDE diagnostics to generate skills automatically`;
+  if (extPkg.description !== expectedDesc) {
+    extPkg.description = expectedDesc;
+    extChanged = true;
+  }
+
+  if (extChanged) {
     fs.writeFileSync(extPkgPath, JSON.stringify(extPkg, null, 2) + '\n', 'utf-8');
-    console.log(`✅ Updated extension package.json to v${newVersion}`);
+    console.log(`✅ Updated extension package.json (version + description) to v${newVersion}`);
     updatedFiles++;
+  }
+}
+
+// 7c. Sync @version JSDoc in extension .ts source files
+const extSrcDir = path.resolve(ROOT_DIR, '../add-agent-skill-kit/packages/pikakit-extension/src');
+if (fs.existsSync(extSrcDir)) {
+  const tsFiles = fs.readdirSync(extSrcDir).filter((f: string) => f.endsWith('.ts'));
+  for (const file of tsFiles) {
+    const filePath = path.join(extSrcDir, file);
+    let content = fs.readFileSync(filePath, 'utf-8');
+    const versionTagRegex = /( \* @version )\d+\.\d+\.\d+/;
+    if (versionTagRegex.test(content)) {
+      const newContent = content.replace(versionTagRegex, `$1${newVersion}`);
+      if (content !== newContent) {
+        fs.writeFileSync(filePath, newContent, 'utf-8');
+        console.log(`✅ Updated @version in extension src/${file} to v${newVersion}`);
+        updatedFiles++;
+      }
+    }
   }
 }
 

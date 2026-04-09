@@ -10,7 +10,7 @@ coordinates_with: ["frontend-specialist", "nextjs-pro", "design-system"]
 success_metrics: ["Component Consistency", "DOM Optimization", "Responsive Robustness"]
 metadata:
   author: pikakit
-  version: "3.9.120"
+  version: "3.9.121"
 ---
 
 # Tailwind Kit — Tailwind CSS v4 Patterns
@@ -208,4 +208,4 @@ For the complete guide with all rules expanded: `AGENTS.md`
 
 ---
 
-⚡ PikaKit v3.9.120
+⚡ PikaKit v3.9.121

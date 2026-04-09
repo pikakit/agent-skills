@@ -10,7 +10,7 @@ coordinates_with: ["seo-optimizer", "studio", "ai-artist"]
 success_metrics: ["4/4 headline Us score", "0 copy validation failures"]
 metadata:
   author: pikakit
-  version: "3.9.120"
+  version: "3.9.121"
 ---
 
 # Copywriting — Conversion Formulas
@@ -185,4 +185,4 @@ All copywriting outputs MUST emit `formula_selected`, `validation_passed`, or `v
 
 ---
 
-⚡ PikaKit v3.9.120
+⚡ PikaKit v3.9.121

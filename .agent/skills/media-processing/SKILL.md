@@ -6,7 +6,7 @@ description: >-
   NOT for UI image assets (use design-system) or prompt-based generation (use ai-artist).
 metadata:
   author: pikakit
-  version: "3.9.120"
+  version: "3.9.121"
 ---
 
 # Media Processing — FFmpeg + ImageMagick + RMBG
@@ -170,4 +170,4 @@ rmbg input.jpg -m briaai -o output.png   # Highest quality
 
 ---
 
-⚡ PikaKit v3.9.120
+⚡ PikaKit v3.9.121
