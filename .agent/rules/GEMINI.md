@@ -111,3 +111,44 @@ Safety violation → `@[skills/auto-learner]` triggered. Full protocol: see `aut
 
 ---
 
+## ⛔ HARD GATE — Mandatory Pre-Code Check
+
+> 🔴 **THIS IS NOT OPTIONAL.** Every code response MUST pass this gate.
+> Agent that skips this gate = **PROTOCOL VIOLATION** = user loses trust.
+
+### Before writing ANY code, agent MUST produce this header:
+
+```
+📋 Task Level: L{0-3}
+🤖 Skill: @{skill-name} (or "none" for L0)
+```
+
+### Gate Rules:
+
+| Level | Required Actions | Failure = |
+|-------|-----------------|-----------|
+| **L0** (Question) | Answer directly, no gate needed | — |
+| **L1** (Quick fix, <10 lines) | Classify + footer `✅ @{skill}` | Missing footer |
+| **L2** (Multi-file) | Classify + `view_file SKILL.md` + header `🤖 @{skill}` | **INVALID response** |
+| **L3** (Architecture) | Classify + `view_file SKILL.md + AGENTS.md` + header + plan | **INVALID response** |
+
+### Self-Check Trigger:
+
+```
+EVERY TIME you are about to write code or create files:
+  → "Did I output the Task Level + Skill header?"
+  → If NO → STOP. Output header FIRST. Then continue.
+  → If YES → Proceed with code.
+```
+
+### No Exceptions:
+
+- ❌ "I'll do it next time" → NO. Do it NOW.
+- ❌ "The task is a continuation" → Still requires header.
+- ❌ "Context was truncated/resumed" → Still requires header.
+- ❌ "It's obvious which skill" → Still requires `view_file` for L2+.
+
+> **Why this exists:** Without enforcement, agents skip skill routing 100% of the time.
+> This gate converts a "suggestion" into a **hard requirement**.
+
+---
