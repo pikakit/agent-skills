@@ -131,11 +131,11 @@ All system-design outputs MUST emit `architecture_analysis_started` and `analysi
 
 | File | Description | When to Read |
 |------|-------------|--------------|
-| [context-discovery.md](context-discovery.md) | Project classification questions | Starting architecture |
-| [trade-off-analysis.md](trade-off-analysis.md) | ADR templates, trade-off framework | Documenting decisions |
-| [pattern-selection.md](pattern-selection.md) | Decision trees, anti-patterns | Choosing patterns |
-| [patterns-reference.md](patterns-reference.md) | Quick pattern lookup | Pattern comparison |
-| [examples.md](examples.md) | MVP, SaaS, Enterprise examples | Reference implementations |
+| [context-discovery.md](rules/context-discovery.md) | Project classification questions | Starting architecture |
+| [trade-off-analysis.md](rules/trade-off-analysis.md) | ADR templates, trade-off framework | Documenting decisions |
+| [pattern-selection.md](rules/pattern-selection.md) | Decision trees, anti-patterns | Choosing patterns |
+| [patterns-reference.md](rules/patterns-reference.md) | Quick pattern lookup | Pattern comparison |
+| [examples.md](rules/examples.md) | MVP, SaaS, Enterprise examples | Reference implementations |
 | [engineering-spec.md](rules/engineering-spec.md) | Full spec | Architecture review |
 
 ---
