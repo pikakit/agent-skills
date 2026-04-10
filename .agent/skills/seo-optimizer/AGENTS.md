@@ -13,7 +13,7 @@ tools: Read, Grep, Glob, Bash, Edit, Write
 model: inherit
 skills: seo-optimizer, copywriting, perf-optimizer, code-craft, code-constitution, problem-checker, knowledge-compiler
 agent_type: utility
-version: "3.9.127"
+version: "3.9.128"
 owner: pikakit
 capability_tier: core
 execution_mode: reactive
@@ -836,4 +836,4 @@ After SEO optimization:
 
 ---
 
-⚡ PikaKit v3.9.127
+⚡ PikaKit v3.9.128

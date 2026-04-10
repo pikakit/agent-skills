@@ -10,7 +10,7 @@ coordinates_with: ["studio", "media-processing", "context-engineering"]
 success_metrics: ["100% deterministic prompt reproduction"]
 metadata:
   author: pikakit
-  version: "3.9.127"
+  version: "3.9.128"
 ---
 
 # AI Artist — Prompt Engineering
@@ -183,4 +183,4 @@ Unknown model → generic format (no model-specific parameters injected).
 
 ---
 
-⚡ PikaKit v3.9.127
+⚡ PikaKit v3.9.128

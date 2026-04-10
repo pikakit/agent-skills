@@ -13,7 +13,7 @@ tools: Read, Grep, Glob, Bash, Edit, Write, Agent
 model: inherit
 skills: lifecycle-orchestrator, smart-router, execution-reporter, context-engineering, git-workflow, debug-pro, code-craft, code-constitution, problem-checker, knowledge-compiler
 agent_type: meta
-version: "3.9.127"
+version: "3.9.128"
 owner: pikakit
 capability_tier: core
 execution_mode: workflow-driven
@@ -986,4 +986,4 @@ After execution completes:
 
 ---
 
-⚡ PikaKit v3.9.127
+⚡ PikaKit v3.9.128

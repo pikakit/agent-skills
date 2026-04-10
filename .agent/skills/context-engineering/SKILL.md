@@ -10,7 +10,7 @@ coordinates_with: ["lifecycle-orchestrator", "system-design"]
 success_metrics: ["< 70% token utilization", "> 70% cache hit rate"]
 metadata:
   author: pikakit
-  version: "3.9.127"
+  version: "3.9.128"
 ---
 
 # Context Engineering
@@ -144,4 +144,4 @@ metadata:
 
 ---
 
-⚡ PikaKit v3.9.127
+⚡ PikaKit v3.9.128

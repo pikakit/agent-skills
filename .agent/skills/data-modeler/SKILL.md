@@ -10,7 +10,7 @@ coordinates_with: ["api-architect", "nodejs-pro", "python-pro", "security-scanne
 success_metrics: ["0 N+1 query warnings", "100% indexed foreign keys"]
 metadata:
   author: pikakit
-  version: "3.9.127"
+  version: "3.9.128"
 ---
 
 # Data Modeler — Database Design
@@ -192,4 +192,4 @@ All data-modeler outputs MUST emit `schema_designed`, `platform_selected`, or `m
 
 ---
 
-⚡ PikaKit v3.9.127
+⚡ PikaKit v3.9.128

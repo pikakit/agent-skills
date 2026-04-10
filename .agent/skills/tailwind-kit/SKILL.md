@@ -10,7 +10,7 @@ coordinates_with: ["frontend-specialist", "nextjs-pro", "design-system"]
 success_metrics: ["Component Consistency", "DOM Optimization", "Responsive Robustness"]
 metadata:
   author: pikakit
-  version: "3.9.127"
+  version: "3.9.128"
 ---
 
 # Tailwind Kit — Tailwind CSS v4 Patterns
@@ -168,4 +168,4 @@ All tailwind-kit outputs MUST emit `css_class_recommended` and `layout_pattern_g
 
 ---
 
-⚡ PikaKit v3.9.127
+⚡ PikaKit v3.9.128

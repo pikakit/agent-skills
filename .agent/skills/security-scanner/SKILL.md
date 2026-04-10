@@ -10,7 +10,7 @@ coordinates_with: ["offensive-sec", "auth-patterns", "cicd-pipeline", "code-revi
 success_metrics: ["Vulnerability Detection Rate", "OWASP Coverage", "Remediation Completeness"]
 metadata:
   author: pikakit
-  version: "3.9.127"
+  version: "3.9.128"
 ---
 
 # Security Scanner — Vulnerability Analysis & OWASP
@@ -179,4 +179,4 @@ All scan outputs MUST emit `scan_started` and `scan_completed` events.
 
 ---
 
-⚡ PikaKit v3.9.127
+⚡ PikaKit v3.9.128
