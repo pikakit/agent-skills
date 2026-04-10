@@ -173,7 +173,7 @@ All executions MUST emit the `build_verification` span before reporting completi
 | App store rejection | Check guidelines, test on real devices |
 
 
-## 📑 Content Map## 📑 Content Map
+## 📑 Content Map
 
 | File | Description | When to Read |
 |------|-------------|--------------|

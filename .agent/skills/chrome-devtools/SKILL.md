@@ -136,7 +136,7 @@ node navigate.ts --close true
 | Script hangs | Page never loads | Increase `--timeout` or check URL |
 
 
-## 📑 Content Map## 📑 Content Map
+## 📑 Content Map
 
 | File | Description | When to Read |
 |------|-------------|--------------|

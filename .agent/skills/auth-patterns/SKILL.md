@@ -135,7 +135,7 @@ What type of application?
 | Implicit trust for internal services | Zero trust: verify every request |
 
 
-## 📑 Content Map## 📑 Content Map
+## 📑 Content Map
 
 | File | Description | When to Read |
 |------|-------------|--------------|

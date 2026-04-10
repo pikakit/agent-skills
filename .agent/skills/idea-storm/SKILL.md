@@ -137,7 +137,7 @@ metadata:
 | Skip gate for "urgent" requests | Gate is mandatory; no bypass |
 
 
-## 📑 Content Map## 📑 Content Map
+## 📑 Content Map
 
 | File | Description | When to Read |
 |------|-------------|--------------|

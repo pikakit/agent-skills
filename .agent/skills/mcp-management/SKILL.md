@@ -143,7 +143,7 @@ npx tsx cli.ts list-resources  # Available resources
 | Assume server is running | Check before execute |
 
 
-## 📑 Content Map## 📑 Content Map
+## 📑 Content Map
 
 | File | Description | When to Read |
 |------|-------------|--------------|

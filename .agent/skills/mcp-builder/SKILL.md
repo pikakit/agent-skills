@@ -137,7 +137,7 @@ Create 10 test questions that are:
 | Skip research phase | Read MCP spec + target API first |
 
 
-## 📑 Content Map## 📑 Content Map
+## 📑 Content Map
 
 | File | Description | When to Read |
 |------|-------------|--------------|

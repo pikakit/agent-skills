@@ -152,7 +152,7 @@ All architectural decision outputs MUST emit a `decision_started` and `arch_reco
 | Always pick the same framework | Ask user, evaluate context |
 
 
-## 📑 Content Map## 📑 Content Map
+## 📑 Content Map
 
 | File | Description | When to Read |
 |------|-------------|--------------|

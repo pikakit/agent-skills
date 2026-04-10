@@ -139,7 +139,7 @@ All executions MUST emit the `build_verification` span before reporting completi
 | Ignore IDE warnings/errors | Call `problem-checker` to auto-fix |
 
 
-## 📑 Content Map## 📑 Content Map
+## 📑 Content Map
 
 | Category | Files | Focus | When to Read |
 |----------|-------|-------|--------------|

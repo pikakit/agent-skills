@@ -138,7 +138,7 @@ node .agent/skills/studio/scripts/search.ts "<query>" --domain style
 **Zero internal retries.** Deterministic; same context = same design.
 
 
-## 📑 Content Map## 📑 Content Map
+## 📑 Content Map
 
 | File | Description | When to Read |
 |------|-------------|--------------|

@@ -142,7 +142,7 @@ All executions MUST emit the `build_verification` span before reporting completi
 - [ ] Considered security requirements?
 
 
-## 📑 Content Map## 📑 Content Map
+## 📑 Content Map
 
 | File | Description | When to Read |
 |------|-------------|--------------|

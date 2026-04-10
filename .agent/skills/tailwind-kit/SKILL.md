@@ -147,7 +147,7 @@ metadata:
 All tailwind-kit outputs MUST emit `css_class_recommended` and `layout_pattern_generated` events when applicable.
 
 
-## 📑 Content Map## 📑 Content Map
+## 📑 Content Map
 
 | File | Description | When to Read |
 |------|-------------|--------------|

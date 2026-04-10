@@ -139,7 +139,7 @@ gitops-repo/
 | Use imperative `kubectl apply` | Declarative manifests in Git |
 
 
-## 📑 Content Map## 📑 Content Map
+## 📑 Content Map
 
 | File | Description | When to Read |
 |------|-------------|--------------|

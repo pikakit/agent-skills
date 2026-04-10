@@ -129,7 +129,7 @@ Touch-first → Battery-conscious → Platform-respectful → Offline-capable
 | Mix platform conventions | Respect iOS HIG / Material Design |
 
 
-## 📑 Content Map## 📑 Content Map
+## 📑 Content Map
 
 | File | Description | When to Read |
 |------|-------------|--------------|

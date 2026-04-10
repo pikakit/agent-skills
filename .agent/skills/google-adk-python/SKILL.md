@@ -142,7 +142,7 @@ coordinator = LlmAgent(
 | Hardcode API keys | Use environment variables |
 
 
-## 📑 Content Map## 📑 Content Map
+## 📑 Content Map
 
 | File | Description | When to Read |
 |------|-------------|--------------|
