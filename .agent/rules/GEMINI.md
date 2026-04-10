@@ -139,7 +139,7 @@ Safety violation → `@[skills/auto-learner]` triggered. Full protocol: see `aut
 
 ```
 📋 Task Level: L{0-3}
-🤖 Skill: @{skill-name} (or "none" for L0)
+🤖 Pikakit Skill: @{skill-name} (or "none" for L0)
 ```
 
 ### Gate Rules:
