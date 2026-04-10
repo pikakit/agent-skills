@@ -10,45 +10,50 @@ coordinates_with: ["auto-learned", "problem-checker", "skill-generator"]
 success_metrics: ["Actionable Lesson Rate", "Lesson Extraction Speed", "False Positive Rate"]
 metadata:
   author: pikakit
-  version: "3.9.124"
+  version: "3.9.125"
 ---
 
 # Auto-Learner
 
-Autonomous learning engine that extracts patterns from errors, corrections, and failures.
+Autonomous learning engine that extracts **actionable** patterns from errors, corrections, and failures.
 
 ---
 
-## 5 Must-Ask Questions (Socratic Gate)
+## ⛔ Quality Gate — MANDATORY Before Recording
 
-| # | Question | Options |
-|---|----------|---------|
-| 1 | Exact Error Message? | Raw IDE error / User correction text |
-| 2 | Component Context? | File type / Framework / Language |
-| 3 | Attempted Fix? | What was changed to correct the error? |
-| 4 | Fix Success Status? | Verified working / Still failing |
-| 5 | Core Lesson Learned? | The underlying pattern to prevent this |
+> 🔴 Every pattern MUST pass this gate. Garbage in = garbage out.
+
+### Pattern Rejection Rules:
+
+| Reject If | Reason | Example |
+|-----------|--------|---------|
+| Error is a **local variable** out of scope | Not an import issue — it's a refactoring artifact | `Cannot find name 'chartRef'` where chartRef is a useRef |
+| Solution is just "Add import for X" with no path | Zero actionable value — WHERE to import from? | ❌ "Fix: Add import for 'isDark'" |
+| Error occurred during active refactoring | Temporary state, will resolve itself | Extracting components mid-edit |
+| Pattern has < 3 occurrences across sessions | Noise, not a pattern | One-off typo |
+| Error is project-specific, not generalizable | Won't help other projects | `Cannot find module './mySpecificFile'` |
+
+### Pattern Acceptance Rules:
+
+| Accept If | Required Fields | Example |
+|-----------|----------------|---------|
+| Error recurs across files/sessions | error_signature + solution + import_path | `React` not found → `import React from 'react'` |
+| Solution includes **exact fix** | Before/after code | `&&` fails in PowerShell → use `;` instead |
+| Pattern is framework-generalizable | context.framework + context.file_type | Missing `'use client'` in Next.js app-router |
+
+### Required Fields for Every Pattern:
+
+```yaml
+- error_signature: "exact IDE error text"
+  solution: "exact code to fix it"        # NOT "add import for X"
+  import_from: "module-path"              # Required for import patterns
+  before: "broken code snippet"           # What the error looked like
+  after: "fixed code snippet"             # What the fix looked like
+  confidence: high|medium|low
+  generalizable: true|false               # Can other projects use this?
+```
 
 ---
-
-## Scope
-
-| In Scope | Out of Scope |
-|----------|-------------|
-| Pattern extraction from errors | Pattern storage (→ auto-learned) |
-| Root cause analysis | IDE integration (→ problem-checker) |
-| Lesson categorization (LEARN-XXX) | Skill generation (→ skill-generator) |
-| Severity classification | Agent routing |
-
-## Protocol
-
-```
-1. DETECT → Error or user correction detected
-2. ANALYZE → Extract root cause (5 Whys)
-3. CATEGORIZE → Assign category + severity + ID
-4. WRITE → Store pattern in auto-learned/patterns/
-5. CONFIRM → Output: ⚕ Learned: [LEARN-XXX]
-```
 
 ## Trigger Words
 
@@ -57,16 +62,35 @@ Autonomous learning engine that extracts patterns from errors, corrections, and 
 | EN | "mistake", "wrong", "fix this", "broken" |
 | VI | "lỗi", "sai", "hỏng", "sửa lại" |
 
+---
+
+## Protocol
+
+```
+1. DETECT  → Error or user correction detected
+2. FILTER  → Apply Quality Gate (reject noise)
+3. ANALYZE → Extract root cause (5 Whys)
+4. ENRICH  → Capture EXACT fix (before/after, import path)
+5. STORE   → Write to auto-learned/patterns/ with full solution
+6. CONFIRM → Output: 📚 Learned: [LEARN-XXX]
+```
+
+---
+
 ## Lesson Schema
 
 ```yaml
-- id: LEARN-XXX          # Auto-incremented
-  pattern: "string"      # Error signature
+- id: LEARN-XXX
+  pattern: "error signature"
   severity: CRITICAL|HIGH|MEDIUM|LOW
-  message: "string"      # Fix instruction
+  message: "fix instruction with EXACT code"
+  import_from: "module-path"           # For import errors
+  before: "code that caused the error"
+  after: "code that fixes it"
   date: "YYYY-MM-DD"
-  trigger: "string"      # What caused this
+  trigger: "what caused this"
   fix_applied: boolean
+  generalizable: boolean
 ```
 
 ## Category IDs
@@ -78,38 +102,28 @@ Autonomous learning engine that extracts patterns from errors, corrections, and 
 | Workflow | `FLOW-XXX` |
 | Integration | `INT-XXX` |
 
+---
+
+## Anti-Patterns (NEVER DO)
+
+| ❌ Don't | ✅ Do |
+|---------|-------|
+| Record "Add import for 'X'" without path | Record `import { X } from 'exact/path'` |
+| Record local variable scope errors as imports | Recognize useRef/useState vars are NOT imports |
+| Generate 294-line skills repeating the same fix | Generate concise, actionable patterns |
+| Accept every IDE error as a pattern | Filter through Quality Gate first |
+| Create skills named "import-imports" | Use descriptive names like "react-import-patterns" |
+
+---
+
 ## Integration
 
-| Dependency | Type | Direction | Purpose |
-|-----------|------|-----------|---------|
-| `auto-learned` | Skill | Writes to | Pattern storage |
-| `problem-checker` | Skill | Receives from | IDE error signals |
-| `skill-generator` | Skill | Feeds into | High-confidence patterns → new skills |
-| `learner` agent | Agent | Implements | This skill's primary executor |
-
-## Enforcement (P2 — Advisory)
-
-| Occurrence | Level | Action |
-|-----------|-------|--------|
-| 1st ignore | 💡 Log | Note, increment count |
-| 2nd same | ⚠️ Warn | Re-read patterns, apply if applicable |
-| 3+ same | 📊 Flag | Mark high-frequency, prioritize for skill gen |
-
-> **Note:** This skill codifies the auto-learning protocol from GEMINI.md § Auto-Learn Protocol.
-> The `learner` agent is its primary executor. Patterns are stored in `auto-learned/patterns/`.
+| Dependency | Direction | Purpose |
+|-----------|-----------|---------|
+| `auto-learned` | Writes to | Pattern storage |
+| `problem-checker` | Receives from | IDE error signals |
+| `skill-generator` | Feeds into | High-quality patterns → new skills |
 
 ---
 
-## Audit Logging (OpenTelemetry)
-
-| Event | Metadata Payload | Severity |
-|-------|------------------|----------|
-| `lesson_extraction_started` | `{"trigger": "user_correction", "error_type": "type_mismatch"}` | `INFO` |
-| `lesson_extracted_successfully` | `{"lesson_id": "LEARN-001", "severity": "HIGH"}` | `INFO` |
-| `lesson_extraction_failed` | `{"reason": "ambiguous_fix", "error_signature": "unknown"}` | `WARN` |
-
-All auto-learner outputs MUST emit `lesson_extraction_started` and either `lesson_extracted_successfully` or `lesson_extraction_failed`.
-
----
-
-⚡ PikaKit v3.9.124
+⚡ PikaKit v3.9.125
