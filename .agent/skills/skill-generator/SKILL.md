@@ -3,73 +3,85 @@ name: skill-generator
 description: >-
   Generates new skills from high-quality auto-learned patterns.
   Only creates skills when patterns meet strict quality thresholds.
+  Use when "generate skill", "create skill from patterns", or when auto-learned
+  patterns reach the generation threshold (≥5 quality patterns).
   NOT for learning patterns (use auto-learner) or storing patterns (use auto-learned).
-category: autonomous-learning
-triggers: ["generate skill", "create skill from patterns", "skill generation"]
-coordinates_with: ["auto-learner", "auto-learned", "problem-checker"]
-success_metrics: ["Skill Usefulness Rating", "Generated Skill Quality Score"]
 metadata:
   author: pikakit
   version: "3.9.125"
+  reference: "docs/The-Complete-Guide-to-Building-Skills-for-Claude.md"
 ---
 
 # Skill Generator
 
 Converts high-quality auto-learned patterns into reusable skills.
+Compliant with [Anthropic's Complete Guide to Building Skills](../../../docs/The-Complete-Guide-to-Building-Skills-for-Claude.md).
 
 ---
 
 ## ⛔ Generation Gate — MANDATORY
 
-> 🔴 A skill is ONLY generated when ALL of these conditions are met.
+> 🔴 A skill is ONLY generated when ALL conditions are met.
 > Generating garbage skills is WORSE than generating nothing.
-
-### Pre-Generation Checklist:
 
 | # | Check | Threshold | Reject If |
 |---|-------|-----------|-----------|
-| 1 | Pattern count | ≥ 5 patterns in same category | < 5 patterns |
-| 2 | Pattern quality | ALL patterns have `solution` + `before/after` | Any pattern missing actual fix code |
-| 3 | Generalizability | ≥ 80% patterns marked `generalizable: true` | Mostly project-specific noise |
-| 4 | Recurrence | Average occurrences ≥ 3 across sessions | One-off errors |
-| 5 | Solution diversity | ≥ 3 distinct solutions | All patterns repeat "add import for X" |
+| 1 | Pattern count | ≥ 5 in same category | < 5 patterns |
+| 2 | Pattern quality | ALL have `solution` + `before/after` code | Missing actual fix |
+| 3 | Generalizability | ≥ 80% marked `generalizable: true` | Project-specific noise |
+| 4 | Recurrence | Avg occurrences ≥ 3 | One-off errors |
+| 5 | Solution diversity | ≥ 3 distinct solutions | Repeating "add import for X" |
 
-### If ANY check fails → DO NOT GENERATE. Keep patterns in `auto-learned/` until threshold met.
+**If ANY check fails → DO NOT GENERATE.**
 
 ---
 
-## Naming Rules
+## Naming Rules (Anthropic Standard)
+
+- **kebab-case only:** `react-import-patterns` ✅
+- **No spaces/capitals:** `Import Imports` ❌
+- **Format:** `{domain}-{problem-area}`
+- **Folder name = skill name**
 
 | ❌ Never | ✅ Always |
 |---------|----------|
 | `import-imports` | `react-import-patterns` |
 | `type-types` | `typescript-type-guards` |
 | `fix-fixes` | `nextjs-app-router-fixes` |
-| Category + Category | Domain + Problem-area |
-
-**Format:** `{domain}-{problem-area}` where domain = framework/language, problem-area = what it solves.
 
 ---
 
-## Generated Skill Template
+## Generated Skill Structure (Anthropic Standard)
+
+```
+{skill-name}/
+├── SKILL.md        # Required — instructions (≤ 100 lines)
+└── references/     # Optional — detailed docs if needed
+```
+
+**No README.md inside skill folder.** No `_template.md` or `_sections.md`.
+
+---
+
+## SKILL.md Template
 
 ```markdown
 ---
 name: {domain}-{problem-area}
 description: >-
   {count} actionable patterns for {problem description}.
+  Use when encountering {trigger phrase 1}, {trigger phrase 2}.
   Auto-generated from verified fixes.
 ---
 
 # {Skill Name}
 
-> {count} patterns · Category: {category} · Confidence: {avg_confidence}
+## Instructions
 
-## Patterns
+### Pattern 1: {Error Description}
 
-### 1. {Error Description}
+**Error:** `{exact IDE error message}`
 
-**Error:** `{exact error message}`
 **Fix:**
 \`\`\`{language}
 // Before (broken)
@@ -78,50 +90,56 @@ description: >-
 // After (fixed)
 {after_code}
 \`\`\`
-**Import:** `{import_statement}` (if applicable)
 
-### 2. ...
+### Pattern 2: ...
+
+## Troubleshooting
+
+### {Common error scenario}
+**Cause:** {why it happens}
+**Solution:** {exact fix steps}
 ```
 
 ### Template Rules:
-- Maximum **100 lines** for generated skills (not 294)
-- Each pattern MUST have before/after code
-- NO sections that just repeat the pattern list (When to Use, Solutions, Examples must be DIFFERENT content or omitted)
-- NO meta-agent integration tables (boilerplate, adds zero value)
-- NO statistics section (adds zero value)
+
+| Rule | Requirement |
+|------|------------|
+| Max length | ≤ 100 lines |
+| Each pattern | MUST have before/after code |
+| Description | MUST include trigger phrases |
+| Troubleshooting | MUST include ≥ 1 entry |
+| No boilerplate | NO meta-agent tables, NO statistics, NO repeated sections |
 
 ---
 
-## What Makes a USEFUL Skill
+## Quality Comparison
 
-| ✅ Useful | ❌ Useless |
-|----------|-----------|
+| ✅ Useful (Anthropic-grade) | ❌ Useless (what `import-imports` did) |
+|---|---|
 | `import { useState } from 'react'` — exact fix | "Add import for 'useState'" — no path |
-| Before/after code comparison | Just restating the error message |
-| Framework-specific context | Generic "fix this" |
-| One pattern per section, concise | Same error listed in 5 different sections |
-
----
-
-## Integration
-
-| Dependency | Direction | Purpose |
-|-----------|-----------|---------|
-| `auto-learned` | Reads from | Source patterns (only high-quality) |
-| `auto-learner` | Feeds from | Pattern extraction pipeline |
-| SKILL_INDEX.md | Writes to | Register new skills |
+| Before/after code comparison | Just restating the error |
+| Trigger phrases in description | Vague "applies patterns" |
+| Troubleshooting section | Same list repeated 5 times |
+| ≤ 100 lines, concise | 294 lines of bloat |
 
 ---
 
 ## Protocol
 
 ```
-1. CHECK THRESHOLD → Are there ≥ 5 quality patterns in a category?
-2. VALIDATE QUALITY → Do ALL patterns have solution + before/after?
-3. NAME SKILL → {domain}-{problem-area} format
-4. GENERATE SKILL.md → Use template (≤ 100 lines)
-5. REGISTER → Add to SKILL_INDEX.md
-6. CONFIRM → Output: 🤖 Generated skill: @{skill-name}
+1. CHECK THRESHOLD → ≥ 5 quality patterns in a category?
+2. VALIDATE QUALITY → ALL patterns have solution + before/after?
+3. NAME SKILL → kebab-case: {domain}-{problem-area}
+4. GENERATE → SKILL.md using template (≤ 100 lines)
+5. VALIDATE → Check against Anthropic Quick Checklist:
+   - [ ] SKILL.md exists (exact name)
+   - [ ] YAML frontmatter has --- delimiters
+   - [ ] name field: kebab-case
+   - [ ] description includes WHAT + WHEN + triggers
+   - [ ] Instructions clear and actionable
+   - [ ] Error handling / troubleshooting included
+6. REGISTER → Add to SKILL_INDEX.md
+7. CONFIRM → Output: 🤖 Generated skill: @{skill-name}
 ```
 
 ---
