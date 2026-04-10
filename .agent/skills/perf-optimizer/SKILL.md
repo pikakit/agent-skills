@@ -171,7 +171,7 @@ All executions MUST emit the `improvement_validated` span before reporting compl
 
 | File | Description | When to Read |
 |------|-------------|--------------|
-| [backend-patterns.md](backend-patterns.md) | N+1, caching, DB tuning | Backend performance |
+| [backend-patterns.md](rules/backend-patterns.md) | N+1, caching, DB tuning | Backend performance |
 | [scripts/lighthouse_audit.ts](scripts/lighthouse_audit.ts) | Lighthouse runner | Automated audit |
 | [engineering-spec.md](rules/engineering-spec.md) | Full spec | Architecture review |
 

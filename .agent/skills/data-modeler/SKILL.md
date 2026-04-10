@@ -163,12 +163,12 @@ All data-modeler outputs MUST emit `schema_designed`, `platform_selected`, or `m
 
 | File | Description | When to Read |
 |------|-------------|--------------|
-| [database-selection.md](database-selection.md) | PostgreSQL vs Neon vs Turso vs SQLite | Choosing database |
-| [orm-selection.md](orm-selection.md) | Drizzle vs Prisma vs Kysely | Choosing ORM |
-| [schema-design.md](schema-design.md) | Normalization, PKs, relationships | Designing schema |
-| [indexing.md](indexing.md) | Index types, composite indexes | Performance tuning |
-| [optimization.md](optimization.md) | N+1, EXPLAIN ANALYZE | Query analysis |
-| [migrations.md](migrations.md) | Safe migrations, serverless DBs | Schema changes |
+| [database-selection.md](rules/database-selection.md) | PostgreSQL vs Neon vs Turso vs SQLite | Choosing database |
+| [orm-selection.md](rules/orm-selection.md) | Drizzle vs Prisma vs Kysely | Choosing ORM |
+| [schema-design.md](rules/schema-design.md) | Normalization, PKs, relationships | Designing schema |
+| [indexing.md](rules/indexing.md) | Index types, composite indexes | Performance tuning |
+| [optimization.md](rules/optimization.md) | N+1, EXPLAIN ANALYZE | Query analysis |
+| [migrations.md](rules/migrations.md) | Safe migrations, serverless DBs | Schema changes |
 | [engineering-spec.md](rules/engineering-spec.md) | Full engineering spec | Architecture review |
 
 ## Script
