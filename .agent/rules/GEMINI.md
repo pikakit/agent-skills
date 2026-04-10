@@ -111,6 +111,23 @@ Safety violation → `@[skills/auto-learner]` triggered. Full protocol: see `aut
 
 **Protocol:** Match keyword → Read skill's `SKILL.md` → Announce `🤖 @{skill}` → Code.
 
+### 📢 Notification Format
+
+| Event | Template |
+|-------|----------|
+| **Skill Load** | `🤖 @{skill}` |
+| **Workflow Start** | `🤖 PikaKit v3.9.125 / Workflow: /{name}` |
+| **Task Complete** | `✅ @{skill} · {file_count} files` |
+| **Error** | `❌ Failed: @{skill} · {error}` |
+
+**Behavior Rules:**
+
+- ❌ Don't show notifications on simple edits (L0/L1)
+- ✅ Show `🤖 @{skill}` header on L2+ tasks
+- ✅ Show footer on task completion
+- 🔇 Suppress duplicate skill load announcements — if same skill already announced in this response, don't repeat
+- 📦 Compact mode: when ≥2 skills loaded, use single line: `🤖 @{skill-a} + @{skill-b}`
+
 ---
 
 ## ⛔ HARD GATE — Mandatory Pre-Code Check

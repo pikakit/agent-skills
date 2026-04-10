@@ -90,7 +90,7 @@ metadata:
 | `normal` | ✅ | ✅ | ❌ | ✅ |
 | `verbose` | ✅ | ✅ | ✅ | ✅ |
 
-**Default:** `normal`. Config: `.agent/config/notification-config.json`
+**Default:** `normal`. See `GEMINI.md § Notification Format` for behavior rules.
 
 ---
 
