@@ -5,8 +5,8 @@
 ### Your AI writes code. PikaKit makes it *senior-level*.
 
 [![npm](https://img.shields.io/badge/npm-v3.9.125-7c3aed?style=for-the-badge&logo=npm&logoColor=white&labelColor=18181b)](https://www.npmjs.com/package/pikakit)
-[![Skills](https://img.shields.io/badge/51_skills-06b6d4?style=for-the-badge&labelColor=18181b)](https://github.com/pikakit/agent-skills)
-[![Workflows](https://img.shields.io/badge/18_workflows-10b981?style=for-the-badge&labelColor=18181b)](https://github.com/pikakit/agent-skills)
+[![Skills](https://img.shields.io/badge/53_skills-06b6d4?style=for-the-badge&labelColor=18181b)](https://github.com/pikakit/agent-skills)
+[![Workflows](https://img.shields.io/badge/19_workflows-10b981?style=for-the-badge&labelColor=18181b)](https://github.com/pikakit/agent-skills)
 [![TypeScript](https://img.shields.io/badge/strict_typescript-3178c6?style=for-the-badge&logo=typescript&logoColor=white&labelColor=18181b)](https://github.com/pikakit/agent-skills)
 
 ```bash
@@ -21,7 +21,7 @@ npx pikakit
 
 ## What is PikaKit?
 
-PikaKit injects **51 engineering skills** into any AI coding assistant. One command installs battle-tested patterns for architecture, security, testing, performance, and more — so your AI delivers senior-level output from day one.
+PikaKit injects **53 engineering skills** into any AI coding assistant. One command installs battle-tested patterns for architecture, security, testing, performance, and more — so your AI delivers senior-level output from day one.
 
 Works with **Antigravity, Claude Code, Cursor, Windsurf, Cline, Amp, Roo Code**, and 10+ other AI tools.
 
@@ -39,7 +39,7 @@ Choose **Project** (`.agent/` in your repo) or **Global** (`~/.gemini/`). Done.
 
 ## Skills
 
-51 skills across 9 domains:
+53 skills across 9 domains:
 
 | Domain | Skills | Highlights |
 |--------|--------|------------|
@@ -49,7 +49,7 @@ Choose **Project** (`.agent/` in your repo) or **Global** (`~/.gemini/`). Done.
 | **Security** | 3 | `security-scanner` · `offensive-sec` · `code-constitution` |
 | **Testing** | 5 | `test-architect` · `e2e-automation` · `code-review` |
 | **Debugging** | 3 | `debug-pro` · `chrome-devtools` · `knowledge-graph` |
-| **AI & Automation** | 6 | `google-adk-python` · `mcp-builder` · `auto-learner` |
+| **AI & Automation** | 8 | `google-adk-python` · `mcp-builder` · `auto-learner` · `knowledge-compiler` |
 | **DevOps** | 7 | `cicd-pipeline` · `vercel-deploy` · `observability` · `gitops` |
 | **Mobile & More** | 12 | `mobile-developer` · `game-development` · `typescript-expert` · `doc-templates` |
 
@@ -79,6 +79,7 @@ Type these in your AI chat:
 | `/stage` | Local dev sandbox with Docker |
 | `/monitor` | Observability: metrics + traces + alerts |
 | `/optimize` | Profile & fix performance bottlenecks |
+| `/knowledge` | Compile fixes into a living knowledge wiki |
 
 ---
 
@@ -94,16 +95,31 @@ Type these in your AI chat:
 
 ---
 
-## Self-Learning
+## Self-Learning → Knowledge Compiler
+
+PikaKit doesn't just remember mistakes — it **compiles knowledge**:
 
 ```
-You: "This is wrong — use rename, not create"
- AI: 📚 Learned: [LEARN-003] Use rename instead of creating copies
-
-Next time → Applied automatically
+   Error fix / User correction
+          ↓
+   📥 Raw signal recorded
+          ↓
+   📚 /knowledge compile
+          ↓
+   Cross-linked wiki article
+          ↓
+   Agent reads before coding → never repeats
 ```
 
-Lessons saved in `lessons-learned.yaml`. Your AI improves with every correction.
+**3-tier knowledge lifecycle:**
+
+| Tier | Storage | Purpose |
+|------|---------|---------|--------|
+| **RAW** | `.agent/knowledge/raw/` | Error logs, corrections, decisions |
+| **COMPILED** | `.agent/knowledge/concepts/` | Cross-linked wiki articles with backlinks |
+| **SKILLS** | `.agent/skills/` | Mature knowledge → executable skill |
+
+Run `/knowledge lint` for wiki health checks (staleness, orphans, gaps, dead links).
 
 ---
 
@@ -134,7 +150,7 @@ npm run audit:workflows    # FAANG compliance audit
 
 <div align="center">
 
-**PikaKit v3.9.125** · 51 Skills · 18 Workflows · Strict TypeScript
+**PikaKit v3.9.125** · 53 Skills · 19 Workflows · Strict TypeScript
 
 ```bash
 npx pikakit
