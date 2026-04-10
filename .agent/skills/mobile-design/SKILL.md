@@ -10,7 +10,7 @@ coordinates_with: ["mobile-first", "mobile-developer", "design-system"]
 success_metrics: ["MFRI score > 5", "Touch targets >= 44pt"]
 metadata:
   author: pikakit
-  version: "3.9.125"
+  version: "3.9.126"
 ---
 
 # Mobile Design — Mobile-First Design Doctrine
@@ -162,4 +162,4 @@ Touch-first → Battery-conscious → Platform-respectful → Offline-capable
 
 ---
 
-⚡ PikaKit v3.9.125
+⚡ PikaKit v3.9.126

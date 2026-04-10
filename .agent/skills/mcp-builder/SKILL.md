@@ -10,7 +10,7 @@ coordinates_with: ["mcp-management", "api-architect", "typescript-expert"]
 success_metrics: ["100% 4-phase completion", "10 evaluation questions generated"]
 metadata:
   author: pikakit
-  version: "3.9.125"
+  version: "3.9.126"
 ---
 
 # MCP Builder — Build MCP Servers for AI Agents
@@ -163,4 +163,4 @@ Create 10 test questions that are:
 
 ---
 
-⚡ PikaKit v3.9.125
+⚡ PikaKit v3.9.126

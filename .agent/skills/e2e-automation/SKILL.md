@@ -10,7 +10,7 @@ coordinates_with: ["test-architect", "cicd-pipeline"]
 success_metrics: ["100% stable tests (0 flake)", "100% coverage on critical paths"]
 metadata:
   author: pikakit
-  version: "3.9.125"
+  version: "3.9.126"
 ---
 
 # E2E Automation — Playwright Testing
@@ -172,4 +172,4 @@ NAVIGATING → ERROR        [target unreachable]  // terminal
 
 ---
 
-⚡ PikaKit v3.9.125
+⚡ PikaKit v3.9.126

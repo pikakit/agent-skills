@@ -4,7 +4,7 @@ trigger: always_on
 
 # 🤖 PikaKit — FAANG-Grade AI Operating System
 
-> **v3.9.125** | 53 Skills • 21 Agents • 19 Workflows | [github.com/pikakit](https://github.com/pikakit/agent-skills)
+> **v3.9.126** | 53 Skills • 21 Agents • 19 Workflows | [github.com/pikakit](https://github.com/pikakit/agent-skills)
 
 **This file is the Supreme Law for AI behavior in this workspace.**
 
@@ -116,7 +116,7 @@ Safety violation → `@[skills/knowledge-compiler]` triggered (Learn operation).
 | Event | Template |
 |-------|----------|
 | **Skill Load** | `🤖 @{skill}` |
-| **Workflow Start** | `🤖 PikaKit v3.9.125 / Workflow: /{name}` |
+| **Workflow Start** | `🤖 PikaKit v3.9.126 / Workflow: /{name}` |
 | **Task Complete** | `✅ @{skill} · {file_count} files` |
 | **Error** | `❌ Failed: @{skill} · {error}` |
 

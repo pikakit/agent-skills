@@ -9,7 +9,7 @@ coordinates_with: ["game-development", "unity", "unreal", "godot"]
 success_metrics: ["100% games support controllers", "0 performance regressions"]
 metadata:
   author: pikakit
-  version: "3.9.125"
+  version: "3.9.126"
 ---
 
 # PC/Console Game Development
@@ -164,4 +164,4 @@ Map ACTIONS, not buttons:
 
 ---
 
-⚡ PikaKit v3.9.125
+⚡ PikaKit v3.9.126

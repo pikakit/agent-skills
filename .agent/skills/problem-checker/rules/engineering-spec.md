@@ -1,10 +1,10 @@
 ---
-title: Problem Checker — Engineering Specification
+title: Problem Checker ï¿½ Engineering Specification
 impact: MEDIUM
 tags: problem-checker
 ---
 
-# Problem Checker — Engineering Specification
+# Problem Checker ï¿½ Engineering Specification
 
 > Production-grade specification for automated IDE problem detection and auto-fix at FAANG scale.
 
@@ -12,11 +12,11 @@ tags: problem-checker
 
 ## 1. Overview
 
-Problem Checker provides automated IDE error detection and resolution before task completion: reads `@[current_problems]`, classifies issues as auto-fixable or escalatable, applies fixes for known patterns, re-verifies after fix, and blocks completion if unfixed errors remain. The skill operates as an **Automation (scripted)** — it reads IDE problem state, applies file modifications (auto-fix), re-reads IDE state (verification loop), and may escalate to user. Side effects include: modifying source files (auto-fix), reading IDE problem state, and blocking task completion.
+Problem Checker provides automated IDE error detection and resolution before task completion: reads `@[current_problems]`, classifies issues as auto-fixable or escalatable, applies fixes for known patterns, re-verifies after fix, and blocks completion if unfixed errors remain. The skill operates as an **Automation (scripted)** ï¿½ it reads IDE problem state, applies file modifications (auto-fix), re-reads IDE state (verification loop), and may escalate to user. Side effects include: modifying source files (auto-fix), reading IDE problem state, and blocking task completion.
 
 **Contract Version:** 2.0.0
 **Backward Compatibility:** breaking (first hardened version)
-**Breaking Changes:** None — new spec for first hardening
+**Breaking Changes:** None ï¿½ new spec for first hardening
 
 ---
 
@@ -312,7 +312,7 @@ Session-based with fix-verify loop state. No persistent state across invocations
 | IDE state read | 2,000 ms | 5,000 ms | IDE response time |
 | Auto-fix per file | 1,000 ms | 3,000 ms | File write + parse |
 | Verification re-check | 3,000 ms | 10,000 ms | IDE refresh after modification |
-| Full cycle (all iterations) | 15,000 ms | 60,000 ms | 3 cycles × (fix + verify) |
+| Full cycle (all iterations) | 15,000 ms | 60,000 ms | 3 cycles ï¿½ (fix + verify) |
 | Fix-recheck cycles | 3 | 5 | Prevent infinite loops |
 
 ---
@@ -480,4 +480,4 @@ Session-based with fix-verify loop state. No persistent state across invocations
 
 ---
 
-? PikaKit v3.9.125
+? PikaKit v3.9.126

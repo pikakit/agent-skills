@@ -114,4 +114,4 @@ After gathering context, produce this summary:
 
 ---
 
-⚡ PikaKit v3.9.125
+⚡ PikaKit v3.9.126

@@ -165,4 +165,4 @@ async def bad_example():
 
 ---
 
-⚡ PikaKit v3.9.125
+⚡ PikaKit v3.9.126

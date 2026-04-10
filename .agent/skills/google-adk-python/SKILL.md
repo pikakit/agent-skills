@@ -10,7 +10,7 @@ coordinates_with: ["python-pro", "api-architect", "ai-artist"]
 success_metrics: ["100% typed parameters", "< 5 tools per agent"]
 metadata:
   author: pikakit
-  version: "3.9.125"
+  version: "3.9.126"
 ---
 
 # Google ADK Python — AI Agent Development
@@ -165,4 +165,4 @@ coordinator = LlmAgent(
 
 ---
 
-⚡ PikaKit v3.9.125
+⚡ PikaKit v3.9.126
