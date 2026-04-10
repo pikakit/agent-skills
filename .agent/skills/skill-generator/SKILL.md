@@ -1,11 +1,11 @@
 ---
 name: skill-generator
 description: >-
-  Generates new skills from high-quality auto-learned patterns.
+  Generates new skills from high-quality knowledge-compiler patterns.
   Only creates skills when patterns meet strict quality thresholds.
-  Use when "generate skill", "create skill from patterns", or when auto-learned
+  Use when "generate skill", "create skill from patterns", or when knowledge-compiler
   patterns reach the generation threshold (≥5 quality patterns).
-  NOT for learning patterns (use auto-learner) or storing patterns (use auto-learned).
+  NOT for learning patterns (use knowledge-compiler) or storing patterns (use knowledge-compiler).
 metadata:
   author: pikakit
   version: "3.9.125"
@@ -14,7 +14,7 @@ metadata:
 
 # Skill Generator
 
-Converts high-quality auto-learned patterns into reusable skills.
+Converts high-quality knowledge-compiler patterns into reusable skills.
 Compliant with [Anthropic's Complete Guide to Building Skills](../../../docs/The-Complete-Guide-to-Building-Skills-for-Claude.md).
 
 ---
@@ -127,7 +127,7 @@ description: >-
 ## Protocol
 
 ```
-1. CHECK THRESHOLD → ≥ 5 quality patterns in a category?
+1. CHECK THRESHOLD → ≥ 5 quality patterns in knowledge/patterns/?
 2. VALIDATE QUALITY → ALL patterns have solution + before/after?
 3. NAME SKILL → kebab-case: {domain}-{problem-area}
 4. GENERATE → SKILL.md using template (≤ 100 lines)

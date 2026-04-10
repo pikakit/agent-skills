@@ -11,7 +11,7 @@ description: >-
   browser test, chaos testing.
 tools: Read, Grep, Glob, Bash, Edit, Write
 model: inherit
-skills: e2e-automation, test-architect, agent-browser, chrome-devtools, code-craft, code-review, code-constitution, problem-checker, auto-learned
+skills: e2e-automation, test-architect, agent-browser, chrome-devtools, code-craft, code-review, code-constitution, problem-checker, knowledge-compiler
 agent_type: domain
 version: "3.9.125"
 owner: pikakit
@@ -587,7 +587,7 @@ When reviewing test automation code, verify:
 | `code-craft` | Clean code standards for test files | code style, naming | Clean code |
 | `code-constitution` | Governance validation | governance, safety | Compliance |
 | `problem-checker` | IDE error detection after test creation | IDE errors, before completion | Error count |
-| `auto-learned` | Pattern matching for test pitfalls | auto-learn, pattern | Patterns |
+| `knowledge-compiler` | Pattern matching for test pitfalls | auto-learn, pattern | Patterns |
 
 ---
 
@@ -846,7 +846,7 @@ After creating tests:
 
 ---
 
-> **Note:** This agent owns E2E test automation and CI test infrastructure. Key skills: `e2e-automation` for Playwright/Cypress browser testing, `test-architect` for test strategy, `agent-browser` for browser automation, and `chrome-devtools` for performance tracing. DISTINCT FROM `test-engineer` (unit + integration tests) and `perf` (performance benchmarking). Governance enforced via `code-constitution`, `problem-checker`, and `auto-learned`.
+> **Note:** This agent owns E2E test automation and CI test infrastructure. Key skills: `e2e-automation` for Playwright/Cypress browser testing, `test-architect` for test strategy, `agent-browser` for browser automation, and `chrome-devtools` for performance tracing. DISTINCT FROM `test-engineer` (unit + integration tests) and `perf` (performance benchmarking). Governance enforced via `code-constitution`, `problem-checker`, and `knowledge-compiler`.
 
 
 ---
@@ -866,7 +866,7 @@ description: >-
   appeal, QA rejection, agent dispute, technical verdict, deadlock resolution.
 tools: Read, Grep, Glob, Bash
 model: inherit
-skills: code-review, project-planner, code-craft, code-constitution, problem-checker, auto-learned
+skills: code-review, project-planner, code-craft, code-constitution, problem-checker, knowledge-compiler
 agent_type: meta
 version: "1.0"
 owner: pikakit
@@ -1048,7 +1048,7 @@ Map the blast radius:
 
 - **Weighted scoring**: 5-factor model (files, critical path, coverage, rollback, user-facing)
 - **Coverage gap detection**: Identify untested paths in changed code
-- **Historical pattern matching**: Leverage `auto-learned` for known risky patterns
+- **Historical pattern matching**: Leverage `knowledge-compiler` for known risky patterns
 
 ### Technical Arbitration (from critic)
 
@@ -1074,7 +1074,7 @@ Map the blast radius:
 | Technical dispute resolution | `1.0` | `code-review` | `code-craft`, `code-constitution` | "conflict", "disagreement", "dispute" |
 | QA rejection appeal | `1.0` | `code-review` | `code-craft` | "QA rejection", "appeal" |
 | Governance interpretation | `1.0` | `code-constitution` | `code-review` | "rule interpretation", "compliance dispute" |
-| Post-change verification | `1.0` | `problem-checker` | `auto-learned` | "verify change", "post-deploy check" |
+| Post-change verification | `1.0` | `problem-checker` | `knowledge-compiler` | "verify change", "post-deploy check" |
 
 Rules:
 
@@ -1385,7 +1385,7 @@ Rules:
 | `code-craft` | Code quality assessment / comparison | code style, quality, best practices | Quality score, suggestions |
 | `code-constitution` | Governance compliance, rule interpretation | governance, breaking change, doctrine, rule | Compliance status, applicable rules |
 | `problem-checker` | Post-evaluation IDE error verification | IDE errors, before completion | Error count + auto-fixes |
-| `auto-learned` | Pattern matching for known risk/conflict patterns | auto-learn, pattern | Matched patterns + indicators |
+| `knowledge-compiler` | Pattern matching for known risk/conflict patterns | auto-learn, pattern | Matched patterns + indicators |
 
 ---
 
@@ -1655,7 +1655,7 @@ After completing any evaluation:
 
 ---
 
-> **Note:** This agent combines risk analysis and conflict arbitration. Loads `code-review` for dependency/evidence analysis, `project-planner` for mitigation design, `code-constitution` for governance compliance, and `auto-learned` for pattern matching. Merges capabilities of former `assessor` and `critic` agents.
+> **Note:** This agent combines risk analysis and conflict arbitration. Loads `code-review` for dependency/evidence analysis, `project-planner` for mitigation design, `code-constitution` for governance compliance, and `knowledge-compiler` for pattern matching. Merges capabilities of former `assessor` and `critic` agents.
 
 >
 

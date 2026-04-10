@@ -1,6 +1,6 @@
-﻿---
-description: Comprehensive test automation suite — generate, execute, and analyze tests with Vitest/Playwright using AAA pattern, mutation testing, visual regression, and contract verification.
-skills: [test-architect, e2e-automation, code-review, context-engineering, problem-checker, auto-learner]
+---
+description: Comprehensive test automation suite � generate, execute, and analyze tests with Vitest/Playwright using AAA pattern, mutation testing, visual regression, and contract verification.
+skills: [test-architect, e2e-automation, code-review, context-engineering, problem-checker, knowledge-compiler]
 agents: [orchestrator, assessor, recovery, learner, test-engineer]
 ---
 
@@ -12,25 +12,25 @@ $ARGUMENTS
 
 ## Purpose
 
-Generate comprehensive tests, execute suites, and analyze coverage — supporting unit tests (Vitest/Jest), E2E (Playwright), mutation testing (Stryker), visual regression, and API contract testing. **Differs from `/inspect` (code review without execution) and `/optimize` (performance profiling) by actively generating, running, and verifying test suites with the AAA pattern.** Uses `test-architect` with `test-architect` for test generation and `e2e-automation` for browser testing.
+Generate comprehensive tests, execute suites, and analyze coverage � supporting unit tests (Vitest/Jest), E2E (Playwright), mutation testing (Stryker), visual regression, and API contract testing. **Differs from `/inspect` (code review without execution) and `/optimize` (performance profiling) by actively generating, running, and verifying test suites with the AAA pattern.** Uses `test-architect` with `test-architect` for test generation and `e2e-automation` for browser testing.
 
 ---
 
-## 🤖 Meta-Agents Integration
+## ?? Meta-Agents Integration
 
 | Phase | Agent | Action |
 | ----- | ----- | ------ |
-| **Pre-Flight** | `assessor` | Evaluate test targets and auto-learned context |
+| **Pre-Flight** | `assessor` | Evaluate test targets and knowledge-compiler context |
 | **Execution** | `orchestrator` | Coordinate test generation, execution, and analysis |
 | **Safety** | `recovery` | Save state and recover from test execution failures |
 | **Post-Validate**| `learner` | Log test execution telemetry and failure patterns |
 
 ```
 Flow:
-recovery.save(state) → generate(tests) → execute(suite)
-       ↓
+recovery.save(state) ? generate(tests) ? execute(suite)
+       ?
 analyze(coverage, mutations, visual, contracts)
-       ↓
+       ?
 learner.log(failure_patterns)
 ```
 
@@ -51,13 +51,13 @@ learner.log(failure_patterns)
 
 ---
 
-## 🔴 MANDATORY: Test Automation Protocol
+## ?? MANDATORY: Test Automation Protocol
 
-### Phase 1: Pre-flight & Auto-Learned Context
+### Phase 1: Pre-flight & knowledge-compiler Context
 
-> **Rule 0.5-K:** Auto-learned pattern check.
+> **Rule 0.5-K:** knowledge-compiler pattern check.
 
-1. Read `.agent/skills/auto-learned/patterns/` for past failures before proceeding.
+1. Read `.agent/skills/knowledge-compiler/patterns/` for past failures before proceeding.
 2. Trigger `recovery` agent to run Checkpoint (`git commit -m "chore(checkpoint): pre-validate"`).
 
 ### Phase 2: Test Generation
@@ -69,7 +69,7 @@ learner.log(failure_patterns)
 | **AGENTS** | `test-architect`, `assessor` |
 | **SKILLS** | `test-architect`, `context-engineering` |
 
-// turbo — telemetry: phase-2-generate
+// turbo � telemetry: phase-2-generate
 
 1. Detect test framework:
 
@@ -85,7 +85,7 @@ learner.log(failure_patterns)
 
 | Category | Example |
 |----------|---------|
-| Happy Path | Valid input → expected output |
+| Happy Path | Valid input ? expected output |
 | Empty Input | `""`, `[]`, `null`, `undefined` |
 | Boundary | Min, max, off-by-one |
 | Type Errors | Wrong type, missing property |
@@ -103,7 +103,7 @@ learner.log(failure_patterns)
 | **AGENTS** | `test-architect`, `orchestrator` |
 | **SKILLS** | `test-architect`, `e2e-automation` |
 
-// turbo — telemetry: phase-3-execute
+// turbo � telemetry: phase-3-execute
 
 // turbo
 ```bash
@@ -114,9 +114,9 @@ Coverage targets:
 
 | Metric | Target | Critical |
 |--------|--------|----------|
-| Statements | ≥80% | ≥60% |
-| Branches | ≥70% | ≥50% |
-| Mutation Score | ≥80% | ≥60% |
+| Statements | =80% | =60% |
+| Branches | =70% | =50% |
+| Mutation Score | =80% | =60% |
 
 ### Phase 4: Advanced Testing
 
@@ -127,7 +127,7 @@ Coverage targets:
 | **AGENTS** | `test-architect`, `orchestrator` |
 | **SKILLS** | `test-architect`, `e2e-automation` |
 
-// turbo — telemetry: phase-4-advanced
+// turbo � telemetry: phase-4-advanced
 
 Mutation testing (if requested):
 // turbo
@@ -154,9 +154,9 @@ npx cross-env OTEL_SERVICE_NAME="workflow:validate" TRACE_ID="$TRACE_ID" npx pac
 | **INPUT** | All test results from Phases 3-4 |
 | **OUTPUT** | Test report with pass/fail, coverage, recommendations |
 | **AGENTS** | `test-architect`, `learner` |
-| **SKILLS** | `test-architect`, `problem-checker`, `auto-learner` |
+| **SKILLS** | `test-architect`, `problem-checker`, `knowledge-compiler` |
 
-// turbo — telemetry: phase-5-analyze
+// turbo � telemetry: phase-5-analyze
 
 1. Aggregate results across all test types
 2. Compare against coverage targets
@@ -164,7 +164,7 @@ npx cross-env OTEL_SERVICE_NAME="workflow:validate" TRACE_ID="$TRACE_ID" npx pac
 
 ---
 
-## ⛔ MANDATORY: Problem Verification Before Completion
+## ? MANDATORY: Problem Verification Before Completion
 
 > **CRITICAL:** This check MUST be performed before any `notify_user` or task completion.
 
@@ -175,8 +175,8 @@ npx cross-env OTEL_SERVICE_NAME="workflow:validate" TRACE_ID="$TRACE_ID" npx pac
 2. If errors/warnings > 0:
    a. Auto-fix: imports, types, lint errors
    b. Re-check @[current_problems]
-   c. If still > 0 → STOP → Notify user
-3. If count = 0 → Proceed to completion
+   c. If still > 0 ? STOP ? Notify user
+3. If count = 0 ? Proceed to completion
 ```
 
 ### Auto-Fixable
@@ -192,7 +192,7 @@ npx cross-env OTEL_SERVICE_NAME="workflow:validate" TRACE_ID="$TRACE_ID" npx pac
 
 ---
 
-## 🔙 Rollback & Recovery
+## ?? Rollback & Recovery
 
 If tests hang or mutate files in unexpected ways:
 1. Trigger `recovery` meta-agent to run `git restore .` to revert mutated source files.
@@ -204,20 +204,20 @@ If tests hang or mutate files in unexpected ways:
 ## Output Format
 
 ```markdown
-## 🧪 Test Results
+## ?? Test Results
 
 ### Summary
-✅ Passed: 42  ❌ Failed: 2  ⏭️ Skipped: 1
+? Passed: 42  ? Failed: 2  ?? Skipped: 1
 
 ### Coverage
 
 | Metric | Current | Target | Status |
 |--------|---------|--------|--------|
-| Statements | 85% | 80% | ✅ |
-| Branches | 72% | 70% | ✅ |
-| Mutation Score | 82% | 80% | ✅ |
-| Visual Diffs | 0 | 0 | ✅ |
-| Contracts | 5/5 | 100% | ✅ |
+| Statements | 85% | 80% | ? |
+| Branches | 72% | 70% | ? |
+| Mutation Score | 82% | 80% | ? |
+| Visual Diffs | 0 | 0 | ? |
+| Contracts | 5/5 | 100% | ? |
 
 ### Failures
 
@@ -249,15 +249,15 @@ If tests hang or mutate files in unexpected ways:
 
 ## Key Principles
 
-- **Test behavior, not implementation** — assert on outcomes, not internals
-- **AAA pattern** — Arrange, Act, Assert for every test
-- **One assertion per test** — focused, readable tests
-- **Mock external deps** — isolate the unit under test
-- **Mutation testing** — verify test quality, not just coverage
+- **Test behavior, not implementation** � assert on outcomes, not internals
+- **AAA pattern** � Arrange, Act, Assert for every test
+- **One assertion per test** � focused, readable tests
+- **Mock external deps** � isolate the unit under test
+- **Mutation testing** � verify test quality, not just coverage
 
 ---
 
-## 🔗 Workflow Chain
+## ?? Workflow Chain
 
 **Skills Loaded (6):**
 
@@ -266,7 +266,7 @@ If tests hang or mutate files in unexpected ways:
 - `code-review` - Quality validation of test code
 - `context-engineering` - Codebase parsing and framework detection
 - `problem-checker` - Code problem verification
-- `auto-learner` - Learning and logging test patterns
+- `knowledge-compiler` - Learning and logging test patterns
 
 ```mermaid
 graph LR
@@ -284,6 +284,6 @@ graph LR
 **Handoff to /launch:**
 
 ```markdown
-🧪 Tests complete! Passed: [X], Failed: [Y]. Coverage: [Z]%.
+?? Tests complete! Passed: [X], Failed: [Y]. Coverage: [Z]%.
 Run `/launch` to deploy or `/diagnose` for failures.
 ```

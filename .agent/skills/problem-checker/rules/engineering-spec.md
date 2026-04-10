@@ -1,10 +1,10 @@
-﻿---
-title: Problem Checker — Engineering Specification
+---
+title: Problem Checker � Engineering Specification
 impact: MEDIUM
 tags: problem-checker
 ---
 
-# Problem Checker — Engineering Specification
+# Problem Checker � Engineering Specification
 
 > Production-grade specification for automated IDE problem detection and auto-fix at FAANG scale.
 
@@ -12,11 +12,11 @@ tags: problem-checker
 
 ## 1. Overview
 
-Problem Checker provides automated IDE error detection and resolution before task completion: reads `@[current_problems]`, classifies issues as auto-fixable or escalatable, applies fixes for known patterns, re-verifies after fix, and blocks completion if unfixed errors remain. The skill operates as an **Automation (scripted)** — it reads IDE problem state, applies file modifications (auto-fix), re-reads IDE state (verification loop), and may escalate to user. Side effects include: modifying source files (auto-fix), reading IDE problem state, and blocking task completion.
+Problem Checker provides automated IDE error detection and resolution before task completion: reads `@[current_problems]`, classifies issues as auto-fixable or escalatable, applies fixes for known patterns, re-verifies after fix, and blocks completion if unfixed errors remain. The skill operates as an **Automation (scripted)** � it reads IDE problem state, applies file modifications (auto-fix), re-reads IDE state (verification loop), and may escalate to user. Side effects include: modifying source files (auto-fix), reading IDE problem state, and blocking task completion.
 
 **Contract Version:** 2.0.0
 **Backward Compatibility:** breaking (first hardened version)
-**Breaking Changes:** None — new spec for first hardening
+**Breaking Changes:** None � new spec for first hardening
 
 ---
 
@@ -52,7 +52,7 @@ Problem Checker eliminates these with mandatory pre-completion checks, auto-fix 
 
 | ID | Excluded | Rationale |
 |----|----------|-----------|
-| NG1 | Pattern storage | Owned by `auto-learned` skill |
+| NG1 | Pattern storage | Owned by `knowledge-compiler` skill |
 | NG2 | Skill generation | Owned by `skill-generator` skill |
 | NG3 | Full test execution | Owned by `/validate` workflow |
 | NG4 | Code review | Owned by `code-review` skill |
@@ -136,8 +136,8 @@ Recoverable: boolean
 - Auto-fix patterns are fixed: 4 patterns with deterministic fixes.
 - Escalation categories are fixed: 3 categories with defined actions.
 - Max fix cycles bounded: default 3, maximum 5.
-- Completion gate is absolute: errors remain → blocked = true.
-- Same problems → same classification (auto-fixable vs escalate).
+- Completion gate is absolute: errors remain ? blocked = true.
+- Same problems ? same classification (auto-fixable vs escalate).
 
 #### What Agents May Assume
 
@@ -178,15 +178,15 @@ Recoverable: boolean
 #### State Transitions
 
 ```
-IDLE → CHECKING               [check action received]
-CHECKING → CLEAN              [0 problems found]  // terminal
-CHECKING → FIXING             [auto-fixable problems found]
-CHECKING → BLOCKED            [only non-fixable problems]  // terminal
-FIXING → VERIFYING            [fix applied]
-VERIFYING → CLEAN             [0 problems remain]  // terminal
-VERIFYING → FIXING            [fixable problems remain AND cycles < max]
-VERIFYING → BLOCKED           [problems remain AND cycles >= max]  // terminal
-VERIFYING → BLOCKED           [only non-fixable remain]  // terminal
+IDLE ? CHECKING               [check action received]
+CHECKING ? CLEAN              [0 problems found]  // terminal
+CHECKING ? FIXING             [auto-fixable problems found]
+CHECKING ? BLOCKED            [only non-fixable problems]  // terminal
+FIXING ? VERIFYING            [fix applied]
+VERIFYING ? CLEAN             [0 problems remain]  // terminal
+VERIFYING ? FIXING            [fixable problems remain AND cycles < max]
+VERIFYING ? BLOCKED           [problems remain AND cycles >= max]  // terminal
+VERIFYING ? BLOCKED           [only non-fixable remain]  // terminal
 ```
 
 #### Execution Guarantees
@@ -243,9 +243,9 @@ Fix + Verify may repeat up to `max_fix_cycles` times.
 | Principle | Enforcement |
 |-----------|-------------|
 | 4 auto-fixable patterns | Missing import, JSX namespace, unused var, @import order |
-| 3 escalation categories | Logic error → notify; breaking change → block+explain; missing dep → ask install |
+| 3 escalation categories | Logic error ? notify; breaking change ? block+explain; missing dep ? ask install |
 | Max 3 fix cycles (default) | Hard upper bound: 5 |
-| Completion hard-block | Errors present → blocked = true; never complete with errors |
+| Completion hard-block | Errors present ? blocked = true; never complete with errors |
 | Fix verification mandatory | Every fix followed by re-check |
 | No cascading fixes | Fix one category per cycle to detect introduced errors |
 
@@ -312,7 +312,7 @@ Session-based with fix-verify loop state. No persistent state across invocations
 | IDE state read | 2,000 ms | 5,000 ms | IDE response time |
 | Auto-fix per file | 1,000 ms | 3,000 ms | File write + parse |
 | Verification re-check | 3,000 ms | 10,000 ms | IDE refresh after modification |
-| Full cycle (all iterations) | 15,000 ms | 60,000 ms | 3 cycles × (fix + verify) |
+| Full cycle (all iterations) | 15,000 ms | 60,000 ms | 3 cycles � (fix + verify) |
 | Fix-recheck cycles | 3 | 5 | Prevent infinite loops |
 
 ---
@@ -445,16 +445,16 @@ Session-based with fix-verify loop state. No persistent state across invocations
 
 | Requirement | Status | Evidence |
 |-------------|--------|----------|
-| YAML frontmatter complete | ✅ | name, description, metadata with category, version, triggers, coordinates_with, success_metrics |
-| SKILL.md < 200 lines | ✅ | Entry point under 200 lines |
-| Prerequisites documented | ✅ | IDE with @[current_problems] |
-| When to Use section | ✅ | Situation-based routing table |
-| Core content matches skill type | ✅ | Automation: fix loop, state transitions, file modification |
-| Troubleshooting section | ✅ | Escalation categories |
-| Related section | ✅ | Cross-links to auto-learned, skill-generator, /validate |
-| Content Map for multi-file | ✅ | Link to scripts + engineering-spec.md |
-| Contract versioning | ✅ | contract_version, backward_compatibility, breaking_changes |
-| Compliance matrix structured | ✅ | This table with ✅/❌ + evidence |
+| YAML frontmatter complete | ? | name, description, metadata with category, version, triggers, coordinates_with, success_metrics |
+| SKILL.md < 200 lines | ? | Entry point under 200 lines |
+| Prerequisites documented | ? | IDE with @[current_problems] |
+| When to Use section | ? | Situation-based routing table |
+| Core content matches skill type | ? | Automation: fix loop, state transitions, file modification |
+| Troubleshooting section | ? | Escalation categories |
+| Related section | ? | Cross-links to knowledge-compiler, skill-generator, /validate |
+| Content Map for multi-file | ? | Link to scripts + engineering-spec.md |
+| Contract versioning | ? | contract_version, backward_compatibility, breaking_changes |
+| Compliance matrix structured | ? | This table with ?/? + evidence |
 
 ---
 
@@ -462,22 +462,22 @@ Session-based with fix-verify loop state. No persistent state across invocations
 
 | Category | Check | Status |
 |----------|-------|--------|
-| **Functionality** | 4 auto-fix patterns | ✅ |
-| **Functionality** | 3 escalation categories | ✅ |
-| **Functionality** | Fix-verify loop (max 3 cycles default) | ✅ |
-| **Functionality** | Hard-block on unfixed errors | ✅ |
-| **Contracts** | Input/output/error schemas | ✅ |
-| **Contracts** | State transitions with terminal states | ✅ |
-| **Contracts** | Contract versioning with semver | ✅ |
-| **Failure** | Error taxonomy with 5 categorized codes | ✅ |
-| **Failure** | Fix regression revert | ✅ |
-| **Security** | Only 4 fix patterns; no arbitrary modification | ✅ |
-| **Observability** | Structured log schema with 5 mandatory fields | ✅ |
-| **Observability** | 5 metrics defined | ✅ |
-| **Performance** | P50/P99 targets for all operations | ✅ |
-| **Concurrency** | Sequential only (IDE state is global) | ✅ |
-| **Compliance** | All skill-design-guide.md sections mapped | ✅ |
+| **Functionality** | 4 auto-fix patterns | ? |
+| **Functionality** | 3 escalation categories | ? |
+| **Functionality** | Fix-verify loop (max 3 cycles default) | ? |
+| **Functionality** | Hard-block on unfixed errors | ? |
+| **Contracts** | Input/output/error schemas | ? |
+| **Contracts** | State transitions with terminal states | ? |
+| **Contracts** | Contract versioning with semver | ? |
+| **Failure** | Error taxonomy with 5 categorized codes | ? |
+| **Failure** | Fix regression revert | ? |
+| **Security** | Only 4 fix patterns; no arbitrary modification | ? |
+| **Observability** | Structured log schema with 5 mandatory fields | ? |
+| **Observability** | 5 metrics defined | ? |
+| **Performance** | P50/P99 targets for all operations | ? |
+| **Concurrency** | Sequential only (IDE state is global) | ? |
+| **Compliance** | All skill-design-guide.md sections mapped | ? |
 
 ---
 
-⚡ PikaKit v3.9.125
+? PikaKit v3.9.125

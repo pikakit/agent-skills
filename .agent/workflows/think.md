@@ -1,6 +1,6 @@
 ---
 description: Strategic decision engine — generate 3+ distinct alternatives with weighted scoring matrices, risk assessments, and actionable recommendations before writing any code.
-skills: [idea-storm, system-design, project-planner, context-engineering, problem-checker, auto-learner]
+skills: [idea-storm, system-design, project-planner, context-engineering, problem-checker, knowledge-compiler]
 agents: [orchestrator, assessor, recovery, critic, learner, project-planner]
 ---
 
@@ -20,7 +20,7 @@ Activate structured ideation mode for architecture decisions, feature planning, 
 
 | Phase | Agent | Action |
 | ----- | ----- | ------ |
-| **Pre-Flight** | `assessor` | Evaluate decision scope and auto-learned context |
+| **Pre-Flight** | `assessor` | Evaluate decision scope and knowledge-compiler context |
 | **Execution** | `orchestrator` / `critic` | Coordinate problem framing, option generation and resolve scoring conflicts |
 | **Safety** | `recovery` | Save state and recover from decision generation failures |
 | **Post-Think** | `learner` | Log decision outcomes and scoring intelligence |
@@ -38,11 +38,11 @@ decision made → recommendation + next steps
 
 ## 🔴 MANDATORY: Decision Framework
 
-### Phase 1: Pre-flight & Auto-Learned Context
+### Phase 1: Pre-flight & knowledge-compiler Context
 
-> **Rule 0.5-K:** Auto-learned pattern check.
+> **Rule 0.5-K:** knowledge-compiler pattern check.
 
-1. Read `.agent/skills/auto-learned/patterns/` for past failures before proceeding.
+1. Read `.agent/skills/knowledge-compiler/patterns/` for past failures before proceeding.
 2. Trigger `recovery` agent to run Checkpoint (`git commit -m "chore(checkpoint): pre-think"`).
 
 ### Phase 2: Problem Framing
@@ -90,7 +90,7 @@ For each option:
 | **INPUT** | Options from Phase 3 |
 | **OUTPUT** | Scored decision matrix, recommended option, risk assessment |
 | **AGENTS** | `project-planner`, `critic`, `learner` |
-| **SKILLS** | `system-design`, `problem-checker`, `auto-learner` |
+| **SKILLS** | `system-design`, `problem-checker`, `knowledge-compiler` |
 
 // turbo — telemetry: phase-4-decision
 
@@ -232,7 +232,7 @@ If the generated decision matrix is flawed, overly generic, or hallucinates cons
 - `project-planner` - Task breakdown and feasibility
 - `context-engineering` - Codebase parsing and context extraction
 - `problem-checker` - Generated artifacts validation
-- `auto-learner` - Learning and logging decision patterns
+- `knowledge-compiler` - Learning and logging decision patterns
 
 ```mermaid
 graph LR

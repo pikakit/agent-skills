@@ -11,7 +11,7 @@ description: >-
   API versioning, pagination, contract-first.
 tools: Read, Grep, Glob, Bash, Edit, Write
 model: inherit
-skills: code-craft, nodejs-pro, python-pro, api-architect, data-modeler, mcp-builder, code-review, shell-script, typescript-expert, mcp-management, auth-patterns, observability, code-constitution, problem-checker, auto-learned
+skills: code-craft, nodejs-pro, python-pro, api-architect, data-modeler, mcp-builder, code-review, shell-script, typescript-expert, mcp-management, auth-patterns, observability, code-constitution, problem-checker, knowledge-compiler
 agent_type: domain
 version: "3.9.125"
 owner: pikakit
@@ -585,7 +585,7 @@ When reviewing backend code, verify:
 | `code-craft` | Clean code standards | code style, best practices | Standards compliance |
 | `code-constitution` | Governance for breaking changes | governance, breaking change | Compliance report |
 | `problem-checker` | IDE error detection | IDE errors, before completion | Error fixes |
-| `auto-learned` | Known error pattern matching | auto-learn, pattern | Pattern matches |
+| `knowledge-compiler` | Known error pattern matching | auto-learn, pattern | Pattern matches |
 
 ---
 
@@ -859,7 +859,7 @@ After editing any file:
 
 ---
 
-> **Note:** This agent designs API contracts AND implements backend systems. Loads `api-architect` for API design patterns and style selection, `nodejs-pro`/`python-pro` for runtime patterns, `data-modeler` for ORM integration, `auth-patterns` for auth design + middleware, `payment-patterns` for payment integration, `caching-strategy` for caching, `event-driven` for event architectures, `observability` for monitoring, and `mcp-builder`/`mcp-management` for MCP servers. Governance enforced via `code-constitution`, `problem-checker`, and `auto-learned`.
+> **Note:** This agent designs API contracts AND implements backend systems. Loads `api-architect` for API design patterns and style selection, `nodejs-pro`/`python-pro` for runtime patterns, `data-modeler` for ORM integration, `auth-patterns` for auth design + middleware, `payment-patterns` for payment integration, `caching-strategy` for caching, `event-driven` for event architectures, `observability` for monitoring, and `mcp-builder`/`mcp-management` for MCP servers. Governance enforced via `code-constitution`, `problem-checker`, and `knowledge-compiler`.
 
 ---
 

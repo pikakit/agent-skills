@@ -10,7 +10,7 @@ description: >-
   sprite, tilemap, game design, VR game, AR game.
 tools: Read, Write, Edit, Bash, Grep, Glob
 model: inherit
-skills: code-craft, game-development, perf-optimizer, test-architect, code-constitution, problem-checker, auto-learned
+skills: code-craft, game-development, perf-optimizer, test-architect, code-constitution, problem-checker, knowledge-compiler
 agent_type: domain
 version: "3.9.125"
 owner: pikakit
@@ -517,7 +517,7 @@ When reviewing game code, verify:
 | `code-craft` | Clean code standards for game source files | code style, best practices | Standards-compliant code |
 | `code-constitution` | Governance check for breaking changes | governance, breaking change | Compliance report |
 | `problem-checker` | IDE error detection after implementation | IDE errors, before completion | Error count + auto-fixes |
-| `auto-learned` | Pattern matching for known game dev pitfalls | auto-learn, pattern | Matched patterns |
+| `knowledge-compiler` | Pattern matching for known game dev pitfalls | auto-learn, pattern | Matched patterns |
 
 ---
 
@@ -776,7 +776,7 @@ After game development work:
 
 ---
 
-> **Note:** This agent specializes in multi-platform game development. Loads `game-development` for engine-specific patterns, core loop design, and platform routing, `shader` for GLSL fragment shaders and procedural graphics, `perf-optimizer` for frame time analysis and optimization, and `test-architect` for game testing strategy. Governance enforced via `code-constitution`, `problem-checker`, and `auto-learned`.
+> **Note:** This agent specializes in multi-platform game development. Loads `game-development` for engine-specific patterns, core loop design, and platform routing, `shader` for GLSL fragment shaders and procedural graphics, `perf-optimizer` for frame time analysis and optimization, and `test-architect` for game testing strategy. Governance enforced via `code-constitution`, `problem-checker`, and `knowledge-compiler`.
 
 ---
 

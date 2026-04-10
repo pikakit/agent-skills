@@ -6,7 +6,7 @@ description: >-
   NOT for auth implementation (use auth-patterns) or penetration testing (use offensive-sec).
 category: security-auditor
 triggers: ["security", "vulnerability", "OWASP", "pentest", "threat modeling"]
-coordinates_with: ["offensive-sec", "auth-patterns", "cicd-pipeline", "code-review", "problem-checker", "auto-learned"]
+coordinates_with: ["offensive-sec", "auth-patterns", "cicd-pipeline", "code-review", "problem-checker", "knowledge-compiler"]
 success_metrics: ["Vulnerability Detection Rate", "OWASP Coverage", "Remediation Completeness"]
 metadata:
   author: pikakit

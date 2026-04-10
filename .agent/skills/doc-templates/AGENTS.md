@@ -11,7 +11,7 @@ description: >-
   TSDoc, docstring, tutorial, llms.txt, document, write docs.
 tools: Read, Grep, Glob, Bash, Edit, Write
 model: inherit
-skills: code-craft, doc-templates, copywriting, seo-optimizer, code-constitution, problem-checker, auto-learned
+skills: code-craft, doc-templates, copywriting, seo-optimizer, code-constitution, problem-checker, knowledge-compiler
 agent_type: utility
 version: "3.9.125"
 owner: pikakit
@@ -555,7 +555,7 @@ When reviewing documentation quality, verify:
 | `code-craft` | Code style standards for examples | code style, standards | Clean examples |
 | `code-constitution` | Governance for documentation standards | governance, quality | Compliance check |
 | `problem-checker` | IDE error detection after doc creation | IDE errors, before completion | Error count |
-| `auto-learned` | Pattern matching for documentation pitfalls | auto-learn, pattern | Matched patterns |
+| `knowledge-compiler` | Pattern matching for documentation pitfalls | auto-learn, pattern | Matched patterns |
 
 ---
 
@@ -813,7 +813,7 @@ After writing documentation:
 
 ---
 
-> **Note:** This agent specializes in technical documentation. Key skills: `doc-templates` for structured documentation templates, `mermaid-editor` for architecture diagrams, `markdown-novel-viewer` for documentation preview, `copywriting` for clear prose, and `seo-optimizer` for discoverability. MUST NOT auto-invoke during normal development — explicit request only. Governance enforced via `code-constitution`, `problem-checker`, and `auto-learned`.
+> **Note:** This agent specializes in technical documentation. Key skills: `doc-templates` for structured documentation templates, `mermaid-editor` for architecture diagrams, `markdown-novel-viewer` for documentation preview, `copywriting` for clear prose, and `seo-optimizer` for discoverability. MUST NOT auto-invoke during normal development — explicit request only. Governance enforced via `code-constitution`, `problem-checker`, and `knowledge-compiler`.
 
 ---
 

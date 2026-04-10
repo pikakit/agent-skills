@@ -6,7 +6,7 @@ description: >-
   NOT for Windows PowerShell or application code.
 category: shell-scripter
 triggers: ["shell", "bash", "script", "automation", "CLI"]
-coordinates_with: ["cicd-pipeline", "server-ops", "auto-learned", "problem-checker"]
+coordinates_with: ["cicd-pipeline", "server-ops", "knowledge-compiler", "problem-checker"]
 success_metrics: ["Script Reliability", "Cross-Platform Compatibility", "Error Handling Coverage"]
 metadata:
   author: pikakit

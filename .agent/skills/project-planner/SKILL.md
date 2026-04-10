@@ -6,7 +6,7 @@ description: >-
   NOT for quick single-file fixes or questions.
 category: project-planning
 triggers: ["plan", "breakdown", "tasks", "implementation strategy", "project scope"]
-coordinates_with: ["idea-storm", "smart-router", "app-scaffold", "problem-checker", "auto-learned"]
+coordinates_with: ["idea-storm", "smart-router", "app-scaffold", "problem-checker", "knowledge-compiler"]
 success_metrics: ["Verifiable Tasks", "Correct Delegations"]
 metadata:
   author: pikakit

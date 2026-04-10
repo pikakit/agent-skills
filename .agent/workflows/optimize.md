@@ -1,6 +1,6 @@
-﻿---
-description: Full-stack performance optimization — profile bottlenecks, fix N+1 queries, configure Redis caching, reduce bundle size, and validate with k6 load testing.
-skills: [perf-optimizer, data-modeler, server-ops, problem-checker, smart-router, context-engineering, auto-learner]
+---
+description: Full-stack performance optimization � profile bottlenecks, fix N+1 queries, configure Redis caching, reduce bundle size, and validate with k6 load testing.
+skills: [perf-optimizer, data-modeler, server-ops, problem-checker, smart-router, context-engineering, knowledge-compiler]
 agents: [orchestrator, assessor, recovery, learner, performance-specialist, backend-specialist]
 ---
 
@@ -16,33 +16,33 @@ Profile application performance, optimize bottlenecks (database queries, bundle 
 
 ---
 
-## 🤖 Meta-Agents Integration
+## ?? Meta-Agents Integration
 
 | Phase | Agent | Action |
 | ----- | ----- | ------ |
-| **Pre-Flight** | `assessor` | Evaluate optimization scope and auto-learned context |
+| **Pre-Flight** | `assessor` | Evaluate optimization scope and knowledge-compiler context |
 | **Execution** | `orchestrator` | Coordinate profiling, database, and cache optimization |
 | **Safety** | `recovery` | Save state and recover/rollback from performance regressions |
 | **Post-Optimize**| `learner` | Log optimization telemetry and performance patterns |
 
 ```
 Flow:
-recovery.save() → profile → optimize → benchmark
-       ↓
-benchmark → worse? → recovery.restore()
-       ↓ better
+recovery.save() ? profile ? optimize ? benchmark
+       ?
+benchmark ? worse? ? recovery.restore()
+       ? better
 learner.log(optimization_patterns)
 ```
 
 ---
 
-## 🔴 MANDATORY: Performance Optimization Protocol
+## ?? MANDATORY: Performance Optimization Protocol
 
-### Phase 1: Pre-flight & Auto-Learned Context
+### Phase 1: Pre-flight & knowledge-compiler Context
 
-> **Rule 0.5-K:** Auto-learned pattern check.
+> **Rule 0.5-K:** knowledge-compiler pattern check.
 
-1. Read `.agent/skills/auto-learned/patterns/` for past failures before proceeding.
+1. Read `.agent/skills/knowledge-compiler/patterns/` for past failures before proceeding.
 2. Trigger `recovery` agent to run Checkpoint (`git commit -m "chore(checkpoint): pre-optimize"`).
 
 ### Phase 2: Performance Profiling
@@ -54,7 +54,7 @@ learner.log(optimization_patterns)
 | **AGENTS** | `perf-optimizer`, `assessor` |
 | **SKILLS** | `perf-optimizer`, `context-engineering` |
 
-// turbo — telemetry: phase-2-profile
+// turbo � telemetry: phase-2-profile
 
 1. `recovery` saves current state before any changes
 2. Run profiling:
@@ -88,7 +88,7 @@ Performance targets:
 | **AGENTS** | `nodejs-pro`, `orchestrator` |
 | **SKILLS** | `data-modeler`, `perf-optimizer`, `smart-router` |
 
-// turbo — telemetry: phase-3-db
+// turbo � telemetry: phase-3-db
 
 | Issue | Solution | Impact |
 |-------|----------|--------|
@@ -106,7 +106,7 @@ Performance targets:
 | **AGENTS** | `perf-optimizer`, `orchestrator` |
 | **SKILLS** | `perf-optimizer`, `server-ops`, `smart-router` |
 
-// turbo — telemetry: phase-4-cache
+// turbo � telemetry: phase-4-cache
 
 Backend caching:
 - Redis cache-aside pattern
@@ -126,18 +126,18 @@ Frontend optimization:
 | **INPUT** | Optimized application from Phase 4 |
 | **OUTPUT** | Load test results: before/after comparison, go/no-go |
 | **AGENTS** | `perf-optimizer`, `learner` |
-| **SKILLS** | `perf-optimizer`, `problem-checker`, `auto-learner` |
+| **SKILLS** | `perf-optimizer`, `problem-checker`, `knowledge-compiler` |
 
-// turbo — telemetry: phase-5-loadtest
+// turbo � telemetry: phase-5-loadtest
 
 1. Run realistic user scenarios at target scale
 2. Compare before/after metrics
-3. If regression detected → `recovery` restores checkpoint
-4. If improved → `learner` logs patterns
+3. If regression detected ? `recovery` restores checkpoint
+4. If improved ? `learner` logs patterns
 
 ---
 
-## ⛔ MANDATORY: Problem Verification Before Completion
+## ? MANDATORY: Problem Verification Before Completion
 
 > **CRITICAL:** This check MUST be performed before any `notify_user` or task completion.
 
@@ -148,8 +148,8 @@ Frontend optimization:
 2. If errors/warnings > 0:
    a. Auto-fix: imports, types, lint errors
    b. Re-check @[current_problems]
-   c. If still > 0 → STOP → Notify user
-3. If count = 0 → Proceed to completion
+   c. If still > 0 ? STOP ? Notify user
+3. If count = 0 ? Proceed to completion
 ```
 
 ### Auto-Fixable
@@ -165,7 +165,7 @@ Frontend optimization:
 
 ---
 
-## 🔙 Rollback & Recovery
+## ?? Rollback & Recovery
 
 If performance optimization causes regression, breaks functionality, or ruins benchmarks:
 1. Revert to safe checkpoint using `recovery` meta-agent immediately.
@@ -177,7 +177,7 @@ If performance optimization causes regression, breaks functionality, or ruins be
 ## Output Format
 
 ```markdown
-## ⚡ Performance Optimization Complete
+## ? Performance Optimization Complete
 
 ### Improvements
 
@@ -192,17 +192,17 @@ If performance optimization causes regression, breaks functionality, or ruins be
 
 | Area | Change | Impact |
 |------|--------|--------|
-| Database | Added indexes, fixed N+1 | ✅ 95% faster |
-| Cache | Redis + CDN | ✅ 85% hit rate |
-| Frontend | Code splitting | ✅ 68% smaller |
+| Database | Added indexes, fixed N+1 | ? 95% faster |
+| Cache | Redis + CDN | ? 85% hit rate |
+| Frontend | Code splitting | ? 68% smaller |
 
 ### Load Test Result
 
 | Metric | Target | Actual | Status |
 |--------|--------|--------|--------|
-| p95 | <200ms | 180ms | ✅ |
-| Error rate | <0.5% | 0.2% | ✅ |
-| Concurrent | 5,000+ | 5,000 | ✅ |
+| p95 | <200ms | 180ms | ? |
+| Error rate | <0.5% | 0.2% | ? |
+| Concurrent | 5,000+ | 5,000 | ? |
 
 ### Next Steps
 
@@ -227,15 +227,15 @@ If performance optimization causes regression, breaks functionality, or ruins be
 
 ## Key Principles
 
-- **Profile before optimizing** — measure first, don't guess bottlenecks
-- **Database first** — fix queries and indexes before adding caching
-- **Cache second** — add Redis/CDN after database is optimized
-- **Validate with load tests** — prove improvements with realistic traffic
-- **Rollback on regression** — if metrics worsen, restore immediately
+- **Profile before optimizing** � measure first, don't guess bottlenecks
+- **Database first** � fix queries and indexes before adding caching
+- **Cache second** � add Redis/CDN after database is optimized
+- **Validate with load tests** � prove improvements with realistic traffic
+- **Rollback on regression** � if metrics worsen, restore immediately
 
 ---
 
-## 🔗 Workflow Chain
+## ?? Workflow Chain
 
 **Skills Loaded (7):**
 
@@ -245,7 +245,7 @@ If performance optimization causes regression, breaks functionality, or ruins be
 - `context-engineering` - Codebase parsing and context extraction
 - `smart-router` - Dynamic agent routing for backend/frontend
 - `problem-checker` - IDE problem verification
-- `auto-learner` - Learning and logging optimization patterns
+- `knowledge-compiler` - Learning and logging optimization patterns
 
 ```mermaid
 graph LR
@@ -264,6 +264,6 @@ graph LR
 **Handoff to /validate:**
 
 ```markdown
-⚡ Optimization complete! Latency: [before]ms → [after]ms ([X]% faster).
+? Optimization complete! Latency: [before]ms ? [after]ms ([X]% faster).
 Run `/validate` to verify at scale or `/launch` to deploy.
 ```

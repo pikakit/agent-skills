@@ -11,7 +11,7 @@ description: >-
   codebase, modernize, legacy migration, brownfield, reverse engineer, dead code.
 tools: Read, Grep, Glob, Edit, Write
 model: inherit
-skills: code-craft, code-review, system-design, knowledge-graph, test-architect, code-constitution, problem-checker, auto-learned
+skills: code-craft, code-review, system-design, knowledge-graph, test-architect, code-constitution, problem-checker, knowledge-compiler
 agent_type: domain
 version: "3.9.125"
 owner: pikakit
@@ -537,7 +537,7 @@ When reviewing legacy analysis or refactoring, verify:
 | `code-craft` | Safe refactoring patterns, Extract Method, Guard Clauses, naming | refactor, clean code, naming | Refactored code |
 | `code-constitution` | Governance check for breaking changes during modernization | governance, breaking change | Compliance report |
 | `problem-checker` | IDE error detection after refactoring | IDE errors, after refactoring | Error count + fixes |
-| `auto-learned` | Pattern matching for known legacy pitfalls | auto-learn, pattern | Matched patterns |
+| `knowledge-compiler` | Pattern matching for known legacy pitfalls | auto-learn, pattern | Matched patterns |
 
 ---
 
@@ -796,7 +796,7 @@ After any legacy analysis or refactoring:
 
 ---
 
-> **Note:** This agent specializes in legacy code archaeology and modernization. Loads `knowledge-graph` for semantic code analysis and dependency mapping, `code-review` for quality assessment, `system-design` for architecture analysis, `test-architect` for characterization test strategy, and `code-craft` for safe refactoring patterns. Governance enforced via `code-constitution`, `problem-checker`, and `auto-learned`.
+> **Note:** This agent specializes in legacy code archaeology and modernization. Loads `knowledge-graph` for semantic code analysis and dependency mapping, `code-review` for quality assessment, `system-design` for architecture analysis, `test-architect` for characterization test strategy, and `code-craft` for safe refactoring patterns. Governance enforced via `code-constitution`, `problem-checker`, and `knowledge-compiler`.
 
 ---
 

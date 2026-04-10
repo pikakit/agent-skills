@@ -1,7 +1,7 @@
-﻿---
-description: Full-stack application factory — transform natural language descriptions into production-ready apps with multi-agent coordination, smart stack defaults, and automated verification.
+---
+description: Full-stack application factory � transform natural language descriptions into production-ready apps with multi-agent coordination, smart stack defaults, and automated verification.
 chain: build-web-app
-skills: [app-scaffold, react-pro, nextjs-pro, project-planner, studio, design-system, code-craft, data-modeler, api-architect, test-architect, idea-storm, nodejs-pro, problem-checker, context-engineering, auto-learner]
+skills: [app-scaffold, react-pro, nextjs-pro, project-planner, studio, design-system, code-craft, data-modeler, api-architect, test-architect, idea-storm, nodejs-pro, problem-checker, context-engineering, knowledge-compiler]
 agents: [orchestrator, assessor, recovery, critic, learner, project-planner, database-architect, backend-specialist, frontend-specialist, test-engineer, mobile-developer, devops-engineer, security-auditor]
 ---
 
@@ -17,49 +17,49 @@ Ship production-ready applications from natural language descriptions by coordin
 
 ---
 
-## 🤖 Meta-Agents Integration
+## ?? Meta-Agents Integration
 
 | Phase | Agent | Action |
 | ----- | ----- | ------ |
-| **Pre-Flight** | `assessor` | Evaluate build risk level and auto-learned context |
+| **Pre-Flight** | `assessor` | Evaluate build risk level and knowledge-compiler context |
 | **Execution** | `orchestrator` / `critic` | Coordinate parallel execution and resolve schema/API conflicts |
 | **Safety** | `recovery` | Save state and recover from build failures |
 | **Post-Build** | `learner` | Log build architecture and implementation patterns |
 
 ```
 Flow:
-assessor.evaluate(risk) → recovery.save(state)
-       ↓
-orchestrator.init() → assign agents to parallel groups
-       ↓
-conflict? → critic.arbitrate(safety > correctness)
-       ↓
-failure? → recovery.restore() → learner.log(failure)
-       ↓
-success → learner.log(patterns)
+assessor.evaluate(risk) ? recovery.save(state)
+       ?
+orchestrator.init() ? assign agents to parallel groups
+       ?
+conflict? ? critic.arbitrate(safety > correctness)
+       ?
+failure? ? recovery.restore() ? learner.log(failure)
+       ?
+success ? learner.log(patterns)
 ```
 
 ---
 
-## 🔴 MANDATORY: Build Pipeline
+## ?? MANDATORY: Build Pipeline
 
-### Phase 1: Pre-flight & Auto-Learned Context
+### Phase 1: Pre-flight & knowledge-compiler Context
 
-> **Rule 0.5-K:** Auto-learned pattern check.
+> **Rule 0.5-K:** knowledge-compiler pattern check.
 
-1. Read `.agent/skills/auto-learned/patterns/` for past failures before proceeding.
+1. Read `.agent/skills/knowledge-compiler/patterns/` for past failures before proceeding.
 2. Trigger `recovery` agent to run Checkpoint (`git commit -m "chore(checkpoint): pre-build"`).
 
 ### Phase 2: Requirements Discovery
 
 | Field | Value |
 |-------|-------|
-| **INPUT** | $ARGUMENTS (app description — what to build) |
+| **INPUT** | $ARGUMENTS (app description � what to build) |
 | **OUTPUT** | Requirements document: app type, users, core features, stack |
 | **AGENTS** | `project-planner`, `assessor` |
 | **SKILLS** | `idea-storm`, `project-planner`, `context-engineering` |
 
-// turbo — telemetry: phase-2-requirements
+// turbo � telemetry: phase-2-requirements
 
 1. If requirements are incomplete, ask clarifying questions:
 
@@ -101,7 +101,7 @@ success → learner.log(patterns)
 | **AGENTS** | `project-planner` |
 | **SKILLS** | `project-planner`, `code-craft` |
 
-// turbo — telemetry: phase-3-planning
+// turbo � telemetry: phase-3-planning
 
 1. Create PLAN.md with:
    - Task breakdown and agent assignments
@@ -111,7 +111,7 @@ success → learner.log(patterns)
 2. `assessor` evaluates risk level of the build plan
 3. `recovery` saves current project state (if existing directory)
 
-**⛔ CHECKPOINT: User approval required before Phase 4**
+**? CHECKPOINT: User approval required before Phase 4**
 
 ### Phase 4: Design System (UI Apps Only)
 
@@ -124,7 +124,7 @@ success → learner.log(patterns)
 
 > **Skip this phase** if the app has no UI (API-only, CLI).
 
-// turbo — telemetry: phase-4-studio-search
+// turbo � telemetry: phase-4-studio-search
 ```bash
 npx cross-env OTEL_SERVICE_NAME="workflow:build" TRACE_ID="$TRACE_ID" node .agent/skills/studio/scripts/search.ts "<app_type> <style> <keywords>" --design-system -p "<Project Name>"
 ```
@@ -138,7 +138,7 @@ npx cross-env OTEL_SERVICE_NAME="workflow:build" TRACE_ID="$TRACE_ID" node .agen
 | **AGENTS** | `orchestrator`, `critic`, `data-modeler`, `nodejs-pro`, `react-pro`, `test-architect` |
 | **SKILLS** | `data-modeler`, `nodejs-pro`, `api-architect`, `code-craft`, `test-architect` |
 
-// turbo — telemetry: phase-5-build
+// turbo � telemetry: phase-5-build
 
 ```mermaid
 graph TD
@@ -168,24 +168,24 @@ graph TD
 | **INPUT** | All artifacts from Phase 5 |
 | **OUTPUT** | Running preview + verification report |
 | **AGENTS** | `test-architect`, `learner` |
-| **SKILLS** | `test-architect`, `problem-checker`, `auto-learner` |
+| **SKILLS** | `test-architect`, `problem-checker`, `knowledge-compiler` |
 
-// turbo — telemetry: phase-6-test
+// turbo � telemetry: phase-6-test
 ```bash
 npx cross-env OTEL_SERVICE_NAME="workflow:build" TRACE_ID="$TRACE_ID" npm test
 ```
 
-// turbo — telemetry: phase-6-lint-typecheck
+// turbo � telemetry: phase-6-lint-typecheck
 ```bash
 npx cross-env OTEL_SERVICE_NAME="workflow:build" TRACE_ID="$TRACE_ID" npm run lint; npx cross-env OTEL_SERVICE_NAME="workflow:build" TRACE_ID="$TRACE_ID" npx tsc --noEmit
 ```
 
-// turbo — telemetry: phase-6-preview
+// turbo � telemetry: phase-6-preview
 ```bash
 npx cross-env OTEL_SERVICE_NAME="workflow:build" TRACE_ID="$TRACE_ID" npm run dev
 ```
 
-**Exit Gate — ALL must pass:**
+**Exit Gate � ALL must pass:**
 
 | Check | Target | How to Verify |
 |-------|--------|---------------|
@@ -197,7 +197,7 @@ npx cross-env OTEL_SERVICE_NAME="workflow:build" TRACE_ID="$TRACE_ID" npm run de
 
 ---
 
-## ⛔ MANDATORY: Problem Verification Before Completion
+## ? MANDATORY: Problem Verification Before Completion
 
 > **CRITICAL:** This check MUST be performed before any `notify_user` or task completion.
 
@@ -208,8 +208,8 @@ npx cross-env OTEL_SERVICE_NAME="workflow:build" TRACE_ID="$TRACE_ID" npm run de
 2. If errors/warnings > 0:
    a. Auto-fix: imports, types, lint errors
    b. Re-check @[current_problems]
-   c. If still > 0 → STOP → Notify user
-3. If count = 0 → Proceed to completion
+   c. If still > 0 ? STOP ? Notify user
+3. If count = 0 ? Proceed to completion
 ```
 
 ### Auto-Fixable
@@ -225,7 +225,7 @@ npx cross-env OTEL_SERVICE_NAME="workflow:build" TRACE_ID="$TRACE_ID" npm run de
 
 ---
 
-## 🔙 Rollback & Recovery
+## ?? Rollback & Recovery
 
 If the Exit Gates fail and cannot be resolved automatically:
 1. Restore to pre-build checkpoint (`git checkout -- .` or `git stash pop`).
@@ -237,7 +237,7 @@ If the Exit Gates fail and cannot be resolved automatically:
 ## Output Format
 
 ```markdown
-## 🏗️ Building: [App Name]
+## ??? Building: [App Name]
 
 ### Stack Decision
 
@@ -253,15 +253,15 @@ If the Exit Gates fail and cannot be resolved automatically:
 
 | Agent | Task | Status |
 |-------|------|--------|
-| `project-planner` | Architecture plan | ✅ Complete |
-| `data-modeler` | Schema design | ✅ Complete |
-| `nodejs-pro` | API routes | ✅ Complete |
-| `react-pro` | UI components | ✅ Complete |
-| `test-architect` | E2E tests | ✅ Complete |
+| `project-planner` | Architecture plan | ? Complete |
+| `data-modeler` | Schema design | ? Complete |
+| `nodejs-pro` | API routes | ? Complete |
+| `react-pro` | UI components | ? Complete |
+| `test-architect` | E2E tests | ? Complete |
 
 ### Preview
 
-🌐 http://localhost:3000
+?? http://localhost:3000
 
 ### Next Steps
 
@@ -287,15 +287,15 @@ If the Exit Gates fail and cannot be resolved automatically:
 
 ## Key Principles
 
-- **Requirements first** — discover what to build before building, ask clarifying questions
-- **Smart stack defaults** — sensible tech choices unless user specifies otherwise
-- **Parallel execution** — independent agents run simultaneously for faster delivery
-- **Working preview required** — never mark complete without a running dev server
-- **Exit gate enforced** — IDE problems = 0, tests passing, types valid before completion
+- **Requirements first** � discover what to build before building, ask clarifying questions
+- **Smart stack defaults** � sensible tech choices unless user specifies otherwise
+- **Parallel execution** � independent agents run simultaneously for faster delivery
+- **Working preview required** � never mark complete without a running dev server
+- **Exit gate enforced** � IDE problems = 0, tests passing, types valid before completion
 
 ---
 
-## 🔗 Workflow Chain
+## ?? Workflow Chain
 
 **Skills Loaded (15):**
 
@@ -313,7 +313,7 @@ If the Exit Gates fail and cannot be resolved automatically:
 - `nodejs-pro` - Node.js backend development
 - `context-engineering` - Codebase parsing and framework detection
 - `problem-checker` - IDE error detection and auto-fix
-- `auto-learner` - Learning and logging execution patterns
+- `knowledge-compiler` - Learning and logging execution patterns
 
 ```mermaid
 graph LR
@@ -333,6 +333,6 @@ graph LR
 **Handoff to /validate:**
 
 ```markdown
-✅ Build complete! Preview running at localhost:3000.
+? Build complete! Preview running at localhost:3000.
 [X] agents coordinated, [Y] files created. Run `/validate` for full test suite.
 ```

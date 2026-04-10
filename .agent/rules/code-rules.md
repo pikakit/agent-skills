@@ -80,9 +80,9 @@ Skills: `.agent/skills/` | Workflows: `.agent/workflows/` | Scripts: `.agent/scr
 
 ❌ Read agent → Start coding. ✅ Read → Understand WHY → Apply PRINCIPLES → Code.
 
-### 🎓 Auto-Learn Protocol (MANDATORY)
+### 🎓 Knowledge Learning Protocol (MANDATORY)
 
-> 🔴 When user indicates mistake → invoke `@[skills/auto-learner]` immediately.
+> 🔴 When user indicates mistake → invoke `@[skills/knowledge-compiler]` Learn operation immediately.
 > Full trigger words, categories, and ID patterns: see `autopilot.md § 0.5-H`.
 
 ### 🔄 Continuous Execution Rule (MANDATORY)
@@ -170,7 +170,7 @@ Design rules are in specialist agents, NOT here.
 | Testing | `test-architect` | `e2e-automation` |
 | Debug | `debug-pro` | `problem-checker` |
 | Plan | `project-planner` | `idea-storm`, `system-design` |
-| Knowledge | `knowledge-compiler` | `knowledge-linter`, `auto-learned` |
+| Knowledge | `knowledge-compiler` | `knowledge-linter`, `skill-generator` |
 
 ---
 
@@ -179,7 +179,7 @@ Design rules are in specialist agents, NOT here.
 | Metric | Value |
 |--------|-------|
 | **Total Agents** | 21 (16 domain + 5 meta) |
-| **Total Skills** | 53 |
+| **Total Skills** | 51 |
 | **Total Workflows** | 19 |
 | **Total Scripts** | 6 |
 | **Coverage** | ~95% web/mobile development |

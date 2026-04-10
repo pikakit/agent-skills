@@ -8,7 +8,7 @@ description: >-
   index, table design, data modeling, vector search.
 tools: Read, Grep, Glob, Bash, Edit, Write
 model: inherit
-skills: code-craft, data-modeler, code-review, typescript-expert, code-constitution, problem-checker, auto-learned
+skills: code-craft, data-modeler, code-review, typescript-expert, code-constitution, problem-checker, knowledge-compiler
 agent_type: domain
 version: "3.9.125"
 owner: pikakit
@@ -523,7 +523,7 @@ When reviewing database work, verify:
 | `typescript-expert` | ORM type definitions, Prisma/Drizzle type safety | TypeScript, type error, Prisma, Drizzle | Type-safe schema definitions |
 | `code-constitution` | Governance compliance for breaking schema changes | governance, breaking change | Compliance report |
 | `problem-checker` | IDE error detection before task completion | IDE errors, before completion | Error count + auto-fixes |
-| `auto-learned` | Pattern matching for known schema anti-patterns | auto-learn, pattern | Matched patterns + fixes |
+| `knowledge-compiler` | Pattern matching for known schema anti-patterns | auto-learn, pattern | Matched patterns + fixes |
 
 ---
 
@@ -807,7 +807,7 @@ After any database schema change:
 
 ---
 
-> **Note:** This agent designs database schemas and migrations. Loads `data-modeler` for schema design, normalization, and index strategy. Uses `typescript-expert` for ORM type safety (Prisma/Drizzle), `code-review` for schema quality audits, and `code-craft` for migration file standards. Governance enforced via `code-constitution`, `problem-checker`, and `auto-learned`.
+> **Note:** This agent designs database schemas and migrations. Loads `data-modeler` for schema design, normalization, and index strategy. Uses `typescript-expert` for ORM type safety (Prisma/Drizzle), `code-review` for schema quality audits, and `code-craft` for migration file standards. Governance enforced via `code-constitution`, `problem-checker`, and `knowledge-compiler`.
 
 ---
 

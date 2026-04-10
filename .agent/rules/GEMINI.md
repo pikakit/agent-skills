@@ -61,9 +61,9 @@ Require approval for: core logic, auth/data/state, config/build, architecture ch
 
 If broken output / regression: 1) Restore previous version 2) State what was reverted 3) Propose safer alternative. NO excuses.
 
-### 7. INTEGRATION WITH AUTO-LEARN
+### 7. INTEGRATION WITH KNOWLEDGE
 
-Safety violation → `@[skills/auto-learner]` triggered. Full protocol: see `autopilot.md § 0.5-H`.
+Safety violation → `@[skills/knowledge-compiler]` triggered (Learn operation). Full protocol: see `autopilot.md § 0.5-H`.
 
 ### 8. FORBIDDEN OPERATIONS
 
@@ -73,7 +73,7 @@ Safety violation → `@[skills/auto-learner]` triggered. Full protocol: see `aut
 
 ## 🚀 Quick Start
 
-> 📋 **Skill Index:** `.agent/skills/SKILL_INDEX.md` — All 53 skills at a glance.
+> 📋 **Skill Index:** `.agent/skills/SKILL_INDEX.md` — All 51 skills at a glance.
 > 📊 **Task Levels:** L0 (question) → L1 (quick fix) → L2 (multi-file) → L3 (architecture)
 
 | Need | Run | Purpose |
@@ -106,7 +106,7 @@ Safety violation → `@[skills/auto-learner]` triggered. Full protocol: see `aut
 | server, pm2, nginx, monitoring | `server-ops` | lighthouse, bundle, perf | `perf-optimizer` |
 | seo, meta-tag, sitemap | `seo-optimizer` | readme, changelog, docs | `doc-templates` |
 | architecture, trade-off, adr | `system-design` | plan, roadmap, breakdown | `project-planner` |
-| mistake, wrong, fix-this | `auto-learner` | ide-error, lint, pre-complete | `problem-checker` |
+| mistake, wrong, fix-this, sai, lỗi | `knowledge-compiler` | ide-error, lint, pre-complete | `problem-checker` |
 | compile, wiki, knowledge, ingest | `knowledge-compiler` | knowledge health, stale, lint | `knowledge-linter` |
 
 **Protocol:** Match keyword → Read skill's `SKILL.md` → Announce `🤖 @{skill}` → Code.

@@ -9,7 +9,7 @@ description: >-
   CI/CD, pipeline, Docker, Kubernetes, monitoring, infrastructure.
 tools: Read, Grep, Glob, Bash, Edit, Write
 model: inherit
-skills: code-craft, cicd-pipeline, server-ops, shell-script, gitops, git-workflow, vercel-deploy, observability, code-constitution, problem-checker, auto-learned
+skills: code-craft, cicd-pipeline, server-ops, shell-script, gitops, git-workflow, vercel-deploy, observability, code-constitution, problem-checker, knowledge-compiler
 agent_type: domain
 version: "3.9.125"
 owner: pikakit
@@ -533,7 +533,7 @@ When reviewing deployment work, verify:
 | `code-craft` | Clean code standards for pipeline configs | code style, best practices | Standards compliance |
 | `code-constitution` | Governance for breaking infrastructure changes | governance, breaking change | Compliance report |
 | `problem-checker` | IDE error detection after changes | IDE errors, before completion | Error count + auto-fixes |
-| `auto-learned` | Pattern matching for known deployment issues | auto-learn, pattern | Matched patterns |
+| `knowledge-compiler` | Pattern matching for known deployment issues | auto-learn, pattern | Matched patterns |
 
 ---
 

@@ -11,7 +11,7 @@ description: >-
   offensive, security assessment, penetration test.
 tools: Read, Grep, Glob, Bash, Edit, Write
 model: inherit
-skills: code-craft, security-scanner, offensive-sec, api-architect, e2e-automation, chrome-devtools, auth-patterns, code-review, code-constitution, problem-checker, auto-learned
+skills: code-craft, security-scanner, offensive-sec, api-architect, e2e-automation, chrome-devtools, auth-patterns, code-review, code-constitution, problem-checker, knowledge-compiler
 agent_type: domain
 version: "3.9.125"
 owner: pikakit
@@ -570,7 +570,7 @@ When reviewing security assessment work, verify:
 | `code-craft` | Clean security testing scripts and payloads | code style, scripts | Standards-compliant code |
 | `code-constitution` | Governance for security testing boundaries | governance, safety | Compliance check |
 | `problem-checker` | IDE error detection in security scripts | IDE errors, before completion | Error count + fixes |
-| `auto-learned` | Pattern matching for known security testing pitfalls | auto-learn, pattern | Matched patterns |
+| `knowledge-compiler` | Pattern matching for known security testing pitfalls | auto-learn, pattern | Matched patterns |
 
 ---
 
@@ -842,7 +842,7 @@ After testing:
 
 ---
 
-> **Note:** This agent performs offensive security testing. Key skills: `offensive-sec` for MITRE ATT&CK red team tactics, `security-scanner` for vulnerability analysis and OWASP scanning, `api-architect` for API security testing, `auth-patterns` for authentication/authorization testing, and `chrome-devtools` / `e2e-automation` for browser-based client-side testing. Governance enforced via `code-constitution`, `problem-checker`, and `auto-learned`.
+> **Note:** This agent performs offensive security testing. Key skills: `offensive-sec` for MITRE ATT&CK red team tactics, `security-scanner` for vulnerability analysis and OWASP scanning, `api-architect` for API security testing, `auth-patterns` for authentication/authorization testing, and `chrome-devtools` / `e2e-automation` for browser-based client-side testing. Governance enforced via `code-constitution`, `problem-checker`, and `knowledge-compiler`.
 
 ---
 

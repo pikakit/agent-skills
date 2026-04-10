@@ -1,29 +1,30 @@
 ---
 name: knowledge-compiler
 description: >-
-  Compile raw signals (errors, corrections, decisions) into a cross-linked
-  knowledge wiki with concept articles, ADRs, and auto-maintained indexes.
-  Use when "compile knowledge", "update wiki", "ingest lesson", or after
-  significant multi-file fixes. NOT for pattern matching (use auto-learned)
-  or skill generation (use skill-generator).
+  Unified knowledge engine: captures patterns from errors/corrections,
+  compiles raw signals into cross-linked wiki articles, generates fast-lookup
+  patterns, and maintains indexes. Replaces knowledge-compiler + knowledge-compiler.
+  Use when "compile knowledge", "update wiki", "ingest lesson", or when user
+  indicates mistake ("wrong", "fix this", "sai", "lỗi").
+  NOT for skill generation (use skill-generator) or wiki health (use knowledge-linter).
 category: autonomous-learning
-triggers: ["compile", "knowledge", "wiki", "ingest", "lessons", "tribal knowledge"]
-coordinates_with: ["auto-learner", "auto-learned", "skill-generator", "knowledge-linter"]
-success_metrics: ["Signal Compilation Rate", "Article Cross-Link Density", "Knowledge Reuse Rate"]
+triggers: ["compile", "knowledge", "wiki", "ingest", "mistake", "wrong", "fix-this", "sai", "lỗi"]
+coordinates_with: ["skill-generator", "knowledge-linter", "problem-checker"]
+success_metrics: ["Signal Compilation Rate", "Article Cross-Link Density", "Pattern Match Rate"]
 metadata:
   author: pikakit
-  version: "1.0.0"
+  version: "3.9.125"
 ---
 
-# Knowledge Compiler — LLM-Maintained Knowledge Wiki
+# Knowledge Compiler — Unified Knowledge Engine
 
-> Raw signals compound into cross-linked articles. Agent reads before coding. Knowledge never lost.
+> Captures → Compiles → Indexes → Queries. One skill for all knowledge operations.
 
 ---
 
 ## Prerequisites
 
-**Required:** `.agent/knowledge/` directory with `_index.md`, `raw/`, `concepts/`, `decisions/`.
+**Required:** `.agent/knowledge/` directory with `_index.md`, `raw/`, `concepts/`, `patterns/`, `decisions/`.
 **Created by:** PikaKit installer (`npx pikakit@latest`).
 
 ---
@@ -33,9 +34,10 @@ metadata:
 | Situation | Operation | Approach |
 |-----------|-----------|----------|
 | After fixing a significant bug | **Ingest** | Record signal in `raw/` |
-| After user corrects agent | **Ingest** | Record correction signal |
-| After making architectural decision | **Ingest** | Record decision signal |
+| User says "wrong"/"sai"/"fix this" | **Learn** | Extract pattern + record signal |
+| IDE error detected and fixed | **Learn** | Auto-capture pattern via problem-checker |
 | Uncompiled signals in `raw/` | **Compile** | Synthesize into `concepts/` articles |
+| Before writing code that may cause known errors | **Lookup** | Check `patterns/{category}-patterns.md` |
 | Agent needs project-specific knowledge | **Query** | Read `_index.md` → find relevant article |
 | Updating wiki after code changes | **Reindex** | Regenerate `_index.md` and `_graph.md` |
 
@@ -46,14 +48,16 @@ metadata:
 | Owned by This Skill | NOT Owned |
 |---------------------|-----------|
 | Signal ingestion (raw/ writes) | Error detection (→ problem-checker) |
-| Article compilation (concepts/ writes) | Pattern extraction (→ auto-learner) |
-| Index maintenance (_index.md, _graph.md) | Skill generation (→ skill-generator) |
-| ADR creation (decisions/ writes) | Wiki health checks (→ knowledge-linter) |
-| Cross-link management | Pattern storage (→ auto-learned) |
+| Pattern extraction + storage (patterns/) | Skill generation (→ skill-generator) |
+| Article compilation (concepts/ writes) | Wiki health checks (→ knowledge-linter) |
+| Index maintenance (_index.md, _graph.md) | |
+| ADR creation (decisions/ writes) | |
+| Cross-link management | |
+| Fast-lookup pattern cache (patterns/) | |
 
 ---
 
-## Operations (4)
+## Operations (6)
 
 ### 1. Ingest — Record a Raw Signal
 
@@ -91,7 +95,72 @@ Used .bat + .vbs launcher pattern for fully detached restart.
 On Windows, child processes die with parent. Use intermediate .bat/.vbs for detached launch.
 ```
 
-### 2. Compile — Synthesize Signals into Articles
+### 2. Learn — Extract Pattern from Error/Correction
+
+**When:** User indicates mistake, or IDE error is detected and fixed.
+**Trigger words:** EN: "mistake", "wrong", "fix this", "broken" | VI: "lỗi", "sai", "hỏng", "sửa lại"
+
+```
+1. DETECT  → Error or user correction detected
+2. FILTER  → Apply Quality Gate (reject noise)
+3. ANALYZE → Extract root cause
+4. ENRICH  → Capture EXACT fix (before/after, import path)
+5. STORE   → Write to knowledge/patterns/{category}-patterns.md
+6. INGEST  → Also record as signal in knowledge/raw/
+7. CONFIRM → Output: 📚 Learned: [LEARN-XXX]
+```
+
+**⛔ Quality Gate — MANDATORY Before Recording:**
+
+| Reject If | Reason |
+|-----------|--------|
+| Error is a local variable out of scope | Not an import issue — refactoring artifact |
+| Solution is "Add import for X" with no path | Zero actionable value |
+| Error occurred during active refactoring | Temporary state, will resolve itself |
+| Pattern has < 3 occurrences across sessions | Noise, not a pattern |
+| Error is project-specific, not generalizable | Won't help other projects |
+
+| Accept If | Required Fields |
+|-----------|----------------|
+| Error recurs across files/sessions | error_signature + solution + import_path |
+| Solution includes exact fix | Before/after code |
+| Pattern is framework-generalizable | context.framework + context.file_type |
+
+**Category IDs:**
+
+| Category | ID Pattern |
+|----------|------------|
+| Safety | `SAFE-XXX` |
+| Code | `CODE-XXX` |
+| Workflow | `FLOW-XXX` |
+| Integration | `INT-XXX` |
+
+### 3. Lookup — Check Known Patterns Before Coding
+
+**When:** Before writing code, running commands, or fixing errors.
+**Protocol (MANDATORY — see autopilot.md § 0.5-K):**
+
+```
+BEFORE executing command or writing code:
+1. Check if knowledge/patterns/ exists
+2. Scan relevant {category}-patterns.md for matching context
+3. If match found → Apply the solution, do NOT repeat the mistake
+4. If no match → Proceed normally
+```
+
+**Pattern Categories:**
+
+| Category | File | ID Prefix |
+|----------|------|-----------|
+| `import` | `patterns/import-patterns.md` | IMP- |
+| `type` | `patterns/type-patterns.md` | TYP- |
+| `syntax` | `patterns/syntax-patterns.md` | SYN- |
+| `logic` | `patterns/logic-patterns.md` | LOG- |
+| `style` | `patterns/style-patterns.md` | STY- |
+| `shell` | `patterns/shell-syntax-patterns.md` | SHL- |
+| `typescript` | `patterns/typescript-patterns.md` | TS- |
+
+### 4. Compile — Synthesize Signals into Articles
 
 **When:** Raw signals exist with `compiled: false`. Max 10 signals per batch.
 
@@ -109,7 +178,7 @@ On Windows, child processes die with parent. Use intermediate .bat/.vbs for deta
 8. OUTPUT  → 📚 Compiled: {N} signals → {M} articles updated/created
 ```
 
-### 3. Query — Ask the Wiki
+### 5. Query — Ask the Wiki
 
 **When:** Agent needs project-specific knowledge before coding.
 
@@ -121,12 +190,12 @@ On Windows, child processes die with parent. Use intermediate .bat/.vbs for deta
 5. If no match → answer from general knowledge, suggest ingesting signal
 ```
 
-### 4. Reindex — Regenerate Index Files
+### 6. Reindex — Regenerate Index Files
 
 **When:** After manual article edits or periodic maintenance.
 
 ```
-1. Scan all .md files in concepts/ and decisions/
+1. Scan all .md files in concepts/, patterns/, and decisions/
 2. Extract frontmatter (title, tags, related, signal_count)
 3. Rebuild _index.md with article list + statistics
 4. Rebuild _graph.md Mermaid diagram from `related:` fields
@@ -219,6 +288,8 @@ tags: [{domain tags}]
 | `ERR_SIGNAL_INVALID` | No | Signal missing required frontmatter fields |
 | `ERR_COMPILE_BATCH_EXCEEDED` | Yes | >10 signals → split into batches |
 | `ERR_ARTICLE_CONFLICT` | Yes | Two signals suggest contradicting insights → flag |
+| `ERR_INVALID_CATEGORY` | No | Pattern category not recognized |
+| `ERR_INVALID_PATTERN` | No | Pattern missing required fields (solution, before/after) |
 
 ---
 
@@ -227,9 +298,10 @@ tags: [{domain tags}]
 | ❌ Don't | ✅ Do |
 |---------|-------|
 | Record every typo fix as signal | Only ingest significant/multi-file fixes |
+| Record "Add import for X" without path | Record exact `import { X } from 'path'` |
 | Compile without reading existing articles | Always read _index.md + related articles first |
 | Create one article per signal | Cluster related signals into unified articles |
-| Edit concept articles manually | Let the compiler maintain articles |
+| Apply low-confidence patterns blindly | Verify pattern context matches current context |
 | Ignore uncompiled signal count | Compile when count > 5 |
 
 ---
@@ -239,9 +311,8 @@ tags: [{domain tags}]
 | Item | Type | Purpose |
 |------|------|---------|
 | `knowledge-linter` | Skill | Wiki health checks |
-| `auto-learner` | Skill | Pattern extraction (feeds signals) |
-| `auto-learned` | Skill | Pattern storage (reads from wiki) |
 | `skill-generator` | Skill | Generates skills from mature knowledge |
+| `problem-checker` | Skill | Detects IDE errors for pattern extraction |
 | `/knowledge` | Workflow | CLI interface for all operations |
 
 ---

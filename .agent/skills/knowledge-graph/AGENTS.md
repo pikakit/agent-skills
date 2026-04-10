@@ -9,7 +9,7 @@ description: >-
   codebase, architecture, dependencies, feasibility, health check.
 tools: Read, Grep, Glob, Bash
 model: inherit
-skills: code-craft, system-design, project-planner, idea-storm, debug-pro, knowledge-graph, code-constitution, problem-checker, auto-learned
+skills: code-craft, system-design, project-planner, idea-storm, debug-pro, knowledge-graph, code-constitution, problem-checker, knowledge-compiler
 agent_type: utility
 version: "3.9.125"
 owner: pikakit
@@ -495,7 +495,7 @@ When completing an exploration, verify:
 | `code-craft` | Code quality assessment during audit mode | code style, quality, best practices | Quality report |
 | `code-constitution` | Governance rule checking during architecture audit | governance, compliance | Compliance report |
 | `problem-checker` | IDE error detection after generating reports | IDE errors, before completion | Error count |
-| `auto-learned` | Pattern matching for known codebase anti-patterns | auto-learn, pattern | Matched patterns |
+| `knowledge-compiler` | Pattern matching for known codebase anti-patterns | auto-learn, pattern | Matched patterns |
 
 ---
 

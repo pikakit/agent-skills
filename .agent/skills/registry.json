@@ -128,56 +128,6 @@
       ]
     },
     {
-      "name": "auto-learned",
-      "category": "core",
-      "triggers": [
-        "auto-learn",
-        "pattern",
-        "learned",
-        "error fix"
-      ],
-      "coordinates_with": [
-        "problem-checker",
-        "auto-learner"
-      ],
-      "success_metrics": "patterns matched, auto-fixes applied",
-      "hierarchical": true,
-      "sub_skills": [
-        "import-patterns",
-        "type-patterns",
-        "syntax-patterns",
-        "logic-patterns",
-        "style-patterns"
-      ],
-      "access_level": "universal",
-      "writable": true,
-      "negative_triggers": [
-        "learning new patterns",
-        "debugging"
-      ]
-    },
-    {
-      "name": "auto-learner",
-      "category": "core",
-      "triggers": [
-        "auto-learn",
-        "mistake",
-        "error fix",
-        "pattern extraction"
-      ],
-      "coordinates_with": [
-        "auto-learned",
-        "problem-checker"
-      ],
-      "success_metrics": "pattern extracted, lesson saved, no duplicates",
-      "access_level": "universal",
-      "meta_role": "learner",
-      "negative_triggers": [
-        "applying patterns",
-        "debugging"
-      ]
-    },
-    {
       "name": "chrome-devtools",
       "category": "testing",
       "triggers": [
@@ -910,7 +860,7 @@
         "check problems"
       ],
       "coordinates_with": [
-        "auto-learned"
+        "knowledge-compiler"
       ],
       "success_metrics": "IDE errors = 0, auto-fix success rate > 80%",
       "scripts": [
@@ -1264,8 +1214,8 @@
         "tribal knowledge"
       ],
       "coordinates_with": [
-        "auto-learner",
-        "auto-learned",
+        "knowledge-compiler",
+        "knowledge-compiler",
         "skill-generator",
         "knowledge-linter"
       ],
@@ -1288,7 +1238,7 @@
       ],
       "coordinates_with": [
         "knowledge-compiler",
-        "auto-learned"
+        "knowledge-compiler"
       ],
       "success_metrics": "health report generated, issues detected, score calculated",
       "access_level": "universal",

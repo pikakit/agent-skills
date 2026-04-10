@@ -1,7 +1,7 @@
 ---
 description: LLM-maintained knowledge wiki — ingest raw signals from fixes and corrections, compile them into cross-linked concept articles, query project knowledge, and run health checks.
 chain: knowledge-management
-skills: [knowledge-compiler, knowledge-linter, auto-learner, auto-learned]
+skills: [knowledge-compiler, knowledge-linter, skill-generator]
 agents: [orchestrator, learner]
 ---
 
@@ -13,7 +13,7 @@ $ARGUMENTS
 
 ## Purpose
 
-Manage the project's living knowledge wiki. Raw signals from error fixes, user corrections, and architectural decisions are ingested, compiled into cross-linked concept articles by the LLM, and queryable for future coding decisions. **Differs from `auto-learned` (flat pattern list) by maintaining a compiled, cross-linked wiki where knowledge compounds.**
+Manage the project's living knowledge wiki. Raw signals from error fixes, user corrections, and architectural decisions are ingested, compiled into cross-linked concept articles by the LLM, and queryable for future coding decisions. Patterns are cached in `knowledge/patterns/` for fast agent lookup.
 
 ---
 
@@ -169,12 +169,11 @@ Manage the project's living knowledge wiki. Raw signals from error fixes, user c
 
 ## 🔗 Workflow Chain
 
-**Skills Loaded (4):**
+**Skills Loaded (3):**
 
-- `knowledge-compiler` — Signal ingestion and article compilation
+- `knowledge-compiler` — Signal ingestion, pattern learning, article compilation
 - `knowledge-linter` — Wiki health checks
-- `auto-learner` — Pattern extraction (feeds signals)
-- `auto-learned` — Pattern storage (reads from wiki)
+- `skill-generator` — Generate skills from mature articles
 
 ```mermaid
 graph LR

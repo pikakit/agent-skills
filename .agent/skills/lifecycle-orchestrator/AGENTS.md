@@ -11,7 +11,7 @@ description: >-
   rollback, restore, undo, save state, revert, failure recovery.
 tools: Read, Grep, Glob, Bash, Edit, Write, Agent
 model: inherit
-skills: lifecycle-orchestrator, smart-router, execution-reporter, context-engineering, git-workflow, debug-pro, code-craft, code-constitution, problem-checker, auto-learned
+skills: lifecycle-orchestrator, smart-router, execution-reporter, context-engineering, git-workflow, debug-pro, code-craft, code-constitution, problem-checker, knowledge-compiler
 agent_type: meta
 version: "3.9.125"
 owner: pikakit
@@ -334,7 +334,7 @@ checkpoint:
 IF agent.status == 'failed' for 3 attempts:
   → Restore from checkpoint (self-handle)
   → Notify lead agent
-  → Log failure pattern via auto-learner skill
+  → Log failure pattern via knowledge-compiler skill
 
 IF agent.status == 'timeout':
   → Cancel current task
@@ -505,7 +505,7 @@ Rules:
 ✅ Retry transient failures with exponential backoff (max 3 attempts)
 ✅ Escalate deterministic failures immediately (no retry)
 ✅ Restore from checkpoint when all retries exhausted (self-handle recovery)
-✅ Log every failure pattern via `auto-learner` skill
+✅ Log every failure pattern via `knowledge-compiler` skill
 
 ❌ Don't retry deterministic errors (code errors, type mismatches)
 ❌ Don't ignore agent failures — always retry or escalate
@@ -546,7 +546,7 @@ When reviewing orchestration execution, verify:
 - [ ] **Retry budget allocated**: 3 for transient, 0 for deterministic, 2 for resource
 - [ ] **Health monitored**: Agent statuses tracked throughout execution
 - [ ] **Failures handled**: Retry with backoff or escalated — none ignored
-- [ ] **Failures logged**: Every failure pattern logged via `auto-learner` skill
+- [ ] **Failures logged**: Every failure pattern logged via `knowledge-compiler` skill
 - [ ] **Report generated**: Execution report with phases, durations, retries, checkpoints
 - [ ] **Single exit**: Only one `notify_user` at completion (autopilot mode)
 - [ ] **Problem-checker clean**: IDE errors = 0 after execution
@@ -717,7 +717,7 @@ When reviewing orchestration execution, verify:
 | `code-craft` | Code standards for any generated artifacts | code style, best practices | Standards-compliant output |
 | `code-constitution` | Governance enforcement during execution | governance, safety | Compliance report |
 | `problem-checker` | IDE error detection before reporting completion | IDE errors, before completion | Error count + auto-fixes |
-| `auto-learned` | Pattern matching for known execution pitfalls | auto-learn, pattern | Matched patterns |
+| `knowledge-compiler` | Pattern matching for known execution pitfalls | auto-learn, pattern | Matched patterns |
 
 ---
 
@@ -982,7 +982,7 @@ After execution completes:
 
 ---
 
-> **Note:** This agent manages runtime execution mechanics for the agent ecosystem. DISTINCT FROM `lead-orchestrator` which owns strategic planning. Key skills: `lifecycle-orchestrator` for end-to-end execution lifecycle, `smart-router` for intelligent agent selection, `execution-reporter` for transparency, and `context-engineering` for token budget management. Governance enforced via `code-constitution`, `problem-checker`, and `auto-learned`.
+> **Note:** This agent manages runtime execution mechanics for the agent ecosystem. DISTINCT FROM `lead-orchestrator` which owns strategic planning. Key skills: `lifecycle-orchestrator` for end-to-end execution lifecycle, `smart-router` for intelligent agent selection, `execution-reporter` for transparency, and `context-engineering` for token budget management. Governance enforced via `code-constitution`, `problem-checker`, and `knowledge-compiler`.
 
 ---
 

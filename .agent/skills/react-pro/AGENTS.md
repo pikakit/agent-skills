@@ -10,7 +10,7 @@ description: >-
   styling, web app, landing page.
 tools: Read, Grep, Glob, Bash, Edit, Write
 model: inherit
-skills: code-craft, react-pro, nextjs-pro, tailwind-kit, design-system, code-review, studio, typescript-expert, seo-optimizer, perf-optimizer, code-constitution, problem-checker, auto-learned
+skills: code-craft, react-pro, nextjs-pro, tailwind-kit, design-system, code-review, studio, typescript-expert, seo-optimizer, perf-optimizer, code-constitution, problem-checker, knowledge-compiler
 agent_type: domain
 version: "3.9.125"
 owner: pikakit
@@ -657,7 +657,7 @@ When reviewing frontend code, verify:
 | `code-craft` | Clean code, naming, SRP, DRY | code style, best practices | Standards-compliant code |
 | `code-constitution` | Governance check for breaking changes | governance, breaking change | Compliance report |
 | `problem-checker` | IDE error detection before completion | IDE errors, before completion | Error count + auto-fixes |
-| `auto-learned` | Pattern matching for known frontend pitfalls | auto-learn, pattern | Matched patterns |
+| `knowledge-compiler` | Pattern matching for known frontend pitfalls | auto-learn, pattern | Matched patterns |
 
 ---
 
@@ -956,7 +956,7 @@ After editing any frontend file:
 
 ---
 
-> **Note:** This agent loads design and architecture skills for detailed guidance. Key skills: `react-architect` for component patterns, `nextjs-pro` for App Router best practices, `studio` + `frontend-design` for anti-generic design intelligence, `tailwind-kit` for CSS-first Tailwind v4, `web-design-guidelines` for accessibility, `typescript-expert` for type safety, and `perf-optimizer` for Core Web Vitals. Governance enforced via `code-constitution`, `problem-checker`, and `auto-learned`.
+> **Note:** This agent loads design and architecture skills for detailed guidance. Key skills: `react-architect` for component patterns, `nextjs-pro` for App Router best practices, `studio` + `frontend-design` for anti-generic design intelligence, `tailwind-kit` for CSS-first Tailwind v4, `web-design-guidelines` for accessibility, `typescript-expert` for type safety, and `perf-optimizer` for Core Web Vitals. Governance enforced via `code-constitution`, `problem-checker`, and `knowledge-compiler`.
 
 ---
 

@@ -6,7 +6,7 @@ description: >-
   NOT for root cause analysis (use debug-pro) or code review (use code-review).
 category: system-tool
 triggers: ["before notify_user", "after code modification", "IDE errors", "check for errors"]
-coordinates_with: ["auto-learned", "skill-generator", "code-review"]
+coordinates_with: ["knowledge-compiler", "skill-generator", "code-review"]
 success_metrics: ["0 IDE Errors", "Clean notify_user"]
 metadata:
   author: pikakit
@@ -52,7 +52,7 @@ metadata:
 
 | Owned by This Skill | NOT Owned |
 |---------------------|-----------|
-| IDE problem detection (`@[current_problems]`) | Pattern storage (→ auto-learned) |
+| IDE problem detection (`@[current_problems]`) | Pattern storage (→ knowledge-compiler) |
 | Auto-fix (4 patterns) | Skill generation (→ skill-generator) |
 | Fix-verify loop (max 3 cycles) | Full test execution (→ /validate) |
 | Completion gate (hard-block) | Code review (→ code-review) |
@@ -180,7 +180,7 @@ npx tsc --noEmit <file>
 
 | Item | Type | Purpose |
 |------|------|---------|
-| `auto-learned` | Skill | Stores learned patterns |
+| `knowledge-compiler` | Skill | Stores learned patterns |
 | `skill-generator` | Skill | Generates from patterns |
 | `/validate` | Workflow | Run all checks |
 

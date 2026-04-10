@@ -10,7 +10,7 @@ description: >-
   TDD, integration test, mock, test failure, testing library.
 tools: Read, Grep, Glob, Bash, Edit, Write
 model: inherit
-skills: test-architect, e2e-automation, code-craft, code-review, code-constitution, problem-checker, auto-learned
+skills: test-architect, e2e-automation, code-craft, code-review, code-constitution, problem-checker, knowledge-compiler
 agent_type: domain
 version: "3.9.125"
 owner: pikakit
@@ -563,7 +563,7 @@ When reviewing test code, verify:
 | `code-craft` | Clean code standards for test files | code style | Clean code |
 | `code-constitution` | Governance validation | governance | Compliance |
 | `problem-checker` | IDE error detection after test creation | IDE errors | Error count |
-| `auto-learned` | Pattern matching for testing pitfalls | auto-learn | Patterns |
+| `knowledge-compiler` | Pattern matching for testing pitfalls | auto-learn | Patterns |
 
 ---
 
@@ -844,7 +844,7 @@ After writing tests:
 
 ---
 
-> **Note:** This agent writes unit and integration tests. Key skills: `test-architect` for test strategy and suite architecture, `test-driven-dev` for TDD Red-Green-Refactor workflow, and `code-review` for test quality. DISTINCT FROM `qa` (E2E browser tests, CI pipelines, visual regression). Governance enforced via `code-constitution`, `problem-checker`, and `auto-learned`.
+> **Note:** This agent writes unit and integration tests. Key skills: `test-architect` for test strategy and suite architecture, `test-driven-dev` for TDD Red-Green-Refactor workflow, and `code-review` for test quality. DISTINCT FROM `qa` (E2E browser tests, CI pipelines, visual regression). Governance enforced via `code-constitution`, `problem-checker`, and `knowledge-compiler`.
 
 ---
 

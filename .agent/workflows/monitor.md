@@ -1,6 +1,6 @@
-﻿---
-description: Production observability stack â€” OpenTelemetry instrumentation, structured logging, Prometheus/Grafana dashboards, distributed tracing, and PagerDuty incident alerting.
-skills: [observability, server-ops, problem-checker, context-engineering, auto-learner]
+---
+description: Production observability stack — OpenTelemetry instrumentation, structured logging, Prometheus/Grafana dashboards, distributed tracing, and PagerDuty incident alerting.
+skills: [observability, server-ops, problem-checker, context-engineering, knowledge-compiler]
 agents: [orchestrator, assessor, recovery, learner, devops-engineer]
 ---
 
@@ -22,25 +22,25 @@ $ARGUMENTS
 
 ## Purpose
 
-Set up production observability infrastructure â€” OpenTelemetry SDK, structured logging, Prometheus metrics, distributed tracing, and incident alerting with runbooks. **Differs from `/launch` (production deployment) and `/diagnose` (root cause analysis) by establishing the full observability foundation for production monitoring.** Uses `cicd-pipeline` with `observability` for instrumentation and `server-ops` for infrastructure configuration.
+Set up production observability infrastructure — OpenTelemetry SDK, structured logging, Prometheus metrics, distributed tracing, and incident alerting with runbooks. **Differs from `/launch` (production deployment) and `/diagnose` (root cause analysis) by establishing the full observability foundation for production monitoring.** Uses `cicd-pipeline` with `observability` for instrumentation and `server-ops` for infrastructure configuration.
 
 ---
 
-## ðŸ¤– Meta-Agents Integration
+## 🤖 Meta-Agents Integration
 
 | Phase | Agent | Action |
 | ----- | ----- | ------ |
-| **Pre-Flight** | `assessor` | Evaluate monitoring scope, providers, and auto-learned patterns |
+| **Pre-Flight** | `assessor` | Evaluate monitoring scope, providers, and knowledge-compiler patterns |
 | **Execution** | `orchestrator` | Coordinate OpenTelemetry, metrics, logs, traces, and alerts |
 | **Safety** | `recovery` | Save state checkpoint before infrastructure changes |
 | **Post-Setup** | `learner` | Log monitoring patterns for future setups |
 
 ```
 Flow:
-assessor.evaluate(scope, provider) â†’ recovery.save()
-       â†“
-setup OpenTelemetry â†’ logs â†’ metrics â†’ traces â†’ alerts
-       â†“
+assessor.evaluate(scope, provider) → recovery.save()
+       ↓
+setup OpenTelemetry → logs → metrics → traces → alerts
+       ↓
 learner.log(monitoring_patterns)
 ```
 
@@ -56,13 +56,13 @@ learner.log(monitoring_patterns)
 
 ---
 
-## ðŸ”´ MANDATORY: Observability Setup Protocol
+## 🔴 MANDATORY: Observability Setup Protocol
 
-### Phase 1: Pre-flight & Auto-Learned Context
+### Phase 1: Pre-flight & knowledge-compiler Context
 
-> **Rule 0.5-K:** Auto-learned pattern check.
+> **Rule 0.5-K:** knowledge-compiler pattern check.
 
-1. Read `.agent/skills/auto-learned/patterns/` for past failures before proceeding.
+1. Read `.agent/skills/knowledge-compiler/patterns/` for past failures before proceeding.
 2. Trigger `recovery` agent to run Checkpoint (`git commit -m "chore(checkpoint): pre-monitor"`).
 
 ### Phase 2: Foundation (OpenTelemetry)
@@ -74,7 +74,7 @@ learner.log(monitoring_patterns)
 | **AGENTS** | `cicd-pipeline`, `assessor` |
 | **SKILLS** | `observability`, `context-engineering` |
 
-// turbo â€” telemetry: phase-2-foundation
+// turbo — telemetry: phase-2-foundation
 
 1. `assessor` evaluates monitoring scope
 2. Select provider:
@@ -99,7 +99,7 @@ learner.log(monitoring_patterns)
 | **AGENTS** | `orchestrator`, `cicd-pipeline` |
 | **SKILLS** | `observability` |
 
-// turbo â€” telemetry: phase-3-logging
+// turbo — telemetry: phase-3-logging
 
 1. Setup Pino/Winston with JSON formatting
 2. Configure PII redaction (email, phone, SSN, credit card)
@@ -115,7 +115,7 @@ learner.log(monitoring_patterns)
 | **AGENTS** | `cicd-pipeline` |
 | **SKILLS** | `observability`, `server-ops` |
 
-// turbo â€” telemetry: phase-4-metrics
+// turbo — telemetry: phase-4-metrics
 
 1. Expose Prometheus `/metrics` endpoint
 2. Configure Golden Signals:
@@ -151,7 +151,7 @@ learner.log(monitoring_patterns)
 | **INPUT** | Full observability stack from Phases 2-5 |
 | **OUTPUT** | Alert rules, Slack/PagerDuty integration, runbooks |
 | **AGENTS** | `cicd-pipeline`, `learner` |
-| **SKILLS** | `observability`, `server-ops`, `problem-checker`, `auto-learner` |
+| **SKILLS** | `observability`, `server-ops`, `problem-checker`, `knowledge-compiler` |
 
 Default alert rules:
 
@@ -172,7 +172,7 @@ Runbooks generated:
 
 ---
 
-## â›” MANDATORY: Problem Verification Before Completion
+## ⛔ MANDATORY: Problem Verification Before Completion
 
 > **CRITICAL:** This check MUST be performed before any `notify_user` or task completion.
 
@@ -183,8 +183,8 @@ Runbooks generated:
 2. If errors/warnings > 0:
    a. Auto-fix: imports, types, lint errors
    b. Re-check @[current_problems]
-   c. If still > 0 â†’ STOP â†’ Notify user
-3. If count = 0 â†’ Proceed to completion
+   c. If still > 0 → STOP → Notify user
+3. If count = 0 → Proceed to completion
 ```
 
 ### Auto-Fixable
@@ -199,7 +199,7 @@ Runbooks generated:
 
 ---
 
-## ðŸ”™ Rollback & Recovery
+## 🔙 Rollback & Recovery
 
 If observability setup causes application crashes or aggressive memory leaks:
 1. Revert infrastructure configs/SDK wrappers using `recovery` meta-agent.
@@ -208,7 +208,7 @@ If observability setup causes application crashes or aggressive memory leaks:
 
 ---
 
-## ðŸ”— Workflow Chain
+## 🔗 Workflow Chain
 
 ```mermaid
 graph LR
@@ -227,6 +227,6 @@ graph LR
 **Handoff to /diagnose:**
 
 ```markdown
-ðŸ“Š Monitoring configured! OpenTelemetry + logs + metrics + alerts active.
+📊 Monitoring configured! OpenTelemetry + logs + metrics + alerts active.
 Run `/diagnose` to investigate issues or `/launch` to deploy.
 ```

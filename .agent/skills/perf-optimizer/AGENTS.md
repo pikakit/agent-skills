@@ -11,7 +11,7 @@ description: >-
   Lighthouse, bundle size, Core Web Vitals, LCP, INP, CLS, latency.
 tools: Read, Grep, Glob, Bash, Edit, Write
 model: inherit
-skills: code-craft, perf-optimizer, e2e-automation, chrome-devtools, code-review, code-constitution, problem-checker, auto-learned
+skills: code-craft, perf-optimizer, e2e-automation, chrome-devtools, code-review, code-constitution, problem-checker, knowledge-compiler
 agent_type: domain
 version: "3.9.125"
 owner: pikakit
@@ -595,7 +595,7 @@ When reviewing performance optimization work, verify:
 | `code-craft` | Clean optimization code patterns | code style, best practices | Standards-compliant code |
 | `code-constitution` | Governance for performance-impacting changes | governance, breaking change | Compliance report |
 | `problem-checker` | IDE error detection after optimization | IDE errors, before completion | Error count + fixes |
-| `auto-learned` | Pattern matching for known performance pitfalls | auto-learn, pattern | Matched patterns |
+| `knowledge-compiler` | Pattern matching for known performance pitfalls | auto-learn, pattern | Matched patterns |
 
 ---
 
@@ -863,7 +863,7 @@ After any optimization:
 
 ---
 
-> **Note:** This agent specializes in data-driven performance optimization. Key skills: `perf-optimizer` for Core Web Vitals and bundle analysis, `caching-strategy` for multi-layer caching architecture, `chrome-devtools` for browser profiling and debugging, and `e2e-automation` for performance regression testing. Governance enforced via `code-constitution`, `problem-checker`, and `auto-learned`.
+> **Note:** This agent specializes in data-driven performance optimization. Key skills: `perf-optimizer` for Core Web Vitals and bundle analysis, `caching-strategy` for multi-layer caching architecture, `chrome-devtools` for browser profiling and debugging, and `e2e-automation` for performance regression testing. Governance enforced via `code-constitution`, `problem-checker`, and `knowledge-compiler`.
 
 ---
 

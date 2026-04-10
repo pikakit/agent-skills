@@ -1,7 +1,7 @@
-﻿---
-description: Autonomous multi-agent orchestration — coordinate 3+ specialist agents in parallel with automated verification, conflict resolution, and continuous execution.
+---
+description: Autonomous multi-agent orchestration � coordinate 3+ specialist agents in parallel with automated verification, conflict resolution, and continuous execution.
 chain: build-web-app
-skills: [lifecycle-orchestrator, execution-reporter, context-engineering, project-planner, studio, problem-checker, idea-storm, design-system, test-architect, security-scanner, auto-learner]
+skills: [lifecycle-orchestrator, execution-reporter, context-engineering, project-planner, studio, problem-checker, idea-storm, design-system, test-architect, security-scanner, knowledge-compiler]
 agents: [orchestrator, assessor, recovery, critic, learner, project-planner, frontend-specialist, backend-specialist, database-architect, security-auditor, test-engineer, devops-engineer, mobile-developer]
 ---
 
@@ -13,57 +13,57 @@ $ARGUMENTS
 
 ## Purpose
 
-Coordinate 3+ specialist agents for complex multi-domain tasks — planning through parallel execution to verification. **Differs from `/build` (sequential new-app creation) and `/cook` (single-scope targeted tasks) by orchestrating multiple specialists simultaneously.** Uses all 5 meta-agents.
+Coordinate 3+ specialist agents for complex multi-domain tasks � planning through parallel execution to verification. **Differs from `/build` (sequential new-app creation) and `/cook` (single-scope targeted tasks) by orchestrating multiple specialists simultaneously.** Uses all 5 meta-agents.
 
-> **MINIMUM 3 SPECIALISTS.** Fewer than 3 → use direct delegation.
+> **MINIMUM 3 SPECIALISTS.** Fewer than 3 ? use direct delegation.
 
 ---
 
-## 🤖 Meta-Agents Integration
+## ?? Meta-Agents Integration
 
 | Phase | Agent | Action |
 | ----- | ----- | ------ |
-| **Pre-Flight** | `assessor` | Evaluate plan risk level and auto-learned context |
+| **Pre-Flight** | `assessor` | Evaluate plan risk level and knowledge-compiler context |
 | **Execution** | `orchestrator` / `critic` | Coordinate parallel execution and resolve agent conflicts |
 | **Safety** | `recovery` | Save state and recover from execution failures |
 | **Post-Autopilot** | `learner` | Log execution metrics and success/failure patterns |
 
 ```
 Flow:
-orchestrator.init() → assessor.evaluate(plan)
-       ↓
-recovery.save(state) → execute phases in parallel
-       ↓
-conflict? → critic.arbitrate(safety > correctness > convenience)
-       ↓
-failure? → recovery.restore() → learner.log(failure)
-       ↓
-success → learner.log(patterns)
+orchestrator.init() ? assessor.evaluate(plan)
+       ?
+recovery.save(state) ? execute phases in parallel
+       ?
+conflict? ? critic.arbitrate(safety > correctness > convenience)
+       ?
+failure? ? recovery.restore() ? learner.log(failure)
+       ?
+success ? learner.log(patterns)
 ```
 
 ---
 
-## 🔴 MANDATORY: Multi-Agent Orchestration Protocol
+## ?? MANDATORY: Multi-Agent Orchestration Protocol
 
-### Phase 1: Pre-flight & Auto-Learned Context
+### Phase 1: Pre-flight & knowledge-compiler Context
 
-> **Rule 0.5-K:** Auto-learned pattern check.
+> **Rule 0.5-K:** knowledge-compiler pattern check.
 
-1. Read `.agent/skills/auto-learned/patterns/` for past failures before proceeding.
+1. Read `.agent/skills/knowledge-compiler/patterns/` for past failures before proceeding.
 2. Trigger `recovery` agent to run Checkpoint (`git commit -m "chore(checkpoint): pre-autopilot"`).
 
 ### Phase 2: Planning & Agent Selection
 
 | Field | Value |
 |-------|-------|
-| **INPUT** | $ARGUMENTS (user request — feature/app description) |
+| **INPUT** | $ARGUMENTS (user request � feature/app description) |
 | **OUTPUT** | PLAN.md with task breakdown, agent assignments, dependency graph |
 | **AGENTS** | `project-planner`, `assessor` |
 | **SKILLS** | `project-planner`, `idea-storm`, `context-engineering` |
 
-// turbo — telemetry: phase-2-planning
+// turbo � telemetry: phase-2-planning
 
-1. Identify required domains → select agents:
+1. Identify required domains ? select agents:
 
 | Domain | Agent |
 |--------|-------|
@@ -78,9 +78,9 @@ success → learner.log(patterns)
 2. Select minimum 3 agents
 3. Create PLAN.md with assignments and parallel groups
 
-> 🔴 Only `project-planner` during planning.
+> ?? Only `project-planner` during planning.
 
-**⛔ CHECKPOINT: User approval required before Phase 3**
+**? CHECKPOINT: User approval required before Phase 3**
 
 ### Phase 3: Pre-Flight Safety
 
@@ -91,7 +91,7 @@ success → learner.log(patterns)
 | **AGENTS** | `assessor`, `recovery` |
 | **SKILLS** | `lifecycle-orchestrator` |
 
-// turbo — telemetry: phase-3-safety
+// turbo � telemetry: phase-3-safety
 
 1. `assessor` evaluates plan risk:
 
@@ -115,7 +115,7 @@ success → learner.log(patterns)
 
 > **Skip this phase** if the task has no UI component.
 
-// turbo — telemetry: phase-4-studio-search
+// turbo � telemetry: phase-4-studio-search
 ```bash
 npx cross-env OTEL_SERVICE_NAME="workflow:autopilot" TRACE_ID="$TRACE_ID" node .agent/skills/studio/scripts/search.ts "<app_type> <style> <keywords>" --design-system -p "<Project Name>"
 ```
@@ -131,7 +131,7 @@ Apply design tokens (colors, typography, effects) before building components.
 | **AGENTS** | `orchestrator`, `critic`, 3+ domain specialists per plan |
 | **SKILLS** | Per agent specialization |
 
-// turbo — telemetry: phase-5-execution
+// turbo � telemetry: phase-5-execution
 
 ```mermaid
 graph TD
@@ -156,11 +156,11 @@ graph TD
 | **Core** | `nodejs-pro`, `react-pro` | Foundation complete |
 | **Polish** | `test-architect`, `cicd-pipeline` | Core complete |
 
-**Agent Selection:** Match task type to specialists. Web → frontend + backend + test. API → backend + security + test. Full Stack → all core agents.
+**Agent Selection:** Match task type to specialists. Web ? frontend + backend + test. API ? backend + security + test. Full Stack ? all core agents.
 
 **Context Passing (MANDATORY):** Every sub-agent must receive: original request, decisions made, previous work summary, current plan link, and specific task.
 
-> ⚠️ Invoking agent without context = wrong assumptions!
+> ?? Invoking agent without context = wrong assumptions!
 
 ### Phase 6: Verification & Exit Gate
 
@@ -169,40 +169,40 @@ graph TD
 | **INPUT** | All artifacts from Phase 5 |
 | **OUTPUT** | Verification report: tests, lint, types, security scan |
 | **AGENTS** | `test-architect`, `learner` |
-| **SKILLS** | `test-architect`, `problem-checker`, `security-scanner`, `auto-learner` |
+| **SKILLS** | `test-architect`, `problem-checker`, `security-scanner`, `knowledge-compiler` |
 
-// turbo — telemetry: phase-6-test
+// turbo � telemetry: phase-6-test
 ```bash
 npx cross-env OTEL_SERVICE_NAME="workflow:autopilot" TRACE_ID="$TRACE_ID" npm test
 ```
 
-// turbo — telemetry: phase-6-lint-typecheck
+// turbo � telemetry: phase-6-lint-typecheck
 ```bash
 npx cross-env OTEL_SERVICE_NAME="workflow:autopilot" TRACE_ID="$TRACE_ID" npm run lint; npx cross-env OTEL_SERVICE_NAME="workflow:autopilot" TRACE_ID="$TRACE_ID" npx tsc --noEmit
 ```
 
-**Exit Gate — ALL must pass:**
+**Exit Gate � ALL must pass:**
 
 | Check | Target | How to Verify |
 |-------|--------|---------------|
-| Agent Count | ≥ 3 | Count unique agents invoked |
+| Agent Count | = 3 | Count unique agents invoked |
 | IDE Problems | 0 | `@[current_problems]` check |
 | Security Scan | Pass | `security-scanner` output |
 | Lint/Types | 0 errors | ESLint + TypeScript |
 | Tests | All passing | `npm test` output |
 | Preview Running | Yes | `npm run dev` active |
 
-**Exit Decision:** IDE problems > 0 → auto-fix or notify. Security failed → block. All deliverables complete → generate report.
+**Exit Decision:** IDE problems > 0 ? auto-fix or notify. Security failed ? block. All deliverables complete ? generate report.
 
 ---
 
-## 🚀 Auto-Execution Policy
+## ?? Auto-Execution Policy
 
 **CONTINUOUS EXECUTION** after plan approval. All commands auto-run. Only stop for: blocking errors, decision forks, plan completion.
 
 ---
 
-## ⛔ MANDATORY: Problem Verification Before Completion
+## ? MANDATORY: Problem Verification Before Completion
 
 > **CRITICAL:** This check MUST be performed before any `notify_user` or task completion.
 
@@ -213,8 +213,8 @@ npx cross-env OTEL_SERVICE_NAME="workflow:autopilot" TRACE_ID="$TRACE_ID" npm ru
 2. If errors/warnings > 0:
    a. Auto-fix: imports, types, lint errors
    b. Re-check @[current_problems]
-   c. If still > 0 → STOP → Notify user
-3. If count = 0 → Proceed to completion
+   c. If still > 0 ? STOP ? Notify user
+3. If count = 0 ? Proceed to completion
 ```
 
 ### Auto-Fixable
@@ -231,7 +231,7 @@ npx cross-env OTEL_SERVICE_NAME="workflow:autopilot" TRACE_ID="$TRACE_ID" npm ru
 
 ---
 
-## 🔙 Rollback & Recovery
+## ?? Rollback & Recovery
 
 If the Exit Gates fail and cannot be resolved automatically:
 1. Restore to pre-autopilot checkpoint (`git checkout -- .` or `git stash pop`).
@@ -243,7 +243,7 @@ If the Exit Gates fail and cannot be resolved automatically:
 ## Output Format
 
 ```markdown
-## 🎼 Autopilot Report
+## ?? Autopilot Report
 
 ### Mission
 [Original task summary]
@@ -252,20 +252,20 @@ If the Exit Gates fail and cannot be resolved automatically:
 
 | Agent | Task | Duration | Status |
 |-------|------|----------|--------|
-| `project-planner` | Task breakdown | 2m | ✅ Complete |
-| `data-modeler` | Schema design | 3m | ✅ Complete |
-| `nodejs-pro` | API routes | 5m | ✅ Complete |
-| `react-pro` | UI components | 7m | ✅ Complete |
-| `test-architect` | E2E tests | 4m | ✅ Complete |
+| `project-planner` | Task breakdown | 2m | ? Complete |
+| `data-modeler` | Schema design | 3m | ? Complete |
+| `nodejs-pro` | API routes | 5m | ? Complete |
+| `react-pro` | UI components | 7m | ? Complete |
+| `test-architect` | E2E tests | 4m | ? Complete |
 
 ### Execution Metrics
 
 | Metric | Target | Actual | Status |
 |--------|--------|--------|--------|
-| Agents invoked | ≥ 3 | [X] | ✅/❌ |
-| IDE problems | 0 | [X] | ✅/❌ |
-| Total execution | < 5min | [X]m | ✅/❌ |
-| Auto-fix rate | > 85% | [X]% | ✅/❌ |
+| Agents invoked | = 3 | [X] | ?/? |
+| IDE problems | 0 | [X] | ?/? |
+| Total execution | < 5min | [X]m | ?/? |
+| Auto-fix rate | > 85% | [X]% | ?/? |
 
 ### Deliverables
 - [x] PLAN.md created
@@ -297,15 +297,15 @@ If the Exit Gates fail and cannot be resolved automatically:
 
 ## Key Principles
 
-- **Minimum 3 agents** — autopilot means multi-specialist coordination, not single-agent delegation
-- **Plan first, execute after** — no execution without approved PLAN.md
-- **Parallel by default** — independent agents run simultaneously to reduce total time
-- **Context passing mandatory** — every sub-agent receives full context (request, decisions, prior work)
-- **Exit gate enforced** — IDE problems = 0, security scan passed, all tests green before completion
+- **Minimum 3 agents** � autopilot means multi-specialist coordination, not single-agent delegation
+- **Plan first, execute after** � no execution without approved PLAN.md
+- **Parallel by default** � independent agents run simultaneously to reduce total time
+- **Context passing mandatory** � every sub-agent receives full context (request, decisions, prior work)
+- **Exit gate enforced** � IDE problems = 0, security scan passed, all tests green before completion
 
 ---
 
-## 🔗 Workflow Chain
+## ?? Workflow Chain
 
 **Skills Loaded (11):**
 
@@ -319,7 +319,7 @@ If the Exit Gates fail and cannot be resolved automatically:
 - `design-system` - UI/UX standards and theme tokens
 - `test-architect` - Testing strategy and suite generation
 - `security-scanner` - Automated vulnerability detection
-- `auto-learner` - Learning and logging execution patterns
+- `knowledge-compiler` - Learning and logging execution patterns
 
 ```mermaid
 graph LR
@@ -339,6 +339,6 @@ graph LR
 **Handoff to /launch:**
 
 ```markdown
-✅ Autopilot complete! [X] agents finished, [Y] tests passing. Preview running at localhost:3000.
+? Autopilot complete! [X] agents finished, [Y] tests passing. Preview running at localhost:3000.
 Run `/launch` when ready to deploy to production.
 ```

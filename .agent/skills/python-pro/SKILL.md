@@ -6,7 +6,7 @@ description: >-
   NOT for Node.js projects (use nodejs-pro) or general AI agents (use google-adk-python).
 category: backend-specialist
 triggers: ["Python", "pip", "FastAPI", "Django", "Flask"]
-coordinates_with: ["api-architect", "test-architect", "data-modeler", "problem-checker", "auto-learned"]
+coordinates_with: ["api-architect", "test-architect", "data-modeler", "problem-checker", "knowledge-compiler"]
 success_metrics: ["Correct Framework Selection", "Type Hint Coverage"]
 metadata:
   author: pikakit

@@ -84,7 +84,7 @@ Problem Checker eliminates these with mandatory pre-completion checks, auto-fix 
 
 | ID | Excluded | Rationale |
 |----|----------|-----------|
-| NG1 | Pattern storage | Owned by `auto-learned` skill |
+| NG1 | Pattern storage | Owned by `knowledge-compiler` skill |
 | NG2 | Skill generation | Owned by `skill-generator` skill |
 | NG3 | Full test execution | Owned by `/validate` workflow |
 | NG4 | Code review | Owned by `code-review` skill |
@@ -483,7 +483,7 @@ Session-based with fix-verify loop state. No persistent state across invocations
 | When to Use section | ✅ | Situation-based routing table |
 | Core content matches skill type | ✅ | Automation: fix loop, state transitions, file modification |
 | Troubleshooting section | ✅ | Escalation categories |
-| Related section | ✅ | Cross-links to auto-learned, skill-generator, /validate |
+| Related section | ✅ | Cross-links to knowledge-compiler, skill-generator, /validate |
 | Content Map for multi-file | ✅ | Link to scripts + engineering-spec.md |
 | Contract versioning | ✅ | contract_version, backward_compatibility, breaking_changes |
 | Compliance matrix structured | ✅ | This table with ✅/❌ + evidence |

@@ -1,6 +1,6 @@
-﻿---
-description: Local development sandbox — auto-detect services, orchestrate multi-service startup with dependency ordering, resolve port conflicts, integrate Docker Compose, and monitor health.
-skills: [server-ops, cicd-pipeline, context-engineering, problem-checker, auto-learner]
+---
+description: Local development sandbox � auto-detect services, orchestrate multi-service startup with dependency ordering, resolve port conflicts, integrate Docker Compose, and monitor health.
+skills: [server-ops, cicd-pipeline, context-engineering, problem-checker, knowledge-compiler]
 agents: [orchestrator, assessor, recovery, learner, devops-engineer]
 ---
 
@@ -12,26 +12,26 @@ $ARGUMENTS
 
 ## Purpose
 
-Manage local development environments with multi-service orchestration — auto-detect project type, start/stop services with dependency ordering, resolve port conflicts, integrate Docker Compose for infrastructure, and monitor service health. **Differs from `/launch` (production deployment) and `/monitor` (production observability) by focusing on local development sandbox management with hot-reload and debugging support.** Uses `cicd-pipeline` with `server-ops` for service management.
+Manage local development environments with multi-service orchestration � auto-detect project type, start/stop services with dependency ordering, resolve port conflicts, integrate Docker Compose for infrastructure, and monitor service health. **Differs from `/launch` (production deployment) and `/monitor` (production observability) by focusing on local development sandbox management with hot-reload and debugging support.** Uses `cicd-pipeline` with `server-ops` for service management.
 
 ---
 
-## 🤖 Meta-Agents Integration
+## ?? Meta-Agents Integration
 
 | Phase | Agent | Action |
 | ----- | ----- | ------ |
-| **Pre-Flight** | `assessor` | Evaluate environment, ports, and auto-learned context |
+| **Pre-Flight** | `assessor` | Evaluate environment, ports, and knowledge-compiler context |
 | **Execution** | `orchestrator` | Coordinate service startup and dependency ordering |
 | **Safety** | `recovery` | Save state and recover/rollback from service startup failures |
 | **Post-Stage** | `learner` | Log sandbox execution telemetry and port patterns |
 
 ```
 Flow:
-recovery.save(server_state) → detect(project) → resolve(ports)
-       ↓
-assessor.evaluate(port_conflicts) → start(services)
-       ↓
-health_check → learner.log(config)
+recovery.save(server_state) ? detect(project) ? resolve(ports)
+       ?
+assessor.evaluate(port_conflicts) ? start(services)
+       ?
+health_check ? learner.log(config)
 ```
 
 ---
@@ -56,13 +56,13 @@ health_check → learner.log(config)
 
 ---
 
-## 🔴 MANDATORY: Development Sandbox Protocol
+## ?? MANDATORY: Development Sandbox Protocol
 
-### Phase 1: Pre-flight & Auto-Learned Context
+### Phase 1: Pre-flight & knowledge-compiler Context
 
-> **Rule 0.5-K:** Auto-learned pattern check.
+> **Rule 0.5-K:** knowledge-compiler pattern check.
 
-1. Read `.agent/skills/auto-learned/patterns/` for past failures before proceeding.
+1. Read `.agent/skills/knowledge-compiler/patterns/` for past failures before proceeding.
 2. Trigger `recovery` agent to run Checkpoint (`git commit -m "chore(checkpoint): pre-stage"`).
 
 ### Phase 2: Environment Detection
@@ -74,7 +74,7 @@ health_check → learner.log(config)
 | **AGENTS** | `cicd-pipeline`, `assessor` |
 | **SKILLS** | `server-ops`, `context-engineering` |
 
-// turbo — telemetry: phase-2-detect
+// turbo � telemetry: phase-2-detect
 
 Auto-detect project type:
 
@@ -91,9 +91,9 @@ Auto-detect project type:
 
 Monorepo detection:
 ```
-apps/web/    → Frontend (port 3000)
-apps/api/    → Backend (port 3001)
-packages/db/ → Database service
+apps/web/    ? Frontend (port 3000)
+apps/api/    ? Backend (port 3001)
+packages/db/ ? Database service
 ```
 
 ### Phase 3: Port Resolution & Service Start
@@ -105,7 +105,7 @@ packages/db/ → Database service
 | **AGENTS** | `cicd-pipeline`, `orchestrator` |
 | **SKILLS** | `server-ops` |
 
-// turbo — telemetry: phase-3-start
+// turbo � telemetry: phase-3-start
 
 Port allocation:
 
@@ -113,25 +113,25 @@ Port allocation:
 |---------|---------|---------------|
 | Frontend | 3000 | 3000-3009 |
 | Backend API | 3001 | 3010-3019 |
-| PostgreSQL | 5432 | — |
-| Redis | 6379 | — |
+| PostgreSQL | 5432 | � |
+| Redis | 6379 | � |
 | Prisma Studio | 5555 | 5555-5559 |
 | Storybook | 6006 | 6006-6009 |
 
 Conflict resolution:
 ```
 Port in use?
-├── OUR process? → Reuse (already running)
-├── Another dev server? → Offer kill or next port
-└── System service? → Use fallback
++-- OUR process? ? Reuse (already running)
++-- Another dev server? ? Offer kill or next port
++-- System service? ? Use fallback
 ```
 
 Startup order (respecting dependencies):
 ```
-1. Infrastructure  → Database, Redis, Queue
-2. Backend         → API server, Workers
-3. Frontend        → Next.js / Vite dev server
-4. Tools           → Prisma Studio, Storybook
+1. Infrastructure  ? Database, Redis, Queue
+2. Backend         ? API server, Workers
+3. Frontend        ? Next.js / Vite dev server
+4. Tools           ? Prisma Studio, Storybook
 ```
 
 Docker hybrid mode (recommended):
@@ -150,18 +150,18 @@ npx cross-env OTEL_SERVICE_NAME="workflow:stage" TRACE_ID="$TRACE_ID" node .agen
 | **INPUT** | Running services from Phase 3 |
 | **OUTPUT** | Health status dashboard, auto-restart on crash |
 | **AGENTS** | `learner` |
-| **SKILLS** | `server-ops`, `problem-checker`, `auto-learner` |
+| **SKILLS** | `server-ops`, `problem-checker`, `knowledge-compiler` |
 
-// turbo — telemetry: phase-4-health
+// turbo � telemetry: phase-4-health
 
 Health gates:
 
 | Service | Wait For | Health Check |
 |---------|----------|-------------|
-| Database | — | TCP port open |
-| Redis | — | `PING → PONG` |
-| API Server | Database, Redis | `GET /health → 200` |
-| Frontend | API Server | `GET / → 200` |
+| Database | � | TCP port open |
+| Redis | � | `PING ? PONG` |
+| API Server | Database, Redis | `GET /health ? 200` |
+| Frontend | API Server | `GET / ? 200` |
 
 Auto-restart on crash: 3 retry attempts with error logging.
 
@@ -172,7 +172,7 @@ npx cross-env OTEL_SERVICE_NAME="workflow:stage" TRACE_ID="$TRACE_ID" node .agen
 
 ---
 
-## ⛔ MANDATORY: Problem Verification Before Completion
+## ? MANDATORY: Problem Verification Before Completion
 
 > **CRITICAL:** This check MUST be performed before any `notify_user` or task completion.
 
@@ -183,15 +183,15 @@ npx cross-env OTEL_SERVICE_NAME="workflow:stage" TRACE_ID="$TRACE_ID" node .agen
 2. If errors/warnings > 0:
    a. Auto-fix: imports, types, lint errors
    b. Re-check @[current_problems]
-   c. If still > 0 → STOP → Notify user
-3. If count = 0 → Proceed to completion
+   c. If still > 0 ? STOP ? Notify user
+3. If count = 0 ? Proceed to completion
 ```
 
 > **Note:** /stage manages services, not code. Problems are reported along with service health.
 
 ---
 
-## 🔙 Rollback & Recovery
+## ?? Rollback & Recovery
 
 If port orchestration fails or Docker containers hang:
 1. Trigger `recovery` meta-agent to run `docker compose down` and kill dangling Node/Python processes on target ports.
@@ -203,16 +203,16 @@ If port orchestration fails or Docker containers hang:
 ## Output Format
 
 ```markdown
-## 🎭 Stage Status
+## ?? Stage Status
 
 ### Services
 
 | Service | Port | Health | Mode |
 |---------|------|--------|------|
-| Frontend | 3000 | ✅ OK | Local |
-| API | 3001 | ✅ OK | Local |
-| PostgreSQL | 5432 | ✅ OK | Docker |
-| Redis | 6379 | ✅ OK | Docker |
+| Frontend | 3000 | ? OK | Local |
+| API | 3001 | ? OK | Local |
+| PostgreSQL | 5432 | ? OK | Docker |
+| Redis | 6379 | ? OK | Docker |
 
 ### URLs
 
@@ -247,15 +247,15 @@ If port orchestration fails or Docker containers hang:
 
 ## Key Principles
 
-- **Auto-detect** — smart project type detection, zero config needed
-- **Dependency ordering** — start infra before backend before frontend
-- **Docker for infra, local for code** — hybrid mode for best DX
-- **Port conflict resolution** — never fail on port collision, auto-resolve
-- **Health gates** — verify each service before starting dependents
+- **Auto-detect** � smart project type detection, zero config needed
+- **Dependency ordering** � start infra before backend before frontend
+- **Docker for infra, local for code** � hybrid mode for best DX
+- **Port conflict resolution** � never fail on port collision, auto-resolve
+- **Health gates** � verify each service before starting dependents
 
 ---
 
-## 🔗 Workflow Chain
+## ?? Workflow Chain
 
 **Skills Loaded (5):**
 
@@ -263,7 +263,7 @@ If port orchestration fails or Docker containers hang:
 - `cicd-pipeline` - Docker Compose integration
 - `context-engineering` - Codebase parsing and environment detection
 - `problem-checker` - Service problem verification
-- `auto-learner` - Learning and logging sandbox patterns
+- `knowledge-compiler` - Learning and logging sandbox patterns
 
 ```mermaid
 graph LR
@@ -281,6 +281,6 @@ graph LR
 **Handoff to /validate:**
 
 ```markdown
-🎭 Stage running! Services: [count] active on ports [ports].
+?? Stage running! Services: [count] active on ports [ports].
 Run `/validate` to test against live services.
 ```

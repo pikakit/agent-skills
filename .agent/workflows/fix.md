@@ -1,7 +1,7 @@
-﻿---
-description: Targeted error remediation — triage, patch, and verify specific errors, lint failures, or broken tests with minimal diff and automatic rollback safety.
+---
+description: Targeted error remediation � triage, patch, and verify specific errors, lint failures, or broken tests with minimal diff and automatic rollback safety.
 chain: debug-complex
-skills: [debug-pro, code-craft, problem-checker, context-engineering, smart-router, auto-learner]
+skills: [debug-pro, code-craft, problem-checker, context-engineering, smart-router, knowledge-compiler]
 agents: [orchestrator, assessor, recovery, learner, debugger, backend-specialist, frontend-specialist, test-engineer]
 ---
 
@@ -13,7 +13,7 @@ $ARGUMENTS
 
 ## Purpose
 
-Apply immediate, targeted fixes for known errors, lint issues, or test failures — focusing on remediation rather than root cause analysis. **Differs from `/diagnose` (investigates unknown root causes with hypothesis testing) by assuming the problem is already identified and applying the solution directly.** Uses the domain-appropriate specialist agent (auto-routed) with `debug-pro` for fix methodology and `code-craft` for coding standards.
+Apply immediate, targeted fixes for known errors, lint issues, or test failures � focusing on remediation rather than root cause analysis. **Differs from `/diagnose` (investigates unknown root causes with hypothesis testing) by assuming the problem is already identified and applying the solution directly.** Uses the domain-appropriate specialist agent (auto-routed) with `debug-pro` for fix methodology and `code-craft` for coding standards.
 
 ---
 
@@ -21,7 +21,7 @@ Apply immediate, targeted fixes for known errors, lint issues, or test failures 
 
 | Mode | When | Behavior |
 |------|------|----------|
-| **--auto** (default) | Simple/moderate fixes | Auto-approve if confidence ≥ 9.5 |
+| **--auto** (default) | Simple/moderate fixes | Auto-approve if confidence = 9.5 |
 | **--review** | Critical/production code | Pause for user approval |
 | **--quick** | Type/lint errors | Fast fix cycle, minimal analysis |
 
@@ -29,39 +29,39 @@ Apply immediate, targeted fixes for known errors, lint issues, or test failures 
 
 | Level | Indicators | Action |
 |-------|-----------|--------|
-| **Simple** | Single file, clear error | Quick fix → verify |
+| **Simple** | Single file, clear error | Quick fix ? verify |
 | **Moderate** | Multi-file, unclear scope | Standard workflow with `recovery` |
 | **Complex** | System-wide impact | Escalate to `/diagnose` first |
 
 ---
 
-## 🤖 Meta-Agents Integration
+## ?? Meta-Agents Integration
 
 | Phase | Agent | Action |
 | ----- | ----- | ------ |
-| **Pre-Flight** | `assessor` | Evaluate fix risk and auto-learned context |
+| **Pre-Flight** | `assessor` | Evaluate fix risk and knowledge-compiler context |
 | **Execution** | `orchestrator` | Route fix to specialist agents and coordinate repair |
 | **Safety** | `recovery` | Save state and recover from failed fixes |
 | **Post-Fix** | `learner` | Log error resolution patterns for reuse |
 
 ```
 Flow:
-recovery.save() → analyze error → apply fix → verify
-       ↓ fail
-recovery.restore() → learner.log(failure)
-       ↓ success
+recovery.save() ? analyze error ? apply fix ? verify
+       ? fail
+recovery.restore() ? learner.log(failure)
+       ? success
 learner.log(pattern)
 ```
 
 ---
 
-## 🔴 MANDATORY: Repair Protocol
+## ?? MANDATORY: Repair Protocol
 
-### Phase 1: Pre-flight & Auto-Learned Context
+### Phase 1: Pre-flight & knowledge-compiler Context
 
-> **Rule 0.5-K:** Auto-learned pattern check.
+> **Rule 0.5-K:** knowledge-compiler pattern check.
 
-1. Read `.agent/skills/auto-learned/patterns/` for past failures before proceeding.
+1. Read `.agent/skills/knowledge-compiler/patterns/` for past failures before proceeding.
 2. Trigger `recovery` agent to run Checkpoint (`git commit -m "chore(checkpoint): pre-fix"`).
 
 ### Phase 2: Triage
@@ -73,7 +73,7 @@ learner.log(pattern)
 | **AGENTS** | `debugger`, `assessor` |
 | **SKILLS** | `debug-pro`, `context-engineering` |
 
-// turbo — telemetry: phase-2-triage
+// turbo � telemetry: phase-2-triage
 
 1. Read error message or failure log
 2. Locate the specific file and line
@@ -98,10 +98,10 @@ learner.log(pattern)
 | **AGENTS** | `orchestrator`, Auto-routed specialist (`nodejs-pro`, `react-pro`, etc.) |
 | **SKILLS** | `code-craft`, `debug-pro`, `smart-router` |
 
-// turbo — telemetry: phase-3-fix
+// turbo � telemetry: phase-3-fix
 
 1. Apply the fix following existing code patterns
-2. Minimal diff — change only what's needed
+2. Minimal diff � change only what's needed
 3. No unrelated formatting or refactoring
 
 ### Phase 4: Verification
@@ -111,26 +111,26 @@ learner.log(pattern)
 | **INPUT** | Modified files from Phase 3 |
 | **OUTPUT** | Verification result: error cleared, tests passing, no regressions |
 | **AGENTS** | `test-architect`, `learner` |
-| **SKILLS** | `problem-checker`, `auto-learner` |
+| **SKILLS** | `problem-checker`, `knowledge-compiler` |
 
-// turbo — telemetry: phase-4-test
+// turbo � telemetry: phase-4-test
 ```bash
 npx cross-env OTEL_SERVICE_NAME="workflow:fix" TRACE_ID="$TRACE_ID" npm test
 ```
 
-// turbo — telemetry: phase-4-lint-typecheck
+// turbo � telemetry: phase-4-lint-typecheck
 ```bash
 npx cross-env OTEL_SERVICE_NAME="workflow:fix" TRACE_ID="$TRACE_ID" npm run lint; npx cross-env OTEL_SERVICE_NAME="workflow:fix" TRACE_ID="$TRACE_ID" npx tsc --noEmit
 ```
 
 1. Verify the original error is resolved
 2. Check for regressions in related components
-3. If fix fails → `recovery.restore()` → escalate to `/diagnose`
+3. If fix fails ? `recovery.restore()` ? escalate to `/diagnose`
 4. `learner` logs error pattern for future reference
 
 ---
 
-## ⛔ MANDATORY: Problem Verification Before Completion
+## ? MANDATORY: Problem Verification Before Completion
 
 > **CRITICAL:** This check MUST be performed before any `notify_user` or task completion.
 
@@ -141,8 +141,8 @@ npx cross-env OTEL_SERVICE_NAME="workflow:fix" TRACE_ID="$TRACE_ID" npm run lint
 2. If errors/warnings > 0:
    a. Auto-fix: imports, types, lint errors
    b. Re-check @[current_problems]
-   c. If still > 0 → STOP → Notify user
-3. If count = 0 → Proceed to completion
+   c. If still > 0 ? STOP ? Notify user
+3. If count = 0 ? Proceed to completion
 ```
 
 ### Auto-Fixable
@@ -158,7 +158,7 @@ npx cross-env OTEL_SERVICE_NAME="workflow:fix" TRACE_ID="$TRACE_ID" npm run lint
 
 ---
 
-## 🔙 Rollback & Recovery
+## ?? Rollback & Recovery
 
 If the attempted fix introduces new errors or fails verification:
 1. Restore to pre-fix checkpoint (`git checkout -- .` or `git stash pop`).
@@ -170,7 +170,7 @@ If the attempted fix introduces new errors or fails verification:
 ## Output Format
 
 ```markdown
-## 🔧 Fixed: [Error Description]
+## ?? Fixed: [Error Description]
 
 ### The Issue
 
@@ -180,16 +180,16 @@ If the attempted fix introduces new errors or fails verification:
 
 | File | Change | Type | Status |
 |------|--------|------|--------|
-| `path/to/file.ts` | Added null check | Code Logic | ✅ |
+| `path/to/file.ts` | Added null check | Code Logic | ? |
 
 ### Verification
 
 | Check | Result |
 |-------|--------|
-| Error cleared | ✅ |
-| Tests passing | ✅ |
-| Lint clean | ✅ |
-| IDE Problems | ✅ 0 |
+| Error cleared | ? |
+| Tests passing | ? |
+| Lint clean | ? |
+| IDE Problems | ? 0 |
 
 ### Next Steps
 
@@ -213,14 +213,14 @@ If the attempted fix introduces new errors or fails verification:
 
 ## Key Principles
 
-- **Fix, don't investigate** — assume the problem is known, apply the solution
-- **Minimal diff** — change only what's needed, no unrelated refactoring
-- **Verify immediately** — run tests and lint after every fix
-- **Rollback ready** — checkpoint before fixing, restore on failure
+- **Fix, don't investigate** � assume the problem is known, apply the solution
+- **Minimal diff** � change only what's needed, no unrelated refactoring
+- **Verify immediately** � run tests and lint after every fix
+- **Rollback ready** � checkpoint before fixing, restore on failure
 
 ---
 
-## 🔗 Workflow Chain
+## ?? Workflow Chain
 
 **Skills Loaded (6):**
 
@@ -229,7 +229,7 @@ If the attempted fix introduces new errors or fails verification:
 - `problem-checker` - IDE error detection and auto-fix
 - `context-engineering` - Codebase parsing and error trace analysis
 - `smart-router` - Agent routing for targeted fixes
-- `auto-learner` - Learning and logging failure patterns
+- `knowledge-compiler` - Learning and logging failure patterns
 
 ```mermaid
 graph LR
@@ -248,6 +248,6 @@ graph LR
 **Handoff to /validate:**
 
 ```markdown
-🔧 Fix applied to [files]. Error: [description] → resolved.
+?? Fix applied to [files]. Error: [description] ? resolved.
 Run `/validate` to ensure no regressions or `/launch` to deploy.
 ```

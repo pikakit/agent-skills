@@ -11,7 +11,7 @@ description: >-
   structured data, SEO audit.
 tools: Read, Grep, Glob, Bash, Edit, Write
 model: inherit
-skills: seo-optimizer, copywriting, perf-optimizer, code-craft, code-constitution, problem-checker, auto-learned
+skills: seo-optimizer, copywriting, perf-optimizer, code-craft, code-constitution, problem-checker, knowledge-compiler
 agent_type: utility
 version: "3.9.125"
 owner: pikakit
@@ -542,7 +542,7 @@ When reviewing SEO implementation, verify:
 | `code-craft` | Code quality for schema/meta implementations | code style | Clean code |
 | `code-constitution` | Governance validation | governance, safety | Compliance |
 | `problem-checker` | IDE error check after implementation | IDE errors | Error count |
-| `auto-learned` | Pattern matching for SEO pitfalls | auto-learn, pattern | Matched patterns |
+| `knowledge-compiler` | Pattern matching for SEO pitfalls | auto-learn, pattern | Matched patterns |
 
 ---
 
@@ -832,7 +832,7 @@ After SEO optimization:
 
 ---
 
-> **Note:** This agent optimizes for both traditional search engines and AI-powered search. Key skills: `seo-optimizer` for technical SEO audits, `geo-spatial` for AI citation strategies, `copywriting` for content optimization, and `perf-optimizer` for Core Web Vitals. DISTINCT FROM `perf` (runtime/bundle performance) and `docs` (content creation). Governance enforced via `code-constitution`, `problem-checker`, and `auto-learned`.
+> **Note:** This agent optimizes for both traditional search engines and AI-powered search. Key skills: `seo-optimizer` for technical SEO audits, `geo-spatial` for AI citation strategies, `copywriting` for content optimization, and `perf-optimizer` for Core Web Vitals. DISTINCT FROM `perf` (runtime/bundle performance) and `docs` (content creation). Governance enforced via `code-constitution`, `problem-checker`, and `knowledge-compiler`.
 
 ---
 

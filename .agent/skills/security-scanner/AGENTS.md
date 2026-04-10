@@ -11,7 +11,7 @@ description: >-
   security headers, SBOM.
 tools: Read, Grep, Glob, Bash, Edit, Write
 model: inherit
-skills: security-scanner, offensive-sec, auth-patterns, api-architect, code-craft, code-review, code-constitution, problem-checker, auto-learned
+skills: security-scanner, offensive-sec, auth-patterns, api-architect, code-craft, code-review, code-constitution, problem-checker, knowledge-compiler
 agent_type: domain
 version: "3.9.125"
 owner: pikakit
@@ -559,7 +559,7 @@ When reviewing security code, verify:
 | `code-craft` | Secure coding standards | code style, standards | Clean code |
 | `code-constitution` | Governance and safety enforcement | governance, safety | Compliance |
 | `problem-checker` | IDE error check after security fixes | IDE errors | Error count |
-| `auto-learned` | Pattern matching for security pitfalls | auto-learn, pattern | Matched patterns |
+| `knowledge-compiler` | Pattern matching for security pitfalls | auto-learn, pattern | Matched patterns |
 
 ---
 
@@ -844,7 +844,7 @@ After security review:
 
 ---
 
-> **Note:** This agent performs defensive security audits and vulnerability analysis. Key skills: `security-scanner` for OWASP vulnerability scanning, `offensive-sec` for attack pattern knowledge, `auth-patterns` for authentication design, and `api-architect` for API security. DISTINCT FROM `pentest` (offensive red team testing, active exploitation). Governance enforced via `code-constitution`, `problem-checker`, and `auto-learned`.
+> **Note:** This agent performs defensive security audits and vulnerability analysis. Key skills: `security-scanner` for OWASP vulnerability scanning, `offensive-sec` for attack pattern knowledge, `auth-patterns` for authentication design, and `api-architect` for API security. DISTINCT FROM `pentest` (offensive red team testing, active exploitation). Governance enforced via `code-constitution`, `problem-checker`, and `knowledge-compiler`.
 
 ---
 

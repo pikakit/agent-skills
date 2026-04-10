@@ -87,7 +87,7 @@ Storage: `.agent/metrics/` (JSON, 30-day retention).
 ### 0.5-H: Auto-Learn Triggers
 
 **Trigger words:** EN: "mistake", "wrong", "fix this" | VI: "lỗi", "sai", "hỏng", "sửa lại"  
-**When triggered:** Analyze → Extract lesson → Add to `.agent/knowledge/lessons-learned.yaml` → Confirm: `📚 Learned: [LEARN-XXX]`
+**When triggered:** Analyze → Extract lesson → `@[skills/knowledge-compiler]` Learn operation → Confirm: `📚 Learned: [LEARN-XXX]`
 
 | Category | ID Pattern |
 |----------|------------|
@@ -113,11 +113,11 @@ When invoking ANY sub-agent, MUST include: Original Request, Decisions Made, Pre
 | L3 (Architecture) | `🤖 @{skill}` | `✅ @{skill} · {file_count} files` |
 | Workflow (/cmd) | Header: `🤖 PikaKit v3.9.125 / Workflow: /name` | Footer: `⚡ PikaKit v3.9.125` |
 
-### 0.5-K: Auto-Learned Pattern Check (MANDATORY)
+### 0.5-K: Knowledge Pattern Check (MANDATORY)
 
 > **Purpose:** AI MUST consult learned patterns before repeating known mistakes.
 
-**BEFORE any of these actions, read `.agent/skills/auto-learned/patterns/` for matches:**
+**BEFORE any of these actions, read `.agent/knowledge/patterns/` for matches:**
 
 | Action | Check Files | Example |
 |--------|-------------|---------|
@@ -131,7 +131,7 @@ When invoking ANY sub-agent, MUST include: Original Request, Decisions Made, Pre
 
 ```
 BEFORE executing command or writing code:
-1. Check if auto-learned/patterns/ exists
+1. Check if knowledge/patterns/ exists
 2. Scan relevant {category}-patterns.md for matching context
 3. If match found → Apply the solution, do NOT repeat the mistake
 4. If no match → Proceed normally

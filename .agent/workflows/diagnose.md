@@ -1,7 +1,7 @@
 ---
 description: Systematic root cause analysis — hypothesis-driven debugging with ranked probability testing, evidence-based verification, and prevention-first resolution.
 chain: debug-complex
-skills: [debug-pro, code-review, code-craft, problem-checker, context-engineering, auto-learner]
+skills: [debug-pro, code-review, code-craft, problem-checker, context-engineering, knowledge-compiler]
 agents: [orchestrator, assessor, recovery, learner, debugger]
 ---
 
@@ -21,7 +21,7 @@ Systematic debugging using the scientific method — form hypotheses, gather evi
 
 | Phase | Agent | Action |
 | ----- | ----- | ------ |
-| **Pre-Flight** | `assessor` | Evaluate risk, check past bugs & auto-learned patterns |
+| **Pre-Flight** | `assessor` | Evaluate risk, check past bugs & knowledge-compiler patterns |
 | **Execution** | `orchestrator` | Coordinate diagnostic tasks and testing |
 | **Safety** | `recovery` | Save state before debug and restore on failure |
 | **Post-Fix** | `learner` | Log root cause and failure patterns for reuse |
@@ -41,11 +41,11 @@ recovery.restore()
 
 ## 🔴 MANDATORY: 5-Phase Investigation Protocol
 
-### Phase 1: Pre-flight & Auto-Learned Context
+### Phase 1: Pre-flight & knowledge-compiler Context
 
-> **Rule 0.5-K:** Auto-learned pattern check.
+> **Rule 0.5-K:** knowledge-compiler pattern check.
 
-1. Read `.agent/skills/auto-learned/patterns/` for past failures before proceeding.
+1. Read `.agent/skills/knowledge-compiler/patterns/` for past failures before proceeding.
 2. Trigger `recovery` agent to run Checkpoint (`git commit -m "chore(checkpoint): pre-diagnose"`).
 
 ### Phase 2: Symptom Collection
@@ -141,7 +141,7 @@ For each hypothesis (highest likelihood first):
 | **INPUT** | Applied fix from Phase 5 |
 | **OUTPUT** | Verification result: fix confirmed, no regressions |
 | **AGENTS** | `debugger`, `learner` |
-| **SKILLS** | `debug-pro`, `problem-checker`, `auto-learner` |
+| **SKILLS** | `debug-pro`, `problem-checker`, `knowledge-compiler` |
 
 // turbo — telemetry: phase-6-test
 ```bash
@@ -272,7 +272,7 @@ If investigation causes system instability or tests fail unexpectedly:
 - `code-craft` - Coding standards for fix implementation
 - `context-engineering` - Codebase parsing and error trace analysis
 - `problem-checker` - IDE problem verification and auto-fixing
-- `auto-learner` - Finding past bugs and logging new patterns
+- `knowledge-compiler` - Finding past bugs and logging new patterns
 
 ```mermaid
 graph LR

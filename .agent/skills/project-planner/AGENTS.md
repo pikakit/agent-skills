@@ -11,7 +11,7 @@ description: >-
   scope, create plan, task breakdown, new project, major feature.
 tools: Read, Grep, Glob, Bash, Edit, Write
 model: inherit
-skills: code-craft, project-planner, idea-storm, smart-router, code-constitution, problem-checker, auto-learned
+skills: code-craft, project-planner, idea-storm, smart-router, code-constitution, problem-checker, knowledge-compiler
 agent_type: meta
 version: "3.9.125"
 owner: pikakit
@@ -645,7 +645,7 @@ When reviewing plan quality, verify:
 | `code-craft` | Code standards for plan task descriptions | code style, best practices | Standards reference |
 | `code-constitution` | Governance enforcement for plan compliance | governance, safety | Compliance check |
 | `problem-checker` | IDE error detection after plan file creation | IDE errors, before completion | Error count + fixes |
-| `auto-learned` | Pattern matching for known planning pitfalls | auto-learn, pattern | Matched patterns |
+| `knowledge-compiler` | Pattern matching for known planning pitfalls | auto-learn, pattern | Matched patterns |
 
 ---
 
@@ -927,7 +927,7 @@ After planning:
 
 ---
 
-> **Note:** This agent creates project plans and structured task breakdowns. Key skills: `project-planner` for task decomposition and plan structure, `idea-storm` for Socratic requirements clarification, `app-scaffold` for new app scaffolding, and `smart-router` for intelligent agent routing. DISTINCT FROM `lead` (strategic coordination) and `orchestrator` (execution mechanics). Governance enforced via `code-constitution`, `problem-checker`, and `auto-learned`.
+> **Note:** This agent creates project plans and structured task breakdowns. Key skills: `project-planner` for task decomposition and plan structure, `idea-storm` for Socratic requirements clarification, `app-scaffold` for new app scaffolding, and `smart-router` for intelligent agent routing. DISTINCT FROM `lead` (strategic coordination) and `orchestrator` (execution mechanics). Governance enforced via `code-constitution`, `problem-checker`, and `knowledge-compiler`.
 
 
 ---
@@ -946,7 +946,7 @@ description: >-
   task decomposition, agent selection, cross-domain, synthesis.
 tools: Read, Grep, Glob, Bash, Write, Edit, Agent
 model: inherit
-skills: code-craft, project-planner, idea-storm, system-design, code-review, shell-script, ai-artist, google-adk-python, media-processing, copywriting, context-engineering, code-constitution, problem-checker, auto-learned
+skills: code-craft, project-planner, idea-storm, system-design, code-review, shell-script, ai-artist, google-adk-python, media-processing, copywriting, context-engineering, code-constitution, problem-checker, knowledge-compiler
 agent_type: meta
 version: "1.0"
 owner: pikakit
@@ -1505,7 +1505,7 @@ When reviewing orchestration quality, verify:
 | `copywriting` | Conversion copywriting when coordinating content tasks | copywriting, headlines | Marketing copy |
 | `code-constitution` | Governance check for breaking changes | governance, breaking change | Compliance report |
 | `problem-checker` | IDE error detection before completion | IDE errors, before completion | Error count + auto-fixes |
-| `auto-learned` | Pattern matching for known orchestration pitfalls | auto-learn, pattern | Matched patterns |
+| `knowledge-compiler` | Pattern matching for known orchestration pitfalls | auto-learn, pattern | Matched patterns |
 
 ---
 
@@ -1765,7 +1765,7 @@ After orchestration:
 
 ---
 
-> **Note:** This agent strategically coordinates multi-agent workflows. Loads `project-planner` for task decomposition, `idea-storm` for strategic questioning, `system-design` for architecture decisions, `context-engineering` for efficient context passing between agents. Boundary enforcement and synthesis are core responsibilities. Governance enforced via `code-constitution`, `problem-checker`, and `auto-learned`.
+> **Note:** This agent strategically coordinates multi-agent workflows. Loads `project-planner` for task decomposition, `idea-storm` for strategic questioning, `system-design` for architecture decisions, `context-engineering` for efficient context passing between agents. Boundary enforcement and synthesis are core responsibilities. Governance enforced via `code-constitution`, `problem-checker`, and `knowledge-compiler`.
 
 
 ---
@@ -1787,7 +1787,7 @@ description: >-
   scope creep, delivery timeline, product governance.
 tools: Read, Grep, Glob, Bash, Edit, Write
 model: inherit
-skills: project-planner, idea-storm, copywriting, doc-templates, code-craft, code-constitution, problem-checker, auto-learned
+skills: project-planner, idea-storm, copywriting, doc-templates, code-craft, code-constitution, problem-checker, knowledge-compiler
 agent_type: utility
 version: "1.0"
 owner: pikakit
@@ -2421,7 +2421,7 @@ When reviewing product quality, verify:
 | `code-craft` | Standards reference for non-functional requirements | best practices, standards | Quality reference |
 | `code-constitution` | Governance validation for requirement scope | governance, safety | Compliance check |
 | `problem-checker` | Document validation after creation | IDE errors, before completion | Error count |
-| `auto-learned` | Pattern matching for common requirements/governance pitfalls | auto-learn, pattern | Matched patterns |
+| `knowledge-compiler` | Pattern matching for common requirements/governance pitfalls | auto-learn, pattern | Matched patterns |
 
 ---
 
@@ -2691,7 +2691,7 @@ After product decisions:
 
 ---
 
-> **Note:** This agent combines product requirements definition and product governance. Loads `idea-storm` for Socratic discovery, `project-planner` for backlog structuring and task breakdown, `doc-templates` for PRDs and roadmaps, and `copywriting` for stakeholder communication. Governance enforced via `code-constitution`, `problem-checker`, and `auto-learned`.
+> **Note:** This agent combines product requirements definition and product governance. Loads `idea-storm` for Socratic discovery, `project-planner` for backlog structuring and task breakdown, `doc-templates` for PRDs and roadmaps, and `copywriting` for stakeholder communication. Governance enforced via `code-constitution`, `problem-checker`, and `knowledge-compiler`.
 
 ---
 

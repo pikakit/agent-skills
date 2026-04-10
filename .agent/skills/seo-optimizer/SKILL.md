@@ -6,7 +6,7 @@ description: >-
   NOT for performance profiling (use perf-optimizer) or marketing copy (use copywriting).
 category: seo-specialist
 triggers: ["SEO", "meta tags", "sitemap", "search ranking", "OpenGraph"]
-coordinates_with: ["perf-optimizer", "copywriting", "nextjs-pro", "problem-checker", "auto-learned"]
+coordinates_with: ["perf-optimizer", "copywriting", "nextjs-pro", "problem-checker", "knowledge-compiler"]
 success_metrics: ["Lighthouse SEO Score", "Core Web Vitals Pass Rate", "Schema Markup Validity"]
 metadata:
   author: pikakit

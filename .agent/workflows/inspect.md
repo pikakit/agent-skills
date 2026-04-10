@@ -1,7 +1,7 @@
-﻿---
-description: Defense-in-depth code review — four-layer validation across build, tests, security, and logic to eliminate false completion claims with evidence-based verification.
+---
+description: Defense-in-depth code review � four-layer validation across build, tests, security, and logic to eliminate false completion claims with evidence-based verification.
 chain: security-audit
-skills: [security-scanner, code-review, problem-checker, context-engineering, auto-learner]
+skills: [security-scanner, code-review, problem-checker, context-engineering, knowledge-compiler]
 agents: [orchestrator, assessor, recovery, learner, security-auditor]
 ---
 
@@ -13,7 +13,7 @@ $ARGUMENTS
 
 ## Purpose
 
-Systematic code review with multi-layer validation — preventing false completion claims through evidence-based verification across build, tests, security, and logic layers. **Differs from `/validate` (runs tests) and `/diagnose` (finds bugs) by performing comprehensive quality audit across all dimensions before deployment.** Uses `security-scanner` with `security-scanner` for vulnerability scanning and `code-review` for quality validation.
+Systematic code review with multi-layer validation � preventing false completion claims through evidence-based verification across build, tests, security, and logic layers. **Differs from `/validate` (runs tests) and `/diagnose` (finds bugs) by performing comprehensive quality audit across all dimensions before deployment.** Uses `security-scanner` with `security-scanner` for vulnerability scanning and `code-review` for quality validation.
 
 ---
 
@@ -28,33 +28,33 @@ Systematic code review with multi-layer validation — preventing false completi
 
 ---
 
-## 🤖 Meta-Agents Integration
+## ?? Meta-Agents Integration
 
 | Phase | Agent | Action |
 | ----- | ----- | ------ |
-| **Pre-Flight** | `assessor` | Evaluate review scope, risks and auto-learned patterns |
+| **Pre-Flight** | `assessor` | Evaluate review scope, risks and knowledge-compiler patterns |
 | **Execution** | `orchestrator` | Coordinate 4-layer validation sequence |
 | **Safety** | `recovery` | Save workspace checkpoint before validation |
 | **Post-Review** | `learner` | Log review patterns for future reference |
 
 ```
 Flow:
-assessor.evaluate(scope) → 4-layer validation
-       ↓
-build → tests → security → logic
-       ↓
-report → learner.log(patterns)
+assessor.evaluate(scope) ? 4-layer validation
+       ?
+build ? tests ? security ? logic
+       ?
+report ? learner.log(patterns)
 ```
 
 ---
 
-## 🔴 MANDATORY: 4-Layer Validation Protocol
+## ?? MANDATORY: 4-Layer Validation Protocol
 
-### Phase 1: Pre-flight & Auto-Learned Context
+### Phase 1: Pre-flight & knowledge-compiler Context
 
-> **Rule 0.5-K:** Auto-learned pattern check.
+> **Rule 0.5-K:** knowledge-compiler pattern check.
 
-1. Read `.agent/skills/auto-learned/patterns/` for past failures before proceeding.
+1. Read `.agent/skills/knowledge-compiler/patterns/` for past failures before proceeding.
 2. Trigger `recovery` agent to run Checkpoint (`git commit -m "chore(checkpoint): pre-inspect"`).
 
 ### Phase 2: Build Verification
@@ -66,16 +66,16 @@ report → learner.log(patterns)
 | **AGENTS** | `orchestrator`, `assessor` |
 | **SKILLS** | `code-review`, `context-engineering` |
 
-// turbo — telemetry: phase-2-build
+// turbo � telemetry: phase-2-build
 ```bash
 npx cross-env OTEL_SERVICE_NAME="workflow:inspect" TRACE_ID="$TRACE_ID" npm run build
 ```
 
 | Check | Required |
 |-------|----------|
-| TypeScript compiles | ✅ |
-| No lint errors | ✅ |
-| No warnings | ⚠️ |
+| TypeScript compiles | ? |
+| No lint errors | ? |
+| No warnings | ?? |
 
 ### Phase 3: Test Verification
 
@@ -86,16 +86,16 @@ npx cross-env OTEL_SERVICE_NAME="workflow:inspect" TRACE_ID="$TRACE_ID" npm run 
 | **AGENTS** | `orchestrator` |
 | **SKILLS** | `code-review` |
 
-// turbo — telemetry: phase-3-test
+// turbo � telemetry: phase-3-test
 ```bash
 npx cross-env OTEL_SERVICE_NAME="workflow:inspect" TRACE_ID="$TRACE_ID" npm test
 ```
 
 | Check | Required |
 |-------|----------|
-| All tests pass | ✅ |
-| No skipped tests | ⚠️ |
-| Coverage maintained | ⚠️ |
+| All tests pass | ? |
+| No skipped tests | ?? |
+| Coverage maintained | ?? |
 
 ### Phase 4: Security Scan
 
@@ -108,10 +108,10 @@ npx cross-env OTEL_SERVICE_NAME="workflow:inspect" TRACE_ID="$TRACE_ID" npm test
 
 | Check | Required |
 |-------|----------|
-| No hardcoded secrets | ✅ |
-| Input validation present | ✅ |
-| SQL injection safe | ✅ |
-| XSS prevention | ✅ |
+| No hardcoded secrets | ? |
+| Input validation present | ? |
+| SQL injection safe | ? |
+| XSS prevention | ? |
 
 ### Phase 5: Logic Review
 
@@ -120,7 +120,7 @@ npx cross-env OTEL_SERVICE_NAME="workflow:inspect" TRACE_ID="$TRACE_ID" npm test
 | **INPUT** | All results from Phases 2-4 + source code |
 | **OUTPUT** | Logic review: issues found with severity, required actions |
 | **AGENTS** | `security-scanner`, `learner` |
-| **SKILLS** | `code-review`, `problem-checker`, `auto-learner` |
+| **SKILLS** | `code-review`, `problem-checker`, `knowledge-compiler` |
 
 | Category | Questions |
 |----------|----------|
@@ -132,7 +132,7 @@ npx cross-env OTEL_SERVICE_NAME="workflow:inspect" TRACE_ID="$TRACE_ID" npm test
 
 ---
 
-## ⛔ MANDATORY: Problem Verification Before Completion
+## ? MANDATORY: Problem Verification Before Completion
 
 > **CRITICAL:** This check MUST be performed before any `notify_user` or task completion.
 
@@ -143,8 +143,8 @@ npx cross-env OTEL_SERVICE_NAME="workflow:inspect" TRACE_ID="$TRACE_ID" npm test
 2. If errors/warnings > 0:
    a. Auto-fix: imports, types, lint errors
    b. Re-check @[current_problems]
-   c. If still > 0 → STOP → Notify user
-3. If count = 0 → Proceed to completion
+   c. If still > 0 ? STOP ? Notify user
+3. If count = 0 ? Proceed to completion
 ```
 
 ### Auto-Fixable
@@ -159,7 +159,7 @@ npx cross-env OTEL_SERVICE_NAME="workflow:inspect" TRACE_ID="$TRACE_ID" npm test
 
 ---
 
-## 🔙 Rollback & Recovery
+## ?? Rollback & Recovery
 
 If the inspection process (builds, scans) creates ghost artifacts or fails to complete legitimately:
 1. Restore workspace to pre-inspect checkpoint (`git reset --hard HEAD` and `git clean -fd`).
@@ -173,10 +173,10 @@ If the inspection process (builds, scans) creates ghost artifacts or fails to co
 **NEVER claim completion without proof:**
 
 ```
-✅ CORRECT: "Build passed: `npm run build` completed in 3.2s"
-✅ CORRECT: "Tests: 42/42 passed (npm test output attached)"
-❌ WRONG:  "I believe the code should work"
-❌ WRONG:  "This should fix the issue"
+? CORRECT: "Build passed: `npm run build` completed in 3.2s"
+? CORRECT: "Tests: 42/42 passed (npm test output attached)"
+? WRONG:  "I believe the code should work"
+? WRONG:  "This should fix the issue"
 ```
 
 ---
@@ -184,16 +184,16 @@ If the inspection process (builds, scans) creates ghost artifacts or fails to co
 ## Output Format
 
 ```markdown
-## 🔍 Inspect: [Target]
+## ?? Inspect: [Target]
 
 ### Layer Results
 
 | Layer | Status | Details |
 |-------|--------|---------|
-| Build | ✅ Pass | 0 errors, 2 warnings |
-| Tests | ✅ Pass | 42/42 passed, 78% coverage |
-| Security | ⚠️ Warning | 1 issue found |
-| Logic | ⚠️ Issues | 3 issues found |
+| Build | ? Pass | 0 errors, 2 warnings |
+| Tests | ? Pass | 42/42 passed, 78% coverage |
+| Security | ?? Warning | 1 issue found |
+| Logic | ?? Issues | 3 issues found |
 
 ### Issues Found
 
@@ -205,7 +205,7 @@ If the inspection process (builds, scans) creates ghost artifacts or fails to co
 
 ### Verdict
 
-⚠️ **NEEDS FIXES** before completion
+?? **NEEDS FIXES** before completion
 
 ### Required Actions
 
@@ -236,15 +236,15 @@ If the inspection process (builds, scans) creates ghost artifacts or fails to co
 
 ## Key Principles
 
-- **Evidence over belief** — prove it works with command output, not assumptions
-- **Every layer matters** — don't skip build, tests, security, or logic checks
-- **Security first** — always scan for vulnerabilities before marking complete
-- **Fix before claiming** — no "should work" — verify with evidence
-- **Document issues** — clear action items with file, line, and severity
+- **Evidence over belief** � prove it works with command output, not assumptions
+- **Every layer matters** � don't skip build, tests, security, or logic checks
+- **Security first** � always scan for vulnerabilities before marking complete
+- **Fix before claiming** � no "should work" � verify with evidence
+- **Document issues** � clear action items with file, line, and severity
 
 ---
 
-## 🔗 Workflow Chain
+## ?? Workflow Chain
 
 **Skills Loaded (5):**
 
@@ -252,7 +252,7 @@ If the inspection process (builds, scans) creates ghost artifacts or fails to co
 - `code-review` - Multi-layer code quality validation
 - `context-engineering` - Codebase parsing and context extraction
 - `problem-checker` - IDE problem verification
-- `auto-learner` - Learning and logging review patterns
+- `knowledge-compiler` - Learning and logging review patterns
 
 ```mermaid
 graph LR
@@ -271,6 +271,6 @@ graph LR
 **Handoff to /fix:**
 
 ```markdown
-🔍 Review complete. [X] issues found across 4 layers.
+?? Review complete. [X] issues found across 4 layers.
 Verdict: [PASS/NEEDS FIXES]. Run `/fix` to resolve or `/validate` if all clear.
 ```

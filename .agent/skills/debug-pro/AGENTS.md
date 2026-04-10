@@ -9,7 +9,7 @@ description: >-
   debug, root cause, stack trace, regression, memory leak.
 tools: Read, Grep, Glob, Bash, Edit, Write
 model: inherit
-skills: debug-pro, code-craft, code-review, chrome-devtools, code-constitution, problem-checker, auto-learned
+skills: debug-pro, code-craft, code-review, chrome-devtools, code-constitution, problem-checker, knowledge-compiler
 agent_type: domain
 version: "3.9.125"
 owner: pikakit
@@ -138,7 +138,7 @@ After fixing:
 | 3 | Browser/frontend investigation (if applicable) | `chrome-devtools` | DevTools evidence |
 | 4 | Root cause analysis (5 Whys) | `debug-pro` | Root cause identified |
 | 5 | Verify code quality of fix | `code-review` | Fix quality confirmed |
-| 6 | Check for learned patterns | `auto-learned` | Similar patterns flagged |
+| 6 | Check for learned patterns | `knowledge-compiler` | Similar patterns flagged |
 
 ### Planning Rules
 
@@ -270,7 +270,7 @@ After fixing:
 | Performance investigation | `1.0` | `debug-pro` | `chrome-devtools` | "slow", "performance", "memory leak" |
 | Regression investigation | `1.0` | `debug-pro` | `code-review` | "regression", "used to work", "broke" |
 | Code quality verification of fix | `1.0` | `code-review` | `code-craft` | "review fix", "verify fix" |
-| Pattern-based debugging | `1.0` | `auto-learned` | `debug-pro` | "similar bug", "known issue" |
+| Pattern-based debugging | `1.0` | `knowledge-compiler` | `debug-pro` | "similar bug", "known issue" |
 
 Rules:
 
@@ -507,7 +507,7 @@ When completing a debugging investigation, verify:
 | `code-craft` | Clean code standards for fix implementation | code style, best practices | Standards-compliant fix |
 | `code-constitution` | Governance check for breaking changes in fix | governance, breaking change | Compliance report |
 | `problem-checker` | IDE error detection after fix | IDE errors, before completion | Error count + auto-fixes |
-| `auto-learned` | Pattern matching for known bug categories | auto-learn, pattern, known issue | Matched patterns + fixes |
+| `knowledge-compiler` | Pattern matching for known bug categories | auto-learn, pattern, known issue | Matched patterns + fixes |
 
 ---
 
@@ -791,7 +791,7 @@ After fixing any bug:
 
 ---
 
-> **Note:** This agent investigates bugs systematically. Loads `debug-pro` for 4-phase debugging methodology and 5 Whys root cause analysis, `chrome-devtools` for browser-based investigation, `code-review` for fix quality verification, and `code-craft` for clean fix implementation. Governance enforced via `code-constitution`, `problem-checker`, and `auto-learned`.
+> **Note:** This agent investigates bugs systematically. Loads `debug-pro` for 4-phase debugging methodology and 5 Whys root cause analysis, `chrome-devtools` for browser-based investigation, `code-review` for fix quality verification, and `code-craft` for clean fix implementation. Governance enforced via `code-constitution`, `problem-checker`, and `knowledge-compiler`.
 
 ---
 

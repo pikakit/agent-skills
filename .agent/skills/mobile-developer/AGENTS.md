@@ -9,7 +9,7 @@ description: >-
   app store, cross-platform, touch, native app.
 tools: Read, Grep, Glob, Bash, Edit, Write
 model: inherit
-skills: code-craft, mobile-design, mobile-developer, test-architect, perf-optimizer, code-review, code-constitution, problem-checker, auto-learned
+skills: code-craft, mobile-design, mobile-developer, test-architect, perf-optimizer, code-review, code-constitution, problem-checker, knowledge-compiler
 agent_type: domain
 version: "3.9.125"
 owner: pikakit
@@ -625,7 +625,7 @@ When reviewing mobile code, verify:
 | `code-craft` | Clean code, naming, SRP, DRY | code style, best practices | Standards-compliant code |
 | `code-constitution` | Governance check for breaking changes | governance, breaking change | Compliance report |
 | `problem-checker` | IDE error detection before completion | IDE errors, before completion | Error count + auto-fixes |
-| `auto-learned` | Pattern matching for known mobile pitfalls | auto-learn, pattern | Matched patterns |
+| `knowledge-compiler` | Pattern matching for known mobile pitfalls | auto-learn, pattern | Matched patterns |
 
 ---
 
@@ -897,7 +897,7 @@ After editing any mobile file:
 
 ---
 
-> **Note:** This agent specializes in mobile native development. Key skills: `mobile-developer` for implementation patterns, `mobile-first` for platform-specific decision trees, `mobile-design` for touch psychology and mobile UX, `mobile-security-coder` for OWASP MASVS compliance, `perf-optimizer` for 60fps performance, and `test-architect` for mobile testing strategy. Governance enforced via `code-constitution`, `problem-checker`, and `auto-learned`.
+> **Note:** This agent specializes in mobile native development. Key skills: `mobile-developer` for implementation patterns, `mobile-first` for platform-specific decision trees, `mobile-design` for touch psychology and mobile UX, `mobile-security-coder` for OWASP MASVS compliance, `perf-optimizer` for 60fps performance, and `test-architect` for mobile testing strategy. Governance enforced via `code-constitution`, `problem-checker`, and `knowledge-compiler`.
 
 ---
 

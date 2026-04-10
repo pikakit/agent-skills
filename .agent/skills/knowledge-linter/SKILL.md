@@ -7,7 +7,7 @@ description: >-
   after many compiles. NOT for compiling knowledge (use knowledge-compiler).
 category: autonomous-learning
 triggers: ["knowledge health", "check wiki", "lint knowledge", "stale knowledge", "wiki health"]
-coordinates_with: ["knowledge-compiler", "auto-learned"]
+coordinates_with: ["knowledge-compiler", "knowledge-compiler"]
 success_metrics: ["Issue Detection Rate", "Auto-Fix Rate", "Knowledge Coverage"]
 metadata:
   author: pikakit
@@ -45,7 +45,7 @@ metadata:
 |---------------------|-----------|
 | Staleness detection | Article compilation (→ knowledge-compiler) |
 | Orphan link detection | Signal ingestion (→ knowledge-compiler) |
-| Consistency verification | Pattern storage (→ auto-learned) |
+| Consistency verification | Pattern storage (→ knowledge-compiler) |
 | Gap identification | Error detection (→ problem-checker) |
 | Health report generation | Skill generation (→ skill-generator) |
 
@@ -209,7 +209,7 @@ health_score = 100
 | Item | Type | Purpose |
 |------|------|---------|
 | `knowledge-compiler` | Skill | Compiles signals into articles |
-| `auto-learned` | Skill | Pattern storage |
+| `knowledge-compiler` | Skill | Pattern storage |
 | `/knowledge` | Workflow | CLI interface |
 
 ---

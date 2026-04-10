@@ -6,7 +6,7 @@ description: >-
   NOT for SEO (use seo-optimizer) or server scaling (use server-ops).
 category: code-quality
 triggers: ["performance", "optimize", "speed", "slow", "memory", "cpu", "Lighthouse", "bundle size", "Core Web Vitals", "LCP", "INP", "CLS", "latency"]
-coordinates_with: ["code-craft", "e2e-automation", "chrome-devtools", "problem-checker", "auto-learned"]
+coordinates_with: ["code-craft", "e2e-automation", "chrome-devtools", "problem-checker", "knowledge-compiler"]
 success_metrics: ["Baseline Measured", "Improvement Validated", "No Regressions"]
 metadata:
   author: pikakit
