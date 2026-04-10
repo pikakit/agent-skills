@@ -10,7 +10,7 @@ coordinates_with: ["cicd-pipeline", "nextjs-pro", "test-architect"]
 success_metrics: ["Deployment Success Rate", "Time to Preview", "Framework Detection Accuracy"]
 metadata:
   author: pikakit
-  version: "3.9.128"
+  version: "3.9.129"
 ---
 
 # Vercel Deploy — Zero-Auth Deployment
@@ -172,4 +172,4 @@ All vercel-deploy outputs MUST emit `packaging_started` and either `upload_compl
 
 ---
 
-⚡ PikaKit v3.9.128
+⚡ PikaKit v3.9.129

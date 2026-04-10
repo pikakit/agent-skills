@@ -1,6 +1,6 @@
 # PikaKit Skill Design Guide
 
-> **PikaKit v3.9.128** — Standard structure for all PikaKit skills.
+> **PikaKit v3.9.129** — Standard structure for all PikaKit skills.
 > Incorporates [Anthropic's Skill Design Best Practices](The-Complete-Guide-to-Building-Skills-for-Claude.md).
 
 ---
