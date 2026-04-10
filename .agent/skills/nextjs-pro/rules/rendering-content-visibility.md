@@ -39,4 +39,4 @@ For 1000 messages, browser skips layout/paint for ~990 off-screen items (10× fa
 
 ---
 
-⚡ PikaKit v3.9.126
+⚡ PikaKit v3.9.127

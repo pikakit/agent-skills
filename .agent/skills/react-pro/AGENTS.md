@@ -12,7 +12,7 @@ tools: Read, Grep, Glob, Bash, Edit, Write
 model: inherit
 skills: code-craft, react-pro, nextjs-pro, tailwind-kit, design-system, code-review, studio, typescript-expert, seo-optimizer, perf-optimizer, code-constitution, problem-checker, knowledge-compiler
 agent_type: domain
-version: "3.9.126"
+version: "3.9.127"
 owner: pikakit
 capability_tier: core
 execution_mode: reactive
@@ -960,4 +960,4 @@ After editing any frontend file:
 
 ---
 
-⚡ PikaKit v3.9.126
+⚡ PikaKit v3.9.127

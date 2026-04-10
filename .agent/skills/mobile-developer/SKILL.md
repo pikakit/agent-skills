@@ -10,7 +10,7 @@ coordinates_with: ["mobile-first", "mobile-design", "test-architect", "perf-opti
 success_metrics: ["100% Build Pass", "0 IDE/Lint Errors", "OWASP MASVS Compliant"]
 metadata:
   author: pikakit
-  version: "3.9.126"
+  version: "3.9.127"
 ---
 
 # Mobile Developer — Cross-Platform & Native Expert
@@ -191,4 +191,4 @@ All executions MUST emit the `build_verification` span before reporting completi
 
 ---
 
-⚡ PikaKit v3.9.126
+⚡ PikaKit v3.9.127
