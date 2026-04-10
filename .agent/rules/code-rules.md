@@ -74,7 +74,7 @@ Before modifying ANY file: check `CODEBASE.md` → identify dependents → updat
 
 > 🔴 Read `ARCHITECTURE.md` at session start.
 
-Skills: `.agent/skills/` | Workflows: `.agent/workflows/` | Scripts: `.agent/scripts/`
+Skills: `.agent/skills/` | Workflows: `.agent/workflows/` | Scripts: `.agent/scripts/` | Knowledge: `.agent/knowledge/`
 
 ### 🧠 Read → Understand → Apply
 
@@ -170,6 +170,7 @@ Design rules are in specialist agents, NOT here.
 | Testing | `test-architect` | `e2e-automation` |
 | Debug | `debug-pro` | `problem-checker` |
 | Plan | `project-planner` | `idea-storm`, `system-design` |
+| Knowledge | `knowledge-compiler` | `knowledge-linter`, `auto-learned` |
 
 ---
 
@@ -178,8 +179,8 @@ Design rules are in specialist agents, NOT here.
 | Metric | Value |
 |--------|-------|
 | **Total Agents** | 21 (16 domain + 5 meta) |
-| **Total Skills** | 51 |
-| **Total Workflows** | 18 |
+| **Total Skills** | 53 |
+| **Total Workflows** | 19 |
 | **Total Scripts** | 6 |
 | **Coverage** | ~95% web/mobile development |
 

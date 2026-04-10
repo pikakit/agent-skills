@@ -1,7 +1,7 @@
 # PikaKit Skill Index
 
 > **Quick reference for skill routing.** Scan this BEFORE any code task.
-> Total: 51 skills across 9 domains.
+> Total: 53 skills across 9 domains.
 
 ---
 
@@ -22,6 +22,7 @@ seo meta-tag sitemap        →  seo-optimizer   readme changelog docs    →  d
 architecture trade-off adr  →  system-design   plan roadmap breakdown   →  project-planner
 mcp tool-server             →  mcp-builder     prompt dall-e midjourney →  ai-artist
 mistake wrong fix-this      →  auto-learner    ide-error lint complete  →  problem-checker
+compile wiki knowledge ingest →  knowledge-compiler  knowledge health stale  →  knowledge-linter
 ```
 
 ---
@@ -92,6 +93,8 @@ mistake wrong fix-this      →  auto-learner    ide-error lint complete  →  p
 | `problem-checker` | IDE errors, lint auto-fix, before task completion | Root cause analysis → `debug-pro` |
 | `auto-learner` | User says "mistake"/"wrong"/"fix this", pattern extraction | Regular debugging → `debug-pro` |
 | `auto-learned` | Check known patterns before repeating mistakes | Writing patterns → `auto-learner` |
+| `knowledge-compiler` | Compile signals into knowledge wiki, ingest lessons | Pattern matching → `auto-learned` |
+| `knowledge-linter` | Wiki health checks, find stale/inconsistent knowledge | Compiling → `knowledge-compiler` |
 | `typescript-expert` | TypeScript types, generics, monorepo, build performance | React-specific → `react-pro` |
 
 ## Meta & Orchestration
@@ -125,4 +128,4 @@ mistake wrong fix-this      →  auto-learner    ide-error lint complete  →  p
 
 ---
 
-> ⚡ PikaKit v3.9.125 · 51 Skills · 9 Domains
+> ⚡ PikaKit v3.9.125 · 53 Skills · 9 Domains

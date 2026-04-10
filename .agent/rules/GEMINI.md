@@ -4,7 +4,7 @@ trigger: always_on
 
 # 🤖 PikaKit — FAANG-Grade AI Operating System
 
-> **v3.9.125** | 51 Skills • 21 Agents • 18 Workflows | [github.com/pikakit](https://github.com/pikakit/agent-skills)
+> **v3.9.125** | 53 Skills • 21 Agents • 19 Workflows | [github.com/pikakit](https://github.com/pikakit/agent-skills)
 
 **This file is the Supreme Law for AI behavior in this workspace.**
 
@@ -73,7 +73,7 @@ Safety violation → `@[skills/auto-learner]` triggered. Full protocol: see `aut
 
 ## 🚀 Quick Start
 
-> 📋 **Skill Index:** `.agent/skills/SKILL_INDEX.md` — All 51 skills at a glance.
+> 📋 **Skill Index:** `.agent/skills/SKILL_INDEX.md` — All 53 skills at a glance.
 > 📊 **Task Levels:** L0 (question) → L1 (quick fix) → L2 (multi-file) → L3 (architecture)
 
 | Need | Run | Purpose |
@@ -84,6 +84,7 @@ Safety violation → `@[skills/auto-learner]` triggered. Full protocol: see `aut
 | Test | `/validate` | Run tests |
 | Deploy | `/launch` | Ship |
 | Full Auto | `/autopilot` | All in one |
+| Knowledge | `/knowledge` | Compile & query wiki |
 
 ---
 
@@ -106,6 +107,7 @@ Safety violation → `@[skills/auto-learner]` triggered. Full protocol: see `aut
 | seo, meta-tag, sitemap | `seo-optimizer` | readme, changelog, docs | `doc-templates` |
 | architecture, trade-off, adr | `system-design` | plan, roadmap, breakdown | `project-planner` |
 | mistake, wrong, fix-this | `auto-learner` | ide-error, lint, pre-complete | `problem-checker` |
+| compile, wiki, knowledge, ingest | `knowledge-compiler` | knowledge health, stale, lint | `knowledge-linter` |
 
 **Protocol:** Match keyword → Read skill's `SKILL.md` → Announce `🤖 @{skill}` → Code.
 

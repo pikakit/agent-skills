@@ -1251,6 +1251,51 @@
         "other platforms",
         "GitOps"
       ]
+    },
+    {
+      "name": "knowledge-compiler",
+      "category": "core",
+      "triggers": [
+        "compile",
+        "knowledge",
+        "wiki",
+        "ingest",
+        "lessons",
+        "tribal knowledge"
+      ],
+      "coordinates_with": [
+        "auto-learner",
+        "auto-learned",
+        "skill-generator",
+        "knowledge-linter"
+      ],
+      "success_metrics": "signals compiled, articles cross-linked, wiki indexed",
+      "access_level": "universal",
+      "negative_triggers": [
+        "pattern matching",
+        "skill generation"
+      ]
+    },
+    {
+      "name": "knowledge-linter",
+      "category": "core",
+      "triggers": [
+        "knowledge health",
+        "check wiki",
+        "lint knowledge",
+        "stale knowledge",
+        "wiki health"
+      ],
+      "coordinates_with": [
+        "knowledge-compiler",
+        "auto-learned"
+      ],
+      "success_metrics": "health report generated, issues detected, score calculated",
+      "access_level": "universal",
+      "negative_triggers": [
+        "compiling knowledge",
+        "ingesting signals"
+      ]
     }
   ]
 }
