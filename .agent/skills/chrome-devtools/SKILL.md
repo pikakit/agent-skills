@@ -10,7 +10,7 @@ coordinates_with: ["agent-browser", "perf-optimizer", "e2e-automation"]
 success_metrics: ["0 ghost instances", "100% session recovery"]
 metadata:
   author: pikakit
-  version: "3.9.124"
+  version: "3.9.125"
 ---
 
 # Chrome DevTools — Puppeteer CLI
@@ -157,4 +157,4 @@ node navigate.ts --close true
 
 ---
 
-⚡ PikaKit v3.9.124
+⚡ PikaKit v3.9.125

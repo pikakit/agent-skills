@@ -10,7 +10,7 @@ coordinates_with: ["test-architect", "code-review"]
 success_metrics: ["100% bugs have root cause identified", "< 15m MTTR"]
 metadata:
   author: pikakit
-  version: "3.9.124"
+  version: "3.9.125"
 ---
 
 # Debug Pro — Systematic Debugging
@@ -190,4 +190,4 @@ All debug-pro outputs MUST emit `investigation_started`, `root_cause_identified`
 
 ---
 
-⚡ PikaKit v3.9.124
+⚡ PikaKit v3.9.125

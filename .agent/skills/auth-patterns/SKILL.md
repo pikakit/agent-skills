@@ -10,7 +10,7 @@ coordinates_with: ["api-architect", "security-scanner", "data-modeler", "offensi
 success_metrics: ["0 authorization bypass vulnerabilities", "100% FAANG audit compliance"]
 metadata:
   author: pikakit
-  version: "3.9.124"
+  version: "3.9.125"
 ---
 
 # Auth Patterns
@@ -160,4 +160,4 @@ What type of application?
 
 ---
 
-⚡ PikaKit v3.9.124
+⚡ PikaKit v3.9.125

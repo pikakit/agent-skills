@@ -10,7 +10,7 @@ coordinates_with: ["code-craft", "security-scanner", "test-architect"]
 success_metrics: ["0 blocking issues", "100% lint pass rate", "0 type errors"]
 metadata:
   author: pikakit
-  version: "3.9.124"
+  version: "3.9.125"
 ---
 
 # Code Review & Quality
@@ -149,4 +149,4 @@ metadata:
 
 ---
 
-⚡ PikaKit v3.9.124
+⚡ PikaKit v3.9.125

@@ -4,7 +4,7 @@
 
 ### Your AI writes code. PikaKit makes it *senior-level*.
 
-[![npm](https://img.shields.io/badge/npm-v3.9.124-7c3aed?style=for-the-badge&logo=npm&logoColor=white&labelColor=18181b)](https://www.npmjs.com/package/pikakit)
+[![npm](https://img.shields.io/badge/npm-v3.9.125-7c3aed?style=for-the-badge&logo=npm&logoColor=white&labelColor=18181b)](https://www.npmjs.com/package/pikakit)
 [![Skills](https://img.shields.io/badge/51_skills-06b6d4?style=for-the-badge&labelColor=18181b)](https://github.com/pikakit/agent-skills)
 [![Workflows](https://img.shields.io/badge/18_workflows-10b981?style=for-the-badge&labelColor=18181b)](https://github.com/pikakit/agent-skills)
 [![TypeScript](https://img.shields.io/badge/strict_typescript-3178c6?style=for-the-badge&logo=typescript&logoColor=white&labelColor=18181b)](https://github.com/pikakit/agent-skills)
@@ -134,7 +134,7 @@ npm run audit:workflows    # FAANG compliance audit
 
 <div align="center">
 
-**PikaKit v3.9.124** · 51 Skills · 18 Workflows · Strict TypeScript
+**PikaKit v3.9.125** · 51 Skills · 18 Workflows · Strict TypeScript
 
 ```bash
 npx pikakit

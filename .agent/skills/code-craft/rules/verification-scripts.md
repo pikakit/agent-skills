@@ -80,4 +80,4 @@ tags: verification, scripts
 
 ---
 
-⚡ PikaKit v3.9.124
+⚡ PikaKit v3.9.125
