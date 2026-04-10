@@ -146,48 +146,8 @@ metadata:
 
 All tailwind-kit outputs MUST emit `css_class_recommended` and `layout_pattern_generated` events when applicable.
 
----
 
-## Rule Categories by Priority
-
-| Priority | Category | Impact | Prefix |
-|----------|----------|--------|--------|
-| 1 | General | MEDIUM | `general-` |
-| 2 | Engineering Spec | LOW | `engineering-` |
-
-## Quick Reference
-
-### 1. General (MEDIUM)
-
-- `components` - Component Extraction
-- `responsive` - Responsive & Container Queries
-- `v4-config` - Tailwind v4 Configuration
-
-### 2. Engineering Spec (LOW)
-
-- `engineering-spec` - Tailwind Kit — Engineering Specification
-
-## How to Use
-
-Read individual rule files for detailed explanations and code examples:
-
-```
-rules/components.md
-rules/engineering-spec.md
-```
-
-Each rule file contains:
-- Brief explanation of why it matters
-- Incorrect code example with explanation
-- Correct code example with explanation
-- Additional context and references
-
-## Full Compiled Document
-
-For the complete guide with all rules expanded: `AGENTS.md`
-
-
-## 📑 Content Map
+## 📑 Content Map## 📑 Content Map
 
 | File | Description | When to Read |
 |------|-------------|--------------|

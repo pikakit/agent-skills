@@ -136,67 +136,8 @@ Create 10 test questions that are:
 | Embed API keys in tool code | Use environment variables |
 | Skip research phase | Read MCP spec + target API first |
 
----
 
-## Rule Categories by Priority
-
-| Priority | Category | Impact | Prefix |
-|----------|----------|--------|--------|
-| 1 | General | LOW | `general-` |
-| 2 | Best | LOW | `best-` |
-| 3 | Design | LOW | `design-` |
-| 4 | Engineering Spec | LOW | `engineering-` |
-| 5 | Python | LOW | `python-` |
-| 6 | Typescript | LOW | `typescript-` |
-
-## Quick Reference
-
-### 1. General (LOW)
-
-- `evaluation` - MCP Evaluation Guide
-- `quickstart` - MCP Builder Quick Start
-
-### 2. Best (LOW)
-
-- `best-practices` - MCP Best Practices
-
-### 3. Design (LOW)
-
-- `design-principles` - MCP Server Design Principles
-
-### 4. Engineering Spec (LOW)
-
-- `engineering-spec` - MCP Builder — Engineering Specification
-
-### 5. Python (LOW)
-
-- `python-implementation` - Python MCP Server Implementation
-
-### 6. Typescript (LOW)
-
-- `typescript-implementation` - TypeScript MCP Server Implementation
-
-## How to Use
-
-Read individual rule files for detailed explanations and code examples:
-
-```
-rules/best-practices.md
-rules/design-principles.md
-```
-
-Each rule file contains:
-- Brief explanation of why it matters
-- Incorrect code example with explanation
-- Correct code example with explanation
-- Additional context and references
-
-## Full Compiled Document
-
-For the complete guide with all rules expanded: `AGENTS.md`
-
-
-## 📑 Content Map
+## 📑 Content Map## 📑 Content Map
 
 | File | Description | When to Read |
 |------|-------------|--------------|

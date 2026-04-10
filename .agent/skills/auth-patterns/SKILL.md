@@ -134,59 +134,8 @@ What type of application?
 | Hardcode roles in application code | Store permissions in database |
 | Implicit trust for internal services | Zero trust: verify every request |
 
----
 
-## Rule Categories by Priority
-
-| Priority | Category | Impact | Prefix |
-|----------|----------|--------|--------|
-| 1 | General | MEDIUM | `general-` |
-| 2 | Engineering Spec | LOW | `engineering-` |
-| 3 | Jwt | LOW | `jwt-` |
-| 4 | Rbac | LOW | `rbac-` |
-
-## Quick Reference
-
-### 1. General (MEDIUM)
-
-- `mfa` - Multi-Factor Authentication (MFA)
-- `oauth2` - OAuth 2.0 & OpenID Connect
-- `passkey` - Passkeys (WebAuthn / FIDO2)
-- `session` - Session Management
-
-### 2. Engineering Spec (LOW)
-
-- `engineering-spec` - Auth Patterns — Engineering Specification
-
-### 3. Jwt (LOW)
-
-- `jwt-deep` - JWT Deep Dive
-
-### 4. Rbac (LOW)
-
-- `rbac-abac` - RBAC & ABAC — Access Control
-
-## How to Use
-
-Read individual rule files for detailed explanations and code examples:
-
-```
-rules/engineering-spec.md
-rules/jwt-deep.md
-```
-
-Each rule file contains:
-- Brief explanation of why it matters
-- Incorrect code example with explanation
-- Correct code example with explanation
-- Additional context and references
-
-## Full Compiled Document
-
-For the complete guide with all rules expanded: `AGENTS.md`
-
-
-## 📑 Content Map
+## 📑 Content Map## 📑 Content Map
 
 | File | Description | When to Read |
 |------|-------------|--------------|

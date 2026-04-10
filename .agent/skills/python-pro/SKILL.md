@@ -151,76 +151,8 @@ All architectural decision outputs MUST emit a `decision_started` and `arch_reco
 | Put business logic in routes/views | Separate: routes → services → repos |
 | Always pick the same framework | Ask user, evaluate context |
 
----
 
-## Rule Categories by Priority
-
-| Priority | Category | Impact | Prefix |
-|----------|----------|--------|--------|
-| 1 | Eliminating Waterfalls | LOW | `async-` |
-| 2 | Django | LOW | `django-` |
-| 3 | Engineering Spec | LOW | `engineering-` |
-| 4 | Fastapi | LOW | `fastapi-` |
-| 5 | Framework | LOW | `framework-` |
-| 6 | Project | LOW | `project-` |
-| 7 | Testing | LOW | `testing-` |
-| 8 | Type | LOW | `type-` |
-
-## Quick Reference
-
-### 1. Eliminating Waterfalls (LOW)
-
-- `async-patterns` - Python Async Patterns
-
-### 2. Django (LOW)
-
-- `django-patterns` - Django Patterns (2025)
-
-### 3. Engineering Spec (LOW)
-
-- `engineering-spec` - Python Pro — Engineering Specification
-
-### 4. Fastapi (LOW)
-
-- `fastapi-patterns` - FastAPI Patterns
-
-### 5. Framework (LOW)
-
-- `framework-selection` - Framework Selection (2025)
-
-### 6. Project (LOW)
-
-- `project-structure` - Project Structure
-
-### 7. Testing (LOW)
-
-- `testing-patterns` - Python Testing Patterns
-
-### 8. Type (LOW)
-
-- `type-hints` - Python Type Hints & Validation
-
-## How to Use
-
-Read individual rule files for detailed explanations and code examples:
-
-```
-rules/async-patterns.md
-rules/django-patterns.md
-```
-
-Each rule file contains:
-- Brief explanation of why it matters
-- Incorrect code example with explanation
-- Correct code example with explanation
-- Additional context and references
-
-## Full Compiled Document
-
-For the complete guide with all rules expanded: `AGENTS.md`
-
-
-## 📑 Content Map
+## 📑 Content Map## 📑 Content Map
 
 | File | Description | When to Read |
 |------|-------------|--------------|

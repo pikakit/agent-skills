@@ -128,69 +128,8 @@ Touch-first → Battery-conscious → Platform-respectful → Offline-capable
 | Assume network | Design for offline |
 | Mix platform conventions | Respect iOS HIG / Material Design |
 
----
 
-## Rule Categories by Priority
-
-| Priority | Category | Impact | Prefix |
-|----------|----------|--------|--------|
-| 1 | Mobile | HIGH | `mobile-` |
-| 2 | Platform | LOW | `platform-` |
-| 3 | Decision | LOW | `decision-` |
-| 4 | Engineering Spec | LOW | `engineering-` |
-| 5 | Touch | LOW | `touch-` |
-
-## Quick Reference
-
-### 1. Mobile (HIGH)
-
-- `mobile-backend` - Mobile Backend Patterns
-- `mobile-color-system` - Mobile Color System Reference
-- `mobile-debugging` - Mobile Debugging Guide
-- `mobile-design-thinking` - Mobile Design Thinking
-- `mobile-navigation` - Mobile Navigation Reference
-- `mobile-performance` - Mobile Performance Reference
-- `mobile-testing` - Mobile Testing Patterns
-- `mobile-typography` - Mobile Typography Reference
-
-### 2. Platform (LOW)
-
-- `platform-android` - Android Platform Guidelines
-- `platform-ios` - iOS Platform Guidelines
-
-### 3. Decision (LOW)
-
-- `decision-trees` - Mobile Decision Trees
-
-### 4. Engineering Spec (LOW)
-
-- `engineering-spec` - Mobile Design — Engineering Specification
-
-### 5. Touch (LOW)
-
-- `touch-psychology` - Touch Psychology Reference
-
-## How to Use
-
-Read individual rule files for detailed explanations and code examples:
-
-```
-rules/decision-trees.md
-rules/engineering-spec.md
-```
-
-Each rule file contains:
-- Brief explanation of why it matters
-- Incorrect code example with explanation
-- Correct code example with explanation
-- Additional context and references
-
-## Full Compiled Document
-
-For the complete guide with all rules expanded: `AGENTS.md`
-
-
-## 📑 Content Map
+## 📑 Content Map## 📑 Content Map
 
 | File | Description | When to Read |
 |------|-------------|--------------|

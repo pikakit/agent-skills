@@ -141,52 +141,8 @@ coordinator = LlmAgent(
 | Use LlmAgent for pipelines | SequentialAgent for ordered steps |
 | Hardcode API keys | Use environment variables |
 
----
 
-## Rule Categories by Priority
-
-| Priority | Category | Impact | Prefix |
-|----------|----------|--------|--------|
-| 1 | General | LOW | `general-` |
-| 2 | Engineering Spec | LOW | `engineering-` |
-| 3 | Multi | LOW | `multi-` |
-
-## Quick Reference
-
-### 1. General (LOW)
-
-- `deployment` - Deployment Patterns
-- `tools` - Custom Tools
-
-### 2. Engineering Spec (LOW)
-
-- `engineering-spec` - Google ADK Python — Engineering Specification
-
-### 3. Multi (LOW)
-
-- `multi-agent` - Multi-Agent Orchestration
-
-## How to Use
-
-Read individual rule files for detailed explanations and code examples:
-
-```
-rules/deployment.md
-rules/engineering-spec.md
-```
-
-Each rule file contains:
-- Brief explanation of why it matters
-- Incorrect code example with explanation
-- Correct code example with explanation
-- Additional context and references
-
-## Full Compiled Document
-
-For the complete guide with all rules expanded: `AGENTS.md`
-
-
-## 📑 Content Map
+## 📑 Content Map## 📑 Content Map
 
 | File | Description | When to Read |
 |------|-------------|--------------|
