@@ -13,7 +13,7 @@ tools: Read, Grep, Glob, Bash, Edit, Write
 model: inherit
 skills: code-craft, project-planner, idea-storm, smart-router, code-constitution, problem-checker, knowledge-compiler
 agent_type: meta
-version: "3.9.131"
+version: "3.9.132"
 owner: pikakit
 capability_tier: core
 execution_mode: planner-driven
@@ -2695,4 +2695,4 @@ After product decisions:
 
 ---
 
-⚡ PikaKit v3.9.131
+⚡ PikaKit v3.9.132

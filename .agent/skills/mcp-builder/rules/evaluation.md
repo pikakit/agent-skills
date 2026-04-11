@@ -100,4 +100,4 @@ This requires:
 
 ---
 
-⚡ PikaKit v3.9.131
+⚡ PikaKit v3.9.132

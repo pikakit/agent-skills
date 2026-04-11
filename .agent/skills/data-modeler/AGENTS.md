@@ -10,7 +10,7 @@ tools: Read, Grep, Glob, Bash, Edit, Write
 model: inherit
 skills: code-craft, data-modeler, code-review, typescript-expert, code-constitution, problem-checker, knowledge-compiler
 agent_type: domain
-version: "3.9.131"
+version: "3.9.132"
 owner: pikakit
 capability_tier: core
 execution_mode: reactive
@@ -811,4 +811,4 @@ After any database schema change:
 
 ---
 
-⚡ PikaKit v3.9.131
+⚡ PikaKit v3.9.132

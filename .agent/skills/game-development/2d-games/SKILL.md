@@ -7,7 +7,7 @@ coordinates_with: ["game-development", "game-art", "perf-optimizer"]
 success_metrics: ["100% sprites use atlases", "0 physics jitter"]
 metadata:
   author: pikakit
-  version: "3.9.131"
+  version: "3.9.132"
 ---
 
 # 2D Game Development
@@ -137,4 +137,4 @@ metadata:
 
 ---
 
-⚡ PikaKit v3.9.131
+⚡ PikaKit v3.9.132

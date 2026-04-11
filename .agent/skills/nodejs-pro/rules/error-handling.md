@@ -254,4 +254,4 @@ logger.error({ err, userId, requestId, path: req.url }, 'User fetch failed')
 
 ---
 
-⚡ PikaKit v3.9.131
+⚡ PikaKit v3.9.132

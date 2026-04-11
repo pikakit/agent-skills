@@ -143,4 +143,4 @@ cat assets/tools.json | jq '.[] | {server: .server, tools: .tools[].name}'
 
 ---
 
-⚡ PikaKit v3.9.131
+⚡ PikaKit v3.9.132
