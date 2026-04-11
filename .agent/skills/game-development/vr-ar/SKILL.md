@@ -7,7 +7,7 @@ coordinates_with: ["game-development", "3d-games", "perf-optimizer"]
 success_metrics: ["100% VR games maintain 90 FPS", "0 motion sickness in playtests"]
 metadata:
   author: pikakit
-  version: "3.9.132"
+  version: "3.9.133"
 ---
 
 # VR/AR Development
@@ -141,4 +141,4 @@ metadata:
 
 ---
 
-⚡ PikaKit v3.9.132
+⚡ PikaKit v3.9.133
