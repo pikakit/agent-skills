@@ -7,7 +7,7 @@ coordinates_with: ["game-development", "game-audio", "ai-artist"]
 success_metrics: ["100% assets follow style guide", "0 animation frame drops"]
 metadata:
   author: pikakit
-  version: "3.9.129"
+  version: "3.9.130"
 ---
 
 # Game Art Principles
@@ -204,4 +204,4 @@ assets/
 
 ---
 
-⚡ PikaKit v3.9.129
+⚡ PikaKit v3.9.130

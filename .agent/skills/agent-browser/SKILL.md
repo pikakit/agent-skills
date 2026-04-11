@@ -10,7 +10,7 @@ coordinates_with: ["e2e-automation", "chrome-devtools", "observability"]
 success_metrics: ["Reduces LLM context consumption by 90%", "Zero dependency on full DOM serialization"]
 metadata:
   author: pikakit
-  version: "3.9.129"
+  version: "3.9.130"
 ---
 
 # Agent Browser
@@ -190,4 +190,4 @@ agent-browser fill @e2 "email@example.com"
 
 ---
 
-⚡ PikaKit v3.9.129
+⚡ PikaKit v3.9.130

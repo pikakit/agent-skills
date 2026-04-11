@@ -29,4 +29,4 @@ npx svgo --precision=1 --multipass icon.svg
 
 ---
 
-⚡ PikaKit v3.9.129
+⚡ PikaKit v3.9.130

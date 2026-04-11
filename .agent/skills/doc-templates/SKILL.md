@@ -10,7 +10,7 @@ coordinates_with: ["project-planner", "code-craft", "system-design"]
 success_metrics: ["100% templates follow required sections", "100% diagrams render correctly"]
 metadata:
   author: pikakit
-  version: "3.9.129"
+  version: "3.9.130"
 ---
 
 # Doc Templates — Documentation, Diagrams & Preview
@@ -257,4 +257,4 @@ node .agent/skills/doc-templates/scripts/kanban-server.ts --dir ./docs/plans --o
 
 ---
 
-⚡ PikaKit v3.9.129
+⚡ PikaKit v3.9.130

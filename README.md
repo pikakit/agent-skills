@@ -1,11 +1,14 @@
 <div align="center">
 
 # 🤖 PikaKit
+### The AI Operating System for Production-Grade Development
 
-### Your AI writes code. PikaKit makes it *senior-level*.
+Build production-grade features 3–5x faster — with enforced architecture, autonomous workflows, and a self-learning AI that never repeats mistakes.
 
-[![npm](https://img.shields.io/badge/npm-v3.9.129-7c3aed?style=for-the-badge&logo=npm&logoColor=white&labelColor=18181b)](https://www.npmjs.com/package/pikakit)
-[![Skills](https://img.shields.io/badge/51_skills-06b6d4?style=for-the-badge&labelColor=18181b)](https://github.com/pikakit/agent-skills)
+PikaKit transforms any AI into a Senior Engineer — not by prompting harder, but by controlling how it executes, learns, and improves over time.
+
+[![npm](https://img.shields.io/badge/npm-v3.9.130-7c3aed?style=for-the-badge&logo=npm&logoColor=white&labelColor=18181b)](https://www.npmjs.com/package/pikakit)
+[![Skills](https://img.shields.io/badge/53_skills-06b6d4?style=for-the-badge&labelColor=18181b)](https://github.com/pikakit/agent-skills)
 [![Workflows](https://img.shields.io/badge/19_workflows-10b981?style=for-the-badge&labelColor=18181b)](https://github.com/pikakit/agent-skills)
 [![TypeScript](https://img.shields.io/badge/strict_typescript-3178c6?style=for-the-badge&logo=typescript&logoColor=white&labelColor=18181b)](https://github.com/pikakit/agent-skills)
 
@@ -13,149 +16,158 @@
 npx pikakit
 ```
 
-[Website](https://pikakit.com) · [npm](https://www.npmjs.com/package/pikakit) · [Changelog](CHANGELOG.md)
+Used with Cursor · Windsurf · Roo Code · Cline · Antigravity
 
 </div>
 
 ---
 
-## What is PikaKit?
+## ⚡ AI Coding is Broken
 
-PikaKit injects **51 engineering skills** into any AI coding assistant. One command installs battle-tested patterns for architecture, security, testing, performance, and more — so your AI delivers senior-level output from day one.
+Today’s AI tools can write code — but they:
+- Break your architecture
+- Forget past mistakes
+- Require constant supervision
+- Produce inconsistent results
 
-Works with **Antigravity, Claude Code, Cursor, Windsurf, Cline, Amp, Roo Code**, and 10+ other AI tools.
+## PikaKit Fixes This
+
+PikaKit turns AI into a deterministic engineering system:
+- Enforces architecture & best practices
+- Learns from every failure
+- Executes workflows autonomously
+- Ships production-ready code
 
 ---
 
-## Quick Start
+## ⚡ What Makes PikaKit Different?
+
+**Without PikaKit:**
+- AI = autocomplete
+- You = babysitter
+- Bugs = repeated forever
+
+**With PikaKit:**
+- AI follows enforced engineering rules
+- Errors become permanent knowledge
+- Fixes evolve into reusable Skills
+- Workflows execute end-to-end autonomously
+
+---
+
+## 🏗️ System Overview
+
+```text
+You → AI → PikaKit → Production Code
+             ↑
+      Learns from mistakes
+```
+
+### Deep Architecture
+
+```mermaid
+flowchart TD
+    subgraph IDE ["PikaKit Engine (VS Code)"]
+        A[Real-time Errors] --> B[Auto-click CDP]
+    end
+    subgraph Brain ["The Knowledge Engine"]
+        A -->|Ingest| C(Raw Signals)
+        C -->|Compile| D(Concept Wiki)
+        D -->|Generate| E[Executable Skills]
+    end
+    subgraph Runtime ["Workflows & Skills"]
+        E --> F[Agent routing & Execution]
+        F --> G[Project completed securely]
+    end
+    style IDE fill:#374151,color:#fff
+    style Brain fill:#18181b,color:#fff,stroke:#10b981
+    style Runtime fill:#065f46,color:#fff
+```
+
+---
+
+## 🧱 The 4 Pillars
+
+### 1️⃣ Executable Skills
+**53 battle-tested engineering capabilities** injected directly into the AI runtime — enforcing architecture, security, and performance constraints.
+
+### 2️⃣ Autonomous Workflows
+Run complex tasks with a single command:
+- `/autopilot` — plan → build → test → ship
+- `/think` — structured decision-making
+- `/diagnose` — hypothesis-driven debugging
+
+### 3️⃣ Self-Learning Knowledge Engine
+Every failure becomes permanent:
+- **Errors** → captured
+- **Fixes** → compiled
+- **Patterns** → turned into new Skills
+
+### 4️⃣ IDE Execution Layer
+A VS Code extension that gives AI real-world control:
+- Reads errors in real-time
+- Prevents destructive actions
+- Handles UI interactions automatically
+
+---
+
+## 🛡️ Built for Safe Autonomy
+
+PikaKit operates under strict safeguards:
+
+- **Human approval** for critical operations
+- **Automatic Git checkpoints** before risky changes
+- **Multi-layer rollback system** (6 levels)
+- **Zero destructive actions** without confirmation
+
+*Autonomy without control is dangerous. PikaKit gives you both.*
+
+---
+
+## ⚡ Get Started in Seconds
 
 ```bash
 npx pikakit
 ```
 
-Choose **Project** (`.agent/` in your repo) or **Global** (`~/.gemini/`). Done.
+Then in your AI editor:
+> Run `/autopilot` to rebuild auth using Next.js App Router
 
 ---
 
-## Skills
+## 🧠 Not a Prompt Library. Not a Wrapper.
 
-51 skills across 9 domains:
+PikaKit is an **AI Operating System**.
 
-| Domain | Skills | Highlights |
-|--------|--------|------------|
-| **Architecture** | 5 | `project-planner` · `system-design` · `idea-storm` |
-| **Frontend** | 5 | `react-pro` · `nextjs-pro` · `studio` · `tailwind-kit` |
-| **Backend** | 5 | `api-architect` · `nodejs-pro` · `python-pro` · `data-modeler` |
-| **Security** | 3 | `security-scanner` · `offensive-sec` · `code-constitution` |
-| **Testing** | 5 | `test-architect` · `e2e-automation` · `code-review` |
-| **Debugging** | 3 | `debug-pro` · `chrome-devtools` · `knowledge-graph` |
-| **AI & Automation** | 8 | `google-adk-python` · `mcp-builder` · `auto-learner` · `knowledge-compiler` |
-| **DevOps** | 7 | `cicd-pipeline` · `vercel-deploy` · `observability` · `gitops` |
-| **Mobile & More** | 12 | `mobile-developer` · `game-development` · `typescript-expert` · `doc-templates` |
+It sits between your AI and your codebase — controlling execution, enforcing rules, and continuously improving outcomes.
+
+Like how Docker standardized environments, **PikaKit standardizes AI behavior in production.**
 
 ---
 
-## Workflows
+## 🔥 Built for Serious Developers
 
-Type these in your AI chat:
+Designed for teams who want:
+- Production-grade AI outputs
+- Deterministic behavior
+- Long-term learning systems
 
-| Command | Purpose |
-|---------|---------|
-| `/autopilot` | Plan → build → test → ship — fully autonomous |
-| `/build` | Multi-skill implementation from description |
-| `/think` | 3+ alternatives before writing code |
-| `/plan` | Detailed task breakdown with dependencies |
-| `/cook` | Skip planning, just implement |
-| `/fix` | Patch errors with minimal diff |
-| `/validate` | Generate & run test suite |
-| `/diagnose` | Hypothesis-driven debugging |
-| `/inspect` | 4-layer code review |
-| `/studio` | Generate complete design systems |
-| `/api` | Design & document REST/GraphQL APIs |
-| `/mobile` | Cross-platform mobile apps |
-| `/game` | Game development pipeline |
-| `/launch` | Zero-downtime deployment |
-| `/chronicle` | Auto-generate docs from code |
-| `/stage` | Local dev sandbox with Docker |
-| `/monitor` | Observability: metrics + traces + alerts |
-| `/optimize` | Profile & fix performance bottlenecks |
-| `/knowledge` | Compile fixes into a living knowledge wiki |
+*Not just demos. Not just prototypes.*
 
 ---
 
-## Safety
+## 🚀 Stop Prompting. Start Building.
 
-| Protection | How |
-|------------|-----|
-| No accidental deletes | Explicit confirmation required |
-| Git checkpoints | Auto-commit before risky changes |
-| Instant rollback | One command to undo anything |
-| Human gates | Auth, database, architecture need approval |
-| 6-level recovery | Auto-fix → retry → restore → undo → rollback → human |
-
----
-
-## Self-Learning → Knowledge Compiler
-
-PikaKit doesn't just remember mistakes — it **compiles knowledge**:
-
-```
-   Error fix / User correction
-          ↓
-   📥 Raw signal recorded
-          ↓
-   📚 /knowledge compile
-          ↓
-   Cross-linked wiki article
-          ↓
-   Agent reads before coding → never repeats
-```
-
-**3-tier knowledge lifecycle:**
-
-| Tier | Storage | Purpose |
-|------|---------|---------|--------|
-| **RAW** | `.agent/knowledge/raw/` | Error logs, corrections, decisions |
-| **COMPILED** | `.agent/knowledge/concepts/` | Cross-linked wiki articles with backlinks |
-| **SKILLS** | `.agent/skills/` | Mature knowledge → executable skill |
-
-Run `/knowledge lint` for wiki health checks (staleness, orphans, gaps, dead links).
-
----
-
-## Development
+Turn your AI into a real engineer.
 
 ```bash
-npm run typecheck          # tsc --noEmit (strict mode)
-npm run verify             # Full verification suite
-npm run version:sync       # Bump & sync version across all files
-npm run checklist          # Development checklist
-npm run audit:workflows    # FAANG compliance audit
+npx pikakit
 ```
-
-**Requirements:** Node.js ≥18 · TypeScript strict · All scripts via `tsx`
-
----
-
-## Links
-
-| | |
-|---|---|
-| 🌐 Website | [pikakit.com](https://pikakit.com) |
-| 📦 npm | [npmjs.com/package/pikakit](https://www.npmjs.com/package/pikakit) |
-| 📋 Skills | [github.com/pikakit/agent-skills](https://github.com/pikakit/agent-skills) |
-| 🔧 CLI | [github.com/pikakit/add-skill-kit](https://github.com/pikakit/add-skill-kit) |
-
----
 
 <div align="center">
 
-**PikaKit v3.9.129** · 51 skills · 19 Workflows · Strict TypeScript
+**PikaKit v3.9.130** · 53 Skills · 21 Agents · 19 Workflows · Strict TypeScript
 
-```bash
-npx pikakit
-```
-
-[⭐ Star](https://github.com/pikakit/agent-skills) · [Install Now](https://www.npmjs.com/package/pikakit) · [pikakit.com](https://pikakit.com)
+[⭐ Star on GitHub](https://github.com/pikakit/agent-skills) · [Install via npm](https://www.npmjs.com/package/pikakit) · [pikakit.com](https://pikakit.com)
 
 </div>

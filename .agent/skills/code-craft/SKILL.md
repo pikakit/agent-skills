@@ -10,7 +10,7 @@ coordinates_with: ["code-review", "test-architect", "code-constitution"]
 success_metrics: ["0 functions > 20 lines", "0 nesting > 2 levels", "0 magic numbers"]
 metadata:
   author: pikakit
-  version: "3.9.129"
+  version: "3.9.130"
 ---
 
 # Code Craft — Pragmatic Coding Standards
@@ -167,4 +167,4 @@ metadata:
 
 ---
 
-⚡ PikaKit v3.9.129
+⚡ PikaKit v3.9.130
