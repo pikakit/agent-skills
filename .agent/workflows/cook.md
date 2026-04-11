@@ -1,5 +1,5 @@
 ---
-description: Rapid-fire implementation — execute targeted coding tasks directly from instructions or plans with minimal overhead, following existing patterns and verified output.
+description: Rapid-fire implementation â€” execute targeted coding tasks directly from instructions or plans with minimal overhead, following existing patterns and verified output.
 chain: build-web-app
 skills: [code-craft, problem-checker, smart-router, context-engineering, knowledge-compiler]
 agents: [orchestrator, assessor, recovery, learner, backend-specialist, frontend-specialist]
@@ -13,7 +13,7 @@ $ARGUMENTS
 
 ## Purpose
 
-Rapidly implement specific features, components, or logic based on clear instructions — skipping architectural debate to focus on pure coding speed. **Differs from `/build` (creates entire projects) and `/autopilot` (multi-agent orchestration) by executing targeted, single-scope tasks with minimal overhead.** Uses the domain-appropriate specialist agent (auto-routed) with `code-craft` for coding standards.
+Rapidly implement specific features, components, or logic based on clear instructions â€” skipping architectural debate to focus on pure coding speed. **Differs from `/build` (creates entire projects) and `/autopilot` (multi-agent orchestration) by executing targeted, single-scope tasks with minimal overhead.** Uses the domain-appropriate specialist agent (auto-routed) with `code-craft` for coding standards.
 
 ---
 
@@ -90,7 +90,7 @@ instruction ? implement ? verify ? learner.log() ? done
 | **AGENTS** | `learner` |
 | **SKILLS** | `problem-checker`, `knowledge-compiler` |
 
-// turbo — telemetry: phase-4-lint
+// turbo â€” telemetry: phase-4-lint
 ```bash
 npx cross-env OTEL_SERVICE_NAME="workflow:cook" TRACE_ID="$TRACE_ID" npm run lint
 ```
@@ -179,10 +179,10 @@ If implementation introduces errors that cannot be auto-fixed:
 
 ## Key Principles
 
-- **Speed over ceremony** — no planning documents, no architecture debates, just code
-- **Follow existing patterns** — match the codebase style, don't introduce new conventions
-- **Minimal diff** — change only what's needed, no unrelated whitespace or refactoring
-- **Verify before done** — always lint and check IDE problems, even for quick tasks
+- **Speed over ceremony** â€” no planning documents, no architecture debates, just code
+- **Follow existing patterns** â€” match the codebase style, don't introduce new conventions
+- **Minimal diff** â€” change only what's needed, no unrelated whitespace or refactoring
+- **Verify before done** â€” always lint and check IDE problems, even for quick tasks
 
 ---
 

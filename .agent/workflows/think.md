@@ -27,16 +27,23 @@ Activate structured ideation mode for architecture decisions, feature planning, 
 
 ```
 Flow:
-generate options → score(decision_matrix)
+generate options �’ score(decision_matrix)
        ↓
-scores too close? → critic.arbitrate()
+scores too close? �’ critic.arbitrate()
        ↓
-decision made → recommendation + next steps
+decision made �’ recommendation + next steps
 ```
 
 ---
 
 ## 🔴 MANDATORY: Decision Framework
+
+### Phase 0: Pre-flight & Auto-Learned Context
+
+> **Rule 0.5-K:** Auto-learned pattern check.
+
+1. Read `.agent/skills/auto-learned/patterns/` for past failures before proceeding.
+2. Trigger `recovery` agent to run Checkpoint (`git commit -m "chore(checkpoint): pre-think"`).
 
 ### Phase 1: Pre-flight & knowledge-compiler Context
 
@@ -105,7 +112,7 @@ Score each option 1-5:
 | Cost | 20% | ? | ? | ? |
 | **Weighted Score** | 100% | **?** | **?** | **?** |
 
-If scores too close → `critic` arbitrates.
+If scores too close �’ `critic` arbitrates.
 
 Risk assessment for top option:
 - 🔴 **Blockers** — what could make this fail?
@@ -125,8 +132,8 @@ Risk assessment for top option:
 2. If errors/warnings > 0:
    a. Auto-fix: imports, types, lint errors
    b. Re-check @[current_problems]
-   c. If still > 0 → STOP → Notify user
-3. If count = 0 → Proceed to completion
+   c. If still > 0 �’ STOP �’ Notify user
+3. If count = 0 �’ Proceed to completion
 ```
 
 > **Note:** /think produces decisions, not code. This check applies only if any artifacts were generated.
@@ -152,7 +159,7 @@ If the generated decision matrix is flawed, overly generic, or hallucinates cons
 
 ### Constraints
 - ⏱️ Timeline: [deadline]
-- 💰 Budget: [resources]
+- �’� Budget: [resources]
 - 🛠️ Tech: [stack requirements]
 
 ### Option A: [Name] ⭐ RECOMMENDED
@@ -223,7 +230,7 @@ If the generated decision matrix is flawed, overly generic, or hallucinates cons
 
 ---
 
-## 🔗 Workflow Chain
+## �— Workflow Chain
 
 **Skills Loaded (6):**
 

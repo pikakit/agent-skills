@@ -1,5 +1,5 @@
 ---
-description: Full-stack application factory — transform natural language descriptions into production-ready apps with multi-agent coordination, smart stack defaults, and automated verification.
+description: Full-stack application factory â€” transform natural language descriptions into production-ready apps with multi-agent coordination, smart stack defaults, and automated verification.
 chain: build-web-app
 skills: [app-scaffold, react-pro, nextjs-pro, project-planner, studio, design-system, code-craft, data-modeler, api-architect, test-architect, idea-storm, nodejs-pro, problem-checker, context-engineering, knowledge-compiler]
 agents: [orchestrator, assessor, recovery, critic, learner, project-planner, database-architect, backend-specialist, frontend-specialist, test-engineer, mobile-developer, devops-engineer, security-auditor]
@@ -54,12 +54,12 @@ success ? learner.log(patterns)
 
 | Field | Value |
 |-------|-------|
-| **INPUT** | $ARGUMENTS (app description — what to build) |
+| **INPUT** | $ARGUMENTS (app description â€” what to build) |
 | **OUTPUT** | Requirements document: app type, users, core features, stack |
 | **AGENTS** | `project-planner`, `assessor` |
 | **SKILLS** | `idea-storm`, `project-planner`, `context-engineering` |
 
-// turbo — telemetry: phase-2-requirements
+// turbo â€” telemetry: phase-2-requirements
 
 1. If requirements are incomplete, ask clarifying questions:
 
@@ -101,7 +101,7 @@ success ? learner.log(patterns)
 | **AGENTS** | `project-planner` |
 | **SKILLS** | `project-planner`, `code-craft` |
 
-// turbo — telemetry: phase-3-planning
+// turbo â€” telemetry: phase-3-planning
 
 1. Create PLAN.md with:
    - Task breakdown and agent assignments
@@ -124,7 +124,7 @@ success ? learner.log(patterns)
 
 > **Skip this phase** if the app has no UI (API-only, CLI).
 
-// turbo — telemetry: phase-4-studio-search
+// turbo â€” telemetry: phase-4-studio-search
 ```bash
 npx cross-env OTEL_SERVICE_NAME="workflow:build" TRACE_ID="$TRACE_ID" node .agent/skills/studio/scripts/search.ts "<app_type> <style> <keywords>" --design-system -p "<Project Name>"
 ```
@@ -138,7 +138,7 @@ npx cross-env OTEL_SERVICE_NAME="workflow:build" TRACE_ID="$TRACE_ID" node .agen
 | **AGENTS** | `orchestrator`, `critic`, `data-modeler`, `nodejs-pro`, `react-pro`, `test-architect` |
 | **SKILLS** | `data-modeler`, `nodejs-pro`, `api-architect`, `code-craft`, `test-architect` |
 
-// turbo — telemetry: phase-5-build
+// turbo â€” telemetry: phase-5-build
 
 ```mermaid
 graph TD
@@ -170,22 +170,22 @@ graph TD
 | **AGENTS** | `test-architect`, `learner` |
 | **SKILLS** | `test-architect`, `problem-checker`, `knowledge-compiler` |
 
-// turbo — telemetry: phase-6-test
+// turbo â€” telemetry: phase-6-test
 ```bash
 npx cross-env OTEL_SERVICE_NAME="workflow:build" TRACE_ID="$TRACE_ID" npm test
 ```
 
-// turbo — telemetry: phase-6-lint-typecheck
+// turbo â€” telemetry: phase-6-lint-typecheck
 ```bash
 npx cross-env OTEL_SERVICE_NAME="workflow:build" TRACE_ID="$TRACE_ID" npm run lint; npx cross-env OTEL_SERVICE_NAME="workflow:build" TRACE_ID="$TRACE_ID" npx tsc --noEmit
 ```
 
-// turbo — telemetry: phase-6-preview
+// turbo â€” telemetry: phase-6-preview
 ```bash
 npx cross-env OTEL_SERVICE_NAME="workflow:build" TRACE_ID="$TRACE_ID" npm run dev
 ```
 
-**Exit Gate — ALL must pass:**
+**Exit Gate â€” ALL must pass:**
 
 | Check | Target | How to Verify |
 |-------|--------|---------------|
@@ -287,11 +287,11 @@ If the Exit Gates fail and cannot be resolved automatically:
 
 ## Key Principles
 
-- **Requirements first** — discover what to build before building, ask clarifying questions
-- **Smart stack defaults** — sensible tech choices unless user specifies otherwise
-- **Parallel execution** — independent agents run simultaneously for faster delivery
-- **Working preview required** — never mark complete without a running dev server
-- **Exit gate enforced** — IDE problems = 0, tests passing, types valid before completion
+- **Requirements first** â€” discover what to build before building, ask clarifying questions
+- **Smart stack defaults** â€” sensible tech choices unless user specifies otherwise
+- **Parallel execution** â€” independent agents run simultaneously for faster delivery
+- **Working preview required** â€” never mark complete without a running dev server
+- **Exit gate enforced** â€” IDE problems = 0, tests passing, types valid before completion
 
 ---
 

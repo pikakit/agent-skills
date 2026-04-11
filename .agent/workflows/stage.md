@@ -1,5 +1,5 @@
 ---
-description: Local development sandbox — auto-detect services, orchestrate multi-service startup with dependency ordering, resolve port conflicts, integrate Docker Compose, and monitor health.
+description: Local development sandbox â€” auto-detect services, orchestrate multi-service startup with dependency ordering, resolve port conflicts, integrate Docker Compose, and monitor health.
 skills: [server-ops, cicd-pipeline, context-engineering, problem-checker, knowledge-compiler]
 agents: [orchestrator, assessor, recovery, learner, devops-engineer]
 ---
@@ -12,7 +12,7 @@ $ARGUMENTS
 
 ## Purpose
 
-Manage local development environments with multi-service orchestration — auto-detect project type, start/stop services with dependency ordering, resolve port conflicts, integrate Docker Compose for infrastructure, and monitor service health. **Differs from `/launch` (production deployment) and `/monitor` (production observability) by focusing on local development sandbox management with hot-reload and debugging support.** Uses `cicd-pipeline` with `server-ops` for service management.
+Manage local development environments with multi-service orchestration â€” auto-detect project type, start/stop services with dependency ordering, resolve port conflicts, integrate Docker Compose for infrastructure, and monitor service health. **Differs from `/launch` (production deployment) and `/monitor` (production observability) by focusing on local development sandbox management with hot-reload and debugging support.** Uses `cicd-pipeline` with `server-ops` for service management.
 
 ---
 
@@ -74,7 +74,7 @@ health_check ? learner.log(config)
 | **AGENTS** | `cicd-pipeline`, `assessor` |
 | **SKILLS** | `server-ops`, `context-engineering` |
 
-// turbo — telemetry: phase-2-detect
+// turbo â€” telemetry: phase-2-detect
 
 Auto-detect project type:
 
@@ -105,7 +105,7 @@ packages/db/ ? Database service
 | **AGENTS** | `cicd-pipeline`, `orchestrator` |
 | **SKILLS** | `server-ops` |
 
-// turbo — telemetry: phase-3-start
+// turbo â€” telemetry: phase-3-start
 
 Port allocation:
 
@@ -113,8 +113,8 @@ Port allocation:
 |---------|---------|---------------|
 | Frontend | 3000 | 3000-3009 |
 | Backend API | 3001 | 3010-3019 |
-| PostgreSQL | 5432 | — |
-| Redis | 6379 | — |
+| PostgreSQL | 5432 | â€” |
+| Redis | 6379 | â€” |
 | Prisma Studio | 5555 | 5555-5559 |
 | Storybook | 6006 | 6006-6009 |
 
@@ -152,14 +152,14 @@ npx cross-env OTEL_SERVICE_NAME="workflow:stage" TRACE_ID="$TRACE_ID" node .agen
 | **AGENTS** | `learner` |
 | **SKILLS** | `server-ops`, `problem-checker`, `knowledge-compiler` |
 
-// turbo — telemetry: phase-4-health
+// turbo â€” telemetry: phase-4-health
 
 Health gates:
 
 | Service | Wait For | Health Check |
 |---------|----------|-------------|
-| Database | — | TCP port open |
-| Redis | — | `PING ? PONG` |
+| Database | â€” | TCP port open |
+| Redis | â€” | `PING ? PONG` |
 | API Server | Database, Redis | `GET /health ? 200` |
 | Frontend | API Server | `GET / ? 200` |
 
@@ -247,11 +247,11 @@ If port orchestration fails or Docker containers hang:
 
 ## Key Principles
 
-- **Auto-detect** — smart project type detection, zero config needed
-- **Dependency ordering** — start infra before backend before frontend
-- **Docker for infra, local for code** — hybrid mode for best DX
-- **Port conflict resolution** — never fail on port collision, auto-resolve
-- **Health gates** — verify each service before starting dependents
+- **Auto-detect** â€” smart project type detection, zero config needed
+- **Dependency ordering** â€” start infra before backend before frontend
+- **Docker for infra, local for code** â€” hybrid mode for best DX
+- **Port conflict resolution** â€” never fail on port collision, auto-resolve
+- **Health gates** â€” verify each service before starting dependents
 
 ---
 

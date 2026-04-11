@@ -1,5 +1,5 @@
 ---
-description: End-to-end mobile development — React Native, Flutter, or native iOS/Android with push notifications, deep linking, offline-first architecture, and app store submission.
+description: End-to-end mobile development â€” React Native, Flutter, or native iOS/Android with push notifications, deep linking, offline-first architecture, and app store submission.
 skills: [mobile-developer, idea-storm, mobile-design, security-scanner, cicd-pipeline, perf-optimizer, problem-checker, smart-router, knowledge-compiler, context-engineering]
 agents: [orchestrator, assessor, recovery, critic, learner, project-planner, mobile-developer, backend-specialist, security-auditor, test-engineer]
 ---
@@ -12,7 +12,7 @@ $ARGUMENTS
 
 ## Purpose
 
-Orchestrate mobile app development from concept to app store submission — supporting React Native, Flutter, and native iOS/Android with push notifications, deep linking, offline sync, and CI/CD pipeline. **Differs from `/build` (general web apps) and `/game` (game-specific concerns) by focusing on mobile-specific platform conventions, touch interaction, offline-first architecture, and store submission requirements.** Uses `mobile-developer` with `mobile-design` for cross-platform development, coordinated by `orchestrator` for parallel implementation tracks.
+Orchestrate mobile app development from concept to app store submission â€” supporting React Native, Flutter, and native iOS/Android with push notifications, deep linking, offline sync, and CI/CD pipeline. **Differs from `/build` (general web apps) and `/game` (game-specific concerns) by focusing on mobile-specific platform conventions, touch interaction, offline-first architecture, and store submission requirements.** Uses `mobile-developer` with `mobile-design` for cross-platform development, coordinated by `orchestrator` for parallel implementation tracks.
 
 ---
 
@@ -57,7 +57,7 @@ verify ? learner.log(patterns)
 | **AGENTS** | `project-planner`, `assessor` |
 | **SKILLS** | `mobile-developer`, `idea-storm`, `context-engineering` |
 
-// turbo — telemetry: phase-2-requirements
+// turbo â€” telemetry: phase-2-requirements
 
 1. Ask critical questions:
 
@@ -69,7 +69,7 @@ verify ? learner.log(patterns)
 | Offline? | Required / Nice-to-have / No | Sync architecture |
 | Devices? | Phone / Tablet / Both | Layout strategy |
 
-2. Calculate MFRI (Mobile Feasibility Risk Index) — MFRI < 3 ? Redesign
+2. Calculate MFRI (Mobile Feasibility Risk Index) â€” MFRI < 3 ? Redesign
 3. `assessor` evaluates platform and framework risks
 
 ### Phase 3: Design & Architecture
@@ -81,7 +81,7 @@ verify ? learner.log(patterns)
 | **AGENTS** | `mobile-developer` |
 | **SKILLS** | `mobile-design`, `mobile-developer` |
 
-// turbo — telemetry: phase-3-design
+// turbo â€” telemetry: phase-3-design
 
 Platform conventions:
 
@@ -101,7 +101,7 @@ Platform conventions:
 | **AGENTS** | `orchestrator`, `mobile-developer` |
 | **SKILLS** | `mobile-developer`, `smart-router` |
 
-// turbo — telemetry: phase-4-core
+// turbo â€” telemetry: phase-4-core
 
 1. Initialize project:
 
@@ -127,7 +127,7 @@ Platform conventions:
 | **AGENTS** | `mobile-developer`, `nodejs-pro` |
 | **SKILLS** | `mobile-developer` |
 
-// turbo — telemetry: phase-5-features
+// turbo â€” telemetry: phase-5-features
 
 **Push Notifications:**
 
@@ -162,7 +162,7 @@ Platform conventions:
 | **AGENTS** | `security-scanner` |
 | **SKILLS** | `security-scanner` |
 
-// turbo — telemetry: phase-6-security
+// turbo â€” telemetry: phase-6-security
 
 Security checklist:
 - [ ] Secure storage (Keychain / Keystore)
@@ -180,7 +180,7 @@ Security checklist:
 | **AGENTS** | `mobile-developer` |
 | **SKILLS** | `mobile-developer`, `cicd-pipeline` |
 
-// turbo — telemetry: phase-7-cicd
+// turbo â€” telemetry: phase-7-cicd
 
 | Tool | Purpose |
 |------|---------|
@@ -204,7 +204,7 @@ Security checklist:
 | **AGENTS** | `test-architect`, `learner` |
 | **SKILLS** | `mobile-developer`, `perf-optimizer`, `problem-checker`, `knowledge-compiler` |
 
-// turbo — telemetry: phase-8-test
+// turbo â€” telemetry: phase-8-test
 ```bash
 npx cross-env OTEL_SERVICE_NAME="workflow:mobile" TRACE_ID="$TRACE_ID" npm run test:mobile
 ```
@@ -309,11 +309,11 @@ If scaffolding or builds fail completely due to native dependencies or environme
 
 ## Key Principles
 
-- **Platform-native feel** — respect iOS HIG and Material Design conventions
-- **Offline-first** — design for bad connectivity, don't assume always-online
-- **FlatList always** — never use ScrollView for lists, always FlatList/FlashList
-- **Permission timing** — show value before requesting permissions (notifications, location)
-- **Deep link from day one** — integrate universal/app links early, not as afterthought
+- **Platform-native feel** â€” respect iOS HIG and Material Design conventions
+- **Offline-first** â€” design for bad connectivity, don't assume always-online
+- **FlatList always** â€” never use ScrollView for lists, always FlatList/FlashList
+- **Permission timing** â€” show value before requesting permissions (notifications, location)
+- **Deep link from day one** â€” integrate universal/app links early, not as afterthought
 
 ---
 

@@ -1,5 +1,5 @@
 ---
-description: Full-lifecycle game development — platform-specific engine routing, core loop architecture, asset pipeline optimization, multiplayer networking, and store-ready builds.
+description: Full-lifecycle game development â€” platform-specific engine routing, core loop architecture, asset pipeline optimization, multiplayer networking, and store-ready builds.
 skills: [game-development, perf-optimizer, idea-storm, problem-checker, smart-router, knowledge-compiler, context-engineering]
 agents: [orchestrator, assessor, recovery, critic, learner, project-planner, game-developer, backend-specialist, test-engineer]
 ---
@@ -12,7 +12,7 @@ $ARGUMENTS
 
 ## Purpose
 
-Orchestrate game development from concept to published game — routing to platform-specific engines, implementing core game loops, managing asset pipelines, and handling multiplayer networking. **Differs from `/build` (general web/mobile apps) by focusing on game-specific concerns: frame budgets, physics, ECS architecture, networking models, and store submission.** Uses `game-development` with `game-development` skill, coordinated by `orchestrator` for parallel art + audio + code pipelines.
+Orchestrate game development from concept to published game â€” routing to platform-specific engines, implementing core game loops, managing asset pipelines, and handling multiplayer networking. **Differs from `/build` (general web/mobile apps) by focusing on game-specific concerns: frame budgets, physics, ECS architecture, networking models, and store submission.** Uses `game-development` with `game-development` skill, coordinated by `orchestrator` for parallel art + audio + code pipelines.
 
 ---
 
@@ -99,8 +99,8 @@ verify ? learner.log(patterns)
 
 | Target | Budget/Frame | Breakdown |
 |--------|-------------|-----------|
-| **60 FPS** | 16.67ms | Input 1ms · Physics 3ms · AI 2ms · Logic 4ms · Render 5ms |
-| **30 FPS** | 33.33ms | Input 1ms · Physics 5ms · AI 5ms · Logic 10ms · Render 10ms |
+| **60 FPS** | 16.67ms | Input 1ms ï¿½ Physics 3ms ï¿½ AI 2ms ï¿½ Logic 4ms ï¿½ Render 5ms |
+| **30 FPS** | 33.33ms | Input 1ms ï¿½ Physics 5ms ï¿½ AI 5ms ï¿½ Logic 10ms ï¿½ Render 10ms |
 
 2. Select architecture pattern:
 
@@ -126,7 +126,7 @@ verify ? learner.log(patterns)
 
 | Asset | Optimization | Target |
 |-------|-------------|--------|
-| Sprites | Texture atlasing | <4096×4096 per atlas |
+| Sprites | Texture atlasing | <4096ï¿½4096 per atlas |
 | 3D Models | LOD, mesh simplification | <10K tris (mobile) |
 | Audio SFX | Mono, 22kHz, OGG | <100KB per sound |
 | Shaders | GPU-efficient | Platform-appropriate |
@@ -287,11 +287,11 @@ If game loop, physics engine, or multiplayer netcode breaks functionality:
 
 ## Key Principles
 
-- **Profile before optimizing** — measure with profiler, don't guess bottlenecks
-- **Data-driven design** — levels, configs, and balancing in JSON, not hardcoded
-- **Abstract input** — map actions to inputs, support keyboard + gamepad + touch
-- **Object pooling** — never create/destroy in hot loops, pool everything
-- **Fixed timestep** — deterministic physics separate from render framerate
+- **Profile before optimizing** â€” measure with profiler, don't guess bottlenecks
+- **Data-driven design** â€” levels, configs, and balancing in JSON, not hardcoded
+- **Abstract input** â€” map actions to inputs, support keyboard + gamepad + touch
+- **Object pooling** â€” never create/destroy in hot loops, pool everything
+- **Fixed timestep** â€” deterministic physics separate from render framerate
 
 ---
 

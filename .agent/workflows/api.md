@@ -1,5 +1,5 @@
 ---
-description: End-to-end API development pipeline — design, implement, and ship production-grade REST, GraphQL, or tRPC services with OpenAPI specs, Prisma ORM, and full test coverage.
+description: End-to-end API development pipeline â€” design, implement, and ship production-grade REST, GraphQL, or tRPC services with OpenAPI specs, Prisma ORM, and full test coverage.
 chain: api-development
 skills: [api-architect, data-modeler, nodejs-pro, test-architect, security-scanner, auth-patterns, context-engineering, problem-checker, knowledge-compiler]
 agents: [orchestrator, assessor, recovery, learner, backend-specialist, test-engineer]
@@ -13,7 +13,7 @@ $ARGUMENTS
 
 ## Purpose
 
-Build well-architected APIs from specification to implementation — covering design, database schema, route handlers, authentication, testing, and OpenAPI documentation. **Combines `nodejs-pro` for implementation with `test-architect` for validation, using `api-architect` for design decisions and `data-modeler` for schema design.** Differs from `/build` by focusing exclusively on API/backend without frontend.
+Build well-architected APIs from specification to implementation â€” covering design, database schema, route handlers, authentication, testing, and OpenAPI documentation. **Combines `nodejs-pro` for implementation with `test-architect` for validation, using `api-architect` for design decisions and `data-modeler` for schema design.** Differs from `/build` by focusing exclusively on API/backend without frontend.
 
 ---
 
@@ -52,12 +52,12 @@ learner.log(patterns)
 
 | Field | Value |
 |-------|-------|
-| **INPUT** | $ARGUMENTS (user request — API description, tech stack, requirements) |
+| **INPUT** | $ARGUMENTS (user request â€” API description, tech stack, requirements) |
 | **OUTPUT** | API design spec: endpoints/schema, data models, auth strategy |
 | **AGENTS** | `nodejs-pro`, `assessor` |
 | **SKILLS** | `api-architect`, `context-engineering` |
 
-// turbo — telemetry: phase-2-design
+// turbo â€” telemetry: phase-2-design
 
 1. Clarify requirements if vague:
 
@@ -92,14 +92,14 @@ ASK if not specified:
 | **AGENTS** | `nodejs-pro`, `orchestrator` |
 | **SKILLS** | `data-modeler` |
 
-// turbo — telemetry: phase-3-schema
+// turbo â€” telemetry: phase-3-schema
 
 1. Design data models with relationships (1:1, 1:N, M:N)
 2. Define indexes for query optimization
 3. Plan migration strategy (incremental, reversible)
 4. Generate Prisma schema or equivalent ORM config
 
-// turbo — telemetry: phase-2-schema-generate
+// turbo â€” telemetry: phase-2-schema-generate
 ```bash
 npx cross-env OTEL_SERVICE_NAME="workflow:api" TRACE_ID="$TRACE_ID" npx prisma generate
 ```
@@ -113,13 +113,13 @@ npx cross-env OTEL_SERVICE_NAME="workflow:api" TRACE_ID="$TRACE_ID" npx prisma g
 | **AGENTS** | `nodejs-pro` |
 | **SKILLS** | `nodejs-pro`, `api-architect`, `auth-patterns` |
 
-// turbo — telemetry: phase-4-implement
+// turbo â€” telemetry: phase-4-implement
 
 1. Scaffold project structure:
 
 ```
 src/
-+-- routes/          # Route handlers (thin — delegate to services)
++-- routes/          # Route handlers (thin â€” delegate to services)
 +-- controllers/     # Request parsing, response formatting
 +-- services/        # Business logic (pure, testable)
 +-- middleware/       # Auth, validation, rate limiting, error handling
@@ -136,7 +136,7 @@ prisma/
 6. Add rate limiting middleware
 7. Implement pagination, filtering, sorting
 
-// turbo — telemetry: phase-3-typecheck
+// turbo â€” telemetry: phase-3-typecheck
 ```bash
 npx cross-env OTEL_SERVICE_NAME="workflow:api" TRACE_ID="$TRACE_ID" npx tsc --noEmit
 ```
@@ -150,14 +150,14 @@ npx cross-env OTEL_SERVICE_NAME="workflow:api" TRACE_ID="$TRACE_ID" npx tsc --no
 | **AGENTS** | `test-architect` |
 | **SKILLS** | `test-architect` |
 
-// turbo — telemetry: phase-5-test
+// turbo â€” telemetry: phase-5-test
 
-1. **Unit tests** — Service layer, validators, utilities (AAA pattern)
-2. **Integration tests** — API endpoints with Supertest (actual HTTP calls)
-3. **Auth tests** — Protected routes, token validation, role-based access
-4. **Error path tests** — Invalid input, not found, unauthorized, rate limiting
+1. **Unit tests** â€” Service layer, validators, utilities (AAA pattern)
+2. **Integration tests** â€” API endpoints with Supertest (actual HTTP calls)
+3. **Auth tests** â€” Protected routes, token validation, role-based access
+4. **Error path tests** â€” Invalid input, not found, unauthorized, rate limiting
 
-// turbo — telemetry: phase-4-test-coverage
+// turbo â€” telemetry: phase-4-test-coverage
 ```bash
 npx cross-env OTEL_SERVICE_NAME="workflow:api" TRACE_ID="$TRACE_ID" npm test -- --coverage
 ```
@@ -180,7 +180,7 @@ Coverage targets:
 | **AGENTS** | `nodejs-pro`, `learner` |
 | **SKILLS** | `security-scanner`, `api-architect`, `problem-checker`, `knowledge-compiler` |
 
-// turbo — telemetry: phase-6-secure
+// turbo â€” telemetry: phase-6-secure
 
 1. **Security validation** (OWASP Top 10):
    - SQL injection protection (parameterized queries via ORM)
@@ -203,7 +203,7 @@ Coverage targets:
    - API endpoint reference
    - Testing instructions
 
-// turbo — telemetry: phase-5-lint-typecheck
+// turbo â€” telemetry: phase-5-lint-typecheck
 ```bash
 npx cross-env OTEL_SERVICE_NAME="workflow:api" TRACE_ID="$TRACE_ID" npm run lint; npx cross-env OTEL_SERVICE_NAME="workflow:api" TRACE_ID="$TRACE_ID" npx tsc --noEmit
 ```
@@ -298,7 +298,7 @@ If the Exit Gates fail and cannot be resolved automatically:
 | Tests | ? [X] passing | `src/__tests__/` |
 | Schema | ? [X] models | `prisma/schema.prisma` |
 | OpenAPI | ? Generated | `docs/openapi.yaml` |
-| Security | ? OWASP validated | — |
+| Security | ? OWASP validated | â€” |
 
 ### Test Coverage
 
@@ -332,11 +332,11 @@ If the Exit Gates fail and cannot be resolved automatically:
 
 ## Key Principles
 
-- **Design first** — plan endpoints, schemas, and auth before writing code
-- **Type safety throughout** — TypeScript on every layer, Zod for runtime validation
-- **Test at boundaries** — integration tests for endpoints, unit tests for logic
-- **Security by default** — auth, validation, rate limiting from the start, not bolted on
-- **Thin controllers, fat services** — route handlers parse/respond, services contain logic
+- **Design first** â€” plan endpoints, schemas, and auth before writing code
+- **Type safety throughout** â€” TypeScript on every layer, Zod for runtime validation
+- **Test at boundaries** â€” integration tests for endpoints, unit tests for logic
+- **Security by default** â€” auth, validation, rate limiting from the start, not bolted on
+- **Thin controllers, fat services** â€” route handlers parse/respond, services contain logic
 
 ---
 

@@ -1,5 +1,5 @@
 ---
-description: Targeted error remediation — triage, patch, and verify specific errors, lint failures, or broken tests with minimal diff and automatic rollback safety.
+description: Targeted error remediation â€” triage, patch, and verify specific errors, lint failures, or broken tests with minimal diff and automatic rollback safety.
 chain: debug-complex
 skills: [debug-pro, code-craft, problem-checker, context-engineering, smart-router, knowledge-compiler]
 agents: [orchestrator, assessor, recovery, learner, debugger, backend-specialist, frontend-specialist, test-engineer]
@@ -13,7 +13,7 @@ $ARGUMENTS
 
 ## Purpose
 
-Apply immediate, targeted fixes for known errors, lint issues, or test failures — focusing on remediation rather than root cause analysis. **Differs from `/diagnose` (investigates unknown root causes with hypothesis testing) by assuming the problem is already identified and applying the solution directly.** Uses the domain-appropriate specialist agent (auto-routed) with `debug-pro` for fix methodology and `code-craft` for coding standards.
+Apply immediate, targeted fixes for known errors, lint issues, or test failures â€” focusing on remediation rather than root cause analysis. **Differs from `/diagnose` (investigates unknown root causes with hypothesis testing) by assuming the problem is already identified and applying the solution directly.** Uses the domain-appropriate specialist agent (auto-routed) with `debug-pro` for fix methodology and `code-craft` for coding standards.
 
 ---
 
@@ -73,7 +73,7 @@ learner.log(pattern)
 | **AGENTS** | `debugger`, `assessor` |
 | **SKILLS** | `debug-pro`, `context-engineering` |
 
-// turbo — telemetry: phase-2-triage
+// turbo â€” telemetry: phase-2-triage
 
 1. Read error message or failure log
 2. Locate the specific file and line
@@ -98,10 +98,10 @@ learner.log(pattern)
 | **AGENTS** | `orchestrator`, Auto-routed specialist (`nodejs-pro`, `react-pro`, etc.) |
 | **SKILLS** | `code-craft`, `debug-pro`, `smart-router` |
 
-// turbo — telemetry: phase-3-fix
+// turbo â€” telemetry: phase-3-fix
 
 1. Apply the fix following existing code patterns
-2. Minimal diff — change only what's needed
+2. Minimal diff â€” change only what's needed
 3. No unrelated formatting or refactoring
 
 ### Phase 4: Verification
@@ -113,12 +113,12 @@ learner.log(pattern)
 | **AGENTS** | `test-architect`, `learner` |
 | **SKILLS** | `problem-checker`, `knowledge-compiler` |
 
-// turbo — telemetry: phase-4-test
+// turbo â€” telemetry: phase-4-test
 ```bash
 npx cross-env OTEL_SERVICE_NAME="workflow:fix" TRACE_ID="$TRACE_ID" npm test
 ```
 
-// turbo — telemetry: phase-4-lint-typecheck
+// turbo â€” telemetry: phase-4-lint-typecheck
 ```bash
 npx cross-env OTEL_SERVICE_NAME="workflow:fix" TRACE_ID="$TRACE_ID" npm run lint; npx cross-env OTEL_SERVICE_NAME="workflow:fix" TRACE_ID="$TRACE_ID" npx tsc --noEmit
 ```
@@ -213,10 +213,10 @@ If the attempted fix introduces new errors or fails verification:
 
 ## Key Principles
 
-- **Fix, don't investigate** — assume the problem is known, apply the solution
-- **Minimal diff** — change only what's needed, no unrelated refactoring
-- **Verify immediately** — run tests and lint after every fix
-- **Rollback ready** — checkpoint before fixing, restore on failure
+- **Fix, don't investigate** â€” assume the problem is known, apply the solution
+- **Minimal diff** â€” change only what's needed, no unrelated refactoring
+- **Verify immediately** â€” run tests and lint after every fix
+- **Rollback ready** â€” checkpoint before fixing, restore on failure
 
 ---
 

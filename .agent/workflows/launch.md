@@ -1,5 +1,5 @@
 ---
-description: Zero-downtime production release pipeline — pre-flight security gates, automated build verification, health-check monitoring, and instant rollback on failure.
+description: Zero-downtime production release pipeline â€” pre-flight security gates, automated build verification, health-check monitoring, and instant rollback on failure.
 chain: deploy-production
 skills: [cicd-pipeline, server-ops, security-scanner, code-review, problem-checker, context-engineering, knowledge-compiler]
 agents: [orchestrator, assessor, recovery, learner, security-auditor, devops-engineer, test-engineer]
@@ -73,7 +73,7 @@ recovery.restore(checkpoint) ? learner.log(failure)
 
 **Gate 1: Code Quality**
 
-// turbo — telemetry: phase-2-preflight
+// turbo â€” telemetry: phase-2-preflight
 ```bash
 npx cross-env OTEL_SERVICE_NAME="workflow:launch" TRACE_ID="$TRACE_ID" npx tsc --noEmit; npx cross-env OTEL_SERVICE_NAME="workflow:launch" TRACE_ID="$TRACE_ID" npm run lint; npx cross-env OTEL_SERVICE_NAME="workflow:launch" TRACE_ID="$TRACE_ID" npm test
 ```
@@ -116,7 +116,7 @@ npx cross-env OTEL_SERVICE_NAME="workflow:launch" TRACE_ID="$TRACE_ID" npx tsc -
 1. `recovery` saves current state (git tag + commit hash)
 2. Build production bundle
 
-// turbo — telemetry: phase-3-build
+// turbo â€” telemetry: phase-3-build
 ```bash
 npx cross-env OTEL_SERVICE_NAME="workflow:launch" TRACE_ID="$TRACE_ID" npm run build
 ```
@@ -141,14 +141,14 @@ npx cross-env OTEL_SERVICE_NAME="workflow:launch" TRACE_ID="$TRACE_ID" npm run b
 | **SKILLS** | `cicd-pipeline`, `server-ops` |
 
 1. Execute platform-specific deploy command
-// turbo — telemetry: phase-4-deploy
+// turbo â€” telemetry: phase-4-deploy
 2. Run health check (60s timeout):
 
 | Check | Endpoint | Expected |
 |-------|----------|----------|
 | API Status | `GET /api/health` | 200 OK |
 | Database | `GET /api/health/db` | 200 OK |
-| Response Time | — | < 2000ms |
+| Response Time | â€” | < 2000ms |
 
 3. If health check fails ? Phase 5 (Auto-Rollback)
 4. If health check passes ? `learner` logs deploy success
@@ -303,11 +303,11 @@ If deployment automation fails completely or pre-flights break the workspace:
 
 ## Key Principles
 
-- **Never skip security** — always scan for vulnerabilities before deploy
-- **Rollback-first** — checkpoint before deploy, auto-revert on failure
-- **Health check** — verify after deploy with 60s timeout
-- **Zero-downtime** — no user-facing interruption during deployment
-- **Document changes** — update changelog and notify team automatically
+- **Never skip security** â€” always scan for vulnerabilities before deploy
+- **Rollback-first** â€” checkpoint before deploy, auto-revert on failure
+- **Health check** â€” verify after deploy with 60s timeout
+- **Zero-downtime** â€” no user-facing interruption during deployment
+- **Document changes** â€” update changelog and notify team automatically
 
 ---
 

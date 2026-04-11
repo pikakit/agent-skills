@@ -1,5 +1,5 @@
 ---
-description: Autonomous multi-agent orchestration — coordinate 3+ specialist agents in parallel with automated verification, conflict resolution, and continuous execution.
+description: Autonomous multi-agent orchestration â€” coordinate 3+ specialist agents in parallel with automated verification, conflict resolution, and continuous execution.
 chain: build-web-app
 skills: [lifecycle-orchestrator, execution-reporter, context-engineering, project-planner, studio, problem-checker, idea-storm, design-system, test-architect, security-scanner, knowledge-compiler]
 agents: [orchestrator, assessor, recovery, critic, learner, project-planner, frontend-specialist, backend-specialist, database-architect, security-auditor, test-engineer, devops-engineer, mobile-developer]
@@ -13,7 +13,7 @@ $ARGUMENTS
 
 ## Purpose
 
-Coordinate 3+ specialist agents for complex multi-domain tasks — planning through parallel execution to verification. **Differs from `/build` (sequential new-app creation) and `/cook` (single-scope targeted tasks) by orchestrating multiple specialists simultaneously.** Uses all 5 meta-agents.
+Coordinate 3+ specialist agents for complex multi-domain tasks â€” planning through parallel execution to verification. **Differs from `/build` (sequential new-app creation) and `/cook` (single-scope targeted tasks) by orchestrating multiple specialists simultaneously.** Uses all 5 meta-agents.
 
 > **MINIMUM 3 SPECIALISTS.** Fewer than 3 ? use direct delegation.
 
@@ -56,12 +56,12 @@ success ? learner.log(patterns)
 
 | Field | Value |
 |-------|-------|
-| **INPUT** | $ARGUMENTS (user request — feature/app description) |
+| **INPUT** | $ARGUMENTS (user request â€” feature/app description) |
 | **OUTPUT** | PLAN.md with task breakdown, agent assignments, dependency graph |
 | **AGENTS** | `project-planner`, `assessor` |
 | **SKILLS** | `project-planner`, `idea-storm`, `context-engineering` |
 
-// turbo — telemetry: phase-2-planning
+// turbo â€” telemetry: phase-2-planning
 
 1. Identify required domains ? select agents:
 
@@ -91,7 +91,7 @@ success ? learner.log(patterns)
 | **AGENTS** | `assessor`, `recovery` |
 | **SKILLS** | `lifecycle-orchestrator` |
 
-// turbo — telemetry: phase-3-safety
+// turbo â€” telemetry: phase-3-safety
 
 1. `assessor` evaluates plan risk:
 
@@ -115,7 +115,7 @@ success ? learner.log(patterns)
 
 > **Skip this phase** if the task has no UI component.
 
-// turbo — telemetry: phase-4-studio-search
+// turbo â€” telemetry: phase-4-studio-search
 ```bash
 npx cross-env OTEL_SERVICE_NAME="workflow:autopilot" TRACE_ID="$TRACE_ID" node .agent/skills/studio/scripts/search.ts "<app_type> <style> <keywords>" --design-system -p "<Project Name>"
 ```
@@ -131,7 +131,7 @@ Apply design tokens (colors, typography, effects) before building components.
 | **AGENTS** | `orchestrator`, `critic`, 3+ domain specialists per plan |
 | **SKILLS** | Per agent specialization |
 
-// turbo — telemetry: phase-5-execution
+// turbo â€” telemetry: phase-5-execution
 
 ```mermaid
 graph TD
@@ -171,17 +171,17 @@ graph TD
 | **AGENTS** | `test-architect`, `learner` |
 | **SKILLS** | `test-architect`, `problem-checker`, `security-scanner`, `knowledge-compiler` |
 
-// turbo — telemetry: phase-6-test
+// turbo â€” telemetry: phase-6-test
 ```bash
 npx cross-env OTEL_SERVICE_NAME="workflow:autopilot" TRACE_ID="$TRACE_ID" npm test
 ```
 
-// turbo — telemetry: phase-6-lint-typecheck
+// turbo â€” telemetry: phase-6-lint-typecheck
 ```bash
 npx cross-env OTEL_SERVICE_NAME="workflow:autopilot" TRACE_ID="$TRACE_ID" npm run lint; npx cross-env OTEL_SERVICE_NAME="workflow:autopilot" TRACE_ID="$TRACE_ID" npx tsc --noEmit
 ```
 
-**Exit Gate — ALL must pass:**
+**Exit Gate â€” ALL must pass:**
 
 | Check | Target | How to Verify |
 |-------|--------|---------------|
@@ -297,11 +297,11 @@ If the Exit Gates fail and cannot be resolved automatically:
 
 ## Key Principles
 
-- **Minimum 3 agents** — autopilot means multi-specialist coordination, not single-agent delegation
-- **Plan first, execute after** — no execution without approved PLAN.md
-- **Parallel by default** — independent agents run simultaneously to reduce total time
-- **Context passing mandatory** — every sub-agent receives full context (request, decisions, prior work)
-- **Exit gate enforced** — IDE problems = 0, security scan passed, all tests green before completion
+- **Minimum 3 agents** â€” autopilot means multi-specialist coordination, not single-agent delegation
+- **Plan first, execute after** â€” no execution without approved PLAN.md
+- **Parallel by default** â€” independent agents run simultaneously to reduce total time
+- **Context passing mandatory** â€” every sub-agent receives full context (request, decisions, prior work)
+- **Exit gate enforced** â€” IDE problems = 0, security scan passed, all tests green before completion
 
 ---
 

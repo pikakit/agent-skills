@@ -1,5 +1,5 @@
 ---
-description: Defense-in-depth code review — four-layer validation across build, tests, security, and logic to eliminate false completion claims with evidence-based verification.
+description: Defense-in-depth code review â€” four-layer validation across build, tests, security, and logic to eliminate false completion claims with evidence-based verification.
 chain: security-audit
 skills: [security-scanner, code-review, problem-checker, context-engineering, knowledge-compiler]
 agents: [orchestrator, assessor, recovery, learner, security-auditor]
@@ -13,7 +13,7 @@ $ARGUMENTS
 
 ## Purpose
 
-Systematic code review with multi-layer validation — preventing false completion claims through evidence-based verification across build, tests, security, and logic layers. **Differs from `/validate` (runs tests) and `/diagnose` (finds bugs) by performing comprehensive quality audit across all dimensions before deployment.** Uses `security-scanner` with `security-scanner` for vulnerability scanning and `code-review` for quality validation.
+Systematic code review with multi-layer validation â€” preventing false completion claims through evidence-based verification across build, tests, security, and logic layers. **Differs from `/validate` (runs tests) and `/diagnose` (finds bugs) by performing comprehensive quality audit across all dimensions before deployment.** Uses `security-scanner` with `security-scanner` for vulnerability scanning and `code-review` for quality validation.
 
 ---
 
@@ -66,7 +66,7 @@ report ? learner.log(patterns)
 | **AGENTS** | `orchestrator`, `assessor` |
 | **SKILLS** | `code-review`, `context-engineering` |
 
-// turbo — telemetry: phase-2-build
+// turbo â€” telemetry: phase-2-build
 ```bash
 npx cross-env OTEL_SERVICE_NAME="workflow:inspect" TRACE_ID="$TRACE_ID" npm run build
 ```
@@ -86,7 +86,7 @@ npx cross-env OTEL_SERVICE_NAME="workflow:inspect" TRACE_ID="$TRACE_ID" npm run 
 | **AGENTS** | `orchestrator` |
 | **SKILLS** | `code-review` |
 
-// turbo — telemetry: phase-3-test
+// turbo â€” telemetry: phase-3-test
 ```bash
 npx cross-env OTEL_SERVICE_NAME="workflow:inspect" TRACE_ID="$TRACE_ID" npm test
 ```
@@ -236,11 +236,11 @@ If the inspection process (builds, scans) creates ghost artifacts or fails to co
 
 ## Key Principles
 
-- **Evidence over belief** — prove it works with command output, not assumptions
-- **Every layer matters** — don't skip build, tests, security, or logic checks
-- **Security first** — always scan for vulnerabilities before marking complete
-- **Fix before claiming** — no "should work" — verify with evidence
-- **Document issues** — clear action items with file, line, and severity
+- **Evidence over belief** â€” prove it works with command output, not assumptions
+- **Every layer matters** â€” don't skip build, tests, security, or logic checks
+- **Security first** â€” always scan for vulnerabilities before marking complete
+- **Fix before claiming** â€” no "should work" â€” verify with evidence
+- **Document issues** â€” clear action items with file, line, and severity
 
 ---
 
