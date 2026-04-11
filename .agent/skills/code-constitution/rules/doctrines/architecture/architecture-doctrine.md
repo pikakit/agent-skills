@@ -1,6 +1,6 @@
 ---
 name: architecture-doctrine
-version: "3.9.130"
+version: "3.9.131"
 status: LOCKED
 authority: CONSTITUTIONAL
 parent: master-constitution
@@ -185,4 +185,4 @@ Not developer convenience.
 
 ---
 
-⚡ PikaKit v3.9.130
+⚡ PikaKit v3.9.131

@@ -10,7 +10,7 @@ coordinates_with: ["security-scanner", "git-workflow", "gitops"]
 success_metrics: ["0 deployment rollbacks", "< 5m rollback time", "100% CI pass rate"]
 metadata:
   author: pikakit
-  version: "3.9.130"
+  version: "3.9.131"
 ---
 
 # CI/CD Pipeline
@@ -161,4 +161,4 @@ metadata:
 
 ---
 
-⚡ PikaKit v3.9.130
+⚡ PikaKit v3.9.131

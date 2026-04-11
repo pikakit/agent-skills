@@ -10,7 +10,7 @@ coordinates_with: ["cicd-pipeline", "server-ops", "knowledge-compiler", "problem
 success_metrics: ["Script Reliability", "Cross-Platform Compatibility", "Error Handling Coverage"]
 metadata:
   author: pikakit
-  version: "3.9.130"
+  version: "3.9.131"
 ---
 
 # Shell Script — Bash/Linux Patterns
@@ -202,4 +202,4 @@ All script outputs MUST emit `script_analysis_started` and `analysis_completed` 
 
 ---
 
-⚡ PikaKit v3.9.130
+⚡ PikaKit v3.9.131

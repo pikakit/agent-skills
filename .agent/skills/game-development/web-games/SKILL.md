@@ -8,7 +8,7 @@ coordinates_with: ["game-development", "multiplayer", "perf-optimizer"]
 success_metrics: ["100% games support WebGPU", "0 audio autoplay violations"]
 metadata:
   author: pikakit
-  version: "3.9.130"
+  version: "3.9.131"
 ---
 
 # Web Browser Game Development
@@ -170,4 +170,4 @@ What type of game?
 
 ---
 
-⚡ PikaKit v3.9.130
+⚡ PikaKit v3.9.131

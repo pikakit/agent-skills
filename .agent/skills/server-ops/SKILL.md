@@ -10,7 +10,7 @@ coordinates_with: ["cicd-pipeline", "observability", "security-scanner"]
 success_metrics: ["Uptime Consistency", "Resource Efficiency", "Incident Resolution Time"]
 metadata:
   author: pikakit
-  version: "3.9.130"
+  version: "3.9.131"
 ---
 
 # Server Ops — Production Server Management
@@ -191,4 +191,4 @@ All server ops outputs MUST emit `server_analysis_started` and `analysis_complet
 
 ---
 
-⚡ PikaKit v3.9.130
+⚡ PikaKit v3.9.131

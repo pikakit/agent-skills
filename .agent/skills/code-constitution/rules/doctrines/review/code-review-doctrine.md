@@ -1,6 +1,6 @@
 ---
 name: code-review-doctrine
-version: "3.9.130"
+version: "3.9.131"
 status: LOCKED
 authority: CONSTITUTIONAL
 parent: architecture-doctrine
@@ -171,4 +171,4 @@ Not velocity.
 
 ---
 
-⚡ PikaKit v3.9.130
+⚡ PikaKit v3.9.131
