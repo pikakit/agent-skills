@@ -244,7 +244,8 @@ if (fs.existsSync(extReadmePath)) {
   let content = fs.readFileSync(extReadmePath, 'utf-8');
   const newContent = content
     .replace(/PikaKit Engine v[0-9.]+/g, `PikaKit Engine v${newVersion}`)
-    .replace(/pikakit-engine-[0-9.]+\.vsix/g, `pikakit-engine-${newVersion}.vsix`);
+    .replace(/pikakit-engine-[0-9.]+\.vsix/g, `pikakit-engine-${newVersion}.vsix`)
+    .replace(/npm-v[0-9.]+/g, `npm-v${newVersion}`);
   
   if (content !== newContent) {
     fs.writeFileSync(extReadmePath, newContent, 'utf-8');

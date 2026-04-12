@@ -1,6 +1,6 @@
 ---
 name: backend-data-engine-doctrine
-version: "3.9.141"
+version: "3.9.142"
 status: LOCKED
 authority: CONSTITUTIONAL
 parent: architecture-doctrine
@@ -215,4 +215,4 @@ Not developer speed.
 
 ---
 
-⚡ PikaKit v3.9.141
+⚡ PikaKit v3.9.142
