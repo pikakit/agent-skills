@@ -134,4 +134,4 @@ npm run build
 
 ---
 
-⚡ PikaKit v3.9.134
+⚡ PikaKit v3.9.136

@@ -126,4 +126,4 @@ compile wiki knowledge ingest →  knowledge-compiler  knowledge health stale  �
 
 ---
 
-> ⚡ PikaKit v3.9.134 · 51 Skills · 9 Domains
+> ⚡ PikaKit v3.9.136 · 51 Skills · 9 Domains

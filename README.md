@@ -7,7 +7,7 @@ Build production-grade features 3–5x faster — with enforced architecture, au
 
 PikaKit transforms any AI into a Senior Engineer — not by prompting harder, but by controlling how it executes, learns, and improves over time.
 
-[![npm](https://img.shields.io/badge/npm-v3.9.134-7c3aed?style=for-the-badge&logo=npm&logoColor=white&labelColor=18181b)](https://www.npmjs.com/package/pikakit)
+[![npm](https://img.shields.io/badge/npm-v3.9.136-7c3aed?style=for-the-badge&logo=npm&logoColor=white&labelColor=18181b)](https://www.npmjs.com/package/pikakit)
 [![Skills](https://img.shields.io/badge/53_skills-06b6d4?style=for-the-badge&labelColor=18181b)](https://github.com/pikakit/agent-skills)
 [![Workflows](https://img.shields.io/badge/19_workflows-10b981?style=for-the-badge&labelColor=18181b)](https://github.com/pikakit/agent-skills)
 [![TypeScript](https://img.shields.io/badge/strict_typescript-3178c6?style=for-the-badge&logo=typescript&logoColor=white&labelColor=18181b)](https://github.com/pikakit/agent-skills)
@@ -166,7 +166,7 @@ npx pikakit
 
 <div align="center">
 
-**PikaKit v3.9.134** · 53 Skills · 21 Agents · 19 Workflows · Strict TypeScript
+**PikaKit v3.9.136** · 53 Skills · 21 Agents · 19 Workflows · Strict TypeScript
 
 [⭐ Star on GitHub](https://github.com/pikakit/agent-skills) · [Install via npm](https://www.npmjs.com/package/pikakit) · [pikakit.com](https://pikakit.com)
 

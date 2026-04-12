@@ -10,7 +10,7 @@ coordinates_with: ["security-scanner", "api-architect", "auth-patterns", "proble
 success_metrics: ["0 Out of Scope Actions", "100% Validated Exploits"]
 metadata:
   author: pikakit
-  version: "3.9.134"
+  version: "3.9.136"
 ---
 
 # Offensive Security — Red Team Tactics (MITRE ATT&CK)
@@ -188,4 +188,4 @@ All executions MUST emit the `build_verification` span before reporting completi
 
 ---
 
-⚡ PikaKit v3.9.134
+⚡ PikaKit v3.9.136

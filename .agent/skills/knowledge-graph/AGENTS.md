@@ -11,7 +11,7 @@ tools: Read, Grep, Glob, Bash
 model: inherit
 skills: code-craft, system-design, project-planner, idea-storm, debug-pro, knowledge-graph, code-constitution, problem-checker, knowledge-compiler
 agent_type: utility
-version: "3.9.134"
+version: "3.9.136"
 owner: pikakit
 capability_tier: core
 execution_mode: reactive
@@ -759,4 +759,4 @@ After any exploration:
 
 ---
 
-⚡ PikaKit v3.9.134
+⚡ PikaKit v3.9.136

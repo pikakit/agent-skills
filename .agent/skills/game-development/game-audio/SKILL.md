@@ -7,7 +7,7 @@ coordinates_with: ["game-development", "game-art", "perf-optimizer"]
 success_metrics: ["100% sounds use proper categories", "0 audio memory leaks"]
 metadata:
   author: pikakit
-  version: "3.9.134"
+  version: "3.9.136"
 ---
 
 # Game Audio Principles
@@ -208,4 +208,4 @@ Game State → Music Response
 
 ---
 
-⚡ PikaKit v3.9.134
+⚡ PikaKit v3.9.136

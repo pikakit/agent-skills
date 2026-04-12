@@ -1,6 +1,6 @@
 ---
 name: master-constitution
-version: "3.9.134"
+version: "3.9.136"
 status: LOCKED
 authority: SUPREME
 ---
@@ -207,4 +207,4 @@ Not short-term velocity.
 
 ---
 
-⚡ PikaKit v3.9.134
+⚡ PikaKit v3.9.136
