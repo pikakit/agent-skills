@@ -10,7 +10,7 @@ coordinates_with: ["react-architect", "tailwind-kit", "perf-optimizer", "problem
 success_metrics: ["100% CWV Targets Met", "0 Server/Client Boundaries Errors", "0 IDE/Lint Errors"]
 metadata:
   author: pikakit
-  version: "3.9.137"
+  version: "3.9.141"
 ---
 
 # Next.js Pro — App Router & React Performance
@@ -168,4 +168,4 @@ All executions MUST emit the `build_verification` span before reporting completi
 
 ---
 
-⚡ PikaKit v3.9.137
+⚡ PikaKit v3.9.141

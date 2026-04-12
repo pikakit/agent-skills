@@ -159,7 +159,7 @@ agent.cmd
 .agent/knowledge/
 
 # ============================================================
-# Build Artifacts (VS Code extensions)
+# Build Artifacts (PikaKit Engine extensions)
 # ============================================================
 *.vsix
 /icon.png

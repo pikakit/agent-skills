@@ -13,7 +13,7 @@ coordinates_with: ["skill-generator", "knowledge-linter", "problem-checker"]
 success_metrics: ["Signal Compilation Rate", "Article Cross-Link Density", "Pattern Match Rate"]
 metadata:
   author: pikakit
-  version: "3.9.137"
+  version: "3.9.141"
 ---
 
 # Knowledge Compiler — Unified Knowledge Engine
@@ -317,4 +317,4 @@ tags: [{domain tags}]
 
 ---
 
-⚡ PikaKit v3.9.137
+⚡ PikaKit v3.9.141
