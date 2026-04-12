@@ -10,7 +10,7 @@ coordinates_with: ["cicd-pipeline", "code-review", "security-scanner"]
 success_metrics: ["0 leaked secrets", "100% conventional compliance"]
 metadata:
   author: pikakit
-  version: "3.9.136"
+  version: "3.9.137"
 ---
 
 # Git Workflow — Conventional Commits + Secret Detection
@@ -178,4 +178,4 @@ REBASING → CONFLICT         [merge conflicts]  // terminal
 
 ---
 
-⚡ PikaKit v3.9.136
+⚡ PikaKit v3.9.137

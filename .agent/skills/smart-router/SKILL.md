@@ -10,7 +10,7 @@ coordinates_with: ["lifecycle-orchestrator", "execution-reporter"]
 success_metrics: ["Routing Accuracy", "Routing Latency", "Tool Execution Success"]
 metadata:
   author: pikakit
-  version: "3.9.136"
+  version: "3.9.137"
 ---
 
 # Smart Router
@@ -92,4 +92,4 @@ Even while operating silently, the router must emit routing telemetry:
 
 ---
 
-⚡ PikaKit v3.9.136
+⚡ PikaKit v3.9.137

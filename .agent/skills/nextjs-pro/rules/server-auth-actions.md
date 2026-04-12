@@ -97,4 +97,4 @@ Reference: [https://nextjs.org/docs/app/guides/authentication](https://nextjs.or
 
 ---
 
-⚡ PikaKit v3.9.136
+⚡ PikaKit v3.9.137

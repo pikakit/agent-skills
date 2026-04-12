@@ -11,7 +11,7 @@ coordinates_with: ["knowledge-compiler", "knowledge-compiler"]
 success_metrics: ["Issue Detection Rate", "Auto-Fix Rate", "Knowledge Coverage"]
 metadata:
   author: pikakit
-  version: "3.9.136"
+  version: "3.9.137"
 ---
 
 # Knowledge Linter — Wiki Health Checker
@@ -214,4 +214,4 @@ health_score = 100
 
 ---
 
-⚡ PikaKit v3.9.136
+⚡ PikaKit v3.9.137
