@@ -10,7 +10,7 @@ coordinates_with: ["api-architect", "data-modeler", "auth-patterns", "problem-ch
 success_metrics: ["0 Security Vulnerabilities", "0 IDE/Lint Errors", "0 Unhandled Promise Rejections"]
 metadata:
   author: pikakit
-  version: "3.9.133"
+  version: "3.9.134"
 ---
 
 # Node.js Pro — Backend Decision Framework
@@ -169,4 +169,4 @@ All executions MUST emit the `build_verification` span before reporting completi
 
 ---
 
-⚡ PikaKit v3.9.133
+⚡ PikaKit v3.9.134

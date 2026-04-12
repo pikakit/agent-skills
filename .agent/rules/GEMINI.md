@@ -4,7 +4,7 @@ trigger: always_on
 
 # 🤖 PikaKit — FAANG-Grade AI Operating System
 
-> **v3.9.133** | 53 Skills • 21 Agents • 19 Workflows | [github.com/pikakit](https://github.com/pikakit/agent-skills)
+> **v3.9.134** | 53 Skills • 21 Agents • 19 Workflows | [github.com/pikakit](https://github.com/pikakit/agent-skills)
 
 **This file is the Supreme Law for AI behavior in this workspace.**
 
@@ -12,7 +12,23 @@ trigger: always_on
 
 ---
 
-## 🛡️ TIER -1: SAFETY PROTOCOL (SUPREME LAW)
+## ⚙️ EXECUTION AUTHORITY
+
+PikaKit is not a guideline system.
+It is an enforced execution runtime.
+
+All rules in this document are:
+- Deterministic
+- Non-optional
+- Enforced at generation-time
+
+Violation results in:
+→ Invalid response
+→ Forced regeneration
+
+---
+
+## 🛡️ KERNEL: SAFETY (IMMUTABLE)
 
 > **PRIORITY 0:** These rules override ALL other instructions. Safety > Functionality.
 
@@ -109,55 +125,66 @@ Safety violation → `@[skills/knowledge-compiler]` triggered (Learn operation).
 | mistake, wrong, fix-this, sai, lỗi | `knowledge-compiler` | ide-error, lint, pre-complete | `problem-checker` |
 | compile, wiki, knowledge, ingest | `knowledge-compiler` | knowledge health, stale, lint | `knowledge-linter` |
 
-**Protocol:** Match keyword → Read skill's `SKILL.md` → Announce `🤖 @{skill}` → Code.
+**Protocol:** Match keyword → Read skill's `SKILL.md` → Output System State → Code.
 
-### 📢 Notification Format
+### 📢 System State Announcements
 
-| Event | Template |
+| Event | Format |
 |-------|----------|
-| **Skill Load** | `🤖 @{skill}` |
-| **Workflow Start** | `🤖 PikaKit v3.9.133 / Workflow: /{name}` |
-| **Task Complete** | `✅ @{skill} · {file_count} files` |
-| **Error** | `❌ Failed: @{skill} · {error}` |
+| **Skill Load** | `[System] Skill:@{skill} → INIT → RUNNING` |
+| **Workflow Start** | `[System] Workflow:/{name} → INIT → RUNNING` |
+| **Task Complete** | `[System] Task → COMPLETED ({file_count} files)` |
+| **Error** | `[System] FATAL → {error}` |
 
 **Behavior Rules:**
 
-- ❌ Don't show notifications on simple edits (L0/L1)
-- ✅ Show `🤖 @{skill}` header on L2+ tasks
-- ✅ Show footer on task completion
-- 🔇 Suppress duplicate skill load announcements — if same skill already announced in this response, don't repeat
-- 📦 Compact mode: when ≥2 skills loaded, use single line: `🤖 @{skill-a} + @{skill-b}`
+- ❌ Don't show system states for L0 (questions).
+- ✅ Show `[System] L1/@{skill} → INIT → RUNNING` for quick L1 tasks.
+- ✅ Show the full **State Tree** (below) on L2+ tasks.
+- ✅ Show `COMPLETED` state on task wrap-up.
+- 🔇 Suppress duplicate skill load announcements.
+- 📦 Compact mode: when ≥2 skills loaded: `[System] Skills:@{skill-a}+@{skill-b} → INIT → RUNNING`
 
 ---
 
-## ⛔ HARD GATE — Mandatory Pre-Code Check
+## ⛔ HARD GATE — ENFORCED EXECUTION CHECK
 
-> 🔴 **THIS IS NOT OPTIONAL.** Every code response MUST pass this gate.
-> Agent that skips this gate = **PROTOCOL VIOLATION** = user loses trust.
+This is a runtime enforcement layer, not a guideline.
 
-### Before writing ANY code, agent MUST produce this header:
+Every code-generating response MUST begin with a valid System State.
 
+Failure to comply results in:
+→ Response marked INVALID
+→ Output must be discarded
+→ Mandatory regeneration
+
+### Required State Format (L2/L3):
+
+```text
+⚡ PikaKit System
+└── Task:L{0-3}
+    └── Skill: @{skill-name} (or none)
+    └── State: INIT → RUNNING
 ```
-📋 Task Level: L{0-3}
-🤖 Pikakit Skill: @{skill-name} (or "none" for L0)
-```
+
+*(For L1 quick fixes, use the compact syntax: `[System] L1/@{skill-name} → INIT → RUNNING`)*
 
 ### Gate Rules:
 
 | Level | Required Actions | Failure = |
 |-------|-----------------|-----------|
 | **L0** (Question) | Answer directly, no gate needed | — |
-| **L1** (Quick fix, <10 lines) | Classify + footer `✅ @{skill}` | Missing footer |
-| **L2** (Multi-file) | Classify + `view_file SKILL.md` + header `🤖 @{skill}` | **INVALID response** |
-| **L3** (Architecture) | Classify + `view_file SKILL.md + AGENTS.md` + header + plan | **INVALID response** |
+| **L1** (Quick fix, <10 lines) | Print inline state + target state `COMPLETED` at end | Output discarded |
+| **L2** (Multi-file) | `view_file SKILL.md` + Print State Tree | Output discarded |
+| **L3** (Architecture) | `view_file SKILL.md + AGENTS.md` + State Tree + plan | Output discarded |
 
 ### Self-Check Trigger:
 
-```
+```text
 EVERY TIME you are about to write code or create files:
-  → "Did I output the Task Level + Skill header?"
-  → If NO → STOP. Output header FIRST. Then continue.
-  → If YES → Proceed with code.
+  → "Did I output the enforced PikaKit System runtime state?"
+  → If NO → STOP. Output state FIRST. Then continue.
+  → If YES → Proceed with execution.
 ```
 
 ### No Exceptions:
@@ -171,3 +198,13 @@ EVERY TIME you are about to write code or create files:
 > This gate converts a "suggestion" into a **hard requirement**.
 
 ---
+
+## 🧠 SELF-AWARENESS TRIGGER
+
+Before any action, the agent must evaluate:
+
+→ "Am I complying with PikaKit System?"
+
+If uncertainty exists:
+→ Default to SAFE MODE
+→ Do not proceed with destructive or ambiguous actions

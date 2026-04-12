@@ -10,7 +10,7 @@ coordinates_with: ["mcp-builder"]
 success_metrics: ["100% tool discovery", "<1000ms execution latency"]
 metadata:
   author: pikakit
-  version: "3.9.133"
+  version: "3.9.134"
 ---
 
 # MCP Management — Tool Discovery, Routing & Execution
@@ -161,4 +161,4 @@ npx tsx cli.ts list-resources  # Available resources
 
 ---
 
-⚡ PikaKit v3.9.133
+⚡ PikaKit v3.9.134

@@ -1,25 +1,31 @@
 # Knowledge Index
 
 > Auto-maintained by `knowledge-compiler`. Do not edit manually.
-> Last compiled: never
+> Last compiled: 2026-04-12 02:05:00 UTC
 
 ---
 
 ## Concepts
 
-_No concept articles yet. Run `/knowledge compile` after ingesting signals._
+- [Import Resolution Strategy in TypeScript Monorepo](./concepts/import-strategy.md)
 
 ---
 
 ## Decisions
 
-_No architecture decision records yet._
+- [ADR-001: Use Path Alias Instead of Relative Imports](./adr/ADR-001-path-alias.md)
 
 ---
 
-## Recent Signals (Uncompiled)
+## Active Patterns
 
-_No raw signals yet. Signals are auto-ingested after significant fixes._
+- [PTN-001: Missing Import in Modular React Component System](./patterns/code-patterns/PTN-001-import-resolution.md) *(Confidence: HIGH)*
+
+---
+
+## Recent Signals (Compiled)
+
+- [SIG-001: Relative Import Failing in Modular Build](./raw-signals/SIG-001.md)
 
 ---
 
@@ -27,11 +33,12 @@ _No raw signals yet. Signals are auto-ingested after significant fixes._
 
 | Metric | Value |
 |--------|-------|
-| Total concept articles | 0 |
-| Total ADRs | 0 |
+| Total concept articles | 1 |
+| Total ADRs | 1 |
 | Uncompiled signals | 0 |
-| Last compiled | never |
-| Health score | N/A |
+| Total patterns | 1 |
+| Last compiled | 2026-04-12 |
+| Health score | 100/100 |
 
 ---
 

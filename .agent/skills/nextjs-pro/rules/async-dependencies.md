@@ -52,4 +52,4 @@ Reference: [https://github.com/shuding/better-all](https://github.com/shuding/be
 
 ---
 
-⚡ PikaKit v3.9.133
+⚡ PikaKit v3.9.134
