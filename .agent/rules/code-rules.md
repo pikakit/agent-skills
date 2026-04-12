@@ -10,9 +10,9 @@ trigger: always_on
 
 | Level | Criteria | Skill Protocol | Example |
 |-------|----------|---------------|--------|
-| **L0** | Question, explain, analyze | ❌ No skill needed | "giải thích hook này", "what is X?" |
-| **L1** | Single-file fix, < 10 lines, obvious intent | ⚡ Identify skill + announce state | "fix typo", "bỏ đường gạch ngang" |
-| **L2** | Multi-file change, logic change | ✅ Read SKILL.md + announce state | "add sparkline to 3 charts" |
+| **L0** | Question, explain, analyze | ❌ No skill needed | "explain this hook", "what is X?" |
+| **L1** | Single-file fix, < 10 lines, obvious intent | ⚡ Identify skill + announce footer | "fix typo", "remove horizontal rule" |
+| **L2** | Multi-file change, logic change | ✅ Read SKILL.md + announce header/footer | "add sparkline to 3 charts" |
 | **L3** | Architecture, new feature, design system | ✅ Full protocol + plan required | "redesign chart system" |
 
 **Classification Rules:**
@@ -33,20 +33,11 @@ trigger: always_on
 | Level | Step 1: Identify | Step 2: Read | Step 3: Announce | Step 4: Apply |
 |-------|-----------------|-------------|-----------------|---------------|
 | L0 | — | — | — | — |
-| L1 | ✅ From SKILL_INDEX | ❌ Skip | ✅ Inline State | ⚡ Apply from memory |
-| L2 | ✅ From SKILL_INDEX | ✅ SKILL.md | ✅ State Tree | ✅ Full rules |
-| L3 | ✅ From SKILL_INDEX | ✅ SKILL.md + AGENTS.md | ✅ State Tree | ✅ Full rules + plan |
+| L1 | ✅ From SKILL_INDEX | ❌ Skip | ✅ Footer only | ⚡ Apply from memory |
+| L2 | ✅ From SKILL_INDEX | ✅ SKILL.md | ✅ Header + Footer | ✅ Full rules |
+| L3 | ✅ From SKILL_INDEX | ✅ SKILL.md + AGENTS.md | ✅ Header + Footer | ✅ Full rules + plan |
 
 **Rules:** Silent analysis, professional tone, respect `@skill` overrides.
-
-### ⚡ L1 Protocol (Enforced)
-- Identify skill
-- Announce inline state
-- Apply fix
-- Emit COMPLETED state
-
-**Failure to emit COMPLETED:**
-→ Task considered incomplete
 
 ### 📢 NOTIFICATION FORMAT
 
@@ -61,12 +52,7 @@ trigger: always_on
 | 1 | Did I classify the task level? | → STOP. Classify first. |
 | 2 | Did I identify the correct skill from SKILL_INDEX? | → STOP. Scan index. |
 | 3 | Did I read the skill's SKILL.md? | → STOP. Read it. |
-| 4 | Did I output the State Tree? | → STOP. Print state. |
-
-**Enforcement:**
-If any checklist item is skipped:
-→ Response is INVALID
-→ Must restart from Step 1 (Task Classification)
+| 4 | Did I announce the skill? | → STOP. Add header. |
 
 ---
 
@@ -84,10 +70,6 @@ ALL code follows `@[skills/code-craft]`: concise, self-documenting, mandatory te
 
 Before modifying ANY file: check `CODEBASE.md` → identify dependents → update ALL affected files together.
 
-If `CODEBASE.md` is missing or outdated:
-→ Agent MUST infer dependencies from imports/usages
-→ Validate via search before modification
-
 ### 🗺️ System Map
 
 > 🔴 Read `ARCHITECTURE.md` at session start.
@@ -96,13 +78,7 @@ Skills: `.agent/skills/` | Workflows: `.agent/workflows/` | Scripts: `.agent/scr
 
 ### 🧠 Read → Understand → Apply
 
-Before implementation, agent MUST:
-1. Summarize key principle from SKILL.md (1-2 lines)
-2. Apply that principle in code
-
-**Missing summary:**
-→ Indicates shallow execution
-→ Must re-read skill
+❌ Read agent → Start coding. ✅ Read → Understand WHY → Apply PRINCIPLES → Code.
 
 ### 🎓 Knowledge Learning Protocol (MANDATORY)
 
@@ -112,22 +88,6 @@ Before implementation, agent MUST:
 ### 🔄 Continuous Execution Rule (MANDATORY)
 
 User approval = execute ALL phases automatically. No `notify_user` between phases. Only stop for: blocking errors, decision forks, plan completed, explicit user pause.
-
-### 🔒 Execution Mode Lock
-
-When in EXECUTING (Autopilot):
-
-- Agent MUST NOT:
-  → Ask unnecessary questions
-  → Re-enter planning mode
-  → Pause without reason
-
-- Agent MUST:
-  → Continue until completion or blocking condition
-
-**Violation:**
-→ Execution considered interrupted
-→ Must resume from last checkpoint
 
 ### 🔍 Problem Verification (MANDATORY)
 

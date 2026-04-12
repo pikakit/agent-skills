@@ -130,7 +130,7 @@ Manage the project's living knowledge wiki. Raw signals from error fixes, user c
 | Trigger | Signal Type | Condition |
 |---------|-------------|-----------|
 | Multi-file fix | `error_fix` | Fix touched ≥ 3 files |
-| User correction | `correction` | User says "wrong"/"sai"/"fix this" |
+| User correction | `correction` | User says "wrong"/"fix this"/"broken" |
 | Architecture decision | `decision` | ADR-worthy choice made during `/build` or `/plan` |
 | Repeated error | `error_fix` | Same error class hit ≥ 2 times in session |
 

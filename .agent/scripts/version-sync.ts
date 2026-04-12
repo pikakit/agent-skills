@@ -47,7 +47,7 @@ if (action === 'patch' || action === 'minor' || action === 'major') {
 }
 
 if (!/^\d+\.\d+\.\d+$/.test(newVersion)) {
-  console.error(`\n❌ Lỗi: Version không hợp lệ (${newVersion})`);
+  console.error(`\n❌ Error: Invalid version (${newVersion})`);
   process.exit(1);
 }
 

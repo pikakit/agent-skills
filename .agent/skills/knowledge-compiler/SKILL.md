@@ -5,10 +5,10 @@ description: >-
   compiles raw signals into cross-linked wiki articles, generates fast-lookup
   patterns, and maintains indexes. Replaces knowledge-compiler + knowledge-compiler.
   Use when "compile knowledge", "update wiki", "ingest lesson", or when user
-  indicates mistake ("wrong", "fix this", "sai", "lỗi").
+  indicates mistake ("wrong", "fix this", "broken").
   NOT for skill generation (use skill-generator) or wiki health (use knowledge-linter).
 category: autonomous-learning
-triggers: ["compile", "knowledge", "wiki", "ingest", "mistake", "wrong", "fix-this", "sai", "lỗi"]
+triggers: ["compile", "knowledge", "wiki", "ingest", "mistake", "wrong", "fix-this", "broken"]
 coordinates_with: ["skill-generator", "knowledge-linter", "problem-checker"]
 success_metrics: ["Signal Compilation Rate", "Article Cross-Link Density", "Pattern Match Rate"]
 metadata:
@@ -34,7 +34,7 @@ metadata:
 | Situation | Operation | Approach |
 |-----------|-----------|----------|
 | After fixing a significant bug | **Ingest** | Record signal in `raw/` |
-| User says "wrong"/"sai"/"fix this" | **Learn** | Extract pattern + record signal |
+| User says "wrong" or "fix this" | **Learn** | Extract pattern + record signal |
 | IDE error detected and fixed | **Learn** | Auto-capture pattern via problem-checker |
 | Uncompiled signals in `raw/` | **Compile** | Synthesize into `concepts/` articles |
 | Before writing code that may cause known errors | **Lookup** | Check `patterns/{category}-patterns.md` |
@@ -62,7 +62,7 @@ metadata:
 ### 1. Ingest — Record a Raw Signal
 
 **When:** After every significant fix, user correction, or architectural decision.
-**Auto-trigger:** Multi-file changes, user says "sai"/"wrong", explicit `/knowledge ingest`.
+**Auto-trigger:** Multi-file changes, user says "wrong", explicit `/knowledge ingest`.
 
 ```
 1. Classify signal type: error_fix | correction | decision | observation
@@ -98,7 +98,7 @@ On Windows, child processes die with parent. Use intermediate .bat/.vbs for deta
 ### 2. Learn — Extract Pattern from Error/Correction
 
 **When:** User indicates mistake, or IDE error is detected and fixed.
-**Trigger words:** EN: "mistake", "wrong", "fix this", "broken" | VI: "lỗi", "sai", "hỏng", "sửa lại"
+**Trigger words:** "mistake", "wrong", "fix this", "broken"
 
 ```
 1. DETECT  → Error or user correction detected
