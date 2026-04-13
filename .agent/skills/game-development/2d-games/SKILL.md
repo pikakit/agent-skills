@@ -1,13 +1,13 @@
 ---
 name: 2d-games
 description: 2D game development principles. Sprites, tilemaps, physics, camera.
-category: game-development-subskill
-triggers: ["2D game", "sprite", "tilemap", "2D physics", "2D camera"]
-coordinates_with: ["game-development", "game-art", "perf-optimizer"]
-success_metrics: ["100% sprites use atlases", "0 physics jitter"]
 metadata:
   author: pikakit
-  version: "3.9.142"
+  version: "3.9.143"
+  category: game-development-subskill
+  triggers: ["2D game", "sprite", "tilemap", "2D physics", "2D camera"]
+  coordinates_with: ["game-development", "game-art", "perf-optimizer"]
+  success_metrics: ["100% sprites use atlases", "0 physics jitter"]
 ---
 
 # 2D Game Development
@@ -137,4 +137,4 @@ metadata:
 
 ---
 
-⚡ PikaKit v3.9.142
+⚡ PikaKit v3.9.143

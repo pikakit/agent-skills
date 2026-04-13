@@ -4,13 +4,13 @@ description: >-
   OpenTelemetry-based observability: unified logs, metrics, and distributed traces.
   Use when setting up monitoring, adding telemetry, or configuring observability stacks.
   NOT for server management (use server-ops) or performance optimization (use perf-optimizer).
-category: devops-architect
-triggers: ["monitoring", "observability", "OpenTelemetry", "telemetry", "instrumentation"]
-coordinates_with: ["server-ops", "cicd-pipeline", "problem-checker"]
-success_metrics: ["0 Telemetry Errors", "100% Correlation"]
 metadata:
   author: pikakit
-  version: "3.9.142"
+  version: "3.9.143"
+  category: devops-architect
+  triggers: ["monitoring", "observability", "OpenTelemetry", "telemetry", "instrumentation"]
+  coordinates_with: ["server-ops", "cicd-pipeline", "problem-checker"]
+  success_metrics: ["0 Telemetry Errors", "100% Correlation"]
 ---
 
 # Observability — Unified Telemetry with OpenTelemetry
@@ -175,4 +175,4 @@ All executions MUST emit the `build_verification` span before reporting completi
 
 ---
 
-⚡ PikaKit v3.9.142
+⚡ PikaKit v3.9.143

@@ -4,13 +4,13 @@ description: >-
   SEO fundamentals: E-E-A-T, Core Web Vitals, and Google algorithm optimization.
   Use when optimizing pages for search engines, improving meta tags, or auditing SEO.
   NOT for performance profiling (use perf-optimizer) or marketing copy (use copywriting).
-category: seo-specialist
-triggers: ["SEO", "meta tags", "sitemap", "search ranking", "OpenGraph"]
-coordinates_with: ["perf-optimizer", "copywriting", "nextjs-pro", "problem-checker", "knowledge-compiler"]
-success_metrics: ["Lighthouse SEO Score", "Core Web Vitals Pass Rate", "Schema Markup Validity"]
 metadata:
   author: pikakit
-  version: "3.9.142"
+  version: "3.9.143"
+  category: seo-specialist
+  triggers: ["SEO", "meta tags", "sitemap", "search ranking", "OpenGraph"]
+  coordinates_with: ["perf-optimizer", "copywriting", "nextjs-pro", "problem-checker", "knowledge-compiler"]
+  success_metrics: ["Lighthouse SEO Score", "Core Web Vitals Pass Rate", "Schema Markup Validity"]
 ---
 
 # SEO Optimizer — Search Engine Visibility
@@ -177,4 +177,4 @@ All SEO outputs MUST emit `audit_started` and `audit_completed` events.
 
 ---
 
-⚡ PikaKit v3.9.142
+⚡ PikaKit v3.9.143

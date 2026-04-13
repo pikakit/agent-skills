@@ -4,13 +4,13 @@ description: >-
   Authentication and authorization: OAuth2, JWT, RBAC/ABAC, MFA, Passkeys, session management.
   Use when implementing login, permissions, tokens, or security flows.
   NOT for vulnerability scanning (use security-scanner) or API design (use api-architect).
-category: security
-triggers: ["auth", "login", "OAuth", "JWT", "RBAC", "permissions", "MFA", "passkey"]
-coordinates_with: ["api-architect", "security-scanner", "data-modeler", "offensive-sec"]
-success_metrics: ["0 authorization bypass vulnerabilities", "100% FAANG audit compliance"]
 metadata:
   author: pikakit
-  version: "3.9.142"
+  version: "3.9.143"
+  category: security
+  triggers: ["auth", "login", "OAuth", "JWT", "RBAC", "permissions", "MFA", "passkey"]
+  coordinates_with: ["api-architect", "security-scanner", "data-modeler", "offensive-sec"]
+  success_metrics: ["0 authorization bypass vulnerabilities", "100% FAANG audit compliance"]
 ---
 
 # Auth Patterns
@@ -160,4 +160,4 @@ What type of application?
 
 ---
 
-⚡ PikaKit v3.9.142
+⚡ PikaKit v3.9.143

@@ -4,13 +4,13 @@ description: >-
   Discover, analyze, and execute tools from configured MCP servers with progressive disclosure.
   Use when listing available MCP tools, executing MCP commands, or managing MCP connections.
   NOT for building new MCP servers (use mcp-builder).
-category: agent-tooling
-triggers: ["MCP tools", "server discovery", "tool execution", "multi-server"]
-coordinates_with: ["mcp-builder"]
-success_metrics: ["100% tool discovery", "<1000ms execution latency"]
 metadata:
   author: pikakit
-  version: "3.9.142"
+  version: "3.9.143"
+  category: agent-tooling
+  triggers: ["MCP tools", "server discovery", "tool execution", "multi-server"]
+  coordinates_with: ["mcp-builder"]
+  success_metrics: ["100% tool discovery", "<1000ms execution latency"]
 ---
 
 # MCP Management — Tool Discovery, Routing & Execution
@@ -161,4 +161,4 @@ npx tsx cli.ts list-resources  # Available resources
 
 ---
 
-⚡ PikaKit v3.9.142
+⚡ PikaKit v3.9.143

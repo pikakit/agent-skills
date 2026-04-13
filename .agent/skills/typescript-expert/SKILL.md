@@ -4,13 +4,13 @@ description: >-
   TypeScript type-level programming, performance tuning, monorepo management, and tooling.
   Use for complex type gymnastics, build performance, TypeScript migration, or TS debugging.
   NOT for React-specific patterns (use react-pro) or Node.js architecture (use nodejs-pro).
-category: typesystem-engineering
-triggers: ["TypeScript", "JavaScript", "type error", "tsconfig", "monorepo"]
-coordinates_with: ["nextjs-pro", "react-architect", "code-review"]
-success_metrics: ["Type Coverage", "Build Performance", "Determinism"]
 metadata:
   author: pikakit
-  version: "3.9.142"
+  version: "3.9.143"
+  category: typesystem-engineering
+  triggers: ["TypeScript", "JavaScript", "type error", "tsconfig", "monorepo"]
+  coordinates_with: ["nextjs-pro", "react-architect", "code-review"]
+  success_metrics: ["Type Coverage", "Build Performance", "Determinism"]
 ---
 
 # TypeScript Expert — Advanced TS Problem-Solving
@@ -197,4 +197,4 @@ All typescript-expert outputs MUST emit `type_pattern_recommended`, `error_resol
 
 ---
 
-⚡ PikaKit v3.9.142
+⚡ PikaKit v3.9.143

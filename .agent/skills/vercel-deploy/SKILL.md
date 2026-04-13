@@ -4,13 +4,13 @@ description: >-
   Deploy applications to Vercel with preview URLs and production releases.
   Use when user says "deploy", "push live", "preview deployment", or "deploy to Vercel".
   NOT for other platforms (use cicd-pipeline) or GitOps (use gitops).
-category: cicd-deployment
-triggers: ["deploy", "vercel", "production", "preview", "push live"]
-coordinates_with: ["cicd-pipeline", "nextjs-pro", "test-architect"]
-success_metrics: ["Deployment Success Rate", "Time to Preview", "Framework Detection Accuracy"]
 metadata:
   author: pikakit
-  version: "3.9.142"
+  version: "3.9.143"
+  category: cicd-deployment
+  triggers: ["deploy", "vercel", "production", "preview", "push live"]
+  coordinates_with: ["cicd-pipeline", "nextjs-pro", "test-architect"]
+  success_metrics: ["Deployment Success Rate", "Time to Preview", "Framework Detection Accuracy"]
 ---
 
 # Vercel Deploy — Zero-Auth Deployment
@@ -172,4 +172,4 @@ All vercel-deploy outputs MUST emit `packaging_started` and either `upload_compl
 
 ---
 
-⚡ PikaKit v3.9.142
+⚡ PikaKit v3.9.143

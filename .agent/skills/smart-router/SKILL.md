@@ -4,13 +4,13 @@ description: >-
   Intelligent agent routing: maps user intent to specialist agents using domain detection.
   Use for request classification, multi-domain routing, or agent selection decisions.
   NOT for task execution or skill implementation.
-category: meta-agent
-triggers: ["agent routing", "request classification", "multi-agent selection"]
-coordinates_with: ["lifecycle-orchestrator", "execution-reporter"]
-success_metrics: ["Routing Accuracy", "Routing Latency", "Tool Execution Success"]
 metadata:
   author: pikakit
-  version: "3.9.142"
+  version: "3.9.143"
+  category: meta-agent
+  triggers: ["agent routing", "request classification", "multi-agent selection"]
+  coordinates_with: ["lifecycle-orchestrator", "execution-reporter"]
+  success_metrics: ["Routing Accuracy", "Routing Latency", "Tool Execution Success"]
 ---
 
 # Smart Router
@@ -92,4 +92,4 @@ Even while operating silently, the router must emit routing telemetry:
 
 ---
 
-⚡ PikaKit v3.9.142
+⚡ PikaKit v3.9.143

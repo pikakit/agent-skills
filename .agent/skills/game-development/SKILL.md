@@ -4,13 +4,13 @@ description: >-
   Game development orchestrator: game loop, physics, AI, collision, and platform-specific routing.
   Use when building 2D/3D games, game mechanics, or game-specific performance optimization.
   NOT for web applications (use react-pro) or general performance (use perf-optimizer).
-category: game-development-subskill
-triggers: ["game", "game development", "Unity", "Godot", "Phaser", "game engine"]
-coordinates_with: ["perf-optimizer", "mobile-developer", "shader"]
-success_metrics: ["100% correct sub-skill routing", "<5ms routing latency"]
 metadata:
   author: pikakit
-  version: "3.9.142"
+  version: "3.9.143"
+  category: game-development-subskill
+  triggers: ["game", "game development", "Unity", "Godot", "Phaser", "game engine"]
+  coordinates_with: ["perf-optimizer", "mobile-developer", "shader"]
+  success_metrics: ["100% correct sub-skill routing", "<5ms routing latency"]
 ---
 
 # Game Development — Orchestrator
@@ -175,4 +175,4 @@ RENDER → Draw the frame (interpolated)
 
 ---
 
-⚡ PikaKit v3.9.142
+⚡ PikaKit v3.9.143

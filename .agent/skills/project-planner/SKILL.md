@@ -4,13 +4,13 @@ description: >-
   Structured task planning with breakdowns, dependencies, and verification criteria.
   Use when planning multi-step features, refactoring, or any work requiring task decomposition.
   NOT for quick single-file fixes or questions.
-category: project-planning
-triggers: ["plan", "breakdown", "tasks", "implementation strategy", "project scope"]
-coordinates_with: ["idea-storm", "smart-router", "app-scaffold", "problem-checker", "knowledge-compiler"]
-success_metrics: ["Verifiable Tasks", "Correct Delegations"]
 metadata:
   author: pikakit
-  version: "3.9.142"
+  version: "3.9.143"
+  category: project-planning
+  triggers: ["plan", "breakdown", "tasks", "implementation strategy", "project scope"]
+  coordinates_with: ["idea-storm", "smart-router", "app-scaffold", "problem-checker", "knowledge-compiler"]
+  success_metrics: ["Verifiable Tasks", "Correct Delegations"]
 ---
 
 # Project Planner — Structured Task Breakdown
@@ -163,4 +163,4 @@ One sentence: What are we building/fixing?
 
 ---
 
-⚡ PikaKit v3.9.142
+⚡ PikaKit v3.9.143

@@ -4,13 +4,13 @@ description: >-
   Conversion copywriting: AIDA, PAS, BAB, 4Ps formulas for headlines, emails, and landing pages.
   Use when writing marketing copy, headlines, email sequences, or conversion-focused content.
   NOT for technical documentation (use doc-templates) or SEO content (use seo-optimizer).
-category: content
-triggers: ["copywriting", "headlines", "landing page", "email", "marketing"]
-coordinates_with: ["seo-optimizer", "studio", "ai-artist"]
-success_metrics: ["4/4 headline Us score", "0 copy validation failures"]
 metadata:
   author: pikakit
-  version: "3.9.142"
+  version: "3.9.143"
+  category: content
+  triggers: ["copywriting", "headlines", "landing page", "email", "marketing"]
+  coordinates_with: ["seo-optimizer", "studio", "ai-artist"]
+  success_metrics: ["4/4 headline Us score", "0 copy validation failures"]
 ---
 
 # Copywriting — Conversion Formulas
@@ -185,4 +185,4 @@ All copywriting outputs MUST emit `formula_selected`, `validation_passed`, or `v
 
 ---
 
-⚡ PikaKit v3.9.142
+⚡ PikaKit v3.9.143

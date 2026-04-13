@@ -4,13 +4,13 @@ description: >-
   Prompt engineering for AI image generation: Midjourney, DALL-E, Stable Diffusion, Flux.
   Use when writing image prompts, configuring generation parameters, or optimizing AI art output.
   NOT for UI design decisions (use design-system) or media file processing (use media-processing).
-category: prompt-engineering
-triggers: ["prompt", "AI prompt", "image generation", "Midjourney", "DALL-E", "Stable Diffusion", "Flux"]
-coordinates_with: ["studio", "media-processing", "context-engineering"]
-success_metrics: ["100% deterministic prompt reproduction"]
 metadata:
   author: pikakit
-  version: "3.9.142"
+  version: "3.9.143"
+  category: prompt-engineering
+  triggers: ["prompt", "AI prompt", "image generation", "Midjourney", "DALL-E", "Stable Diffusion", "Flux"]
+  coordinates_with: ["studio", "media-processing", "context-engineering"]
+  success_metrics: ["100% deterministic prompt reproduction"]
 ---
 
 # AI Artist — Prompt Engineering
@@ -183,4 +183,4 @@ Unknown model → generic format (no model-specific parameters injected).
 
 ---
 
-⚡ PikaKit v3.9.142
+⚡ PikaKit v3.9.143

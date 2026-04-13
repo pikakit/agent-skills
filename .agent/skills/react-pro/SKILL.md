@@ -4,13 +4,13 @@ description: >-
   React component architecture, hooks, state management, and performance patterns.
   Use when creating components, fixing hooks, managing state, or working with .tsx/.jsx files.
   NOT for Next.js routing (use nextjs-pro) or CSS styling (use design-system/tailwind-kit).
-category: frontend-specialist
-triggers: ["React", "component", "hooks", "state management", "Redux", "Zustand", "TypeScript", "TanStack Query", "MUI", "frontend"]
-coordinates_with: ["nextjs-pro", "typescript-expert", "design-system", "tailwind-kit", "problem-checker", "knowledge-compiler"]
-success_metrics: ["Component Render Efficiency", "Accessibility Score", "Core Web Vitals"]
 metadata:
   author: pikakit
-  version: "3.9.142"
+  version: "3.9.143"
+  category: frontend-specialist
+  triggers: ["React", "component", "hooks", "state management", "Redux", "Zustand", "TypeScript", "TanStack Query", "MUI", "frontend"]
+  coordinates_with: ["nextjs-pro", "typescript-expert", "design-system", "tailwind-kit", "problem-checker", "knowledge-compiler"]
+  success_metrics: ["Component Render Efficiency", "Accessibility Score", "Core Web Vitals"]
 ---
 
 # React Architect — Component & State Architecture
@@ -229,4 +229,4 @@ For the complete guide with all rules expanded: AGENTS.md\n
 
 ---
 
-⚡ PikaKit v3.9.142
+⚡ PikaKit v3.9.143

@@ -1,13 +1,13 @@
 ---
 name: 3d-games
 description: 3D game development principles. Rendering, shaders, physics, cameras.
-category: game-development-subskill
-triggers: ["3D game", "3D rendering", "shader", "3D physics", "3D camera"]
-coordinates_with: ["game-development", "shader", "perf-optimizer"]
-success_metrics: ["100% objects use LOD", "0 shader compilation errors"]
 metadata:
   author: pikakit
-  version: "3.9.142"
+  version: "3.9.143"
+  category: game-development-subskill
+  triggers: ["3D game", "3D rendering", "shader", "3D physics", "3D camera"]
+  coordinates_with: ["game-development", "shader", "perf-optimizer"]
+  success_metrics: ["100% objects use LOD", "0 shader compilation errors"]
 ---
 
 # 3D Game Development
@@ -153,4 +153,4 @@ metadata:
 
 ---
 
-⚡ PikaKit v3.9.142
+⚡ PikaKit v3.9.143

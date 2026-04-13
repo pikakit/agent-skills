@@ -4,13 +4,13 @@ description: >-
   Mobile development with React Native, Flutter, or native iOS/Android.
   Use when building mobile apps, configuring native modules, or optimizing mobile performance.
   NOT for web frontend (use react-pro) or mobile design decisions (use mobile-design).
-category: mobile-architect
-triggers: ["React Native", "Flutter", "iOS", "Android", "mobile app", "cross-platform", "native app"]
-coordinates_with: ["mobile-first", "mobile-design", "test-architect", "perf-optimizer", "mobile-security-coder", "code-craft", "problem-checker"]
-success_metrics: ["100% Build Pass", "0 IDE/Lint Errors", "OWASP MASVS Compliant"]
 metadata:
   author: pikakit
-  version: "3.9.142"
+  version: "3.9.143"
+  category: mobile-architect
+  triggers: ["React Native", "Flutter", "iOS", "Android", "mobile app", "cross-platform", "native app"]
+  coordinates_with: ["mobile-first", "mobile-design", "test-architect", "perf-optimizer", "mobile-security-coder", "code-craft", "problem-checker"]
+  success_metrics: ["100% Build Pass", "0 IDE/Lint Errors", "OWASP MASVS Compliant"]
 ---
 
 # Mobile Developer — Cross-Platform & Native Expert
@@ -191,4 +191,4 @@ All executions MUST emit the `build_verification` span before reporting completi
 
 ---
 
-⚡ PikaKit v3.9.142
+⚡ PikaKit v3.9.143

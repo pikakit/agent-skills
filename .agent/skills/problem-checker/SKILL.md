@@ -4,13 +4,13 @@ description: >-
   Automated IDE problem detection and auto-fix before task completion.
   Use before marking any task complete to check and fix IDE errors, lint issues, and type errors.
   NOT for root cause analysis (use debug-pro) or code review (use code-review).
-category: system-tool
-triggers: ["before notify_user", "after code modification", "IDE errors", "check for errors"]
-coordinates_with: ["knowledge-compiler", "skill-generator", "code-review"]
-success_metrics: ["0 IDE Errors", "Clean notify_user"]
 metadata:
   author: pikakit
-  version: "3.9.142"
+  version: "3.9.143"
+  category: system-tool
+  triggers: ["before notify_user", "after code modification", "IDE errors", "check for errors"]
+  coordinates_with: ["knowledge-compiler", "skill-generator", "code-review"]
+  success_metrics: ["0 IDE Errors", "Clean notify_user"]
 ---
 
 # Problem Checker — Automated IDE Error Gate
@@ -186,4 +186,4 @@ npx tsc --noEmit <file>
 
 ---
 
-⚡ PikaKit v3.9.142
+⚡ PikaKit v3.9.143

@@ -2,13 +2,13 @@
 name: mobile-games
 description: >-
   Mobile game development principles. Touch input, battery, performance, app stores.
-category: game-development-subskill
-triggers: ["mobile game", "touch input", "battery optimization", "app store"]
-coordinates_with: ["game-development", "mobile-developer"]
-success_metrics: ["100% touch targets >= 44x44", "0 thermal throttling in normal play"]
 metadata:
   author: pikakit
-  version: "3.9.142"
+  version: "3.9.143"
+  category: game-development-subskill
+  triggers: ["mobile game", "touch input", "battery optimization", "app store"]
+  coordinates_with: ["game-development", "mobile-developer"]
+  success_metrics: ["100% touch targets >= 44x44", "0 thermal throttling in normal play"]
 ---
 
 # Mobile Game Development
@@ -127,4 +127,4 @@ metadata:
 
 ---
 
-⚡ PikaKit v3.9.142
+⚡ PikaKit v3.9.143

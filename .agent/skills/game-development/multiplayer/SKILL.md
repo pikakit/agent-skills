@@ -2,13 +2,13 @@
 name: multiplayer
 description: >-
   Multiplayer game development principles. Architecture, networking, synchronization.
-category: game-development-subskill
-triggers: ["multiplayer", "networking", "synchronization", "matchmaking", "server authority"]
-coordinates_with: ["game-development", "web-games", "event-driven"]
-success_metrics: ["100% authoritative servers", "0 desync bugs in playtests"]
 metadata:
   author: pikakit
-  version: "3.9.142"
+  version: "3.9.143"
+  category: game-development-subskill
+  triggers: ["multiplayer", "networking", "synchronization", "matchmaking", "server authority"]
+  coordinates_with: ["game-development", "web-games", "event-driven"]
+  success_metrics: ["100% authoritative servers", "0 desync bugs in playtests"]
 ---
 
 # Multiplayer Game Development
@@ -151,4 +151,4 @@ Server: Validate → did projectile actually hit?
 
 ---
 
-⚡ PikaKit v3.9.142
+⚡ PikaKit v3.9.143

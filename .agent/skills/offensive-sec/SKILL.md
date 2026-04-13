@@ -4,13 +4,13 @@ description: >-
   Red team tactics based on MITRE ATT&CK: attack phases, detection evasion, and reporting.
   Use when performing penetration tests, red team exercises, or attack simulations.
   NOT for defensive scanning (use security-scanner) or auth flows (use auth-patterns).
-category: security-auditor
-triggers: ["pentest", "red team", "exploit", "vulnerability", "hacking"]
-coordinates_with: ["security-scanner", "api-architect", "auth-patterns", "problem-checker"]
-success_metrics: ["0 Out of Scope Actions", "100% Validated Exploits"]
 metadata:
   author: pikakit
-  version: "3.9.142"
+  version: "3.9.143"
+  category: security-auditor
+  triggers: ["pentest", "red team", "exploit", "vulnerability", "hacking"]
+  coordinates_with: ["security-scanner", "api-architect", "auth-patterns", "problem-checker"]
+  success_metrics: ["0 Out of Scope Actions", "100% Validated Exploits"]
 ---
 
 # Offensive Security — Red Team Tactics (MITRE ATT&CK)
@@ -188,4 +188,4 @@ All executions MUST emit the `build_verification` span before reporting completi
 
 ---
 
-⚡ PikaKit v3.9.142
+⚡ PikaKit v3.9.143

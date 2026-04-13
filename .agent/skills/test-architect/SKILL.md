@@ -4,13 +4,13 @@ description: >-
   Testing patterns and strategies: unit, integration, E2E, mocking, and coverage standards.
   Use when designing test suites, choosing test frameworks, or establishing testing patterns.
   NOT for running Playwright tests (use e2e-automation) or debugging failures (use debug-pro).
-category: testing-strategy
-triggers: ["test", "testing", "unit test", "coverage", "mocking", "AAA pattern", "TDD"]
-coordinates_with: ["e2e-automation", "test-driven-dev", "code-craft"]
-success_metrics: ["Test Suite Reliability", "Mutation Score", "Coverage Increase"]
 metadata:
   author: pikakit
-  version: "3.9.142"
+  version: "3.9.143"
+  category: testing-strategy
+  triggers: ["test", "testing", "unit test", "coverage", "mocking", "AAA pattern", "TDD"]
+  coordinates_with: ["e2e-automation", "test-driven-dev", "code-craft"]
+  success_metrics: ["Test Suite Reliability", "Mutation Score", "Coverage Increase"]
 ---
 
 # Test Architect — Testing Patterns & Principles
@@ -173,4 +173,4 @@ All test-architect outputs MUST emit `testing_strategy_recommended` and `analysi
 
 ---
 
-⚡ PikaKit v3.9.142
+⚡ PikaKit v3.9.143

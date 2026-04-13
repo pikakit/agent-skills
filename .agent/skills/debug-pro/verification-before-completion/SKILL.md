@@ -1,13 +1,13 @@
 ---
 name: Verification Before Completion
 description: Run verification commands and confirm output before claiming success
-category: debugging-subskill
-triggers: ["verify", "verification", "check it", "did you test it", "are you sure"]
-coordinates_with: ["debug-pro", "test-architect"]
-success_metrics: ["0 false claims of completion", "100% features have evidence"]
 metadata:
   author: pikakit
-  version: "3.9.142"
+  version: "3.9.143"
+  category: debugging-subskill
+  triggers: ["verify", "verification", "check it", "did you test it", "are you sure"]
+  coordinates_with: ["debug-pro", "test-architect"]
+  success_metrics: ["0 false claims of completion", "100% features have evidence"]
 ---
 
 # Verification Before Completion
@@ -157,4 +157,4 @@ This is non-negotiable.
 
 ---
 
-⚡ PikaKit v3.9.142
+⚡ PikaKit v3.9.143

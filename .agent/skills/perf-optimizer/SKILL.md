@@ -4,13 +4,13 @@ description: >-
   Performance profiling: Core Web Vitals, bundle analysis, runtime profiling, and optimization.
   Use when diagnosing slow pages, reducing bundle size, or running Lighthouse audits.
   NOT for SEO (use seo-optimizer) or server scaling (use server-ops).
-category: code-quality
-triggers: ["performance", "optimize", "speed", "slow", "memory", "cpu", "Lighthouse", "bundle size", "Core Web Vitals", "LCP", "INP", "CLS", "latency"]
-coordinates_with: ["code-craft", "e2e-automation", "chrome-devtools", "problem-checker", "knowledge-compiler"]
-success_metrics: ["Baseline Measured", "Improvement Validated", "No Regressions"]
 metadata:
   author: pikakit
-  version: "3.9.142"
+  version: "3.9.143"
+  category: code-quality
+  triggers: ["performance", "optimize", "speed", "slow", "memory", "cpu", "Lighthouse", "bundle size", "Core Web Vitals", "LCP", "INP", "CLS", "latency"]
+  coordinates_with: ["code-craft", "e2e-automation", "chrome-devtools", "problem-checker", "knowledge-compiler"]
+  success_metrics: ["Baseline Measured", "Improvement Validated", "No Regressions"]
 ---
 
 # Performance Profiler — Core Web Vitals & Profiling
@@ -186,4 +186,4 @@ All executions MUST emit the `improvement_validated` span before reporting compl
 
 ---
 
-⚡ PikaKit v3.9.142
+⚡ PikaKit v3.9.143

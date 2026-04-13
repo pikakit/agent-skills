@@ -5,13 +5,13 @@ description: >-
   inconsistencies, missing cross-links, and knowledge gaps.
   Use when "check knowledge", "knowledge health", "lint wiki", or periodically
   after many compiles. NOT for compiling knowledge (use knowledge-compiler).
-category: autonomous-learning
-triggers: ["knowledge health", "check wiki", "lint knowledge", "stale knowledge", "wiki health"]
-coordinates_with: ["knowledge-compiler", "knowledge-compiler"]
-success_metrics: ["Issue Detection Rate", "Auto-Fix Rate", "Knowledge Coverage"]
 metadata:
   author: pikakit
-  version: "3.9.142"
+  version: "3.9.143"
+  category: autonomous-learning
+  triggers: ["knowledge health", "check wiki", "lint knowledge", "stale knowledge", "wiki health"]
+  coordinates_with: ["knowledge-compiler", "knowledge-compiler"]
+  success_metrics: ["Issue Detection Rate", "Auto-Fix Rate", "Knowledge Coverage"]
 ---
 
 # Knowledge Linter — Wiki Health Checker
@@ -214,4 +214,4 @@ health_score = 100
 
 ---
 
-⚡ PikaKit v3.9.142
+⚡ PikaKit v3.9.143

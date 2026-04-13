@@ -4,13 +4,13 @@ description: >-
   Tailwind CSS v4 utility classes, @theme configuration, responsive patterns, and v3→v4 migration.
   Use when styling with Tailwind, configuring themes, or writing utility-first CSS.
   NOT for design decisions (use design-system) or vanilla CSS projects.
-category: frontend-styling
-triggers: ["Tailwind", "CSS", "styling", "utility classes", "oklch"]
-coordinates_with: ["frontend-specialist", "nextjs-pro", "design-system"]
-success_metrics: ["Component Consistency", "DOM Optimization", "Responsive Robustness"]
 metadata:
   author: pikakit
-  version: "3.9.142"
+  version: "3.9.143"
+  category: frontend-styling
+  triggers: ["Tailwind", "CSS", "styling", "utility classes", "oklch"]
+  coordinates_with: ["frontend-specialist", "nextjs-pro", "design-system"]
+  success_metrics: ["Component Consistency", "DOM Optimization", "Responsive Robustness"]
 ---
 
 # Tailwind Kit — Tailwind CSS v4 Patterns
@@ -168,4 +168,4 @@ All tailwind-kit outputs MUST emit `css_class_recommended` and `layout_pattern_g
 
 ---
 
-⚡ PikaKit v3.9.142
+⚡ PikaKit v3.9.143

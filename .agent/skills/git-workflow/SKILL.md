@@ -4,13 +4,13 @@ description: >-
   Git operations with conventional commits, branch strategies, PR workflows, and secret detection.
   Use when committing, branching, creating PRs, or managing git history.
   NOT for deployment pipelines (use cicd-pipeline) or code review (use code-review).
-category: version-control
-triggers: ["git", "commit", "push", "PR", "merge", "conventional commits"]
-coordinates_with: ["cicd-pipeline", "code-review", "security-scanner"]
-success_metrics: ["0 leaked secrets", "100% conventional compliance"]
 metadata:
   author: pikakit
-  version: "3.9.142"
+  version: "3.9.143"
+  category: version-control
+  triggers: ["git", "commit", "push", "PR", "merge", "conventional commits"]
+  coordinates_with: ["cicd-pipeline", "code-review", "security-scanner"]
+  success_metrics: ["0 leaked secrets", "100% conventional compliance"]
 ---
 
 # Git Workflow — Conventional Commits + Secret Detection
@@ -178,4 +178,4 @@ REBASING → CONFLICT         [merge conflicts]  // terminal
 
 ---
 
-⚡ PikaKit v3.9.142
+⚡ PikaKit v3.9.143

@@ -4,13 +4,13 @@ description: >-
   Architectural decision framework: requirements analysis, trade-off evaluation, and ADR documentation.
   Use when making architecture decisions, evaluating trade-offs, or documenting design choices.
   NOT for code implementation or quick fixes.
-category: architectural-decision
-triggers: ["architecture", "system design", "scalability", "microservices"]
-coordinates_with: ["api-architect", "data-modeler", "cicd-pipeline"]
-success_metrics: ["Architecture Robustness", "ADR Coverage", "Simplicity Score"]
 metadata:
   author: pikakit
-  version: "3.9.142"
+  version: "3.9.143"
+  category: architectural-decision
+  triggers: ["architecture", "system design", "scalability", "microservices"]
+  coordinates_with: ["api-architect", "data-modeler", "cicd-pipeline"]
+  success_metrics: ["Architecture Robustness", "ADR Coverage", "Simplicity Score"]
 ---
 
 # System Design — Architecture Decision Framework
@@ -150,4 +150,4 @@ All system-design outputs MUST emit `architecture_analysis_started` and `analysi
 
 ---
 
-⚡ PikaKit v3.9.142
+⚡ PikaKit v3.9.143

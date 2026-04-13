@@ -4,13 +4,13 @@ description: >-
   Build AI agents with Google Agent Development Kit: tool integration and multi-agent orchestration.
   Use when building Google ADK agents, configuring agent tools, or deploying agent workflows.
   NOT for general Python development (use python-pro) or non-Google agent frameworks.
-category: ai-agent-framework
-triggers: ["Google ADK", "agent development", "multi-agent", "agent orchestration"]
-coordinates_with: ["python-pro", "api-architect", "ai-artist"]
-success_metrics: ["100% typed parameters", "< 5 tools per agent"]
 metadata:
   author: pikakit
-  version: "3.9.142"
+  version: "3.9.143"
+  category: ai-agent-framework
+  triggers: ["Google ADK", "agent development", "multi-agent", "agent orchestration"]
+  coordinates_with: ["python-pro", "api-architect", "ai-artist"]
+  success_metrics: ["100% typed parameters", "< 5 tools per agent"]
 ---
 
 # Google ADK Python — AI Agent Development
@@ -165,4 +165,4 @@ coordinator = LlmAgent(
 
 ---
 
-⚡ PikaKit v3.9.142
+⚡ PikaKit v3.9.143

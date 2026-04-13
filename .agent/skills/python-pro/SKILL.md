@@ -4,13 +4,13 @@ description: >-
   Python development with FastAPI, Django, or Flask. Async patterns, type hints, project structure.
   Use when building Python backends, scripts, or choosing Python frameworks.
   NOT for Node.js projects (use nodejs-pro) or general AI agents (use google-adk-python).
-category: backend-specialist
-triggers: ["Python", "pip", "FastAPI", "Django", "Flask"]
-coordinates_with: ["api-architect", "test-architect", "data-modeler", "problem-checker", "knowledge-compiler"]
-success_metrics: ["Correct Framework Selection", "Type Hint Coverage"]
 metadata:
   author: pikakit
-  version: "3.9.142"
+  version: "3.9.143"
+  category: backend-specialist
+  triggers: ["Python", "pip", "FastAPI", "Django", "Flask"]
+  coordinates_with: ["api-architect", "test-architect", "data-modeler", "problem-checker", "knowledge-compiler"]
+  success_metrics: ["Correct Framework Selection", "Type Hint Coverage"]
 ---
 
 # Python Pro — Framework Selection & Architecture
@@ -179,4 +179,4 @@ All architectural decision outputs MUST emit a `decision_started` and `arch_reco
 
 ---
 
-⚡ PikaKit v3.9.142
+⚡ PikaKit v3.9.143

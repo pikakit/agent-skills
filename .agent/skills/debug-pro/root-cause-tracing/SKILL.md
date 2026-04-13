@@ -1,13 +1,13 @@
 ---
 name: Root Cause Tracing
 description: Systematically trace bugs backward through call stack to find original trigger
-category: debugging-subskill
-triggers: ["stack trace", "trace backward", "find polluter", "root cause tracing"]
-coordinates_with: ["debug-pro", "test-architect"]
-success_metrics: ["100% bugs fixed at root cause", "0 side-effects from tests"]
 metadata:
   author: pikakit
-  version: "3.9.142"
+  version: "3.9.143"
+  category: debugging-subskill
+  triggers: ["stack trace", "trace backward", "find polluter", "root cause tracing"]
+  coordinates_with: ["debug-pro", "test-architect"]
+  success_metrics: ["100% bugs fixed at root cause", "0 side-effects from tests"]
 ---
 
 # Root Cause Tracing
@@ -193,4 +193,4 @@ From debugging session (2025-10-03):
 
 ---
 
-⚡ PikaKit v3.9.142
+⚡ PikaKit v3.9.143

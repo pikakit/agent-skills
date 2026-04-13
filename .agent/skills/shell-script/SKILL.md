@@ -4,13 +4,13 @@ description: >-
   Bash/Linux terminal patterns, commands, piping, error handling, and shell scripting.
   Use when writing shell scripts, running Linux commands, or automating terminal tasks on macOS/Linux.
   NOT for Windows PowerShell or application code.
-category: shell-scripter
-triggers: ["shell", "bash", "script", "automation", "CLI"]
-coordinates_with: ["cicd-pipeline", "server-ops", "knowledge-compiler", "problem-checker"]
-success_metrics: ["Script Reliability", "Cross-Platform Compatibility", "Error Handling Coverage"]
 metadata:
   author: pikakit
-  version: "3.9.142"
+  version: "3.9.143"
+  category: shell-scripter
+  triggers: ["shell", "bash", "script", "automation", "CLI"]
+  coordinates_with: ["cicd-pipeline", "server-ops", "knowledge-compiler", "problem-checker"]
+  success_metrics: ["Script Reliability", "Cross-Platform Compatibility", "Error Handling Coverage"]
 ---
 
 # Shell Script — Bash/Linux Patterns
@@ -202,4 +202,4 @@ All script outputs MUST emit `script_analysis_started` and `analysis_completed` 
 
 ---
 
-⚡ PikaKit v3.9.142
+⚡ PikaKit v3.9.143

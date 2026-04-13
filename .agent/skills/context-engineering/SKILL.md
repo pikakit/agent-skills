@@ -4,13 +4,13 @@ description: >-
   Monitor context usage, control token consumption with four-bucket strategy.
   Use when designing agent architectures, managing context budgets, or optimizing token usage.
   NOT for code writing or feature implementation.
-category: agent-infrastructure
-triggers: ["context usage", "token limit", "agent architecture", "memory system"]
-coordinates_with: ["lifecycle-orchestrator", "system-design"]
-success_metrics: ["< 70% token utilization", "> 70% cache hit rate"]
 metadata:
   author: pikakit
-  version: "3.9.142"
+  version: "3.9.143"
+  category: agent-infrastructure
+  triggers: ["context usage", "token limit", "agent architecture", "memory system"]
+  coordinates_with: ["lifecycle-orchestrator", "system-design"]
+  success_metrics: ["< 70% token utilization", "> 70% cache hit rate"]
 ---
 
 # Context Engineering
@@ -144,4 +144,4 @@ metadata:
 
 ---
 
-⚡ PikaKit v3.9.142
+⚡ PikaKit v3.9.143

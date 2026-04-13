@@ -4,13 +4,13 @@ description: >-
   Database schema design, indexing, ORM selection (Prisma/Drizzle), and migrations.
   Use when designing tables, writing migrations, or optimizing queries.
   NOT for API endpoints (use api-architect) or server logic (use nodejs-pro).
-category: database-architecture
-triggers: ["database", "schema", "Prisma", "Drizzle", "SQL", "migration", "indexing"]
-coordinates_with: ["api-architect", "nodejs-pro", "python-pro", "security-scanner"]
-success_metrics: ["0 N+1 query warnings", "100% indexed foreign keys"]
 metadata:
   author: pikakit
-  version: "3.9.142"
+  version: "3.9.143"
+  category: database-architecture
+  triggers: ["database", "schema", "Prisma", "Drizzle", "SQL", "migration", "indexing"]
+  coordinates_with: ["api-architect", "nodejs-pro", "python-pro", "security-scanner"]
+  success_metrics: ["0 N+1 query warnings", "100% indexed foreign keys"]
 ---
 
 # Data Modeler — Database Design
@@ -192,4 +192,4 @@ All data-modeler outputs MUST emit `schema_designed`, `platform_selected`, or `m
 
 ---
 
-⚡ PikaKit v3.9.142
+⚡ PikaKit v3.9.143

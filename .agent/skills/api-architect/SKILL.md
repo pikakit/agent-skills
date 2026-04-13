@@ -4,13 +4,13 @@ description: >-
   API design patterns for REST, GraphQL, and tRPC services.
   Use when designing endpoints, versioning APIs, or choosing API architecture.
   NOT for code implementation (use nodejs-pro/python-pro) or database schema (use data-modeler).
-category: architecture
-triggers: ["API design", "REST", "GraphQL", "tRPC", "endpoint", "versioning"]
-coordinates_with: ["data-modeler", "security-scanner", "auth-patterns", "nodejs-pro"]
-success_metrics: ["0 breaking API changes without explicit version bump", "100% compliant with OWASP API Top 10"]
 metadata:
   author: pikakit
-  version: "3.9.142"
+  version: "3.9.143"
+  category: architecture
+  triggers: ["API design", "REST", "GraphQL", "tRPC", "endpoint", "versioning"]
+  coordinates_with: ["data-modeler", "security-scanner", "auth-patterns", "nodejs-pro"]
+  success_metrics: ["0 breaking API changes without explicit version bump", "100% compliant with OWASP API Top 10"]
 ---
 
 # API Architect
@@ -170,4 +170,4 @@ Before designing an API, confirm:
 
 ---
 
-⚡ PikaKit v3.9.142
+⚡ PikaKit v3.9.143

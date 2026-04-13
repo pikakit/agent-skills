@@ -7,13 +7,13 @@ description: >-
   Use when "compile knowledge", "update wiki", "ingest lesson", or when user
   indicates mistake ("wrong", "fix this", "broken").
   NOT for skill generation (use skill-generator) or wiki health (use knowledge-linter).
-category: autonomous-learning
-triggers: ["compile", "knowledge", "wiki", "ingest", "mistake", "wrong", "fix-this", "broken"]
-coordinates_with: ["skill-generator", "knowledge-linter", "problem-checker"]
-success_metrics: ["Signal Compilation Rate", "Article Cross-Link Density", "Pattern Match Rate"]
 metadata:
   author: pikakit
-  version: "3.9.142"
+  version: "3.9.143"
+  category: autonomous-learning
+  triggers: ["compile", "knowledge", "wiki", "ingest", "mistake", "wrong", "fix-this", "broken"]
+  coordinates_with: ["skill-generator", "knowledge-linter", "problem-checker"]
+  success_metrics: ["Signal Compilation Rate", "Article Cross-Link Density", "Pattern Match Rate"]
 ---
 
 # Knowledge Compiler — Unified Knowledge Engine
@@ -317,4 +317,4 @@ tags: [{domain tags}]
 
 ---
 
-⚡ PikaKit v3.9.142
+⚡ PikaKit v3.9.143

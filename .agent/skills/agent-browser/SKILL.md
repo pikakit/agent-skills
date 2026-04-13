@@ -4,13 +4,13 @@ description: >-
   AI-optimized browser automation with context-efficient @ref element handles.
   Use when automating browser interactions for AI agents with minimal context consumption.
   NOT for manual E2E testing (use e2e-automation) or screenshots (use chrome-devtools).
-category: automation
-triggers: ["browser automation", "web testing", "scraping", "UI verification", "headless"]
-coordinates_with: ["e2e-automation", "chrome-devtools", "observability"]
-success_metrics: ["Reduces LLM context consumption by 90%", "Zero dependency on full DOM serialization"]
 metadata:
   author: pikakit
-  version: "3.9.142"
+  version: "3.9.143"
+  category: automation
+  triggers: ["browser automation", "web testing", "scraping", "UI verification", "headless"]
+  coordinates_with: ["e2e-automation", "chrome-devtools", "observability"]
+  success_metrics: ["Reduces LLM context consumption by 90%", "Zero dependency on full DOM serialization"]
 ---
 
 # Agent Browser
@@ -190,4 +190,4 @@ agent-browser fill @e2 "email@example.com"
 
 ---
 
-⚡ PikaKit v3.9.142
+⚡ PikaKit v3.9.143

@@ -4,13 +4,13 @@ description: >-
   GitOps workflows with ArgoCD and Flux for declarative Kubernetes deployments.
   Use when setting up GitOps, ArgoCD sync, or Kubernetes declarative infrastructure.
   NOT for simple deploys (use vercel-deploy) or general CI/CD (use cicd-pipeline).
-category: devops-architect
-triggers: ["GitOps", "ArgoCD", "Flux", "Kubernetes", "declarative deployment"]
-coordinates_with: ["cicd-pipeline", "server-ops", "yaml-linter"]
-success_metrics: ["100% manual sync for production", "0 secrets in git repo"]
 metadata:
   author: pikakit
-  version: "3.9.142"
+  version: "3.9.143"
+  category: devops-architect
+  triggers: ["GitOps", "ArgoCD", "Flux", "Kubernetes", "declarative deployment"]
+  coordinates_with: ["cicd-pipeline", "server-ops", "yaml-linter"]
+  success_metrics: ["100% manual sync for production", "0 secrets in git repo"]
 ---
 
 # GitOps Workflow — Declarative Kubernetes Delivery
@@ -160,4 +160,4 @@ gitops-repo/
 
 ---
 
-⚡ PikaKit v3.9.142
+⚡ PikaKit v3.9.143
