@@ -1,19 +1,23 @@
 # Knowledge Index
 
 > Auto-maintained by `knowledge-compiler`. Do not edit manually.
-> Last compiled: 2026-04-13 08:38:00 UTC
+> Last compiled: 2026-04-13 15:44:00 UTC
 
 ---
 
 ## Concepts
 
 - [Import Resolution Strategy in TypeScript Monorepo](./concepts/import-strategy.md)
+- [Antigravity CDP UI Automation Guidelines](./concepts/antigravity-cdp-automation.md)
+- [Claude Skill Metadata Standardization](./concepts/claude-skill-metadata-standard.md)
+- [Knowledge Wiki Architecture (Karpathy Model)](./concepts/knowledge-wiki-architecture.md)
 
 ---
 
 ## Decisions
 
 - [ADR-001: Use Path Alias Instead of Relative Imports](./adr/ADR-001-path-alias.md)
+- [ADR-002: Separation of memory.sqlite and Knowledge Wiki](./adr/ADR-002-memory-sqlite-separation.md)
 
 ---
 
@@ -25,14 +29,15 @@
 
 ## Recent Signals (Uncompiled)
 
-- [SIG-002: CDP Auto-Accepts Destructive Undo Dialogs](./raw-signals/SIG-002.md) — `cdp`, `dialog`, `auto-click`
-- [SIG-003: YAML Frontmatter Non-Compliance Across 62 Skills](./raw-signals/SIG-003.md) — `yaml`, `standardization`
-- [SIG-004: Knowledge Wiki Architecture Audit](./raw-signals/SIG-004.md) — `knowledge-wiki`, `karpathy`
-- [SIG-005: memory.sqlite Is Runtime Cache, Not Knowledge Store](./raw-signals/SIG-005.md) — `architecture`, `separation-of-concerns`
+*(None)*
 
 ## Compiled Signals
 
-- [SIG-001: Relative Import Failing in Modular Build](./raw-signals/SIG-001.md) *(compiled)*
+- [SIG-001: Relative Import Failing in Modular Build](./raw-signals/SIG-001.md)
+- [SIG-002: CDP Auto-Accepts Destructive Undo Dialogs](./raw-signals/SIG-002.md)
+- [SIG-003: YAML Frontmatter Non-Compliance Across 62 Skills](./raw-signals/SIG-003.md)
+- [SIG-004: Knowledge Wiki Architecture Audit](./raw-signals/SIG-004.md)
+- [SIG-005: memory.sqlite Is Runtime Cache, Not Knowledge Store](./raw-signals/SIG-005.md)
 
 ---
 
@@ -40,13 +45,13 @@
 
 | Metric | Value |
 |--------|-------|
-| Total concept articles | 1 |
-| Total ADRs | 1 |
-| Uncompiled signals | 4 |
-| Compiled signals | 1 |
+| Total concept articles | 4 |
+| Total ADRs | 2 |
+| Uncompiled signals | 0 |
+| Compiled signals | 5 |
 | Total patterns | 1 |
 | Last compiled | 2026-04-13 |
-| Health score | — (needs recompile) |
+| Health score | 100/100 |
 
 ---
 
