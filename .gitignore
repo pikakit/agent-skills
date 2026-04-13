@@ -155,8 +155,19 @@ agent.cmd
 # Agents symlinks (created by pikakit)
 .agents/
 
-# Knowledge folder (created by pikakit CLI)
-.agent/knowledge/
+# Knowledge wiki (created by pikakit CLI)
+# Track: structure (.gitkeep), indexes, pattern templates
+# Ignore: user-generated signals, compiled articles (per-project data)
+.agent/knowledge/raw-signals/*.md
+!.agent/knowledge/raw-signals/.gitkeep
+.agent/knowledge/raw/*.md
+!.agent/knowledge/raw/.gitkeep
+.agent/knowledge/concepts/*.md
+!.agent/knowledge/concepts/.gitkeep
+.agent/knowledge/adr/*.md
+!.agent/knowledge/adr/.gitkeep
+.agent/knowledge/decisions/*.md
+!.agent/knowledge/decisions/.gitkeep
 
 # ============================================================
 # Build Artifacts (PikaKit Engine extensions)
