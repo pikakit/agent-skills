@@ -1,6 +1,6 @@
 {
   "updatedAt": "2026-04-09T05:14:09.953Z",
-  "version": "3.9.144",
+  "version": "3.9.145",
   "skills": [
     {
       "name": "agent-browser",
@@ -1246,6 +1246,25 @@
         "compiling knowledge",
         "ingesting signals"
       ]
+    },
+    {
+      "name": "runtime-memory-manager",
+      "category": "ai",
+      "triggers": [
+        "semantic search",
+        "rag pipeline",
+        "offline embeddings",
+        "memory manager"
+      ],
+      "negative_triggers": [
+        "generic database modeling"
+      ],
+      "coordinates_with": [
+        "nodejs-pro",
+        "knowledge-compiler"
+      ],
+      "success_metrics": "offline embedding initialized, semantic search functional",
+      "access_level": "domain"
     }
   ]
 }

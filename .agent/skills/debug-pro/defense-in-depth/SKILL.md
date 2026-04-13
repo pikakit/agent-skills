@@ -3,7 +3,7 @@ name: Defense-in-Depth Validation
 description: Validate at every layer data passes through to make bugs impossible
 metadata:
   author: pikakit
-  version: "3.9.144"
+  version: "3.9.145"
   category: debugging-subskill
   triggers: ["defense in depth", "validation layers", "prevent bug", "structural fix"]
   coordinates_with: ["debug-pro", "security-scanner", "test-architect"]
@@ -145,4 +145,4 @@ All four layers were necessary. During testing, each layer caught bugs the other
 
 ---
 
-⚡ PikaKit v3.9.144
+⚡ PikaKit v3.9.145

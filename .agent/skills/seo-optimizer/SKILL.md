@@ -6,7 +6,7 @@ description: >-
   NOT for performance profiling (use perf-optimizer) or marketing copy (use copywriting).
 metadata:
   author: pikakit
-  version: "3.9.144"
+  version: "3.9.145"
   category: seo-specialist
   triggers: ["SEO", "meta tags", "sitemap", "search ranking", "OpenGraph"]
   coordinates_with: ["perf-optimizer", "copywriting", "nextjs-pro", "problem-checker", "knowledge-compiler"]
@@ -177,4 +177,4 @@ All SEO outputs MUST emit `audit_started` and `audit_completed` events.
 
 ---
 
-⚡ PikaKit v3.9.144
+⚡ PikaKit v3.9.145

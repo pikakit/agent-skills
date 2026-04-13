@@ -6,7 +6,7 @@ description: >-
   NOT for technical documentation (use doc-templates) or SEO content (use seo-optimizer).
 metadata:
   author: pikakit
-  version: "3.9.144"
+  version: "3.9.145"
   category: content
   triggers: ["copywriting", "headlines", "landing page", "email", "marketing"]
   coordinates_with: ["seo-optimizer", "studio", "ai-artist"]
@@ -185,4 +185,4 @@ All copywriting outputs MUST emit `formula_selected`, `validation_passed`, or `v
 
 ---
 
-⚡ PikaKit v3.9.144
+⚡ PikaKit v3.9.145

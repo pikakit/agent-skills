@@ -1,6 +1,6 @@
 # Workflow Design Guide
 
-> **PikaKit v3.9.144** | Standard formula for creating new FAANG-Grade workflows
+> **PikaKit v3.9.145** | Standard formula for creating new FAANG-Grade workflows
 
 ---
 
@@ -321,5 +321,5 @@ Before publishing a FAANG-grade workflow:
 
 ---
 
-⚡ PikaKit v3.9.144
+⚡ PikaKit v3.9.145
 Composable Skills. Coordinated Agents. Intelligent Execution.
