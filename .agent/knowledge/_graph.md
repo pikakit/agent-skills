@@ -9,9 +9,13 @@
 
 ```mermaid
 graph TD
-    ROOT["Knowledge Base"] --> EMPTY["No concepts yet"]
+    ROOT["Knowledge Base"] --> CON001["CON-001: Import Resolution Strategy"]
+    CON001 --> PTN001["PTN-001: Import Resolution Pattern"]
+    CON001 --> ADR001["ADR-001: Path Alias Decision"]
     style ROOT fill:#10b981,color:#fff
-    style EMPTY fill:#374151,color:#9ca3af
+    style CON001 fill:#3b82f6,color:#fff
+    style PTN001 fill:#8b5cf6,color:#fff
+    style ADR001 fill:#f59e0b,color:#fff
 ```
 
 ---

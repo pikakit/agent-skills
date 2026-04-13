@@ -1,7 +1,7 @@
 # Knowledge Index
 
 > Auto-maintained by `knowledge-compiler`. Do not edit manually.
-> Last compiled: 2026-04-12 02:05:00 UTC
+> Last compiled: 2026-04-13 08:38:00 UTC
 
 ---
 
@@ -23,9 +23,16 @@
 
 ---
 
-## Recent Signals (Compiled)
+## Recent Signals (Uncompiled)
 
-- [SIG-001: Relative Import Failing in Modular Build](./raw-signals/SIG-001.md)
+- [SIG-002: CDP Auto-Accepts Destructive Undo Dialogs](./raw-signals/SIG-002.md) — `cdp`, `dialog`, `auto-click`
+- [SIG-003: YAML Frontmatter Non-Compliance Across 62 Skills](./raw-signals/SIG-003.md) — `yaml`, `standardization`
+- [SIG-004: Knowledge Wiki Architecture Audit](./raw-signals/SIG-004.md) — `knowledge-wiki`, `karpathy`
+- [SIG-005: memory.sqlite Is Runtime Cache, Not Knowledge Store](./raw-signals/SIG-005.md) — `architecture`, `separation-of-concerns`
+
+## Compiled Signals
+
+- [SIG-001: Relative Import Failing in Modular Build](./raw-signals/SIG-001.md) *(compiled)*
 
 ---
 
@@ -35,11 +42,12 @@
 |--------|-------|
 | Total concept articles | 1 |
 | Total ADRs | 1 |
-| Uncompiled signals | 0 |
+| Uncompiled signals | 4 |
+| Compiled signals | 1 |
 | Total patterns | 1 |
-| Last compiled | 2026-04-12 |
-| Health score | 100/100 |
+| Last compiled | 2026-04-13 |
+| Health score | — (needs recompile) |
 
 ---
 
-> ⚡ PikaKit Knowledge Compiler v1.0.0
+> ⚡ PikaKit Knowledge Compiler v3.9.143
