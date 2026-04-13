@@ -3,7 +3,7 @@ name: vr-ar
 description: VR/AR development principles. Comfort, interaction, performance requirements.
 metadata:
   author: pikakit
-  version: "3.9.143"
+  version: "3.9.144"
   category: game-development-subskill
   triggers: ["VR", "AR", "XR", "virtual reality", "augmented reality"]
   coordinates_with: ["game-development", "3d-games", "perf-optimizer"]
@@ -141,4 +141,4 @@ metadata:
 
 ---
 
-⚡ PikaKit v3.9.143
+⚡ PikaKit v3.9.144

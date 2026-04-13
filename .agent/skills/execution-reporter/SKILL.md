@@ -6,7 +6,7 @@ description: >-
   NOT for task execution or skill logic.
 metadata:
   author: pikakit
-  version: "3.9.143"
+  version: "3.9.144"
   category: system-orchestration
   triggers: ["every task start", "agent routing", "skill loading", "task completion"]
   coordinates_with: ["lifecycle-orchestrator", "smart-router"]
@@ -42,7 +42,7 @@ metadata:
 |---------------------|-----------|
 | Notification string formatting (4 templates) | Task execution (→ lifecycle-orchestrator) |
 | Verbosity level filtering (3 levels) | Agent routing (→ smart-router) |
-| PikaKit branding (v3.9.143) | Error detection (→ problem-checker) |
+| PikaKit branding (v3.9.144) | Error detection (→ problem-checker) |
 | Complexity threshold (> 3 skills → full) | Notification delivery |
 
 **Pure function skill:** Returns formatted strings. Zero side effects.
@@ -54,7 +54,7 @@ metadata:
 ### Full Template (> 3 skills)
 
 ```
-🤖 PikaKit v3.9.143
+🤖 PikaKit v3.9.144
 📋 Task: {task_description}
 ◆ Agent: @{agent_name}
 ◇ Skills: {skill_1}, {skill_2}, ...
@@ -149,4 +149,4 @@ metadata:
 
 ---
 
-⚡ PikaKit v3.9.143
+⚡ PikaKit v3.9.144

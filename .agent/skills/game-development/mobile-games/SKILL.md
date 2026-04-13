@@ -4,7 +4,7 @@ description: >-
   Mobile game development principles. Touch input, battery, performance, app stores.
 metadata:
   author: pikakit
-  version: "3.9.143"
+  version: "3.9.144"
   category: game-development-subskill
   triggers: ["mobile game", "touch input", "battery optimization", "app store"]
   coordinates_with: ["game-development", "mobile-developer"]
@@ -127,4 +127,4 @@ metadata:
 
 ---
 
-⚡ PikaKit v3.9.143
+⚡ PikaKit v3.9.144
