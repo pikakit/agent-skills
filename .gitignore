@@ -169,6 +169,9 @@ agent.cmd
 .agent/knowledge/decisions/*.md
 !.agent/knowledge/decisions/.gitkeep
 
+# Runtime binary cache for VS Code semantic search (WASM embedding vector DB)
+.agent/memory.sqlite
+
 # ============================================================
 # Build Artifacts (PikaKit Engine extensions)
 # ============================================================
