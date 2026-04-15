@@ -1,6 +1,8 @@
 <div align="center">
 
-# 🤖 PikaKit
+<img src="./assets/logo.png" width="128" alt="PikaKit Logo" />
+
+# PikaKit
 ### The AI Operating System for Production-Grade Development
 
 Build production-grade features 3–5x faster — with enforced architecture, autonomous workflows, and a self-learning AI that never repeats mistakes.
