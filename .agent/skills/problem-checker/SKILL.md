@@ -6,7 +6,7 @@ description: >-
   NOT for root cause analysis (use debug-pro) or code review (use code-review).
 metadata:
   author: pikakit
-  version: "3.9.145"
+  version: "3.9.146"
   category: system-tool
   triggers: ["before notify_user", "after code modification", "IDE errors", "check for errors"]
   coordinates_with: ["knowledge-compiler", "skill-generator", "code-review"]
@@ -186,4 +186,4 @@ npx tsc --noEmit <file>
 
 ---
 
-⚡ PikaKit v3.9.145
+⚡ PikaKit v3.9.146

@@ -51,4 +51,4 @@ The `typeof window !== 'undefined'` check prevents bundling preloaded modules fo
 
 ---
 
-⚡ PikaKit v3.9.145
+⚡ PikaKit v3.9.146

@@ -6,7 +6,7 @@ description: >-
   NOT for using existing MCP tools (use mcp-management).
 metadata:
   author: pikakit
-  version: "3.9.145"
+  version: "3.9.146"
   category: agent-tooling
   triggers: ["build MCP", "create MCP server", "MCP development", "Model Context Protocol", "agent tools"]
   coordinates_with: ["mcp-management", "api-architect", "typescript-expert"]
@@ -163,4 +163,4 @@ Create 10 test questions that are:
 
 ---
 
-⚡ PikaKit v3.9.145
+⚡ PikaKit v3.9.146
