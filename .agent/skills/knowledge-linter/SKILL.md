@@ -7,7 +7,7 @@ description: >-
   after many compiles. NOT for compiling knowledge (use knowledge-compiler).
 metadata:
   author: pikakit
-  version: "3.9.148"
+  version: "3.9.149"
   category: autonomous-learning
   triggers: ["knowledge health", "check wiki", "lint knowledge", "stale knowledge", "wiki health"]
   coordinates_with: ["knowledge-compiler", "knowledge-compiler"]
@@ -214,4 +214,4 @@ health_score = 100
 
 ---
 
-⚡ PikaKit v3.9.148
+⚡ PikaKit v3.9.149

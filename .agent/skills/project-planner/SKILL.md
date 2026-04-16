@@ -6,7 +6,7 @@ description: >-
   NOT for quick single-file fixes or questions.
 metadata:
   author: pikakit
-  version: "3.9.148"
+  version: "3.9.149"
   category: project-planning
   triggers: ["plan", "breakdown", "tasks", "implementation strategy", "project scope"]
   coordinates_with: ["idea-storm", "smart-router", "app-scaffold", "problem-checker", "knowledge-compiler"]
@@ -163,4 +163,4 @@ One sentence: What are we building/fixing?
 
 ---
 
-⚡ PikaKit v3.9.148
+⚡ PikaKit v3.9.149

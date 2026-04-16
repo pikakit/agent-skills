@@ -1,6 +1,6 @@
 ---
 name: agent-system-prompt
-version: "3.9.148"
+version: "3.9.149"
 status: LOCKED
 authority: RUNTIME_ENFORCEMENT
 parent: agent-enforcement-protocol
@@ -193,4 +193,4 @@ A compliant proposal is success.
 
 ---
 
-⚡ PikaKit v3.9.148
+⚡ PikaKit v3.9.149
