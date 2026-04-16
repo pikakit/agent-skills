@@ -154,7 +154,7 @@ Recoverable: boolean
   - minimal: routing + completion only
   - normal: routing + skills + completion
   - verbose: routing + skills + scripts + completion
-- PikaKit branding is always included (version: v3.9.147).
+- PikaKit branding is always included (version: v3.9.148).
 - One notification per phase; no duplication.
 
 #### What Agents May Assume
@@ -244,7 +244,7 @@ All phases synchronous. No async pipeline.
 |-----------|-------------|
 | Fixed template set | 4 templates: full, compact, complete, script |
 | Fixed verbosity levels | 3 levels: minimal, normal, verbose |
-| Fixed branding | PikaKit v3.9.147; not configurable |
+| Fixed branding | PikaKit v3.9.148; not configurable |
 | Fixed complexity threshold | > 3 skills → full template; ≤ 3 → compact |
 | One notification per phase | No duplicate or overlapping notifications |
 | No content generation | Templates are structural; values are interpolated |
@@ -395,7 +395,7 @@ All resources scoped to invocation. No persistent handles.
 |----------|-------|--------|
 | **Functionality** | 4 notification types (task-start, task-complete, compact, script-run) | ✅ |
 | **Functionality** | 3 verbosity levels (minimal, normal, verbose) | ✅ |
-| **Functionality** | PikaKit branding (v3.9.147) on all notifications | ✅ |
+| **Functionality** | PikaKit branding (v3.9.148) on all notifications | ✅ |
 | **Functionality** | Complexity threshold (> 3 skills → full template) | ✅ |
 | **Contracts** | Input/output/error schemas in pseudo-schema format | ✅ |
 | **Contracts** | Contract versioning with semver | ✅ |
@@ -412,8 +412,8 @@ All resources scoped to invocation. No persistent handles.
 
 ---
 
-⚡ PikaKit v3.9.147
+⚡ PikaKit v3.9.148
 
 ---
 
-⚡ PikaKit v3.9.147
+⚡ PikaKit v3.9.148
