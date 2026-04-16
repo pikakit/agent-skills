@@ -6,7 +6,7 @@ description: >-
   NOT for Next.js routing (use nextjs-pro) or CSS styling (use design-system/tailwind-kit).
 metadata:
   author: pikakit
-  version: "3.9.146"
+  version: "3.9.147"
   category: frontend-specialist
   triggers: ["React", "component", "hooks", "state management", "Redux", "Zustand", "TypeScript", "TanStack Query", "MUI", "frontend"]
   coordinates_with: ["nextjs-pro", "typescript-expert", "design-system", "tailwind-kit", "problem-checker", "knowledge-compiler"]
@@ -229,4 +229,4 @@ For the complete guide with all rules expanded: AGENTS.md\n
 
 ---
 
-⚡ PikaKit v3.9.146
+⚡ PikaKit v3.9.147

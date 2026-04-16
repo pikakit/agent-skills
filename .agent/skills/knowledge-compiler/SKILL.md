@@ -9,7 +9,7 @@ description: >-
   NOT for skill generation (use skill-generator) or wiki health (use knowledge-linter).
 metadata:
   author: pikakit
-  version: "3.9.146"
+  version: "3.9.147"
   category: autonomous-learning
   triggers: ["compile", "knowledge", "wiki", "ingest", "mistake", "wrong", "fix-this", "broken"]
   coordinates_with: ["skill-generator", "knowledge-linter", "problem-checker"]
@@ -317,4 +317,4 @@ tags: [{domain tags}]
 
 ---
 
-⚡ PikaKit v3.9.146
+⚡ PikaKit v3.9.147

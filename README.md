@@ -11,7 +11,7 @@ Build production-grade features 3–5x faster — with enforced architecture, au
 
 PikaKit transforms any AI into a Senior Engineer — not by prompting harder, but by controlling how it executes, learns, and improves over time.
 
-[![npm](https://img.shields.io/badge/npm-v3.9.146-7c3aed?style=for-the-badge&logo=npm&logoColor=white&labelColor=18181b)](https://www.npmjs.com/package/pikakit)
+[![npm](https://img.shields.io/badge/npm-v3.9.147-7c3aed?style=for-the-badge&logo=npm&logoColor=white&labelColor=18181b)](https://www.npmjs.com/package/pikakit)
 [![Skills](https://img.shields.io/badge/53_skills-06b6d4?style=for-the-badge&labelColor=18181b)](https://github.com/pikakit/agent-skills)
 [![Workflows](https://img.shields.io/badge/19_workflows-10b981?style=for-the-badge&labelColor=18181b)](https://github.com/pikakit/agent-skills)
 [![TypeScript](https://img.shields.io/badge/strict_typescript-3178c6?style=for-the-badge&logo=typescript&logoColor=white&labelColor=18181b)](https://github.com/pikakit/agent-skills)
@@ -95,6 +95,11 @@ flowchart TD
 ### 1️⃣ Executable Skills
 **53 battle-tested engineering capabilities** injected directly into the AI runtime — enforcing architecture, security, and performance constraints.
 
+*Top Skills include:*
+- ⚛️ **`react-pro`**: Next.js App Router & React expert.
+- 🐞 **`debug-pro`**: Systematic root-cause analysis & defense-in-depth verification.
+- 📐 **`system-design`**: Architectural decision framework & ADR documentation.
+
 ### 2️⃣ Autonomous Workflows
 Run complex tasks with a single command:
 - `/autopilot` — plan → build → test → ship
@@ -130,6 +135,13 @@ PikaKit operates under strict safeguards:
 
 ## ⚡ Get Started in Seconds
 
+### Prerequisites
+- **Node.js:** v18 or newer.
+- **AI Editor:** Cursor, Windsurf, Roo Code, Cline, or Antigravity.
+- **LLM Context:** Claude 3.5 Sonnet or Gemini 3.1 Pro via API (recommended for best autonomy).
+
+### Quick Start
+
 ```bash
 npx pikakit
 ```
@@ -137,7 +149,7 @@ npx pikakit
 Then in your AI editor:
 > Run `/autopilot` to rebuild auth using Next.js App Router
 
----
+
 
 ## 🧠 Not a Prompt Library. Not a Wrapper.
 
@@ -160,6 +172,15 @@ Designed for teams who want:
 
 ---
 
+## 🤝 Contributing
+
+We welcome contributions to PikaKit! Whether it's adding a new Skill, improving documentation, or fixing a bug, please feel free to open a Pull Request or Issue on GitHub. 
+
+## ⚖️ License
+
+PikaKit is open-source software licensed under the [MIT License](./LICENSE).
+---
+
 ## 🚀 Stop Prompting. Start Building.
 
 Turn your AI into a real engineer.
@@ -170,7 +191,7 @@ npx pikakit
 
 <div align="center">
 
-**PikaKit v3.9.146** · 53 Skills · 21 Agents · 19 Workflows · Strict TypeScript
+**PikaKit v3.9.147** · 53 Skills · 19 Workflows · Strict TypeScript
 
 [⭐ Star on GitHub](https://github.com/pikakit/agent-skills) · [Install via npm](https://www.npmjs.com/package/pikakit) · [pikakit.com](https://pikakit.com)
 

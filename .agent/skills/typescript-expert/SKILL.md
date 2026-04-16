@@ -6,7 +6,7 @@ description: >-
   NOT for React-specific patterns (use react-pro) or Node.js architecture (use nodejs-pro).
 metadata:
   author: pikakit
-  version: "3.9.146"
+  version: "3.9.147"
   category: typesystem-engineering
   triggers: ["TypeScript", "JavaScript", "type error", "tsconfig", "monorepo"]
   coordinates_with: ["nextjs-pro", "react-architect", "code-review"]
@@ -197,4 +197,4 @@ All typescript-expert outputs MUST emit `type_pattern_recommended`, `error_resol
 
 ---
 
-⚡ PikaKit v3.9.146
+⚡ PikaKit v3.9.147

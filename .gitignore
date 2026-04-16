@@ -122,6 +122,10 @@ ENV/
 # ============================================================
 # Agent Skill Kit Specific
 # ============================================================
+# Internal development utilities and docs
+docs/
+.agent/scripts/
+
 .gemini/
 brain/
 artifacts/
