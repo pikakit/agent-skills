@@ -6,7 +6,7 @@ description: >-
   NOT for general Python development (use python-pro) or non-Google agent frameworks.
 metadata:
   author: pikakit
-  version: "3.9.149"
+  version: "3.9.151"
   category: ai-agent-framework
   triggers: ["Google ADK", "agent development", "multi-agent", "agent orchestration"]
   coordinates_with: ["python-pro", "api-architect", "ai-artist"]
@@ -165,4 +165,4 @@ coordinator = LlmAgent(
 
 ---
 
-⚡ PikaKit v3.9.149
+⚡ PikaKit v3.9.151

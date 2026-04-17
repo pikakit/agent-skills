@@ -1,6 +1,6 @@
 ---
 name: interaction-patterns-doctrine
-version: "3.9.149"
+version: "3.9.151"
 status: LOCKED
 authority: CONSTITUTIONAL
 parent: frontend-mobile-doctrine
@@ -173,4 +173,4 @@ Not visual flair.
 
 ---
 
-⚡ PikaKit v3.9.149
+⚡ PikaKit v3.9.151

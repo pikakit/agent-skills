@@ -13,7 +13,7 @@ tools: Read, Grep, Glob, Bash, Edit, Write
 model: inherit
 skills: code-craft, nodejs-pro, python-pro, api-architect, data-modeler, mcp-builder, code-review, shell-script, typescript-expert, mcp-management, auth-patterns, observability, code-constitution, problem-checker, knowledge-compiler
 agent_type: domain
-version: "3.9.149"
+version: "3.9.151"
 owner: pikakit
 capability_tier: core
 execution_mode: reactive
@@ -863,4 +863,4 @@ After editing any file:
 
 ---
 
-⚡ PikaKit v3.9.149
+⚡ PikaKit v3.9.151

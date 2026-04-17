@@ -1,6 +1,6 @@
 ---
 name: agent-enforcement-protocol
-version: "3.9.149"
+version: "3.9.151"
 status: LOCKED
 authority: ENFORCEMENT
 parent: master-constitution
@@ -215,4 +215,4 @@ but less safe,
 
 ---
 
-⚡ PikaKit v3.9.149
+⚡ PikaKit v3.9.151

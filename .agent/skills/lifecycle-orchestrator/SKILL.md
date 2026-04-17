@@ -6,7 +6,7 @@ description: >-
   NOT for simple single-phase tasks.
 metadata:
   author: pikakit
-  version: "3.9.149"
+  version: "3.9.151"
   category: system-orchestrator
   triggers: ["complex multi-phase requests", "/autopilot", "/build workflows", "rollback"]
   coordinates_with: ["project-planner", "execution-reporter", "problem-checker"]
@@ -166,4 +166,4 @@ node state_manager.ts list
 
 ---
 
-⚡ PikaKit v3.9.149
+⚡ PikaKit v3.9.151

@@ -6,7 +6,7 @@ description: >-
   NOT for code implementation or quick fixes.
 metadata:
   author: pikakit
-  version: "3.9.149"
+  version: "3.9.151"
   category: architectural-decision
   triggers: ["architecture", "system design", "scalability", "microservices"]
   coordinates_with: ["api-architect", "data-modeler", "cicd-pipeline"]
@@ -150,4 +150,4 @@ All system-design outputs MUST emit `architecture_analysis_started` and `analysi
 
 ---
 
-⚡ PikaKit v3.9.149
+⚡ PikaKit v3.9.151
