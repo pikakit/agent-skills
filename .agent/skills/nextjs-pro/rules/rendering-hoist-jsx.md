@@ -47,4 +47,4 @@ This is especially helpful for large and static SVG nodes, which can be expensiv
 
 ---
 
-⚡ PikaKit v3.9.151
+⚡ PikaKit v3.9.152

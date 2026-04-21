@@ -32,4 +32,4 @@ The `typeof window !== 'undefined'` check prevents bundling this module for SSR,
 
 ---
 
-⚡ PikaKit v3.9.151
+⚡ PikaKit v3.9.152

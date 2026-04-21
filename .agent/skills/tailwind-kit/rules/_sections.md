@@ -17,4 +17,4 @@ The section ID (in parentheses) is the filename prefix used to group rules.
 
 ---
 
-⚡ PikaKit v3.9.151
+⚡ PikaKit v3.9.152

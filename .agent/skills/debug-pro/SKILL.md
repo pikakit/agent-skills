@@ -6,7 +6,7 @@ description: >-
   NOT for new feature design or code review (use code-review).
 metadata:
   author: pikakit
-  version: "3.9.151"
+  version: "3.9.152"
   category: debugging
   triggers: ["debug", "bug", "error", "crash", "exception", "root cause", "investigation", "not working"]
   coordinates_with: ["test-architect", "code-review"]
@@ -190,4 +190,4 @@ All debug-pro outputs MUST emit `investigation_started`, `root_cause_identified`
 
 ---
 
-⚡ PikaKit v3.9.151
+⚡ PikaKit v3.9.152

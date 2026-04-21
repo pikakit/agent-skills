@@ -202,4 +202,4 @@ app.use('*', rateLimiter({ windowMs: 60_000, limit: 100 }))
 
 ---
 
-⚡ PikaKit v3.9.151
+⚡ PikaKit v3.9.152
