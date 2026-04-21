@@ -6,7 +6,7 @@ description: >-
   NOT for API endpoints (use api-architect) or server logic (use nodejs-pro).
 metadata:
   author: pikakit
-  version: "3.9.158"
+  version: "3.9.159"
   category: database-architecture
   triggers: ["database", "schema", "Prisma", "Drizzle", "SQL", "migration", "indexing"]
   coordinates_with: ["api-architect", "nodejs-pro", "python-pro", "security-scanner"]
@@ -192,4 +192,4 @@ All data-modeler outputs MUST emit `schema_designed`, `platform_selected`, or `m
 
 ---
 
-⚡ PikaKit v3.9.158
+⚡ PikaKit v3.9.159
