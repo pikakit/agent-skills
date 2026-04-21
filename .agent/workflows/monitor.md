@@ -37,9 +37,9 @@ Set up production observability infrastructure — OpenTelemetry SDK, structured
 
 ```
 Flow:
-assessor.evaluate(scope, provider) �’ recovery.save()
+assessor.evaluate(scope, provider) → recovery.save()
        ↓
-setup OpenTelemetry �’ logs �’ metrics �’ traces �’ alerts
+setup OpenTelemetry → logs → metrics → traces → alerts
        ↓
 learner.log(monitoring_patterns)
 ```
@@ -190,8 +190,8 @@ Runbooks generated:
 2. If errors/warnings > 0:
    a. Auto-fix: imports, types, lint errors
    b. Re-check @[current_problems]
-   c. If still > 0 �’ STOP �’ Notify user
-3. If count = 0 �’ Proceed to completion
+   c. If still > 0 → STOP → Notify user
+3. If count = 0 → Proceed to completion
 ```
 
 ### Auto-Fixable
@@ -215,7 +215,7 @@ If observability setup causes application crashes or aggressive memory leaks:
 
 ---
 
-## �— Workflow Chain
+## 🔗 Workflow Chain
 
 ```mermaid
 graph LR

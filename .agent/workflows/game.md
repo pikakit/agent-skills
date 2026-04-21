@@ -16,7 +16,7 @@ Orchestrate game development from concept to published game — routing to platf
 
 ---
 
-## ?? Meta-Agents Integration
+## 🤖 Meta-Agents Integration
 
 | Phase | Agent | Action |
 | ----- | ----- | ------ |
@@ -28,13 +28,11 @@ Orchestrate game development from concept to published game — routing to platf
 
 ```
 Flow:
-assessor.evaluate(scope, platform) ? recovery.save()
-       ?
+assessor.evaluate(scope, platform) → recovery.save()       ↓
 orchestrator.parallel(art, audio, code)
-       ? conflict
-critic.resolve(design_vs_perf)
-       ?
-verify ? learner.log(patterns)
+       → conflict
+critic.resolve(design_vs_perf)       ↓
+verify → learner.log(patterns)
 ```
 
 ---
@@ -55,7 +53,7 @@ verify ? learner.log(patterns)
 
 ---
 
-## ?? MANDATORY: Game Development Protocol
+## ⚡ MANDATORY: Game Development Protocol
 
 ### Phase 1: Pre-flight & knowledge-compiler Context
 
@@ -99,8 +97,8 @@ verify ? learner.log(patterns)
 
 | Target | Budget/Frame | Breakdown |
 |--------|-------------|-----------|
-| **60 FPS** | 16.67ms | Input 1ms � Physics 3ms � AI 2ms � Logic 4ms � Render 5ms |
-| **30 FPS** | 33.33ms | Input 1ms � Physics 5ms � AI 5ms � Logic 10ms � Render 10ms |
+| **60 FPS** | 16.67ms | Input 1ms  Physics 3ms  AI 2ms  Logic 4ms  Render 5ms |
+| **30 FPS** | 33.33ms | Input 1ms  Physics 5ms  AI 5ms  Logic 10ms  Render 10ms |
 
 2. Select architecture pattern:
 
@@ -111,7 +109,7 @@ verify ? learner.log(patterns)
 | **ECS** | Thousands of similar entities |
 | **Behavior Tree** | Complex AI decisions |
 
-3. Abstract input layer (keyboard ? gamepad ? touch)
+3. Abstract input layer (keyboard → gamepad → touch)
 
 ### Phase 4: Asset Pipeline & Audio
 
@@ -126,7 +124,7 @@ verify ? learner.log(patterns)
 
 | Asset | Optimization | Target |
 |-------|-------------|--------|
-| Sprites | Texture atlasing | <4096�4096 per atlas |
+| Sprites | Texture atlasing | <40964096 per atlas |
 | 3D Models | LOD, mesh simplification | <10K tris (mobile) |
 | Audio SFX | Mono, 22kHz, OGG | <100KB per sound |
 | Shaders | GPU-efficient | Platform-appropriate |
@@ -172,7 +170,7 @@ Networking checklist:
 | iOS | Xcode / Unity | App Store |
 | Windows | Electron / Unity / Godot | Steam |
 
-Optimization: Tree shake ? Minify ? Compress assets ? Code split ? CDN
+Optimization: Tree shake → Minify → Compress assets → Code split → CDN
 
 ### Phase 7: Testing & Verification
 
@@ -193,7 +191,7 @@ Test checklist:
 
 ---
 
-## ? MANDATORY: Problem Verification Before Completion
+## → MANDATORY: Problem Verification Before Completion
 
 > **CRITICAL:** This check MUST be performed before any `notify_user` or task completion.
 
@@ -204,8 +202,8 @@ Test checklist:
 2. If errors/warnings > 0:
    a. Auto-fix: imports, types, lint errors
    b. Re-check @[current_problems]
-   c. If still > 0 ? STOP ? Notify user
-3. If count = 0 ? Proceed to completion
+   c. If still > 0 → STOP → Notify user
+3. If count = 0 → Proceed to completion
 ```
 
 ### Auto-Fixable
@@ -221,7 +219,7 @@ Test checklist:
 
 ---
 
-## ?? Rollback & Recovery
+## 🔄 Rollback & Recovery
 
 If game loop, physics engine, or multiplayer netcode breaks functionality:
 1. Restore to pre-game checkpoint (`git checkout -- .` or `git stash pop`).
@@ -249,20 +247,20 @@ If game loop, physics engine, or multiplayer netcode breaks functionality:
 
 | Component | Status |
 |-----------|--------|
-| Game loop | ? |
-| Asset pipeline | ? |
-| Audio system | ? |
-| Input abstraction | ? |
-| Multiplayer | ? N/A |
-| Platform build | ? |
+| Game loop | → |
+| Asset pipeline | → |
+| Audio system | → |
+| Input abstraction | → |
+| Multiplayer | → N/A |
+| Platform build | → |
 
 ### Performance
 
 | Metric | Target | Actual | Status |
 |--------|--------|--------|--------|
-| FPS | 60 | 62 | ? |
-| Memory | <256MB | 180MB | ? |
-| Load time | <3s | 2.1s | ? |
+| FPS | 60 | 62 | → |
+| Memory | <256MB | 180MB | → |
+| Load time | <3s | 2.1s | → |
 
 ### Next Steps
 
@@ -295,7 +293,7 @@ If game loop, physics engine, or multiplayer netcode breaks functionality:
 
 ---
 
-## ?? Workflow Chain
+## 🔗 Workflow Chain
 
 **Skills Loaded (7):**
 

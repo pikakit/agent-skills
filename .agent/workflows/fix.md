@@ -29,13 +29,13 @@ Apply immediate, targeted fixes for known errors, lint issues, or test failures 
 
 | Level | Indicators | Action |
 |-------|-----------|--------|
-| **Simple** | Single file, clear error | Quick fix ? verify |
+| **Simple** | Single file, clear error | Quick fix → verify |
 | **Moderate** | Multi-file, unclear scope | Standard workflow with `recovery` |
 | **Complex** | System-wide impact | Escalate to `/diagnose` first |
 
 ---
 
-## ?? Meta-Agents Integration
+## 🤖 Meta-Agents Integration
 
 | Phase | Agent | Action |
 | ----- | ----- | ------ |
@@ -46,16 +46,16 @@ Apply immediate, targeted fixes for known errors, lint issues, or test failures 
 
 ```
 Flow:
-recovery.save() ? analyze error ? apply fix ? verify
-       ? fail
-recovery.restore() ? learner.log(failure)
-       ? success
+recovery.save() → analyze error → apply fix → verify
+       → fail
+recovery.restore() → learner.log(failure)
+       → success
 learner.log(pattern)
 ```
 
 ---
 
-## ?? MANDATORY: Repair Protocol
+## ⚡ MANDATORY: Repair Protocol
 
 ### Phase 1: Pre-flight & knowledge-compiler Context
 
@@ -125,12 +125,12 @@ npx cross-env OTEL_SERVICE_NAME="workflow:fix" TRACE_ID="$TRACE_ID" npm run lint
 
 1. Verify the original error is resolved
 2. Check for regressions in related components
-3. If fix fails ? `recovery.restore()` ? escalate to `/diagnose`
+3. If fix fails → `recovery.restore()` → escalate to `/diagnose`
 4. `learner` logs error pattern for future reference
 
 ---
 
-## ? MANDATORY: Problem Verification Before Completion
+## → MANDATORY: Problem Verification Before Completion
 
 > **CRITICAL:** This check MUST be performed before any `notify_user` or task completion.
 
@@ -141,8 +141,8 @@ npx cross-env OTEL_SERVICE_NAME="workflow:fix" TRACE_ID="$TRACE_ID" npm run lint
 2. If errors/warnings > 0:
    a. Auto-fix: imports, types, lint errors
    b. Re-check @[current_problems]
-   c. If still > 0 ? STOP ? Notify user
-3. If count = 0 ? Proceed to completion
+   c. If still > 0 → STOP → Notify user
+3. If count = 0 → Proceed to completion
 ```
 
 ### Auto-Fixable
@@ -158,7 +158,7 @@ npx cross-env OTEL_SERVICE_NAME="workflow:fix" TRACE_ID="$TRACE_ID" npm run lint
 
 ---
 
-## ?? Rollback & Recovery
+## 🔄 Rollback & Recovery
 
 If the attempted fix introduces new errors or fails verification:
 1. Restore to pre-fix checkpoint (`git checkout -- .` or `git stash pop`).
@@ -180,16 +180,16 @@ If the attempted fix introduces new errors or fails verification:
 
 | File | Change | Type | Status |
 |------|--------|------|--------|
-| `path/to/file.ts` | Added null check | Code Logic | ? |
+| `path/to/file.ts` | Added null check | Code Logic | → |
 
 ### Verification
 
 | Check | Result |
 |-------|--------|
-| Error cleared | ? |
-| Tests passing | ? |
-| Lint clean | ? |
-| IDE Problems | ? 0 |
+| Error cleared | → |
+| Tests passing | → |
+| Lint clean | → |
+| IDE Problems | → 0 |
 
 ### Next Steps
 
@@ -220,7 +220,7 @@ If the attempted fix introduces new errors or fails verification:
 
 ---
 
-## ?? Workflow Chain
+## 🔗 Workflow Chain
 
 **Skills Loaded (6):**
 
@@ -248,6 +248,6 @@ graph LR
 **Handoff to /validate:**
 
 ```markdown
-?? Fix applied to [files]. Error: [description] ? resolved.
+?? Fix applied to [files]. Error: [description] → resolved.
 Run `/validate` to ensure no regressions or `/launch` to deploy.
 ```

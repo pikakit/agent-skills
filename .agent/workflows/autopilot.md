@@ -15,11 +15,11 @@ $ARGUMENTS
 
 Coordinate 3+ specialist agents for complex multi-domain tasks — planning through parallel execution to verification. **Differs from `/build` (sequential new-app creation) and `/cook` (single-scope targeted tasks) by orchestrating multiple specialists simultaneously.** Uses all 5 meta-agents.
 
-> **MINIMUM 3 SPECIALISTS.** Fewer than 3 ? use direct delegation.
+> **MINIMUM 3 SPECIALISTS.** Fewer than 3 → use direct delegation.
 
 ---
 
-## ?? Meta-Agents Integration
+## 🤖 Meta-Agents Integration
 
 | Phase | Agent | Action |
 | ----- | ----- | ------ |
@@ -30,20 +30,20 @@ Coordinate 3+ specialist agents for complex multi-domain tasks — planning thro
 
 ```
 Flow:
-orchestrator.init() ? assessor.evaluate(plan)
-       ?
-recovery.save(state) ? execute phases in parallel
-       ?
-conflict? ? critic.arbitrate(safety > correctness > convenience)
-       ?
-failure? ? recovery.restore() ? learner.log(failure)
-       ?
-success ? learner.log(patterns)
+orchestrator.init() → assessor.evaluate(plan)
+       ↓
+recovery.save(state) → execute phases in parallel
+       ↓
+conflict? → critic.arbitrate(safety > correctness > convenience)
+       ↓
+failure? → recovery.restore() → learner.log(failure)
+       ↓
+success → learner.log(patterns)
 ```
 
 ---
 
-## ?? MANDATORY: Multi-Agent Orchestration Protocol
+## ⚡ MANDATORY: Multi-Agent Orchestration Protocol
 
 ### Phase 1: Pre-flight & knowledge-compiler Context
 
@@ -63,7 +63,7 @@ success ? learner.log(patterns)
 
 // turbo — telemetry: phase-2-planning
 
-1. Identify required domains ? select agents:
+1. Identify required domains → select agents:
 
 | Domain | Agent |
 |--------|-------|
@@ -80,7 +80,7 @@ success ? learner.log(patterns)
 
 > ?? Only `project-planner` during planning.
 
-**? CHECKPOINT: User approval required before Phase 3**
+**🛑 CHECKPOINT: User approval required before Phase 3**
 
 ### Phase 3: Pre-Flight Safety
 
@@ -156,11 +156,11 @@ graph TD
 | **Core** | `nodejs-pro`, `react-pro` | Foundation complete |
 | **Polish** | `test-architect`, `cicd-pipeline` | Core complete |
 
-**Agent Selection:** Match task type to specialists. Web ? frontend + backend + test. API ? backend + security + test. Full Stack ? all core agents.
+**Agent Selection:** Match task type to specialists. Web → frontend + backend + test. API → backend + security + test. Full Stack → all core agents.
 
 **Context Passing (MANDATORY):** Every sub-agent must receive: original request, decisions made, previous work summary, current plan link, and specific task.
 
-> ?? Invoking agent without context = wrong assumptions!
+> 🔴 Invoking agent without context = wrong assumptions!
 
 ### Phase 6: Verification & Exit Gate
 
@@ -192,17 +192,17 @@ npx cross-env OTEL_SERVICE_NAME="workflow:autopilot" TRACE_ID="$TRACE_ID" npm ru
 | Tests | All passing | `npm test` output |
 | Preview Running | Yes | `npm run dev` active |
 
-**Exit Decision:** IDE problems > 0 ? auto-fix or notify. Security failed ? block. All deliverables complete ? generate report.
+**Exit Decision:** IDE problems > 0 → auto-fix or notify. Security failed → block. All deliverables complete → generate report.
 
 ---
 
-## ?? Auto-Execution Policy
+## 🚀 Auto-Execution Policy
 
 **CONTINUOUS EXECUTION** after plan approval. All commands auto-run. Only stop for: blocking errors, decision forks, plan completion.
 
 ---
 
-## ? MANDATORY: Problem Verification Before Completion
+## 🔍 MANDATORY: Problem Verification Before Completion
 
 > **CRITICAL:** This check MUST be performed before any `notify_user` or task completion.
 
@@ -213,8 +213,8 @@ npx cross-env OTEL_SERVICE_NAME="workflow:autopilot" TRACE_ID="$TRACE_ID" npm ru
 2. If errors/warnings > 0:
    a. Auto-fix: imports, types, lint errors
    b. Re-check @[current_problems]
-   c. If still > 0 ? STOP ? Notify user
-3. If count = 0 ? Proceed to completion
+   c. If still > 0 → STOP → Notify user
+3. If count = 0 → Proceed to completion
 ```
 
 ### Auto-Fixable
@@ -231,7 +231,7 @@ npx cross-env OTEL_SERVICE_NAME="workflow:autopilot" TRACE_ID="$TRACE_ID" npm ru
 
 ---
 
-## ?? Rollback & Recovery
+## 🔄 Rollback & Recovery
 
 If the Exit Gates fail and cannot be resolved automatically:
 1. Restore to pre-autopilot checkpoint (`git checkout -- .` or `git stash pop`).
@@ -243,7 +243,7 @@ If the Exit Gates fail and cannot be resolved automatically:
 ## Output Format
 
 ```markdown
-## ?? Autopilot Report
+## 🚀 Autopilot Report
 
 ### Mission
 [Original task summary]
@@ -252,20 +252,20 @@ If the Exit Gates fail and cannot be resolved automatically:
 
 | Agent | Task | Duration | Status |
 |-------|------|----------|--------|
-| `project-planner` | Task breakdown | 2m | ? Complete |
-| `data-modeler` | Schema design | 3m | ? Complete |
-| `nodejs-pro` | API routes | 5m | ? Complete |
-| `react-pro` | UI components | 7m | ? Complete |
-| `test-architect` | E2E tests | 4m | ? Complete |
+| `project-planner` | Task breakdown | 2m | ✅ Complete |
+| `data-modeler` | Schema design | 3m | ✅ Complete |
+| `nodejs-pro` | API routes | 5m | ✅ Complete |
+| `react-pro` | UI components | 7m | ✅ Complete |
+| `test-architect` | E2E tests | 4m | ✅ Complete |
 
 ### Execution Metrics
 
 | Metric | Target | Actual | Status |
 |--------|--------|--------|--------|
-| Agents invoked | = 3 | [X] | ?/? |
-| IDE problems | 0 | [X] | ?/? |
-| Total execution | < 5min | [X]m | ?/? |
-| Auto-fix rate | > 85% | [X]% | ?/? |
+| Agents invoked | = 3 | [X] | ✅/❌ |
+| IDE problems | 0 | [X] | ✅/❌ |
+| Total execution | < 5min | [X]m | ✅/❌ |
+| Auto-fix rate | > 85% | [X]% | ✅/❌ |
 
 ### Deliverables
 - [x] PLAN.md created
@@ -305,7 +305,7 @@ If the Exit Gates fail and cannot be resolved automatically:
 
 ---
 
-## ?? Workflow Chain
+## 🔗 Workflow Chain
 
 **Skills Loaded (11):**
 
@@ -339,6 +339,6 @@ graph LR
 **Handoff to /launch:**
 
 ```markdown
-? Autopilot complete! [X] agents finished, [Y] tests passing. Preview running at localhost:3000.
+✅ Autopilot complete! [X] agents finished, [Y] tests passing. Preview running at localhost:3000.
 Run `/launch` when ready to deploy to production.
 ```

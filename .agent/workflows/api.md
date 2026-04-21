@@ -17,7 +17,7 @@ Build well-architected APIs from specification to implementation — covering de
 
 ---
 
-## ?? Meta-Agents Integration
+## 🤖 Meta-Agents Integration
 
 | Phase | Agent | Action |
 | ----- | ----- | ------ |
@@ -28,18 +28,15 @@ Build well-architected APIs from specification to implementation — covering de
 
 ```
 Flow:
-assessor.evaluate(api_scope) ? risk level
-       ?
-recovery.save(existing_api) ? backup
-       ?
-design ? implement ? test ? secure
-       ?
+assessor.evaluate(api_scope) → risk level       ↓
+recovery.save(existing_api) → backup       ↓
+design → implement → test → secure       ↓
 learner.log(patterns)
 ```
 
 ---
 
-## ?? MANDATORY: API Development Protocol
+## ⚡ MANDATORY: API Development Protocol
 
 ### Phase 1: Pre-flight & knowledge-compiler Context
 
@@ -238,7 +235,7 @@ npx cross-env OTEL_SERVICE_NAME="workflow:api" TRACE_ID="$TRACE_ID" npm run lint
 
 ---
 
-## ? MANDATORY: Problem Verification Before Completion
+## → MANDATORY: Problem Verification Before Completion
 
 > **CRITICAL:** This check MUST be performed before any `notify_user` or task completion.
 
@@ -249,8 +246,8 @@ npx cross-env OTEL_SERVICE_NAME="workflow:api" TRACE_ID="$TRACE_ID" npm run lint
 2. If errors/warnings > 0:
    a. Auto-fix: imports, types, lint errors
    b. Re-check @[current_problems]
-   c. If still > 0 ? STOP ? Notify user
-3. If count = 0 ? Proceed to completion
+   c. If still > 0 → STOP → Notify user
+3. If count = 0 → Proceed to completion
 ```
 
 ### Auto-Fixable
@@ -266,7 +263,7 @@ npx cross-env OTEL_SERVICE_NAME="workflow:api" TRACE_ID="$TRACE_ID" npm run lint
 
 ---
 
-## ?? Rollback & Recovery
+## 🔄 Rollback & Recovery
 
 If the Exit Gates fail and cannot be resolved automatically:
 1. Restore to pre-api checkpoint (`git checkout -- .` or `git stash pop`).
@@ -293,12 +290,12 @@ If the Exit Gates fail and cannot be resolved automatically:
 
 | Item | Status | Path |
 |------|--------|------|
-| Routes | ? [X] endpoints | `src/routes/` |
-| Services | ? [X] services | `src/services/` |
-| Tests | ? [X] passing | `src/__tests__/` |
-| Schema | ? [X] models | `prisma/schema.prisma` |
-| OpenAPI | ? Generated | `docs/openapi.yaml` |
-| Security | ? OWASP validated | — |
+| Routes | → [X] endpoints | `src/routes/` |
+| Services | → [X] services | `src/services/` |
+| Tests | → [X] passing | `src/__tests__/` |
+| Schema | → [X] models | `prisma/schema.prisma` |
+| OpenAPI | → Generated | `docs/openapi.yaml` |
+| Security | → OWASP validated | — |
 
 ### Test Coverage
 
@@ -340,7 +337,7 @@ If the Exit Gates fail and cannot be resolved automatically:
 
 ---
 
-## ?? Workflow Chain
+## 🔗 Workflow Chain
 
 **Skills Loaded (9):**
 

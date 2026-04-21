@@ -28,11 +28,11 @@ Systematic debugging using the scientific method — form hypotheses, gather evi
 
 ```
 Flow:
-recovery.save() �’ learner.check(past_bugs)
+recovery.save() → learner.check(past_bugs)
        ↓
-hypotheses �’ test �’ found? �’ assessor.evaluate(fix)
+hypotheses → test → found? → assessor.evaluate(fix)
        ↓
-apply fix �’ verify �’ learner.log(root_cause, fix)
+apply fix → verify → learner.log(root_cause, fix)
        ↓ failure
 recovery.restore()
 ```
@@ -157,7 +157,7 @@ npx cross-env OTEL_SERVICE_NAME="workflow:diagnose" TRACE_ID="$TRACE_ID" npm tes
 
 1. Verify the fix resolves the original symptom
 2. Check for regressions
-3. If fix fails �’ `recovery.restore()` �’ re-investigate
+3. If fix fails → `recovery.restore()` → re-investigate
 
 ---
 
@@ -172,8 +172,8 @@ npx cross-env OTEL_SERVICE_NAME="workflow:diagnose" TRACE_ID="$TRACE_ID" npm tes
 2. If errors/warnings > 0:
    a. Auto-fix: imports, types, lint errors
    b. Re-check @[current_problems]
-   c. If still > 0 �’ STOP �’ Notify user
-3. If count = 0 �’ Proceed to completion
+   c. If still > 0 → STOP → Notify user
+3. If count = 0 → Proceed to completion
 ```
 
 ### Auto-Fixable
@@ -270,7 +270,7 @@ If investigation causes system instability or tests fail unexpectedly:
 
 ---
 
-## �— Workflow Chain
+## 🔗 Workflow Chain
 
 **Skills Loaded (6):**
 

@@ -16,7 +16,7 @@ Profile application performance, optimize bottlenecks (database queries, bundle 
 
 ---
 
-## ?? Meta-Agents Integration
+## 🤖 Meta-Agents Integration
 
 | Phase | Agent | Action |
 | ----- | ----- | ------ |
@@ -27,16 +27,15 @@ Profile application performance, optimize bottlenecks (database queries, bundle 
 
 ```
 Flow:
-recovery.save() ? profile ? optimize ? benchmark
-       ?
-benchmark ? worse? ? recovery.restore()
-       ? better
+recovery.save() → profile → optimize → benchmark       ↓
+benchmark → worse? → recovery.restore()
+       → better
 learner.log(optimization_patterns)
 ```
 
 ---
 
-## ?? MANDATORY: Performance Optimization Protocol
+## ⚡ MANDATORY: Performance Optimization Protocol
 
 ### Phase 1: Pre-flight & knowledge-compiler Context
 
@@ -132,12 +131,12 @@ Frontend optimization:
 
 1. Run realistic user scenarios at target scale
 2. Compare before/after metrics
-3. If regression detected ? `recovery` restores checkpoint
-4. If improved ? `learner` logs patterns
+3. If regression detected → `recovery` restores checkpoint
+4. If improved → `learner` logs patterns
 
 ---
 
-## ? MANDATORY: Problem Verification Before Completion
+## → MANDATORY: Problem Verification Before Completion
 
 > **CRITICAL:** This check MUST be performed before any `notify_user` or task completion.
 
@@ -148,8 +147,8 @@ Frontend optimization:
 2. If errors/warnings > 0:
    a. Auto-fix: imports, types, lint errors
    b. Re-check @[current_problems]
-   c. If still > 0 ? STOP ? Notify user
-3. If count = 0 ? Proceed to completion
+   c. If still > 0 → STOP → Notify user
+3. If count = 0 → Proceed to completion
 ```
 
 ### Auto-Fixable
@@ -165,7 +164,7 @@ Frontend optimization:
 
 ---
 
-## ?? Rollback & Recovery
+## 🔄 Rollback & Recovery
 
 If performance optimization causes regression, breaks functionality, or ruins benchmarks:
 1. Revert to safe checkpoint using `recovery` meta-agent immediately.
@@ -177,7 +176,7 @@ If performance optimization causes regression, breaks functionality, or ruins be
 ## Output Format
 
 ```markdown
-## ? Performance Optimization Complete
+## → Performance Optimization Complete
 
 ### Improvements
 
@@ -192,17 +191,17 @@ If performance optimization causes regression, breaks functionality, or ruins be
 
 | Area | Change | Impact |
 |------|--------|--------|
-| Database | Added indexes, fixed N+1 | ? 95% faster |
-| Cache | Redis + CDN | ? 85% hit rate |
-| Frontend | Code splitting | ? 68% smaller |
+| Database | Added indexes, fixed N+1 | → 95% faster |
+| Cache | Redis + CDN | → 85% hit rate |
+| Frontend | Code splitting | → 68% smaller |
 
 ### Load Test Result
 
 | Metric | Target | Actual | Status |
 |--------|--------|--------|--------|
-| p95 | <200ms | 180ms | ? |
-| Error rate | <0.5% | 0.2% | ? |
-| Concurrent | 5,000+ | 5,000 | ? |
+| p95 | <200ms | 180ms | → |
+| Error rate | <0.5% | 0.2% | → |
+| Concurrent | 5,000+ | 5,000 | → |
 
 ### Next Steps
 
@@ -235,7 +234,7 @@ If performance optimization causes regression, breaks functionality, or ruins be
 
 ---
 
-## ?? Workflow Chain
+## 🔗 Workflow Chain
 
 **Skills Loaded (7):**
 
@@ -264,6 +263,6 @@ graph LR
 **Handoff to /validate:**
 
 ```markdown
-? Optimization complete! Latency: [before]ms ? [after]ms ([X]% faster).
+✅ Optimization complete! Latency: [before]ms → [after]ms ([X]% faster).
 Run `/validate` to verify at scale or `/launch` to deploy.
 ```

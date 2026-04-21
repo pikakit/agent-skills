@@ -16,7 +16,7 @@ Manage local development environments with multi-service orchestration — auto-
 
 ---
 
-## ?? Meta-Agents Integration
+## 🤖 Meta-Agents Integration
 
 | Phase | Agent | Action |
 | ----- | ----- | ------ |
@@ -27,11 +27,9 @@ Manage local development environments with multi-service orchestration — auto-
 
 ```
 Flow:
-recovery.save(server_state) ? detect(project) ? resolve(ports)
-       ?
-assessor.evaluate(port_conflicts) ? start(services)
-       ?
-health_check ? learner.log(config)
+recovery.save(server_state) → detect(project) → resolve(ports)       ↓
+assessor.evaluate(port_conflicts) → start(services)       ↓
+health_check → learner.log(config)
 ```
 
 ---
@@ -56,7 +54,7 @@ health_check ? learner.log(config)
 
 ---
 
-## ?? MANDATORY: Development Sandbox Protocol
+## ⚡ MANDATORY: Development Sandbox Protocol
 
 ### Phase 1: Pre-flight & knowledge-compiler Context
 
@@ -91,9 +89,9 @@ Auto-detect project type:
 
 Monorepo detection:
 ```
-apps/web/    ? Frontend (port 3000)
-apps/api/    ? Backend (port 3001)
-packages/db/ ? Database service
+apps/web/    → Frontend (port 3000)
+apps/api/    → Backend (port 3001)
+packages/db/ → Database service
 ```
 
 ### Phase 3: Port Resolution & Service Start
@@ -121,17 +119,17 @@ Port allocation:
 Conflict resolution:
 ```
 Port in use?
-+-- OUR process? ? Reuse (already running)
-+-- Another dev server? ? Offer kill or next port
-+-- System service? ? Use fallback
++-- OUR process? → Reuse (already running)
++-- Another dev server? → Offer kill or next port
++-- System service? → Use fallback
 ```
 
 Startup order (respecting dependencies):
 ```
-1. Infrastructure  ? Database, Redis, Queue
-2. Backend         ? API server, Workers
-3. Frontend        ? Next.js / Vite dev server
-4. Tools           ? Prisma Studio, Storybook
+1. Infrastructure  → Database, Redis, Queue
+2. Backend         → API server, Workers
+3. Frontend        → Next.js / Vite dev server
+4. Tools           → Prisma Studio, Storybook
 ```
 
 Docker hybrid mode (recommended):
@@ -159,9 +157,9 @@ Health gates:
 | Service | Wait For | Health Check |
 |---------|----------|-------------|
 | Database | — | TCP port open |
-| Redis | — | `PING ? PONG` |
-| API Server | Database, Redis | `GET /health ? 200` |
-| Frontend | API Server | `GET / ? 200` |
+| Redis | — | `PING → PONG` |
+| API Server | Database, Redis | `GET /health → 200` |
+| Frontend | API Server | `GET / → 200` |
 
 Auto-restart on crash: 3 retry attempts with error logging.
 
@@ -172,7 +170,7 @@ npx cross-env OTEL_SERVICE_NAME="workflow:stage" TRACE_ID="$TRACE_ID" node .agen
 
 ---
 
-## ? MANDATORY: Problem Verification Before Completion
+## → MANDATORY: Problem Verification Before Completion
 
 > **CRITICAL:** This check MUST be performed before any `notify_user` or task completion.
 
@@ -183,15 +181,15 @@ npx cross-env OTEL_SERVICE_NAME="workflow:stage" TRACE_ID="$TRACE_ID" node .agen
 2. If errors/warnings > 0:
    a. Auto-fix: imports, types, lint errors
    b. Re-check @[current_problems]
-   c. If still > 0 ? STOP ? Notify user
-3. If count = 0 ? Proceed to completion
+   c. If still > 0 → STOP → Notify user
+3. If count = 0 → Proceed to completion
 ```
 
 > **Note:** /stage manages services, not code. Problems are reported along with service health.
 
 ---
 
-## ?? Rollback & Recovery
+## 🔄 Rollback & Recovery
 
 If port orchestration fails or Docker containers hang:
 1. Trigger `recovery` meta-agent to run `docker compose down` and kill dangling Node/Python processes on target ports.
@@ -209,10 +207,10 @@ If port orchestration fails or Docker containers hang:
 
 | Service | Port | Health | Mode |
 |---------|------|--------|------|
-| Frontend | 3000 | ? OK | Local |
-| API | 3001 | ? OK | Local |
-| PostgreSQL | 5432 | ? OK | Docker |
-| Redis | 6379 | ? OK | Docker |
+| Frontend | 3000 | → OK | Local |
+| API | 3001 | → OK | Local |
+| PostgreSQL | 5432 | → OK | Docker |
+| Redis | 6379 | → OK | Docker |
 
 ### URLs
 
@@ -255,7 +253,7 @@ If port orchestration fails or Docker containers hang:
 
 ---
 
-## ?? Workflow Chain
+## 🔗 Workflow Chain
 
 **Skills Loaded (5):**
 

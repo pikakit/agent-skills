@@ -16,7 +16,7 @@ Generate comprehensive design systems for web and mobile applications — 50+ st
 
 ---
 
-## ?? Meta-Agents Integration
+## 🤖 Meta-Agents Integration
 
 | Phase | Agent | Action |
 | ----- | ----- | ------ |
@@ -27,16 +27,14 @@ Generate comprehensive design systems for web and mobile applications — 50+ st
 
 ```
 Flow:
-learner.analyze(past_designs) ? recommendations
-       ?
-search(product, style, color, typography) ? design system
-       ?
-verify(accessibility, contrast) ? learner.log(patterns)
+learner.analyze(past_designs) → recommendations       ↓
+search(product, style, color, typography) → design system       ↓
+verify(accessibility, contrast) → learner.log(patterns)
 ```
 
 ---
 
-## ?? MANDATORY: Design System Protocol
+## ⚡ MANDATORY: Design System Protocol
 
 ### Phase 1: Pre-flight & knowledge-compiler Context
 
@@ -145,7 +143,7 @@ Pre-delivery checklist:
 
 ---
 
-## ? MANDATORY: Problem Verification Before Completion
+## → MANDATORY: Problem Verification Before Completion
 
 > **CRITICAL:** This check MUST be performed before any `notify_user` or task completion.
 
@@ -156,8 +154,8 @@ Pre-delivery checklist:
 2. If errors/warnings > 0:
    a. Auto-fix: imports, types, lint errors
    b. Re-check @[current_problems]
-   c. If still > 0 ? STOP ? Notify user
-3. If count = 0 ? Proceed to completion
+   c. If still > 0 → STOP → Notify user
+3. If count = 0 → Proceed to completion
 ```
 
 ### Auto-Fixable
@@ -173,7 +171,7 @@ Pre-delivery checklist:
 
 ---
 
-## ?? Rollback & Recovery
+## 🔄 Rollback & Recovery
 
 If AI generates slop, inconsistent patterns, or hallucinates styling components:
 1. Revert UI file changes using `recovery` meta-agent.
@@ -207,9 +205,9 @@ If AI generates slop, inconsistent patterns, or hallucinates styling components:
 
 | Check | Status |
 |-------|--------|
-| Accessibility | ? WCAG AA |
-| Responsive | ? 375-1440px |
-| Dark mode | ? Contrast verified |
+| Accessibility | → WCAG AA |
+| Responsive | → 375-1440px |
+| Dark mode | → Contrast verified |
 
 ### Next Steps
 
@@ -242,7 +240,7 @@ If AI generates slop, inconsistent patterns, or hallucinates styling components:
 
 ---
 
-## ?? Workflow Chain
+## 🔗 Workflow Chain
 
 **Skills Loaded (7):**
 

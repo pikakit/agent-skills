@@ -16,7 +16,7 @@ Orchestrate mobile app development from concept to app store submission — supp
 
 ---
 
-## ?? Meta-Agents Integration
+## 🤖 Meta-Agents Integration
 
 | Phase | Agent | Action |
 | ----- | ----- | ------ |
@@ -28,18 +28,16 @@ Orchestrate mobile app development from concept to app store submission — supp
 
 ```
 Flow:
-assessor.evaluate(platform, MFRI) ? recovery.save()
-       ?
+assessor.evaluate(platform, MFRI) → recovery.save()       ↓
 orchestrator.parallel(UI, push, deeplink, offline)
-       ? conflict
-critic.resolve(iOS_vs_Android)
-       ?
-verify ? learner.log(patterns)
+       → conflict
+critic.resolve(iOS_vs_Android)       ↓
+verify → learner.log(patterns)
 ```
 
 ---
 
-## ?? MANDATORY: Mobile Development Protocol
+## ⚡ MANDATORY: Mobile Development Protocol
 
 ### Phase 1: Pre-flight & knowledge-compiler Context
 
@@ -69,7 +67,7 @@ verify ? learner.log(patterns)
 | Offline? | Required / Nice-to-have / No | Sync architecture |
 | Devices? | Phone / Tablet / Both | Layout strategy |
 
-2. Calculate MFRI (Mobile Feasibility Risk Index) — MFRI < 3 ? Redesign
+2. Calculate MFRI (Mobile Feasibility Risk Index) — MFRI < 3 → Redesign
 3. `assessor` evaluates platform and framework risks
 
 ### Phase 3: Design & Architecture
@@ -217,7 +215,7 @@ Key metrics:
 
 ---
 
-## ? MANDATORY: Problem Verification Before Completion
+## → MANDATORY: Problem Verification Before Completion
 
 > **CRITICAL:** This check MUST be performed before any `notify_user` or task completion.
 
@@ -228,8 +226,8 @@ Key metrics:
 2. If errors/warnings > 0:
    a. Auto-fix: imports, types, lint errors
    b. Re-check @[current_problems]
-   c. If still > 0 ? STOP ? Notify user
-3. If count = 0 ? Proceed to completion
+   c. If still > 0 → STOP → Notify user
+3. If count = 0 → Proceed to completion
 ```
 
 ### Auto-Fixable
@@ -245,7 +243,7 @@ Key metrics:
 
 ---
 
-## ?? Rollback & Recovery
+## 🔄 Rollback & Recovery
 
 If scaffolding or builds fail completely due to native dependencies or environment issues:
 1. Revert to safe checkpoint using `recovery` meta-agent.
@@ -272,19 +270,19 @@ If scaffolding or builds fail completely due to native dependencies or environme
 
 | Feature | Status |
 |---------|--------|
-| Core screens | ? |
-| Push notifications | ? |
-| Deep linking | ? |
-| Offline sync | ? |
-| Security hardening | ? |
-| CI/CD pipeline | ? |
+| Core screens | → |
+| Push notifications | → |
+| Deep linking | → |
+| Offline sync | → |
+| Security hardening | → |
+| CI/CD pipeline | → |
 
 ### Performance
 
 | Metric | Target | Actual | Status |
 |--------|--------|--------|--------|
-| Cold start | <2s | 1.4s | ? |
-| Crash-free | >99.5% | 99.8% | ? |
+| Cold start | <2s | 1.4s | → |
+| Crash-free | >99.5% | 99.8% | → |
 
 ### Next Steps
 
@@ -317,7 +315,7 @@ If scaffolding or builds fail completely due to native dependencies or environme
 
 ---
 
-## ?? Workflow Chain
+## 🔗 Workflow Chain
 
 **Skills Loaded (10):**
 

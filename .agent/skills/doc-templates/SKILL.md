@@ -6,7 +6,7 @@ description: >-
   NOT for marketing copy (use copywriting) or code comments style (use code-craft).
 metadata:
   author: pikakit
-  version: "3.9.157"
+  version: "3.9.158"
   category: documentation
   triggers: ["template", "README", "documentation", "API docs", "changelog", "ADR", "mermaid", "diagram", "flowchart", "preview", "markdown viewer", "view plans", "kanban", "dashboard"]
   coordinates_with: ["project-planner", "code-craft", "system-design"]
@@ -257,4 +257,4 @@ node .agent/skills/doc-templates/scripts/kanban-server.ts --dir ./docs/plans --o
 
 ---
 
-⚡ PikaKit v3.9.157
+⚡ PikaKit v3.9.158

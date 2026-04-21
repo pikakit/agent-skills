@@ -16,7 +16,7 @@ Generate comprehensive tests, execute suites, and analyze coverage — supportin
 
 ---
 
-## ?? Meta-Agents Integration
+## 🤖 Meta-Agents Integration
 
 | Phase | Agent | Action |
 | ----- | ----- | ------ |
@@ -27,10 +27,8 @@ Generate comprehensive tests, execute suites, and analyze coverage — supportin
 
 ```
 Flow:
-recovery.save(state) ? generate(tests) ? execute(suite)
-       ?
-analyze(coverage, mutations, visual, contracts)
-       ?
+recovery.save(state) → generate(tests) → execute(suite)       ↓
+analyze(coverage, mutations, visual, contracts)       ↓
 learner.log(failure_patterns)
 ```
 
@@ -51,7 +49,7 @@ learner.log(failure_patterns)
 
 ---
 
-## ?? MANDATORY: Test Automation Protocol
+## ⚡ MANDATORY: Test Automation Protocol
 
 ### Phase 1: Pre-flight & knowledge-compiler Context
 
@@ -85,7 +83,7 @@ learner.log(failure_patterns)
 
 | Category | Example |
 |----------|---------|
-| Happy Path | Valid input ? expected output |
+| Happy Path | Valid input → expected output |
 | Empty Input | `""`, `[]`, `null`, `undefined` |
 | Boundary | Min, max, off-by-one |
 | Type Errors | Wrong type, missing property |
@@ -164,7 +162,7 @@ npx cross-env OTEL_SERVICE_NAME="workflow:validate" TRACE_ID="$TRACE_ID" npx pac
 
 ---
 
-## ? MANDATORY: Problem Verification Before Completion
+## → MANDATORY: Problem Verification Before Completion
 
 > **CRITICAL:** This check MUST be performed before any `notify_user` or task completion.
 
@@ -175,8 +173,8 @@ npx cross-env OTEL_SERVICE_NAME="workflow:validate" TRACE_ID="$TRACE_ID" npx pac
 2. If errors/warnings > 0:
    a. Auto-fix: imports, types, lint errors
    b. Re-check @[current_problems]
-   c. If still > 0 ? STOP ? Notify user
-3. If count = 0 ? Proceed to completion
+   c. If still > 0 → STOP → Notify user
+3. If count = 0 → Proceed to completion
 ```
 
 ### Auto-Fixable
@@ -192,7 +190,7 @@ npx cross-env OTEL_SERVICE_NAME="workflow:validate" TRACE_ID="$TRACE_ID" npx pac
 
 ---
 
-## ?? Rollback & Recovery
+## 🔄 Rollback & Recovery
 
 If tests hang or mutate files in unexpected ways:
 1. Trigger `recovery` meta-agent to run `git restore .` to revert mutated source files.
@@ -207,17 +205,17 @@ If tests hang or mutate files in unexpected ways:
 ## ?? Test Results
 
 ### Summary
-? Passed: 42  ? Failed: 2  ?? Skipped: 1
+? Passed: 42  → Failed: 2  ?? Skipped: 1
 
 ### Coverage
 
 | Metric | Current | Target | Status |
 |--------|---------|--------|--------|
-| Statements | 85% | 80% | ? |
-| Branches | 72% | 70% | ? |
-| Mutation Score | 82% | 80% | ? |
-| Visual Diffs | 0 | 0 | ? |
-| Contracts | 5/5 | 100% | ? |
+| Statements | 85% | 80% | → |
+| Branches | 72% | 70% | → |
+| Mutation Score | 82% | 80% | → |
+| Visual Diffs | 0 | 0 | → |
+| Contracts | 5/5 | 100% | → |
 
 ### Failures
 
@@ -257,7 +255,7 @@ If tests hang or mutate files in unexpected ways:
 
 ---
 
-## ?? Workflow Chain
+## 🔗 Workflow Chain
 
 **Skills Loaded (6):**
 

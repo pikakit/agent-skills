@@ -21,14 +21,14 @@ Rapidly implement specific features, components, or logic based on clear instruc
 
 | Mode | Research | Testing | Review Gates | Use When |
 |------|----------|---------|--------------|----------|
-| **interactive** (default) | ? | ? | User approval | Standard features |
-| **--auto** | ? | ? | Auto if score = 9.5 | Trusted autonomous |
-| **--fast** | ? | ? | User approval | Quick prototypes |
-| **--no-test** | ? | ? | User approval | Experimental code |
+| **interactive** (default) | → | → | User approval | Standard features |
+| **--auto** | → | → | Auto if score = 9.5 | Trusted autonomous |
+| **--fast** | → | → | User approval | Quick prototypes |
+| **--no-test** | → | → | User approval | Experimental code |
 
 ---
 
-## ?? Meta-Agents Integration
+## 🤖 Meta-Agents Integration
 
 | Phase | Agent | Action |
 | ----- | ----- | ------ |
@@ -39,12 +39,12 @@ Rapidly implement specific features, components, or logic based on clear instruc
 
 ```
 Flow:
-instruction ? implement ? verify ? learner.log() ? done
+instruction → implement → verify → learner.log() → done
 ```
 
 ---
 
-## ?? MANDATORY: Cooking Protocol
+## ⚡ MANDATORY: Cooking Protocol
 
 ### Phase 1: Pre-flight & knowledge-compiler Context
 
@@ -101,7 +101,7 @@ npx cross-env OTEL_SERVICE_NAME="workflow:cook" TRACE_ID="$TRACE_ID" npm run lin
 
 ---
 
-## ? MANDATORY: Problem Verification Before Completion
+## → MANDATORY: Problem Verification Before Completion
 
 > **CRITICAL:** This check MUST be performed before any `notify_user` or task completion.
 
@@ -112,8 +112,8 @@ npx cross-env OTEL_SERVICE_NAME="workflow:cook" TRACE_ID="$TRACE_ID" npm run lin
 2. If errors/warnings > 0:
    a. Auto-fix: imports, types, lint errors
    b. Re-check @[current_problems]
-   c. If still > 0 ? STOP ? Notify user
-3. If count = 0 ? Proceed to completion
+   c. If still > 0 → STOP → Notify user
+3. If count = 0 → Proceed to completion
 ```
 
 ### Auto-Fixable
@@ -128,7 +128,7 @@ npx cross-env OTEL_SERVICE_NAME="workflow:cook" TRACE_ID="$TRACE_ID" npm run lin
 
 ---
 
-## ?? Rollback & Recovery
+## 🔄 Rollback & Recovery
 
 If implementation introduces errors that cannot be auto-fixed:
 1. Restore previous state (`git checkout -- .` or `git stash pop`).
@@ -146,16 +146,16 @@ If implementation introduces errors that cannot be auto-fixed:
 
 | File | Action | Status |
 |------|--------|--------|
-| `path/to/file.ts` | Created | ? |
-| `path/to/other.ts` | Modified | ? |
+| `path/to/file.ts` | Created | → |
+| `path/to/other.ts` | Modified | → |
 
 ### Verification
 
 | Check | Result |
 |-------|--------|
-| Syntax | ? Passed |
-| Lint | ? No errors |
-| IDE Problems | ? 0 |
+| Syntax | → Passed |
+| Lint | → No errors |
+| IDE Problems | → 0 |
 
 ### Next Steps
 
@@ -186,7 +186,7 @@ If implementation introduces errors that cannot be auto-fixed:
 
 ---
 
-## ?? Workflow Chain
+## 🔗 Workflow Chain
 
 **Skills Loaded (5):**
 

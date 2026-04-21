@@ -27,11 +27,11 @@ Activate structured ideation mode for architecture decisions, feature planning, 
 
 ```
 Flow:
-generate options �’ score(decision_matrix)
+generate options ’ score(decision_matrix)
        ↓
-scores too close? �’ critic.arbitrate()
+scores too close? ’ critic.arbitrate()
        ↓
-decision made �’ recommendation + next steps
+decision made ’ recommendation + next steps
 ```
 
 ---
@@ -105,14 +105,14 @@ Score each option 1-5:
 
 | Criteria | Weight | Option A | Option B | Option C |
 |----------|--------|----------|----------|----------|
-| Implementation Speed | 20% | ? | ? | ? |
-| Scalability | 25% | ? | ? | ? |
-| Maintainability | 20% | ? | ? | ? |
-| Team Expertise | 15% | ? | ? | ? |
-| Cost | 20% | ? | ? | ? |
+| Implementation Speed | 20% | → | → | → |
+| Scalability | 25% | → | → | → |
+| Maintainability | 20% | → | → | → |
+| Team Expertise | 15% | → | → | → |
+| Cost | 20% | → | → | → |
 | **Weighted Score** | 100% | **?** | **?** | **?** |
 
-If scores too close �’ `critic` arbitrates.
+If scores too close ’ `critic` arbitrates.
 
 Risk assessment for top option:
 - 🔴 **Blockers** — what could make this fail?
@@ -132,8 +132,8 @@ Risk assessment for top option:
 2. If errors/warnings > 0:
    a. Auto-fix: imports, types, lint errors
    b. Re-check @[current_problems]
-   c. If still > 0 �’ STOP �’ Notify user
-3. If count = 0 �’ Proceed to completion
+   c. If still > 0 ’ STOP ’ Notify user
+3. If count = 0 ’ Proceed to completion
 ```
 
 > **Note:** /think produces decisions, not code. This check applies only if any artifacts were generated.
@@ -159,7 +159,7 @@ If the generated decision matrix is flawed, overly generic, or hallucinates cons
 
 ### Constraints
 - ⏱️ Timeline: [deadline]
-- �’� Budget: [resources]
+- ’ Budget: [resources]
 - 🛠️ Tech: [stack requirements]
 
 ### Option A: [Name] ⭐ RECOMMENDED
@@ -230,7 +230,7 @@ If the generated decision matrix is flawed, overly generic, or hallucinates cons
 
 ---
 
-## �— Workflow Chain
+## — Workflow Chain
 
 **Skills Loaded (6):**
 

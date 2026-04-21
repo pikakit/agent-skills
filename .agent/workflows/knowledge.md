@@ -74,13 +74,13 @@ Manage the project's living knowledge wiki. Raw signals from error fixes, user c
 2. Find signals where `compiled: false` (max 10)
 3. Cluster related signals by tags
 4. For each cluster:
-   - Existing article? �’ Update with new insights
-   - New topic? �’ Create concept article
-   - Decision? �’ Create ADR in `decisions/`
+   - Existing article? → Update with new insights
+   - New topic? → Create concept article
+   - Decision? → Create ADR in `decisions/`
 5. Add `[[backlinks]]` between related articles
 6. Mark processed signals as `compiled: true`
 7. Regenerate `_index.md` and `_graph.md`
-8. Output: `📚 Compiled: {N} signals �’ {M} articles`
+8. Output: `📚 Compiled: {N} signals → {M} articles`
 
 ### Phase 3: Query
 
@@ -174,7 +174,7 @@ Manage the project's living knowledge wiki. Raw signals from error fixes, user c
 
 ---
 
-## �— Workflow Chain
+## 🔗 Workflow Chain
 
 **Skills Loaded (3):**
 
@@ -209,4 +209,4 @@ graph LR
 
 ---
 
-⚡ PikaKit v3.9.157
+⚡ PikaKit v3.9.158

@@ -16,7 +16,7 @@ Generate comprehensive project documentation automatically by analyzing source c
 
 ---
 
-## ?? Meta-Agents Integration
+## 🤖 Meta-Agents Integration
 
 | Phase | Agent | Action |
 | ----- | ----- | ------ |
@@ -27,10 +27,8 @@ Generate comprehensive project documentation automatically by analyzing source c
 
 ```
 Flow:
-assessor.evaluate(doc_scope) ? identify coverage gaps
-       ?
-analyze codebase ? generate docs per sub-command
-       ?
+assessor.evaluate(doc_scope) → identify coverage gaps       ↓
+analyze codebase → generate docs per sub-command       ↓
 learner.log(templates, patterns)
 ```
 
@@ -52,7 +50,7 @@ learner.log(templates, patterns)
 
 ---
 
-## ?? MANDATORY: Documentation Generation Protocol
+## ⚡ MANDATORY: Documentation Generation Protocol
 
 ### Phase 1: Pre-flight & knowledge-compiler Context
 
@@ -120,7 +118,7 @@ Generate docs based on sub-command:
 ## Status: Accepted | Date: YYYY-MM-DD
 ## Context (why the decision was needed)
 ## Decision (what was chosen)
-## Consequences (trade-offs: ? pros, ?? cons)
+## Consequences (trade-offs: → pros, ?? cons)
 ## Alternatives Considered (comparison table)
 ```
 
@@ -156,7 +154,7 @@ Generate docs based on sub-command:
 
 ---
 
-## ? MANDATORY: Problem Verification Before Completion
+## → MANDATORY: Problem Verification Before Completion
 
 > **CRITICAL:** This check MUST be performed before any `notify_user` or task completion.
 
@@ -167,8 +165,8 @@ Generate docs based on sub-command:
 2. If errors/warnings > 0:
    a. Auto-fix: imports, types, lint errors
    b. Re-check @[current_problems]
-   c. If still > 0 ? STOP ? Notify user
-3. If count = 0 ? Proceed to completion
+   c. If still > 0 → STOP → Notify user
+3. If count = 0 → Proceed to completion
 ```
 
 ### Auto-Fixable
@@ -183,7 +181,7 @@ Generate docs based on sub-command:
 
 ---
 
-## ?? Rollback & Recovery
+## 🔄 Rollback & Recovery
 
 If documentation generation fails or writes corrupted files:
 1. Restore to pre-chronicle checkpoint (`git checkout -- .` or `git stash pop`).
@@ -201,19 +199,19 @@ If documentation generation fails or writes corrupted files:
 
 | File | Type | Lines | Status |
 |------|------|-------|--------|
-| README.md | Markdown | 89 | ? Created |
-| docs/api.yaml | OpenAPI | 234 | ? Created |
-| docs/adr/001-database.md | ADR | 45 | ? Created |
-| CHANGELOG.md | Changelog | 52 | ? Created |
+| README.md | Markdown | 89 | → Created |
+| docs/api.yaml | OpenAPI | 234 | → Created |
+| docs/adr/001-database.md | ADR | 45 | → Created |
+| CHANGELOG.md | Changelog | 52 | → Created |
 
 ### Coverage
 
 | Metric | Current | Target | Status |
 |--------|---------|--------|--------|
-| Functions documented | 45/52 | 100% | ? 87% |
-| API endpoints | 12/12 | 100% | ? 100% |
-| ADRs | 3 | Ongoing | ? |
-| Runbooks | 5 | Key scenarios | ? |
+| Functions documented | 45/52 | 100% | → 87% |
+| API endpoints | 12/12 | 100% | → 100% |
+| ADRs | 3 | Ongoing | → |
+| Runbooks | 5 | Key scenarios | → |
 
 ### Next Steps
 
@@ -248,7 +246,7 @@ If documentation generation fails or writes corrupted files:
 
 ---
 
-## ?? Workflow Chain
+## 🔗 Workflow Chain
 
 **Skills Loaded (5):**
 

@@ -28,7 +28,7 @@ Systematic code review with multi-layer validation — preventing false completi
 
 ---
 
-## ?? Meta-Agents Integration
+## 🤖 Meta-Agents Integration
 
 | Phase | Agent | Action |
 | ----- | ----- | ------ |
@@ -39,16 +39,14 @@ Systematic code review with multi-layer validation — preventing false completi
 
 ```
 Flow:
-assessor.evaluate(scope) ? 4-layer validation
-       ?
-build ? tests ? security ? logic
-       ?
-report ? learner.log(patterns)
+assessor.evaluate(scope) → 4-layer validation       ↓
+build → tests → security → logic       ↓
+report → learner.log(patterns)
 ```
 
 ---
 
-## ?? MANDATORY: 4-Layer Validation Protocol
+## ⚡ MANDATORY: 4-Layer Validation Protocol
 
 ### Phase 1: Pre-flight & knowledge-compiler Context
 
@@ -73,8 +71,8 @@ npx cross-env OTEL_SERVICE_NAME="workflow:inspect" TRACE_ID="$TRACE_ID" npm run 
 
 | Check | Required |
 |-------|----------|
-| TypeScript compiles | ? |
-| No lint errors | ? |
+| TypeScript compiles | → |
+| No lint errors | → |
 | No warnings | ?? |
 
 ### Phase 3: Test Verification
@@ -93,7 +91,7 @@ npx cross-env OTEL_SERVICE_NAME="workflow:inspect" TRACE_ID="$TRACE_ID" npm test
 
 | Check | Required |
 |-------|----------|
-| All tests pass | ? |
+| All tests pass | → |
 | No skipped tests | ?? |
 | Coverage maintained | ?? |
 
@@ -108,10 +106,10 @@ npx cross-env OTEL_SERVICE_NAME="workflow:inspect" TRACE_ID="$TRACE_ID" npm test
 
 | Check | Required |
 |-------|----------|
-| No hardcoded secrets | ? |
-| Input validation present | ? |
-| SQL injection safe | ? |
-| XSS prevention | ? |
+| No hardcoded secrets | → |
+| Input validation present | → |
+| SQL injection safe | → |
+| XSS prevention | → |
 
 ### Phase 5: Logic Review
 
@@ -132,7 +130,7 @@ npx cross-env OTEL_SERVICE_NAME="workflow:inspect" TRACE_ID="$TRACE_ID" npm test
 
 ---
 
-## ? MANDATORY: Problem Verification Before Completion
+## → MANDATORY: Problem Verification Before Completion
 
 > **CRITICAL:** This check MUST be performed before any `notify_user` or task completion.
 
@@ -143,8 +141,8 @@ npx cross-env OTEL_SERVICE_NAME="workflow:inspect" TRACE_ID="$TRACE_ID" npm test
 2. If errors/warnings > 0:
    a. Auto-fix: imports, types, lint errors
    b. Re-check @[current_problems]
-   c. If still > 0 ? STOP ? Notify user
-3. If count = 0 ? Proceed to completion
+   c. If still > 0 → STOP → Notify user
+3. If count = 0 → Proceed to completion
 ```
 
 ### Auto-Fixable
@@ -159,7 +157,7 @@ npx cross-env OTEL_SERVICE_NAME="workflow:inspect" TRACE_ID="$TRACE_ID" npm test
 
 ---
 
-## ?? Rollback & Recovery
+## 🔄 Rollback & Recovery
 
 If the inspection process (builds, scans) creates ghost artifacts or fails to complete legitimately:
 1. Restore workspace to pre-inspect checkpoint (`git reset --hard HEAD` and `git clean -fd`).
@@ -190,8 +188,8 @@ If the inspection process (builds, scans) creates ghost artifacts or fails to co
 
 | Layer | Status | Details |
 |-------|--------|---------|
-| Build | ? Pass | 0 errors, 2 warnings |
-| Tests | ? Pass | 42/42 passed, 78% coverage |
+| Build | → Pass | 0 errors, 2 warnings |
+| Tests | → Pass | 42/42 passed, 78% coverage |
 | Security | ?? Warning | 1 issue found |
 | Logic | ?? Issues | 3 issues found |
 
@@ -244,7 +242,7 @@ If the inspection process (builds, scans) creates ghost artifacts or fails to co
 
 ---
 
-## ?? Workflow Chain
+## 🔗 Workflow Chain
 
 **Skills Loaded (5):**
 

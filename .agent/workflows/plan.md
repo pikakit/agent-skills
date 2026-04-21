@@ -16,7 +16,7 @@ Create comprehensive project plans with task breakdown, architecture decisions, 
 
 ---
 
-## ?? Meta-Agents Integration
+## 🤖 Meta-Agents Integration
 
 | Phase | Agent | Action |
 | ----- | ----- | ------ |
@@ -27,18 +27,15 @@ Create comprehensive project plans with task breakdown, architecture decisions, 
 
 ```
 Flow:
-requirements ? architecture ? task breakdown
-       ?
-assessor.evaluate(plan_risk)
-       ?
-agent assignment ? PLAN.md ? learner.log()
-       ?
+requirements → architecture → task breakdown       ↓
+assessor.evaluate(plan_risk)       ↓
+agent assignment → PLAN.md → learner.log()       ↓
 handoff to /build
 ```
 
 ---
 
-## ?? MANDATORY: 4-Phase Planning Protocol
+## ⚡ MANDATORY: 4-Phase Planning Protocol
 
 ### Phase 1: Pre-flight & knowledge-compiler Context
 
@@ -104,7 +101,7 @@ Generate C4 architecture diagram (mermaid) and ADR for key decisions.
 | Field | Value |
 |-------|-------|
 | **INPUT** | Architecture decisions from Phase 3 |
-| **OUTPUT** | Hierarchical task list: Epics ? Stories ? Tasks ? Subtasks |
+| **OUTPUT** | Hierarchical task list: Epics → Stories → Tasks → Subtasks |
 | **AGENTS** | `project-planner` |
 | **SKILLS** | `project-planner` |
 
@@ -142,7 +139,7 @@ Level 4: Subtasks (atomic units)
 
 ---
 
-## ? MANDATORY: Problem Verification Before Completion
+## → MANDATORY: Problem Verification Before Completion
 
 > **CRITICAL:** This check MUST be performed before any `notify_user` or task completion.
 
@@ -153,15 +150,15 @@ Level 4: Subtasks (atomic units)
 2. If errors/warnings > 0:
    a. Auto-fix: imports, types, lint errors
    b. Re-check @[current_problems]
-   c. If still > 0 ? STOP ? Notify user
-3. If count = 0 ? Proceed to completion
+   c. If still > 0 → STOP → Notify user
+3. If count = 0 → Proceed to completion
 ```
 
 > **Note:** /plan produces markdown artifacts, not code. This check applies to any generated config or schema files.
 
 ---
 
-## ?? Rollback & Recovery
+## 🔄 Rollback & Recovery
 
 If planning produces an invalid architecture or overwrites an existing valid PLAN.md:
 1. Revert the file changes using `recovery` meta-agent.
@@ -244,7 +241,7 @@ Generated file: `docs/PLAN-{slug}.md`
 
 ---
 
-## ?? Workflow Chain
+## 🔗 Workflow Chain
 
 **Skills Loaded (6):**
 
