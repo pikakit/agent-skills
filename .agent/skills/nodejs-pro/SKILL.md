@@ -6,7 +6,7 @@ description: >-
   NOT for frontend code (use react-pro) or database schema (use data-modeler).
 metadata:
   author: pikakit
-  version: "3.9.152"
+  version: "3.9.153"
   category: backend-architect
   triggers: ["Node.js", "Express", "Fastify", "Hono", "backend", "server", "API"]
   coordinates_with: ["api-architect", "data-modeler", "auth-patterns", "problem-checker", "knowledge-compiler", "typescript-expert"]
@@ -169,4 +169,4 @@ All executions MUST emit the `build_verification` span before reporting completi
 
 ---
 
-⚡ PikaKit v3.9.152
+⚡ PikaKit v3.9.153

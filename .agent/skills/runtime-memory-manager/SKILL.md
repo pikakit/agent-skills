@@ -6,7 +6,7 @@ description: >-
   NOT for markdown parsing or unified LLM semantic semantic bases (use knowledge-compiler).
 metadata:
   author: pikakit
-  version: "3.9.152"
+  version: "3.9.153"
   category: core
   triggers: "runtime sqlite, execution layer, cache binary, fix templates, signals, memory.sqlite"
   coordinates_with: ""
