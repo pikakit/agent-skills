@@ -6,7 +6,7 @@ description: >-
   NOT for plain React SPA (use react-pro) or CSS styling (use tailwind-kit).
 metadata:
   author: pikakit
-  version: "3.9.153"
+  version: "3.9.155"
   category: frontend-architect
   triggers: ["Next.js", "App Router", "RSC", "React", "frontend", "SSR"]
   coordinates_with: ["react-architect", "tailwind-kit", "perf-optimizer", "problem-checker", "code-craft"]
@@ -168,4 +168,4 @@ All executions MUST emit the `build_verification` span before reporting completi
 
 ---
 
-⚡ PikaKit v3.9.153
+⚡ PikaKit v3.9.155
