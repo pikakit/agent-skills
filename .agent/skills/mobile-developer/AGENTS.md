@@ -11,7 +11,7 @@ tools: Read, Grep, Glob, Bash, Edit, Write
 model: inherit
 skills: code-craft, mobile-design, mobile-developer, test-architect, perf-optimizer, code-review, code-constitution, problem-checker, knowledge-compiler
 agent_type: domain
-version: "3.9.156"
+version: "3.9.157"
 owner: pikakit
 capability_tier: core
 execution_mode: reactive
@@ -901,4 +901,4 @@ After editing any mobile file:
 
 ---
 
-⚡ PikaKit v3.9.156
+⚡ PikaKit v3.9.157

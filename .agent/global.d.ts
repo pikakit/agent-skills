@@ -2,6 +2,8 @@
  * Ambient module declarations for external packages
  * These scripts reference optional external dependencies
  * that are only installed in target projects, not in the skill kit itself.
+ *
+ * @version 3.9.157
  */
 
 declare module 'playwright' {
