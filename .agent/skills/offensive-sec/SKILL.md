@@ -6,7 +6,7 @@ description: >-
   NOT for defensive scanning (use security-scanner) or auth flows (use auth-patterns).
 metadata:
   author: pikakit
-  version: "3.9.155"
+  version: "3.9.156"
   category: security-auditor
   triggers: ["pentest", "red team", "exploit", "vulnerability", "hacking"]
   coordinates_with: ["security-scanner", "api-architect", "auth-patterns", "problem-checker"]
@@ -188,4 +188,4 @@ All executions MUST emit the `build_verification` span before reporting completi
 
 ---
 
-⚡ PikaKit v3.9.155
+⚡ PikaKit v3.9.156

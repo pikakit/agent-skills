@@ -6,7 +6,7 @@ description: >-
   NOT for UI image assets (use design-system) or prompt-based generation (use ai-artist).
 metadata:
   author: pikakit
-  version: "3.9.155"
+  version: "3.9.156"
   category: devops
   triggers: "video, audio, image, compress, resize, convert, ffmpeg, imagemagick, rmbg"
   coordinates_with: "perf-optimizer, studio"
@@ -173,4 +173,4 @@ rmbg input.jpg -m briaai -o output.png   # Highest quality
 
 ---
 
-⚡ PikaKit v3.9.155
+⚡ PikaKit v3.9.156
