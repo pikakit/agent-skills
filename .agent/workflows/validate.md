@@ -190,6 +190,16 @@ npx cross-env OTEL_SERVICE_NAME="workflow:validate" TRACE_ID="$TRACE_ID" npx pac
 
 ---
 
+## ⏭️ MANDATORY: Suggest Next Workflow
+
+> **After completing /validate, you MUST suggest the next pipeline step to the user.**
+
+```
+✅ /validate complete → Suggest: "Run `/launch` to deploy to production."
+```
+
+---
+
 ## 🔄 Rollback & Recovery
 
 If tests hang or mutate files in unexpected ways:
@@ -202,10 +212,10 @@ If tests hang or mutate files in unexpected ways:
 ## Output Format
 
 ```markdown
-## ?? Test Results
+## 📊 Test Results
 
 ### Summary
-? Passed: 42  → Failed: 2  ?? Skipped: 1
+✅ Passed: 42  → Failed: 2  ⏭️ Skipped: 1
 
 ### Coverage
 
@@ -270,6 +280,7 @@ If tests hang or mutate files in unexpected ways:
 graph LR
     A["/build"] --> B["/validate"]
     B --> C["/launch"]
+    C --> D["/monitor"]
     style B fill:#10b981
 ```
 
@@ -282,6 +293,6 @@ graph LR
 **Handoff to /launch:**
 
 ```markdown
-?? Tests complete! Passed: [X], Failed: [Y]. Coverage: [Z]%.
+✅ Tests complete! Passed: [X], Failed: [Y]. Coverage: [Z]%.
 Run `/launch` to deploy or `/diagnose` for failures.
 ```

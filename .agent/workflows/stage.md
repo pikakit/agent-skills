@@ -201,7 +201,7 @@ If port orchestration fails or Docker containers hang:
 ## Output Format
 
 ```markdown
-## ?? Stage Status
+## 🛠️ Stage Status
 
 ### Services
 
@@ -279,6 +279,6 @@ graph LR
 **Handoff to /validate:**
 
 ```markdown
-?? Stage running! Services: [count] active on ports [ports].
+✅ Stage running! Services: [count] active on ports [ports].
 Run `/validate` to test against live services.
 ```

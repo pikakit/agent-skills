@@ -43,6 +43,25 @@ success → learner.log(patterns)
 
 ## ⚡ MANDATORY: Build Pipeline
 
+### Phase 0: Dynamic Skill Detection
+
+> **Protocol:** `.agent/rules/dynamic-skill-detection.md`
+
+1. Scan `$ARGUMENTS` for domain signals (case-insensitive).
+2. Match signals against the Domain Signal → Skill Mapping table.
+3. Inject matched skills (max 5, priority: High > Medium > Low) into active skill set.
+4. Skip skills already in workflow defaults.
+5. Announce injected skills:
+
+```
+[⚡PikaKit] Dynamic Skills Detected:
+  + {skill-name} (signal: "{matched keywords}")
+  Base skills: [app-scaffold, react-pro, nextjs-pro, ...]
+  Total active: [count]
+```
+
+> **Why:** Without Phase 0, `/build` loads 15 general-purpose skills but misses specialized skills (SEO, auth, security, mobile, etc.) that could significantly improve implementation quality.
+
 ### Phase 1: Pre-flight & knowledge-compiler Context
 
 > **Rule 0.5-K:** knowledge-compiler pattern check.
@@ -225,6 +244,16 @@ npx cross-env OTEL_SERVICE_NAME="workflow:build" TRACE_ID="$TRACE_ID" npm run de
 
 ---
 
+## ⏭️ MANDATORY: Suggest Next Workflow
+
+> **After completing /build, you MUST suggest the next pipeline step to the user.**
+
+```
+✅ /build complete → Suggest: "Run `/validate` for full test suite."
+```
+
+---
+
 ## 🔄 Rollback & Recovery
 
 If the Exit Gates fail and cannot be resolved automatically:
@@ -320,6 +349,7 @@ graph LR
     A["/plan"] --> B["/build"]
     B --> C["/validate"]
     C --> D["/launch"]
+    D --> E["/monitor"]
     style B fill:#10b981
 ```
 

@@ -255,7 +255,7 @@ If scaffolding or builds fail completely due to native dependencies or environme
 ## Output Format
 
 ```markdown
-## ?? Mobile App Built: [App Name]
+## 📱 Mobile App Built: [App Name]
 
 ### Configuration
 
@@ -347,6 +347,6 @@ graph LR
 **Handoff to /validate:**
 
 ```markdown
-?? Mobile app built! Platform: [platform], Framework: [framework].
+✅ Mobile app built! Platform: [platform], Framework: [framework].
 Features: [count] integrated. Run `/validate` to test or `/launch` to submit.
 ```

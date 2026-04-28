@@ -46,6 +46,25 @@ instruction → implement → verify → learner.log() → done
 
 ## ⚡ MANDATORY: Cooking Protocol
 
+### Phase 0: Dynamic Skill Detection
+
+> **Protocol:** `.agent/rules/dynamic-skill-detection.md`
+
+1. Scan `$ARGUMENTS` for domain signals (case-insensitive).
+2. Match signals against the Domain Signal → Skill Mapping table.
+3. Inject matched skills (max 5, priority: High > Medium > Low) into active skill set.
+4. Skip skills already in workflow defaults.
+5. Announce injected skills:
+
+```
+[⚡PikaKit] Dynamic Skills Detected:
+  + {skill-name} (signal: "{matched keywords}")
+  Base skills: [code-craft, problem-checker, smart-router, ...]
+  Total active: [count]
+```
+
+> **Why:** `/cook` only loads 5 utility skills by default. Dynamic detection ensures domain expertise (e.g., SEO for blog tasks, auth for login tasks) is available during implementation.
+
 ### Phase 1: Pre-flight & knowledge-compiler Context
 
 > **Rule 0.5-K:** knowledge-compiler pattern check.
@@ -140,7 +159,7 @@ If implementation introduces errors that cannot be auto-fixed:
 ## Output Format
 
 ```markdown
-## ?? Cooked: [Component/File Name]
+## 🍳 Cooked: [Component/File Name]
 
 ### Changes Applied
 
@@ -212,6 +231,6 @@ graph LR
 **Handoff to /validate:**
 
 ```markdown
-?? Implementation complete. [X] files created/modified.
+✅ Implementation complete. [X] files created/modified.
 Run `/validate` to verify behavior with full test suite.
 ```

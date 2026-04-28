@@ -11,7 +11,7 @@ Build production-grade features 3–5x faster — with enforced architecture, au
 
 PikaKit transforms any AI into a Senior Engineer — not by prompting harder, but by controlling how it executes, learns, and improves over time.
 
-[![npm](https://img.shields.io/badge/npm-v3.9.159-7c3aed?style=for-the-badge&logo=npm&logoColor=white&labelColor=18181b)](https://www.npmjs.com/package/pikakit)
+[![npm](https://img.shields.io/badge/npm-v3.9.160-7c3aed?style=for-the-badge&logo=npm&logoColor=white&labelColor=18181b)](https://www.npmjs.com/package/pikakit)
 [![Skills](https://img.shields.io/badge/53_skills-06b6d4?style=for-the-badge&labelColor=18181b)](https://github.com/pikakit/agent-skills)
 [![Workflows](https://img.shields.io/badge/19_workflows-10b981?style=for-the-badge&labelColor=18181b)](https://github.com/pikakit/agent-skills)
 [![TypeScript](https://img.shields.io/badge/strict_typescript-3178c6?style=for-the-badge&logo=typescript&logoColor=white&labelColor=18181b)](https://github.com/pikakit/agent-skills)
@@ -56,6 +56,7 @@ PikaKit turns AI into a deterministic engineering system:
 - Errors become permanent knowledge
 - Fixes evolve into reusable Skills
 - Workflows execute end-to-end autonomously
+- **Dynamic Skill Detection** auto-loads domain expertise based on your prompt
 
 ---
 
@@ -65,6 +66,14 @@ PikaKit turns AI into a deterministic engineering system:
 You → AI → PikaKit → Production Code
              ↑
       Learns from mistakes
+```
+
+### FAANG-Grade Pipeline
+
+```text
+/think → /plan → /build → /validate → /launch → /monitor
+  ↑                                                  |
+  └──────────────── feedback loop ───────────────────┘
 ```
 
 ### Deep Architecture
@@ -90,7 +99,7 @@ flowchart TD
 
 ---
 
-## 🧱 The 4 Pillars
+## 🧱 The 5 Pillars
 
 ### 1️⃣ Executable Skills
 **53 battle-tested engineering capabilities** injected directly into the AI runtime — enforcing architecture, security, and performance constraints.
@@ -106,13 +115,27 @@ Run complex tasks with a single command:
 - `/think` — structured decision-making
 - `/diagnose` — hypothesis-driven debugging
 
+> All 7 core workflows include **Phase 0: Dynamic Skill Detection** — automatically scanning your prompt for domain signals (SEO, Auth, Mobile, etc.) and injecting the right specialist skills at runtime.
+
 ### 3️⃣ Self-Learning Knowledge Engine
 Every failure becomes permanent:
 - **Errors** → captured
 - **Fixes** → compiled
 - **Patterns** → turned into new Skills
 
-### 4️⃣ IDE Execution Layer
+### 4️⃣ Modular Rules Architecture
+4 focused rule files that control AI behavior:
+
+| File | Purpose |
+|------|---------|
+| `GEMINI.md` | Supreme Law — safety, skill routing, hard gate |
+| `autopilot.md` | Autonomous execution, agent hierarchy, metrics |
+| `code-rules.md` | Task classification, code standards, checklists |
+| `dynamic-skill-detection.md` | Phase 0 domain signal → skill mapping (25 domains) |
+
+> Zero duplication — each fact lives in exactly one file. Others cross-reference.
+
+### 5️⃣ IDE Execution Layer
 A PikaKit Engine extension that gives AI real-world control:
 - Reads errors in real-time
 - Prevents destructive actions
@@ -191,7 +214,7 @@ npx pikakit
 
 <div align="center">
 
-**PikaKit v3.9.159** · 53 Skills · 19 Workflows · Strict TypeScript
+**PikaKit v3.9.160** · 53 Skills · 19 Workflows · 4 Rules · Phase 0 Dynamic Detection
 
 [⭐ Star on GitHub](https://github.com/pikakit/agent-skills) · [Install via npm](https://www.npmjs.com/package/pikakit) · [pikakit.com](https://pikakit.com)
 

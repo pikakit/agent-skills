@@ -2,9 +2,9 @@
 trigger: always_on
 ---
 
-# 🤖 PikaKit — FAANG-Grade AI Operating System
+# PikaKit — FAANG-Grade AI Operating System ⚡
 
-> **v3.9.159** | 53 Skills • 21 Agents • 19 Workflows | [github.com/pikakit](https://github.com/pikakit/agent-skills)
+> **v3.9.160** | 53 Skills • 21 Agents • 19 Workflows | [github.com/pikakit](https://github.com/pikakit/agent-skills)
 
 **This file is the Supreme Law for AI behavior in this workspace.**
 
@@ -91,65 +91,24 @@ Safety violation → `@[skills/knowledge-compiler]` triggered (Learn operation).
 ## ⚡ Skill Routing (MANDATORY for L1+)
 
 > 🔴 **BEFORE writing ANY code**, match your task to a skill. No match = proceed without skill.
-
-| Keywords | Skill | Keywords | Skill |
-|----------|-------|----------|-------|
-| react, jsx, hooks, component | `react-pro` | next, app-router, ssr, rsc | `nextjs-pro` |
-| node, express, fastify, backend | `nodejs-pro` | python, fastapi, django | `python-pro` |
-| typescript, generics, tsconfig | `typescript-expert` | tailwind, utility-class | `tailwind-kit` |
-| color, font, typography, ux | `design-system` | sql, prisma, drizzle, schema | `data-modeler` |
-| rest, graphql, trpc, openapi | `api-architect` | oauth, jwt, session, login | `auth-patterns` |
-| test, jest, vitest, coverage | `test-architect` | playwright, browser-test | `e2e-automation` |
-| debug, error, trace, root-cause | `debug-pro` | owasp, xss, csrf, vuln | `security-scanner` |
-| deploy, pipeline, ci, cd | `cicd-pipeline` | git, commit, branch, pr | `git-workflow` |
-| mobile, flutter, ios, android | `mobile-developer` | game, physics, sprite | `game-development` |
-| server, pm2, nginx, monitoring | `server-ops` | lighthouse, bundle, perf | `perf-optimizer` |
-| seo, meta-tag, sitemap | `seo-optimizer` | readme, changelog, docs | `doc-templates` |
-| architecture, trade-off, adr | `system-design` | plan, roadmap, breakdown | `project-planner` |
-| mistake, wrong, fix-this, broken | `knowledge-compiler` | ide-error, lint, pre-complete | `problem-checker` |
-| compile, wiki, knowledge, ingest | `knowledge-compiler` | knowledge health, stale, lint | `knowledge-linter` |
+> 📋 **Full keyword → skill mapping:** `.agent/rules/dynamic-skill-detection.md`
+> 📋 **Skill index:** `.agent/skills/SKILL_INDEX.md`
 
 **Protocol:** Match keyword → Read skill's `SKILL.md` → Announce `🤖 @{skill}` → Code.
 
 ### 📢 Notification Format
 
-> See `autopilot.md § 0.5-J` for full output branding based on Task Levels.
-
-**Common Branding Examples:**
-| Event | Template |
-|-------|----------|
-| **Task Start** | `[⚡PikaKit] L2/@{skill} → INIT → RUNNING` |
-| **Workflow Start** | `[⚡PikaKit] Workflow:/{name} → INIT → RUNNING` |
-| **Task Complete** | `[⚡PikaKit] Task → COMPLETED ({file_count} files)` |
-| **Error** | `[⚡PikaKit] ❌ Error: @{skill} · {error}` |
-
-**Behavior Rules:**
-- ✅ Use the `[⚡PikaKit]` branding systematically on all L1/L2/L3 execution paths.
-- ❌ Don't show generic notifications on purely L0 (Question) answers.
-- 🔇 Suppress duplicate skill load announcements — if same skill already announced, don't repeat.
-- 📦 Compact mode: when ≥2 skills loaded, use: `[⚡PikaKit] L2/@{skill-a} + @{skill-b} → RUNNING`
+> Full branding table & behavior rules: `autopilot.md § 0.5-J`
+> Format: `[⚡PikaKit] L{0-3}/@{skill} → INIT → RUNNING`
 
 ---
 
 ## ⛔ HARD GATE — Mandatory Pre-Code Check
 
 > 🔴 **THIS IS NOT OPTIONAL.** Every code response MUST pass this gate.
-> Agent that skips this gate = **PROTOCOL VIOLATION** = user loses trust.
+> Full task level definitions & routing protocol: `code-rules.md § TASK LEVEL CLASSIFICATION`
 
-### Before writing ANY code, agent MUST produce this header:
-
-```text
-[⚡PikaKit] L{0-3}/@{skill-name} → INIT → RUNNING
-```
-
-### Gate Rules:
-
-| Level | Required Actions | Failure = |
-|-------|-----------------|-----------|
-| **L0** (Question) | Answer directly, no gate needed | — |
-| **L1** (Quick fix, <10 lines) | Classify + `[⚡PikaKit] L1/@{skill} → INIT` | **INVALID response** |
-| **L2** (Multi-file) | Classify + `view_file SKILL.md` + `[⚡PikaKit] L2/@{skill}` | **INVALID response** |
-| **L3** (Architecture) | Classify + `view_file SKILL.md + AGENTS.md` + Plan | **INVALID response** |
+Before writing ANY code → output: `[⚡PikaKit] L{0-3}/@{skill-name} → INIT → RUNNING`
 
 ### Self-Check Trigger:
 

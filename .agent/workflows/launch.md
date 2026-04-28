@@ -208,6 +208,16 @@ graph TD
 
 ---
 
+## ⏭️ MANDATORY: Suggest Next Workflow
+
+> **After completing /launch, you MUST suggest the next pipeline step to the user.**
+
+```
+✅ /launch complete → Suggest: "Run `/monitor` to track production health."
+```
+
+---
+
 ## 🔄 Rollback & Recovery
 
 If deployment automation fails completely or pre-flights break the workspace:
@@ -222,7 +232,7 @@ If deployment automation fails completely or pre-flights break the workspace:
 ### Successful Launch
 
 ```markdown
-## ?? Launch Complete
+## 🚀 Launch Complete
 
 ### Summary
 
@@ -252,7 +262,7 @@ If deployment automation fails completely or pre-flights break the workspace:
 
 ### URLs
 
-?? **Production:** https://app.example.com
+🌐 **Production:** https://app.example.com
 
 ### Next Steps
 
@@ -272,7 +282,7 @@ If deployment automation fails completely or pre-flights break the workspace:
 |-------|--------|
 | TypeScript | → 3 errors |
 | Tests | → Pass |
-| Security | ?? 1 warning |
+| Security | ⚠️ 1 warning |
 
 ### Blockers
 
@@ -338,6 +348,6 @@ graph LR
 **Handoff to /monitor:**
 
 ```markdown
-?? Deployed v[version] to production! URL: [url].
+✅ Deployed v[version] to production! URL: [url].
 Health check: ?. Run `/monitor` to track or `/chronicle` for docs.
 ```

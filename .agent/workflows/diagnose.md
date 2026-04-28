@@ -41,7 +41,26 @@ recovery.restore()
 
 ## 🔴 MANDATORY: 5-Phase Investigation Protocol
 
-### Phase 0: Pre-flight & Auto-Learned Context
+### Phase 0: Dynamic Skill Detection
+
+> **Protocol:** `.agent/rules/dynamic-skill-detection.md`
+
+1. Scan `$ARGUMENTS` for domain signals (case-insensitive).
+2. Match signals against the Domain Signal → Skill Mapping table.
+3. Inject matched skills (max 5, priority: High > Medium > Low) into active skill set.
+4. Skip skills already in workflow defaults.
+5. Announce injected skills:
+
+```
+[⚡PikaKit] Dynamic Skills Detected:
+  + {skill-name} (signal: "{matched keywords}")
+  Base skills: [debug-pro, code-review, code-craft, ...]
+  Total active: [count]
+```
+
+> **Why:** `/diagnose` loads 6 investigation skills by default. Bug reports often contain domain signals ("Prisma error", "auth 401", "mobile crash") that benefit from specialized skill context for faster root cause identification.
+
+### Phase 0.5: Pre-flight & Auto-Learned Context
 
 > **Rule 0.5-K:** Auto-learned pattern check.
 

@@ -231,7 +231,7 @@ If game loop, physics engine, or multiplayer netcode breaks functionality:
 ## Output Format
 
 ```markdown
-## ?? Game Built: [Game Name]
+## 🎮 Game Built: [Game Name]
 
 ### Configuration
 
@@ -322,6 +322,6 @@ graph LR
 **Handoff to /validate:**
 
 ```markdown
-?? Game built! Platform: [platform], FPS: [fps], Components: [count].
+✅ Game built! Platform: [platform], FPS: [fps], Components: [count].
 Run `/validate` to test or `/optimize` for performance tuning.
 ```

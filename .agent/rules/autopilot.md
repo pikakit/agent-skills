@@ -2,11 +2,13 @@
 trigger: always_on
 ---
 
+# PikaKit — Autopilot
+
 # TIER 0.5: AUTONOMOUS EXECUTION (AUTOPILOT RULES)
 
 > Enable true autonomous execution after plan approval. Applies to /autopilot, multi-phase workflows.
 
-### 0.5-A: Agent Hierarchy
+## 0.5-A: Agent Hierarchy
 
 | Role | Decides | Executes | Owns |
 |------|---------|----------|------|
@@ -18,7 +20,7 @@ trigger: always_on
 
 **Rules:** Single Root (Orchestrator). No Bypass. Escalation: Agent → Orchestrator → Lead → User.
 
-### 0.5-B: Plan Approval
+## 0.5-B: Plan Approval
 
 | State | Gate | Description |
 |-------|------|-------------|
@@ -31,7 +33,7 @@ trigger: always_on
 
 > 🔴 Once APPROVED, Socratic Gate is **BYPASSED** until COMPLETED or PAUSED.
 
-### 0.5-C: Autopilot Protocol (10 Phases)
+## 0.5-C: Autopilot Protocol (10 Phases)
 
 | Phase | Actor | Action |
 |-------|-------|--------|
@@ -42,7 +44,7 @@ trigger: always_on
 **Handoff:** Always pass original_request, decisions_made, previous_work, current_plan.  
 **Stop:** All complete, blocking error, user pause, or critical decision needed.
 
-### 0.5-D: Metrics (11 Required)
+## 0.5-D: Metrics (11 Required)
 
 | Metric | Target |
 |--------|--------|
@@ -56,7 +58,7 @@ trigger: always_on
 
 Storage: `.agent/metrics/` (JSON, 30-day retention).
 
-### 0.5-E: Failure Recovery (6 Levels)
+## 0.5-E: Failure Recovery (6 Levels)
 
 | Level | Action | Escalation |
 |-------|--------|------------|
@@ -69,7 +71,7 @@ Storage: `.agent/metrics/` (JSON, 30-day retention).
 
 > Exhaust all automated levels before escalating to user.
 
-### 0.5-F: Meta-Agents (5)
+## 0.5-F: Meta-Agents (5)
 
 | Agent | Role | When |
 |-------|------|------|
@@ -79,12 +81,12 @@ Storage: `.agent/metrics/` (JSON, 30-day retention).
 | `critic` | Conflict resolution | Agent disagreements |
 | `learner` | Continuous improvement | After success/failure |
 
-### 0.5-G: SLO Enforcement
+## 0.5-G: SLO Enforcement
 
 > See `code-rules.md § Problem Verification` for canonical rule.
 > **NEVER** call `notify_user` with completion if `@[current_problems]` shows errors.
 
-### 0.5-H: Auto-Learn Triggers
+## 0.5-H: Auto-Learn Triggers
 
 **Trigger words:** "mistake", "wrong", "fix this", "broken"
 **When triggered:** Analyze → Extract lesson → `@[skills/knowledge-compiler]` Learn operation → Confirm: `📚 Learned: [LEARN-XXX]`
@@ -98,12 +100,12 @@ Storage: `.agent/metrics/` (JSON, 30-day retention).
 
 > Skills generated from patterns MUST comply with `docs/SKILL_DESIGN_GUIDE.md` (YAML, <200 lines, registered).
 
-### 0.5-I: Context Passing
+## 0.5-I: Context Passing
 
 When invoking ANY sub-agent, MUST include: Original Request, Decisions Made, Previous Agent Work, Current Plan.  
 > **VIOLATION:** Invoking agent without context = wrong assumptions!
 
-### 0.5-J: Output Branding (Aligned with Task Levels)
+## 0.5-J: Output Branding (Aligned with Task Levels)
 
 | Task Level | Start | End |
 |-----------|-------|-----|
@@ -113,7 +115,7 @@ When invoking ANY sub-agent, MUST include: Original Request, Decisions Made, Pre
 | L3 (Architecture) | `[⚡PikaKit] System` Tree | `[⚡PikaKit] Task → COMPLETED ({file_count} files)` |
 | Workflow (/cmd) | `[⚡PikaKit] Workflow:/{name} → INIT → RUNNING` | `[⚡PikaKit] Workflow → COMPLETED` |
 
-### 0.5-K: Knowledge Pattern Check (MANDATORY)
+## 0.5-K: Knowledge Pattern Check (MANDATORY)
 
 > **Purpose:** AI MUST consult learned patterns before repeating known mistakes.
 
@@ -127,7 +129,7 @@ When invoking ANY sub-agent, MUST include: Original Request, Decisions Made, Pre
 | npm/git operations | `npm-patterns.md`, `git-patterns.md` | Known failures |
 | Any error you just caused | ALL pattern files | Prevent immediate repeat |
 
-#### Protocol
+### Protocol
 
 ```
 BEFORE executing command or writing code:
@@ -137,7 +139,7 @@ BEFORE executing command or writing code:
 4. If no match → Proceed normally
 ```
 
-#### Enforcement (Tiered — P2 Level)
+### Enforcement (Tiered — P2 Level)
 
 > **Priority:** P2 (Suggestion). Learned patterns are auto-generated and advisory.
 > Context may differ from when the pattern was learned. Use judgment.

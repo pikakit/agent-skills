@@ -38,7 +38,26 @@ decision made ’ recommendation + next steps
 
 ## 🔴 MANDATORY: Decision Framework
 
-### Phase 0: Pre-flight & Auto-Learned Context
+### Phase 0: Dynamic Skill Detection
+
+> **Protocol:** `.agent/rules/dynamic-skill-detection.md`
+
+1. Scan `$ARGUMENTS` for domain signals (case-insensitive).
+2. Match signals against the Domain Signal → Skill Mapping table.
+3. Inject matched skills (max 5, priority: High > Medium > Low) into active skill set.
+4. Skip skills already in workflow defaults.
+5. Announce injected skills:
+
+```
+[⚡PikaKit] Dynamic Skills Detected:
+  + {skill-name} (signal: "{matched keywords}")
+  Base skills: [idea-storm, system-design, project-planner, ...]
+  Total active: [count]
+```
+
+> **Why:** `/think` loads 6 strategic skills by default. Dynamic detection ensures domain-specific context (SEO, auth, mobile, etc.) is available for better option generation and trade-off analysis.
+
+### Phase 0.5: Pre-flight & Auto-Learned Context
 
 > **Rule 0.5-K:** Auto-learned pattern check.
 
@@ -137,6 +156,16 @@ Risk assessment for top option:
 ```
 
 > **Note:** /think produces decisions, not code. This check applies only if any artifacts were generated.
+
+---
+
+## ⏭️ MANDATORY: Suggest Next Workflow
+
+> **After completing /think, you MUST suggest the next pipeline step to the user.**
+
+```
+✅ /think complete → Suggest: "Run `/plan` to create implementation plan."
+```
 
 ---
 

@@ -57,6 +57,25 @@ learner.log(pattern)
 
 ## ⚡ MANDATORY: Repair Protocol
 
+### Phase 0: Dynamic Skill Detection
+
+> **Protocol:** `.agent/rules/dynamic-skill-detection.md`
+
+1. Scan `$ARGUMENTS` for domain signals (case-insensitive).
+2. Match signals against the Domain Signal → Skill Mapping table.
+3. Inject matched skills (max 5, priority: High > Medium > Low) into active skill set.
+4. Skip skills already in workflow defaults.
+5. Announce injected skills:
+
+```
+[⚡PikaKit] Dynamic Skills Detected:
+  + {skill-name} (signal: "{matched keywords}")
+  Base skills: [debug-pro, code-craft, problem-checker, ...]
+  Total active: [count]
+```
+
+> **Why:** `/fix` loads 6 debugging skills by default. Dynamic detection ensures domain-specific knowledge (e.g., `data-modeler` for Prisma errors, `typescript-expert` for type errors) is available for more accurate fixes.
+
 ### Phase 1: Pre-flight & knowledge-compiler Context
 
 > **Rule 0.5-K:** knowledge-compiler pattern check.
@@ -170,7 +189,7 @@ If the attempted fix introduces new errors or fails verification:
 ## Output Format
 
 ```markdown
-## ?? Fixed: [Error Description]
+## 🔧 Fixed: [Error Description]
 
 ### The Issue
 
@@ -248,6 +267,6 @@ graph LR
 **Handoff to /validate:**
 
 ```markdown
-?? Fix applied to [files]. Error: [description] → resolved.
+✅ Fix applied to [files]. Error: [description] → resolved.
 Run `/validate` to ensure no regressions or `/launch` to deploy.
 ```

@@ -160,28 +160,9 @@ Design rules are in specialist agents, NOT here.
 
 ### Quick Skill Reference
 
-| Need | Primary Skill | Supporting Skills |
-|------|---------------|-------------------|
-| Web App | `react-pro` | `nextjs-pro`, `design-system` |
-| API | `nodejs-pro` | `api-architect`, `auth-patterns` |
-| Mobile | `mobile-developer` | `mobile-design` |
-| Database | `data-modeler` | `nodejs-pro` |
-| Security | `security-scanner` | `offensive-sec`, `auth-patterns` |
-| Testing | `test-architect` | `e2e-automation` |
-| Debug | `debug-pro` | `problem-checker` |
-| Plan | `project-planner` | `idea-storm`, `system-design` |
-| Knowledge | `knowledge-compiler` | `knowledge-linter`, `skill-generator` |
+> Full keyword → skill mapping: `.agent/rules/dynamic-skill-detection.md`
+> Complete skill index: `.agent/skills/SKILL_INDEX.md`
 
 ---
 
-## 📊 Statistics
 
-| Metric | Value |
-|--------|-------|
-| **Total Agents** | 21 (16 domain + 5 meta) |
-| **Total Skills** | 51 |
-| **Total Workflows** | 19 |
-| **Total Scripts** | 6 |
-| **Coverage** | ~95% web/mobile development |
-
----

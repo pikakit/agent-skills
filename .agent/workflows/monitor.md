@@ -206,6 +206,16 @@ Runbooks generated:
 
 ---
 
+## ⏭️ MANDATORY: Suggest Next Workflow
+
+> **After completing /monitor, you MUST suggest the feedback loop to the user.**
+
+```
+✅ /monitor complete → Suggest: "Run `/think` to plan next iteration (feedback loop)."
+```
+
+---
+
 ## 🔙 Rollback & Recovery
 
 If observability setup causes application crashes or aggressive memory leaks:
@@ -219,21 +229,22 @@ If observability setup causes application crashes or aggressive memory leaks:
 
 ```mermaid
 graph LR
-    A["/build"] --> B["/monitor"]
+    A["/launch"] --> B["/monitor"]
     B --> C["/diagnose"]
-    B --> D["/launch"]
+    B -.->|feedback| D["/think"]
     style B fill:#10b981
 ```
 
 | After /monitor | Run | Purpose |
 |---------------|-----|---------|
 | Issues detected | `/diagnose` | Root cause analysis using traces |
-| Ready to deploy | `/launch` | Deploy with monitoring |
 | Performance issues | `/optimize` | Optimize using collected metrics |
+| Cycle complete | `/think` | **Feedback loop** — plan next iteration |
 
-**Handoff to /diagnose:**
+**Handoff to /think (feedback loop):**
 
 ```markdown
-📊 Monitoring configured! OpenTelemetry + logs + metrics + alerts active.
-Run `/diagnose` to investigate issues or `/launch` to deploy.
+📊 Monitoring active! All systems healthy.
+Metrics: [summary]. Alerts: [count] configured.
+Run `/think` to plan next iteration or `/diagnose` if issues arise.
 ```

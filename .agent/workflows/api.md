@@ -60,12 +60,12 @@ learner.log(patterns)
 
 ```
 ASK if not specified:
-? API type (REST / GraphQL / tRPC)
-? Framework (Express / Fastify / NestJS / Hono)
-? Database (PostgreSQL / MySQL / MongoDB / SQLite)
-? ORM (Prisma / Drizzle / TypeORM)
-? Auth strategy (JWT / Session / OAuth2 / API Key)
-? Testing approach (unit + integration + E2E)
+❓ API type (REST / GraphQL / tRPC)
+❓ Framework (Express / Fastify / NestJS / Hono)
+❓ Database (PostgreSQL / MySQL / MongoDB / SQLite)
+❓ ORM (Prisma / Drizzle / TypeORM)
+❓ Auth strategy (JWT / Session / OAuth2 / API Key)
+❓ Testing approach (unit + integration + E2E)
 ```
 
 2. Design endpoints/schema using `api-architect` decision framework:
@@ -207,7 +207,7 @@ npx cross-env OTEL_SERVICE_NAME="workflow:api" TRACE_ID="$TRACE_ID" npm run lint
 
 ---
 
-## ?? Supported Patterns
+## 📡 Supported Patterns
 
 ### REST APIs
 
@@ -275,7 +275,7 @@ If the Exit Gates fail and cannot be resolved automatically:
 ## Output Format
 
 ```markdown
-## ?? API Development Complete
+## ✅ API Development Complete
 
 ### API Summary
 
@@ -369,6 +369,6 @@ graph LR
 **Handoff to /validate:**
 
 ```markdown
-? API built with [X] endpoints, [Y] tests passing, OpenAPI docs generated.
+✅ API built with [X] endpoints, [Y] tests passing, OpenAPI docs generated.
 Run `/validate` to execute full test suite with coverage report.
 ```

@@ -45,6 +45,25 @@ success → learner.log(patterns)
 
 ## ⚡ MANDATORY: Multi-Agent Orchestration Protocol
 
+### Phase 0: Dynamic Skill Detection
+
+> **Protocol:** `.agent/rules/dynamic-skill-detection.md`
+
+1. Scan `$ARGUMENTS` for domain signals (case-insensitive).
+2. Match signals against the Domain Signal → Skill Mapping table.
+3. Inject matched skills (max 5, priority: High > Medium > Low) into active skill set.
+4. Skip skills already in workflow defaults.
+5. Announce injected skills:
+
+```
+[⚡PikaKit] Dynamic Skills Detected:
+  + {skill-name} (signal: "{matched keywords}")
+  Base skills: [lifecycle-orchestrator, execution-reporter, ...]
+  Total active: [count]
+```
+
+> **Why:** `/autopilot` loads 11 orchestration skills by default. Dynamic detection ensures domain-specific expertise (SEO, auth, mobile, performance, etc.) is available for comprehensive multi-agent coordination.
+
 ### Phase 1: Pre-flight & knowledge-compiler Context
 
 > **Rule 0.5-K:** knowledge-compiler pattern check.
@@ -78,7 +97,7 @@ success → learner.log(patterns)
 2. Select minimum 3 agents
 3. Create PLAN.md with assignments and parallel groups
 
-> ?? Only `project-planner` during planning.
+> ⚠️ Only `project-planner` during planning.
 
 **🛑 CHECKPOINT: User approval required before Phase 3**
 

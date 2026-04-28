@@ -37,6 +37,25 @@ handoff to /build
 
 ## ⚡ MANDATORY: 4-Phase Planning Protocol
 
+### Phase 0: Dynamic Skill Detection
+
+> **Protocol:** `.agent/rules/dynamic-skill-detection.md`
+
+1. Scan `$ARGUMENTS` for domain signals (case-insensitive).
+2. Match signals against the Domain Signal → Skill Mapping table.
+3. Inject matched skills (max 5, priority: High > Medium > Low) into active skill set.
+4. Skip skills already in workflow defaults.
+5. Announce injected skills:
+
+```
+[⚡PikaKit] Dynamic Skills Detected:
+  + {skill-name} (signal: "{matched keywords}")
+  Base skills: [idea-storm, project-planner, system-design, ...]
+  Total active: [count]
+```
+
+> **Why:** Without Phase 0, `/plan` only loads 6 generic planning skills — missing domain expertise (SEO, auth, mobile, etc.) that could improve architecture decisions.
+
 ### Phase 1: Pre-flight & knowledge-compiler Context
 
 > **Rule 0.5-K:** knowledge-compiler pattern check.
@@ -158,6 +177,16 @@ Level 4: Subtasks (atomic units)
 
 ---
 
+## ⏭️ MANDATORY: Suggest Next Workflow
+
+> **After completing /plan, you MUST suggest the next pipeline step to the user.**
+
+```
+✅ /plan complete → Suggest: "Run `/build` to start implementation."
+```
+
+---
+
 ## 🔄 Rollback & Recovery
 
 If planning produces an invalid architecture or overwrites an existing valid PLAN.md:
@@ -172,7 +201,7 @@ If planning produces an invalid architecture or overwrites an existing valid PLA
 Generated file: `docs/PLAN-{slug}.md`
 
 ```markdown
-## ?? Plan: [Project Name]
+## 📋 Plan: [Project Name]
 
 ### Overview
 
@@ -269,7 +298,7 @@ graph LR
 **Handoff to /build:**
 
 ```markdown
-?? Plan created: docs/PLAN-{slug}.md
+✅ Plan created: docs/PLAN-{slug}.md
 Stack: [stack]. Tasks: [count]. Agents: [count].
 Review and run `/build` to start implementation.
 ```

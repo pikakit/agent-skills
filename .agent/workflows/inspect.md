@@ -73,7 +73,7 @@ npx cross-env OTEL_SERVICE_NAME="workflow:inspect" TRACE_ID="$TRACE_ID" npm run 
 |-------|----------|
 | TypeScript compiles | → |
 | No lint errors | → |
-| No warnings | ?? |
+| No warnings | ⚠️ |
 
 ### Phase 3: Test Verification
 
@@ -92,8 +92,8 @@ npx cross-env OTEL_SERVICE_NAME="workflow:inspect" TRACE_ID="$TRACE_ID" npm test
 | Check | Required |
 |-------|----------|
 | All tests pass | → |
-| No skipped tests | ?? |
-| Coverage maintained | ?? |
+| No skipped tests | ⚠️ |
+| Coverage maintained | ⚠️ |
 
 ### Phase 4: Security Scan
 
@@ -171,10 +171,10 @@ If the inspection process (builds, scans) creates ghost artifacts or fails to co
 **NEVER claim completion without proof:**
 
 ```
-? CORRECT: "Build passed: `npm run build` completed in 3.2s"
-? CORRECT: "Tests: 42/42 passed (npm test output attached)"
-? WRONG:  "I believe the code should work"
-? WRONG:  "This should fix the issue"
+✅ CORRECT: "Build passed: `npm run build` completed in 3.2s"
+✅ CORRECT: "Tests: 42/42 passed (npm test output attached)"
+❌ WRONG:  "I believe the code should work"
+❌ WRONG:  "This should fix the issue"
 ```
 
 ---
@@ -182,7 +182,7 @@ If the inspection process (builds, scans) creates ghost artifacts or fails to co
 ## Output Format
 
 ```markdown
-## ?? Inspect: [Target]
+## 🔍 Inspect: [Target]
 
 ### Layer Results
 
@@ -190,8 +190,8 @@ If the inspection process (builds, scans) creates ghost artifacts or fails to co
 |-------|--------|---------|
 | Build | → Pass | 0 errors, 2 warnings |
 | Tests | → Pass | 42/42 passed, 78% coverage |
-| Security | ?? Warning | 1 issue found |
-| Logic | ?? Issues | 3 issues found |
+| Security | ⚠️ Warning | 1 issue found |
+| Logic | ⚠️ Issues | 3 issues found |
 
 ### Issues Found
 
@@ -203,7 +203,7 @@ If the inspection process (builds, scans) creates ghost artifacts or fails to co
 
 ### Verdict
 
-?? **NEEDS FIXES** before completion
+⚠️ **NEEDS FIXES** before completion
 
 ### Required Actions
 
@@ -269,6 +269,6 @@ graph LR
 **Handoff to /fix:**
 
 ```markdown
-?? Review complete. [X] issues found across 4 layers.
+✅ Review complete. [X] issues found across 4 layers.
 Verdict: [PASS/NEEDS FIXES]. Run `/fix` to resolve or `/validate` if all clear.
 ```

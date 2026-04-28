@@ -118,7 +118,7 @@ Generate docs based on sub-command:
 ## Status: Accepted | Date: YYYY-MM-DD
 ## Context (why the decision was needed)
 ## Decision (what was chosen)
-## Consequences (trade-offs: → pros, ?? cons)
+## Consequences (trade-offs: → pros, ❌ cons)
 ## Alternatives Considered (comparison table)
 ```
 
@@ -193,7 +193,7 @@ If documentation generation fails or writes corrupted files:
 ## Output Format
 
 ```markdown
-## ?? Chronicle Complete
+## 📜 Chronicle Complete
 
 ### Generated Files
 
@@ -272,6 +272,6 @@ graph LR
 **Handoff to /inspect:**
 
 ```markdown
-?? Documentation generated! [X] files created, [Y]% function coverage.
+✅ Documentation generated! [X] files created, [Y]% function coverage.
 Run `/inspect` to review documentation quality or `/launch` to deploy.
 ```

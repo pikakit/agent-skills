@@ -183,7 +183,7 @@ If AI generates slop, inconsistent patterns, or hallucinates styling components:
 ## Output Format
 
 ```markdown
-## ?? Design System: [Project Name]
+## 🎨 Design System: [Project Name]
 
 ### Configuration
 
@@ -269,6 +269,6 @@ graph LR
 **Handoff to /build:**
 
 ```markdown
-?? Design system generated! Style: [style], Palette: [palette], Fonts: [fonts].
+✅ Design system generated! Style: [style], Palette: [palette], Fonts: [fonts].
 Run `/build` to implement the UI.
 ```
