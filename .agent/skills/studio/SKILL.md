@@ -6,7 +6,7 @@ description: >-
   NOT for design theory (use design-system) or CSS code (use tailwind-kit).
 metadata:
   author: pikakit
-  version: "3.9.160"
+  version: "3.9.161"
   category: design-intelligence
   triggers: ["design system", "UI design", "color palette", "typography", "style guide"]
   coordinates_with: ["frontend-specialist", "design-system", "ai-artist"]
@@ -175,4 +175,4 @@ All studio outputs MUST emit `design_search_started` and `design_system_generate
 
 ---
 
-⚡ PikaKit v3.9.160
+⚡ PikaKit v3.9.161

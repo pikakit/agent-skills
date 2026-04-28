@@ -6,7 +6,7 @@ description: >-
   NOT for git operations (use git-workflow) or Vercel-specific deploys (use vercel-deploy).
 metadata:
   author: pikakit
-  version: "3.9.160"
+  version: "3.9.161"
   category: devops
   triggers: ["deploy", "deployment", "CI/CD", "pipeline", "rollback", "release"]
   coordinates_with: ["security-scanner", "git-workflow", "gitops"]
@@ -161,4 +161,4 @@ metadata:
 
 ---
 
-⚡ PikaKit v3.9.160
+⚡ PikaKit v3.9.161

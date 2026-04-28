@@ -6,7 +6,7 @@ description: >-
   NOT for code debugging (use debug-pro) or deployment pipelines (use cicd-pipeline).
 metadata:
   author: pikakit
-  version: "3.9.160"
+  version: "3.9.161"
   category: server-management
   triggers: ["server", "DevOps", "infrastructure", "deployment", "hosting"]
   coordinates_with: ["cicd-pipeline", "observability", "security-scanner"]
@@ -191,4 +191,4 @@ All server ops outputs MUST emit `server_analysis_started` and `analysis_complet
 
 ---
 
-⚡ PikaKit v3.9.160
+⚡ PikaKit v3.9.161
