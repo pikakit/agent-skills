@@ -4,7 +4,7 @@ description: >-
   Web browser game development principles. Framework selection, WebGPU, optimization, PWA.
 metadata:
   author: pikakit
-  version: "3.9.161"
+  version: "3.9.162"
   category: game-development-subskill
   triggers: ["web game", "browser game", "Phaser", "PixiJS", "Three.js", "Babylon.js"]
   coordinates_with: ["game-development", "multiplayer", "perf-optimizer"]
@@ -170,4 +170,4 @@ What type of game?
 
 ---
 
-⚡ PikaKit v3.9.161
+⚡ PikaKit v3.9.162

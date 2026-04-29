@@ -3,7 +3,7 @@
  * These scripts reference optional external dependencies
  * that are only installed in target projects, not in the skill kit itself.
  *
- * @version 3.9.161
+ * @version 3.9.162
  */
 
 declare module 'playwright' {
