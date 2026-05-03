@@ -6,7 +6,7 @@ description: >-
   NOT for auth implementation (use auth-patterns) or penetration testing (use offensive-sec).
 metadata:
   author: pikakit
-  version: "3.9.162"
+  version: "3.9.163"
   category: security-auditor
   triggers: ["security", "vulnerability", "OWASP", "pentest", "threat modeling"]
   coordinates_with: ["offensive-sec", "auth-patterns", "cicd-pipeline", "code-review", "problem-checker", "knowledge-compiler"]
@@ -179,4 +179,4 @@ All scan outputs MUST emit `scan_started` and `scan_completed` events.
 
 ---
 
-⚡ PikaKit v3.9.162
+⚡ PikaKit v3.9.163

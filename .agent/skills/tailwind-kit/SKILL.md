@@ -6,7 +6,7 @@ description: >-
   NOT for design decisions (use design-system) or vanilla CSS projects.
 metadata:
   author: pikakit
-  version: "3.9.162"
+  version: "3.9.163"
   category: frontend-styling
   triggers: ["Tailwind", "CSS", "styling", "utility classes", "oklch"]
   coordinates_with: ["frontend-specialist", "nextjs-pro", "design-system"]
@@ -168,4 +168,4 @@ All tailwind-kit outputs MUST emit `css_class_recommended` and `layout_pattern_g
 
 ---
 
-⚡ PikaKit v3.9.162
+⚡ PikaKit v3.9.163

@@ -6,7 +6,7 @@ description: >-
   NOT for quick bug fixes (use debug-pro) or testing (use test-architect).
 metadata:
   author: pikakit
-  version: "3.9.162"
+  version: "3.9.163"
   category: quality-assurance
   triggers: ["review", "PR", "lint", "format", "validate", "types", "audit", "security check"]
   coordinates_with: ["code-craft", "security-scanner", "test-architect"]
@@ -149,4 +149,4 @@ metadata:
 
 ---
 
-⚡ PikaKit v3.9.162
+⚡ PikaKit v3.9.163
