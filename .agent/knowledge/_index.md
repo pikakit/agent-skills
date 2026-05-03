@@ -29,7 +29,8 @@
 
 ## Recent Signals (Uncompiled)
 
-*(None)*
+- [SIG-006: Mobile Scroll Bug / overflow-x-hidden](./raw-signals/2026-05-04-mobile-scroll-overflow-bug.md)
+- [SIG-007: Agent Bypasses /think Workflow Protocol](./raw-signals/2026-05-04-think-workflow-violation.md)
 
 ## Compiled Signals
 
@@ -47,7 +48,7 @@
 |--------|-------|
 | Total concept articles | 4 |
 | Total ADRs | 2 |
-| Uncompiled signals | 0 |
+| Uncompiled signals | 2 |
 | Compiled signals | 5 |
 | Total patterns | 1 |
 | Last compiled | 2026-04-13 |
