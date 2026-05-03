@@ -77,4 +77,4 @@ Reference: [React.cache documentation](https://react.dev/reference/react/cache)
 
 ---
 
-⚡ PikaKit v3.9.165
+⚡ PikaKit v3.9.166

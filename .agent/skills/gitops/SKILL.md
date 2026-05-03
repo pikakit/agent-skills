@@ -6,7 +6,7 @@ description: >-
   NOT for simple deploys (use vercel-deploy) or general CI/CD (use cicd-pipeline).
 metadata:
   author: pikakit
-  version: "3.9.165"
+  version: "3.9.166"
   category: devops-architect
   triggers: ["GitOps", "ArgoCD", "Flux", "Kubernetes", "declarative deployment"]
   coordinates_with: ["cicd-pipeline", "server-ops", "yaml-linter"]
@@ -160,4 +160,4 @@ gitops-repo/
 
 ---
 
-⚡ PikaKit v3.9.165
+⚡ PikaKit v3.9.166

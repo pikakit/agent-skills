@@ -6,7 +6,7 @@ description: >-
   NOT for UI design decisions (use design-system) or media file processing (use media-processing).
 metadata:
   author: pikakit
-  version: "3.9.165"
+  version: "3.9.166"
   category: prompt-engineering
   triggers: ["prompt", "AI prompt", "image generation", "Midjourney", "DALL-E", "Stable Diffusion", "Flux"]
   coordinates_with: ["studio", "media-processing", "context-engineering"]
@@ -183,4 +183,4 @@ Unknown model → generic format (no model-specific parameters injected).
 
 ---
 
-⚡ PikaKit v3.9.165
+⚡ PikaKit v3.9.166

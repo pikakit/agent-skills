@@ -126,5 +126,5 @@ compile wiki knowledge ingest →  knowledge-compiler  knowledge health stale  �
 
 ---
 
-> ⚡ PikaKit v3.9.165 · 51 Skills · 9 Domains
+> ⚡ PikaKit v3.9.166 · 51 Skills · 9 Domains
 | runtime-memory-manager | Use when user asks to implement semantic search, rag pipeline, offline embeddings | NOT for generic database modeling (? data-modeler) |
