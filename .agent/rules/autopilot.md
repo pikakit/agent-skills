@@ -88,7 +88,13 @@ Storage: `.agent/metrics/` (JSON, 30-day retention).
 
 ## 0.5-H: Auto-Learn Triggers
 
-**Trigger words:** "mistake", "wrong", "fix this", "broken"
+**Trigger conditions:**
+1. **User-initiated:** User says "mistake", "wrong", "fix this", "broken"
+2. **AI regression fix:** AI fixes a bug caused by its own previous change
+3. **Retry pattern:** AI retries the same operation > 1 time before success
+4. **Multi-file fix:** AI fixes a bug involving CSS/framework quirks across files
+5. **Workflow violation:** AI breaks a workflow protocol (e.g., writing code in `/think`)
+
 **When triggered:** Analyze → Extract lesson → `@[skills/knowledge-compiler]` Learn operation → Confirm: `📚 Learned: [LEARN-XXX]`
 
 | Category | ID Pattern |

@@ -130,3 +130,33 @@ EVERY TIME you are about to write code or create files:
 > This gate converts a "suggestion" into a **hard requirement**.
 
 ---
+
+## ⛔ KNOWLEDGE GATE — Mandatory Post-Fix Check
+
+> 🔴 **THIS IS NOT OPTIONAL.** Every bug fix MUST pass this gate.
+
+After completing ANY bug fix, error correction, or regression fix:
+
+### Self-Check Trigger:
+
+```
+EVERY TIME you fix a bug, resolve an error, or correct a regression:
+  → "Is this a learnable pattern?"
+  → Criteria: multi-file fix, recurring issue, framework/CSS gotcha,
+    regression from own previous change, fix that took > 1 attempt
+  → If YES → Write signal to knowledge/raw-signals/ BEFORE marking complete
+  → If NO → Proceed
+  → NEVER skip. User should NOT have to remind you.
+```
+
+### No Exceptions:
+
+- ❌ "The fix was trivial" → If it took > 1 attempt, it's learnable.
+- ❌ "I'll record it later" → NO. Record NOW, before completion.
+- ❌ "User didn't ask me to" → Irrelevant. This gate is SELF-ENFORCED.
+- ❌ "I'm in a different workflow" → Knowledge Gate applies to ALL workflows.
+
+> **Why this exists:** Without this gate, AI fixes 10 bugs but records 0 lessons.
+> The user should NEVER have to ask "Why didn't you record this?"
+
+---

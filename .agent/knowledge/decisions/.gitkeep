@@ -1,6 +1,0 @@
-# Architecture Decision Records Directory
-
-ADRs capture the rationale behind significant architectural decisions.
-Created automatically when `knowledge-compiler` detects decision-type signals.
-
-Format: `adr-NNN-short-title.md`

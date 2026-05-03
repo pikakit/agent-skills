@@ -24,7 +24,7 @@ metadata:
 
 ## Prerequisites
 
-**Required:** `.agent/knowledge/` directory with `_index.md`, `raw/`, `concepts/`, `patterns/`, `decisions/`.
+**Required:** `.agent/knowledge/` directory with `_index.md`, `raw-signals/`, `concepts/`, `patterns/`, `adr/`.
 **Created by:** PikaKit installer (`npx pikakit@latest`).
 
 ---
@@ -67,7 +67,7 @@ metadata:
 ```
 1. Classify signal type: error_fix | correction | decision | observation
 2. Extract: what happened, context, resolution, lesson
-3. Write to .agent/knowledge/raw/{date}-{slug}.md
+3. Write to .agent/knowledge/raw-signals/{date}-{slug}.md
 4. Update _index.md "Uncompiled signals" count
 5. Output: 📥 Signal recorded: {slug}
 ```
@@ -171,7 +171,7 @@ BEFORE executing command or writing code:
 4. DECIDE  → For each cluster:
              a. Existing concept covers this? → UPDATE article (add insights)
              b. New topic? → CREATE concept article
-             c. Architectural decision? → CREATE ADR in decisions/
+             c. Architectural decision? → CREATE ADR in adr/
 5. LINK    → Add [[backlinks]] between related articles
 6. MARK    → Set compiled: true on processed signals
 7. INDEX   → Regenerate _index.md and _graph.md
@@ -195,7 +195,7 @@ BEFORE executing command or writing code:
 **When:** After manual article edits or periodic maintenance.
 
 ```
-1. Scan all .md files in concepts/, patterns/, and decisions/
+1. Scan all .md files in concepts/, patterns/, and adr/
 2. Extract frontmatter (title, tags, related, signal_count)
 3. Rebuild _index.md with article list + statistics
 4. Rebuild _graph.md Mermaid diagram from `related:` fields

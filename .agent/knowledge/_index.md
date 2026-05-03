@@ -1,7 +1,7 @@
 # Knowledge Index
 
 > Auto-maintained by `knowledge-compiler`. Do not edit manually.
-> Last compiled: 2026-04-13 15:44:00 UTC
+> Last compiled: 2026-05-04 18:57:00 UTC
 
 ---
 
@@ -18,12 +18,29 @@
 
 - [ADR-001: Use Path Alias Instead of Relative Imports](./adr/ADR-001-path-alias.md)
 - [ADR-002: Separation of memory.sqlite and Knowledge Wiki](./adr/ADR-002-memory-sqlite-separation.md)
+- [ADR-003: The Epistemic Clustering Membrane](./adr/ADR-003-epistemic-membrane.md)
 
 ---
 
 ## Active Patterns
 
 - [PTN-001: Missing Import in Modular React Component System](./patterns/code-patterns/PTN-001-import-resolution.md) *(Confidence: HIGH)*
+- [STY-001: Mobile Scroll Restoration Failure](./patterns/style-patterns.md) *(Confidence: HIGH)*
+- [FLOW-001: Workflow Protocol Bypass](./patterns/workflow-patterns.md) *(Confidence: HIGH)*
+
+### Pattern Files
+
+| File | Category | Patterns |
+|------|----------|----------|
+| `import-patterns.md` | Import resolution | IMP-* |
+| `type-patterns.md` | Type errors | TYP-* |
+| `style-patterns.md` | CSS/styling | STY-* |
+| `syntax-patterns.md` | Syntax errors | SYN-* |
+| `logic-patterns.md` | Logic bugs | LOG-* |
+| `workflow-patterns.md` | Agent workflow | FLOW-* |
+| `shell-syntax-patterns.md` | Shell/terminal | SHL-* |
+| `npm-patterns.md` | npm operations | NPM-* |
+| `git-patterns.md` | Git operations | GIT-* |
 
 ---
 
@@ -47,12 +64,13 @@
 | Metric | Value |
 |--------|-------|
 | Total concept articles | 4 |
-| Total ADRs | 2 |
+| Total ADRs | 3 |
 | Uncompiled signals | 2 |
 | Compiled signals | 5 |
-| Total patterns | 1 |
-| Last compiled | 2026-04-13 |
-| Health score | 100/100 |
+| Total pattern files | 9 |
+| Active patterns | 3 |
+| Last compiled | 2026-05-04 |
+| Health score | 95/100 |
 
 ---
 

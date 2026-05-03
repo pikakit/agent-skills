@@ -94,6 +94,16 @@ User approval = execute ALL phases automatically. No `notify_user` between phase
 After ANY task: check `@[current_problems]` → auto-fix (CSS, imports, lint, types) → verify → only notify if can't auto-fix.  
 **Rule:** Don't mark complete until `@[current_problems]` is empty or all non-blocking.
 
+### 📚 Knowledge Verification (MANDATORY)
+
+After ANY bug fix or error correction:
+1. Check: "Did I fix a non-trivial bug?" (multi-file, > 1 attempt, regression, framework quirk)
+2. If YES → Ingest signal to `.agent/knowledge/raw-signals/` via `knowledge-compiler`
+3. If uncompiled signal count > 5 → Auto-trigger compile operation
+4. Only mark task complete AFTER knowledge check passes
+
+**Rule:** Don't mark complete if you fixed a learnable bug but didn't record it.
+
 ---
 
 ## TIER 1: CODE RULES (When Writing Code)
