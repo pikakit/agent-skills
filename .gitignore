@@ -164,14 +164,10 @@ agent.cmd
 # Ignore: user-generated signals, compiled articles (per-project data)
 .agent/knowledge/raw-signals/*.md
 !.agent/knowledge/raw-signals/.gitkeep
-.agent/knowledge/raw/*.md
-!.agent/knowledge/raw/.gitkeep
 .agent/knowledge/concepts/*.md
 !.agent/knowledge/concepts/.gitkeep
 .agent/knowledge/adr/*.md
 !.agent/knowledge/adr/.gitkeep
-.agent/knowledge/decisions/*.md
-!.agent/knowledge/decisions/.gitkeep
 
 # Runtime binary cache for VS Code semantic search (WASM embedding vector DB)
 .agent/memory.sqlite
