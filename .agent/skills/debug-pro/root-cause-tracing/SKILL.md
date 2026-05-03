@@ -3,7 +3,7 @@ name: Root Cause Tracing
 description: Systematically trace bugs backward through call stack to find original trigger
 metadata:
   author: pikakit
-  version: "3.9.163"
+  version: "3.9.165"
   category: debugging-subskill
   triggers: ["stack trace", "trace backward", "find polluter", "root cause tracing"]
   coordinates_with: ["debug-pro", "test-architect"]
@@ -193,4 +193,4 @@ From debugging session (2025-10-03):
 
 ---
 
-⚡ PikaKit v3.9.163
+⚡ PikaKit v3.9.165

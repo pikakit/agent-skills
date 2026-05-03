@@ -6,7 +6,7 @@ description: >-
   NOT for clear, well-defined tasks or quick fixes.
 metadata:
   author: pikakit
-  version: "3.9.163"
+  version: "3.9.165"
   category: verification-gate
   triggers: ["brainstorm", "understand requirements", "clarify", "unclear", "complex request"]
   coordinates_with: ["project-planner", "app-scaffold", "system-design"]
@@ -157,4 +157,4 @@ metadata:
 
 ---
 
-⚡ PikaKit v3.9.163
+⚡ PikaKit v3.9.165
