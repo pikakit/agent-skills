@@ -4,7 +4,7 @@
   "description": "PikaKit — AI Operating System. 53 skills, 19 workflows, strict TypeScript.",
   "type": "module",
   "author": "PikaKit <pikakit@gmail.com>",
-  "license": "Proprietary",
+  "license": "MIT",
   "homepage": "https://pikakit.com",
   "repository": {
     "type": "git",
