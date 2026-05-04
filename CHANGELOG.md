@@ -6,6 +6,35 @@ Format: [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) · [Semantic Ve
 
 ---
 
+## [3.9.167] - 2026-05-04
+
+### 🧠 Knowledge System Overhaul & Enforcement Gates
+
+Comprehensive restructuring of the AI self-learning pipeline to ensure autonomous error capture and strict workflow enforcement.
+
+**Knowledge System:**
+
+- Consolidated directory structure: removed stale `raw/` and `decisions/` references
+- Standardized all paths to `raw-signals/` and `adr/` across `knowledge-compiler` SKILL.md
+- Re-indexed `_index.md` and `_graph.md` with accurate statistics (3 ADRs, 9 pattern files)
+- Created placeholder patterns: `shell-syntax-patterns.md`, `npm-patterns.md`, `git-patterns.md`
+- Normalized signal frontmatter (`compiled: true` standard)
+
+**Enforcement Rules (Hard Gates):**
+
+| Gate | File | Purpose |
+|------|------|---------|
+| Knowledge Gate | `GEMINI.md` | Mandatory post-fix check — AI must record learnable bugs |
+| Auto-Learn Triggers | `autopilot.md § 0.5-H` | AI-initiated learning (regression, retry, multi-file, workflow violation) |
+| Knowledge Verification | `code-rules.md` | Verify signals recorded before marking task complete |
+
+**Fixes:**
+
+- Fixed `package.json` license: `Proprietary` → `MIT` (both repos)
+- Cleaned `.gitignore`: removed 4 stale rules for deleted directories
+
+---
+
 ## [3.9.116] - 2026-04-06
 
 ### 🔄 Complete TypeScript Migration
@@ -182,6 +211,7 @@ Full migration from JavaScript/ESM to strict TypeScript across the entire reposi
 
 ---
 
+[3.9.167]: https://github.com/pikakit/agent-skills/compare/v3.9.116...v3.9.167
 [3.9.116]: https://github.com/pikakit/agent-skills/compare/v3.9.115...v3.9.116
 [3.9.115]: https://github.com/pikakit/agent-skills/compare/v3.9.78...v3.9.115
 [3.9.78]: https://github.com/pikakit/agent-skills/compare/v3.9.77...v3.9.78
