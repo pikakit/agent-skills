@@ -159,18 +159,6 @@ agent.cmd
 # Agents symlinks (created by pikakit)
 .agents/
 
-# Knowledge wiki (created by pikakit CLI)
-# Track: structure (.gitkeep), indexes, pattern templates
-# Ignore: user-generated signals, compiled articles (per-project data)
-.agent/knowledge/raw-signals/*.md
-!.agent/knowledge/raw-signals/.gitkeep
-.agent/knowledge/concepts/*.md
-!.agent/knowledge/concepts/.gitkeep
-.agent/knowledge/adr/*.md
-!.agent/knowledge/adr/.gitkeep
-
-# Runtime binary cache for VS Code semantic search (WASM embedding vector DB)
-.agent/memory.sqlite
 
 # ============================================================
 # Build Artifacts (PikaKit Engine extensions)
@@ -189,3 +177,5 @@ audit_result.txt
 # ============================================================
 package-lock.json
 tsconfig.json
+.agent/global.d.ts
+.agent/knowledge/
