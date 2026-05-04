@@ -3,7 +3,7 @@ name: game-art
 description: Game art principles. Visual style selection, asset pipeline, animation workflow.
 metadata:
   author: pikakit
-  version: "3.9.167"
+  version: "3.9.168"
   category: game-development-subskill
   triggers: ["game art", "art style", "asset pipeline", "animation workflow"]
   coordinates_with: ["game-development", "game-audio", "ai-artist"]
@@ -204,4 +204,4 @@ assets/
 
 ---
 
-⚡ PikaKit v3.9.167
+⚡ PikaKit v3.9.168

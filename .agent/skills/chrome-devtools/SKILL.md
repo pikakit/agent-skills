@@ -6,7 +6,7 @@ description: >-
   NOT for E2E test suites (use e2e-automation) or AI browser automation (use agent-browser).
 metadata:
   author: pikakit
-  version: "3.9.167"
+  version: "3.9.168"
   category: browser-automation
   triggers: ["screenshot", "browser", "puppeteer", "devtools", "performance"]
   coordinates_with: ["agent-browser", "perf-optimizer", "e2e-automation"]
@@ -157,4 +157,4 @@ node navigate.ts --close true
 
 ---
 
-⚡ PikaKit v3.9.167
+⚡ PikaKit v3.9.168

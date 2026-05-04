@@ -6,7 +6,7 @@ description: >-
   NOT for deployment pipelines (use cicd-pipeline) or code review (use code-review).
 metadata:
   author: pikakit
-  version: "3.9.167"
+  version: "3.9.168"
   category: version-control
   triggers: ["git", "commit", "push", "PR", "merge", "conventional commits"]
   coordinates_with: ["cicd-pipeline", "code-review", "security-scanner"]
@@ -178,4 +178,4 @@ REBASING → CONFLICT         [merge conflicts]  // terminal
 
 ---
 
-⚡ PikaKit v3.9.167
+⚡ PikaKit v3.9.168

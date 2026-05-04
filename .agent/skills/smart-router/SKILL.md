@@ -6,7 +6,7 @@ description: >-
   NOT for task execution or skill implementation.
 metadata:
   author: pikakit
-  version: "3.9.167"
+  version: "3.9.168"
   category: meta-agent
   triggers: ["agent routing", "request classification", "multi-agent selection"]
   coordinates_with: ["lifecycle-orchestrator", "execution-reporter"]
@@ -92,4 +92,4 @@ Even while operating silently, the router must emit routing telemetry:
 
 ---
 
-⚡ PikaKit v3.9.167
+⚡ PikaKit v3.9.168

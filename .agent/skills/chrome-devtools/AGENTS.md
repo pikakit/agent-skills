@@ -949,4 +949,4 @@ node performance.ts --url https://example.com | jq '.vitals'
 
 ---
 
-PikaKit v3.9.167
+PikaKit v3.9.168

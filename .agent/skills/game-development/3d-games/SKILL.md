@@ -3,7 +3,7 @@ name: 3d-games
 description: 3D game development principles. Rendering, shaders, physics, cameras.
 metadata:
   author: pikakit
-  version: "3.9.167"
+  version: "3.9.168"
   category: game-development-subskill
   triggers: ["3D game", "3D rendering", "shader", "3D physics", "3D camera"]
   coordinates_with: ["game-development", "shader", "perf-optimizer"]
@@ -153,4 +153,4 @@ metadata:
 
 ---
 
-⚡ PikaKit v3.9.167
+⚡ PikaKit v3.9.168

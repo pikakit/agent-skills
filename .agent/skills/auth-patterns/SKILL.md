@@ -6,7 +6,7 @@ description: >-
   NOT for vulnerability scanning (use security-scanner) or API design (use api-architect).
 metadata:
   author: pikakit
-  version: "3.9.167"
+  version: "3.9.168"
   category: security
   triggers: ["auth", "login", "OAuth", "JWT", "RBAC", "permissions", "MFA", "passkey"]
   coordinates_with: ["api-architect", "security-scanner", "data-modeler", "offensive-sec"]
@@ -160,4 +160,4 @@ What type of application?
 
 ---
 
-⚡ PikaKit v3.9.167
+⚡ PikaKit v3.9.168

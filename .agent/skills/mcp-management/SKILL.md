@@ -6,7 +6,7 @@ description: >-
   NOT for building new MCP servers (use mcp-builder).
 metadata:
   author: pikakit
-  version: "3.9.167"
+  version: "3.9.168"
   category: agent-tooling
   triggers: ["MCP tools", "server discovery", "tool execution", "multi-server"]
   coordinates_with: ["mcp-builder"]
@@ -161,4 +161,4 @@ npx tsx cli.ts list-resources  # Available resources
 
 ---
 
-⚡ PikaKit v3.9.167
+⚡ PikaKit v3.9.168
