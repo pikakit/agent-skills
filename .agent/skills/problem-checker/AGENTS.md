@@ -512,8 +512,8 @@ Session-based with fix-verify loop state. No persistent state across invocations
 
 ---
 
-⚡ PikaKit v3.9.174
+⚡ PikaKit v3.9.175
 
 ---
 
-⚡ PikaKit v3.9.174
+⚡ PikaKit v3.9.175

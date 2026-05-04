@@ -156,4 +156,4 @@ settings = Settings()  # Auto-reads from .env + environment
 
 ---
 
-⚡ PikaKit v3.9.174
+⚡ PikaKit v3.9.175

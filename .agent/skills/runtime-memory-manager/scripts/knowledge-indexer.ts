@@ -13,7 +13,7 @@
  *
  * Requires: better-sqlite3
  *
- * @version 3.9.174
+ * @version 3.9.175
  * @author PikaKit Runtime Memory Manager
  */
 
