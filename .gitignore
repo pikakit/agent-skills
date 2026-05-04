@@ -179,3 +179,4 @@ package-lock.json
 tsconfig.json
 .agent/global.d.ts
 .agent/knowledge/
+.agent/memory.sqlite
