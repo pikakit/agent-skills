@@ -6,7 +6,7 @@
  * Audits mobile app projects for design quality using the
  * Mobile Feasibility & Risk Index (5 dimensions, 0-10 score).
  *
- * @version 3.9.170
+ * @version 3.9.172
  * @contract mobile-design v2.0.0
  * @see references/engineering-spec.md
  *
