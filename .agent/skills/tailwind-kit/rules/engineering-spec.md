@@ -1,10 +1,10 @@
 ---
-title: Tailwind Kit — Engineering Specification
+title: Tailwind Kit ï¿½ Engineering Specification
 impact: MEDIUM
 tags: tailwind-kit
 ---
 
-# Tailwind Kit — Engineering Specification
+# Tailwind Kit ï¿½ Engineering Specification
 
 > Production-grade specification for Tailwind CSS v4 patterns at FAANG scale.
 
@@ -12,11 +12,11 @@ tags: tailwind-kit
 
 ## 1. Overview
 
-Tailwind Kit provides structured guidance for Tailwind CSS v4: CSS-first configuration (`@theme` directive), v3?v4 migration (3 breaking changes), core patterns (theme, container queries, dark mode, responsive), layout patterns (4: center, vertical stack, space between, auto-fit grid), OKLCH color system (3 layers: primitive, semantic, component), typography scale (5 sizes), animation classes (4), and anti-patterns (5). The skill operates as an **Expert (decision tree)** — it produces Tailwind class recommendations, configuration guidance, and migration paths. It does not write CSS files, install packages, or modify codebases.
+Tailwind Kit provides structured guidance for Tailwind CSS v4: CSS-first configuration (`@theme` directive), v3?v4 migration (3 breaking changes), core patterns (theme, container queries, dark mode, responsive), layout patterns (4: center, vertical stack, space between, auto-fit grid), OKLCH color system (3 layers: primitive, semantic, component), typography scale (5 sizes), animation classes (4), and anti-patterns (5). The skill operates as an **Expert (decision tree)** ï¿½ it produces Tailwind class recommendations, configuration guidance, and migration paths. It does not write CSS files, install packages, or modify codebases.
 
 **Contract Version:** 2.0.0
 **Backward Compatibility:** breaking (first hardened version)
-**Breaking Changes:** None — new spec for first hardening
+**Breaking Changes:** None ï¿½ new spec for first hardening
 
 ---
 
@@ -244,7 +244,7 @@ All phases synchronous. No async pipeline.
 | Principle | Enforcement |
 |-----------|-------------|
 | Configuration | v4: CSS-first `@theme { }` with OKLCH; v3: `tailwind.config.js` (legacy) |
-| v3?v4 migration | `tailwind.config.js` ? CSS `@theme`; PostCSS plugin ? Oxide engine (10× faster); JIT mode ? native, always-on |
+| v3?v4 migration | `tailwind.config.js` ? CSS `@theme`; PostCSS plugin ? Oxide engine (10ï¿½ faster); JIT mode ? native, always-on |
 | Responsive | Viewport: `md:`, `lg:`; Container: `@md:`, `@lg:` (responds to parent width) |
 | Dark mode | `dark:` prefix: `bg-white dark:bg-zinc-900 text-zinc-900 dark:text-white` |
 | Layout center | `flex items-center justify-center` |
@@ -432,4 +432,4 @@ All resources scoped to invocation. No persistent handles.
 
 ---
 
-? PikaKit v3.9.169
+? PikaKit v3.9.170

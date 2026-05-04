@@ -1,10 +1,10 @@
 ---
-title: Knowledge Graph — Engineering Specification
+title: Knowledge Graph ï¿½ Engineering Specification
 impact: MEDIUM
 tags: knowledge-graph
 ---
 
-# Knowledge Graph — Engineering Specification
+# Knowledge Graph ï¿½ Engineering Specification
 
 > Production-grade specification for semantic code analysis with AST parsing at FAANG scale.
 
@@ -12,11 +12,11 @@ tags: knowledge-graph
 
 ## 1. Overview
 
-Knowledge Graph provides structured decision frameworks for semantic code analysis: symbol lookup (go-to-definition), find-usages across codebase, impact analysis for refactoring, cross-file reference tracking, and architecture graph visualization. The skill operates as an expert knowledge base — it produces analysis strategies, query patterns, and tool selection guidance. It does not execute code analysis, parse ASTs, or invoke LSP servers directly.
+Knowledge Graph provides structured decision frameworks for semantic code analysis: symbol lookup (go-to-definition), find-usages across codebase, impact analysis for refactoring, cross-file reference tracking, and architecture graph visualization. The skill operates as an expert knowledge base ï¿½ it produces analysis strategies, query patterns, and tool selection guidance. It does not execute code analysis, parse ASTs, or invoke LSP servers directly.
 
 **Contract Version:** 2.0.0
 **Backward Compatibility:** breaking (first hardened version)
-**Breaking Changes:** None — new spec for first hardening
+**Breaking Changes:** None ï¿½ new spec for first hardening
 
 ---
 
@@ -247,7 +247,7 @@ All phases synchronous. No async pipeline.
 | AST over grep | All symbol analysis uses AST-based strategies, never raw text |
 | Fixed language tiers | Full: TS, JS, Python, Ruby. Partial: Java, Kotlin |
 | Fixed tool mapping | LSP for IDE, Tree-sitter for AST, Repomix for context, MCP for agents |
-| 3-category impact | Direct callers + indirect refs + test coverage — always all 3 |
+| 3-category impact | Direct callers + indirect refs + test coverage ï¿½ always all 3 |
 | Re-export tracking | TS/JS: always track barrel exports and re-exports |
 | Precision first | Zero false positives; scope-aware resolution |
 | No execution | Strategy only; caller runs tools |
@@ -436,4 +436,4 @@ All resources scoped to invocation. No persistent handles.
 
 ---
 
-? PikaKit v3.9.169
+? PikaKit v3.9.170

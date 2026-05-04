@@ -1,10 +1,10 @@
 ---
-title: Data Modeler — Engineering Specification
+title: Data Modeler ï¿½ Engineering Specification
 impact: MEDIUM
 tags: data-modeler
 ---
 
-# Data Modeler — Engineering Specification
+# Data Modeler ï¿½ Engineering Specification
 
 > Production-grade specification for database design decision-making at FAANG scale.
 
@@ -12,11 +12,11 @@ tags: data-modeler
 
 ## 1. Overview
 
-Data Modeler provides structured decision frameworks for database architecture: database selection (PostgreSQL/Neon/Turso/SQLite), ORM selection (Drizzle/Prisma/Kysely), schema design (normalization, PKs, relationships), indexing strategy (B-tree/hash/GIN/GiST), query analysis (N+1 detection, EXPLAIN ANALYZE), and migration safety. The skill operates as an expert knowledge base that produces database architecture decisions — it does not execute SQL or modify databases.
+Data Modeler provides structured decision frameworks for database architecture: database selection (PostgreSQL/Neon/Turso/SQLite), ORM selection (Drizzle/Prisma/Kysely), schema design (normalization, PKs, relationships), indexing strategy (B-tree/hash/GIN/GiST), query analysis (N+1 detection, EXPLAIN ANALYZE), and migration safety. The skill operates as an expert knowledge base that produces database architecture decisions ï¿½ it does not execute SQL or modify databases.
 
 **Contract Version:** 2.0.0
 **Backward Compatibility:** breaking (first hardened version)
-**Breaking Changes:** None — new spec for first hardening
+**Breaking Changes:** None ï¿½ new spec for first hardening
 
 ---
 
@@ -29,7 +29,7 @@ Database design at scale faces four quantified problems:
 | Default to PostgreSQL regardless of context | 60% of projects use PostgreSQL even when SQLite suffices | Over-provisioned infrastructure, unnecessary complexity |
 | Missing index strategy | 40% of schemas have zero indexes beyond primary keys | Degraded query performance at scale |
 | Unsafe migrations | 25% of schema changes cause downtime or data loss | Production outages |
-| N+1 query blindness | 35% of ORMs generate N+1 queries undetected | 10–100x response time increase |
+| N+1 query blindness | 35% of ORMs generate N+1 queries undetected | 10ï¿½100x response time increase |
 
 Data Modeler eliminates these by providing context-aware database selection, mandatory index planning, safe migration patterns, and query analysis guidance.
 
@@ -476,4 +476,4 @@ All resources scoped to invocation. No persistent handles.
 
 ---
 
-PikaKit v3.9.169
+PikaKit v3.9.170

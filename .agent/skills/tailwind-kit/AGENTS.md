@@ -10,7 +10,7 @@ March 2026
 
 ---
 
-# Tailwind Kit — Tailwind CSS v4 Patterns
+# Tailwind Kit ï¿½ Tailwind CSS v4 Patterns
 
 > CSS-first `@theme`. OKLCH colors. Container queries. Mobile-first responsive.
 
@@ -46,12 +46,12 @@ March 2026
 | v3 (Legacy) | v4 (Current) |
 |-------------|-------------|
 | `tailwind.config.js` | CSS-based `@theme` |
-| PostCSS plugin | Oxide engine (10× faster) |
+| PostCSS plugin | Oxide engine (10ï¿½ faster) |
 | JIT mode | Native, always-on |
 
 ---
 
-## Core Patterns (4 — Fixed)
+## Core Patterns (4 ï¿½ Fixed)
 
 ### Theme (CSS-First)
 ```css
@@ -75,7 +75,7 @@ March 2026
 
 ---
 
-## Layout Patterns (4 — Deterministic)
+## Layout Patterns (4 ï¿½ Deterministic)
 
 | Pattern | Classes |
 |---------|---------|
@@ -155,7 +155,7 @@ March 2026
 
 ---
 name: components
-description: Tailwind CSS v4 component patterns — cva variants, cn() utility, Button/Card/Input extraction, class ordering, TypeScript props
+description: Tailwind CSS v4 component patterns ï¿½ cva variants, cn() utility, Button/Card/Input extraction, class ordering, TypeScript props
 ---
 
 # Component Extraction
@@ -177,7 +177,7 @@ description: Tailwind CSS v4 component patterns — cva variants, cn() utility, Bu
 ## cn() Utility (Essential)
 
 ```typescript
-// lib/utils.ts — merge Tailwind classes safely
+// lib/utils.ts ï¿½ merge Tailwind classes safely
 import { clsx, type ClassValue } from 'clsx'
 import { twMerge } from 'tailwind-merge'
 
@@ -185,7 +185,7 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
 
-// Usage — last class wins, no conflicts
+// Usage ï¿½ last class wins, no conflicts
 cn('px-4 py-2', 'px-6')        // ? 'py-2 px-6'
 cn('text-red-500', false && 'hidden')  // ? 'text-red-500'
 ```
@@ -321,7 +321,7 @@ export function Input({ label, error, className, id, ...props }: InputProps) {
 
 ---
 
-## @apply (Static Only — Use Sparingly)
+## @apply (Static Only ï¿½ Use Sparingly)
 
 ```css
 /* Only for patterns that never need props or state */
@@ -383,12 +383,12 @@ export function Input({ label, error, className, id, ...props }: InputProps) {
 ### Rule: engineering-spec
 
 ---
-title: Tailwind Kit — Engineering Specification
+title: Tailwind Kit ï¿½ Engineering Specification
 impact: MEDIUM
 tags: tailwind-kit
 ---
 
-# Tailwind Kit — Engineering Specification
+# Tailwind Kit ï¿½ Engineering Specification
 
 > Production-grade specification for Tailwind CSS v4 patterns at FAANG scale.
 
@@ -396,11 +396,11 @@ tags: tailwind-kit
 
 ## 1. Overview
 
-Tailwind Kit provides structured guidance for Tailwind CSS v4: CSS-first configuration (`@theme` directive), v3?v4 migration (3 breaking changes), core patterns (theme, container queries, dark mode, responsive), layout patterns (4: center, vertical stack, space between, auto-fit grid), OKLCH color system (3 layers: primitive, semantic, component), typography scale (5 sizes), animation classes (4), and anti-patterns (5). The skill operates as an **Expert (decision tree)** — it produces Tailwind class recommendations, configuration guidance, and migration paths. It does not write CSS files, install packages, or modify codebases.
+Tailwind Kit provides structured guidance for Tailwind CSS v4: CSS-first configuration (`@theme` directive), v3?v4 migration (3 breaking changes), core patterns (theme, container queries, dark mode, responsive), layout patterns (4: center, vertical stack, space between, auto-fit grid), OKLCH color system (3 layers: primitive, semantic, component), typography scale (5 sizes), animation classes (4), and anti-patterns (5). The skill operates as an **Expert (decision tree)** ï¿½ it produces Tailwind class recommendations, configuration guidance, and migration paths. It does not write CSS files, install packages, or modify codebases.
 
 **Contract Version:** 2.0.0
 **Backward Compatibility:** breaking (first hardened version)
-**Breaking Changes:** None — new spec for first hardening
+**Breaking Changes:** None ï¿½ new spec for first hardening
 
 ---
 
@@ -634,7 +634,7 @@ All phases synchronous. No async pipeline.
 | Principle | Enforcement |
 |-----------|-------------|
 | Configuration | v4: CSS-first `@theme { }` with OKLCH; v3: `tailwind.config.js` (legacy) |
-| v3?v4 migration | `tailwind.config.js` ? CSS `@theme`; PostCSS plugin ? Oxide engine (10× faster); JIT mode ? native, always-on |
+| v3?v4 migration | `tailwind.config.js` ? CSS `@theme`; PostCSS plugin ? Oxide engine (10ï¿½ faster); JIT mode ? native, always-on |
 | Responsive | Viewport: `md:`, `lg:`; Container: `@md:`, `@lg:` (responds to parent width) |
 | Dark mode | `dark:` prefix: `bg-white dark:bg-zinc-900 text-zinc-900 dark:text-white` |
 | Layout center | `flex items-center justify-center` |
@@ -845,7 +845,7 @@ All resources scoped to invocation. No persistent handles.
 
 ---
 name: responsive
-description: Tailwind CSS v4 responsive patterns — breakpoints, container queries, responsive grid/typography/images, hide/show, full layout example
+description: Tailwind CSS v4 responsive patterns ï¿½ breakpoints, container queries, responsive grid/typography/images, hide/show, full layout example
 ---
 
 # Responsive & Container Queries
@@ -953,7 +953,7 @@ description: Tailwind CSS v4 responsive patterns — breakpoints, container querie
   Body text that adapts to screen size
 </p>
 
-<!-- Clamp (v4 arbitrary) — smooth scaling without breakpoints -->
+<!-- Clamp (v4 arbitrary) ï¿½ smooth scaling without breakpoints -->
 <h1 class="text-[clamp(1.5rem,4vw,3rem)] font-bold">
   Fluid without breakpoints
 </h1>
@@ -1029,7 +1029,7 @@ description: Tailwind CSS v4 responsive patterns — breakpoints, container querie
   <!-- Footer -->
   <footer class="border-t py-8">
     <div class="mx-auto max-w-7xl px-4 lg:px-8 text-sm text-zinc-500">
-      © 2025
+      ï¿½ 2025
     </div>
   </footer>
 </div>
@@ -1132,4 +1132,4 @@ oklch(lightness chroma hue)
 
 ---
 
-? PikaKit v3.9.169
+? PikaKit v3.9.170

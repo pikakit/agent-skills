@@ -10,7 +10,7 @@ March 2026
 
 ---
 
-# Observability — Unified Telemetry with OpenTelemetry
+# Observability ï¿½ Unified Telemetry with OpenTelemetry
 
 > 3 pillars. Vendor-agnostic. Fixed sampling. Auto-instrumentation first.
 
@@ -159,12 +159,12 @@ March 2026
 ### Rule: engineering-spec
 
 ---
-title: Observability — Engineering Specification
+title: Observability ï¿½ Engineering Specification
 impact: MEDIUM
 tags: observability
 ---
 
-# Observability — Engineering Specification
+# Observability ï¿½ Engineering Specification
 
 > Production-grade specification for OpenTelemetry-based observability at FAANG scale.
 
@@ -172,11 +172,11 @@ tags: observability
 
 ## 1. Overview
 
-Observability provides structured decision frameworks for production telemetry: three pillars (logs, metrics, traces), OpenTelemetry SDK setup (Node.js, Python), auto-instrumentation routing, environment-based sampling, provider integration, and troubleshooting. The skill operates as an **Expert (decision tree)** — it produces SDK configuration decisions, sampling strategies, provider selection, and instrumentation guidance. It does not install packages, configure infrastructure, or deploy collectors.
+Observability provides structured decision frameworks for production telemetry: three pillars (logs, metrics, traces), OpenTelemetry SDK setup (Node.js, Python), auto-instrumentation routing, environment-based sampling, provider integration, and troubleshooting. The skill operates as an **Expert (decision tree)** ï¿½ it produces SDK configuration decisions, sampling strategies, provider selection, and instrumentation guidance. It does not install packages, configure infrastructure, or deploy collectors.
 
 **Contract Version:** 2.0.0
 **Backward Compatibility:** breaking (first hardened version)
-**Breaking Changes:** None — new spec for first hardening
+**Breaking Changes:** None ï¿½ new spec for first hardening
 
 ---
 
@@ -410,7 +410,7 @@ All phases synchronous. No async pipeline.
 | Vendor-agnostic | OpenTelemetry SDK only; never proprietary SDK |
 | Fixed sampling rates | Dev: 100%, Staging: 50%, Prod: 1-10% |
 | Auto-instrumentation first | Use auto-instrumentation; add manual spans only for business logic |
-| Fixed provider mapping | Datadog, Grafana (OTLP), Sentry — fixed exporter packages |
+| Fixed provider mapping | Datadog, Grafana (OTLP), Sentry ï¿½ fixed exporter packages |
 | SERVICE_NAME required | Always set via environment variable |
 | No sensitive data in spans | Sanitize all tag values before export |
 
@@ -604,4 +604,4 @@ All resources scoped to invocation. No persistent handles.
 
 ---
 
-? PikaKit v3.9.169
+? PikaKit v3.9.170

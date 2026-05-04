@@ -10,7 +10,7 @@ March 2026
 
 ---
 
-# MCP Builder — Build MCP Servers for AI Agents
+# MCP Builder ï¿½ Build MCP Servers for AI Agents
 
 > 4 phases. Workflow over endpoints. 10-question evaluation. Context-aware output.
 
@@ -174,7 +174,7 @@ Create 10 test questions that are:
 
 ---
 name: mcp-best-practices
-description: MCP design patterns — workflow over endpoints, concise/detailed output, actionable errors, naming conventions
+description: MCP design patterns ï¿½ workflow over endpoints, concise/detailed output, actionable errors, naming conventions
 ---
 
 # MCP Best Practices
@@ -332,7 +332,7 @@ async def list_items(page: int = 1, per_page: int = 20) -> str:
 
 ---
 name: mcp-design-principles
-description: Core MCP concepts — tool/resource/prompt design, transport selection, error handling, security patterns
+description: Core MCP concepts ï¿½ tool/resource/prompt design, transport selection, error handling, security patterns
 ---
 
 # MCP Server Design Principles
@@ -438,10 +438,10 @@ my-mcp-server/
 
 ---
 name: mcp-builder-engineering-spec
-description: Full 21-section engineering spec — 4-phase build contracts, framework selection, evaluation framework
+description: Full 21-section engineering spec ï¿½ 4-phase build contracts, framework selection, evaluation framework
 ---
 
-# MCP Builder — Engineering Specification
+# MCP Builder ï¿½ Engineering Specification
 
 > Production-grade specification for building MCP servers for AI agents at FAANG scale.
 
@@ -449,11 +449,11 @@ description: Full 21-section engineering spec — 4-phase build contracts, framewo
 
 ## 1. Overview
 
-MCP Builder provides a structured 4-phase process for building Model Context Protocol (MCP) servers: Research (API + MCP spec study), Implement (Python FastMCP or TypeScript MCP SDK), Review (quality checklist), and Evaluate (10 complex test questions). The skill operates as an expert knowledge base with 6 reference files — it produces build guidance, framework selection decisions, and evaluation criteria. It does not execute code, install packages, or deploy servers.
+MCP Builder provides a structured 4-phase process for building Model Context Protocol (MCP) servers: Research (API + MCP spec study), Implement (Python FastMCP or TypeScript MCP SDK), Review (quality checklist), and Evaluate (10 complex test questions). The skill operates as an expert knowledge base with 6 reference files ï¿½ it produces build guidance, framework selection decisions, and evaluation criteria. It does not execute code, install packages, or deploy servers.
 
 **Contract Version:** 2.0.0
 **Backward Compatibility:** breaking (first hardened version)
-**Breaking Changes:** None — new spec for first hardening
+**Breaking Changes:** None ï¿½ new spec for first hardening
 
 ---
 
@@ -691,7 +691,7 @@ All phases synchronous. No async pipeline.
 | Fixed phase order | Research (1) ? Implement (2) ? Review (3) ? Evaluate (4) |
 | Fixed framework selection | python-heavy OR needs_async ? FastMCP; else ? TypeScript SDK |
 | Workflow over endpoints | Tools designed for agent workflows, never raw API mirror |
-| Fixed review items | DRY, error handling, type coverage, docstrings — always 4 |
+| Fixed review items | DRY, error handling, type coverage, docstrings ï¿½ always 4 |
 | Fixed evaluation size | 10 questions, 6 criteria |
 | Context-aware output | concise vs detailed mode for tool responses |
 | MCP spec URL fixed | `https://modelcontextprotocol.io/llms-full.txt` |
@@ -893,12 +893,12 @@ All resources scoped to invocation. No persistent handles.
 | File | When to Read |
 |------|-------------|
 | [../SKILL.md](../SKILL.md) | Quick reference, 4-phase build, anti-patterns |
-| [design-principles.md](design-principles.md) | Phase 1 — MCP concepts |
-| [quickstart.md](quickstart.md) | Phase 2 — setup guides |
-| [python-implementation.md](python-implementation.md) | Phase 2 — Python patterns |
-| [typescript-implementation.md](typescript-implementation.md) | Phase 2 — TypeScript patterns |
-| [best-practices.md](best-practices.md) | Phase 3 — review patterns |
-| [evaluation.md](evaluation.md) | Phase 4 — testing framework |
+| [design-principles.md](design-principles.md) | Phase 1 ï¿½ MCP concepts |
+| [quickstart.md](quickstart.md) | Phase 2 ï¿½ setup guides |
+| [python-implementation.md](python-implementation.md) | Phase 2 ï¿½ Python patterns |
+| [typescript-implementation.md](typescript-implementation.md) | Phase 2 ï¿½ TypeScript patterns |
+| [best-practices.md](best-practices.md) | Phase 3 ï¿½ review patterns |
+| [evaluation.md](evaluation.md) | Phase 4 ï¿½ testing framework |
 | `mcp-management` | MCP tool discovery |
 
 ---
@@ -907,7 +907,7 @@ All resources scoped to invocation. No persistent handles.
 
 ---
 name: mcp-evaluation
-description: 10-question evaluation framework for MCP servers — complex, read-only, verifiable test questions
+description: 10-question evaluation framework for MCP servers ï¿½ complex, read-only, verifiable test questions
 ---
 
 # MCP Evaluation Guide
@@ -1011,7 +1011,7 @@ This requires:
 
 ---
 name: mcp-python-implementation
-description: Python MCP server with FastMCP — tool annotations, error helpers, pagination, quality checklist
+description: Python MCP server with FastMCP ï¿½ tool annotations, error helpers, pagination, quality checklist
 ---
 
 # Python MCP Server Implementation
@@ -1373,7 +1373,7 @@ npx ts-node server.ts
 
 ---
 name: mcp-typescript-implementation
-description: TypeScript MCP server with Zod validation — tool annotations, strict mode, build/test workflow
+description: TypeScript MCP server with Zod validation ï¿½ tool annotations, strict mode, build/test workflow
 ---
 
 # TypeScript MCP Server Implementation
@@ -1397,9 +1397,9 @@ npm install -D typescript @types/node tsx
 ```
 my-mcp-server/
 +-- src/
-¦   +-- index.ts        # Main entry
-¦   +-- tools/          # Tool definitions
-¦   +-- utils/          # Helpers
+ï¿½   +-- index.ts        # Main entry
+ï¿½   +-- tools/          # Tool definitions
+ï¿½   +-- utils/          # Helpers
 +-- package.json
 +-- tsconfig.json
 +-- .env.example
@@ -1650,4 +1650,4 @@ npx @modelcontextprotocol/inspector node dist/index.js
 
 ---
 
-? PikaKit v3.9.169
+? PikaKit v3.9.170

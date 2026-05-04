@@ -1,10 +1,10 @@
 ---
-title: Auth Patterns — Engineering Specification
+title: Auth Patterns ï¿½ Engineering Specification
 impact: MEDIUM
 tags: auth-patterns
 ---
 
-# Auth Patterns — Engineering Specification
+# Auth Patterns ï¿½ Engineering Specification
 
 > Production-grade specification for authentication and authorization pattern selection at FAANG scale.
 
@@ -135,7 +135,7 @@ Error: ErrorSchema | null
 
 **Contract Version:** 2.0.0
 **Backward Compatibility:** breaking (first hardened version)
-**Breaking Changes:** None — new spec for first hardening
+**Breaking Changes:** None ï¿½ new spec for first hardening
 
 #### Error Schema
 
@@ -263,8 +263,8 @@ All phases execute synchronously in a single invocation. No async pipeline.
 ### State Machine
 
 ```
-States: IDLE (single state — skill is stateless)
-Transitions: None — each invocation is independent
+States: IDLE (single state ï¿½ skill is stateless)
+Transitions: None ï¿½ each invocation is independent
 ```
 
 Auth Patterns maintains zero persistent state. Every invocation starts from a clean state. Invoking N times with identical inputs produces N identical outputs.
@@ -499,7 +499,7 @@ Auth Patterns maintains zero persistent state. Every invocation starts from a cl
 | **Scalability** | Stateless; unlimited parallel invocations | ? |
 | **Concurrency** | No shared state; read-only reference access | ? |
 | **Resources** | All resources scoped to invocation lifetime | ? |
-| **Idempotency** | Fully idempotent — all operations are pure functions | ? |
+| **Idempotency** | Fully idempotent ï¿½ all operations are pure functions | ? |
 | **Compliance** | All skill-design-guide.md sections present | ? |
 
 ---
@@ -512,4 +512,4 @@ Auth Patterns maintains zero persistent state. Every invocation starts from a cl
 
 ---
 
-PikaKit v3.9.169
+PikaKit v3.9.170

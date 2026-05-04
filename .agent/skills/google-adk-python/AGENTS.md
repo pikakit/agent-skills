@@ -10,7 +10,7 @@ March 2026
 
 ---
 
-# Google ADK Python — AI Agent Development
+# Google ADK Python ï¿½ AI Agent Development
 
 > Code-first. = 5 tools per agent. Typed functions. Deterministic type selection.
 
@@ -318,12 +318,12 @@ async def ready():
 ### Rule: engineering-spec
 
 ---
-title: Google ADK Python — Engineering Specification
+title: Google ADK Python ï¿½ Engineering Specification
 impact: MEDIUM
 tags: google-adk-python
 ---
 
-# Google ADK Python — Engineering Specification
+# Google ADK Python ï¿½ Engineering Specification
 
 > Production-grade specification for building AI agents with Google's Agent Development Kit at FAANG scale.
 
@@ -331,11 +331,11 @@ tags: google-adk-python
 
 ## 1. Overview
 
-Google ADK Python provides structured decision frameworks for building, composing, and deploying AI agents using Google's Agent Development Kit: agent type selection (4 types), model selection (3 tiers), tool integration (built-in + custom), multi-agent orchestration (delegation + sub-agents), and deployment patterns. The skill operates as an expert knowledge base with 3 reference files — it produces agent architecture decisions and code patterns. It does not execute agents, configure cloud projects, or manage API keys.
+Google ADK Python provides structured decision frameworks for building, composing, and deploying AI agents using Google's Agent Development Kit: agent type selection (4 types), model selection (3 tiers), tool integration (built-in + custom), multi-agent orchestration (delegation + sub-agents), and deployment patterns. The skill operates as an expert knowledge base with 3 reference files ï¿½ it produces agent architecture decisions and code patterns. It does not execute agents, configure cloud projects, or manage API keys.
 
 **Contract Version:** 2.0.0
 **Backward Compatibility:** breaking (first hardened version)
-**Breaking Changes:** None — new spec for first hardening
+**Breaking Changes:** None ï¿½ new spec for first hardening
 
 ---
 
@@ -1051,4 +1051,4 @@ response = agent.run("Process customer refund")
 
 ---
 
-? PikaKit v3.9.169
+? PikaKit v3.9.170

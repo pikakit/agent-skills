@@ -1,10 +1,10 @@
 ---
-title: TypeScript Expert — Engineering Specification
+title: TypeScript Expert ï¿½ Engineering Specification
 impact: MEDIUM
 tags: typescript-expert
 ---
 
-# TypeScript Expert — Engineering Specification
+# TypeScript Expert ï¿½ Engineering Specification
 
 > Production-grade specification for TypeScript/JavaScript expertise at FAANG scale.
 
@@ -12,11 +12,11 @@ tags: typescript-expert
 
 ## 1. Overview
 
-TypeScript Expert provides structured guidance for TypeScript and JavaScript: type-level patterns (3: branded types, deep readonly, satisfies), common error resolution (4 error types with fixes), performance configuration (3 settings: skipLibCheck, incremental, project references), strict config (3 strict options), ESM-first configuration, tsconfig decision routing, monorepo management, and migration strategies. The skill operates as an **Expert (decision tree)** — it produces type pattern recommendations, error fixes, config guidance, and migration paths. It does not write TypeScript files, execute compilers, or modify tsconfig.
+TypeScript Expert provides structured guidance for TypeScript and JavaScript: type-level patterns (3: branded types, deep readonly, satisfies), common error resolution (4 error types with fixes), performance configuration (3 settings: skipLibCheck, incremental, project references), strict config (3 strict options), ESM-first configuration, tsconfig decision routing, monorepo management, and migration strategies. The skill operates as an **Expert (decision tree)** ï¿½ it produces type pattern recommendations, error fixes, config guidance, and migration paths. It does not write TypeScript files, execute compilers, or modify tsconfig.
 
 **Contract Version:** 2.0.0
 **Backward Compatibility:** breaking (first hardened version)
-**Breaking Changes:** None — new spec for first hardening
+**Breaking Changes:** None ï¿½ new spec for first hardening
 
 ---
 
@@ -430,4 +430,4 @@ All resources scoped to invocation. No persistent handles.
 
 ---
 
-? PikaKit v3.9.169
+? PikaKit v3.9.170

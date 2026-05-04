@@ -1,10 +1,10 @@
 ---
-title: Project Planner — Engineering Specification
+title: Project Planner ï¿½ Engineering Specification
 impact: MEDIUM
 tags: project-planner
 ---
 
-# Project Planner — Engineering Specification
+# Project Planner ï¿½ Engineering Specification
 
 > Production-grade specification for structured task planning at FAANG scale.
 
@@ -12,11 +12,11 @@ tags: project-planner
 
 ## 1. Overview
 
-Project Planner provides structured task breakdown for implementation work: plan creation with verifiable tasks (max 10 per plan), dependency ordering, done criteria, and project-type routing. The skill operates as an **Expert (decision tree)** — it produces plan documents with task breakdowns, verification criteria, and dependency ordering. It does not create projects, write code, or execute tasks.
+Project Planner provides structured task breakdown for implementation work: plan creation with verifiable tasks (max 10 per plan), dependency ordering, done criteria, and project-type routing. The skill operates as an **Expert (decision tree)** ï¿½ it produces plan documents with task breakdowns, verification criteria, and dependency ordering. It does not create projects, write code, or execute tasks.
 
 **Contract Version:** 2.0.0
 **Backward Compatibility:** breaking (first hardened version)
-**Breaking Changes:** None — new spec for first hardening
+**Breaking Changes:** None ï¿½ new spec for first hardening
 
 ---
 
@@ -417,4 +417,4 @@ All resources scoped to invocation. No persistent handles.
 
 ---
 
-? PikaKit v3.9.169
+? PikaKit v3.9.170

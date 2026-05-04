@@ -1,10 +1,10 @@
 ---
-title: Performance Profiler — Engineering Specification
+title: Performance Profiler ï¿½ Engineering Specification
 impact: MEDIUM
 tags: perf-optimizer
 ---
 
-# Performance Profiler — Engineering Specification
+# Performance Profiler ï¿½ Engineering Specification
 
 > Production-grade specification for performance profiling and Core Web Vitals at FAANG scale.
 
@@ -12,11 +12,11 @@ tags: perf-optimizer
 
 ## 1. Overview
 
-Performance Profiler provides structured performance analysis: Core Web Vitals targeting (LCP < 2.5s, INP < 200ms, CLS < 0.1), profiling tool selection (5 tools), 4-step profiling workflow (Baseline ? Identify ? Fix ? Validate), bundle analysis (4 issues, 4 actions), runtime profiling (4 task patterns, 3 memory patterns), bottleneck diagnosis (4 symptom?cause mappings), and prioritized quick wins (5 ranked). The skill operates as an **Expert (decision tree)** — it produces profiling methodologies, tool recommendations, and fix strategies. It does not execute profiling tools, modify code, or run Lighthouse.
+Performance Profiler provides structured performance analysis: Core Web Vitals targeting (LCP < 2.5s, INP < 200ms, CLS < 0.1), profiling tool selection (5 tools), 4-step profiling workflow (Baseline ? Identify ? Fix ? Validate), bundle analysis (4 issues, 4 actions), runtime profiling (4 task patterns, 3 memory patterns), bottleneck diagnosis (4 symptom?cause mappings), and prioritized quick wins (5 ranked). The skill operates as an **Expert (decision tree)** ï¿½ it produces profiling methodologies, tool recommendations, and fix strategies. It does not execute profiling tools, modify code, or run Lighthouse.
 
 **Contract Version:** 2.0.0
 **Backward Compatibility:** breaking (first hardened version)
-**Breaking Changes:** None — new spec for first hardening
+**Breaking Changes:** None ï¿½ new spec for first hardening
 
 ---
 
@@ -425,4 +425,4 @@ All resources scoped to invocation. No persistent handles.
 
 ---
 
-? PikaKit v3.9.169
+? PikaKit v3.9.170

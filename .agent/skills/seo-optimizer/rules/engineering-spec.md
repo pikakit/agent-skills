@@ -1,10 +1,10 @@
 ---
-title: SEO Optimizer — Engineering Specification
+title: SEO Optimizer ï¿½ Engineering Specification
 impact: MEDIUM
 tags: seo-optimizer
 ---
 
-# SEO Optimizer — Engineering Specification
+# SEO Optimizer ï¿½ Engineering Specification
 
 > Production-grade specification for search engine visibility at FAANG scale.
 
@@ -12,11 +12,11 @@ tags: seo-optimizer
 
 ## 1. Overview
 
-SEO Optimizer provides structured decision frameworks for search engine visibility: E-E-A-T framework (4 principles), Core Web Vitals targets (LCP < 2.5s, INP < 200ms, CLS < 0.1), technical SEO checklist (7 items), content SEO rules (4 elements with character limits), schema markup routing (5 types), and ranking factor prioritization (5 ranked factors). The skill operates as an **Expert (decision tree)** — it produces SEO recommendations, checklist guidance, and schema markup selections. It does not modify HTML, generate sitemaps, or submit to search engines.
+SEO Optimizer provides structured decision frameworks for search engine visibility: E-E-A-T framework (4 principles), Core Web Vitals targets (LCP < 2.5s, INP < 200ms, CLS < 0.1), technical SEO checklist (7 items), content SEO rules (4 elements with character limits), schema markup routing (5 types), and ranking factor prioritization (5 ranked factors). The skill operates as an **Expert (decision tree)** ï¿½ it produces SEO recommendations, checklist guidance, and schema markup selections. It does not modify HTML, generate sitemaps, or submit to search engines.
 
 **Contract Version:** 2.0.0
 **Backward Compatibility:** breaking (first hardened version)
-**Breaking Changes:** None — new spec for first hardening
+**Breaking Changes:** None ï¿½ new spec for first hardening
 
 ---
 
@@ -430,4 +430,4 @@ All resources scoped to invocation. No persistent handles.
 
 ---
 
-? PikaKit v3.9.169
+? PikaKit v3.9.170

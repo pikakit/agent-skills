@@ -1,10 +1,10 @@
 ---
-title: Security Scanner — Engineering Specification
+title: Security Scanner ï¿½ Engineering Specification
 impact: MEDIUM
 tags: security-scanner
 ---
 
-# Security Scanner — Engineering Specification
+# Security Scanner ï¿½ Engineering Specification
 
 > Production-grade specification for vulnerability analysis and OWASP compliance at FAANG scale.
 
@@ -12,11 +12,11 @@ tags: security-scanner
 
 ## 1. Overview
 
-Security Scanner provides structured vulnerability analysis: OWASP Top 10:2025 checklist (10 categories), risk prioritization (EPSS + CVSS decision tree), high-risk code pattern detection (5 patterns), secret detection (4 categories), supply chain security, and 5 core security principles. The skill operates as an **Expert (decision tree)** — it produces vulnerability classifications, risk priorities, and remediation guidance. It does not execute scans, modify code, or install security tools.
+Security Scanner provides structured vulnerability analysis: OWASP Top 10:2025 checklist (10 categories), risk prioritization (EPSS + CVSS decision tree), high-risk code pattern detection (5 patterns), secret detection (4 categories), supply chain security, and 5 core security principles. The skill operates as an **Expert (decision tree)** ï¿½ it produces vulnerability classifications, risk priorities, and remediation guidance. It does not execute scans, modify code, or install security tools.
 
 **Contract Version:** 2.0.0
 **Backward Compatibility:** breaking (first hardened version)
-**Breaking Changes:** None — new spec for first hardening
+**Breaking Changes:** None ï¿½ new spec for first hardening
 
 ---
 
@@ -437,4 +437,4 @@ All resources scoped to invocation. No persistent handles.
 
 ---
 
-? PikaKit v3.9.169
+? PikaKit v3.9.170

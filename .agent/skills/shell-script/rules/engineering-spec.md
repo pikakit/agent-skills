@@ -1,10 +1,10 @@
 ---
-title: Shell Script — Engineering Specification
+title: Shell Script ï¿½ Engineering Specification
 impact: MEDIUM
 tags: shell-script
 ---
 
-# Shell Script — Engineering Specification
+# Shell Script ï¿½ Engineering Specification
 
 > Production-grade specification for Bash/Linux terminal patterns at FAANG scale.
 
@@ -12,11 +12,11 @@ tags: shell-script
 
 ## 1. Overview
 
-Shell Script provides structured guidance for Bash scripting on Linux/macOS: operator syntax (4 operators: `;`, `&&`, `||`, `|`), file operations (5 commands), process management (5 commands), text processing (4 tools: grep, sed, awk, cut), environment variables (3 tasks), network commands (4 tasks), script template (`set -euo pipefail` + main pattern), common patterns (4 patterns), and Bash vs PowerShell comparison (3 equivalencies). The skill operates as an **Expert (decision tree)** — it produces command recommendations, script patterns, and syntax guidance. It does not execute commands, modify files, or access the shell.
+Shell Script provides structured guidance for Bash scripting on Linux/macOS: operator syntax (4 operators: `;`, `&&`, `||`, `|`), file operations (5 commands), process management (5 commands), text processing (4 tools: grep, sed, awk, cut), environment variables (3 tasks), network commands (4 tasks), script template (`set -euo pipefail` + main pattern), common patterns (4 patterns), and Bash vs PowerShell comparison (3 equivalencies). The skill operates as an **Expert (decision tree)** ï¿½ it produces command recommendations, script patterns, and syntax guidance. It does not execute commands, modify files, or access the shell.
 
 **Contract Version:** 2.0.0
 **Backward Compatibility:** breaking (first hardened version)
-**Breaking Changes:** None — new spec for first hardening
+**Breaking Changes:** None ï¿½ new spec for first hardening
 
 ---
 
@@ -460,4 +460,4 @@ All resources scoped to invocation. No persistent handles.
 
 ---
 
-? PikaKit v3.9.169
+? PikaKit v3.9.170

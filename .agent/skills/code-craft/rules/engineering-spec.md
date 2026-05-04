@@ -1,10 +1,10 @@
 ---
-title: Code Craft — Engineering Specification
+title: Code Craft ï¿½ Engineering Specification
 impact: MEDIUM
 tags: code-craft
 ---
 
-# Code Craft — Engineering Specification
+# Code Craft ï¿½ Engineering Specification
 
 > Production-grade specification for pragmatic coding standards at FAANG scale.
 
@@ -12,13 +12,13 @@ tags: code-craft
 
 ## 1. Overview
 
-Code Craft provides deterministic coding standards for production code: naming conventions, function design rules, code structure patterns, dependency awareness, and pre-completion validation. The skill operates as an expert knowledge base that produces coding guidance — it does not write, lint, or modify code.
+Code Craft provides deterministic coding standards for production code: naming conventions, function design rules, code structure patterns, dependency awareness, and pre-completion validation. The skill operates as an expert knowledge base that produces coding guidance ï¿½ it does not write, lint, or modify code.
 
 The skill enforces 5 core principles (SRP, DRY, KISS, YAGNI, Boy Scout), 4 naming rules, 5 function rules, 4 structure patterns, and a 4-item self-check checklist.
 
 **Contract Version:** 2.0.0
 **Backward Compatibility:** breaking (first hardened version)
-**Breaking Changes:** None — new spec for first hardening
+**Breaking Changes:** None ï¿½ new spec for first hardening
 
 ---
 
@@ -28,7 +28,7 @@ Code quality at scale faces four quantified problems:
 
 | Problem | Measurement | Impact |
 |---------|-------------|--------|
-| Inconsistent naming | 40%+ of variables use ambiguous names (single letters, abbreviations) | 2–3x longer code comprehension time |
+| Inconsistent naming | 40%+ of variables use ambiguous names (single letters, abbreviations) | 2ï¿½3x longer code comprehension time |
 | God functions | 25% of functions exceed 20 lines; 10% exceed 50 lines | Untestable, unmaintainable code |
 | Missing dependency awareness | 30% of file edits break dependents not edited in the same change | Regression bugs post-edit |
 | No pre-completion validation | 20% of completed tasks have lint errors or failing tests | Wasted review cycles |
@@ -444,4 +444,4 @@ All resources scoped to invocation. No persistent handles.
 
 ---
 
-PikaKit v3.9.169
+PikaKit v3.9.170

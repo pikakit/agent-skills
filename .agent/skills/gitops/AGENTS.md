@@ -10,7 +10,7 @@ March 2026
 
 ---
 
-# GitOps Workflow — Declarative Kubernetes Delivery
+# GitOps Workflow ï¿½ Declarative Kubernetes Delivery
 
 > Git is the single source of truth. Continuous reconciliation. No auto-sync to production.
 
@@ -48,7 +48,7 @@ March 2026
 
 ---
 
-## OpenGitOps Principles (4 — All Required)
+## OpenGitOps Principles (4 ï¿½ All Required)
 
 | # | Principle | Requirement |
 |---|-----------|-------------|
@@ -90,11 +90,11 @@ March 2026
 ```
 gitops-repo/
 +-- apps/
-¦   +-- production/
-¦   +-- staging/
+ï¿½   +-- production/
+ï¿½   +-- staging/
 +-- infrastructure/
-¦   +-- ingress-nginx/
-¦   +-- cert-manager/
+ï¿½   +-- ingress-nginx/
+ï¿½   +-- cert-manager/
 +-- argocd/
     +-- applications/
 ```
@@ -323,12 +323,12 @@ data:
 ### Rule: engineering-spec
 
 ---
-title: GitOps Workflow — Engineering Specification
+title: GitOps Workflow ï¿½ Engineering Specification
 impact: MEDIUM
 tags: gitops
 ---
 
-# GitOps Workflow — Engineering Specification
+# GitOps Workflow ï¿½ Engineering Specification
 
 > Production-grade specification for declarative Kubernetes deployment with ArgoCD and Flux at FAANG scale.
 
@@ -336,11 +336,11 @@ tags: gitops
 
 ## 1. Overview
 
-GitOps Workflow provides structured decision frameworks for declarative, Git-based Kubernetes continuous delivery: ArgoCD vs Flux tool selection, sync policy configuration (manual/auto/prune/self-heal), repository structure, OpenGitOps compliance, secret management strategy, and multi-environment promotion. The skill operates as an expert knowledge base with reference files — it produces architecture decisions and configuration guidance. It does not install tools, configure clusters, or modify Kubernetes resources.
+GitOps Workflow provides structured decision frameworks for declarative, Git-based Kubernetes continuous delivery: ArgoCD vs Flux tool selection, sync policy configuration (manual/auto/prune/self-heal), repository structure, OpenGitOps compliance, secret management strategy, and multi-environment promotion. The skill operates as an expert knowledge base with reference files ï¿½ it produces architecture decisions and configuration guidance. It does not install tools, configure clusters, or modify Kubernetes resources.
 
 **Contract Version:** 2.0.0
 **Backward Compatibility:** breaking (first hardened version)
-**Breaking Changes:** None — new spec for first hardening
+**Breaking Changes:** None ï¿½ new spec for first hardening
 
 ---
 
@@ -476,7 +476,7 @@ Recoverable: boolean
 - Repository structure is fixed: apps/{env}/, infrastructure/, argocd/applications/.
 - Secret strategy: null ? sealed-secrets (default).
 - Promotion: always staging ? production with approval gate for production.
-- OpenGitOps compliance: 4 principles (declarative, versioned, pulled, reconciled) — binary pass/fail.
+- OpenGitOps compliance: 4 principles (declarative, versioned, pulled, reconciled) ï¿½ binary pass/fail.
 
 #### What Agents May Assume
 
@@ -918,4 +918,4 @@ data:
 
 ---
 
-? PikaKit v3.9.169
+? PikaKit v3.9.170

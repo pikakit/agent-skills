@@ -242,12 +242,12 @@ EXPANDED (> 840dp width):
 
 ```
 +-------------------------------------+
-¦                                     ¦
-¦         Content Area                ¦
-¦                                     ¦
-+-------------------------------------¦
-¦  ??     ??     ?     d?     ??    ¦ ? 80dp height
-¦ Home   Search  FAB   Saved  Profile¦
+ï¿½                                     ï¿½
+ï¿½         Content Area                ï¿½
+ï¿½                                     ï¿½
++-------------------------------------ï¿½
+ï¿½  ??     ??     ?     d?     ??    ï¿½ ? 80dp height
+ï¿½ Home   Search  FAB   Saved  Profileï¿½
 +-------------------------------------+
 
 Rules:
@@ -269,10 +269,10 @@ Types:
 +-- Large: Display title, collapses to small
 
 +-------------------------------------+
-¦  ?   App Title              ?? ?  ¦ ? 64dp (small)
-+-------------------------------------¦
-¦                                     ¦
-¦         Content Area                ¦
+ï¿½  ?   App Title              ?? ?  ï¿½ ? 64dp (small)
++-------------------------------------ï¿½
+ï¿½                                     ï¿½
+ï¿½         Content Area                ï¿½
 +-------------------------------------+
 
 Actions: Max 3 icons, overflow menu ( ? ) for more
@@ -282,16 +282,16 @@ Actions: Max 3 icons, overflow menu ( ? ) for more
 
 ```
 +-------------------------------------+
-¦  =    ¦                             ¦
-¦       ¦                             ¦
-¦  ??   ¦                             ¦
-¦ Home  ¦       Content Area          ¦
-¦       ¦                             ¦
-¦  ??   ¦                             ¦
-¦Search ¦                             ¦
-¦       ¦                             ¦
-¦  ??   ¦                             ¦
-¦Profile¦                             ¦
+ï¿½  =    ï¿½                             ï¿½
+ï¿½       ï¿½                             ï¿½
+ï¿½  ??   ï¿½                             ï¿½
+ï¿½ Home  ï¿½       Content Area          ï¿½
+ï¿½       ï¿½                             ï¿½
+ï¿½  ??   ï¿½                             ï¿½
+ï¿½Search ï¿½                             ï¿½
+ï¿½       ï¿½                             ï¿½
+ï¿½  ??   ï¿½                             ï¿½
+ï¿½Profileï¿½                             ï¿½
 +-------------------------------------+
 
 Width: 80dp
@@ -325,15 +325,15 @@ Your app must:
 Button Types:
 
 +----------------------+
-¦    Filled Button     ¦  ? Primary action
+ï¿½    Filled Button     ï¿½  ? Primary action
 +----------------------+
 
 +----------------------+
-¦    Tonal Button      ¦  ? Secondary, less emphasis
+ï¿½    Tonal Button      ï¿½  ? Secondary, less emphasis
 +----------------------+
 
 +----------------------+
-¦   Outlined Button    ¦  ? Tertiary, lower emphasis
+ï¿½   Outlined Button    ï¿½  ? Tertiary, lower emphasis
 +----------------------+
 
     Text Button           ? Lowest emphasis
@@ -359,14 +359,14 @@ Position: Bottom right, 16dp from edges
 Elevation: Floats above content
 
 +-------------------------------------+
-¦                                     ¦
-¦         Content                     ¦
-¦                                     ¦
-¦                              +----+ ¦
-¦                              ¦ ? ¦ ¦ ? FAB
-¦                              +----+ ¦
-+-------------------------------------¦
-¦       Bottom Navigation             ¦
+ï¿½                                     ï¿½
+ï¿½         Content                     ï¿½
+ï¿½                                     ï¿½
+ï¿½                              +----+ ï¿½
+ï¿½                              ï¿½ ? ï¿½ ï¿½ ? FAB
+ï¿½                              +----+ ï¿½
++-------------------------------------ï¿½
+ï¿½       Bottom Navigation             ï¿½
 +-------------------------------------+
 ```
 
@@ -380,12 +380,12 @@ Card Types:
 
 Card Anatomy:
 +-------------------------------------+
-¦           Header Image              ¦ ? Optional
-+-------------------------------------¦
-¦  Title / Headline                   ¦
-¦  Subhead / Supporting text          ¦
-+-------------------------------------¦
-¦      [ Action ]    [ Action ]       ¦ ? Optional actions
+ï¿½           Header Image              ï¿½ ? Optional
++-------------------------------------ï¿½
+ï¿½  Title / Headline                   ï¿½
+ï¿½  Subhead / Supporting text          ï¿½
++-------------------------------------ï¿½
+ï¿½      [ Action ]    [ Action ]       ï¿½ ? Optional actions
 +-------------------------------------+
 
 Corner radius: 12dp (M3 default)
@@ -400,11 +400,11 @@ Types:
 +-- Outlined: Border all around
 
 +-------------------------------------+
-¦  Label                              ¦ ? Floats up on focus
-¦  ________________________________________________
-¦  ¦     Input text here...          ¦ ? Leading/trailing icons
-¦  ????????????????????????????????????????????????
-¦  Supporting text or error           ¦
+ï¿½  Label                              ï¿½ ? Floats up on focus
+ï¿½  ________________________________________________
+ï¿½  ï¿½     Input text here...          ï¿½ ? Leading/trailing icons
+ï¿½  ????????????????????????????????????????????????
+ï¿½  Supporting text or error           ï¿½
 +-------------------------------------+
 
 Height: 56dp
@@ -422,7 +422,7 @@ Types:
 +-- Suggestion: Dynamic recommendations
 
 +---------------+
-¦  ??? Filter   ¦  ? 32dp height, 8dp corner radius
+ï¿½  ??? Filter   ï¿½  ? 32dp height, 8dp corner radius
 +---------------+
 
 States: Unselected, Selected, Disabled
@@ -440,7 +440,7 @@ Duration: 4-10 seconds
 Action: One optional text action
 
 +-------------------------------------------------+
-¦  Archived 1 item                    [ UNDO ]    ¦
+ï¿½  Archived 1 item                    [ UNDO ]    ï¿½
 +-------------------------------------------------+
 
 Rules:
@@ -460,16 +460,16 @@ Types:
 
 Modal Bottom Sheet:
 +-------------------------------------+
-¦                                     ¦
-¦        (Scrim over content)         ¦
-¦                                     ¦
-+-------------------------------------¦
-¦  -----  (Drag handle, optional)     ¦
-¦                                     ¦
-¦        Sheet Content                ¦
-¦                                     ¦
-¦        Actions / Options            ¦
-¦                                     ¦
+ï¿½                                     ï¿½
+ï¿½        (Scrim over content)         ï¿½
+ï¿½                                     ï¿½
++-------------------------------------ï¿½
+ï¿½  -----  (Drag handle, optional)     ï¿½
+ï¿½                                     ï¿½
+ï¿½        Sheet Content                ï¿½
+ï¿½                                     ï¿½
+ï¿½        Actions / Options            ï¿½
+ï¿½                                     ï¿½
 +-------------------------------------+
 
 Corner radius: 28dp (top corners)
@@ -485,12 +485,12 @@ Types:
 +-- Confirmation dialog
 
 +-------------------------------------+
-¦              Title                  ¦
-¦                                     ¦
-¦       Supporting text that          ¦
-¦       explains the dialog           ¦
-¦                                     ¦
-¦           [ Cancel ]  [ Confirm ]   ¦
+ï¿½              Title                  ï¿½
+ï¿½                                     ï¿½
+ï¿½       Supporting text that          ï¿½
+ï¿½       explains the dialog           ï¿½
+ï¿½                                     ï¿½
+ï¿½           [ Cancel ]  [ Confirm ]   ï¿½
 +-------------------------------------+
 
 Rules:
@@ -506,11 +506,11 @@ Rules:
 Android uses SwipeRefreshLayout pattern:
 
 +-------------------------------------+
-¦         ? (Spinner)                 ¦ ? Circular progress
-+-------------------------------------¦
-¦                                     ¦
-¦         Content                     ¦
-¦                                     ¦
+ï¿½         ? (Spinner)                 ï¿½ ? Circular progress
++-------------------------------------ï¿½
+ï¿½                                     ï¿½
+ï¿½         Content                     ï¿½
+ï¿½                                     ï¿½
 +-------------------------------------+
 
 Spinner: Material circular indicator
@@ -605,7 +605,7 @@ accessibilityState={{ disabled: false }}
 ### Touch Target Size
 
 ```
-MANDATORY: 48dp × 48dp minimum
+MANDATORY: 48dp ï¿½ 48dp minimum
 
 Even if visual element is smaller:
 +-- Icon: 24dp visual, 48dp touch area
@@ -673,4 +673,4 @@ if (reduceMotion) {
 
 ---
 
-? PikaKit v3.9.169
+? PikaKit v3.9.170

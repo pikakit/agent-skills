@@ -165,15 +165,15 @@ RULE: Always use semantic colors for automatic adaptation.
 
 ```
 +-------------------------------------+
-¦¦¦¦¦¦¦¦¦¦¦¦ Status Bar ¦¦¦¦¦¦¦¦¦¦¦¦¦¦ ? Top safe area inset
-+-------------------------------------¦
-¦                                     ¦
-¦                                     ¦
-¦         Safe Content Area           ¦
-¦                                     ¦
-¦                                     ¦
-+-------------------------------------¦
-¦¦¦¦¦¦¦¦¦¦ Home Indicator ¦¦¦¦¦¦¦¦¦¦¦¦ ? Bottom safe area inset
+ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Status Bar ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ? Top safe area inset
++-------------------------------------ï¿½
+ï¿½                                     ï¿½
+ï¿½                                     ï¿½
+ï¿½         Safe Content Area           ï¿½
+ï¿½                                     ï¿½
+ï¿½                                     ï¿½
++-------------------------------------ï¿½
+ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Home Indicator ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ? Bottom safe area inset
 +-------------------------------------+
 
 RULE: Never place interactive content in unsafe areas.
@@ -223,17 +223,17 @@ iPad Grid:
 
 ```
 +-------------------------------------+
-¦                                     ¦
-¦         Content Area                ¦
-¦                                     ¦
-+-------------------------------------¦
-¦  ??     ??     ?     d?     ??    ¦ ? Tab bar (49pt height)
-¦ Home   Search  New   Saved  Profile ¦
+ï¿½                                     ï¿½
+ï¿½         Content Area                ï¿½
+ï¿½                                     ï¿½
++-------------------------------------ï¿½
+ï¿½  ??     ??     ?     d?     ??    ï¿½ ? Tab bar (49pt height)
+ï¿½ Home   Search  New   Saved  Profile ï¿½
 +-------------------------------------+
 
 Rules:
 +-- 3-5 items maximum
-+-- Icons: SF Symbols or custom (25×25pt)
++-- Icons: SF Symbols or custom (25ï¿½25pt)
 +-- Labels: Always include (accessibility)
 +-- Active state: Filled icon + tint color
 +-- Tab bar always visible (don't hide on scroll)
@@ -243,11 +243,11 @@ Rules:
 
 ```
 +-------------------------------------+
-¦ < Back     Page Title      Edit    ¦ ? Navigation bar (44pt)
-+-------------------------------------¦
-¦                                     ¦
-¦         Content Area                ¦
-¦                                     ¦
+ï¿½ < Back     Page Title      Edit    ï¿½ ? Navigation bar (44pt)
++-------------------------------------ï¿½
+ï¿½                                     ï¿½
+ï¿½         Content Area                ï¿½
+ï¿½                                     ï¿½
 +-------------------------------------+
 
 Rules:
@@ -288,11 +288,11 @@ Rules:
 Button Styles (UIKit/SwiftUI):
 
 +------------------------------+
-¦         Tinted               ¦ ? Primary action (filled)
-+------------------------------¦
-¦         Bordered             ¦ ? Secondary action (outline)
-+------------------------------¦
-¦         Plain                ¦ ? Tertiary action (text only)
+ï¿½         Tinted               ï¿½ ? Primary action (filled)
++------------------------------ï¿½
+ï¿½         Bordered             ï¿½ ? Secondary action (outline)
++------------------------------ï¿½
+ï¿½         Plain                ï¿½ ? Tertiary action (text only)
 +------------------------------+
 
 Sizes:
@@ -326,7 +326,7 @@ Cell Accessories:
 iOS Text Field Anatomy:
 
 +-------------------------------------+
-¦ ?? Search...                    ?  ¦
+ï¿½ ?? Search...                    ?  ï¿½
 +-------------------------------------+
   ?                               ?
   Leading icon                   Clear button
@@ -346,7 +346,7 @@ When to Use:
 +-- Switch views
 
 +-----------------------+
-¦  All  ¦ Active¦ Done  ¦
+ï¿½  All  ï¿½ Activeï¿½ Done  ï¿½
 +-----------------------+
 
 Rules:
@@ -379,7 +379,7 @@ iOS swipe actions:
 
 ? Swipe Left (Destructive)      Swipe Right (Constructive) ?
 +-------------------------------------------------------------+
-¦                    List Item Content                        ¦
+ï¿½                    List Item Content                        ï¿½
 +-------------------------------------------------------------+
 
 Left swipe reveals: Archive, Delete, Flag
@@ -394,13 +394,13 @@ Full swipe: Triggers first action
 Long press ? Context menu appears
 
 +-----------------------------+
-¦       Preview Card          ¦
-+-----------------------------¦
-¦  ?? Copy                    ¦
-¦  ?? Share                   ¦
-¦  ? Add to...               ¦
-+-----------------------------¦
-¦  ??? Delete          (Red)   ¦
+ï¿½       Preview Card          ï¿½
++-----------------------------ï¿½
+ï¿½  ?? Copy                    ï¿½
+ï¿½  ?? Share                   ï¿½
+ï¿½  ? Add to...               ï¿½
++-----------------------------ï¿½
+ï¿½  ??? Delete          (Red)   ï¿½
 +-----------------------------+
 
 Rules:
@@ -416,15 +416,15 @@ Rules:
 iOS 15+ Sheets:
 
 +-------------------------------------+
-¦                                     ¦
-¦        Parent View (dimmed)          ¦
-¦                                     ¦
-+-------------------------------------¦
-¦  ---  (Grabber)                     ¦ ? Drag to resize
-¦                                     ¦
-¦        Sheet Content                ¦
-¦                                     ¦
-¦                                     ¦
+ï¿½                                     ï¿½
+ï¿½        Parent View (dimmed)          ï¿½
+ï¿½                                     ï¿½
++-------------------------------------ï¿½
+ï¿½  ---  (Grabber)                     ï¿½ ? Drag to resize
+ï¿½                                     ï¿½
+ï¿½        Sheet Content                ï¿½
+ï¿½                                     ï¿½
+ï¿½                                     ï¿½
 +-------------------------------------+
 
 Detents:
@@ -568,4 +568,4 @@ AccessibilityInfo.isReduceMotionEnabled()
 
 ---
 
-? PikaKit v3.9.169
+? PikaKit v3.9.170

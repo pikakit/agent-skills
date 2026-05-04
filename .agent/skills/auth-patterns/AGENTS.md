@@ -18,7 +18,7 @@ March 2026
 
 ## Prerequisites
 
-**Required:** None — Auth Patterns is a knowledge-based skill with no external dependencies.
+**Required:** None ï¿½ Auth Patterns is a knowledge-based skill with no external dependencies.
 
 **Optional:**
 - `security-scanner` skill (for implementation validation)
@@ -74,15 +74,15 @@ March 2026
 ```
 What type of application?
 +-- SPA / Mobile App
-¦   +-- First-party only ? JWT (=15min access) + Refresh Token (httpOnly cookie)
-¦   +-- Third-party login ? OAuth 2.0 + PKCE (mandatory for public clients)
+ï¿½   +-- First-party only ? JWT (=15min access) + Refresh Token (httpOnly cookie)
+ï¿½   +-- Third-party login ? OAuth 2.0 + PKCE (mandatory for public clients)
 +-- Traditional Web (SSR)
-¦   +-- Session-based (httpOnly secure cookies, SameSite=Strict)
+ï¿½   +-- Session-based (httpOnly secure cookies, SameSite=Strict)
 +-- API / Microservices
-¦   +-- Service-to-service ? mTLS or API Keys + HMAC
-¦   +-- User-facing ? JWT with gateway validation
+ï¿½   +-- Service-to-service ? mTLS or API Keys + HMAC
+ï¿½   +-- User-facing ? JWT with gateway validation
 +-- Enterprise / B2B
-¦   +-- SAML 2.0 or OIDC (SSO)
+ï¿½   +-- SAML 2.0 or OIDC (SSO)
 +-- Modern Passwordless
     +-- Passkeys (WebAuthn/FIDO2)
 ```
@@ -108,7 +108,7 @@ What type of application?
 ## Decision Checklist
 
 - [ ] **Auth strategy chosen for THIS app type?** (JWT / Session / OAuth / Passkey)
-- [ ] **Token storage decided?** (httpOnly secure cookie — NOT localStorage)
+- [ ] **Token storage decided?** (httpOnly secure cookie ï¿½ NOT localStorage)
 - [ ] **Access token TTL = 15 minutes?**
 - [ ] **Refresh token rotation configured?** (rotate on every use)
 - [ ] **Permission model chosen?** (RBAC / ABAC / hybrid)
@@ -170,12 +170,12 @@ What type of application?
 ### Rule: engineering-spec
 
 ---
-title: Auth Patterns — Engineering Specification
+title: Auth Patterns ï¿½ Engineering Specification
 impact: MEDIUM
 tags: auth-patterns
 ---
 
-# Auth Patterns — Engineering Specification
+# Auth Patterns ï¿½ Engineering Specification
 
 > Production-grade specification for authentication and authorization pattern selection at FAANG scale.
 
@@ -306,7 +306,7 @@ Error: ErrorSchema | null
 
 **Contract Version:** 2.0.0
 **Backward Compatibility:** breaking (first hardened version)
-**Breaking Changes:** None — new spec for first hardening
+**Breaking Changes:** None ï¿½ new spec for first hardening
 
 #### Error Schema
 
@@ -434,8 +434,8 @@ All phases execute synchronously in a single invocation. No async pipeline.
 ### State Machine
 
 ```
-States: IDLE (single state — skill is stateless)
-Transitions: None — each invocation is independent
+States: IDLE (single state ï¿½ skill is stateless)
+Transitions: None ï¿½ each invocation is independent
 ```
 
 Auth Patterns maintains zero persistent state. Every invocation starts from a clean state. Invoking N times with identical inputs produces N identical outputs.
@@ -670,7 +670,7 @@ Auth Patterns maintains zero persistent state. Every invocation starts from a cl
 | **Scalability** | Stateless; unlimited parallel invocations | ? |
 | **Concurrency** | No shared state; read-only reference access | ? |
 | **Resources** | All resources scoped to invocation lifetime | ? |
-| **Idempotency** | Fully idempotent — all operations are pure functions | ? |
+| **Idempotency** | Fully idempotent ï¿½ all operations are pure functions | ? |
 | **Compliance** | All skill-design-guide.md sections present | ? |
 
 ---
@@ -758,25 +758,25 @@ Header.Payload.Signature
 
 ```
 +--------------+     +--------------+     +--------------+
-¦    Client    ¦     ¦  Auth Server ¦     ¦   Resource   ¦
+ï¿½    Client    ï¿½     ï¿½  Auth Server ï¿½     ï¿½   Resource   ï¿½
 +--------------+     +--------------+     +--------------+
-       ¦  Login             ¦                    ¦
-       ¦------------------->¦                    ¦
-       ¦  Access (15min)    ¦                    ¦
-       ¦  + Refresh (7d)    ¦                    ¦
-       ¦<-------------------¦                    ¦
-       ¦                    ¦                    ¦
-       ¦  API call + Access Token                ¦
-       ¦---------------------------------------->¦
-       ¦  Response                               ¦
-       ¦<----------------------------------------¦
-       ¦                    ¦                    ¦
-       ¦  (Access expired)  ¦                    ¦
-       ¦  Refresh request   ¦                    ¦
-       ¦------------------->¦                    ¦
-       ¦  New Access        ¦                    ¦
-       ¦  + New Refresh     ¦ (rotation!)        ¦
-       ¦<-------------------¦                    ¦
+       ï¿½  Login             ï¿½                    ï¿½
+       ï¿½------------------->ï¿½                    ï¿½
+       ï¿½  Access (15min)    ï¿½                    ï¿½
+       ï¿½  + Refresh (7d)    ï¿½                    ï¿½
+       ï¿½<-------------------ï¿½                    ï¿½
+       ï¿½                    ï¿½                    ï¿½
+       ï¿½  API call + Access Token                ï¿½
+       ï¿½---------------------------------------->ï¿½
+       ï¿½  Response                               ï¿½
+       ï¿½<----------------------------------------ï¿½
+       ï¿½                    ï¿½                    ï¿½
+       ï¿½  (Access expired)  ï¿½                    ï¿½
+       ï¿½  Refresh request   ï¿½                    ï¿½
+       ï¿½------------------->ï¿½                    ï¿½
+       ï¿½  New Access        ï¿½                    ï¿½
+       ï¿½  + New Refresh     ï¿½ (rotation!)        ï¿½
+       ï¿½<-------------------ï¿½                    ï¿½
 ```
 
 ### Implementation
@@ -880,7 +880,7 @@ async function refreshTokens(oldRefreshToken: string) {
 
 ---
 name: mfa
-description: Multi-factor authentication — TOTP setup, backup codes, WebAuthn for MFA, recovery flows
+description: Multi-factor authentication ï¿½ TOTP setup, backup codes, WebAuthn for MFA, recovery flows
 ---
 
 # Multi-Factor Authentication (MFA)
@@ -928,7 +928,7 @@ async function enableMFA(userId: string) {
   // 3. Generate QR code
   const qrDataUrl = await qrcode.toDataURL(otpauthUrl);
 
-  // 4. Store secret (encrypted) — NOT active yet
+  // 4. Store secret (encrypted) ï¿½ NOT active yet
   await db.user.update({
     where: { id: userId },
     data: { mfaSecret: encrypt(secret), mfaPending: true },
@@ -1104,8 +1104,8 @@ authUrl.searchParams.set('state', crypto.randomBytes(16).toString('hex'));
 | Authorization Code + PKCE | SPA, Mobile, Server | ? Always |
 | Client Credentials | Machine-to-machine | N/A |
 | Device Code | TV, CLI, IoT | N/A |
-| ~~Implicit~~ | **DEPRECATED** — never use | ? |
-| ~~Password~~ | **DEPRECATED** — never use | ? |
+| ~~Implicit~~ | **DEPRECATED** ï¿½ never use | ? |
+| ~~Password~~ | **DEPRECATED** ï¿½ never use | ? |
 
 ---
 
@@ -1130,7 +1130,7 @@ OIDC = OAuth 2.0 + Identity Layer
 
 | Scope | Data Returned |
 |-------|---------------|
-| `openid` | Required — returns `sub` |
+| `openid` | Required ï¿½ returns `sub` |
 | `profile` | name, picture, locale |
 | `email` | email, email_verified |
 | `offline_access` | Refresh token |
@@ -1190,7 +1190,7 @@ OIDC = OAuth 2.0 + Identity Layer
 
 ---
 name: passkey
-description: WebAuthn/FIDO2 passkeys — registration, authentication, browser + server implementation
+description: WebAuthn/FIDO2 passkeys ï¿½ registration, authentication, browser + server implementation
 ---
 
 # Passkeys (WebAuthn / FIDO2)
@@ -1434,10 +1434,10 @@ await fetch('/api/auth/passkey/login/verify', {
 
 ---
 name: rbac-abac
-description: Role-Based and Attribute-Based access control — Prisma schema, middleware, ABAC policy engine
+description: Role-Based and Attribute-Based access control ï¿½ Prisma schema, middleware, ABAC policy engine
 ---
 
-# RBAC & ABAC — Access Control
+# RBAC & ABAC ï¿½ Access Control
 
 > Role-Based and Attribute-Based authorization patterns.
 
@@ -1448,11 +1448,11 @@ description: Role-Based and Attribute-Based access control — Prisma schema, midd
 ```
 How complex are your permissions?
 +-- Simple (admin/user/viewer)
-¦   +-- RBAC (Role-Based)
+ï¿½   +-- RBAC (Role-Based)
 +-- Medium (roles + resource ownership)
-¦   +-- RBAC + ownership checks
+ï¿½   +-- RBAC + ownership checks
 +-- Complex (context-dependent rules)
-¦   +-- ABAC (Attribute-Based)
+ï¿½   +-- ABAC (Attribute-Based)
 +-- Enterprise (multi-tenant + compliance)
     +-- ABAC or hybrid RBAC+ABAC
 ```
@@ -1593,7 +1593,7 @@ function evaluatePolicy(ctx: PolicyContext): boolean {
     },
   ];
 
-  // Default deny — allow only if at least one policy matches
+  // Default deny ï¿½ allow only if at least one policy matches
   return policies.some(p => p.effect === 'allow' && p.condition(ctx));
 }
 ```
@@ -1827,4 +1827,4 @@ async function invalidateAllSessions(userId: string) {
 
 ---
 
-PikaKit v3.9.169
+PikaKit v3.9.170

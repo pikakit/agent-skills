@@ -1,10 +1,10 @@
 ---
-title: Node.js Pro — Engineering Specification
+title: Node.js Pro ï¿½ Engineering Specification
 impact: MEDIUM
 tags: nodejs-pro
 ---
 
-# Node.js Pro — Engineering Specification
+# Node.js Pro ï¿½ Engineering Specification
 
 > Production-grade specification for Node.js development decision-making at FAANG scale.
 
@@ -12,11 +12,11 @@ tags: nodejs-pro
 
 ## 1. Overview
 
-Node.js Pro provides structured decision frameworks for Node.js backend development: framework selection (Hono, Fastify, Express, NestJS, Next.js API/tRPC), architecture pattern routing, async pattern guidance, error handling strategy, input validation, security practices, and testing strategy. The skill operates as an **Expert (decision tree)** — it produces framework decisions, architecture recommendations, and pattern guidance. It does not create projects, write server code, or deploy applications.
+Node.js Pro provides structured decision frameworks for Node.js backend development: framework selection (Hono, Fastify, Express, NestJS, Next.js API/tRPC), architecture pattern routing, async pattern guidance, error handling strategy, input validation, security practices, and testing strategy. The skill operates as an **Expert (decision tree)** ï¿½ it produces framework decisions, architecture recommendations, and pattern guidance. It does not create projects, write server code, or deploy applications.
 
 **Contract Version:** 2.0.0
 **Backward Compatibility:** breaking (first hardened version)
-**Breaking Changes:** None — new spec for first hardening
+**Breaking Changes:** None ï¿½ new spec for first hardening
 
 ---
 
@@ -435,4 +435,4 @@ All resources scoped to invocation. No persistent handles.
 
 ---
 
-? PikaKit v3.9.169
+? PikaKit v3.9.170

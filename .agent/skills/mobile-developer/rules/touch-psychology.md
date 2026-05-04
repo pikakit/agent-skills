@@ -33,7 +33,7 @@ MOBILE (Finger):
 ### Fitts' Law Formula Adapted
 
 ```
-Touch acquisition time = a + b × log2(1 + D/W)
+Touch acquisition time = a + b ï¿½ log2(1 + D/W)
 
 Where:
 +-- D = Distance to target
@@ -45,22 +45,22 @@ Where:
 
 | Platform | Minimum | Recommended | Use For |
 |----------|---------|-------------|---------|
-| **iOS (HIG)** | 44pt × 44pt | 48pt+ | All tappable elements |
-| **Android (Material)** | 48dp × 48dp | 56dp+ | All tappable elements |
-| **WCAG 2.2** | 44px × 44px | - | Accessibility compliance |
+| **iOS (HIG)** | 44pt ï¿½ 44pt | 48pt+ | All tappable elements |
+| **Android (Material)** | 48dp ï¿½ 48dp | 56dp+ | All tappable elements |
+| **WCAG 2.2** | 44px ï¿½ 44px | - | Accessibility compliance |
 | **Critical Actions** | - | 56-64px | Primary CTAs, destructive actions |
 
 ### Visual Size vs Hit Area
 
 ```
 +-------------------------------------+
-¦                                     ¦
-¦    +-------------------------+      ¦
-¦    ¦                         ¦      ¦
-¦    ¦    [  BUTTON  ]         ¦ ? Visual: 36px
-¦    ¦                         ¦      ¦
-¦    +-------------------------+      ¦
-¦                                     ¦ ? Hit area: 48px (padding extends)
+ï¿½                                     ï¿½
+ï¿½    +-------------------------+      ï¿½
+ï¿½    ï¿½                         ï¿½      ï¿½
+ï¿½    ï¿½    [  BUTTON  ]         ï¿½ ? Visual: 36px
+ï¿½    ï¿½                         ï¿½      ï¿½
+ï¿½    +-------------------------+      ï¿½
+ï¿½                                     ï¿½ ? Hit area: 48px (padding extends)
 +-------------------------------------+
 
 ? CORRECT: Visual can be smaller if hit area is minimum 44-48px
@@ -88,24 +88,24 @@ Where:
 Research shows: 49% of users hold phone one-handed.
 
 +-------------------------------------+
-¦                                     ¦
-¦  +-----------------------------+    ¦
-¦  ¦       HARD TO REACH         ¦    ¦ ? Status bar, top nav
-¦  ¦      (requires stretch)     ¦    ¦    Put: Back, menu, settings
-¦  ¦                             ¦    ¦
-¦  +-----------------------------¦    ¦
-¦  ¦                             ¦    ¦
-¦  ¦       OK TO REACH           ¦    ¦ ? Content area
-¦  ¦      (comfortable)          ¦    ¦    Put: Secondary actions, content
-¦  ¦                             ¦    ¦
-¦  +-----------------------------¦    ¦
-¦  ¦                             ¦    ¦
-¦  ¦       EASY TO REACH         ¦    ¦ ? Tab bar, FAB zone
-¦  ¦      (thumb's arc)          ¦    ¦    Put: PRIMARY CTAs!
-¦  ¦                             ¦    ¦
-¦  +-----------------------------+    ¦
-¦                                     ¦
-¦          [    HOME    ]             ¦
+ï¿½                                     ï¿½
+ï¿½  +-----------------------------+    ï¿½
+ï¿½  ï¿½       HARD TO REACH         ï¿½    ï¿½ ? Status bar, top nav
+ï¿½  ï¿½      (requires stretch)     ï¿½    ï¿½    Put: Back, menu, settings
+ï¿½  ï¿½                             ï¿½    ï¿½
+ï¿½  +-----------------------------ï¿½    ï¿½
+ï¿½  ï¿½                             ï¿½    ï¿½
+ï¿½  ï¿½       OK TO REACH           ï¿½    ï¿½ ? Content area
+ï¿½  ï¿½      (comfortable)          ï¿½    ï¿½    Put: Secondary actions, content
+ï¿½  ï¿½                             ï¿½    ï¿½
+ï¿½  +-----------------------------ï¿½    ï¿½
+ï¿½  ï¿½                             ï¿½    ï¿½
+ï¿½  ï¿½       EASY TO REACH         ï¿½    ï¿½ ? Tab bar, FAB zone
+ï¿½  ï¿½      (thumb's arc)          ï¿½    ï¿½    Put: PRIMARY CTAs!
+ï¿½  ï¿½                             ï¿½    ï¿½
+ï¿½  +-----------------------------+    ï¿½
+ï¿½                                     ï¿½
+ï¿½          [    HOME    ]             ï¿½
 +-------------------------------------+
 ```
 
@@ -115,13 +115,13 @@ Research shows: 49% of users hold phone one-handed.
 Right hand holding phone:
 
 +-------------------------------+
-¦  STRETCH      STRETCH    OK   ¦
-¦                               ¦
-¦  STRETCH        OK       EASY ¦
-¦                               ¦
-¦    OK          EASY      EASY ¦
-¦                               ¦
-¦   EASY         EASY      EASY ¦
+ï¿½  STRETCH      STRETCH    OK   ï¿½
+ï¿½                               ï¿½
+ï¿½  STRETCH        OK       EASY ï¿½
+ï¿½                               ï¿½
+ï¿½    OK          EASY      EASY ï¿½
+ï¿½                               ï¿½
+ï¿½   EASY         EASY      EASY ï¿½
 +-------------------------------+
 
 Left hand is mirrored.
@@ -238,9 +238,9 @@ Solution: Always provide visible alternative
 Swipe actions need visual hints:
 
 +-----------------------------------------+
-¦  +---+                                  ¦
-¦  ¦ = ¦  Item with hidden actions...   ? ¦ ? Edge hint (partial color)
-¦  +---+                                  ¦
+ï¿½  +---+                                  ï¿½
+ï¿½  ï¿½ = ï¿½  Item with hidden actions...   ? ï¿½ ? Edge hint (partial color)
+ï¿½  +---+                                  ï¿½
 +-----------------------------------------+
 
 ? Good: Slight color peek at edge suggesting swipe
@@ -372,8 +372,8 @@ Without haptics:
 ### Miller's Law for Mobile
 
 ```
-Desktop: 7±2 items in working memory
-Mobile: Reduce to 5±1 (more distractions)
+Desktop: 7ï¿½2 items in working memory
+Mobile: Reduce to 5ï¿½1 (more distractions)
 
 Navigation: Max 5 tab bar items
 Options: Max 5 per menu level
@@ -540,8 +540,8 @@ Warning:  Attention needed
 
 ---
 
-> **Remember:** Every touch is a conversation between user and device. Make it feel natural, responsive, and respectful of human fingers—not precise cursor points.
+> **Remember:** Every touch is a conversation between user and device. Make it feel natural, responsive, and respectful of human fingersï¿½not precise cursor points.
 
 ---
 
-? PikaKit v3.9.169
+? PikaKit v3.9.170

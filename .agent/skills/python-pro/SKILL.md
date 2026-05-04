@@ -6,7 +6,7 @@ description: >-
   NOT for Node.js projects (use nodejs-pro) or general AI agents (use google-adk-python).
 metadata:
   author: pikakit
-  version: "3.9.169"
+  version: "3.9.170"
   category: backend-specialist
   triggers: ["Python", "pip", "FastAPI", "Django", "Flask"]
   coordinates_with: ["api-architect", "test-architect", "data-modeler", "problem-checker", "knowledge-compiler"]
@@ -179,4 +179,4 @@ All architectural decision outputs MUST emit a `decision_started` and `arch_reco
 
 ---
 
-⚡ PikaKit v3.9.169
+⚡ PikaKit v3.9.170

@@ -1,10 +1,10 @@
 ---
-title: Debug Pro — Engineering Specification
+title: Debug Pro ï¿½ Engineering Specification
 impact: MEDIUM
 tags: debug-pro
 ---
 
-# Debug Pro — Engineering Specification
+# Debug Pro ï¿½ Engineering Specification
 
 > Production-grade specification for systematic debugging methodology at FAANG scale.
 
@@ -12,13 +12,13 @@ tags: debug-pro
 
 ## 1. Overview
 
-Debug Pro provides a deterministic 4-phase debugging methodology: Reproduce, Isolate, Understand (5 Whys), Fix & Verify. The skill produces debugging strategies, root cause analysis frameworks, isolation technique recommendations, and verification checklists. It operates as an expert knowledge base — it does not execute code, run debuggers, or modify source files.
+Debug Pro provides a deterministic 4-phase debugging methodology: Reproduce, Isolate, Understand (5 Whys), Fix & Verify. The skill produces debugging strategies, root cause analysis frameworks, isolation technique recommendations, and verification checklists. It operates as an expert knowledge base ï¿½ it does not execute code, run debuggers, or modify source files.
 
 The skill includes 3 advanced frameworks: defense-in-depth analysis, root-cause tracing, and verification-before-completion.
 
 **Contract Version:** 2.0.0
 **Backward Compatibility:** breaking (first hardened version)
-**Breaking Changes:** None — new spec for first hardening
+**Breaking Changes:** None ï¿½ new spec for first hardening
 
 ---
 
@@ -28,7 +28,7 @@ Debugging at scale faces four quantified problems:
 
 | Problem | Measurement | Impact |
 |---------|-------------|--------|
-| Random fix attempts | 55% of debugging sessions start with "try changing X" | 3–5x longer resolution time |
+| Random fix attempts | 55% of debugging sessions start with "try changing X" | 3ï¿½5x longer resolution time |
 | Surface-level fixes | 40% of fixes address symptoms, not root cause | Bug recurrence within 30 days |
 | No reproduction step | 30% of fixes applied without consistent reproduction | Unverifiable fix correctness |
 | Missing regression tests | 45% of fixes lack regression tests | Same bug reintroduced later |
@@ -488,4 +488,4 @@ All resources scoped to invocation. No persistent handles.
 
 ---
 
-PikaKit v3.9.169
+PikaKit v3.9.170

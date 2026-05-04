@@ -1,10 +1,10 @@
 ---
-title: CI/CD Pipeline — Engineering Specification
+title: CI/CD Pipeline ï¿½ Engineering Specification
 impact: MEDIUM
 tags: cicd-pipeline
 ---
 
-# CI/CD Pipeline — Engineering Specification
+# CI/CD Pipeline ï¿½ Engineering Specification
 
 > Production-grade specification for deployment decision-making and safe release workflows at FAANG scale.
 
@@ -18,7 +18,7 @@ The skill covers a 5-phase deployment lifecycle (Prepare ? Backup ? Deploy ? Ver
 
 **Contract Version:** 2.0.0
 **Backward Compatibility:** breaking (first hardened version)
-**Breaking Changes:** None — new spec for first hardening
+**Breaking Changes:** None ï¿½ new spec for first hardening
 
 ---
 
@@ -474,4 +474,4 @@ All resources scoped to invocation. No persistent handles.
 
 ---
 
-PikaKit v3.9.169
+PikaKit v3.9.170

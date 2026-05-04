@@ -1,10 +1,10 @@
 ---
-title: Copywriting — Engineering Specification
+title: Copywriting ï¿½ Engineering Specification
 impact: MEDIUM
 tags: copywriting
 ---
 
-# Copywriting — Engineering Specification
+# Copywriting ï¿½ Engineering Specification
 
 > Production-grade specification for conversion copywriting formula selection and application at FAANG scale.
 
@@ -12,11 +12,11 @@ tags: copywriting
 
 ## 1. Overview
 
-Copywriting provides deterministic formula selection for high-converting marketing copy: 6 proven formulas (AIDA, PAS, BAB, FAB, 4Ps, 4Us), headline construction templates, and copy quality validation rules. The skill operates as an expert knowledge base that produces formula-driven copy structures — it generates structured copy frameworks, not final marketing text.
+Copywriting provides deterministic formula selection for high-converting marketing copy: 6 proven formulas (AIDA, PAS, BAB, FAB, 4Ps, 4Us), headline construction templates, and copy quality validation rules. The skill operates as an expert knowledge base that produces formula-driven copy structures ï¿½ it generates structured copy frameworks, not final marketing text.
 
 **Contract Version:** 2.0.0
 **Backward Compatibility:** breaking (first hardened version)
-**Breaking Changes:** None — new spec for first hardening
+**Breaking Changes:** None ï¿½ new spec for first hardening
 
 ---
 
@@ -462,4 +462,4 @@ All resources scoped to invocation. No persistent handles.
 
 ---
 
-PikaKit v3.9.169
+PikaKit v3.9.170

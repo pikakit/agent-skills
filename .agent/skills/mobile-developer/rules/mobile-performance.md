@@ -553,10 +553,10 @@ SpringSimulation(
 ### Image Memory
 
 ```
-Image memory = width × height × 4 bytes (RGBA)
+Image memory = width ï¿½ height ï¿½ 4 bytes (RGBA)
 
-1080p image = 1920 × 1080 × 4 = 8.3 MB
-4K image = 3840 × 2160 × 4 = 33.2 MB
+1080p image = 1920 ï¿½ 1080 ï¿½ 4 = 8.3 MB
+4K image = 3840 ï¿½ 2160 ï¿½ 4 = 33.2 MB
 
 10 4K images = 332 MB ? App crash!
 
@@ -631,15 +631,15 @@ Android:
 
 ```
                     +--------------+
-                    ¦     UI       ¦
+                    ï¿½     UI       ï¿½
                     +--------------+
-                           ¦
+                           ï¿½
                     +------?-------+
-                    ¦   Cache      ¦ ? Read from cache FIRST
+                    ï¿½   Cache      ï¿½ ? Read from cache FIRST
                     +--------------+
-                           ¦
+                           ï¿½
                     +------?-------+
-                    ¦   Network    ¦ ? Update cache from network
+                    ï¿½   Network    ï¿½ ? Update cache from network
                     +--------------+
 
 Benefits:
@@ -771,8 +771,8 @@ Low-end Android ? Test device
 
 ---
 
-> **Remember:** Performance is not optimization—it's baseline quality. A slow app is a broken app. Test on the worst device your users have, not the best device you have.
+> **Remember:** Performance is not optimizationï¿½it's baseline quality. A slow app is a broken app. Test on the worst device your users have, not the best device you have.
 
 ---
 
-? PikaKit v3.9.169
+? PikaKit v3.9.170

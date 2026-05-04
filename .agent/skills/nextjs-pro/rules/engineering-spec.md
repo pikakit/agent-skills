@@ -1,10 +1,10 @@
 ---
-title: Next.js Pro — Engineering Specification
+title: Next.js Pro ï¿½ Engineering Specification
 impact: MEDIUM
 tags: nextjs-pro
 ---
 
-# Next.js Pro — Engineering Specification
+# Next.js Pro ï¿½ Engineering Specification
 
 > Production-grade specification for Next.js App Router and React performance patterns at FAANG scale.
 
@@ -12,11 +12,11 @@ tags: nextjs-pro
 
 ## 1. Overview
 
-Next.js Pro provides structured decision frameworks for Next.js App Router development: Server vs Client component routing, data fetching strategy (static/ISR/dynamic), routing conventions, caching patterns, and 60+ performance rules. The skill operates as an **Expert (decision tree)** — it produces component type decisions, data fetching strategy selections, routing guidance, and performance recommendations. It does not create projects, write components, or execute builds.
+Next.js Pro provides structured decision frameworks for Next.js App Router development: Server vs Client component routing, data fetching strategy (static/ISR/dynamic), routing conventions, caching patterns, and 60+ performance rules. The skill operates as an **Expert (decision tree)** ï¿½ it produces component type decisions, data fetching strategy selections, routing guidance, and performance recommendations. It does not create projects, write components, or execute builds.
 
 **Contract Version:** 2.0.0
 **Backward Compatibility:** breaking (first hardened version)
-**Breaking Changes:** None — new spec for first hardening
+**Breaking Changes:** None ï¿½ new spec for first hardening
 
 ---
 
@@ -437,4 +437,4 @@ All resources scoped to invocation. No persistent handles.
 
 ---
 
-? PikaKit v3.9.169
+? PikaKit v3.9.170

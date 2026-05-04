@@ -1,10 +1,10 @@
 ---
-title: Test Architect — Engineering Specification
+title: Test Architect ï¿½ Engineering Specification
 impact: MEDIUM
 tags: test-architect
 ---
 
-# Test Architect — Engineering Specification
+# Test Architect ï¿½ Engineering Specification
 
 > Production-grade specification for testing patterns and principles at FAANG scale.
 
@@ -12,11 +12,11 @@ tags: test-architect
 
 ## 1. Overview
 
-Test Architect provides structured guidance for testing: strategy selection (3 models: Pyramid, Trophy, Honeycomb), AAA pattern (Arrange/Act/Assert), FIRST principles (5: Fast/Isolated/Repeatable/Self-checking/Timely), mock types (4: Stub/Spy/Mock/Fake), mock decision guidance (what to mock vs not), test naming conventions (3 patterns), and anti-patterns (4). The skill operates as an **Expert (decision tree)** — it produces testing strategy recommendations, mock selections, and naming guidance. It does not write test files, execute tests, or measure coverage.
+Test Architect provides structured guidance for testing: strategy selection (3 models: Pyramid, Trophy, Honeycomb), AAA pattern (Arrange/Act/Assert), FIRST principles (5: Fast/Isolated/Repeatable/Self-checking/Timely), mock types (4: Stub/Spy/Mock/Fake), mock decision guidance (what to mock vs not), test naming conventions (3 patterns), and anti-patterns (4). The skill operates as an **Expert (decision tree)** ï¿½ it produces testing strategy recommendations, mock selections, and naming guidance. It does not write test files, execute tests, or measure coverage.
 
 **Contract Version:** 2.0.0
 **Backward Compatibility:** breaking (first hardened version)
-**Breaking Changes:** None — new spec for first hardening
+**Breaking Changes:** None ï¿½ new spec for first hardening
 
 ---
 
@@ -431,4 +431,4 @@ All resources scoped to invocation. No persistent handles.
 
 ---
 
-? PikaKit v3.9.169
+? PikaKit v3.9.170

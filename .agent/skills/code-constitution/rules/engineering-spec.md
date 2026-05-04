@@ -1,10 +1,10 @@
 ---
-title: Code Constitution — Engineering Specification
+title: Code Constitution ï¿½ Engineering Specification
 impact: MEDIUM
 tags: code-constitution
 ---
 
-# Code Constitution — Engineering Specification
+# Code Constitution ï¿½ Engineering Specification
 
 > Production-grade specification for PikaKit governance and constitutional enforcement at FAANG scale.
 
@@ -12,15 +12,15 @@ tags: code-constitution
 
 ## 1. Overview
 
-Code Constitution defines the supreme governance framework for the PikaKit agent system. It enforces non-negotiable laws for correctness, trust, and durability across all agents, skills, and workflows. This is a **meta-governance skill** — it governs how other skills operate, not how code is written.
+Code Constitution defines the supreme governance framework for the PikaKit agent system. It enforces non-negotiable laws for correctness, trust, and durability across all agents, skills, and workflows. This is a **meta-governance skill** ï¿½ it governs how other skills operate, not how code is written.
 
 The skill has supreme authority: it overrides all other skills, framework defaults, agent preferences, and developer convenience. Output that violates this skill is invalid regardless of functional correctness.
 
-**Skill Type:** Expert (decision tree) — stateless, zero side effects, fully idempotent.
+**Skill Type:** Expert (decision tree) ï¿½ stateless, zero side effects, fully idempotent.
 
 **Contract Version:** 2.0.0
 **Backward Compatibility:** breaking (first hardened version; previous version lacked formal contracts)
-**Breaking Changes:** None — new spec for first governance hardening.
+**Breaking Changes:** None ï¿½ new spec for first governance hardening.
 **Migration Notes:** Metadata version bumped from 3.0.0 to 2.0.0 to align with contract versioning. No schema changes for downstream consumers; all changes are additive specification.
 
 ---
@@ -440,7 +440,7 @@ No skill, agent, or workflow may override a constitutional decision. Authority i
 | Metric | Per Invocation | Per Node |
 |--------|---------------|----------|
 | CPU | < 10 ms computation | 100,000+ invocations/second (single core) |
-| Memory | < 2 MB | Bound by concurrent invocations × 2 MB |
+| Memory | < 2 MB | Bound by concurrent invocations ï¿½ 2 MB |
 | Disk I/O | 16 doctrine file reads (~20 KB) | Cached by OS after first read |
 | Network | Zero | Zero |
 
@@ -544,7 +544,7 @@ No skill, agent, or workflow may override a constitutional decision. Authority i
 | **Scalability** | Capacity planning table with per-node estimates | ? |
 | **Concurrency** | No shared state; read-only doctrine access | ? |
 | **Resources** | All resources scoped to invocation lifetime | ? |
-| **Idempotency** | Fully idempotent — all operations are pure functions | ? |
+| **Idempotency** | Fully idempotent ï¿½ all operations are pure functions | ? |
 | **Timeouts** | All timeouts specify default AND maximum values | ? |
 | **State** | State transitions use explicit `?` notation | ? |
 | **Compliance** | All skill-design-guide.md sections mapped with evidence | ? |
@@ -558,4 +558,4 @@ No skill, agent, or workflow may override a constitutional decision. Authority i
 
 ---
 
-PikaKit v3.9.169
+PikaKit v3.9.170

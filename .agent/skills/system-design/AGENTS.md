@@ -10,7 +10,7 @@ March 2026
 
 ---
 
-# System Design — Architecture Decision Framework
+# System Design ï¿½ Architecture Decision Framework
 
 > Requirements drive architecture. Trade-offs inform decisions. ADRs capture rationale.
 
@@ -51,7 +51,7 @@ March 2026
 
 ---
 
-## ADR Format (6 Sections — Fixed)
+## ADR Format (6 Sections ï¿½ Fixed)
 
 | Section | Purpose |
 |---------|---------|
@@ -64,7 +64,7 @@ March 2026
 
 ---
 
-## Validation Checklist (6 Items — Fixed)
+## Validation Checklist (6 Items ï¿½ Fixed)
 
 - [ ] Requirements clearly understood
 - [ ] Constraints identified
@@ -135,10 +135,10 @@ March 2026
 
 ---
 name: system-design-engineering-spec
-description: Full 21-section engineering spec — context discovery, ADR format, pattern selection, 6-item validation checklist
+description: Full 21-section engineering spec ï¿½ context discovery, ADR format, pattern selection, 6-item validation checklist
 ---
 
-# System Design — Engineering Specification
+# System Design ï¿½ Engineering Specification
 
 > Production-grade specification for architectural decision-making at FAANG scale.
 
@@ -146,11 +146,11 @@ description: Full 21-section engineering spec — context discovery, ADR format, p
 
 ## 1. Overview
 
-System Design provides a structured framework for architectural decision-making: requirements analysis (via context-discovery), trade-off evaluation (via ADR format), pattern selection (via decision trees), and architecture validation (6-item checklist). The skill operates as an **Expert (decision tree)** — it produces architecture recommendations, trade-off analyses, ADR documents, and pattern selections. It does not implement systems, write code, or deploy infrastructure.
+System Design provides a structured framework for architectural decision-making: requirements analysis (via context-discovery), trade-off evaluation (via ADR format), pattern selection (via decision trees), and architecture validation (6-item checklist). The skill operates as an **Expert (decision tree)** ï¿½ it produces architecture recommendations, trade-off analyses, ADR documents, and pattern selections. It does not implement systems, write code, or deploy infrastructure.
 
 **Contract Version:** 2.0.0
 **Backward Compatibility:** breaking (first hardened version)
-**Breaking Changes:** None — new spec for first hardening
+**Breaking Changes:** None ï¿½ new spec for first hardening
 
 ---
 
@@ -594,4 +594,4 @@ All resources scoped to invocation. No persistent handles.
 
 ---
 
-? PikaKit v3.9.169
+? PikaKit v3.9.170

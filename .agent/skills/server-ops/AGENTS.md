@@ -10,7 +10,7 @@ March 2026
 
 ---
 
-# Server Ops — Production Server Management
+# Server Ops ï¿½ Production Server Management
 
 > Boring servers = well-managed servers. Auto-restart. Monitor day one. Rotate logs.
 
@@ -53,7 +53,7 @@ March 2026
 
 ---
 
-## Monitoring Strategy (4 Categories × 3 Levels)
+## Monitoring Strategy (4 Categories ï¿½ 3 Levels)
 
 | Category | Key Metrics |
 |----------|------------|
@@ -112,11 +112,11 @@ Route by load balancer needs.
 
 ## 5-Step Troubleshooting (Fixed Priority)
 
-1. **Process status** — Is it running?
-2. **Logs** — Error messages?
-3. **Resources** — Disk, memory, CPU?
-4. **Network** — Ports, DNS?
-5. **Dependencies** — Database, APIs?
+1. **Process status** ï¿½ Is it running?
+2. **Logs** ï¿½ Error messages?
+3. **Resources** ï¿½ Disk, memory, CPU?
+4. **Network** ï¿½ Ports, DNS?
+5. **Dependencies** ï¿½ Database, APIs?
 
 ---
 
@@ -188,11 +188,11 @@ metadata:
 
 ## 1. Overview
 
-Server Ops provides structured decision frameworks for production server management: process management tool selection (4 tools), monitoring strategy (4 categories, 3 alert levels), log management (3 types, 4 principles), scaling decisions (4 symptoms ? solutions, 3 strategies), health checks (4 checks, 2 levels), security principles (5 areas), and troubleshooting priority (5-step). The skill operates as an **Expert (decision tree)** — it produces server management recommendations, tool selections, and scaling strategies. It does not execute commands, configure servers, or install tools.
+Server Ops provides structured decision frameworks for production server management: process management tool selection (4 tools), monitoring strategy (4 categories, 3 alert levels), log management (3 types, 4 principles), scaling decisions (4 symptoms ? solutions, 3 strategies), health checks (4 checks, 2 levels), security principles (5 areas), and troubleshooting priority (5-step). The skill operates as an **Expert (decision tree)** ï¿½ it produces server management recommendations, tool selections, and scaling strategies. It does not execute commands, configure servers, or install tools.
 
 **Contract Version:** 2.0.0
 **Backward Compatibility:** breaking (first hardened version)
-**Breaking Changes:** None — new spec for first hardening
+**Breaking Changes:** None ï¿½ new spec for first hardening
 
 ---
 
@@ -216,7 +216,7 @@ Server Ops eliminates these with deterministic tool selection (4 tools by scenar
 | ID | Goal | Measurable Constraint |
 |----|------|-----------------------|
 | G1 | Process management | 4 tools by scenario (PM2, systemd, Docker, K8s) |
-| G2 | Monitoring | 4 categories × 3 alert levels × 4 tool options |
+| G2 | Monitoring | 4 categories ï¿½ 3 alert levels ï¿½ 4 tool options |
 | G3 | Log management | 3 types + 4 principles |
 | G4 | Scaling decisions | 4 symptoms ? 4 solutions + 3 strategies |
 | G5 | Health checks | 4 checks + 2 levels (simple, deep) |
@@ -621,7 +621,7 @@ All resources scoped to invocation. No persistent handles.
 | Category | Check | Status |
 |----------|-------|--------|
 | **Functionality** | 4 process manager tools by scenario | ? |
-| **Functionality** | 4 monitoring categories × 3 alert levels | ? |
+| **Functionality** | 4 monitoring categories ï¿½ 3 alert levels | ? |
 | **Functionality** | 3 log types + 4 principles | ? |
 | **Functionality** | 4 scaling symptoms + 3 strategies | ? |
 | **Functionality** | 4 health checks + 2 levels | ? |
@@ -640,4 +640,4 @@ All resources scoped to invocation. No persistent handles.
 
 ---
 
-? PikaKit v3.9.169
+? PikaKit v3.9.170

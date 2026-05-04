@@ -1,10 +1,10 @@
 ---
-title: Git Workflow — Engineering Specification
+title: Git Workflow ï¿½ Engineering Specification
 impact: MEDIUM
 tags: git-workflow
 ---
 
-# Git Workflow — Engineering Specification
+# Git Workflow ï¿½ Engineering Specification
 
 > Production-grade specification for git operations with conventional commits and secret detection at FAANG scale.
 
@@ -12,11 +12,11 @@ tags: git-workflow
 
 ## 1. Overview
 
-Git Workflow provides automated git operations: staging, conventional commits, push, PR creation, and merge — with mandatory secret detection before every commit. The skill operates as an **Automation (scripted)** skill — it executes shell commands (`git add`, `git commit`, `git push`) with side effects on the git index, working tree, local repository, and remote. It includes commit splitting logic and output formatting.
+Git Workflow provides automated git operations: staging, conventional commits, push, PR creation, and merge ï¿½ with mandatory secret detection before every commit. The skill operates as an **Automation (scripted)** skill ï¿½ it executes shell commands (`git add`, `git commit`, `git push`) with side effects on the git index, working tree, local repository, and remote. It includes commit splitting logic and output formatting.
 
 **Contract Version:** 2.0.0
 **Backward Compatibility:** breaking (first hardened version)
-**Breaking Changes:** None — new spec for first hardening
+**Breaking Changes:** None ï¿½ new spec for first hardening
 
 ---
 
@@ -200,17 +200,17 @@ Recoverable: boolean
 ```
 IDLE ? STAGING              [cm/cp invoked]
 STAGING ? SCANNING          [files staged]
-SCANNING ? BLOCKED          [secrets detected]  // terminal — user must fix
+SCANNING ? BLOCKED          [secrets detected]  // terminal ï¿½ user must fix
 SCANNING ? FORMATTING       [scan passed]
 FORMATTING ? SPLITTING      [message formatted]
 SPLITTING ? COMMITTING      [single commit decided]
-SPLITTING ? SPLIT_NEEDED    [split recommended]  // terminal — user must split
+SPLITTING ? SPLIT_NEEDED    [split recommended]  // terminal ï¿½ user must split
 COMMITTING ? PUSHING        [cp command, commit done]
 COMMITTING ? COMPLETED      [cm command, commit done]  // terminal
 PUSHING ? REBASING          [push rejected]
 PUSHING ? COMPLETED         [push accepted]  // terminal
 REBASING ? PUSHING          [rebase succeeded, retry push]
-REBASING ? CONFLICT         [rebase has conflicts]  // terminal — manual resolution
+REBASING ? CONFLICT         [rebase has conflicts]  // terminal ï¿½ manual resolution
 ```
 
 #### Execution Guarantees
@@ -273,7 +273,7 @@ Phases are sequential. Scan blocks Commit. Push is optional.
 |-----------|-------------|
 | Fixed secret patterns | 6 patterns: API_KEY, token, password, secret, private_key, credentials |
 | Fixed commit types | 9 types: feat, fix, docs, refactor, test, chore, perf, ci, build |
-| Fixed commit format | `type(scope): description` — no deviations |
+| Fixed commit format | `type(scope): description` ï¿½ no deviations |
 | Fixed split threshold | >10 files OR mixed types OR multiple scopes ? split |
 | Fixed single threshold | = 3 files AND = 50 lines AND same type/scope ? single |
 | Fixed push recovery | `git pull --rebase` exactly once on rejection |
@@ -392,7 +392,7 @@ Session-based. Not idempotent. Git state is modified by every commit/push.
 
 - 6 regex patterns scanned on every `git diff --cached`.
 - Patterns: `API_KEY`, `token`, `password`, `secret`, `private_key`, `credentials` (case-insensitive).
-- Detection blocks commit — no bypass in production.
+- Detection blocks commit ï¿½ no bypass in production.
 - `skip_security: true` is FORBIDDEN unless explicitly approved by user and documented.
 
 ### Force Push Protection
@@ -515,4 +515,4 @@ Single-threaded per repository. Concurrent git operations on the same repository
 
 ---
 
-? PikaKit v3.9.169
+? PikaKit v3.9.170

@@ -1,10 +1,10 @@
 ---
-title: Offensive Security — Engineering Specification
+title: Offensive Security ï¿½ Engineering Specification
 impact: MEDIUM
 tags: offensive-sec
 ---
 
-# Offensive Security — Engineering Specification
+# Offensive Security ï¿½ Engineering Specification
 
 > Production-grade specification for red team tactics and adversary simulation at FAANG scale.
 
@@ -12,11 +12,11 @@ tags: offensive-sec
 
 ## 1. Overview
 
-Offensive Security provides structured attack methodology for authorized penetration testing and red team engagements: MITRE ATT&CK phase routing (13 phases), initial access vector selection (4 vectors), privilege escalation guidance (Windows + Linux), defense evasion techniques, Active Directory attacks, and ethical boundary enforcement. The skill operates as an **Expert (decision tree)** — it produces attack methodology, phase-specific tactics, and engagement guidance. It does not execute exploits, access systems, or perform unauthorized testing.
+Offensive Security provides structured attack methodology for authorized penetration testing and red team engagements: MITRE ATT&CK phase routing (13 phases), initial access vector selection (4 vectors), privilege escalation guidance (Windows + Linux), defense evasion techniques, Active Directory attacks, and ethical boundary enforcement. The skill operates as an **Expert (decision tree)** ï¿½ it produces attack methodology, phase-specific tactics, and engagement guidance. It does not execute exploits, access systems, or perform unauthorized testing.
 
 **Contract Version:** 2.0.0
 **Backward Compatibility:** breaking (first hardened version)
-**Breaking Changes:** None — new spec for first hardening
+**Breaking Changes:** None ï¿½ new spec for first hardening
 
 ---
 
@@ -199,7 +199,7 @@ Recoverable: boolean
 3. Invoke attack-phase for each relevant MITRE ATT&CK phase
 4. Invoke initial-access for vector selection
 5. Invoke privesc for platform-specific escalation checks
-6. Execute engagement (caller's responsibility — outside this skill)
+6. Execute engagement (caller's responsibility ï¿½ outside this skill)
 7. Invoke report-template for findings documentation
 ```
 
@@ -467,4 +467,4 @@ All resources scoped to invocation. No persistent handles.
 
 ---
 
-? PikaKit v3.9.169
+? PikaKit v3.9.170

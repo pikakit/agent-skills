@@ -10,7 +10,7 @@ March 2026
 
 ---
 
-# Python Pro — Framework Selection & Architecture
+# Python Pro ï¿½ Framework Selection & Architecture
 
 > Decision-making principles. Not patterns to copy. Ask, classify, decide.
 
@@ -56,7 +56,7 @@ March 2026
 
 ```
 What are you building?
-¦
+ï¿½
 +-- API-first / Microservices  ? FastAPI
 +-- Full-stack web / CMS       ? Django
 +-- Simple / Script / Learning ? Flask
@@ -190,7 +190,7 @@ All architectural decision outputs MUST emit a `decision_started` and `arch_reco
 
 ---
 name: async-patterns
-description: Python async patterns — asyncio, gather, TaskGroup, run_in_executor, and async library selection
+description: Python async patterns ï¿½ asyncio, gather, TaskGroup, run_in_executor, and async library selection
 ---
 
 # Python Async Patterns
@@ -228,7 +228,7 @@ async def fetch_user(user_id: int) -> dict:
 
 ```python
 async def fetch_all_users(user_ids: list[int]) -> list[dict]:
-    """Fetch multiple users concurrently — much faster than sequential."""
+    """Fetch multiple users concurrently ï¿½ much faster than sequential."""
     async with httpx.AsyncClient() as client:
         tasks = [
             client.get(f"https://api.example.com/users/{uid}")
@@ -297,7 +297,7 @@ async def process_file(file_path: str) -> str:
 | File I/O | open() | **aiofiles** |
 | ORM | SQLAlchemy sync | **SQLAlchemy 2.0** async / **Tortoise** |
 | MongoDB | pymongo | **motor** |
-| WebSockets | — | **websockets** |
+| WebSockets | ï¿½ | **websockets** |
 
 ---
 
@@ -308,19 +308,19 @@ from fastapi import FastAPI
 
 app = FastAPI()
 
-# ? Use async def — for I/O-bound with async drivers
+# ? Use async def ï¿½ for I/O-bound with async drivers
 @app.get("/users/{user_id}")
 async def get_user(user_id: int):
     user = await db.fetch_one("SELECT * FROM users WHERE id = $1", user_id)
     return user
 
-# ? Use def — for sync operations (FastAPI runs in threadpool automatically)
+# ? Use def ï¿½ for sync operations (FastAPI runs in threadpool automatically)
 @app.get("/report")
 def generate_report():
     # This blocks, but FastAPI handles it in a thread
     return create_pdf_report()
 
-# ? Don't — use sync DB driver in async def (blocks event loop!)
+# ? Don't ï¿½ use sync DB driver in async def (blocks event loop!)
 @app.get("/bad")
 async def bad_example():
     user = db.execute("SELECT ...")  # BLOCKS the entire event loop!
@@ -355,7 +355,7 @@ async def bad_example():
 
 ---
 name: django-patterns
-description: Django patterns — models, views, DRF serializers, async views, query optimization, signals, and migrations
+description: Django patterns ï¿½ models, views, DRF serializers, async views, query optimization, signals, and migrations
 ---
 
 # Django Patterns (2025)
@@ -371,7 +371,7 @@ from django.db import models
 from django.utils import timezone
 
 class UserManager(models.Manager):
-    """Custom manager — encapsulate common queries."""
+    """Custom manager ï¿½ encapsulate common queries."""
     def active(self):
         return self.filter(is_active=True)
 
@@ -546,10 +546,10 @@ def create_user_profile(sender, instance, created, **kwargs):
 
 ---
 name: python-pro-engineering-spec
-description: Full 21-section engineering spec — FastAPI/Django/Flask selection, async/sync classification, type hints, architecture layering
+description: Full 21-section engineering spec ï¿½ FastAPI/Django/Flask selection, async/sync classification, type hints, architecture layering
 ---
 
-# Python Pro — Engineering Specification
+# Python Pro ï¿½ Engineering Specification
 
 > Production-grade specification for Python development principles at FAANG scale.
 
@@ -557,11 +557,11 @@ description: Full 21-section engineering spec — FastAPI/Django/Flask selection, 
 
 ## 1. Overview
 
-Python Pro provides structured decision frameworks for Python development: framework selection (FastAPI, Django, Flask), async vs sync routing (I/O-bound ? async, CPU-bound ? sync + multiprocessing), type hint strategy, project structure, and architecture patterns (routes ? services ? repos). The skill operates as an **Expert (decision tree)** — it produces framework recommendations, architecture decisions, and pattern guidance. It does not write code, install packages, or execute Python scripts.
+Python Pro provides structured decision frameworks for Python development: framework selection (FastAPI, Django, Flask), async vs sync routing (I/O-bound ? async, CPU-bound ? sync + multiprocessing), type hint strategy, project structure, and architecture patterns (routes ? services ? repos). The skill operates as an **Expert (decision tree)** ï¿½ it produces framework recommendations, architecture decisions, and pattern guidance. It does not write code, install packages, or execute Python scripts.
 
 **Contract Version:** 2.0.0
 **Backward Compatibility:** breaking (first hardened version)
-**Breaking Changes:** None — new spec for first hardening
+**Breaking Changes:** None ï¿½ new spec for first hardening
 
 ---
 
@@ -989,7 +989,7 @@ All resources scoped to invocation. No persistent handles.
 
 ---
 name: fastapi-patterns
-description: FastAPI patterns — dependency injection, middleware, error handling, lifespan, and Pydantic integration
+description: FastAPI patterns ï¿½ dependency injection, middleware, error handling, lifespan, and Pydantic integration
 ---
 
 # FastAPI Patterns
@@ -1024,7 +1024,7 @@ async def get_current_user(
         raise HTTPException(status_code=401, detail="Invalid token")
     return user
 
-# Use in route — clean, testable
+# Use in route ï¿½ clean, testable
 @app.get("/users/me")
 async def get_me(user: User = Depends(get_current_user)) -> UserResponse:
     return UserResponse.model_validate(user)
@@ -1165,7 +1165,7 @@ app = FastAPI(lifespan=lifespan)
 
 ---
 name: framework-selection
-description: Python framework comparison — FastAPI vs Django vs Flask with decision tree, benchmarks, and minimal app examples
+description: Python framework comparison ï¿½ FastAPI vs Django vs Flask with decision tree, benchmarks, and minimal app examples
 ---
 
 # Framework Selection (2025)
@@ -1178,7 +1178,7 @@ description: Python framework comparison — FastAPI vs Django vs Flask with decis
 
 ```
 What are you building?
-¦
+ï¿½
 +-- API-first / Microservices   ? FastAPI
 +-- Full-stack web / CMS        ? Django
 +-- Simple / Script / Learning  ? Flask
@@ -1329,7 +1329,7 @@ dev = [
 
 ---
 name: project-structure
-description: Python project structure — directory layouts for small/medium/large apps, FastAPI vs Django, pyproject.toml
+description: Python project structure ï¿½ directory layouts for small/medium/large apps, FastAPI vs Django, pyproject.toml
 ---
 
 # Project Structure
@@ -1355,26 +1355,26 @@ myapp/
 ```
 myapp/
 +-- app/
-¦   +-- __init__.py
-¦   +-- main.py              # App entry + lifespan
-¦   +-- config.py             # Pydantic Settings
-¦   +-- dependencies.py       # Shared DI (db session, auth)
-¦   +-- models/               # SQLAlchemy / DB models
-¦   ¦   +-- __init__.py
-¦   ¦   +-- user.py
-¦   +-- schemas/              # Pydantic request/response
-¦   ¦   +-- __init__.py
-¦   ¦   +-- user.py
-¦   +-- routes/               # API routes
-¦   ¦   +-- __init__.py
-¦   ¦   +-- users.py
-¦   +-- services/             # Business logic
-¦       +-- __init__.py
-¦       +-- user_service.py
+ï¿½   +-- __init__.py
+ï¿½   +-- main.py              # App entry + lifespan
+ï¿½   +-- config.py             # Pydantic Settings
+ï¿½   +-- dependencies.py       # Shared DI (db session, auth)
+ï¿½   +-- models/               # SQLAlchemy / DB models
+ï¿½   ï¿½   +-- __init__.py
+ï¿½   ï¿½   +-- user.py
+ï¿½   +-- schemas/              # Pydantic request/response
+ï¿½   ï¿½   +-- __init__.py
+ï¿½   ï¿½   +-- user.py
+ï¿½   +-- routes/               # API routes
+ï¿½   ï¿½   +-- __init__.py
+ï¿½   ï¿½   +-- users.py
+ï¿½   +-- services/             # Business logic
+ï¿½       +-- __init__.py
+ï¿½       +-- user_service.py
 +-- tests/
-¦   +-- conftest.py           # Shared fixtures
-¦   +-- test_users.py
-¦   +-- test_services.py
+ï¿½   +-- conftest.py           # Shared fixtures
+ï¿½   +-- test_users.py
+ï¿½   +-- test_services.py
 +-- alembic/                  # DB migrations
 +-- pyproject.toml
 +-- .env.example
@@ -1387,18 +1387,18 @@ myapp/
 src/
 +-- myapp/
     +-- core/                 # Shared kernel
-    ¦   +-- config.py
-    ¦   +-- database.py
-    ¦   +-- security.py
-    ¦   +-- exceptions.py
+    ï¿½   +-- config.py
+    ï¿½   +-- database.py
+    ï¿½   +-- security.py
+    ï¿½   +-- exceptions.py
     +-- users/                # Feature module
-    ¦   +-- models.py
-    ¦   +-- schemas.py
-    ¦   +-- routes.py
-    ¦   +-- service.py
-    ¦   +-- repository.py
+    ï¿½   +-- models.py
+    ï¿½   +-- schemas.py
+    ï¿½   +-- routes.py
+    ï¿½   +-- service.py
+    ï¿½   +-- repository.py
     +-- products/             # Feature module
-    ¦   +-- ...
+    ï¿½   +-- ...
     +-- main.py
 tests/
 +-- users/
@@ -1444,24 +1444,24 @@ app.include_router(products.router, prefix="/api/v1/products", tags=["products"]
 myproject/
 +-- manage.py
 +-- myproject/
-¦   +-- __init__.py
-¦   +-- settings/
-¦   ¦   +-- __init__.py
-¦   ¦   +-- base.py           # Shared settings
-¦   ¦   +-- dev.py            # Development
-¦   ¦   +-- prod.py           # Production
-¦   +-- urls.py
-¦   +-- wsgi.py / asgi.py
+ï¿½   +-- __init__.py
+ï¿½   +-- settings/
+ï¿½   ï¿½   +-- __init__.py
+ï¿½   ï¿½   +-- base.py           # Shared settings
+ï¿½   ï¿½   +-- dev.py            # Development
+ï¿½   ï¿½   +-- prod.py           # Production
+ï¿½   +-- urls.py
+ï¿½   +-- wsgi.py / asgi.py
 +-- users/                    # Django app
-¦   +-- models.py
-¦   +-- views.py / viewsets.py
-¦   +-- serializers.py
-¦   +-- urls.py
-¦   +-- admin.py
-¦   +-- tests.py
-¦   +-- migrations/
+ï¿½   +-- models.py
+ï¿½   +-- views.py / viewsets.py
+ï¿½   +-- serializers.py
+ï¿½   +-- urls.py
+ï¿½   +-- admin.py
+ï¿½   +-- tests.py
+ï¿½   +-- migrations/
 +-- products/                 # Django app
-¦   +-- ...
+ï¿½   +-- ...
 +-- requirements/
     +-- base.txt
     +-- dev.txt
@@ -1507,7 +1507,7 @@ myproject/
 
 ---
 name: testing-patterns
-description: Python testing patterns — pytest, async tests, fixtures, mocking, FastAPI/Django test clients, coverage
+description: Python testing patterns ï¿½ pytest, async tests, fixtures, mocking, FastAPI/Django test clients, coverage
 ---
 
 # Python Testing Patterns
@@ -1600,7 +1600,7 @@ from app.models import User
 
 @pytest.fixture
 def sample_user(db) -> User:
-    """Create a test user — available to all tests."""
+    """Create a test user ï¿½ available to all tests."""
     return User.objects.create(
         email="fixture@test.com",
         name="Fixture User",
@@ -1716,7 +1716,7 @@ pytest -m "not slow"            # Skip slow tests
 
 ---
 name: type-hints
-description: Python type hints — modern syntax, Pydantic v2, generics, TypeVar, and validation patterns
+description: Python type hints ï¿½ modern syntax, Pydantic v2, generics, TypeVar, and validation patterns
 ---
 
 # Python Type Hints & Validation
@@ -1728,7 +1728,7 @@ description: Python type hints — modern syntax, Pydantic v2, generics, TypeVar, 
 ## Modern Type Syntax (Python 3.12+)
 
 ```python
-# ? Modern — use built-in generics (no typing import needed)
+# ? Modern ï¿½ use built-in generics (no typing import needed)
 def get_items() -> list[dict[str, int]]:
     ...
 
@@ -1738,7 +1738,7 @@ def find_user(user_id: int) -> User | None:  # Union syntax
 def process(data: str | bytes) -> None:
     ...
 
-# ? Legacy — avoid in new code
+# ? Legacy ï¿½ avoid in new code
 from typing import Optional, Union, List, Dict
 def get_items() -> List[Dict[str, int]]:  # Old style
     ...
@@ -1797,7 +1797,7 @@ class UserCreate(BaseModel):
         return v.strip()
 
 class UserResponse(BaseModel):
-    """Output serialization — never expose internal fields."""
+    """Output serialization ï¿½ never expose internal fields."""
     id: int
     name: str
     email: str
@@ -1806,7 +1806,7 @@ class UserResponse(BaseModel):
     model_config = {"from_attributes": True}  # Enable ORM mode
 
 class UserUpdate(BaseModel):
-    """Partial update — all fields optional."""
+    """Partial update ï¿½ all fields optional."""
     name: str | None = None
     email: EmailStr | None = None
     age: int | None = Field(default=None, ge=0, le=150)
@@ -1868,4 +1868,4 @@ settings = Settings()  # Auto-reads from .env + environment
 
 ---
 
-? PikaKit v3.9.169
+? PikaKit v3.9.170

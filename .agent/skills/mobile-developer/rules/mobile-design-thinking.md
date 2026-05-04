@@ -18,29 +18,29 @@ tags: mobile-developer
 
 ```
 +-----------------------------------------------------------------+
-¶                    DEEP MOBILE THINKING                         ¶
-+-----------------------------------------------------------------¶
-¶                                                                 ¶
-¶  1Ô∏è? CONTEXT SCAN                                               ¶
-¶     +-- What are my assumptions for this project?               ¶
-¶         +-- QUESTION these assumptions                          ¶
-¶                                                                 ¶
-¶  2Ô∏è? ANTI-DEFAULT ANALYSIS                                      ¶
-¶     +-- Am I applying a memorized pattern?                      ¶
-¶         +-- Is this pattern REALLY the best for THIS project?   ¶
-¶                                                                 ¶
-¶  3Ô∏è? PLATFORM DECOMPOSITION                                     ¶
-¶     +-- Did I think about iOS and Android separately?           ¶
-¶         +-- What are the platform-specific patterns?            ¶
-¶                                                                 ¶
-¶  4Ô∏è? TOUCH INTERACTION BREAKDOWN                                ¶
-¶     +-- Did I analyze each interaction individually?            ¶
-¶         +-- Did I apply Fitts' Law, Thumb Zone?                 ¶
-¶                                                                 ¶
-¶  5Ô∏è? PERFORMANCE IMPACT ANALYSIS                                ¶
-¶     +-- Did I consider performance impact of each component?    ¶
-¶         +-- Is the default solution performant?                 ¶
-¶                                                                 ¶
+ÔøΩ                    DEEP MOBILE THINKING                         ÔøΩ
++-----------------------------------------------------------------ÔøΩ
+ÔøΩ                                                                 ÔøΩ
+ÔøΩ  1Ô∏è? CONTEXT SCAN                                               ÔøΩ
+ÔøΩ     +-- What are my assumptions for this project?               ÔøΩ
+ÔøΩ         +-- QUESTION these assumptions                          ÔøΩ
+ÔøΩ                                                                 ÔøΩ
+ÔøΩ  2Ô∏è? ANTI-DEFAULT ANALYSIS                                      ÔøΩ
+ÔøΩ     +-- Am I applying a memorized pattern?                      ÔøΩ
+ÔøΩ         +-- Is this pattern REALLY the best for THIS project?   ÔøΩ
+ÔøΩ                                                                 ÔøΩ
+ÔøΩ  3Ô∏è? PLATFORM DECOMPOSITION                                     ÔøΩ
+ÔøΩ     +-- Did I think about iOS and Android separately?           ÔøΩ
+ÔøΩ         +-- What are the platform-specific patterns?            ÔøΩ
+ÔøΩ                                                                 ÔøΩ
+ÔøΩ  4Ô∏è? TOUCH INTERACTION BREAKDOWN                                ÔøΩ
+ÔøΩ     +-- Did I analyze each interaction individually?            ÔøΩ
+ÔøΩ         +-- Did I apply Fitts' Law, Thumb Zone?                 ÔøΩ
+ÔøΩ                                                                 ÔøΩ
+ÔøΩ  5Ô∏è? PERFORMANCE IMPACT ANALYSIS                                ÔøΩ
+ÔøΩ     +-- Did I consider performance impact of each component?    ÔøΩ
+ÔøΩ         +-- Is the default solution performant?                 ÔøΩ
+ÔøΩ                                                                 ÔøΩ
 +-----------------------------------------------------------------+
 ```
 
@@ -55,34 +55,34 @@ Before using any of these, **QUESTION them and CONSIDER ALTERNATIVES!**
 
 ```
 +-----------------------------------------------------------------+
-¶                 ?? AI MOBILE SAFE HARBOR                        ¶
-¶           (Default Patterns - Never Use Without Questioning)    ¶
-+-----------------------------------------------------------------¶
-¶                                                                 ¶
-¶  NAVIGATION DEFAULTS:                                           ¶
-¶  +-- Tab bar for every project (Would drawer be better?)        ¶
-¶  +-- Fixed 5 tabs (Are 3 enough? For 6+, drawer?)               ¶
-¶  +-- "Home" tab on left (What does user behavior say?)          ¶
-¶  +-- Hamburger menu (Is it outdated now?)                       ¶
-¶                                                                 ¶
-¶  STATE MANAGEMENT DEFAULTS:                                     ¶
-¶  +-- Redux everywhere (Is Zustand/Jotai sufficient?)            ¶
-¶  +-- Global state for everything (Isn't local state enough?)   ¶
-¶  +-- Context Provider hell (Is atom-based better?)              ¶
-¶  +-- BLoC for every Flutter project (Is Riverpod more modern?)  ¶
-¶                                                                 ¶
-¶  LIST IMPLEMENTATION DEFAULTS:                                  ¶
-¶  +-- FlatList as default (Is FlashList more performant?)        ¶
-¶  +-- windowSize=21 (Is it really needed?)                       ¶
-¶  +-- removeClippedSubviews (Always?)                            ¶
-¶  +-- ListView.builder (Is ListView.separated better?)           ¶
-¶                                                                 ¶
-¶  UI PATTERN DEFAULTS:                                           ¶
-¶  +-- FAB bottom-right (Is bottom-left more accessible?)         ¶
-¶  +-- Pull-to-refresh on every list (Is it needed everywhere?)   ¶
-¶  +-- Swipe-to-delete from left (Is right better?)               ¶
-¶  +-- Bottom sheet for every modal (Is full screen better?)      ¶
-¶                                                                 ¶
+ÔøΩ                 ?? AI MOBILE SAFE HARBOR                        ÔøΩ
+ÔøΩ           (Default Patterns - Never Use Without Questioning)    ÔøΩ
++-----------------------------------------------------------------ÔøΩ
+ÔøΩ                                                                 ÔøΩ
+ÔøΩ  NAVIGATION DEFAULTS:                                           ÔøΩ
+ÔøΩ  +-- Tab bar for every project (Would drawer be better?)        ÔøΩ
+ÔøΩ  +-- Fixed 5 tabs (Are 3 enough? For 6+, drawer?)               ÔøΩ
+ÔøΩ  +-- "Home" tab on left (What does user behavior say?)          ÔøΩ
+ÔøΩ  +-- Hamburger menu (Is it outdated now?)                       ÔøΩ
+ÔøΩ                                                                 ÔøΩ
+ÔøΩ  STATE MANAGEMENT DEFAULTS:                                     ÔøΩ
+ÔøΩ  +-- Redux everywhere (Is Zustand/Jotai sufficient?)            ÔøΩ
+ÔøΩ  +-- Global state for everything (Isn't local state enough?)   ÔøΩ
+ÔøΩ  +-- Context Provider hell (Is atom-based better?)              ÔøΩ
+ÔøΩ  +-- BLoC for every Flutter project (Is Riverpod more modern?)  ÔøΩ
+ÔøΩ                                                                 ÔøΩ
+ÔøΩ  LIST IMPLEMENTATION DEFAULTS:                                  ÔøΩ
+ÔøΩ  +-- FlatList as default (Is FlashList more performant?)        ÔøΩ
+ÔøΩ  +-- windowSize=21 (Is it really needed?)                       ÔøΩ
+ÔøΩ  +-- removeClippedSubviews (Always?)                            ÔøΩ
+ÔøΩ  +-- ListView.builder (Is ListView.separated better?)           ÔøΩ
+ÔøΩ                                                                 ÔøΩ
+ÔøΩ  UI PATTERN DEFAULTS:                                           ÔøΩ
+ÔøΩ  +-- FAB bottom-right (Is bottom-left more accessible?)         ÔøΩ
+ÔøΩ  +-- Pull-to-refresh on every list (Is it needed everywhere?)   ÔøΩ
+ÔøΩ  +-- Swipe-to-delete from left (Is right better?)               ÔøΩ
+ÔøΩ  +-- Bottom sheet for every modal (Is full screen better?)      ÔøΩ
+ÔøΩ                                                                 ÔøΩ
 +-----------------------------------------------------------------+
 ```
 
@@ -97,31 +97,31 @@ Before designing any screen, perform this analysis:
 ```
 SCREEN: [Screen Name]
 +-- PRIMARY ACTION: [What is the main action?]
-¶   +-- Is it in thumb zone? [Yes/No ? Why?]
-¶
+ÔøΩ   +-- Is it in thumb zone? [Yes/No ? Why?]
+ÔøΩ
 +-- TOUCH TARGETS: [All tappable elements]
-¶   +-- [Element 1]: [Size]pt ? Sufficient?
-¶   +-- [Element 2]: [Size]pt ? Sufficient?
-¶   +-- Spacing: [Gap]pt ? Accidental tap risk?
-¶
+ÔøΩ   +-- [Element 1]: [Size]pt ? Sufficient?
+ÔøΩ   +-- [Element 2]: [Size]pt ? Sufficient?
+ÔøΩ   +-- Spacing: [Gap]pt ? Accidental tap risk?
+ÔøΩ
 +-- SCROLLABLE CONTENT:
-¶   +-- Is it a list? ? FlatList/FlashList [Why this choice?]
-¶   +-- Item count: ~[N] ? Performance consideration?
-¶   +-- Fixed height? ? Is getItemLayout needed?
-¶
+ÔøΩ   +-- Is it a list? ? FlatList/FlashList [Why this choice?]
+ÔøΩ   +-- Item count: ~[N] ? Performance consideration?
+ÔøΩ   +-- Fixed height? ? Is getItemLayout needed?
+ÔøΩ
 +-- STATE REQUIREMENTS:
-¶   +-- Is local state sufficient?
-¶   +-- Do I need to lift state?
-¶   +-- Is global required? [Why?]
-¶
+ÔøΩ   +-- Is local state sufficient?
+ÔøΩ   +-- Do I need to lift state?
+ÔøΩ   +-- Is global required? [Why?]
+ÔøΩ
 +-- PLATFORM DIFFERENCES:
-¶   +-- iOS: [Anything different needed?]
-¶   +-- Android: [Anything different needed?]
-¶
+ÔøΩ   +-- iOS: [Anything different needed?]
+ÔøΩ   +-- Android: [Anything different needed?]
+ÔøΩ
 +-- OFFLINE CONSIDERATION:
-¶   +-- Should this screen work offline?
-¶   +-- Cache strategy: [Yes/No/Which one?]
-¶
+ÔøΩ   +-- Should this screen work offline?
+ÔøΩ   +-- Cache strategy: [Yes/No/Which one?]
+ÔøΩ
 +-- PERFORMANCE IMPACT:
     +-- Any heavy components?
     +-- Is memoization needed?
@@ -178,30 +178,30 @@ Ask these questions for every default pattern:
 
 ```
 +-----------------------------------------------------------------+
-¶                    ANTI-MEMORIZATION CHECKLIST                  ¶
-+-----------------------------------------------------------------¶
-¶                                                                 ¶
-¶  ? Did I pick this solution "because I always do it this way"?  ¶
-¶    ? If YES: STOP. Consider alternatives.                       ¶
-¶                                                                 ¶
-¶  ? Is this a pattern I've seen frequently in training data?     ¶
-¶    ? If YES: Is it REALLY suitable for THIS project?            ¶
-¶                                                                 ¶
-¶  ? Did I write this solution automatically without thinking?    ¶
-¶    ? If YES: Step back, do decomposition.                       ¶
-¶                                                                 ¶
-¶  ? Did I consider an alternative approach?                      ¶
-¶    ? If NO: Think of at least 2 alternatives, then decide.      ¶
-¶                                                                 ¶
-¶  ? Did I think platform-specifically?                           ¶
-¶    ? If NO: Analyze iOS and Android separately.                 ¶
-¶                                                                 ¶
-¶  ? Did I consider performance impact of this solution?          ¶
-¶    ? If NO: What is the memory, CPU, battery impact?            ¶
-¶                                                                 ¶
-¶  ? Is this solution suitable for THIS project's CONTEXT?        ¶
-¶    ? If NO: Customize based on context.                         ¶
-¶                                                                 ¶
+ÔøΩ                    ANTI-MEMORIZATION CHECKLIST                  ÔøΩ
++-----------------------------------------------------------------ÔøΩ
+ÔøΩ                                                                 ÔøΩ
+ÔøΩ  ? Did I pick this solution "because I always do it this way"?  ÔøΩ
+ÔøΩ    ? If YES: STOP. Consider alternatives.                       ÔøΩ
+ÔøΩ                                                                 ÔøΩ
+ÔøΩ  ? Is this a pattern I've seen frequently in training data?     ÔøΩ
+ÔøΩ    ? If YES: Is it REALLY suitable for THIS project?            ÔøΩ
+ÔøΩ                                                                 ÔøΩ
+ÔøΩ  ? Did I write this solution automatically without thinking?    ÔøΩ
+ÔøΩ    ? If YES: Step back, do decomposition.                       ÔøΩ
+ÔøΩ                                                                 ÔøΩ
+ÔøΩ  ? Did I consider an alternative approach?                      ÔøΩ
+ÔøΩ    ? If NO: Think of at least 2 alternatives, then decide.      ÔøΩ
+ÔøΩ                                                                 ÔøΩ
+ÔøΩ  ? Did I think platform-specifically?                           ÔøΩ
+ÔøΩ    ? If NO: Analyze iOS and Android separately.                 ÔøΩ
+ÔøΩ                                                                 ÔøΩ
+ÔøΩ  ? Did I consider performance impact of this solution?          ÔøΩ
+ÔøΩ    ? If NO: What is the memory, CPU, battery impact?            ÔøΩ
+ÔøΩ                                                                 ÔøΩ
+ÔøΩ  ? Is this solution suitable for THIS project's CONTEXT?        ÔøΩ
+ÔøΩ    ? If NO: Customize based on context.                         ÔøΩ
+ÔøΩ                                                                 ÔøΩ
 +-----------------------------------------------------------------+
 ```
 
@@ -213,35 +213,35 @@ Ask these questions for every default pattern:
 
 ```
 DETERMINE PROJECT TYPE:
-        ¶
+        ÔøΩ
         +-- E-Commerce App
-        ¶   +-- Navigation: Tab (Home, Search, Cart, Account)
-        ¶   +-- Lists: Product grids (memoized, image optimized)
-        ¶   +-- Performance: Image caching CRITICAL
-        ¶   +-- Offline: Cart persistence, product cache
-        ¶   +-- Special: Checkout flow, payment security
-        ¶
+        ÔøΩ   +-- Navigation: Tab (Home, Search, Cart, Account)
+        ÔøΩ   +-- Lists: Product grids (memoized, image optimized)
+        ÔøΩ   +-- Performance: Image caching CRITICAL
+        ÔøΩ   +-- Offline: Cart persistence, product cache
+        ÔøΩ   +-- Special: Checkout flow, payment security
+        ÔøΩ
         +-- Social/Content App
-        ¶   +-- Navigation: Tab (Feed, Search, Create, Notify, Profile)
-        ¶   +-- Lists: Infinite scroll, complex items
-        ¶   +-- Performance: Feed rendering CRITICAL
-        ¶   +-- Offline: Feed cache, draft posts
-        ¶   +-- Special: Real-time updates, media handling
-        ¶
+        ÔøΩ   +-- Navigation: Tab (Feed, Search, Create, Notify, Profile)
+        ÔøΩ   +-- Lists: Infinite scroll, complex items
+        ÔøΩ   +-- Performance: Feed rendering CRITICAL
+        ÔøΩ   +-- Offline: Feed cache, draft posts
+        ÔøΩ   +-- Special: Real-time updates, media handling
+        ÔøΩ
         +-- Productivity/SaaS App
-        ¶   +-- Navigation: Drawer or adaptive (mobile tab, tablet rail)
-        ¶   +-- Lists: Data tables, forms
-        ¶   +-- Performance: Data sync
-        ¶   +-- Offline: Full offline editing
-        ¶   +-- Special: Conflict resolution, background sync
-        ¶
+        ÔøΩ   +-- Navigation: Drawer or adaptive (mobile tab, tablet rail)
+        ÔøΩ   +-- Lists: Data tables, forms
+        ÔøΩ   +-- Performance: Data sync
+        ÔøΩ   +-- Offline: Full offline editing
+        ÔøΩ   +-- Special: Conflict resolution, background sync
+        ÔøΩ
         +-- Utility App
-        ¶   +-- Navigation: Minimal (stack-only possible)
-        ¶   +-- Lists: Probably minimal
-        ¶   +-- Performance: Fast startup
-        ¶   +-- Offline: Core feature offline
-        ¶   +-- Special: Widget, shortcuts
-        ¶
+        ÔøΩ   +-- Navigation: Minimal (stack-only possible)
+        ÔøΩ   +-- Lists: Probably minimal
+        ÔøΩ   +-- Performance: Fast startup
+        ÔøΩ   +-- Offline: Core feature offline
+        ÔøΩ   +-- Special: Widget, shortcuts
+        ÔøΩ
         +-- Media/Streaming App
             +-- Navigation: Tab (Home, Search, Library, Profile)
             +-- Lists: Horizontal carousels, vertical feeds
@@ -261,28 +261,28 @@ Before adding any gesture:
 ```
 GESTURE: [Gesture Type]
 +-- DISCOVERABILITY:
-¶   +-- How will users discover this gesture?
-¶       +-- Is there a visual hint?
-¶       +-- Will it be shown in onboarding?
-¶       +-- Is there a button alternative? (MANDATORY)
-¶
+ÔøΩ   +-- How will users discover this gesture?
+ÔøΩ       +-- Is there a visual hint?
+ÔøΩ       +-- Will it be shown in onboarding?
+ÔøΩ       +-- Is there a button alternative? (MANDATORY)
+ÔøΩ
 +-- PLATFORM CONVENTION:
-¶   +-- What does this gesture mean on iOS?
-¶   +-- What does this gesture mean on Android?
-¶   +-- Am I deviating from platform convention?
-¶
+ÔøΩ   +-- What does this gesture mean on iOS?
+ÔøΩ   +-- What does this gesture mean on Android?
+ÔøΩ   +-- Am I deviating from platform convention?
+ÔøΩ
 +-- ACCESSIBILITY:
-¶   +-- Can motor-impaired users perform this gesture?
-¶   +-- Is there a VoiceOver/TalkBack alternative?
-¶   +-- Does it work with switch control?
-¶
+ÔøΩ   +-- Can motor-impaired users perform this gesture?
+ÔøΩ   +-- Is there a VoiceOver/TalkBack alternative?
+ÔøΩ   +-- Does it work with switch control?
+ÔøΩ
 +-- CONFLICT CHECK:
-¶   +-- Does it conflict with system gestures?
-¶   ¶   +-- iOS: Edge swipe back
-¶   ¶   +-- Android: Back gesture
-¶   ¶   +-- Home indicator swipe
-¶   +-- Is it consistent with other app gestures?
-¶
+ÔøΩ   +-- Does it conflict with system gestures?
+ÔøΩ   ÔøΩ   +-- iOS: Edge swipe back
+ÔøΩ   ÔøΩ   +-- Android: Back gesture
+ÔøΩ   ÔøΩ   +-- Home indicator swipe
+ÔøΩ   +-- Is it consistent with other app gestures?
+ÔøΩ
 +-- FEEDBACK:
     +-- Is haptic feedback defined?
     +-- Is visual feedback sufficient?
@@ -343,18 +343,18 @@ Platform: iOS / Android / Both
 
 ```
 +-----------------------------------------------------------------+
-¶                    PRE-WORK VALIDATION                          ¶
-+-----------------------------------------------------------------¶
-¶                                                                 ¶
-¶  ? Did I complete Component Decomposition?                      ¶
-¶  ? Did I fill the Pattern Questioning Matrix?                   ¶
-¶  ? Did I pass the Anti-Memorization Test?                       ¶
-¶  ? Did I make context-based decisions?                          ¶
-¶  ? Did I analyze Interaction Breakdown?                         ¶
-¶  ? Did I fill the Mobile Design Commitment?                     ¶
-¶                                                                 ¶
-¶  ?? Do not write code without completing these!                 ¶
-¶                                                                 ¶
+ÔøΩ                    PRE-WORK VALIDATION                          ÔøΩ
++-----------------------------------------------------------------ÔøΩ
+ÔøΩ                                                                 ÔøΩ
+ÔøΩ  ? Did I complete Component Decomposition?                      ÔøΩ
+ÔøΩ  ? Did I fill the Pattern Questioning Matrix?                   ÔøΩ
+ÔøΩ  ? Did I pass the Anti-Memorization Test?                       ÔøΩ
+ÔøΩ  ? Did I make context-based decisions?                          ÔøΩ
+ÔøΩ  ? Did I analyze Interaction Breakdown?                         ÔøΩ
+ÔøΩ  ? Did I fill the Mobile Design Commitment?                     ÔøΩ
+ÔøΩ                                                                 ÔøΩ
+ÔøΩ  ?? Do not write code without completing these!                 ÔøΩ
+ÔøΩ                                                                 ÔøΩ
 +-----------------------------------------------------------------+
 ```
 
@@ -364,4 +364,4 @@ Platform: iOS / Android / Both
 
 ---
 
-? PikaKit v3.9.169
+? PikaKit v3.9.170
