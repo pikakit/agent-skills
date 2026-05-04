@@ -6,7 +6,7 @@
  *
  * Usage: node api_validator.js <project_path> [--json] [--help] [--version]
  *
- * @version 2.0.1
+ * @version 3.9.169
  * @skill api-architect
  */
 

@@ -3,7 +3,7 @@ name: Verification Before Completion
 description: Run verification commands and confirm output before claiming success
 metadata:
   author: pikakit
-  version: "3.9.168"
+  version: "3.9.169"
   category: debugging-subskill
   triggers: ["verify", "verification", "check it", "did you test it", "are you sure"]
   coordinates_with: ["debug-pro", "test-architect"]
@@ -157,4 +157,4 @@ This is non-negotiable.
 
 ---
 
-⚡ PikaKit v3.9.168
+⚡ PikaKit v3.9.169

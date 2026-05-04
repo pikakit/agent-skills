@@ -40,4 +40,4 @@ function SearchInput({ onSearch }: { onSearch: (q: string) => void }) {
 
 ---
 
-⚡ PikaKit v3.9.168
+⚡ PikaKit v3.9.169

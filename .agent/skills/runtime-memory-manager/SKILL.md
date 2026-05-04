@@ -6,7 +6,7 @@ description: >-
   NOT for markdown parsing or unified LLM semantic semantic bases (use knowledge-compiler).
 metadata:
   author: pikakit
-  version: "3.9.168"
+  version: "3.9.169"
   category: core
   triggers: "runtime sqlite, execution layer, cache binary, fix templates, signals, memory.sqlite"
   coordinates_with: ""
@@ -30,6 +30,8 @@ Reference these guidelines when:
 | `memory.sqlite` (Execution Layer)    | `knowledge/` (Semantic Layer) |
 | Binary vector cache & SQL queries    | Human-readable Markdown |
 | Code fix-patterns & `signals`        | Domain Concepts, ADRs, Patterns |
+| `knowledge_fts` (derived search cache) | FTS5 is read-only; markdown is truth |
+| `knowledge_watermark` (change tracking) | |
 
 **❌ FORBIDDEN ACTIONS:**
 - NEVER parse `.md` files to insert them into the Runtime DB.
@@ -50,6 +52,7 @@ Reference these guidelines when:
 
 ### 2. Schema (CRITICAL)
 - `schema-fix-learning` - Interact only with the real tables (`lessons`, `signals`, `fix_templates`).
+- `schema-fts5-knowledge` - FTS5 search index over knowledge markdown (derived, read-only cache).
 
 ## How to Use
 
@@ -57,6 +60,7 @@ Read individual rule files for detailed explanations:
 ```
 rules/architecture-strict-separation.md
 rules/schema-fix-learning.md
+rules/schema-fts5-knowledge.md
 ```
 
 ## Full Compiled Document

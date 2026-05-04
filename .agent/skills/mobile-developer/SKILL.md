@@ -6,7 +6,7 @@ description: >-
   NOT for web frontend (use react-pro) or mobile design decisions (use mobile-design).
 metadata:
   author: pikakit
-  version: "3.9.168"
+  version: "3.9.169"
   category: mobile-architect
   triggers: ["React Native", "Flutter", "iOS", "Android", "mobile app", "cross-platform", "native app"]
   coordinates_with: ["mobile-first", "mobile-design", "test-architect", "perf-optimizer", "mobile-security-coder", "code-craft", "problem-checker"]
@@ -191,4 +191,4 @@ All executions MUST emit the `build_verification` span before reporting completi
 
 ---
 
-⚡ PikaKit v3.9.168
+⚡ PikaKit v3.9.169

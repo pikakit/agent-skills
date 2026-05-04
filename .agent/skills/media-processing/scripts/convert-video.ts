@@ -6,7 +6,7 @@
  * Convert and optimize videos for web delivery.
  * Supports encoding, audio extraction, thumbnails, and GIF generation.
  *
- * @version 2.0.0
+ * @version 3.9.169
  * @contract media-processing v2.0.0
  * @see references/engineering-spec.md
  *

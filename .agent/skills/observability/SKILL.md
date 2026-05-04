@@ -6,7 +6,7 @@ description: >-
   NOT for server management (use server-ops) or performance optimization (use perf-optimizer).
 metadata:
   author: pikakit
-  version: "3.9.168"
+  version: "3.9.169"
   category: devops-architect
   triggers: ["monitoring", "observability", "OpenTelemetry", "telemetry", "instrumentation"]
   coordinates_with: ["server-ops", "cicd-pipeline", "problem-checker"]
@@ -175,4 +175,4 @@ All executions MUST emit the `build_verification` span before reporting completi
 
 ---
 
-⚡ PikaKit v3.9.168
+⚡ PikaKit v3.9.169

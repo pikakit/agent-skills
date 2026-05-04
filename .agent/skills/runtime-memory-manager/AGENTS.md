@@ -79,3 +79,41 @@ db.prepare(`
    VALUES (?, ?, ?, ?)
 `).run(lessonId, "TypeError: undefined is not an object", "+ if(obj) {", "javascript");
 ```
+
+---
+
+## 3. FTS5 Knowledge Search Index
+
+**Impact: CRITICAL (derived cache — NOT a source of truth)**
+
+The `knowledge_fts` virtual table provides sub-millisecond BM25-ranked search over the `knowledge/**/*.md` markdown files. It is a **derived, read-only cache**.
+
+### Tables
+
+| Table | Purpose | Rebuild |
+|-------|---------|---------|
+| `knowledge_fts` | FTS5 virtual table with weighted columns (title:10x, tags:5x, body:1x) | Delete → `knowledge-indexer.js --rebuild` |
+| `knowledge_watermark` | Tracks file mtime and content hash for incremental indexing | Delete → full re-index on next run |
+
+### Scripts
+
+| Script | Purpose | Usage |
+|--------|---------|-------|
+| `scripts/knowledge-indexer.js` | Index markdown → FTS5 | `node knowledge-indexer.js [--rebuild]` |
+| `scripts/knowledge-search.js` | Search FTS5 with prefix rewriting | `node knowledge-search.js "query"` |
+
+### Anti-Corruption Layer (FTS5-specific)
+
+**Incorrect (what's wrong):**
+```typescript
+// Treating FTS5 body as the canonical article content
+const article = db.prepare('SELECT body FROM knowledge_fts WHERE file_path = ?').get(path);
+return article.body; // WRONG: FTS5 body may be stale
+```
+
+**Correct (what's right):**
+```typescript
+// FTS5 for discovery, markdown for reading
+const hits = db.prepare('SELECT file_path FROM knowledge_fts WHERE knowledge_fts MATCH ?').all(query);
+const content = fs.readFileSync(hits[0].file_path, 'utf-8'); // RIGHT: read the source of truth
+```

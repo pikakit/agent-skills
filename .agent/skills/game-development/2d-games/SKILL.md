@@ -3,7 +3,7 @@ name: 2d-games
 description: 2D game development principles. Sprites, tilemaps, physics, camera.
 metadata:
   author: pikakit
-  version: "3.9.168"
+  version: "3.9.169"
   category: game-development-subskill
   triggers: ["2D game", "sprite", "tilemap", "2D physics", "2D camera"]
   coordinates_with: ["game-development", "game-art", "perf-optimizer"]
@@ -137,4 +137,4 @@ metadata:
 
 ---
 
-⚡ PikaKit v3.9.168
+⚡ PikaKit v3.9.169

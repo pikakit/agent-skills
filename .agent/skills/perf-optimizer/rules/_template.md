@@ -29,4 +29,4 @@ Reference: [Link to documentation or resource](https://example.com)
 
 ---
 
-⚡ PikaKit v3.9.168
+⚡ PikaKit v3.9.169

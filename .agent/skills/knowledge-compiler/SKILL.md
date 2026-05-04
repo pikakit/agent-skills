@@ -9,7 +9,7 @@ description: >-
   NOT for skill generation (use skill-generator) or wiki health (use knowledge-linter).
 metadata:
   author: pikakit
-  version: "3.9.168"
+  version: "3.9.169"
   category: autonomous-learning
   triggers: ["compile", "knowledge", "wiki", "ingest", "mistake", "wrong", "fix-this", "broken"]
   coordinates_with: ["skill-generator", "knowledge-linter", "problem-checker"]
@@ -59,17 +59,35 @@ metadata:
 
 ## Operations (6)
 
+### 0. Secret Scan Gate (MANDATORY — before ALL writes)
+
+**When:** Before writing ANY file to `raw-signals/`, `patterns/`, or `concepts/`.
+**Rule:** `rules/secret-prefilter.md`
+**Script:** `scripts/secret-scanner.js`
+
+```
+BEFORE writing signal/pattern/concept content:
+1. Scan content against 12 secret patterns (API keys, JWTs, PEM, tokens)
+2. If ANY pattern matches:
+   a. DO NOT write the file
+   b. WARN: "🔒 Blocked: detected {type} in signal content"
+   c. Ask user to redact the secret and retry
+3. If no match → proceed with write
+```
+
 ### 1. Ingest — Record a Raw Signal
 
 **When:** After every significant fix, user correction, or architectural decision.
 **Auto-trigger:** Multi-file changes, user says "wrong", explicit `/knowledge ingest`.
 
 ```
-1. Classify signal type: error_fix | correction | decision | observation
-2. Extract: what happened, context, resolution, lesson
-3. Write to .agent/knowledge/raw-signals/{date}-{slug}.md
-4. Update _index.md "Uncompiled signals" count
-5. Output: 📥 Signal recorded: {slug}
+1. Run Secret Scan Gate (Step 0) on signal content
+2. Classify signal type: error_fix | correction | decision | observation
+3. Extract: what happened, context, resolution, lesson
+4. Write to .agent/knowledge/raw-signals/{date}-{slug}.md
+5. Update _index.md "Uncompiled signals" count
+6. If FTS5 index exists, trigger incremental re-index
+7. Output: 📥 Signal recorded: {slug}
 ```
 
 **Signal Schema:**
@@ -183,12 +201,19 @@ BEFORE executing command or writing code:
 **When:** Agent needs project-specific knowledge before coding.
 
 ```
-1. Read _index.md for article summaries
-2. Identify relevant concept articles by topic match
-3. Read full article(s)
-4. Synthesize answer with citations: "According to [[concept-name]]..."
-5. If no match → answer from general knowledge, suggest ingesting signal
+1. If FTS5 index exists (memory.sqlite has knowledge_fts table):
+   a. Run: node .agent/skills/runtime-memory-manager/scripts/knowledge-search.js "<query>"
+   b. Use top-5 BM25-ranked results to identify relevant articles
+   c. Read full article(s) from the file paths returned
+2. Fallback (no FTS5): Read _index.md for article summaries
+3. Identify relevant concept articles by topic match
+4. Read full article(s)
+5. Synthesize answer with citations: "According to [[concept-name]]..."
+6. If no match → answer from general knowledge, suggest ingesting signal
 ```
+
+> **Note:** FTS5 query rewriting is automatic — typing `fast` finds `fastapi`.  
+> The search script handles prefix matching and BM25 ranking transparently.
 
 ### 6. Reindex — Regenerate Index Files
 
@@ -317,4 +342,4 @@ tags: [{domain tags}]
 
 ---
 
-⚡ PikaKit v3.9.168
+⚡ PikaKit v3.9.169

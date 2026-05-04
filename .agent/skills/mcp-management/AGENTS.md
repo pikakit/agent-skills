@@ -170,7 +170,7 @@ cat assets/tools.json | jq '.[] | {server: .server, tools: .tools[].name}'
 
 ---
 
-⚡ PikaKit v3.9.168
+⚡ PikaKit v3.9.169
 
 ---
 
@@ -672,7 +672,7 @@ Single execution per invocation. Concurrent invocations to different servers are
 
 ---
 
-⚡ PikaKit v3.9.168
+⚡ PikaKit v3.9.169
 
 ---
 
@@ -830,8 +830,8 @@ Server exposes HTTP endpoint with Server-Sent Events.
 
 ---
 
-⚡ PikaKit v3.9.168
+⚡ PikaKit v3.9.169
 
 ---
 
-⚡ PikaKit v3.9.168
+⚡ PikaKit v3.9.169

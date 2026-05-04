@@ -4,7 +4,7 @@ description: >-
   Game design principles. GDD structure, balancing, player psychology, progression.
 metadata:
   author: pikakit
-  version: "3.9.168"
+  version: "3.9.169"
   category: game-development-subskill
   triggers: ["game design", "GDD", "balancing", "player psychology", "progression"]
   coordinates_with: ["game-development", "game-art", "game-audio"]
@@ -148,4 +148,4 @@ Just Right → Flow → Engagement
 
 ---
 
-⚡ PikaKit v3.9.168
+⚡ PikaKit v3.9.169

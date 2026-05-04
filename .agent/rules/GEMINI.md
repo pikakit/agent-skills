@@ -4,7 +4,7 @@ trigger: always_on
 
 # PikaKit — FAANG-Grade AI Operating System ⚡
 
-> **v3.9.168** | 53 Skills • 21 Agents • 19 Workflows | [github.com/pikakit](https://github.com/pikakit/agent-skills)
+> **v3.9.169** | 53 Skills • 49 Agents • 19 Workflows | [github.com/pikakit](https://github.com/pikakit/agent-skills)
 
 **This file is the Supreme Law for AI behavior in this workspace.**
 
