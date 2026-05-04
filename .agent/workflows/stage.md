@@ -27,8 +27,10 @@ Manage local development environments with multi-service orchestration — auto-
 
 ```
 Flow:
-recovery.save(server_state) → detect(project) → resolve(ports)       ↓
-assessor.evaluate(port_conflicts) → start(services)       ↓
+recovery.save(server_state) → detect(project) → resolve(ports)
+       ↓
+assessor.evaluate(port_conflicts) → start(services)
+       ↓
 health_check → learner.log(config)
 ```
 

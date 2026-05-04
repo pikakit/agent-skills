@@ -1,10 +1,10 @@
-﻿---
-title: Copywriting — Engineering Specification
+---
+title: Copywriting � Engineering Specification
 impact: MEDIUM
 tags: copywriting
 ---
 
-# Copywriting — Engineering Specification
+# Copywriting � Engineering Specification
 
 > Production-grade specification for conversion copywriting formula selection and application at FAANG scale.
 
@@ -12,11 +12,11 @@ tags: copywriting
 
 ## 1. Overview
 
-Copywriting provides deterministic formula selection for high-converting marketing copy: 6 proven formulas (AIDA, PAS, BAB, FAB, 4Ps, 4Us), headline construction templates, and copy quality validation rules. The skill operates as an expert knowledge base that produces formula-driven copy structures — it generates structured copy frameworks, not final marketing text.
+Copywriting provides deterministic formula selection for high-converting marketing copy: 6 proven formulas (AIDA, PAS, BAB, FAB, 4Ps, 4Us), headline construction templates, and copy quality validation rules. The skill operates as an expert knowledge base that produces formula-driven copy structures � it generates structured copy frameworks, not final marketing text.
 
 **Contract Version:** 2.0.0
 **Backward Compatibility:** breaking (first hardened version)
-**Breaking Changes:** None — new spec for first hardening
+**Breaking Changes:** None � new spec for first hardening
 
 ---
 
@@ -149,7 +149,7 @@ Recoverable: boolean
 #### Deterministic Guarantees
 
 - Same `content_type` = same formula selection (fixed mapping).
-- Formula selection mapping: landing-page/ad → AIDA, email/sales-page → PAS, case-study → BAB, product-description → FAB, headline → 4Us.
+- Formula selection mapping: landing-page/ad ? AIDA, email/sales-page ? PAS, case-study ? BAB, product-description ? FAB, headline ? 4Us.
 - 4Us validation is binary per dimension (passes/fails).
 - Copy validation rules are fixed: benefit-first, single-CTA, specific-claims, no-jargon, read-aloud.
 - No randomization, no creative variation.
@@ -400,7 +400,7 @@ All resources scoped to invocation. No persistent handles.
 | Formula selection | < 2 ms | < 5 ms | 20 ms |
 | Full framework | < 5 ms | < 15 ms | 50 ms |
 | Copy validation | < 5 ms | < 15 ms | 50 ms |
-| Output size | ≤ 500 chars | ≤ 2,000 chars | 5,000 chars |
+| Output size | = 500 chars | = 2,000 chars | 5,000 chars |
 
 ---
 
@@ -410,7 +410,7 @@ All resources scoped to invocation. No persistent handles.
 |------|-----------|--------|------------|
 | Formula doesn't fit brand | Medium | Copy feels generic | Skill produces structure, not final copy |
 | Validation too strict | Low | Rejects acceptable copy | 5 rules are well-established best practices |
-| False sense of conversion | Medium | Formula ≠ guaranteed conversion | Documented as structural guidance only |
+| False sense of conversion | Medium | Formula ? guaranteed conversion | Documented as structural guidance only |
 | Multilingual copy unsupported | Medium | Non-English copy not validated | Documented as limitation |
 
 ---
@@ -419,16 +419,16 @@ All resources scoped to invocation. No persistent handles.
 
 | Requirement | Status | Evidence |
 |-------------|--------|----------|
-| YAML frontmatter complete | ✅ | name, description, metadata with category, version, triggers, coordinates_with, success_metrics |
-| SKILL.md < 200 lines | ✅ | Entry point under 200 lines |
-| Prerequisites documented | ✅ | No external dependencies |
-| When to Use section | ✅ | Content-type-to-formula mapping table |
-| Core content matches skill type | ✅ | Expert type: deterministic formula mapping |
-| Troubleshooting section | ✅ | Anti-patterns table |
-| Related section | ✅ | Cross-links to seo-optimizer, studio, ai-artist |
-| Content Map for multi-file | ✅ | Link to engineering-spec.md |
-| Contract versioning | ✅ | contract_version, backward_compatibility, breaking_changes |
-| Compliance matrix structured | ✅ | This table with ✅/❌ + evidence |
+| YAML frontmatter complete | ? | name, description, metadata with category, version, triggers, coordinates_with, success_metrics |
+| SKILL.md < 200 lines | ? | Entry point under 200 lines |
+| Prerequisites documented | ? | No external dependencies |
+| When to Use section | ? | Content-type-to-formula mapping table |
+| Core content matches skill type | ? | Expert type: deterministic formula mapping |
+| Troubleshooting section | ? | Anti-patterns table |
+| Related section | ? | Cross-links to seo-optimizer, studio, ai-artist |
+| Content Map for multi-file | ? | Link to engineering-spec.md |
+| Contract versioning | ? | contract_version, backward_compatibility, breaking_changes |
+| Compliance matrix structured | ? | This table with ?/? + evidence |
 
 ---
 
@@ -436,26 +436,26 @@ All resources scoped to invocation. No persistent handles.
 
 | Category | Check | Status |
 |----------|-------|--------|
-| **Functionality** | 6 copywriting formulas (AIDA, PAS, BAB, FAB, 4Ps, 4Us) | ✅ |
-| **Functionality** | Deterministic formula-to-content-type mapping | ✅ |
-| **Functionality** | 4Us headline validation (4 binary dimensions) | ✅ |
-| **Functionality** | 5 copy validation rules | ✅ |
-| **Contracts** | Input/output/error schemas in pseudo-schema format | ✅ |
-| **Contracts** | Contract versioning with semver | ✅ |
-| **Failure** | Error taxonomy with 5 categorized codes | ✅ |
-| **Failure** | No silent fallback | ✅ |
-| **Failure** | Zero internal retries | ✅ |
-| **Determinism** | Fixed formula mapping, fixed rules, fixed 4Us dimensions | ✅ |
-| **Security** | No persistence; no PII handling | ✅ |
-| **Observability** | Structured log schema with 5 mandatory fields + 4 log points | ✅ |
-| **Observability** | 5 metrics defined | ✅ |
-| **Performance** | P50/P99 targets for all operations | ✅ |
-| **Scalability** | Stateless; unlimited parallel invocations | ✅ |
-| **Compliance** | All skill-design-guide.md sections mapped with evidence | ✅ |
+| **Functionality** | 6 copywriting formulas (AIDA, PAS, BAB, FAB, 4Ps, 4Us) | ? |
+| **Functionality** | Deterministic formula-to-content-type mapping | ? |
+| **Functionality** | 4Us headline validation (4 binary dimensions) | ? |
+| **Functionality** | 5 copy validation rules | ? |
+| **Contracts** | Input/output/error schemas in pseudo-schema format | ? |
+| **Contracts** | Contract versioning with semver | ? |
+| **Failure** | Error taxonomy with 5 categorized codes | ? |
+| **Failure** | No silent fallback | ? |
+| **Failure** | Zero internal retries | ? |
+| **Determinism** | Fixed formula mapping, fixed rules, fixed 4Us dimensions | ? |
+| **Security** | No persistence; no PII handling | ? |
+| **Observability** | Structured log schema with 5 mandatory fields + 4 log points | ? |
+| **Observability** | 5 metrics defined | ? |
+| **Performance** | P50/P99 targets for all operations | ? |
+| **Scalability** | Stateless; unlimited parallel invocations | ? |
+| **Compliance** | All skill-design-guide.md sections mapped with evidence | ? |
 
 ---
 
-⚡ ## OpenTelemetry Observability (MANDATORY)
+? ## OpenTelemetry Observability (MANDATORY)
 
 - **Copy Quality Tracking**: EVERY copy validation MUST emit an OpenTelemetry Histogram metric recording the 4Us headline score and the count of copy formulation warnings.
 - **A/B Test Tracing**: OTel spans MUST tag the chosen copywriting formula (e.g., AIDA, PAS) to correlate formula usage with downstream conversion events.

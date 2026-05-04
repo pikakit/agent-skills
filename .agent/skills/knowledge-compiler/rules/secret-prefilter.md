@@ -78,7 +78,7 @@ Used OpenAI API to test embedding. API key stored in .env (not committed).
 
 ## Automation
 
-For CLI-based scanning, use: `node .agent/skills/knowledge-compiler/scripts/secret-scanner.js <path>`
+For CLI-based scanning, use: `node .agent/skills/knowledge-compiler/scripts/secret-scanner.ts <path>`
 
 ---
 

@@ -1,10 +1,10 @@
-﻿---
-title: Auth Patterns — Engineering Specification
+---
+title: Auth Patterns � Engineering Specification
 impact: MEDIUM
 tags: auth-patterns
 ---
 
-# Auth Patterns — Engineering Specification
+# Auth Patterns � Engineering Specification
 
 > Production-grade specification for authentication and authorization pattern selection at FAANG scale.
 
@@ -37,10 +37,10 @@ Auth Patterns eliminates these by providing context-aware decision trees that pr
 
 | ID | Goal | Measurable Constraint |
 |----|------|-----------------------|
-| G1 | Context-aware auth selection | Decision tree produces one of JWT/Session/OAuth/Passkey based on ≤ 4 input criteria |
+| G1 | Context-aware auth selection | Decision tree produces one of JWT/Session/OAuth/Passkey based on = 4 input criteria |
 | G2 | Fail-closed defaults | Every pattern defaults to deny-access on ambiguity; no implicit allow |
-| G3 | Token hygiene enforcement | All JWT patterns specify ≤ 15-minute access token lifetime |
-| G4 | Defense in depth | Every auth recommendation includes ≥ 3 complementary controls (auth + authz + rate limit + monitoring) |
+| G3 | Token hygiene enforcement | All JWT patterns specify = 15-minute access token lifetime |
+| G4 | Defense in depth | Every auth recommendation includes = 3 complementary controls (auth + authz + rate limit + monitoring) |
 | G5 | Decision traceability | Every recommendation includes security rationale and threat model reference |
 
 ---
@@ -65,9 +65,9 @@ Auth Patterns eliminates these by providing context-aware decision trees that pr
 |----------|-------|-----------|
 | Auth strategy selection | JWT/Session/OAuth/Passkey decision tree | Auth library selection |
 | Token lifecycle design | Expiry, rotation, revocation patterns | Token signing key generation |
-| Permission model design | RBAC/ABAC/hybrid architecture | Permission database schema (→ data-modeler) |
+| Permission model design | RBAC/ABAC/hybrid architecture | Permission database schema (? data-modeler) |
 | MFA strategy | TOTP/WebAuthn/backup code patterns | MFA provider integration |
-| Session management | Cookie config, store selection, invalidation | Session store provisioning (→ server-ops) |
+| Session management | Cookie config, store selection, invalidation | Session store provisioning (? server-ops) |
 | Passkey architecture | WebAuthn/FIDO2 flow design | Browser API implementation |
 
 **Side-effect boundary:** Auth Patterns produces design documents and security guidance. It does not generate secrets, create keys, modify configurations, or make network requests.
@@ -135,7 +135,7 @@ Error: ErrorSchema | null
 
 **Contract Version:** 2.0.0
 **Backward Compatibility:** breaking (first hardened version)
-**Breaking Changes:** None — new spec for first hardening
+**Breaking Changes:** None � new spec for first hardening
 
 #### Error Schema
 
@@ -149,7 +149,7 @@ Recoverable: boolean
 #### Deterministic Guarantees
 
 - Same `Request_Type` + `Context` = identical `strategy` + `rationale` output.
-- Decision tree evaluation order: app_type → auth_consumers → sensitivity → compliance → constraints.
+- Decision tree evaluation order: app_type ? auth_consumers ? sensitivity ? compliance ? constraints.
 - Token configuration values are fixed per strategy (access TTL = 15 min for JWT, never variable).
 - No randomization, no A/B selection, no heuristic weighting.
 
@@ -183,13 +183,13 @@ Recoverable: boolean
 
 ```
 1. Define app context (type, consumers, sensitivity, compliance)
-2. Select request type (strategy-selection → token/session design → permission model → MFA)
+2. Select request type (strategy-selection ? token/session design ? permission model ? MFA)
 3. Receive recommendation with rationale, threat model, and checklist
 4. Review and implement (caller's responsibility)
 5. Run security-scanner for implementation validation (separate skill)
 ```
 
-**Recommended ordering:** strategy-selection → jwt-design or session-design → permission-model → mfa-strategy → security-review.
+**Recommended ordering:** strategy-selection ? jwt-design or session-design ? permission-model ? mfa-strategy ? security-review.
 
 #### Execution Guarantees
 
@@ -249,8 +249,8 @@ All phases execute synchronously in a single invocation. No async pipeline.
 
 | Principle | Enforcement |
 |-----------|-------------|
-| Fixed decision tree ordering | app_type → auth_consumers → sensitivity → compliance → constraints |
-| Fail-closed defaults | Ambiguous context → most restrictive recommendation |
+| Fixed decision tree ordering | app_type ? auth_consumers ? sensitivity ? compliance ? constraints |
+| Fail-closed defaults | Ambiguous context ? most restrictive recommendation |
 | No external calls | Decisions use only local reference files and input context |
 | No ambient state | Each invocation operates solely on explicit inputs |
 | Fixed token values | Access TTL, refresh TTL, storage method are constants per strategy |
@@ -263,8 +263,8 @@ All phases execute synchronously in a single invocation. No async pipeline.
 ### State Machine
 
 ```
-States: IDLE (single state — skill is stateless)
-Transitions: None — each invocation is independent
+States: IDLE (single state � skill is stateless)
+Transitions: None � each invocation is independent
 ```
 
 Auth Patterns maintains zero persistent state. Every invocation starts from a clean state. Invoking N times with identical inputs produces N identical outputs.
@@ -414,7 +414,7 @@ Auth Patterns maintains zero persistent state. Every invocation starts from a cl
 
 | Scope | Model | Behavior |
 |-------|-------|----------|
-| Within invocation | Sequential | Classify → Evaluate → Harden → Emit |
+| Within invocation | Sequential | Classify ? Evaluate ? Harden ? Emit |
 | Across invocations | Fully parallel | No shared state, no coordination |
 | Reference access | Read-only shared | Multiple concurrent reads safe |
 
@@ -441,7 +441,7 @@ Auth Patterns maintains zero persistent state. Every invocation starts from a cl
 | Strategy selection | < 5 ms | < 20 ms | 50 ms |
 | Full recommendation (with controls) | < 10 ms | < 30 ms | 100 ms |
 | Reference file read | < 1 ms | < 5 ms | 1,000 ms |
-| Output size | ≤ 800 chars | ≤ 2,000 chars | 5,000 chars |
+| Output size | = 800 chars | = 2,000 chars | 5,000 chars |
 
 ---
 
@@ -461,17 +461,17 @@ Auth Patterns maintains zero persistent state. Every invocation starts from a cl
 
 | Requirement | Status | Evidence |
 |-------------|--------|----------|
-| YAML frontmatter complete | ✅ | name, description, metadata with category, version, triggers, coordinates_with, success_metrics |
-| SKILL.md < 200 lines | ✅ | Entry point under 200 lines; details in rules/ |
-| Prerequisites documented | ✅ | No external dependencies required |
-| When to Use section | ✅ | Auth domain decision matrix |
-| Quick Reference | ✅ | Decision tree and checklist |
-| Core content matches skill type | ✅ | Expert type: decision trees, security principles |
-| Troubleshooting section | ✅ | Anti-patterns table |
-| Related section | ✅ | Cross-links to api-architect, security-scanner, data-modeler, offensive-sec |
-| Content Map for multi-file | ✅ | Links to 6 reference files + engineering-spec.md |
-| Contract versioning | ✅ | contract_version, backward_compatibility, breaking_changes |
-| Compliance matrix structured | ✅ | This table with ✅/❌ + evidence |
+| YAML frontmatter complete | ? | name, description, metadata with category, version, triggers, coordinates_with, success_metrics |
+| SKILL.md < 200 lines | ? | Entry point under 200 lines; details in rules/ |
+| Prerequisites documented | ? | No external dependencies required |
+| When to Use section | ? | Auth domain decision matrix |
+| Quick Reference | ? | Decision tree and checklist |
+| Core content matches skill type | ? | Expert type: decision trees, security principles |
+| Troubleshooting section | ? | Anti-patterns table |
+| Related section | ? | Cross-links to api-architect, security-scanner, data-modeler, offensive-sec |
+| Content Map for multi-file | ? | Links to 6 reference files + engineering-spec.md |
+| Contract versioning | ? | contract_version, backward_compatibility, breaking_changes |
+| Compliance matrix structured | ? | This table with ?/? + evidence |
 
 ---
 
@@ -479,32 +479,32 @@ Auth Patterns maintains zero persistent state. Every invocation starts from a cl
 
 | Category | Check | Status |
 |----------|-------|--------|
-| **Functionality** | 8 request types covering auth lifecycle | ✅ |
-| **Functionality** | Decision tree for 6 app types | ✅ |
-| **Functionality** | 6 reference files covering OAuth2, JWT, RBAC, MFA, Session, Passkey | ✅ |
-| **Contracts** | Input/output/error schemas defined | ✅ |
-| **Contracts** | Agent assumptions and non-assumptions documented | ✅ |
-| **Contracts** | Workflow invocation pattern specified | ✅ |
-| **Failure** | Error taxonomy with 7 categorized error codes | ✅ |
-| **Failure** | No silent failures; fail-closed on ambiguity | ✅ |
-| **Failure** | Retry policy: zero internal retries | ✅ |
-| **Determinism** | Fixed decision tree ordering | ✅ |
-| **Determinism** | Fixed token config values per strategy | ✅ |
-| **Security** | Fail-closed design: ambiguity → most restrictive | ✅ |
-| **Security** | No credential storage or processing | ✅ |
-| **Security** | Anti-patterns: no localStorage JWTs, no long-lived tokens | ✅ |
-| **Observability** | Structured log schema with 5 log points | ✅ |
-| **Observability** | 6 metrics defined with types and units | ✅ |
-| **Performance** | P50/P99 targets for all operations | ✅ |
-| **Scalability** | Stateless; unlimited parallel invocations | ✅ |
-| **Concurrency** | No shared state; read-only reference access | ✅ |
-| **Resources** | All resources scoped to invocation lifetime | ✅ |
-| **Idempotency** | Fully idempotent — all operations are pure functions | ✅ |
-| **Compliance** | All skill-design-guide.md sections present | ✅ |
+| **Functionality** | 8 request types covering auth lifecycle | ? |
+| **Functionality** | Decision tree for 6 app types | ? |
+| **Functionality** | 6 reference files covering OAuth2, JWT, RBAC, MFA, Session, Passkey | ? |
+| **Contracts** | Input/output/error schemas defined | ? |
+| **Contracts** | Agent assumptions and non-assumptions documented | ? |
+| **Contracts** | Workflow invocation pattern specified | ? |
+| **Failure** | Error taxonomy with 7 categorized error codes | ? |
+| **Failure** | No silent failures; fail-closed on ambiguity | ? |
+| **Failure** | Retry policy: zero internal retries | ? |
+| **Determinism** | Fixed decision tree ordering | ? |
+| **Determinism** | Fixed token config values per strategy | ? |
+| **Security** | Fail-closed design: ambiguity ? most restrictive | ? |
+| **Security** | No credential storage or processing | ? |
+| **Security** | Anti-patterns: no localStorage JWTs, no long-lived tokens | ? |
+| **Observability** | Structured log schema with 5 log points | ? |
+| **Observability** | 6 metrics defined with types and units | ? |
+| **Performance** | P50/P99 targets for all operations | ? |
+| **Scalability** | Stateless; unlimited parallel invocations | ? |
+| **Concurrency** | No shared state; read-only reference access | ? |
+| **Resources** | All resources scoped to invocation lifetime | ? |
+| **Idempotency** | Fully idempotent � all operations are pure functions | ? |
+| **Compliance** | All skill-design-guide.md sections present | ? |
 
 ---
 
-⚡ ## Security Audit Logging (MANDATORY)
+? ## Security Audit Logging (MANDATORY)
 
 - **SIEM Integration**: EVERY sensitive auth event MUST be audited to a centralized SIEM system.
 - **Log Determinism**: All auth audit logs MUST contain ip_address, user_agent, 	imestamp (ISO-8601), and a correlation_id.

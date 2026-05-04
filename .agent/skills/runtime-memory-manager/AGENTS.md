@@ -92,15 +92,15 @@ The `knowledge_fts` virtual table provides sub-millisecond BM25-ranked search ov
 
 | Table | Purpose | Rebuild |
 |-------|---------|---------|
-| `knowledge_fts` | FTS5 virtual table with weighted columns (title:10x, tags:5x, body:1x) | Delete → `knowledge-indexer.js --rebuild` |
+| `knowledge_fts` | FTS5 virtual table with weighted columns (title:10x, tags:5x, body:1x) | Delete → `knowledge-indexer.ts --rebuild` |
 | `knowledge_watermark` | Tracks file mtime and content hash for incremental indexing | Delete → full re-index on next run |
 
 ### Scripts
 
 | Script | Purpose | Usage |
 |--------|---------|-------|
-| `scripts/knowledge-indexer.js` | Index markdown → FTS5 | `node knowledge-indexer.js [--rebuild]` |
-| `scripts/knowledge-search.js` | Search FTS5 with prefix rewriting | `node knowledge-search.js "query"` |
+| `scripts/knowledge-indexer.ts` | Index markdown → FTS5 | `node knowledge-indexer.ts [--rebuild]` |
+| `scripts/knowledge-search.ts` | Search FTS5 with prefix rewriting | `node knowledge-search.ts "query"` |
 
 ### Anti-Corruption Layer (FTS5-specific)
 

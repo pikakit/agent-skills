@@ -1,4 +1,4 @@
-﻿# gitops-workflow
+# gitops-workflow
 
 **Version 1.0.0**
 Engineering
@@ -10,7 +10,7 @@ March 2026
 
 ---
 
-# GitOps Workflow — Declarative Kubernetes Delivery
+# GitOps Workflow � Declarative Kubernetes Delivery
 
 > Git is the single source of truth. Continuous reconciliation. No auto-sync to production.
 
@@ -29,7 +29,7 @@ March 2026
 | K8s deployment needed | Choose ArgoCD or Flux via decision tree |
 | CD pipeline setup | Configure sync policies per environment |
 | Secret management | Use Sealed Secrets or External Secrets (no plaintext) |
-| Multi-environment | Set up staging → production promotion |
+| Multi-environment | Set up staging ? production promotion |
 | Architecture review | Read `rules/engineering-spec.md` |
 
 ---
@@ -38,9 +38,9 @@ March 2026
 
 | Owned by This Skill | NOT Owned |
 |---------------------|-----------|
-| ArgoCD vs Flux decision (4 criteria) | CI pipeline (→ cicd-pipeline) |
-| Sync policy selection (4 policies) | Server management (→ server-ops) |
-| Repository structure template | Git operations (→ git-workflow) |
+| ArgoCD vs Flux decision (4 criteria) | CI pipeline (? cicd-pipeline) |
+| Sync policy selection (4 policies) | Server management (? server-ops) |
+| Repository structure template | Git operations (? git-workflow) |
 | OpenGitOps compliance (4 principles) | Cluster provisioning |
 | Secret management strategy | Helm chart development |
 
@@ -48,7 +48,7 @@ March 2026
 
 ---
 
-## OpenGitOps Principles (4 — All Required)
+## OpenGitOps Principles (4 � All Required)
 
 | # | Principle | Requirement |
 |---|-----------|-------------|
@@ -63,12 +63,12 @@ March 2026
 
 | Criterion | ArgoCD | Flux |
 |-----------|--------|------|
-| Web UI | ✅ Rich dashboard | ❌ CLI only |
-| Multi-cluster | ✅ Native support | ⚠️ Requires setup |
-| Helm support | ✅ Native | ✅ Native |
+| Web UI | ? Rich dashboard | ? CLI only |
+| Multi-cluster | ? Native support | ?? Requires setup |
+| Helm support | ? Native | ? Native |
 | Learning curve | Medium | Lower |
 
-**Rule:** needs_ui=true OR cluster_count>1 → **ArgoCD**. Otherwise → **Flux**.
+**Rule:** needs_ui=true OR cluster_count>1 ? **ArgoCD**. Otherwise ? **Flux**.
 
 ---
 
@@ -89,14 +89,14 @@ March 2026
 
 ```
 gitops-repo/
-├── apps/
-│   ├── production/
-│   └── staging/
-├── infrastructure/
-│   ├── ingress-nginx/
-│   └── cert-manager/
-└── argocd/
-    └── applications/
++-- apps/
+�   +-- production/
+�   +-- staging/
++-- infrastructure/
+�   +-- ingress-nginx/
+�   +-- cert-manager/
++-- argocd/
+    +-- applications/
 ```
 
 ---
@@ -127,7 +127,7 @@ gitops-repo/
 
 ## Anti-Patterns
 
-| ❌ Don't | ✅ Do |
+| ? Don't | ? Do |
 |---------|-------|
 | Auto-sync to production | Manual sync with approval |
 | Store secrets in Git | Sealed Secrets / External Secrets |
@@ -137,7 +137,7 @@ gitops-repo/
 
 ---
 
-## 📑 Content Map
+## ?? Content Map
 
 | File | Description | When to Read |
 |------|-------------|--------------|
@@ -147,7 +147,7 @@ gitops-repo/
 
 ---
 
-## 🔗 Related
+## ?? Related
 
 | Item | Type | Purpose |
 |------|------|---------|
@@ -323,12 +323,12 @@ data:
 ### Rule: engineering-spec
 
 ---
-title: GitOps Workflow — Engineering Specification
+title: GitOps Workflow � Engineering Specification
 impact: MEDIUM
 tags: gitops
 ---
 
-# GitOps Workflow — Engineering Specification
+# GitOps Workflow � Engineering Specification
 
 > Production-grade specification for declarative Kubernetes deployment with ArgoCD and Flux at FAANG scale.
 
@@ -336,11 +336,11 @@ tags: gitops
 
 ## 1. Overview
 
-GitOps Workflow provides structured decision frameworks for declarative, Git-based Kubernetes continuous delivery: ArgoCD vs Flux tool selection, sync policy configuration (manual/auto/prune/self-heal), repository structure, OpenGitOps compliance, secret management strategy, and multi-environment promotion. The skill operates as an expert knowledge base with reference files — it produces architecture decisions and configuration guidance. It does not install tools, configure clusters, or modify Kubernetes resources.
+GitOps Workflow provides structured decision frameworks for declarative, Git-based Kubernetes continuous delivery: ArgoCD vs Flux tool selection, sync policy configuration (manual/auto/prune/self-heal), repository structure, OpenGitOps compliance, secret management strategy, and multi-environment promotion. The skill operates as an expert knowledge base with reference files � it produces architecture decisions and configuration guidance. It does not install tools, configure clusters, or modify Kubernetes resources.
 
 **Contract Version:** 2.0.0
 **Backward Compatibility:** breaking (first hardened version)
-**Breaking Changes:** None — new spec for first hardening
+**Breaking Changes:** None � new spec for first hardening
 
 ---
 
@@ -353,7 +353,7 @@ Kubernetes deployment at scale faces four quantified problems:
 | Imperative deployments | 45% of K8s deployments use `kubectl apply` ad-hoc | No audit trail, no rollback |
 | Cluster drift | 35% of production clusters drift from declared state within 24h | State inconsistency |
 | Secrets in Git | 20% of GitOps repos contain plaintext secrets | Credential exposure |
-| No promotion workflow | 40% of multi-env setups lack structured promotion | Staging ≠ production |
+| No promotion workflow | 40% of multi-env setups lack structured promotion | Staging ? production |
 
 GitOps Workflow eliminates these with declarative Git-as-source-of-truth, continuous reconciliation, sealed secrets, and environment promotion patterns.
 
@@ -368,7 +368,7 @@ GitOps Workflow eliminates these with declarative Git-as-source-of-truth, contin
 | G3 | ArgoCD vs Flux selection | Decision tree with 4 criteria (UI, multi-cluster, learning curve, team size) |
 | G4 | Sync policy selection | 4 policies mapped to environment type |
 | G5 | No secrets in Git | Sealed Secrets or External Secrets required |
-| G6 | Multi-env promotion | staging → production with approval gate |
+| G6 | Multi-env promotion | staging ? production with approval gate |
 
 ---
 
@@ -471,12 +471,12 @@ Recoverable: boolean
 
 #### Deterministic Guarantees
 
-- Tool selection is deterministic: needs_ui=true OR cluster_count>1 → ArgoCD; else → Flux.
-- Sync policy mapping is fixed: production → manual; dev/staging → auto; cleanup → prune; drift → self-heal.
+- Tool selection is deterministic: needs_ui=true OR cluster_count>1 ? ArgoCD; else ? Flux.
+- Sync policy mapping is fixed: production ? manual; dev/staging ? auto; cleanup ? prune; drift ? self-heal.
 - Repository structure is fixed: apps/{env}/, infrastructure/, argocd/applications/.
-- Secret strategy: null → sealed-secrets (default).
-- Promotion: always staging → production with approval gate for production.
-- OpenGitOps compliance: 4 principles (declarative, versioned, pulled, reconciled) — binary pass/fail.
+- Secret strategy: null ? sealed-secrets (default).
+- Promotion: always staging ? production with approval gate for production.
+- OpenGitOps compliance: 4 principles (declarative, versioned, pulled, reconciled) � binary pass/fail.
 
 #### What Agents May Assume
 
@@ -567,7 +567,7 @@ All phases synchronous. No async pipeline.
 
 | Principle | Enforcement |
 |-----------|-------------|
-| Fixed tool selection | needs_ui OR multi-cluster → ArgoCD; else → Flux |
+| Fixed tool selection | needs_ui OR multi-cluster ? ArgoCD; else ? Flux |
 | Fixed sync policies | 4 policies with fixed env mapping |
 | Fixed repo structure | apps/{env}/, infrastructure/, argocd/applications/ |
 | Fixed safety rules | No auto-sync production; no plaintext secrets; rollback tested |
@@ -708,7 +708,7 @@ All resources scoped to invocation. No persistent handles.
 |-----------|-----------|-----------|------------|
 | Tool selection | < 2 ms | < 5 ms | 20 ms |
 | Full guide | < 10 ms | < 30 ms | 50 ms |
-| Output size | ≤ 1,000 chars | ≤ 3,000 chars | 5,000 chars |
+| Output size | = 1,000 chars | = 3,000 chars | 5,000 chars |
 
 ---
 
@@ -728,16 +728,16 @@ All resources scoped to invocation. No persistent handles.
 
 | Requirement | Status | Evidence |
 |-------------|--------|----------|
-| YAML frontmatter complete | ✅ | name, description, metadata with category, version, triggers, coordinates_with, success_metrics |
-| SKILL.md < 200 lines | ✅ | Entry point under 200 lines |
-| Prerequisites documented | ✅ | Kubernetes cluster, kubectl, ArgoCD or Flux |
-| When to Use section | ✅ | Situation-based routing table |
-| Core content matches skill type | ✅ | Expert type: decision trees, tool selection |
-| Troubleshooting section | ✅ | Anti-patterns table |
-| Related section | ✅ | Cross-links to cicd-pipeline, server-ops, git-workflow |
-| Content Map for multi-file | ✅ | Links to 2 reference files + engineering-spec.md |
-| Contract versioning | ✅ | contract_version, backward_compatibility, breaking_changes |
-| Compliance matrix structured | ✅ | This table with ✅/❌ + evidence |
+| YAML frontmatter complete | ? | name, description, metadata with category, version, triggers, coordinates_with, success_metrics |
+| SKILL.md < 200 lines | ? | Entry point under 200 lines |
+| Prerequisites documented | ? | Kubernetes cluster, kubectl, ArgoCD or Flux |
+| When to Use section | ? | Situation-based routing table |
+| Core content matches skill type | ? | Expert type: decision trees, tool selection |
+| Troubleshooting section | ? | Anti-patterns table |
+| Related section | ? | Cross-links to cicd-pipeline, server-ops, git-workflow |
+| Content Map for multi-file | ? | Links to 2 reference files + engineering-spec.md |
+| Contract versioning | ? | contract_version, backward_compatibility, breaking_changes |
+| Compliance matrix structured | ? | This table with ?/? + evidence |
 
 ---
 
@@ -745,24 +745,24 @@ All resources scoped to invocation. No persistent handles.
 
 | Category | Check | Status |
 |----------|-------|--------|
-| **Functionality** | ArgoCD vs Flux decision tree (4 criteria) | ✅ |
-| **Functionality** | 4 sync policies with fixed env mapping | ✅ |
-| **Functionality** | Repository structure template | ✅ |
-| **Functionality** | Secret management strategy | ✅ |
-| **Functionality** | Multi-env promotion with approval | ✅ |
-| **Functionality** | OpenGitOps compliance (4 principles) | ✅ |
-| **Contracts** | Input/output/error schemas in pseudo-schema format | ✅ |
-| **Contracts** | Contract versioning with semver | ✅ |
-| **Failure** | Error taxonomy with 5 categorized codes | ✅ |
-| **Failure** | No fallback to default recommendation | ✅ |
-| **Failure** | Zero internal retries | ✅ |
-| **Determinism** | Fixed tool selection, fixed policies, fixed structure | ✅ |
-| **Security** | No auto-sync production, no plaintext secrets | ✅ |
-| **Observability** | Structured log schema with 5 mandatory fields | ✅ |
-| **Observability** | 4 metrics defined | ✅ |
-| **Performance** | P50/P99 targets for all operations | ✅ |
-| **Scalability** | Stateless; unlimited parallel | ✅ |
-| **Compliance** | All skill-design-guide.md sections mapped with evidence | ✅ |
+| **Functionality** | ArgoCD vs Flux decision tree (4 criteria) | ? |
+| **Functionality** | 4 sync policies with fixed env mapping | ? |
+| **Functionality** | Repository structure template | ? |
+| **Functionality** | Secret management strategy | ? |
+| **Functionality** | Multi-env promotion with approval | ? |
+| **Functionality** | OpenGitOps compliance (4 principles) | ? |
+| **Contracts** | Input/output/error schemas in pseudo-schema format | ? |
+| **Contracts** | Contract versioning with semver | ? |
+| **Failure** | Error taxonomy with 5 categorized codes | ? |
+| **Failure** | No fallback to default recommendation | ? |
+| **Failure** | Zero internal retries | ? |
+| **Determinism** | Fixed tool selection, fixed policies, fixed structure | ? |
+| **Security** | No auto-sync production, no plaintext secrets | ? |
+| **Observability** | Structured log schema with 5 mandatory fields | ? |
+| **Observability** | 4 metrics defined | ? |
+| **Performance** | P50/P99 targets for all operations | ? |
+| **Scalability** | Stateless; unlimited parallel | ? |
+| **Compliance** | All skill-design-guide.md sections mapped with evidence | ? |
 
 ---
 
@@ -918,4 +918,4 @@ data:
 
 ---
 
-⚡ PikaKit v3.9.169
+? PikaKit v3.9.169

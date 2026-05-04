@@ -1,10 +1,10 @@
-﻿---
-title: CI/CD Pipeline — Engineering Specification
+---
+title: CI/CD Pipeline � Engineering Specification
 impact: MEDIUM
 tags: cicd-pipeline
 ---
 
-# CI/CD Pipeline — Engineering Specification
+# CI/CD Pipeline � Engineering Specification
 
 > Production-grade specification for deployment decision-making and safe release workflows at FAANG scale.
 
@@ -14,11 +14,11 @@ tags: cicd-pipeline
 
 CI/CD Pipeline provides structured decision frameworks for production deployment: platform selection, deployment strategy (rolling/blue-green/canary), rollback procedures, pre-deployment validation, and post-deployment verification. The skill operates as an expert knowledge base that produces deployment architecture decisions and operational runbooks, not deployment automation code.
 
-The skill covers a 5-phase deployment lifecycle (Prepare → Backup → Deploy → Verify → Confirm), platform-specific rollback strategies, and zero-downtime deployment patterns.
+The skill covers a 5-phase deployment lifecycle (Prepare ? Backup ? Deploy ? Verify ? Confirm), platform-specific rollback strategies, and zero-downtime deployment patterns.
 
 **Contract Version:** 2.0.0
 **Backward Compatibility:** breaking (first hardened version)
-**Breaking Changes:** None — new spec for first hardening
+**Breaking Changes:** None � new spec for first hardening
 
 ---
 
@@ -42,10 +42,10 @@ CI/CD Pipeline eliminates these by enforcing a 5-phase deployment lifecycle with
 | ID | Goal | Measurable Constraint |
 |----|------|-----------------------|
 | G1 | Zero-downtime deployments | Every recommendation includes zero-downtime strategy selection |
-| G2 | Rollback within 5 minutes | Every platform recommendation includes rollback procedure with ≤ 5-minute target |
+| G2 | Rollback within 5 minutes | Every platform recommendation includes rollback procedure with = 5-minute target |
 | G3 | Single-change releases | Recommendations enforce one logical change per deployment |
 | G4 | Mandatory pre-deploy validation | 6-item checklist required before any deployment |
-| G5 | Post-deploy monitoring window | ≥ 15-minute active monitoring after every deployment |
+| G5 | Post-deploy monitoring window | = 15-minute active monitoring after every deployment |
 
 ---
 
@@ -69,8 +69,8 @@ CI/CD Pipeline eliminates these by enforcing a 5-phase deployment lifecycle with
 | Deployment strategy selection | Rolling/blue-green/canary decision tree | Strategy implementation |
 | Platform selection | Platform recommendation per project type | Platform configuration |
 | Rollback procedures | Per-platform rollback runbook | Rollback execution |
-| Pre-deploy validation | 6-item checklist | Test execution (→ test-architect) |
-| Post-deploy verification | Monitoring window + health check plan | Monitoring infrastructure (→ observability) |
+| Pre-deploy validation | 6-item checklist | Test execution (? test-architect) |
+| Post-deploy verification | Monitoring window + health check plan | Monitoring infrastructure (? observability) |
 | Emergency procedures | Incident response runbook | Incident management tooling |
 
 **Side-effect boundary:** CI/CD Pipeline produces deployment decisions, checklists, and runbooks. It does not execute deployments, modify infrastructure, or run commands.
@@ -113,7 +113,7 @@ Data: {
   }>
   rollback: {
     method: string         # Platform-specific rollback method
-    target_time: string    # e.g., "≤ 5 minutes"
+    target_time: string    # e.g., "= 5 minutes"
     trigger: Array<string> # Conditions that trigger rollback
   }
   pre_deploy_checklist: Array<string>
@@ -149,9 +149,9 @@ Recoverable: boolean
 #### Deterministic Guarantees
 
 - Same `Request_Type` + `Context` = identical strategy + platform + rollback output.
-- Decision tree evaluation order: project_type → scale → risk_level → change_type → constraints.
-- Rollback target time is fixed at ≤ 5 minutes for all platforms.
-- Post-deploy monitoring window is fixed at ≥ 15 minutes.
+- Decision tree evaluation order: project_type ? scale ? risk_level ? change_type ? constraints.
+- Rollback target time is fixed at = 5 minutes for all platforms.
+- Post-deploy monitoring window is fixed at = 15 minutes.
 - No randomization, no A/B selection.
 
 #### What Agents May Assume
@@ -191,7 +191,7 @@ Recoverable: boolean
 6. Confirm or rollback based on criteria (caller's responsibility)
 ```
 
-**Recommended ordering:** strategy-selection → platform-selection → rollback-plan → pre-deploy-check → post-deploy-plan.
+**Recommended ordering:** strategy-selection ? platform-selection ? rollback-plan ? pre-deploy-check ? post-deploy-plan.
 
 #### Execution Guarantees
 
@@ -249,9 +249,9 @@ All phases synchronous. No async pipeline.
 
 | Principle | Enforcement |
 |-----------|-------------|
-| Fixed decision tree ordering | project_type → scale → risk_level → change_type → constraints |
-| Fixed rollback target | ≤ 5 minutes for all platforms |
-| Fixed monitoring window | ≥ 15 minutes post-deploy |
+| Fixed decision tree ordering | project_type ? scale ? risk_level ? change_type ? constraints |
+| Fixed rollback target | = 5 minutes for all platforms |
+| Fixed monitoring window | = 15 minutes post-deploy |
 | Fixed pre-deploy checklist | 6 items; no optional items |
 | No external calls | Decisions use only local reference files |
 | No ambient state | Each invocation operates solely on explicit inputs |
@@ -408,7 +408,7 @@ All resources scoped to invocation. No persistent handles.
 | Strategy selection | < 5 ms | < 20 ms | 50 ms |
 | Full deployment plan | < 10 ms | < 30 ms | 100 ms |
 | Reference file read | < 1 ms | < 5 ms | 1,000 ms |
-| Output size | ≤ 1,000 chars | ≤ 3,000 chars | 5,000 chars |
+| Output size | = 1,000 chars | = 3,000 chars | 5,000 chars |
 
 ---
 
@@ -428,17 +428,17 @@ All resources scoped to invocation. No persistent handles.
 
 | Requirement | Status | Evidence |
 |-------------|--------|----------|
-| YAML frontmatter complete | ✅ | name, description, metadata with category, version, triggers, coordinates_with, success_metrics |
-| SKILL.md < 200 lines | ✅ | Entry point under 200 lines |
-| Prerequisites documented | ✅ | No external dependencies |
-| When to Use section | ✅ | Deployment scenario decision table |
-| Quick Reference | ✅ | 5-phase deployment, platform selection |
-| Core content matches skill type | ✅ | Expert type: decision trees, checklists |
-| Troubleshooting section | ✅ | Anti-patterns table |
-| Related section | ✅ | Cross-links to git-workflow, security-scanner, gitops |
-| Content Map for multi-file | ✅ | Links to reference files + engineering-spec.md |
-| Contract versioning | ✅ | contract_version, backward_compatibility, breaking_changes in Integration Model |
-| Compliance matrix structured | ✅ | This table with ✅/❌ + evidence |
+| YAML frontmatter complete | ? | name, description, metadata with category, version, triggers, coordinates_with, success_metrics |
+| SKILL.md < 200 lines | ? | Entry point under 200 lines |
+| Prerequisites documented | ? | No external dependencies |
+| When to Use section | ? | Deployment scenario decision table |
+| Quick Reference | ? | 5-phase deployment, platform selection |
+| Core content matches skill type | ? | Expert type: decision trees, checklists |
+| Troubleshooting section | ? | Anti-patterns table |
+| Related section | ? | Cross-links to git-workflow, security-scanner, gitops |
+| Content Map for multi-file | ? | Links to reference files + engineering-spec.md |
+| Contract versioning | ? | contract_version, backward_compatibility, breaking_changes in Integration Model |
+| Compliance matrix structured | ? | This table with ?/? + evidence |
 
 ---
 
@@ -446,28 +446,28 @@ All resources scoped to invocation. No persistent handles.
 
 | Category | Check | Status |
 |----------|-------|--------|
-| **Functionality** | 5-phase deployment lifecycle defined | ✅ |
-| **Functionality** | 3 zero-downtime strategies (rolling, blue-green, canary) | ✅ |
-| **Functionality** | Per-platform rollback procedures | ✅ |
-| **Contracts** | Input/output/error schemas in pseudo-schema format | ✅ |
-| **Contracts** | Contract versioning with semver | ✅ |
-| **Contracts** | Agent assumptions and non-assumptions documented | ✅ |
-| **Failure** | Error taxonomy with 8 categorized error codes | ✅ |
-| **Failure** | No silent failures; default to highest risk on ambiguity | ✅ |
-| **Failure** | Zero internal retries | ✅ |
-| **Determinism** | Fixed decision tree ordering | ✅ |
-| **Determinism** | Fixed rollback target (≤ 5 min) and monitoring window (≥ 15 min) | ✅ |
-| **Security** | No credential storage; secrets referenced by name | ✅ |
-| **Security** | Pre-deploy security scan mandatory in every plan | ✅ |
-| **Observability** | Structured log schema with 5 mandatory fields + 4 log points | ✅ |
-| **Observability** | 5 metrics defined | ✅ |
-| **Performance** | P50/P99 targets for all operations | ✅ |
-| **Scalability** | Stateless; unlimited parallel invocations | ✅ |
-| **Compliance** | All skill-design-guide.md sections mapped with evidence | ✅ |
+| **Functionality** | 5-phase deployment lifecycle defined | ? |
+| **Functionality** | 3 zero-downtime strategies (rolling, blue-green, canary) | ? |
+| **Functionality** | Per-platform rollback procedures | ? |
+| **Contracts** | Input/output/error schemas in pseudo-schema format | ? |
+| **Contracts** | Contract versioning with semver | ? |
+| **Contracts** | Agent assumptions and non-assumptions documented | ? |
+| **Failure** | Error taxonomy with 8 categorized error codes | ? |
+| **Failure** | No silent failures; default to highest risk on ambiguity | ? |
+| **Failure** | Zero internal retries | ? |
+| **Determinism** | Fixed decision tree ordering | ? |
+| **Determinism** | Fixed rollback target (= 5 min) and monitoring window (= 15 min) | ? |
+| **Security** | No credential storage; secrets referenced by name | ? |
+| **Security** | Pre-deploy security scan mandatory in every plan | ? |
+| **Observability** | Structured log schema with 5 mandatory fields + 4 log points | ? |
+| **Observability** | 5 metrics defined | ? |
+| **Performance** | P50/P99 targets for all operations | ? |
+| **Scalability** | Stateless; unlimited parallel invocations | ? |
+| **Compliance** | All skill-design-guide.md sections mapped with evidence | ? |
 
 ---
 
-⚡ ## OpenTelemetry Observability (MANDATORY)
+? ## OpenTelemetry Observability (MANDATORY)
 
 - **DORA Metrics**: EVERY CI/CD pipeline job MUST emit OpenTelemetry Spans to calculate DORA Metrics (Deployment Frequency, Lead Time for Changes).
 - **Distributed Tracing**: Trace context MUST be propagated from PR creation through the entire deployment pipeline to production.

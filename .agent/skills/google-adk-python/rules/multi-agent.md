@@ -1,4 +1,4 @@
-﻿---
+---
 title: Multi-Agent Orchestration
 impact: MEDIUM
 tags: google-adk-python
@@ -127,7 +127,7 @@ router = LlmAgent(
 
 # Router auto-delegates based on query
 response = router.run("I was charged twice")
-# → Routes to billing_agent
+# ? Routes to billing_agent
 ```
 
 ---
@@ -143,4 +143,4 @@ response = router.run("I was charged twice")
 
 ---
 
-⚡ PikaKit v3.9.169
+? PikaKit v3.9.169

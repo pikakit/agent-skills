@@ -27,8 +27,10 @@ Generate comprehensive tests, execute suites, and analyze coverage — supportin
 
 ```
 Flow:
-recovery.save(state) → generate(tests) → execute(suite)       ↓
-analyze(coverage, mutations, visual, contracts)       ↓
+recovery.save(state) → generate(tests) → execute(suite)
+       ↓
+analyze(coverage, mutations, visual, contracts)
+       ↓
 learner.log(failure_patterns)
 ```
 

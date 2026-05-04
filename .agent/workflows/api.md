@@ -28,9 +28,12 @@ Build well-architected APIs from specification to implementation — covering de
 
 ```
 Flow:
-assessor.evaluate(api_scope) → risk level       ↓
-recovery.save(existing_api) → backup       ↓
-design → implement → test → secure       ↓
+assessor.evaluate(api_scope) → risk level
+       ↓
+recovery.save(existing_api) → backup
+       ↓
+design → implement → test → secure
+       ↓
 learner.log(patterns)
 ```
 

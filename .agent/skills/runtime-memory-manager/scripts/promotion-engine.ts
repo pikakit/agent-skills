@@ -41,8 +41,8 @@ export async function runPromotionEngine() {
 
     // 2. Adjust score based on past feedback (AI Learning from mistakes)
     const feedbacks = db.prepare(`SELECT feedback_type FROM pattern_feedback WHERE pattern_id = ?`).all(candidate.id);
-    const negativeFeedbackCount = feedbacks.filter(f => (f as any).feedback_type === 'incorrect').length;
-    const positiveFeedbackCount = feedbacks.filter(f => (f as any).feedback_type === 'correct').length;
+    const negativeFeedbackCount = feedbacks.filter((f: any) => (f as any).feedback_type === 'incorrect').length;
+    const positiveFeedbackCount = feedbacks.filter((f: any) => (f as any).feedback_type === 'correct').length;
 
     // Strict self-correction
     if (negativeFeedbackCount > positiveFeedbackCount) {

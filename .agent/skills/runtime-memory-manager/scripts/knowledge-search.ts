@@ -6,9 +6,9 @@
  * Returns top-5 BM25-ranked results with prefix query rewriting.
  *
  * Usage:
- *   node knowledge-search.js "auth patterns"     Search for articles
- *   node knowledge-search.js "fast"               Prefix match → fast*
- *   node knowledge-search.js --json "query"       Output as JSON
+ *   node knowledge-search.ts "auth patterns"     Search for articles
+ *   node knowledge-search.ts "fast"               Prefix match → fast*
+ *   node knowledge-search.ts --json "query"       Output as JSON
  *
  * Requires: better-sqlite3
  *
@@ -36,7 +36,7 @@ const __dirname = path.dirname(__filename);
  * @param {string} raw - The raw user query
  * @returns {string} FTS5-safe query string
  */
-export function rewriteQuery(raw) {
+export function rewriteQuery(raw: string): string {
   if (!raw || raw.trim().length === 0) return "";
 
   const trimmed = raw.trim();
@@ -44,7 +44,7 @@ export function rewriteQuery(raw) {
   // Check for explicit FTS5 operators
   const hasOperator =
     /[*"():]/.test(trimmed) ||
-    trimmed.split(/\s+/).some((w) => ["AND", "OR", "NOT"].includes(w));
+    trimmed.split(/\s+/).some((w: string) => ["AND", "OR", "NOT"].includes(w));
 
   if (hasOperator) {
     // Check for balanced quotes
@@ -57,7 +57,7 @@ export function rewriteQuery(raw) {
   }
 
   // No operators — split on tokenizer boundaries and append * for prefix matching
-  const tokens = [];
+  const tokens: string[] = [];
   let current = "";
 
   for (const ch of trimmed) {
@@ -85,7 +85,7 @@ export function rewriteQuery(raw) {
  * @param {number} [limit=5] - Max results
  * @returns {Array<{ filePath: string, title: string, snippet: string, score: number }>}
  */
-export function searchKnowledge(db, query, limit = 5) {
+export function searchKnowledge(db: any, query: string, limit: number = 5): any[] {
   const ftsQuery = rewriteQuery(query);
   if (!ftsQuery) return [];
 
@@ -102,8 +102,8 @@ export function searchKnowledge(db, query, limit = 5) {
       LIMIT ?
     `);
 
-    return stmt.all(ftsQuery, limit);
-  } catch (err) {
+    return stmt.all(ftsQuery, limit) as any[];
+  } catch (err: any) {
     // FTS5 parse errors (stray operators from user input) → return empty
     if (err.message.includes("fts5")) {
       return [];
@@ -121,14 +121,14 @@ async function main() {
   const query = queryArgs.join(" ");
 
   if (!query) {
-    console.log("Usage: node knowledge-search.js [--json] <query>");
-    console.log('  e.g.: node knowledge-search.js "auth patterns"');
-    console.log('  e.g.: node knowledge-search.js "fast"');
+    console.log("Usage: node knowledge-search.ts [--json] <query>");
+    console.log('  e.g.: node knowledge-search.ts "auth patterns"');
+    console.log('  e.g.: node knowledge-search.ts "fast"');
     process.exit(2);
   }
 
   // Dynamic import for better-sqlite3
-  let Database;
+  let Database: any;
   try {
     const betterSqlite3 = await import("better-sqlite3");
     Database = betterSqlite3.default;
@@ -146,7 +146,7 @@ async function main() {
       console.log(JSON.stringify({ results: [], error: "No memory.sqlite found" }));
     } else {
       console.error("No memory.sqlite found. Run the indexer first:");
-      console.error("  node knowledge-indexer.js");
+      console.error("  node knowledge-indexer.ts");
     }
     process.exit(1);
   }
@@ -165,7 +165,7 @@ async function main() {
       console.log(JSON.stringify({ results: [], error: "FTS5 index not built" }));
     } else {
       console.error("FTS5 index not built. Run the indexer first:");
-      console.error("  node knowledge-indexer.js");
+      console.error("  node knowledge-indexer.ts");
     }
     db.close();
     process.exit(1);
@@ -204,7 +204,7 @@ async function main() {
 const isMain =
   process.argv[1] &&
   (process.argv[1] === fileURLToPath(import.meta.url) ||
-    process.argv[1].endsWith("knowledge-search.js"));
+    process.argv[1].endsWith("knowledge-search.ts"));
 
 if (isMain) {
   main().catch((err) => {

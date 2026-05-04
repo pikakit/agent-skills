@@ -1,4 +1,4 @@
-﻿---
+---
 title: Touch Psychology Reference
 impact: MEDIUM
 tags: mobile-developer
@@ -17,54 +17,54 @@ tags: mobile-developer
 
 ```
 DESKTOP (Mouse/Trackpad):
-├── Cursor size: 1 pixel (precision)
-├── Visual feedback: Hover states
-├── Error cost: Low (easy to retry)
-└── Target acquisition: Fast, precise
++-- Cursor size: 1 pixel (precision)
++-- Visual feedback: Hover states
++-- Error cost: Low (easy to retry)
++-- Target acquisition: Fast, precise
 
 MOBILE (Finger):
-├── Contact area: ~7mm diameter (imprecise)
-├── Visual feedback: No hover, only tap
-├── Error cost: High (frustrating retries)
-├── Occlusion: Finger covers the target
-└── Target acquisition: Slower, needs larger targets
++-- Contact area: ~7mm diameter (imprecise)
++-- Visual feedback: No hover, only tap
++-- Error cost: High (frustrating retries)
++-- Occlusion: Finger covers the target
++-- Target acquisition: Slower, needs larger targets
 ```
 
 ### Fitts' Law Formula Adapted
 
 ```
-Touch acquisition time = a + b × log₂(1 + D/W)
+Touch acquisition time = a + b � log2(1 + D/W)
 
 Where:
-├── D = Distance to target
-├── W = Width of target
-└── For touch: W must be MUCH larger than desktop
++-- D = Distance to target
++-- W = Width of target
++-- For touch: W must be MUCH larger than desktop
 ```
 
 ### Minimum Touch Target Sizes
 
 | Platform | Minimum | Recommended | Use For |
 |----------|---------|-------------|---------|
-| **iOS (HIG)** | 44pt × 44pt | 48pt+ | All tappable elements |
-| **Android (Material)** | 48dp × 48dp | 56dp+ | All tappable elements |
-| **WCAG 2.2** | 44px × 44px | - | Accessibility compliance |
+| **iOS (HIG)** | 44pt � 44pt | 48pt+ | All tappable elements |
+| **Android (Material)** | 48dp � 48dp | 56dp+ | All tappable elements |
+| **WCAG 2.2** | 44px � 44px | - | Accessibility compliance |
 | **Critical Actions** | - | 56-64px | Primary CTAs, destructive actions |
 
 ### Visual Size vs Hit Area
 
 ```
-┌─────────────────────────────────────┐
-│                                     │
-│    ┌─────────────────────────┐      │
-│    │                         │      │
-│    │    [  BUTTON  ]         │ ← Visual: 36px
-│    │                         │      │
-│    └─────────────────────────┘      │
-│                                     │ ← Hit area: 48px (padding extends)
-└─────────────────────────────────────┘
++-------------------------------------+
+�                                     �
+�    +-------------------------+      �
+�    �                         �      �
+�    �    [  BUTTON  ]         � ? Visual: 36px
+�    �                         �      �
+�    +-------------------------+      �
+�                                     � ? Hit area: 48px (padding extends)
++-------------------------------------+
 
-✅ CORRECT: Visual can be smaller if hit area is minimum 44-48px
-❌ WRONG: Making hit area same as small visual element
+? CORRECT: Visual can be smaller if hit area is minimum 44-48px
+? WRONG: Making hit area same as small visual element
 ```
 
 ### Application Rules
@@ -87,26 +87,26 @@ Where:
 ```
 Research shows: 49% of users hold phone one-handed.
 
-┌─────────────────────────────────────┐
-│                                     │
-│  ┌─────────────────────────────┐    │
-│  │       HARD TO REACH         │    │ ← Status bar, top nav
-│  │      (requires stretch)     │    │    Put: Back, menu, settings
-│  │                             │    │
-│  ├─────────────────────────────┤    │
-│  │                             │    │
-│  │       OK TO REACH           │    │ ← Content area
-│  │      (comfortable)          │    │    Put: Secondary actions, content
-│  │                             │    │
-│  ├─────────────────────────────┤    │
-│  │                             │    │
-│  │       EASY TO REACH         │    │ ← Tab bar, FAB zone
-│  │      (thumb's arc)          │    │    Put: PRIMARY CTAs!
-│  │                             │    │
-│  └─────────────────────────────┘    │
-│                                     │
-│          [    HOME    ]             │
-└─────────────────────────────────────┘
++-------------------------------------+
+�                                     �
+�  +-----------------------------+    �
+�  �       HARD TO REACH         �    � ? Status bar, top nav
+�  �      (requires stretch)     �    �    Put: Back, menu, settings
+�  �                             �    �
+�  +-----------------------------�    �
+�  �                             �    �
+�  �       OK TO REACH           �    � ? Content area
+�  �      (comfortable)          �    �    Put: Secondary actions, content
+�  �                             �    �
+�  +-----------------------------�    �
+�  �                             �    �
+�  �       EASY TO REACH         �    � ? Tab bar, FAB zone
+�  �      (thumb's arc)          �    �    Put: PRIMARY CTAs!
+�  �                             �    �
+�  +-----------------------------+    �
+�                                     �
+�          [    HOME    ]             �
++-------------------------------------+
 ```
 
 ### Thumb Arc (Right-Handed User)
@@ -114,18 +114,18 @@ Research shows: 49% of users hold phone one-handed.
 ```
 Right hand holding phone:
 
-┌───────────────────────────────┐
-│  STRETCH      STRETCH    OK   │
-│                               │
-│  STRETCH        OK       EASY │
-│                               │
-│    OK          EASY      EASY │
-│                               │
-│   EASY         EASY      EASY │
-└───────────────────────────────┘
++-------------------------------+
+�  STRETCH      STRETCH    OK   �
+�                               �
+�  STRETCH        OK       EASY �
+�                               �
+�    OK          EASY      EASY �
+�                               �
+�   EASY         EASY      EASY �
++-------------------------------+
 
 Left hand is mirrored.
-→ Design for BOTH hands or assume right-dominant
+? Design for BOTH hands or assume right-dominant
 ```
 
 ### Placement Guidelines
@@ -146,11 +146,11 @@ Left hand is mirrored.
 On large phones, top 40% becomes "dead zone" for one-handed use.
 
 Solutions:
-├── Reachability features (iOS)
-├── Pull-down interfaces (drawer pulls content down)
-├── Bottom sheet navigation
-├── Floating action buttons
-└── Gesture-based alternatives to top actions
++-- Reachability features (iOS)
++-- Pull-down interfaces (drawer pulls content down)
++-- Bottom sheet navigation
++-- Floating action buttons
++-- Gesture-based alternatives to top actions
 ```
 
 ---
@@ -162,7 +162,7 @@ Solutions:
 | Aspect | Click (Desktop) | Touch (Mobile) |
 |--------|-----------------|----------------|
 | **Feedback timing** | Can wait 100ms | Expect instant (<50ms) |
-| **Visual feedback** | Hover → Click | Immediate tap response |
+| **Visual feedback** | Hover ? Click | Immediate tap response |
 | **Error tolerance** | Easy retry | Frustrating, feels broken |
 | **Precision** | High | Low |
 | **Context menu** | Right-click | Long press |
@@ -171,33 +171,33 @@ Solutions:
 ### Touch Feedback Requirements
 
 ```
-Tap → Immediate visual change (< 50ms)
-├── Highlight state (background color change)
-├── Scale down slightly (0.95-0.98)
-├── Ripple effect (Android Material)
-├── Haptic feedback for confirmation
-└── Never nothing!
+Tap ? Immediate visual change (< 50ms)
++-- Highlight state (background color change)
++-- Scale down slightly (0.95-0.98)
++-- Ripple effect (Android Material)
++-- Haptic feedback for confirmation
++-- Never nothing!
 
-Loading → Show within 100ms
-├── If action takes > 100ms
-├── Show spinner/progress
-├── Disable button (prevent double tap)
-└── Optimistic UI when possible
+Loading ? Show within 100ms
++-- If action takes > 100ms
++-- Show spinner/progress
++-- Disable button (prevent double tap)
++-- Optimistic UI when possible
 ```
 
 ### The "Fat Finger" Problem
 
 ```
 Problem: Finger occludes target during tap
-├── User can't see exactly where they're tapping
-├── Visual feedback appears UNDER finger
-└── Increases error rate
++-- User can't see exactly where they're tapping
++-- Visual feedback appears UNDER finger
++-- Increases error rate
 
 Solutions:
-├── Show feedback ABOVE touch point (tooltips)
-├── Use cursor-like offset for precision tasks
-├── Magnification loupe for text selection
-└── Large enough targets that precision doesn't matter
++-- Show feedback ABOVE touch point (tooltips)
++-- Use cursor-like offset for precision tasks
++-- Magnification loupe for text selection
++-- Large enough targets that precision doesn't matter
 ```
 
 ---
@@ -208,16 +208,16 @@ Solutions:
 
 ```
 Problem: Gestures are INVISIBLE.
-├── User must discover/remember them
-├── No hover/visual hint
-├── Different mental model than tap
-└── Many users never discover gestures
++-- User must discover/remember them
++-- No hover/visual hint
++-- Different mental model than tap
++-- Many users never discover gestures
 
 Solution: Always provide visible alternative
-├── Swipe to delete → Also show delete button or menu
-├── Pull to refresh → Also show refresh button
-├── Pinch to zoom → Also show zoom controls
-└── Gestures as shortcuts, not only way
++-- Swipe to delete ? Also show delete button or menu
++-- Pull to refresh ? Also show refresh button
++-- Pinch to zoom ? Also show zoom controls
++-- Gestures as shortcuts, not only way
 ```
 
 ### Common Gesture Conventions
@@ -237,16 +237,16 @@ Solution: Always provide visible alternative
 ```
 Swipe actions need visual hints:
 
-┌─────────────────────────────────────────┐
-│  ┌───┐                                  │
-│  │ ≡ │  Item with hidden actions...   → │ ← Edge hint (partial color)
-│  └───┘                                  │
-└─────────────────────────────────────────┘
++-----------------------------------------+
+�  +---+                                  �
+�  � = �  Item with hidden actions...   ? � ? Edge hint (partial color)
+�  +---+                                  �
++-----------------------------------------+
 
-✅ Good: Slight color peek at edge suggesting swipe
-✅ Good: Drag handle icon ( ≡ ) suggesting reorder
-✅ Good: Onboarding tooltip explaining gesture
-❌ Bad: Hidden gestures with no visual affordance
+? Good: Slight color peek at edge suggesting swipe
+? Good: Drag handle icon ( = ) suggesting reorder
+? Good: Onboarding tooltip explaining gesture
+? Bad: Hidden gestures with no visual affordance
 ```
 
 ### Platform Gesture Differences
@@ -267,16 +267,16 @@ Swipe actions need visual hints:
 
 ```
 Haptics provide:
-├── Confirmation without looking
-├── Richer, more premium feel
-├── Accessibility (blind users)
-├── Reduced error rate
-└── Emotional satisfaction
++-- Confirmation without looking
++-- Richer, more premium feel
++-- Accessibility (blind users)
++-- Reduced error rate
++-- Emotional satisfaction
 
 Without haptics:
-├── Feels "cheap" or web-like
-├── User unsure if action registered
-└── Missed opportunity for delight
++-- Feels "cheap" or web-like
++-- User unsure if action registered
++-- Missed opportunity for delight
 ```
 
 ### iOS Haptic Types
@@ -305,22 +305,22 @@ Without haptics:
 ### Haptic Usage Guidelines
 
 ```
-✅ DO use haptics for:
-├── Button taps
-├── Toggle switches
-├── Picker/slider values
-├── Pull to refresh trigger
-├── Successful action completion
-├── Errors and warnings
-├── Swipe action thresholds
-└── Important state changes
+? DO use haptics for:
++-- Button taps
++-- Toggle switches
++-- Picker/slider values
++-- Pull to refresh trigger
++-- Successful action completion
++-- Errors and warnings
++-- Swipe action thresholds
++-- Important state changes
 
-❌ DON'T use haptics for:
-├── Every scroll position
-├── Every list item
-├── Background events
-├── Passive displays
-└── Too frequently (haptic fatigue)
+? DON'T use haptics for:
++-- Every scroll position
++-- Every list item
++-- Background events
++-- Passive displays
++-- Too frequently (haptic fatigue)
 ```
 
 ### Haptic Intensity Mapping
@@ -351,29 +351,29 @@ Without haptics:
 
 ```
 1. ONE PRIMARY ACTION per screen
-   └── Clear what to do next
+   +-- Clear what to do next
    
 2. PROGRESSIVE DISCLOSURE
-   └── Show only what's needed now
+   +-- Show only what's needed now
    
 3. SMART DEFAULTS
-   └── Pre-fill what you can
+   +-- Pre-fill what you can
    
 4. CHUNKING
-   └── Break long forms into steps
+   +-- Break long forms into steps
    
 5. RECOGNITION over RECALL
-   └── Show options, don't make user remember
+   +-- Show options, don't make user remember
    
 6. CONTEXT PERSISTENCE
-   └── Save state on interrupt/background
+   +-- Save state on interrupt/background
 ```
 
 ### Miller's Law for Mobile
 
 ```
-Desktop: 7±2 items in working memory
-Mobile: Reduce to 5±1 (more distractions)
+Desktop: 7�2 items in working memory
+Mobile: Reduce to 5�1 (more distractions)
 
 Navigation: Max 5 tab bar items
 Options: Max 5 per menu level
@@ -386,16 +386,16 @@ Steps: Max 5 visible steps in progress
 More choices = slower decisions
 
 Mobile impact: Even worse than desktop
-├── Smaller screen = less overview
-├── Scrolling required = items forgotten
-├── Interruptions = lost context
-└── Decision fatigue faster
++-- Smaller screen = less overview
++-- Scrolling required = items forgotten
++-- Interruptions = lost context
++-- Decision fatigue faster
 
 Solution: Progressive disclosure
-├── Start with 3-5 options
-├── "More" for additional
-├── Smart ordering (most used first)
-└── Previous selections remembered
++-- Start with 3-5 options
++-- "More" for additional
++-- Smart ordering (most used first)
++-- Previous selections remembered
 ```
 
 ---
@@ -406,18 +406,18 @@ Solution: Progressive disclosure
 
 ```
 Users with motor impairments may:
-├── Have tremors (need larger targets)
-├── Use assistive devices (different input method)
-├── Have limited reach (one-handed necessity)
-├── Need more time (avoid timeouts)
-└── Make accidental touches (need confirmation)
++-- Have tremors (need larger targets)
++-- Use assistive devices (different input method)
++-- Have limited reach (one-handed necessity)
++-- Need more time (avoid timeouts)
++-- Make accidental touches (need confirmation)
 
 Design responses:
-├── Generous touch targets (48dp+)
-├── Adjustable timing for gestures
-├── Undo for destructive actions
-├── Switch control support
-└── Voice control support
++-- Generous touch targets (48dp+)
++-- Adjustable timing for gestures
++-- Undo for destructive actions
++-- Switch control support
++-- Voice control support
 ```
 
 ### Touch Target Spacing (A11y)
@@ -426,14 +426,14 @@ Design responses:
 WCAG 2.2 Success Criterion 2.5.8:
 
 Touch targets MUST have:
-├── Width: ≥ 44px
-├── Height: ≥ 44px
-├── Spacing: ≥ 8px from adjacent targets
++-- Width: = 44px
++-- Height: = 44px
++-- Spacing: = 8px from adjacent targets
 
 OR the target is:
-├── Inline (within text)
-├── User-controlled (user can resize)
-├── Essential (no alternative design)
++-- Inline (within text)
++-- User-controlled (user can resize)
++-- Essential (no alternative design)
 ```
 
 ### Accessible Touch Patterns
@@ -454,12 +454,12 @@ OR the target is:
 
 ```
 What makes touch feel "premium":
-├── Instant response (< 50ms)
-├── Appropriate haptic feedback
-├── Smooth 60fps animations
-├── Correct resistance/physics
-├── Sound feedback (when appropriate)
-└── Attention to spring physics
++-- Instant response (< 50ms)
++-- Appropriate haptic feedback
++-- Smooth 60fps animations
++-- Correct resistance/physics
++-- Sound feedback (when appropriate)
++-- Attention to spring physics
 ```
 
 ### Emotional Touch Feedback
@@ -476,11 +476,11 @@ What makes touch feel "premium":
 
 ```
 Trust signals in touch interactions:
-├── Consistent behavior (same action = same response)
-├── Reliable feedback (never fails silently)
-├── Secure feel for sensitive actions
-├── Professional animations (not janky)
-└── No accidental actions (confirmation for destructive)
++-- Consistent behavior (same action = same response)
++-- Reliable feedback (never fails silently)
++-- Secure feel for sensitive actions
++-- Professional animations (not janky)
++-- No accidental actions (confirmation for destructive)
 ```
 
 ---
@@ -489,7 +489,7 @@ Trust signals in touch interactions:
 
 ### Before Every Screen
 
-- [ ] **All touch targets ≥ 44-48px?**
+- [ ] **All touch targets = 44-48px?**
 - [ ] **Primary CTA in thumb zone?**
 - [ ] **Destructive actions require confirmation?**
 - [ ] **Gesture alternatives exist (visible buttons)?**
@@ -540,8 +540,8 @@ Warning:  Attention needed
 
 ---
 
-> **Remember:** Every touch is a conversation between user and device. Make it feel natural, responsive, and respectful of human fingers—not precise cursor points.
+> **Remember:** Every touch is a conversation between user and device. Make it feel natural, responsive, and respectful of human fingers�not precise cursor points.
 
 ---
 
-⚡ PikaKit v3.9.169
+? PikaKit v3.9.169

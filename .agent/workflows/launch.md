@@ -42,8 +42,10 @@ Production deployment with automated pre-flight checks, security scanning, build
 
 ```
 Flow:
-assessor.evaluate(risk) → recovery.save(checkpoint)       ↓
-pre-flight gates → build → deploy       ↓
+assessor.evaluate(risk) → recovery.save(checkpoint)
+       ↓
+pre-flight gates → build → deploy
+       ↓
 health check → pass? → learner.log(success)
        → fail
 recovery.restore(checkpoint) → learner.log(failure)

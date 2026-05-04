@@ -1,10 +1,10 @@
-﻿---
-title: Code Constitution — Engineering Specification
+---
+title: Code Constitution � Engineering Specification
 impact: MEDIUM
 tags: code-constitution
 ---
 
-# Code Constitution — Engineering Specification
+# Code Constitution � Engineering Specification
 
 > Production-grade specification for PikaKit governance and constitutional enforcement at FAANG scale.
 
@@ -12,15 +12,15 @@ tags: code-constitution
 
 ## 1. Overview
 
-Code Constitution defines the supreme governance framework for the PikaKit agent system. It enforces non-negotiable laws for correctness, trust, and durability across all agents, skills, and workflows. This is a **meta-governance skill** — it governs how other skills operate, not how code is written.
+Code Constitution defines the supreme governance framework for the PikaKit agent system. It enforces non-negotiable laws for correctness, trust, and durability across all agents, skills, and workflows. This is a **meta-governance skill** � it governs how other skills operate, not how code is written.
 
 The skill has supreme authority: it overrides all other skills, framework defaults, agent preferences, and developer convenience. Output that violates this skill is invalid regardless of functional correctness.
 
-**Skill Type:** Expert (decision tree) — stateless, zero side effects, fully idempotent.
+**Skill Type:** Expert (decision tree) � stateless, zero side effects, fully idempotent.
 
 **Contract Version:** 2.0.0
 **Backward Compatibility:** breaking (first hardened version; previous version lacked formal contracts)
-**Breaking Changes:** None — new spec for first governance hardening.
+**Breaking Changes:** None � new spec for first governance hardening.
 **Migration Notes:** Metadata version bumped from 3.0.0 to 2.0.0 to align with contract versioning. No schema changes for downstream consumers; all changes are additive specification.
 
 ---
@@ -71,7 +71,7 @@ Code Constitution eliminates these by establishing binding laws with explicit en
 |----------|-------|-----------|
 | Agent operating mode (STRICT/PROPOSAL_ONLY/ZERO_TRUST) | Mode definition + enforcement | Agent implementation |
 | Doctrine library | 16 domain-specific rules in `rules/` | Rule execution in other skills |
-| Enforcement behavior | Stop → Cite → Explain → Refuse | Automated remediation |
+| Enforcement behavior | Stop ? Cite ? Explain ? Refuse | Automated remediation |
 | Change control policy | Change Proposal process | Proposal tooling |
 | Violation logging | Log schema definition | Log storage/aggregation |
 | Authority hierarchy | Supreme override definition | Skill priority in GEMINI.md |
@@ -232,7 +232,7 @@ Recoverable: boolean
 |-------|--------|--------|
 | **Classify** | Validate request type, extract scope, identify risk level | Validated input or error |
 | **Evaluate** | Load applicable doctrines from `rules/`, check each against context | Violation list (may be empty) |
-| **Decide** | Apply decision logic: 0 violations → approve, ≥1 blocking → refuse | Decision + conditions/violations |
+| **Decide** | Apply decision logic: 0 violations ? approve, =1 blocking ? refuse | Decision + conditions/violations |
 | **Emit** | Return structured output with enforcement action | Complete output schema |
 
 All phases execute synchronously in a single invocation. Fail-closed: any phase failure defaults to "refuse."
@@ -258,7 +258,7 @@ ELSE:
 |-----------|-------------|
 | Fixed authority hierarchy | Constitution > all skills > all agents; zero override paths |
 | Fixed agent operating mode | STRICT / PROPOSAL_ONLY / ZERO_TRUST; immutable at runtime |
-| Fail-closed default | Ambiguity → refuse or escalate; never approve by default |
+| Fail-closed default | Ambiguity ? refuse or escalate; never approve by default |
 | Doctrine evaluation order | Alphabetical by doctrine file name; deterministic traversal |
 | No external calls | Decisions use only local doctrine files in `rules/` |
 | No ambient state | Each invocation operates solely on explicit inputs |
@@ -272,7 +272,7 @@ ELSE:
 ### State Machine
 
 ```
-IDLE → IDLE  [every invocation starts and ends in IDLE]  // terminal state
+IDLE ? IDLE  [every invocation starts and ends in IDLE]  // terminal state
 ```
 
 Stateless. Fully idempotent. No persistent state.
@@ -322,7 +322,7 @@ Each invocation produces an identical output for identical inputs. The constitut
 | Parameter | Default | Maximum | Rationale |
 |-----------|---------|---------|-----------|
 | Full evaluation timeout | 200 ms | 500 ms | Synchronous rule check across 16 doctrine files |
-| Single doctrine file read | 50 ms | 1,000 ms | Local filesystem; single file ≤ 3 KB |
+| Single doctrine file read | 50 ms | 1,000 ms | Local filesystem; single file = 3 KB |
 | Decision generation | 10 ms | 50 ms | In-memory logic after evaluation |
 | Internal retries | 0 | 0 | Deterministic; same input = same output; retries are meaningless |
 | Caller retry limit | No default | No maximum | Callers may retry with modified context after resolving violations |
@@ -398,9 +398,9 @@ Each invocation produces an identical output for identical inputs. The constitut
 
 ```
 Code Constitution (SUPREME)
-  └── GEMINI.md (P0)
-        └── Agent .md files (P1)
-              └── Skill .md files (P2)
+  +-- GEMINI.md (P0)
+        +-- Agent .md files (P1)
+              +-- Skill .md files (P2)
 ```
 
 No skill, agent, or workflow may override a constitutional decision. Authority is non-negotiable and atemporal.
@@ -440,7 +440,7 @@ No skill, agent, or workflow may override a constitutional decision. Authority i
 | Metric | Per Invocation | Per Node |
 |--------|---------------|----------|
 | CPU | < 10 ms computation | 100,000+ invocations/second (single core) |
-| Memory | < 2 MB | Bound by concurrent invocations × 2 MB |
+| Memory | < 2 MB | Bound by concurrent invocations � 2 MB |
 | Disk I/O | 16 doctrine file reads (~20 KB) | Cached by OS after first read |
 | Network | Zero | Zero |
 
@@ -450,7 +450,7 @@ No skill, agent, or workflow may override a constitutional decision. Authority i
 
 | Scope | Model | Behavior |
 |-------|-------|----------|
-| Within invocation | Sequential | Classify → Evaluate → Decide → Emit; no internal parallelism |
+| Within invocation | Sequential | Classify ? Evaluate ? Decide ? Emit; no internal parallelism |
 | Across invocations | Fully parallel | No shared state, no locks, no coordination needed |
 | Doctrine access | Read-only shared | Multiple concurrent reads are safe; no write contention |
 
@@ -479,7 +479,7 @@ No skill, agent, or workflow may override a constitutional decision. Authority i
 | Full validation (16 doctrines) | < 30 ms | < 80 ms | 500 ms |
 | Decision generation | < 5 ms | < 10 ms | 50 ms |
 | Total invocation latency | < 40 ms | < 100 ms | 500 ms |
-| Output size | ≤ 1,000 chars | ≤ 3,000 chars | 5,000 chars |
+| Output size | = 1,000 chars | = 3,000 chars | 5,000 chars |
 
 ---
 
@@ -500,17 +500,17 @@ No skill, agent, or workflow may override a constitutional decision. Authority i
 
 | Requirement | Status | Evidence |
 |-------------|--------|----------|
-| YAML frontmatter complete | ✅ | name, description, metadata with category, version, triggers, coordinates_with, success_metrics |
-| SKILL.md < 200 lines | ✅ | Entry point under 200 lines; details in `rules/engineering-spec.md` |
-| Prerequisites documented | ✅ | No external dependencies; doctrine library documented |
-| When to Use section | ✅ | Scope-based activation table with 7 trigger conditions |
-| Quick Reference with commands | ✅ | Quick Start section with invocation pattern and script references |
-| Core content matches skill type | ✅ | Expert (decision tree): authority model, enforcement behavior, operating modes |
-| Troubleshooting section | ✅ | Problem/cause/resolution table with 4 entries |
-| Related section | ✅ | Cross-links to code-review, security-scanner, code-craft, skill-generator |
-| Content Map for multi-file | ✅ | Links to 8 subdirectories including rules/, resources/, scripts/ |
-| Contract versioning | ✅ | contract_version: "2.0.0", backward_compatibility, breaking_changes in Section 6 |
-| Compliance matrix structured | ✅ | This table with ✅/❌ + evidence per requirement |
+| YAML frontmatter complete | ? | name, description, metadata with category, version, triggers, coordinates_with, success_metrics |
+| SKILL.md < 200 lines | ? | Entry point under 200 lines; details in `rules/engineering-spec.md` |
+| Prerequisites documented | ? | No external dependencies; doctrine library documented |
+| When to Use section | ? | Scope-based activation table with 7 trigger conditions |
+| Quick Reference with commands | ? | Quick Start section with invocation pattern and script references |
+| Core content matches skill type | ? | Expert (decision tree): authority model, enforcement behavior, operating modes |
+| Troubleshooting section | ? | Problem/cause/resolution table with 4 entries |
+| Related section | ? | Cross-links to code-review, security-scanner, code-craft, skill-generator |
+| Content Map for multi-file | ? | Links to 8 subdirectories including rules/, resources/, scripts/ |
+| Contract versioning | ? | contract_version: "2.0.0", backward_compatibility, breaking_changes in Section 6 |
+| Compliance matrix structured | ? | This table with ?/? + evidence per requirement |
 
 ---
 
@@ -518,40 +518,40 @@ No skill, agent, or workflow may override a constitutional decision. Authority i
 
 | Category | Check | Status |
 |----------|-------|--------|
-| **Governance** | Supreme authority model defined with hierarchy diagram | ✅ |
-| **Governance** | Zero-trust agent operating mode (STRICT/PROPOSAL_ONLY/ZERO_TRUST) | ✅ |
-| **Governance** | Fail-closed enforcement default on all failure paths | ✅ |
-| **Governance** | Change Proposal process for doctrine updates in `proposals/` | ✅ |
-| **Contracts** | Input/output/error schemas in pseudo-schema format | ✅ |
-| **Contracts** | Contract versioning with semver (2.0.0) | ✅ |
-| **Contracts** | Agent assumptions and non-assumptions documented | ✅ |
-| **Contracts** | Side-effect boundaries per operation | ✅ |
-| **Failure** | Error taxonomy with 7 categorized error codes | ✅ |
-| **Failure** | Fail-closed invariant: all failures default to refuse | ✅ |
-| **Failure** | Zero internal retries; deterministic output | ✅ |
-| **Determinism** | Fixed doctrine evaluation order (alphabetical) | ✅ |
-| **Determinism** | Fixed authority hierarchy (Constitution > GEMINI.md > Agent > Skill) | ✅ |
-| **Determinism** | Decision logic codified with explicit branches | ✅ |
-| **Security** | Zero-trust agent mode; no self-approval | ✅ |
-| **Security** | Doctrine files read-only during evaluation | ✅ |
-| **Security** | Input sanitization: literal evaluation, no eval | ✅ |
-| **Observability** | Structured log schema with 5 mandatory fields | ✅ |
-| **Observability** | 5 log points defined with log levels | ✅ |
-| **Observability** | 5 metrics defined with types and units | ✅ |
-| **Performance** | P50/P99/hard limit targets for all operations | ✅ |
-| **Performance** | Total invocation latency hard limit: 500 ms | ✅ |
-| **Scalability** | Stateless; unlimited parallel invocations | ✅ |
-| **Scalability** | Capacity planning table with per-node estimates | ✅ |
-| **Concurrency** | No shared state; read-only doctrine access | ✅ |
-| **Resources** | All resources scoped to invocation lifetime | ✅ |
-| **Idempotency** | Fully idempotent — all operations are pure functions | ✅ |
-| **Timeouts** | All timeouts specify default AND maximum values | ✅ |
-| **State** | State transitions use explicit `→` notation | ✅ |
-| **Compliance** | All skill-design-guide.md sections mapped with evidence | ✅ |
+| **Governance** | Supreme authority model defined with hierarchy diagram | ? |
+| **Governance** | Zero-trust agent operating mode (STRICT/PROPOSAL_ONLY/ZERO_TRUST) | ? |
+| **Governance** | Fail-closed enforcement default on all failure paths | ? |
+| **Governance** | Change Proposal process for doctrine updates in `proposals/` | ? |
+| **Contracts** | Input/output/error schemas in pseudo-schema format | ? |
+| **Contracts** | Contract versioning with semver (2.0.0) | ? |
+| **Contracts** | Agent assumptions and non-assumptions documented | ? |
+| **Contracts** | Side-effect boundaries per operation | ? |
+| **Failure** | Error taxonomy with 7 categorized error codes | ? |
+| **Failure** | Fail-closed invariant: all failures default to refuse | ? |
+| **Failure** | Zero internal retries; deterministic output | ? |
+| **Determinism** | Fixed doctrine evaluation order (alphabetical) | ? |
+| **Determinism** | Fixed authority hierarchy (Constitution > GEMINI.md > Agent > Skill) | ? |
+| **Determinism** | Decision logic codified with explicit branches | ? |
+| **Security** | Zero-trust agent mode; no self-approval | ? |
+| **Security** | Doctrine files read-only during evaluation | ? |
+| **Security** | Input sanitization: literal evaluation, no eval | ? |
+| **Observability** | Structured log schema with 5 mandatory fields | ? |
+| **Observability** | 5 log points defined with log levels | ? |
+| **Observability** | 5 metrics defined with types and units | ? |
+| **Performance** | P50/P99/hard limit targets for all operations | ? |
+| **Performance** | Total invocation latency hard limit: 500 ms | ? |
+| **Scalability** | Stateless; unlimited parallel invocations | ? |
+| **Scalability** | Capacity planning table with per-node estimates | ? |
+| **Concurrency** | No shared state; read-only doctrine access | ? |
+| **Resources** | All resources scoped to invocation lifetime | ? |
+| **Idempotency** | Fully idempotent � all operations are pure functions | ? |
+| **Timeouts** | All timeouts specify default AND maximum values | ? |
+| **State** | State transitions use explicit `?` notation | ? |
+| **Compliance** | All skill-design-guide.md sections mapped with evidence | ? |
 
 ---
 
-⚡ ## OpenTelemetry Observability (MANDATORY)
+? ## OpenTelemetry Observability (MANDATORY)
 
 - **Immutable Audit Logging**: EVERY decision (Approve/Refuse) made by Code Constitution MUST emit an OpenTelemetry Span with an Immutable flag. These logs must be pushed to a Centralized SIEM to ensure no governance bypass occurs undetected.
 - **Distributed Tracing**: The 	race_id of the governance decision MUST be attached to the resulting deployment or PR merge event.

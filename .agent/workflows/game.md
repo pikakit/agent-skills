@@ -28,10 +28,12 @@ Orchestrate game development from concept to published game — routing to platf
 
 ```
 Flow:
-assessor.evaluate(scope, platform) → recovery.save()       ↓
+assessor.evaluate(scope, platform) → recovery.save()
+       ↓
 orchestrator.parallel(art, audio, code)
        → conflict
-critic.resolve(design_vs_perf)       ↓
+critic.resolve(design_vs_perf)
+       ↓
 verify → learner.log(patterns)
 ```
 

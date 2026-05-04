@@ -39,8 +39,10 @@ Systematic code review with multi-layer validation — preventing false completi
 
 ```
 Flow:
-assessor.evaluate(scope) → 4-layer validation       ↓
-build → tests → security → logic       ↓
+assessor.evaluate(scope) → 4-layer validation
+       ↓
+build → tests → security → logic
+       ↓
 report → learner.log(patterns)
 ```
 

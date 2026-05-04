@@ -1,4 +1,4 @@
-﻿---
+---
 title: iOS Platform Guidelines
 impact: MEDIUM
 tags: mobile-developer
@@ -17,29 +17,29 @@ tags: mobile-developer
 
 ```
 CLARITY:
-├── Text is legible at every size
-├── Icons are precise and lucid
-├── Adornments are subtle and appropriate
-└── Focus on functionality drives design
++-- Text is legible at every size
++-- Icons are precise and lucid
++-- Adornments are subtle and appropriate
++-- Focus on functionality drives design
 
 DEFERENCE:
-├── UI helps people understand and interact
-├── Content fills the screen
-├── UI never competes with content
-└── Translucency hints at more content
++-- UI helps people understand and interact
++-- Content fills the screen
++-- UI never competes with content
++-- Translucency hints at more content
 
 DEPTH:
-├── Distinct visual layers convey hierarchy
-├── Transitions provide sense of depth
-├── Touch reveals functionality
-└── Content is elevated over UI
++-- Distinct visual layers convey hierarchy
++-- Transitions provide sense of depth
++-- Touch reveals functionality
++-- Content is elevated over UI
 ```
 
 ### iOS Design Values
 
 | Value | Implementation |
 |-------|----------------|
-| **Aesthetic Integrity** | Design matches function (game ≠ productivity) |
+| **Aesthetic Integrity** | Design matches function (game ? productivity) |
 | **Consistency** | Use system controls, familiar patterns |
 | **Direct Manipulation** | Touch directly affects content |
 | **Feedback** | Actions are acknowledged |
@@ -54,11 +54,11 @@ DEPTH:
 
 ```
 iOS System Fonts:
-├── SF Pro Text: Body text (< 20pt)
-├── SF Pro Display: Large titles (≥ 20pt)
-├── SF Pro Rounded: Friendly contexts
-├── SF Mono: Code, tabular data
-└── SF Compact: Apple Watch, smaller screens
++-- SF Pro Text: Body text (< 20pt)
++-- SF Pro Display: Large titles (= 20pt)
++-- SF Pro Rounded: Friendly contexts
++-- SF Mono: Code, tabular data
++-- SF Compact: Apple Watch, smaller screens
 ```
 
 ### iOS Type Scale (Dynamic Type)
@@ -80,16 +80,16 @@ iOS System Fonts:
 ### Dynamic Type Support (MANDATORY)
 
 ```swift
-// ❌ WRONG: Fixed font size
+// ? WRONG: Fixed font size
 Text("Hello")
     .font(.system(size: 17))
 
-// ✅ CORRECT: Dynamic Type
+// ? CORRECT: Dynamic Type
 Text("Hello")
     .font(.body) // Scales with user settings
 
 // React Native equivalent
-<Text style={{ fontSize: 17 }}> // ❌ Fixed
+<Text style={{ fontSize: 17 }}> // ? Fixed
 <Text style={styles.body}> // Use a dynamic scale system
 ```
 
@@ -113,21 +113,21 @@ Text("Hello")
 Use semantic colors for automatic dark mode:
 
 Primary:
-├── .label → Primary text
-├── .secondaryLabel → Secondary text
-├── .tertiaryLabel → Tertiary text
-├── .quaternaryLabel → Watermarks
++-- .label ? Primary text
++-- .secondaryLabel ? Secondary text
++-- .tertiaryLabel ? Tertiary text
++-- .quaternaryLabel ? Watermarks
 
 Backgrounds:
-├── .systemBackground → Main background
-├── .secondarySystemBackground → Grouped content
-├── .tertiarySystemBackground → Elevated content
++-- .systemBackground ? Main background
++-- .secondarySystemBackground ? Grouped content
++-- .tertiarySystemBackground ? Elevated content
 
 Fills:
-├── .systemFill → Large shapes
-├── .secondarySystemFill → Medium shapes
-├── .tertiarySystemFill → Small shapes
-├── .quaternarySystemFill → Subtle shapes
++-- .systemFill ? Large shapes
++-- .secondarySystemFill ? Medium shapes
++-- .tertiarySystemFill ? Small shapes
++-- .quaternarySystemFill ? Subtle shapes
 ```
 
 ### System Accent Colors
@@ -149,10 +149,10 @@ Fills:
 iOS Dark Mode is not inverted light mode:
 
 LIGHT MODE:              DARK MODE:
-├── White backgrounds    ├── True black (#000) or near-black
-├── High saturation      ├── Desaturated colors
-├── Black text           ├── White/light gray text
-└── Drop shadows         └── Glows or no shadows
++-- White backgrounds    +-- True black (#000) or near-black
++-- High saturation      +-- Desaturated colors
++-- Black text           +-- White/light gray text
++-- Drop shadows         +-- Glows or no shadows
 
 RULE: Always use semantic colors for automatic adaptation.
 ```
@@ -164,17 +164,17 @@ RULE: Always use semantic colors for automatic adaptation.
 ### Safe Areas
 
 ```
-┌─────────────────────────────────────┐
-│░░░░░░░░░░░ Status Bar ░░░░░░░░░░░░░│ ← Top safe area inset
-├─────────────────────────────────────┤
-│                                     │
-│                                     │
-│         Safe Content Area           │
-│                                     │
-│                                     │
-├─────────────────────────────────────┤
-│░░░░░░░░░ Home Indicator ░░░░░░░░░░░│ ← Bottom safe area inset
-└─────────────────────────────────────┘
++-------------------------------------+
+������������ Status Bar �������������� ? Top safe area inset
++-------------------------------------�
+�                                     �
+�                                     �
+�         Safe Content Area           �
+�                                     �
+�                                     �
++-------------------------------------�
+���������� Home Indicator ������������ ? Bottom safe area inset
++-------------------------------------+
 
 RULE: Never place interactive content in unsafe areas.
 ```
@@ -183,7 +183,7 @@ RULE: Never place interactive content in unsafe areas.
 
 | Element | Margin | Notes |
 |---------|--------|-------|
-| Screen edge → content | 16pt | Standard horizontal margin |
+| Screen edge ? content | 16pt | Standard horizontal margin |
 | Grouped table sections | 16pt top/bottom | Breathing room |
 | List item padding | 16pt horizontal | Standard cell padding |
 | Card internal padding | 16pt | Content within cards |
@@ -193,17 +193,17 @@ RULE: Never place interactive content in unsafe areas.
 
 ```
 iPhone Grid (Standard):
-├── 16pt margins (left/right)
-├── 8pt minimum spacing
-├── Content in 8pt multiples
++-- 16pt margins (left/right)
++-- 8pt minimum spacing
++-- Content in 8pt multiples
 
 iPhone Grid (Compact):
-├── 8pt margins (when needed)
-├── 4pt minimum spacing
++-- 8pt margins (when needed)
++-- 4pt minimum spacing
 
 iPad Grid:
-├── 20pt margins (or more)
-├── Consider multi-column layouts
++-- 20pt margins (or more)
++-- Consider multi-column layouts
 ```
 
 ---
@@ -222,40 +222,40 @@ iPad Grid:
 ### Tab Bar Guidelines
 
 ```
-┌─────────────────────────────────────┐
-│                                     │
-│         Content Area                │
-│                                     │
-├─────────────────────────────────────┤
-│  🏠     🔍     ➕     d️     👤    │ ← Tab bar (49pt height)
-│ Home   Search  New   Saved  Profile │
-└─────────────────────────────────────┘
++-------------------------------------+
+�                                     �
+�         Content Area                �
+�                                     �
++-------------------------------------�
+�  ??     ??     ?     d?     ??    � ? Tab bar (49pt height)
+� Home   Search  New   Saved  Profile �
++-------------------------------------+
 
 Rules:
-├── 3-5 items maximum
-├── Icons: SF Symbols or custom (25×25pt)
-├── Labels: Always include (accessibility)
-├── Active state: Filled icon + tint color
-└── Tab bar always visible (don't hide on scroll)
++-- 3-5 items maximum
++-- Icons: SF Symbols or custom (25�25pt)
++-- Labels: Always include (accessibility)
++-- Active state: Filled icon + tint color
++-- Tab bar always visible (don't hide on scroll)
 ```
 
 ### Navigation Bar Guidelines
 
 ```
-┌─────────────────────────────────────┐
-│ < Back     Page Title      Edit    │ ← Navigation bar (44pt)
-├─────────────────────────────────────┤
-│                                     │
-│         Content Area                │
-│                                     │
-└─────────────────────────────────────┘
++-------------------------------------+
+� < Back     Page Title      Edit    � ? Navigation bar (44pt)
++-------------------------------------�
+�                                     �
+�         Content Area                �
+�                                     �
++-------------------------------------+
 
 Rules:
-├── Back button: System chevron + previous title (or "Back")
-├── Title: Centered, dynamic font
-├── Right actions: Max 2 items
-├── Large title: Collapses on scroll (optional)
-└── Prefer text buttons over icons (clarity)
++-- Back button: System chevron + previous title (or "Back")
++-- Title: Centered, dynamic font
++-- Right actions: Max 2 items
++-- Large title: Collapses on scroll (optional)
++-- Prefer text buttons over icons (clarity)
 ```
 
 ### Modal Presentations
@@ -287,19 +287,19 @@ Rules:
 ```
 Button Styles (UIKit/SwiftUI):
 
-┌──────────────────────────────┐
-│         Tinted               │ ← Primary action (filled)
-├──────────────────────────────┤
-│         Bordered             │ ← Secondary action (outline)
-├──────────────────────────────┤
-│         Plain                │ ← Tertiary action (text only)
-└──────────────────────────────┘
++------------------------------+
+�         Tinted               � ? Primary action (filled)
++------------------------------�
+�         Bordered             � ? Secondary action (outline)
++------------------------------�
+�         Plain                � ? Tertiary action (text only)
++------------------------------+
 
 Sizes:
-├── Mini: Tight spaces
-├── Small: Compact UI
-├── Medium: Inline actions
-├── Large: Primary CTAs (44pt minimum height)
++-- Mini: Tight spaces
++-- Small: Compact UI
++-- Medium: Inline actions
++-- Large: Primary CTAs (44pt minimum height)
 ```
 
 ### Lists & Tables
@@ -307,17 +307,17 @@ Sizes:
 ```
 List Styles:
 
-.plain         → No separators, edge-to-edge
-.insetGrouped  → Rounded cards (default iOS 14+)
-.grouped       → Full-width sections
-.sidebar       → iPad sidebar navigation
+.plain         ? No separators, edge-to-edge
+.insetGrouped  ? Rounded cards (default iOS 14+)
+.grouped       ? Full-width sections
+.sidebar       ? iPad sidebar navigation
 
 Cell Accessories:
-├── Disclosure indicator (>) → Navigates to detail
-├── Detail button (i) → Shows info without navigation
-├── Checkmark (✓) → Selection
-├── Reorder (≡) → Drag to reorder
-└── Delete (-) → Swipe/edit mode delete
++-- Disclosure indicator (>) ? Navigates to detail
++-- Detail button (i) ? Shows info without navigation
++-- Checkmark (?) ? Selection
++-- Reorder (=) ? Drag to reorder
++-- Delete (-) ? Swipe/edit mode delete
 ```
 
 ### Text Fields
@@ -325,10 +325,10 @@ Cell Accessories:
 ```
 iOS Text Field Anatomy:
 
-┌─────────────────────────────────────┐
-│ 🔍 Search...                    ✕  │
-└─────────────────────────────────────┘
-  ↑                               ↑
++-------------------------------------+
+� ?? Search...                    ?  �
++-------------------------------------+
+  ?                               ?
   Leading icon                   Clear button
 
 Borders: Rounded rectangle
@@ -341,19 +341,19 @@ Clear button: Appears when has text
 
 ```
 When to Use:
-├── 2-5 related options
-├── Filter content
-├── Switch views
++-- 2-5 related options
++-- Filter content
++-- Switch views
 
-┌───────┬───────┬───────┐
-│  All  │ Active│ Done  │
-└───────┴───────┴───────┘
++-----------------------+
+�  All  � Active� Done  �
++-----------------------+
 
 Rules:
-├── Equal width segments
-├── Text or icons (not both mixed)
-├── Max 5 segments
-└── Consider tabs if more complex
++-- Equal width segments
++-- Text or icons (not both mixed)
++-- Max 5 segments
++-- Consider tabs if more complex
 ```
 
 ---
@@ -364,10 +364,10 @@ Rules:
 
 ```
 Native UIRefreshControl behavior:
-├── Pull beyond threshold → Spinner appears
-├── Release → Refresh action triggered
-├── Loading state → Spinner spins
-├── Complete → Spinner disappears
++-- Pull beyond threshold ? Spinner appears
++-- Release ? Refresh action triggered
++-- Loading state ? Spinner spins
++-- Complete ? Spinner disappears
 
 RULE: Always use native UIRefreshControl (don't custom build).
 ```
@@ -377,10 +377,10 @@ RULE: Always use native UIRefreshControl (don't custom build).
 ```
 iOS swipe actions:
 
-← Swipe Left (Destructive)      Swipe Right (Constructive) →
-┌─────────────────────────────────────────────────────────────┐
-│                    List Item Content                        │
-└─────────────────────────────────────────────────────────────┘
+? Swipe Left (Destructive)      Swipe Right (Constructive) ?
++-------------------------------------------------------------+
+�                    List Item Content                        �
++-------------------------------------------------------------+
 
 Left swipe reveals: Archive, Delete, Flag
 Right swipe reveals: Pin, Star, Mark as Read
@@ -391,23 +391,23 @@ Full swipe: Triggers first action
 ### Context Menus
 
 ```
-Long press → Context menu appears
+Long press ? Context menu appears
 
-┌─────────────────────────────┐
-│       Preview Card          │
-├─────────────────────────────┤
-│  📋 Copy                    │
-│  📤 Share                   │
-│  ➕ Add to...               │
-├─────────────────────────────┤
-│  🗑️ Delete          (Red)   │
-└─────────────────────────────┘
++-----------------------------+
+�       Preview Card          �
++-----------------------------�
+�  ?? Copy                    �
+�  ?? Share                   �
+�  ? Add to...               �
++-----------------------------�
+�  ??? Delete          (Red)   �
++-----------------------------+
 
 Rules:
-├── Preview: Show enlarged content
-├── Actions: Related to content
-├── Destructive: Last, in red
-└── Max ~8 actions (scrollable if more)
++-- Preview: Show enlarged content
++-- Actions: Related to content
++-- Destructive: Last, in red
++-- Max ~8 actions (scrollable if more)
 ```
 
 ### Sheets & Half-Sheets
@@ -415,22 +415,22 @@ Rules:
 ```
 iOS 15+ Sheets:
 
-┌─────────────────────────────────────┐
-│                                     │
-│        Parent View (dimmed)          │
-│                                     │
-├─────────────────────────────────────┤
-│  ═══  (Grabber)                     │ ← Drag to resize
-│                                     │
-│        Sheet Content                │
-│                                     │
-│                                     │
-└─────────────────────────────────────┘
++-------------------------------------+
+�                                     �
+�        Parent View (dimmed)          �
+�                                     �
++-------------------------------------�
+�  ---  (Grabber)                     � ? Drag to resize
+�                                     �
+�        Sheet Content                �
+�                                     �
+�                                     �
++-------------------------------------+
 
 Detents:
-├── .medium → Half screen
-├── .large → Full screen (with safe area)
-├── Custom → Specific height
++-- .medium ? Half screen
++-- .large ? Full screen (with safe area)
++-- Custom ? Specific height
 ```
 
 ---
@@ -443,14 +443,14 @@ Detents:
 SF Symbols: Apple's icon library (5000+ icons)
 
 Weights: Match text weight
-├── Ultralight / Thin / Light
-├── Regular / Medium / Semibold
-├── Bold / Heavy / Black
++-- Ultralight / Thin / Light
++-- Regular / Medium / Semibold
++-- Bold / Heavy / Black
 
 Scales:
-├── .small → Inline with small text
-├── .medium → Standard UI
-├── .large → Emphasis, standalone
++-- .small ? Inline with small text
++-- .medium ? Standard UI
++-- .large ? Emphasis, standalone
 ```
 
 ### Symbol Configurations
@@ -487,10 +487,10 @@ Image(systemName: "checkmark.circle")
 
 ```
 Every interactive element needs:
-├── Accessibility label (what it is)
-├── Accessibility hint (what it does) - optional
-├── Accessibility traits (button, link, etc.)
-└── Accessibility value (current state)
++-- Accessibility label (what it is)
++-- Accessibility hint (what it does) - optional
++-- Accessibility traits (button, link, etc.)
++-- Accessibility value (current state)
 
 SwiftUI:
 .accessibilityLabel("Play")
@@ -508,14 +508,14 @@ accessibilityRole="button"
 MANDATORY: Support Dynamic Type
 
 Users can set text size from:
-├── xSmall → 14pt body
-├── Small → 15pt body
-├── Medium → 16pt body
-├── Large (Default) → 17pt body
-├── xLarge → 19pt body
-├── xxLarge → 21pt body
-├── xxxLarge → 23pt body
-├── Accessibility sizes → up to 53pt
++-- xSmall ? 14pt body
++-- Small ? 15pt body
++-- Medium ? 16pt body
++-- Large (Default) ? 17pt body
++-- xLarge ? 19pt body
++-- xxLarge ? 21pt body
++-- xxxLarge ? 23pt body
++-- Accessibility sizes ? up to 53pt
 
 Your app MUST scale gracefully at all sizes.
 ```
@@ -548,8 +548,8 @@ AccessibilityInfo.isReduceMotionEnabled()
 - [ ] Dynamic Type supported
 - [ ] Safe areas respected
 - [ ] Navigation follows HIG (back gesture works)
-- [ ] Tab bar items ≤ 5
-- [ ] Touch targets ≥ 44pt
+- [ ] Tab bar items = 5
+- [ ] Touch targets = 44pt
 
 ### Before iOS Release
 
@@ -568,4 +568,4 @@ AccessibilityInfo.isReduceMotionEnabled()
 
 ---
 
-⚡ PikaKit v3.9.169
+? PikaKit v3.9.169

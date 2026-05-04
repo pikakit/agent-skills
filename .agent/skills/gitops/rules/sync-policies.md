@@ -1,4 +1,4 @@
-﻿---
+---
 title: GitOps Sync Policies
 impact: MEDIUM
 tags: gitops
@@ -142,4 +142,4 @@ data:
 
 ---
 
-⚡ PikaKit v3.9.169
+? PikaKit v3.9.169

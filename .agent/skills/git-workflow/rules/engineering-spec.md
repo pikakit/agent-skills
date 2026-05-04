@@ -1,10 +1,10 @@
-﻿---
-title: Git Workflow — Engineering Specification
+---
+title: Git Workflow � Engineering Specification
 impact: MEDIUM
 tags: git-workflow
 ---
 
-# Git Workflow — Engineering Specification
+# Git Workflow � Engineering Specification
 
 > Production-grade specification for git operations with conventional commits and secret detection at FAANG scale.
 
@@ -12,11 +12,11 @@ tags: git-workflow
 
 ## 1. Overview
 
-Git Workflow provides automated git operations: staging, conventional commits, push, PR creation, and merge — with mandatory secret detection before every commit. The skill operates as an **Automation (scripted)** skill — it executes shell commands (`git add`, `git commit`, `git push`) with side effects on the git index, working tree, local repository, and remote. It includes commit splitting logic and output formatting.
+Git Workflow provides automated git operations: staging, conventional commits, push, PR creation, and merge � with mandatory secret detection before every commit. The skill operates as an **Automation (scripted)** skill � it executes shell commands (`git add`, `git commit`, `git push`) with side effects on the git index, working tree, local repository, and remote. It includes commit splitting logic and output formatting.
 
 **Contract Version:** 2.0.0
 **Backward Compatibility:** breaking (first hardened version)
-**Breaking Changes:** None — new spec for first hardening
+**Breaking Changes:** None � new spec for first hardening
 
 ---
 
@@ -42,7 +42,7 @@ Git Workflow eliminates these with mandatory secret scanning, enforced conventio
 | G1 | Zero secrets committed | Regex scan blocks commit if match found |
 | G2 | 100% conventional format | `type(scope): description` enforced |
 | G3 | Commit splitting | Split if: >10 unrelated files OR mixed types OR multiple scopes |
-| G4 | Single commit threshold | ≤ 3 files AND ≤ 50 lines AND same type/scope |
+| G4 | Single commit threshold | = 3 files AND = 50 lines AND same type/scope |
 | G5 | Clean push recovery | `git pull --rebase` on push rejection |
 | G6 | Structured output | Fixed format: staged, security, commit, pushed |
 
@@ -153,7 +153,7 @@ Recoverable: boolean
 - Conventional commit format is fixed: `type(scope): description`.
 - Commit types are fixed: 9 types (feat, fix, docs, refactor, test, chore, perf, ci, build).
 - Split threshold is fixed: >10 unrelated files OR mixed types OR multiple scopes.
-- Single commit threshold: ≤ 3 files AND ≤ 50 lines AND same type/scope.
+- Single commit threshold: = 3 files AND = 50 lines AND same type/scope.
 - Push rejection recovery is always `git pull --rebase`.
 
 #### What Agents May Assume
@@ -187,30 +187,30 @@ Recoverable: boolean
 ```
 1. Stage files (git add -A or specific files)
 2. Run secret scan on staged diff
-3. If secrets found → BLOCK, return violations
-4. If clean → format conventional commit message
-5. Check split criteria → recommend split if needed
+3. If secrets found ? BLOCK, return violations
+4. If clean ? format conventional commit message
+5. Check split criteria ? recommend split if needed
 6. Commit with conventional format
 7. Push if requested (cp command)
-8. If push rejected → git pull --rebase → retry push once
+8. If push rejected ? git pull --rebase ? retry push once
 ```
 
 #### State Transitions
 
 ```
-IDLE → STAGING              [cm/cp invoked]
-STAGING → SCANNING          [files staged]
-SCANNING → BLOCKED          [secrets detected]  // terminal — user must fix
-SCANNING → FORMATTING       [scan passed]
-FORMATTING → SPLITTING      [message formatted]
-SPLITTING → COMMITTING      [single commit decided]
-SPLITTING → SPLIT_NEEDED    [split recommended]  // terminal — user must split
-COMMITTING → PUSHING        [cp command, commit done]
-COMMITTING → COMPLETED      [cm command, commit done]  // terminal
-PUSHING → REBASING          [push rejected]
-PUSHING → COMPLETED         [push accepted]  // terminal
-REBASING → PUSHING          [rebase succeeded, retry push]
-REBASING → CONFLICT         [rebase has conflicts]  // terminal — manual resolution
+IDLE ? STAGING              [cm/cp invoked]
+STAGING ? SCANNING          [files staged]
+SCANNING ? BLOCKED          [secrets detected]  // terminal � user must fix
+SCANNING ? FORMATTING       [scan passed]
+FORMATTING ? SPLITTING      [message formatted]
+SPLITTING ? COMMITTING      [single commit decided]
+SPLITTING ? SPLIT_NEEDED    [split recommended]  // terminal � user must split
+COMMITTING ? PUSHING        [cp command, commit done]
+COMMITTING ? COMPLETED      [cm command, commit done]  // terminal
+PUSHING ? REBASING          [push rejected]
+PUSHING ? COMPLETED         [push accepted]  // terminal
+REBASING ? PUSHING          [rebase succeeded, retry push]
+REBASING ? CONFLICT         [rebase has conflicts]  // terminal � manual resolution
 ```
 
 #### Execution Guarantees
@@ -225,7 +225,7 @@ REBASING → CONFLICT         [rebase has conflicts]  // terminal — manual res
 |-----------------|-------------|-----------------|
 | Secrets detected | BLOCK commit | User removes secrets |
 | No changes staged | Return clean exit | No action needed |
-| Push rejected | Auto-rebase once | If still fails → return error |
+| Push rejected | Auto-rebase once | If still fails ? return error |
 | Merge conflicts | Return conflict | Manual resolution |
 | Git not installed | Return error | Install git |
 
@@ -273,9 +273,9 @@ Phases are sequential. Scan blocks Commit. Push is optional.
 |-----------|-------------|
 | Fixed secret patterns | 6 patterns: API_KEY, token, password, secret, private_key, credentials |
 | Fixed commit types | 9 types: feat, fix, docs, refactor, test, chore, perf, ci, build |
-| Fixed commit format | `type(scope): description` — no deviations |
-| Fixed split threshold | >10 files OR mixed types OR multiple scopes → split |
-| Fixed single threshold | ≤ 3 files AND ≤ 50 lines AND same type/scope → single |
+| Fixed commit format | `type(scope): description` � no deviations |
+| Fixed split threshold | >10 files OR mixed types OR multiple scopes ? split |
+| Fixed single threshold | = 3 files AND = 50 lines AND same type/scope ? single |
 | Fixed push recovery | `git pull --rebase` exactly once on rejection |
 | Security-first | Scan before commit; no skip in production |
 
@@ -392,7 +392,7 @@ Session-based. Not idempotent. Git state is modified by every commit/push.
 
 - 6 regex patterns scanned on every `git diff --cached`.
 - Patterns: `API_KEY`, `token`, `password`, `secret`, `private_key`, `credentials` (case-insensitive).
-- Detection blocks commit — no bypass in production.
+- Detection blocks commit � no bypass in production.
 - `skip_security: true` is FORBIDDEN unless explicitly approved by user and documented.
 
 ### Force Push Protection
@@ -475,16 +475,16 @@ Single-threaded per repository. Concurrent git operations on the same repository
 
 | Requirement | Status | Evidence |
 |-------------|--------|----------|
-| YAML frontmatter complete | ✅ | name, description, metadata with category, version, triggers, coordinates_with, success_metrics |
-| SKILL.md < 200 lines | ✅ | Entry point under 200 lines |
-| Prerequisites documented | ✅ | Git installed; `gh` CLI for PRs |
-| When to Use section | ✅ | Command-based routing table |
-| Core content matches skill type | ✅ | Automation type: git commands, side effects |
-| Troubleshooting section | ✅ | Anti-patterns table |
-| Related section | ✅ | Cross-links to cicd-pipeline, code-review, gitops-workflow |
-| Content Map for multi-file | ✅ | Link to engineering-spec.md |
-| Contract versioning | ✅ | contract_version, backward_compatibility, breaking_changes |
-| Compliance matrix structured | ✅ | This table with ✅/❌ + evidence |
+| YAML frontmatter complete | ? | name, description, metadata with category, version, triggers, coordinates_with, success_metrics |
+| SKILL.md < 200 lines | ? | Entry point under 200 lines |
+| Prerequisites documented | ? | Git installed; `gh` CLI for PRs |
+| When to Use section | ? | Command-based routing table |
+| Core content matches skill type | ? | Automation type: git commands, side effects |
+| Troubleshooting section | ? | Anti-patterns table |
+| Related section | ? | Cross-links to cicd-pipeline, code-review, gitops-workflow |
+| Content Map for multi-file | ? | Link to engineering-spec.md |
+| Contract versioning | ? | contract_version, backward_compatibility, breaking_changes |
+| Compliance matrix structured | ? | This table with ?/? + evidence |
 
 ---
 
@@ -492,27 +492,27 @@ Single-threaded per repository. Concurrent git operations on the same repository
 
 | Category | Check | Status |
 |----------|-------|--------|
-| **Functionality** | 4 commands (cm, cp, pr, merge) | ✅ |
-| **Functionality** | 9 conventional commit types | ✅ |
-| **Functionality** | Secret detection (6 patterns) | ✅ |
-| **Functionality** | Commit splitting (threshold: >10 files or mixed types) | ✅ |
-| **Functionality** | Push recovery (rebase once) | ✅ |
-| **Functionality** | Fixed output format | ✅ |
-| **Contracts** | Input/output/error schemas in pseudo-schema format | ✅ |
-| **Contracts** | Session state transitions with arrow notation | ✅ |
-| **Contracts** | Contract versioning with semver | ✅ |
-| **Failure** | Error taxonomy with 7 categorized codes | ✅ |
-| **Failure** | Secrets always block commit | ✅ |
-| **Failure** | Exactly 1 push retry | ✅ |
-| **Security** | Secret scan before every commit | ✅ |
-| **Security** | Force push denied without approval | ✅ |
-| **Security** | No credential values in logs | ✅ |
-| **Observability** | Structured log schema with 5 mandatory fields + 8 log points | ✅ |
-| **Observability** | 5 metrics defined | ✅ |
-| **Performance** | P50/P99/hard limits for all operations | ✅ |
-| **Concurrency** | Single-threaded per repo; git index lock | ✅ |
-| **Compliance** | All skill-design-guide.md sections mapped with evidence | ✅ |
+| **Functionality** | 4 commands (cm, cp, pr, merge) | ? |
+| **Functionality** | 9 conventional commit types | ? |
+| **Functionality** | Secret detection (6 patterns) | ? |
+| **Functionality** | Commit splitting (threshold: >10 files or mixed types) | ? |
+| **Functionality** | Push recovery (rebase once) | ? |
+| **Functionality** | Fixed output format | ? |
+| **Contracts** | Input/output/error schemas in pseudo-schema format | ? |
+| **Contracts** | Session state transitions with arrow notation | ? |
+| **Contracts** | Contract versioning with semver | ? |
+| **Failure** | Error taxonomy with 7 categorized codes | ? |
+| **Failure** | Secrets always block commit | ? |
+| **Failure** | Exactly 1 push retry | ? |
+| **Security** | Secret scan before every commit | ? |
+| **Security** | Force push denied without approval | ? |
+| **Security** | No credential values in logs | ? |
+| **Observability** | Structured log schema with 5 mandatory fields + 8 log points | ? |
+| **Observability** | 5 metrics defined | ? |
+| **Performance** | P50/P99/hard limits for all operations | ? |
+| **Concurrency** | Single-threaded per repo; git index lock | ? |
+| **Compliance** | All skill-design-guide.md sections mapped with evidence | ? |
 
 ---
 
-⚡ PikaKit v3.9.169
+? PikaKit v3.9.169

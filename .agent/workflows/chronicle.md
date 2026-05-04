@@ -27,8 +27,10 @@ Generate comprehensive project documentation automatically by analyzing source c
 
 ```
 Flow:
-assessor.evaluate(doc_scope) → identify coverage gaps       ↓
-analyze codebase → generate docs per sub-command       ↓
+assessor.evaluate(doc_scope) → identify coverage gaps
+       ↓
+analyze codebase → generate docs per sub-command
+       ↓
 learner.log(templates, patterns)
 ```
 

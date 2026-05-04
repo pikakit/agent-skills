@@ -1,4 +1,4 @@
-﻿# mcp-builder
+# mcp-builder
 
 **Version 1.0.0**
 Engineering
@@ -10,7 +10,7 @@ March 2026
 
 ---
 
-# MCP Builder — Build MCP Servers for AI Agents
+# MCP Builder � Build MCP Servers for AI Agents
 
 > 4 phases. Workflow over endpoints. 10-question evaluation. Context-aware output.
 
@@ -38,9 +38,9 @@ March 2026
 
 | Owned by This Skill | NOT Owned |
 |---------------------|-----------|
-| 4-phase build process | MCP tool discovery (→ mcp-management) |
-| Framework selection (2 options) | API design (→ api-architect) |
-| Review checklist (4 items) | TypeScript patterns (→ typescript-expert) |
+| 4-phase build process | MCP tool discovery (? mcp-management) |
+| Framework selection (2 options) | API design (? api-architect) |
+| Review checklist (4 items) | TypeScript patterns (? typescript-expert) |
 | Evaluation framework (10 questions) | Server hosting/deployment |
 
 **Expert decision skill:** Produces build guidance. Does not create files or run code.
@@ -125,7 +125,7 @@ Create 10 test questions that are:
 
 ## Anti-Patterns
 
-| ❌ Don't | ✅ Do |
+| ? Don't | ? Do |
 |---------|-------|
 | Mirror API endpoints as tools | Design workflow-oriented tools |
 | Skip evaluation phase | Create 10 test questions |
@@ -135,7 +135,7 @@ Create 10 test questions that are:
 
 ---
 
-## 📑 Content Map
+## ?? Content Map
 
 | File | Description | When to Read |
 |------|-------------|--------------|
@@ -151,7 +151,7 @@ Create 10 test questions that are:
 
 ---
 
-## 🔗 Related
+## ?? Related
 
 | Item | Type | Purpose |
 |------|------|---------|
@@ -174,7 +174,7 @@ Create 10 test questions that are:
 
 ---
 name: mcp-best-practices
-description: MCP design patterns — workflow over endpoints, concise/detailed output, actionable errors, naming conventions
+description: MCP design patterns � workflow over endpoints, concise/detailed output, actionable errors, naming conventions
 ---
 
 # MCP Best Practices
@@ -253,10 +253,10 @@ return f"""
 ## Error Handling
 
 ```python
-# ❌ Bad
+# ? Bad
 raise Exception("Invalid filter")
 
-# ✅ Good
+# ? Good
 raise Exception(
     "Invalid filter value. "
     "Valid options: 'active', 'archived', 'all'. "
@@ -316,7 +316,7 @@ async def list_items(page: int = 1, per_page: int = 20) -> str:
 
 ---
 
-## 🔗 Related
+## ?? Related
 
 | File | When to Read |
 |------|-------------|
@@ -332,7 +332,7 @@ async def list_items(page: int = 1, per_page: int = 20) -> str:
 
 ---
 name: mcp-design-principles
-description: Core MCP concepts — tool/resource/prompt design, transport selection, error handling, security patterns
+description: Core MCP concepts � tool/resource/prompt design, transport selection, error handling, security patterns
 ---
 
 # MCP Server Design Principles
@@ -357,9 +357,9 @@ Model Context Protocol - standard for connecting AI systems with external tools 
 
 ```
 my-mcp-server/
-├── src/index.ts    # Main entry
-├── package.json
-└── tsconfig.json
++-- src/index.ts    # Main entry
++-- package.json
++-- tsconfig.json
 ```
 
 | Transport     | Use                      |
@@ -423,7 +423,7 @@ my-mcp-server/
 
 ---
 
-## 🔗 Related
+## ?? Related
 
 | File | When to Read |
 |------|-------------|
@@ -438,10 +438,10 @@ my-mcp-server/
 
 ---
 name: mcp-builder-engineering-spec
-description: Full 21-section engineering spec — 4-phase build contracts, framework selection, evaluation framework
+description: Full 21-section engineering spec � 4-phase build contracts, framework selection, evaluation framework
 ---
 
-# MCP Builder — Engineering Specification
+# MCP Builder � Engineering Specification
 
 > Production-grade specification for building MCP servers for AI agents at FAANG scale.
 
@@ -449,11 +449,11 @@ description: Full 21-section engineering spec — 4-phase build contracts, frame
 
 ## 1. Overview
 
-MCP Builder provides a structured 4-phase process for building Model Context Protocol (MCP) servers: Research (API + MCP spec study), Implement (Python FastMCP or TypeScript MCP SDK), Review (quality checklist), and Evaluate (10 complex test questions). The skill operates as an expert knowledge base with 6 reference files — it produces build guidance, framework selection decisions, and evaluation criteria. It does not execute code, install packages, or deploy servers.
+MCP Builder provides a structured 4-phase process for building Model Context Protocol (MCP) servers: Research (API + MCP spec study), Implement (Python FastMCP or TypeScript MCP SDK), Review (quality checklist), and Evaluate (10 complex test questions). The skill operates as an expert knowledge base with 6 reference files � it produces build guidance, framework selection decisions, and evaluation criteria. It does not execute code, install packages, or deploy servers.
 
 **Contract Version:** 2.0.0
 **Backward Compatibility:** breaking (first hardened version)
-**Breaking Changes:** None — new spec for first hardening
+**Breaking Changes:** None � new spec for first hardening
 
 ---
 
@@ -476,7 +476,7 @@ MCP Builder eliminates these with a fixed 4-phase process, deterministic framewo
 
 | ID | Goal | Measurable Constraint |
 |----|------|-----------------------|
-| G1 | 4-phase build process | Research → Implement → Review → Evaluate (fixed order) |
+| G1 | 4-phase build process | Research ? Implement ? Review ? Evaluate (fixed order) |
 | G2 | Framework selection | Python FastMCP vs TypeScript MCP SDK (2 options, deterministic) |
 | G3 | Workflow-oriented tools | Tools designed for agent workflows, not raw API endpoints |
 | G4 | Review checklist | 4 mandatory items (DRY, error handling, types, docstrings) |
@@ -588,8 +588,8 @@ Recoverable: boolean
 
 #### Deterministic Guarantees
 
-- Phase order is fixed: Research (1) → Implement (2) → Review (3) → Evaluate (4).
-- Framework selection is deterministic: python-heavy OR needs_async → Python FastMCP; typescript-heavy OR needs_type_safety → TypeScript MCP SDK; balanced → Python FastMCP (default).
+- Phase order is fixed: Research (1) ? Implement (2) ? Review (3) ? Evaluate (4).
+- Framework selection is deterministic: python-heavy OR needs_async ? Python FastMCP; typescript-heavy OR needs_type_safety ? TypeScript MCP SDK; balanced ? Python FastMCP (default).
 - Review checklist always has 4 items: DRY, error handling, type coverage, docstrings.
 - Evaluation always produces 10 questions with 6 criteria.
 - Design principles always include: workflow-oriented, context-aware output, actionable errors.
@@ -688,10 +688,10 @@ All phases synchronous. No async pipeline.
 
 | Principle | Enforcement |
 |-----------|-------------|
-| Fixed phase order | Research (1) → Implement (2) → Review (3) → Evaluate (4) |
-| Fixed framework selection | python-heavy OR needs_async → FastMCP; else → TypeScript SDK |
+| Fixed phase order | Research (1) ? Implement (2) ? Review (3) ? Evaluate (4) |
+| Fixed framework selection | python-heavy OR needs_async ? FastMCP; else ? TypeScript SDK |
 | Workflow over endpoints | Tools designed for agent workflows, never raw API mirror |
-| Fixed review items | DRY, error handling, type coverage, docstrings — always 4 |
+| Fixed review items | DRY, error handling, type coverage, docstrings � always 4 |
 | Fixed evaluation size | 10 questions, 6 criteria |
 | Context-aware output | concise vs detailed mode for tool responses |
 | MCP spec URL fixed | `https://modelcontextprotocol.io/llms-full.txt` |
@@ -827,7 +827,7 @@ All resources scoped to invocation. No persistent handles.
 |-----------|-----------|-----------|------------|
 | Framework selection | < 2 ms | < 5 ms | 20 ms |
 | Full guide | < 10 ms | < 30 ms | 50 ms |
-| Output size | ≤ 1,500 chars | ≤ 3,500 chars | 5,000 chars |
+| Output size | = 1,500 chars | = 3,500 chars | 5,000 chars |
 
 ---
 
@@ -847,16 +847,16 @@ All resources scoped to invocation. No persistent handles.
 
 | Requirement | Status | Evidence |
 |-------------|--------|----------|
-| YAML frontmatter complete | ✅ | name, description, metadata with category, version, triggers, coordinates_with, success_metrics |
-| SKILL.md < 200 lines | ✅ | Entry point under 200 lines |
-| Prerequisites documented | ✅ | MCP spec URL, Python or TypeScript |
-| When to Use section | ✅ | Situation-based routing table |
-| Core content matches skill type | ✅ | Expert type: decision trees, phase guidance |
-| Troubleshooting section | ✅ | Anti-patterns table |
-| Related section | ✅ | Cross-links to mcp-management, api-architect, typescript-expert |
-| Content Map for multi-file | ✅ | Links to 6 reference files + engineering-spec.md |
-| Contract versioning | ✅ | contract_version, backward_compatibility, breaking_changes |
-| Compliance matrix structured | ✅ | This table with ✅/❌ + evidence |
+| YAML frontmatter complete | ? | name, description, metadata with category, version, triggers, coordinates_with, success_metrics |
+| SKILL.md < 200 lines | ? | Entry point under 200 lines |
+| Prerequisites documented | ? | MCP spec URL, Python or TypeScript |
+| When to Use section | ? | Situation-based routing table |
+| Core content matches skill type | ? | Expert type: decision trees, phase guidance |
+| Troubleshooting section | ? | Anti-patterns table |
+| Related section | ? | Cross-links to mcp-management, api-architect, typescript-expert |
+| Content Map for multi-file | ? | Links to 6 reference files + engineering-spec.md |
+| Contract versioning | ? | contract_version, backward_compatibility, breaking_changes |
+| Compliance matrix structured | ? | This table with ?/? + evidence |
 
 ---
 
@@ -864,23 +864,23 @@ All resources scoped to invocation. No persistent handles.
 
 | Category | Check | Status |
 |----------|-------|--------|
-| **Functionality** | 4-phase build process (Research → Implement → Review → Evaluate) | ✅ |
-| **Functionality** | Framework selection (Python FastMCP vs TypeScript MCP SDK) | ✅ |
-| **Functionality** | Review checklist (4 mandatory items) | ✅ |
-| **Functionality** | 10-question evaluation with 6 criteria | ✅ |
-| **Functionality** | Design principles (workflow-oriented, context-aware) | ✅ |
-| **Contracts** | Input/output/error schemas in pseudo-schema format | ✅ |
-| **Contracts** | Contract versioning with semver | ✅ |
-| **Failure** | Error taxonomy with 4 categorized codes | ✅ |
-| **Failure** | No partial guides on error | ✅ |
-| **Failure** | Zero internal retries | ✅ |
-| **Determinism** | Fixed phases, fixed framework selection, fixed checklist | ✅ |
-| **Security** | No credentials, no external calls | ✅ |
-| **Observability** | Structured log schema with 5 mandatory fields | ✅ |
-| **Observability** | 4 metrics defined | ✅ |
-| **Performance** | P50/P99 targets for all operations | ✅ |
-| **Scalability** | Stateless; unlimited parallel | ✅ |
-| **Compliance** | All skill-design-guide.md sections mapped with evidence | ✅ |
+| **Functionality** | 4-phase build process (Research ? Implement ? Review ? Evaluate) | ? |
+| **Functionality** | Framework selection (Python FastMCP vs TypeScript MCP SDK) | ? |
+| **Functionality** | Review checklist (4 mandatory items) | ? |
+| **Functionality** | 10-question evaluation with 6 criteria | ? |
+| **Functionality** | Design principles (workflow-oriented, context-aware) | ? |
+| **Contracts** | Input/output/error schemas in pseudo-schema format | ? |
+| **Contracts** | Contract versioning with semver | ? |
+| **Failure** | Error taxonomy with 4 categorized codes | ? |
+| **Failure** | No partial guides on error | ? |
+| **Failure** | Zero internal retries | ? |
+| **Determinism** | Fixed phases, fixed framework selection, fixed checklist | ? |
+| **Security** | No credentials, no external calls | ? |
+| **Observability** | Structured log schema with 5 mandatory fields | ? |
+| **Observability** | 4 metrics defined | ? |
+| **Performance** | P50/P99 targets for all operations | ? |
+| **Scalability** | Stateless; unlimited parallel | ? |
+| **Compliance** | All skill-design-guide.md sections mapped with evidence | ? |
 
 ---
 
@@ -888,17 +888,17 @@ All resources scoped to invocation. No persistent handles.
 
 ---
 
-## 🔗 Related
+## ?? Related
 
 | File | When to Read |
 |------|-------------|
 | [../SKILL.md](../SKILL.md) | Quick reference, 4-phase build, anti-patterns |
-| [design-principles.md](design-principles.md) | Phase 1 — MCP concepts |
-| [quickstart.md](quickstart.md) | Phase 2 — setup guides |
-| [python-implementation.md](python-implementation.md) | Phase 2 — Python patterns |
-| [typescript-implementation.md](typescript-implementation.md) | Phase 2 — TypeScript patterns |
-| [best-practices.md](best-practices.md) | Phase 3 — review patterns |
-| [evaluation.md](evaluation.md) | Phase 4 — testing framework |
+| [design-principles.md](design-principles.md) | Phase 1 � MCP concepts |
+| [quickstart.md](quickstart.md) | Phase 2 � setup guides |
+| [python-implementation.md](python-implementation.md) | Phase 2 � Python patterns |
+| [typescript-implementation.md](typescript-implementation.md) | Phase 2 � TypeScript patterns |
+| [best-practices.md](best-practices.md) | Phase 3 � review patterns |
+| [evaluation.md](evaluation.md) | Phase 4 � testing framework |
 | `mcp-management` | MCP tool discovery |
 
 ---
@@ -907,7 +907,7 @@ All resources scoped to invocation. No persistent handles.
 
 ---
 name: mcp-evaluation
-description: 10-question evaluation framework for MCP servers — complex, read-only, verifiable test questions
+description: 10-question evaluation framework for MCP servers � complex, read-only, verifiable test questions
 ---
 
 # MCP Evaluation Guide
@@ -984,7 +984,7 @@ This requires:
 
 ## Anti-Patterns
 
-| ❌ Don't | ✅ Do |
+| ? Don't | ? Do |
 |---------|-------|
 | Simple one-tool questions | Multi-step exploration |
 | Write operations | Read-only operations |
@@ -997,7 +997,7 @@ This requires:
 
 ---
 
-## 🔗 Related
+## ?? Related
 
 | File | When to Read |
 |------|-------------|
@@ -1011,7 +1011,7 @@ This requires:
 
 ---
 name: mcp-python-implementation
-description: Python MCP server with FastMCP — tool annotations, error helpers, pagination, quality checklist
+description: Python MCP server with FastMCP � tool annotations, error helpers, pagination, quality checklist
 ---
 
 # Python MCP Server Implementation
@@ -1032,10 +1032,10 @@ pip install fastmcp pydantic httpx python-dotenv
 
 ```
 my-mcp-server/
-├── server.py           # Main entry
-├── requirements.txt    # Dependencies
-├── .env.example        # Environment template
-└── README.md           # Documentation
++-- server.py           # Main entry
++-- requirements.txt    # Dependencies
++-- .env.example        # Environment template
++-- README.md           # Documentation
 ```
 
 ---
@@ -1245,7 +1245,7 @@ npx @modelcontextprotocol/inspector python server.py
 
 ---
 
-## 🔗 Related
+## ?? Related
 
 | File | When to Read |
 |------|-------------|
@@ -1358,7 +1358,7 @@ npx ts-node server.ts
 
 ---
 
-## 🔗 Related
+## ?? Related
 
 | File | When to Read |
 |------|-------------|
@@ -1373,7 +1373,7 @@ npx ts-node server.ts
 
 ---
 name: mcp-typescript-implementation
-description: TypeScript MCP server with Zod validation — tool annotations, strict mode, build/test workflow
+description: TypeScript MCP server with Zod validation � tool annotations, strict mode, build/test workflow
 ---
 
 # TypeScript MCP Server Implementation
@@ -1396,13 +1396,13 @@ npm install -D typescript @types/node tsx
 
 ```
 my-mcp-server/
-├── src/
-│   ├── index.ts        # Main entry
-│   ├── tools/          # Tool definitions
-│   └── utils/          # Helpers
-├── package.json
-├── tsconfig.json
-└── .env.example
++-- src/
+�   +-- index.ts        # Main entry
+�   +-- tools/          # Tool definitions
+�   +-- utils/          # Helpers
++-- package.json
++-- tsconfig.json
++-- .env.example
 ```
 
 ---
@@ -1637,7 +1637,7 @@ npx @modelcontextprotocol/inspector node dist/index.js
 
 ---
 
-## 🔗 Related
+## ?? Related
 
 | File | When to Read |
 |------|-------------|
@@ -1650,4 +1650,4 @@ npx @modelcontextprotocol/inspector node dist/index.js
 
 ---
 
-⚡ PikaKit v3.9.169
+? PikaKit v3.9.169

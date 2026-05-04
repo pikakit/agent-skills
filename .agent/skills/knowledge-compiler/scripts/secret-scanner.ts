@@ -6,8 +6,8 @@
  * Zero dependencies, pure Node.js.
  *
  * Usage:
- *   node secret-scanner.js <path>           Scan a file or directory
- *   node secret-scanner.js --all            Scan entire knowledge/ directory
+ *   node secret-scanner.ts <path>           Scan a file or directory
+ *   node secret-scanner.ts --all            Scan entire knowledge/ directory
  *
  * Exit codes:
  *   0 = clean, 1 = violations found, 2 = usage error
@@ -129,7 +129,7 @@ const FALSE_POSITIVE_PATTERNS = [
  * @param {string} match - The matched secret string
  * @returns {boolean}
  */
-function isFalsePositive(line, match) {
+function isFalsePositive(line: string, match: string): boolean {
   // Check line-level false positives
   for (const fp of FALSE_POSITIVE_PATTERNS) {
     if (fp.test(line)) return true;
@@ -157,7 +157,7 @@ const ZERO_WIDTH_CHARS = /[\u200B\u200C\u200D\u200E\u200F\uFEFF\u00AD]/g;
  * @param {string} text
  * @returns {string}
  */
-function stripZeroWidth(text) {
+function stripZeroWidth(text: string): string {
   return text.replace(ZERO_WIDTH_CHARS, "");
 }
 
@@ -169,8 +169,8 @@ function stripZeroWidth(text) {
  * @param {string} [filename] - Optional filename for reporting
  * @returns {{ found: boolean, violations: Array<{ id: string, type: string, description: string, line: number, snippet: string }> }}
  */
-export function scanForSecrets(content, filename = "<input>") {
-  const violations = [];
+export function scanForSecrets(content: string, filename: string = "<input>") {
+  const violations: any[] = [];
   const normalizedContent = stripZeroWidth(content);
   const lines = normalizedContent.split("\n");
 
@@ -208,7 +208,7 @@ export function scanForSecrets(content, filename = "<input>") {
  * @param {string} match - The matched secret string
  * @returns {string}
  */
-function redactMatch(line, match) {
+function redactMatch(line: string, match: string): string {
   if (match.length <= 12) {
     return line.replace(match, match.substring(0, 4) + "***");
   }
@@ -224,11 +224,11 @@ function redactMatch(line, match) {
  * @param {string} filePath
  * @returns {{ found: boolean, violations: Array }}
  */
-function scanFile(filePath) {
+function scanFile(filePath: string) {
   try {
     const content = fs.readFileSync(filePath, "utf-8");
     return scanForSecrets(content, filePath);
-  } catch (err) {
+  } catch (err: any) {
     console.error(`  ⚠ Could not read: ${filePath} (${err.message})`);
     return { found: false, violations: [] };
   }
@@ -239,11 +239,11 @@ function scanFile(filePath) {
  * @param {string} dirPath
  * @returns {{ filesChecked: number, violations: Array }}
  */
-function scanDirectory(dirPath) {
+function scanDirectory(dirPath: string) {
   let filesChecked = 0;
-  const allViolations = [];
+  const allViolations: any[] = [];
 
-  function walk(dir) {
+  function walk(dir: string) {
     for (const entry of fs.readdirSync(dir)) {
       const full = path.join(dir, entry);
       const stat = fs.statSync(full);
@@ -270,7 +270,7 @@ function main() {
   const args = process.argv.slice(2);
 
   if (args.length === 0) {
-    console.log("Usage: node secret-scanner.js <path|--all>");
+    console.log("Usage: node secret-scanner.ts <path|--all>");
     console.log("  <path>   Scan a file or directory");
     console.log("  --all    Scan entire .agent/knowledge/ directory");
     process.exit(2);
@@ -327,7 +327,7 @@ function main() {
 const isMain =
   process.argv[1] &&
   (process.argv[1] === fileURLToPath(import.meta.url) ||
-    process.argv[1].endsWith("secret-scanner.js"));
+    process.argv[1].endsWith("secret-scanner.ts"));
 
 if (isMain) {
   main();

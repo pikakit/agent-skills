@@ -1,4 +1,4 @@
-﻿# auth-patterns
+# auth-patterns
 
 **Version 1.0.0**
 Engineering
@@ -18,7 +18,7 @@ March 2026
 
 ## Prerequisites
 
-**Required:** None — Auth Patterns is a knowledge-based skill with no external dependencies.
+**Required:** None � Auth Patterns is a knowledge-based skill with no external dependencies.
 
 **Optional:**
 - `security-scanner` skill (for implementation validation)
@@ -49,9 +49,9 @@ March 2026
 |---------------------|-----------|
 | Auth strategy selection (JWT/Session/OAuth/Passkey) | Auth library implementation |
 | Token lifecycle design (TTL, rotation, revocation) | Secret/key generation |
-| Permission model architecture (RBAC/ABAC) | Users/roles DB schema (→ data-modeler) |
+| Permission model architecture (RBAC/ABAC) | Users/roles DB schema (? data-modeler) |
 | MFA strategy selection (TOTP/WebAuthn) | MFA provider integration |
-| Session config (cookie, store, invalidation) | Session store provisioning (→ server-ops) |
+| Session config (cookie, store, invalidation) | Session store provisioning (? server-ops) |
 
 **Pure decision skill:** Produces security guidance. Zero network calls, zero credential handling, zero side effects.
 
@@ -61,10 +61,10 @@ March 2026
 
 | Principle | Enforcement |
 |-----------|-------------|
-| **Fail Closed** | Auth error or ambiguity → deny access. Never implicit allow. |
-| **Defense in Depth** | Every recommendation includes ≥ 3 controls: auth + authz + rate limit + monitoring |
+| **Fail Closed** | Auth error or ambiguity ? deny access. Never implicit allow. |
+| **Defense in Depth** | Every recommendation includes = 3 controls: auth + authz + rate limit + monitoring |
 | **Least Privilege** | Grant minimum permissions; default to no-access |
-| **Token Hygiene** | Access token ≤ 15 min. Refresh token rotated on use. httpOnly storage. |
+| **Token Hygiene** | Access token = 15 min. Refresh token rotated on use. httpOnly storage. |
 | **Zero Trust** | Verify every request. No implicit trust for internal services. |
 
 ---
@@ -73,18 +73,18 @@ March 2026
 
 ```
 What type of application?
-├── SPA / Mobile App
-│   ├── First-party only → JWT (≤15min access) + Refresh Token (httpOnly cookie)
-│   └── Third-party login → OAuth 2.0 + PKCE (mandatory for public clients)
-├── Traditional Web (SSR)
-│   └── Session-based (httpOnly secure cookies, SameSite=Strict)
-├── API / Microservices
-│   ├── Service-to-service → mTLS or API Keys + HMAC
-│   └── User-facing → JWT with gateway validation
-├── Enterprise / B2B
-│   └── SAML 2.0 or OIDC (SSO)
-└── Modern Passwordless
-    └── Passkeys (WebAuthn/FIDO2)
++-- SPA / Mobile App
+�   +-- First-party only ? JWT (=15min access) + Refresh Token (httpOnly cookie)
+�   +-- Third-party login ? OAuth 2.0 + PKCE (mandatory for public clients)
++-- Traditional Web (SSR)
+�   +-- Session-based (httpOnly secure cookies, SameSite=Strict)
++-- API / Microservices
+�   +-- Service-to-service ? mTLS or API Keys + HMAC
+�   +-- User-facing ? JWT with gateway validation
++-- Enterprise / B2B
+�   +-- SAML 2.0 or OIDC (SSO)
++-- Modern Passwordless
+    +-- Passkeys (WebAuthn/FIDO2)
 ```
 
 ---
@@ -108,8 +108,8 @@ What type of application?
 ## Decision Checklist
 
 - [ ] **Auth strategy chosen for THIS app type?** (JWT / Session / OAuth / Passkey)
-- [ ] **Token storage decided?** (httpOnly secure cookie — NOT localStorage)
-- [ ] **Access token TTL ≤ 15 minutes?**
+- [ ] **Token storage decided?** (httpOnly secure cookie � NOT localStorage)
+- [ ] **Access token TTL = 15 minutes?**
 - [ ] **Refresh token rotation configured?** (rotate on every use)
 - [ ] **Permission model chosen?** (RBAC / ABAC / hybrid)
 - [ ] **MFA required for sensitive operations?** (high/critical sensitivity)
@@ -121,10 +121,10 @@ What type of application?
 
 ## Anti-Patterns
 
-| ❌ Don't | ✅ Do |
+| ? Don't | ? Do |
 |---------|-------|
 | Store JWT in localStorage | Use httpOnly secure cookies |
-| Access tokens with 24h+ expiry | Access token ≤ 15 min + refresh token |
+| Access tokens with 24h+ expiry | Access token = 15 min + refresh token |
 | Roll your own crypto | Use battle-tested libraries (jose, passport) |
 | Same signing key for all services | Per-service signing keys |
 | Skip PKCE for public clients | PKCE mandatory for SPA/mobile OAuth |
@@ -133,7 +133,7 @@ What type of application?
 
 ---
 
-## 📑 Content Map
+## ?? Content Map
 
 | File | Description | When to Read |
 |------|-------------|--------------|
@@ -147,7 +147,7 @@ What type of application?
 
 ---
 
-## 🔗 Related
+## ?? Related
 
 | Item | Type | Purpose |
 |------|------|---------|
@@ -170,12 +170,12 @@ What type of application?
 ### Rule: engineering-spec
 
 ---
-title: Auth Patterns — Engineering Specification
+title: Auth Patterns � Engineering Specification
 impact: MEDIUM
 tags: auth-patterns
 ---
 
-# Auth Patterns — Engineering Specification
+# Auth Patterns � Engineering Specification
 
 > Production-grade specification for authentication and authorization pattern selection at FAANG scale.
 
@@ -208,10 +208,10 @@ Auth Patterns eliminates these by providing context-aware decision trees that pr
 
 | ID | Goal | Measurable Constraint |
 |----|------|-----------------------|
-| G1 | Context-aware auth selection | Decision tree produces one of JWT/Session/OAuth/Passkey based on ≤ 4 input criteria |
+| G1 | Context-aware auth selection | Decision tree produces one of JWT/Session/OAuth/Passkey based on = 4 input criteria |
 | G2 | Fail-closed defaults | Every pattern defaults to deny-access on ambiguity; no implicit allow |
-| G3 | Token hygiene enforcement | All JWT patterns specify ≤ 15-minute access token lifetime |
-| G4 | Defense in depth | Every auth recommendation includes ≥ 3 complementary controls (auth + authz + rate limit + monitoring) |
+| G3 | Token hygiene enforcement | All JWT patterns specify = 15-minute access token lifetime |
+| G4 | Defense in depth | Every auth recommendation includes = 3 complementary controls (auth + authz + rate limit + monitoring) |
 | G5 | Decision traceability | Every recommendation includes security rationale and threat model reference |
 
 ---
@@ -236,9 +236,9 @@ Auth Patterns eliminates these by providing context-aware decision trees that pr
 |----------|-------|-----------|
 | Auth strategy selection | JWT/Session/OAuth/Passkey decision tree | Auth library selection |
 | Token lifecycle design | Expiry, rotation, revocation patterns | Token signing key generation |
-| Permission model design | RBAC/ABAC/hybrid architecture | Permission database schema (→ data-modeler) |
+| Permission model design | RBAC/ABAC/hybrid architecture | Permission database schema (? data-modeler) |
 | MFA strategy | TOTP/WebAuthn/backup code patterns | MFA provider integration |
-| Session management | Cookie config, store selection, invalidation | Session store provisioning (→ server-ops) |
+| Session management | Cookie config, store selection, invalidation | Session store provisioning (? server-ops) |
 | Passkey architecture | WebAuthn/FIDO2 flow design | Browser API implementation |
 
 **Side-effect boundary:** Auth Patterns produces design documents and security guidance. It does not generate secrets, create keys, modify configurations, or make network requests.
@@ -306,7 +306,7 @@ Error: ErrorSchema | null
 
 **Contract Version:** 2.0.0
 **Backward Compatibility:** breaking (first hardened version)
-**Breaking Changes:** None — new spec for first hardening
+**Breaking Changes:** None � new spec for first hardening
 
 #### Error Schema
 
@@ -320,7 +320,7 @@ Recoverable: boolean
 #### Deterministic Guarantees
 
 - Same `Request_Type` + `Context` = identical `strategy` + `rationale` output.
-- Decision tree evaluation order: app_type → auth_consumers → sensitivity → compliance → constraints.
+- Decision tree evaluation order: app_type ? auth_consumers ? sensitivity ? compliance ? constraints.
 - Token configuration values are fixed per strategy (access TTL = 15 min for JWT, never variable).
 - No randomization, no A/B selection, no heuristic weighting.
 
@@ -354,13 +354,13 @@ Recoverable: boolean
 
 ```
 1. Define app context (type, consumers, sensitivity, compliance)
-2. Select request type (strategy-selection → token/session design → permission model → MFA)
+2. Select request type (strategy-selection ? token/session design ? permission model ? MFA)
 3. Receive recommendation with rationale, threat model, and checklist
 4. Review and implement (caller's responsibility)
 5. Run security-scanner for implementation validation (separate skill)
 ```
 
-**Recommended ordering:** strategy-selection → jwt-design or session-design → permission-model → mfa-strategy → security-review.
+**Recommended ordering:** strategy-selection ? jwt-design or session-design ? permission-model ? mfa-strategy ? security-review.
 
 #### Execution Guarantees
 
@@ -420,8 +420,8 @@ All phases execute synchronously in a single invocation. No async pipeline.
 
 | Principle | Enforcement |
 |-----------|-------------|
-| Fixed decision tree ordering | app_type → auth_consumers → sensitivity → compliance → constraints |
-| Fail-closed defaults | Ambiguous context → most restrictive recommendation |
+| Fixed decision tree ordering | app_type ? auth_consumers ? sensitivity ? compliance ? constraints |
+| Fail-closed defaults | Ambiguous context ? most restrictive recommendation |
 | No external calls | Decisions use only local reference files and input context |
 | No ambient state | Each invocation operates solely on explicit inputs |
 | Fixed token values | Access TTL, refresh TTL, storage method are constants per strategy |
@@ -434,8 +434,8 @@ All phases execute synchronously in a single invocation. No async pipeline.
 ### State Machine
 
 ```
-States: IDLE (single state — skill is stateless)
-Transitions: None — each invocation is independent
+States: IDLE (single state � skill is stateless)
+Transitions: None � each invocation is independent
 ```
 
 Auth Patterns maintains zero persistent state. Every invocation starts from a clean state. Invoking N times with identical inputs produces N identical outputs.
@@ -585,7 +585,7 @@ Auth Patterns maintains zero persistent state. Every invocation starts from a cl
 
 | Scope | Model | Behavior |
 |-------|-------|----------|
-| Within invocation | Sequential | Classify → Evaluate → Harden → Emit |
+| Within invocation | Sequential | Classify ? Evaluate ? Harden ? Emit |
 | Across invocations | Fully parallel | No shared state, no coordination |
 | Reference access | Read-only shared | Multiple concurrent reads safe |
 
@@ -612,7 +612,7 @@ Auth Patterns maintains zero persistent state. Every invocation starts from a cl
 | Strategy selection | < 5 ms | < 20 ms | 50 ms |
 | Full recommendation (with controls) | < 10 ms | < 30 ms | 100 ms |
 | Reference file read | < 1 ms | < 5 ms | 1,000 ms |
-| Output size | ≤ 800 chars | ≤ 2,000 chars | 5,000 chars |
+| Output size | = 800 chars | = 2,000 chars | 5,000 chars |
 
 ---
 
@@ -632,17 +632,17 @@ Auth Patterns maintains zero persistent state. Every invocation starts from a cl
 
 | Requirement | Status | Evidence |
 |-------------|--------|----------|
-| YAML frontmatter complete | ✅ | name, description, metadata with category, version, triggers, coordinates_with, success_metrics |
-| SKILL.md < 200 lines | ✅ | Entry point under 200 lines; details in rules/ |
-| Prerequisites documented | ✅ | No external dependencies required |
-| When to Use section | ✅ | Auth domain decision matrix |
-| Quick Reference | ✅ | Decision tree and checklist |
-| Core content matches skill type | ✅ | Expert type: decision trees, security principles |
-| Troubleshooting section | ✅ | Anti-patterns table |
-| Related section | ✅ | Cross-links to api-architect, security-scanner, data-modeler, offensive-sec |
-| Content Map for multi-file | ✅ | Links to 6 reference files + engineering-spec.md |
-| Contract versioning | ✅ | contract_version, backward_compatibility, breaking_changes |
-| Compliance matrix structured | ✅ | This table with ✅/❌ + evidence |
+| YAML frontmatter complete | ? | name, description, metadata with category, version, triggers, coordinates_with, success_metrics |
+| SKILL.md < 200 lines | ? | Entry point under 200 lines; details in rules/ |
+| Prerequisites documented | ? | No external dependencies required |
+| When to Use section | ? | Auth domain decision matrix |
+| Quick Reference | ? | Decision tree and checklist |
+| Core content matches skill type | ? | Expert type: decision trees, security principles |
+| Troubleshooting section | ? | Anti-patterns table |
+| Related section | ? | Cross-links to api-architect, security-scanner, data-modeler, offensive-sec |
+| Content Map for multi-file | ? | Links to 6 reference files + engineering-spec.md |
+| Contract versioning | ? | contract_version, backward_compatibility, breaking_changes |
+| Compliance matrix structured | ? | This table with ?/? + evidence |
 
 ---
 
@@ -650,28 +650,28 @@ Auth Patterns maintains zero persistent state. Every invocation starts from a cl
 
 | Category | Check | Status |
 |----------|-------|--------|
-| **Functionality** | 8 request types covering auth lifecycle | ✅ |
-| **Functionality** | Decision tree for 6 app types | ✅ |
-| **Functionality** | 6 reference files covering OAuth2, JWT, RBAC, MFA, Session, Passkey | ✅ |
-| **Contracts** | Input/output/error schemas defined | ✅ |
-| **Contracts** | Agent assumptions and non-assumptions documented | ✅ |
-| **Contracts** | Workflow invocation pattern specified | ✅ |
-| **Failure** | Error taxonomy with 7 categorized error codes | ✅ |
-| **Failure** | No silent failures; fail-closed on ambiguity | ✅ |
-| **Failure** | Retry policy: zero internal retries | ✅ |
-| **Determinism** | Fixed decision tree ordering | ✅ |
-| **Determinism** | Fixed token config values per strategy | ✅ |
-| **Security** | Fail-closed design: ambiguity → most restrictive | ✅ |
-| **Security** | No credential storage or processing | ✅ |
-| **Security** | Anti-patterns: no localStorage JWTs, no long-lived tokens | ✅ |
-| **Observability** | Structured log schema with 5 log points | ✅ |
-| **Observability** | 6 metrics defined with types and units | ✅ |
-| **Performance** | P50/P99 targets for all operations | ✅ |
-| **Scalability** | Stateless; unlimited parallel invocations | ✅ |
-| **Concurrency** | No shared state; read-only reference access | ✅ |
-| **Resources** | All resources scoped to invocation lifetime | ✅ |
-| **Idempotency** | Fully idempotent — all operations are pure functions | ✅ |
-| **Compliance** | All skill-design-guide.md sections present | ✅ |
+| **Functionality** | 8 request types covering auth lifecycle | ? |
+| **Functionality** | Decision tree for 6 app types | ? |
+| **Functionality** | 6 reference files covering OAuth2, JWT, RBAC, MFA, Session, Passkey | ? |
+| **Contracts** | Input/output/error schemas defined | ? |
+| **Contracts** | Agent assumptions and non-assumptions documented | ? |
+| **Contracts** | Workflow invocation pattern specified | ? |
+| **Failure** | Error taxonomy with 7 categorized error codes | ? |
+| **Failure** | No silent failures; fail-closed on ambiguity | ? |
+| **Failure** | Retry policy: zero internal retries | ? |
+| **Determinism** | Fixed decision tree ordering | ? |
+| **Determinism** | Fixed token config values per strategy | ? |
+| **Security** | Fail-closed design: ambiguity ? most restrictive | ? |
+| **Security** | No credential storage or processing | ? |
+| **Security** | Anti-patterns: no localStorage JWTs, no long-lived tokens | ? |
+| **Observability** | Structured log schema with 5 log points | ? |
+| **Observability** | 6 metrics defined with types and units | ? |
+| **Performance** | P50/P99 targets for all operations | ? |
+| **Scalability** | Stateless; unlimited parallel invocations | ? |
+| **Concurrency** | No shared state; read-only reference access | ? |
+| **Resources** | All resources scoped to invocation lifetime | ? |
+| **Idempotency** | Fully idempotent � all operations are pure functions | ? |
+| **Compliance** | All skill-design-guide.md sections present | ? |
 
 ---
 
@@ -725,17 +725,17 @@ Header.Payload.Signature
 
 | Claim | Purpose | Required? |
 |-------|---------|-----------|
-| `sub` | Subject (user ID) | ✅ |
-| `iss` | Issuer | ✅ |
-| `aud` | Audience | ✅ |
-| `exp` | Expiry (Unix timestamp) | ✅ |
-| `iat` | Issued at | ✅ |
+| `sub` | Subject (user ID) | ? |
+| `iss` | Issuer | ? |
+| `aud` | Audience | ? |
+| `exp` | Expiry (Unix timestamp) | ? |
+| `iat` | Issued at | ? |
 | `jti` | JWT ID (unique) | For revocation |
 
 ### Custom Claims
 
 ```typescript
-// ✅ Minimal claims
+// ? Minimal claims
 {
   sub: "user_abc123",
   role: "admin",        // For quick authz checks
@@ -743,7 +743,7 @@ Header.Payload.Signature
   scope: "read write",  // API permissions
 }
 
-// ❌ Too much data
+// ? Too much data
 {
   sub: "user_abc123",
   email: "user@example.com",  // PII in token
@@ -757,26 +757,26 @@ Header.Payload.Signature
 ## Access + Refresh Token Pattern
 
 ```
-┌──────────────┐     ┌──────────────┐     ┌──────────────┐
-│    Client    │     │  Auth Server │     │   Resource   │
-└──────┬───────┘     └──────┬───────┘     └──────┬───────┘
-       │  Login             │                    │
-       │───────────────────>│                    │
-       │  Access (15min)    │                    │
-       │  + Refresh (7d)    │                    │
-       │<───────────────────│                    │
-       │                    │                    │
-       │  API call + Access Token                │
-       │────────────────────────────────────────>│
-       │  Response                               │
-       │<────────────────────────────────────────│
-       │                    │                    │
-       │  (Access expired)  │                    │
-       │  Refresh request   │                    │
-       │───────────────────>│                    │
-       │  New Access        │                    │
-       │  + New Refresh     │ (rotation!)        │
-       │<───────────────────│                    │
++--------------+     +--------------+     +--------------+
+�    Client    �     �  Auth Server �     �   Resource   �
++--------------+     +--------------+     +--------------+
+       �  Login             �                    �
+       �------------------->�                    �
+       �  Access (15min)    �                    �
+       �  + Refresh (7d)    �                    �
+       �<-------------------�                    �
+       �                    �                    �
+       �  API call + Access Token                �
+       �---------------------------------------->�
+       �  Response                               �
+       �<----------------------------------------�
+       �                    �                    �
+       �  (Access expired)  �                    �
+       �  Refresh request   �                    �
+       �------------------->�                    �
+       �  New Access        �                    �
+       �  + New Refresh     � (rotation!)        �
+       �<-------------------�                    �
 ```
 
 ### Implementation
@@ -806,7 +806,7 @@ async function refreshTokens(oldRefreshToken: string) {
   // Check if token was already used (rotation detection)
   const isUsed = await redis.get(`used_refresh:${payload.jti}`);
   if (isUsed) {
-    // Token reuse detected → compromise! Revoke all user sessions
+    // Token reuse detected ? compromise! Revoke all user sessions
     await revokeAllSessions(payload.sub);
     throw new SecurityError('Refresh token reuse detected');
   }
@@ -850,7 +850,7 @@ async function refreshTokens(oldRefreshToken: string) {
 
 ## Anti-Patterns
 
-| ❌ Don't | ✅ Do |
+| ? Don't | ? Do |
 |---------|------|
 | Store JWT in localStorage | httpOnly secure cookie |
 | Long-lived access tokens | 15 min max + refresh |
@@ -865,7 +865,7 @@ async function refreshTokens(oldRefreshToken: string) {
 
 ---
 
-## 🔗 Related
+## ?? Related
 
 | File | When to Read |
 |------|-------------|
@@ -880,7 +880,7 @@ async function refreshTokens(oldRefreshToken: string) {
 
 ---
 name: mfa
-description: Multi-factor authentication — TOTP setup, backup codes, WebAuthn for MFA, recovery flows
+description: Multi-factor authentication � TOTP setup, backup codes, WebAuthn for MFA, recovery flows
 ---
 
 # Multi-Factor Authentication (MFA)
@@ -894,13 +894,13 @@ description: Multi-factor authentication — TOTP setup, backup codes, WebAuthn 
 
 | Method | Security | UX | Best For |
 |--------|----------|-----|---------|
-| TOTP (authenticator app) | ★★★★ | ★★★ | General purpose |
-| WebAuthn / Passkey | ★★★★★ | ★★★★ | Modern apps |
-| SMS OTP | ★★ | ★★★★ | Legacy, low-risk |
-| Email OTP | ★★ | ★★★ | Fallback only |
-| Hardware key (YubiKey) | ★★★★★ | ★★ | High security |
+| TOTP (authenticator app) | ???? | ??? | General purpose |
+| WebAuthn / Passkey | ????? | ???? | Modern apps |
+| SMS OTP | ?? | ???? | Legacy, low-risk |
+| Email OTP | ?? | ??? | Fallback only |
+| Hardware key (YubiKey) | ????? | ?? | High security |
 
-> ⚠️ **SMS OTP is vulnerable to SIM swapping.** Avoid for high-value targets.
+> ?? **SMS OTP is vulnerable to SIM swapping.** Avoid for high-value targets.
 
 ---
 
@@ -928,7 +928,7 @@ async function enableMFA(userId: string) {
   // 3. Generate QR code
   const qrDataUrl = await qrcode.toDataURL(otpauthUrl);
 
-  // 4. Store secret (encrypted) — NOT active yet
+  // 4. Store secret (encrypted) � NOT active yet
   await db.user.update({
     where: { id: userId },
     data: { mfaSecret: encrypt(secret), mfaPending: true },
@@ -1018,10 +1018,10 @@ const verification = await verifyAuthenticationResponse({
 
 ```
 User cannot access MFA device?
-├── Has backup codes → Enter backup code
-├── Has recovery email → Email verification + admin review
-├── Has trusted device → Device-based recovery
-└── None of above → Manual identity verification (support)
++-- Has backup codes ? Enter backup code
++-- Has recovery email ? Email verification + admin review
++-- Has trusted device ? Device-based recovery
++-- None of above ? Manual identity verification (support)
 ```
 
 ### Recovery Best Practices
@@ -1040,7 +1040,7 @@ User cannot access MFA device?
 
 ---
 
-## 🔗 Related
+## ?? Related
 
 | File | When to Read |
 |------|-------------|
@@ -1072,7 +1072,7 @@ description: OAuth 2.0 + OpenID Connect flows, PKCE, scopes, provider integratio
 1. Client generates code_verifier (random 43-128 chars)
 2. Client creates code_challenge = SHA256(code_verifier)
 3. Redirect to auth server with code_challenge
-4. User authenticates → redirect back with auth code
+4. User authenticates ? redirect back with auth code
 5. Client exchanges code + code_verifier for tokens
 ```
 
@@ -1101,11 +1101,11 @@ authUrl.searchParams.set('state', crypto.randomBytes(16).toString('hex'));
 
 | Flow | Best For | PKCE? |
 |------|----------|-------|
-| Authorization Code + PKCE | SPA, Mobile, Server | ✅ Always |
+| Authorization Code + PKCE | SPA, Mobile, Server | ? Always |
 | Client Credentials | Machine-to-machine | N/A |
 | Device Code | TV, CLI, IoT | N/A |
-| ~~Implicit~~ | **DEPRECATED** — never use | ❌ |
-| ~~Password~~ | **DEPRECATED** — never use | ❌ |
+| ~~Implicit~~ | **DEPRECATED** � never use | ? |
+| ~~Password~~ | **DEPRECATED** � never use | ? |
 
 ---
 
@@ -1130,7 +1130,7 @@ OIDC = OAuth 2.0 + Identity Layer
 
 | Scope | Data Returned |
 |-------|---------------|
-| `openid` | Required — returns `sub` |
+| `openid` | Required � returns `sub` |
 | `profile` | name, picture, locale |
 | `email` | email, email_verified |
 | `offline_access` | Refresh token |
@@ -1175,7 +1175,7 @@ OIDC = OAuth 2.0 + Identity Layer
 
 ---
 
-## 🔗 Related
+## ?? Related
 
 | File | When to Read |
 |------|-------------|
@@ -1190,7 +1190,7 @@ OIDC = OAuth 2.0 + Identity Layer
 
 ---
 name: passkey
-description: WebAuthn/FIDO2 passkeys — registration, authentication, browser + server implementation
+description: WebAuthn/FIDO2 passkeys � registration, authentication, browser + server implementation
 ---
 
 # Passkeys (WebAuthn / FIDO2)
@@ -1205,7 +1205,7 @@ description: WebAuthn/FIDO2 passkeys — registration, authentication, browser +
 |--------|--------|
 | Standard | WebAuthn (W3C) + FIDO2 (FIDO Alliance) |
 | Mechanism | Public-key cryptography (device holds private key) |
-| Phishing resistance | ✅ Origin-bound (can't be phished) |
+| Phishing resistance | ? Origin-bound (can't be phished) |
 | UX | Biometric (fingerprint, Face ID) or PIN |
 | Syncing | iCloud Keychain, Google Password Manager, 1Password |
 
@@ -1408,10 +1408,10 @@ await fetch('/api/auth/passkey/login/verify', {
 
 | Browser | Passkey Support |
 |---------|-----------------|
-| Chrome 108+ | ✅ Full |
-| Safari 16+ | ✅ Full |
-| Firefox 122+ | ✅ Full |
-| Edge 108+ | ✅ Full |
+| Chrome 108+ | ? Full |
+| Safari 16+ | ? Full |
+| Firefox 122+ | ? Full |
+| Edge 108+ | ? Full |
 
 ---
 
@@ -1419,7 +1419,7 @@ await fetch('/api/auth/passkey/login/verify', {
 
 ---
 
-## 🔗 Related
+## ?? Related
 
 | File | When to Read |
 |------|-------------|
@@ -1434,10 +1434,10 @@ await fetch('/api/auth/passkey/login/verify', {
 
 ---
 name: rbac-abac
-description: Role-Based and Attribute-Based access control — Prisma schema, middleware, ABAC policy engine
+description: Role-Based and Attribute-Based access control � Prisma schema, middleware, ABAC policy engine
 ---
 
-# RBAC & ABAC — Access Control
+# RBAC & ABAC � Access Control
 
 > Role-Based and Attribute-Based authorization patterns.
 
@@ -1447,14 +1447,14 @@ description: Role-Based and Attribute-Based access control — Prisma schema, mi
 
 ```
 How complex are your permissions?
-├── Simple (admin/user/viewer)
-│   └── RBAC (Role-Based)
-├── Medium (roles + resource ownership)
-│   └── RBAC + ownership checks
-├── Complex (context-dependent rules)
-│   └── ABAC (Attribute-Based)
-└── Enterprise (multi-tenant + compliance)
-    └── ABAC or hybrid RBAC+ABAC
++-- Simple (admin/user/viewer)
+�   +-- RBAC (Role-Based)
++-- Medium (roles + resource ownership)
+�   +-- RBAC + ownership checks
++-- Complex (context-dependent rules)
+�   +-- ABAC (Attribute-Based)
++-- Enterprise (multi-tenant + compliance)
+    +-- ABAC or hybrid RBAC+ABAC
 ```
 
 ---
@@ -1593,7 +1593,7 @@ function evaluatePolicy(ctx: PolicyContext): boolean {
     },
   ];
 
-  // Default deny — allow only if at least one policy matches
+  // Default deny � allow only if at least one policy matches
   return policies.some(p => p.effect === 'allow' && p.condition(ctx));
 }
 ```
@@ -1614,7 +1614,7 @@ function evaluatePolicy(ctx: PolicyContext): boolean {
 
 ## Anti-Patterns
 
-| ❌ Don't | ✅ Do |
+| ? Don't | ? Do |
 |---------|------|
 | Hardcode roles in if/else | Use permission table |
 | Check role name in code | Check permission (resource + action) |
@@ -1627,7 +1627,7 @@ function evaluatePolicy(ctx: PolicyContext): boolean {
 
 ---
 
-## 🔗 Related
+## ?? Related
 
 | File | When to Read |
 |------|-------------|
@@ -1655,8 +1655,8 @@ description: Cookie sessions, Redis store, stateless vs stateful, session lifecy
 | Aspect | Stateless (JWT) | Stateful (Session) |
 |--------|-----------------|-------------------|
 | Storage | Token contains data | Server stores data |
-| Scalability | ✅ No shared state | ⚠️ Needs shared store |
-| Revocation | ❌ Hard (need blocklist) | ✅ Delete from store |
+| Scalability | ? No shared state | ?? Needs shared store |
+| Revocation | ? Hard (need blocklist) | ? Delete from store |
 | Size | Can grow large | Fixed session ID |
 | Best for | Microservices, API | Traditional web SSR |
 
@@ -1694,9 +1694,9 @@ app.use(session({
 
 | Flag | Purpose | Always Set? |
 |------|---------|-------------|
-| `httpOnly` | Prevent XSS token theft | ✅ |
-| `secure` | HTTPS only | ✅ (prod) |
-| `sameSite: lax` | Basic CSRF protection | ✅ |
+| `httpOnly` | Prevent XSS token theft | ? |
+| `secure` | HTTPS only | ? (prod) |
+| `sameSite: lax` | Basic CSRF protection | ? |
 | `sameSite: strict` | Full CSRF protection | For sensitive ops |
 | `__Host-` prefix | Origin-bound | High security |
 
@@ -1810,7 +1810,7 @@ async function invalidateAllSessions(userId: string) {
 
 ---
 
-## 🔗 Related
+## ?? Related
 
 | File | When to Read |
 |------|-------------|
@@ -1821,7 +1821,7 @@ async function invalidateAllSessions(userId: string) {
 
 ---
 
-⚡ ## Security Audit Logging (MANDATORY)
+? ## Security Audit Logging (MANDATORY)
 
 - EVERY sensitive auth event MUST be audited to SIEM with ip_address and 	imestamp.
 

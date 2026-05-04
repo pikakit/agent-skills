@@ -7,9 +7,9 @@
  * CACHE — delete it and rebuild from the source markdown files.
  *
  * Usage:
- *   node knowledge-indexer.js                Incremental index (only changed files)
- *   node knowledge-indexer.js --rebuild      Full rebuild (drop + recreate)
- *   node knowledge-indexer.js --stats        Show index statistics
+ *   node knowledge-indexer.ts                Incremental index (only changed files)
+ *   node knowledge-indexer.ts --rebuild      Full rebuild (drop + recreate)
+ *   node knowledge-indexer.ts --stats        Show index statistics
  *
  * Requires: better-sqlite3
  *
@@ -32,7 +32,7 @@ const __dirname = path.dirname(__filename);
  * @param {string} [baseDir] - Optional base directory override
  * @returns {{ knowledgeDir: string, dbPath: string }}
  */
-function resolvePaths(baseDir) {
+function resolvePaths(baseDir?: string) {
   const agentDir = baseDir || path.resolve(__dirname, "..", "..", "..");
   return {
     knowledgeDir: path.join(agentDir, "knowledge"),
@@ -47,10 +47,10 @@ function resolvePaths(baseDir) {
  * @param {string} content - Full markdown file content
  * @returns {{ title: string, tags: string[], body: string }}
  */
-function parseFrontmatter(content) {
+function parseFrontmatter(content: string) {
   const fmMatch = content.match(/^---\r?\n([\s\S]*?)\r?\n---/);
   let title = "";
-  let tags = [];
+  let tags: string[] = [];
   let body = content;
 
   if (fmMatch) {
@@ -64,7 +64,7 @@ function parseFrontmatter(content) {
     // Extract tags
     const tagsMatch = fmBlock.match(/^tags:\s*\[(.+?)\]\s*$/m);
     if (tagsMatch) {
-      tags = tagsMatch[1].split(",").map((t) => t.trim().replace(/['"]/g, ""));
+      tags = tagsMatch[1].split(",").map((t: string) => t.trim().replace(/['"]/g, ""));
     }
   }
 
@@ -100,7 +100,7 @@ const SCHEMA_SQL = `
  * Initialize the FTS5 schema in the database.
  * @param {import('better-sqlite3').Database} db
  */
-function initSchema(db) {
+function initSchema(db: any) {
   db.exec(SCHEMA_SQL);
 }
 
@@ -108,7 +108,7 @@ function initSchema(db) {
  * Drop and recreate the FTS5 tables.
  * @param {import('better-sqlite3').Database} db
  */
-function dropSchema(db) {
+function dropSchema(db: any) {
   db.exec("DROP TABLE IF EXISTS knowledge_fts;");
   db.exec("DROP TABLE IF EXISTS knowledge_watermark;");
 }
@@ -120,10 +120,10 @@ function dropSchema(db) {
  * @param {string} dir
  * @returns {string[]}
  */
-function findMarkdownFiles(dir) {
-  const files = [];
+function findMarkdownFiles(dir: string): string[] {
+  const files: string[] = [];
 
-  function walk(d) {
+  function walk(d: string) {
     if (!fs.existsSync(d)) return;
     for (const entry of fs.readdirSync(d)) {
       if (entry.startsWith(".")) continue;
@@ -146,7 +146,7 @@ function findMarkdownFiles(dir) {
  * @param {string} content
  * @returns {string}
  */
-function contentHash(content) {
+function contentHash(content: string) {
   return crypto.createHash("sha256").update(content).digest("hex").slice(0, 16);
 }
 
@@ -158,7 +158,7 @@ function contentHash(content) {
  * @param {string} knowledgeDir
  * @returns {{ indexed: number, skipped: number, removed: number }}
  */
-function indexIncremental(db, knowledgeDir) {
+function indexIncremental(db: any, knowledgeDir: string) {
   const files = findMarkdownFiles(knowledgeDir);
   let indexed = 0;
   let skipped = 0;
@@ -185,7 +185,7 @@ function indexIncremental(db, knowledgeDir) {
   // Remove entries for deleted files
   const allWatermarks = db
     .prepare("SELECT file_path FROM knowledge_watermark")
-    .all();
+    .all() as any[];
   for (const row of allWatermarks) {
     if (!currentPaths.has(row.file_path)) {
       deleteFts.run(row.file_path);
@@ -227,14 +227,14 @@ function indexIncremental(db, knowledgeDir) {
  * @param {import('better-sqlite3').Database} db
  * @returns {{ totalArticles: number, totalWatermarks: number }}
  */
-function getStats(db) {
+function getStats(db: any) {
   try {
     const ftsCount = db
       .prepare("SELECT count(*) as cnt FROM knowledge_fts")
-      .get();
+      .get() as any;
     const wmCount = db
       .prepare("SELECT count(*) as cnt FROM knowledge_watermark")
-      .get();
+      .get() as any;
     return {
       totalArticles: ftsCount?.cnt || 0,
       totalWatermarks: wmCount?.cnt || 0,
@@ -253,7 +253,7 @@ async function main() {
   const baseDir = args.find((a) => !a.startsWith("--"));
 
   // Dynamic import for better-sqlite3
-  let Database;
+  let Database: any;
   try {
     const betterSqlite3 = await import("better-sqlite3");
     Database = betterSqlite3.default;
@@ -315,7 +315,7 @@ async function main() {
 const isMain =
   process.argv[1] &&
   (process.argv[1] === fileURLToPath(import.meta.url) ||
-    process.argv[1].endsWith("knowledge-indexer.js"));
+    process.argv[1].endsWith("knowledge-indexer.ts"));
 
 if (isMain) {
   main().catch((err) => {

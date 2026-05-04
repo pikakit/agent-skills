@@ -28,10 +28,12 @@ Orchestrate mobile app development from concept to app store submission — supp
 
 ```
 Flow:
-assessor.evaluate(platform, MFRI) → recovery.save()       ↓
+assessor.evaluate(platform, MFRI) → recovery.save()
+       ↓
 orchestrator.parallel(UI, push, deeplink, offline)
        → conflict
-critic.resolve(iOS_vs_Android)       ↓
+critic.resolve(iOS_vs_Android)
+       ↓
 verify → learner.log(patterns)
 ```
 

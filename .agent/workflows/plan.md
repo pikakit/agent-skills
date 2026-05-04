@@ -27,9 +27,12 @@ Create comprehensive project plans with task breakdown, architecture decisions, 
 
 ```
 Flow:
-requirements → architecture → task breakdown       ↓
-assessor.evaluate(plan_risk)       ↓
-agent assignment → PLAN.md → learner.log()       ↓
+requirements → architecture → task breakdown
+       ↓
+assessor.evaluate(plan_risk)
+       ↓
+agent assignment → PLAN.md → learner.log()
+       ↓
 handoff to /build
 ```
 

@@ -27,7 +27,8 @@ Profile application performance, optimize bottlenecks (database queries, bundle 
 
 ```
 Flow:
-recovery.save() → profile → optimize → benchmark       ↓
+recovery.save() → profile → optimize → benchmark
+       ↓
 benchmark → worse? → recovery.restore()
        → better
 learner.log(optimization_patterns)

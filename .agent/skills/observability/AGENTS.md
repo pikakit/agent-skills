@@ -1,4 +1,4 @@
-﻿# observability
+# observability
 
 **Version 1.0.0**
 Engineering
@@ -10,7 +10,7 @@ March 2026
 
 ---
 
-# Observability — Unified Telemetry with OpenTelemetry
+# Observability � Unified Telemetry with OpenTelemetry
 
 > 3 pillars. Vendor-agnostic. Fixed sampling. Auto-instrumentation first.
 
@@ -42,9 +42,9 @@ March 2026
 
 | Owned by This Skill | NOT Owned |
 |---------------------|-----------|
-| SDK configuration (Node.js, Python) | Infrastructure provisioning (→ server-ops) |
-| Sampling strategy (3 environments) | Alerting rules (→ /monitor workflow) |
-| Provider routing (3 providers) | CI/CD monitoring (→ cicd-pipeline) |
+| SDK configuration (Node.js, Python) | Infrastructure provisioning (? server-ops) |
+| Sampling strategy (3 environments) | Alerting rules (? /monitor workflow) |
+| Provider routing (3 providers) | CI/CD monitoring (? cicd-pipeline) |
 | Auto-instrumentation guidance | Dashboard design |
 
 **Expert decision skill:** Produces configuration guidance. Does not install packages.
@@ -108,7 +108,7 @@ March 2026
 
 ## Anti-Patterns
 
-| ❌ Don't | ✅ Do |
+| ? Don't | ? Do |
 |---------|-------|
 | Create excessive custom spans | Use auto-instrumentation first |
 | Put sensitive data in span tags | Sanitize all tags before export |
@@ -129,7 +129,7 @@ March 2026
 
 ---
 
-## 📑 Content Map
+## ?? Content Map
 
 | File | Description | When to Read |
 |------|-------------|--------------|
@@ -137,7 +137,7 @@ March 2026
 
 ---
 
-## 🔗 Related
+## ?? Related
 
 | Item | Type | Purpose |
 |------|------|---------|
@@ -159,12 +159,12 @@ March 2026
 ### Rule: engineering-spec
 
 ---
-title: Observability — Engineering Specification
+title: Observability � Engineering Specification
 impact: MEDIUM
 tags: observability
 ---
 
-# Observability — Engineering Specification
+# Observability � Engineering Specification
 
 > Production-grade specification for OpenTelemetry-based observability at FAANG scale.
 
@@ -172,11 +172,11 @@ tags: observability
 
 ## 1. Overview
 
-Observability provides structured decision frameworks for production telemetry: three pillars (logs, metrics, traces), OpenTelemetry SDK setup (Node.js, Python), auto-instrumentation routing, environment-based sampling, provider integration, and troubleshooting. The skill operates as an **Expert (decision tree)** — it produces SDK configuration decisions, sampling strategies, provider selection, and instrumentation guidance. It does not install packages, configure infrastructure, or deploy collectors.
+Observability provides structured decision frameworks for production telemetry: three pillars (logs, metrics, traces), OpenTelemetry SDK setup (Node.js, Python), auto-instrumentation routing, environment-based sampling, provider integration, and troubleshooting. The skill operates as an **Expert (decision tree)** � it produces SDK configuration decisions, sampling strategies, provider selection, and instrumentation guidance. It does not install packages, configure infrastructure, or deploy collectors.
 
 **Contract Version:** 2.0.0
 **Backward Compatibility:** breaking (first hardened version)
-**Breaking Changes:** None — new spec for first hardening
+**Breaking Changes:** None � new spec for first hardening
 
 ---
 
@@ -311,9 +311,9 @@ Recoverable: boolean
 
 #### Deterministic Guarantees
 
-- Sampling is fixed: development → 100%, staging → 50%, production → 1-10%.
-- SDK setup is deterministic per runtime: Node.js → `@opentelemetry/sdk-node`, Python → `opentelemetry-sdk`.
-- Provider mapping is fixed: Datadog → `@opentelemetry/exporter-datadog`, Grafana → OTLP HTTP, Sentry → `@sentry/node`.
+- Sampling is fixed: development ? 100%, staging ? 50%, production ? 1-10%.
+- SDK setup is deterministic per runtime: Node.js ? `@opentelemetry/sdk-node`, Python ? `opentelemetry-sdk`.
+- Provider mapping is fixed: Datadog ? `@opentelemetry/exporter-datadog`, Grafana ? OTLP HTTP, Sentry ? `@sentry/node`.
 - Auto-instrumentation libraries are fixed: HTTP, Express, Prisma, Redis, Next.js.
 - Three pillars always unified via trace_id.
 
@@ -410,7 +410,7 @@ All phases synchronous. No async pipeline.
 | Vendor-agnostic | OpenTelemetry SDK only; never proprietary SDK |
 | Fixed sampling rates | Dev: 100%, Staging: 50%, Prod: 1-10% |
 | Auto-instrumentation first | Use auto-instrumentation; add manual spans only for business logic |
-| Fixed provider mapping | Datadog, Grafana (OTLP), Sentry — fixed exporter packages |
+| Fixed provider mapping | Datadog, Grafana (OTLP), Sentry � fixed exporter packages |
 | SERVICE_NAME required | Always set via environment variable |
 | No sensitive data in spans | Sanitize all tag values before export |
 
@@ -548,7 +548,7 @@ All resources scoped to invocation. No persistent handles.
 | SDK config generation | < 2 ms | < 5 ms | 20 ms |
 | Sampling decision | < 1 ms | < 3 ms | 10 ms |
 | Full guide | < 10 ms | < 30 ms | 50 ms |
-| Output size | ≤ 2,000 chars | ≤ 5,000 chars | 8,000 chars |
+| Output size | = 2,000 chars | = 5,000 chars | 8,000 chars |
 
 ---
 
@@ -568,16 +568,16 @@ All resources scoped to invocation. No persistent handles.
 
 | Requirement | Status | Evidence |
 |-------------|--------|----------|
-| YAML frontmatter complete | ✅ | name, description, metadata with category, version, triggers, coordinates_with, success_metrics |
-| SKILL.md < 200 lines | ✅ | Entry point under 200 lines |
-| Prerequisites documented | ✅ | OpenTelemetry SDK packages listed |
-| When to Use section | ✅ | Situation-based routing table |
-| Core content matches skill type | ✅ | Expert type: decision trees, configuration guidance |
-| Troubleshooting section | ✅ | Troubleshooting table with 4 solutions |
-| Related section | ✅ | Cross-links to server-ops, cicd-pipeline, /monitor |
-| Content Map for multi-file | ✅ | Link to engineering-spec.md |
-| Contract versioning | ✅ | contract_version, backward_compatibility, breaking_changes |
-| Compliance matrix structured | ✅ | This table with ✅/❌ + evidence |
+| YAML frontmatter complete | ? | name, description, metadata with category, version, triggers, coordinates_with, success_metrics |
+| SKILL.md < 200 lines | ? | Entry point under 200 lines |
+| Prerequisites documented | ? | OpenTelemetry SDK packages listed |
+| When to Use section | ? | Situation-based routing table |
+| Core content matches skill type | ? | Expert type: decision trees, configuration guidance |
+| Troubleshooting section | ? | Troubleshooting table with 4 solutions |
+| Related section | ? | Cross-links to server-ops, cicd-pipeline, /monitor |
+| Content Map for multi-file | ? | Link to engineering-spec.md |
+| Contract versioning | ? | contract_version, backward_compatibility, breaking_changes |
+| Compliance matrix structured | ? | This table with ?/? + evidence |
 
 ---
 
@@ -585,23 +585,23 @@ All resources scoped to invocation. No persistent handles.
 
 | Category | Check | Status |
 |----------|-------|--------|
-| **Functionality** | Three pillars (logs, metrics, traces) unified via OTel | ✅ |
-| **Functionality** | SDK setup for Node.js and Python | ✅ |
-| **Functionality** | Fixed sampling (100% / 50% / 1-10%) | ✅ |
-| **Functionality** | Auto-instrumentation (5+ libraries) | ✅ |
-| **Functionality** | Provider routing (3 providers) | ✅ |
-| **Contracts** | Input/output/error schemas in pseudo-schema format | ✅ |
-| **Contracts** | Contract versioning with semver | ✅ |
-| **Failure** | Error taxonomy with 4 categorized codes | ✅ |
-| **Failure** | Zero internal retries | ✅ |
-| **Determinism** | Fixed sampling rates, fixed provider map, fixed SDK config | ✅ |
-| **Security** | No credentials in snippets; all via env vars | ✅ |
-| **Observability** | Structured log schema with 5 mandatory fields | ✅ |
-| **Observability** | 4 metrics defined | ✅ |
-| **Performance** | P50/P99 targets for all operations | ✅ |
-| **Scalability** | Stateless; unlimited parallel | ✅ |
-| **Compliance** | All skill-design-guide.md sections mapped with evidence | ✅ |
+| **Functionality** | Three pillars (logs, metrics, traces) unified via OTel | ? |
+| **Functionality** | SDK setup for Node.js and Python | ? |
+| **Functionality** | Fixed sampling (100% / 50% / 1-10%) | ? |
+| **Functionality** | Auto-instrumentation (5+ libraries) | ? |
+| **Functionality** | Provider routing (3 providers) | ? |
+| **Contracts** | Input/output/error schemas in pseudo-schema format | ? |
+| **Contracts** | Contract versioning with semver | ? |
+| **Failure** | Error taxonomy with 4 categorized codes | ? |
+| **Failure** | Zero internal retries | ? |
+| **Determinism** | Fixed sampling rates, fixed provider map, fixed SDK config | ? |
+| **Security** | No credentials in snippets; all via env vars | ? |
+| **Observability** | Structured log schema with 5 mandatory fields | ? |
+| **Observability** | 4 metrics defined | ? |
+| **Performance** | P50/P99 targets for all operations | ? |
+| **Scalability** | Stateless; unlimited parallel | ? |
+| **Compliance** | All skill-design-guide.md sections mapped with evidence | ? |
 
 ---
 
-⚡ PikaKit v3.9.169
+? PikaKit v3.9.169

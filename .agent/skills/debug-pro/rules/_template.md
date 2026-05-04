@@ -1,4 +1,4 @@
-﻿---
+---
 title: Rule Title Here
 impact: MEDIUM
 impactDescription: Optional description of impact (e.g., "20-50% improvement")
@@ -29,4 +29,4 @@ Reference: [Link to documentation or resource](https://example.com)
 
 ---
 
-⚡ PikaKit v3.9.169
+? PikaKit v3.9.169

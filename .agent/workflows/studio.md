@@ -27,8 +27,10 @@ Generate comprehensive design systems for web and mobile applications — 50+ st
 
 ```
 Flow:
-learner.analyze(past_designs) → recommendations       ↓
-search(product, style, color, typography) → design system       ↓
+learner.analyze(past_designs) → recommendations
+       ↓
+search(product, style, color, typography) → design system
+       ↓
 verify(accessibility, contrast) → learner.log(patterns)
 ```
 

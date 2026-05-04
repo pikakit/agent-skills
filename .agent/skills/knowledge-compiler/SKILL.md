@@ -63,7 +63,7 @@ metadata:
 
 **When:** Before writing ANY file to `raw-signals/`, `patterns/`, or `concepts/`.
 **Rule:** `rules/secret-prefilter.md`
-**Script:** `scripts/secret-scanner.js`
+**Script:** `scripts/secret-scanner.ts`
 
 ```
 BEFORE writing signal/pattern/concept content:
@@ -202,7 +202,7 @@ BEFORE executing command or writing code:
 
 ```
 1. If FTS5 index exists (memory.sqlite has knowledge_fts table):
-   a. Run: node .agent/skills/runtime-memory-manager/scripts/knowledge-search.js "<query>"
+   a. Run: node .agent/skills/runtime-memory-manager/scripts/knowledge-search.ts "<query>"
    b. Use top-5 BM25-ranked results to identify relevant articles
    c. Read full article(s) from the file paths returned
 2. Fallback (no FTS5): Read _index.md for article summaries

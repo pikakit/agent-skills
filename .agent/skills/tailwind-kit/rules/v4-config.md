@@ -1,4 +1,4 @@
-﻿---
+---
 title: Tailwind v4 Configuration
 impact: MEDIUM
 tags: tailwind-kit
@@ -69,4 +69,4 @@ oklch(lightness chroma hue)
 
 ---
 
-⚡ PikaKit v3.9.169
+? PikaKit v3.9.169
