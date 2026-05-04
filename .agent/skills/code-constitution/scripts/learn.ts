@@ -8,7 +8,7 @@
  *   node learn.js --add --pattern "regex" --message "why bad"
  *   node learn.js --list
  *
- * @version 3.9.173
+ * @version 3.9.174
  */
 
 import fs from 'fs';

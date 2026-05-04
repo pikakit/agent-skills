@@ -6,7 +6,7 @@
  * Resize and compress images with quality control.
  * Default: 85 JPEG quality, -strip EXIF, maintain aspect ratio.
  *
- * @version 3.9.173
+ * @version 3.9.174
  * @contract media-processing v2.0.0
  * @see references/engineering-spec.md
  *

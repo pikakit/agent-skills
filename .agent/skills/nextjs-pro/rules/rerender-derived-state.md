@@ -30,4 +30,4 @@ function Sidebar() {
 
 ---
 
-⚡ PikaKit v3.9.173
+⚡ PikaKit v3.9.174

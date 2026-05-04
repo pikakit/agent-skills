@@ -41,4 +41,4 @@ function Badge({ count }: { count: number }) {
 
 ---
 
-⚡ PikaKit v3.9.173
+⚡ PikaKit v3.9.174
