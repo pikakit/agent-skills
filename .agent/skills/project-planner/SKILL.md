@@ -9,7 +9,7 @@ metadata:
   version: "3.9.175"
   category: project-planning
   triggers: ["plan", "breakdown", "tasks", "implementation strategy", "project scope"]
-  coordinates_with: ["idea-storm", "smart-router", "app-scaffold", "problem-checker", "knowledge-compiler"]
+  coordinates_with: ["idea-storm", "smart-router", "problem-checker", "knowledge-compiler"]
   success_metrics: ["Verifiable Tasks", "Correct Delegations"]
 ---
 

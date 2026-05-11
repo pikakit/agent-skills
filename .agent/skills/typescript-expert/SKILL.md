@@ -9,7 +9,7 @@ metadata:
   version: "3.9.175"
   category: typesystem-engineering
   triggers: ["TypeScript", "JavaScript", "type error", "tsconfig", "monorepo"]
-  coordinates_with: ["nextjs-pro", "react-architect", "code-review"]
+  coordinates_with: ["nextjs-pro", "code-review"]
   success_metrics: ["Type Coverage", "Build Performance", "Determinism"]
 ---
 

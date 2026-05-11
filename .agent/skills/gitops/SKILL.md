@@ -9,7 +9,7 @@ metadata:
   version: "3.9.175"
   category: devops-architect
   triggers: ["GitOps", "ArgoCD", "Flux", "Kubernetes", "declarative deployment"]
-  coordinates_with: ["cicd-pipeline", "server-ops", "yaml-linter"]
+  coordinates_with: ["cicd-pipeline", "server-ops"]
   success_metrics: ["100% manual sync for production", "0 secrets in git repo"]
 ---
 

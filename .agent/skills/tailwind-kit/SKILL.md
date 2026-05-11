@@ -9,7 +9,7 @@ metadata:
   version: "3.9.175"
   category: frontend-styling
   triggers: ["Tailwind", "CSS", "styling", "utility classes", "oklch"]
-  coordinates_with: ["frontend-specialist", "nextjs-pro", "design-system"]
+  coordinates_with: ["nextjs-pro", "design-system"]
   success_metrics: ["Component Consistency", "DOM Optimization", "Responsive Robustness"]
 ---
 

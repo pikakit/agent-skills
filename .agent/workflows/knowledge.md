@@ -45,7 +45,7 @@ Manage the project's living knowledge wiki. Raw signals from error fixes, user c
 
 > **Rule 0.5-K:** Auto-learned pattern check.
 
-1. Read `.agent/skills/auto-learned/patterns/` for past failures before proceeding.
+1. Read `.agent/knowledge/patterns/` for past failures before proceeding.
 2. Trigger `recovery` agent to run Checkpoint (`git commit -m "chore(checkpoint): pre-knowledge"`).
 
 ### Phase 1: Ingest

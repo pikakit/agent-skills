@@ -9,7 +9,7 @@ metadata:
   version: "3.9.175"
   category: mobile-architect
   triggers: ["mobile design", "iOS", "Android", "touch", "responsive mobile"]
-  coordinates_with: ["mobile-first", "mobile-developer", "design-system"]
+  coordinates_with: ["mobile-developer", "design-system"]
   success_metrics: ["MFRI score > 5", "Touch targets >= 44pt"]
 ---
 

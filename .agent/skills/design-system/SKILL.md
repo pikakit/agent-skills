@@ -9,7 +9,7 @@ metadata:
   version: "3.9.175"
   category: design-architecture
   triggers: ["design", "UI", "UX", "color palette", "typography", "component design"]
-  coordinates_with: ["studio", "tailwind-kit", "frontend-design"]
+  coordinates_with: ["studio", "tailwind-kit"]
   success_metrics: ["0 WCAG accessibility violations", "100% Hick's law compliance"]
 ---
 

@@ -64,7 +64,7 @@ recovery.restore()
 
 > **Rule 0.5-K:** Auto-learned pattern check.
 
-1. Read `.agent/skills/auto-learned/patterns/` for past failures before proceeding.
+1. Read `.agent/knowledge/patterns/` for past failures before proceeding.
 2. Trigger `recovery` agent to run Checkpoint (`git commit -m "chore(checkpoint): pre-diagnose"`).
 
 ### Phase 1: Pre-flight & knowledge-compiler Context

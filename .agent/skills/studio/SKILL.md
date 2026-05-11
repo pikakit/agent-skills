@@ -9,7 +9,7 @@ metadata:
   version: "3.9.175"
   category: design-intelligence
   triggers: ["design system", "UI design", "color palette", "typography", "style guide"]
-  coordinates_with: ["frontend-specialist", "design-system", "ai-artist"]
+  coordinates_with: ["design-system", "ai-artist"]
   success_metrics: ["Aesthetic Consistency", "Slop Avoidance Rate", "Typography Contrast Ratio"]
 ---
 

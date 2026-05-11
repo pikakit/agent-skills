@@ -9,7 +9,7 @@ metadata:
   version: "3.9.175"
   category: game-development-subskill
   triggers: ["game", "game development", "Unity", "Godot", "Phaser", "game engine"]
-  coordinates_with: ["perf-optimizer", "mobile-developer", "shader"]
+  coordinates_with: ["perf-optimizer", "mobile-developer"]
   success_metrics: ["100% correct sub-skill routing", "<5ms routing latency"]
 ---
 

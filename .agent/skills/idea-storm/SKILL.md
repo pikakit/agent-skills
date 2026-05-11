@@ -9,7 +9,7 @@ metadata:
   version: "3.9.175"
   category: verification-gate
   triggers: ["brainstorm", "understand requirements", "clarify", "unclear", "complex request"]
-  coordinates_with: ["project-planner", "app-scaffold", "system-design"]
+  coordinates_with: ["project-planner", "system-design"]
   success_metrics: ["100% vague requests intercepted", "< 5 questions per gate"]
 ---
 

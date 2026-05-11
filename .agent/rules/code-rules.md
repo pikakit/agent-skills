@@ -162,11 +162,9 @@ Design rules are in specialist agents, NOT here.
 
 ## 📜 Scripts & Quick Reference
 
-**Master Scripts:** `checklist.ts` (dev), `verify_all.ts` (deploy), `auto_preview.ts`, `session_manager.ts`, `autopilot-runner.js`, `autopilot-metrics.js`, `preflight-assessment.js`, `adaptive-workflow.js`, `metrics-dashboard.js`, `skill-validator.js`
+**Core Scripts:** `checklist.ts` (dev), `verify_all.ts` (deploy), `auto_preview.ts` (staging), `version-sync.ts` (versioning)
 
 **Usage:** `npm run checklist` (dev) | `npm run verify http://localhost:3000` (deploy)
-
-> Agents & Skills can invoke scripts via `python .agent/skills/<skill>/scripts/<script>.py`
 
 ### Quick Skill Reference
 

@@ -9,7 +9,7 @@ metadata:
   version: "3.9.175"
   category: mobile-architect
   triggers: ["React Native", "Flutter", "iOS", "Android", "mobile app", "cross-platform", "native app"]
-  coordinates_with: ["mobile-first", "mobile-design", "test-architect", "perf-optimizer", "mobile-security-coder", "code-craft", "problem-checker"]
+  coordinates_with: ["mobile-design", "test-architect", "perf-optimizer", "code-craft", "problem-checker"]
   success_metrics: ["100% Build Pass", "0 IDE/Lint Errors", "OWASP MASVS Compliant"]
 ---
 

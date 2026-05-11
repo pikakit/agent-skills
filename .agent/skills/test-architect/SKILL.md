@@ -9,7 +9,7 @@ metadata:
   version: "3.9.175"
   category: testing-strategy
   triggers: ["test", "testing", "unit test", "coverage", "mocking", "AAA pattern", "TDD"]
-  coordinates_with: ["e2e-automation", "test-driven-dev", "code-craft"]
+  coordinates_with: ["e2e-automation", "code-craft"]
   success_metrics: ["Test Suite Reliability", "Mutation Score", "Coverage Increase"]
 ---
 

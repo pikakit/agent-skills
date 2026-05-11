@@ -9,7 +9,7 @@ metadata:
   version: "3.9.175"
   category: frontend-architect
   triggers: ["Next.js", "App Router", "RSC", "React", "frontend", "SSR"]
-  coordinates_with: ["react-architect", "tailwind-kit", "perf-optimizer", "problem-checker", "code-craft"]
+  coordinates_with: ["tailwind-kit", "perf-optimizer", "problem-checker", "code-craft"]
   success_metrics: ["100% CWV Targets Met", "0 Server/Client Boundaries Errors", "0 IDE/Lint Errors"]
 ---
 
