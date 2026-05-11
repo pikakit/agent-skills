@@ -29,7 +29,6 @@ This document compiles 1 rules across 1 categories for the Vercel Deploy skill. 
 
 Full engineering specification covering contracts, security, and scalability.
 
-
 # Vercel Deploy — Engineering Specification
 
 > Production-grade specification for Vercel deployment automation at FAANG scale.
@@ -443,7 +442,6 @@ Sequential pipeline. One deployment per invocation.
 | Core content matches skill type | ✅ | Automation type: pipeline, side effects, network calls |
 | Troubleshooting section | ✅ | Network egress troubleshooting |
 | Related section | ✅ | Cross-links to cicd-pipeline, /launch, nextjs-pro |
-| Content Map for multi-file | ✅ | Links to scripts/ + engineering-spec.md |
 | Contract versioning | ✅ | contract_version, backward_compatibility, breaking_changes |
 | Compliance matrix structured | ✅ | This table with ✅/❌ + evidence |
 
@@ -477,7 +475,6 @@ Sequential pipeline. One deployment per invocation.
 | File | When to Read |
 |------|-------------|
 | [../SKILL.md](../SKILL.md) | Quick start, pipeline, error taxonomy |
-| [../scripts/deploy.sh](../scripts/deploy.sh) | Deploy script implementation |
 | `cicd-pipeline` | Full CI/CD pipelines |
 | `nextjs-pro` | Next.js deployment specifics |
 

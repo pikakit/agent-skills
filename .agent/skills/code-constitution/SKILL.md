@@ -135,8 +135,6 @@ When violation detected:
 4. If refused: Stop, cite violation, do NOT proceed
 ```
 
-Validation scripts: `scripts/validate_doctrine.ts` | PR audit: `scripts/audit_pr.ts`
-
 ---
 
 ## Anti-Patterns
@@ -170,7 +168,6 @@ Validation scripts: `scripts/validate_doctrine.ts` | PR audit: `scripts/audit_pr
 | [rules/engineering-spec.md](rules/engineering-spec.md) | Full engineering spec: contracts, security, scalability | Architecture review |
 | [metadata/](metadata/) | Routing & intent configuration | Skill routing |
 | [resources/](resources/) | Templates & reference materials | Building governance artifacts |
-| [scripts/](scripts/) | Validation & enforcement scripts | Automated checking |
 | [examples/](examples/) | Governance usage examples | Learning patterns |
 | [knowledge/](knowledge/) | Accumulated governance knowledge | Context building |
 | [proposals/](proposals/) | Change Proposals for doctrine updates | Modifying constitution |

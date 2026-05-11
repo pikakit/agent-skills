@@ -29,7 +29,6 @@ This document compiles 1 rules across 1 categories for the Code Constitution Ski
 
 Full engineering specification covering contracts, security, and scalability.
 
-
 ---
 title: Code Constitution — Engineering Specification
 impact: MEDIUM
@@ -540,7 +539,6 @@ No skill, agent, or workflow may override a constitutional decision. Authority i
 | Core content matches skill type | ✅ | Expert (decision tree): authority model, enforcement behavior, operating modes |
 | Troubleshooting section | ✅ | Problem/cause/resolution table with 4 entries |
 | Related section | ✅ | Cross-links to code-review, security-scanner, code-craft, skill-generator |
-| Content Map for multi-file | ✅ | Links to 8 subdirectories including rules/, resources/, scripts/ |
 | Contract versioning | ✅ | contract_version: "2.0.0", backward_compatibility, breaking_changes in Section 6 |
 | Compliance matrix structured | ✅ | This table with ✅/❌ + evidence per requirement |
 

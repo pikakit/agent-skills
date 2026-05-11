@@ -143,7 +143,6 @@ Touch-first → Battery-conscious → Platform-respectful → Offline-capable
 | [mobile-backend.md](rules/mobile-backend.md) | Backend integration | API decisions |
 | [mobile-design-thinking.md](rules/mobile-design-thinking.md) | Design methodology | Design process |
 | [decision-trees.md](rules/decision-trees.md) | Decision frameworks | Complex decisions |
-| [mobile_audit.ts](scripts/mobile_audit.ts) | Mobile design audit CLI | Design audit |
 | [engineering-spec.md](rules/engineering-spec.md) | Full engineering spec | Architecture review |
 
 **Selective reading:** Read ONLY files relevant to current design question.
@@ -160,12 +159,9 @@ Touch-first → Battery-conscious → Platform-respectful → Offline-capable
 
 ---
 
-
-
 ---
 
 ## Detailed Rules
-
 
 ---
 
@@ -694,8 +690,6 @@ API cache?           → Query library
 > **Remember:** These trees are guides for THINKING, not rules to follow blindly. Every project has unique constraints. ASK clarifying questions when requirements are vague, and choose based on actual needs, not defaults.
 ---
 
-
-
 ---
 
 ## 🔗 Related
@@ -1156,8 +1150,6 @@ All resources scoped to invocation. No persistent handles.
 
 ---
 
-
-
 ---
 
 ## 🔗 Related
@@ -1168,7 +1160,6 @@ All resources scoped to invocation. No persistent handles.
 | [platform-ios.md](platform-ios.md) | iOS HIG guidelines |
 | [platform-android.md](platform-android.md) | Material Design guidelines |
 | [touch-psychology.md](touch-psychology.md) | Touch interaction patterns |
-| [../scripts/mobile_audit.ts](../scripts/mobile_audit.ts) | MFRI audit script |
 
 ---
 
@@ -1671,8 +1662,6 @@ ALERTS:
 
 > **Remember:** Mobile backend must be resilient to bad networks, respect battery life, and handle interrupted sessions gracefully. The client cannot be trusted, but it also cannot be hung up—provide offline capabilities and clear error recovery paths.
 ---
-
-
 
 ---
 
@@ -2252,8 +2241,6 @@ Web Debugging:      Mobile Debugging:
 > **Remember:** If JavaScript looks perfect but the app fails, look closer at the Native side.
 ---
 
-
-
 ---
 
 ## 🔗 Related
@@ -2632,8 +2619,6 @@ Platform: iOS / Android / Both
 
 > **Remember:** If you chose a solution "because that's how it's always done," you chose WITHOUT THINKING. Every project is unique. Every context is different. Every user behavior is specific. **THINK, then code.**
 ---
-
-
 
 ---
 
@@ -4263,8 +4248,6 @@ Before writing tests, answer:
 
 > **Remember:** Good mobile testing is about testing the RIGHT things, not EVERYTHING. A flaky E2E test is worse than no test. A failing unit test that catches a bug is worth 100 passing trivial tests.
 ---
-
-
 
 ---
 

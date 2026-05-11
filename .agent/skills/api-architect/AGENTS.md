@@ -27,7 +27,6 @@ March 2026
 **Required:** None — API Architect is a knowledge-based skill with no external dependencies.
 
 **Optional:**
-- `scripts/api_validator.ts` — run `node scripts/api_validator.ts <project_path>` for endpoint validation
 
 ---
 
@@ -159,7 +158,6 @@ Before designing an API, confirm:
 
 | Script | Purpose | Command |
 |--------|---------|---------|
-| `scripts/api_validator.ts` | API endpoint validation | `node scripts/api_validator.ts <project_path>` |
 
 ---
 
@@ -175,12 +173,9 @@ Before designing an API, confirm:
 
 ---
 
-
-
 ---
 
 ## Detailed Rules
-
 
 ---
 
@@ -609,7 +604,6 @@ API Architect eliminates these by providing context-aware decision trees that pr
 | ID | Excluded | Rationale |
 |----|----------|-----------|
 | NG1 | API implementation / code generation | This skill produces design decisions, not code; implementation is `backend-specialist` territory |
-| NG2 | Runtime API validation | Owned by `scripts/api_validator.ts`; SKILL.md defines design-time patterns |
 | NG3 | Database schema design | Owned by `data-modeler` skill |
 | NG4 | Authentication implementation | Owned by `auth-patterns` skill; this skill selects auth strategy |
 | NG5 | Infrastructure / deployment | Owned by `server-ops` and `cicd-pipeline` skills |
@@ -1053,8 +1047,6 @@ API Architect maintains zero persistent state. Every invocation starts from a cl
 | **Compliance** | All skill-design-guide.md sections present | ✅ |
 
 ---
-
-
 
 ---
 

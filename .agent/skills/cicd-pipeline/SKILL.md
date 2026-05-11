@@ -144,7 +144,6 @@ metadata:
 | [deployment-platforms.md](rules/deployment-platforms.md) | Platform-specific deployment patterns | Choosing platform |
 | [emergency-procedures.md](rules/emergency-procedures.md) | Incident response runbooks | Production incidents |
 | [engineering-spec.md](rules/engineering-spec.md) | Full engineering spec: contracts, security, scalability | Architecture review |
-| [scripts/](scripts/) | Deployment helper scripts | Script execution |
 
 ---
 

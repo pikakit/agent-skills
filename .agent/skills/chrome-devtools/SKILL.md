@@ -135,14 +135,12 @@ node navigate.ts --close true
 | Session stale | Browser died | Delete `.browser-session.json`, re-launch |
 | Script hangs | Page never loads | Increase `--timeout` or check URL |
 
-
 ## 📑 Content Map
 
 | File | Description | When to Read |
 |------|-------------|--------------|
 | [scripts-guide.md](rules/scripts-guide.md) | Complete script reference with all options | Detailed script usage |
 | [aria-snapshot.md](rules/aria-snapshot.md) | ARIA tree format and usage | Element discovery |
-| [scripts/](scripts/) | Puppeteer CLI scripts | Script execution |
 | [engineering-spec.md](rules/engineering-spec.md) | Full engineering spec: contracts, security, scalability | Architecture review |
 
 ---

@@ -182,7 +182,6 @@ All typescript-expert outputs MUST emit `type_pattern_recommended`, `error_resol
 | [performance.md](rules/performance.md) | Build performance | Slow builds |
 | [monorepo.md](rules/monorepo.md) | Monorepo setup | Project references |
 | [migration.md](rules/migration.md) | Migration strategies | Version upgrades |
-| [ts_diagnostic.ts](scripts/ts_diagnostic.ts) | Project health analysis | Automated diagnostics |
 | [engineering-spec.md](rules/engineering-spec.md) | Full spec | Architecture review |
 
 ---

@@ -156,13 +156,10 @@ What are the trade-offs?
 
 ```bash
 # Open editor (empty)
-node .agent/skills/doc-templates/scripts/editor-server.ts --open
 
 # Edit existing file
-node .agent/skills/doc-templates/scripts/editor-server.ts --file diagram.mmd --open
 
 # Stop server
-node .agent/skills/doc-templates/scripts/editor-server.ts --stop
 ```
 
 | Option | Default | Description |
@@ -178,13 +175,10 @@ node .agent/skills/doc-templates/scripts/editor-server.ts --stop
 
 ```bash
 # View a file
-node .agent/skills/doc-templates/scripts/markdown-server.ts --file ./README.md --open
 
 # Browse a directory
-node .agent/skills/doc-templates/scripts/markdown-server.ts --dir ./docs --open
 
 # Stop all servers
-node .agent/skills/doc-templates/scripts/markdown-server.ts --stop
 ```
 
 | Option | Default | Description |
@@ -204,7 +198,6 @@ node .agent/skills/doc-templates/scripts/markdown-server.ts --stop
 Visual dashboard for plan directories with progress tracking and phase status indicators.
 
 ```bash
-node .agent/skills/doc-templates/scripts/kanban-server.ts --dir ./docs/plans --open
 ```
 
 ---
@@ -240,8 +233,6 @@ node .agent/skills/doc-templates/scripts/kanban-server.ts --dir ./docs/plans --o
 |------|-------------|--------------|
 | [doc.md](rules/doc.md) | Full templates and examples | Detailed template reference |
 | [engineering-spec.md](rules/engineering-spec.md) | Full engineering spec | Architecture review |
-| [editor-server.ts](scripts/editor-server.ts) | Mermaid editor server | Diagram implementation |
-| [markdown-server.ts](scripts/markdown-server.ts) | Preview server | Preview implementation |
 | [diagram-reference.md](../mermaid-editor/rules/diagram-reference.md) | 9 diagram types syntax | Writing diagrams |
 
 ---

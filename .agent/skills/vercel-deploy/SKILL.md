@@ -46,7 +46,7 @@ metadata:
 
 | Situation | Approach |
 |-----------|----------|
-| Deploy app | `bash scripts/deploy.sh [path]` |
+| Deploy app | `npx vercel [path]` |
 | Preview deployment | Deploy → get preview URL |
 | Production deploy | Deploy → claim via claim URL |
 | Quick demo | Instant deploy, no auth |
@@ -82,7 +82,7 @@ PACKAGING → FAILED [no project files]        // terminal
 ## Usage
 
 ```bash
-bash scripts/deploy.sh [path]
+npx vercel [path]
 ```
 
 | Argument | Description |
@@ -157,7 +157,6 @@ All vercel-deploy outputs MUST emit `packaging_started` and either `upload_compl
 
 | File | Description | When to Read |
 |------|-------------|--------------|
-| [scripts/deploy.sh](scripts/deploy.sh) | Deploy script | Running deploys |
 | [engineering-spec.md](rules/engineering-spec.md) | Full spec | Architecture review |
 
 ---

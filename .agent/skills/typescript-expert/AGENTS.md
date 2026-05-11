@@ -155,7 +155,6 @@ const config = {
 | [performance.md](rules/performance.md) | Build performance | Slow builds |
 | [monorepo.md](rules/monorepo.md) | Monorepo setup | Project references |
 | [migration.md](rules/migration.md) | Migration strategies | Version upgrades |
-| [ts_diagnostic.ts](scripts/ts_diagnostic.ts) | Project health analysis | Automated diagnostics |
 | [engineering-spec.md](rules/engineering-spec.md) | Full spec | Architecture review |
 
 ---
@@ -170,12 +169,9 @@ const config = {
 
 ---
 
-
-
 ---
 
 ## Detailed Rules
-
 
 ---
 
@@ -605,7 +601,6 @@ All resources scoped to invocation. No persistent handles.
 | Core content matches skill type | ✅ | Expert type: error routing, type patterns, config guidance |
 | Troubleshooting section | ✅ | Error table + troubleshooting table |
 | Related section | ✅ | Cross-links to nextjs-pro, react-architect, code-review |
-| Content Map for multi-file | ✅ | Links to rules/ + scripts/ + engineering-spec.md |
 | Contract versioning | ✅ | contract_version, backward_compatibility, breaking_changes |
 | Compliance matrix structured | ✅ | This table with ✅/❌ + evidence |
 
@@ -633,8 +628,6 @@ All resources scoped to invocation. No persistent handles.
 | **Compliance** | All skill-design-guide.md sections mapped with evidence | ✅ |
 
 ---
-
-
 
 ---
 
@@ -1037,7 +1030,6 @@ data.anything.goes.wrong  // No type safety
 |------|-------------|
 | [tsconfig-strict.json](tsconfig-strict.json) | Copy-paste strict config |
 | [utility-types.js](utility-types.js) | Runtime utility helpers |
-| [ts_diagnostic.ts](../scripts/ts_diagnostic.ts) | Project health scan |
 | [SKILL.md](../SKILL.md) | Error routing, patterns |
 
 ---

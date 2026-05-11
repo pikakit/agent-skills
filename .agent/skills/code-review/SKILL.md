@@ -133,7 +133,6 @@ metadata:
 
 | File | Description | When to Read |
 |------|-------------|--------------|
-| [scripts/lint_runner.ts](scripts/lint_runner.ts) | Unified lint check script | Running automated lint |
 | [engineering-spec.md](rules/engineering-spec.md) | Full engineering spec: contracts, security, scalability | Architecture review |
 
 ---

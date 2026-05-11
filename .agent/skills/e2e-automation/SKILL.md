@@ -45,7 +45,6 @@ npm install playwright && npx playwright install chromium
 
 | Owned by This Skill | NOT Owned |
 |---------------------|-----------|
-| Playwright test runner (`scripts/playwright_runner.ts`) | Unit/integration patterns (→ test-architect) |
 | Screenshot capture (on-failure + on-demand) | Performance benchmarking (→ perf-optimizer) |
 | Accessibility audit (axe-core via `--a11y`) | CI/CD pipeline config (→ cicd-pipeline) |
 | ARIA snapshot testing reference | Browser scraping (→ agent-browser) |
@@ -59,13 +58,13 @@ npm install playwright && npx playwright install chromium
 
 ```bash
 # Run Playwright tests
-node .agent/skills/e2e-automation/scripts/playwright_runner.ts https://example.com
+npx playwright test
 
 # With screenshot
-node .agent/skills/e2e-automation/scripts/playwright_runner.ts <url> --screenshot
+npx playwright test --screenshot=on
 
 # Accessibility check
-node .agent/skills/e2e-automation/scripts/playwright_runner.ts <url> --a11y
+npx playwright test --project=a11y
 ```
 
 ---
@@ -156,9 +155,6 @@ NAVIGATING → ERROR        [target unreachable]  // terminal
 | [aria-snapshot.md](rules/aria-snapshot.md) | ARIA snapshot testing pattern | ARIA-based tests |
 | [engineering-spec.md](rules/engineering-spec.md) | Full engineering spec | Architecture review |
 
-| Script | Purpose |
-|--------|---------|
-| `scripts/playwright_runner.ts` | Test execution runner |
 
 ---
 

@@ -171,14 +171,6 @@ All data-modeler outputs MUST emit `schema_designed`, `platform_selected`, or `m
 | [migrations.md](rules/migrations.md) | Safe migrations, serverless DBs | Schema changes |
 | [engineering-spec.md](rules/engineering-spec.md) | Full engineering spec | Architecture review |
 
-## Script
-
-| Script | Purpose | Command |
-|--------|---------|---------| 
-| [scripts/schema_validator.ts](scripts/schema_validator.ts) | Schema validation | `node scripts/schema_validator.ts <project_path>` |
-
-**Selective reading rule:** Read ONLY files relevant to the request.
-
 ---
 
 ## 🔗 Related

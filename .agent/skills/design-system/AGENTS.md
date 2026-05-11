@@ -139,8 +139,6 @@ node .agent/skills/studio/scripts/search.ts "<query>" --domain style
 
 | Script | Purpose |
 |--------|---------|
-| `scripts/ux_audit.ts` | UX psychology audit |
-| `scripts/accessibility_checker.ts` | WCAG compliance audit |
 
 **Selective reading:** Read ONLY files relevant to the request.
 
@@ -157,12 +155,9 @@ node .agent/skills/studio/scripts/search.ts "<query>" --domain style
 
 ---
 
-
-
 ---
 
 ## Detailed Rules
-
 
 ---
 
@@ -507,8 +502,6 @@ Before adding animation:
 
 ---
 
-
-
 ---
 
 ## 🔗 Related
@@ -843,8 +836,6 @@ Before finalizing any color choice, verify:
 
 ---
 
-
-
 ---
 
 ## 🔗 Related
@@ -977,8 +968,6 @@ Don't distribute color evenly. Choose:
 ```
 
 ---
-
-
 
 ---
 
@@ -1420,8 +1409,6 @@ Complex workflows
 
 ---
 
-
-
 ---
 
 ## 🔗 Related
@@ -1573,8 +1560,6 @@ Compare implementation to original:
 | One-off extraction | Create reusable system |
 
 ---
-
-
 
 ---
 
@@ -2049,8 +2034,6 @@ All resources scoped to invocation. No persistent handles.
 
 ---
 
-
-
 ---
 
 ## 🔗 Related
@@ -2213,8 +2196,6 @@ tl
 | Animation without purpose | Motion that guides attention |
 
 ---
-
-
 
 ---
 
@@ -2544,8 +2525,6 @@ What animation do you need?
 
 ---
 
-
-
 ---
 
 ## 🔗 Related
@@ -2730,8 +2709,6 @@ Don't default to centered, symmetrical layouts. Create visual tension:
 
 ---
 
-
-
 ---
 
 ## 🔗 Related
@@ -2854,8 +2831,6 @@ For advanced control:
 ```
 
 ---
-
-
 
 ---
 
@@ -3223,8 +3198,6 @@ Before finalizing typography:
 > **Remember**: Typography is about communication clarity. Choose based on content needs and audience, not personal preference.
 
 ---
-
-
 
 ---
 
@@ -3790,8 +3763,6 @@ DESIGN APPROACH:
 
 ---
 
-
-
 ---
 
 ## 🔗 Related
@@ -4197,8 +4168,6 @@ Before applying any effect:
 > **Remember**: Effects enhance meaning. Choose based on purpose and context, not because it "looks cool."
 
 ---
-
-
 
 ---
 

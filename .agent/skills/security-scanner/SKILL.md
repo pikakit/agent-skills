@@ -164,7 +164,6 @@ All scan outputs MUST emit `scan_started` and `scan_completed` events.
 |------|-------------|--------------|
 | [auth-patterns.md](rules/auth-patterns.md) | Authentication patterns | Auth implementation |
 | [checklists.md](rules/checklists.md) | Security checklists | Pre-deployment |
-| [scripts/security_scan.ts](scripts/security_scan.ts) | Scan script | Automated scanning |
 | [engineering-spec.md](rules/engineering-spec.md) | Full spec | Architecture review |
 
 ---

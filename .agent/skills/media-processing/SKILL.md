@@ -158,8 +158,6 @@ rmbg input.jpg -m briaai -o output.png   # Highest quality
 
 | File | Description | When to Read |
 |------|-------------|--------------|
-| [convert-video.ts](scripts/convert-video.ts) | FFmpeg video converter CLI | Video conversion |
-| [optimize-image.ts](scripts/optimize-image.ts) | ImageMagick image optimizer CLI | Image optimization |
 | [engineering-spec.md](rules/engineering-spec.md) | Full engineering spec | Architecture review |
 
 ---

@@ -158,7 +158,6 @@ All test-architect outputs MUST emit `testing_strategy_recommended` and `analysi
 
 | File | Description | When to Read |
 |------|-------------|--------------|
-| [test_runner.ts](scripts/test_runner.ts) | Unified test execution + coverage validation | Running tests |
 | [engineering-spec.md](rules/engineering-spec.md) | Full spec | Architecture review |
 
 ---

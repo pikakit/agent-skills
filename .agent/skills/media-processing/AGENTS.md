@@ -29,7 +29,6 @@ This document compiles 1 rules across 1 categories for the Media Processing skil
 
 Full engineering specification covering contracts, security, and scalability.
 
-
 # Media Processing — Engineering Specification
 
 > Production-grade specification for multimedia processing with FFmpeg, ImageMagick, and RMBG at FAANG scale.
@@ -465,8 +464,6 @@ All resources scoped to invocation. No persistent handles.
 | File | When to Read |
 |------|-------------|
 | [../SKILL.md](../SKILL.md) | Quick reference, CRF guide, RMBG models |
-| [../scripts/convert-video.ts](../scripts/convert-video.ts) | FFmpeg video converter script |
-| [../scripts/optimize-image.ts](../scripts/optimize-image.ts) | ImageMagick image optimizer script |
 | `perf-optimizer` | Performance profiling |
 | `studio` | Design assets |
 

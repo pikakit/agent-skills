@@ -163,7 +163,6 @@ All SEO outputs MUST emit `audit_started` and `audit_completed` events.
 
 | File | Description | When to Read |
 |------|-------------|--------------|
-| [seo_checker.ts](scripts/seo_checker.ts) | Static SEO audit (title, meta, canonical, schema, robots) | Automated auditing |
 | [engineering-spec.md](rules/engineering-spec.md) | Full spec | Architecture review |
 
 ---

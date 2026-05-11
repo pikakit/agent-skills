@@ -24,7 +24,6 @@ metadata:
 **Required:** None — API Architect is a knowledge-based skill with no external dependencies.
 
 **Optional:**
-- `scripts/api_validator.ts` — run `node scripts/api_validator.ts <project_path>` for endpoint validation
 
 ---
 
@@ -149,12 +148,6 @@ Before designing an API, confirm:
 | [engineering-spec.md](rules/engineering-spec.md) | Full engineering spec: contracts, security, scalability | Architecture review |
 
 ---
-
-## Script
-
-| Script | Purpose | Command |
-|--------|---------|---------|
-| `scripts/api_validator.ts` | API endpoint validation | `node scripts/api_validator.ts <project_path>` |
 
 ---
 

@@ -140,7 +140,6 @@ node navigate.ts --close true
 |------|-------------|--------------|
 | [scripts-guide.md](rules/scripts-guide.md) | Complete script reference with all options | Detailed script usage |
 | [aria-snapshot.md](rules/aria-snapshot.md) | ARIA tree format and usage | Element discovery |
-| [scripts/](scripts/) | Puppeteer CLI scripts | Script execution |
 | [engineering-spec.md](rules/engineering-spec.md) | Full engineering spec: contracts, security, scalability | Architecture review |
 
 ---
@@ -155,12 +154,9 @@ node navigate.ts --close true
 
 ---
 
-
-
 ---
 
 ## Detailed Rules
-
 
 ---
 
@@ -246,8 +242,6 @@ node select-ref.ts --ref e1 --action screenshot --output ./element.png
 
 ---
 
-
-
 ---
 
 ## 🔗 Related
@@ -326,7 +320,6 @@ Chrome DevTools eliminates these with session-persistent scripts, JSON-structure
 
 | Boundary | Owned | Not Owned |
 |----------|-------|-----------|
-| Puppeteer script execution | 10 CLI scripts in `scripts/` | Browser installation (caller ensures Chrome/Chromium available) |
 | Session management | `.browser-session.json` lifecycle | Session storage beyond local filesystem |
 | Screenshot capture | Capture + auto-compress + file write | Image analysis or comparison |
 | JavaScript execution | Run arbitrary JS in page context | JS code generation |
@@ -764,8 +757,6 @@ Transitions:
 
 ---
 
-
-
 ---
 
 ### Rule: scripts-guide
@@ -928,8 +919,6 @@ node performance.ts --url https://example.com | jq '.vitals'
 ```
 
 ---
-
-
 
 ---
 
