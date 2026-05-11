@@ -6,7 +6,7 @@ description: >-
   NOT for mobile code implementation (use mobile-developer) or web design (use design-system).
 metadata:
   author: pikakit
-  version: "3.9.175"
+  version: "3.9.176"
   category: mobile-architect
   triggers: ["mobile design", "iOS", "Android", "touch", "responsive mobile"]
   coordinates_with: ["mobile-developer", "design-system"]
@@ -160,4 +160,4 @@ Touch-first → Battery-conscious → Platform-respectful → Offline-capable
 
 ---
 
-⚡ PikaKit v3.9.175
+⚡ PikaKit v3.9.176

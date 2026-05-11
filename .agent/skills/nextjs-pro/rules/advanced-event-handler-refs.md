@@ -56,4 +56,4 @@ function useWindowEvent(event: string, handler: (e) => void) {
 
 ---
 
-⚡ PikaKit v3.9.175
+⚡ PikaKit v3.9.176

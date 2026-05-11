@@ -4,7 +4,7 @@ description: >-
   Multiplayer game development principles. Architecture, networking, synchronization.
 metadata:
   author: pikakit
-  version: "3.9.175"
+  version: "3.9.176"
   category: game-development-subskill
   triggers: ["multiplayer", "networking", "synchronization", "matchmaking", "server authority"]
   coordinates_with: ["game-development", "web-games", "event-driven"]
@@ -151,4 +151,4 @@ Server: Validate → did projectile actually hit?
 
 ---
 
-⚡ PikaKit v3.9.175
+⚡ PikaKit v3.9.176
