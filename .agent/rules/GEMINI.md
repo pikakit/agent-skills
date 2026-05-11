@@ -103,60 +103,9 @@ Safety violation → `@[skills/knowledge-compiler]` triggered (Learn operation).
 
 ---
 
-## ⛔ HARD GATE — Mandatory Pre-Code Check
+## ⛔ Enforcement Gates
 
-> 🔴 **THIS IS NOT OPTIONAL.** Every code response MUST pass this gate.
-> Full task level definitions & routing protocol: `code-rules.md § TASK LEVEL CLASSIFICATION`
-
-Before writing ANY code → output: `[⚡PikaKit] L{0-3}/@{skill-name} → INIT → RUNNING`
-
-### Self-Check Trigger:
-
-```
-EVERY TIME you are about to write code or create files:
-  → "Did I output the Task Level + Skill header?"
-  → If NO → STOP. Output header FIRST. Then continue.
-  → If YES → Proceed with code.
-```
-
-### No Exceptions:
-
-- ❌ "I'll do it next time" → NO. Do it NOW.
-- ❌ "The task is a continuation" → Still requires header.
-- ❌ "Context was truncated/resumed" → Still requires header.
-- ❌ "It's obvious which skill" → Still requires `view_file` for L2+.
-
-> **Why this exists:** Without enforcement, agents skip skill routing 100% of the time.
-> This gate converts a "suggestion" into a **hard requirement**.
-
----
-
-## ⛔ KNOWLEDGE GATE — Mandatory Post-Fix Check
-
-> 🔴 **THIS IS NOT OPTIONAL.** Every bug fix MUST pass this gate.
-
-After completing ANY bug fix, error correction, or regression fix:
-
-### Self-Check Trigger:
-
-```
-EVERY TIME you fix a bug, resolve an error, or correct a regression:
-  → "Is this a learnable pattern?"
-  → Criteria: multi-file fix, recurring issue, framework/CSS gotcha,
-    regression from own previous change, fix that took > 1 attempt
-  → If YES → Write signal to knowledge/raw-signals/ BEFORE marking complete
-  → If NO → Proceed
-  → NEVER skip. User should NOT have to remind you.
-```
-
-### No Exceptions:
-
-- ❌ "The fix was trivial" → If it took > 1 attempt, it's learnable.
-- ❌ "I'll record it later" → NO. Record NOW, before completion.
-- ❌ "User didn't ask me to" → Irrelevant. This gate is SELF-ENFORCED.
-- ❌ "I'm in a different workflow" → Knowledge Gate applies to ALL workflows.
-
-> **Why this exists:** Without this gate, AI fixes 10 bugs but records 0 lessons.
-> The user should NEVER have to ask "Why didn't you record this?"
+> Every code response **MUST** start with: `[⚡PikaKit] L{0-3}/@{skill} → INIT → RUNNING`
+> Every bug fix **MUST** end with a learning signal in `knowledge/raw-signals/` if non-trivial (multi-file, >1 attempt, regression, framework gotcha).
 
 ---
