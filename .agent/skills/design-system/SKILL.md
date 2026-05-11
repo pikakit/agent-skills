@@ -6,7 +6,7 @@ description: >-
   NOT for CSS implementation (use tailwind-kit) or code architecture (use react-pro).
 metadata:
   author: pikakit
-  version: "3.9.176"
+  version: "3.9.177"
   category: design-architecture
   triggers: ["design", "UI", "UX", "color palette", "typography", "component design"]
   coordinates_with: ["studio", "tailwind-kit"]
@@ -178,4 +178,4 @@ All design-system outputs MUST emit `palette_generated`, `typography_selected`, 
 
 ---
 
-⚡ PikaKit v3.9.176
+⚡ PikaKit v3.9.177

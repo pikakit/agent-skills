@@ -1,6 +1,6 @@
 ---
 name: frontend-review-checklist
-version: "3.9.176"
+version: "3.9.177"
 status: LOCKED
 authority: ENFORCEMENT
 parent: frontend-mobile-doctrine
@@ -191,4 +191,4 @@ When in doubt — **REJECT THE CHANGE**.
 
 ---
 
-⚡ PikaKit v3.9.176
+⚡ PikaKit v3.9.177
