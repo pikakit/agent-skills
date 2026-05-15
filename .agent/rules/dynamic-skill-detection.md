@@ -54,7 +54,7 @@ Before any workflow execution, scan `$ARGUMENTS` for **domain signals** and inje
 
 ```
 [⚡PikaKit] Dynamic Skills Detected:
-  + seo-optimizer (signal: "SEO", "bài viết")
+  + seo-optimizer (signal: "SEO", "blog post")
   + copywriting (signal: "landing page", "content")
   Base skills: [workflow defaults]
   Total active: [count]
@@ -89,9 +89,9 @@ Phase 2: [workflow-specific]
 
 ## Examples
 
-**Input:** `/plan Xây dựng chuỗi bài viết SEO cho blog bán hàng`
+**Input:** `/plan Build an SEO blog post series for an e-commerce store`
 ```
-Detected signals: "SEO", "bài viết", "blog", "bán hàng"
+Detected signals: "SEO", "blog post", "e-commerce"
 Injected: seo-optimizer, copywriting
 ```
 

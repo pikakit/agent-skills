@@ -60,6 +60,8 @@ Storage: `.agent/metrics/` (JSON, 30-day retention).
 
 ## 0.5-E: Failure Recovery (6 Levels)
 
+> **Scope:** Applies during autopilot/multi-phase execution. For manual mode, follow `GEMINI.md § FAILURE RECOVERY` (restore → state → propose).
+
 | Level | Action | Escalation |
 |-------|--------|------------|
 | 1 | Auto-fix (imports, lint, types) | → 2 |
@@ -83,8 +85,8 @@ Storage: `.agent/metrics/` (JSON, 30-day retention).
 
 ## 0.5-G: SLO Enforcement
 
-> See `code-rules.md § Problem Verification` for canonical rule.
-> **NEVER** call `notify_user` with completion if `@[current_problems]` shows errors.
+> Canonical rule lives in `code-rules.md § Problem Verification (MANDATORY)`.  
+> This section defers entirely to that canonical source — do not duplicate here.
 
 ## 0.5-H: Auto-Learn Triggers
 
@@ -174,7 +176,8 @@ IF action matches a learned pattern:
 ## CRITICAL: AGENT & SKILL PROTOCOL
 
 > **MANDATORY:** Read the appropriate skill's AGENTS.md BEFORE implementation.
-> **NON-NEGOTIABLE:** `skills/code-constitution` = SUPREME LAW. Constitution > any other skill.
+> **NON-NEGOTIABLE:** `skills/code-constitution` = SUPREME LAW among skills. GEMINI.md (P0) > Constitution > any other skill.
+> **Per-level routing (L0–L3):** See `code-rules.md § Agent Routing` (canonical). This section covers skill priority and invocation contracts.
 
 ### 1. Modular Skill Loading
 
@@ -182,13 +185,13 @@ IF action matches a learned pattern:
 User Request → Skill Description Match → Load SKILL.md → Read AGENTS.md (if exists) → Read rules/
 ```
 
-**Rule Priority:** P0 (Rules/) > P1 (SKILL.md + AGENTS.md) > P2 (rules/). All binding.  
+**Rule Priority:** P0 (`.agent/rules/` — global rules) > P1 (SKILL.md + AGENTS.md) > P2 (skill-local `rules/` folders). All binding.  
 **Selective Reading:** Read SKILL.md first, then AGENTS.md for domain expertise, then only sections matching user's request.
 
 ### 2. Enforcement
 
 ✅ Read Rules → Match Skill → Load SKILL.md → Read AGENTS.md → Apply All.  
-❌ Never skip reading skill instructions.
+❌ Never skip reading skill instructions for L2+ tasks. L1 tasks may apply from memory (see `code-rules.md § Agent Routing`).
 
 ### 3. Skill Invocation Contract
 

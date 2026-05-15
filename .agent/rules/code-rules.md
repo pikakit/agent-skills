@@ -87,12 +87,14 @@ Skills: `.agent/skills/` | Workflows: `.agent/workflows/` | Scripts: `.agent/scr
 
 ### 🔄 Continuous Execution Rule (MANDATORY)
 
-User approval = execute ALL phases automatically. No `notify_user` between phases. Only stop for: blocking errors, decision forks, plan completed, explicit user pause.
+User approval = execute ALL phases automatically. No `notify_user` between phases. Only stop for: blocking errors, decision forks, plan completed, explicit user pause.  
+**Scope:** Applies post-approval only. Pre-approval, `GEMINI.md § Human Checkpoint` still requires approval for core logic, auth, config, and architecture changes.
 
-### 🔍 Problem Verification (MANDATORY)
+### 🔍 Problem Verification (MANDATORY) — *Canonical SLO Rule*
 
 After ANY task: check `@[current_problems]` → auto-fix (CSS, imports, lint, types) → verify → only notify if can't auto-fix.  
-**Rule:** Don't mark complete until `@[current_problems]` is empty or all non-blocking.
+**Rule:** Don't mark complete until `@[current_problems]` is empty or all non-blocking.  
+**SLO:** NEVER call `notify_user` with completion if `@[current_problems]` shows errors.
 
 ### 📚 Knowledge Verification (MANDATORY)
 
@@ -102,7 +104,8 @@ After ANY bug fix or error correction:
 3. If uncompiled signal count > 5 → Auto-trigger compile operation
 4. Only mark task complete AFTER knowledge check passes
 
-**Rule:** Don't mark complete if you fixed a learnable bug but didn't record it.
+**Rule:** Don't mark complete if you fixed a learnable bug but didn't record it.  
+**Trigger conditions & categories:** See `autopilot.md § 0.5-H` (canonical source).
 
 ---
 
@@ -128,7 +131,8 @@ After ANY bug fix or error correction:
 | L3 (Architecture) | ASK 1-3 strategic questions, then plan |
 | Vague / Ambiguous | Ask Purpose + Scope before classifying |
 
-**Never Assume.** Reference: `@[skills/idea-storm]` for complex requirements.
+**Never Assume.** Reference: `@[skills/idea-storm]` for complex requirements.  
+**Override:** Once a plan is APPROVED (autopilot state), Socratic Gate is BYPASSED regardless of task level. See `autopilot.md § 0.5-B`.
 
 ### 🏁 Final Checklist
 

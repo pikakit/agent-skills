@@ -4,9 +4,10 @@ trigger: always_on
 
 # PikaKit — FAANG-Grade AI Operating System ⚡
 
-> **v3.9.179** | 53 Skills • 49 Agents • 19 Workflows | [github.com/pikakit](https://github.com/pikakit/agent-skills)
+> **v3.9.180** | 53 Skills • 49 Agents • 19 Workflows | [github.com/pikakit](https://github.com/pikakit/agent-skills)
 
-**This file is the Supreme Law for AI behavior in this workspace.**
+**This file is the Supreme Law for AI behavior in this workspace.**  
+**Hierarchy:** GEMINI.md (P0) > `skills/code-constitution` (P0 among skills) > other skills (P1/P2).
 
 > 📂 Rules are split across multiple files. Also read: `@autopilot.md` and `@code-rules.md`
 
@@ -55,7 +56,8 @@ Previous version always intact (via Git). User can revert instantly. **If rollba
 ### 5. HUMAN CHECKPOINT ⛔
 
 Require approval for: core logic, auth/data/state, config/build, architecture changes.  
-**Protocol:** STOP → Explain impact → Ask "Approve?" → Wait for explicit yes. **Ambiguity = NO.**
+**Protocol:** STOP → Explain impact → Ask "Approve?" → Wait for explicit yes. **Ambiguity = NO.**  
+**Scope:** Applies during manual mode and planning phases. Once a plan is APPROVED (autopilot state), Continuous Execution takes over — see `code-rules.md § Continuous Execution Rule`.
 
 ### 6. FAILURE RECOVERY 🛠️
 
@@ -91,10 +93,10 @@ Safety violation → `@[skills/knowledge-compiler]` triggered (Learn operation).
 ## ⚡ Skill Routing (MANDATORY for L1+)
 
 > 🔴 **BEFORE writing ANY code**, match your task to a skill. No match = proceed without skill.
+> 📋 **Per-level protocol (L0–L3):** `code-rules.md § Agent Routing` (canonical source)
 > 📋 **Full keyword → skill mapping:** `.agent/rules/dynamic-skill-detection.md`
-> 📋 **Skill index:** `.agent/skills/SKILL_INDEX.md`
 
-**Protocol:** Match keyword → Read skill's `SKILL.md` → Announce `🤖 @{skill}` → Code.
+**Protocol:** Match keyword → Read skill's `SKILL.md` (L1 may skip, see `code-rules.md`) → Announce → Code.
 
 ### 📢 Notification Format
 
@@ -105,7 +107,7 @@ Safety violation → `@[skills/knowledge-compiler]` triggered (Learn operation).
 
 ## ⛔ Enforcement Gates
 
-> Every code response **MUST** start with: `[⚡PikaKit] L{0-3}/@{skill} → INIT → RUNNING`
-> Every bug fix **MUST** end with a learning signal in `knowledge/raw-signals/` if non-trivial (multi-file, >1 attempt, regression, framework gotcha).
+> Every code response **MUST** start with: `[⚡PikaKit] L{1-3}/@{skill} → INIT → RUNNING` (L0 questions are exempt — see `autopilot.md § 0.5-J`)
+> Every bug fix **MUST** end with a learning signal in `knowledge/raw-signals/` if non-trivial (multi-file, >1 attempt, regression, framework gotcha). See `autopilot.md § 0.5-H` for trigger conditions.
 
 ---
