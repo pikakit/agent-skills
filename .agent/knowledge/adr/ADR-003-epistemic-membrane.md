@@ -17,7 +17,7 @@ We introduce the **Epistemic Clustering Membrane** as the sole bridging mechanis
 2. **Dynamic Thresholding:** Clusters are promoted using a dual-weighted equation ensuring **Bounded Influence**:
    > `final_score = (embedding_similarity * 0.7) + (knowledge_prior * 0.3)`
    This balances Data-driven reality (70%) with Knowledge-guided experience (30%), preventing the LLM from completely overwriting the clustering matrix.
-3. **Database Intermediate Layer Schema:** The PikaKit v3.9.180x execution database (`memory.sqlite`) officially adapts the 4-tier learning pipeline:
+3. **Database Intermediate Layer Schema:** The PikaKit v3.9.183x execution database (`memory.sqlite`) officially adapts the 4-tier learning pipeline:
    - `signals` (raw input stream)
    - `patterns` (clustering and threshold evaluation layer)
    - `lessons` (final knowledge, metadata mapped to `.md` files)

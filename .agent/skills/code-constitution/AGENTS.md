@@ -588,8 +588,8 @@ No skill, agent, or workflow may override a constitutional decision. Authority i
 
 ---
 
-PikaKit v3.9.180
+PikaKit v3.9.183
 
 ---
 
-⚡ PikaKit v3.9.180
+⚡ PikaKit v3.9.183
