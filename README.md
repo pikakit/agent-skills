@@ -78,24 +78,9 @@ You → AI → PikaKit → Production Code
 
 ### Deep Architecture
 
-```mermaid
-flowchart TD
-    subgraph IDE ["PikaKit Engine (VS Code)"]
-        A[Real-time Errors] --> B[Auto-click CDP]
-    end
-    subgraph Brain ["The Knowledge Engine"]
-        A -->|Ingest| C(Raw Signals)
-        C -->|Compile| D(Concept Wiki)
-        D -->|Generate| E[Executable Skills]
-    end
-    subgraph Runtime ["Workflows & Skills"]
-        E --> F[Agent routing & Execution]
-        F --> G[Project completed securely]
-    end
-    style IDE fill:#374151,color:#fff
-    style Brain fill:#18181b,color:#fff,stroke:#10b981
-    style Runtime fill:#065f46,color:#fff
-```
+<div align="center">
+<img src="./assets/architecture.png" width="600" alt="PikaKit Architecture - IDE Engine → Knowledge Engine → Runtime" />
+</div>
 
 ---
 
