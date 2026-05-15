@@ -14,7 +14,7 @@ PikaKit transforms any AI into a Senior Engineer — not by prompting harder, bu
 [![npm](https://img.shields.io/badge/npm-v3.9.180-7c3aed?style=for-the-badge&logo=npm&logoColor=white&labelColor=18181b)](https://www.npmjs.com/package/pikakit)
 [![Skills](https://img.shields.io/badge/53_skills-06b6d4?style=for-the-badge&labelColor=18181b)](https://github.com/pikakit/agent-skills)
 [![Workflows](https://img.shields.io/badge/19_workflows-10b981?style=for-the-badge&labelColor=18181b)](https://github.com/pikakit/agent-skills)
-[![TypeScript](https://img.shields.io/badge/strict_typescript-3178c6?style=for-the-badge&logo=typescript&logoColor=white&labelColor=18181b)](https://github.com/pikakit/agent-skills)
+[![TypeScript](https://img.shields.io/badge/typescript_cli_·_engine-3178c6?style=for-the-badge&logo=typescript&logoColor=white&labelColor=18181b)](https://github.com/pikakit/agent-skills)
 
 ```bash
 npx pikakit
