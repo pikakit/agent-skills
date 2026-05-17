@@ -147,6 +147,17 @@ npx cross-env OTEL_SERVICE_NAME="workflow:cook" TRACE_ID="$TRACE_ID" npm run lin
 
 ---
 
+
+## u{2B50}u{FE0F} MANDATORY: Suggest Next Workflow
+
+> **After completing /cook, you MUST suggest the next pipeline step to the user.**
+
+```
+u{2705} /cook complete u{2192} Suggest: "Run `/validate` to verify changes."
+```
+
+---
+
 ## 🔄 Rollback & Recovery
 
 If implementation introduces errors that cannot be auto-fixed:

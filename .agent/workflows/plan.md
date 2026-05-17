@@ -105,7 +105,7 @@ Ask if not provided:
 | Backend | Hono / Express / FastAPI / NestJS | Scale, team, language |
 | Database | PostgreSQL / MongoDB / Supabase | Structure, scale, cost |
 | Auth | Clerk / NextAuth / Custom | Speed, features, budget |
-| Hosting | Vercel / Railway / AWS | Scale, budget, complexity |
+| Hosting | Cloudflare / Vercel / Railway / AWS | Scale, budget, complexity |
 
 Architecture patterns:
 
@@ -219,7 +219,7 @@ Generated file: `docs/PLAN-{slug}.md`
 
 | Layer | Choice | Rationale |
 |-------|--------|-----------|
-| Frontend | Next.js 15 | SSR, Vercel integration |
+| Frontend | Next.js 15 | SSR, edge-ready |
 | Backend | Hono | Type-safe, edge |
 | Database | PostgreSQL | Structured, scalable |
 

@@ -4,15 +4,6 @@ skills: [observability, server-ops, problem-checker, context-engineering, knowle
 agents: [orchestrator, assessor, recovery, learner, devops-engineer]
 ---
 
-# /monitor - Production Observability
-
-$ARGUMENTS
-
----
-
-## Purpose
-
----
 
 # /monitor - Production Observability
 
@@ -58,19 +49,14 @@ learner.log(monitoring_patterns)
 
 ## 🔴 MANDATORY: Observability Setup Protocol
 
-### Phase 0: Pre-flight & Auto-Learned Context
+### Phase 0: Dynamic Skill Detection & Pre-flight
 
-> **Rule 0.5-K:** Auto-learned pattern check.
-
-1. Read `.agent/knowledge/patterns/` for past failures before proceeding.
-2. Trigger `recovery` agent to run Checkpoint (`git commit -m "chore(checkpoint): pre-monitor"`).
-
-### Phase 1: Pre-flight & knowledge-compiler Context
-
+> **Protocol:** `.agent/rules/dynamic-skill-detection.md`
 > **Rule 0.5-K:** knowledge-compiler pattern check.
 
-1. Read `.agent/skills/knowledge-compiler/patterns/` for past failures before proceeding.
-2. Trigger `recovery` agent to run Checkpoint (`git commit -m "chore(checkpoint): pre-monitor"`).
+1. Scan `$ARGUMENTS` for domain signals and inject matched skills.
+2. Read `.agent/knowledge/patterns/` for past failures before proceeding.
+3. Trigger `recovery` agent to run Checkpoint (`git commit -m "chore(checkpoint): pre-monitor"`).
 
 ### Phase 2: Foundation (OpenTelemetry)
 
@@ -222,6 +208,20 @@ If observability setup causes application crashes or aggressive memory leaks:
 1. Revert infrastructure configs/SDK wrappers using `recovery` meta-agent.
 2. Remove any auto-instrumentation hooks from startup scripts.
 3. Fallback to previous safe state before generating Output Format.
+
+---
+
+---
+
+## Examples
+
+```
+/monitor setup OpenTelemetry for Node.js Express API
+/monitor add structured logging with Winston
+/monitor create Grafana dashboard for API latency
+/monitor configure PagerDuty alerting for 5xx errors
+/monitor trace distributed request across microservices
+```
 
 ---
 

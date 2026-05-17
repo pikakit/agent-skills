@@ -250,6 +250,17 @@ npx cross-env OTEL_SERVICE_NAME="workflow:autopilot" TRACE_ID="$TRACE_ID" npm ru
 
 ---
 
+
+## u{2B50}u{FE0F} MANDATORY: Suggest Next Workflow
+
+> **After completing /autopilot, you MUST suggest the next pipeline step to the user.**
+
+```
+u{2705} /autopilot complete u{2192} Suggest: "Run `/monitor` to track production health."
+```
+
+---
+
 ## 🔄 Rollback & Recovery
 
 If the Exit Gates fail and cannot be resolved automatically:

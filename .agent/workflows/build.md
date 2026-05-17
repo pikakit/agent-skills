@@ -108,7 +108,7 @@ success → learner.log(patterns)
 | Styling | Tailwind + shadcn/ui |
 | Database | PostgreSQL (Supabase) |
 | Auth | Clerk |
-| Deployment | Vercel |
+| Deployment | Auto-detect (see `/launch` workflow) |
 | Testing | Vitest + Playwright |
 
 ### Phase 3: Planning & Design
@@ -272,7 +272,7 @@ If the Exit Gates fail and cannot be resolved automatically:
 
 | Layer | Choice | Reason |
 |-------|--------|--------|
-| Frontend | Next.js 15 | SSR, App Router, Vercel deploy |
+| Frontend | Next.js 15 | SSR, App Router, edge-ready |
 | Backend | Hono + Prisma | Type-safe, edge-ready |
 | Database | PostgreSQL | Relational, Supabase hosting |
 | Auth | Clerk | Fast integration, social login |

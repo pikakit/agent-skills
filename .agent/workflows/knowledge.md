@@ -162,6 +162,46 @@ Manage the project's living knowledge wiki. Raw signals from error fixes, user c
 
 ---
 
+## 🔄 Rollback & Recovery
+
+If compilation corrupts articles or produces invalid cross-links:
+1. Restore from pre-knowledge checkpoint (`git checkout -- .agent/knowledge/`).
+2. Re-run `/knowledge lint` to validate remaining wiki health.
+3. Log failure via `learner` meta-agent.
+
+> **Rule:** Raw signals in `raw/` are never deleted during compilation — they serve as the source of truth for recovery.
+
+---
+
+## → MANDATORY: Problem Verification Before Completion
+
+> **CRITICAL:** This check MUST be performed before any `notify_user` or task completion.
+
+### Check @[current_problems]
+
+```
+1. Read @[current_problems] from IDE
+2. If errors/warnings > 0:
+   a. Auto-fix: broken links, malformed frontmatter
+   b. Re-check @[current_problems]
+   c. If still > 0 → STOP → Notify user
+3. If count = 0 → Proceed to completion
+```
+
+> **Note:** /knowledge produces markdown artifacts. This check applies to frontmatter formatting, link integrity, and index consistency.
+
+---
+
+## ⏭️ MANDATORY: Suggest Next Workflow
+
+> **After completing /knowledge, you MUST suggest the next pipeline step to the user.**
+
+```
+✅ /knowledge complete → Suggest: "Run `/knowledge lint` to verify wiki health."
+```
+
+---
+
 ## Examples
 
 ```

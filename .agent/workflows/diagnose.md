@@ -208,6 +208,17 @@ npx cross-env OTEL_SERVICE_NAME="workflow:diagnose" TRACE_ID="$TRACE_ID" npm tes
 
 ---
 
+
+## u{2B50}u{FE0F} MANDATORY: Suggest Next Workflow
+
+> **After completing /diagnose, you MUST suggest the next pipeline step to the user.**
+
+```
+u{2705} /diagnose complete u{2192} Suggest: "Run `/fix` to apply the recommended fix."
+```
+
+---
+
 ## 🔙 Rollback & Recovery
 
 If investigation causes system instability or tests fail unexpectedly:

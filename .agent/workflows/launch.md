@@ -55,6 +55,24 @@ recovery.restore(checkpoint) → learner.log(failure)
 
 ## ⚡ MANDATORY: Deployment Protocol
 
+
+### Phase 0: Dynamic Skill Detection
+
+> **Protocol:** `.agent/rules/dynamic-skill-detection.md`
+
+1. Scan `$ARGUMENTS` for domain signals (case-insensitive).
+2. Match signals against the Domain Signal → Skill Mapping table.
+3. Inject matched skills (max 5, priority: High > Medium > Low) into active skill set.
+4. Skip skills already in workflow defaults.
+5. Announce injected skills:
+
+```
+[⚡PikaKit] Dynamic Skills Detected:
+  + {skill-name} (signal: "{matched keywords}")
+  Base skills: [workflow defaults]
+  Total active: [count]
+```
+
 ### Phase 1: Pre-flight & knowledge-compiler Context
 
 > **Rule 0.5-K:** knowledge-compiler pattern check.
@@ -121,15 +139,39 @@ npx cross-env OTEL_SERVICE_NAME="workflow:launch" TRACE_ID="$TRACE_ID" npx tsc -
 npx cross-env OTEL_SERVICE_NAME="workflow:launch" TRACE_ID="$TRACE_ID" npm run build
 ```
 
-3. Auto-detect platform:
+3. Auto-detect platform (scan config files in priority order):
 
-| Platform | Command | Auto-Detected By |
-|----------|---------|-----------------|
-| Vercel | `vercel --prod` | Next.js, Vite |
-| Railway | `railway up` | Dockerfile |
-| Fly.io | `fly deploy` | fly.toml |
-| Netlify | `netlify deploy --prod` | Static sites |
-| AWS | `sam deploy` | SAM template |
+> **⚠️ IMPORTANT:** Do NOT assume a default platform. Scan the project root for config files and use the FIRST match from the table below. If no config file is found, ASK the user which platform to deploy to.
+
+**Detection Priority (check in this order):**
+
+```
+1. Check for wrangler.toml / wrangler.json    → Cloudflare
+2. Check for fly.toml                         → Fly.io
+3. Check for vercel.json                      → Vercel
+4. Check for netlify.toml                     → Netlify
+5. Check for railway.toml / railway.json      → Railway
+6. Check for Dockerfile                       → Docker-based (Railway/Fly)
+7. Check for serverless.yml / template.yaml   → AWS
+8. No config found                            → ASK user
+```
+
+| Platform | Config File(s) | Deploy Command | Rollback |
+|----------|---------------|----------------|----------|
+| **Cloudflare Pages** | `wrangler.toml` (Pages project) | `npx wrangler pages deploy <dist_dir> --project-name=<name>` | `npx wrangler pages deployment rollback` |
+| **Cloudflare Workers** | `wrangler.toml` (`main =`) | `npx wrangler deploy` (from worker dir) | `npx wrangler rollback` |
+| **Vercel** | `vercel.json` | `npx vercel --prod` | `npx vercel rollback` |
+| **Fly.io** | `fly.toml` | `fly deploy` | `fly releases rollback` |
+| **Netlify** | `netlify.toml` | `npx netlify deploy --prod` | Netlify dashboard |
+| **Railway** | `railway.toml` | `railway up` | `railway rollback` |
+| **AWS** | `template.yaml` / `serverless.yml` | `sam deploy` / `sls deploy` | Previous version redeploy |
+
+**Cloudflare-specific notes:**
+- If `wrangler.toml` exists, check for **both** Pages and Workers deployments
+- For Pages: find project name via `npx wrangler pages project list`
+- For Workers: find worker name from `name =` in `wrangler.toml`
+- Use `--commit-dirty=true` flag if git has uncommitted changes
+- A single project may have BOTH (e.g., frontend on Pages + API on Workers)
 
 ### Phase 4: Deploy & Health Check
 
@@ -243,7 +285,7 @@ If deployment automation fails completely or pre-flights break the workspace:
 | Version | v2.1.0 |
 | Environment | Production |
 | Duration | 47 seconds |
-| Platform | Vercel |
+| Platform | [auto-detected] |
 
 ### Pre-Flight Results
 

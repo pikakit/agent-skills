@@ -53,6 +53,24 @@ learner.log(failure_patterns)
 
 ## ⚡ MANDATORY: Test Automation Protocol
 
+
+### Phase 0: Dynamic Skill Detection
+
+> **Protocol:** `.agent/rules/dynamic-skill-detection.md`
+
+1. Scan `$ARGUMENTS` for domain signals (case-insensitive).
+2. Match signals against the Domain Signal → Skill Mapping table.
+3. Inject matched skills (max 5, priority: High > Medium > Low) into active skill set.
+4. Skip skills already in workflow defaults.
+5. Announce injected skills:
+
+```
+[⚡PikaKit] Dynamic Skills Detected:
+  + {skill-name} (signal: "{matched keywords}")
+  Base skills: [workflow defaults]
+  Total active: [count]
+```
+
 ### Phase 1: Pre-flight & knowledge-compiler Context
 
 > **Rule 0.5-K:** knowledge-compiler pattern check.

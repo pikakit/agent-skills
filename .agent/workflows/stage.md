@@ -58,6 +58,24 @@ health_check → learner.log(config)
 
 ## ⚡ MANDATORY: Development Sandbox Protocol
 
+
+### Phase 0: Dynamic Skill Detection
+
+> **Protocol:** `.agent/rules/dynamic-skill-detection.md`
+
+1. Scan `$ARGUMENTS` for domain signals (case-insensitive).
+2. Match signals against the Domain Signal → Skill Mapping table.
+3. Inject matched skills (max 5, priority: High > Medium > Low) into active skill set.
+4. Skip skills already in workflow defaults.
+5. Announce injected skills:
+
+```
+[⚡PikaKit] Dynamic Skills Detected:
+  + {skill-name} (signal: "{matched keywords}")
+  Base skills: [workflow defaults]
+  Total active: [count]
+```
+
 ### Phase 1: Pre-flight & knowledge-compiler Context
 
 > **Rule 0.5-K:** knowledge-compiler pattern check.
@@ -188,6 +206,17 @@ npx cross-env OTEL_SERVICE_NAME="workflow:stage" TRACE_ID="$TRACE_ID" node .agen
 ```
 
 > **Note:** /stage manages services, not code. Problems are reported along with service health.
+
+---
+
+
+## u{2B50}u{FE0F} MANDATORY: Suggest Next Workflow
+
+> **After completing /stage, you MUST suggest the next pipeline step to the user.**
+
+```
+u{2705} /stage complete u{2192} Suggest: "Run `/validate` to test in the sandbox."
+```
 
 ---
 
