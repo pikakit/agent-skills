@@ -1,31 +1,22 @@
-# Logic Patterns
+# Logic Bug Patterns
 
-> Part of `knowledge-compiler` - Contains logic-related patterns
-
----
-
-## 📋 Learned Patterns
-
-_No patterns recorded yet. Patterns will be added automatically when logic errors are detected and fixed._
+> Auto-maintained by PikaKit Knowledge Compiler.
+> Patterns are learned from project-specific logic errors and fixes.
 
 ---
 
-## Quick Fixes
+## Active Patterns
 
-| Error | Fix |
-|-------|-----|
-| `Cannot read properties of undefined` | Add null check or optional chaining (`?.`) |
-| `X is not a function` | Verify variable type before calling |
-| `Maximum call stack exceeded` | Check for infinite recursion |
+_No patterns recorded yet._
 
----
+### Pattern Format
 
-## Statistics
-
-- **Patterns:** 0
-- **Category:** logic
-- **Last Updated:** 2026-03-04
+```
+LOG-{NNN}: {Description}
+- Trigger: {What causes this bug}
+- Fix: {How to resolve it}
+- Confidence: {LOW | MEDIUM | HIGH}
+- Occurrences: {count}
+```
 
 ---
-
-⚡ PikaKit v3.9.183

@@ -1,31 +1,22 @@
-# Style Patterns
+# CSS & Styling Patterns
 
-> Part of `knowledge-compiler` - Contains code style patterns
-
----
-
-## 📋 Learned Patterns
-
-_No patterns recorded yet. Patterns will be added automatically when style issues are detected and fixed._
+> Auto-maintained by PikaKit Knowledge Compiler.
+> Patterns are learned from project-specific styling bugs and fixes.
 
 ---
 
-## Quick Fixes
+## Active Patterns
 
-| Error | Fix |
-|-------|-----|
-| `Unexpected console statement` | Remove or replace with logger |
-| `Prefer const over let` | Use `const` for non-reassigned variables |
-| `Missing trailing comma` | Add trailing comma per project config |
+_No patterns recorded yet. Style patterns will be captured automatically when the AI fixes CSS/styling issues in your project._
 
----
+### Pattern Format
 
-## Statistics
-
-- **Patterns:** 0
-- **Category:** style
-- **Last Updated:** 2026-03-04
+```
+STY-{NNN}: {Description}
+- Trigger: {What causes this issue}
+- Fix: {How to resolve it}
+- Confidence: {LOW | MEDIUM | HIGH}
+- Occurrences: {count}
+```
 
 ---
-
-⚡ PikaKit v3.9.183

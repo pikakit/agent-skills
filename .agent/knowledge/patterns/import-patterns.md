@@ -1,94 +1,22 @@
-# Import Patterns
+# Import Resolution Patterns
 
-> Part of `knowledge-compiler` - Contains import-related patterns
+> Auto-maintained by PikaKit Knowledge Compiler.
+> Patterns are learned from project-specific import errors and fixes.
 
 ---
 
-## 📋 Learned Patterns
+## Active Patterns
 
-### 1. Missing Variable Import
+_No patterns recorded yet. Import resolution patterns will be captured automatically when the AI fixes import-related errors in your project._
 
-**Pattern:** `Cannot find name '<identifier>'`
+### Pattern Format
 
-**Context:**
-- Source: TypeScript compiler (ts)
-- Common in: `.ts`, `.tsx` files
-- Occurrences: 2+
-
-**Solution:**
-```typescript
-// Add import for the missing symbol
-import { <identifier> } from '<module>';
+```
+IMP-{NNN}: {Description}
+- Trigger: {What causes this error}
+- Fix: {How to resolve it}
+- Confidence: {LOW | MEDIUM | HIGH}
+- Occurrences: {count}
 ```
 
 ---
-
-### 2. Missing ReactNode Import
-
-**Pattern:** `Cannot find name 'ReactNode'`
-
-**Context:**
-- Framework: React
-- Source: TypeScript compiler
-
-**Solution:**
-```typescript
-import { ReactNode } from 'react';
-// or
-import type { ReactNode } from 'react';
-```
-
----
-
-### 3. Missing JSX Element Import
-
-**Pattern:** `Cannot find name 'div'` (or other HTML elements in JSX context)
-
-**Context:**
-- Framework: React
-- Issue: JSX not configured or missing React import
-
-**Solution:**
-```typescript
-// Ensure tsconfig.json has jsx: "react-jsx"
-// Or add React import for older configs:
-import React from 'react';
-```
-
----
-
-### 4. Missing Component Import
-
-**Pattern:** `Cannot find name '<ComponentName>'`
-
-**Context:**
-- Custom components not imported
-- Source: TypeScript compiler
-
-**Solution:**
-```typescript
-import { <ComponentName> } from './<component-path>';
-```
-
----
-
-## Quick Fixes
-
-| Error | Fix |
-|-------|-----|
-| `Cannot find name 'X'` | Add import for X |
-| `Cannot find name 'ReactNode'` | `import { ReactNode } from 'react'` |
-| `Cannot find namespace 'JSX'` | `import type { JSX } from 'react'` |
-| `Module not found` | Check path or install package |
-
----
-
-## Statistics
-
-- **Patterns:** 4
-- **Category:** import
-- **Last Updated:** 2026-04-13
-
----
-
-⚡ PikaKit v3.9.183

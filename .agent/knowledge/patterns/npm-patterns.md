@@ -1,31 +1,22 @@
-# NPM Patterns
+# npm Operation Patterns
 
-> Part of `knowledge-compiler` - Contains npm/package manager patterns
-
----
-
-## 📋 Learned Patterns
-
-_No patterns recorded yet. Patterns will be added automatically when npm issues are detected and fixed._
+> Auto-maintained by PikaKit Knowledge Compiler.
+> Patterns are learned from npm install/build/publish errors and fixes.
 
 ---
 
-## Quick Fixes
+## Active Patterns
 
-| Error | Fix |
-|-------|-----|
-| `npm ERR! 404` on publish | Run `npm login` first |
-| `ERESOLVE` peer dependency | Use `--legacy-peer-deps` flag |
-| `EACCES` permission denied | Fix npm prefix or use `npx` |
+_No patterns recorded yet._
 
----
+### Pattern Format
 
-## Statistics
-
-- **Patterns:** 0
-- **Category:** npm
-- **Last Updated:** 2026-05-04
+```
+NPM-{NNN}: {Description}
+- Trigger: {What causes this error}
+- Fix: {How to resolve it}
+- Confidence: {LOW | MEDIUM | HIGH}
+- Occurrences: {count}
+```
 
 ---
-
-⚡ PikaKit v3.9.183

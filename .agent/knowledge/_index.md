@@ -1,33 +1,38 @@
-# Knowledge Index
+# Knowledge Wiki
 
-> Auto-maintained by `knowledge-compiler`. Do not edit manually.
-> Last compiled: 2026-05-04 09:15:00 UTC
-
----
-
-## Concepts
-
-- [Import Resolution Strategy in TypeScript Monorepo](./concepts/import-strategy.md)
-- [Antigravity CDP UI Automation Guidelines](./concepts/antigravity-cdp-automation.md)
-- [Claude Skill Metadata Standardization](./concepts/claude-skill-metadata-standard.md)
-- [Knowledge Wiki Architecture (Karpathy Model)](./concepts/knowledge-wiki-architecture.md)
+> Auto-maintained by PikaKit Knowledge Compiler. Do not edit manually.
+> Last compiled: —
+> Last git scan SHA: —
 
 ---
 
-## Decisions
+## 📚 Concepts
 
-- [ADR-001: Use Path Alias Instead of Relative Imports](./adr/ADR-001-path-alias.md)
-- [ADR-002: Separation of memory.sqlite and Knowledge Wiki](./adr/ADR-002-memory-sqlite-separation.md)
-- [ADR-003: The Epistemic Clustering Membrane](./adr/ADR-003-epistemic-membrane.md)
-- [ADR-004: FTS5 Search Index for Knowledge System](./adr/ADR-004-fts5-search-index.md)
+_No concept articles yet. The knowledge compiler will auto-generate articles from your project's signals._
 
 ---
 
-## Active Patterns
+## 🏛️ Decisions
 
-- [PTN-001: Missing Import in Modular React Component System](./patterns/code-patterns/PTN-001-import-resolution.md) *(Confidence: HIGH)*
-- [STY-001: Mobile Scroll Restoration Failure](./patterns/style-patterns.md) *(Confidence: HIGH)*
-- [FLOW-001: Workflow Protocol Bypass](./patterns/workflow-patterns.md) *(Confidence: HIGH)*
+_No architecture decisions recorded yet. ADRs will be created as you make significant design choices._
+
+---
+
+## 📥 Recent Signals (Uncompiled)
+
+_No signals captured yet. Signals are automatically generated from:_
+- _Git commits tagged `fix:` or `feat:` (Phase 0.5 Git Scanner)_
+- _AI self-reflection after non-trivial sessions (Post-Completion hook)_
+
+---
+
+## ✅ Compiled Signals
+
+_None yet._
+
+---
+
+## 🔗 Active Patterns
 
 ### Pattern Files
 
@@ -45,35 +50,31 @@
 
 ---
 
-## Recent Signals (Uncompiled)
-
-- [SIG-006: Mobile Scroll Bug / overflow-x-hidden](./raw-signals/2026-05-04-mobile-scroll-overflow-bug.md)
-- [SIG-007: Agent Bypasses /think Workflow Protocol](./raw-signals/2026-05-04-think-workflow-violation.md)
-- [SIG-008: Knowledge Hardening Decision](./raw-signals/SIG-008-brain-cherry-pick.md)
-
-## Compiled Signals
-
-- [SIG-001: Relative Import Failing in Modular Build](./raw-signals/SIG-001.md)
-- [SIG-002: CDP Auto-Accepts Destructive Undo Dialogs](./raw-signals/SIG-002.md)
-- [SIG-003: YAML Frontmatter Non-Compliance Across 62 Skills](./raw-signals/SIG-003.md)
-- [SIG-004: Knowledge Wiki Architecture Audit](./raw-signals/SIG-004.md)
-- [SIG-005: memory.sqlite Is Runtime Cache, Not Knowledge Store](./raw-signals/SIG-005.md)
-
----
-
-## Statistics
+## 📊 Statistics
 
 | Metric | Value |
 |--------|-------|
-| Total concept articles | 4 |
-| Total ADRs | 4 |
-| Uncompiled signals | 3 |
-| Compiled signals | 5 |
+| Total concept articles | 0 |
+| Total ADRs | 0 |
+| Uncompiled signals | 0 |
+| Compiled signals | 0 |
 | Total pattern files | 9 |
-| Active patterns | 3 |
-| Last compiled | 2026-05-04 |
-| Health score | 95/100 |
+| Active patterns | 0 |
+| Last compiled | — |
+| Health score | — |
 
 ---
 
-> ⚡ PikaKit Knowledge Compiler v3.9.183
+## ⚙️ Auto-Ingest Configuration
+
+| Setting | Value |
+|---------|-------|
+| Git scanner | Active (Phase 0.5 in all workflows) |
+| Session reflection | Active (Post-Completion hook) |
+| Quality threshold | ≥ 3 |
+| Auto-compile trigger | > 5 uncompiled signals |
+| Protocol | `.agent/rules/auto-knowledge-ingest.md` |
+
+---
+
+> ⚡ PikaKit Knowledge Compiler v3.9.185

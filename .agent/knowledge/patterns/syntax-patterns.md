@@ -1,31 +1,22 @@
-# Syntax Patterns
+# Syntax Error Patterns
 
-> Part of `knowledge-compiler` - Contains syntax-related patterns
-
----
-
-## 📋 Learned Patterns
-
-_No patterns recorded yet. Patterns will be added automatically when syntax errors are detected and fixed._
+> Auto-maintained by PikaKit Knowledge Compiler.
+> Patterns are learned from project-specific syntax errors and fixes.
 
 ---
 
-## Quick Fixes
+## Active Patterns
 
-| Error | Fix |
-|-------|-----|
-| `Unexpected token` | Check for missing brackets, semicolons, or commas |
-| `Expression expected` | Verify syntax matches language spec |
-| `Declaration or statement expected` | Check for misplaced keywords |
+_No patterns recorded yet._
 
----
+### Pattern Format
 
-## Statistics
-
-- **Patterns:** 0
-- **Category:** syntax
-- **Last Updated:** 2026-03-04
+```
+SYN-{NNN}: {Description}
+- Trigger: {What causes this error}
+- Fix: {How to resolve it}
+- Confidence: {LOW | MEDIUM | HIGH}
+- Occurrences: {count}
+```
 
 ---
-
-⚡ PikaKit v3.9.183

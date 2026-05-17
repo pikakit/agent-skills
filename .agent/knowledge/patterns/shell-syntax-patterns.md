@@ -1,31 +1,28 @@
-# Shell Syntax Patterns
+# Shell & Terminal Patterns
 
-> Part of `knowledge-compiler` - Contains shell/terminal syntax patterns
-
----
-
-## 📋 Learned Patterns
-
-_No patterns recorded yet. Patterns will be added automatically when shell syntax issues are detected and fixed._
+> Auto-maintained by PikaKit Knowledge Compiler.
+> Patterns are learned from shell/terminal command errors and fixes.
 
 ---
 
-## Quick Fixes
+## Active Patterns
 
-| Error | Fix |
-|-------|-----|
-| PowerShell `&&` operator fails | Use `;` instead of `&&` in PowerShell |
-| `command not found` after install | Restart terminal or use `npx` |
-| Path with spaces fails | Wrap path in quotes `"path with spaces"` |
+_No patterns recorded yet._
+
+### Common Categories
+
+- PowerShell vs Bash syntax differences
+- Environment variable handling across platforms
+- Command piping and error handling
+
+### Pattern Format
+
+```
+SHL-{NNN}: {Description}
+- Trigger: {What causes this error}
+- Fix: {How to resolve it}
+- Confidence: {LOW | MEDIUM | HIGH}
+- Occurrences: {count}
+```
 
 ---
-
-## Statistics
-
-- **Patterns:** 0
-- **Category:** shell
-- **Last Updated:** 2026-05-04
-
----
-
-⚡ PikaKit v3.9.183

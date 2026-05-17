@@ -1,31 +1,22 @@
-# Git Patterns
+# Git Operation Patterns
 
-> Part of `knowledge-compiler` - Contains git operation patterns
-
----
-
-## 📋 Learned Patterns
-
-_No patterns recorded yet. Patterns will be added automatically when git issues are detected and fixed._
+> Auto-maintained by PikaKit Knowledge Compiler.
+> Patterns are learned from git operation errors and fixes.
 
 ---
 
-## Quick Fixes
+## Active Patterns
 
-| Error | Fix |
-|-------|-----|
-| `fatal: not a git repository` | Run `git init` or check directory |
-| Merge conflict markers in file | Resolve markers, `git add`, `git commit` |
-| Accidentally committed secrets | Use `git filter-branch` or BFG Repo-Cleaner |
+_No patterns recorded yet._
 
----
+### Pattern Format
 
-## Statistics
-
-- **Patterns:** 0
-- **Category:** git
-- **Last Updated:** 2026-05-04
+```
+GIT-{NNN}: {Description}
+- Trigger: {What causes this error}
+- Fix: {How to resolve it}
+- Confidence: {LOW | MEDIUM | HIGH}
+- Occurrences: {count}
+```
 
 ---
-
-⚡ PikaKit v3.9.183
