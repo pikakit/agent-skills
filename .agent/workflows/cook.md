@@ -65,6 +65,22 @@ instruction → implement → verify → learner.log() → done
 
 > **Why:** `/cook` only loads 5 utility skills by default. Dynamic detection ensures domain expertise (e.g., SEO for blog tasks, auth for login tasks) is available during implementation.
 
+
+### Phase 0.5: Auto-Knowledge Ingest (Git Scanner)
+
+> **Protocol:** `.agent/rules/auto-knowledge-ingest.md`
+> **Channel 1:** Scans recent git commits for project-specific lessons.
+
+```
+1. Check if .agent/knowledge/ exists — if not, skip
+2. Read _index.md → get last_git_scan SHA
+3. Run: git log --since="7 days ago" --grep="^fix:\|^feat:" -n 20
+4. For qualifying commits (≥2 files changed OR keywords: fallback, guard, CORS, rate-limit):
+   a. Skip if signal with same commit SHA exists
+   b. Generate signal to raw-signals/SIG-{NNN}.md
+5. Update last_git_scan in _index.md
+6. If uncompiled signals > 5 → auto-compile (max 10 per batch)
+```
 ### Phase 1: Pre-flight & knowledge-compiler Context
 
 > **Rule 0.5-K:** knowledge-compiler pattern check.
@@ -147,6 +163,25 @@ npx cross-env OTEL_SERVICE_NAME="workflow:cook" TRACE_ID="$TRACE_ID" npm run lin
 
 ---
 
+
+
+---
+
+## MANDATORY: Post-Completion Knowledge Check
+
+> **Protocol:** `.agent/rules/auto-knowledge-ingest.md`
+> **Channel 2:** AI self-reflects on session to capture non-trivial lessons.
+
+```
+1. Self-reflect: "Was this session non-trivial?"
+   - Did I fix a multi-file bug?
+   - Did I discover a framework/API gotcha?
+   - Did I make an architectural decision?
+2. If ALL answers are NO - skip
+3. If ANY answer is YES and score >= 3:
+   Generate signal to raw-signals/SIG-{NNN}.md
+   If uncompiled > 5 - auto-compile
+```
 
 ## u{2B50}u{FE0F} MANDATORY: Suggest Next Workflow
 

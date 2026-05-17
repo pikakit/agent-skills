@@ -48,6 +48,23 @@ Manage the project's living knowledge wiki. Raw signals from error fixes, user c
 1. Read `.agent/knowledge/patterns/` for past failures before proceeding.
 2. Trigger `recovery` agent to run Checkpoint (`git commit -m "chore(checkpoint): pre-knowledge"`).
 
+
+### Phase 0.5: Auto-Knowledge Ingest (Git Scanner)
+
+> **Protocol:** `.agent/rules/auto-knowledge-ingest.md`
+> **Channel 1:** Scans recent git commits for project-specific lessons.
+
+```
+1. Check if .agent/knowledge/ exists - if not, skip
+2. Read _index.md - get last_git_scan SHA
+3. Run: git log --since="7 days ago" --grep="^fix:|^feat:" -n 20
+4. For qualifying commits (>=2 files changed OR keywords: fallback, guard, CORS, rate-limit):
+   a. Skip if signal with same commit SHA exists
+   b. Generate signal to raw-signals/SIG-{NNN}.md
+5. Update last_git_scan in _index.md
+6. If uncompiled signals > 5 - auto-compile (max 10 per batch)
+```
+
 ### Phase 1: Ingest
 
 | Field | Value |
@@ -189,6 +206,28 @@ If compilation corrupts articles or produces invalid cross-links:
 ```
 
 > **Note:** /knowledge produces markdown artifacts. This check applies to frontmatter formatting, link integrity, and index consistency.
+
+
+---
+
+## MANDATORY: Post-Completion Knowledge Check
+
+> **Protocol:** `.agent/rules/auto-knowledge-ingest.md`
+> **Channel 2:** AI self-reflects on session to capture non-trivial lessons.
+
+```
+1. Self-reflect: "Was this session non-trivial?"
+   - Did I fix a multi-file bug?
+   - Did I discover a framework/API gotcha?
+   - Did I make an architectural decision?
+   - Did I work around a platform limitation?
+2. If ALL answers are NO - skip (trivial session)
+3. If ANY answer is YES:
+   a. Score significance (multi-file: +2, workaround: +3, API quirk: +3)
+   b. If score >= 3 - generate signal to raw-signals/SIG-{NNN}.md
+   c. If uncompiled signals > 5 - auto-compile
+4. Proceed to "Suggest Next Workflow"
+```
 
 ---
 

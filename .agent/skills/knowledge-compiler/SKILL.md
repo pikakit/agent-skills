@@ -9,7 +9,7 @@ description: >-
   NOT for skill generation (use skill-generator) or wiki health (use knowledge-linter).
 metadata:
   author: pikakit
-  version: "3.9.183"
+  version: "3.9.184"
   category: autonomous-learning
   triggers: ["compile", "knowledge", "wiki", "ingest", "mistake", "wrong", "fix-this", "broken"]
   coordinates_with: ["skill-generator", "knowledge-linter", "problem-checker"]
@@ -227,6 +227,41 @@ BEFORE executing command or writing code:
 5. Output: 🔄 Reindexed: {N} articles, {M} relationships
 ```
 
+### 7. Auto-Ingest — Zero-Effort Knowledge Capture
+
+**When:** Automatically triggered by workflow phases. User does NOT need to do anything.
+**Protocol:** `.agent/rules/auto-knowledge-ingest.md`
+
+Two channels run automatically:
+
+| Channel | Trigger | Quality |
+|---------|---------|---------|
+| **Git Scanner** | Workflow Phase 0.5 (session start) | Medium — commit msg + diff |
+| **Session Summary** | Post-completion (after Problem Verification) | High — full AI context |
+
+```
+Channel 1 (Git Scanner — Phase 0.5):
+1. Scan git log for recent fix:/feat: commits
+2. Filter by significance (≥2 files, keywords like "fallback", "CORS")
+3. Auto-generate SIG-xxx for qualifying commits
+4. Skip if signal with same commit SHA exists
+
+Channel 2 (Session Summary — Post-Completion):
+1. AI self-reflects: "Was this session non-trivial?"
+2. Apply quality scoring (≥3 to ingest)
+3. Auto-generate SIG-xxx with full context
+4. Auto-compile if uncompiled > 5
+```
+
+**Quality Gate:** Only signals scoring ≥3/5 are ingested. Scoring:
+- Multi-file fix: +2
+- Framework workaround: +3
+- API quirk/rate-limit: +3
+- Required >1 attempt: +2
+- Typo/import fix: +0 (SKIP)
+
+> **Key:** This operation replaces the need for manual `/knowledge ingest`. Knowledge wiki improves automatically as user works on the project.
+
 ---
 
 ## Concept Article Template
@@ -342,4 +377,4 @@ tags: [{domain tags}]
 
 ---
 
-⚡ PikaKit v3.9.183
+⚡ PikaKit v3.9.184
