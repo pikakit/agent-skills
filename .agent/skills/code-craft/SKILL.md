@@ -6,7 +6,7 @@ description: >-
   NOT for architecture decisions (use system-design) or testing patterns (use test-architect).
 metadata:
   author: pikakit
-  version: "3.9.188"
+  version: "3.9.190"
   category: code-quality
   triggers: ["code style", "clean code", "best practices", "naming conventions", "SRP", "DRY", "KISS"]
   coordinates_with: ["code-review", "test-architect", "code-constitution"]
@@ -167,4 +167,4 @@ metadata:
 
 ---
 
-⚡ PikaKit v3.9.188
+⚡ PikaKit v3.9.190
