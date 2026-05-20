@@ -1,6 +1,6 @@
 ---
 name: performance-doctrine
-version: "3.9.190"
+version: "3.9.191"
 status: LOCKED
 authority: CONSTITUTIONAL
 parent: architecture-doctrine
@@ -177,4 +177,4 @@ Not numbers on a dashboard.
 
 ---
 
-⚡ PikaKit v3.9.190
+⚡ PikaKit v3.9.191
