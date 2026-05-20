@@ -90,4 +90,4 @@ const content = fs.readFileSync(results[0].file_path, 'utf-8'); // RIGHT: read t
 
 ---
 
-⚡ PikaKit v3.9.184
+⚡ PikaKit v3.9.186
