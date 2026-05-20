@@ -309,4 +309,4 @@ const db = drizzle(pool, { logger: true })
 
 ---
 
-⚡ PikaKit v3.9.186
+⚡ PikaKit v3.9.188
