@@ -39,4 +39,4 @@ function Profile({ name }: { name: string }) {
 
 ---
 
-⚡ PikaKit v3.9.194
+⚡ PikaKit v3.9.195
