@@ -3,7 +3,7 @@ name: game-audio
 description: Game audio principles. Sound design, music integration, adaptive audio systems.
 metadata:
   author: pikakit
-  version: "3.9.196"
+  version: "3.9.197"
   category: game-development-subskill
   triggers: ["game audio", "sound design", "music integration", "adaptive audio"]
   coordinates_with: ["game-development", "game-art", "perf-optimizer"]
@@ -208,4 +208,4 @@ Game State → Music Response
 
 ---
 
-⚡ PikaKit v3.9.196
+⚡ PikaKit v3.9.197

@@ -6,7 +6,7 @@ description: >-
   NOT for code implementation (use nodejs-pro/python-pro) or database schema (use data-modeler).
 metadata:
   author: pikakit
-  version: "3.9.196"
+  version: "3.9.197"
   category: architecture
   triggers: ["API design", "REST", "GraphQL", "tRPC", "endpoint", "versioning"]
   coordinates_with: ["data-modeler", "security-scanner", "auth-patterns", "nodejs-pro"]
@@ -163,4 +163,4 @@ Before designing an API, confirm:
 
 ---
 
-⚡ PikaKit v3.9.196
+⚡ PikaKit v3.9.197
