@@ -141,6 +141,9 @@ deployment-*.tgz
 .pikakit-cache/
 skill-*.lock
 
+# Runtime binary cache (auto-generated, not for source control)
+.agent/memory.sqlite
+
 # Cloned repos (like vercel-labs/agent-skills)
 agent-skills/
 

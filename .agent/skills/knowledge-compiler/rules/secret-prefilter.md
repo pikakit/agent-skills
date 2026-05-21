@@ -82,4 +82,4 @@ For CLI-based scanning, use: `node .agent/skills/knowledge-compiler/scripts/secr
 
 ---
 
-⚡ PikaKit v3.9.193
+⚡ PikaKit v3.9.194

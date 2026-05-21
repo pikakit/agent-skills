@@ -11,8 +11,8 @@ Build production-grade features 3–5x faster — with enforced architecture, au
 
 PikaKit transforms any AI into a Senior Engineer — not by prompting harder, but by controlling how it executes, learns, and improves over time.
 
-[![npm](https://img.shields.io/badge/npm-v3.9.193-7c3aed?style=for-the-badge&logo=npm&logoColor=white&labelColor=18181b)](https://www.npmjs.com/package/pikakit)
-[![Skills](https://img.shields.io/badge/53_skills-06b6d4?style=for-the-badge&labelColor=18181b)](https://github.com/pikakit/agent-skills)
+[![npm](https://img.shields.io/badge/npm-v3.9.194-7c3aed?style=for-the-badge&logo=npm&logoColor=white&labelColor=18181b)](https://www.npmjs.com/package/pikakit)
+[![Skills](https://img.shields.io/badge/52_skills-06b6d4?style=for-the-badge&labelColor=18181b)](https://github.com/pikakit/agent-skills)
 [![Workflows](https://img.shields.io/badge/19_workflows-10b981?style=for-the-badge&labelColor=18181b)](https://github.com/pikakit/agent-skills)
 [![TypeScript](https://img.shields.io/badge/typescript_cli_·_engine-3178c6?style=for-the-badge&logo=typescript&logoColor=white&labelColor=18181b)](https://github.com/pikakit/agent-skills)
 
@@ -87,7 +87,7 @@ You → AI → PikaKit → Production Code
 ## 🧱 The 5 Pillars
 
 ### 1️⃣ Executable Skills
-**53 battle-tested engineering capabilities** injected directly into the AI runtime — enforcing architecture, security, and performance constraints.
+**52 battle-tested engineering capabilities** injected directly into the AI runtime — enforcing architecture, security, and performance constraints.
 
 *Top Skills include:*
 - ⚛️ **`react-pro`**: Next.js App Router & React expert.
@@ -209,7 +209,7 @@ npx pikakit
 
 <div align="center">
 
-**PikaKit v3.9.193** · 53 Skills · 19 Workflows · 4 Rules · Phase 0 Dynamic Detection
+**PikaKit v3.9.194** · 52 Skills · 19 Workflows · 4 Rules · Phase 0 Dynamic Detection
 
 [⭐ Star on GitHub](https://github.com/pikakit/agent-skills) · [Install via npm](https://www.npmjs.com/package/pikakit) · [pikakit.com](https://pikakit.com)
 

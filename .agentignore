@@ -159,3 +159,10 @@ docs/.vuepress/dist/
 *.bak
 *.orig
 .vagrant/
+
+# ============================================================
+# PikaKit Runtime (auto-generated binary, not for agents)
+# ============================================================
+# SQLite execution layer — agents cannot read binary files
+# Rebuilt automatically by VS Code extension at runtime
+.agent/memory.sqlite
