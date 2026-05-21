@@ -6,7 +6,7 @@ description: >-
   NOT for marketing copy (use copywriting) or code comments style (use code-craft).
 metadata:
   author: pikakit
-  version: "3.9.197"
+  version: "3.9.198"
   category: documentation
   triggers: ["template", "README", "documentation", "API docs", "changelog", "ADR", "mermaid", "diagram", "flowchart", "preview", "markdown viewer", "view plans", "kanban", "dashboard"]
   coordinates_with: ["project-planner", "code-craft", "system-design"]
@@ -248,4 +248,4 @@ Visual dashboard for plan directories with progress tracking and phase status in
 
 ---
 
-⚡ PikaKit v3.9.197
+⚡ PikaKit v3.9.198
