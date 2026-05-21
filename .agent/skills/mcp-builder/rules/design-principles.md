@@ -102,4 +102,4 @@ my-mcp-server/
 
 ---
 
-⚡ PikaKit v3.9.192
+⚡ PikaKit v3.9.193

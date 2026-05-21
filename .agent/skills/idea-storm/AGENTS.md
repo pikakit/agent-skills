@@ -146,7 +146,7 @@ Architecture patterns and best practices.
 
 ---
 
-⚡ PikaKit v3.9.192
+⚡ PikaKit v3.9.193
 
 ---
 
@@ -521,7 +521,7 @@ Based on your Instagram clone request:
 
 ---
 
-⚡ PikaKit v3.9.192
+⚡ PikaKit v3.9.193
 
 ---
 
@@ -988,8 +988,8 @@ All resources scoped to invocation. No persistent handles.
 
 ---
 
-⚡ PikaKit v3.9.192
+⚡ PikaKit v3.9.193
 
 ---
 
-⚡ PikaKit v3.9.192
+⚡ PikaKit v3.9.193

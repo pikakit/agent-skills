@@ -6,7 +6,7 @@ description: >-
   NOT for general code review (use code-review) or security scanning (use security-scanner).
 metadata:
   author: pikakit
-  version: "3.9.192"
+  version: "3.9.193"
   category: governance
   triggers: ["architecture", "critical data", "breaking change", "governance", "doctrine"]
   coordinates_with: ["code-review", "security-scanner", "code-craft"]
@@ -185,4 +185,4 @@ When violation detected:
 
 ---
 
-⚡ PikaKit v3.9.192
+⚡ PikaKit v3.9.193
