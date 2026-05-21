@@ -494,8 +494,8 @@ All resources scoped to invocation. No persistent handles.
 
 ---
 
-PikaKit v3.9.195
+PikaKit v3.9.196
 
 ---
 
-⚡ PikaKit v3.9.195
+⚡ PikaKit v3.9.196

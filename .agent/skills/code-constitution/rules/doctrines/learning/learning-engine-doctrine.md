@@ -1,6 +1,6 @@
 ---
 name: learning-engine-doctrine
-version: "3.9.195"
+version: "3.9.196"
 status: LOCKED
 authority: CONSTITUTIONAL
 parent: architecture-doctrine
@@ -189,4 +189,4 @@ Not novelty.
 
 ---
 
-⚡ PikaKit v3.9.195
+⚡ PikaKit v3.9.196
