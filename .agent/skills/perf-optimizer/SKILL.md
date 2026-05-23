@@ -6,7 +6,7 @@ description: >-
   NOT for SEO (use seo-optimizer) or server scaling (use server-ops).
 metadata:
   author: pikakit
-  version: "3.9.201"
+  version: "3.9.203"
   category: code-quality
   triggers: ["performance", "optimize", "speed", "slow", "memory", "cpu", "Lighthouse", "bundle size", "Core Web Vitals", "LCP", "INP", "CLS", "latency"]
   coordinates_with: ["code-craft", "e2e-automation", "chrome-devtools", "problem-checker", "knowledge-compiler"]
@@ -185,4 +185,4 @@ All executions MUST emit the `improvement_validated` span before reporting compl
 
 ---
 
-⚡ PikaKit v3.9.201
+⚡ PikaKit v3.9.203

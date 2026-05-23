@@ -6,7 +6,7 @@
  * CLI entry point for Studio search and design system generation.
  * BM25-powered search across 24 CSV databases with design system output.
  *
- * @version 3.9.201
+ * @version 3.9.203
  * @contract studio v2.0.0
  * @see references/engineering-spec.md
  */
