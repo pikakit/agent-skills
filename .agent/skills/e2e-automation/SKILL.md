@@ -6,7 +6,7 @@ description: >-
   NOT for test architecture decisions (use test-architect) or unit tests.
 metadata:
   author: pikakit
-  version: "3.9.203"
+  version: "3.9.204"
   category: testing
   triggers: ["E2E test", "Playwright", "browser test", "visual testing", "automation"]
   coordinates_with: ["test-architect", "cicd-pipeline"]
@@ -168,4 +168,4 @@ NAVIGATING → ERROR        [target unreachable]  // terminal
 
 ---
 
-⚡ PikaKit v3.9.203
+⚡ PikaKit v3.9.204
