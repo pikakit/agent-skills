@@ -5,7 +5,7 @@ description: >-
   strategies.
 metadata:
   author: pikakit
-  version: "3.9.205"
+  version: "3.9.206"
   category: game-development-subskill
   triggers: ["pc game", "console game", "engine selection", "platform features", "optimization"]
   coordinates_with: ["game-development", "unity", "unreal", "godot"]
@@ -164,4 +164,4 @@ Map ACTIONS, not buttons:
 
 ---
 
-⚡ PikaKit v3.9.205
+⚡ PikaKit v3.9.206
