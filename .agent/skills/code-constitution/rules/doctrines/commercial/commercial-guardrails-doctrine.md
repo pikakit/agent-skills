@@ -1,6 +1,6 @@
 ---
 name: commercial-guardrails-doctrine
-version: "3.9.206"
+version: "3.9.208"
 status: LOCKED
 authority: CONSTITUTIONAL
 parent: architecture-doctrine
@@ -193,4 +193,4 @@ Because **trust is the business**.
 
 ---
 
-⚡ PikaKit v3.9.206
+⚡ PikaKit v3.9.208
