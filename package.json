@@ -1,6 +1,6 @@
 {
   "name": "agent-skill-kit",
-  "version": "3.9.208",
+  "version": "3.9.209",
   "description": "PikaKit — AI Operating System. 52 skills, 19 workflows, strict TypeScript.",
   "type": "module",
   "author": "PikaKit <pikakit@gmail.com>",

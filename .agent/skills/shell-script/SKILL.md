@@ -6,7 +6,7 @@ description: >-
   NOT for Windows PowerShell or application code.
 metadata:
   author: pikakit
-  version: "3.9.208"
+  version: "3.9.209"
   category: shell-scripter
   triggers: ["shell", "bash", "script", "automation", "CLI"]
   coordinates_with: ["cicd-pipeline", "server-ops", "knowledge-compiler", "problem-checker"]
@@ -202,4 +202,4 @@ All script outputs MUST emit `script_analysis_started` and `analysis_completed` 
 
 ---
 
-⚡ PikaKit v3.9.208
+⚡ PikaKit v3.9.209
