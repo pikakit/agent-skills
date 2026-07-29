@@ -29,4 +29,4 @@ graph LR
 
 ---
 
-> ⚡ PikaKit Knowledge Compiler v3.9.211
+> ⚡ PikaKit Knowledge Compiler v3.9.212

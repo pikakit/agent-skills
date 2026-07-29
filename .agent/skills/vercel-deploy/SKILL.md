@@ -6,7 +6,7 @@ description: >-
   NOT for other platforms (use cicd-pipeline) or GitOps (use gitops).
 metadata:
   author: pikakit
-  version: "3.9.211"
+  version: "3.9.212"
   category: cicd-deployment
   triggers: ["deploy", "vercel", "production", "preview", "push live"]
   coordinates_with: ["cicd-pipeline", "nextjs-pro", "test-architect"]
@@ -171,4 +171,4 @@ All vercel-deploy outputs MUST emit `packaging_started` and either `upload_compl
 
 ---
 
-⚡ PikaKit v3.9.211
+⚡ PikaKit v3.9.212

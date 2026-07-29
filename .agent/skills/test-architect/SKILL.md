@@ -6,7 +6,7 @@ description: >-
   NOT for running Playwright tests (use e2e-automation) or debugging failures (use debug-pro).
 metadata:
   author: pikakit
-  version: "3.9.211"
+  version: "3.9.212"
   category: testing-strategy
   triggers: ["test", "testing", "unit test", "coverage", "mocking", "AAA pattern", "TDD"]
   coordinates_with: ["e2e-automation", "code-craft"]
@@ -172,4 +172,4 @@ All test-architect outputs MUST emit `testing_strategy_recommended` and `analysi
 
 ---
 
-⚡ PikaKit v3.9.211
+⚡ PikaKit v3.9.212
