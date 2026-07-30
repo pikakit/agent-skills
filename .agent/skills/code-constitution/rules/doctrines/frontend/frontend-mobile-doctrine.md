@@ -1,6 +1,6 @@
 ---
 name: frontend-mobile-doctrine
-version: "3.9.212"
+version: "3.9.213"
 status: LOCKED
 authority: CONSTITUTIONAL
 parent: architecture-doctrine
@@ -166,4 +166,4 @@ but violates these laws,
 
 ---
 
-⚡ PikaKit v3.9.212
+⚡ PikaKit v3.9.213
