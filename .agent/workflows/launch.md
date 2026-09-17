@@ -58,43 +58,15 @@ recovery.restore(checkpoint) → learner.log(failure)
 
 ### Phase 0: Dynamic Skill Detection
 
-> **Protocol:** `.agent/rules/dynamic-skill-detection.md`
+> **Protocol:** `.agent/rules/dynamic-skill-detection.md`  
+> Scan `$ARGUMENTS` for deployment signals (Vercel, Docker, CI/CD, AWS, etc.) and inject matching skills (max 5) into active skill set.
 
-1. Scan `$ARGUMENTS` for domain signals (case-insensitive).
-2. Match signals against the Domain Signal → Skill Mapping table.
-3. Inject matched skills (max 5, priority: High > Medium > Low) into active skill set.
-4. Skip skills already in workflow defaults.
-5. Announce injected skills:
+### Phase 0.5: Auto-Knowledge Ingest & Pre-flight Checkpoint
 
-```
-[⚡PikaKit] Dynamic Skills Detected:
-  + {skill-name} (signal: "{matched keywords}")
-  Base skills: [workflow defaults]
-  Total active: [count]
-```
-
-
-### Phase 0.5: Auto-Knowledge Ingest (Git Scanner)
-
-> **Protocol:** `.agent/rules/auto-knowledge-ingest.md`
-> **Channel 1:** Scans recent git commits for project-specific lessons.
-
-```
-1. Check if .agent/knowledge/ exists — if not, skip
-2. Read _index.md → get last_git_scan SHA
-3. Run: git log --since="7 days ago" --grep="^fix:\|^feat:" -n 20
-4. For qualifying commits (≥2 files changed OR keywords: fallback, guard, CORS, rate-limit):
-   a. Skip if signal with same commit SHA exists
-   b. Generate signal to raw-signals/SIG-{NNN}.md
-5. Update last_git_scan in _index.md
-6. If uncompiled signals > 5 → auto-compile (max 10 per batch)
-```
-### Phase 1: Pre-flight & knowledge-compiler Context
-
-> **Rule 0.5-K:** knowledge-compiler pattern check.
-
-1. Read `.agent/skills/knowledge-compiler/patterns/` for past failures before proceeding.
-2. Trigger `recovery` agent to run Checkpoint (`git commit -m "chore(checkpoint): pre-launch"`).
+> **Protocol:** `.agent/rules/auto-knowledge-ingest.md` & `Rule 0.5-K`  
+> 1. Run Channel 1 git scan for recent deployment lessons if `.agent/knowledge/` exists.
+> 2. Check `.agent/skills/knowledge-compiler/patterns/` for known deploy gotchas.
+> 3. Create pre-workflow git checkpoint (`git commit -m "chore(checkpoint): pre-launch"`).
 
 ### Phase 2: Pre-Flight Gates
 
@@ -240,72 +212,21 @@ graph TD
 
 ---
 
-## → MANDATORY: Problem Verification Before Completion
+## ⛔ MANDATORY: Verification & Knowledge Gates
 
-> **CRITICAL:** This check MUST be performed before any `notify_user` or task completion.
+### 1. Problem Verification Before Completion (SLO)
+> **Protocol:** `code-rules.md § Problem Verification`  
+> Verify `@[current_problems]`. Auto-fix imports, types, or lint issues. Never deploy with errors in problems list.
 
-### Check @[current_problems]
+### 2. Post-Completion Knowledge Ingest
+> **Protocol:** `.agent/rules/auto-knowledge-ingest.md` (Channel 2)  
+> If non-trivial deployment incident or workaround occurred (score ≥ 3), log signal to `raw-signals/SIG-{NNN}.md`.
 
-```
-1. Read @[current_problems] from IDE
-2. If errors/warnings > 0:
-   a. Auto-fix: imports, types, lint errors
-   b. Re-check @[current_problems]
-   c. If still > 0 → STOP → Do NOT deploy
-3. If count = 0 → Proceed to deployment
-```
-
-### Auto-Fixable
-
-| Type | Fix |
-|------|-----|
-| Missing import | Add import statement |
-| Unused variable | Remove or prefix `_` |
-| Type mismatch | Fix type annotation |
-| Lint errors | Run eslint --fix |
-
-> **Rule:** Never deploy with errors in `@[current_problems]`.
-
-
----
-
-## 📚 MANDATORY: Post-Completion Knowledge Check
-
-> **Protocol:** `.agent/rules/auto-knowledge-ingest.md`
-> **Channel 2:** AI self-reflects on session to capture non-trivial lessons.
-
-```
-1. Self-reflect: "Was this session non-trivial?"
-   - Did I fix a multi-file bug?
-   - Did I discover a framework/API gotcha?
-   - Did I make an architectural decision?
-   - Did I work around a platform limitation?
-2. If ALL answers are NO → skip (trivial session)
-3. If ANY answer is YES:
-   a. Score significance (multi-file: +2, workaround: +3, API quirk: +3)
-   b. If score ≥ 3 → generate signal to raw-signals/SIG-{NNN}.md
-   c. If uncompiled signals > 5 → auto-compile
-4. Proceed to "Suggest Next Workflow"
-```
-
----
-
-## ⏭️ MANDATORY: Suggest Next Workflow
-
-> **After completing /launch, you MUST suggest the next pipeline step to the user.**
-
-```
-✅ /launch complete → Suggest: "Run `/monitor` to track production health."
-```
-
----
-
-## 🔄 Rollback & Recovery
-
-If deployment automation fails completely or pre-flights break the workspace:
-1. Fallback to manual deploy: trigger `recovery.restore()` and halt workflow.
-2. Auto-rollback handles post-deployment health check failures (see Phase 5).
-3. Log incident via `learner` meta-agent.
+### 3. Rollback & Recovery
+> If deployment automation fails completely:  
+> 1. Fallback: trigger `recovery.restore()` to restore pre-launch checkpoint.  
+> 2. Auto-rollback handles post-deployment health check failures (Phase 5).  
+> 3. Log incident via `learner` meta-agent.
 
 ---
 

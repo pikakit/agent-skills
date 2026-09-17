@@ -44,43 +44,15 @@ verify → learner.log(patterns)
 
 ### Phase 0: Dynamic Skill Detection
 
-> **Protocol:** `.agent/rules/dynamic-skill-detection.md`
+> **Protocol:** `.agent/rules/dynamic-skill-detection.md`  
+> Scan `$ARGUMENTS` for mobile signals (React Native, Flutter, iOS, Android, offline, Expo) and inject matching skills (max 5) into active skill set.
 
-1. Scan `$ARGUMENTS` for domain signals (case-insensitive).
-2. Match signals against the Domain Signal → Skill Mapping table.
-3. Inject matched skills (max 5, priority: High > Medium > Low) into active skill set.
-4. Skip skills already in workflow defaults.
-5. Announce injected skills:
+### Phase 0.5: Auto-Knowledge Ingest & Pre-flight Checkpoint
 
-```
-[⚡PikaKit] Dynamic Skills Detected:
-  + {skill-name} (signal: "{matched keywords}")
-  Base skills: [workflow defaults]
-  Total active: [count]
-```
-
-
-### Phase 0.5: Auto-Knowledge Ingest (Git Scanner)
-
-> **Protocol:** `.agent/rules/auto-knowledge-ingest.md`
-> **Channel 1:** Scans recent git commits for project-specific lessons.
-
-```
-1. Check if .agent/knowledge/ exists — if not, skip
-2. Read _index.md → get last_git_scan SHA
-3. Run: git log --since="7 days ago" --grep="^fix:\|^feat:" -n 20
-4. For qualifying commits (≥2 files changed OR keywords: fallback, guard, CORS, rate-limit):
-   a. Skip if signal with same commit SHA exists
-   b. Generate signal to raw-signals/SIG-{NNN}.md
-5. Update last_git_scan in _index.md
-6. If uncompiled signals > 5 → auto-compile (max 10 per batch)
-```
-### Phase 1: Pre-flight & knowledge-compiler Context
-
-> **Rule 0.5-K:** knowledge-compiler pattern check.
-
-1. Read `.agent/skills/knowledge-compiler/patterns/` for past failures before proceeding.
-2. Trigger `recovery` agent to run Checkpoint (`git commit -m "chore(checkpoint): pre-mobile"`).
+> **Protocol:** `.agent/rules/auto-knowledge-ingest.md` & `Rule 0.5-K`  
+> 1. Run Channel 1 git scan for recent mobile fixes if `.agent/knowledge/` exists.
+> 2. Check `.agent/skills/knowledge-compiler/patterns/` for native build gotchas.
+> 3. Create pre-workflow git checkpoint (`git commit -m "chore(checkpoint): pre-mobile"`).
 
 ### Phase 2: Requirements & Platform Selection
 
@@ -251,70 +223,20 @@ Key metrics:
 
 ---
 
-## → MANDATORY: Problem Verification Before Completion
+## ⛔ MANDATORY: Verification & Knowledge Gates
 
-> **CRITICAL:** This check MUST be performed before any `notify_user` or task completion.
+### 1. Problem Verification Before Completion (SLO)
+> **Protocol:** `code-rules.md § Problem Verification`  
+> Verify `@[current_problems]`. Auto-fix imports, types, or lint issues. Never mark complete with errors.
 
-### Check @[current_problems]
+### 2. Post-Completion Knowledge Ingest
+> **Protocol:** `.agent/rules/auto-knowledge-ingest.md` (Channel 2)  
+> If non-trivial mobile/native lesson learned (Gradle/Cocoapods gotcha, platform workaround score ≥ 3), log signal to `raw-signals/SIG-{NNN}.md`.
 
-```
-1. Read @[current_problems] from IDE
-2. If errors/warnings > 0:
-   a. Auto-fix: imports, types, lint errors
-   b. Re-check @[current_problems]
-   c. If still > 0 → STOP → Notify user
-3. If count = 0 → Proceed to completion
-```
-
-### Auto-Fixable
-
-| Type | Fix |
-|------|-----|
-| Missing import | Add import statement |
-| Unused variable | Remove or prefix `_` |
-| Type mismatch | Fix type annotation |
-| Lint errors | Run eslint --fix |
-
-> **Rule:** Never mark complete with errors in `@[current_problems]`.
-
----
-
-
-
----
-
-## MANDATORY: Post-Completion Knowledge Check
-
-> **Protocol:** `.agent/rules/auto-knowledge-ingest.md`
-> **Channel 2:** AI self-reflects on session to capture non-trivial lessons.
-
-```
-1. Self-reflect: "Was this session non-trivial?"
-   - Did I fix a multi-file bug?
-   - Did I discover a framework/API gotcha?
-   - Did I make an architectural decision?
-2. If ALL answers are NO - skip
-3. If ANY answer is YES and score >= 3:
-   Generate signal to raw-signals/SIG-{NNN}.md
-   If uncompiled > 5 - auto-compile
-```
-
-## u{2B50}u{FE0F} MANDATORY: Suggest Next Workflow
-
-> **After completing /mobile, you MUST suggest the next pipeline step to the user.**
-
-```
-u{2705} /mobile complete u{2192} Suggest: "Run `/validate` for mobile test suite."
-```
-
----
-
-## 🔄 Rollback & Recovery
-
-If scaffolding or builds fail completely due to native dependencies or environment issues:
-1. Revert to safe checkpoint using `recovery` meta-agent.
-2. Trigger `diagnose` workflow to analyze framework/platform specific native errors (e.g. CocoaPods, Gradle).
-3. Do not proceed with execution until environment is stable.
+### 3. Rollback & Recovery
+> If native builds fail completely:  
+> 1. Revert to pre-mobile checkpoint (`git checkout -- .` or `git stash pop`).  
+> 2. Trigger `/diagnose` for platform-specific native errors.
 
 ---
 
@@ -323,38 +245,10 @@ If scaffolding or builds fail completely due to native dependencies or environme
 ```markdown
 ## 📱 Mobile App Built: [App Name]
 
-### Configuration
-
-| Setting | Value |
-|---------|-------|
-| Platform | iOS + Android |
-| Framework | React Native (Expo) |
-| Navigation | Tab-based |
-| Offline | Cache-first |
-
-### Features
-
-| Feature | Status |
-|---------|--------|
-| Core screens | → |
-| Push notifications | → |
-| Deep linking | → |
-| Offline sync | → |
-| Security hardening | → |
-| CI/CD pipeline | → |
-
-### Performance
-
-| Metric | Target | Actual | Status |
-|--------|--------|--------|--------|
-| Cold start | <2s | 1.4s | → |
-| Crash-free | >99.5% | 99.8% | → |
-
-### Next Steps
-
-- [ ] Run TestFlight / internal testing
-- [ ] Run `/validate` for full test suite
-- [ ] Run `/launch` for store submission
+- **Platform**: iOS + Android | **Framework**: React Native (Expo) / Flutter
+- **Features**: Core screens, navigation, push notifications, offline cache, deep linking
+- **Metrics**: Cold start < 2s | Crash-free > 99.5%
+- **Next**: Run `/validate` for mobile tests → `/launch` for store submission
 ```
 
 ---

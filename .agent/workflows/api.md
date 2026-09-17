@@ -44,43 +44,15 @@ learner.log(patterns)
 
 ### Phase 0: Dynamic Skill Detection
 
-> **Protocol:** `.agent/rules/dynamic-skill-detection.md`
+> **Protocol:** `.agent/rules/dynamic-skill-detection.md`  
+> Scan `$ARGUMENTS` for domain signals (API, database, auth, security, etc.) and inject matching skills (max 5) into active skill set.
 
-1. Scan `$ARGUMENTS` for domain signals (case-insensitive).
-2. Match signals against the Domain Signal → Skill Mapping table.
-3. Inject matched skills (max 5, priority: High > Medium > Low) into active skill set.
-4. Skip skills already in workflow defaults.
-5. Announce injected skills:
+### Phase 0.5: Auto-Knowledge Ingest & Pre-flight Checkpoint
 
-```
-[⚡PikaKit] Dynamic Skills Detected:
-  + {skill-name} (signal: "{matched keywords}")
-  Base skills: [workflow defaults]
-  Total active: [count]
-```
-
-
-### Phase 0.5: Auto-Knowledge Ingest (Git Scanner)
-
-> **Protocol:** `.agent/rules/auto-knowledge-ingest.md`
-> **Channel 1:** Scans recent git commits for project-specific lessons.
-
-```
-1. Check if .agent/knowledge/ exists — if not, skip
-2. Read _index.md → get last_git_scan SHA
-3. Run: git log --since="7 days ago" --grep="^fix:\|^feat:" -n 20
-4. For qualifying commits (≥2 files changed OR keywords: fallback, guard, CORS, rate-limit):
-   a. Skip if signal with same commit SHA exists
-   b. Generate signal to raw-signals/SIG-{NNN}.md
-5. Update last_git_scan in _index.md
-6. If uncompiled signals > 5 → auto-compile (max 10 per batch)
-```
-### Phase 1: Pre-flight & knowledge-compiler Context
-
-> **Rule 0.5-K:** knowledge-compiler pattern check.
-
-1. Read `.agent/skills/knowledge-compiler/patterns/` for past failures before proceeding.
-2. Trigger `recovery` agent to run Checkpoint (`git commit -m "chore(checkpoint): pre-api"`).
+> **Protocol:** `.agent/rules/auto-knowledge-ingest.md` & `Rule 0.5-K`  
+> 1. Run Channel 1 git scan for recent fixes/lessons if `.agent/knowledge/` exists.
+> 2. Check `.agent/skills/knowledge-compiler/patterns/` for known gotchas.
+> 3. Create pre-workflow git checkpoint (`git commit -m "chore(checkpoint): pre-api"`).
 
 ### Phase 2: Requirements & API Design
 
@@ -93,17 +65,7 @@ learner.log(patterns)
 
 // turbo — telemetry: phase-2-design
 
-1. Clarify requirements if vague:
-
-```
-ASK if not specified:
-❓ API type (REST / GraphQL / tRPC)
-❓ Framework (Express / Fastify / NestJS / Hono)
-❓ Database (PostgreSQL / MySQL / MongoDB / SQLite)
-❓ ORM (Prisma / Drizzle / TypeORM)
-❓ Auth strategy (JWT / Session / OAuth2 / API Key)
-❓ Testing approach (unit + integration + E2E)
-```
+1. Clarify requirements if vague: type (REST/GraphQL/tRPC), framework (Express/Fastify/Hono/NestJS), database, ORM, auth, and testing approach.
 
 2. Design endpoints/schema using `api-architect` decision framework:
 
@@ -246,96 +208,28 @@ npx cross-env OTEL_SERVICE_NAME="workflow:api" TRACE_ID="$TRACE_ID" npm run lint
 
 ## 📡 Supported Patterns
 
-### REST APIs
-
-- Express.js, Fastify, Hono, NestJS
-- OpenAPI/Swagger auto-generation
-- Versioning: URL path (`/v1/`), header, query param
-
-### GraphQL
-
-- Apollo Server, GraphQL Yoga
-- Schema-first or code-first approach
-- DataLoader for N+1 query prevention
-
-### tRPC
-
-- Type-safe end-to-end APIs
-- Next.js App Router integration
-- Full inference without code generation
-
-### Real-time
-
-- WebSocket (Socket.io, ws)
-- Server-Sent Events (SSE)
-- Polling with ETag caching
+- **REST**: Express, Fastify, Hono, NestJS (OpenAPI auto-generation, path/header versioning)
+- **GraphQL**: Apollo Server, GraphQL Yoga (schema/code-first, DataLoader N+1 prevention)
+- **tRPC**: Next.js App Router, end-to-end type safety without codegen
+- **Real-time**: WebSocket (Socket.io, ws), SSE, polling with ETag caching
 
 ---
 
-## → MANDATORY: Problem Verification Before Completion
+## ⛔ MANDATORY: Verification & Knowledge Gates
 
-> **CRITICAL:** This check MUST be performed before any `notify_user` or task completion.
+### 1. Problem Verification Before Completion (SLO)
+> **Protocol:** `code-rules.md § Problem Verification`  
+> Verify `@[current_problems]`. Auto-fix imports, unused vars, types, or lint issues. Never mark complete if errors remain.
 
-### Check @[current_problems]
+### 2. Post-Completion Knowledge Ingest
+> **Protocol:** `.agent/rules/auto-knowledge-ingest.md` (Channel 2)  
+> If non-trivial backend/API lesson learned (multi-file fix, API quirk, or workaround score ≥ 3), log signal to `raw-signals/SIG-{NNN}.md`.
 
-```
-1. Read @[current_problems] from IDE
-2. If errors/warnings > 0:
-   a. Auto-fix: imports, types, lint errors
-   b. Re-check @[current_problems]
-   c. If still > 0 → STOP → Notify user
-3. If count = 0 → Proceed to completion
-```
-
-### Auto-Fixable
-
-| Type | Fix |
-|------|-----|
-| Missing import | Add import statement |
-| Unused variable | Remove or prefix `_` |
-| Type mismatch | Fix type annotation |
-| Lint errors | Run eslint --fix |
-
-> **Rule:** Never mark complete with errors in `@[current_problems]`.
-
----
-
-
-
----
-
-## MANDATORY: Post-Completion Knowledge Check
-
-> **Protocol:** `.agent/rules/auto-knowledge-ingest.md`
-> **Channel 2:** AI self-reflects on session to capture non-trivial lessons.
-
-```
-1. Self-reflect: "Was this session non-trivial?"
-   - Did I fix a multi-file bug?
-   - Did I discover a framework/API gotcha?
-   - Did I make an architectural decision?
-2. If ALL answers are NO - skip
-3. If ANY answer is YES and score >= 3:
-   Generate signal to raw-signals/SIG-{NNN}.md
-   If uncompiled > 5 - auto-compile
-```
-
-## u{2B50}u{FE0F} MANDATORY: Suggest Next Workflow
-
-> **After completing /api, you MUST suggest the next pipeline step to the user.**
-
-```
-u{2705} /api complete u{2192} Suggest: "Run `/validate` to run the full test suite."
-```
-
----
-
-## 🔄 Rollback & Recovery
-
-If the Exit Gates fail and cannot be resolved automatically:
-1. Restore to pre-api checkpoint (`git checkout -- .` or `git stash pop`).
-2. Log failure via `learner` meta-agent.
-3. Notify user with failure context and recovery options.
+### 3. Rollback & Recovery
+> If Exit Gates fail and cannot be resolved automatically:  
+> 1. Restore pre-api checkpoint (`git checkout -- .` or `git stash pop`).  
+> 2. Log failure via `learner` meta-agent.  
+> 3. Notify user with failure context and recovery options.
 
 ---
 
@@ -344,40 +238,10 @@ If the Exit Gates fail and cannot be resolved automatically:
 ```markdown
 ## ✅ API Development Complete
 
-### API Summary
-
-| Aspect | Value |
-|--------|-------|
-| Type | REST / GraphQL / tRPC |
-| Framework | Express / Fastify / Hono |
-| Database | PostgreSQL + Prisma |
-| Auth | JWT / OAuth2 |
-
-### Deliverables
-
-| Item | Status | Path |
-|------|--------|------|
-| Routes | → [X] endpoints | `src/routes/` |
-| Services | → [X] services | `src/services/` |
-| Tests | → [X] passing | `src/__tests__/` |
-| Schema | → [X] models | `prisma/schema.prisma` |
-| OpenAPI | → Generated | `docs/openapi.yaml` |
-| Security | → OWASP validated | — |
-
-### Test Coverage
-
-| Area | Coverage |
-|------|----------|
-| Business Logic | XX% |
-| Auth/Security | XX% |
-| Overall | XX% |
-
-### Next Steps
-
-- [ ] Review generated code and adjust business logic
-- [ ] Run integration tests: `npm test`
-- [ ] Configure environment variables for staging
-- [ ] Deploy to staging: `/launch`
+- **Architecture**: Type (REST/GraphQL/tRPC) | Framework (Express/Fastify/Hono) | DB + ORM
+- **Deliverables**: Routes (`src/routes/`), Services (`src/services/`), Tests (`src/__tests__/`), Schema, OpenAPI spec
+- **Test Coverage**: Business logic (≥80%), Auth (100%), Overall (≥75%)
+- **Next**: Run integration tests (`npm test`) → deploy via `/launch`
 ```
 
 ---
