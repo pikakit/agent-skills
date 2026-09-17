@@ -173,4 +173,4 @@ import pkg from './package.json' with { type: 'json' }
 
 ---
 
-⚡ PikaKit v3.9.214
+⚡ PikaKit v3.9.215
