@@ -1,7 +1,7 @@
 # PikaKit Skill Index
 
 > **Quick reference for skill routing.** Scan this BEFORE any code task.
-> Total: 51 skills across 9 domains.
+> Total: 52 skills across 9 domains.
 
 ---
 
@@ -105,6 +105,7 @@ compile wiki knowledge ingest →  knowledge-compiler  knowledge health stale  �
 | `context-engineering` | Token optimization, context budget, agent architecture | Code writing |
 | `idea-storm` | Complex requirements, Socratic questioning, clarification | Clear requirements |
 | `project-planner` | Task breakdown, dependencies, implementation strategy | Quick fixes |
+| `skill-generator` | Generates new skills from high-quality knowledge patterns (≥5 patterns) | Learning patterns → `knowledge-compiler` |
 
 ## Specialized
 
@@ -126,5 +127,4 @@ compile wiki knowledge ingest →  knowledge-compiler  knowledge health stale  �
 
 ---
 
-> ⚡ PikaKit v3.9.216 · 51 Skills · 9 Domains
-| runtime-memory-manager | Use when user asks to implement semantic search, rag pipeline, offline embeddings | NOT for generic database modeling (? data-modeler) |
+> ⚡ PikaKit v3.9.217 · 52 Skills · 9 Domains

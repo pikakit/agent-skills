@@ -65,7 +65,7 @@ verify → learner.log(patterns)
 
 ### Phase 0.5: Auto-Knowledge Ingest & Pre-flight Checkpoint
 
-> **Protocol:** `.agent/rules/auto-knowledge-ingest.md` & `Rule 0.5-K`  
+> **Protocol:** `.agent/rules/auto-knowledge-ingest.md` & `Rule 0.5-K (Auto-Learned pattern check)`  
 > 1. Run Channel 1 git scan for recent game mechanics fixes if `.agent/knowledge/` exists.
 > 2. Check `.agent/skills/knowledge-compiler/patterns/` for game engine gotchas.
 > 3. Create pre-workflow git checkpoint (`git commit -m "chore(checkpoint): pre-game"`).

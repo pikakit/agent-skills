@@ -52,7 +52,7 @@ learner.log(monitoring_patterns)
 ### Phase 0: Dynamic Skill Detection & Pre-flight
 
 > **Protocol:** `.agent/rules/dynamic-skill-detection.md`
-> **Rule 0.5-K:** knowledge-compiler pattern check.
+> **Rule 0.5-K (Auto-Learned pattern check):** knowledge-compiler pattern check.
 
 1. Scan `$ARGUMENTS` for domain signals and inject matched skills.
 2. Read `.agent/knowledge/patterns/` for past failures before proceeding.

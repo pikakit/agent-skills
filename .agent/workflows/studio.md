@@ -74,7 +74,7 @@ verify(accessibility, contrast) → learner.log(patterns)
 ```
 ### Phase 1: Pre-flight & knowledge-compiler Context
 
-> **Rule 0.5-K:** knowledge-compiler pattern check.
+> **Rule 0.5-K (Auto-Learned pattern check):** knowledge-compiler pattern check.
 
 1. Read `.agent/skills/knowledge-compiler/patterns/` for past failures before proceeding.
 2. Trigger `recovery` agent to run Checkpoint (`git commit -m "chore(checkpoint): pre-studio"`).

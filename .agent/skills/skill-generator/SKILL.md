@@ -8,7 +8,9 @@ description: >-
   NOT for learning patterns (use knowledge-compiler) or storing patterns (use knowledge-compiler).
 metadata:
   author: pikakit
-  version: "3.9.216"
+  version: "3.9.217"
+  triggers: "generate skill, create skill from patterns, skill generator"
+  coordinates_with: "knowledge-compiler, problem-checker, code-constitution"
   reference: "docs/The-Complete-Guide-to-Building-Skills-for-Claude.md"
 ---
 
@@ -142,6 +144,15 @@ description: >-
 7. CONFIRM → Output: 🤖 Generated skill: @{skill-name}
 ```
 
+## System Boundaries & Scope
+
+- **Owns:** Generating validated new skill directories in `.agent/skills/` from high-recurrence compiled knowledge patterns.
+- **Delegates to:**
+  - `knowledge-compiler`: Extracts lessons and maintains pattern indexes.
+  - `problem-checker`: Validates syntax and AST structure of generated skills.
+  - `code-constitution`: Verifies governance rules and prevents destructive operations.
+- **Non-Goals:** Does NOT execute tasks directly; does NOT modify existing production skills without approval.
+
 ---
 
-⚡ PikaKit v3.9.216
+⚡ PikaKit v3.9.217
