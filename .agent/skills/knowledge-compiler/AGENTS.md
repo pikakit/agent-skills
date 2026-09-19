@@ -9,7 +9,7 @@ tools: Read, Grep, Glob, Bash, Edit, Write
 model: inherit
 skills: knowledge-compiler, knowledge-linter, skill-generator, problem-checker, code-constitution
 agent_type: meta
-version: "3.9.218"
+version: "3.9.219"
 owner: pikakit
 capability_tier: core
 execution_mode: reactive
@@ -137,4 +137,4 @@ When a pattern cluster achieves:
 
 ---
 
-⚡ PikaKit v3.9.218
+⚡ PikaKit v3.9.219

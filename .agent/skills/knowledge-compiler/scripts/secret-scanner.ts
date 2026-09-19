@@ -12,7 +12,7 @@
  * Exit codes:
  *   0 = clean, 1 = violations found, 2 = usage error
  *
- * @version 3.9.218
+ * @version 3.9.219
  * @author PikaKit Knowledge Compiler
  */
 
