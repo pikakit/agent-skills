@@ -8,7 +8,7 @@ description: >-
   NOT for learning patterns (use knowledge-compiler) or storing patterns (use knowledge-compiler).
 metadata:
   author: pikakit
-  version: "3.9.221"
+  version: "3.9.222"
   triggers: "generate skill, create skill from patterns, skill generator"
   coordinates_with: "knowledge-compiler, problem-checker, code-constitution"
   reference: "docs/The-Complete-Guide-to-Building-Skills-for-Claude.md"
@@ -155,4 +155,4 @@ description: >-
 
 ---
 
-⚡ PikaKit v3.9.221
+⚡ PikaKit v3.9.222
