@@ -29,4 +29,4 @@ const [user, posts, comments] = await Promise.all([
 
 ---
 
-⚡ PikaKit v3.9.222
+⚡ PikaKit v3.9.223
