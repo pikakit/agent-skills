@@ -1,16 +1,28 @@
 ---
-title: Strategic Suspense Boundaries
-impact: HIGH
-impactDescription: faster initial paint
-tags: async, suspense, streaming, layout-shift
+"title": "Strategic Suspense Boundaries"
+"kind": "code"
+"impact": "high"
+"tags":
+  - "async"
+  - "suspense"
+  - "streaming"
+  - "layout-shift"
+"applies_to":
+  - "node"
+  - "web"
+"last_reviewed": "2026-09-28"
+"sources":
+  - "url": "https://nextjs.org/docs"
+    "title": "Official documentation"
 ---
+
+# Strategic Suspense Boundaries
 
 ## Strategic Suspense Boundaries
 
 Instead of awaiting data in async components before returning JSX, use Suspense boundaries to show the wrapper UI faster while data loads.
 
-**Incorrect (wrapper blocked by data fetching):**
-
+## Incorrect
 ```tsx
 async function Page() {
   const data = await fetchData() // Blocks entire page
@@ -30,8 +42,7 @@ async function Page() {
 
 The entire layout waits for data even though only the middle section needs it.
 
-**Correct (wrapper shows immediately, data streams in):**
-
+## Correct
 ```tsx
 function Page() {
   return (
@@ -98,6 +109,6 @@ Both components share the same promise, so only one fetch occurs. Layout renders
 
 **Trade-off:** Faster initial paint vs potential layout shift. Choose based on your UX priorities.
 
----
+## Verification
 
-⚡ PikaKit v3.9.223
+Run the repository typecheck and the narrowest behavioral tests that exercise this rule. Confirm error paths and observable output, not only successful compilation.

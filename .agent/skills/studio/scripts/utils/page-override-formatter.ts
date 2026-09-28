@@ -1,4 +1,3 @@
-// @ts-nocheck
 /**
  * Page Override Formatter - Studio Design System
  * ================================================
@@ -7,6 +6,7 @@
  */
 
 import { generateIntelligentOverrides } from './intelligent-overrides.ts';
+import type { DesignSystem } from '../types.ts';
 
 /**
  * Format a page-specific override file with intelligent AI-generated content
@@ -15,7 +15,11 @@ import { generateIntelligentOverrides } from './intelligent-overrides.ts';
  * @param {string} pageQuery - Optional query for additional context
  * @returns {Promise<string>} Formatted markdown content for page override file
  */
-export async function formatPageOverrideMd(designSystem, pageName, pageQuery = null) {
+export async function formatPageOverrideMd(
+    designSystem: DesignSystem,
+    pageName: string,
+    pageQuery: string | null = null
+): Promise<string> {
     const project = designSystem.project_name || 'PROJECT';
     const timestamp = new Date().toISOString(); // Full ISO 8601 UTC format
     const pageTitle = pageName
@@ -28,7 +32,7 @@ export async function formatPageOverrideMd(designSystem, pageName, pageQuery = n
     // Detect page type and generate intelligent overrides
     const pageOverrides = await generateIntelligentOverrides(pageName, pageQuery, designSystem);
 
-    const lines = [];
+    const lines: string[] = [];
 
     lines.push(`# ${pageTitle} Page Overrides`);
     lines.push('');

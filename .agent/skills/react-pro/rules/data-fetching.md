@@ -1,11 +1,25 @@
 ---
-name: data-fetching
-description: TanStack Query patterns — useSuspenseQuery, mutations, query keys, API service layer
-title: "Data Fetching with TanStack Query"
-impact: HIGH
-impactDescription: "Important architectural or correctness impact"
-tags: data, fetching
+"title": "Data Fetching with TanStack Query"
+"kind": "reference"
+"impact": "high"
+"tags":
+  - "data"
+  - "fetching"
+"applies_to":
+  - "web"
+"last_reviewed": "2026-09-28"
+"sources":
+  - "url": "https://react.dev/reference/react"
+    "title": "Official documentation"
 ---
+
+# Data Fetching with TanStack Query
+
+## Scope
+
+Apply this guidance only to the declared platforms and repository-confirmed versions.
+
+## Guidance
 
 # Data Fetching with TanStack Query
 
@@ -128,6 +142,6 @@ export const postsApi = {
 | [file-organization.md](file-organization.md) | Where to place api/ services |
 | [../SKILL.md](../SKILL.md) | No early returns rule |
 
----
+## Verification
 
-⚡ PikaKit v3.9.223
+Cross-check version-sensitive details with the cited official source and verify the resulting behavior in the target environment.

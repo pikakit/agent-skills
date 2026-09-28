@@ -1,131 +1,49 @@
 ---
 title: Custom Tools
-impact: MEDIUM
-tags: google-adk-python
+kind: code
+impact: high
+tags: [google-adk, tools, python]
+applies_to: [google-adk-python]
+last_reviewed: "2026-09-28"
+sources:
+  - title: ADK tools documentation
+    url: https://google.github.io/adk-docs/tools/
 ---
 
 # Custom Tools
 
-> Extend agents with domain-specific capabilities.
+Define tools as narrow typed functions and pass them using the mechanism supported by the pinned ADK release. Enforce security in code; descriptions guide model selection but do not authorize access.
 
----
-
-## From Python Function
+## Incorrect
 
 ```python
-from google.adk.tools import Tool
-
-def calculate_roi(revenue: float, cost: float) -> float:
-    """Calculate return on investment percentage.
-
-    Args:
-        revenue: Total revenue from investment
-        cost: Total cost of investment
-
-    Returns:
-        ROI as percentage
-    """
-    if cost == 0:
-        return 0.0
-    return ((revenue - cost) / cost) * 100
-
-# Convert to tool
-roi_tool = Tool.from_function(calculate_roi)
+def delete_customer(customer_id):
+    return database.delete(customer_id)
 ```
 
-**Key:** Include docstring with Args and Returns for LLM understanding.
+This contract has no type, authorization, confirmation, timeout, idempotency, or stable result shape.
 
----
-
-## With Agent
+## Correct
 
 ```python
-agent = LlmAgent(
-    name="business_analyst",
-    model="gemini-3-flash",
-    instruction="Analyze business metrics.",
-    tools=[roi_tool, revenue_tool, cost_tool]
-)
+from dataclasses import asdict, dataclass
+
+@dataclass(frozen=True)
+class DeleteResult:
+    customer_id: str
+    deleted: bool
+
+def delete_customer(customer_id: str, confirmation_id: str) -> dict[str, object]:
+    """Delete one authorized customer after validating a one-use confirmation."""
+    customer_id = customer_id.strip()
+    if not customer_id:
+        raise ValueError("customer_id is required")
+    authorize_customer_delete(customer_id, confirmation_id)
+    return asdict(DeleteResult(customer_id, database.delete_once(customer_id)))
 ```
 
----
+Keep authorization and idempotency in trusted application code. Convert exceptions to the structured error mechanism documented for the pinned ADK release and redact diagnostics.
 
-## Database Tool
+## Verification
 
-```python
-import sqlite3
-
-def query_customers(status: str) -> list:
-    """Get customers by status.
-
-    Args:
-        status: Customer status (active, inactive, pending)
-
-    Returns:
-        List of customer records
-    """
-    conn = sqlite3.connect("customers.db")
-    cursor = conn.execute(
-        "SELECT * FROM customers WHERE status = ?", (status,)
-    )
-    return cursor.fetchall()
-
-customer_tool = Tool.from_function(query_customers)
-```
-
----
-
-## API Integration Tool
-
-```python
-import requests
-
-def get_weather(city: str) -> dict:
-    """Get current weather for a city.
-
-    Args:
-        city: City name
-
-    Returns:
-        Weather data including temperature and conditions
-    """
-    response = requests.get(
-        f"https://api.weather.com/current?city={city}",
-        headers={"Authorization": f"Bearer {API_KEY}"}
-    )
-    return response.json()
-
-weather_tool = Tool.from_function(get_weather)
-```
-
----
-
-## Human-in-the-Loop
-
-```python
-agent = LlmAgent(
-    name="careful_agent",
-    tools=[sensitive_tool],
-    tool_confirmation=True  # Requires approval
-)
-
-# Agent pauses for each tool execution
-response = agent.run("Process customer refund")
-# Prompt: "Approve process_refund? (y/n)"
-```
-
----
-
-## Best Practices
-
-| Practice | Application |
-|----------|-------------|
-| **Docstrings** | Always include for LLM understanding |
-| **Type hints** | Use Python type hints |
-| **Error handling** | Return meaningful error messages |
-| **Validation** | Validate inputs before processing |
-| **Confirmation** | Use for sensitive operations |
-
----
-
-? PikaKit v3.9.223
+Test valid, invalid, unauthorized, repeated, timeout, dependency-failure, and cancellation paths without live production data. Confirm generated tool schemas match Python annotations and that sensitive values never appear in traces.

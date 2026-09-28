@@ -1,15 +1,24 @@
 ---
-name: passkey
-description: WebAuthn/FIDO2 passkeys — registration, authentication, browser + server implementation
-title: "Passkeys (WebAuthn / FIDO2)"
-impact: MEDIUM
-impactDescription: "Moderate improvement to quality or maintainability"
-tags: passkey
+title: WebAuthn Passkeys
+kind: reference
+impact: critical
+tags: [webauthn, passkeys, phishing-resistance]
+applies_to: [web, mobile, backend]
+last_reviewed: "2026-09-28"
+sources:
+  - title: W3C Web Authentication Level 3
+    url: https://www.w3.org/TR/webauthn-3/
 ---
 
 # Passkeys (WebAuthn / FIDO2)
 
 > Passwordless authentication using public-key cryptography.
+
+## Scope
+
+Apply to WebAuthn registration, authentication, challenge handling, relying-party validation, credential storage, and recovery.
+
+## Guidance
 
 ---
 
@@ -218,7 +227,7 @@ await fetch('/api/auth/passkey/login/verify', {
 
 ---
 
-## Browser Support (2025)
+## Browser Support
 
 | Browser | Passkey Support |
 |---------|-----------------|
@@ -229,7 +238,11 @@ await fetch('/api/auth/passkey/login/verify', {
 
 ---
 
-## 🔗 Related
+## Verification
+
+Verify challenge uniqueness and expiry, origin, relying-party ID, ceremony type, user verification policy, signature counter handling, duplicate credentials, factor recovery, and credential deletion. Test on each supported authenticator class.
+
+## Related
 
 | File | When to Read |
 |------|-------------|
@@ -240,4 +253,4 @@ await fetch('/api/auth/passkey/login/verify', {
 
 ---
 
-⚡ PikaKit v3.9.223
+⚡ PikaKit v3.9.224

@@ -1,9 +1,27 @@
 ---
-title: "Custom Hooks Patterns"
-impact: MEDIUM
-impactDescription: "Reusable hooks reduce duplication and improve testability"
-tags: hooks, useDebounce, useLocalStorage, custom
+"title": "Custom Hooks Patterns"
+"kind": "reference"
+"impact": "standard"
+"tags":
+  - "hooks"
+  - "useDebounce"
+  - "useLocalStorage"
+  - "custom"
+"applies_to":
+  - "web"
+"last_reviewed": "2026-09-28"
+"sources":
+  - "url": "https://react.dev/reference/react"
+    "title": "Official documentation"
 ---
+
+# Custom Hooks Patterns
+
+## Scope
+
+Apply this guidance only to the declared platforms and repository-confirmed versions.
+
+## Guidance
 
 # Custom Hooks Patterns
 
@@ -56,6 +74,6 @@ function SearchPage() {
 }
 ```
 
----
+## Verification
 
-⚡ PikaKit v3.9.223
+Cross-check version-sensitive details with the cited official source and verify the resulting behavior in the target environment.

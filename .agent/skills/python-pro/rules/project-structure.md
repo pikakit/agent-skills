@@ -1,15 +1,24 @@
 ---
-name: project-structure
-description: Python project structure — directory layouts for small/medium/large apps, FastAPI vs Django, pyproject.toml
-title: "Structure by size. Feature-based for large apps. Layer-based for small."
-impact: MEDIUM
-impactDescription: "Moderate improvement to quality or maintainability"
-tags: project, structure
+title: Python Project Structure
+kind: reference
+impact: standard
+tags: [python, packaging, architecture]
+applies_to: [python]
+last_reviewed: "2026-09-28"
+sources:
+  - title: Python Packaging User Guide
+    url: https://packaging.python.org/en/latest/
 ---
 
 # Project Structure
 
 > Structure by size. Feature-based for large apps. Layer-based for small.
+
+## Scope
+
+Apply to package layout, `pyproject.toml`, public boundaries, configuration, tests, and deployment entry points.
+
+## Guidance
 
 ---
 
@@ -168,7 +177,11 @@ myproject/
 
 ---
 
-## 🔗 Related
+## Verification
+
+Build and install the package from a clean checkout, import public modules, run each entry point, execute tests outside the source directory, and verify configuration and secret files are excluded from artifacts.
+
+## Related
 
 | File | When to Read |
 |------|-------------|
@@ -178,4 +191,4 @@ myproject/
 
 ---
 
-⚡ PikaKit v3.9.223
+⚡ PikaKit v3.9.224

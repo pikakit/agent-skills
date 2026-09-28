@@ -1,16 +1,25 @@
 ---
-name: mfa
-description: Multi-factor authentication — TOTP setup, backup codes, WebAuthn for MFA, recovery flows
-title: "Multi-Factor Authentication (MFA)"
-impact: MEDIUM
-impactDescription: "Moderate improvement to quality or maintainability"
-tags: mfa
+title: Multi-Factor Authentication and Recovery
+kind: reference
+impact: critical
+tags: [mfa, totp, recovery]
+applies_to: [web, mobile, backend]
+last_reviewed: "2026-09-28"
+sources:
+  - title: NIST SP 800-63B Authentication and Lifecycle Management
+    url: https://pages.nist.gov/800-63-4/sp800-63b.html
 ---
 
 # Multi-Factor Authentication (MFA)
 
 > TOTP, WebAuthn, backup codes, and recovery flows.
 > **See also:** `security-scanner/auth-patterns.md` for TOTP code pattern and account lockout.
+
+## Scope
+
+Apply to authenticator enrollment, step-up authentication, recovery codes, lost-device recovery, and factor replacement.
+
+## Guidance
 
 ---
 
@@ -160,7 +169,11 @@ User cannot access MFA device?
 
 ---
 
-## 🔗 Related
+## Verification
+
+Test enrollment confirmation, replay, throttling, factor removal, recovery-code single use, lost-device recovery, recent-authentication gates, and audit events. Verify a factor outage cannot silently downgrade protected actions.
+
+## Related
 
 | File | When to Read |
 |------|-------------|
@@ -171,4 +184,4 @@ User cannot access MFA device?
 
 ---
 
-⚡ PikaKit v3.9.223
+⚡ PikaKit v3.9.224

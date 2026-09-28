@@ -1,16 +1,29 @@
 ---
-title: Put Interaction Logic in Event Handlers
-impact: MEDIUM
-impactDescription: avoids effect re-runs and duplicate side effects
-tags: rerender, useEffect, events, side-effects, dependencies
+"title": "Put Interaction Logic in Event Handlers"
+"kind": "code"
+"impact": "standard"
+"tags":
+  - "rerender"
+  - "useEffect"
+  - "events"
+  - "side-effects"
+  - "dependencies"
+"applies_to":
+  - "node"
+  - "web"
+"last_reviewed": "2026-09-28"
+"sources":
+  - "url": "https://nextjs.org/docs"
+    "title": "Official documentation"
 ---
+
+# Put Interaction Logic in Event Handlers
 
 ## Put Interaction Logic in Event Handlers
 
 If a side effect is triggered by a specific user action (submit, click, drag), run it in that event handler. Do not model the action as state + effect; it makes effects re-run on unrelated changes and can duplicate the action.
 
-**Incorrect (event modeled as state + effect):**
-
+## Incorrect
 ```tsx
 function Form() {
   const [submitted, setSubmitted] = useState(false)
@@ -27,8 +40,7 @@ function Form() {
 }
 ```
 
-**Correct (do it in the handler):**
-
+## Correct
 ```tsx
 function Form() {
   const theme = useContext(ThemeContext)
@@ -44,6 +56,6 @@ function Form() {
 
 Reference: [Should this code move to an event handler?](https://react.dev/learn/removing-effect-dependencies#should-this-code-move-to-an-event-handler)
 
----
+## Verification
 
-⚡ PikaKit v3.9.223
+Run the repository typecheck and the narrowest behavioral tests that exercise this rule. Confirm error paths and observable output, not only successful compilation.

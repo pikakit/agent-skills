@@ -1,29 +1,17 @@
-// @ts-nocheck
-/**
- * Studio Core - BM25 Search Engine
- * ==================================
- * JavaScript port of core.py
- * BM25 ranking algorithm for UI/UX style guides
- */
-
-import { fileURLToPath } from 'url';
-import { dirname, join } from 'path';
-import { existsSync } from 'fs';
 import { loadCSV } from './utils/csv-loader.ts';
 import { tokenize, buildDocument, extractColumns } from './utils/text-utils.ts';
-import { LRUCache, clearSearchCache, getCacheStats } from './utils/search-cache.ts';
+import { LRUCache } from './utils/search-cache.ts';
+import {
+    StudioError,
+    type CSVConfig,
+    type CSVRow,
+    type SearchOptions,
+    type SearchResult,
+    type StackSearchResult
+} from './types.ts';
 
-// Global search cache
-const searchCache = new LRUCache(50, 5 * 60 * 1000); // 50 entries, 5 min TTL
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
-
-// ============ CONFIGURATION ============
-export const DATA_DIR = join(__dirname, '..', 'data'); // scripts -> studio -> data
 export const MAX_RESULTS = 3;
 
-// CSV Configuration - exact port from Python
 export const CSV_CONFIG = {
     style: {
         file: 'styles.csv',
@@ -80,167 +68,184 @@ export const CSV_CONFIG = {
         search_cols: ['Category', 'Issue', 'Keywords', 'Description'],
         output_cols: ['Category', 'Issue', 'Platform', 'Description', 'Do', "Don't", 'Code Example Good', 'Code Example Bad', 'Severity']
     }
-};
+} as const satisfies Record<string, CSVConfig>;
+
+export type SearchDomain = keyof typeof CSV_CONFIG;
 
 export const STACK_CONFIG = {
     'html-tailwind': { file: 'stacks/html-tailwind.csv' },
-    'react': { file: 'stacks/react.csv' },
-    'nextjs': { file: 'stacks/nextjs.csv' },
-    'vue': { file: 'stacks/vue.csv' },
-    'nuxtjs': { file: 'stacks/nuxtjs.csv' },
+    react: { file: 'stacks/react.csv' },
+    nextjs: { file: 'stacks/nextjs.csv' },
+    vue: { file: 'stacks/vue.csv' },
+    nuxtjs: { file: 'stacks/nuxtjs.csv' },
     'nuxt-ui': { file: 'stacks/nuxt-ui.csv' },
-    'svelte': { file: 'stacks/svelte.csv' },
-    'swiftui': { file: 'stacks/swiftui.csv' },
+    svelte: { file: 'stacks/svelte.csv' },
+    swiftui: { file: 'stacks/swiftui.csv' },
     'react-native': { file: 'stacks/react-native.csv' },
-    'flutter': { file: 'stacks/flutter.csv' },
-    'shadcn': { file: 'stacks/shadcn.csv' },
+    flutter: { file: 'stacks/flutter.csv' },
+    shadcn: { file: 'stacks/shadcn.csv' },
     'jetpack-compose': { file: 'stacks/jetpack-compose.csv' }
-};
+} as const;
 
-const STACK_COLS = {
+export type StackName = keyof typeof STACK_CONFIG;
+
+export const STACK_COLS = {
     search_cols: ['Category', 'Guideline', 'Description', 'Do', "Don't"],
     output_cols: ['Category', 'Guideline', 'Description', 'Do', "Don't", 'Code Good', 'Code Bad', 'Severity', 'Docs URL']
-};
+} as const satisfies Omit<CSVConfig, 'file'>;
 
-export const AVAILABLE_STACKS = Object.keys(STACK_CONFIG);
+export const AVAILABLE_STACKS = Object.keys(STACK_CONFIG) as StackName[];
 
-// ============ BM25 IMPLEMENTATION ============
-
-/**
- * BM25 ranking algorithm for text search
- * Port of Python implementation with exact same behavior
- */
 export class BM25 {
+    private readonly k1: number;
+    private readonly b: number;
+    private corpus: string[][] = [];
+    private docLengths: number[] = [];
+    private avgdl = 0;
+    private idf: Record<string, number> = {};
+    private readonly docFreqs = new Map<string, number>();
+
     constructor(k1 = 1.5, b = 0.75) {
         this.k1 = k1;
         this.b = b;
-        this.corpus = [];
-        this.docLengths = [];
-        this.avgdl = 0;
-        this.idf = {};
-        this.docFreqs = new Map();
-        this.N = 0;
     }
 
-    /**
-     * Build BM25 index from documents
-     * @param {string[]} documents - Array of document strings
-     */
-    fit(documents) {
-        // Tokenize all documents
-        this.corpus = documents.map(doc => tokenize(doc));
-        this.N = this.corpus.length;
-
-        if (this.N === 0) return;
-
-        // Calculate document lengths and average
-        this.docLengths = this.corpus.map(doc => doc.length);
-        this.avgdl = this.docLengths.reduce((sum, len) => sum + len, 0) / this.N;
-
-        // Calculate document frequencies
+    fit(documents: string[]): void {
+        this.corpus = documents.map(document => tokenize(document));
+        this.docLengths = this.corpus.map(document => document.length);
+        this.avgdl = this.docLengths.length === 0
+            ? 0
+            : this.docLengths.reduce((sum, length) => sum + length, 0) / this.docLengths.length;
         this.docFreqs.clear();
-        for (const doc of this.corpus) {
-            const seen = new Set();
-            for (const word of doc) {
-                if (!seen.has(word)) {
-                    this.docFreqs.set(word, (this.docFreqs.get(word) || 0) + 1);
-                    seen.add(word);
-                }
+
+        for (const document of this.corpus) {
+            for (const word of new Set(document)) {
+                this.docFreqs.set(word, (this.docFreqs.get(word) ?? 0) + 1);
             }
         }
 
-        // Calculate IDF scores
-        // Python: log((N - freq + 0.5) / (freq + 0.5) + 1)
         this.idf = {};
-        for (const [word, freq] of this.docFreqs.entries()) {
-            this.idf[word] = Math.log((this.N - freq + 0.5) / (freq + 0.5) + 1);
+        const documentCount = this.corpus.length;
+        for (const [word, frequency] of this.docFreqs) {
+            this.idf[word] = Math.log((documentCount - frequency + 0.5) / (frequency + 0.5) + 1);
         }
     }
 
-    /**
-     * Score all documents against query
-     * @param {string} query - Search query
-     * @returns {Array<[number, number]>} Array of [index, score] sorted by score desc
-     */
-    score(query) {
+    score(query: string): Array<[number, number]> {
         const queryTokens = tokenize(query);
-        const scores = [];
+        const scores: Array<[number, number]> = [];
 
-        for (let idx = 0; idx < this.corpus.length; idx++) {
-            const doc = this.corpus[idx];
-            const docLen = this.docLengths[idx];
-
-            // Count term frequencies in this document
-            const termFreqs = new Map();
-            for (const word of doc) {
-                termFreqs.set(word, (termFreqs.get(word) || 0) + 1);
+        for (let index = 0; index < this.corpus.length; index++) {
+            const document = this.corpus[index];
+            const documentLength = this.docLengths[index];
+            const termFrequencies = new Map<string, number>();
+            for (const word of document) {
+                termFrequencies.set(word, (termFrequencies.get(word) ?? 0) + 1);
             }
 
-            // Calculate BM25 score
             let score = 0;
             for (const token of queryTokens) {
-                if (token in this.idf) {
-                    const tf = termFreqs.get(token) || 0;
-                    const idf = this.idf[token];
-                    const numerator = tf * (this.k1 + 1);
-                    const denominator = tf + this.k1 * (1 - this.b + this.b * docLen / this.avgdl);
-                    score += idf * numerator / denominator;
+                const idf = this.idf[token];
+                if (idf === undefined) continue;
+                const frequency = termFrequencies.get(token) ?? 0;
+                const lengthRatio = this.avgdl === 0 ? 0 : documentLength / this.avgdl;
+                const denominator = frequency + this.k1 * (1 - this.b + this.b * lengthRatio);
+                if (denominator > 0) {
+                    score += idf * (frequency * (this.k1 + 1)) / denominator;
                 }
             }
-
-            scores.push([idx, score]);
+            scores.push([index, score]);
         }
 
-        // Sort by score descending
-        return scores.sort((a, b) => b[1] - a[1]);
+        return scores.sort((left, right) => right[1] - left[1]);
     }
 }
 
-// ============ SEARCH FUNCTIONS ============
+const searchCache = new LRUCache<SearchResult>(50, 5 * 60 * 1000);
+let cacheHits = 0;
+let cacheMisses = 0;
 
-/**
- * Core search function using BM25
- * @param {string} filepath - Full path to CSV file
- * @param {string[]} searchCols - Columns to search in
- * @param {string[]} outputCols - Columns to return
- * @param {string} query - Search query
- * @param {number} maxResults - Maximum results to return
- * @returns {Promise<Object[]>} Search results
- */
-async function searchCSV(filepath, searchCols, outputCols, query, maxResults) {
-    // filepath is just the filename, loadCSV will add DATA_DIR
-    const data = await loadCSV(filepath);
+export function clearSearchCache(): void {
+    searchCache.clear();
+    cacheHits = 0;
+    cacheMisses = 0;
+}
+
+export function getCacheStats(): { hits: number; misses: number; hitRate: string; cacheSize: number } {
+    const total = cacheHits + cacheMisses;
+    return {
+        hits: cacheHits,
+        misses: cacheMisses,
+        hitRate: total === 0 ? '0%' : `${(cacheHits / total * 100).toFixed(1)}%`,
+        cacheSize: searchCache.size
+    };
+}
+
+function validateQuery(query: string): string {
+    const normalized = query.trim();
+    if (!normalized) {
+        throw new StudioError('ERR_EMPTY_QUERY', 'Search query must not be empty', true);
+    }
+    return normalized;
+}
+
+function validateMaxResults(maxResults: number): number {
+    if (!Number.isInteger(maxResults) || maxResults <= 0) {
+        throw new StudioError(
+            'ERR_INVALID_ARGUMENT',
+            'maxResults must be a positive integer',
+            true,
+            { maxResults }
+        );
+    }
+    return maxResults;
+}
+
+export function isSearchDomain(value: string): value is SearchDomain {
+    return Object.prototype.hasOwnProperty.call(CSV_CONFIG, value);
+}
+
+export function isStackName(value: string): value is StackName {
+    return Object.prototype.hasOwnProperty.call(STACK_CONFIG, value);
+}
+
+function assertColumns(data: CSVRow[], config: CSVConfig): void {
+    if (data.length === 0) return;
+    const headers = new Set(Object.keys(data[0]));
+    const missing = [...config.search_cols, ...config.output_cols].filter(column => !headers.has(column));
+    if (missing.length > 0) {
+        throw new StudioError(
+            'ERR_DATABASE_LOAD',
+            `Studio database ${config.file} is missing required columns`,
+            true,
+            { source: config.file, missingColumns: [...new Set(missing)] }
+        );
+    }
+}
+
+async function searchCSV(
+    config: CSVConfig,
+    query: string,
+    maxResults: number
+): Promise<CSVRow[]> {
+    const data = await loadCSV(config.file);
+    assertColumns(data, config);
     if (data.length === 0) return [];
 
-    // Build documents from search columns
-    const documents = data.map(row => buildDocument(row, searchCols));
+    const search = new BM25();
+    search.fit(data.map(row => buildDocument(row, [...config.search_cols])));
+    const results: CSVRow[] = [];
 
-    // BM25 search
-    const bm25 = new BM25();
-    bm25.fit(documents);
-    const ranked = bm25.score(query);
-
-    // Get top results with score > 0
-    const results = [];
-    for (const [idx, score] of ranked.slice(0, maxResults)) {
-        if (score > 0) {
-            const row = data[idx];
-            results.push(extractColumns(row, outputCols));
-        }
+    for (const [index, score] of search.score(query)) {
+        if (score <= 0 || results.length >= maxResults) continue;
+        results.push(extractColumns(data[index], [...config.output_cols]));
     }
-
     return results;
 }
 
-/**
- * Auto-detect the most relevant domain from query
- * @param {string} query - Search query
- * @returns {string} Detected domain
- */
-export function detectDomain(query) {
+export function detectDomain(query: string): SearchDomain {
     const queryLower = query.toLowerCase();
-
-    const domainKeywords = {
+    const keywords: Record<SearchDomain, readonly string[]> = {
         color: ['color', 'palette', 'hex', '#', 'rgb'],
         chart: ['chart', 'graph', 'visualization', 'trend', 'bar', 'pie', 'scatter', 'heatmap', 'funnel'],
         landing: ['landing', 'page', 'cta', 'conversion', 'hero', 'testimonial', 'pricing', 'section'],
@@ -254,92 +259,86 @@ export function detectDomain(query) {
         web: ['aria', 'focus', 'outline', 'semantic', 'virtualize', 'autocomplete', 'form', 'input type', 'preconnect']
     };
 
-    // Count keyword matches for each domain
-    const scores = {};
-    for (const [domain, keywords] of Object.entries(domainKeywords)) {
-        scores[domain] = keywords.filter(kw => queryLower.includes(kw)).length;
-    }
-
-    // Find domain with highest score
-    let bestDomain = 'style';
+    let bestDomain: SearchDomain = 'style';
     let bestScore = 0;
-    for (const [domain, score] of Object.entries(scores)) {
+    for (const [domain, domainKeywords] of Object.entries(keywords) as Array<[SearchDomain, readonly string[]]>) {
+        const score = domainKeywords.filter(keyword => queryLower.includes(keyword)).length;
         if (score > bestScore) {
-            bestScore = score;
             bestDomain = domain;
+            bestScore = score;
         }
     }
-
-    return bestScore > 0 ? bestDomain : 'style';
+    return bestDomain;
 }
 
-/**
- * Main search function with auto-domain detection and caching
- * @param {string} query - Search query
- * @param {string|null} domain - Domain to search (auto-detect if null)
- * @param {number} maxResults - Maximum results
- * @param {Object} options - Additional options
- * @param {boolean} options.useCache - Whether to use cache (default: true)
- * @returns {Promise<Object>} Search results with metadata
- */
-export async function search(query, domain = null, maxResults = MAX_RESULTS, options = {}) {
-    const { useCache = true } = options;
-    
-    if (domain === null) {
-        domain = detectDomain(query);
+export async function search(
+    query: string,
+    domain: string | null = null,
+    maxResults = MAX_RESULTS,
+    options: SearchOptions = {}
+): Promise<SearchResult> {
+    const normalizedQuery = validateQuery(query);
+    const resultLimit = validateMaxResults(maxResults);
+    const selectedDomain = domain ?? detectDomain(normalizedQuery);
+    if (!isSearchDomain(selectedDomain)) {
+        throw new StudioError(
+            'ERR_UNKNOWN_CATEGORY',
+            `Unknown domain: ${selectedDomain}. Available: ${Object.keys(CSV_CONFIG).join(', ')}`,
+            true,
+            { category: selectedDomain }
+        );
     }
 
-    // Check cache first (if enabled)
-    const cacheKey = LRUCache.generateKey(query, domain, maxResults);
+    const useCache = options.useCache ?? true;
+    const cacheKey = LRUCache.generateKey(normalizedQuery, selectedDomain, resultLimit);
     if (useCache) {
         const cached = searchCache.get(cacheKey);
-        if (cached !== undefined) {
-            return cached;
+        if (cached) {
+            cacheHits++;
+            return { ...cached, cached: true };
         }
+        cacheMisses++;
     }
 
-    const config = CSV_CONFIG[domain] || CSV_CONFIG.style;
-    // Pass just the filename - loadCSV handles DATA_DIR
-    const results = await searchCSV(config.file, config.search_cols, config.output_cols, query, maxResults);
-
-    const result = {
-        domain,
-        query,
+    const config = CSV_CONFIG[selectedDomain];
+    const results = await searchCSV(config, normalizedQuery, resultLimit);
+    const result: SearchResult = {
+        domain: selectedDomain,
+        query: normalizedQuery,
         file: config.file,
         count: results.length,
         results,
         cached: false
     };
-
-    // Store in cache (if enabled)
-    if (useCache) {
-        searchCache.set(cacheKey, { ...result, cached: true });
-    }
-
+    if (useCache) searchCache.set(cacheKey, result);
     return result;
 }
 
-/**
- * Search stack-specific guidelines
- * @param {string} query - Search query
- * @param {string} stack - Stack name
- * @param {number} maxResults - Maximum results
- * @returns {Promise<Object>} Search results with metadata
- */
-export async function searchStack(query, stack, maxResults = MAX_RESULTS) {
-    if (!STACK_CONFIG[stack]) {
-        return { error: `Unknown stack: ${stack}. Available: ${AVAILABLE_STACKS.join(', ')}` };
+export async function searchStack(
+    query: string,
+    stack: string,
+    maxResults = MAX_RESULTS
+): Promise<StackSearchResult> {
+    const normalizedQuery = validateQuery(query);
+    const resultLimit = validateMaxResults(maxResults);
+    if (!isStackName(stack)) {
+        throw new StudioError(
+            'ERR_UNKNOWN_CATEGORY',
+            `Unknown stack: ${stack}. Available: ${AVAILABLE_STACKS.join(', ')}`,
+            true,
+            { category: stack }
+        );
     }
 
-    // Pass just the filename - loadCSV handles DATA_DIR
-    const results = await searchCSV(STACK_CONFIG[stack].file, STACK_COLS.search_cols, STACK_COLS.output_cols, query, maxResults);
-
+    const file = STACK_CONFIG[stack].file;
+    const results = await searchCSV({ file, ...STACK_COLS }, normalizedQuery, resultLimit);
     return {
         domain: 'stack',
         stack,
-        query,
-        file: STACK_CONFIG[stack].file,
+        query: normalizedQuery,
+        file,
         count: results.length,
-        results
+        results,
+        cached: false
     };
 }

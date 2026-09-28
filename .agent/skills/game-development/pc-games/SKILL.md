@@ -1,15 +1,21 @@
 ---
 name: pc-games
-description: >-
-  PC and console game development principles. Engine selection, platform features, optimization
-  strategies.
+description: PC and console game development principles. Engine selection, platform features, optimization.
 metadata:
+  id: game-development/pc-games
+  schema_version: "2.0.0"
+  type: knowledge
+  category: game
+  risk_tier: standard
+  version: "3.9.224"
   author: pikakit
-  version: "3.9.223"
-  category: game-development-subskill
-  triggers: ["pc game", "console game", "engine selection", "platform features", "optimization"]
-  coordinates_with: ["game-development", "unity", "unreal", "godot"]
-  success_metrics: ["100% games support controllers", "0 performance regressions"]
+  triggers: ["pc game","console game","engine selection","platform features","optimization"]
+  negative_triggers: ["mobile touch only","browser casual game","simple web app"]
+  coordinates_with: ["game-development","game-development/3d-games","perf-optimizer"]
+  capabilities: ["multi-platform input mapping","graphics settings presets","save system durability","high-refresh-rate rendering"]
+  platforms: ["cross-platform"]
+  last_reviewed: "2026-09-28"
+  review_interval_days: 365
 ---
 
 # PC/Console Game Development
@@ -164,4 +170,4 @@ Map ACTIONS, not buttons:
 
 ---
 
-⚡ PikaKit v3.9.223
+⚡ PikaKit v3.9.224

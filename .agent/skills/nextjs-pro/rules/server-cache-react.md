@@ -1,9 +1,22 @@
 ---
-title: Per-Request Deduplication with React.cache()
-impact: MEDIUM
-impactDescription: deduplicates within request
-tags: server, cache, react-cache, deduplication
+"title": "Per-Request Deduplication with React.cache()"
+"kind": "code"
+"impact": "standard"
+"tags":
+  - "server"
+  - "cache"
+  - "react-cache"
+  - "deduplication"
+"applies_to":
+  - "node"
+  - "web"
+"last_reviewed": "2026-09-28"
+"sources":
+  - "url": "https://nextjs.org/docs"
+    "title": "Official documentation"
 ---
+
+# Per-Request Deduplication with React.cache()
 
 ## Per-Request Deduplication with React.cache()
 
@@ -29,8 +42,7 @@ Within a single request, multiple calls to `getCurrentUser()` execute the query 
 
 `React.cache()` uses shallow equality (`Object.is`) to determine cache hits. Inline objects create new references each call, preventing cache hits.
 
-**Incorrect (always cache miss):**
-
+## Incorrect
 ```typescript
 const getUser = cache(async (params: { uid: number }) => {
   return await db.user.findUnique({ where: { id: params.uid } })
@@ -41,8 +53,7 @@ getUser({ uid: 1 })
 getUser({ uid: 1 })  // Cache miss, runs query again
 ```
 
-**Correct (cache hit):**
-
+## Correct
 ```typescript
 const getUser = cache(async (uid: number) => {
   return await db.user.findUnique({ where: { id: uid } })
@@ -75,6 +86,6 @@ Use `React.cache()` to deduplicate these operations across your component tree.
 
 Reference: [React.cache documentation](https://react.dev/reference/react/cache)
 
----
+## Verification
 
-⚡ PikaKit v3.9.223
+Run the repository typecheck and the narrowest behavioral tests that exercise this rule. Confirm error paths and observable output, not only successful compilation.

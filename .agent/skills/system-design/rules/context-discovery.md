@@ -1,6 +1,13 @@
 ---
-name: context-discovery
-description: Architecture context discovery — question hierarchy, NFR checklist, project classification matrix, and output template
+title: Architecture Context Discovery
+kind: process
+impact: high
+tags: [architecture, requirements, discovery]
+applies_to: [system-design]
+last_reviewed: "2026-09-28"
+sources:
+  - title: AWS Well-Architected Framework
+    url: https://docs.aws.amazon.com/wellarchitected/latest/framework/welcome.html
 ---
 
 # Context Discovery
@@ -112,6 +119,25 @@ After gathering context, produce this summary:
 | [trade-off-analysis.md](trade-off-analysis.md) | Documenting decisions |
 | [examples.md](examples.md) | Reference implementations |
 
----
+## Preconditions
 
-⚡ PikaKit v3.9.223
+- Name the decision, owner, stakeholders, deadline, and consequence of delay.
+- Separate known facts, estimates, assumptions, and unknowns.
+- Identify security, compliance, residency, accessibility, and operational obligations.
+
+## Procedure
+
+1. Capture critical user journeys and business invariants.
+2. Quantify load, data, latency, availability, recovery, consistency, and growth ranges.
+3. Map trust, data, ownership, dependency, and deployment boundaries.
+4. Inventory current systems, team skills, budget, and migration constraints.
+5. Rank quality attributes and state which trade-offs are acceptable.
+6. Produce open questions and experiments for decision-changing unknowns.
+
+## Rollback
+
+Discovery is read-only. Reopen the context document when evidence invalidates an assumption; retain superseded assumptions for decision traceability.
+
+## Exit Gate
+
+Pass when every proposed architecture option can be evaluated against the same measurable requirements and unresolved high-impact unknowns have owners and validation plans.

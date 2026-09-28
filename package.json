@@ -1,6 +1,6 @@
 {
   "name": "agent-skill-kit",
-  "version": "3.9.223",
+  "version": "3.9.224",
   "description": "PikaKit — AI Operating System. 52 skills, 19 workflows, strict TypeScript.",
   "type": "module",
   "author": "PikaKit <pikakit@gmail.com>",
@@ -18,6 +18,16 @@
   },
   "scripts": {
     "typecheck": "tsc --noEmit",
+    "test": "tsx .agent/scripts/run-tests.ts",
+    "validate:data": "tsx .agent/skills/studio/scripts/validate_data.ts",
+    "validate:docs": "tsx .agent/scripts/validate_docs.ts",
+    "validate:secrets": "tsx .agent/skills/knowledge-compiler/scripts/secret-scanner.ts --all",
+    "validate:skills": "tsx .agent/scripts/skill-audit.ts",
+    "validate:routing": "tsx .agent/scripts/routing-eval.ts",
+    "validate:migration": "tsx .agent/scripts/migration-map.ts",
+    "validate:source-links": "tsx .agent/scripts/check-source-links.ts",
+    "validate": "npm run typecheck && npm test && npm run validate:data && npm run validate:docs && npm run validate:secrets && npm run audit:workflows && npm run validate:skills && npm run validate:routing && npm run validate:migration && tsx .agent/scripts/compile-agents.ts --check",
+    "compile:agents": "tsx .agent/scripts/compile-agents.ts",
     "version:sync": "tsx .agent/scripts/version-sync.ts",
     "checklist": "tsx .agent/scripts/checklist.ts",
     "verify": "tsx .agent/scripts/verify_all.ts",
@@ -27,12 +37,14 @@
   },
   "devDependencies": {
     "@types/node": "^22.0.0",
-    "tsx": "^4.19.0",
+    "ajv": "^8.20.0",
+    "ajv-formats": "^3.0.1",
+    "tsx": "^4.23.15",
     "typescript": "^5.7.0"
   },
   "dependencies": {
-    "better-sqlite3": "^12.9.0",
     "css-tree": "^3.2.1",
-    "csv-parse": "^7.0.2"
+    "csv-parse": "^7.0.2",
+    "yaml": "^2.9.1"
   }
 }

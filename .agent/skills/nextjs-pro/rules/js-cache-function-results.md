@@ -1,16 +1,28 @@
 ---
-title: Cache Repeated Function Calls
-impact: MEDIUM
-impactDescription: avoid redundant computation
-tags: javascript, cache, memoization, performance
+"title": "Cache Repeated Function Calls"
+"kind": "code"
+"impact": "standard"
+"tags":
+  - "javascript"
+  - "cache"
+  - "memoization"
+  - "performance"
+"applies_to":
+  - "node"
+  - "web"
+"last_reviewed": "2026-09-28"
+"sources":
+  - "url": "https://nextjs.org/docs"
+    "title": "Official documentation"
 ---
+
+# Cache Repeated Function Calls
 
 ## Cache Repeated Function Calls
 
 Use a module-level Map to cache function results when the same function is called repeatedly with the same inputs during render.
 
-**Incorrect (redundant computation):**
-
+## Incorrect
 ```typescript
 function ProjectList({ projects }: { projects: Project[] }) {
   return (
@@ -26,8 +38,7 @@ function ProjectList({ projects }: { projects: Project[] }) {
 }
 ```
 
-**Correct (cached results):**
-
+## Correct
 ```typescript
 // Module-level cache
 const slugifyCache = new Map<string, string>()
@@ -79,6 +90,6 @@ Use a Map (not a hook) so it works everywhere: utilities, event handlers, not ju
 
 Reference: [How we made the Vercel Dashboard twice as fast](https://vercel.com/blog/how-we-made-the-vercel-dashboard-twice-as-fast)
 
----
+## Verification
 
-⚡ PikaKit v3.9.223
+Run the repository typecheck and the narrowest behavioral tests that exercise this rule. Confirm error paths and observable output, not only successful compilation.

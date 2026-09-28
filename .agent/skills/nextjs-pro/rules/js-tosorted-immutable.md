@@ -1,16 +1,30 @@
 ---
-title: Use toSorted() Instead of sort() for Immutability
-impact: MEDIUM-HIGH
-impactDescription: prevents mutation bugs in React state
-tags: javascript, arrays, immutability, react, state, mutation
+"title": "Use toSorted() Instead of sort() for Immutability"
+"kind": "code"
+"impact": "standard"
+"tags":
+  - "javascript"
+  - "arrays"
+  - "immutability"
+  - "react"
+  - "state"
+  - "mutation"
+"applies_to":
+  - "node"
+  - "web"
+"last_reviewed": "2026-09-28"
+"sources":
+  - "url": "https://nextjs.org/docs"
+    "title": "Official documentation"
 ---
+
+# Use toSorted() Instead of sort() for Immutability
 
 ## Use toSorted() Instead of sort() for Immutability
 
 `.sort()` mutates the array in place, which can cause bugs with React state and props. Use `.toSorted()` to create a new sorted array without mutation.
 
-**Incorrect (mutates original array):**
-
+## Incorrect
 ```typescript
 function UserList({ users }: { users: User[] }) {
   // Mutates the users prop array!
@@ -22,8 +36,7 @@ function UserList({ users }: { users: User[] }) {
 }
 ```
 
-**Correct (creates new array):**
-
+## Correct
 ```typescript
 function UserList({ users }: { users: User[] }) {
   // Creates new sorted array, original unchanged
@@ -56,6 +69,6 @@ const sorted = [...items].sort((a, b) => a.value - b.value)
 - `.toSpliced()` - immutable splice
 - `.with()` - immutable element replacement
 
----
+## Verification
 
-⚡ PikaKit v3.9.223
+Run the repository typecheck and the narrowest behavioral tests that exercise this rule. Confirm error paths and observable output, not only successful compilation.

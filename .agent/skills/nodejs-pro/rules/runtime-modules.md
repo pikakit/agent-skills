@@ -1,15 +1,26 @@
 ---
-name: runtime-modules
-description: Node.js runtime selection, ESM vs CJS, native TypeScript, node prefix, and module interop
-title: "Runtime & Module System"
-impact: MEDIUM
-impactDescription: "Moderate improvement to quality or maintainability"
-tags: runtime, modules
+title: Node.js Runtime and Modules
+kind: reference
+impact: high
+tags: [nodejs, esm, commonjs]
+applies_to: [nodejs]
+last_reviewed: "2026-09-28"
+sources:
+  - title: Node.js ECMAScript Modules
+    url: https://nodejs.org/api/esm.html
+  - title: Node.js TypeScript Support
+    url: https://nodejs.org/api/typescript.html
 ---
 
 # Runtime & Module System
 
-> Use ESM for new projects. Use `node:` prefix. Run TypeScript natively on Node.js 22+.
+> Use ESM for new projects. Use `node:` prefixes. Match TypeScript execution to the supported Node release.
+
+## Scope
+
+Apply to supported Node versions, package module type, ESM/CommonJS interop, built-in imports, and native TypeScript constraints.
+
+## Guidance
 
 ---
 
@@ -17,11 +28,11 @@ tags: runtime, modules
 
 | Runtime | Best For | TypeScript | Package Manager |
 |---------|----------|-----------|----------------|
-| **Node.js** | General purpose, largest ecosystem | Via `--experimental-strip-types` (22+) or tsx | npm/pnpm/yarn |
+| **Node.js** | General purpose, largest ecosystem | Built-in type stripping where supported, or a project toolchain | npm/pnpm/yarn |
 | **Bun** | Performance, scripts, built-in bundler | Native | bun |
 | **Deno** | Security-first, built-in TypeScript | Native | deno/npm |
 
-**Default recommendation:** Node.js 22+ (LTS) unless specific Bun/Deno features needed.
+**Default recommendation:** Use an actively supported Node LTS that satisfies the package engine, dependencies, and deployment platform. Keep the CI version matrix aligned with production.
 
 ---
 
@@ -61,15 +72,17 @@ tags: runtime, modules
 
 ---
 
-## Native TypeScript (Node.js 22+)
+## Native TypeScript
 
 ```bash
-# Run .ts directly — no build step
-node --experimental-strip-types src/app.ts
+# Run erasable TypeScript directly on a supporting Node release
+node src/app.ts
 
 # With type-checking (slower, for CI)
 npx tsx src/app.ts
 ```
+
+Verify the exact syntax and version constraints in the Node.js TypeScript documentation. Built-in type stripping does not type-check code and does not transform every TypeScript feature.
 
 **When to use native TS:**
 - Scripts and CLIs
@@ -163,7 +176,11 @@ import pkg from './package.json' with { type: 'json' }
 
 ---
 
-## 🔗 Related
+## Verification
+
+Test clean install, typecheck, package exports, direct execution, tests, and built output on every supported Node version. Verify ESM/CommonJS interop from an actual consumer package and keep a rollback-compatible build artifact.
+
+## Related
 
 | File | When to Read |
 |------|-------------|
@@ -173,4 +190,4 @@ import pkg from './package.json' with { type: 'json' }
 
 ---
 
-⚡ PikaKit v3.9.223
+⚡ PikaKit v3.9.224

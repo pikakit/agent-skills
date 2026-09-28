@@ -1,16 +1,28 @@
 ---
-title: Defer Await Until Needed
-impact: HIGH
-impactDescription: avoids blocking unused code paths
-tags: async, await, conditional, optimization
+"title": "Defer Await Until Needed"
+"kind": "code"
+"impact": "high"
+"tags":
+  - "async"
+  - "await"
+  - "conditional"
+  - "optimization"
+"applies_to":
+  - "node"
+  - "web"
+"last_reviewed": "2026-09-28"
+"sources":
+  - "url": "https://nextjs.org/docs"
+    "title": "Official documentation"
 ---
+
+# Defer Await Until Needed
 
 ## Defer Await Until Needed
 
 Move `await` operations into the branches where they're actually used to avoid blocking code paths that don't need them.
 
-**Incorrect (blocks both branches):**
-
+## Incorrect
 ```typescript
 async function handleRequest(userId: string, skipProcessing: boolean) {
   const userData = await fetchUserData(userId)
@@ -25,8 +37,7 @@ async function handleRequest(userId: string, skipProcessing: boolean) {
 }
 ```
 
-**Correct (only blocks when needed):**
-
+## Correct
 ```typescript
 async function handleRequest(userId: string, skipProcessing: boolean) {
   if (skipProcessing) {
@@ -79,6 +90,6 @@ async function updateResource(resourceId: string, userId: string) {
 
 This optimization is especially valuable when the skipped branch is frequently taken, or when the deferred operation is expensive.
 
----
+## Verification
 
-⚡ PikaKit v3.9.223
+Run the repository typecheck and the narrowest behavioral tests that exercise this rule. Confirm error paths and observable output, not only successful compilation.

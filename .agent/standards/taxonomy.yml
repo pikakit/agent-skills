@@ -1,0 +1,19 @@
+schema_version: "2.0.0"
+categories:
+  architecture: [api-architect, system-design, knowledge-graph]
+  frontend: [nextjs-pro, react-pro, tailwind-kit]
+  backend: [nodejs-pro, python-pro]
+  data: [data-modeler]
+  mobile: [mobile-design, mobile-developer]
+  design: [ai-artist, design-system, studio]
+  quality: [chrome-devtools, code-craft, code-review, debug-pro, e2e-automation, perf-optimizer, problem-checker, test-architect, typescript-expert]
+  security: [auth-patterns, offensive-sec, security-scanner]
+  delivery: [cicd-pipeline, git-workflow, gitops, vercel-deploy]
+  operations: [media-processing, observability, server-ops, shell-script]
+  agentic: [agent-browser, context-engineering, google-adk-python, mcp-builder, mcp-management]
+  knowledge: [knowledge-compiler, knowledge-linter]
+  content: [copywriting, doc-templates, seo-optimizer]
+  game: [game-development]
+  meta: [code-constitution, execution-reporter, idea-storm, lifecycle-orchestrator, project-planner, skill-generator, smart-router]
+nested_category: game
+canonical_nested_ids: true

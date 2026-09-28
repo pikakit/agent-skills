@@ -1,6 +1,13 @@
 ---
-name: patterns-reference
-description: Architecture patterns quick reference — data access, domain, distributed, communication, resilience, and observability patterns
+title: Architecture Patterns Reference
+kind: reference
+impact: standard
+tags: [architecture, patterns, reference]
+applies_to: [system-design]
+last_reviewed: "2026-09-28"
+sources:
+  - title: AWS Well-Architected Framework
+    url: https://docs.aws.amazon.com/wellarchitected/latest/framework/welcome.html
 ---
 
 # Architecture Patterns Reference
@@ -105,6 +112,14 @@ description: Architecture patterns quick reference — data access, domain, dist
 | [examples.md](examples.md) | Real implementations |
 | [trade-off-analysis.md](trade-off-analysis.md) | Document choices |
 
----
+## Scope
 
-⚡ PikaKit v3.9.223
+Provide a vocabulary for data access, domain, communication, resilience, and observability patterns. The table summarizes forces; it does not prescribe implementation.
+
+## Guidance
+
+Read each pattern as problem, context, forces, consequences, and alternatives. Select against measured requirements and team ownership. Combine patterns only after analyzing their interacting retry, ordering, consistency, and failure semantics.
+
+## Verification
+
+Before adoption, write an ADR, prototype the highest-risk assumption, test overload and dependency loss, estimate operational cost, and define a reversible rollout.

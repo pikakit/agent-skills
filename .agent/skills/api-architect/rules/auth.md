@@ -1,10 +1,15 @@
 ---
-name: auth
-description: API authentication patterns — JWT, OAuth2 PKCE, API Keys, Passkeys, token refresh
 title: "Authentication Patterns"
-impact: MEDIUM
-impactDescription: "Moderate improvement to quality or maintainability"
-tags: auth
+kind: decision
+impact: high
+tags: [api, authentication, authorization]
+applies_to: [api-architect]
+last_reviewed: "2026-09-28"
+sources:
+  - title: OAuth 2.0 Authorization Framework
+    url: https://datatracker.ietf.org/doc/html/rfc6749
+  - title: Proof Key for Code Exchange
+    url: https://datatracker.ietf.org/doc/html/rfc7636
 ---
 
 # Authentication Patterns
@@ -129,6 +134,22 @@ const tokens = await fetch('https://provider.com/token', {
 | [rate-limiting.md](rate-limiting.md) | Rate limit auth endpoints |
 | [SKILL.md](../SKILL.md) | Full decision framework |
 
----
+## Decision
 
-⚡ PikaKit v3.9.223
+Separate authentication, session management, token delegation, and authorization. Prefer established identity protocols and platform libraries over custom token formats.
+
+## Use When
+
+Use server sessions for same-origin applications when revocation and centralized control matter. Use OAuth/OIDC flows for delegated or federated identity and PKCE for public clients where required.
+
+## Avoid When
+
+Avoid storing bearer tokens in exposed browser storage, using API keys as end-user identity, or treating a valid token as sufficient object authorization.
+
+## Trade-offs
+
+Central sessions simplify revocation but require shared state. Self-contained access tokens reduce lookup coupling but complicate revocation, key rotation, audience control, and leakage response.
+
+## Verification
+
+Test expiry, revocation, rotation, audience and issuer validation, replay, CSRF where relevant, and object/function authorization for every protected operation.

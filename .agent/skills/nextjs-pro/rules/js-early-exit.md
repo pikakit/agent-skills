@@ -1,16 +1,28 @@
 ---
-title: Early Return from Functions
-impact: LOW-MEDIUM
-impactDescription: avoids unnecessary computation
-tags: javascript, functions, optimization, early-return
+"title": "Early Return from Functions"
+"kind": "code"
+"impact": "standard"
+"tags":
+  - "javascript"
+  - "functions"
+  - "optimization"
+  - "early-return"
+"applies_to":
+  - "node"
+  - "web"
+"last_reviewed": "2026-09-28"
+"sources":
+  - "url": "https://nextjs.org/docs"
+    "title": "Official documentation"
 ---
+
+# Early Return from Functions
 
 ## Early Return from Functions
 
 Return early when result is determined to skip unnecessary processing.
 
-**Incorrect (processes all items even after finding answer):**
-
+## Incorrect
 ```typescript
 function validateUsers(users: User[]) {
   let hasError = false
@@ -32,8 +44,7 @@ function validateUsers(users: User[]) {
 }
 ```
 
-**Correct (returns immediately on first error):**
-
+## Correct
 ```typescript
 function validateUsers(users: User[]) {
   for (const user of users) {
@@ -49,6 +60,6 @@ function validateUsers(users: User[]) {
 }
 ```
 
----
+## Verification
 
-⚡ PikaKit v3.9.223
+Run the repository typecheck and the narrowest behavioral tests that exercise this rule. Confirm error paths and observable output, not only successful compilation.

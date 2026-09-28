@@ -38,4 +38,4 @@ This decision respects:
 - Knowledge retrieval becomes sub-millisecond ranked search instead of LLM-driven browsing.
 - `pikakit search <query>` CLI command enables human knowledge lookup.
 - VS Code extension can query FTS5 for context-aware suggestions.
-- `better-sqlite3` becomes a runtime dependency (already used by `pattern-clustering.ts`).
+- Add an SQLite driver only when the FTS5 index is implemented; the current skill kit has no runtime SQLite consumer.

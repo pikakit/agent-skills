@@ -1,9 +1,23 @@
 ---
-title: Avoid Barrel File Imports
-impact: CRITICAL
-impactDescription: 200-800ms import cost, slow builds
-tags: bundle, imports, tree-shaking, barrel-files, performance
+"title": "Avoid Barrel File Imports"
+"kind": "code"
+"impact": "critical"
+"tags":
+  - "bundle"
+  - "imports"
+  - "tree-shaking"
+  - "barrel-files"
+  - "performance"
+"applies_to":
+  - "node"
+  - "web"
+"last_reviewed": "2026-09-28"
+"sources":
+  - "url": "https://nextjs.org/docs"
+    "title": "Official documentation"
 ---
+
+# Avoid Barrel File Imports
 
 ## Avoid Barrel File Imports
 
@@ -13,8 +27,7 @@ Popular icon and component libraries can have **up to 10,000 re-exports** in the
 
 **Why tree-shaking doesn't help:** When a library is marked as external (not bundled), the bundler can't optimize it. If you bundle it to enable tree-shaking, builds become substantially slower analyzing the entire module graph.
 
-**Incorrect (imports entire library):**
-
+## Incorrect
 ```tsx
 import { Check, X, Menu } from 'lucide-react'
 // Loads 1,583 modules, takes ~2.8s extra in dev
@@ -24,8 +37,7 @@ import { Button, TextField } from '@mui/material'
 // Loads 2,225 modules, takes ~4.2s extra in dev
 ```
 
-**Correct (imports only what you need):**
-
+## Correct
 ```tsx
 import Check from 'lucide-react/dist/esm/icons/check'
 import X from 'lucide-react/dist/esm/icons/x'
@@ -58,6 +70,6 @@ Libraries commonly affected: `lucide-react`, `@mui/material`, `@mui/icons-materi
 
 Reference: [How we optimized package imports in Next.js](https://vercel.com/blog/how-we-optimized-package-imports-in-next-js)
 
----
+## Verification
 
-⚡ PikaKit v3.9.223
+Run the repository typecheck and the narrowest behavioral tests that exercise this rule. Confirm error paths and observable output, not only successful compilation.

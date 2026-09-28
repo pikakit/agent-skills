@@ -1,4 +1,3 @@
-// @ts-nocheck
 /**
  * Page Type Detection - Studio Design System
  * ===========================================
@@ -9,12 +8,13 @@
  */
 
 import { loadConfig, mergePatterns } from './config-loader.ts';
+import type { CSVRow, PagePattern, PageType } from '../types.ts';
 
 /**
  * Default page type patterns (exported for extension/override)
  * NOTE: Order matters - more specific patterns should come first
  */
-export const DEFAULT_PATTERNS = [
+export const DEFAULT_PATTERNS: PagePattern[] = [
     {
         keywords: ['dashboard', 'admin', 'analytics', 'data', 'metrics', 'stats', 'monitor', 'overview'],
         type: 'Dashboard / Data View'
@@ -69,7 +69,7 @@ export const DEFAULT_PATTERNS = [
  * @param {Array} styleResults - Style search results for fallback inference
  * @returns {string} Detected page type
  */
-export function detectPageType(context, styleResults = []) {
+export function detectPageType(context: string, styleResults: CSVRow[] = []): PageType {
     return detectPageTypeWithPatterns(context, styleResults, DEFAULT_PATTERNS);
 }
 
@@ -81,7 +81,11 @@ export function detectPageType(context, styleResults = []) {
  * @param {string} projectDir - Project directory to search for config
  * @returns {Promise<string>} Detected page type
  */
-export async function detectPageTypeWithConfig(context, styleResults = [], projectDir = process.cwd()) {
+export async function detectPageTypeWithConfig(
+    context: string,
+    styleResults: CSVRow[] = [],
+    projectDir = process.cwd()
+): Promise<PageType> {
     const config = await loadConfig(null, projectDir);
     const customPatterns = config?.customPatterns || [];
     const patterns = mergePatterns(DEFAULT_PATTERNS, customPatterns);
@@ -96,7 +100,11 @@ export async function detectPageTypeWithConfig(context, styleResults = [], proje
  * @param {Array} patterns - Page patterns to match against
  * @returns {string} Detected page type
  */
-function detectPageTypeWithPatterns(context, styleResults, patterns) {
+function detectPageTypeWithPatterns(
+    context: string,
+    styleResults: CSVRow[],
+    patterns: PagePattern[]
+): PageType {
     const contextLower = (context || '').toLowerCase();
 
     // Check each pattern for keyword matches

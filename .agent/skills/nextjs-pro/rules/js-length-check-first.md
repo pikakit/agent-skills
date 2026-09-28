@@ -1,9 +1,23 @@
 ---
-title: Early Length Check for Array Comparisons
-impact: MEDIUM-HIGH
-impactDescription: avoids expensive operations when lengths differ
-tags: javascript, arrays, performance, optimization, comparison
+"title": "Early Length Check for Array Comparisons"
+"kind": "code"
+"impact": "standard"
+"tags":
+  - "javascript"
+  - "arrays"
+  - "performance"
+  - "optimization"
+  - "comparison"
+"applies_to":
+  - "node"
+  - "web"
+"last_reviewed": "2026-09-28"
+"sources":
+  - "url": "https://nextjs.org/docs"
+    "title": "Official documentation"
 ---
+
+# Early Length Check for Array Comparisons
 
 ## Early Length Check for Array Comparisons
 
@@ -11,8 +25,7 @@ When comparing arrays with expensive operations (sorting, deep equality, seriali
 
 In real-world applications, this optimization is especially valuable when the comparison runs in hot paths (event handlers, render loops).
 
-**Incorrect (always runs expensive comparison):**
-
+## Incorrect
 ```typescript
 function hasChanges(current: string[], original: string[]) {
   // Always sorts and joins, even when lengths differ
@@ -22,8 +35,7 @@ function hasChanges(current: string[], original: string[]) {
 
 Two O(n log n) sorts run even when `current.length` is 5 and `original.length` is 100. There is also overhead of joining the arrays and comparing the strings.
 
-**Correct (O(1) length check first):**
-
+## Correct
 ```typescript
 function hasChanges(current: string[], original: string[]) {
   // Early return if lengths differ
@@ -48,6 +60,6 @@ This new approach is more efficient because:
 - It avoids mutating the original arrays
 - It returns early when a difference is found
 
----
+## Verification
 
-⚡ PikaKit v3.9.223
+Run the repository typecheck and the narrowest behavioral tests that exercise this rule. Confirm error paths and observable output, not only successful compilation.

@@ -1,16 +1,28 @@
 ---
-title: Defer State Reads to Usage Point
-impact: MEDIUM
-impactDescription: avoids unnecessary subscriptions
-tags: rerender, searchParams, localStorage, optimization
+"title": "Defer State Reads to Usage Point"
+"kind": "code"
+"impact": "standard"
+"tags":
+  - "rerender"
+  - "searchParams"
+  - "localStorage"
+  - "optimization"
+"applies_to":
+  - "node"
+  - "web"
+"last_reviewed": "2026-09-28"
+"sources":
+  - "url": "https://nextjs.org/docs"
+    "title": "Official documentation"
 ---
+
+# Defer State Reads to Usage Point
 
 ## Defer State Reads to Usage Point
 
 Don't subscribe to dynamic state (searchParams, localStorage) if you only read it inside callbacks.
 
-**Incorrect (subscribes to all searchParams changes):**
-
+## Incorrect
 ```tsx
 function ShareButton({ chatId }: { chatId: string }) {
   const searchParams = useSearchParams()
@@ -24,8 +36,7 @@ function ShareButton({ chatId }: { chatId: string }) {
 }
 ```
 
-**Correct (reads on demand, no subscription):**
-
+## Correct
 ```tsx
 function ShareButton({ chatId }: { chatId: string }) {
   const handleShare = () => {
@@ -38,6 +49,6 @@ function ShareButton({ chatId }: { chatId: string }) {
 }
 ```
 
----
+## Verification
 
-⚡ PikaKit v3.9.223
+Run the repository typecheck and the narrowest behavioral tests that exercise this rule. Confirm error paths and observable output, not only successful compilation.

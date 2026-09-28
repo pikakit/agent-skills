@@ -1,13 +1,28 @@
 ---
-name: anti-patterns
-description: Quick-reference anti-pattern table for mobile development — performance, UX, security, architecture
-title: "Mobile Anti-Patterns"
-impact: MEDIUM
-impactDescription: "Moderate improvement to quality or maintainability"
-tags: anti, patterns
+"title": "Mobile Anti-Patterns"
+"kind": "reference"
+"impact": "standard"
+"tags":
+  - "anti"
+  - "patterns"
+"applies_to":
+  - "android"
+  - "ios"
+"last_reviewed": "2026-09-28"
+"sources":
+  - "title": "Android Core App Quality"
+    "url": "https://developer.android.com/quality-guidelines/core-app-quality"
+  - "title": "Apple Human Interface Guidelines"
+    "url": "https://developer.apple.com/design/human-interface-guidelines"
 ---
 
 # Mobile Anti-Patterns
+
+## Scope
+
+This reference applies only to the platforms declared in metadata and the versions confirmed in the target repository.
+
+## Guidance
 
 > 🚫 Common AI default tendencies that MUST be avoided!
 
@@ -60,11 +75,11 @@ tags: anti, patterns
 
 | File | When to Read |
 |------|-------------|
-| [mobile-performance.md](mobile-performance.md) | Performance anti-pattern details |
-| [mobile-debugging.md](mobile-debugging.md) | Debugging workflows |
-| [decision-trees.md](decision-trees.md) | Correct patterns to use instead |
-| [touch-psychology.md](touch-psychology.md) | Touch UX guidance |
+| [mobile-performance.md](mobile-performance-1-the-mobile-performance-mindset.md) | Performance anti-pattern details |
+| [mobile-debugging.md](mobile-debugging-debugging-mindset.md) | Debugging workflows |
+| [decision-trees.md](decision-trees-1-framework-selection.md) | Correct patterns to use instead |
+| [touch-psychology.md](touch-psychology-1-fitts-law-for-touch.md) | Touch UX guidance |
 
----
+## Verification
 
-⚡ PikaKit v3.9.223
+Cross-check version-sensitive details with the cited official source and verify the resulting behavior in the target environment.

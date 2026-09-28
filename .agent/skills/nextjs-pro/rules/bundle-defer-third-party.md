@@ -1,16 +1,28 @@
 ---
-title: Defer Non-Critical Third-Party Libraries
-impact: MEDIUM
-impactDescription: loads after hydration
-tags: bundle, third-party, analytics, defer
+"title": "Defer Non-Critical Third-Party Libraries"
+"kind": "code"
+"impact": "standard"
+"tags":
+  - "bundle"
+  - "third-party"
+  - "analytics"
+  - "defer"
+"applies_to":
+  - "node"
+  - "web"
+"last_reviewed": "2026-09-28"
+"sources":
+  - "url": "https://nextjs.org/docs"
+    "title": "Official documentation"
 ---
+
+# Defer Non-Critical Third-Party Libraries
 
 ## Defer Non-Critical Third-Party Libraries
 
 Analytics, logging, and error tracking don't block user interaction. Load them after hydration.
 
-**Incorrect (blocks initial bundle):**
-
+## Incorrect
 ```tsx
 import { Analytics } from '@vercel/analytics/react'
 
@@ -26,8 +38,7 @@ export default function RootLayout({ children }) {
 }
 ```
 
-**Correct (loads after hydration):**
-
+## Correct
 ```tsx
 import dynamic from 'next/dynamic'
 
@@ -48,6 +59,6 @@ export default function RootLayout({ children }) {
 }
 ```
 
----
+## Verification
 
-⚡ PikaKit v3.9.223
+Run the repository typecheck and the narrowest behavioral tests that exercise this rule. Confirm error paths and observable output, not only successful compilation.

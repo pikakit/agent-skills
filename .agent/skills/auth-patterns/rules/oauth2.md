@@ -1,15 +1,26 @@
 ---
-name: oauth2
-description: OAuth 2.0 + OpenID Connect flows, PKCE, scopes, provider integration
-title: "OAuth 2.0 & OpenID Connect"
-impact: MEDIUM
-impactDescription: "Moderate improvement to quality or maintainability"
-tags: oauth2
+title: OAuth 2.0 and OpenID Connect
+kind: reference
+impact: critical
+tags: [oauth2, oidc, pkce]
+applies_to: [web, mobile, backend]
+last_reviewed: "2026-09-28"
+sources:
+  - title: RFC 9700 OAuth 2.0 Security Best Current Practice
+    url: https://www.rfc-editor.org/rfc/rfc9700
+  - title: OpenID Connect Core 1.0
+    url: https://openid.net/specs/openid-connect-core-1_0.html
 ---
 
 # OAuth 2.0 & OpenID Connect
 
 > Third-party login, SSO, and delegated authorization.
+
+## Scope
+
+Apply to OAuth authorization, OpenID Connect authentication, PKCE, redirects, state/nonce, scopes, and token exchange.
+
+## Guidance
 
 ---
 
@@ -105,7 +116,7 @@ OIDC = OAuth 2.0 + Identity Layer
 | `passport` | Express middleware |
 | `arctic` | Lightweight OAuth 2.0 |
 | `lucia` | Session + OAuth (modern) |
-| `better-auth` | Full-featured (2025+) |
+| `better-auth` | Full-featured option; verify current provider support |
 
 ---
 
@@ -120,7 +131,11 @@ OIDC = OAuth 2.0 + Identity Layer
 
 ---
 
-## 🔗 Related
+## Verification
+
+Test exact redirect matching, PKCE, state and nonce validation, issuer/audience, code replay, token substitution, scope reduction, logout, and provider outage. Reject malformed or incomplete responses.
+
+## Related
 
 | File | When to Read |
 |------|-------------|
@@ -131,4 +146,4 @@ OIDC = OAuth 2.0 + Identity Layer
 
 ---
 
-⚡ PikaKit v3.9.223
+⚡ PikaKit v3.9.224

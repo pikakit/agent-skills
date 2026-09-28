@@ -1,12 +1,26 @@
 ---
-title: GitOps Sync Policies
-impact: MEDIUM
-tags: gitops
+title: GitOps Reconciliation Policies
+kind: reference
+impact: critical
+tags: [gitops, reconciliation, drift]
+applies_to: [kubernetes, argocd, flux]
+last_reviewed: "2026-09-28"
+sources:
+  - title: Argo CD Automated Sync Policy
+    url: https://argo-cd.readthedocs.io/en/stable/user-guide/auto_sync/
+  - title: Flux Reconciliation
+    url: https://fluxcd.io/flux/components/source/gitrepositories/
 ---
 
 # GitOps Sync Policies
 
 > Sync strategies, windows, retry policies, and health checks for ArgoCD and Flux.
+
+## Scope
+
+Apply to automated/manual reconciliation, pruning, self-healing, windows, retries, health, drift, promotion, and rollback.
+
+## Guidance
 
 ---
 
@@ -129,8 +143,8 @@ data:
 
 ## Best Practices
 
-1. Use automated sync for non-production
-2. Require manual approval for production
+1. Match automation to environment risk and recovery maturity
+2. Require the configured production approval and policy gates
 3. Configure sync windows for maintenance
 4. Implement health checks for custom resources
 5. Use selective sync for large applications
@@ -140,6 +154,10 @@ data:
 9. Test sync policies in staging
 10. Document sync behavior for teams
 
+## Verification
+
+Test manifest diff, failed health, drift, retry exhaustion, sync windows, repository outage, controller outage, pruning preview, rollback commit, and alerts. Require explicit ownership before enabling automated pruning in production.
+
 ---
 
-? PikaKit v3.9.223
+? PikaKit v3.9.224

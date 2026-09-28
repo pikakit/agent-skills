@@ -1,11 +1,25 @@
 ---
-name: component-patterns
-description: React.FC with TypeScript — Suspense-first, useCallback rules, props patterns, named/default exports
-title: "React.FC with TypeScript, useCallback for handlers, default export."
-impact: HIGH
-impactDescription: "Important architectural or correctness impact"
-tags: component, patterns
+"title": "React.FC with TypeScript, useCallback for handlers, default export."
+"kind": "reference"
+"impact": "high"
+"tags":
+  - "component"
+  - "patterns"
+"applies_to":
+  - "web"
+"last_reviewed": "2026-09-28"
+"sources":
+  - "url": "https://react.dev/reference/react"
+    "title": "Official documentation"
 ---
+
+# React.FC with TypeScript, useCallback for handlers, default export.
+
+## Scope
+
+Apply this guidance only to the declared platforms and repository-confirmed versions.
+
+## Guidance
 
 # Component Patterns
 
@@ -140,6 +154,6 @@ export default MyComponent;
 | [file-organization.md](file-organization.md) | Where to place components |
 | [../SKILL.md](../SKILL.md) | Core rules and anti-patterns |
 
----
+## Verification
 
-⚡ PikaKit v3.9.223
+Cross-check version-sensitive details with the cited official source and verify the resulting behavior in the target environment.

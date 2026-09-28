@@ -1,131 +1,141 @@
 #!/usr/bin/env node
-/**
- * Process Manager - PikaKit
- * ==================================
- * Cross-platform process management (PID files, process detection, termination)
- */
+/** Cross-platform PID persistence and verified process termination. */
 
-import { readFile, writeFile, unlink } from 'fs/promises';
-import { exec } from 'child_process';
-import { promisify } from 'util';
+import { execFile } from 'node:child_process';
+import { readFile, unlink, writeFile } from 'node:fs/promises';
+import { promisify } from 'node:util';
 
-const execAsync = promisify(exec);
+const execFileAsync = promisify(execFile);
 
-/**
- * Save PID to file
- */
+function assertPid(pid: number): void {
+    if (!Number.isSafeInteger(pid) || pid <= 0) {
+        throw new RangeError(`Invalid process id: ${pid}`);
+    }
+}
+
+function isMissingProcess(error: unknown): boolean {
+    return (error as NodeJS.ErrnoException).code === 'ESRCH';
+}
+
 export async function savePid(pidFile: string, pid: number): Promise<void> {
+    assertPid(pid);
     await writeFile(pidFile, pid.toString(), 'utf-8');
 }
 
-/**
- * Load PID from file
- */
 export async function loadPid(pidFile: string): Promise<number | null> {
     try {
         const content = await readFile(pidFile, 'utf-8');
-        const pid = parseInt(content.trim(), 10);
-        return isNaN(pid) ? null : pid;
-    } catch {
-        return null;
+        const pid = Number(content.trim());
+        return Number.isSafeInteger(pid) && pid > 0 ? pid : null;
+    } catch (error: unknown) {
+        if ((error as NodeJS.ErrnoException).code === 'ENOENT') return null;
+        throw error;
     }
 }
 
-/**
- * Delete PID file
- */
 export async function deletePidFile(pidFile: string): Promise<void> {
     try {
         await unlink(pidFile);
-    } catch {
-        // Ignore if file doesn't exist
+    } catch (error: unknown) {
+        if ((error as NodeJS.ErrnoException).code !== 'ENOENT') throw error;
     }
 }
 
-/**
- * Check if process is running
- */
 export function isRunning(pid: number): boolean {
+    assertPid(pid);
     try {
-        // Sending signal 0 checks existence without killing
         process.kill(pid, 0);
         return true;
-    } catch (err: unknown) {
-        // ESRCH = No such process
-        return (err as NodeJS.ErrnoException).code !== 'ESRCH';
+    } catch (error: unknown) {
+        const code = (error as NodeJS.ErrnoException).code;
+        if (code === 'ESRCH') return false;
+        if (code === 'EPERM') return true;
+        throw error;
     }
 }
 
-/**
- * Kill process with signal
- */
-export async function killProcess(pid: number, signal: NodeJS.Signals = 'SIGTERM'): Promise<void> {
-    return new Promise<void>((resolvePromise) => {
-        try {
-            if (!isRunning(pid)) {
-                resolvePromise();
-                return;
-            }
-
-            process.kill(pid, signal);
-
-            // Wait for process to die
-            const checkInterval = setInterval(() => {
-                if (!isRunning(pid)) {
-                    clearInterval(checkInterval);
-                    resolvePromise();
-                }
-            }, 100);
-
-            // Timeout after 5 seconds, force kill
-            setTimeout(() => {
-                clearInterval(checkInterval);
-                try {
-                    if (isRunning(pid)) {
-                        process.kill(pid, 'SIGKILL');
-                    }
-                } catch {
-                    // Process already dead
-                }
-                resolvePromise();
-            }, 5000);
-
-        } catch (err: unknown) {
-            if ((err as NodeJS.ErrnoException).code === 'ESRCH') {
-                // Process already dead
-                resolvePromise();
-            } else {
-                // Still resolve — best effort
-                resolvePromise();
-            }
-        }
-    });
+async function waitForExit(pid: number, timeoutMs: number): Promise<boolean> {
+    const deadline = Date.now() + timeoutMs;
+    while (Date.now() < deadline) {
+        if (!isRunning(pid)) return true;
+        await new Promise<void>(resolve => setTimeout(resolve, 100));
+    }
+    return !isRunning(pid);
 }
 
-/**
- * Kill process tree using platform-specific commands
- */
-export async function killProcessTree(pid: number): Promise<void> {
+export async function killProcess(
+    pid: number,
+    signal: NodeJS.Signals = 'SIGTERM',
+    graceMs = 5_000,
+): Promise<void> {
+    assertPid(pid);
+    if (!isRunning(pid)) return;
+
+    try {
+        process.kill(pid, signal);
+    } catch (error: unknown) {
+        if (isMissingProcess(error)) return;
+        throw error;
+    }
+
+    if (await waitForExit(pid, graceMs)) return;
+
+    try {
+        process.kill(pid, 'SIGKILL');
+    } catch (error: unknown) {
+        if (!isMissingProcess(error)) throw error;
+    }
+
+    if (!(await waitForExit(pid, Math.min(graceMs, 2_000)))) {
+        throw new Error(`Process ${pid} did not terminate`);
+    }
+}
+
+async function runTaskkill(pid: number, force: boolean): Promise<void> {
+    const args = force
+        ? ['/F', '/T', '/PID', pid.toString()]
+        : ['/T', '/PID', pid.toString()];
+    try {
+        await execFileAsync('taskkill.exe', args, { windowsHide: true });
+    } catch (error: unknown) {
+        if (isRunning(pid)) throw error;
+    }
+}
+
+export async function killProcessTree(pid: number, graceMs = 2_000): Promise<void> {
+    assertPid(pid);
+    if (!isRunning(pid)) return;
+
     if (process.platform === 'win32') {
-        // Windows: Use taskkill with /T (tree) flag
         try {
-            await execAsync(`taskkill /F /T /PID ${pid}`);
+            await runTaskkill(pid, false);
         } catch {
-            // Ignore errors (process might already be dead)
+            // Some console processes reject graceful taskkill; the verified force pass follows.
+        }
+        if (!(await waitForExit(pid, graceMs))) {
+            await runTaskkill(pid, true);
         }
     } else {
-        // Unix: Kill process group
         try {
             process.kill(-pid, 'SIGTERM');
-
-            // Wait 2s then SIGKILL if still alive
-            await new Promise<void>(resolve => setTimeout(resolve, 2000));
-
-            if (isRunning(pid)) {
-                process.kill(-pid, 'SIGKILL');
+        } catch (error: unknown) {
+            if (isMissingProcess(error)) {
+                await killProcess(pid, 'SIGTERM', graceMs);
+                return;
             }
-        } catch {
-            // Ignore errors
+            throw error;
         }
+
+        if (!(await waitForExit(pid, graceMs))) {
+            try {
+                process.kill(-pid, 'SIGKILL');
+            } catch (error: unknown) {
+                if (!isMissingProcess(error)) throw error;
+            }
+        }
+    }
+
+    if (!(await waitForExit(pid, 2_000))) {
+        throw new Error(`Process tree ${pid} did not terminate`);
     }
 }

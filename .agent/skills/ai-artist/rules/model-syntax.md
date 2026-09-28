@@ -1,11 +1,25 @@
 ---
-name: model-syntax
-description: Model-specific parameters — Midjourney, DALL-E 3, Stable Diffusion, Flux, Imagen/Veo
-title: "Model-Specific Syntax"
-impact: MEDIUM
-impactDescription: "Moderate improvement to quality or maintainability"
-tags: model, syntax
+"title": "Model-Specific Syntax"
+"kind": "reference"
+"impact": "standard"
+"tags":
+  - "model"
+  - "syntax"
+"applies_to":
+  - "cross-platform"
+"last_reviewed": "2026-09-28"
+"sources":
+  - "url": "https://platform.openai.com/docs/guides/image-generation"
+    "title": "Official documentation"
 ---
+
+# Model-Specific Syntax
+
+## Scope
+
+This reference applies only to the platforms declared in metadata and the versions confirmed in the target repository.
+
+## Guidance
 
 # Model-Specific Syntax
 
@@ -110,6 +124,6 @@ purple sky, volumetric lighting, movie quality
 | [domain-code.md](domain-code.md) | Code generation prompt patterns |
 | [../SKILL.md](../SKILL.md) | Supported models quick reference |
 
----
+## Verification
 
-⚡ PikaKit v3.9.223
+Cross-check version-sensitive details with the cited official source and verify the resulting behavior in the target environment.

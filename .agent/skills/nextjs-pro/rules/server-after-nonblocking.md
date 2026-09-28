@@ -1,16 +1,29 @@
 ---
-title: Use after() for Non-Blocking Operations
-impact: MEDIUM
-impactDescription: faster response times
-tags: server, async, logging, analytics, side-effects
+"title": "Use after() for Non-Blocking Operations"
+"kind": "code"
+"impact": "standard"
+"tags":
+  - "server"
+  - "async"
+  - "logging"
+  - "analytics"
+  - "side-effects"
+"applies_to":
+  - "node"
+  - "web"
+"last_reviewed": "2026-09-28"
+"sources":
+  - "url": "https://nextjs.org/docs/app/api-reference/functions/after"
+    "title": "Next.js after API reference"
 ---
+
+# Use after() for Non-Blocking Operations
 
 ## Use after() for Non-Blocking Operations
 
 Use Next.js's `after()` to schedule work that should execute after a response is sent. This prevents logging, analytics, and other side effects from blocking the response.
 
-**Incorrect (blocks response):**
-
+## Incorrect
 ```tsx
 import { logUserAction } from '@/app/utils'
 
@@ -29,8 +42,7 @@ export async function POST(request: Request) {
 }
 ```
 
-**Correct (non-blocking):**
-
+## Correct
 ```tsx
 import { after } from 'next/server'
 import { headers, cookies } from 'next/headers'
@@ -45,7 +57,7 @@ export async function POST(request: Request) {
     const userAgent = (await headers()).get('user-agent') || 'unknown'
     const sessionCookie = (await cookies()).get('session-id')?.value || 'anonymous'
     
-    logUserAction({ sessionCookie, userAgent })
+    await logUserAction({ sessionCookie, userAgent })
   })
   
   return new Response(JSON.stringify({ status: 'success' }), {
@@ -55,7 +67,7 @@ export async function POST(request: Request) {
 }
 ```
 
-The response is sent immediately while logging happens in the background.
+The response is sent without waiting for the callback, while the callback itself awaits and returns its asynchronous work so the runtime can track completion and failures.
 
 **Common use cases:**
 
@@ -67,11 +79,12 @@ The response is sent immediately while logging happens in the background.
 
 **Important notes:**
 
-- `after()` runs even if the response fails or redirects
+- `after()` runs even if rendering throws, or a redirect or not-found response occurs
 - Works in Server Actions, Route Handlers, and Server Components
+- Await or return every Promise created inside the callback; do not start detached work
 
 Reference: [https://nextjs.org/docs/app/api-reference/functions/after](https://nextjs.org/docs/app/api-reference/functions/after)
 
----
+## Verification
 
-⚡ PikaKit v3.9.223
+Run the repository typecheck and the narrowest behavioral tests that exercise this rule. Confirm error paths and observable output, not only successful compilation.

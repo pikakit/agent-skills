@@ -1,11 +1,26 @@
 ---
-name: typography
-description: Distinctive font pairings, fluid typography scale, display vs body rules, variable fonts
-title: "Typography for Distinctive Design"
-impact: MEDIUM
-impactDescription: "Moderate improvement to quality or maintainability"
-tags: typography
+"title": "Typography for Distinctive Design"
+"kind": "reference"
+"impact": "standard"
+"tags":
+  - "typography"
+"applies_to":
+  - "web"
+  - "android"
+  - "ios"
+"last_reviewed": "2026-09-28"
+"sources":
+  - "url": "https://www.w3.org/WAI/standards-guidelines/wcag/"
+    "title": "Official documentation"
 ---
+
+# Typography for Distinctive Design
+
+## Scope
+
+This reference applies only to the platforms declared in metadata and the versions confirmed in the target repository.
+
+## Guidance
 
 # Typography for Distinctive Design
 
@@ -119,6 +134,6 @@ For advanced control:
 | [spatial-composition.md](spatial-composition.md) | Layout for text-heavy pages |
 | [../SKILL.md](../SKILL.md) | Design constraints and anti-slop bans |
 
----
+## Verification
 
-⚡ PikaKit v3.9.223
+Cross-check version-sensitive details with the cited official source and verify the resulting behavior in the target environment.

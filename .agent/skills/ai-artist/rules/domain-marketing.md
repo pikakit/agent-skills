@@ -1,11 +1,25 @@
 ---
-name: domain-marketing
-description: Marketing copy prompt patterns — headlines (AIDA/PAS/4U), product descriptions, email sequences, ad copy, social media
-title: "Marketing Prompt Patterns"
-impact: MEDIUM
-impactDescription: "Moderate improvement to quality or maintainability"
-tags: domain, marketing
+"title": "Marketing Prompt Patterns"
+"kind": "reference"
+"impact": "standard"
+"tags":
+  - "domain"
+  - "marketing"
+"applies_to":
+  - "cross-platform"
+"last_reviewed": "2026-09-28"
+"sources":
+  - "url": "https://platform.openai.com/docs/guides/image-generation"
+    "title": "Official documentation"
 ---
+
+# Marketing Prompt Patterns
+
+## Scope
+
+Apply this guidance only to the declared platforms and repository-confirmed versions.
+
+## Guidance
 
 # Marketing Prompt Patterns
 
@@ -100,6 +114,6 @@ Bad: "These headphones have good noise cancellation features."
 | [image-prompts.md](image-prompts.md) | Visual prompts for marketing assets |
 | [../SKILL.md](../SKILL.md) | LLM prompt pattern and anti-patterns |
 
----
+## Verification
 
-⚡ PikaKit v3.9.223
+Cross-check version-sensitive details with the cited official source and verify the resulting behavior in the target environment.

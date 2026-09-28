@@ -1,15 +1,24 @@
 ---
-name: testing-strategy
-description: Node.js testing with Vitest and node:test — unit/integration/E2E patterns, mocking, and CI integration
-title: "Test the right things: critical paths, edge cases, error handling. Don't test framework code."
-impact: MEDIUM
-impactDescription: "Moderate improvement to quality or maintainability"
-tags: testing, strategy
+title: Node.js Testing Strategy
+kind: reference
+impact: high
+tags: [nodejs, testing, reliability]
+applies_to: [nodejs, backend]
+last_reviewed: "2026-09-28"
+sources:
+  - title: Node.js Test Runner
+    url: https://nodejs.org/api/test.html
 ---
 
 # Testing Strategy
 
 > Test the right things: critical paths, edge cases, error handling. **Don't test framework code.**
+
+## Scope
+
+Apply to unit, integration, contract, and end-to-end tests for Node.js services, including test isolation and CI behavior.
+
+## Guidance
 
 ---
 
@@ -218,7 +227,7 @@ npx vitest run --coverage  # With coverage
 
 # node:test
 node --test src/**/*.test.ts       # Run all tests
-node --test --watch                # Watch mode (Node.js 22+)
+node --test --watch                # Use only on supported Node releases
 node --test --experimental-test-coverage  # Coverage
 ```
 
@@ -252,7 +261,11 @@ node --test --experimental-test-coverage  # Coverage
 
 ---
 
-## 🔗 Related
+## Verification
+
+Run tests from a clean checkout with fixed timeouts and isolated state. Include validation, authorization, concurrency, dependency failure, cancellation, shutdown, and regression cases. Fail CI on test-runner error or missing required suites.
+
+## Related
 
 | File | When to Read |
 |------|-------------|
@@ -263,4 +276,4 @@ node --test --experimental-test-coverage  # Coverage
 
 ---
 
-⚡ PikaKit v3.9.223
+⚡ PikaKit v3.9.224

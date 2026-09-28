@@ -1,15 +1,24 @@
 ---
-name: fastapi-patterns
-description: FastAPI patterns — dependency injection, middleware, error handling, lifespan, and Pydantic integration
-title: "Dependency injection for testability. Pydantic at boundaries. Async by default."
-impact: MEDIUM
-impactDescription: "Moderate improvement to quality or maintainability"
-tags: fastapi, patterns
+title: FastAPI Service Patterns
+kind: reference
+impact: high
+tags: [python, fastapi, backend]
+applies_to: [fastapi, backend]
+last_reviewed: "2026-09-28"
+sources:
+  - title: FastAPI Documentation
+    url: https://fastapi.tiangolo.com/
 ---
 
 # FastAPI Patterns
 
 > Dependency injection for testability. Pydantic at boundaries. Async by default.
+
+## Scope
+
+Apply to FastAPI request validation, dependencies, lifespan, error mapping, async boundaries, security, and tests.
+
+## Guidance
 
 ---
 
@@ -165,7 +174,11 @@ app = FastAPI(lifespan=lifespan)
 
 ---
 
-## 🔗 Related
+## Verification
+
+Test request and response validation, dependency cleanup, authorization, error mapping, blocking-call isolation, lifespan failure, cancellation, and OpenAPI output. Exercise the application through ASGI rather than calling route functions only.
+
+## Related
 
 | File | When to Read |
 |------|-------------|
@@ -176,4 +189,4 @@ app = FastAPI(lifespan=lifespan)
 
 ---
 
-⚡ PikaKit v3.9.223
+⚡ PikaKit v3.9.224

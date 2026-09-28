@@ -1,11 +1,25 @@
 ---
-name: mui-styling
-description: MUI v7 styling — sx prop, Grid size syntax, inline vs separate files, theme access
-title: "MUI v7 Styling"
-impact: MEDIUM
-impactDescription: "Moderate improvement to quality or maintainability"
-tags: mui, styling
+"title": "MUI v7 Styling"
+"kind": "reference"
+"impact": "standard"
+"tags":
+  - "mui"
+  - "styling"
+"applies_to":
+  - "web"
+"last_reviewed": "2026-09-28"
+"sources":
+  - "url": "https://react.dev/reference/react"
+    "title": "Official documentation"
 ---
+
+# MUI v7 Styling
+
+## Scope
+
+Apply this guidance only to the declared platforms and repository-confirmed versions.
+
+## Guidance
 
 # MUI v7 Styling
 
@@ -133,6 +147,6 @@ sx={{
 | [performance.md](performance.md) | Lazy load heavy MUI components |
 | [../SKILL.md](../SKILL.md) | MUI v7 Grid breaking change |
 
----
+## Verification
 
-⚡ PikaKit v3.9.223
+Cross-check version-sensitive details with the cited official source and verify the resulting behavior in the target environment.

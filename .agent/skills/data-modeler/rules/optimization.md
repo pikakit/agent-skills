@@ -1,11 +1,24 @@
 ---
-name: optimization
-description: Query optimization — N+1 detection, EXPLAIN ANALYZE, pagination, caching strategies
+title: Query Optimization
+kind: reference
+impact: high
+tags: [database, queries, performance]
+applies_to: [postgresql, relational-databases]
+last_reviewed: "2026-09-28"
+sources:
+  - title: PostgreSQL Using EXPLAIN
+    url: https://www.postgresql.org/docs/current/using-explain.html
 ---
 
 # Query Optimization
 
 > N+1 problem, EXPLAIN ANALYZE, optimization priorities with real examples.
+
+## Scope
+
+Apply to query counts, execution plans, pagination, caching, contention, and measurement-driven optimization.
+
+## Guidance
 
 ---
 
@@ -148,14 +161,18 @@ SELECT reltuples AS estimate FROM pg_class WHERE relname = 'orders';
 
 ---
 
-## 🔗 Related
+## Verification
+
+Compare query count and execution plans using representative parameters and volume. Measure latency percentiles, database CPU/I/O, lock waits, cache hit behavior, and correctness; retain a rollback when plans regress.
+
+## Related
 
 | File | When to Read |
 |------|-------------|
 | [indexing.md](indexing.md) | Create indexes for slow queries |
 | [orm-selection.md](orm-selection.md) | ORM-level N+1 prevention |
-| [SKILL.md](SKILL.md) | Decision checklist |
+| [SKILL.md](../SKILL.md) | Decision checklist |
 
 ---
 
-⚡ PikaKit v3.9.223
+⚡ PikaKit v3.9.224

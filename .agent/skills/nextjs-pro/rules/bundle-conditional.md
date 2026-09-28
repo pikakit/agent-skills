@@ -1,9 +1,27 @@
 ---
-title: Conditional Module Loading
-impact: HIGH
-impactDescription: loads large data only when needed
-tags: bundle, conditional-loading, lazy-loading
+"title": "Conditional Module Loading"
+"kind": "reference"
+"impact": "high"
+"tags":
+  - "bundle"
+  - "conditional-loading"
+  - "lazy-loading"
+"applies_to":
+  - "node"
+  - "web"
+"last_reviewed": "2026-09-28"
+"sources":
+  - "url": "https://nextjs.org/docs"
+    "title": "Official documentation"
 ---
+
+# Conditional Module Loading
+
+## Scope
+
+Apply this guidance only to the declared platforms and repository-confirmed versions.
+
+## Guidance
 
 ## Conditional Module Loading
 
@@ -30,6 +48,6 @@ function AnimationPlayer({ enabled, setEnabled }: { enabled: boolean; setEnabled
 
 The `typeof window !== 'undefined'` check prevents bundling this module for SSR, optimizing server bundle size and build speed.
 
----
+## Verification
 
-⚡ PikaKit v3.9.223
+Cross-check version-sensitive details with the cited official source and verify the resulting behavior in the target environment.

@@ -1,11 +1,24 @@
 ---
-name: indexing
-description: Index strategy — B-tree, Hash, GIN, GiST, pgvector with SQL examples and composite index rules
+title: Database Indexing
+kind: reference
+impact: high
+tags: [database, indexes, query-plans]
+applies_to: [postgresql, relational-databases]
+last_reviewed: "2026-09-28"
+sources:
+  - title: PostgreSQL Indexes
+    url: https://www.postgresql.org/docs/current/indexes.html
 ---
 
 # Indexing Principles
 
 > When and how to create indexes effectively. Index for known queries, not speculatively.
+
+## Scope
+
+Apply to index choice, column order, selectivity, predicates, expression indexes, write cost, and measured query plans.
+
+## Guidance
 
 ---
 
@@ -153,14 +166,18 @@ LIMIT 20;
 
 ---
 
-## 🔗 Related
+## Verification
+
+Capture before/after plans and representative latency, rows, buffers, write cost, and index size. Verify production-safe creation, monitoring, and rollback; remove unused indexes only after observing the complete workload cycle.
+
+## Related
 
 | File | When to Read |
 |------|-------------|
 | [optimization.md](optimization.md) | EXPLAIN ANALYZE for query tuning |
 | [schema-design.md](schema-design.md) | Schema that indexes support |
-| [SKILL.md](SKILL.md) | Index type quick reference |
+| [SKILL.md](../SKILL.md) | Index type quick reference |
 
 ---
 
-⚡ PikaKit v3.9.223
+⚡ PikaKit v3.9.224

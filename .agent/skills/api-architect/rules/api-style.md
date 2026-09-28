@@ -1,10 +1,13 @@
 ---
-name: api-style
-description: REST vs GraphQL vs tRPC decision tree with code comparisons
 title: "API Style Selection"
-impact: HIGH
-impactDescription: "Important architectural or correctness impact"
-tags: api, style
+kind: decision
+impact: high
+tags: [api, architecture, protocol]
+applies_to: [api-architect]
+last_reviewed: "2026-09-28"
+sources:
+  - title: OpenAPI Specification
+    url: https://spec.openapis.org/oas/latest.html
 ---
 
 # API Style Selection
@@ -110,6 +113,22 @@ export const userRouter = router({
 | [trpc.md](trpc.md) | tRPC for TS monorepos |
 | [SKILL.md](../SKILL.md) | Full decision framework |
 
----
+## Decision
 
-⚡ PikaKit v3.9.223
+Select an API style from consumer diversity, contract needs, query shape, ownership, and compatibility constraints. Keep public interoperability separate from internal implementation convenience.
+
+## Use When
+
+Use REST with an OpenAPI contract for broadly interoperable HTTP APIs. Consider GraphQL for consumer-selected graph projections with mature query controls. Consider tRPC only inside a tightly coupled TypeScript trust and release boundary.
+
+## Avoid When
+
+Avoid defaulting to one style, exposing database shape directly, or mixing styles without explicit ownership and gateway policy.
+
+## Trade-offs
+
+REST favors HTTP interoperability, GraphQL favors query flexibility with added operational controls, and tRPC favors compile-time coupling within TypeScript systems.
+
+## Verification
+
+Prototype the highest-risk consumer flow and verify contract generation, authorization, caching, observability, compatibility, and failure behavior.

@@ -1,16 +1,29 @@
 ---
-title: Use Loop for Min/Max Instead of Sort
-impact: LOW
-impactDescription: O(n) instead of O(n log n)
-tags: javascript, arrays, performance, sorting, algorithms
+"title": "Use Loop for Min/Max Instead of Sort"
+"kind": "code"
+"impact": "standard"
+"tags":
+  - "javascript"
+  - "arrays"
+  - "performance"
+  - "sorting"
+  - "algorithms"
+"applies_to":
+  - "node"
+  - "web"
+"last_reviewed": "2026-09-28"
+"sources":
+  - "url": "https://nextjs.org/docs"
+    "title": "Official documentation"
 ---
+
+# Use Loop for Min/Max Instead of Sort
 
 ## Use Loop for Min/Max Instead of Sort
 
 Finding the smallest or largest element only requires a single pass through the array. Sorting is wasteful and slower.
 
-**Incorrect (O(n log n) - sort to find latest):**
-
+## Incorrect
 ```typescript
 interface Project {
   id: string
@@ -26,8 +39,7 @@ function getLatestProject(projects: Project[]) {
 
 Sorts the entire array just to find the maximum value.
 
-**Incorrect (O(n log n) - sort for oldest and newest):**
-
+## Incorrect
 ```typescript
 function getOldestAndNewest(projects: Project[]) {
   const sorted = [...projects].sort((a, b) => a.updatedAt - b.updatedAt)
@@ -37,8 +49,7 @@ function getOldestAndNewest(projects: Project[]) {
 
 Still sorts unnecessarily when only min/max are needed.
 
-**Correct (O(n) - single loop):**
-
+## Correct
 ```typescript
 function getLatestProject(projects: Project[]) {
   if (projects.length === 0) return null
@@ -81,6 +92,6 @@ const max = Math.max(...numbers)
 
 This works for small arrays, but can be slower or just throw an error for very large arrays due to spread operator limitations. Maximal array length is approximately 124000 in Chrome 143 and 638000 in Safari 18; exact numbers may vary - see [the fiddle](https://jsfiddle.net/qw1jabsx/4/). Use the loop approach for reliability.
 
----
+## Verification
 
-⚡ PikaKit v3.9.223
+Run the repository typecheck and the narrowest behavioral tests that exercise this rule. Confirm error paths and observable output, not only successful compilation.

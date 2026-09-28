@@ -1,4 +1,3 @@
-// @ts-nocheck
 /**
  * Studio Config Loader - Custom Page Patterns
  * =============================================
@@ -9,6 +8,7 @@
 import { readFile } from 'fs/promises';
 import { existsSync } from 'fs';
 import { join } from 'path';
+import type { CustomPattern, PagePattern, StudioConfig } from '../types.ts';
 
 /**
  * Default config file names (in priority order)
@@ -36,8 +36,11 @@ const CONFIG_FILES = [
  * @param {string} projectDir - Project directory to search for config (default: cwd)
  * @returns {Promise<StudioConfig|null>} Parsed config or null if not found
  */
-export async function loadConfig(configPath = null, projectDir = process.cwd()) {
-    let targetPath = configPath;
+export async function loadConfig(
+    configPath: string | null = null,
+    projectDir = process.cwd()
+): Promise<StudioConfig | null> {
+    let targetPath: string | null = configPath;
     
     // If no direct path, search for config files
     if (!targetPath) {
@@ -57,14 +60,15 @@ export async function loadConfig(configPath = null, projectDir = process.cwd()) 
     
     try {
         const content = await readFile(targetPath, 'utf-8');
-        const config = JSON.parse(content);
+        const config: unknown = JSON.parse(content);
         
         // Validate config
         const validated = validateConfig(config);
         
         return validated;
-    } catch (error) {
-        console.error(`Error loading studio config from ${targetPath}:`, error.message);
+    } catch (error: unknown) {
+        const message = error instanceof Error ? error.message : String(error);
+        console.error(`Error loading studio config from ${targetPath}:`, message);
         return null;
     }
 }
@@ -75,29 +79,30 @@ export async function loadConfig(configPath = null, projectDir = process.cwd()) 
  * @returns {StudioConfig} Validated config
  * @throws {Error} If config is invalid
  */
-export function validateConfig(config) {
+export function validateConfig(config: unknown): StudioConfig {
     if (!config || typeof config !== 'object') {
         throw new Error('Config must be an object');
     }
     
-    const validated = {
+    const source = config as Record<string, unknown>;
+    const validated: StudioConfig = {
         customPatterns: []
     };
     
     // Validate customPatterns
-    if (config.customPatterns) {
-        if (!Array.isArray(config.customPatterns)) {
+    if (source.customPatterns) {
+        if (!Array.isArray(source.customPatterns)) {
             throw new Error('customPatterns must be an array');
         }
         
-        for (let i = 0; i < config.customPatterns.length; i++) {
-            const pattern = config.customPatterns[i];
+        for (let i = 0; i < source.customPatterns.length; i++) {
+            const pattern = source.customPatterns[i] as Record<string, unknown> | null;
             
             if (!pattern || typeof pattern !== 'object') {
                 throw new Error(`Pattern at index ${i} must be an object`);
             }
             
-            if (!Array.isArray(pattern.keywords) || pattern.keywords.length === 0) {
+            if (!pattern || !Array.isArray(pattern.keywords) || pattern.keywords.length === 0) {
                 throw new Error(`Pattern at index ${i} must have non-empty 'keywords' array`);
             }
             
@@ -106,8 +111,8 @@ export function validateConfig(config) {
             }
             
             // Normalize keywords to lowercase
-            validated.customPatterns.push({
-                keywords: pattern.keywords.map(k => String(k).toLowerCase().trim()),
+            validated.customPatterns?.push({
+                keywords: pattern.keywords.map((keyword: unknown) => String(keyword).toLowerCase().trim()),
                 type: pattern.type.trim()
             });
         }
@@ -123,7 +128,10 @@ export function validateConfig(config) {
  * @param {CustomPattern[]} customPatterns - User-defined patterns
  * @returns {Array} Merged patterns with custom first
  */
-export function mergePatterns(defaultPatterns, customPatterns) {
+export function mergePatterns(
+    defaultPatterns: PagePattern[],
+    customPatterns: CustomPattern[]
+): PagePattern[] {
     if (!customPatterns || customPatterns.length === 0) {
         return defaultPatterns;
     }
@@ -142,7 +150,7 @@ export function mergePatterns(defaultPatterns, customPatterns) {
  * Create example config for users
  * @returns {string} JSON string of example config
  */
-export function getExampleConfig() {
+export function getExampleConfig(): string {
     const example = {
         $schema: 'https://pikakit.dev/schemas/studio-config.json',
         customPatterns: [

@@ -1,6 +1,13 @@
 ---
-name: examples
-description: Architecture examples — MVP, SaaS, Enterprise with decisions, trade-offs, migration paths, and component diagrams
+title: Architecture Examples
+kind: reference
+impact: standard
+tags: [architecture, examples, evolution]
+applies_to: [system-design]
+last_reviewed: "2026-09-28"
+sources:
+  - title: AWS Well-Architected Framework
+    url: https://docs.aws.amazon.com/wellarchitected/latest/framework/welcome.html
 ---
 
 # Architecture Examples
@@ -175,6 +182,14 @@ graph TB
 | [pattern-selection.md](pattern-selection.md) | Choose patterns |
 | [trade-off-analysis.md](trade-off-analysis.md) | Document decisions |
 
----
+## Scope
 
-⚡ PikaKit v3.9.223
+Use these examples as comparison prompts for small products, growing services, and regulated or high-scale systems. They are not reference architectures or capacity guarantees.
+
+## Guidance
+
+Replace every example assumption with project evidence. Preserve the useful pattern of recording context, options, decision, trade-offs, evolution trigger, rollback, and observability. Do not copy vendor, authentication, database, or topology choices without validating requirements.
+
+## Verification
+
+For any adapted example, trace each component to a current requirement, recalculate capacity and recovery assumptions, threat-model trust boundaries, and record differences in an ADR.

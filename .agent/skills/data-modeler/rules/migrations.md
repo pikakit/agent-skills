@@ -1,11 +1,24 @@
 ---
-name: migrations
-description: Safe migration strategy — zero-downtime patterns, Prisma + Drizzle commands, rollback plans
+title: Compatible Database Migrations
+kind: reference
+impact: critical
+tags: [database, migrations, rollback]
+applies_to: [postgresql, relational-databases]
+last_reviewed: "2026-09-28"
+sources:
+  - title: PostgreSQL ALTER TABLE
+    url: https://www.postgresql.org/docs/current/sql-altertable.html
 ---
 
 # Migration Principles
 
 > Safe migration strategy for zero-downtime schema changes.
+
+## Scope
+
+Apply to expand/backfill/switch/contract schema changes, lock risk, application compatibility, data reconciliation, rollback, and forward-fix decisions.
+
+## Guidance
 
 ---
 
@@ -162,15 +175,19 @@ ALTER TABLE users DROP COLUMN full_name;
 
 ---
 
-## 🔗 Related
+## Verification
+
+Rehearse on production-shaped data, measure locks and replication lag, test old/new application compatibility, reconcile every backfilled row, and exercise rollback or the approved forward-fix before production.
+
+## Related
 
 | File | When to Read |
 |------|-------------|
 | [schema-design.md](schema-design.md) | Schema before migration |
 | [indexing.md](indexing.md) | Index migrations |
 | [database-selection.md](database-selection.md) | Serverless DB features |
-| [SKILL.md](SKILL.md) | Decision checklist |
+| [SKILL.md](../SKILL.md) | Decision checklist |
 
 ---
 
-⚡ PikaKit v3.9.223
+⚡ PikaKit v3.9.224

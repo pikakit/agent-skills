@@ -1,237 +1,186 @@
-// @ts-nocheck
-/**
- * Compile AGENTS.md — PikaKit
- * Compiles all rule files in a skill's rules/ directory into a single AGENTS.md.
- *
- * Usage:
- *   npx tsx compile-agents.ts                    # Compile ALL skills missing AGENTS.md
- *   npx tsx compile-agents.ts ai-artist          # Compile specific skill
- *   npx tsx compile-agents.ts --force             # Recompile ALL skills (overwrite existing)
- */
+#!/usr/bin/env node
 
-import * as fs from 'node:fs';
-import * as path from 'node:path';
+import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
+import { basename, dirname, join, relative, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { discoverRuleFiles, discoverSkillDocuments, normalizeNewlines, parseMarkdown, slug } from './utils/skill-docs.ts';
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-const SKILLS_DIR = path.resolve(__dirname, '../skills');
+const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '../..');
+const SKILLS = join(ROOT, '.agent', 'skills');
+const COMPACT_LIMIT = 32 * 1024;
 
-const args = process.argv.slice(2);
-const force = args.includes('--force');
-const targetSkill = args.find(a => !a.startsWith('--'));
+interface RuleRecord {
+  anchor: string;
+  body: string;
+  file: string;
+  impact: string;
+  kind: string;
+  summary: string;
+  title: string;
+}
 
-function getSkillsToCompile(): string[] {
-  if (targetSkill) return [targetSkill];
+export interface CompiledArtifacts {
+  compact: string;
+  compactPath: string;
+  full: string;
+  fullPath: string;
+  ruleCount: number;
+  skillId: string;
+}
 
-  const dirs = fs.readdirSync(SKILLS_DIR, { withFileTypes: true })
-    .filter(d => d.isDirectory())
-    .map(d => d.name);
+function stringField(record: Record<string, unknown>, key: string, fallback: string): string {
+  return typeof record[key] === 'string' && record[key] ? String(record[key]) : fallback;
+}
 
-  return dirs.filter(skill => {
-    const rulesDir = path.join(SKILLS_DIR, skill, 'rules');
-    const agentsMd = path.join(SKILLS_DIR, skill, 'AGENTS.md');
-    const hasRules = fs.existsSync(rulesDir);
-    const hasAgents = fs.existsSync(agentsMd);
+function firstGuidanceSentence(body: string, title: string): string {
+  const candidate = body.split('\n')
+    .map(line => line.trim())
+    .find(line => line && !line.startsWith('#') && !line.startsWith('```') && !line.startsWith('---'));
+  return (candidate ?? title).replace(/^>\s*/, '').replace(/\|/g, '\\|').slice(0, 200);
+}
 
-    if (!hasRules) return false;
-
-    // Count non-meta rule files
-    const ruleFiles = fs.readdirSync(rulesDir)
-      .filter(f => f.endsWith('.md') && !f.startsWith('_'));
-
-    if (ruleFiles.length === 0) return false;
-
-    return force || !hasAgents;
+function readRules(skillDirectory: string): RuleRecord[] {
+  return discoverRuleFiles(skillDirectory).map(file => {
+    const parsed = parseMarkdown(readFileSync(file, 'utf8'), file);
+    const fileStem = basename(file, '.md');
+    const title = stringField(parsed.frontmatter, 'title', fileStem);
+    return {
+      anchor: `rule-${slug(fileStem)}`,
+      body: parsed.body.trim(),
+      file: basename(file),
+      impact: stringField(parsed.frontmatter, 'impact', 'standard'),
+      kind: stringField(parsed.frontmatter, 'kind', 'reference'),
+      summary: firstGuidanceSentence(parsed.body, title),
+      title,
+    };
   });
 }
 
-function readSections(skillDir: string): Map<string, { impact: string; description: string }> {
-  const sectionsPath = path.join(skillDir, 'rules', '_sections.md');
-  const sections = new Map<string, { impact: string; description: string }>();
-
-  if (!fs.existsSync(sectionsPath)) return sections;
-
-  const content = fs.readFileSync(sectionsPath, 'utf-8');
-  const sectionRegex = /##\s+\d+\.\s+(.+?)\s+\((\w[\w-]*)\)\s*\n+\*\*Impact:\*\*\s*(\w+)\s*\n\*\*Description:\*\*\s*(.+)/g;
-  let match;
-
-  while ((match = sectionRegex.exec(content)) !== null) {
-    sections.set(match[2], {
-      impact: match[3],
-      description: match[4].trim()
-    });
-  }
-
-  return sections;
+function titleCase(value: string): string {
+  return value.split(/[-/]/).map(part => part.charAt(0).toUpperCase() + part.slice(1)).join(' ');
 }
 
-function readSkillFrontmatter(skillDir: string): { name: string; description: string; version: string } {
-  const skillMd = path.join(skillDir, 'SKILL.md');
-  const content = fs.readFileSync(skillMd, 'utf-8');
-  const fmMatch = content.match(/^---\r?\n([\s\S]*?)\r?\n---/);
+export function compileSkill(skillDirectory: string, skillsDirectory = SKILLS): CompiledArtifacts {
+  const descriptorPath = join(skillDirectory, 'SKILL.md');
+  const descriptor = parseMarkdown(readFileSync(descriptorPath, 'utf8'), descriptorPath);
+  const metadata = typeof descriptor.frontmatter.metadata === 'object' && descriptor.frontmatter.metadata !== null
+    ? descriptor.frontmatter.metadata as Record<string, unknown>
+    : {};
+  const skillId = stringField(metadata, 'id', relative(skillsDirectory, skillDirectory).replace(/\\/g, '/'));
+  const name = stringField(descriptor.frontmatter, 'name', skillId);
+  const version = stringField(metadata, 'version', '0.0.0');
+  const rules = readRules(skillDirectory);
+  if (rules.length === 0) throw new Error(`${skillId}: no rule files found`);
 
-  let name = path.basename(skillDir);
-  let description = '';
-  let version = '3.9.121';
+  const compactLines = [
+    `# ${titleCase(name)} Agent Rules`,
+    '',
+    `> Generated from ${rules.length} source rules for ${skillId} v${version}. Do not edit directly.`,
+    '',
+    '## Mandatory Rules',
+    '',
+    '| Impact | Kind | Rule | Requirement |',
+    '|---|---|---|---|',
+    ...rules.map(rule => `| ${rule.impact} | ${rule.kind} | [${rule.title}](references/AGENTS.full.md#${rule.anchor}) | ${rule.summary} |`),
+    '',
+    '## Use',
+    '',
+    'Apply every relevant rule. Open the linked full rule before implementation, review, or release decisions.',
+    '',
+  ];
 
-  if (fmMatch) {
-    const fm = fmMatch[1];
-    const nameMatch = fm.match(/name:\s*(.+)/);
-    if (nameMatch) name = nameMatch[1].trim();
+  const fullLines = [
+    `# ${titleCase(name)} Full Agent Rules`,
+    '',
+    `> Deterministic compilation of ${rules.length} source rules for ${skillId} v${version}. Do not edit directly.`,
+    '',
+    '## Rule Index',
+    '',
+    ...rules.map(rule => `- [${rule.title}](#${rule.anchor}) (${rule.impact}, ${rule.kind}, source: \`rules/${rule.file}\`)`),
+    '',
+    ...rules.flatMap(rule => [
+      `<a id="${rule.anchor}"></a>`,
+      '',
+      `## ${rule.title}`,
+      '',
+      `**Impact:** ${rule.impact}  `,
+      `**Kind:** ${rule.kind}  `,
+      `**Source:** \`rules/${rule.file}\``,
+      '',
+      rule.body,
+      '',
+    ]),
+  ];
 
-    const versionMatch = fm.match(/version:\s*['"]?([^'"]+)['"]?/);
-    if (versionMatch) version = versionMatch[1].trim();
-
-    const descMatch = fm.match(/description:\s*>-\s*\r?\n((?:\s+.*\r?\n)*)/);
-    if (descMatch) {
-      description = descMatch[1].replace(/^\s+/gm, '').trim();
-    } else {
-      const singleDesc = fm.match(/description:\s*(.+)/);
-      if (singleDesc) description = singleDesc[1].trim();
-    }
-  }
-
-  return { name, description, version };
+  const compact = `${compactLines.join('\n').replace(/[ \t]+$/gm, '').trimEnd()}\n`;
+  if (Buffer.byteLength(compact, 'utf8') > COMPACT_LIMIT) throw new Error(`${skillId}: compact AGENTS.md exceeds ${COMPACT_LIMIT} bytes`);
+  const full = `${fullLines.join('\n').replace(/[ \t]+$/gm, '').trimEnd()}\n`;
+  return {
+    compact,
+    compactPath: join(skillDirectory, 'AGENTS.md'),
+    full,
+    fullPath: join(skillDirectory, 'references', 'AGENTS.full.md'),
+    ruleCount: rules.length,
+    skillId,
+  };
 }
 
-function compileAgentsMd(skill: string): void {
-  const skillDir = path.join(SKILLS_DIR, skill);
-  const rulesDir = path.join(skillDir, 'rules');
+interface CliOptions { check: boolean; force: boolean; target?: string }
 
-  const { name, description, version } = readSkillFrontmatter(skillDir);
-  const sections = readSections(skillDir);
-
-  // Read all rule files (excluding _ prefixed)
-  const ruleFiles = fs.readdirSync(rulesDir)
-    .filter(f => f.endsWith('.md') && !f.startsWith('_'))
-    .sort();
-
-  // Group rules by prefix
-  const ruleGroups = new Map<string, { filename: string; content: string }[]>();
-
-  for (const file of ruleFiles) {
-    const content = fs.readFileSync(path.join(rulesDir, file), 'utf-8');
-    // Strip frontmatter from rule content
-    const bodyMatch = content.match(/^---\r?\n[\s\S]*?\r?\n---\r?\n([\s\S]*)$/);
-    const body = bodyMatch ? bodyMatch[1].trim() : content.trim();
-
-    // Determine prefix (group key)
-    const prefix = file.replace(/\.md$/, '').replace(/-[^-]+$/, '') || 'general';
-
-    if (!ruleGroups.has(prefix)) {
-      ruleGroups.set(prefix, []);
-    }
-    ruleGroups.get(prefix)!.push({ filename: file, content: body });
+function parseArgs(args: string[]): CliOptions {
+  const options: CliOptions = { check: false, force: false };
+  for (const argument of args) {
+    if (argument === '--check') options.check = true;
+    else if (argument === '--force') options.force = true;
+    else if (argument.startsWith('--')) throw new Error(`Unknown option: ${argument}`);
+    else if (options.target) throw new Error('Only one skill target is supported');
+    else options.target = argument.replace(/\\/g, '/');
   }
-
-  // Build display name
-  const displayName = name.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
-
-  // Count total rules
-  const totalRules = ruleFiles.length;
-  const totalCategories = ruleGroups.size;
-
-  // Build AGENTS.md
-  const lines: string[] = [];
-
-  lines.push(`# ${displayName}`);
-  lines.push('');
-  lines.push(`**Version ${version}**`);
-  lines.push('Engineering');
-  lines.push(`${new Date().toLocaleString('en-US', { month: 'long', year: 'numeric' })}`);
-  lines.push('');
-  lines.push('> **Note:**');
-  lines.push(`> This document is for agents and LLMs to follow when working on ${name} tasks.`);
-  lines.push('> Optimized for automation and consistency by AI-assisted workflows.');
-  lines.push('');
-  lines.push('---');
-  lines.push('');
-  lines.push('## Abstract');
-  lines.push('');
-  lines.push(`This document compiles ${totalRules} rules across ${totalCategories} categories for the ${displayName} skill. ${description.split('.')[0]}.`);
-  lines.push('');
-  lines.push('---');
-  lines.push('');
-
-  // Table of Contents
-  lines.push('## Table of Contents');
-  lines.push('');
-  let sectionNum = 0;
-  for (const [prefix, rules] of ruleGroups) {
-    sectionNum++;
-    const sectionInfo = sections.get(prefix);
-    const impact = sectionInfo?.impact || 'MEDIUM';
-    const sectionTitle = prefix.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
-    lines.push(`${sectionNum}. [${sectionTitle}](#${sectionNum}-${prefix}) — **${impact}**`);
-    let ruleNum = 0;
-    for (const rule of rules) {
-      ruleNum++;
-      const ruleTitle = rule.filename.replace('.md', '').split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
-      lines.push(`   - ${sectionNum}.${ruleNum} [${ruleTitle}](#${sectionNum}${ruleNum}-${rule.filename.replace('.md', '')})`);
-    }
-  }
-  lines.push('');
-  lines.push('---');
-  lines.push('');
-
-  // Content sections
-  sectionNum = 0;
-  for (const [prefix, rules] of ruleGroups) {
-    sectionNum++;
-    const sectionInfo = sections.get(prefix);
-    const impact = sectionInfo?.impact || 'MEDIUM';
-    const sectionTitle = prefix.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
-
-    lines.push(`## ${sectionNum}. ${sectionTitle}`);
-    lines.push('');
-    lines.push(`**Impact: ${impact}**`);
-    if (sectionInfo?.description) {
-      lines.push('');
-      lines.push(sectionInfo.description);
-    }
-    lines.push('');
-
-    let ruleNum = 0;
-    for (const rule of rules) {
-      ruleNum++;
-      lines.push('');
-      // The rule content already has its own headers, just include it
-      lines.push(rule.content);
-      lines.push('');
-    }
-
-    lines.push('---');
-    lines.push('');
-  }
-
-  lines.push(`⚡ PikaKit v${version}`);
-  lines.push('');
-
-  const output = lines.join('\n');
-  const outputPath = path.join(skillDir, 'AGENTS.md');
-  fs.writeFileSync(outputPath, output, 'utf-8');
-  console.log(`✅ Compiled ${skill}/AGENTS.md (${totalRules} rules, ${totalCategories} categories, ${output.length} bytes)`);
+  return options;
 }
 
-// Execute
-const skills = getSkillsToCompile();
-
-if (skills.length === 0) {
-  console.log('\n✨ All skills already have AGENTS.md!');
-  process.exit(0);
+function sameContent(path: string, expected: string): boolean {
+  return existsSync(path) && normalizeNewlines(readFileSync(path, 'utf8')) === expected;
 }
 
-console.log(`\n🔧 Compiling AGENTS.md for ${skills.length} skills...\n`);
-
-let compiled = 0;
-for (const skill of skills) {
+export function runCompiler(args = process.argv.slice(2), skillsDirectory = SKILLS): 0 | 1 | 2 {
+  let options: CliOptions;
   try {
-    compileAgentsMd(skill);
-    compiled++;
-  } catch (e: any) {
-    console.error(`❌ Failed to compile ${skill}: ${e.message}`);
+    options = parseArgs(args);
+  } catch (error: unknown) {
+    console.error(error instanceof Error ? error.message : String(error));
+    return 2;
+  }
+  try {
+    const descriptors = discoverSkillDocuments(skillsDirectory)
+      .filter(skill => discoverRuleFiles(skill.directory).length > 0)
+      .filter(skill => !options.target || skill.id === options.target);
+    if (options.target && descriptors.length === 0) throw new Error(`Unknown or rule-less skill: ${options.target}`);
+    if (descriptors.length === 0) throw new Error('No rule-based skills found');
+    let stale = 0;
+    for (const descriptor of descriptors) {
+      const artifact = compileSkill(descriptor.directory, skillsDirectory);
+      if (options.check) {
+        const compactOk = sameContent(artifact.compactPath, artifact.compact);
+        const fullOk = sameContent(artifact.fullPath, artifact.full);
+        if (!compactOk || !fullOk) {
+          stale += 1;
+          console.error(`${artifact.skillId}: stale ${[!compactOk && 'AGENTS.md', !fullOk && 'references/AGENTS.full.md'].filter(Boolean).join(' and ')}`);
+        }
+      } else {
+        mkdirSync(dirname(artifact.fullPath), { recursive: true });
+        writeFileSync(artifact.compactPath, artifact.compact, 'utf8');
+        writeFileSync(artifact.fullPath, artifact.full, 'utf8');
+        console.log(`${artifact.skillId}: compiled ${artifact.ruleCount} rules`);
+      }
+    }
+    console.log(`${options.check ? 'Checked' : 'Compiled'} ${descriptors.length} skill artifacts.`);
+    return stale === 0 ? 0 : 1;
+  } catch (error: unknown) {
+    console.error(`Compile error: ${error instanceof Error ? error.message : String(error)}`);
+    return 2;
   }
 }
 
-console.log(`\n🎉 Done! Compiled ${compiled}/${skills.length} AGENTS.md files.`);
+const isMain = process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url);
+if (isMain) process.exitCode = runCompiler();

@@ -1,15 +1,26 @@
 ---
-name: rbac-abac
-description: Role-Based and Attribute-Based access control — Prisma schema, middleware, ABAC policy engine
-title: "RBAC & ABAC - Access Control"
-impact: MEDIUM
-impactDescription: "Moderate improvement to quality or maintainability"
-tags: rbac, abac
+title: RBAC and ABAC Authorization
+kind: reference
+impact: critical
+tags: [rbac, abac, authorization]
+applies_to: [backend, api, multi-tenant]
+last_reviewed: "2026-09-28"
+sources:
+  - title: NIST Role Based Access Control Project
+    url: https://csrc.nist.gov/projects/role-based-access-control
+  - title: NIST SP 800-162 Attribute Based Access Control
+    url: https://csrc.nist.gov/pubs/sp/800/162/upd2/final
 ---
 
 # RBAC & ABAC — Access Control
 
 > Role-Based and Attribute-Based authorization patterns.
+
+## Scope
+
+Apply to roles, attributes, ownership, tenant isolation, policy evaluation, default denial, and authorization auditability.
+
+## Guidance
 
 ---
 
@@ -193,7 +204,11 @@ function evaluatePolicy(ctx: PolicyContext): boolean {
 
 ---
 
-## 🔗 Related
+## Verification
+
+Build a deny-first policy matrix covering role, ownership, tenant, resource state, and sensitive action. Test cross-tenant identifiers, missing attributes, stale roles, privilege downgrade, policy-store outage, and audit completeness.
+
+## Related
 
 | File | When to Read |
 |------|-------------|
@@ -203,4 +218,4 @@ function evaluatePolicy(ctx: PolicyContext): boolean {
 
 ---
 
-⚡ PikaKit v3.9.223
+⚡ PikaKit v3.9.224

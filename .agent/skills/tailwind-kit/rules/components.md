@@ -1,11 +1,24 @@
 ---
-name: components
-description: Tailwind CSS v4 component patterns — cva variants, cn() utility, Button/Card/Input extraction, class ordering, TypeScript props
-title: "Component Extraction"
-impact: MEDIUM
-impactDescription: "Moderate improvement to quality or maintainability"
-tags: components
+"title": "Component Extraction"
+"kind": "reference"
+"impact": "standard"
+"tags":
+  - "components"
+"applies_to":
+  - "web"
+"last_reviewed": "2026-09-28"
+"sources":
+  - "url": "https://tailwindcss.com/docs"
+    "title": "Official documentation"
 ---
+
+# Component Extraction
+
+## Scope
+
+Apply this guidance only to the declared platforms and repository-confirmed versions.
+
+## Guidance
 
 # Component Extraction
 
@@ -227,6 +240,6 @@ export function Input({ label, error, className, id, ...props }: InputProps) {
 | [v4-config.md](v4-config.md) | @theme setup |
 | [SKILL.md](../SKILL.md) | Patterns overview |
 
----
+## Verification
 
-⚡ PikaKit v3.9.223
+Cross-check version-sensitive details with the cited official source and verify the resulting behavior in the target environment.

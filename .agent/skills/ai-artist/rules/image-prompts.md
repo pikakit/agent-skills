@@ -1,11 +1,25 @@
 ---
-name: image-prompts
-description: Image generation techniques — subject types, style keywords, composition, quality boosters, negative prompts, weighted tokens, recipes
-title: "Image Generation Prompts"
-impact: MEDIUM
-impactDescription: "Moderate improvement to quality or maintainability"
-tags: image, prompts
+"title": "Image Generation Prompts"
+"kind": "reference"
+"impact": "standard"
+"tags":
+  - "image"
+  - "prompts"
+"applies_to":
+  - "cross-platform"
+"last_reviewed": "2026-09-28"
+"sources":
+  - "url": "https://platform.openai.com/docs/guides/image-generation"
+    "title": "Official documentation"
 ---
+
+# Image Generation Prompts
+
+## Scope
+
+Apply this guidance only to the declared platforms and repository-confirmed versions.
+
+## Guidance
 
 # Image Generation Prompts
 
@@ -190,6 +204,6 @@ data visualization art, 8k render --ar 16:9 --style raw
 | [domain-marketing.md](domain-marketing.md) | Marketing visual prompts |
 | [../SKILL.md](../SKILL.md) | Image prompt pattern and anti-patterns |
 
----
+## Verification
 
-⚡ PikaKit v3.9.223
+Cross-check version-sensitive details with the cited official source and verify the resulting behavior in the target environment.

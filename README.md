@@ -7,11 +7,11 @@
 
 ### The AI Operating System for Production-Grade Development
 
-Build production-grade features 3–5x faster — with enforced architecture, autonomous workflows, and a self-learning AI that never repeats mistakes.
+Build production-grade features with enforced architecture, validated workflows, and reusable engineering knowledge.
 
 PikaKit transforms any AI into a Senior Engineer — not by prompting harder, but by controlling how it executes, learns, and improves over time.
 
-[![npm](https://img.shields.io/badge/npm-v3.9.223-7c3aed?style=for-the-badge&logo=npm&logoColor=white&labelColor=18181b)](https://www.npmjs.com/package/pikakit)
+[![npm](https://img.shields.io/badge/npm-v3.9.224-7c3aed?style=for-the-badge&logo=npm&logoColor=white&labelColor=18181b)](https://www.npmjs.com/package/pikakit)
 [![Skills](https://img.shields.io/badge/52_skills-06b6d4?style=for-the-badge&labelColor=18181b)](https://github.com/pikakit/agent-skills)
 [![Workflows](https://img.shields.io/badge/19_workflows-10b981?style=for-the-badge&labelColor=18181b)](https://github.com/pikakit/agent-skills)
 [![TypeScript](https://img.shields.io/badge/typescript_cli_·_engine-3178c6?style=for-the-badge&logo=typescript&logoColor=white&labelColor=18181b)](https://github.com/pikakit/agent-skills)
@@ -68,7 +68,9 @@ You → AI → PikaKit → Production Code
       Learns from mistakes
 ```
 
-### FAANG-Grade Pipeline
+### Production-Grade Pipeline
+
+“Production-grade” describes the engineering rubric in [`.agent/standards/PRODUCTION_RUBRIC.md`](.agent/standards/PRODUCTION_RUBRIC.md); it does not claim affiliation with any company.
 
 ```text
 /think → /plan → /build → /validate → /launch → /monitor
@@ -86,8 +88,8 @@ You → AI → PikaKit → Production Code
 
 ## 🧱 The 5 Pillars
 
-### 1️⃣ Executable Skills
-**52 battle-tested engineering capabilities** injected directly into the AI runtime — enforcing architecture, security, and performance constraints.
+### 1️⃣ Versioned Skills
+**52 public skills and 13 nested sub-skills** provide routed engineering knowledge. A skill claims executable capability only when a script and test implement it.
 
 *Top Skills include:*
 - ⚛️ **`react-pro`**: Next.js App Router & React expert.
@@ -119,6 +121,8 @@ Every failure becomes permanent:
 | `dynamic-skill-detection.md` | Phase 0 domain signal → skill mapping (25 domains) |
 
 > Zero duplication — each fact lives in exactly one file. Others cross-reference.
+
+Each rule-based skill exposes a compact generated `AGENTS.md` manifest. Full deterministic content is versioned in `references/AGENTS.full.md`; `npm run validate` rejects stale artifacts, invalid schemas, stale reviews, unapproved sources, and routing regressions.
 
 ### 5️⃣ IDE Execution Layer
 A PikaKit Engine extension that gives AI real-world control:
@@ -209,7 +213,7 @@ npx pikakit
 
 <div align="center">
 
-**PikaKit v3.9.223** · 52 Skills · 19 Workflows · 4 Rules · Phase 0 Dynamic Detection
+**PikaKit v3.9.224** · 52 Skills · 19 Workflows · 5 Rules · Phase 0 Dynamic Detection
 
 [⭐ Star on GitHub](https://github.com/pikakit/agent-skills) · [Install via npm](https://www.npmjs.com/package/pikakit) · [pikakit.com](https://pikakit.com)
 

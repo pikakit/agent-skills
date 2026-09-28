@@ -1,10 +1,13 @@
 ---
-name: rate-limiting
-description: Rate limiting strategies — token bucket, sliding window, Redis implementation, recommended limits
 title: "Rate Limiting Principles"
-impact: MEDIUM
-impactDescription: "Moderate improvement to quality or maintainability"
-tags: rate, limiting
+kind: decision
+impact: high
+tags: [api, rate-limiting, resilience]
+applies_to: [api-architect]
+last_reviewed: "2026-09-28"
+sources:
+  - title: OWASP Unrestricted Resource Consumption
+    url: https://owasp.org/API-Security/editions/2023/en/0xa4-unrestricted-resource-consumption/
 ---
 
 # Rate Limiting Principles
@@ -71,6 +74,22 @@ if (current > maxRequests) {
 | [auth.md](auth.md) | Auth endpoint limits |
 | [SKILL.md](../SKILL.md) | Full decision framework |
 
----
+## Decision
 
-⚡ PikaKit v3.9.223
+Select a limiter from the protected resource, abuse model, fairness unit, burst tolerance, and distributed consistency needs. Derive limits from capacity tests and product policy, not universal numbers.
+
+## Use When
+
+Apply limits to authentication, expensive queries, third-party calls, write bursts, and tenant-scoped resources. Combine request counts with concurrency, payload, and cost limits where needed.
+
+## Avoid When
+
+Avoid one global counter, client-supplied identity keys, silent drops, or in-memory-only enforcement across an independently scaled fleet.
+
+## Trade-offs
+
+Stricter distributed accuracy costs latency and availability; approximate local enforcement is faster but permits bounded overshoot.
+
+## Verification
+
+Load-test steady, burst, distributed, retry, and failover behavior. Verify `429` responses and retry metadata without leaking account existence.

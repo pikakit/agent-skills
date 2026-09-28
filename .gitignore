@@ -173,11 +173,4 @@ agent.cmd
 audit_refs.ps1
 audit_result.txt
 
-# ============================================================
-# Development-only (not needed for end users)
-# ============================================================
-package-lock.json
-tsconfig.json
-.agent/global.d.ts
- 
 docs/

@@ -1,11 +1,25 @@
 ---
-name: verification-scripts
-description: Agent-to-script mapping for running validation scripts — output protocol, rules
-title: "Verification Scripts Reference"
-impact: MEDIUM
-impactDescription: "Moderate improvement to quality or maintainability"
-tags: verification, scripts
+"title": "Verification Scripts Reference"
+"kind": "process"
+"impact": "standard"
+"tags":
+  - "verification"
+  - "scripts"
+"applies_to":
+  - "cross-platform"
+"last_reviewed": "2026-09-28"
+"sources":
+  - "url": "https://google.github.io/eng-practices/review/developer/"
+    "title": "Official documentation"
 ---
+
+# Verification Scripts Reference
+
+## Preconditions
+
+Record the current behavior, target environment, acceptance criteria, and a recoverable baseline before starting.
+
+## Procedure
 
 # Verification Scripts Reference
 
@@ -13,23 +27,24 @@ tags: verification, scripts
 
 ---
 
-## Agent → Script Mapping
+## Built-in Validation
 
-| Agent                     | Script          | Command                                                                     |
-| ------------------------- | --------------- | --------------------------------------------------------------------------- |
-| **frontend-specialist**   | UX Audit        | `node .agent/skills/design-system/scripts/ux_audit.ts .`                    |
-| **frontend-specialist**   | A11y Check      | `node .agent/skills/design-system/scripts/accessibility_checker.ts .`       |
-| **backend-specialist**    | API Validator   | `node .agent/skills/api-architect/scripts/api_validator.ts .`               |
-| **mobile-developer**      | Mobile Audit    | `node .agent/skills/mobile-design/scripts/mobile_audit.ts .`               |
-| **database-architect**    | Schema Validate | `node .agent/skills/data-modeler/scripts/schema_validator.ts .`            |
-| **security-auditor**      | Security Scan   | `node .agent/skills/security-scanner/scripts/security_scan.ts .`           |
-| **seo-specialist**        | SEO Check       | `node .agent/skills/seo-optimizer/scripts/seo_checker.ts .`                |
-| **seo-specialist**        | GEO Check       | `node .agent/skills/seo-optimizer/scripts/geo_checker.ts .`                |
-| **performance-optimizer** | Lighthouse      | `node .agent/skills/perf-optimizer/scripts/lighthouse_audit.ts <url>`      |
-| **test-engineer**         | Test Runner     | `node .agent/skills/test-architect/scripts/test_runner.ts .`               |
-| **test-engineer**         | Playwright      | `node .agent/skills/e2e-automation/scripts/playwright_runner.ts <url>`     |
-| **Any agent**             | Lint Check      | `node .agent/skills/code-review/scripts/lint_runner.ts .`                  |
-| **Any agent**             | Problem Check   | `node .agent/skills/problem-checker/scripts/check_problems.ts .`           |
+| Check | Command |
+|-------|---------|
+| Master development checklist | `npm run checklist` |
+| Full verification | `npm run verify -- . --url <url>` |
+| TypeScript | `npm run typecheck` |
+| Test suite | `npm test` |
+| Workflow audit | `npx tsx .agent/scripts/audit_workflows.ts` |
+| Skill audit | `npx tsx .agent/scripts/skill-audit.ts` |
+| Knowledge/source secret scan | `npx tsx .agent/skills/knowledge-compiler/scripts/secret-scanner.ts .` |
+| Studio data integrity | `npm run validate:data` |
+| Problem check | `npx tsx .agent/skills/problem-checker/scripts/check_problems.ts .` |
+
+Domain checks for UX, accessibility, API schemas, mobile, SEO, Lighthouse, and
+Playwright are optional plugins. The checklist reports them as `not_configured`
+until an implementation is installed; their absence is never reported as a
+successful execution.
 
 ---
 
@@ -75,9 +90,13 @@ tags: verification, scripts
 
 | File | When to Read |
 |------|-------------|
-| [engineering-spec.md](engineering-spec.md) | Full contracts and architecture |
+| [engineering-spec.md](production-gates.md) | Full contracts and architecture |
 | [SKILL.md](../SKILL.md) | Core principles and function rules |
 
----
+## Rollback
 
-⚡ PikaKit v3.9.223
+Restore the recorded baseline if a required command errors, evidence becomes inconclusive, or the change introduces a regression.
+
+## Exit Gate
+
+Complete only with fresh, reproducible evidence for the intended behavior and all relevant project checks passing.

@@ -1,15 +1,26 @@
 ---
-name: validation-security
-description: Input validation with Zod, security middleware, rate limiting, CORS, secrets management, and security checklist
-title: "Validation & Security"
-impact: MEDIUM
-impactDescription: "Moderate improvement to quality or maintainability"
-tags: validation, security
+title: Node.js Validation and Security
+kind: reference
+impact: critical
+tags: [nodejs, validation, security]
+applies_to: [nodejs, api, backend]
+last_reviewed: "2026-09-28"
+sources:
+  - title: OWASP Input Validation Cheat Sheet
+    url: https://cheatsheetseries.owasp.org/cheatsheets/Input_Validation_Cheat_Sheet.html
+  - title: OWASP Node.js Docker Cheat Sheet
+    url: https://cheatsheetseries.owasp.org/cheatsheets/NodeJS_Docker_Cheat_Sheet.html
 ---
 
 # Validation & Security
 
 > Validate at boundary. Trust nothing. **Every input is hostile until proven otherwise.**
+
+## Scope
+
+Apply to untrusted input, output encoding, CORS, rate limits, headers, secret handling, dependency risk, and least privilege in Node.js services.
+
+## Guidance
 
 ---
 
@@ -191,7 +202,11 @@ app.use('*', rateLimiter({ windowMs: 60_000, limit: 100 }))
 
 ---
 
-## 🔗 Related
+## Verification
+
+Test malformed, oversized, duplicated, encoded, and unauthorized input at every public boundary. Verify CORS and rate-limit behavior, dependency and secret scans, least-privilege runtime configuration, redacted diagnostics, and fail-closed dependency outages.
+
+## Related
 
 | File | When to Read |
 |------|-------------|
@@ -202,4 +217,4 @@ app.use('*', rateLimiter({ windowMs: 60_000, limit: 100 }))
 
 ---
 
-⚡ PikaKit v3.9.223
+⚡ PikaKit v3.9.224

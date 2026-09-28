@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://pikakit.com/schemas/rule-v2.json",
+  "title": "PikaKit Rule v2",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["title", "kind", "impact", "tags", "applies_to", "last_reviewed", "sources"],
+  "properties": {
+    "title": { "type": "string", "minLength": 4 },
+    "kind": { "enum": ["code", "process", "decision", "reference"] },
+    "impact": { "enum": ["critical", "high", "standard"] },
+    "tags": { "$ref": "#/$defs/nonEmptyStrings" },
+    "applies_to": { "$ref": "#/$defs/nonEmptyStrings" },
+    "last_reviewed": { "type": "string", "format": "date" },
+    "sources": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "oneOf": [
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["title", "url"],
+            "properties": {
+              "title": { "type": "string", "minLength": 3 },
+              "url": { "type": "string", "format": "uri", "pattern": "^https://" }
+            }
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["title", "internal_ref"],
+            "properties": {
+              "title": { "type": "string", "minLength": 3 },
+              "internal_ref": { "type": "string", "pattern": "^(?:\\.\\./)+.+\\.(?:md|json|ya?ml)$" }
+            }
+          }
+        ]
+      }
+    }
+  },
+  "$defs": {
+    "nonEmptyStrings": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": { "type": "string", "minLength": 1 }
+    }
+  }
+}

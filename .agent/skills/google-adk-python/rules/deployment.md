@@ -1,138 +1,40 @@
 ---
 title: Deployment Patterns
-impact: MEDIUM
-tags: google-adk-python
+kind: process
+impact: high
+tags: [google-adk, deployment]
+applies_to: [google-adk-python]
+last_reviewed: "2026-09-28"
+sources:
+  - title: Deploy Agent Development Kit agents
+    url: https://google.github.io/adk-docs/deploy/
 ---
 
 # Deployment Patterns
 
-> Deploy agents to Cloud Run, Vertex AI, or custom infrastructure.
+## Preconditions
 
----
+- Pin the ADK, Python, and model configuration tested in staging.
+- Choose a currently documented ADK deployment target from security, latency, data residency, scaling, and operational requirements.
+- Store credentials in the platform secret manager and define service identity with least privilege.
+- Establish health, readiness, telemetry, evaluation, and cost baselines.
 
-## Cloud Run
+## Procedure
 
-```dockerfile
-# Dockerfile
-FROM python:3.11-slim
-WORKDIR /app
-COPY requirements.txt .
-RUN pip install -r requirements.txt
-COPY . .
-CMD ["python", "agent_server.py"]
-```
+1. Build an immutable artifact with locked dependencies and provenance.
+2. Validate configuration without making a model call in the liveness check.
+3. Use readiness to verify required local dependencies; keep expensive downstream probes out of high-frequency checks.
+4. Bound request size, session lifetime, tool timeouts, concurrency, and retries.
+5. Redact prompts, tool arguments, credentials, and personal data from telemetry.
+6. Deploy to a non-production environment and run offline evaluation plus controlled integration tests.
+7. Shift production traffic gradually while comparing quality, errors, latency, saturation, and cost.
 
-```python
-# agent_server.py
-from fastapi import FastAPI
-from google.adk.agents import LlmAgent
+Do not copy deployment snippets across ADK versions without verifying them against the pinned official documentation.
 
-app = FastAPI()
+## Rollback
 
-agent = LlmAgent(
-    name="api_agent",
-    model="gemini-3-flash",
-    instruction="Helpful assistant."
-)
+Retain the previous artifact and compatible session/state schema. Route traffic back or disable the new tool/model configuration when any release budget regresses.
 
-@app.post("/chat")
-async def chat(message: str):
-    return {"response": agent.run(message)}
-```
+## Exit Gate
 
-```bash
-# Deploy
-docker build -t my-agent .
-gcloud run deploy my-agent \
-  --image my-agent \
-  --region us-central1 \
-  --set-env-vars GEMINI_API_KEY=$GEMINI_API_KEY
-```
-
----
-
-## Vertex AI Agent Engine
-
-```python
-# Managed infrastructure with:
-# - Scalable hosting
-# - Monitoring and logging
-# - Version management
-# - Production-ready infra
-
-from google.cloud import aiplatform
-
-aiplatform.init(project="my-project", location="us-central1")
-
-# Deploy agent to Vertex AI
-# (Follow Vertex AI Agent Builder docs)
-```
-
----
-
-## Local Development
-
-```python
-if __name__ == "__main__":
-    agent = LlmAgent(
-        name="dev_agent",
-        model="gemini-3-flash",
-        instruction="Development assistant."
-    )
-
-    # Interactive loop
-    while True:
-        user_input = input("You: ")
-        if user_input.lower() == "quit":
-            break
-        response = agent.run(user_input)
-        print(f"Agent: {response}")
-```
-
----
-
-## Environment Variables
-
-```bash
-# Required
-GEMINI_API_KEY=your_api_key
-
-# OR for Vertex AI
-GOOGLE_CLOUD_PROJECT=your_project
-GOOGLE_CLOUD_LOCATION=us-central1
-```
-
----
-
-## Health Check
-
-```python
-@app.get("/health")
-async def health():
-    return {"status": "healthy"}
-
-@app.get("/ready")
-async def ready():
-    # Check agent is ready
-    try:
-        agent.run("test")
-        return {"status": "ready"}
-    except Exception as e:
-        return {"status": "not ready", "error": str(e)}
-```
-
----
-
-## Best Practices
-
-| Practice | Application |
-|----------|-------------|
-| **Health checks** | Implement /health and /ready |
-| **Env vars** | Never hardcode API keys |
-| **Logging** | Log agent requests/responses |
-| **Monitoring** | Track latency, errors, usage |
-| **Scaling** | Use Cloud Run auto-scaling |
-
----
-
-? PikaKit v3.9.223
+Pass only when the official target supports the pinned version, identity and secrets are externalized, readiness is meaningful, evaluation passes, telemetry is redacted, and rollback is exercised.

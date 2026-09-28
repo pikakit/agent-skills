@@ -1,16 +1,29 @@
 ---
-title: Use Lazy State Initialization
-impact: MEDIUM
-impactDescription: wasted computation on every render
-tags: react, hooks, useState, performance, initialization
+"title": "Use Lazy State Initialization"
+"kind": "code"
+"impact": "standard"
+"tags":
+  - "react"
+  - "hooks"
+  - "useState"
+  - "performance"
+  - "initialization"
+"applies_to":
+  - "node"
+  - "web"
+"last_reviewed": "2026-09-28"
+"sources":
+  - "url": "https://nextjs.org/docs"
+    "title": "Official documentation"
 ---
+
+# Use Lazy State Initialization
 
 ## Use Lazy State Initialization
 
 Pass a function to `useState` for expensive initial values. Without the function form, the initializer runs on every render even though the value is only used once.
 
-**Incorrect (runs on every render):**
-
+## Incorrect
 ```tsx
 function FilteredList({ items }: { items: Item[] }) {
   // buildSearchIndex() runs on EVERY render, even after initialization
@@ -31,8 +44,7 @@ function UserProfile() {
 }
 ```
 
-**Correct (runs only once):**
-
+## Correct
 ```tsx
 function FilteredList({ items }: { items: Item[] }) {
   // buildSearchIndex() runs ONLY on initial render
@@ -57,6 +69,6 @@ Use lazy initialization when computing initial values from localStorage/sessionS
 
 For simple primitives (`useState(0)`), direct references (`useState(props.value)`), or cheap literals (`useState({})`), the function form is unnecessary.
 
----
+## Verification
 
-⚡ PikaKit v3.9.223
+Run the repository typecheck and the narrowest behavioral tests that exercise this rule. Confirm error paths and observable output, not only successful compilation.

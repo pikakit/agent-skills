@@ -1,4 +1,3 @@
-// @ts-nocheck
 /**
  * CSS Validator - Studio Design System
  * =====================================
@@ -7,6 +6,12 @@
  */
 
 import * as cssTree from 'css-tree';
+import type {
+    CSSValidationError,
+    CSSValidationOptions,
+    CSSValidationResult,
+    MarkdownCSSValidation
+} from '../types.ts';
 
 /**
  * Validate CSS syntax
@@ -15,9 +20,12 @@ import * as cssTree from 'css-tree';
  * @param {boolean} options.strict - If true, throw error on invalid CSS
  * @returns {{ valid: boolean, errors: Array<{message: string, line: number, column: number}> }}
  */
-export function validateCss(css, options = {}) {
+export function validateCss(
+    css: string,
+    options: CSSValidationOptions = {}
+): CSSValidationResult {
     const { strict = false } = options;
-    const errors = [];
+    const errors: CSSValidationError[] = [];
 
     if (!css || typeof css !== 'string') {
         return { valid: true, errors: [] }; // Empty/null CSS is valid
@@ -34,11 +42,12 @@ export function validateCss(css, options = {}) {
                 });
             }
         });
-    } catch (parseError) {
+    } catch (parseError: unknown) {
+        const error = parseError as { message?: string; line?: number; column?: number };
         errors.push({
-            message: parseError.message,
-            line: parseError.line || 0,
-            column: parseError.column || 0
+            message: error.message ?? String(parseError),
+            line: error.line || 0,
+            column: error.column || 0
         });
     }
 
@@ -57,7 +66,7 @@ export function validateCss(css, options = {}) {
  * @param {string} context - Context description for error messages
  * @returns {string|null} Error message or null if valid
  */
-export function validateCssWithContext(css, context = 'CSS') {
+export function validateCssWithContext(css: string, context = 'CSS'): string | null {
     const result = validateCss(css);
     
     if (!result.valid) {
@@ -75,10 +84,10 @@ export function validateCssWithContext(css, context = 'CSS') {
  * @param {string} markdown - Markdown content with CSS code blocks
  * @returns {{ valid: boolean, warnings: string[] }}
  */
-export function validateMarkdownCss(markdown) {
+export function validateMarkdownCss(markdown: string): MarkdownCSSValidation {
     const cssBlockRegex = /```css\n([\s\S]*?)```/g;
-    const warnings = [];
-    let match;
+    const warnings: string[] = [];
+    let match: RegExpExecArray | null;
 
     while ((match = cssBlockRegex.exec(markdown)) !== null) {
         const cssContent = match[1].trim();

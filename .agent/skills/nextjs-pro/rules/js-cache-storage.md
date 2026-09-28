@@ -1,16 +1,29 @@
 ---
-title: Cache Storage API Calls
-impact: LOW-MEDIUM
-impactDescription: reduces expensive I/O
-tags: javascript, localStorage, storage, caching, performance
+"title": "Cache Storage API Calls"
+"kind": "code"
+"impact": "standard"
+"tags":
+  - "javascript"
+  - "localStorage"
+  - "storage"
+  - "caching"
+  - "performance"
+"applies_to":
+  - "node"
+  - "web"
+"last_reviewed": "2026-09-28"
+"sources":
+  - "url": "https://nextjs.org/docs"
+    "title": "Official documentation"
 ---
+
+# Cache Storage API Calls
 
 ## Cache Storage API Calls
 
 `localStorage`, `sessionStorage`, and `document.cookie` are synchronous and expensive. Cache reads in memory.
 
-**Incorrect (reads storage on every call):**
-
+## Incorrect
 ```typescript
 function getTheme() {
   return localStorage.getItem('theme') ?? 'light'
@@ -18,8 +31,7 @@ function getTheme() {
 // Called 10 times = 10 storage reads
 ```
 
-**Correct (Map cache):**
-
+## Correct
 ```typescript
 const storageCache = new Map<string, string | null>()
 
@@ -69,6 +81,6 @@ document.addEventListener('visibilitychange', () => {
 })
 ```
 
----
+## Verification
 
-⚡ PikaKit v3.9.223
+Run the repository typecheck and the narrowest behavioral tests that exercise this rule. Confirm error paths and observable output, not only successful compilation.

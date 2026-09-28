@@ -1,243 +1,306 @@
 #!/usr/bin/env node
+/** Comprehensive validation suite with explicit coverage and failure states. */
 
-/**
- * Full Verification Suite - PikaKit
- * ==========================================
- * Comprehensive validation with all checks + performance + E2E
- *
- * Usage:
- *   npx tsx verify_all.ts <project> --url <URL>
- *   npx tsx verify_all.ts <project> --url <URL> --no-e2e
- */
-
-import { resolve, join } from 'path';
+import { resolve, join } from 'node:path';
 import { parseArgs } from 'node:util';
-import { access } from 'fs/promises';
+import { access } from 'node:fs/promises';
+import { fileURLToPath } from 'node:url';
 import { printHeader, printStep, printSuccess, printWarning, printError } from './utils/colors.ts';
-import { runScript, scriptExists, type ScriptResult } from './utils/runner.ts';
-import { printFinalReport, type CheckResult } from './utils/reporter.ts';
+import { runScript, scriptExists, ScriptTimeoutError } from './utils/runner.ts';
+import {
+    createCheckResult,
+    formatJsonOutput,
+    getReportVerdict,
+    printFinalReport,
+    type CheckResult
+} from './utils/reporter.ts';
+
+interface CheckContext {
+    projectPath: string;
+    url: string;
+}
 
 interface CheckConfig {
     name: string;
     script: string;
     required: boolean;
+    args: (context: CheckContext) => string[];
 }
 
 interface VerificationCategory {
     category: string;
-    requiresUrl?: boolean;
     checks: CheckConfig[];
 }
 
-// Complete verification suite
+const projectArg = (context: CheckContext) => [context.projectPath];
+const urlArg = (context: CheckContext) => [context.url];
+
 const VERIFICATION_SUITE: VerificationCategory[] = [
-    // P0: Security (CRITICAL)
+    {
+        category: 'Core Integrity',
+        checks: [
+            { name: 'Workflow Audit', script: '.agent/scripts/audit_workflows.ts', required: true, args: () => [] },
+            { name: 'Skill Audit', script: '.agent/scripts/skill-audit.ts', required: true, args: () => [] },
+            { name: 'TypeScript Typecheck', script: '.agent/scripts/typecheck.ts', required: true, args: () => [] },
+            { name: 'Test Suite', script: '.agent/scripts/run-tests.ts', required: true, args: () => [] },
+            { name: 'Studio Data Integrity', script: '.agent/skills/studio/scripts/validate_data.ts', required: true, args: () => [] },
+            { name: 'Documentation Integrity', script: '.agent/scripts/validate_docs.ts', required: true, args: () => [] }
+        ]
+    },
     {
         category: 'Security',
         checks: [
-            { name: 'Security Scan', script: '.agent/skills/security-scanner/scripts/security_scan.ts', required: true }
+            { name: 'Security Scan', script: '.agent/skills/knowledge-compiler/scripts/secret-scanner.ts', required: true, args: () => ['--all'] }
         ]
     },
-
-    // P1: Code Quality (CRITICAL)
     {
         category: 'Code Quality',
         checks: [
-            { name: 'Lint Check', script: '.agent/skills/code-review/scripts/lint_runner.ts', required: true },
-            { name: 'Type Coverage', script: '.agent/skills/typescript-expert/scripts/ts_diagnostic.ts', required: false }
+            { name: 'Lint Check', script: '.agent/skills/code-review/scripts/lint_runner.ts', required: false, args: projectArg },
+            { name: 'Type Coverage', script: '.agent/skills/typescript-expert/scripts/ts_diagnostic.ts', required: false, args: projectArg }
         ]
     },
-
-    // P2: Data Layer
     {
         category: 'Data Layer',
         checks: [
-            { name: 'Schema Validation', script: '.agent/skills/data-modeler/scripts/schema_validator.ts', required: false }
+            { name: 'Schema Validation', script: '.agent/skills/data-modeler/scripts/schema_validator.ts', required: false, args: projectArg }
         ]
     },
-
-    // P3: Testing
     {
         category: 'Testing',
         checks: [
-            { name: 'Test Suite', script: '.agent/skills/test-architect/scripts/test_runner.ts', required: false }
+            { name: 'Test Suite', script: '.agent/skills/test-architect/scripts/test_runner.ts', required: false, args: projectArg }
         ]
     },
-
-    // P4: UX & Accessibility
     {
         category: 'UX & Accessibility',
         checks: [
-            { name: 'UX Audit', script: '.agent/skills/design-system/scripts/ux_audit.ts', required: false },
-            { name: 'Accessibility Check', script: '.agent/skills/design-system/scripts/accessibility_checker.ts', required: false }
+            { name: 'UX Audit', script: '.agent/skills/design-system/scripts/ux_audit.ts', required: false, args: projectArg },
+            { name: 'Accessibility Check', script: '.agent/skills/design-system/scripts/accessibility_checker.ts', required: false, args: projectArg }
         ]
     },
-
-    // P5: SEO & Content
     {
         category: 'SEO & Content',
         checks: [
-            { name: 'SEO Check', script: '.agent/skills/seo-optimizer/scripts/seo_checker.ts', required: false }
+            { name: 'SEO Check', script: '.agent/skills/seo-optimizer/scripts/seo_checker.ts', required: false, args: projectArg }
         ]
     },
-
-    // P6: Performance (requires URL)
     {
         category: 'Performance',
-        requiresUrl: true,
         checks: [
-            { name: 'Lighthouse Audit', script: '.agent/skills/perf-optimizer/scripts/lighthouse_audit.ts', required: true }
+            { name: 'Lighthouse Audit', script: '.agent/skills/perf-optimizer/scripts/lighthouse_audit.ts', required: false, args: urlArg }
         ]
     },
-
-    // P7: E2E Testing (requires URL)
     {
         category: 'E2E Testing',
-        requiresUrl: true,
         checks: [
-            { name: 'Playwright E2E', script: '.agent/skills/e2e-automation/scripts/playwright_runner.ts', required: false }
+            { name: 'Playwright E2E', script: '.agent/skills/e2e-automation/scripts/playwright_runner.ts', required: false, args: urlArg }
         ]
     },
-
-    // P8: Mobile
     {
         category: 'Mobile',
         checks: [
-            { name: 'Mobile Audit', script: '.agent/skills/mobile-design/scripts/mobile_audit.ts', required: false }
+            { name: 'Mobile Audit', script: '.agent/skills/mobile-design/scripts/mobile_audit.ts', required: false, args: projectArg }
         ]
     }
 ];
 
-/**
- * Run a single check
- */
-async function runCheck(name: string, scriptPath: string, projectPath: string, url: string | null = null): Promise<CheckResult> {
-    const fullPath = join(projectPath, scriptPath);
+function skippedResult(check: CheckConfig, category: string, reason: string): CheckResult {
+    return createCheckResult({
+        name: check.name,
+        category,
+        required: check.required,
+        status: 'skipped',
+        reason,
+        durationMs: 0,
+        exitCode: null
+    });
+}
 
+async function runCheck(
+    check: CheckConfig,
+    category: string,
+    context: CheckContext,
+    quiet: boolean
+): Promise<CheckResult> {
+    const fullPath = join(context.projectPath, check.script);
     if (!(await scriptExists(fullPath))) {
-        printWarning(`${name}: Script not found, skipping`);
-        return { name, passed: true, skipped: true, duration: 0 };
+        const status = check.required ? 'error' : 'skipped';
+        const reason = check.required ? 'required_script_missing' : 'not_configured';
+        if (!quiet) {
+            const message = `${check.name}: Script not found (${check.script})`;
+            if (check.required) printError(message);
+            else printWarning(`${message}, skipping`);
+        }
+        return createCheckResult({
+            name: check.name,
+            category,
+            required: check.required,
+            status,
+            reason,
+            stderr: check.required ? `Required script not found: ${check.script}` : '',
+            durationMs: 0,
+            exitCode: null
+        });
     }
 
-    printStep(`Running: ${name}`);
+    if (!quiet) printStep(`Running: ${check.name}`);
     const startTime = Date.now();
-
     try {
-        const args: string[] = [projectPath];
-        if (url && (scriptPath.includes('lighthouse') || scriptPath.includes('playwright'))) {
-            args.push(url);
-        }
-
-        const result: ScriptResult = await runScript(fullPath, args, {
-            timeout: 600000, // 10 minutes for slow checks
-            cwd: projectPath
+        const result = await runScript(fullPath, check.args(context), {
+            timeout: 600000,
+            cwd: context.projectPath
         });
-
-        const duration = (Date.now() - startTime) / 1000;
-
-        if (result.passed) {
-            printSuccess(`${name}: PASSED (${duration.toFixed(1)}s)`);
-        } else {
-            printError(`${name}: FAILED (${duration.toFixed(1)}s)`);
-            if (result.stderr) {
-                console.log(`  ${result.stderr.substring(0, 300)}`);
-            }
+        const durationMs = Date.now() - startTime;
+        const status = result.code === 0 ? 'passed' : result.code === 1 ? 'failed' : 'error';
+        if (!quiet) {
+            if (status === 'passed') printSuccess(`${check.name}: PASSED (${(durationMs / 1000).toFixed(1)}s)`);
+            else if (status === 'failed') printError(`${check.name}: FAILED (${(durationMs / 1000).toFixed(1)}s)`);
+            else printError(`${check.name}: ERROR (exit ${result.code})`);
+            if (result.stderr) console.error(result.stderr.trimEnd());
         }
-
-        return {
-            name,
-            passed: result.passed,
-            output: result.stdout,
-            error: result.stderr,
-            skipped: false,
-            duration
-        };
-
-    } catch (err: unknown) {
-        const duration = (Date.now() - startTime) / 1000;
-        const message = err instanceof Error ? err.message : String(err);
-
-        if (message.includes('Timeout')) {
-            printError(`${name}: TIMEOUT (>${duration.toFixed(0)}s)`);
-            return { name, passed: false, skipped: false, duration, error: 'Timeout' };
-        } else {
-            printError(`${name}: ERROR - ${message}`);
-            return { name, passed: false, skipped: false, duration, error: message };
-        }
+        return createCheckResult({
+            name: check.name,
+            category,
+            required: check.required,
+            status,
+            stdout: result.stdout,
+            stderr: result.stderr || (status === 'error' ? `Checker exited with code ${result.code}` : ''),
+            durationMs,
+            exitCode: result.code
+        });
+    } catch (error) {
+        const durationMs = Date.now() - startTime;
+        const message = error instanceof Error ? error.message : String(error);
+        const status = error instanceof ScriptTimeoutError ? 'timeout' : 'error';
+        if (!quiet) printError(`${check.name}: ${status === 'timeout' ? 'TIMEOUT' : `ERROR - ${message}`}`);
+        return createCheckResult({
+            name: check.name,
+            category,
+            required: check.required,
+            status,
+            stdout: error instanceof ScriptTimeoutError ? error.stdout : '',
+            stderr: error instanceof ScriptTimeoutError
+                ? [error.stderr, message].filter(Boolean).join('\n')
+                : message,
+            durationMs,
+            exitCode: null
+        });
     }
 }
 
-/**
- * Main entry point
- */
-async function main(): Promise<void> {
-    const { values, positionals } = parseArgs({
-        args: process.argv.slice(2),
-        allowPositionals: true,
-        options: {
-            url: { type: 'string' },
-            'no-e2e': { type: 'boolean', default: false },
-            'stop-on-fail': { type: 'boolean', default: false }
-        }
-    });
+function emitReport(
+    results: CheckResult[],
+    format: 'text' | 'json',
+    projectPath: string,
+    url: string,
+    startTime: Date
+): void {
+    if (format === 'json') console.log(formatJsonOutput(results, projectPath, url, startTime));
+    else printFinalReport(results, startTime);
+}
 
+function requestedJson(args: string[]): boolean {
+    return args.includes('--format=json')
+        || args.some((arg, index) => arg === '--format' && args[index + 1] === 'json');
+}
+
+function emitConfigurationError(args: string[], message: string, reason: string): 2 {
+    if (requestedJson(args)) {
+        console.log(formatJsonOutput([createCheckResult({
+            name: 'Configuration',
+            category: 'Configuration',
+            required: true,
+            status: 'error',
+            reason,
+            stderr: message,
+        })], resolve('.'), null, new Date()));
+    } else {
+        console.error(message);
+    }
+    return 2;
+}
+
+export async function main(args = process.argv.slice(2)): Promise<0 | 1 | 2> {
+    let values: { url?: string; 'no-e2e': boolean; 'stop-on-fail': boolean; format: string };
+    let positionals: string[];
+    try {
+        ({ values, positionals } = parseArgs({
+            args,
+            allowPositionals: true,
+            options: {
+                url: { type: 'string' },
+                'no-e2e': { type: 'boolean', default: false },
+                'stop-on-fail': { type: 'boolean', default: false },
+                format: { type: 'string', default: 'text' }
+            }
+        }) as { values: typeof values; positionals: string[] });
+    } catch (error) {
+        return emitConfigurationError(args, error instanceof Error ? error.message : String(error), 'invalid_arguments');
+    }
+
+    if (positionals.length > 1 || (values.format !== 'text' && values.format !== 'json')) {
+        return emitConfigurationError(
+            args,
+            'Usage: npx tsx verify_all.ts [project] --url URL [--no-e2e] [--stop-on-fail] [--format text|json]',
+            'invalid_arguments'
+        );
+    }
+    if (!values.url) {
+        return emitConfigurationError(args, 'URL is required for performance and E2E checks', 'missing_url');
+    }
+
+    const format = values.format as 'text' | 'json';
+    const quiet = format === 'json';
     const projectPath = resolve(positionals[0] || '.');
-
-    // Validate project path
     try {
         await access(projectPath);
     } catch {
-        printError(`Project path does not exist: ${projectPath}`);
-        process.exit(1);
+        return emitConfigurationError(args, `Project path does not exist: ${projectPath}`, 'project_not_found');
     }
 
-    // Validate URL for performance checks
-    if (!values.url) {
-        printError('URL is required for performance & E2E checks');
-        console.log('\nUsage: npx tsx verify_all.ts <project> --url <URL>');
-        process.exit(1);
-    }
-
-    printHeader('🚀 PikaKit - FULL VERIFICATION SUITE');
-    console.log(`Project: ${projectPath}`);
-    console.log(`URL: ${values.url}`);
-    console.log(`Started: ${new Date().toLocaleString()}`);
-
+    const context: CheckContext = { projectPath, url: values.url };
     const startTime = new Date();
     const results: CheckResult[] = [];
-
-    // Run all verification categories
-    for (const suite of VERIFICATION_SUITE) {
-        const { category, requiresUrl = false, checks } = suite;
-
-        // Skip if requires URL and not provided
-        if (requiresUrl && !values.url) continue;
-
-        // Skip E2E if flag set
-        if (values['no-e2e'] && category === 'E2E Testing') continue;
-
-        printHeader(`📋 ${category.toUpperCase()}`);
-
-        for (const check of checks) {
-            const result = await runCheck(check.name, check.script, projectPath, values.url);
-            result.category = category;
-            results.push(result);
-
-            // Stop on critical failure if flag set
-            if (values['stop-on-fail'] && check.required && !result.passed && !result.skipped) {
-                printError(`CRITICAL: ${check.name} failed. Stopping verification.`);
-                printFinalReport(results, startTime);
-                process.exit(1);
-            }
-        }
+    if (!quiet) {
+        printHeader('🚀 PikaKit - FULL VERIFICATION SUITE');
+        console.log(`Project: ${projectPath}`);
+        console.log(`URL: ${values.url}`);
+        console.log(`Started: ${startTime.toLocaleString()}`);
     }
 
-    // Print final report
-    const allPassed = printFinalReport(results, startTime);
-    process.exit(allPassed ? 0 : 1);
+    let stopped = false;
+    for (const suite of VERIFICATION_SUITE) {
+        if (values['no-e2e'] && suite.category === 'E2E Testing') {
+            results.push(...suite.checks.map(check => skippedResult(check, suite.category, 'disabled_by_flag')));
+            continue;
+        }
+        if (!quiet) printHeader(`📋 ${suite.category.toUpperCase()}`);
+        for (const check of suite.checks) {
+            const result = await runCheck(check, suite.category, context, quiet);
+            results.push(result);
+            if (values['stop-on-fail'] && check.required && result.status !== 'passed') {
+                stopped = true;
+                if (!quiet) printError(`CRITICAL: ${check.name} did not pass. Stopping verification.`);
+                break;
+            }
+        }
+        if (stopped) break;
+    }
+
+    emitReport(results, format, projectPath, values.url, startTime);
+    return getReportVerdict(results).exitCode;
 }
 
-main().catch(err => {
-    console.error('Error:', err instanceof Error ? err.message : String(err));
-    process.exit(1);
-});
+const isMain = process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url);
+if (isMain) {
+    main().then(code => {
+        process.exitCode = code;
+    }).catch(error => {
+        process.exitCode = emitConfigurationError(
+            process.argv.slice(2),
+            error instanceof Error ? error.message : String(error),
+            'unexpected_error'
+        );
+    });
+}

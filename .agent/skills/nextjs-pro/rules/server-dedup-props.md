@@ -1,9 +1,23 @@
 ---
-title: Avoid Duplicate Serialization in RSC Props
-impact: LOW
-impactDescription: reduces network payload by avoiding duplicate serialization
-tags: server, rsc, serialization, props, client-components
+"title": "Avoid Duplicate Serialization in RSC Props"
+"kind": "code"
+"impact": "standard"
+"tags":
+  - "server"
+  - "rsc"
+  - "serialization"
+  - "props"
+  - "client-components"
+"applies_to":
+  - "node"
+  - "web"
+"last_reviewed": "2026-09-28"
+"sources":
+  - "url": "https://nextjs.org/docs"
+    "title": "Official documentation"
 ---
+
+# Avoid Duplicate Serialization in RSC Props
 
 ## Avoid Duplicate Serialization in RSC Props
 
@@ -11,15 +25,13 @@ tags: server, rsc, serialization, props, client-components
 
 RSC→client serialization deduplicates by object reference, not value. Same reference = serialized once; new reference = serialized again. Do transformations (`.toSorted()`, `.filter()`, `.map()`) in client, not server.
 
-**Incorrect (duplicates array):**
-
+## Incorrect
 ```tsx
 // RSC: sends 6 strings (2 arrays × 3 items)
 <ClientList usernames={usernames} usernamesOrdered={usernames.toSorted()} />
 ```
 
-**Correct (sends 3 strings):**
-
+## Correct
 ```tsx
 // RSC: send once
 <ClientList usernames={usernames} />
@@ -64,6 +76,6 @@ users={[{id:1},{id:2}]} sorted={users.toSorted()} // sends 2 arrays + 2 unique o
 
 **Exception:** Pass derived data when transformation is expensive or client doesn't need original.
 
----
+## Verification
 
-⚡ PikaKit v3.9.223
+Run the repository typecheck and the narrowest behavioral tests that exercise this rule. Confirm error paths and observable output, not only successful compilation.

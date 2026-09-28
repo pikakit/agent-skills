@@ -1,16 +1,28 @@
 ---
-title: Use Transitions for Non-Urgent Updates
-impact: MEDIUM
-impactDescription: maintains UI responsiveness
-tags: rerender, transitions, startTransition, performance
+"title": "Use Transitions for Non-Urgent Updates"
+"kind": "code"
+"impact": "standard"
+"tags":
+  - "rerender"
+  - "transitions"
+  - "startTransition"
+  - "performance"
+"applies_to":
+  - "node"
+  - "web"
+"last_reviewed": "2026-09-28"
+"sources":
+  - "url": "https://nextjs.org/docs"
+    "title": "Official documentation"
 ---
+
+# Use Transitions for Non-Urgent Updates
 
 ## Use Transitions for Non-Urgent Updates
 
 Mark frequent, non-urgent state updates as transitions to maintain UI responsiveness.
 
-**Incorrect (blocks UI on every scroll):**
-
+## Incorrect
 ```tsx
 function ScrollTracker() {
   const [scrollY, setScrollY] = useState(0)
@@ -22,8 +34,7 @@ function ScrollTracker() {
 }
 ```
 
-**Correct (non-blocking updates):**
-
+## Correct
 ```tsx
 import { startTransition } from 'react'
 
@@ -39,6 +50,6 @@ function ScrollTracker() {
 }
 ```
 
----
+## Verification
 
-⚡ PikaKit v3.9.223
+Run the repository typecheck and the narrowest behavioral tests that exercise this rule. Confirm error paths and observable output, not only successful compilation.

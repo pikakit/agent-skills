@@ -1,158 +1,52 @@
 ---
-name: chrome-devtools
-description: >-
-  Puppeteer CLI scripts for browser screenshots, debugging, and Core Web Vitals measurement.
-  Use when capturing screenshots, measuring performance, or debugging browser issues.
-  NOT for E2E test suites (use e2e-automation) or AI browser automation (use agent-browser).
+name: "chrome-devtools"
+description: "Evidence-driven browser diagnosis with Chrome DevTools for DOM, accessibility, network, performance, and runtime behavior. Use for inspecting a running web page. Do not use for source-only review without a browser target."
 metadata:
-  author: pikakit
-  version: "3.9.223"
-  category: browser-automation
-  triggers: ["screenshot", "browser", "puppeteer", "devtools", "performance"]
-  coordinates_with: ["agent-browser", "perf-optimizer", "e2e-automation"]
-  success_metrics: ["0 ghost instances", "100% session recovery"]
+  id: "chrome-devtools"
+  schema_version: "2.0.0"
+  type: "knowledge"
+  category: "quality"
+  risk_tier: "standard"
+  version: "4.0.0"
+  author: "pikakit"
+  triggers: ["Chrome DevTools","inspect webpage","network trace","browser performance","accessibility tree"]
+  negative_triggers: ["source-only review","native mobile debugging","server shell diagnosis"]
+  coordinates_with: ["e2e-automation","perf-optimizer","debug-pro"]
+  capabilities: ["capture browser evidence","diagnose network and runtime failures","inspect accessibility state"]
+  platforms: ["web"]
+  last_reviewed: "2026-09-28"
+  review_interval_days: 365
 ---
 
-# Chrome DevTools — Puppeteer CLI
+# chrome-devtools
 
-> Direct Puppeteer CLI scripts. Session persistence. JSON output. Auto-compressed screenshots.
+## Operating contract
 
----
+Use this skill only when the request matches its positive triggers and none of its negative triggers. Establish the target platform, constraints, and acceptance evidence before recommending changes. Prefer repository conventions and official platform behavior over generic patterns.
 
-## Prerequisites
+## Workflow
 
-**Required:**
-- Node.js 18+
-- Puppeteer: `npm install puppeteer sharp yargs`
+1. Confirm scope, ownership boundaries, runtime versions, and risk.
+2. Inspect the relevant implementation and reproduce or baseline the current behavior.
+3. Select the smallest applicable rules from `rules/` or the guidance below.
+4. State trade-offs and failure modes before changing code or configuration.
+5. Verify with the narrowest reliable checks, then run the project gate.
+6. Report evidence, residual risk, and rollback conditions.
 
-**Linux/WSL:** Chrome dependencies via `./install-deps.sh`
+## Capabilities
 
----
+- capture browser evidence
+- diagnose network and runtime failures
+- inspect accessibility state
 
-## When to Use
+## Safety and quality gates
 
-| Use This For | Use `agent-browser` For |
-|--------------|------------------------|
-| Quick screenshots | Long autonomous AI sessions |
-| Custom Puppeteer scripts | Context-constrained agent workflows |
-| WebSocket debugging | Cloud browsers (CI/CD) |
-| Core Web Vitals measurement | Multi-tab @ref interactions |
-| Auth injection, form filling | AI-optimized element referencing |
+- Treat missing inputs, failed tools, and ambiguous results as errors rather than success.
+- Preserve public interfaces unless the task explicitly authorizes a breaking change.
+- Do not claim support for tools, APIs, or metrics that were not observed or sourced.
+- Redact credentials and personal data from examples, logs, and diagnostics.
+- Require accessible behavior and deterministic verification where the platform supports them.
 
----
+## References
 
-## System Boundaries
-
-| Owned by This Skill | NOT Owned |
-|---------------------|-----------|
-| 10 Puppeteer CLI scripts | E2E test suites (→ e2e-automation) |
-| Session persistence (.browser-session.json) | AI @ref handle system (→ agent-browser) |
-| Screenshot capture + auto-compress | Performance recommendations (→ perf-optimizer) |
-| Core Web Vitals measurement | Cross-browser testing |
-| Console/network monitoring | Browser installation |
-
-**Side effects:** Launches browser processes, writes files (screenshots, session), executes JavaScript in page context, navigates pages with network requests.
-
----
-
-## Available Scripts
-
-| Script | Purpose | Side Effects | Idempotent |
-|--------|---------|-------------|-----------|
-| `navigate.ts` | Navigate to URL | Browser launch, page navigation | No |
-| `screenshot.ts` | Capture screenshot | File write (auto-compress > 5MB) | No |
-| `click.ts` | Click element | Page state mutation | No |
-| `fill.ts` | Fill form field | Form state mutation | No |
-| `evaluate.ts` | Execute JavaScript | Depends on script content | Depends |
-| `aria-snapshot.ts` | Get ARIA tree (YAML) | None (read-only) | Yes |
-| `select-ref.ts` | Interact by ref | Page state mutation | No |
-| `console.ts` | Monitor console | None (passive) | Yes |
-| `network.ts` | Track HTTP requests | None (passive) | Yes |
-| `performance.ts` | Core Web Vitals | Navigation + measurement | No |
-
----
-
-## Session Persistence
-
-```bash
-# 1. Launch session (browser starts)
-node navigate.ts --url https://example.com/login
-
-# 2. Interact (browser reuses session)
-node fill.ts --selector "#email" --value "user@example.com"
-node click.ts --selector "button[type=submit]"
-
-# 3. Capture
-node screenshot.ts --output ./result.png
-
-# 4. Close (browser terminates)
-node navigate.ts --close true
-```
-
-**State:** `.browser-session.json` in working directory. One session per directory. Delete file to reset.
-
----
-
-## Common Options
-
-| Option | Default | Description |
-|--------|---------|-------------|
-| `--headless false` | true | Show browser window |
-| `--close true` | false | Terminate browser process |
-| `--timeout 30000` | 30000 | Timeout in ms |
-| `--wait-until networkidle2` | load | Wait strategy |
-| `--full-page true` | false | Full page screenshot |
-| `--max-size 5` | 5 | Max screenshot MB before auto-compress |
-
----
-
-## Error Taxonomy
-
-| Code | Recoverable | Trigger |
-|------|-------------|---------|
-| `ERR_ELEMENT_NOT_FOUND` | Yes | CSS selector matched no elements |
-| `ERR_NAVIGATION_TIMEOUT` | Yes | Page did not load within timeout |
-| `ERR_BROWSER_DISCONNECTED` | Yes | Browser process unreachable |
-| `ERR_BROWSER_CRASHED` | Yes | Browser terminated unexpectedly |
-| `ERR_PUPPETEER_MISSING` | No | Puppeteer npm package not installed |
-| `ERR_SCRIPT_FAILED` | Yes | JavaScript execution threw error |
-| `ERR_WRITE_FAILED` | Yes | Screenshot/file write failed |
-| `ERR_INVALID_SELECTOR` | No | CSS selector syntactically invalid |
-| `ERR_SESSION_CORRUPTED` | Yes | Session file is invalid JSON |
-
-**Zero internal retries.** Scripts execute once and return JSON. Callers own retry logic.
-
----
-
-## Troubleshooting
-
-| Problem | Cause | Resolution |
-|---------|-------|------------|
-| `Cannot find puppeteer` | Not installed | `npm install puppeteer sharp yargs` |
-| `libnss3.so` missing | Linux deps | Run `./install-deps.sh` |
-| Element not found | Wrong selector | Use `aria-snapshot.ts` to find correct selector |
-| Screenshot > 5MB | High DPI / full page | Auto-compressed; use `--max-size 3` for smaller |
-| Session stale | Browser died | Delete `.browser-session.json`, re-launch |
-| Script hangs | Page never loads | Increase `--timeout` or check URL |
-
-## 📑 Content Map
-
-| File | Description | When to Read |
-|------|-------------|--------------|
-| [scripts-guide.md](rules/scripts-guide.md) | Complete script reference with all options | Detailed script usage |
-| [aria-snapshot.md](rules/aria-snapshot.md) | ARIA tree format and usage | Element discovery |
-| [engineering-spec.md](rules/engineering-spec.md) | Full engineering spec: contracts, security, scalability | Architecture review |
-
----
-
-## 🔗 Related
-
-| Item | Type | Purpose |
-|------|------|---------|
-| `agent-browser` | Skill | AI-optimized browser automation with @ref handles |
-| `e2e-automation` | Skill | Playwright E2E testing |
-| `perf-optimizer` | Skill | Performance analysis and recommendations |
-
----
-
-⚡ PikaKit v3.9.223
+Load only the rule files relevant to the current decision. The authoritative external baseline is [official documentation](https://developer.chrome.com/docs/devtools/).

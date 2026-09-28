@@ -1,9 +1,27 @@
 ---
-title: "React Testing Patterns"
-impact: MEDIUM
-impactDescription: "Proper testing ensures component correctness and prevents regressions"
-tags: testing, react-testing-library, userEvent, AAA
+"title": "React Testing Patterns"
+"kind": "process"
+"impact": "standard"
+"tags":
+  - "testing"
+  - "react-testing-library"
+  - "userEvent"
+  - "AAA"
+"applies_to":
+  - "web"
+"last_reviewed": "2026-09-28"
+"sources":
+  - "url": "https://react.dev/reference/react"
+    "title": "Official documentation"
 ---
+
+# React Testing Patterns
+
+## Preconditions
+
+Record the current behavior, target environment, acceptance criteria, and a recoverable baseline before starting.
+
+## Procedure
 
 # React Testing Patterns
 
@@ -47,6 +65,10 @@ test('shows error on failed submission', async () => {
 | Index as key in dynamic lists | Stable unique ID |
 | Prop drill > 3 levels | Compound components or Zustand |
 
----
+## Rollback
 
-⚡ PikaKit v3.9.223
+Restore the recorded baseline if a required command errors, evidence becomes inconclusive, or the change introduces a regression.
+
+## Exit Gate
+
+Complete only with fresh, reproducible evidence for the intended behavior and all relevant project checks passing.

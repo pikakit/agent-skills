@@ -1,10 +1,13 @@
 ---
-name: response
-description: API response envelope pattern, error format, pagination, TypeScript types
 title: "Response Format Principles"
-impact: MEDIUM
-impactDescription: "Moderate improvement to quality or maintainability"
-tags: response
+kind: decision
+impact: high
+tags: [api, response, errors]
+applies_to: [api-architect]
+last_reviewed: "2026-09-28"
+sources:
+  - title: Problem Details for HTTP APIs
+    url: https://datatracker.ietf.org/doc/html/rfc9457
 ---
 
 # Response Format Principles
@@ -133,6 +136,22 @@ interface CursorMeta {
 | [rate-limiting.md](rate-limiting.md) | 429 response format |
 | [SKILL.md](../SKILL.md) | Full decision framework |
 
----
+## Decision
 
-⚡ PikaKit v3.9.223
+Use native HTTP status and headers plus a stable media-type-specific body. Use RFC 9457 problem details for HTTP API errors when it fits the contract; do not wrap every response solely to repeat success state.
+
+## Use When
+
+Define shared error, pagination, correlation, and field-selection conventions across independently implemented operations.
+
+## Avoid When
+
+Avoid returning `200` for failures, exposing stack traces, inventing unstable error strings as identifiers, or mixing pagination schemes without versioned contracts.
+
+## Trade-offs
+
+Uniform envelopes simplify some clients but add nesting and may duplicate HTTP semantics. Native responses improve interoperability but require clients to handle status and media types correctly.
+
+## Verification
+
+Contract-test success, validation, authorization, conflict, throttling, and server errors; verify headers, content types, redaction, pagination boundaries, and correlation.

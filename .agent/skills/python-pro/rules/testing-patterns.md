@@ -1,15 +1,26 @@
 ---
-name: testing-patterns
-description: Python testing patterns — pytest, async tests, fixtures, mocking, FastAPI/Django test clients, coverage
-title: "Python Testing Patterns"
-impact: MEDIUM
-impactDescription: "Moderate improvement to quality or maintainability"
-tags: testing, patterns
+title: Python Testing Patterns
+kind: reference
+impact: high
+tags: [python, testing, reliability]
+applies_to: [python, backend]
+last_reviewed: "2026-09-28"
+sources:
+  - title: Python unittest Documentation
+    url: https://docs.python.org/3/library/unittest.html
+  - title: pytest Documentation
+    url: https://docs.pytest.org/en/stable/
 ---
 
 # Python Testing Patterns
 
 > pytest for everything. Fixtures for setup. Mock at boundaries. Test behavior, not implementation.
+
+## Scope
+
+Apply to unit, integration, contract, async, and end-to-end testing with isolated fixtures and deterministic CI execution.
+
+## Guidance
 
 ---
 
@@ -193,12 +204,16 @@ pytest -m "not slow"            # Skip slow tests
 | Mock everything | Mock only boundaries (DB, APIs, email) |
 | Share state between tests | Each test is independent |
 | Skip error path tests | Test both success AND failure |
-| Ignore coverage | Aim for ≥80% with `fail_under` |
+| Use coverage as the only quality signal | Set a justified project threshold and cover critical behavior |
 | Use `print()` for debugging | Use `pytest --pdb` or `breakpoint()` |
 
 ---
 
-## 🔗 Related
+## Verification
+
+Run suites from a clean environment with deterministic seeds, bounded timeouts, isolated data, and explicit async configuration. Fail CI on collection errors, warnings designated by policy, flaky retries, or unavailable required suites.
+
+## Related
 
 | File | When to Read |
 |------|-------------|
@@ -209,4 +224,4 @@ pytest -m "not slow"            # Skip slow tests
 
 ---
 
-⚡ PikaKit v3.9.223
+⚡ PikaKit v3.9.224

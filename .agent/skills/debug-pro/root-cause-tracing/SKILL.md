@@ -1,196 +1,52 @@
 ---
-name: Root Cause Tracing
-description: Systematically trace bugs backward through call stack to find original trigger
+name: "Root Cause Tracing"
+description: "Backward tracing workflow for locating the first incorrect state transition that caused a visible failure. Use when a symptom appears far from its origin. Do not use when no reproducible evidence exists yet."
 metadata:
-  author: pikakit
-  version: "3.9.223"
-  category: debugging-subskill
-  triggers: ["stack trace", "trace backward", "find polluter", "root cause tracing"]
-  coordinates_with: ["debug-pro", "test-architect"]
-  success_metrics: ["100% bugs fixed at root cause", "0 side-effects from tests"]
+  id: "debug-pro/root-cause-tracing"
+  schema_version: "2.0.0"
+  type: "knowledge"
+  category: "quality"
+  risk_tier: "high"
+  version: "4.0.0"
+  author: "pikakit"
+  triggers: ["trace root cause","find polluter","call chain","first bad state"]
+  negative_triggers: ["no reproduction","feature planning","design critique"]
+  coordinates_with: ["debug-pro","test-architect","observability"]
+  capabilities: ["trace data and control flow","isolate the earliest invariant violation","verify the causal fix"]
+  platforms: ["cross-platform"]
+  last_reviewed: "2026-09-28"
+  review_interval_days: 180
 ---
 
 # Root Cause Tracing
 
-## Overview
+## Operating contract
 
-Bugs often manifest deep in the call stack (git init in wrong directory, file created in wrong location, database opened with wrong path). Your instinct is to fix where the error appears, but that's treating a symptom.
+Use this skill only when the request matches its positive triggers and none of its negative triggers. Establish the target platform, constraints, and acceptance evidence before recommending changes. Prefer repository conventions and official platform behavior over generic patterns.
 
-**Core principle:** Trace backward through the call chain until you find the original trigger, then fix at the source.
+## Workflow
 
-## When to Use
+1. Confirm scope, ownership boundaries, runtime versions, and risk.
+2. Inspect the relevant implementation and reproduce or baseline the current behavior.
+3. Select the smallest applicable rules from `rules/` or the guidance below.
+4. State trade-offs and failure modes before changing code or configuration.
+5. Verify with the narrowest reliable checks, then run the project gate.
+6. Report evidence, residual risk, and rollback conditions.
 
-```dot
-digraph when_to_use {
-    "Bug appears deep in stack?" [shape=diamond];
-    "Can trace backwards?" [shape=diamond];
-    "Fix at symptom point" [shape=box];
-    "Trace to original trigger" [shape=box];
-    "BETTER: Also add defense-in-depth" [shape=box];
+## Capabilities
 
-    "Bug appears deep in stack?" -> "Can trace backwards?" [label="yes"];
-    "Can trace backwards?" -> "Trace to original trigger" [label="yes"];
-    "Can trace backwards?" -> "Fix at symptom point" [label="no - dead end"];
-    "Trace to original trigger" -> "BETTER: Also add defense-in-depth";
-}
-```
+- trace data and control flow
+- isolate the earliest invariant violation
+- verify the causal fix
 
-**Use when:**
-- Error happens deep in execution (not at entry point)
-- Stack trace shows long call chain
-- Unclear where invalid data originated
-- Need to find which test/code triggers the problem
+## Safety and quality gates
 
-## The Tracing Process
+- Treat missing inputs, failed tools, and ambiguous results as errors rather than success.
+- Preserve public interfaces unless the task explicitly authorizes a breaking change.
+- Do not claim support for tools, APIs, or metrics that were not observed or sourced.
+- Redact credentials and personal data from examples, logs, and diagnostics.
+- Require accessible behavior and deterministic verification where the platform supports them.
 
-### 1. Observe the Symptom
-```
-Error: git init failed in /Users/jesse/project/packages/core
-```
+## References
 
-### 2. Find Immediate Cause
-**What code directly causes this?**
-```typescript
-await execFileAsync('git', ['init'], { cwd: projectDir });
-```
-
-### 3. Ask: What Called This?
-```typescript
-WorktreeManager.createSessionWorktree(projectDir, sessionId)
-  → called by Session.initializeWorkspace()
-  → called by Session.create()
-  → called by test at Project.create()
-```
-
-### 4. Keep Tracing Up
-**What value was passed?**
-- `projectDir = ''` (empty string!)
-- Empty string as `cwd` resolves to `process.cwd()`
-- That's the source code directory!
-
-### 5. Find Original Trigger
-**Where did empty string come from?**
-```typescript
-const context = setupCoreTest(); // Returns { tempDir: '' }
-Project.create('name', context.tempDir); // Accessed before beforeEach!
-```
-
-## Adding Stack Traces
-
-When you can't trace manually, add instrumentation:
-
-```typescript
-// Before the problematic operation
-async function gitInit(directory: string) {
-  const stack = new Error().stack;
-  console.error('DEBUG git init:', {
-    directory,
-    cwd: process.cwd(),
-    nodeEnv: process.env.NODE_ENV,
-    stack,
-  });
-
-  await execFileAsync('git', ['init'], { cwd: directory });
-}
-```
-
-**Critical:** Use `console.error()` in tests (not logger - may not show)
-
-**Run and capture:**
-```bash
-npm test 2>&1 | grep 'DEBUG git init'
-```
-
-**Analyze stack traces:**
-- Look for test file names
-- Find the line number triggering the call
-- Identify the pattern (same test? same parameter?)
-
-## Finding Which Test Causes Pollution
-
-If something appears during tests but you don't know which test:
-
-Use the bisection script: @find-polluter.sh
-
-```bash
-./find-polluter.sh '.git' 'src/**/*.test.ts'
-```
-
-Runs tests one-by-one, stops at first polluter. See script for usage.
-
-## Real Example: Empty projectDir
-
-**Symptom:** `.git` created in `packages/core/` (source code)
-
-**Trace chain:**
-1. `git init` runs in `process.cwd()` ← empty cwd parameter
-2. WorktreeManager called with empty projectDir
-3. Session.create() passed empty string
-4. Test accessed `context.tempDir` before beforeEach
-5. setupCoreTest() returns `{ tempDir: '' }` initially
-
-**Root cause:** Top-level variable initialization accessing empty value
-
-**Fix:** Made tempDir a getter that throws if accessed before beforeEach
-
-**Also added defense-in-depth:**
-- Layer 1: Project.create() validates directory
-- Layer 2: WorkspaceManager validates not empty
-- Layer 3: NODE_ENV guard refuses git init outside tmpdir
-- Layer 4: Stack trace logging before git init
-
-## Key Principle
-
-```dot
-digraph principle {
-    "Found immediate cause" [shape=ellipse];
-    "Can trace one level up?" [shape=diamond];
-    "Trace backwards" [shape=box];
-    "Is this the source?" [shape=diamond];
-    "Fix at source" [shape=box];
-    "Add validation at each layer" [shape=box];
-    "Bug impossible" [shape=doublecircle];
-    "NEVER fix just the symptom" [shape=octagon, style=filled, fillcolor=red, fontcolor=white];
-
-    "Found immediate cause" -> "Can trace one level up?";
-    "Can trace one level up?" -> "Trace backwards" [label="yes"];
-    "Can trace one level up?" -> "NEVER fix just the symptom" [label="no"];
-    "Trace backwards" -> "Is this the source?";
-    "Is this the source?" -> "Trace backwards" [label="no - keeps going"];
-    "Is this the source?" -> "Fix at source" [label="yes"];
-    "Fix at source" -> "Add validation at each layer";
-    "Add validation at each layer" -> "Bug impossible";
-}
-```
-
-**NEVER fix just where the error appears.** Trace back to find the original trigger.
-
-## Stack Trace Tips
-
-**In tests:** Use `console.error()` not logger - logger may be suppressed
-**Before operation:** Log before the dangerous operation, not after it fails
-**Include context:** Directory, cwd, environment variables, timestamps
-**Capture stack:** `new Error().stack` shows complete call chain
-
-## Real-World Impact
-
-From debugging session (2025-10-03):
-- Found root cause through 5-level trace
-- Fixed at source (getter validation)
-- Added 4 layers of defense
-- 1847 tests passed, zero pollution
-
----
-
-## 🔗 Related
-
-| File | When to Read |
-|------|-------------|
-| [find-polluter.sh](find-polluter.sh) | Bisection script to find polluting test |
-| [../defense-in-depth/SKILL.md](../defense-in-depth/SKILL.md) | Add validation layers after finding root cause |
-| [../verification-before-completion/SKILL.md](../verification-before-completion/SKILL.md) | Verify fix completeness |
-| [../SKILL.md](../SKILL.md) | 4-phase methodology overview |
-
----
-
-⚡ PikaKit v3.9.223
+Load only the rule files relevant to the current decision. The authoritative external baseline is [official documentation](https://nodejs.org/en/learn/getting-started/debugging).

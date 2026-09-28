@@ -1,12 +1,26 @@
 ---
-title: ArgoCD Setup and Configuration
-impact: MEDIUM
-tags: gitops
+title: Argo CD Setup and Access Control
+kind: reference
+impact: critical
+tags: [gitops, argocd, rbac]
+applies_to: [kubernetes, argocd]
+last_reviewed: "2026-09-28"
+sources:
+  - title: Argo CD Getting Started
+    url: https://argo-cd.readthedocs.io/en/stable/getting_started/
+  - title: Argo CD RBAC Configuration
+    url: https://argo-cd.readthedocs.io/en/stable/operator-manual/rbac/
 ---
 
 # ArgoCD Setup and Configuration
 
 > Installation, access, SSO, and RBAC configuration for ArgoCD.
+
+## Scope
+
+Apply to Argo CD installation, repository and cluster credentials, SSO, RBAC, projects, and controller blast radius.
+
+## Guidance
 
 ---
 
@@ -143,6 +157,10 @@ data:
 9. Use sync windows for maintenance
 10. Monitor with Prometheus metrics
 
+## Verification
+
+Verify least-privilege RBAC, project and cluster boundaries, SSO group mapping, credential rotation, TLS trust, repository access, audit logs, health, controller outage, and disaster recovery. Remove bootstrap credentials after use.
+
 ---
 
-? PikaKit v3.9.223
+? PikaKit v3.9.224

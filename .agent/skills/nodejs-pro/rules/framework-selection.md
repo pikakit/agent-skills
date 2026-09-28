@@ -1,15 +1,24 @@
 ---
-name: framework-selection
-description: Node.js framework decision criteria — Hono, Fastify, Express, NestJS with code examples, middleware, and migration paths
-title: "Framework Selection (2025)"
-impact: MEDIUM
-impactDescription: "Moderate improvement to quality or maintainability"
-tags: framework, selection
+title: Node.js Framework Selection
+kind: reference
+impact: high
+tags: [nodejs, framework, decision]
+applies_to: [nodejs, serverless, edge]
+last_reviewed: "2026-09-28"
+sources:
+  - title: Node.js Web Frameworks
+    url: https://nodejs.org/en/learn/getting-started/web-frameworks
 ---
 
-# Framework Selection (2025)
+# Framework Selection
 
 > Choose framework by deployment target and team context. **Never default to Express for new projects.**
+
+## Scope
+
+Apply to framework selection from runtime, deployment, protocol, lifecycle, ecosystem, and team constraints. Revalidate framework-specific claims against its official documentation.
+
+## Guidance
 
 ---
 
@@ -206,7 +215,11 @@ export class UsersController {
 
 ---
 
-## 🔗 Related
+## Verification
+
+Build a thin vertical slice and verify lifecycle hooks, validation, error mapping, cancellation, observability, testing, deployment size, and supported runtime. Record rejected alternatives and migration cost rather than benchmark claims without local measurement.
+
+## Related
 
 | File | When to Read |
 |------|-------------|
@@ -217,4 +230,4 @@ export class UsersController {
 
 ---
 
-⚡ PikaKit v3.9.223
+⚡ PikaKit v3.9.224

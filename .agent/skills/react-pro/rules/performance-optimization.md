@@ -1,9 +1,28 @@
 ---
-title: "React Performance Optimization"
-impact: HIGH
-impactDescription: "2-10× improvement in rendering with proper optimization"
-tags: performance, virtual, memo, lazy, bundle
+"title": "React Performance Optimization"
+"kind": "process"
+"impact": "high"
+"tags":
+  - "performance"
+  - "virtual"
+  - "memo"
+  - "lazy"
+  - "bundle"
+"applies_to":
+  - "web"
+"last_reviewed": "2026-09-28"
+"sources":
+  - "url": "https://react.dev/reference/react"
+    "title": "Official documentation"
 ---
+
+# React Performance Optimization
+
+## Preconditions
+
+Record the current behavior, target environment, acceptance criteria, and a recoverable baseline before starting.
+
+## Procedure
 
 # React Performance Optimization
 
@@ -60,6 +79,10 @@ function VirtualList({ items }: { items: Item[] }) {
 | Barrel file re-exports | Direct imports for smaller bundles |
 | God components (> 300 lines) | Split at 150 lines |
 
----
+## Rollback
 
-⚡ PikaKit v3.9.223
+Restore the recorded baseline if a required command errors, evidence becomes inconclusive, or the change introduces a regression.
+
+## Exit Gate
+
+Complete only with fresh, reproducible evidence for the intended behavior and all relevant project checks passing.

@@ -1,16 +1,28 @@
 ---
-title: Calculate Derived State During Rendering
-impact: MEDIUM
-impactDescription: avoids redundant renders and state drift
-tags: rerender, derived-state, useEffect, state
+"title": "Calculate Derived State During Rendering"
+"kind": "code"
+"impact": "standard"
+"tags":
+  - "rerender"
+  - "derived-state"
+  - "useEffect"
+  - "state"
+"applies_to":
+  - "node"
+  - "web"
+"last_reviewed": "2026-09-28"
+"sources":
+  - "url": "https://nextjs.org/docs"
+    "title": "Official documentation"
 ---
+
+# Calculate Derived State During Rendering
 
 ## Calculate Derived State During Rendering
 
 If a value can be computed from current props/state, do not store it in state or update it in an effect. Derive it during render to avoid extra renders and state drift. Do not set state in effects solely in response to prop changes; prefer derived values or keyed resets instead.
 
-**Incorrect (redundant state and effect):**
-
+## Incorrect
 ```tsx
 function Form() {
   const [firstName, setFirstName] = useState('First')
@@ -25,8 +37,7 @@ function Form() {
 }
 ```
 
-**Correct (derive during render):**
-
+## Correct
 ```tsx
 function Form() {
   const [firstName, setFirstName] = useState('First')
@@ -39,6 +50,6 @@ function Form() {
 
 References: [You Might Not Need an Effect](https://react.dev/learn/you-might-not-need-an-effect)
 
----
+## Verification
 
-⚡ PikaKit v3.9.223
+Run the repository typecheck and the narrowest behavioral tests that exercise this rule. Confirm error paths and observable output, not only successful compilation.

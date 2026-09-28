@@ -1,11 +1,27 @@
 ---
-name: color-systems
-description: Color commitment strategy — dominant + accent + neutral, 4 aesthetic palettes, dark mode
-title: "Dominant colors with sharp accents outperform timid, evenly-distributed palettes."
-impact: MEDIUM
-impactDescription: "Moderate improvement to quality or maintainability"
-tags: color, systems
+"title": "Dominant colors with sharp accents outperform timid, evenly-distributed palettes."
+"kind": "reference"
+"impact": "standard"
+"tags":
+  - "color"
+  - "systems"
+"applies_to":
+  - "web"
+  - "android"
+  - "ios"
+"last_reviewed": "2026-09-28"
+"sources":
+  - "url": "https://www.w3.org/WAI/standards-guidelines/wcag/"
+    "title": "Official documentation"
 ---
+
+# Dominant colors with sharp accents outperform timid, evenly-distributed palettes.
+
+## Scope
+
+This reference applies only to the platforms declared in metadata and the versions confirmed in the target repository.
+
+## Guidance
 
 # Color Systems
 
@@ -128,6 +144,6 @@ Don't distribute color evenly. Choose:
 | [motion-design.md](motion-design.md) | Animate color transitions |
 | [../SKILL.md](../SKILL.md) | Max 3 brand colors constraint |
 
----
+## Verification
 
-⚡ PikaKit v3.9.223
+Cross-check version-sensitive details with the cited official source and verify the resulting behavior in the target environment.

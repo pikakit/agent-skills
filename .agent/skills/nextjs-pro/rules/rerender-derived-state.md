@@ -1,16 +1,28 @@
 ---
-title: Subscribe to Derived State
-impact: MEDIUM
-impactDescription: reduces re-render frequency
-tags: rerender, derived-state, media-query, optimization
+"title": "Subscribe to Derived State"
+"kind": "code"
+"impact": "standard"
+"tags":
+  - "rerender"
+  - "derived-state"
+  - "media-query"
+  - "optimization"
+"applies_to":
+  - "node"
+  - "web"
+"last_reviewed": "2026-09-28"
+"sources":
+  - "url": "https://nextjs.org/docs"
+    "title": "Official documentation"
 ---
+
+# Subscribe to Derived State
 
 ## Subscribe to Derived State
 
 Subscribe to derived boolean state instead of continuous values to reduce re-render frequency.
 
-**Incorrect (re-renders on every pixel change):**
-
+## Incorrect
 ```tsx
 function Sidebar() {
   const width = useWindowWidth()  // updates continuously
@@ -19,8 +31,7 @@ function Sidebar() {
 }
 ```
 
-**Correct (re-renders only when boolean changes):**
-
+## Correct
 ```tsx
 function Sidebar() {
   const isMobile = useMediaQuery('(max-width: 767px)')
@@ -28,6 +39,6 @@ function Sidebar() {
 }
 ```
 
----
+## Verification
 
-⚡ PikaKit v3.9.223
+Run the repository typecheck and the narrowest behavioral tests that exercise this rule. Confirm error paths and observable output, not only successful compilation.

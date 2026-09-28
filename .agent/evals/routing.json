@@ -1,0 +1,1240 @@
+{
+  "schema_version": "1.0.0",
+  "cases": [
+    {
+      "id": "agent-browser",
+      "positive": [
+        "Use agent-browser to handle this request: automate a browser flow.",
+        "Use agent-browser to handle this request: interact with a page using element references.",
+        "Use agent-browser to handle this request: plan agent browser automation."
+      ],
+      "negative": [
+        "This request is capture a one-off DevTools screenshot; do not route it to agent-browser.",
+        "This request is write a conventional Playwright test; do not route it to agent-browser."
+      ],
+      "overlap": {
+        "prompt": "Coordinate automate a browser flow with end-to-end test.",
+        "expected_top3": [
+          "agent-browser",
+          "e2e-automation"
+        ]
+      }
+    },
+    {
+      "id": "ai-artist",
+      "positive": [
+        "Use ai-artist to handle this request: generate image.",
+        "Use ai-artist to handle this request: image prompt.",
+        "Use ai-artist to handle this request: marketing visual."
+      ],
+      "negative": [
+        "This request is UI component architecture; do not route it to ai-artist.",
+        "This request is copy an artist style; do not route it to ai-artist."
+      ],
+      "overlap": {
+        "prompt": "Coordinate generate image with design system.",
+        "expected_top3": [
+          "ai-artist",
+          "design-system"
+        ]
+      }
+    },
+    {
+      "id": "api-architect",
+      "positive": [
+        "Use api-architect to handle this request: choose an API style.",
+        "Use api-architect to handle this request: design an API contract.",
+        "Use api-architect to handle this request: plan API versioning."
+      ],
+      "negative": [
+        "This request is implement an existing endpoint; do not route it to api-architect.",
+        "This request is write database migrations directly; do not route it to api-architect."
+      ],
+      "overlap": {
+        "prompt": "Coordinate choose an API style with design a database schema.",
+        "expected_top3": [
+          "api-architect",
+          "data-modeler"
+        ]
+      }
+    },
+    {
+      "id": "auth-patterns",
+      "positive": [
+        "Use auth-patterns to handle this request: implement login.",
+        "Use auth-patterns to handle this request: choose OAuth or sessions.",
+        "Use auth-patterns to handle this request: design authorization."
+      ],
+      "negative": [
+        "This request is scan for vulnerabilities; do not route it to auth-patterns.",
+        "This request is run a penetration test; do not route it to auth-patterns."
+      ],
+      "overlap": {
+        "prompt": "Coordinate implement login with choose an API style.",
+        "expected_top3": [
+          "auth-patterns",
+          "api-architect"
+        ]
+      }
+    },
+    {
+      "id": "chrome-devtools",
+      "positive": [
+        "Use chrome-devtools to handle this request: Chrome DevTools.",
+        "Use chrome-devtools to handle this request: inspect webpage.",
+        "Use chrome-devtools to handle this request: network trace."
+      ],
+      "negative": [
+        "This request is source-only review; do not route it to chrome-devtools.",
+        "This request is native mobile debugging; do not route it to chrome-devtools."
+      ],
+      "overlap": {
+        "prompt": "Coordinate Chrome DevTools with end-to-end test.",
+        "expected_top3": [
+          "chrome-devtools",
+          "e2e-automation"
+        ]
+      }
+    },
+    {
+      "id": "cicd-pipeline",
+      "positive": [
+        "Use cicd-pipeline to handle this request: design a CI pipeline.",
+        "Use cicd-pipeline to handle this request: plan a production rollout.",
+        "Use cicd-pipeline to handle this request: add deployment gates."
+      ],
+      "negative": [
+        "This request is make a Git commit; do not route it to cicd-pipeline.",
+        "This request is deploy only to Vercel; do not route it to cicd-pipeline."
+      ],
+      "overlap": {
+        "prompt": "Coordinate design a CI pipeline with review source security.",
+        "expected_top3": [
+          "cicd-pipeline",
+          "security-scanner"
+        ]
+      }
+    },
+    {
+      "id": "code-constitution",
+      "positive": [
+        "Use code-constitution to handle this request: govern a breaking change.",
+        "Use code-constitution to handle this request: review a critical data boundary.",
+        "Use code-constitution to handle this request: resolve a doctrine conflict."
+      ],
+      "negative": [
+        "This request is perform a routine code review; do not route it to code-constitution.",
+        "This request is scan source code for vulnerabilities; do not route it to code-constitution."
+      ],
+      "overlap": {
+        "prompt": "Coordinate govern a breaking change with code review.",
+        "expected_top3": [
+          "code-constitution",
+          "code-review"
+        ]
+      }
+    },
+    {
+      "id": "code-craft",
+      "positive": [
+        "Use code-craft to handle this request: implement code.",
+        "Use code-craft to handle this request: refactor code.",
+        "Use code-craft to handle this request: production change."
+      ],
+      "negative": [
+        "This request is review only; do not route it to code-craft.",
+        "This request is architecture proposal only; do not route it to code-craft."
+      ],
+      "overlap": {
+        "prompt": "Coordinate implement code with code review.",
+        "expected_top3": [
+          "code-craft",
+          "code-review"
+        ]
+      }
+    },
+    {
+      "id": "code-review",
+      "positive": [
+        "Use code-review to handle this request: code review.",
+        "Use code-review to handle this request: review diff.",
+        "Use code-review to handle this request: review pull request."
+      ],
+      "negative": [
+        "This request is implement feature; do not route it to code-review.",
+        "This request is write code from scratch; do not route it to code-review."
+      ],
+      "overlap": {
+        "prompt": "Coordinate code review with implement code.",
+        "expected_top3": [
+          "code-review",
+          "code-craft"
+        ]
+      }
+    },
+    {
+      "id": "context-engineering",
+      "positive": [
+        "Use context-engineering to handle this request: reduce agent context usage.",
+        "Use context-engineering to handle this request: design an agent memory strategy.",
+        "Use context-engineering to handle this request: improve multi-agent handoffs."
+      ],
+      "negative": [
+        "This request is optimize application runtime memory; do not route it to context-engineering.",
+        "This request is summarize a single document; do not route it to context-engineering."
+      ],
+      "overlap": {
+        "prompt": "Coordinate reduce agent context usage with coordinate a multi-phase implementation.",
+        "expected_top3": [
+          "context-engineering",
+          "lifecycle-orchestrator"
+        ]
+      }
+    },
+    {
+      "id": "copywriting",
+      "positive": [
+        "Use copywriting to handle this request: write conversion copy.",
+        "Use copywriting to handle this request: revise a landing-page message.",
+        "Use copywriting to handle this request: create an email campaign."
+      ],
+      "negative": [
+        "This request is write technical documentation; do not route it to copywriting.",
+        "This request is perform keyword research; do not route it to copywriting."
+      ],
+      "overlap": {
+        "prompt": "Coordinate write conversion copy with audit technical SEO.",
+        "expected_top3": [
+          "copywriting",
+          "seo-optimizer"
+        ]
+      }
+    },
+    {
+      "id": "data-modeler",
+      "positive": [
+        "Use data-modeler to handle this request: design a database schema.",
+        "Use data-modeler to handle this request: choose a database.",
+        "Use data-modeler to handle this request: plan a migration."
+      ],
+      "negative": [
+        "This request is design API transport; do not route it to data-modeler.",
+        "This request is build application UI; do not route it to data-modeler."
+      ],
+      "overlap": {
+        "prompt": "Coordinate design a database schema with choose an API style.",
+        "expected_top3": [
+          "data-modeler",
+          "api-architect"
+        ]
+      }
+    },
+    {
+      "id": "debug-pro",
+      "positive": [
+        "Use debug-pro to handle this request: debug failure.",
+        "Use debug-pro to handle this request: root cause.",
+        "Use debug-pro to handle this request: flaky test."
+      ],
+      "negative": [
+        "This request is new feature design; do not route it to debug-pro.",
+        "This request is code style review; do not route it to debug-pro."
+      ],
+      "overlap": {
+        "prompt": "Coordinate debug failure with TypeScript diagnostics.",
+        "expected_top3": [
+          "debug-pro",
+          "problem-checker"
+        ]
+      }
+    },
+    {
+      "id": "debug-pro/defense-in-depth",
+      "positive": [
+        "Use debug-pro/defense-in-depth to handle this request: defense in depth.",
+        "Use debug-pro/defense-in-depth to handle this request: validation layers.",
+        "Use debug-pro/defense-in-depth to handle this request: invalid state."
+      ],
+      "negative": [
+        "This request is unknown root cause; do not route it to debug-pro/defense-in-depth.",
+        "This request is visual regression; do not route it to debug-pro/defense-in-depth."
+      ],
+      "overlap": {
+        "prompt": "Coordinate defense in depth with debug failure.",
+        "expected_top3": [
+          "debug-pro/defense-in-depth",
+          "debug-pro"
+        ]
+      }
+    },
+    {
+      "id": "debug-pro/root-cause-tracing",
+      "positive": [
+        "Use debug-pro/root-cause-tracing to handle this request: trace root cause.",
+        "Use debug-pro/root-cause-tracing to handle this request: find polluter.",
+        "Use debug-pro/root-cause-tracing to handle this request: call chain."
+      ],
+      "negative": [
+        "This request is no reproduction; do not route it to debug-pro/root-cause-tracing.",
+        "This request is feature planning; do not route it to debug-pro/root-cause-tracing."
+      ],
+      "overlap": {
+        "prompt": "Coordinate trace root cause with debug failure.",
+        "expected_top3": [
+          "debug-pro/root-cause-tracing",
+          "debug-pro"
+        ]
+      }
+    },
+    {
+      "id": "debug-pro/verification-before-completion",
+      "positive": [
+        "Use debug-pro/verification-before-completion to handle this request: verify completion.",
+        "Use debug-pro/verification-before-completion to handle this request: proof before done.",
+        "Use debug-pro/verification-before-completion to handle this request: acceptance evidence."
+      ],
+      "negative": [
+        "This request is test strategy design; do not route it to debug-pro/verification-before-completion.",
+        "This request is initial planning; do not route it to debug-pro/verification-before-completion."
+      ],
+      "overlap": {
+        "prompt": "Coordinate verify completion with debug failure.",
+        "expected_top3": [
+          "debug-pro/verification-before-completion",
+          "debug-pro"
+        ]
+      }
+    },
+    {
+      "id": "design-system",
+      "positive": [
+        "Use design-system to handle this request: design system.",
+        "Use design-system to handle this request: design tokens.",
+        "Use design-system to handle this request: color system."
+      ],
+      "negative": [
+        "This request is one-off illustration; do not route it to design-system.",
+        "This request is React state logic; do not route it to design-system."
+      ],
+      "overlap": {
+        "prompt": "Coordinate design system with React component.",
+        "expected_top3": [
+          "design-system",
+          "react-pro"
+        ]
+      }
+    },
+    {
+      "id": "doc-templates",
+      "positive": [
+        "Use doc-templates to handle this request: draft a README.",
+        "Use doc-templates to handle this request: document an API.",
+        "Use doc-templates to handle this request: record an architecture decision."
+      ],
+      "negative": [
+        "This request is write marketing copy; do not route it to doc-templates.",
+        "This request is design an API contract; do not route it to doc-templates."
+      ],
+      "overlap": {
+        "prompt": "Coordinate draft a README with plan a multi-step feature.",
+        "expected_top3": [
+          "doc-templates",
+          "project-planner"
+        ]
+      }
+    },
+    {
+      "id": "e2e-automation",
+      "positive": [
+        "Use e2e-automation to handle this request: end-to-end test.",
+        "Use e2e-automation to handle this request: browser automation.",
+        "Use e2e-automation to handle this request: Playwright."
+      ],
+      "negative": [
+        "This request is unit test only; do not route it to e2e-automation.",
+        "This request is manual browser inspection; do not route it to e2e-automation."
+      ],
+      "overlap": {
+        "prompt": "Coordinate end-to-end test with test strategy.",
+        "expected_top3": [
+          "e2e-automation",
+          "test-architect"
+        ]
+      }
+    },
+    {
+      "id": "execution-reporter",
+      "positive": [
+        "Use execution-reporter to handle this request: report task progress.",
+        "Use execution-reporter to handle this request: summarize agent routing.",
+        "Use execution-reporter to handle this request: explain validation status."
+      ],
+      "negative": [
+        "This request is execute a task; do not route it to execution-reporter.",
+        "This request is select a specialist agent; do not route it to execution-reporter."
+      ],
+      "overlap": {
+        "prompt": "Coordinate report task progress with coordinate a multi-phase implementation.",
+        "expected_top3": [
+          "execution-reporter",
+          "lifecycle-orchestrator"
+        ]
+      }
+    },
+    {
+      "id": "game-development",
+      "positive": [
+        "Use game-development to handle this request: architect a game.",
+        "Use game-development to handle this request: choose a game platform workflow.",
+        "Use game-development to handle this request: coordinate game subsystems."
+      ],
+      "negative": [
+        "This request is build a non-game web application; do not route it to game-development.",
+        "This request is create only a static illustration; do not route it to game-development."
+      ],
+      "overlap": {
+        "prompt": "Coordinate architect a game with game design.",
+        "expected_top3": [
+          "game-development",
+          "game-development/game-design"
+        ]
+      }
+    },
+    {
+      "id": "game-development/2d-games",
+      "positive": [
+        "Use game-development/2d-games to handle this request: 2D game.",
+        "Use game-development/2d-games to handle this request: sprite animation.",
+        "Use game-development/2d-games to handle this request: tilemap."
+      ],
+      "negative": [
+        "This request is 3D mesh modeling; do not route it to game-development/2d-games.",
+        "This request is photorealistic rendering; do not route it to game-development/2d-games."
+      ],
+      "overlap": {
+        "prompt": "Coordinate 2D game with architect a game.",
+        "expected_top3": [
+          "game-development/2d-games",
+          "game-development"
+        ]
+      }
+    },
+    {
+      "id": "game-development/3d-games",
+      "positive": [
+        "Use game-development/3d-games to handle this request: 3D game.",
+        "Use game-development/3d-games to handle this request: 3D rendering.",
+        "Use game-development/3d-games to handle this request: shader."
+      ],
+      "negative": [
+        "This request is pure 2D pixel art; do not route it to game-development/3d-games.",
+        "This request is static web design; do not route it to game-development/3d-games."
+      ],
+      "overlap": {
+        "prompt": "Coordinate 3D game with architect a game.",
+        "expected_top3": [
+          "game-development/3d-games",
+          "game-development"
+        ]
+      }
+    },
+    {
+      "id": "game-development/game-art",
+      "positive": [
+        "Use game-development/game-art to handle this request: game art.",
+        "Use game-development/game-art to handle this request: art style.",
+        "Use game-development/game-art to handle this request: asset pipeline."
+      ],
+      "negative": [
+        "This request is sound design; do not route it to game-development/game-art.",
+        "This request is network protocol; do not route it to game-development/game-art."
+      ],
+      "overlap": {
+        "prompt": "Coordinate game art with architect a game.",
+        "expected_top3": [
+          "game-development/game-art",
+          "game-development"
+        ]
+      }
+    },
+    {
+      "id": "game-development/game-audio",
+      "positive": [
+        "Use game-development/game-audio to handle this request: game audio.",
+        "Use game-development/game-audio to handle this request: sound design.",
+        "Use game-development/game-audio to handle this request: music integration."
+      ],
+      "negative": [
+        "This request is visual rendering; do not route it to game-development/game-audio.",
+        "This request is physics engine tuning; do not route it to game-development/game-audio."
+      ],
+      "overlap": {
+        "prompt": "Coordinate game audio with architect a game.",
+        "expected_top3": [
+          "game-development/game-audio",
+          "game-development"
+        ]
+      }
+    },
+    {
+      "id": "game-development/game-design",
+      "positive": [
+        "Use game-development/game-design to handle this request: game design.",
+        "Use game-development/game-design to handle this request: GDD.",
+        "Use game-development/game-design to handle this request: balancing."
+      ],
+      "negative": [
+        "This request is low-level engine rendering; do not route it to game-development/game-design.",
+        "This request is backend server hosting; do not route it to game-development/game-design."
+      ],
+      "overlap": {
+        "prompt": "Coordinate game design with architect a game.",
+        "expected_top3": [
+          "game-development/game-design",
+          "game-development"
+        ]
+      }
+    },
+    {
+      "id": "game-development/mobile-games",
+      "positive": [
+        "Use game-development/mobile-games to handle this request: mobile game.",
+        "Use game-development/mobile-games to handle this request: touch input.",
+        "Use game-development/mobile-games to handle this request: battery optimization."
+      ],
+      "negative": [
+        "This request is desktop-only simulations; do not route it to game-development/mobile-games.",
+        "This request is console controller mappings; do not route it to game-development/mobile-games."
+      ],
+      "overlap": {
+        "prompt": "Coordinate mobile game with architect a game.",
+        "expected_top3": [
+          "game-development/mobile-games",
+          "game-development"
+        ]
+      }
+    },
+    {
+      "id": "game-development/multiplayer",
+      "positive": [
+        "Use game-development/multiplayer to handle this request: multiplayer.",
+        "Use game-development/multiplayer to handle this request: networking.",
+        "Use game-development/multiplayer to handle this request: synchronization."
+      ],
+      "negative": [
+        "This request is single-player local gameplay; do not route it to game-development/multiplayer.",
+        "This request is static website deployment; do not route it to game-development/multiplayer."
+      ],
+      "overlap": {
+        "prompt": "Coordinate multiplayer with architect a game.",
+        "expected_top3": [
+          "game-development/multiplayer",
+          "game-development"
+        ]
+      }
+    },
+    {
+      "id": "game-development/pc-games",
+      "positive": [
+        "Use game-development/pc-games to handle this request: pc game.",
+        "Use game-development/pc-games to handle this request: console game.",
+        "Use game-development/pc-games to handle this request: engine selection."
+      ],
+      "negative": [
+        "This request is mobile touch only; do not route it to game-development/pc-games.",
+        "This request is browser casual game; do not route it to game-development/pc-games."
+      ],
+      "overlap": {
+        "prompt": "Coordinate pc game with architect a game.",
+        "expected_top3": [
+          "game-development/pc-games",
+          "game-development"
+        ]
+      }
+    },
+    {
+      "id": "game-development/vr-ar",
+      "positive": [
+        "Use game-development/vr-ar to handle this request: VR.",
+        "Use game-development/vr-ar to handle this request: AR.",
+        "Use game-development/vr-ar to handle this request: XR."
+      ],
+      "negative": [
+        "This request is standard 2D web app; do not route it to game-development/vr-ar.",
+        "This request is terminal tool; do not route it to game-development/vr-ar."
+      ],
+      "overlap": {
+        "prompt": "Coordinate VR with architect a game.",
+        "expected_top3": [
+          "game-development/vr-ar",
+          "game-development"
+        ]
+      }
+    },
+    {
+      "id": "game-development/web-games",
+      "positive": [
+        "Use game-development/web-games to handle this request: web game.",
+        "Use game-development/web-games to handle this request: browser game.",
+        "Use game-development/web-games to handle this request: Phaser."
+      ],
+      "negative": [
+        "This request is native console binary; do not route it to game-development/web-games.",
+        "This request is standard form-based web page; do not route it to game-development/web-games."
+      ],
+      "overlap": {
+        "prompt": "Coordinate web game with architect a game.",
+        "expected_top3": [
+          "game-development/web-games",
+          "game-development"
+        ]
+      }
+    },
+    {
+      "id": "git-workflow",
+      "positive": [
+        "Use git-workflow to handle this request: create a commit.",
+        "Use git-workflow to handle this request: prepare a pull request.",
+        "Use git-workflow to handle this request: choose a branch strategy."
+      ],
+      "negative": [
+        "This request is design a deployment pipeline; do not route it to git-workflow.",
+        "This request is review code quality; do not route it to git-workflow."
+      ],
+      "overlap": {
+        "prompt": "Coordinate create a commit with design a CI pipeline.",
+        "expected_top3": [
+          "git-workflow",
+          "cicd-pipeline"
+        ]
+      }
+    },
+    {
+      "id": "gitops",
+      "positive": [
+        "Use gitops to handle this request: set up GitOps.",
+        "Use gitops to handle this request: configure Argo CD.",
+        "Use gitops to handle this request: configure Flux."
+      ],
+      "negative": [
+        "This request is design non-Kubernetes CI; do not route it to gitops.",
+        "This request is deploy a static site; do not route it to gitops."
+      ],
+      "overlap": {
+        "prompt": "Coordinate set up GitOps with design a CI pipeline.",
+        "expected_top3": [
+          "gitops",
+          "cicd-pipeline"
+        ]
+      }
+    },
+    {
+      "id": "google-adk-python",
+      "positive": [
+        "Use google-adk-python to handle this request: build a Python agent with Google ADK.",
+        "Use google-adk-python to handle this request: compose Google ADK agents.",
+        "Use google-adk-python to handle this request: create a typed ADK tool."
+      ],
+      "negative": [
+        "This request is write general Python code; do not route it to google-adk-python.",
+        "This request is build an agent with another framework; do not route it to google-adk-python."
+      ],
+      "overlap": {
+        "prompt": "Coordinate build a Python agent with Google ADK with build a Python service.",
+        "expected_top3": [
+          "google-adk-python",
+          "python-pro"
+        ]
+      }
+    },
+    {
+      "id": "idea-storm",
+      "positive": [
+        "Use idea-storm to handle this request: clarify an ambiguous product idea.",
+        "Use idea-storm to handle this request: compare architecture options.",
+        "Use idea-storm to handle this request: discover hidden constraints."
+      ],
+      "negative": [
+        "This request is implement a fully specified change; do not route it to idea-storm.",
+        "This request is fix a narrow reproducible bug; do not route it to idea-storm."
+      ],
+      "overlap": {
+        "prompt": "Coordinate clarify an ambiguous product idea with plan a multi-step feature.",
+        "expected_top3": [
+          "idea-storm",
+          "project-planner"
+        ]
+      }
+    },
+    {
+      "id": "knowledge-compiler",
+      "positive": [
+        "Use knowledge-compiler to handle this request: capture this verified lesson.",
+        "Use knowledge-compiler to handle this request: compile project knowledge.",
+        "Use knowledge-compiler to handle this request: update the knowledge index."
+      ],
+      "negative": [
+        "This request is lint knowledge health; do not route it to knowledge-compiler.",
+        "This request is author a standalone skill package; do not route it to knowledge-compiler."
+      ],
+      "overlap": {
+        "prompt": "Coordinate capture this verified lesson with lint the knowledge base.",
+        "expected_top3": [
+          "knowledge-compiler",
+          "knowledge-linter"
+        ]
+      }
+    },
+    {
+      "id": "knowledge-graph",
+      "positive": [
+        "Use knowledge-graph to handle this request: find all usages of a symbol.",
+        "Use knowledge-graph to handle this request: map repository dependencies.",
+        "Use knowledge-graph to handle this request: assess refactoring impact."
+      ],
+      "negative": [
+        "This request is search for a literal string; do not route it to knowledge-graph.",
+        "This request is perform an automated refactor; do not route it to knowledge-graph."
+      ],
+      "overlap": {
+        "prompt": "Coordinate find all usages of a symbol with code review.",
+        "expected_top3": [
+          "knowledge-graph",
+          "code-review"
+        ]
+      }
+    },
+    {
+      "id": "knowledge-linter",
+      "positive": [
+        "Use knowledge-linter to handle this request: lint the knowledge base.",
+        "Use knowledge-linter to handle this request: find stale project knowledge.",
+        "Use knowledge-linter to handle this request: check knowledge links."
+      ],
+      "negative": [
+        "This request is compile new knowledge; do not route it to knowledge-linter.",
+        "This request is create a reusable skill; do not route it to knowledge-linter."
+      ],
+      "overlap": {
+        "prompt": "Coordinate lint the knowledge base with capture this verified lesson.",
+        "expected_top3": [
+          "knowledge-linter",
+          "knowledge-compiler"
+        ]
+      }
+    },
+    {
+      "id": "lifecycle-orchestrator",
+      "positive": [
+        "Use lifecycle-orchestrator to handle this request: coordinate a multi-phase implementation.",
+        "Use lifecycle-orchestrator to handle this request: manage checkpoints and rollback.",
+        "Use lifecycle-orchestrator to handle this request: sequence multiple agents."
+      ],
+      "negative": [
+        "This request is make a single-file edit; do not route it to lifecycle-orchestrator.",
+        "This request is answer a code question; do not route it to lifecycle-orchestrator."
+      ],
+      "overlap": {
+        "prompt": "Coordinate coordinate a multi-phase implementation with plan a multi-step feature.",
+        "expected_top3": [
+          "lifecycle-orchestrator",
+          "project-planner"
+        ]
+      }
+    },
+    {
+      "id": "mcp-builder",
+      "positive": [
+        "Use mcp-builder to handle this request: build an MCP server.",
+        "Use mcp-builder to handle this request: design MCP tools.",
+        "Use mcp-builder to handle this request: review an MCP server."
+      ],
+      "negative": [
+        "This request is call an existing MCP tool; do not route it to mcp-builder.",
+        "This request is manage configured MCP servers; do not route it to mcp-builder."
+      ],
+      "overlap": {
+        "prompt": "Coordinate build an MCP server with list configured MCP tools.",
+        "expected_top3": [
+          "mcp-builder",
+          "mcp-management"
+        ]
+      }
+    },
+    {
+      "id": "mcp-management",
+      "positive": [
+        "Use mcp-management to handle this request: list configured MCP tools.",
+        "Use mcp-management to handle this request: inspect an MCP server.",
+        "Use mcp-management to handle this request: invoke an MCP tool safely."
+      ],
+      "negative": [
+        "This request is build a new MCP server; do not route it to mcp-management.",
+        "This request is design an HTTP API; do not route it to mcp-management."
+      ],
+      "overlap": {
+        "prompt": "Coordinate list configured MCP tools with build an MCP server.",
+        "expected_top3": [
+          "mcp-management",
+          "mcp-builder"
+        ]
+      }
+    },
+    {
+      "id": "media-processing",
+      "positive": [
+        "Use media-processing to handle this request: transcode a video.",
+        "Use media-processing to handle this request: convert an audio file.",
+        "Use media-processing to handle this request: resize an image."
+      ],
+      "negative": [
+        "This request is generate a new image from a prompt; do not route it to media-processing.",
+        "This request is design UI assets; do not route it to media-processing."
+      ],
+      "overlap": {
+        "prompt": "Coordinate transcode a video with performance optimization.",
+        "expected_top3": [
+          "media-processing",
+          "perf-optimizer"
+        ]
+      }
+    },
+    {
+      "id": "mobile-design",
+      "positive": [
+        "Use mobile-design to handle this request: mobile UX.",
+        "Use mobile-design to handle this request: iOS design.",
+        "Use mobile-design to handle this request: Android design."
+      ],
+      "negative": [
+        "This request is mobile build pipeline; do not route it to mobile-design.",
+        "This request is backend-only service; do not route it to mobile-design."
+      ],
+      "overlap": {
+        "prompt": "Coordinate mobile UX with mobile application.",
+        "expected_top3": [
+          "mobile-design",
+          "mobile-developer"
+        ]
+      }
+    },
+    {
+      "id": "mobile-developer",
+      "positive": [
+        "Use mobile-developer to handle this request: mobile application.",
+        "Use mobile-developer to handle this request: React Native.",
+        "Use mobile-developer to handle this request: Flutter."
+      ],
+      "negative": [
+        "This request is design-only mobile mockup; do not route it to mobile-developer.",
+        "This request is responsive website; do not route it to mobile-developer."
+      ],
+      "overlap": {
+        "prompt": "Coordinate mobile application with mobile UX.",
+        "expected_top3": [
+          "mobile-developer",
+          "mobile-design"
+        ]
+      }
+    },
+    {
+      "id": "nextjs-pro",
+      "positive": [
+        "Use nextjs-pro to handle this request: Next.js.",
+        "Use nextjs-pro to handle this request: App Router.",
+        "Use nextjs-pro to handle this request: route handler."
+      ],
+      "negative": [
+        "This request is framework-neutral React component; do not route it to nextjs-pro.",
+        "This request is CSS-only styling; do not route it to nextjs-pro."
+      ],
+      "overlap": {
+        "prompt": "Coordinate Next.js with React component.",
+        "expected_top3": [
+          "nextjs-pro",
+          "react-pro"
+        ]
+      }
+    },
+    {
+      "id": "nodejs-pro",
+      "positive": [
+        "Use nodejs-pro to handle this request: build a Node.js service.",
+        "Use nodejs-pro to handle this request: choose a Node framework.",
+        "Use nodejs-pro to handle this request: fix event-loop blocking."
+      ],
+      "negative": [
+        "This request is build a browser component; do not route it to nodejs-pro.",
+        "This request is design a database schema; do not route it to nodejs-pro."
+      ],
+      "overlap": {
+        "prompt": "Coordinate build a Node.js service with choose an API style.",
+        "expected_top3": [
+          "nodejs-pro",
+          "api-architect"
+        ]
+      }
+    },
+    {
+      "id": "observability",
+      "positive": [
+        "Use observability to handle this request: instrument a service with OpenTelemetry.",
+        "Use observability to handle this request: design logs metrics and traces.",
+        "Use observability to handle this request: define service-level alerts."
+      ],
+      "negative": [
+        "This request is provision a server; do not route it to observability.",
+        "This request is optimize code without measurements; do not route it to observability."
+      ],
+      "overlap": {
+        "prompt": "Coordinate instrument a service with OpenTelemetry with operate a Linux service.",
+        "expected_top3": [
+          "observability",
+          "server-ops"
+        ]
+      }
+    },
+    {
+      "id": "offensive-sec",
+      "positive": [
+        "Use offensive-sec to handle this request: plan an authorized penetration test.",
+        "Use offensive-sec to handle this request: design a red-team exercise.",
+        "Use offensive-sec to handle this request: map ATT&CK techniques."
+      ],
+      "negative": [
+        "This request is scan source code defensively; do not route it to offensive-sec.",
+        "This request is test an unowned target; do not route it to offensive-sec."
+      ],
+      "overlap": {
+        "prompt": "Coordinate plan an authorized penetration test with review source security.",
+        "expected_top3": [
+          "offensive-sec",
+          "security-scanner"
+        ]
+      }
+    },
+    {
+      "id": "perf-optimizer",
+      "positive": [
+        "Use perf-optimizer to handle this request: performance optimization.",
+        "Use perf-optimizer to handle this request: latency.",
+        "Use perf-optimizer to handle this request: throughput."
+      ],
+      "negative": [
+        "This request is no performance objective; do not route it to perf-optimizer.",
+        "This request is style-only refactor; do not route it to perf-optimizer."
+      ],
+      "overlap": {
+        "prompt": "Coordinate performance optimization with Chrome DevTools.",
+        "expected_top3": [
+          "perf-optimizer",
+          "chrome-devtools"
+        ]
+      }
+    },
+    {
+      "id": "problem-checker",
+      "positive": [
+        "Use problem-checker to handle this request: TypeScript diagnostics.",
+        "Use problem-checker to handle this request: transactional auto-fix.",
+        "Use problem-checker to handle this request: pre-completion error gate."
+      ],
+      "negative": [
+        "This request is root cause investigation; do not route it to problem-checker.",
+        "This request is architectural code review; do not route it to problem-checker."
+      ],
+      "overlap": {
+        "prompt": "Coordinate TypeScript diagnostics with debug failure.",
+        "expected_top3": [
+          "problem-checker",
+          "debug-pro"
+        ]
+      }
+    },
+    {
+      "id": "project-planner",
+      "positive": [
+        "Use project-planner to handle this request: plan a multi-step feature.",
+        "Use project-planner to handle this request: decompose a refactor.",
+        "Use project-planner to handle this request: sequence dependent work."
+      ],
+      "negative": [
+        "This request is apply a trivial edit; do not route it to project-planner.",
+        "This request is answer a factual question; do not route it to project-planner."
+      ],
+      "overlap": {
+        "prompt": "Coordinate plan a multi-step feature with clarify an ambiguous product idea.",
+        "expected_top3": [
+          "project-planner",
+          "idea-storm"
+        ]
+      }
+    },
+    {
+      "id": "python-pro",
+      "positive": [
+        "Use python-pro to handle this request: build a Python service.",
+        "Use python-pro to handle this request: choose FastAPI or Django.",
+        "Use python-pro to handle this request: type a Python project."
+      ],
+      "negative": [
+        "This request is build a Node.js service; do not route it to python-pro.",
+        "This request is orchestrate AI agents; do not route it to python-pro."
+      ],
+      "overlap": {
+        "prompt": "Coordinate build a Python service with choose an API style.",
+        "expected_top3": [
+          "python-pro",
+          "api-architect"
+        ]
+      }
+    },
+    {
+      "id": "react-pro",
+      "positive": [
+        "Use react-pro to handle this request: React component.",
+        "Use react-pro to handle this request: React hook.",
+        "Use react-pro to handle this request: TSX."
+      ],
+      "negative": [
+        "This request is Next.js route; do not route it to react-pro.",
+        "This request is native mobile UI; do not route it to react-pro."
+      ],
+      "overlap": {
+        "prompt": "Coordinate React component with Next.js.",
+        "expected_top3": [
+          "react-pro",
+          "nextjs-pro"
+        ]
+      }
+    },
+    {
+      "id": "security-scanner",
+      "positive": [
+        "Use security-scanner to handle this request: review source security.",
+        "Use security-scanner to handle this request: audit dependencies.",
+        "Use security-scanner to handle this request: threat-model an application."
+      ],
+      "negative": [
+        "This request is conduct a penetration test; do not route it to security-scanner.",
+        "This request is implement login; do not route it to security-scanner."
+      ],
+      "overlap": {
+        "prompt": "Coordinate review source security with plan an authorized penetration test.",
+        "expected_top3": [
+          "security-scanner",
+          "offensive-sec"
+        ]
+      }
+    },
+    {
+      "id": "seo-optimizer",
+      "positive": [
+        "Use seo-optimizer to handle this request: audit technical SEO.",
+        "Use seo-optimizer to handle this request: improve search snippets.",
+        "Use seo-optimizer to handle this request: design structured data."
+      ],
+      "negative": [
+        "This request is profile runtime performance; do not route it to seo-optimizer.",
+        "This request is write long-form marketing content; do not route it to seo-optimizer."
+      ],
+      "overlap": {
+        "prompt": "Coordinate audit technical SEO with performance optimization.",
+        "expected_top3": [
+          "seo-optimizer",
+          "perf-optimizer"
+        ]
+      }
+    },
+    {
+      "id": "server-ops",
+      "positive": [
+        "Use server-ops to handle this request: operate a Linux service.",
+        "Use server-ops to handle this request: diagnose server resources.",
+        "Use server-ops to handle this request: configure process supervision."
+      ],
+      "negative": [
+        "This request is build a deployment pipeline; do not route it to server-ops.",
+        "This request is instrument application telemetry; do not route it to server-ops."
+      ],
+      "overlap": {
+        "prompt": "Coordinate operate a Linux service with design a CI pipeline.",
+        "expected_top3": [
+          "server-ops",
+          "cicd-pipeline"
+        ]
+      }
+    },
+    {
+      "id": "shell-script",
+      "positive": [
+        "Use shell-script to handle this request: write a Bash script.",
+        "Use shell-script to handle this request: harden a shell script.",
+        "Use shell-script to handle this request: debug a POSIX shell command."
+      ],
+      "negative": [
+        "This request is write a PowerShell script; do not route it to shell-script.",
+        "This request is run an unspecified destructive command; do not route it to shell-script."
+      ],
+      "overlap": {
+        "prompt": "Coordinate write a Bash script with design a CI pipeline.",
+        "expected_top3": [
+          "shell-script",
+          "cicd-pipeline"
+        ]
+      }
+    },
+    {
+      "id": "skill-generator",
+      "positive": [
+        "Use skill-generator to handle this request: generate a reusable skill.",
+        "Use skill-generator to handle this request: convert validated patterns into a skill.",
+        "Use skill-generator to handle this request: scaffold skill resources."
+      ],
+      "negative": [
+        "This request is record a single lesson; do not route it to skill-generator.",
+        "This request is install an existing skill; do not route it to skill-generator."
+      ],
+      "overlap": {
+        "prompt": "Coordinate generate a reusable skill with capture this verified lesson.",
+        "expected_top3": [
+          "skill-generator",
+          "knowledge-compiler"
+        ]
+      }
+    },
+    {
+      "id": "smart-router",
+      "positive": [
+        "Use smart-router to handle this request: classify a request.",
+        "Use smart-router to handle this request: choose a specialist skill.",
+        "Use smart-router to handle this request: resolve overlapping skill triggers."
+      ],
+      "negative": [
+        "This request is execute the selected task; do not route it to smart-router.",
+        "This request is author a new specialist skill; do not route it to smart-router."
+      ],
+      "overlap": {
+        "prompt": "Coordinate classify a request with coordinate a multi-phase implementation.",
+        "expected_top3": [
+          "smart-router",
+          "lifecycle-orchestrator"
+        ]
+      }
+    },
+    {
+      "id": "studio",
+      "positive": [
+        "Use studio to handle this request: studio design search.",
+        "Use studio to handle this request: design dataset query.",
+        "Use studio to handle this request: studio palette recommendation."
+      ],
+      "negative": [
+        "This request is implement UI components; do not route it to studio.",
+        "This request is critique design theory; do not route it to studio."
+      ],
+      "overlap": {
+        "prompt": "Coordinate studio design search with design system.",
+        "expected_top3": [
+          "studio",
+          "design-system"
+        ]
+      }
+    },
+    {
+      "id": "system-design",
+      "positive": [
+        "Use system-design to handle this request: design a software system.",
+        "Use system-design to handle this request: compare architecture options.",
+        "Use system-design to handle this request: write an architecture decision record."
+      ],
+      "negative": [
+        "This request is implement a local code change; do not route it to system-design.",
+        "This request is choose an API endpoint shape; do not route it to system-design."
+      ],
+      "overlap": {
+        "prompt": "Coordinate design a software system with choose an API style.",
+        "expected_top3": [
+          "system-design",
+          "api-architect"
+        ]
+      }
+    },
+    {
+      "id": "tailwind-kit",
+      "positive": [
+        "Use tailwind-kit to handle this request: Tailwind CSS.",
+        "Use tailwind-kit to handle this request: utility classes.",
+        "Use tailwind-kit to handle this request: responsive Tailwind."
+      ],
+      "negative": [
+        "This request is React state architecture; do not route it to tailwind-kit.",
+        "This request is product design research; do not route it to tailwind-kit."
+      ],
+      "overlap": {
+        "prompt": "Coordinate Tailwind CSS with design system.",
+        "expected_top3": [
+          "tailwind-kit",
+          "design-system"
+        ]
+      }
+    },
+    {
+      "id": "test-architect",
+      "positive": [
+        "Use test-architect to handle this request: test strategy.",
+        "Use test-architect to handle this request: test architecture.",
+        "Use test-architect to handle this request: coverage gap."
+      ],
+      "negative": [
+        "This request is single bug diagnosis; do not route it to test-architect.",
+        "This request is manual visual review; do not route it to test-architect."
+      ],
+      "overlap": {
+        "prompt": "Coordinate test strategy with end-to-end test.",
+        "expected_top3": [
+          "test-architect",
+          "e2e-automation"
+        ]
+      }
+    },
+    {
+      "id": "typescript-expert",
+      "positive": [
+        "Use typescript-expert to handle this request: TypeScript.",
+        "Use typescript-expert to handle this request: type error.",
+        "Use typescript-expert to handle this request: generic type."
+      ],
+      "negative": [
+        "This request is JavaScript runtime only; do not route it to typescript-expert.",
+        "This request is CSS styling; do not route it to typescript-expert."
+      ],
+      "overlap": {
+        "prompt": "Coordinate TypeScript with implement code.",
+        "expected_top3": [
+          "typescript-expert",
+          "code-craft"
+        ]
+      }
+    },
+    {
+      "id": "vercel-deploy",
+      "positive": [
+        "Use vercel-deploy to handle this request: deploy to Vercel.",
+        "Use vercel-deploy to handle this request: create a Vercel preview.",
+        "Use vercel-deploy to handle this request: promote a Vercel deployment."
+      ],
+      "negative": [
+        "This request is deploy to another platform; do not route it to vercel-deploy.",
+        "This request is design a general CI pipeline; do not route it to vercel-deploy."
+      ],
+      "overlap": {
+        "prompt": "Coordinate deploy to Vercel with design a CI pipeline.",
+        "expected_top3": [
+          "vercel-deploy",
+          "cicd-pipeline"
+        ]
+      }
+    }
+  ]
+}

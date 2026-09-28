@@ -1,9 +1,27 @@
 ---
-title: "React 19 Patterns"
-impact: HIGH
-impactDescription: "React 19 introduces useActionState and useOptimistic for modern form handling"
-tags: react19, useActionState, useOptimistic, forms
+"title": "React 19 Patterns"
+"kind": "reference"
+"impact": "high"
+"tags":
+  - "react19"
+  - "useActionState"
+  - "useOptimistic"
+  - "forms"
+"applies_to":
+  - "web"
+"last_reviewed": "2026-09-28"
+"sources":
+  - "url": "https://react.dev/reference/react"
+    "title": "Official documentation"
 ---
+
+# React 19 Patterns
+
+## Scope
+
+Apply this guidance only to the declared platforms and repository-confirmed versions.
+
+## Guidance
 
 # React 19 Patterns
 
@@ -80,6 +98,6 @@ function TodoList({ todos }: { todos: Todo[] }) {
 }
 ```
 
----
+## Verification
 
-⚡ PikaKit v3.9.223
+Cross-check version-sensitive details with the cited official source and verify the resulting behavior in the target environment.

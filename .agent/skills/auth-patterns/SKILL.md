@@ -1,163 +1,57 @@
 ---
 name: auth-patterns
-description: >-
-  Authentication and authorization: OAuth2, JWT, RBAC/ABAC, MFA, Passkeys, session management.
-  Use when implementing login, permissions, tokens, or security flows.
-  NOT for vulnerability scanning (use security-scanner) or API design (use api-architect).
+description: This skill should be used when the user asks to "implement login", "choose OAuth or sessions", "design authorization", "add MFA", or "support passkeys". Do not use it for vulnerability discovery, penetration testing, or general API design.
 metadata:
-  author: pikakit
-  version: "3.9.223"
+  id: auth-patterns
+  schema_version: "2.0.0"
+  type: knowledge
   category: security
-  triggers: ["auth", "login", "OAuth", "JWT", "RBAC", "permissions", "MFA", "passkey"]
-  coordinates_with: ["api-architect", "security-scanner", "data-modeler", "offensive-sec"]
-  success_metrics: ["0 authorization bypass vulnerabilities", "100% FAANG audit compliance"]
+  risk_tier: critical
+  version: "4.0.0"
+  author: pikakit
+  triggers: ["implement login", "choose OAuth or sessions", "design authorization", "add MFA", "support passkeys"]
+  negative_triggers: ["scan for vulnerabilities", "run a penetration test", "design an unauthenticated API"]
+  coordinates_with: [api-architect, security-scanner, data-modeler, offensive-sec]
+  capabilities: [authentication-design, authorization-design, token-lifecycle, account-recovery]
+  platforms: [web, mobile, backend]
+  last_reviewed: "2026-09-28"
+  review_interval_days: 90
 ---
 
-# Auth Patterns
+# Authentication and Authorization
 
-> Authentication & authorization decisions for production applications. Fail closed. Defense in depth.
+Design identity controls that fail closed and can be revoked, observed, and recovered safely.
 
----
+## Workflow
 
-## Prerequisites
+1. Identify actors, trust boundaries, protected resources, and assurance requirements.
+2. Separate authentication, session management, and authorization decisions.
+3. Choose a server-side session unless stateless delegation is a demonstrated requirement.
+4. Apply authorization at every resource boundary; deny when identity or policy data is missing.
+5. Define enrollment, rotation, revocation, recovery, and audit events before implementation.
+6. Threat-model replay, fixation, confused-deputy, recovery, and tenant-isolation paths.
+7. Test negative cases and operational recovery before release.
 
-**Required:** None — Auth Patterns is a knowledge-based skill with no external dependencies.
+## Routing
 
-**Optional:**
-- `security-scanner` skill (for implementation validation)
-- `offensive-sec` skill (for attack vector analysis)
+| Need | Read |
+|---|---|
+| OAuth 2.0 or OpenID Connect | [oauth2.md](rules/oauth2.md) |
+| JWT validation and rotation | [jwt-deep.md](rules/jwt-deep.md) |
+| Cookie and server-side sessions | [session.md](rules/session.md) |
+| Roles, attributes, ownership, tenancy | [rbac-abac.md](rules/rbac-abac.md) |
+| MFA and recovery | [mfa.md](rules/mfa.md) |
+| WebAuthn/passkeys | [passkey.md](rules/passkey.md) |
+| Cross-cutting design gate | [engineering-spec.md](rules/engineering-spec.md) |
 
----
+## Non-Negotiable Gates
 
-## When to Use
+- Reject unregistered redirect URIs, invalid issuer/audience, expired credentials, and unknown signing algorithms.
+- Keep bearer credentials out of URLs and browser persistent storage.
+- Rotate session identifiers after authentication and privilege changes.
+- Require recent authentication for credential, recovery, payment, and privilege changes.
+- Log security outcomes without tokens, passwords, recovery codes, or unnecessary personal data.
 
-| Situation | Reference |
-|-----------|-----------|
-| Choosing auth strategy | Decision tree below |
-| OAuth2 / SSO / OIDC | `rules/oauth2.md` |
-| JWT signing, rotation, refresh | `rules/jwt-deep.md` |
-| Permission system (RBAC/ABAC) | `rules/rbac-abac.md` |
-| Multi-factor authentication | `rules/mfa.md` |
-| Session management | `rules/session.md` |
-| Passwordless / Passkeys | `rules/passkey.md` |
-| Architecture review, contracts | `rules/engineering-spec.md` |
+## Output Contract
 
-**Selective Reading Rule:** Read ONLY the file matching the current request.
-
----
-
-## System Boundaries
-
-| Owned by This Skill | NOT Owned |
-|---------------------|-----------|
-| Auth strategy selection (JWT/Session/OAuth/Passkey) | Auth library implementation |
-| Token lifecycle design (TTL, rotation, revocation) | Secret/key generation |
-| Permission model architecture (RBAC/ABAC) | Users/roles DB schema (→ data-modeler) |
-| MFA strategy selection (TOTP/WebAuthn) | MFA provider integration |
-| Session config (cookie, store, invalidation) | Session store provisioning (→ server-ops) |
-
-**Pure decision skill:** Produces security guidance. Zero network calls, zero credential handling, zero side effects.
-
----
-
-## Core Principles
-
-| Principle | Enforcement |
-|-----------|-------------|
-| **Fail Closed** | Auth error or ambiguity → deny access. Never implicit allow. |
-| **Defense in Depth** | Every recommendation includes ≥ 3 controls: auth + authz + rate limit + monitoring |
-| **Least Privilege** | Grant minimum permissions; default to no-access |
-| **Token Hygiene** | Access token ≤ 15 min. Refresh token rotated on use. httpOnly storage. |
-| **Zero Trust** | Verify every request. No implicit trust for internal services. |
-
----
-
-## Auth Strategy Decision Tree
-
-```
-What type of application?
-├── SPA / Mobile App
-│   ├── First-party only → JWT (≤15min access) + Refresh Token (httpOnly cookie)
-│   └── Third-party login → OAuth 2.0 + PKCE (mandatory for public clients)
-├── Traditional Web (SSR)
-│   └── Session-based (httpOnly secure cookies, SameSite=Strict)
-├── API / Microservices
-│   ├── Service-to-service → mTLS or API Keys + HMAC
-│   └── User-facing → JWT with gateway validation
-├── Enterprise / B2B
-│   └── SAML 2.0 or OIDC (SSO)
-└── Modern Passwordless
-    └── Passkeys (WebAuthn/FIDO2)
-```
-
----
-
-## Error Taxonomy
-
-| Code | Recoverable | Trigger |
-|------|-------------|---------|
-| `ERR_INVALID_REQUEST_TYPE` | No | Request type not one of the 8 supported types |
-| `ERR_MISSING_CONTEXT` | Yes | Required context field is null or empty |
-| `ERR_CONSTRAINT_CONFLICT` | Yes | Contradictory constraints |
-| `ERR_INVALID_APP_TYPE` | No | App type not recognized |
-| `ERR_INVALID_SENSITIVITY` | No | Sensitivity not one of: low, medium, high, critical |
-| `ERR_REFERENCE_NOT_FOUND` | No | Reference file missing |
-| `ERR_UNSUPPORTED_COMPLIANCE` | Yes | Compliance standard combination not covered |
-
-**Zero internal retries.** Deterministic output; same context = same recommendation.
-
----
-
-## Decision Checklist
-
-- [ ] **Auth strategy chosen for THIS app type?** (JWT / Session / OAuth / Passkey)
-- [ ] **Token storage decided?** (httpOnly secure cookie — NOT localStorage)
-- [ ] **Access token TTL ≤ 15 minutes?**
-- [ ] **Refresh token rotation configured?** (rotate on every use)
-- [ ] **Permission model chosen?** (RBAC / ABAC / hybrid)
-- [ ] **MFA required for sensitive operations?** (high/critical sensitivity)
-- [ ] **Session invalidation on password change?**
-- [ ] **Rate limiting on auth endpoints?**
-- [ ] **PKCE enabled for all public clients?** (SPA, mobile)
-
----
-
-## Anti-Patterns
-
-| ❌ Don't | ✅ Do |
-|---------|-------|
-| Store JWT in localStorage | Use httpOnly secure cookies |
-| Access tokens with 24h+ expiry | Access token ≤ 15 min + refresh token |
-| Roll your own crypto | Use battle-tested libraries (jose, passport) |
-| Same signing key for all services | Per-service signing keys |
-| Skip PKCE for public clients | PKCE mandatory for SPA/mobile OAuth |
-| Hardcode roles in application code | Store permissions in database |
-| Implicit trust for internal services | Zero trust: verify every request |
-
-
-## 📑 Content Map
-
-| File | Description | When to Read |
-|------|-------------|--------------|
-| [oauth2.md](rules/oauth2.md) | OAuth 2.0 + OIDC flows, PKCE, scopes, providers | Third-party login, SSO |
-| [jwt-deep.md](rules/jwt-deep.md) | JWT signing, rotation, claims, refresh patterns | Token-based auth |
-| [rbac-abac.md](rules/rbac-abac.md) | Role-Based + Attribute-Based access control | Permission systems |
-| [mfa.md](rules/mfa.md) | TOTP, WebAuthn, backup codes, recovery | Multi-factor auth |
-| [session.md](rules/session.md) | Cookie sessions, Redis store, stateless vs stateful | Session design |
-| [passkey.md](rules/passkey.md) | WebAuthn/FIDO2 implementation guide | Passwordless auth |
-| [engineering-spec.md](rules/engineering-spec.md) | Full engineering spec: contracts, security model, scalability | Architecture review |
-
----
-
-## 🔗 Related
-
-| Item | Type | Purpose |
-|------|------|---------|
-| `api-architect` | Skill | API auth integration patterns |
-| `security-scanner` | Skill | Auth vulnerability scanning |
-| `data-modeler` | Skill | Users/roles schema design |
-| `offensive-sec` | Skill | Auth attack vectors and pen testing |
-
----
-
-⚡ PikaKit v3.9.223
+Return assumptions, mechanism, trust boundaries, credential lifecycle, authorization model, failure behavior, rollback, observability, and verification evidence. Mark unresolved security decisions as blockers.

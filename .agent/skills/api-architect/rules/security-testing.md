@@ -1,10 +1,13 @@
 ---
-name: security-testing
-description: OWASP API Top 10, JWT testing, BOLA/IDOR, authorization and input validation testing
 title: "API Security Testing"
-impact: HIGH
-impactDescription: "Important architectural or correctness impact"
-tags: security, testing
+kind: process
+impact: critical
+tags: [api, security, testing]
+applies_to: [api-architect]
+last_reviewed: "2026-09-28"
+sources:
+  - title: OWASP API Security Top 10
+    url: https://owasp.org/API-Security/editions/2023/en/0x11-t10/
 ---
 
 # API Security Testing
@@ -141,6 +144,22 @@ tags: security, testing
 | [graphql.md](graphql.md) | GraphQL-specific security |
 | [SKILL.md](../SKILL.md) | Full decision framework |
 
----
+## Preconditions
 
-⚡ PikaKit v3.9.223
+Obtain authorization, define scope and rate limits, use isolated accounts and data, and prepare monitoring and an abort contact.
+
+## Procedure
+
+1. Inventory operations, versions, identities, objects, properties, and business flows.
+2. Test authentication and token lifecycle.
+3. Test object, property, and function authorization across tenants and roles.
+4. Test resource consumption, SSRF boundaries, unsafe upstream data, inventory drift, and misconfiguration.
+5. Record reproducible evidence with secrets and personal data redacted.
+
+## Rollback
+
+Stop on instability, remove test data and accounts, restore changed configuration, and notify the owner of any residual effect.
+
+## Exit Gate
+
+Pass only when critical paths have negative authorization tests, limits are enforced, findings have owners and severity, and retests verify remediation.

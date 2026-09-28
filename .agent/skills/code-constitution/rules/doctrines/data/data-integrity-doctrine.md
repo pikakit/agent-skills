@@ -1,6 +1,6 @@
 ---
 name: data-integrity-doctrine
-version: "3.9.223"
+version: "3.9.224"
 status: LOCKED
 authority: CONSTITUTIONAL
 parent: architecture-doctrine
@@ -199,4 +199,4 @@ Not visual flair.
 
 ---
 
-⚡ PikaKit v3.9.223
+⚡ PikaKit v3.9.224

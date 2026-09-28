@@ -1,11 +1,26 @@
 ---
-name: mobile-debugging
-description: Mobile debugging patterns — React Native Flipper, Flutter DevTools, Xcode/Android Studio, crash diagnostics
-title: "Mobile Debugging Guide"
-impact: MEDIUM
-impactDescription: "Moderate improvement to quality or maintainability"
-tags: mobile, debugging
+"title": "Mobile Debugging Guide"
+"kind": "process"
+"impact": "standard"
+"tags":
+  - "mobile"
+  - "debugging"
+"applies_to":
+  - "android"
+  - "ios"
+"last_reviewed": "2026-09-28"
+"sources":
+  - "url": "https://www.w3.org/WAI/standards-guidelines/wcag/"
+    "title": "Official documentation"
 ---
+
+# Mobile Debugging Guide
+
+## Preconditions
+
+Record the current behavior, target environment, acceptance criteria, and a recoverable baseline before starting.
+
+## Procedure
 
 # Mobile Debugging Guide
 
@@ -82,7 +97,7 @@ Web Debugging:      Mobile Debugging:
     - **Android:** `adb logcat *:E` (Filter for Errors)
     - **iOS:** Open Xcode → Window → Devices → View Device Logs
 
-> **💡 Pro Tip:** If app crashes immediately on launch, it's almost 100% a native configuration issue (Info.plist, AndroidManifest.xml).
+> **💡 Pro Tip:** If app crashes immediately on launch, inspect native configuration first, then verify the failure with platform logs.
 
 ### 🌐 "API Request Failed" (Network)
 
@@ -137,10 +152,14 @@ Web Debugging:      Mobile Debugging:
 | File | When to Read |
 |------|-------------|
 | [../SKILL.md](../SKILL.md) | MFRI scoring |
-| [mobile-testing.md](mobile-testing.md) | Testing strategies |
-| [mobile-performance.md](mobile-performance.md) | Performance debugging |
-| [engineering-spec.md](engineering-spec.md) | Full engineering spec |
+| [mobile-testing.md](mobile-testing-mobile-testing-mindset.md) | Testing strategies |
+| [mobile-performance.md](mobile-performance-1-the-mobile-performance-mindset.md) | Performance debugging |
+| [engineering-spec.md](production-gates.md) | Full engineering spec |
 
----
+## Rollback
 
-⚡ PikaKit v3.9.223
+Restore the recorded baseline if a required command errors, evidence becomes inconclusive, or the change introduces a regression.
+
+## Exit Gate
+
+Complete only with fresh, reproducible evidence for the intended behavior and all relevant project checks passing.

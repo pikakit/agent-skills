@@ -1,15 +1,24 @@
 ---
-name: error-handling
-description: Centralized error handling — custom error classes, framework middleware, async patterns, and structured logging
-title: "Every error must be caught, classified, and communicated. No silent failures."
-impact: MEDIUM
-impactDescription: "Moderate improvement to quality or maintainability"
-tags: error, handling
+title: Node.js Error Handling
+kind: reference
+impact: high
+tags: [nodejs, errors, observability]
+applies_to: [nodejs, backend]
+last_reviewed: "2026-09-28"
+sources:
+  - title: Node.js Errors Documentation
+    url: https://nodejs.org/api/errors.html
 ---
 
 # Error Handling
 
 > Every error must be caught, classified, and communicated. **No silent failures.**
+
+## Scope
+
+Apply to operational/programmer error classification, transport mapping, structured logging, retry ownership, and process-level failure.
+
+## Guidance
 
 ---
 
@@ -243,7 +252,11 @@ logger.error({ err, userId, requestId, path: req.url }, 'User fetch failed')
 
 ---
 
-## 🔗 Related
+## Verification
+
+Test each error class through the public boundary, including dependency timeout and programmer failure. Confirm one owner retries, clients receive stable non-sensitive responses, logs preserve causes, and fatal process errors produce nonzero termination after cleanup.
+
+## Related
 
 | File | When to Read |
 |------|-------------|
@@ -254,4 +267,4 @@ logger.error({ err, userId, requestId, path: req.url }, 'User fetch failed')
 
 ---
 
-⚡ PikaKit v3.9.223
+⚡ PikaKit v3.9.224

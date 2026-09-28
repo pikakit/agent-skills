@@ -1,168 +1,39 @@
 ---
 name: google-adk-python
-description: >-
-  Build AI agents with Google Agent Development Kit: tool integration and multi-agent orchestration.
-  Use when building Google ADK agents, configuring agent tools, or deploying agent workflows.
-  NOT for general Python development (use python-pro) or non-Google agent frameworks.
+description: This skill should be used when the user asks to design a Python agent with Google ADK, compose ADK agents, or expose typed ADK tools.
 metadata:
+  id: google-adk-python
+  schema_version: "2.0.0"
+  type: knowledge
+  category: agentic
+  risk_tier: high
+  version: "3.9.224"
   author: pikakit
-  version: "3.9.223"
-  category: ai-agent-framework
-  triggers: ["Google ADK", "agent development", "multi-agent", "agent orchestration"]
-  coordinates_with: ["python-pro", "api-architect", "ai-artist"]
-  success_metrics: ["100% typed parameters", "< 5 tools per agent"]
+  triggers: ["build a Python agent with Google ADK", "compose Google ADK agents", "create a typed ADK tool"]
+  negative_triggers: ["write general Python code", "build an agent with another framework", "configure a generic REST API"]
+  coordinates_with: [python-pro, api-architect, observability]
+  capabilities: ["ADK agent selection", "typed tool design", "multi-agent composition", "deployment planning"]
+  platforms: [linux, macos, windows, google-cloud]
+  last_reviewed: "2026-09-28"
+  review_interval_days: 180
 ---
 
-# Google ADK Python — AI Agent Development
+# Google ADK Python
 
-> Code-first. ≤ 5 tools per agent. Typed functions. Deterministic type selection.
+Design Google ADK applications from the current official API. Pin the package version, verify imported symbols against that version, and keep credentials outside code and generated artifacts.
 
----
+## Workflow
 
-## Prerequisites
+1. Define the agent objective, termination condition, tool permissions, and data boundary.
+2. Select the simplest ADK agent composition that expresses the control flow.
+3. Define typed tools with bounded inputs, timeouts, and actionable errors.
+4. Add tracing and evaluation before adding more agents or tools.
+5. Select a deployment target from measured latency, security, and scaling requirements.
+6. Run deterministic tests with external services replaced by controlled fixtures.
 
-**Required:** `pip install google-adk`. Set `GEMINI_API_KEY` or `GOOGLE_CLOUD_PROJECT` + `GOOGLE_CLOUD_LOCATION`.
+## Detailed Guidance
 
----
-
-## When to Use
-
-| Situation | Action |
-|-----------|--------|
-| Single agent with tools | Follow quick start + agent type table |
-| Multi-agent coordination | Read `rules/multi-agent.md` |
-| Custom tool creation | Read `rules/tools.md` |
-| Deployment patterns | Read `rules/deployment.md` |
-| Architecture review | Read `rules/engineering-spec.md` |
-
----
-
-## System Boundaries
-
-| Owned by This Skill | NOT Owned |
-|---------------------|-----------|
-| Agent type selection (4 types) | Python project setup (→ python-pro) |
-| Model selection (3 tiers) | API architecture (→ api-architect) |
-| Tool creation patterns | Prompt engineering (→ ai-artist) |
-| Multi-agent composition | Cloud project config |
-| Deployment guidance | Model hosting |
-
-**Expert decision skill:** Produces agent architecture decisions and code patterns. No execution.
-
----
-
-## Agent Type Selection (Deterministic)
-
-| Task Type | Agent Type | When |
-|-----------|-----------|------|
-| Conversational | `LlmAgent` | Unpredictable inputs, dialogue |
-| Pipeline | `SequentialAgent` | Ordered step execution |
-| Fan-out | `ParallelAgent` | Concurrent independent tasks |
-| Iterative | `LoopAgent` | Repeat until condition met |
-
----
-
-## Model Selection (Cost-Based)
-
-| Complexity | Model | Tier |
-|-----------|-------|------|
-| Simple | `gemini-3-flash` | Fast, low cost |
-| Balanced | `gemini-3-pro-low` | Moderate reasoning |
-| Complex | `gemini-3-pro-high` | Deep reasoning |
-
----
-
-## Quick Start
-
-```python
-from google.adk.agents import LlmAgent
-
-agent = LlmAgent(
-    name="assistant",
-    model="gemini-3-flash",
-    instruction="You are a helpful assistant."
-)
-```
-
----
-
-## Tool Creation (Mandatory Contract)
-
-```python
-def calculate_roi(revenue: float, cost: float) -> float:
-    """Calculate return on investment."""
-    return ((revenue - cost) / cost) * 100
-```
-
-**Rules:** Typed parameters + docstring + return type annotation. Always.
-
----
-
-## Multi-Agent Rules
-
-| Rule | Limit |
-|------|-------|
-| Max tools per agent | 5 |
-| Max sub-agents per coordinator | 5 |
-| Tool count > 5 | Split into sub-agents |
-
-```python
-coordinator = LlmAgent(
-    name="Coordinator",
-    instruction="Delegate to specialists.",
-    sub_agents=[researcher, writer]  # ≤ 5
-)
-```
-
----
-
-## Error Taxonomy
-
-| Code | Recoverable | Trigger |
-|------|-------------|---------|
-| `ERR_INVALID_REQUEST_TYPE` | No | Request type not supported |
-| `ERR_MISSING_TASK_TYPE` | Yes | Task type not provided |
-| `ERR_INVALID_COMPLEXITY` | Yes | Not simple/balanced/complex |
-| `ERR_REFERENCE_NOT_FOUND` | No | Reference file missing |
-| `ERR_PACKAGE_MISSING` | Yes | google-adk not installed |
-| `WARN_TOOL_LIMIT` | Yes | Tool count exceeds 20 |
-
-**Zero internal retries.** Deterministic; same context = same pattern.
-
----
-
-## Anti-Patterns
-
-| ❌ Don't | ✅ Do |
-|---------|-------|
-| Use pro-high for simple tasks | Match complexity to model tier |
-| Put > 5 tools on one agent | Split into coordinator + specialists |
-| Skip type annotations on tools | Typed params + docstring + return type |
-| Use LlmAgent for pipelines | SequentialAgent for ordered steps |
-| Hardcode API keys | Use environment variables |
-
-
-## 📑 Content Map
-
-| File | Description | When to Read |
-|------|-------------|--------------|
-| [multi-agent.md](rules/multi-agent.md) | Multi-agent patterns | Agent composition |
-| [tools.md](rules/tools.md) | Tool integration | Custom tools |
-| [deployment.md](rules/deployment.md) | Production deploy | Deployment |
-| [engineering-spec.md](rules/engineering-spec.md) | Full engineering spec | Architecture review |
-
-**Selective reading:** Read ONLY files relevant to the request.
-
----
-
-## 🔗 Related
-
-| Item | Type | Purpose |
-|------|------|---------|
-| `python-pro` | Skill | Python patterns |
-| `api-architect` | Skill | API design |
-| `ai-artist` | Skill | Prompt engineering |
-
----
-
-⚡ PikaKit v3.9.223
+- Read `rules/tools.md` for tool contracts.
+- Read `rules/multi-agent.md` for delegation and composition.
+- Read `rules/deployment.md` for release and rollback gates.
+- Read `rules/engineering-spec.md` for the end-to-end quality contract.

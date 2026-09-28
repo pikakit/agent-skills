@@ -1,6 +1,13 @@
 ---
-name: pattern-selection
-description: Architecture pattern selection — decision trees for data access, domain logic, distribution, communication, with validation questions
+title: Architecture Pattern Selection
+kind: decision
+impact: high
+tags: [architecture, patterns, trade-offs]
+applies_to: [system-design]
+last_reviewed: "2026-09-28"
+sources:
+  - title: AWS Well-Architected Framework
+    url: https://docs.aws.amazon.com/wellarchitected/latest/framework/welcome.html
 ---
 
 # Pattern Selection Guidelines
@@ -125,6 +132,22 @@ How do services communicate?
 | [trade-off-analysis.md](trade-off-analysis.md) | Document your choice |
 | [examples.md](examples.md) | See real implementations |
 
----
+## Decision
 
-⚡ PikaKit v3.9.223
+Adopt a pattern only for a named problem that the current simpler design cannot meet. Record the evidence, additional failure modes, ownership cost, and removal path.
+
+## Use When
+
+Use a repository, queue, cache, event stream, circuit breaker, or service boundary when tests or measurements demonstrate its specific benefit and the team can operate it.
+
+## Avoid When
+
+Avoid speculative abstraction, microservices without independent ownership, distributed transactions without invariant analysis, or resilience layers without timeout and retry budgets.
+
+## Trade-offs
+
+Patterns exchange one form of complexity for another. Decoupling adds coordination; caching adds invalidation; queues add eventual behavior; service boundaries add network and operational failure.
+
+## Verification
+
+Validate the motivating requirement, inject the new failure modes, measure the intended benefit, and confirm monitoring, rollback, and owner documentation.

@@ -1,10 +1,13 @@
 ---
-name: rest
-description: REST API design — resource naming, HTTP methods, status codes, filtering, sorting
 title: "REST Principles"
-impact: MEDIUM
-impactDescription: "Moderate improvement to quality or maintainability"
-tags: rest
+kind: reference
+impact: high
+tags: [api, http, rest]
+applies_to: [api-architect]
+last_reviewed: "2026-09-28"
+sources:
+  - title: HTTP Semantics
+    url: https://datatracker.ietf.org/doc/html/rfc9110
 ---
 
 # REST Principles
@@ -108,6 +111,14 @@ GET /users?role=admin&sort=-created_at&fields=id,name&page=2&limit=20
 | [versioning.md](versioning.md) | API versioning strategy |
 | [api-style.md](api-style.md) | REST vs GraphQL vs tRPC decision |
 
----
+## Scope
 
-⚡ PikaKit v3.9.223
+Apply HTTP semantics to resource-oriented APIs, including methods, status codes, conditional requests, caching, content negotiation, and links.
+
+## Guidance
+
+Model stable resources rather than database tables. Use safe and idempotent methods according to RFC 9110, validate media types, define concurrency behavior, and keep authorization independent from predictable identifiers.
+
+## Verification
+
+Run contract tests for method semantics, status codes, headers, caching, conditional requests, repeated idempotent calls, content negotiation, and authorization across resource identifiers.

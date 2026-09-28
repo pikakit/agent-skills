@@ -1,122 +1,61 @@
 ---
-name: architecture-debate
-description: 8-phase debate process for technical decisions. YAGNI + KISS + DRY trinity with analysis template.
-title: "Architecture Debate Process"
-impact: MEDIUM
-impactDescription: "Moderate improvement to quality or maintainability"
-tags: architecture, debate
+title: Architecture Debate Process
+kind: process
+impact: standard
+tags: [architecture, debate, trade-offs, yagni, kiss]
+applies_to: [idea-storm]
+last_reviewed: "2026-09-28"
+sources:
+  - title: W3C Architecture Principles
+    url: https://www.w3.org/wiki/ArchitecturePrinciples
+  - title: NIST SP 800-160 Systems Security Engineering
+    url: https://csrc.nist.gov/publications/detail/sp/800-160/vol-1/rev-1/final
 ---
 
 # Architecture Debate Process
 
-> 8-phase process for technical decisions. YAGNI + KISS + DRY = holy trinity.
+## Preconditions
 
----
+- Capture a clear 1-2 sentence problem statement.
+- Identify known constraints: timeline, scale, infrastructure, team expertise, and budget.
+- Identify at least two viable architectural alternatives before debate begins.
 
-## Phase Overview
+## Procedure
 
-| Phase | Purpose | Output |
-|-------|---------|--------|
-| **1. Scout** | Understand project state | Project context |
-| **2. Discovery** | Clarify requirements | Requirements list |
-| **3. Research** | Gather information | Technical options |
-| **4. Analysis** | Evaluate approaches | Pros/cons matrix |
-| **5. Debate** | Challenge assumptions | Refined options |
-| **6. Consensus** | Align on solution | Decision made |
-| **7. Documentation** | Create summary | Decision report |
-| **8. Finalize** | Handoff to planner | Implementation plan |
+1. **Scout & Discovery:** Understand existing system state and clarify explicit requirements vs assumptions.
+2. **Research & Analysis:** Evaluate technical options against YAGNI (Do we need this now?), KISS (Is there a simpler way?), and DRY (Are we repeating ourselves?).
+3. **Structured Debate:** Challenge assumptions aggressively. Probe edge cases, operational overhead, failure modes, and long-term maintenance costs.
+4. **Pros/Cons Matrix:** Compare candidates using weighted criteria including complexity, velocity, and lock-in.
+5. **Consensus & Handoff:** Align on the recommended solution, document accepted trade-offs, and generate actionable next steps.
 
----
-
-## Holy Trinity Principles
-
-| Principle | Question | Apply When |
-|-----------|----------|------------|
-| **YAGNI** | Do we need this now? | Adding features |
-| **KISS** | Is there a simpler way? | Choosing approach |
-| **DRY** | Are we repeating ourselves? | Code structure |
-
----
-
-## Analysis Template
+### Analysis Template
 
 ```markdown
 ## Problem Statement
 [Clear 1-2 sentence description]
 
 ## Constraints
-- Budget: [time/resources]
-- Scale: [users/data size]
+- Scale: [requests/sec, data size]
 - Integration: [existing systems]
 
 ## Options Evaluated
 
 ### Option A: [Name]
-**Approach:** [Brief description]
 | Pros | Cons |
 |------|------|
 | + Fast to implement | - Limited scalability |
-| + Team familiar | - Vendor lock-in |
 
-**YAGNI:** ✅ / ❌
-**KISS:** ✅ / ❌
-**DRY:** ✅ / ❌
-
-### Option B: [Name]
-...
+**YAGNI:** ✅ / ❌ | **KISS:** ✅ / ❌ | **DRY:** ✅ / ❌
 
 ## Recommendation
 **Selected:** Option A
-**Rationale:** [1-2 sentences]
-**Trade-offs Accepted:** [what we're giving up]
-
-## Next Steps
-1. [Immediate action]
-2. [Follow-up task]
+**Trade-offs Accepted:** [documented concessions]
 ```
 
----
+## Rollback
 
-## Debate Tactics
+Revert to requirements gathering and reframe the problem statement if debate uncovers conflicting assumptions, insoluble trade-offs, or invalid constraints.
 
-### Challenge Assumptions
+## Exit Gate
 
-```markdown
-❓ "Why do we need [X]?"
-❓ "What if we don't do [Y]?"
-❓ "Is the complexity worth it?"
-❓ "Who asked for this feature?"
-```
-
-### Brutally Honest Questions
-
-| If They Say | Ask |
-|-------------|-----|
-| "We might need..." | "Do we need it NOW?" |
-| "It would be nice..." | "Is it must-have or nice-to-have?" |
-| "Everyone does it..." | "Does it solve OUR problem?" |
-| "Future-proof..." | "YAGNI - real requirement or speculation?" |
-
----
-
-## Example Prompts
-
-- "Should we use microservices or modular monolith?"
-- "Help me evaluate these 3 database options"
-- "Is adding this feature worth the complexity?"
-- "What's the best approach for real-time notifications?"
-
----
-
-## 🔗 Related
-
-| File | When to Read |
-|------|-------------|
-| [../SKILL.md](../SKILL.md) | Socratic gate protocol, question format |
-| [dynamic-questioning.md](dynamic-questioning.md) | Domain-specific question banks, algorithm |
-| [engineering-spec.md](engineering-spec.md) | Full engineering spec, contracts |
-| `system-design` | Architecture decision frameworks |
-
----
-
-⚡ PikaKit v3.9.223
+Pass when consensus is reached on an architecture candidate, accepted trade-offs are explicitly recorded, non-goals are defined, and the decision report is handed off to planning.

@@ -1,30 +1,33 @@
 #!/usr/bin/env node
-// @ts-nocheck
 /**
  * Studio Search CLI
  *
  * CLI entry point for Studio search and design system generation.
  * BM25-powered search across 24 CSV databases with design system output.
  *
- * @version 3.9.223
+ * @version 3.9.224
  * @contract studio v2.0.0
  * @see references/engineering-spec.md
  */
 
 import { parseArgs } from 'node:util';
-import { search, searchStack, CSV_CONFIG, AVAILABLE_STACKS } from './core.ts';
+import {
+    search,
+    searchStack,
+    CSV_CONFIG,
+    AVAILABLE_STACKS,
+    isSearchDomain,
+    isStackName
+} from './core.ts';
 import { generateDesignSystem } from './design_system.ts';
+import { StudioError, toStudioError, type SearchResult, type StackSearchResult } from './types.ts';
 
 /**
  * Format search results for terminal output
  */
-function formatOutput(result) {
-    if (result.error) {
-        return `Error: ${result.error}`;
-    }
-
+function formatOutput(result: SearchResult | StackSearchResult): string {
     const output = [];
-    if (result.stack) {
+    if ('stack' in result) {
         output.push('## Studio Stack Guidelines');
         output.push(`**Stack:** ${result.stack} | **Query:** ${result.query}`);
     } else {
@@ -90,35 +93,13 @@ async function main() {
             type: 'string',
             short: 'o'
         }
-    };
+    } as const;
 
-    let args;
-    try {
-        args = parseArgs({
-            options,
-            allowPositionals: true
-        });
-    } catch (error) {
-        console.error(`Error parsing arguments: ${error.message}`);
-        console.error('\nUsage: node search.js "<query>" [options]');
-        console.error('  --domain, -d       Search domain (style, color, chart, etc.)');
-        console.error('  --stack, -s        Stack-specific search (html-tailwind, react, etc.)');
-        console.error('  --max-results, -n  Maximum results (default: 3)');
-        console.error('  --json             Output as JSON');
-        console.error('  --design-system    Generate complete design system');
-        console.error('  --project-name, -p Project name for design system');
-        console.error('  --format, -f       Output format (ascii or markdown)');
-        console.error('  --persist          Save design system to files');
-        console.error('  --page             Page-specific override file');
-        console.error('  --output-dir, -o   Output directory');
-        process.exit(1);
-    }
+    const args = parseArgs({ options, allowPositionals: true });
 
     const query = args.positionals[0];
     if (!query) {
-        console.error('Error: Query is required');
-        console.error('\nUsage: node search.js "<query>" [options]');
-        process.exit(1);
+        throw new StudioError('ERR_EMPTY_QUERY', 'Query is required', true);
     }
 
     const domain = args.values.domain;
@@ -127,7 +108,13 @@ async function main() {
     const jsonOutput = args.values.json || false;
     const designSystem = args.values['design-system'] || false;
     const projectName = args.values['project-name'] || null;
-    const format = args.values.format || 'ascii';
+    const requestedFormat = args.values.format || 'ascii';
+    if (requestedFormat !== 'ascii' && requestedFormat !== 'markdown') {
+        throw new StudioError('ERR_INVALID_ARGUMENT', 'Format must be ascii or markdown', true, {
+            format: requestedFormat
+        });
+    }
+    const format = requestedFormat;
     const persist = args.values.persist || false;
     const page = args.values.page || null;
     const outputDir = args.values['output-dir'] || null;
@@ -162,9 +149,12 @@ async function main() {
     }
     // Stack search
     else if (stack) {
-        if (!AVAILABLE_STACKS.includes(stack)) {
-            console.error(`Error: Unknown stack: ${stack}. Available: ${AVAILABLE_STACKS.join(', ')}`);
-            process.exit(1);
+        if (!isStackName(stack)) {
+            throw new StudioError(
+                'ERR_UNKNOWN_CATEGORY',
+                `Unknown stack: ${stack}. Available: ${AVAILABLE_STACKS.join(', ')}`,
+                true
+            );
         }
 
         const result = await searchStack(query, stack, maxResults);
@@ -176,9 +166,12 @@ async function main() {
     }
     // Domain search
     else {
-        if (domain && !CSV_CONFIG[domain]) {
-            console.error(`Error: Unknown domain: ${domain}. Available: ${Object.keys(CSV_CONFIG).join(', ')}`);
-            process.exit(1);
+        if (domain && !isSearchDomain(domain)) {
+            throw new StudioError(
+                'ERR_UNKNOWN_CATEGORY',
+                `Unknown domain: ${domain}. Available: ${Object.keys(CSV_CONFIG).join(', ')}`,
+                true
+            );
         }
 
         const result = await search(query, domain, maxResults);
@@ -191,7 +184,8 @@ async function main() {
 }
 
 // Run CLI
-main().catch(error => {
-    console.error('Fatal error:', error);
+main().catch((error: unknown) => {
+    const studioError = toStudioError(error);
+    console.error(JSON.stringify(studioError.toJSON()));
     process.exit(1);
 });

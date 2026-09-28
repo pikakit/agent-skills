@@ -1,16 +1,28 @@
 ---
-title: Minimize Serialization at RSC Boundaries
-impact: HIGH
-impactDescription: reduces data transfer size
-tags: server, rsc, serialization, props
+"title": "Minimize Serialization at RSC Boundaries"
+"kind": "code"
+"impact": "high"
+"tags":
+  - "server"
+  - "rsc"
+  - "serialization"
+  - "props"
+"applies_to":
+  - "node"
+  - "web"
+"last_reviewed": "2026-09-28"
+"sources":
+  - "url": "https://nextjs.org/docs"
+    "title": "Official documentation"
 ---
+
+# Minimize Serialization at RSC Boundaries
 
 ## Minimize Serialization at RSC Boundaries
 
 The React Server/Client boundary serializes all object properties into strings and embeds them in the HTML response and subsequent RSC requests. This serialized data directly impacts page weight and load time, so **size matters a lot**. Only pass fields that the client actually uses.
 
-**Incorrect (serializes all 50 fields):**
-
+## Incorrect
 ```tsx
 async function Page() {
   const user = await fetchUser()  // 50 fields
@@ -23,8 +35,7 @@ function Profile({ user }: { user: User }) {
 }
 ```
 
-**Correct (serializes only 1 field):**
-
+## Correct
 ```tsx
 async function Page() {
   const user = await fetchUser()
@@ -37,6 +48,6 @@ function Profile({ name }: { name: string }) {
 }
 ```
 
----
+## Verification
 
-⚡ PikaKit v3.9.223
+Run the repository typecheck and the narrowest behavioral tests that exercise this rule. Confirm error paths and observable output, not only successful compilation.

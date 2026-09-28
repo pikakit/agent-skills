@@ -1,111 +1,37 @@
 ---
-name: mcp-quickstart
-description: Setup guides for Python FastMCP and TypeScript MCP SDK servers with minimal templates
-title: "MCP Builder Quick Start"
-impact: MEDIUM
-impactDescription: "Moderate improvement to quality or maintainability"
-tags: quickstart
+title: MCP Server Bootstrap
+kind: process
+impact: high
+tags: [mcp, bootstrap]
+applies_to: [mcp-builder]
+last_reviewed: "2026-09-28"
+sources:
+  - title: MCP build server guide
+    url: https://modelcontextprotocol.io/docs/develop/build-server
 ---
 
-# MCP Builder Quick Start
+# MCP Server Bootstrap
 
-> Setup guides for Python and TypeScript MCP servers.
+## Preconditions
 
----
+- Select an official SDK supported by the target client and runtime.
+- Pin the SDK, runtime, and protocol revision.
+- Define one read-only capability and an isolated fixture for the first vertical slice.
 
-## Python Setup (FastMCP)
+## Procedure
 
-**Installation:**
-```bash
-pip install fastmcp pydantic
-```
+1. Initialize the project using the pinned runtime's package manager.
+2. Follow the current official SDK guide for server and transport construction.
+3. Implement business logic as a separately testable function.
+4. Register one capability with a precise schema and bounded output.
+5. Keep stdio stdout protocol-only or secure the documented remote transport.
+6. Add lifecycle, schema, error, cancellation, and client integration tests.
+7. Add authentication and write capabilities only after the read-only slice passes.
 
-**Minimal Server:**
-```python
-from mcp import FastMCP
-from pydantic import BaseModel, Field
+## Rollback
 
-mcp = FastMCP("my-server")
+Remove the new capability registration and dependency changes or restore the previous lockfile and server artifact. Delete generated test state only inside the isolated fixture root.
 
-@mcp.tool()
-async def my_tool(param: str) -> str:
-    """Tool description."""
-    return result
+## Exit Gate
 
-# Run server
-if __name__ == "__main__":
-    mcp.run()
-```
-
----
-
-## TypeScript Setup (MCP SDK)
-
-**Installation:**
-```bash
-npm install @modelcontextprotocol/sdk zod
-```
-
-**Minimal Server:**
-```typescript
-import { Server } from "@modelcontextprotocol/sdk/server"
-import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio"
-import { z } from "zod"
-
-const server = new Server({
-  name: "my-server",
-  version: "1.0.0",
-})
-
-// Add tool
-server.setRequestHandler(ListToolsRequestSchema, async () => ({
-  tools: [
-    {
-      name: "my_tool",
-      description: "Tool description",
-      inputSchema: z.object({ param: z.string() })
-    }
-  ]
-}))
-
-// Connect transport
-const transport = new StdioServerTransport()
-await server.connect(transport)
-```
-
----
-
-## Running Your Server
-
-```bash
-# Python
-python server.py
-
-# TypeScript
-npx ts-node server.ts
-
-# With Claude Desktop (add to config)
-{
-  "mcpServers": {
-    "my-server": {
-      "command": "python",
-      "args": ["path/to/server.py"]
-    }
-  }
-}
-```
-
----
-
-## 🔗 Related
-
-| File | When to Read |
-|------|-------------|
-| [../SKILL.md](../SKILL.md) | 4-phase build process |
-| [python-implementation.md](python-implementation.md) | Full Python server template |
-| [typescript-implementation.md](typescript-implementation.md) | Full TypeScript server template |
-| [design-principles.md](design-principles.md) | MCP concepts |
-
----
-
-⚡ PikaKit v3.9.223
+Pass when a supported client initializes, discovers, calls, cancels, and closes the server; invalid input fails safely; diagnostics are redacted; and no undocumented command or API is required.

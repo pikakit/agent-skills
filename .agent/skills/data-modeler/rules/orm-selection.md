@@ -1,11 +1,26 @@
 ---
-name: orm-selection
-description: ORM comparison — Drizzle vs Prisma vs Kysely with code examples, N+1 prevention
+title: ORM and Query Builder Selection
+kind: reference
+impact: high
+tags: [database, orm, query-builder]
+applies_to: [typescript, python, relational-databases]
+last_reviewed: "2026-09-28"
+sources:
+  - title: Prisma ORM Documentation
+    url: https://www.prisma.io/docs/orm
+  - title: Drizzle ORM Documentation
+    url: https://orm.drizzle.team/docs/overview
 ---
 
-# ORM Selection (2025)
+# ORM Selection
 
 > Choose ORM based on deployment, DX needs, and N+1 prevention strategy.
+
+## Scope
+
+Apply to selecting an ORM or query builder from runtime, SQL control, migrations, typing, deployment, observability, and team constraints.
+
+## Guidance
 
 ---
 
@@ -141,15 +156,19 @@ const result = await db
 
 ---
 
-## 🔗 Related
+## Verification
+
+Implement representative transactions, joins, migrations, errors, and bulk operations. Inspect emitted SQL and plans, test connection lifecycle and runtime compatibility, and record an escape hatch for unsupported database features.
+
+## Related
 
 | File | When to Read |
 |------|-------------|
 | [database-selection.md](database-selection.md) | Choose database first |
 | [schema-design.md](schema-design.md) | Schema patterns after ORM selected |
 | [optimization.md](optimization.md) | N+1 and query optimization |
-| [SKILL.md](SKILL.md) | Decision checklist |
+| [SKILL.md](../SKILL.md) | Decision checklist |
 
 ---
 
-⚡ PikaKit v3.9.223
+⚡ PikaKit v3.9.224

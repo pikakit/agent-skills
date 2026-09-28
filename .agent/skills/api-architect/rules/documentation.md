@@ -1,10 +1,13 @@
 ---
-name: documentation
-description: OpenAPI 3.1 specs, Swagger UI setup, API documentation best practices
 title: "API Documentation Principles"
-impact: MEDIUM
-impactDescription: "Moderate improvement to quality or maintainability"
-tags: documentation
+kind: reference
+impact: standard
+tags: [api, documentation, openapi]
+applies_to: [api-architect]
+last_reviewed: "2026-09-28"
+sources:
+  - title: OpenAPI Specification
+    url: https://spec.openapis.org/oas/latest.html
 ---
 
 # API Documentation Principles
@@ -126,6 +129,14 @@ app.use('/docs', swaggerUi.serve, swaggerUi.setup(spec, {
 | [versioning.md](versioning.md) | Documenting API versions |
 | [SKILL.md](../SKILL.md) | Full decision framework |
 
----
+## Scope
 
-⚡ PikaKit v3.9.223
+Cover machine-readable operations, schemas, authentication requirements, errors, pagination, compatibility, examples, and lifecycle metadata for an HTTP API.
+
+## Guidance
+
+Generate or validate OpenAPI from the same contract used by implementation tests. Keep examples synthetic, define reusable schemas, document authorization per operation, and publish deprecation and contact information.
+
+## Verification
+
+Validate the document against the declared OpenAPI version, resolve every reference, run example and contract tests, and confirm generated clients handle documented success and error responses.

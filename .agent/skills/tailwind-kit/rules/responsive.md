@@ -1,11 +1,24 @@
 ---
-name: responsive
-description: Tailwind CSS v4 responsive patterns — breakpoints, container queries, responsive grid/typography/images, hide/show, full layout example
-title: "Responsive & Container Queries"
-impact: MEDIUM
-impactDescription: "Moderate improvement to quality or maintainability"
-tags: responsive
+"title": "Responsive & Container Queries"
+"kind": "reference"
+"impact": "standard"
+"tags":
+  - "responsive"
+"applies_to":
+  - "web"
+"last_reviewed": "2026-09-28"
+"sources":
+  - "url": "https://tailwindcss.com/docs"
+    "title": "Official documentation"
 ---
+
+# Responsive & Container Queries
+
+## Scope
+
+Apply this guidance only to the declared platforms and repository-confirmed versions.
+
+## Guidance
 
 # Responsive & Container Queries
 
@@ -216,6 +229,6 @@ tags: responsive
 | [v4-config.md](v4-config.md) | @theme setup + breakpoints |
 | [SKILL.md](../SKILL.md) | Layout patterns |
 
----
+## Verification
 
-⚡ PikaKit v3.9.223
+Cross-check version-sensitive details with the cited official source and verify the resulting behavior in the target environment.

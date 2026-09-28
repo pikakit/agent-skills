@@ -1,9 +1,28 @@
 ---
-title: Cross-Request LRU Caching
-impact: HIGH
-impactDescription: caches across requests
-tags: server, cache, lru, cross-request
+"title": "Cross-Request LRU Caching"
+"kind": "reference"
+"impact": "high"
+"tags":
+  - "server"
+  - "cache"
+  - "lru"
+  - "cross-request"
+"applies_to":
+  - "node"
+  - "web"
+"last_reviewed": "2026-09-28"
+"sources":
+  - "url": "https://nextjs.org/docs"
+    "title": "Official documentation"
 ---
+
+# Cross-Request LRU Caching
+
+## Scope
+
+Apply this guidance only to the declared platforms and repository-confirmed versions.
+
+## Guidance
 
 ## Cross-Request LRU Caching
 
@@ -40,6 +59,6 @@ Use when sequential user actions hit multiple endpoints needing the same data wi
 
 Reference: [https://github.com/isaacs/node-lru-cache](https://github.com/isaacs/node-lru-cache)
 
----
+## Verification
 
-⚡ PikaKit v3.9.223
+Cross-check version-sensitive details with the cited official source and verify the resulting behavior in the target environment.

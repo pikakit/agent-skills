@@ -1,6 +1,13 @@
 ---
-name: trade-off-analysis
-description: Trade-off analysis framework — ADR template, common trade-off dimensions, filled example, and decision storage
+title: Trade-off Analysis and ADR
+kind: decision
+impact: high
+tags: [architecture, adr, trade-offs]
+applies_to: [system-design]
+last_reviewed: "2026-09-28"
+sources:
+  - title: PikaKit production skill rubric
+    internal_ref: ../../../standards/PRODUCTION_RUBRIC.md
 ---
 
 # Trade-off Analysis & ADR
@@ -164,6 +171,14 @@ docs/
 | [patterns-reference.md](patterns-reference.md) | Pattern comparison |
 | [examples.md](examples.md) | See full architecture examples |
 
----
+## Use When
 
-⚡ PikaKit v3.9.223
+Use an ADR for decisions with meaningful alternatives, long-lived consequences, cross-team impact, or difficult reversal.
+
+## Avoid When
+
+Avoid ADR ceremony for trivial local choices or as a substitute for evidence. Do not conceal uncertainty behind numeric scores that lack defined measurements.
+
+## Verification
+
+Confirm every option is viable enough for fair comparison, criteria trace to requirements, assumptions cite evidence, consequences include operations and security, and the decision has a review or reversal trigger.

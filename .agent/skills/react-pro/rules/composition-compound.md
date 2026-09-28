@@ -1,9 +1,27 @@
 ---
-title: "Compound Components Pattern"
-impact: HIGH
-impactDescription: "Compound components eliminate prop drilling and provide flexible APIs"
-tags: composition, compound, context, slots
+"title": "Compound Components Pattern"
+"kind": "reference"
+"impact": "high"
+"tags":
+  - "composition"
+  - "compound"
+  - "context"
+  - "slots"
+"applies_to":
+  - "web"
+"last_reviewed": "2026-09-28"
+"sources":
+  - "url": "https://react.dev/reference/react"
+    "title": "Official documentation"
 ---
+
+# Compound Components Pattern
+
+## Scope
+
+Apply this guidance only to the declared platforms and repository-confirmed versions.
+
+## Guidance
 
 # Compound Components Pattern
 
@@ -77,6 +95,6 @@ Tabs.Panel = TabPanel
 </Tabs>
 ```
 
----
+## Verification
 
-⚡ PikaKit v3.9.223
+Cross-check version-sensitive details with the cited official source and verify the resulting behavior in the target environment.

@@ -2,12 +2,20 @@
 name: vr-ar
 description: VR/AR development principles. Comfort, interaction, performance requirements.
 metadata:
+  id: game-development/vr-ar
+  schema_version: "2.0.0"
+  type: knowledge
+  category: game
+  risk_tier: standard
+  version: "3.9.224"
   author: pikakit
-  version: "3.9.223"
-  category: game-development-subskill
-  triggers: ["VR", "AR", "XR", "virtual reality", "augmented reality"]
-  coordinates_with: ["game-development", "3d-games", "perf-optimizer"]
-  success_metrics: ["100% VR games maintain 90 FPS", "0 motion sickness in playtests"]
+  triggers: ["VR","AR","XR","virtual reality","augmented reality"]
+  negative_triggers: ["standard 2D web app","terminal tool","pure audio podcast"]
+  coordinates_with: ["game-development","game-development/3d-games","perf-optimizer"]
+  capabilities: ["6DOF controller tracking","foveated rendering","spatial audio anchoring","comfort vignette implementation"]
+  platforms: ["cross-platform"]
+  last_reviewed: "2026-09-28"
+  review_interval_days: 365
 ---
 
 # VR/AR Development
@@ -141,4 +149,4 @@ metadata:
 
 ---
 
-⚡ PikaKit v3.9.223
+⚡ PikaKit v3.9.224

@@ -1,9 +1,28 @@
 ---
-title: Preload Based on User Intent
-impact: MEDIUM
-impactDescription: reduces perceived latency
-tags: bundle, preload, user-intent, hover
+"title": "Preload Based on User Intent"
+"kind": "reference"
+"impact": "standard"
+"tags":
+  - "bundle"
+  - "preload"
+  - "user-intent"
+  - "hover"
+"applies_to":
+  - "node"
+  - "web"
+"last_reviewed": "2026-09-28"
+"sources":
+  - "url": "https://nextjs.org/docs"
+    "title": "Official documentation"
 ---
+
+# Preload Based on User Intent
+
+## Scope
+
+Apply this guidance only to the declared platforms and repository-confirmed versions.
+
+## Guidance
 
 ## Preload Based on User Intent
 
@@ -49,6 +68,6 @@ function FlagsProvider({ children, flags }: Props) {
 
 The `typeof window !== 'undefined'` check prevents bundling preloaded modules for SSR, optimizing server bundle size and build speed.
 
----
+## Verification
 
-⚡ PikaKit v3.9.223
+Cross-check version-sensitive details with the cited official source and verify the resulting behavior in the target environment.

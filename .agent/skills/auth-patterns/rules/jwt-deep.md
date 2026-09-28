@@ -1,15 +1,26 @@
 ---
-name: jwt-deep
-description: JWT signing, rotation, claims, refresh token patterns, JWKS endpoint
-title: "JWT Deep Dive"
-impact: MEDIUM
-impactDescription: "Moderate improvement to quality or maintainability"
-tags: jwt, deep
+title: JWT Validation and Lifecycle
+kind: reference
+impact: critical
+tags: [jwt, tokens, jwks]
+applies_to: [backend, api]
+last_reviewed: "2026-09-28"
+sources:
+  - title: RFC 7519 JSON Web Token
+    url: https://www.rfc-editor.org/rfc/rfc7519
+  - title: RFC 8725 JWT Best Current Practices
+    url: https://www.rfc-editor.org/rfc/rfc8725
 ---
 
 # JWT Deep Dive
 
 > Token design, signing, rotation, and refresh patterns.
+
+## Scope
+
+Apply to signed JWT validation, claims, key discovery, rotation, revocation, and refresh-token boundaries. Do not treat JWT payloads as encrypted.
+
+## Guidance
 
 ---
 
@@ -182,7 +193,11 @@ async function refreshTokens(oldRefreshToken: string) {
 
 ---
 
-## 🔗 Related
+## Verification
+
+Reject tokens with an unexpected algorithm, issuer, audience, type, key, signature, lifetime, or required claim. Test expired/not-before boundaries, key rotation, revocation, refresh replay, and unavailable JWKS without falling back to acceptance.
+
+## Related
 
 | File | When to Read |
 |------|-------------|
@@ -193,4 +208,4 @@ async function refreshTokens(oldRefreshToken: string) {
 
 ---
 
-⚡ PikaKit v3.9.223
+⚡ PikaKit v3.9.224

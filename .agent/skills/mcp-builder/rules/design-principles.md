@@ -1,105 +1,38 @@
 ---
-name: mcp-design-principles
-description: Core MCP concepts — tool/resource/prompt design, transport selection, error handling, security patterns
-title: "MCP Server Design Principles"
-impact: MEDIUM
-impactDescription: "Moderate improvement to quality or maintainability"
-tags: design, principles
+title: MCP Server Boundary Selection
+kind: decision
+impact: high
+tags: [mcp, protocol-design]
+applies_to: [mcp-builder]
+last_reviewed: "2026-09-28"
+sources:
+  - title: Model Context Protocol specification
+    url: https://modelcontextprotocol.io/specification/2025-06-18
 ---
 
-# MCP Server Design Principles
+# MCP Server Boundary Selection
 
-> Core principles for building MCP (Model Context Protocol) servers.
+## Decision
 
----
+Place a server boundary around one security and operational domain. Select stdio for local process-managed integrations and Streamable HTTP for supported remote deployments requiring independent lifecycle and authentication.
 
-## MCP Overview
+## Use When
 
-Model Context Protocol - standard for connecting AI systems with external tools and data.
+- Group capabilities that share ownership, credentials, data classification, and release lifecycle.
+- Split servers when privilege, tenant, failure, or deployment boundaries differ.
+- Negotiate only capabilities implemented and tested by the server.
 
-| Concept       | Purpose                      |
-| ------------- | ---------------------------- |
-| **Tools**     | Functions AI can call        |
-| **Resources** | Data AI can read             |
-| **Prompts**   | Pre-defined prompt templates |
+## Avoid When
 
----
+- Avoid a universal server with unrelated credentials and blast radius.
+- Avoid exposing internal infrastructure details in names or errors.
+- Avoid deprecated transport examples or SDK APIs copied without a pinned version.
+- Avoid network exposure without authentication, origin validation, rate limits, and transport security.
 
-## Server Architecture
+## Trade-offs
 
-```
-my-mcp-server/
-├── src/index.ts    # Main entry
-├── package.json
-└── tsconfig.json
-```
+Fewer servers simplify configuration but increase privilege and failure coupling. More servers improve isolation but add discovery, deployment, and observability overhead.
 
-| Transport     | Use                      |
-| ------------- | ------------------------ |
-| **Stdio**     | Local, CLI-based         |
-| **SSE**       | Web-based, streaming     |
-| **WebSocket** | Real-time, bidirectional |
+## Verification
 
----
-
-## Tool Design
-
-| Principle         | Description                                |
-| ----------------- | ------------------------------------------ |
-| Clear name        | Action-oriented (get_weather, create_user) |
-| Single purpose    | One thing well                             |
-| Validated input   | Schema with types and descriptions         |
-| Structured output | Predictable response format                |
-
----
-
-## Resource Patterns
-
-| Type     | Use                       | URI Example         |
-| -------- | ------------------------- | ------------------- |
-| Static   | Fixed data (config, docs) | `docs://readme`     |
-| Dynamic  | Generated on request      | `users://{userId}`  |
-| Template | URI with parameters       | `files://project/*` |
-
----
-
-## Error Handling
-
-| Situation      | Response                   |
-| -------------- | -------------------------- |
-| Invalid params | Validation error message   |
-| Not found      | Clear "not found"          |
-| Server error   | Generic error, log details |
-
----
-
-## Security & Config
-
-- Validate all tool inputs, sanitize user data
-- Use environment variables for API keys
-- Don't log secrets, validate permissions
-
----
-
-## Best Practices Checklist
-
-- [ ] Clear, action-oriented tool names
-- [ ] Complete input schemas with descriptions
-- [ ] Structured JSON output
-- [ ] Error handling for all cases
-- [ ] Environment-based configuration
-
----
-
-## 🔗 Related
-
-| File | When to Read |
-|------|-------------|
-| [../SKILL.md](../SKILL.md) | 4-phase build, framework selection |
-| [quickstart.md](quickstart.md) | Setup guides (Python/TypeScript) |
-| [best-practices.md](best-practices.md) | Workflow design, error patterns |
-| [engineering-spec.md](engineering-spec.md) | Full engineering spec |
-
----
-
-⚡ PikaKit v3.9.223
+Review the boundary against threat model, ownership, credential scope, failure isolation, transport requirements, and compatibility tests for the pinned specification revision.

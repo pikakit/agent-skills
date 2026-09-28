@@ -1,11 +1,27 @@
 ---
-name: design-extraction
-description: Screenshot analysis process — 4-step extract-document-implement-verify workflow
-title: "Design Extraction from Screenshots"
-impact: MEDIUM
-impactDescription: "Moderate improvement to quality or maintainability"
-tags: design, extraction
+"title": "Design Extraction from Screenshots"
+"kind": "reference"
+"impact": "standard"
+"tags":
+  - "design"
+  - "extraction"
+"applies_to":
+  - "web"
+  - "android"
+  - "ios"
+"last_reviewed": "2026-09-28"
+"sources":
+  - "url": "https://www.w3.org/WAI/standards-guidelines/wcag/"
+    "title": "Official documentation"
 ---
+
+# Design Extraction from Screenshots
+
+## Scope
+
+Apply this guidance only to the declared platforms and repository-confirmed versions.
+
+## Guidance
 
 # Design Extraction from Screenshots
 
@@ -147,6 +163,6 @@ Compare implementation to original:
 | [typography.md](typography.md) | Identify extracted font pairings |
 | [../SKILL.md](../SKILL.md) | Workflow 1: From Screenshots |
 
----
+## Verification
 
-⚡ PikaKit v3.9.223
+Cross-check version-sensitive details with the cited official source and verify the resulting behavior in the target environment.

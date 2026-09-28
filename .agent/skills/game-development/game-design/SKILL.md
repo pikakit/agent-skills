@@ -1,14 +1,21 @@
 ---
 name: game-design
-description: >-
-  Game design principles. GDD structure, balancing, player psychology, progression.
+description: Game design principles. GDD structure, balancing, player psychology, progression.
 metadata:
+  id: game-development/game-design
+  schema_version: "2.0.0"
+  type: knowledge
+  category: game
+  risk_tier: standard
+  version: "3.9.224"
   author: pikakit
-  version: "3.9.223"
-  category: game-development-subskill
-  triggers: ["game design", "GDD", "balancing", "player psychology", "progression"]
-  coordinates_with: ["game-development", "game-art", "game-audio"]
-  success_metrics: ["100% GDDs have all sections", "0 balancing issues in playtests"]
+  triggers: ["game design","GDD","balancing","player psychology","progression"]
+  negative_triggers: ["low-level engine rendering","backend server hosting","audio DSP coding"]
+  coordinates_with: ["game-development","game-development/game-art","game-development/game-audio"]
+  capabilities: ["core loop definition","economy and progression modeling","mechanic prototyping","playtest design"]
+  platforms: ["cross-platform"]
+  last_reviewed: "2026-09-28"
+  review_interval_days: 365
 ---
 
 # Game Design Principles
@@ -148,4 +155,4 @@ Just Right → Flow → Engagement
 
 ---
 
-⚡ PikaKit v3.9.223
+⚡ PikaKit v3.9.224

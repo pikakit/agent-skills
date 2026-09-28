@@ -1,11 +1,26 @@
 ---
-name: database-selection
-description: Database selection decision tree — PostgreSQL, Neon, Turso, SQLite with context-based routing
+title: Database Selection
+kind: reference
+impact: high
+tags: [database, architecture, selection]
+applies_to: [postgresql, sqlite, managed-databases]
+last_reviewed: "2026-09-28"
+sources:
+  - title: PostgreSQL Documentation
+    url: https://www.postgresql.org/docs/current/
+  - title: SQLite Appropriate Uses
+    url: https://www.sqlite.org/whentouse.html
 ---
 
-# Database Selection (2025)
+# Database Selection
 
 > Choose database based on context, not default. Never assume PostgreSQL.
+
+## Scope
+
+Apply to selecting a storage engine from consistency, access, concurrency, durability, residency, availability, and operational constraints.
+
+## Guidance
 
 ---
 
@@ -111,14 +126,18 @@ const db = new Database('app.db');
 
 ---
 
-## 🔗 Related
+## Verification
+
+Validate the choice with representative reads, writes, concurrency, failure, backup/restore, residency, and cost assumptions. Record rejected alternatives and the migration path if scale or consistency requirements change.
+
+## Related
 
 | File | When to Read |
 |------|-------------|
 | [orm-selection.md](orm-selection.md) | ORM for chosen database |
 | [schema-design.md](schema-design.md) | Schema after DB selected |
-| [SKILL.md](SKILL.md) | Decision checklist |
+| [SKILL.md](../SKILL.md) | Decision checklist |
 
 ---
 
-⚡ PikaKit v3.9.223
+⚡ PikaKit v3.9.224

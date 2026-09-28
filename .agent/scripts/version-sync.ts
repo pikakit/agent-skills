@@ -1,4 +1,3 @@
-// @ts-nocheck
 /**
  * Version Sync — PikaKit
  * Bumps version in package.json and syncs across all .md, registry.json, and root docs.
@@ -111,12 +110,12 @@ for (const filePath of agentMdFiles) {
   let content = fs.readFileSync(filePath, 'utf-8');
   const originalContent = content;
 
-  // Update YAML metadata.version
+  // Update YAML metadata.version (do NOT match schema_version)
   const fmMatch = content.match(/^---\r?\n([\s\S]*?)\r?\n---/);
   if (fmMatch) {
     const fm = fmMatch[1];
-    if (fm.includes('version:')) {
-      const newFm = fm.replace(/version:\s*['"]?([0-9.]+)['"]?/, `version: "${newVersion}"`);
+    if (/(^|\n)\s*version:\s*/.test(fm)) {
+      const newFm = fm.replace(/(^|\n)(\s*)version:\s*['"]?([0-9.]+)['"]?/g, `$1$2version: "${newVersion}"`);
       if (fm !== newFm) {
         content = content.replace(fm, newFm);
       }

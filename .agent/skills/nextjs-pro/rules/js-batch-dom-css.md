@@ -1,9 +1,24 @@
 ---
-title: Avoid Layout Thrashing
-impact: MEDIUM
-impactDescription: prevents forced synchronous layouts and reduces performance bottlenecks
-tags: javascript, dom, css, performance, reflow, layout-thrashing
+"title": "Avoid Layout Thrashing"
+"kind": "code"
+"impact": "standard"
+"tags":
+  - "javascript"
+  - "dom"
+  - "css"
+  - "performance"
+  - "reflow"
+  - "layout-thrashing"
+"applies_to":
+  - "node"
+  - "web"
+"last_reviewed": "2026-09-28"
+"sources":
+  - "url": "https://nextjs.org/docs"
+    "title": "Official documentation"
 ---
+
+# Avoid Layout Thrashing
 
 ## Avoid Layout Thrashing
 
@@ -20,7 +35,7 @@ function updateElementStyles(element: HTMLElement) {
 }
 ```
 
-**Incorrect (interleaved reads and writes force reflows):**
+## Incorrect
 ```typescript
 function layoutThrashing(element: HTMLElement) {
   element.style.width = '100px'
@@ -30,7 +45,7 @@ function layoutThrashing(element: HTMLElement) {
 }
 ```
 
-**Correct (batch writes, then read once):**
+## Correct
 ```typescript
 function updateElementStyles(element: HTMLElement) {
   // Batch all writes together
@@ -44,7 +59,7 @@ function updateElementStyles(element: HTMLElement) {
 }
 ```
 
-**Correct (batch reads, then writes):**
+## Correct
 ```typescript
 function avoidThrashing(element: HTMLElement) {
   // Read phase - all layout queries first
@@ -106,6 +121,6 @@ Prefer CSS classes over inline styles when possible. CSS files are cached by the
 
 See [this gist](https://gist.github.com/paulirish/5d52fb081b3570c81e3a) and [CSS Triggers](https://csstriggers.com/) for more information on layout-forcing operations.
 
----
+## Verification
 
-⚡ PikaKit v3.9.223
+Run the repository typecheck and the narrowest behavioral tests that exercise this rule. Confirm error paths and observable output, not only successful compilation.

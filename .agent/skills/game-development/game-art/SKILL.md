@@ -2,12 +2,20 @@
 name: game-art
 description: Game art principles. Visual style selection, asset pipeline, animation workflow.
 metadata:
+  id: game-development/game-art
+  schema_version: "2.0.0"
+  type: knowledge
+  category: game
+  risk_tier: standard
+  version: "3.9.224"
   author: pikakit
-  version: "3.9.223"
-  category: game-development-subskill
-  triggers: ["game art", "art style", "asset pipeline", "animation workflow"]
-  coordinates_with: ["game-development", "game-audio", "ai-artist"]
-  success_metrics: ["100% assets follow style guide", "0 animation frame drops"]
+  triggers: ["game art","art style","asset pipeline","animation workflow"]
+  negative_triggers: ["sound design","network protocol","physics tuning"]
+  coordinates_with: ["game-development","game-development/game-audio","ai-artist"]
+  capabilities: ["art style guides","texture compression","rigging conventions","sprite sheet generation"]
+  platforms: ["cross-platform"]
+  last_reviewed: "2026-09-28"
+  review_interval_days: 365
 ---
 
 # Game Art Principles
@@ -100,20 +108,9 @@ What feeling should the game evoke?
 
 ## 4. Animation Principles
 
-### The 12 Principles (Applied to Games)
+### Core Principles
 
-| Principle | Game Application |
-|-----------|------------------|
-| **Squash & Stretch** | Jump arcs, impacts |
-| **Anticipation** | Wind-up before attack |
-| **Staging** | Clear silhouettes |
-| **Follow-through** | Hair, capes after movement |
-| **Slow in/out** | Easing on transitions |
-| **Arcs** | Natural movement paths |
-| **Secondary Action** | Breathing, blinking |
-| **Timing** | Frame count = weight/speed |
-| **Exaggeration** | Readable from distance |
-| **Appeal** | Memorable design |
+Apply squash & stretch, anticipation, clear staging, follow-through, arcs, and readable exaggeration to ensure impactful player feedback.
 
 ### Frame Count Guidelines
 
@@ -161,18 +158,7 @@ mesh_tree_oak_lod2.fbx
 
 ### Folder Structure Principle
 
-```
-assets/
-├── characters/
-│   ├── player/
-│   └── enemies/
-├── environment/
-│   ├── props/
-│   └── tiles/
-├── ui/
-├── effects/
-└── audio/
-```
+Organize assets by domain: characters/, environment/, ui/, and effects/.
 
 ---
 
@@ -204,4 +190,4 @@ assets/
 
 ---
 
-⚡ PikaKit v3.9.223
+⚡ PikaKit v3.9.224

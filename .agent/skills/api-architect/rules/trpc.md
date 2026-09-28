@@ -1,10 +1,13 @@
 ---
-name: trpc
-description: tRPC router patterns, Zod validation, React Query client for TypeScript monorepos
 title: "tRPC Principles"
-impact: MEDIUM
-impactDescription: "Moderate improvement to quality or maintainability"
-tags: trpc
+kind: decision
+impact: standard
+tags: [api, trpc, typescript]
+applies_to: [api-architect]
+last_reviewed: "2026-09-28"
+sources:
+  - title: PikaKit production skill rubric
+    internal_ref: ../../../standards/PRODUCTION_RUBRIC.md
 ---
 
 # tRPC Principles
@@ -124,6 +127,22 @@ function UserProfile({ id }: { id: string }) {
 | [auth.md](auth.md) | Auth middleware patterns |
 | [SKILL.md](../SKILL.md) | Full decision framework |
 
----
+## Decision
 
-⚡ PikaKit v3.9.223
+Use tRPC only when client and server share TypeScript contracts, release coordination, and a compatible trust boundary. Keep domain logic and authorization independent from router types.
+
+## Use When
+
+Use it for internal or tightly coordinated TypeScript applications where end-to-end inference materially improves delivery and runtime validation remains explicit.
+
+## Avoid When
+
+Avoid it for public multi-language APIs, independently versioned consumers, or contracts that require standards-based external tooling.
+
+## Trade-offs
+
+Inference reduces duplicated types but increases framework and release coupling. Runtime validation and compatibility planning remain necessary.
+
+## Verification
+
+Test runtime input validation, authorization, error mapping, serialization, cancellation, compatibility, and behavior from a built client using the published contract.

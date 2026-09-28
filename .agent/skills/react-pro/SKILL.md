@@ -1,232 +1,52 @@
 ---
-name: react-pro
-description: >-
-  React component architecture, hooks, state management, and performance patterns.
-  Use when creating components, fixing hooks, managing state, or working with .tsx/.jsx files.
-  NOT for Next.js routing (use nextjs-pro) or CSS styling (use design-system/tailwind-kit).
+name: "react-pro"
+description: "Production React component, hook, state, accessibility, and rendering guidance. Use for React or TSX component architecture. Do not use for Next.js routing, native mobile UI, or CSS-only styling."
 metadata:
-  author: pikakit
-  version: "3.9.223"
-  category: frontend-specialist
-  triggers: ["React", "component", "hooks", "state management", "Redux", "Zustand", "TypeScript", "TanStack Query", "MUI", "frontend"]
-  coordinates_with: ["nextjs-pro", "typescript-expert", "design-system", "tailwind-kit", "problem-checker", "knowledge-compiler"]
-  success_metrics: ["Component Render Efficiency", "Accessibility Score", "Core Web Vitals"]
+  id: "react-pro"
+  schema_version: "2.0.0"
+  type: "knowledge"
+  category: "frontend"
+  risk_tier: "high"
+  version: "4.0.0"
+  author: "pikakit"
+  triggers: ["React component","React hook","TSX","React state","React rendering"]
+  negative_triggers: ["Next.js route","native mobile UI","CSS-only styling"]
+  coordinates_with: ["nextjs-pro","typescript-expert","design-system","test-architect"]
+  capabilities: ["design component boundaries","review hook and state usage","diagnose rendering behavior"]
+  platforms: ["web"]
+  last_reviewed: "2026-09-28"
+  review_interval_days: 180
 ---
 
-# React Architect — Component & State Architecture
+# react-pro
 
-> 4 component types. 4 state levels. Composition over inheritance. Profile before memoizing.
+## Operating contract
 
----
+Use this skill only when the request matches its positive triggers and none of its negative triggers. Establish the target platform, constraints, and acceptance evidence before recommending changes. Prefer repository conventions and official platform behavior over generic patterns.
 
-## 5 Must-Ask Questions (Before Architecture Decision)
+## Workflow
 
-| # | Question | Options |
-|---|----------|---------|
-| 1 | Target Framework? | React SPA / Next.js App Router / Vite / Vue |
-| 2 | Styling Approach? | Tailwind / CSS Modules / Styled Components / MUI |
-| 3 | State Complexity? | Local only / Shared subtree / Server state / Global |
-| 4 | Render Strategy? | CSR / SSR / SSG / Streaming |
-| 5 | Accessibility Needs? | Standard WCAG / Enhanced (screen reader, focus mgmt) |
+1. Confirm scope, ownership boundaries, runtime versions, and risk.
+2. Inspect the relevant implementation and reproduce or baseline the current behavior.
+3. Select the smallest applicable rules from `rules/` or the guidance below.
+4. State trade-offs and failure modes before changing code or configuration.
+5. Verify with the narrowest reliable checks, then run the project gate.
+6. Report evidence, residual risk, and rollback conditions.
 
----
+## Capabilities
 
-## When to Use
+- design component boundaries
+- review hook and state usage
+- diagnose rendering behavior
 
-| Situation | Approach |
-|-----------|----------|
-| Component design | Check component type classification |
-| State management | Use complexity → solution routing |
-| Hook reuse | Check extraction criteria |
-| Performance issues | Use signal → action mapping |
+## Safety and quality gates
 
----
+- Treat missing inputs, failed tools, and ambiguous results as errors rather than success.
+- Preserve public interfaces unless the task explicitly authorizes a breaking change.
+- Do not claim support for tools, APIs, or metrics that were not observed or sourced.
+- Redact credentials and personal data from examples, logs, and diagnostics.
+- Require accessible behavior and deterministic verification where the platform supports them.
 
-## System Boundaries
+## References
 
-| Owned by This Skill | NOT Owned |
-|---------------------|-----------|
-| Component classification (4 types) | Next.js patterns (→ nextjs-pro) |
-| State management routing (4 levels) | TypeScript patterns (→ typescript-expert) |
-| Hook extraction criteria | UI design (→ design-system) |
-| Performance signal→action | Code implementation |
-
-**Expert decision skill:** Produces architecture decisions. Does not write code.
-
----
-
-## Component Types (4 — Deterministic)
-
-| Type | Use For | State Model |
-|------|---------|-------------|
-| **Server** | Data fetching, static content | None |
-| **Client** | Interactivity, browser APIs | useState, effects |
-| **Presentational** | UI display | Props only |
-| **Container** | Logic/orchestration | Heavy state |
-
-**Design Rules:**
-- One responsibility per component (≤ 150 lines)
-- Props down, events up
-- Composition over inheritance
-
----
-
-## State Management Routing (Deterministic)
-
-| Complexity | Solution |
-|------------|----------|
-| Simple (single component) | `useState`, `useReducer` |
-| Shared local (subtree) | `Context` |
-| Server state (API data) | React Query, SWR |
-| Complex global (app-wide) | Zustand, Redux Toolkit |
-
-## State Placement (4 Scopes)
-
-| Scope | Where |
-|-------|-------|
-| Single component | `useState` |
-| Parent-child | Lift state up |
-| Subtree | Context |
-| App-wide | Global store |
-
----
-
-## Hook Patterns
-
-### When to Extract Custom Hook
-
-| Pattern | Extract When |
-|---------|-------------|
-| `useLocalStorage` | Same storage logic in 2+ components |
-| `useDebounce` | Multiple debounced values |
-| `useFetch` | Repeated fetch patterns |
-| `useForm` | Complex form state reused |
-
-### Hook Rules (Non-Negotiable)
-
-- Hooks at top level only (no conditionals)
-- Same order every render
-- Custom hooks prefix with `use`
-- Clean up effects on unmount
-
----
-
-## Performance Signals (4 — Fixed)
-
-| Signal | Action |
-|--------|--------|
-| Slow renders | Profile first (DevTools) |
-| Large lists (> 100 items) | Virtualize |
-| Expensive calculation | `useMemo` |
-| Unstable callbacks causing re-renders | `useCallback` |
-
----
-
-## Error Taxonomy
-
-| Code | Recoverable | Trigger |
-|------|-------------|---------|
-| `ERR_INVALID_REQUEST_TYPE` | No | Request type not supported |
-| `ERR_UNKNOWN_COMPLEXITY` | Yes | State complexity not one of 4 |
-| `ERR_UNKNOWN_SCOPE` | Yes | State scope not one of 4 |
-
-**Zero internal retries.** Same context = same recommendation.
-
----
-
-## Audit Logging (OpenTelemetry)
-
-| Event | Metadata Payload | Severity |
-|-------|------------------|----------|
-| `architecture_started` | `{"framework": "...", "component_count": 0}` | `INFO` |
-| `component_type_classified` | `{"type": "Server", "reason": "..."}` | `INFO` |
-| `state_management_selected` | `{"solution": "zustand", "complexity": "global"}` | `INFO` |
-| `performance_signal_detected` | `{"signal": "slow_renders", "action": "profile"}` | `WARN` |
-| `architecture_completed` | `{"components_designed": 5, "hooks_extracted": 2}` | `INFO` |
-
-All architecture outputs MUST emit `architecture_started` and `architecture_completed` events.
-
----
-
-## Anti-Patterns
-
-| ❌ Don't | ✅ Do |
-|---------|-------|
-| Use global state for local concerns | Start with useState, escalate as needed |
-| Prop drill > 3 levels | Use Context or state library |
-| Memoize everything | Profile first, memoize measured bottlenecks |
-| Mix data fetching with UI | Separate server/container from presentational |
-| Create God components (> 300 lines) | Split into focused components (≤ 150 lines) |
-
----
-
-## Rule Categories by Priority
-
-| Priority | Category | Impact | Prefix |
-|----------|----------|--------|--------|
-| 1 | React 19 Patterns | HIGH | `react19-` |
-| 2 | Composition | HIGH | `composition-` |
-| 3 | State Management | HIGH | `state-` |
-| 4 | Error Handling | HIGH | `error-` |
-| 5 | Component Patterns | HIGH | `component-` |
-| 6 | Data Fetching | HIGH | `data-` |
-| 7 | Performance | HIGH | `performance-` |
-| 8 | Custom Hooks | MEDIUM | `hooks-` |
-| 9 | Testing | MEDIUM | `testing-` |
-| 10 | File Organization | MEDIUM | `file-` |
-| 11 | MUI Styling | MEDIUM | `mui-` |
-| 12 | Engineering Spec | MEDIUM | `engineering-` |
-
-## Quick Reference
-
-### Architecture & Patterns (HIGH)
-
-- `react19-hooks` - useActionState & useOptimistic
-- `composition-compound` - Compound components with context
-- `state-management` - Zustand (global) & React Query (server)
-- `error-boundary` - Error boundary with fallback UI
-- `component-patterns` - Component type classification
-- `data-fetching` - TanStack Query patterns
-
-### Optimization (HIGH-MEDIUM)
-
-- `performance-optimization` - Waterfalls, bundle, re-renders, virtualization
-- `hooks-custom` - useDebounce, useLocalStorage, extraction criteria
-- `testing-patterns` - React Testing Library + userEvent
-
-### Structure (MEDIUM)
-
-- `file-organization` - Project file structure
-- `mui-styling` - MUI v7 styling patterns
-- `engineering-spec` - Full architecture specification
-
-## How to Use
-
-Read individual rule files for detailed explanations and code examples:
-
-```
-rules/react19-hooks.md
-rules/state-management.md
-```
-
-Each rule file contains:
-- Brief explanation of why it matters
-- Code examples with correct patterns
-- Anti-patterns to avoid
-
-**Selective reading:** Read ONLY the category relevant to current task.
-
-## Full Compiled Document
-
-For the complete guide with all rules expanded: AGENTS.md\n
-## 🔗 Related
-
-| Item | Type | Purpose |
-|------|------|---------|
-| `nextjs-pro` | Skill | Next.js patterns |
-| `typescript-expert` | Skill | TypeScript |
-| `design-system` | Skill | UI design |
-
----
-
-⚡ PikaKit v3.9.223
+Load only the rule files relevant to the current decision. The authoritative external baseline is [official documentation](https://react.dev/reference/react).

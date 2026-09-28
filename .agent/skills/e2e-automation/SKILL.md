@@ -1,171 +1,52 @@
 ---
-name: e2e-automation
-description: >-
-  End-to-end testing with Playwright, browser automation, and visual regression testing.
-  Use when writing Playwright tests, browser automation scripts, or visual testing.
-  NOT for test architecture decisions (use test-architect) or unit tests.
+name: "e2e-automation"
+description: "End-to-end browser automation guidance for stable, accessible, observable user-journey tests. Use for browser test architecture and flaky E2E diagnosis. Do not use for unit-test-only work or manual browser inspection."
 metadata:
-  author: pikakit
-  version: "3.9.223"
-  category: testing
-  triggers: ["E2E test", "Playwright", "browser test", "visual testing", "automation"]
-  coordinates_with: ["test-architect", "cicd-pipeline"]
-  success_metrics: ["100% stable tests (0 flake)", "100% coverage on critical paths"]
+  id: "e2e-automation"
+  schema_version: "2.0.0"
+  type: "knowledge"
+  category: "quality"
+  risk_tier: "high"
+  version: "4.0.0"
+  author: "pikakit"
+  triggers: ["end-to-end test","browser automation","Playwright","flaky E2E","user journey test"]
+  negative_triggers: ["unit test only","manual browser inspection","native mobile test"]
+  coordinates_with: ["test-architect","chrome-devtools","debug-pro"]
+  capabilities: ["design resilient browser tests","choose accessible locators","diagnose E2E flakiness"]
+  platforms: ["web"]
+  last_reviewed: "2026-09-28"
+  review_interval_days: 180
 ---
 
-# E2E Automation — Playwright Testing
+# e2e-automation
 
-> Behavior-driven E2E tests. `data-testid` selectors. Auto-wait, never sleep. Zero flake tolerance.
+## Operating contract
 
----
+Use this skill only when the request matches its positive triggers and none of its negative triggers. Establish the target platform, constraints, and acceptance evidence before recommending changes. Prefer repository conventions and official platform behavior over generic patterns.
 
-## Prerequisites
+## Workflow
 
-**Required:** Playwright installed with Chromium browser.
+1. Confirm scope, ownership boundaries, runtime versions, and risk.
+2. Inspect the relevant implementation and reproduce or baseline the current behavior.
+3. Select the smallest applicable rules from `rules/` or the guidance below.
+4. State trade-offs and failure modes before changing code or configuration.
+5. Verify with the narrowest reliable checks, then run the project gate.
+6. Report evidence, residual risk, and rollback conditions.
 
-```bash
-npm install playwright && npx playwright install chromium
-```
+## Capabilities
 
----
+- design resilient browser tests
+- choose accessible locators
+- diagnose E2E flakiness
 
-## When to Use
+## Safety and quality gates
 
-| Situation | Action |
-|-----------|--------|
-| Critical user flows | E2E with Playwright runner |
-| Visual regression | Screenshot comparison (`--screenshot`) |
-| Accessibility audit | A11y check (`--a11y`) |
-| Component/unit testing | Use `test-architect` instead |
-| API testing only | Use `test-architect` instead |
+- Treat missing inputs, failed tools, and ambiguous results as errors rather than success.
+- Preserve public interfaces unless the task explicitly authorizes a breaking change.
+- Do not claim support for tools, APIs, or metrics that were not observed or sourced.
+- Redact credentials and personal data from examples, logs, and diagnostics.
+- Require accessible behavior and deterministic verification where the platform supports them.
 
----
+## References
 
-## System Boundaries
-
-| Owned by This Skill | NOT Owned |
-|---------------------|-----------|
-| Screenshot capture (on-failure + on-demand) | Performance benchmarking (→ perf-optimizer) |
-| Accessibility audit (axe-core via `--a11y`) | CI/CD pipeline config (→ cicd-pipeline) |
-| ARIA snapshot testing reference | Browser scraping (→ agent-browser) |
-| Test organization structure | Test content authoring |
-
-**Automation skill:** Launches browser, navigates pages, captures screenshots. Session-based with side effects.
-
----
-
-## Quick Reference
-
-```bash
-# Run Playwright tests
-npx playwright test
-
-# With screenshot
-npx playwright test --screenshot=on
-
-# Accessibility check
-npx playwright test --project=a11y
-```
-
----
-
-## Playwright Config (Fixed Recommendations)
-
-| Setting | Value | Rationale |
-|---------|-------|-----------|
-| Retries (CI) | 2 | Flake mitigation |
-| Retries (local) | 0 | Development speed |
-| Trace | on-first-retry | Disk space control |
-| Screenshots | on-failure | Failure diagnosis |
-| Video | retain-on-failure | Complex failure analysis |
-
----
-
-## E2E Best Practices
-
-| Rule | Enforcement |
-|------|------------|
-| Use `data-testid` selectors | CSS/XPath selectors forbidden |
-| Auto-wait for elements | No `sleep()` or `setTimeout()` |
-| Clean state per test | Fresh browser context each test |
-| Test user behavior | Assert visible outcomes, not DOM structure |
-| Isolate test data | No shared data between tests |
-
----
-
-## Test Organization
-
-```
-tests/
-├── e2e/           # Full user flows
-├── integration/   # API, data
-├── component/     # UI units
-└── fixtures/      # Shared test data
-```
-
----
-
-## Session Lifecycle
-
-```
-IDLE → LAUNCHING          [run-tests invoked]
-LAUNCHING → NAVIGATING    [browser started]
-NAVIGATING → EXECUTING    [target loaded]
-EXECUTING → CAPTURING     [screenshot/trace needed]
-CAPTURING → REPORTING     [artifacts saved]
-REPORTING → COMPLETED     [results output]  // terminal
-LAUNCHING → ERROR         [browser launch failed]  // terminal
-NAVIGATING → ERROR        [target unreachable]  // terminal
-```
-
-**Invariant:** Browser process ALWAYS terminated in Report phase. No orphaned processes.
-
----
-
-## Error Taxonomy
-
-| Code | Recoverable | Trigger |
-|------|-------------|---------|
-| `ERR_PLAYWRIGHT_MISSING` | Yes | Playwright not installed |
-| `ERR_BROWSER_LAUNCH` | Yes | Browser failed to start |
-| `ERR_TARGET_UNREACHABLE` | Yes | Target URL not reachable |
-| `ERR_TIMEOUT` | Yes | Test exceeded timeout |
-| `ERR_SELECTOR_NOT_FOUND` | Yes | Element not found on page |
-| `ERR_ASSERTION_FAILED` | No | Test assertion did not pass |
-| `ERR_A11Y_VIOLATION` | Yes | WCAG violation detected |
-
----
-
-## Anti-Patterns
-
-| ❌ Don't | ✅ Do |
-|---------|-------|
-| Test implementation details | Test user-visible behavior |
-| Hardcode waits (`sleep`) | Use Playwright auto-wait |
-| Skip test cleanup | Isolate with fresh context |
-| Ignore flaky tests | Fix root cause; track flake rate |
-| Use CSS/XPath selectors | Use `data-testid` attributes |
-
----
-
-## 📑 Content Map
-
-| File | Description | When to Read |
-|------|-------------|--------------|
-| [aria-snapshot.md](rules/aria-snapshot.md) | ARIA snapshot testing pattern | ARIA-based tests |
-| [engineering-spec.md](rules/engineering-spec.md) | Full engineering spec | Architecture review |
-
-
----
-
-## 🔗 Related
-
-| Item | Type | Purpose |
-|------|------|---------|
-| `/validate` | Workflow | Run all tests |
-| `test-architect` | Skill | Unit/integration patterns |
-| `cicd-pipeline` | Skill | CI integration |
-
----
-
-⚡ PikaKit v3.9.223
+Load only the rule files relevant to the current decision. The authoritative external baseline is [official documentation](https://playwright.dev/docs/best-practices).

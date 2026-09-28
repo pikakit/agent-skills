@@ -1,16 +1,29 @@
 ---
-title: Use useTransition Over Manual Loading States
-impact: LOW
-impactDescription: reduces re-renders and improves code clarity
-tags: rendering, transitions, useTransition, loading, state
+"title": "Use useTransition Over Manual Loading States"
+"kind": "code"
+"impact": "standard"
+"tags":
+  - "rendering"
+  - "transitions"
+  - "useTransition"
+  - "loading"
+  - "state"
+"applies_to":
+  - "node"
+  - "web"
+"last_reviewed": "2026-09-28"
+"sources":
+  - "url": "https://nextjs.org/docs"
+    "title": "Official documentation"
 ---
+
+# Use useTransition Over Manual Loading States
 
 ## Use useTransition Over Manual Loading States
 
 Use `useTransition` instead of manual `useState` for loading states. This provides built-in `isPending` state and automatically manages transitions.
 
-**Incorrect (manual loading state):**
-
+## Incorrect
 ```tsx
 function SearchResults() {
   const [query, setQuery] = useState('')
@@ -35,8 +48,7 @@ function SearchResults() {
 }
 ```
 
-**Correct (useTransition with built-in pending state):**
-
+## Correct
 ```tsx
 import { useTransition, useState } from 'react'
 
@@ -74,6 +86,6 @@ function SearchResults() {
 
 Reference: [useTransition](https://react.dev/reference/react/useTransition)
 
----
+## Verification
 
-⚡ PikaKit v3.9.223
+Run the repository typecheck and the narrowest behavioral tests that exercise this rule. Confirm error paths and observable output, not only successful compilation.

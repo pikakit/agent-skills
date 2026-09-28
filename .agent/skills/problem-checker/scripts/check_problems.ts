@@ -1,276 +1,334 @@
 #!/usr/bin/env node
-// @ts-nocheck
-/**
- * Problem Checker — Automated IDE Error Detection & Auto-Fix
- * Version: 2.0.0
- *
- * Runs TypeScript check, parses errors, applies auto-fixes (4 patterns),
- * then re-checks in a loop (max 3 cycles).
- *
- * Usage:
- *   node check_problems.js [directory]
- *   node check_problems.js --fix [directory]
- *   node check_problems.js --fix --json [directory]
- *   node check_problems.js --help
- *
- * Exit codes:
- *   0 - No errors (CLEAN)
- *   1 - Errors remain (BLOCKED)
- *   2 - Script error
- */
+/** Transactional TypeScript diagnostic checker and conservative auto-fixer. */
 
-import { execFile } from 'node:child_process'
-import { promisify } from 'node:util'
-import path from 'node:path'
-import fs from 'node:fs'
-import { fileURLToPath } from 'node:url'
+import { execFile } from 'node:child_process';
+import fs from 'node:fs';
+import path from 'node:path';
+import { createRequire } from 'node:module';
+import { promisify } from 'node:util';
+import { fileURLToPath } from 'node:url';
 
-const execFileAsync = promisify(execFile)
-const __filename = fileURLToPath(import.meta.url)
-const __dirname = path.dirname(__filename)
+const execFileAsync = promisify(execFile);
+const VERSION = '2.1.0';
+const MAX_CYCLES = 3;
 
-const VERSION = '2.0.0'
-const MAX_CYCLES = 3
-
-// --- CLI ---
-const args = process.argv.slice(2)
-
-if (args.includes('--help') || args.includes('-h')) {
-    console.log(`
-Problem Checker v${VERSION}
-
-Usage:
-  node check_problems.js [directory]             Check for TypeScript errors
-  node check_problems.js --fix [directory]       Check + auto-fix (max ${MAX_CYCLES} cycles)
-  node check_problems.js --fix --json [dir]      Auto-fix with JSON output
-  node check_problems.js --help                  Show this help
-
-Options:
-  --fix           Enable auto-fix (4 patterns)
-  --json          Output results as JSON (for agent consumption)
-  --help, -h      Show this help
-
-Auto-Fix Patterns (4):
-  1. Missing import    — "Cannot find name 'X'"     → Add import statement
-  2. JSX namespace     — "Cannot find namespace"    → Import ReactNode
-  3. Unused variable   — "'x' declared but unused"  → Prefix with _
-  4. CSS @import order — "@import must precede"      → Move @import to top
-
-Exit Codes:
-  0  CLEAN    — No errors
-  1  BLOCKED  — Errors remain after fix attempts
-  2  ERROR    — Script error
-`)
-    process.exit(0)
+export interface Diagnostic {
+    file: string | null;
+    line: number;
+    column: number;
+    severity: 'error' | 'warning';
+    code: string;
+    message: string;
 }
 
-const shouldFix = args.includes('--fix')
-const jsonOutput = args.includes('--json')
-const directory = path.resolve(args.find(a => !a.startsWith('--')) || process.cwd())
-
-// ANSI colors (disabled in JSON mode)
-const c = jsonOutput ? { reset: '', red: '', green: '', yellow: '', blue: '', cyan: '', gray: '' } : {
-    reset: '\x1b[0m', red: '\x1b[31m', green: '\x1b[32m',
-    yellow: '\x1b[33m', blue: '\x1b[34m', cyan: '\x1b[36m', gray: '\x1b[90m',
+export interface TypeCheckResult {
+    errors: Diagnostic[];
+    warnings: Diagnostic[];
+    skipped: boolean;
 }
 
-function log(msg) { if (!jsonOutput) console.log(msg) }
+export interface AppliedFix extends Diagnostic {
+    file: string;
+    fix: string;
+}
 
-// --- TypeScript Check ---
-async function runTypeCheck() {
-    const tsconfigPath = path.join(directory, 'tsconfig.json')
-    if (!fs.existsSync(tsconfigPath)) {
-        return { errors: [], warnings: [], skipped: true }
+export interface ProblemCheckerResult {
+    version: string;
+    directory: string;
+    cycles: number;
+    status: 'CLEAN' | 'BLOCKED' | 'ERROR' | 'SKIPPED';
+    totalFixed: number;
+    errors: Diagnostic[];
+    warnings: Diagnostic[];
+    fixes: AppliedFix[];
+    unfixed: Diagnostic[];
+    changedFiles: string[];
+    rolledBack: boolean;
+    rollbackReason: string | null;
+    diagnosticsBefore: { errors: number; warnings: number };
+    diagnosticsAfter: { errors: number; warnings: number };
+    error?: string;
+}
+
+export interface ProblemCheckerOptions {
+    directory: string;
+    fix?: boolean;
+    typeCheck?: (directory: string) => Promise<TypeCheckResult>;
+    onLog?: (message: string) => void;
+}
+
+interface FixCandidate {
+    content: string;
+    description: string;
+}
+
+interface FixBatch {
+    fixed: AppliedFix[];
+    unfixed: Diagnostic[];
+    snapshots: Map<string, string>;
+}
+
+interface ExecFailure extends Error {
+    code?: number | string;
+    stdout?: string | Buffer;
+    stderr?: string | Buffer;
+    killed?: boolean;
+    signal?: NodeJS.Signals;
+}
+
+function errorMessage(error: unknown): string {
+    return error instanceof Error ? error.message : String(error);
+}
+
+function outputText(value: string | Buffer | undefined): string {
+    return typeof value === 'string' ? value : value?.toString('utf-8') ?? '';
+}
+
+export function parseTypeScriptOutput(output: string, directory: string): Pick<TypeCheckResult, 'errors' | 'warnings'> {
+    const errors: Diagnostic[] = [];
+    const warnings: Diagnostic[] = [];
+    const located = /^(.+?)\((\d+),(\d+)\):\s+(error|warning)\s+(TS\d+):\s+(.+)$/;
+    const global = /^(error|warning)\s+(TS\d+):\s+(.+)$/;
+
+    for (const rawLine of output.split(/\r?\n/)) {
+        const line = rawLine.trim();
+        const match = line.match(located);
+        const generic = match ? null : line.match(global);
+        if (!match && !generic) continue;
+        const severity = (match?.[4] ?? generic?.[1]) === 'warning' ? 'warning' : 'error';
+        const diagnostic: Diagnostic = match
+            ? {
+                file: path.resolve(directory, match[1]),
+                line: Number(match[2]),
+                column: Number(match[3]),
+                severity,
+                code: match[5],
+                message: match[6].trim(),
+            }
+            : {
+                file: null,
+                line: 0,
+                column: 0,
+                severity,
+                code: generic![2],
+                message: generic![3].trim(),
+            };
+        (severity === 'error' ? errors : warnings).push(diagnostic);
+    }
+    return { errors, warnings };
+}
+
+export async function runTypeCheck(directory: string): Promise<TypeCheckResult> {
+    if (!fs.existsSync(path.join(directory, 'tsconfig.json'))) {
+        return { errors: [], warnings: [], skipped: true };
+    }
+
+    let tscPath: string;
+    try {
+        const projectRequire = createRequire(path.join(directory, 'package.json'));
+        tscPath = projectRequire.resolve('typescript/bin/tsc');
+    } catch (error: unknown) {
+        throw new Error(`Unable to resolve TypeScript compiler: ${errorMessage(error)}`);
     }
 
     try {
-        await execFileAsync('npx', ['tsc', '--noEmit'], {
+        await execFileAsync(process.execPath, [tscPath, '--noEmit', '--pretty', 'false'], {
             cwd: directory,
             timeout: 60_000,
-            shell: true,
-        })
-        return { errors: [], warnings: [], skipped: false }
-    } catch (error) {
-        const output = error.stdout || error.stderr || error.message || ''
-        return { ...parseTypeScriptOutput(output), skipped: false }
+            maxBuffer: 10 * 1024 * 1024,
+            windowsHide: true,
+        });
+        return { errors: [], warnings: [], skipped: false };
+    } catch (error: unknown) {
+        const failure = error as ExecFailure;
+        const combined = `${outputText(failure.stdout)}\n${outputText(failure.stderr)}`.trim();
+        const diagnostics = parseTypeScriptOutput(combined, directory);
+        if (diagnostics.errors.length > 0 || diagnostics.warnings.length > 0) {
+            return { ...diagnostics, skipped: false };
+        }
+        const detail = combined || failure.message;
+        throw new Error(`TypeScript check failed operationally: ${detail}`);
     }
 }
 
-function parseTypeScriptOutput(output) {
-    const errors = []
-    const warnings = []
-    const lines = output.split('\n')
-    // Match: file.tsx(10,5): error TS2304: Cannot find name 'X'
-    const pattern = /^(.+?)\((\d+),(\d+)\):\s+(error|warning)\s+(TS\d+):\s+(.+)$/
-
-    for (const line of lines) {
-        const match = line.match(pattern)
-        if (!match) continue
-
-        const [, file, lineNum, col, severity, code, message] = match
-        const problem = {
-            file: path.resolve(directory, file),
-            line: parseInt(lineNum),
-            column: parseInt(col),
-            severity: severity === 'error' ? 'error' : 'warning',
-            code,
-            message: message.trim(),
-        }
-
-        if (severity === 'error') errors.push(problem)
-        else warnings.push(problem)
-    }
-
-    return { errors, warnings }
+function escapeRegex(value: string): string {
+    return value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 }
 
-// --- Auto-Fix Engine (4 patterns from SKILL.md) ---
-function autoFix(problems) {
-    const fixed = []
-    const unfixed = []
-
-    // Group problems by file for efficient processing
-    const byFile = new Map()
-    for (const p of problems) {
-        const list = byFile.get(p.file) || []
-        list.push(p)
-        byFile.set(p.file, list)
-    }
-
-    for (const [file, fileProblems] of byFile) {
-        if (!fs.existsSync(file)) {
-            unfixed.push(...fileProblems)
-            continue
-        }
-
-        let content = fs.readFileSync(file, 'utf8')
-        let modified = false
-
-        for (const problem of fileProblems) {
-            const result = tryFix(content, problem, file)
-            if (result) {
-                content = result.content
-                modified = true
-                fixed.push({ ...problem, fix: result.description })
-            } else {
-                unfixed.push(problem)
-            }
-        }
-
-        if (modified) {
-            fs.writeFileSync(file, content, 'utf8')
-        }
-    }
-
-    return { fixed, unfixed }
+function hasImportedName(content: string, name: string): boolean {
+    const escaped = escapeRegex(name);
+    return new RegExp(`import\\s+(?:type\\s+)?(?:[^;\\n]*\\b${escaped}\\b)[^;\\n]*from\\s*['\"][^'\"]+['\"]`).test(content);
 }
 
-function tryFix(content, problem, filePath) {
-    const { message } = problem
-    const ext = path.extname(filePath)
+function addNamedReactImport(content: string, name: string): string {
+    const namedReact = /import\s*{([^}]+)}\s*from\s*['"]react['"];?/;
+    const match = content.match(namedReact);
+    if (!match) return `import { ${name} } from 'react';\n${content}`;
+    const imports = match[1].split(',').map(value => value.trim()).filter(Boolean);
+    if (!imports.some(value => new RegExp(`\\b${escapeRegex(name)}\\b`).test(value))) imports.push(name);
+    return content.replace(namedReact, `import { ${imports.join(', ')} } from 'react';`);
+}
 
-    // Pattern 1: Missing import — "Cannot find name 'X'"
-    if (message.match(/Cannot find name '(\w+)'/)) {
-        const name = message.match(/Cannot find name '(\w+)'/)[1]
-        // Common React imports
-        const reactImports = ['useState', 'useEffect', 'useRef', 'useCallback', 'useMemo', 'useContext', 'useReducer', 'createContext', 'forwardRef', 'memo', 'lazy', 'Suspense', 'Fragment']
-        if (reactImports.includes(name)) {
-            const importRegex = /import\s*{([^}]+)}\s*from\s*['"]react['"]/
-            const match = content.match(importRegex)
-            if (match && !match[1].includes(name)) {
-                const newContent = content.replace(importRegex, (m, imports) => `import { ${imports.trim()}, ${name} } from 'react'`)
-                return { content: newContent, description: `Added '${name}' to React import` }
-            } else if (!match) {
-                return { content: `import { ${name} } from 'react';\n${content}`, description: `Added React import for '${name}'` }
-            }
+export function tryFix(content: string, problem: Diagnostic, filePath: string): FixCandidate | null {
+    const ext = path.extname(filePath).toLowerCase();
+    const missingName = problem.message.match(/Cannot find name '([A-Za-z_$][\w$]*)'/)?.[1];
+    if (missingName) {
+        const reactImports = new Set([
+            'Fragment', 'Suspense', 'createContext', 'forwardRef', 'lazy', 'memo',
+            'useCallback', 'useContext', 'useEffect', 'useMemo', 'useReducer',
+            'useRef', 'useState',
+        ]);
+        if (reactImports.has(missingName) && !hasImportedName(content, missingName)) {
+            return {
+                content: addNamedReactImport(content, missingName),
+                description: `Added '${missingName}' to React imports`,
+            };
         }
-        // Common Next.js imports
-        const nextImports = { useRouter: 'next/navigation', usePathname: 'next/navigation', useSearchParams: 'next/navigation', Image: 'next/image', Link: 'next/link' }
-        if (nextImports[name] && !content.includes(`import.*${name}`)) {
-            return { content: `import { ${name} } from '${nextImports[name]}';\n${content}`, description: `Added import for '${name}' from '${nextImports[name]}'` }
+
+        const nextImports: Record<string, { module: string; named: boolean }> = {
+            Image: { module: 'next/image', named: false },
+            Link: { module: 'next/link', named: false },
+            usePathname: { module: 'next/navigation', named: true },
+            useRouter: { module: 'next/navigation', named: true },
+            useSearchParams: { module: 'next/navigation', named: true },
+        };
+        const nextImport = nextImports[missingName];
+        if (nextImport && !hasImportedName(content, missingName)) {
+            const statement = nextImport.named
+                ? `import { ${missingName} } from '${nextImport.module}';`
+                : `import ${missingName} from '${nextImport.module}';`;
+            return { content: `${statement}\n${content}`, description: `Added '${missingName}' import from '${nextImport.module}'` };
         }
     }
 
-    // Pattern 2: JSX namespace — "Cannot find namespace 'JSX'"
-    if (message.includes("Cannot find namespace 'JSX'")) {
-        if (!content.includes('ReactNode') && !content.includes('import React')) {
-            const importRegex = /import\s*{([^}]+)}\s*from\s*['"]react['"]/
-            const match = content.match(importRegex)
-            if (match && !match[1].includes('ReactNode')) {
-                let newContent = content.replace(importRegex, (m, imports) => `import { ${imports.trim()}, ReactNode } from 'react'`)
-                newContent = newContent.replace(/JSX\.Element/g, 'ReactNode')
-                return { content: newContent, description: "Added ReactNode import, replaced JSX.Element" }
-            } else if (!match) {
-                let newContent = `import { ReactNode } from 'react';\n${content}`
-                newContent = newContent.replace(/JSX\.Element/g, 'ReactNode')
-                return { content: newContent, description: "Added ReactNode import, replaced JSX.Element" }
+    if (problem.message.includes("Cannot find namespace 'JSX'") && !hasImportedName(content, 'JSX')) {
+        return {
+            content: `import type { JSX } from 'react';\n${content}`,
+            description: "Imported React's JSX namespace",
+        };
+    }
+
+    if (problem.message.includes('is declared but') && problem.message.includes('never used')) {
+        const variable = problem.message.match(/'([^']+)'/)?.[1];
+        if (variable && !variable.startsWith('_')) {
+            const declaration = new RegExp(`\\b(const|let|var|function)\\s+${escapeRegex(variable)}\\b`);
+            if (declaration.test(content)) {
+                return {
+                    content: content.replace(declaration, `$1 _${variable}`),
+                    description: `Prefixed unused '${variable}' with '_'`,
+                };
             }
         }
     }
 
-    // Pattern 3: Unused variable — "'x' is declared but never used"
-    if (message.includes("is declared but") && message.includes("never used")) {
-        const varMatch = message.match(/'([^']+)'/)
-        if (varMatch) {
-            const varName = varMatch[1]
-            if (!varName.startsWith('_')) {
-                // Prefix with underscore (preserves all references)
-                const regex = new RegExp(`\\b(const|let|var|function)\\s+${escapeRegex(varName)}\\b`)
-                if (content.match(regex)) {
-                    const newContent = content.replace(regex, `$1 _${varName}`)
-                    return { content: newContent, description: `Prefixed unused '${varName}' → '_${varName}'` }
+    if (problem.message.includes('@import') && problem.message.includes('precede') && (ext === '.css' || ext === '.scss')) {
+        const newline = content.includes('\r\n') ? '\r\n' : '\n';
+        const lines = content.split(/\r?\n/);
+        const imports = lines.filter(line => line.trimStart().startsWith('@import '));
+        if (imports.length > 0) {
+            const remaining = lines.filter(line => !line.trimStart().startsWith('@import '));
+            const charsetIndex = remaining.findIndex(line => /^\uFEFF?\s*@charset\b/i.test(line));
+            const insertAt = charsetIndex >= 0 ? charsetIndex + 1 : 0;
+            remaining.splice(insertAt, 0, ...imports);
+            return {
+                content: remaining.join(newline),
+                description: `Moved ${imports.length} @import rule(s) after @charset`,
+            };
+        }
+    }
+
+    return null;
+}
+
+function isInsideRoot(root: string, file: string): boolean {
+    const relative = path.relative(root, file);
+    return relative !== '' && !relative.startsWith(`..${path.sep}`) && relative !== '..' && !path.isAbsolute(relative);
+}
+
+function rollback(snapshots: Map<string, string>): void {
+    const failures: string[] = [];
+    for (const [file, content] of snapshots) {
+        try {
+            fs.writeFileSync(file, content, 'utf-8');
+        } catch (error: unknown) {
+            failures.push(`${file}: ${errorMessage(error)}`);
+        }
+    }
+    if (failures.length > 0) throw new Error(`Rollback failed: ${failures.join('; ')}`);
+}
+
+function applyAutoFixes(problems: Diagnostic[], directory: string): FixBatch {
+    const fixed: AppliedFix[] = [];
+    const unfixed: Diagnostic[] = [];
+    const snapshots = new Map<string, string>();
+    const byFile = new Map<string, Diagnostic[]>();
+    const realRoot = fs.realpathSync(directory);
+
+    for (const problem of problems) {
+        if (!problem.file || !fs.existsSync(problem.file)) {
+            unfixed.push(problem);
+            continue;
+        }
+        const realFile = fs.realpathSync(problem.file);
+        if (!isInsideRoot(realRoot, realFile)) {
+            unfixed.push(problem);
+            continue;
+        }
+        const list = byFile.get(realFile) ?? [];
+        list.push(problem);
+        byFile.set(realFile, list);
+    }
+
+    try {
+        for (const [file, fileProblems] of byFile) {
+            const original = fs.readFileSync(file, 'utf-8');
+            let content = original;
+            const fileFixes: AppliedFix[] = [];
+            for (const problem of fileProblems) {
+                const candidate = tryFix(content, problem, file);
+                if (!candidate || candidate.content === content) {
+                    unfixed.push(problem);
+                    continue;
                 }
+                content = candidate.content;
+                fileFixes.push({ ...problem, file, fix: candidate.description });
+            }
+            if (content !== original) {
+                snapshots.set(file, original);
+                fs.writeFileSync(file, content, 'utf-8');
+                fixed.push(...fileFixes);
             }
         }
+    } catch (error: unknown) {
+        rollback(snapshots);
+        throw error;
     }
-
-    // Pattern 4: CSS @import order — "@import must precede all other rules"
-    if (message.includes('@import') && message.includes('precede') && (ext === '.css' || ext === '.scss')) {
-        const lines = content.split('\n')
-        const importLines = []
-        const otherLines = []
-
-        for (const line of lines) {
-            if (line.trim().startsWith('@import ')) {
-                importLines.push(line)
-            } else {
-                otherLines.push(line)
-            }
-        }
-
-        if (importLines.length > 0) {
-            const newContent = [...importLines, '', ...otherLines].join('\n')
-            return { content: newContent, description: `Moved ${importLines.length} @import(s) to top of file` }
-        }
-    }
-
-    return null
+    return { fixed, unfixed, snapshots };
 }
 
-function escapeRegex(str) {
-    return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
+function diagnosticFingerprint(diagnostic: Diagnostic, directory: string): string {
+    const relativeFile = diagnostic.file ? path.relative(directory, diagnostic.file) : '<global>';
+    const file = process.platform === 'win32' ? relativeFile.toLowerCase() : relativeFile;
+    return `${file}|${diagnostic.severity}|${diagnostic.code}|${diagnostic.message.replace(/\s+/g, ' ').trim()}`;
 }
 
-// --- Print Helpers ---
-function printProblems(problems, type) {
-    const icon = type === 'error' ? '❌' : '⚠️'
-    const color = type === 'error' ? c.red : c.yellow
-
-    for (const p of problems) {
-        const relativePath = path.relative(directory, p.file)
-        log(`${color}${icon} ${relativePath}:${p.line}:${p.column}${c.reset}`)
-        log(`   ${c.gray}${p.code}: ${p.message}${c.reset}`)
+function newDiagnostics(before: Diagnostic[], after: Diagnostic[], directory: string): Diagnostic[] {
+    const counts = new Map<string, number>();
+    for (const diagnostic of before) {
+        const key = diagnosticFingerprint(diagnostic, directory);
+        counts.set(key, (counts.get(key) ?? 0) + 1);
     }
+    return after.filter(diagnostic => {
+        const key = diagnosticFingerprint(diagnostic, directory);
+        const count = counts.get(key) ?? 0;
+        if (count === 0) return true;
+        counts.set(key, count - 1);
+        return false;
+    });
 }
 
-// --- Main: Max 3 Cycle Loop ---
-async function main() {
-    log(`${c.cyan}╔════════════════════════════════════════╗${c.reset}`)
-    log(`${c.cyan}║${c.reset}  🔍 Problem Checker v${VERSION}              ${c.cyan}║${c.reset}`)
-    log(`${c.cyan}╚════════════════════════════════════════╝${c.reset}`)
-    log(`${c.gray}Directory: ${directory}${c.reset}\n`)
-
-    const result = {
+function createResult(directory: string): ProblemCheckerResult {
+    return {
         version: VERSION,
         directory,
         cycles: 0,
@@ -280,117 +338,163 @@ async function main() {
         warnings: [],
         fixes: [],
         unfixed: [],
+        changedFiles: [],
+        rolledBack: false,
+        rollbackReason: null,
+        diagnosticsBefore: { errors: 0, warnings: 0 },
+        diagnosticsAfter: { errors: 0, warnings: 0 },
+    };
+}
+
+export async function runProblemChecker(options: ProblemCheckerOptions): Promise<{ exitCode: 0 | 1 | 2; result: ProblemCheckerResult }> {
+    const directory = path.resolve(options.directory);
+    const check = options.typeCheck ?? runTypeCheck;
+    const log = options.onLog ?? (() => undefined);
+    const result = createResult(directory);
+    let initial: TypeCheckResult;
+    try {
+        initial = await check(directory);
+    } catch (error: unknown) {
+        result.status = 'ERROR';
+        result.error = errorMessage(error);
+        return { exitCode: 2, result };
     }
 
-    // Initial check
-    const initial = await runTypeCheck()
-
+    result.diagnosticsBefore = { errors: initial.errors.length, warnings: initial.warnings.length };
+    result.diagnosticsAfter = { ...result.diagnosticsBefore };
     if (initial.skipped) {
-        log(`${c.yellow}⚠️  No tsconfig.json found. Skipping TypeScript check.${c.reset}`)
-        result.status = 'SKIPPED'
-        outputResult(result)
-        process.exit(0)
+        result.status = 'SKIPPED';
+        return { exitCode: 0, result };
+    }
+    if (initial.errors.length === 0 && initial.warnings.length === 0) return { exitCode: 0, result };
+    if (!options.fix) {
+        result.status = 'BLOCKED';
+        result.errors = initial.errors;
+        result.warnings = initial.warnings;
+        return { exitCode: 1, result };
     }
 
-    if (initial.errors.length === 0 && initial.warnings.length === 0) {
-        log(`${c.green}✅ No TypeScript errors found!${c.reset}`)
-        result.status = 'CLEAN'
-        outputResult(result)
-        process.exit(0)
-    }
-
-    log(`${c.red}Found ${initial.errors.length} error(s), ${initial.warnings.length} warning(s)${c.reset}\n`)
-    printProblems(initial.errors, 'error')
-    if (initial.warnings.length > 0) printProblems(initial.warnings, 'warning')
-
-    if (!shouldFix) {
-        result.status = 'BLOCKED'
-        result.errors = initial.errors
-        result.warnings = initial.warnings
-        outputResult(result)
-        process.exit(1)
-    }
-
-    // Fix-Verify Loop (max 3 cycles)
-    let currentErrors = initial.errors
-    let currentWarnings = initial.warnings
-
+    let currentErrors = initial.errors;
+    let currentWarnings = initial.warnings;
     for (let cycle = 1; cycle <= MAX_CYCLES; cycle++) {
-        result.cycles = cycle
-        log(`\n${c.blue}── Cycle ${cycle}/${MAX_CYCLES}: Applying auto-fixes ──${c.reset}\n`)
+        result.cycles = cycle;
+        const before = [...currentErrors, ...currentWarnings];
+        let batch: FixBatch;
+        try {
+            batch = applyAutoFixes(before, directory);
+        } catch (error: unknown) {
+            result.status = 'ERROR';
+            result.error = errorMessage(error);
+            result.errors = currentErrors;
+            result.warnings = currentWarnings;
+            return { exitCode: 2, result };
+        }
 
-        const allProblems = [...currentErrors, ...currentWarnings]
-        const { fixed, unfixed } = autoFix(allProblems)
+        if (batch.fixed.length === 0) {
+            result.unfixed = batch.unfixed;
+            break;
+        }
 
-        if (fixed.length > 0) {
-            log(`${c.green}✅ Fixed ${fixed.length} issue(s):${c.reset}`)
-            for (const f of fixed) {
-                const rel = path.relative(directory, f.file)
-                log(`   ${c.green}✓${c.reset} ${rel}:${f.line} — ${f.fix}`)
+        let recheck: TypeCheckResult;
+        try {
+            recheck = await check(directory);
+        } catch (error: unknown) {
+            try {
+                rollback(batch.snapshots);
+            } catch (rollbackError: unknown) {
+                result.status = 'ERROR';
+                result.error = `${errorMessage(error)}; ${errorMessage(rollbackError)}`;
+                result.rollbackReason = 'rollback-failed';
+                return { exitCode: 2, result };
             }
-            result.fixes.push(...fixed)
-            result.totalFixed += fixed.length
+            result.status = 'ERROR';
+            result.rolledBack = true;
+            result.rollbackReason = 'typecheck-error';
+            result.error = errorMessage(error);
+            result.errors = currentErrors;
+            result.warnings = currentWarnings;
+            return { exitCode: 2, result };
         }
 
-        if (fixed.length === 0) {
-            log(`${c.yellow}No auto-fixable issues found. Escalating.${c.reset}`)
-            result.unfixed = unfixed
-            break
+        const after = [...recheck.errors, ...recheck.warnings];
+        const regressions = newDiagnostics(before, after, directory);
+        if (regressions.length > 0 || after.length >= before.length) {
+            try {
+                rollback(batch.snapshots);
+            } catch (error: unknown) {
+                result.status = 'ERROR';
+                result.error = errorMessage(error);
+                result.rollbackReason = 'rollback-failed';
+                return { exitCode: 2, result };
+            }
+            result.status = 'BLOCKED';
+            result.rolledBack = true;
+            result.rollbackReason = regressions.length > 0 ? 'new-diagnostics' : 'no-progress';
+            result.unfixed = regressions.length > 0 ? regressions : before;
+            result.errors = currentErrors;
+            result.warnings = currentWarnings;
+            return { exitCode: 1, result };
         }
 
-        // Re-check
-        log(`\n${c.blue}Re-checking after cycle ${cycle}...${c.reset}\n`)
-        const recheck = await runTypeCheck()
-
-        if (recheck.errors.length === 0 && recheck.warnings.length === 0) {
-            log(`${c.green}✅ All errors resolved after ${cycle} cycle(s)!${c.reset}`)
-            result.status = 'CLEAN'
-            result.errors = []
-            result.warnings = []
-            outputResult(result)
-            process.exit(0)
-        }
-
-        // Check for regressions (new errors introduced by fix)
-        const newErrors = recheck.errors.filter(e =>
-            !currentErrors.some(ce => ce.file === e.file && ce.line === e.line && ce.code === e.code)
-        )
-        if (newErrors.length > 0) {
-            log(`${c.red}⚠️  Fix regression detected: ${newErrors.length} new error(s) introduced${c.reset}`)
-            printProblems(newErrors, 'error')
-        }
-
-        currentErrors = recheck.errors
-        currentWarnings = recheck.warnings
-
-        if (cycle < MAX_CYCLES) {
-            log(`${c.yellow}${currentErrors.length} error(s) remain. Retrying...${c.reset}`)
+        result.fixes.push(...batch.fixed);
+        result.totalFixed += batch.fixed.length;
+        result.changedFiles.push(...batch.snapshots.keys());
+        currentErrors = recheck.errors;
+        currentWarnings = recheck.warnings;
+        result.diagnosticsAfter = { errors: currentErrors.length, warnings: currentWarnings.length };
+        log(`Cycle ${cycle}: accepted ${batch.fixed.length} fix(es)`);
+        if (after.length === 0) {
+            result.changedFiles = [...new Set(result.changedFiles.map(file => path.relative(directory, file)))];
+            return { exitCode: 0, result };
         }
     }
 
-    // Exhausted all cycles
-    log(`\n${c.red}❌ ${currentErrors.length} error(s) remain after ${result.cycles} cycle(s). BLOCKED.${c.reset}`)
-    printProblems(currentErrors, 'error')
-
-    result.status = 'BLOCKED'
-    result.errors = currentErrors
-    result.warnings = currentWarnings
-    outputResult(result)
-    process.exit(1)
+    result.status = 'BLOCKED';
+    result.errors = currentErrors;
+    result.warnings = currentWarnings;
+    result.diagnosticsAfter = { errors: currentErrors.length, warnings: currentWarnings.length };
+    result.changedFiles = [...new Set(result.changedFiles.map(file => path.relative(directory, file)))];
+    return { exitCode: 1, result };
 }
 
-function outputResult(result) {
-    if (jsonOutput) {
-        console.log(JSON.stringify(result, null, 2))
+function helpText(): string {
+    return `Problem Checker v${VERSION}\n\nUsage:\n  npx tsx check_problems.ts [directory]\n  npx tsx check_problems.ts --fix [directory]\n  npx tsx check_problems.ts --fix --json [directory]\n\nExit codes: 0 clean/skipped, 1 diagnostics remain, 2 checker error`;
+}
+
+async function main(argv = process.argv.slice(2)): Promise<number> {
+    if (argv.includes('--help') || argv.includes('-h')) {
+        console.log(helpText());
+        return 0;
     }
-}
-
-// --- Run ---
-main().catch(err => {
-    if (jsonOutput) {
-        console.log(JSON.stringify({ error: err.message, status: 'ERROR' }))
+    const json = argv.includes('--json');
+    const directory = path.resolve(argv.find(argument => !argument.startsWith('--')) ?? process.cwd());
+    const execution = await runProblemChecker({
+        directory,
+        fix: argv.includes('--fix'),
+        onLog: json ? undefined : message => console.log(message),
+    });
+    if (json) {
+        console.log(JSON.stringify(execution.result, null, 2));
+    } else if (execution.result.status === 'CLEAN') {
+        console.log(`No TypeScript diagnostics found. Fixed: ${execution.result.totalFixed}`);
+    } else if (execution.result.status === 'SKIPPED') {
+        console.log('No tsconfig.json found; TypeScript check skipped.');
     } else {
-        console.error(`${c.red}Script error: ${err.message}${c.reset}`)
+        const detail = execution.result.error ?? `${execution.result.errors.length} error(s) remain`;
+        console.error(`${execution.result.status}: ${detail}`);
+        if (execution.result.rolledBack) console.error(`Changes rolled back: ${execution.result.rollbackReason}`);
     }
-    process.exit(2)
-})
+    return execution.exitCode;
+}
+
+const isMain = process.argv[1]
+    && path.resolve(process.argv[1]) === path.resolve(fileURLToPath(import.meta.url));
+if (isMain) {
+    main().then(
+        code => { process.exitCode = code; },
+        (error: unknown) => {
+            console.error(`ERROR: ${errorMessage(error)}`);
+            process.exitCode = 2;
+        },
+    );
+}

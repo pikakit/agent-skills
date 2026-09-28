@@ -1,15 +1,26 @@
 ---
-name: async-patterns
-description: Async/await patterns, Promise utilities, AbortController, streams, worker threads, and event loop protection
-title: "Node.js is async-first. The event loop is everything. Block it and your entire server stops."
-impact: CRITICAL
-impactDescription: "Significant performance or security impact"
-tags: async, patterns
+title: Node.js Async and Cancellation Patterns
+kind: reference
+impact: high
+tags: [nodejs, async, cancellation]
+applies_to: [nodejs, backend]
+last_reviewed: "2026-09-28"
+sources:
+  - title: Node.js Asynchronous Work
+    url: https://nodejs.org/en/learn/asynchronous-work/overview-of-blocking-vs-non-blocking
+  - title: Node.js AbortController API
+    url: https://nodejs.org/api/globals.html#class-abortcontroller
 ---
 
 # Async Patterns
 
 > Node.js is async-first. **The event loop is everything.** Block it and your entire server stops.
+
+## Scope
+
+Apply to promise composition, cancellation, deadlines, streams, event-loop protection, worker threads, and concurrency limits.
+
+## Guidance
 
 ---
 
@@ -232,7 +243,11 @@ setInterval(() => {
 
 ---
 
-## 🔗 Related
+## Verification
+
+Test cancellation, timeout, partial failure, bounded fan-out, stream backpressure, worker termination, and shutdown. Measure event-loop delay and memory under representative concurrency; reject unbounded queues and detached promises.
+
+## Related
 
 | File | When to Read |
 |------|-------------|
@@ -243,4 +258,4 @@ setInterval(() => {
 
 ---
 
-⚡ PikaKit v3.9.223
+⚡ PikaKit v3.9.224

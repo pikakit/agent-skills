@@ -1,11 +1,24 @@
 ---
-name: performance
-description: React performance — lazy loading, React.memo, useMemo, useCallback, bundle analysis
-title: "Performance Optimization"
-impact: MEDIUM
-impactDescription: "Moderate improvement to quality or maintainability"
-tags: performance
+"title": "Performance Optimization"
+"kind": "reference"
+"impact": "standard"
+"tags":
+  - "performance"
+"applies_to":
+  - "web"
+"last_reviewed": "2026-09-28"
+"sources":
+  - "url": "https://react.dev/reference/react"
+    "title": "Official documentation"
 ---
+
+# Performance Optimization
+
+## Scope
+
+Apply this guidance only to the declared platforms and repository-confirmed versions.
+
+## Guidance
 
 # Performance Optimization
 
@@ -132,6 +145,6 @@ npm run build
 | [data-fetching.md](data-fetching.md) | Query caching for performance |
 | [../SKILL.md](../SKILL.md) | Lazy load heavy components rule |
 
----
+## Verification
 
-⚡ PikaKit v3.9.223
+Cross-check version-sensitive details with the cited official source and verify the resulting behavior in the target environment.

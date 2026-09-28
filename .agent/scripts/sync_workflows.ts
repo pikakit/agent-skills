@@ -1,4 +1,3 @@
-// @ts-nocheck
 /**
  * Sync Workflows — PikaKit
  * Injects missing YAML fields, Auto-Learned sections, and Rollback paths.

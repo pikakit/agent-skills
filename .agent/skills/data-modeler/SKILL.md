@@ -1,187 +1,49 @@
 ---
 name: data-modeler
-description: >-
-  Database schema design, indexing, ORM selection (Prisma/Drizzle), and migrations.
-  Use when designing tables, writing migrations, or optimizing queries.
-  NOT for API endpoints (use api-architect) or server logic (use nodejs-pro).
+description: This skill should be used when the user asks to "design a database schema", "choose a database", "plan a migration", "add an index", or "fix an N+1 query". Do not use it for API transport design or application UI.
 metadata:
+  id: data-modeler
+  schema_version: "2.0.0"
+  type: knowledge
+  category: data
+  risk_tier: high
+  version: "4.0.0"
   author: pikakit
-  version: "3.9.223"
-  category: database-architecture
-  triggers: ["database", "schema", "Prisma", "Drizzle", "SQL", "migration", "indexing"]
-  coordinates_with: ["api-architect", "nodejs-pro", "python-pro", "security-scanner"]
-  success_metrics: ["0 N+1 query warnings", "100% indexed foreign keys"]
+  triggers: ["design a database schema", "choose a database", "plan a migration", "add an index", "fix an N+1 query"]
+  negative_triggers: ["design API transport", "build application UI", "administer a database server"]
+  coordinates_with: [api-architect, nodejs-pro, python-pro, security-scanner]
+  capabilities: [data-modeling, database-selection, indexing, migration-planning, query-analysis]
+  platforms: [postgresql, sqlite, managed-databases]
+  last_reviewed: "2026-09-28"
+  review_interval_days: 180
 ---
 
-# Data Modeler — Database Design
+# Data Modeling
 
-> Context-specific decisions. Ask before assuming. Never default to PostgreSQL blindly.
+Design data around invariants, access patterns, lifecycle, and recovery rather than a preferred database or ORM.
 
----
+## Workflow
 
-## 5 Must-Ask Questions (Socratic Gate)
+1. Record entities, invariants, ownership, retention, sensitivity, consistency, and expected scale.
+2. Capture read/write paths and transaction boundaries before selecting storage.
+3. Model constraints in the database where the database can enforce them.
+4. Choose keys and indexes from query predicates, ordering, joins, and measured plans.
+5. Design migrations as expand, backfill, verify, switch, and contract phases.
+6. Define backup, restore, rollback, observability, and data-quality gates.
+7. Verify with representative volume, concurrency, and failure cases.
 
-| # | Question | Options |
-|---|----------|---------|
-| 1 | Database Platform? | PostgreSQL / SQLite / Turso / Neon |
-| 2 | ORM Preference? | Drizzle / Prisma / Kysely / Raw SQL |
-| 3 | Deployment Target? | Serverless / Edge / VPS / Managed |
-| 4 | Expected Scale? | Prototype / Mid-tier / High-traffic |
-| 5 | Migration Strategy? | Greenfield / Existing Schema |
+## Routing
 
----
+| Concern | Read |
+|---|---|
+| Storage engine | [database-selection.md](rules/database-selection.md) |
+| Schema and relationships | [schema-design.md](rules/schema-design.md) |
+| ORM or query builder | [orm-selection.md](rules/orm-selection.md) |
+| Index design | [indexing.md](rules/indexing.md) |
+| Query plans and N+1 | [optimization.md](rules/optimization.md) |
+| Online schema change | [migrations.md](rules/migrations.md) |
+| Cross-cutting gate | [engineering-spec.md](rules/engineering-spec.md) |
 
-## Prerequisites
+## Release Gate
 
-**Required:** None — Data Modeler is a knowledge-based skill with no external dependencies.
-
----
-
-## When to Use
-
-| Situation | Action |
-|-----------|--------|
-| Choosing database | Invoke database-select; read `database-selection.md` |
-| Choosing ORM | Invoke orm-select; read `orm-selection.md` |
-| Designing schema | Invoke schema-design; read `schema-design.md` |
-| Planning indexes | Invoke index-strategy; read `indexing.md` |
-| Changing schema | Invoke migration-plan; read `migrations.md` |
-| Query performance | Invoke query-analysis; read `optimization.md` |
-| Architecture review | Read `rules/engineering-spec.md` |
-
----
-
-## System Boundaries
-
-| Owned by This Skill | NOT Owned |
-|---------------------|-----------|
-| Database selection (PostgreSQL/Neon/Turso/SQLite) | Database provisioning (→ server-ops) |
-| ORM selection (Drizzle/Prisma/Kysely) | API endpoint design (→ api-architect) |
-| Schema design (normalization, PKs, relationships) | Security scanning (→ security-scanner) |
-| Index strategy (B-tree/hash/GIN/GiST) | Database monitoring (→ observability) |
-| Migration safety (additive/destructive/multi-phase) | SQL execution |
-
-**Pure decision skill:** Produces database architecture decisions. Zero side effects.
-
----
-
-## Core Principle
-
-- **ASK** user for database/ORM preference when unclear
-- Choose based on **CONTEXT** (deployment, scale, data model, budget)
-- Don't default to PostgreSQL for everything
-- If user states preference, skip decision tree
-
----
-
-## Database Selection (Quick Reference)
-
-| Context | Recommendation |
-|---------|---------------|
-| Prototype / embedded / simple | SQLite |
-| Serverless / edge deployment | Turso |
-| Serverless PostgreSQL | Neon |
-| Production / complex queries | PostgreSQL |
-
----
-
-## ORM Selection (Quick Reference)
-
-| Context | Recommendation | N+1 Prevention |
-|---------|---------------|----------------|
-| Type-safe, lightweight | Drizzle | Manual join control |
-| Rapid prototyping, relations | Prisma | `include` depth limits |
-| Raw SQL with type safety | Kysely | Query-level control |
-
----
-
-## Index Type Mapping
-
-| Query Pattern | Index Type |
-|--------------|-----------|
-| Equality lookups | Hash |
-| Range queries, sorting | B-tree |
-| Full-text search | GIN |
-| Spatial queries | GiST |
-
----
-
-## Decision Checklist
-
-| # | Check | Question |
-|---|-------|----------|
-| 1 | User preference? | Asked user about database/ORM choice? |
-| 2 | Context match? | Chosen for THIS project's scale/deployment? |
-| 3 | Deploy environment? | Considered serverless/edge/VPS constraints? |
-| 4 | Index strategy? | Planned indexes for known query patterns? |
-| 5 | Relationships? | Defined all relationship types with join strategy? |
-| 6 | Migration safety? | Classified as additive/destructive/multi-phase? |
-
----
-
-## Error Taxonomy
-
-| Code | Recoverable | Trigger |
-|------|-------------|---------|
-| `ERR_INVALID_REQUEST_TYPE` | No | Request type not supported |
-| `ERR_MISSING_CONTEXT` | Yes | Required context field missing |
-| `ERR_INVALID_SCALE` | No | Scale not in supported list |
-| `ERR_INVALID_DEPLOYMENT` | No | Deployment not in supported list |
-| `ERR_CONTEXT_CONFLICT` | Yes | Contradictory context fields |
-| `ERR_REFERENCE_NOT_FOUND` | No | Reference file missing |
-
-**Zero internal retries.** Deterministic; same context = same recommendation.
-
----
-
-## Anti-Patterns
-
-| ❌ Don't | ✅ Do |
-|---------|-------|
-| Default to PostgreSQL for simple apps | Choose SQLite when it suffices |
-| Skip index planning | Plan indexes for every known query pattern |
-| Use `SELECT *` in production | Select only needed columns |
-| Store JSON when structured data fits | Use normalized relational schema |
-| Ignore N+1 queries | Include N+1 prevention in ORM strategy |
-| Run destructive migration without rollback | Plan rollback for every schema change |
-
----
-
-## Audit Logging (OpenTelemetry)
-
-| Event | Metadata Payload | Severity |
-|-------|------------------|----------|
-| `schema_designed` | `{"tables_count": 5, "normalization": "3NF"}` | `INFO` |
-| `platform_selected` | `{"platform": "neon", "deployment": "serverless"}` | `INFO` |
-| `migration_planned` | `{"type": "additive", "tables_affected": 2}` | `INFO` |
-
-All data-modeler outputs MUST emit `schema_designed`, `platform_selected`, or `migration_planned` events when applicable.
-
----
-
-## 📑 Content Map
-
-| File | Description | When to Read |
-|------|-------------|--------------|
-| [database-selection.md](rules/database-selection.md) | PostgreSQL vs Neon vs Turso vs SQLite | Choosing database |
-| [orm-selection.md](rules/orm-selection.md) | Drizzle vs Prisma vs Kysely | Choosing ORM |
-| [schema-design.md](rules/schema-design.md) | Normalization, PKs, relationships | Designing schema |
-| [indexing.md](rules/indexing.md) | Index types, composite indexes | Performance tuning |
-| [optimization.md](rules/optimization.md) | N+1, EXPLAIN ANALYZE | Query analysis |
-| [migrations.md](rules/migrations.md) | Safe migrations, serverless DBs | Schema changes |
-| [engineering-spec.md](rules/engineering-spec.md) | Full engineering spec | Architecture review |
-
----
-
-## 🔗 Related
-
-| Item | Type | Purpose |
-|------|------|---------|
-| `api-architect` | Skill | API design patterns |
-| `nodejs-pro` | Skill | Node.js backend |
-| `python-pro` | Skill | Python backend |
-| `security-scanner` | Skill | Security vulnerability detection |
-
----
-
-⚡ PikaKit v3.9.223
+Require reviewed constraints, migration rehearsal, backup/restore evidence, bounded lock impact, application compatibility across rollout versions, data reconciliation, and a tested rollback or forward-fix. Never apply destructive changes without explicit approval.

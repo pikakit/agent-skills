@@ -1,15 +1,24 @@
 ---
-name: framework-selection
-description: Python framework comparison — FastAPI vs Django vs Flask with decision tree, benchmarks, and minimal app examples
-title: "Framework Selection (2025)"
-impact: MEDIUM
-impactDescription: "Moderate improvement to quality or maintainability"
-tags: framework, selection
+title: Python Framework Selection
+kind: reference
+impact: high
+tags: [python, framework, decision]
+applies_to: [python, backend]
+last_reviewed: "2026-09-28"
+sources:
+  - title: Python Web Frameworks Guide
+    url: https://docs.python.org/3/faq/general.html#what-is-python
 ---
 
-# Framework Selection (2025)
+# Framework Selection
 
 > Pick the right tool. Don't default to one framework for everything.
+
+## Scope
+
+Apply to selecting a maintained Python framework from product, protocol, lifecycle, data, deployment, and team constraints. Verify framework capabilities in official documentation.
+
+## Guidance
 
 ---
 
@@ -153,7 +162,11 @@ dev = [
 
 ---
 
-## 🔗 Related
+## Verification
+
+Implement a thin vertical slice and verify data access, validation, authentication, lifecycle, observability, testing, packaging, and deployment. Record rejected alternatives and migration cost; do not rely on unsourced benchmark rankings.
+
+## Related
 
 | File | When to Read |
 |------|-------------|
@@ -164,4 +177,4 @@ dev = [
 
 ---
 
-⚡ PikaKit v3.9.223
+⚡ PikaKit v3.9.224

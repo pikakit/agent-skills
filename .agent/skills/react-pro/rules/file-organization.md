@@ -1,11 +1,25 @@
 ---
-name: file-organization
-description: Features directory structure — organize by feature not type, import aliases, public exports
-title: "Organize by feature, not by type. Features directory structure."
-impact: MEDIUM
-impactDescription: "Moderate improvement to quality or maintainability"
-tags: file, organization
+"title": "Organize by feature, not by type. Features directory structure."
+"kind": "reference"
+"impact": "standard"
+"tags":
+  - "file"
+  - "organization"
+"applies_to":
+  - "web"
+"last_reviewed": "2026-09-28"
+"sources":
+  - "url": "https://react.dev/reference/react"
+    "title": "Official documentation"
 ---
+
+# Organize by feature, not by type. Features directory structure.
+
+## Scope
+
+Apply this guidance only to the declared platforms and repository-confirmed versions.
+
+## Guidance
 
 # File Organization
 
@@ -153,6 +167,6 @@ Problem: Related code scattered across folders.
 | [data-fetching.md](data-fetching.md) | API service layer per feature |
 | [../SKILL.md](../SKILL.md) | Features directory requirement |
 
----
+## Verification
 
-⚡ PikaKit v3.9.223
+Cross-check version-sensitive details with the cited official source and verify the resulting behavior in the target environment.

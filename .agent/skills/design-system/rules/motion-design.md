@@ -1,11 +1,27 @@
 ---
-name: motion-design
-description: Orchestrated entrances — CSS stagger, Framer Motion variants, Anime.js timeline, duration guide
-title: "One orchestrated animation > many scattered micro-interactions."
-impact: MEDIUM
-impactDescription: "Moderate improvement to quality or maintainability"
-tags: motion, design
+"title": "One orchestrated animation > many scattered micro-interactions."
+"kind": "reference"
+"impact": "standard"
+"tags":
+  - "motion"
+  - "design"
+"applies_to":
+  - "web"
+  - "android"
+  - "ios"
+"last_reviewed": "2026-09-28"
+"sources":
+  - "url": "https://www.w3.org/WAI/standards-guidelines/wcag/"
+    "title": "Official documentation"
 ---
+
+# One orchestrated animation > many scattered micro-interactions.
+
+## Scope
+
+This reference applies only to the platforms declared in metadata and the versions confirmed in the target repository.
+
+## Guidance
 
 # Motion Design
 
@@ -156,6 +172,6 @@ tl
 | [color-systems.md](color-systems.md) | Color transitions |
 | [../SKILL.md](../SKILL.md) | 1 orchestrated entrance rule |
 
----
+## Verification
 
-⚡ PikaKit v3.9.223
+Cross-check version-sensitive details with the cited official source and verify the resulting behavior in the target environment.

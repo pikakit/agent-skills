@@ -1,11 +1,27 @@
 ---
-name: spatial-composition
-description: Layout innovation — asymmetric grids, overlapping elements, diagonal flow, negative space
-title: "Break the grid. Create unexpected layouts."
-impact: MEDIUM
-impactDescription: "Moderate improvement to quality or maintainability"
-tags: spatial, composition
+"title": "Break the grid. Create unexpected layouts."
+"kind": "reference"
+"impact": "standard"
+"tags":
+  - "spatial"
+  - "composition"
+"applies_to":
+  - "web"
+  - "android"
+  - "ios"
+"last_reviewed": "2026-09-28"
+"sources":
+  - "url": "https://www.w3.org/WAI/standards-guidelines/wcag/"
+    "title": "Official documentation"
 ---
+
+# Break the grid. Create unexpected layouts.
+
+## Scope
+
+Apply this guidance only to the declared platforms and repository-confirmed versions.
+
+## Guidance
 
 # Spatial Composition
 
@@ -179,6 +195,6 @@ Don't default to centered, symmetrical layouts. Create visual tension:
 | [typography.md](typography.md) | Typography scale for layout hierarchy |
 | [../SKILL.md](../SKILL.md) | Aesthetic directions and constraints |
 
----
+## Verification
 
-⚡ PikaKit v3.9.223
+Cross-check version-sensitive details with the cited official source and verify the resulting behavior in the target environment.

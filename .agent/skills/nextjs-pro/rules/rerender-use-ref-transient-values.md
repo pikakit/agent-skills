@@ -1,16 +1,28 @@
 ---
-title: Use useRef for Transient Values
-impact: MEDIUM
-impactDescription: avoids unnecessary re-renders on frequent updates
-tags: rerender, useref, state, performance
+"title": "Use useRef for Transient Values"
+"kind": "code"
+"impact": "standard"
+"tags":
+  - "rerender"
+  - "useref"
+  - "state"
+  - "performance"
+"applies_to":
+  - "node"
+  - "web"
+"last_reviewed": "2026-09-28"
+"sources":
+  - "url": "https://nextjs.org/docs"
+    "title": "Official documentation"
 ---
+
+# Use useRef for Transient Values
 
 ## Use useRef for Transient Values
 
 When a value changes frequently and you don't want a re-render on every update (e.g., mouse trackers, intervals, transient flags), store it in `useRef` instead of `useState`. Keep component state for UI; use refs for temporary DOM-adjacent values. Updating a ref does not trigger a re-render.
 
-**Incorrect (renders every update):**
-
+## Incorrect
 ```tsx
 function Tracker() {
   const [lastX, setLastX] = useState(0)
@@ -36,8 +48,7 @@ function Tracker() {
 }
 ```
 
-**Correct (no re-render for tracking):**
-
+## Correct
 ```tsx
 function Tracker() {
   const lastXRef = useRef(0)
@@ -72,6 +83,6 @@ function Tracker() {
 }
 ```
 
----
+## Verification
 
-⚡ PikaKit v3.9.223
+Run the repository typecheck and the narrowest behavioral tests that exercise this rule. Confirm error paths and observable output, not only successful compilation.

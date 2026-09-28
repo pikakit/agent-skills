@@ -2,12 +2,20 @@
 name: game-audio
 description: Game audio principles. Sound design, music integration, adaptive audio systems.
 metadata:
+  id: game-development/game-audio
+  schema_version: "2.0.0"
+  type: knowledge
+  category: game
+  risk_tier: standard
+  version: "3.9.224"
   author: pikakit
-  version: "3.9.223"
-  category: game-development-subskill
-  triggers: ["game audio", "sound design", "music integration", "adaptive audio"]
-  coordinates_with: ["game-development", "game-art", "perf-optimizer"]
-  success_metrics: ["100% sounds use proper categories", "0 audio memory leaks"]
+  triggers: ["game audio","sound design","music integration","adaptive audio"]
+  negative_triggers: ["visual rendering","physics engine tuning","database queries"]
+  coordinates_with: ["game-development","game-development/game-art","perf-optimizer"]
+  capabilities: ["audio channel prioritization","dynamic music crossfading","spatial 3D sound","audio asset compression"]
+  platforms: ["cross-platform"]
+  last_reviewed: "2026-09-28"
+  review_interval_days: 365
 ---
 
 # Game Audio Principles
@@ -127,17 +135,6 @@ Game State → Music Response
 | Ambient zone | Yes (area) | Environmental |
 | UI sounds | No | Interface feedback |
 
-### Distance Behavior
-
-| Distance | Sound Behavior |
-|----------|----------------|
-| **Near** | Full volume, full frequency |
-| **Medium** | Volume falloff, high-freq rolloff |
-| **Far** | Low volume, low-pass filter |
-| **Max** | Silent or ambient hint |
-
----
-
 ## 6. Platform Considerations
 
 ### Format Selection
@@ -160,16 +157,6 @@ Game State → Music Response
 ---
 
 ## 7. Mix Hierarchy
-
-### Volume Balance Reference
-
-| Category | Relative Level | Notes |
-|----------|----------------|-------|
-| **Voice** | 0 dB (reference) | Always clear |
-| **Player SFX** | -3 to -6 dB | Prominent but not harsh |
-| **Music** | -6 to -12 dB | Foundation, ducks for voice |
-| **Enemy SFX** | -6 to -9 dB | Important but not dominant |
-| **Ambient** | -12 to -18 dB | Subtle background |
 
 ### Ducking Rules
 
@@ -208,4 +195,4 @@ Game State → Music Response
 
 ---
 
-⚡ PikaKit v3.9.223
+⚡ PikaKit v3.9.224

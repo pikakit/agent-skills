@@ -1,24 +1,35 @@
 ---
-title: Narrow Effect Dependencies
-impact: LOW
-impactDescription: minimizes effect re-runs
-tags: rerender, useEffect, dependencies, optimization
+"title": "Narrow Effect Dependencies"
+"kind": "code"
+"impact": "standard"
+"tags":
+  - "rerender"
+  - "useEffect"
+  - "dependencies"
+  - "optimization"
+"applies_to":
+  - "node"
+  - "web"
+"last_reviewed": "2026-09-28"
+"sources":
+  - "url": "https://nextjs.org/docs"
+    "title": "Official documentation"
 ---
+
+# Narrow Effect Dependencies
 
 ## Narrow Effect Dependencies
 
 Specify primitive dependencies instead of objects to minimize effect re-runs.
 
-**Incorrect (re-runs on any user field change):**
-
+## Incorrect
 ```tsx
 useEffect(() => {
   console.log(user.id)
 }, [user])
 ```
 
-**Correct (re-runs only when id changes):**
-
+## Correct
 ```tsx
 useEffect(() => {
   console.log(user.id)
@@ -44,6 +55,6 @@ useEffect(() => {
 }, [isMobile])
 ```
 
----
+## Verification
 
-⚡ PikaKit v3.9.223
+Run the repository typecheck and the narrowest behavioral tests that exercise this rule. Confirm error paths and observable output, not only successful compilation.

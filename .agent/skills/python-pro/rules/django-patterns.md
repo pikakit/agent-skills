@@ -1,15 +1,24 @@
 ---
-name: django-patterns
-description: Django patterns — models, views, DRF serializers, async views, query optimization, signals, and migrations
-title: "Django Patterns (2025)"
-impact: MEDIUM
-impactDescription: "Moderate improvement to quality or maintainability"
-tags: django, patterns
+title: Django Service Patterns
+kind: reference
+impact: high
+tags: [python, django, backend]
+applies_to: [django, backend]
+last_reviewed: "2026-09-28"
+sources:
+  - title: Django Documentation
+    url: https://docs.djangoproject.com/en/stable/
 ---
 
-# Django Patterns (2025)
+# Django Patterns
 
 > Fat models, thin views. Use managers for queries. DRF for APIs.
+
+## Scope
+
+Apply to Django models, querysets, views, transactions, async boundaries, migrations, security, and operational lifecycle.
+
+## Guidance
 
 ---
 
@@ -180,7 +189,11 @@ def create_user_profile(sender, instance, created, **kwargs):
 
 ---
 
-## 🔗 Related
+## Verification
+
+Run system checks, migration checks, query-count tests, authorization tests, and supported deployment checks. Test transaction rollback, asynchronous boundaries, startup, shutdown, and recovery using the target Django version.
+
+## Related
 
 | File | When to Read |
 |------|-------------|
@@ -191,4 +204,4 @@ def create_user_profile(sender, instance, created, **kwargs):
 
 ---
 
-⚡ PikaKit v3.9.223
+⚡ PikaKit v3.9.224

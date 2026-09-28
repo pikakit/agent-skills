@@ -1,16 +1,29 @@
 ---
-title: useEffectEvent for Stable Callback Refs
-impact: LOW
-impactDescription: prevents effect re-runs
-tags: advanced, hooks, useEffectEvent, refs, optimization
+"title": "useEffectEvent for Stable Callback Refs"
+"kind": "code"
+"impact": "standard"
+"tags":
+  - "advanced"
+  - "hooks"
+  - "useEffectEvent"
+  - "refs"
+  - "optimization"
+"applies_to":
+  - "node"
+  - "web"
+"last_reviewed": "2026-09-28"
+"sources":
+  - "url": "https://nextjs.org/docs"
+    "title": "Official documentation"
 ---
+
+# useEffectEvent for Stable Callback Refs
 
 ## useEffectEvent for Stable Callback Refs
 
 Access latest values in callbacks without adding them to dependency arrays. Prevents effect re-runs while avoiding stale closures.
 
-**Incorrect (effect re-runs on every callback change):**
-
+## Incorrect
 ```tsx
 function SearchInput({ onSearch }: { onSearch: (q: string) => void }) {
   const [query, setQuery] = useState('')
@@ -22,8 +35,7 @@ function SearchInput({ onSearch }: { onSearch: (q: string) => void }) {
 }
 ```
 
-**Correct (using React's useEffectEvent):**
-
+## Correct
 ```tsx
 import { useEffectEvent } from 'react';
 
@@ -38,6 +50,6 @@ function SearchInput({ onSearch }: { onSearch: (q: string) => void }) {
 }
 ```
 
----
+## Verification
 
-⚡ PikaKit v3.9.223
+Run the repository typecheck and the narrowest behavioral tests that exercise this rule. Confirm error paths and observable output, not only successful compilation.

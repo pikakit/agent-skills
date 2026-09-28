@@ -1,15 +1,24 @@
 ---
-name: architecture-patterns
-description: Layered architecture — Controller/Service/Repository with code examples, DI, project structure, and anti-patterns
-title: "Layered separation is not bureaucracy — it's testability, swappability, and clarity."
-impact: MEDIUM
-impactDescription: "Moderate improvement to quality or maintainability"
-tags: architecture, patterns
+title: Node.js Service Boundaries
+kind: reference
+impact: high
+tags: [nodejs, architecture, boundaries]
+applies_to: [nodejs, backend]
+last_reviewed: "2026-09-28"
+sources:
+  - title: Node.js Modules Documentation
+    url: https://nodejs.org/api/modules.html
 ---
 
 # Architecture Patterns
 
 > Layered separation is not bureaucracy — it's testability, swappability, and clarity.
+
+## Scope
+
+Apply to transport, application, domain, persistence, and integration boundaries in Node.js services.
+
+## Guidance
 
 ---
 
@@ -215,7 +224,11 @@ userRoutes(app, userService)
 
 ---
 
-## 🔗 Related
+## Verification
+
+Test domain services without HTTP or database objects, integration adapters against their contracts, and request mapping separately. Confirm dependencies flow inward and rollback does not require incompatible interface changes.
+
+## Related
 
 | File | When to Read |
 |------|-------------|
@@ -226,4 +239,4 @@ userRoutes(app, userService)
 
 ---
 
-⚡ PikaKit v3.9.223
+⚡ PikaKit v3.9.224

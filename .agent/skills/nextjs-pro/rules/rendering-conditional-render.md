@@ -1,16 +1,28 @@
 ---
-title: Use Explicit Conditional Rendering
-impact: LOW
-impactDescription: prevents rendering 0 or NaN
-tags: rendering, conditional, jsx, falsy-values
+"title": "Use Explicit Conditional Rendering"
+"kind": "code"
+"impact": "standard"
+"tags":
+  - "rendering"
+  - "conditional"
+  - "jsx"
+  - "falsy-values"
+"applies_to":
+  - "node"
+  - "web"
+"last_reviewed": "2026-09-28"
+"sources":
+  - "url": "https://nextjs.org/docs"
+    "title": "Official documentation"
 ---
+
+# Use Explicit Conditional Rendering
 
 ## Use Explicit Conditional Rendering
 
 Use explicit ternary operators (`? :`) instead of `&&` for conditional rendering when the condition can be `0`, `NaN`, or other falsy values that render.
 
-**Incorrect (renders "0" when count is 0):**
-
+## Incorrect
 ```tsx
 function Badge({ count }: { count: number }) {
   return (
@@ -24,8 +36,7 @@ function Badge({ count }: { count: number }) {
 // When count = 5, renders: <div><span class="badge">5</span></div>
 ```
 
-**Correct (renders nothing when count is 0):**
-
+## Correct
 ```tsx
 function Badge({ count }: { count: number }) {
   return (
@@ -39,6 +50,6 @@ function Badge({ count }: { count: number }) {
 // When count = 5, renders: <div><span class="badge">5</span></div>
 ```
 
----
+## Verification
 
-⚡ PikaKit v3.9.223
+Run the repository typecheck and the narrowest behavioral tests that exercise this rule. Confirm error paths and observable output, not only successful compilation.

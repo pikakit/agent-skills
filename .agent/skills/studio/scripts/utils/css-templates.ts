@@ -1,4 +1,4 @@
-// @ts-nocheck
+import type { ColorPalette } from '../types.ts';
 /**
  * CSS Template Generators - Studio Design System
  * ===============================================
@@ -11,10 +11,10 @@
  * @param {Object} colorData - Color palette data from design system
  * @returns {string} CSS custom properties block
  */
-export function generateColorVars(colorData) {
+export function generateColorVars(colorData: Partial<ColorPalette>): string {
     if (!colorData) return '';
 
-    const lines = [];
+    const lines: string[] = [];
     lines.push(':root {');
 
     if (colorData.primary) {
@@ -45,7 +45,7 @@ export function generateColorVars(colorData) {
  * Based on 4px base unit (common design system standard)
  * @returns {string} CSS spacing variables
  */
-export function generateSpacingScale() {
+export function generateSpacingScale(): string {
     const spacings = {
         'xs': '4px',   // 0.25rem
         'sm': '8px',   // 0.5rem
@@ -56,7 +56,7 @@ export function generateSpacingScale() {
         '3xl': '64px'  // 4rem
     };
 
-    const lines = [];
+    const lines: string[] = [];
     lines.push(':root {');
 
     for (const [size, value] of Object.entries(spacings)) {
@@ -79,7 +79,7 @@ export function generateSpacingScale() {
  * Based on Material Design elevation principles
  * @returns {string} CSS shadow variables
  */
-export function generateShadowDepths() {
+export function generateShadowDepths(): string {
     const shadows = {
         'sm': '0 1px 2px 0 rgba(0, 0, 0, 0.05)',  // Cards, buttons
         'md': '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',  // Dropdowns
@@ -87,7 +87,7 @@ export function generateShadowDepths() {
         'xl': '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)'  // Overlays
     };
 
-    const lines = [];
+    const lines: string[] = [];
     lines.push(':root {');
 
     for (const [depth, value] of Object.entries(shadows)) {
@@ -110,7 +110,7 @@ export function generateShadowDepths() {
  * Generate border radius scale
  * @returns {string} CSS border radius variables
  */
-export function generateBorderRadiusScale() {
+export function generateBorderRadiusScale(): string {
     const radii = {
         'none': '0',
         'sm': '0.125rem',  // 2px
@@ -120,7 +120,7 @@ export function generateBorderRadiusScale() {
         'full': '9999px'   // Fully rounded
     };
 
-    const lines = [];
+    const lines: string[] = [];
     lines.push(':root {');
 
     for (const [size, value] of Object.entries(radii)) {
@@ -138,8 +138,8 @@ export function generateBorderRadiusScale() {
  * @param {Object} colorData - Color palette from design system
  * @returns {string} Complete CSS variables block
  */
-export function generateTokenSystem(colorData) {
-    const sections = [];
+export function generateTokenSystem(colorData: Partial<ColorPalette>): string {
+    const sections: string[] = [];
 
     sections.push('/* === Design Tokens === */');
     sections.push('');

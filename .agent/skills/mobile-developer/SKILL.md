@@ -1,194 +1,52 @@
 ---
-name: mobile-developer
-description: >-
-  Mobile development with React Native, Flutter, or native iOS/Android.
-  Use when building mobile apps, configuring native modules, or optimizing mobile performance.
-  NOT for web frontend (use react-pro) or mobile design decisions (use mobile-design).
+name: "mobile-developer"
+description: "Production mobile engineering guidance for native iOS, native Android, React Native, and Flutter. Use for implementation, lifecycle, deep links, notifications, testing, and release readiness. Do not use for design-only requests."
 metadata:
-  author: pikakit
-  version: "3.9.223"
-  category: mobile-architect
-  triggers: ["React Native", "Flutter", "iOS", "Android", "mobile app", "cross-platform", "native app"]
-  coordinates_with: ["mobile-design", "test-architect", "perf-optimizer", "code-craft", "problem-checker"]
-  success_metrics: ["100% Build Pass", "0 IDE/Lint Errors", "OWASP MASVS Compliant"]
+  id: "mobile-developer"
+  schema_version: "2.0.0"
+  type: "knowledge"
+  category: "mobile"
+  risk_tier: "high"
+  version: "4.0.0"
+  author: "pikakit"
+  triggers: ["mobile application","React Native","Flutter","SwiftUI","Jetpack Compose"]
+  negative_triggers: ["design-only mobile mockup","responsive website","backend-only API"]
+  coordinates_with: ["mobile-design","security-scanner","test-architect","cicd-pipeline"]
+  capabilities: ["choose a mobile implementation path","review lifecycle and platform integration","plan test and release gates"]
+  platforms: ["android","ios"]
+  last_reviewed: "2026-09-28"
+  review_interval_days: 180
 ---
 
-# Mobile Developer — Cross-Platform & Native Expert
+# mobile-developer
 
-> 4 frameworks. 4 architectures. 4 test levels. 6 security items. 60fps target.
+## Operating contract
 
----
+Use this skill only when the request matches its positive triggers and none of its negative triggers. Establish the target platform, constraints, and acceptance evidence before recommending changes. Prefer repository conventions and official platform behavior over generic patterns.
 
-## 5 Must-Ask Questions (Before Any Development)
+## Workflow
 
-| # | Question | Options |
-|---|----------|---------|
-| 1 | Platform? | iOS, Android, or both |
-| 2 | Framework? | React Native, Flutter, native |
-| 3 | Navigation? | Tabs, stack, drawer |
-| 4 | Offline? | Must work offline? |
-| 5 | Devices? | Phone only or tablet too |
+1. Confirm scope, ownership boundaries, runtime versions, and risk.
+2. Inspect the relevant implementation and reproduce or baseline the current behavior.
+3. Select the smallest applicable rules from `rules/` or the guidance below.
+4. State trade-offs and failure modes before changing code or configuration.
+5. Verify with the narrowest reliable checks, then run the project gate.
+6. Report evidence, residual risk, and rollback conditions.
 
----
+## Capabilities
 
-## When to Use
+- choose a mobile implementation path
+- review lifecycle and platform integration
+- plan test and release gates
 
-| Situation | Action |
-|-----------|--------|
-| Choose mobile framework | Framework selection tree |
-| Design app architecture | Architecture routing |
-| Plan testing strategy | 4-level test plan |
-| Security compliance | OWASP MASVS checklist |
-| Store submission | ASO checklist |
+## Safety and quality gates
 
----
+- Treat missing inputs, failed tools, and ambiguous results as errors rather than success.
+- Preserve public interfaces unless the task explicitly authorizes a breaking change.
+- Do not claim support for tools, APIs, or metrics that were not observed or sourced.
+- Redact credentials and personal data from examples, logs, and diagnostics.
+- Require accessible behavior and deterministic verification where the platform supports them.
 
-## System Boundaries
+## References
 
-| Owned by This Skill | NOT Owned |
-|---------------------|-----------|
-| Framework selection (4 options) | Mobile design (→ mobile-design) |
-| Architecture routing (4 patterns) | Mobile orchestration (→ mobile-first) |
-| Testing strategy (4 levels) | Security code review (→ mobile-security-coder) |
-| Security checklist (6 items) | Performance profiling (→ perf-optimizer) |
-
-**Expert decision skill:** Produces recommendations and checklists. Does not write code.
-
----
-
-## Framework Selection (Deterministic)
-
-| Need | Framework |
-|------|-----------|
-| OTA updates, rapid iteration | **React Native + Expo** |
-| Pixel-perfect custom UI | **Flutter** |
-| Deep iOS platform features | **SwiftUI** |
-| Deep Android platform features | **Kotlin + Compose** |
-| Cross-platform, no special needs | **React Native + Expo** (default) |
-
----
-
-## Architecture Routing (Deterministic)
-
-| Context | Pattern |
-|---------|---------|
-| Complex app + large team (6+) | **Clean Architecture** |
-| UI-driven app, moderate complexity | **MVVM** |
-| Complex state management | **BLoC / Redux** |
-| Data abstraction needed | **Repository** |
-
----
-
-## Performance Targets (Fixed)
-
-| Target | Value |
-|--------|-------|
-| Animation framerate | 60fps |
-| App startup (cold) | < 2,000 ms |
-| List rendering | Virtualized (FlatList / ListView) |
-| Memory leaks | Zero (enforce cleanup) |
-
----
-
-## Platform Services
-
-| Service | Technologies |
-|---------|-------------|
-| Push | FCM, APNs |
-| Auth | OAuth, Biometric, Social |
-| Payments | Stripe, Apple Pay, Google Pay |
-| Maps | Google Maps, Apple MapKit |
-| Analytics | Firebase, Sentry |
-
----
-
-## Testing Strategy (4 Levels)
-
-| Level | Tools |
-|-------|-------|
-| Unit | Jest, Dart test, XCTest |
-| Component | React Native Testing Library |
-| E2E | Detox, Maestro, Patrol |
-| Device | Firebase Test Lab, Bitrise |
-
----
-
-## Security Checklist (OWASP MASVS — 6 Items)
-
-- [ ] OWASP MASVS compliance
-- [ ] Certificate pinning
-- [ ] Biometric authentication
-- [ ] Secure storage (Keychain/Keystore)
-- [ ] Code obfuscation (ProGuard/R8)
-- [ ] GDPR/privacy compliance
-
----
-
-## Audit Logging (OpenTelemetry)
-
-| Event | Metadata Payload | Severity |
-|-------|------------------|----------|
-| `build_verification` | `{"framework": "...", "platform": "...", "status": "pass/fail"}` | `INFO` |
-| `architecture_decision` | `{"state_management": "...", "storage": "..."}` | `INFO` |
-| `security_audit` | `{"masvs_compliant": true, "token_storage": "SecureStore"}` | `INFO` |
-
-All executions MUST emit the `build_verification` span before reporting completion.
-
----
-
-## Error Taxonomy
-
-| Code | Recoverable | Trigger |
-|------|-------------|---------|
-| `ERR_INVALID_REQUEST_TYPE` | No | Request type not supported |
-| `ERR_UNKNOWN_PLATFORM` | Yes | Platform not ios/android/both |
-| `ERR_MISSING_PLATFORM` | Yes | Platform not provided |
-| `WARN_CONFLICT` | Yes | Conflicting requirements |
-
-**Zero internal retries.** Deterministic; same context = same recommendation.
-
----
-
-## Anti-Patterns
-
-| ❌ Don't | ✅ Do |
-|---------|-------|
-| Pick framework without criteria | Use framework selection tree |
-| Skip architecture for "simple" apps | At minimum use Repository pattern |
-| Assume network availability | Design offline-first |
-| Skip security for MVP | OWASP MASVS from day 1 |
-| Test only on simulator | Include real device testing |
-| Ignore IDE errors without fixing | Call `problem-checker` to auto-fix |
-
----
-
-## Troubleshooting
-
-| Problem | Solution |
-|---------|----------|
-| iOS build fails | `pod install --repo-update` |
-| Android Gradle error | Check Gradle version, sync project |
-| Hot reload broken | Restart Metro/Flutter, clear cache |
-| Native module linking | `npx react-native link` or `flutter pub get` |
-| App store rejection | Check guidelines, test on real devices |
-
-
-## 📑 Content Map
-
-| File | Description | When to Read |
-|------|-------------|--------------|
-| [engineering-spec.md](rules/engineering-spec.md) | Full engineering spec | Architecture review |
-
----
-
-## 🔗 Related
-
-| Item | Type | Purpose |
-|------|------|---------|
-| `mobile-first` | Skill | Mobile orchestrator |
-| `mobile-design` | Skill | Design patterns |
-| `mobile-security-coder` | Skill | Security implementation |
-
----
-
-⚡ PikaKit v3.9.223
+Load only the rule files relevant to the current decision. The authoritative external baseline is [official documentation](https://developer.android.com/guide).

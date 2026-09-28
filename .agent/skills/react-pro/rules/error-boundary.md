@@ -1,9 +1,27 @@
 ---
-title: "Error Boundary Pattern"
-impact: HIGH
-impactDescription: "Error boundaries prevent entire app crashes from component errors"
-tags: error, boundary, fallback, catch
+"title": "Error Boundary Pattern"
+"kind": "reference"
+"impact": "high"
+"tags":
+  - "error"
+  - "boundary"
+  - "fallback"
+  - "catch"
+"applies_to":
+  - "web"
+"last_reviewed": "2026-09-28"
+"sources":
+  - "url": "https://react.dev/reference/react"
+    "title": "Official documentation"
 ---
+
+# Error Boundary Pattern
+
+## Scope
+
+Apply this guidance only to the declared platforms and repository-confirmed versions.
+
+## Guidance
 
 # Error Boundary Pattern
 
@@ -56,6 +74,6 @@ class ErrorBoundary extends Component<Props, State> {
 </ErrorBoundary>
 ```
 
----
+## Verification
 
-⚡ PikaKit v3.9.223
+Cross-check version-sensitive details with the cited official source and verify the resulting behavior in the target environment.

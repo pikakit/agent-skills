@@ -1,15 +1,26 @@
 ---
-name: type-hints
-description: Python type hints — modern syntax, Pydantic v2, generics, TypeVar, and validation patterns
-title: "Python Type Hints & Validation"
-impact: MEDIUM
-impactDescription: "Moderate improvement to quality or maintainability"
-tags: type, hints
+title: Python Type Contracts and Validation
+kind: reference
+impact: high
+tags: [python, typing, validation]
+applies_to: [python]
+last_reviewed: "2026-09-28"
+sources:
+  - title: Python Typing Documentation
+    url: https://docs.python.org/3/library/typing.html
+  - title: Pydantic Documentation
+    url: https://docs.pydantic.dev/latest/
 ---
 
 # Python Type Hints & Validation
 
 > Type all public APIs. Use Pydantic at boundaries. No `Any` in public signatures.
+
+## Scope
+
+Apply to Python public type contracts, generics, narrowing, external-data validation, and type-checker configuration.
+
+## Guidance
 
 ---
 
@@ -146,7 +157,11 @@ settings = Settings()  # Auto-reads from .env + environment
 
 ---
 
-## 🔗 Related
+## Verification
+
+Run the configured type checker in strict mode and execute boundary-validation tests for malformed, missing, extra, and coerced values. Verify runtime validation is not assumed from annotations alone.
+
+## Related
 
 | File | When to Read |
 |------|-------------|
@@ -156,4 +171,4 @@ settings = Settings()  # Auto-reads from .env + environment
 
 ---
 
-⚡ PikaKit v3.9.223
+⚡ PikaKit v3.9.224

@@ -1,4 +1,4 @@
-// @ts-nocheck
+import type { ColorPalette } from '../types.ts';
 /**
  * Component Spec Generators - Studio Design System
  * =================================================
@@ -11,7 +11,7 @@
  * @param {Object} colors - Color palette from design system
  * @returns {string} Button CSS specifications
  */
-export function generateButtonSpecs(colors) {
+export function generateButtonSpecs(colors: Partial<ColorPalette>): string {
     const primaryColor = colors?.cta || '#F97316';
     const secondaryColor = colors?.primary || '#2563EB';
 
@@ -54,7 +54,7 @@ export function generateButtonSpecs(colors) {
  * @param {Object} colors - Color palette from design system
  * @returns {string} Card CSS specifications
  */
-export function generateCardSpecs(colors) {
+export function generateCardSpecs(colors: Partial<ColorPalette>): string {
     const bgColor = colors?.background || '#FFFFFF';
 
     return `### Cards
@@ -82,7 +82,7 @@ export function generateCardSpecs(colors) {
  * @param {Object} colors - Color palette from design system
  * @returns {string} Input CSS specifications
  */
-export function generateInputSpecs(colors) {
+export function generateInputSpecs(colors: Partial<ColorPalette>): string {
     const primaryColor = colors?.primary || '#2563EB';
 
     return `### Inputs
@@ -109,7 +109,7 @@ export function generateInputSpecs(colors) {
  * Generate modal component specifications
  * @returns {string} Modal CSS specifications
  */
-export function generateModalSpecs() {
+export function generateModalSpecs(): string {
     return `### Modals
 
 \`\`\`css
@@ -135,8 +135,8 @@ export function generateModalSpecs() {
  * @param {Object} colors - Color palette from design system
  * @returns {string} Complete component specs section
  */
-export function generateComponentSpecs(colors) {
-    const sections = [];
+export function generateComponentSpecs(colors: Partial<ColorPalette>): string {
+    const sections: string[] = [];
 
     sections.push('---');
     sections.push('');

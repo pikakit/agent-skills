@@ -1,11 +1,25 @@
 ---
-name: aria-snapshot
-description: YAML accessibility tree format with ref handles for element interaction
-title: "ARIA Snapshot Format"
-impact: MEDIUM
-impactDescription: "Moderate improvement to quality or maintainability"
-tags: aria, snapshot
+"title": "ARIA Snapshot Format"
+"kind": "reference"
+"impact": "standard"
+"tags":
+  - "aria"
+  - "snapshot"
+"applies_to":
+  - "web"
+"last_reviewed": "2026-09-28"
+"sources":
+  - "url": "https://developer.chrome.com/docs/devtools/"
+    "title": "Official documentation"
 ---
+
+# ARIA Snapshot Format
+
+## Scope
+
+This reference applies only to the platforms declared in metadata and the versions confirmed in the target repository.
+
+## Guidance
 
 # ARIA Snapshot Format
 
@@ -87,9 +101,9 @@ node select-ref.ts --ref e1 --action screenshot --output ./element.png
 | File | When to Read |
 |------|-------------|
 | [scripts-guide.md](scripts-guide.md) | All script options and examples |
-| [engineering-spec.md](engineering-spec.md) | Full contracts and architecture |
+| [engineering-spec.md](production-gates.md) | Full contracts and architecture |
 | [SKILL.md](../SKILL.md) | Quick reference and error taxonomy |
 
----
+## Verification
 
-⚡ PikaKit v3.9.223
+Cross-check version-sensitive details with the cited official source and verify the resulting behavior in the target environment.

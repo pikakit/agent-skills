@@ -1,16 +1,28 @@
 ---
-title: Dependency-Based Parallelization
-impact: CRITICAL
-impactDescription: 2-10× improvement
-tags: async, parallelization, dependencies, better-all
+"title": "Dependency-Based Parallelization"
+"kind": "code"
+"impact": "critical"
+"tags":
+  - "async"
+  - "parallelization"
+  - "dependencies"
+  - "better-all"
+"applies_to":
+  - "node"
+  - "web"
+"last_reviewed": "2026-09-28"
+"sources":
+  - "url": "https://nextjs.org/docs"
+    "title": "Official documentation"
 ---
+
+# Dependency-Based Parallelization
 
 ## Dependency-Based Parallelization
 
 For operations with partial dependencies, use `better-all` to maximize parallelism. It automatically starts each task at the earliest possible moment.
 
-**Incorrect (profile waits for config unnecessarily):**
-
+## Incorrect
 ```typescript
 const [user, config] = await Promise.all([
   fetchUser(),
@@ -19,8 +31,7 @@ const [user, config] = await Promise.all([
 const profile = await fetchProfile(user.id)
 ```
 
-**Correct (config and profile run in parallel):**
-
+## Correct
 ```typescript
 import { all } from 'better-all'
 
@@ -50,6 +61,6 @@ const [user, config, profile] = await Promise.all([
 
 Reference: [https://github.com/shuding/better-all](https://github.com/shuding/better-all)
 
----
+## Verification
 
-⚡ PikaKit v3.9.223
+Run the repository typecheck and the narrowest behavioral tests that exercise this rule. Confirm error paths and observable output, not only successful compilation.

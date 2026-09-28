@@ -174,7 +174,7 @@ Docker hybrid mode (recommended):
 
 // turbo
 ```bash
-npx cross-env OTEL_SERVICE_NAME="workflow:stage" TRACE_ID="$TRACE_ID" node .agent/scripts/auto_preview.ts start
+npx cross-env OTEL_SERVICE_NAME="workflow:stage" TRACE_ID="$TRACE_ID" npx tsx .agent/scripts/auto_preview.ts start
 ```
 
 ### Phase 4: Health Monitoring
@@ -201,7 +201,7 @@ Auto-restart on crash: 3 retry attempts with error logging.
 
 // turbo
 ```bash
-npx cross-env OTEL_SERVICE_NAME="workflow:stage" TRACE_ID="$TRACE_ID" node .agent/scripts/auto_preview.ts status
+npx cross-env OTEL_SERVICE_NAME="workflow:stage" TRACE_ID="$TRACE_ID" npx tsx .agent/scripts/auto_preview.ts status
 ```
 
 ---

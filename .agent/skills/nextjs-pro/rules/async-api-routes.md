@@ -1,16 +1,28 @@
 ---
-title: Prevent Waterfall Chains in API Routes
-impact: CRITICAL
-impactDescription: 2-10× improvement
-tags: api-routes, server-actions, waterfalls, parallelization
+"title": "Prevent Waterfall Chains in API Routes"
+"kind": "code"
+"impact": "critical"
+"tags":
+  - "api-routes"
+  - "server-actions"
+  - "waterfalls"
+  - "parallelization"
+"applies_to":
+  - "node"
+  - "web"
+"last_reviewed": "2026-09-28"
+"sources":
+  - "url": "https://nextjs.org/docs"
+    "title": "Official documentation"
 ---
+
+# Prevent Waterfall Chains in API Routes
 
 ## Prevent Waterfall Chains in API Routes
 
 In API routes and Server Actions, start independent operations immediately, even if you don't await them yet.
 
-**Incorrect (config waits for auth, data waits for both):**
-
+## Incorrect
 ```typescript
 export async function GET(request: Request) {
   const session = await auth()
@@ -20,8 +32,7 @@ export async function GET(request: Request) {
 }
 ```
 
-**Correct (auth and config start immediately):**
-
+## Correct
 ```typescript
 export async function GET(request: Request) {
   const sessionPromise = auth()
@@ -37,6 +48,6 @@ export async function GET(request: Request) {
 
 For operations with more complex dependency chains, use `better-all` to automatically maximize parallelism (see Dependency-Based Parallelization).
 
----
+## Verification
 
-⚡ PikaKit v3.9.223
+Run the repository typecheck and the narrowest behavioral tests that exercise this rule. Confirm error paths and observable output, not only successful compilation.

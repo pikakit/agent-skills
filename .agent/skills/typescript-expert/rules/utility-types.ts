@@ -1,264 +1,110 @@
-// @ts-nocheck
 /**
- * Utility Types Library (JavaScript with JSDoc)
- * 
- * A collection of commonly used utility patterns for JavaScript projects.
- * Provides same functionality as TypeScript utility types using JSDoc and runtime helpers.
+ * Strict TypeScript utility examples used by the typescript-expert skill.
  */
 
-// =============================================================================
-// RESULT TYPE (Error Handling)
-// =============================================================================
+export type Result<T, E> =
+  | { success: true; data: T }
+  | { success: false; error: E };
 
-/**
- * Create a success result
- * @template T
- * @param {T} data
- * @returns {{success: true, data: T}}
- */
-export const ok = (data) => ({
-    success: true,
-    data
-});
+export const ok = <T>(data: T): Result<T, never> => ({ success: true, data });
+export const err = <E>(error: E): Result<never, E> => ({ success: false, error });
 
-/**
- * Create an error result
- * @template E
- * @param {E} error
- * @returns {{success: false, error: E}}
- */
-export const err = (error) => ({
-    success: false,
-    error
-});
+export type Option<T> = { type: 'some'; value: T } | { type: 'none' };
+export const some = <T>(value: T): Option<T> => ({ type: 'some', value });
+export const none: Option<never> = { type: 'none' };
+export const isSome = <T>(option: Option<T>): option is { type: 'some'; value: T } => option.type === 'some';
+export const isNone = <T>(option: Option<T>): option is { type: 'none' } => option.type === 'none';
 
-// =============================================================================
-// OPTION TYPE (Nullable Handling)  
-// =============================================================================
+export type Branded<T, B extends string> = T & { readonly __brand: B };
 
-/**
- * Create a Some value
- * @template T
- * @param {T} value
- * @returns {{type: 'some', value: T}}
- */
-export const some = (value) => ({ type: 'some', value });
-
-/** @type {{type: 'none'}} */
-export const none = { type: 'none' };
-
-/**
- * Check if option is Some
- * @param {Object} option
- * @returns {boolean}
- */
-export const isSome = (option) => option.type === 'some';
-
-/**
- * Check if option is None
- * @param {Object} option
- * @returns {boolean}
- */
-export const isNone = (option) => option.type === 'none';
-
-// =============================================================================
-// BRANDED TYPE HELPERS (Runtime Validation)
-// =============================================================================
-
-/**
- * Create a branded value (runtime type tagging)
- * @param {string} brand
- * @returns {function(*): Object}
- */
-export const createBrand = (brand) => (value) => {
-    return Object.defineProperty(Object(value), '__brand', {
-        value: brand,
-        enumerable: false,
-        writable: false
-    });
+export const createBrand = <B extends string>(brand: B) => <T>(value: T): Branded<T, B> => {
+  const branded = Object(value) as Branded<T, B>;
+  return Object.defineProperty(branded, '__brand', {
+    value: brand,
+    enumerable: false,
+    writable: false,
+  });
 };
 
-/**
- * Check if value has specific brand
- * @param {*} value
- * @param {string} brand
- * @returns {boolean}
- */
-export const hasBrand = (value, brand) => {
-    return value && value.__brand === brand;
+export const hasBrand = <B extends string>(value: unknown, brand: B): value is Branded<unknown, B> => {
+  return typeof value === 'object' && value !== null && '__brand' in value
+    && (value as { __brand?: unknown }).__brand === brand;
 };
 
-// Branded type constructors
 export const UserId = createBrand('UserId');
 export const Email = createBrand('Email');
 export const UUID = createBrand('UUID');
 export const Timestamp = createBrand('Timestamp');
 export const PositiveNumber = createBrand('PositiveNumber');
 
-// =============================================================================
-// DEEP UTILITIES
-// =============================================================================
+type DeepReadonly<T> = T extends (...args: never[]) => unknown
+  ? T
+  : T extends readonly (infer U)[]
+    ? readonly DeepReadonly<U>[]
+    : T extends object
+      ? { readonly [K in keyof T]: DeepReadonly<T[K]> }
+      : T;
 
-/**
- * Deep freeze object (DeepReadonly equivalent)
- * @param {Object} obj
- * @returns {Object}
- */
-export const deepFreeze = (obj) => {
-    if (obj === null || typeof obj !== 'object') return obj;
-    Object.freeze(obj);
-    Object.getOwnPropertyNames(obj).forEach(prop => {
-        if (obj[prop] !== null && typeof obj[prop] === 'object') {
-            deepFreeze(obj[prop]);
-        }
-    });
-    return obj;
+export const deepFreeze = <T>(value: T): DeepReadonly<T> => {
+  if (value === null || typeof value !== 'object') return value as DeepReadonly<T>;
+  Object.freeze(value);
+  for (const property of Object.getOwnPropertyNames(value)) {
+    const nested = (value as Record<string, unknown>)[property];
+    if (nested !== null && typeof nested === 'object') deepFreeze(nested);
+  }
+  return value as DeepReadonly<T>;
 };
 
-/**
- * Deep clone object
- * @param {Object} obj
- * @returns {Object}
- */
-export const deepClone = (obj) => {
-    if (obj === null || typeof obj !== 'object') return obj;
-    if (Array.isArray(obj)) return obj.map(deepClone);
-    return Object.fromEntries(
-        Object.entries(obj).map(([k, v]) => [k, deepClone(v)])
-    );
+export const deepClone = <T>(value: T): T => {
+  if (value === null || typeof value !== 'object') return value;
+  if (Array.isArray(value)) return value.map(item => deepClone(item)) as T;
+  return Object.fromEntries(
+    Object.entries(value).map(([key, nested]) => [key, deepClone(nested)]),
+  ) as T;
 };
 
-// =============================================================================
-// OBJECT UTILITIES
-// =============================================================================
-
-/**
- * Pick properties from object
- * @param {Object} obj
- * @param {string[]} keys
- * @returns {Object}
- */
-export const pick = (obj, keys) => {
-    return keys.reduce((acc, key) => {
-        if (key in obj) acc[key] = obj[key];
-        return acc;
-    }, {});
+export const pick = <T extends object, K extends keyof T>(value: T, keys: readonly K[]): Pick<T, K> => {
+  const result = {} as Pick<T, K>;
+  for (const key of keys) {
+    if (key in value) result[key] = value[key];
+  }
+  return result;
 };
 
-/**
- * Omit properties from object
- * @param {Object} obj
- * @param {string[]} keys
- * @returns {Object}
- */
-export const omit = (obj, keys) => {
-    const keysSet = new Set(keys);
-    return Object.fromEntries(
-        Object.entries(obj).filter(([k]) => !keysSet.has(k))
-    );
+export const omit = <T extends object, K extends keyof T>(value: T, keys: readonly K[]): Omit<T, K> => {
+  const excluded = new Set<PropertyKey>(keys);
+  return Object.fromEntries(
+    Object.entries(value).filter(([key]) => !excluded.has(key)),
+  ) as Omit<T, K>;
 };
 
-/**
- * Merge objects (second overrides first)
- * @param {Object} a
- * @param {Object} b
- * @returns {Object}
- */
-export const merge = (a, b) => ({ ...a, ...b });
+export const merge = <A extends object, B extends object>(left: A, right: B): A & B => ({ ...left, ...right });
+export const first = <T>(items: readonly T[]): T | undefined => items[0];
+export const last = <T>(items: readonly T[]): T | undefined => items[items.length - 1];
+export const isNonEmpty = <T>(items: readonly T[]): items is readonly [T, ...T[]] => items.length > 0;
+export const tuple = <T>(length: number, fill: T): T[] => Array<T>(length).fill(fill);
 
-// =============================================================================
-// ARRAY UTILITIES
-// =============================================================================
-
-/**
- * Get first element
- * @template T
- * @param {T[]} arr
- * @returns {T|undefined}
- */
-export const first = (arr) => arr[0];
-
-/**
- * Get last element
- * @template T
- * @param {T[]} arr
- * @returns {T|undefined}
- */
-export const last = (arr) => arr[arr.length - 1];
-
-/**
- * Check if array is non-empty
- * @param {Array} arr
- * @returns {boolean}
- */
-export const isNonEmpty = (arr) => arr.length > 0;
-
-/**
- * Create tuple of specific length
- * @param {number} length
- * @param {*} fill
- * @returns {Array}
- */
-export const tuple = (length, fill) => Array(length).fill(fill);
-
-// =============================================================================
-// VALIDATION UTILITIES
-// =============================================================================
-
-/**
- * Assert value is never (exhaustive check)
- * @param {never} value
- * @param {string} [message]
- */
-export function assertNever(value, message) {
-    throw new Error(message ?? `Unexpected value: ${value}`);
+export function assertNever(value: never, message?: string): never {
+  throw new Error(message ?? `Unexpected value: ${String(value)}`);
 }
 
-/**
- * Exhaustive check without throwing
- * @param {never} _value
- */
-export function exhaustiveCheck(_value) {
-    // This function should never be called
+export function exhaustiveCheck(_value: never): void {
+  // Compile-time exhaustiveness helper.
 }
 
-// =============================================================================
-// JSON UTILITIES
-// =============================================================================
-
-/**
- * Safe JSON parse
- * @param {string} str
- * @param {*} [fallback]
- * @returns {*}
- */
-export const safeJsonParse = (str, fallback = null) => {
-    try {
-        return JSON.parse(str);
-    } catch {
-        return fallback;
-    }
+export const safeJsonParse = <T>(text: string, fallback: T): unknown | T => {
+  try {
+    return JSON.parse(text) as unknown;
+  } catch {
+    return fallback;
+  }
 };
 
-/**
- * Check if value is JSON serializable
- * @param {*} value
- * @returns {boolean}
- */
-export const isJsonSerializable = (value) => {
-    if (value === null || typeof value === 'string' ||
-        typeof value === 'number' || typeof value === 'boolean') {
-        return true;
-    }
-    if (typeof value === 'undefined' || typeof value === 'function' ||
-        typeof value === 'symbol') {
-        return false;
-    }
-    if (Array.isArray(value)) {
-        return value.every(isJsonSerializable);
-    }
-    if (typeof value === 'object') {
-        return Object.values(value).every(isJsonSerializable);
-    }
-    return false;
+export const isJsonSerializable = (value: unknown): boolean => {
+  if (value === null || typeof value === 'string' || typeof value === 'number' || typeof value === 'boolean') {
+    return true;
+  }
+  if (Array.isArray(value)) return value.every(isJsonSerializable);
+  if (typeof value === 'object') return Object.values(value).every(isJsonSerializable);
+  return false;
 };

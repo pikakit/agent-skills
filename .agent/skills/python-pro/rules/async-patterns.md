@@ -1,15 +1,24 @@
 ---
-name: async-patterns
-description: Python async patterns — asyncio, gather, TaskGroup, run_in_executor, and async library selection
-title: "Python Async Patterns"
-impact: CRITICAL
-impactDescription: "Significant performance or security impact"
-tags: async, patterns
+title: Python Async and Cancellation Patterns
+kind: reference
+impact: high
+tags: [python, asyncio, cancellation]
+applies_to: [python, backend]
+last_reviewed: "2026-09-28"
+sources:
+  - title: Python asyncio Documentation
+    url: https://docs.python.org/3/library/asyncio.html
 ---
 
 # Python Async Patterns
 
 > I/O-bound → async. CPU-bound → sync + multiprocessing. Never mix carelessly.
+
+## Scope
+
+Apply to structured concurrency, task ownership, cancellation, deadlines, blocking calls, and CPU-bound work in Python.
+
+## Guidance
 
 ---
 
@@ -155,7 +164,11 @@ async def bad_example():
 
 ---
 
-## 🔗 Related
+## Verification
+
+Test cancellation propagation, timeout, TaskGroup failure, blocking-call isolation, and executor shutdown. Enable asyncio debug diagnostics in non-production tests and measure event-loop responsiveness under representative concurrency.
+
+## Related
 
 | File | When to Read |
 |------|-------------|
@@ -165,4 +178,4 @@ async def bad_example():
 
 ---
 
-⚡ PikaKit v3.9.223
+⚡ PikaKit v3.9.224

@@ -1,4 +1,3 @@
-// @ts-nocheck
 /**
  * Intelligent Page Override Generator - Studio Design System
  * ============================================================
@@ -6,8 +5,9 @@
  * This is the core logic for Phase 5 - matches Python version exactly
  */
 
-import { search } from '../core.js';
+import { search } from '../core.ts';
 import { detectPageType } from './page-type-detector.ts';
+import type { DesignSystem, PageOverrides } from '../types.ts';
 
 /**
  * Generate intelligent overrides based on page type using layered search
@@ -16,15 +16,21 @@ import { detectPageType } from './page-type-detector.ts';
  * @param {Object} designSystem - Base design system object
  * @returns {Promise<Object>} Override object with layout, spacing, typography, colors, components, recommendations
  */
-export async function generateIntelligentOverrides(pageName, pageQuery, designSystem) {
+export async function generateIntelligentOverrides(
+    pageName: string,
+    pageQuery: string | null,
+    _designSystem: DesignSystem
+): Promise<PageOverrides> {
     const pageLower = (pageName || '').toLowerCase();
     const queryLower = (pageQuery || '').toLowerCase();
     const combinedContext = `${pageLower} ${queryLower}`.trim();
 
     // Search across multiple domains for page-specific guidance
-    const styleSearch = await search(combinedContext, 'style', 1);
-    const uxSearch = await search(combinedContext, 'ux', 3);
-    const landingSearch = await search(combinedContext, 'landing', 1);
+    const [styleSearch, uxSearch, landingSearch] = await Promise.all([
+        search(combinedContext, 'style', 1),
+        search(combinedContext, 'ux', 3),
+        search(combinedContext, 'landing', 1)
+    ]);
 
     // Extract results from search response
     const styleResults = styleSearch?.results || [];
@@ -35,20 +41,18 @@ export async function generateIntelligentOverrides(pageName, pageQuery, designSy
     const pageType = detectPageType(combinedContext, styleResults);
 
     // Build overrides from search results
-    const layout = {};
-    const spacing = {};
-    const typography = {};
-    const colors = {};
-    const components = [];
-    const uniqueComponents = [];
-    const recommendations = [];
+    const layout: Record<string, string> = {};
+    const spacing: Record<string, string> = {};
+    const typography: Record<string, string> = {};
+    const colors: Record<string, string> = {};
+    const components: string[] = [];
+    const uniqueComponents: string[] = [];
+    const recommendations: string[] = [];
 
     // Extract style-based overrides
     if (styleResults.length > 0) {
         const style = styleResults[0];
-        const styleName = style['Style Category'] || '';
         const keywords = (style['Keywords'] || '').toLowerCase();
-        const bestFor = style['Best For'] || '';
         const effects = style['Effects & Animation'] || '';
 
         // Infer layout from style keywords

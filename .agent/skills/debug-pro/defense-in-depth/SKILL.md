@@ -1,148 +1,52 @@
 ---
-name: Defense-in-Depth Validation
-description: Validate at every layer data passes through to make bugs impossible
+name: "Defense-in-Depth Validation"
+description: "Layered validation guidance for preventing invalid state from crossing trust and ownership boundaries. Use after tracing a defect to malformed or unsafe data. Do not use as a substitute for root-cause analysis."
 metadata:
-  author: pikakit
-  version: "3.9.223"
-  category: debugging-subskill
-  triggers: ["defense in depth", "validation layers", "prevent bug", "structural fix"]
-  coordinates_with: ["debug-pro", "security-scanner", "test-architect"]
-  success_metrics: ["0 recurrent bugs", "4 layers of validation applied"]
+  id: "debug-pro/defense-in-depth"
+  schema_version: "2.0.0"
+  type: "knowledge"
+  category: "quality"
+  risk_tier: "high"
+  version: "4.0.0"
+  author: "pikakit"
+  triggers: ["defense in depth","validation layers","invalid state","trust boundary"]
+  negative_triggers: ["unknown root cause","visual regression","performance-only issue"]
+  coordinates_with: ["debug-pro","security-scanner","test-architect"]
+  capabilities: ["map validation boundaries","place complementary controls","verify bypass resistance"]
+  platforms: ["cross-platform"]
+  last_reviewed: "2026-09-28"
+  review_interval_days: 180
 ---
 
 # Defense-in-Depth Validation
 
-## Overview
+## Operating contract
 
-When you fix a bug caused by invalid data, adding validation at one place feels sufficient. But that single check can be bypassed by different code paths, refactoring, or mocks.
+Use this skill only when the request matches its positive triggers and none of its negative triggers. Establish the target platform, constraints, and acceptance evidence before recommending changes. Prefer repository conventions and official platform behavior over generic patterns.
 
-**Core principle:** Validate at EVERY layer data passes through. Make the bug structurally impossible.
+## Workflow
 
-## Why Multiple Layers
+1. Confirm scope, ownership boundaries, runtime versions, and risk.
+2. Inspect the relevant implementation and reproduce or baseline the current behavior.
+3. Select the smallest applicable rules from `rules/` or the guidance below.
+4. State trade-offs and failure modes before changing code or configuration.
+5. Verify with the narrowest reliable checks, then run the project gate.
+6. Report evidence, residual risk, and rollback conditions.
 
-Single validation: "We fixed the bug"
-Multiple layers: "We made the bug impossible"
+## Capabilities
 
-Different layers catch different cases:
-- Entry validation catches most bugs
-- Business logic catches edge cases
-- Environment guards prevent context-specific dangers
-- Debug logging helps when other layers fail
+- map validation boundaries
+- place complementary controls
+- verify bypass resistance
 
-## The Four Layers
+## Safety and quality gates
 
-### Layer 1: Entry Point Validation
-**Purpose:** Reject obviously invalid input at API boundary
+- Treat missing inputs, failed tools, and ambiguous results as errors rather than success.
+- Preserve public interfaces unless the task explicitly authorizes a breaking change.
+- Do not claim support for tools, APIs, or metrics that were not observed or sourced.
+- Redact credentials and personal data from examples, logs, and diagnostics.
+- Require accessible behavior and deterministic verification where the platform supports them.
 
-```typescript
-function createProject(name: string, workingDirectory: string) {
-  if (!workingDirectory || workingDirectory.trim() === '') {
-    throw new Error('workingDirectory cannot be empty');
-  }
-  if (!existsSync(workingDirectory)) {
-    throw new Error(`workingDirectory does not exist: ${workingDirectory}`);
-  }
-  if (!statSync(workingDirectory).isDirectory()) {
-    throw new Error(`workingDirectory is not a directory: ${workingDirectory}`);
-  }
-  // ... proceed
-}
-```
+## References
 
-### Layer 2: Business Logic Validation
-**Purpose:** Ensure data makes sense for this operation
-
-```typescript
-function initializeWorkspace(projectDir: string, sessionId: string) {
-  if (!projectDir) {
-    throw new Error('projectDir required for workspace initialization');
-  }
-  // ... proceed
-}
-```
-
-### Layer 3: Environment Guards
-**Purpose:** Prevent dangerous operations in specific contexts
-
-```typescript
-async function gitInit(directory: string) {
-  // In tests, refuse git init outside temp directories
-  if (process.env.NODE_ENV === 'test') {
-    const normalized = normalize(resolve(directory));
-    const tmpDir = normalize(resolve(tmpdir()));
-
-    if (!normalized.startsWith(tmpDir)) {
-      throw new Error(
-        `Refusing git init outside temp dir during tests: ${directory}`
-      );
-    }
-  }
-  // ... proceed
-}
-```
-
-### Layer 4: Debug Instrumentation
-**Purpose:** Capture context for forensics
-
-```typescript
-async function gitInit(directory: string) {
-  const stack = new Error().stack;
-  logger.debug('About to git init', {
-    directory,
-    cwd: process.cwd(),
-    stack,
-  });
-  // ... proceed
-}
-```
-
-## Applying the Pattern
-
-When you find a bug:
-
-1. **Trace the data flow** - Where does bad value originate? Where used?
-2. **Map all checkpoints** - List every point data passes through
-3. **Add validation at each layer** - Entry, business, environment, debug
-4. **Test each layer** - Try to bypass layer 1, verify layer 2 catches it
-
-## Example from Session
-
-Bug: Empty `projectDir` caused `git init` in source code
-
-**Data flow:**
-1. Test setup → empty string
-2. `Project.create(name, '')`
-3. `WorkspaceManager.createWorkspace('')`
-4. `git init` runs in `process.cwd()`
-
-**Four layers added:**
-- Layer 1: `Project.create()` validates not empty/exists/writable
-- Layer 2: `WorkspaceManager` validates projectDir not empty
-- Layer 3: `WorktreeManager` refuses git init outside tmpdir in tests
-- Layer 4: Stack trace logging before git init
-
-**Result:** All 1847 tests passed, bug impossible to reproduce
-
-## Key Insight
-
-All four layers were necessary. During testing, each layer caught bugs the others missed:
-- Different code paths bypassed entry validation
-- Mocks bypassed business logic checks
-- Edge cases on different platforms needed environment guards
-- Debug logging identified structural misuse
-
-**Don't stop at one validation point.** Add checks at every layer.
-
----
-
-## 🔗 Related
-
-| File | When to Read |
-|------|-------------|
-| [../root-cause-tracing/SKILL.md](../root-cause-tracing/SKILL.md) | Trace to original trigger before adding layers |
-| [../verification-before-completion/SKILL.md](../verification-before-completion/SKILL.md) | Verify fix after adding defense layers |
-| [../SKILL.md](../SKILL.md) | 4-phase methodology overview |
-
----
-
-⚡ PikaKit v3.9.223
+Load only the rule files relevant to the current decision. The authoritative external baseline is [official documentation](https://cheatsheetseries.owasp.org/cheatsheets/Input_Validation_Cheat_Sheet.html).

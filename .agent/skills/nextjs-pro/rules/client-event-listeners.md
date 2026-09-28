@@ -1,16 +1,28 @@
 ---
-title: Deduplicate Global Event Listeners
-impact: LOW
-impactDescription: single listener for N components
-tags: client, swr, event-listeners, subscription
+"title": "Deduplicate Global Event Listeners"
+"kind": "code"
+"impact": "standard"
+"tags":
+  - "client"
+  - "swr"
+  - "event-listeners"
+  - "subscription"
+"applies_to":
+  - "node"
+  - "web"
+"last_reviewed": "2026-09-28"
+"sources":
+  - "url": "https://nextjs.org/docs"
+    "title": "Official documentation"
 ---
+
+# Deduplicate Global Event Listeners
 
 ## Deduplicate Global Event Listeners
 
 Use `useSWRSubscription()` to share global event listeners across component instances.
 
-**Incorrect (N instances = N listeners):**
-
+## Incorrect
 ```tsx
 function useKeyboardShortcut(key: string, callback: () => void) {
   useEffect(() => {
@@ -27,8 +39,7 @@ function useKeyboardShortcut(key: string, callback: () => void) {
 
 When using the `useKeyboardShortcut` hook multiple times, each instance will register a new listener.
 
-**Correct (N instances = 1 listener):**
-
+## Correct
 ```tsx
 import useSWRSubscription from 'swr/subscription'
 
@@ -73,6 +84,6 @@ function Profile() {
 }
 ```
 
----
+## Verification
 
-⚡ PikaKit v3.9.223
+Run the repository typecheck and the narrowest behavioral tests that exercise this rule. Confirm error paths and observable output, not only successful compilation.

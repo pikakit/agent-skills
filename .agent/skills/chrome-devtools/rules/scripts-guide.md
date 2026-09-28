@@ -1,11 +1,25 @@
 ---
-name: scripts-guide
-description: Complete Puppeteer CLI script reference — navigation, screenshot, form automation, JS execution, ARIA, performance
-title: "All Puppeteer CLI scripts with options."
-impact: MEDIUM
-impactDescription: "Moderate improvement to quality or maintainability"
-tags: scripts, guide
+"title": "All Puppeteer CLI scripts with options."
+"kind": "process"
+"impact": "standard"
+"tags":
+  - "scripts"
+  - "guide"
+"applies_to":
+  - "web"
+"last_reviewed": "2026-09-28"
+"sources":
+  - "url": "https://developer.chrome.com/docs/devtools/"
+    "title": "Official documentation"
 ---
+
+# All Puppeteer CLI scripts with options.
+
+## Preconditions
+
+Record the current behavior, target environment, acceptance criteria, and a recoverable baseline before starting.
+
+## Procedure
 
 # Scripts Guide
 
@@ -166,9 +180,13 @@ node performance.ts --url https://example.com | jq '.vitals'
 | File | When to Read |
 |------|-------------|
 | [aria-snapshot.md](aria-snapshot.md) | ARIA tree format for element discovery |
-| [engineering-spec.md](engineering-spec.md) | Full contracts and architecture |
+| [engineering-spec.md](production-gates.md) | Full contracts and architecture |
 | [SKILL.md](../SKILL.md) | Quick reference and error taxonomy |
 
----
+## Rollback
 
-⚡ PikaKit v3.9.223
+Restore the recorded baseline if a required command errors, evidence becomes inconclusive, or the change introduces a regression.
+
+## Exit Gate
+
+Complete only with fresh, reproducible evidence for the intended behavior and all relevant project checks passing.

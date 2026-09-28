@@ -1,163 +1,52 @@
 ---
-name: mobile-design
-description: >-
-  Mobile-first design: touch interaction, platform conventions, offline behavior, and MFRI scoring.
-  Use when designing mobile UI/UX, touch targets, or validating mobile design patterns.
-  NOT for mobile code implementation (use mobile-developer) or web design (use design-system).
+name: "mobile-design"
+description: "Platform-aware mobile UX and interaction design for iOS and Android. Use for navigation, touch, accessibility, typography, and responsive mobile behavior. Do not use for implementation-specific build or release work."
 metadata:
-  author: pikakit
-  version: "3.9.223"
-  category: mobile-architect
-  triggers: ["mobile design", "iOS", "Android", "touch", "responsive mobile"]
-  coordinates_with: ["mobile-developer", "design-system"]
-  success_metrics: ["MFRI score > 5", "Touch targets >= 44pt"]
+  id: "mobile-design"
+  schema_version: "2.0.0"
+  type: "knowledge"
+  category: "mobile"
+  risk_tier: "high"
+  version: "4.0.0"
+  author: "pikakit"
+  triggers: ["mobile UX","iOS design","Android design","touch target","mobile navigation"]
+  negative_triggers: ["mobile build pipeline","backend-only service","desktop-only web layout"]
+  coordinates_with: ["mobile-developer","design-system","test-architect"]
+  capabilities: ["select platform interaction patterns","review mobile accessibility","specify mobile navigation and layout"]
+  platforms: ["android","ios"]
+  last_reviewed: "2026-09-28"
+  review_interval_days: 180
 ---
 
-# Mobile Design — Mobile-First Design Doctrine
+# mobile-design
 
-> Touch-first. Platform-respectful. MFRI scored. 44×44pt / 48×48dp minimum.
+## Operating contract
 
-**Core Law:** Mobile is NOT a small desktop.
+Use this skill only when the request matches its positive triggers and none of its negative triggers. Establish the target platform, constraints, and acceptance evidence before recommending changes. Prefer repository conventions and official platform behavior over generic patterns.
 
----
+## Workflow
 
-## When to Use
+1. Confirm scope, ownership boundaries, runtime versions, and risk.
+2. Inspect the relevant implementation and reproduce or baseline the current behavior.
+3. Select the smallest applicable rules from `rules/` or the guidance below.
+4. State trade-offs and failure modes before changing code or configuration.
+5. Verify with the narrowest reliable checks, then run the project gate.
+6. Report evidence, residual risk, and rollback conditions.
 
-| Situation | Action |
-|-----------|--------|
-| Designing mobile UI | Score with MFRI |
-| iOS vs Android | Check platform guidelines |
-| Touch interactions | Use touch target standards |
-| Accessibility audit | Check a11y requirements |
+## Capabilities
 
----
+- select platform interaction patterns
+- review mobile accessibility
+- specify mobile navigation and layout
 
-## System Boundaries
+## Safety and quality gates
 
-| Owned by This Skill | NOT Owned |
-|---------------------|-----------|
-| MFRI scoring (5 dimensions) | Mobile orchestration (→ mobile-first) |
-| Platform guidelines (iOS/Android) | Mobile implementation (→ mobile-developer) |
-| Touch target standards | Design system components (→ design-system) |
-| Typography routing (SF Pro/Roboto) | API design (→ api-architect) |
+- Treat missing inputs, failed tools, and ambiguous results as errors rather than success.
+- Preserve public interfaces unless the task explicitly authorizes a breaking change.
+- Do not claim support for tools, APIs, or metrics that were not observed or sourced.
+- Redact credentials and personal data from examples, logs, and diagnostics.
+- Require accessible behavior and deterministic verification where the platform supports them.
 
-**Expert decision skill:** Produces design decisions. Does not write code or create components.
+## References
 
----
-
-## 5 Must-Ask Questions (Before Any Design)
-
-| # | Question | Options |
-|---|----------|---------|
-| 1 | Platform? | iOS, Android, or both |
-| 2 | Framework? | React Native, Flutter, native |
-| 3 | Navigation? | Tabs, stack, drawer |
-| 4 | Offline? | Must work offline? |
-| 5 | Devices? | Phone only or tablet too |
-
----
-
-## MFRI Scoring (Mobile Feasibility & Risk Index)
-
-| Dimension | Assessment |
-|-----------|------------|
-| Platform Clarity | Target platform defined? |
-| Interaction Complexity | How complex are gestures? |
-| Performance Risk | Heavy lists, animations, media? |
-| Offline Dependence | Breaks without network? |
-| Accessibility Risk | Motor, visual, cognitive impact? |
-
-| Score | Action |
-|-------|--------|
-| 6-10 | ✅ Safe — proceed |
-| 3-5 | ⚠️ Add validation |
-| 0-2 | 🔴 Simplify first |
-| < 0 | ❌ Redesign required |
-
----
-
-## Platform Differences (Fixed)
-
-| Element | iOS | Android |
-|---------|-----|---------|
-| Back | No button | System back |
-| Navigation | Bottom tabs | Bottom nav / drawer |
-| Typography | **SF Pro** | **Roboto** |
-| Corner radius | Rounded (continuous) | Varies (MD3) |
-
----
-
-## Touch Targets (Fixed)
-
-| Standard | Minimum |
-|----------|---------|
-| **iOS** | 44×44 pt |
-| **Android** | 48×48 dp |
-| **Spacing** | 8dp between targets |
-
----
-
-## Core Philosophy (Fixed Order)
-
-```
-Touch-first → Battery-conscious → Platform-respectful → Offline-capable
-```
-
----
-
-## Error Taxonomy
-
-| Code | Recoverable | Trigger |
-|------|-------------|---------|
-| `ERR_INVALID_REQUEST_TYPE` | No | Request type not supported |
-| `ERR_UNKNOWN_PLATFORM` | Yes | Platform not ios/android/both |
-| `ERR_MISSING_PLATFORM` | Yes | Platform not provided |
-| `WARN_LOW_MFRI` | Yes | MFRI score below 3 |
-
-**Zero internal retries.** Deterministic; same context = same assessment.
-
----
-
-## Anti-Patterns
-
-| ❌ Don't | ✅ Do |
-|---------|-------|
-| Apply desktop patterns | Touch-first design |
-| Use hover states | Tap and press states |
-| Small tap targets | 44×44pt (iOS) / 48×48dp (Android) |
-| Assume network | Design for offline |
-| Mix platform conventions | Respect iOS HIG / Material Design |
-
-## 📑 Content Map
-
-| File | Description | When to Read |
-|------|-------------|--------------|
-| [platform-ios.md](rules/platform-ios.md) | iOS HIG guidelines | iOS design |
-| [platform-android.md](rules/platform-android.md) | Material Design guidelines | Android design |
-| [touch-psychology.md](rules/touch-psychology.md) | Touch interaction patterns | Touch UX |
-| [mobile-navigation.md](rules/mobile-navigation.md) | Navigation patterns | Nav decisions |
-| [mobile-typography.md](rules/mobile-typography.md) | Typography systems | Font selection |
-| [mobile-color-system.md](rules/mobile-color-system.md) | Color palettes | Color decisions |
-| [mobile-performance.md](rules/mobile-performance.md) | Performance guidelines | Perf concerns |
-| [mobile-testing.md](rules/mobile-testing.md) | Testing strategies | QA planning |
-| [mobile-debugging.md](rules/mobile-debugging.md) | Debugging patterns | Bug fixing |
-| [mobile-backend.md](rules/mobile-backend.md) | Backend integration | API decisions |
-| [mobile-design-thinking.md](rules/mobile-design-thinking.md) | Design methodology | Design process |
-| [decision-trees.md](rules/decision-trees.md) | Decision frameworks | Complex decisions |
-| [engineering-spec.md](rules/engineering-spec.md) | Full engineering spec | Architecture review |
-
-**Selective reading:** Read ONLY files relevant to current design question.
-
----
-
-## 🔗 Related
-
-| Item | Type | Purpose |
-|------|------|---------|
-| `mobile-first` | Skill | Mobile orchestrator |
-| `mobile-developer` | Skill | Implementation |
-| `design-system` | Skill | Design patterns |
-
----
-
-⚡ PikaKit v3.9.223
+Load only the rule files relevant to the current decision. The authoritative external baseline is [official documentation](https://www.w3.org/WAI/standards-guidelines/wcag/).

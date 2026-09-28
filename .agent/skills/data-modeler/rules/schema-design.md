@@ -1,11 +1,24 @@
 ---
-name: schema-design
-description: Schema design principles — normalization, primary keys, timestamps, relationships, Prisma + Drizzle examples
+title: Relational Schema Design
+kind: reference
+impact: high
+tags: [database, schema, constraints]
+applies_to: [postgresql, relational-databases]
+last_reviewed: "2026-09-28"
+sources:
+  - title: PostgreSQL Data Definition
+    url: https://www.postgresql.org/docs/current/ddl.html
 ---
 
 # Schema Design Principles
 
 > Normalization, primary keys, timestamps, relationships with ORM examples.
+
+## Scope
+
+Apply to entities, keys, relationships, constraints, normalization, denormalization, tenancy, timestamps, and data lifecycle.
+
+## Guidance
 
 ---
 
@@ -148,15 +161,19 @@ const activeUsers = await db
 
 ---
 
-## 🔗 Related
+## Verification
+
+Test database constraints, transaction races, tenant isolation, cascade behavior, retention/deletion, and representative queries. Review generated migrations and restore a backup before approving destructive changes.
+
+## Related
 
 | File | When to Read |
 |------|-------------|
 | [indexing.md](indexing.md) | Index after schema designed |
 | [migrations.md](migrations.md) | Migrate schema changes safely |
 | [orm-selection.md](orm-selection.md) | ORM for schema definition |
-| [SKILL.md](SKILL.md) | Decision checklist |
+| [SKILL.md](../SKILL.md) | Decision checklist |
 
 ---
 
-⚡ PikaKit v3.9.223
+⚡ PikaKit v3.9.224

@@ -1,4 +1,3 @@
-// @ts-nocheck
 /**
  * Design System Generator - Studio Scripts
  * ==========================================
@@ -13,20 +12,52 @@
  * 5. Persistence Functions
  */
 
-import { readFile, writeFile, mkdir } from 'fs/promises';
-import { existsSync } from 'fs';
-import { fileURLToPath } from 'url';
-import { dirname, join } from 'path';
-import { search, DATA_DIR } from './core.ts';
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+import { writeFile, mkdir } from 'fs/promises';
+import { join } from 'path';
+import { search, type SearchDomain } from './core.ts';
+import { loadCSV } from './utils/csv-loader.ts';
+import {
+    StudioError,
+    type AppliedReasoning,
+    type CSVRow,
+    type DesignSystem,
+    type ReasoningRow,
+    type SearchResult
+} from './types.ts';
 
 // ============ CONFIGURATION ============
 const REASONING_FILE = 'ui-reasoning.csv';
+const REASONING_COLUMNS = [
+    'UI_Category',
+    'Recommended_Pattern',
+    'Style_Priority',
+    'Color_Mood',
+    'Typography_Mood',
+    'Key_Effects',
+    'Decision_Rules',
+    'Anti_Patterns',
+    'Severity'
+] as const;
 
-const SEARCH_CONFIG = {
-    product: { max_results: 1 },
+export function parseDecisionRules(value: string, category: string): Record<string, unknown> {
+    try {
+        const parsed: unknown = JSON.parse(value || '{}');
+        if (!parsed || typeof parsed !== 'object' || Array.isArray(parsed)) {
+            throw new Error('Decision_Rules must be a JSON object');
+        }
+        return parsed as Record<string, unknown>;
+    } catch (error: unknown) {
+        const cause = error instanceof Error ? error.message : String(error);
+        throw new StudioError(
+            'ERR_DATABASE_LOAD',
+            `Invalid Decision_Rules JSON for reasoning category: ${category}`,
+            true,
+            { source: REASONING_FILE, category, cause }
+        );
+    }
+}
+
+const SEARCH_CONFIG: Partial<Record<SearchDomain, { max_results: number }>> = {
     style: { max_results: 3 },
     color: { max_results: 2 },
     landing: { max_results: 2 },
@@ -39,6 +70,8 @@ const SEARCH_CONFIG = {
  * Generates design system recommendations from aggregated searches
  */
 export class DesignSystemGenerator {
+    private reasoningData: ReasoningRow[] | null = null;
+
     constructor() {
         this.reasoningData = null;
     }
@@ -46,63 +79,49 @@ export class DesignSystemGenerator {
     /**
      * Load reasoning rules from CSV
      */
-    async _loadReasoning() {
+    async _loadReasoning(): Promise<ReasoningRow[]> {
         if (this.reasoningData) return this.reasoningData;
-
-        const filepath = join(DATA_DIR, REASONING_FILE);
-        if (!existsSync(filepath)) {
-            this.reasoningData = [];
-            return [];
+        const rows = await loadCSV(REASONING_FILE);
+        const headers = new Set(Object.keys(rows[0] ?? {}));
+        const missingColumns = REASONING_COLUMNS.filter(column => !headers.has(column));
+        if (missingColumns.length > 0) {
+            throw new StudioError(
+                'ERR_DATABASE_LOAD',
+                `Studio database ${REASONING_FILE} is missing required columns`,
+                true,
+                { source: REASONING_FILE, missingColumns }
+            );
         }
-
-        try {
-            const content = await readFile(filepath, 'utf-8');
-            const lines = content.split('\n');
-            const headers = lines[0].split(',').map(h => h.trim());
-
-            this.reasoningData = lines.slice(1)
-                .filter(line => line.trim())
-                .map(line => {
-                    const values = line.split(',');
-                    const row = {};
-                    headers.forEach((header, i) => {
-                        row[header] = values[i] || '';
-                    });
-                    return row;
-                });
-
-            return this.reasoningData;
-        } catch (error) {
-            console.error('Error loading reasoning data:', error.message);
-            this.reasoningData = [];
-            return [];
+        for (const row of rows) {
+            parseDecisionRules(row.Decision_Rules, row.UI_Category || 'unknown');
         }
+        this.reasoningData = rows as ReasoningRow[];
+        return this.reasoningData;
     }
 
     /**
      * Execute searches across multiple domains
      */
-    async _multiDomainSearch(query, stylePriority = null) {
-        const results = {};
-
-        for (const [domain, config] of Object.entries(SEARCH_CONFIG)) {
+    async _multiDomainSearch(
+        query: string,
+        stylePriority: string[] = []
+    ): Promise<Partial<Record<SearchDomain, SearchResult>>> {
+        const searches = Object.entries(SEARCH_CONFIG).map(async ([domainName, config]) => {
+            const domain = domainName as SearchDomain;
             if (domain === 'style' && stylePriority && stylePriority.length > 0) {
-                // For style, also search with priority keywords
                 const priorityQuery = stylePriority.slice(0, 2).join(' ');
                 const combinedQuery = `${query} ${priorityQuery}`;
-                results[domain] = await search(combinedQuery, domain, config.max_results);
-            } else {
-                results[domain] = await search(query, domain, config.max_results);
+                return [domain, await search(combinedQuery, domain, config.max_results)] as const;
             }
-        }
-
-        return results;
+            return [domain, await search(query, domain, config.max_results)] as const;
+        });
+        return Object.fromEntries(await Promise.all(searches));
     }
 
     /**
      * Find matching reasoning rule for a category
      */
-    async _findReasoningRule(category) {
+    async _findReasoningRule(category: string): Promise<ReasoningRow | null> {
         const reasoningData = await this._loadReasoning();
         const categoryLower = category.toLowerCase();
 
@@ -130,16 +149,16 @@ export class DesignSystemGenerator {
             }
         }
 
-        return {};
+        return null;
     }
 
     /**
      * Apply reasoning rules to search results
      */
-    async _applyReasoning(category, searchResults) {
+    async _applyReasoning(category: string): Promise<AppliedReasoning> {
         const rule = await this._findReasoningRule(category);
 
-        if (!rule || Object.keys(rule).length === 0) {
+        if (!rule) {
             return {
                 pattern: 'Hero + Features + CTA',
                 style_priority: ['Minimalism', 'Flat Design'],
@@ -153,13 +172,7 @@ export class DesignSystemGenerator {
         }
 
         // Parse decision rules JSON
-        let decisionRules = {};
-        try {
-            const rulesStr = rule['Decision_Rules'] || '{}';
-            decisionRules = JSON.parse(rulesStr);
-        } catch (error) {
-            // Keep empty object if parsing fails
-        }
+        const decisionRules = parseDecisionRules(rule.Decision_Rules, category);
 
         const stylePriority = (rule['Style_Priority'] || '')
             .split('+')
@@ -181,7 +194,7 @@ export class DesignSystemGenerator {
     /**
      * Select best matching result based on priority keywords
      */
-    _selectBestMatch(results, priorityKeywords) {
+    _selectBestMatch(results: CSVRow[], priorityKeywords: string[]): CSVRow {
         if (!results || results.length === 0) {
             return {};
         }
@@ -202,7 +215,7 @@ export class DesignSystemGenerator {
         }
 
         // Second: score by keyword match in all fields
-        const scored = [];
+        const scored: Array<[number, CSVRow]> = [];
         for (const result of results) {
             const resultStr = JSON.stringify(result).toLowerCase();
             let score = 0;
@@ -233,14 +246,14 @@ export class DesignSystemGenerator {
     /**
      * Extract results list from search result dict
      */
-    _extractResults(searchResult) {
+    _extractResults(searchResult?: SearchResult): CSVRow[] {
         return searchResult?.results || [];
     }
 
     /**
      * Generate complete design system recommendation
      */
-    async generate(query, projectName = null) {
+    async generate(query: string, projectName: string | null = null): Promise<DesignSystem> {
         // Step 1: First search product to get category
         const productResult = await search(query, 'product', 1);
         const productResults = productResult.results || [];
@@ -250,7 +263,7 @@ export class DesignSystemGenerator {
         }
 
         // Step 2: Get reasoning rules for this category
-        const reasoning = await this._applyReasoning(category, {});
+        const reasoning = await this._applyReasoning(category);
         const stylePriority = reasoning.style_priority || [];
 
         // Step 3: Multi-domain search with style priority hints
@@ -258,10 +271,10 @@ export class DesignSystemGenerator {
         searchResults.product = productResult; // Reuse product search
 
         // Step 4: Select best matches from each domain using priority
-        const styleResults = this._extractResults(searchResults.style || {});
-        const colorResults = this._extractResults(searchResults.color || {});
-        const typographyResults = this._extractResults(searchResults.typography || {});
-        const landingResults = this._extractResults(searchResults.landing || {});
+        const styleResults = this._extractResults(searchResults.style);
+        const colorResults = this._extractResults(searchResults.color);
+        const typographyResults = this._extractResults(searchResults.typography);
+        const landingResults = this._extractResults(searchResults.landing);
 
         const bestStyle = this._selectBestMatch(styleResults, reasoning.style_priority || []);
         const bestColor = colorResults[0] || {};
@@ -301,8 +314,8 @@ export class DesignSystemGenerator {
                 notes: bestColor['Notes'] || ''
             },
             typography: {
-                heading: bestTypography['Heading Font'] || 'Inter',
-                body: bestTypography['Body Font'] || 'Inter',
+                heading: bestTypography['Heading Font'] || 'Outfit',
+                body: bestTypography['Body Font'] || 'Source Sans Pro',
                 mood: bestTypography['Mood/Style Keywords'] || reasoning.typography_mood || '',
                 best_for: bestTypography['Best For'] || '',
                 google_fonts_url: bestTypography['Google Fonts URL'] || '',
@@ -322,7 +335,7 @@ const BOX_WIDTH = 90;
 /**
  * Wrap long text into multiple lines
  */
-function wrapText(text, prefix, width) {
+function wrapText(text: string, prefix: string, width: number): string[] {
     if (!text) return [];
 
     const words = text.split(/\s+/);
@@ -350,7 +363,7 @@ function wrapText(text, prefix, width) {
 /**
  * Format design system as ASCII box with emojis (MCP-style)
  */
-export function formatAsciiBox(designSystem) {
+export function formatAsciiBox(designSystem: DesignSystem): string {
     const project = designSystem.project_name || 'PROJECT';
     const pattern = designSystem.pattern || {};
     const style = designSystem.style || {};
@@ -483,7 +496,7 @@ export function formatAsciiBox(designSystem) {
 /**
  * Format design system as markdown
  */
-export function formatMarkdown(designSystem) {
+export function formatMarkdown(designSystem: DesignSystem): string {
     const project = designSystem.project_name || 'PROJECT';
     const pattern = designSystem.pattern || {};
     const style = designSystem.style || {};
@@ -598,13 +611,13 @@ export function formatMarkdown(designSystem) {
  * Main entry point for design system generation
  */
 export async function generateDesignSystem(
-    query,
-    projectName = null,
-    outputFormat = 'ascii',
+    query: string,
+    projectName: string | null = null,
+    outputFormat: 'ascii' | 'markdown' = 'ascii',
     persist = false,
-    page = null,
-    outputDir = null
-) {
+    page: string | null = null,
+    outputDir: string | null = null
+): Promise<string> {
     const generator = new DesignSystemGenerator();
     const designSystem = await generator.generate(query, projectName);
 
@@ -623,8 +636,6 @@ export async function generateDesignSystem(
 // Full implementation matching Python version (format_master_md + intelligent overrides)
 
 
-import { generateTokenSystem } from './utils/css-templates.ts';
-import { generateComponentSpecs } from './utils/component-specs.ts';
 import { formatPageOverrideMd } from './utils/page-override-formatter.ts';
 
 /**
@@ -633,7 +644,7 @@ import { formatPageOverrideMd } from './utils/page-override-formatter.ts';
  * @param {Object} designSystem - Complete design system object
  * @returns {string} Formatted MASTER.md content
  */
-export function formatMasterMd(designSystem) {
+export function formatMasterMd(designSystem: DesignSystem): string {
     const project = designSystem.project_name || 'PROJECT';
     const pattern = designSystem.pattern || {};
     const style = designSystem.style || {};
@@ -910,11 +921,11 @@ export function formatMasterMd(designSystem) {
  * Updated to use full formatMasterMd() instead of simplified version
  */
 export async function persistDesignSystem(
-    designSystem,
-    page = null,
-    outputDir = null,
-    pageQuery = null
-) {
+    designSystem: DesignSystem,
+    page: string | null = null,
+    outputDir: string | null = null,
+    pageQuery: string | null = null
+): Promise<{ status: 'success'; design_system_dir: string; created_files: string[] }> {
     const baseDir = outputDir || process.cwd();
 
     // Use project name for project-specific folder

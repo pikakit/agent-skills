@@ -1,9 +1,25 @@
 ---
-title: "React Advanced Patterns (Deprecated)"
-impact: MEDIUM
-impactDescription: "This file has been split into focused rule files"
-tags: deprecated, redirect
+"title": "React Advanced Patterns (Deprecated)"
+"kind": "reference"
+"impact": "standard"
+"tags":
+  - "deprecated"
+  - "redirect"
+"applies_to":
+  - "web"
+"last_reviewed": "2026-09-28"
+"sources":
+  - "url": "https://react.dev/reference/react"
+    "title": "Official documentation"
 ---
+
+# React Advanced Patterns (Deprecated)
+
+## Scope
+
+This reference applies only to the platforms declared in metadata and the versions confirmed in the target repository.
+
+## Guidance
 
 # React Advanced Patterns — DEPRECATED
 
@@ -19,6 +35,6 @@ tags: deprecated, redirect
 | Performance | [performance-optimization.md](performance-optimization.md) |
 | Testing | [testing-patterns.md](testing-patterns.md) |
 
----
+## Verification
 
-⚡ PikaKit v3.9.223
+Cross-check version-sensitive details with the cited official source and verify the resulting behavior in the target environment.

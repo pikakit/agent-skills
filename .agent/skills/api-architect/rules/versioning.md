@@ -1,10 +1,13 @@
 ---
-name: versioning
-description: API versioning strategies — URI, header, query; deprecation and sunset policies
 title: "Versioning Strategies"
-impact: MEDIUM
-impactDescription: "Moderate improvement to quality or maintainability"
-tags: versioning
+kind: decision
+impact: high
+tags: [api, versioning, compatibility]
+applies_to: [api-architect]
+last_reviewed: "2026-09-28"
+sources:
+  - title: The Sunset HTTP Header Field
+    url: https://datatracker.ietf.org/doc/html/rfc8594
 ---
 
 # Versioning Strategies
@@ -95,6 +98,22 @@ app.use('/api/v1', (req, res, next) => {
 | [documentation.md](documentation.md) | Documenting versions |
 | [api-style.md](api-style.md) | API style decision |
 
----
+## Decision
 
-⚡ PikaKit v3.9.223
+Prefer additive compatible evolution. Introduce an explicit version boundary only when semantics cannot remain compatible, and pair deprecation with measurable consumer migration.
+
+## Use When
+
+Version a public contract for breaking schema, behavior, authentication, or lifecycle changes that cannot be negotiated safely.
+
+## Avoid When
+
+Avoid version bumps for additive fields, implementation refactors, or changes that can be represented through capability negotiation.
+
+## Trade-offs
+
+URI versions are visible and cache-friendly but duplicate routes. Header negotiation keeps identifiers stable but is less discoverable. Every concurrent version increases testing and operational cost.
+
+## Verification
+
+Run consumer contract tests across supported versions, publish deprecation and sunset metadata, monitor usage, and exercise rollback before removing compatibility code.

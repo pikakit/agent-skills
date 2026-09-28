@@ -1,8 +1,24 @@
 ---
-title: ARIA Snapshot Pattern
-impact: MEDIUM
-tags: e2e-automation
+"title": "ARIA Snapshot Pattern"
+"kind": "reference"
+"impact": "standard"
+"tags":
+  - "e2e-automation"
+"applies_to":
+  - "web"
+"last_reviewed": "2026-09-28"
+"sources":
+  - "url": "https://playwright.dev/docs/best-practices"
+    "title": "Official documentation"
 ---
+
+# ARIA Snapshot Pattern
+
+## Scope
+
+This reference applies only to the platforms declared in metadata and the versions confirmed in the target repository.
+
+## Guidance
 
 # ARIA Snapshot Pattern
 
@@ -180,6 +196,6 @@ test('user can submit form', async ({ page }) => {
 
 > **Rule:** ARIA Snapshot + Role Selectors = AI-friendly, resilient tests.
 
----
+## Verification
 
-⚡ PikaKit v3.9.223
+Cross-check version-sensitive details with the cited official source and verify the resulting behavior in the target environment.

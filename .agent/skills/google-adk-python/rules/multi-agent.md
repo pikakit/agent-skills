@@ -1,146 +1,39 @@
 ---
 title: Multi-Agent Orchestration
-impact: MEDIUM
-tags: google-adk-python
+kind: decision
+impact: high
+tags: [google-adk, multi-agent]
+applies_to: [google-adk-python]
+last_reviewed: "2026-09-28"
+sources:
+  - title: ADK multi-agent systems
+    url: https://google.github.io/adk-docs/agents/multi-agents/
 ---
 
 # Multi-Agent Orchestration
 
-> Coordinate specialized agents for complex tasks.
+## Decision
 
----
+Start with one agent and deterministic tools. Add workflow or specialist agents only when a measured requirement needs explicit sequencing, safe parallelism, bounded iteration, or responsibility isolation.
 
-## Coordinator Pattern
+## Use When
 
-```python
-from google.adk.agents import LlmAgent
-from google.adk.tools import google_search
+- Use a sequential workflow when each stage consumes a validated predecessor result.
+- Use parallel composition when branches are independent, resource limits are explicit, and merge behavior is deterministic.
+- Use a loop only with a programmatic termination condition and hard iteration limit.
+- Use specialist delegation when permissions or context ownership differ materially.
 
-# Specialized agents
-researcher = LlmAgent(
-    name="Researcher",
-    model="gemini-3-flash",
-    instruction="Research topics thoroughly. Provide detailed summaries with sources.",
-    tools=[google_search]
-)
+## Avoid When
 
-writer = LlmAgent(
-    name="Writer",
-    model="gemini-3-flash",
-    instruction="Write clear, engaging content."
-)
+- Avoid multiple agents to simulate roles that share the same context, permissions, and tools.
+- Avoid natural-language-only routing for sensitive authorization decisions.
+- Avoid parallel writes to shared state without conflict handling.
+- Avoid loops whose only exit is a subjective model judgment.
 
-editor = LlmAgent(
-    name="Editor",
-    model="gemini-3-flash",
-    instruction="Review and improve writing quality."
-)
+## Trade-offs
 
-# Coordinator delegates to specialists
-coordinator = LlmAgent(
-    name="Coordinator",
-    model="gemini-3-flash",
-    instruction="""You coordinate a content team:
-    1. Delegate research to Researcher
-    2. Send findings to Writer
-    3. Have Editor review final output""",
-    sub_agents=[researcher, writer, editor]
-)
-```
+Composition can improve isolation and latency, but increases model calls, cost, nondeterminism, state transfer, tracing complexity, and partial-failure handling. Prefer deterministic workflow primitives when routing is known in advance.
 
----
+## Verification
 
-## Sequential Workflow
-
-```python
-from google.adk.agents import SequentialAgent
-
-# Pipeline: each agent processes output from previous
-pipeline = SequentialAgent(
-    name="content_pipeline",
-    agents=[researcher, writer, editor]
-)
-
-result = pipeline.run("Create article about AI agents")
-```
-
-**Use when:** Order matters, each stage depends on previous.
-
----
-
-## Parallel Execution
-
-```python
-from google.adk.agents import ParallelAgent
-
-# All agents run simultaneously
-parallel = ParallelAgent(
-    name="parallel_research",
-    agents=[web_researcher, paper_researcher, expert_researcher]
-)
-
-results = parallel.run("Gather data on quantum computing")
-```
-
-**Use when:** Tasks are independent, reduce latency.
-
----
-
-## Loop Agent
-
-```python
-from google.adk.agents import LoopAgent
-
-# Repeat until condition met
-refiner = LoopAgent(
-    name="quality_refiner",
-    agent=editor,
-    max_iterations=3,
-    stop_condition="Quality score > 0.9"
-)
-```
-
-**Use when:** Iterative improvement needed.
-
----
-
-## Customer Support Router
-
-```python
-billing_agent = LlmAgent(
-    name="BillingAgent",
-    instruction="Handle billing, refunds, payments.",
-    tools=[check_invoice, process_refund]
-)
-
-technical_agent = LlmAgent(
-    name="TechnicalAgent",
-    instruction="Troubleshoot technical issues.",
-    tools=[check_status, create_ticket]
-)
-
-router = LlmAgent(
-    name="SupportRouter",
-    instruction="Route queries to appropriate specialist.",
-    sub_agents=[billing_agent, technical_agent]
-)
-
-# Router auto-delegates based on query
-response = router.run("I was charged twice")
-# ? Routes to billing_agent
-```
-
----
-
-## Best Practices
-
-| Practice | Application |
-|----------|-------------|
-| Named agents | Use descriptive names in instructions |
-| Clear delegation | Explicit routing in coordinator |
-| Error handling | Handle agent failures gracefully |
-| State management | Pass context between agents |
-
----
-
-? PikaKit v3.9.223
+Test routing, state transfer, branch failure, timeout, cancellation, merge conflicts, termination, and permission denial. Trace every delegation with redacted inputs and stable correlation identifiers.

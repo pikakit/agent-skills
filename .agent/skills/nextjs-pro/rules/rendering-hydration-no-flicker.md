@@ -1,16 +1,31 @@
 ---
-title: Prevent Hydration Mismatch Without Flickering
-impact: MEDIUM
-impactDescription: avoids visual flicker and hydration errors
-tags: rendering, ssr, hydration, localStorage, flicker
+"title": "Prevent Hydration Mismatch Without Flickering"
+"kind": "code"
+"impact": "standard"
+"tags":
+  - "rendering"
+  - "ssr"
+  - "hydration"
+  - "localStorage"
+  - "flicker"
+"applies_to":
+  - "node"
+  - "web"
+"last_reviewed": "2026-09-28"
+"sources":
+  - "url": "https://nextjs.org/docs/messages/react-hydration-error"
+    "title": "Next.js hydration error guidance"
+  - "url": "https://nextjs.org/docs/app/guides/content-security-policy"
+    "title": "Next.js Content Security Policy guide"
 ---
+
+# Prevent Hydration Mismatch Without Flickering
 
 ## Prevent Hydration Mismatch Without Flickering
 
-When rendering content that depends on client-side storage (localStorage, cookies), avoid both SSR breakage and post-hydration flickering by injecting a synchronous script that updates the DOM before React hydrates.
+Render preference-dependent markup from request data when possible. When a preference exists only in browser storage, use a reviewed pre-hydration bootstrap that complies with the application's Content Security Policy (CSP). Never use this presentation technique for authentication or authorization state.
 
-**Incorrect (breaks SSR):**
-
+## Incorrect
 ```tsx
 function ThemeWrapper({ children }: { children: ReactNode }) {
   // localStorage is not available on server - throws error
@@ -26,8 +41,7 @@ function ThemeWrapper({ children }: { children: ReactNode }) {
 
 Server-side rendering will fail because `localStorage` is undefined.
 
-**Incorrect (visual flickering):**
-
+## Incorrect
 ```tsx
 function ThemeWrapper({ children }: { children: ReactNode }) {
   const [theme, setTheme] = useState('light')
@@ -50,37 +64,27 @@ function ThemeWrapper({ children }: { children: ReactNode }) {
 
 Component first renders with default value (`light`), then updates after hydration, causing a visible flash of incorrect content.
 
-**Correct (no flicker, no hydration mismatch):**
-
+## Correct
 ```tsx
-function ThemeWrapper({ children }: { children: ReactNode }) {
+// app/layout.tsx
+import { cookies } from 'next/headers'
+
+export default async function RootLayout({ children }: { children: React.ReactNode }) {
+  const storedTheme = (await cookies()).get('theme')?.value
+  const theme = storedTheme === 'dark' ? 'dark' : 'light'
+
   return (
-    <>
-      <div id="theme-wrapper">
-        {children}
-      </div>
-      <script
-        dangerouslySetInnerHTML={{
-          __html: `
-            (function() {
-              try {
-                var theme = localStorage.getItem('theme') || 'light';
-                var el = document.getElementById('theme-wrapper');
-                if (el) el.className = theme;
-              } catch (e) {}
-            })();
-          `,
-        }}
-      />
-    </>
+    <html data-theme={theme}>
+      <body>{children}</body>
+    </html>
   )
 }
 ```
 
-The inline script executes synchronously before showing the element, ensuring the DOM already has the correct value. No flickering, no hydration mismatch.
+The server and first client render now agree because both receive the same theme value. Update the cookie when the user changes theme so the next request remains consistent.
 
-This pattern is especially useful for theme toggles, user preferences, authentication states, and any client-only data that should render immediately without flashing default values.
+If the preference must remain in `localStorage`, place a small audited script in `public/theme-init.js`, load it from the root layout with `next/script` and `strategy="beforeInteractive"`, and limit `suppressHydrationWarning` to the single element whose attribute the script changes. Prefer an external same-origin script under a `script-src 'self'` policy; when the application uses nonce-based CSP, pass the request nonce through the documented Next.js CSP integration. Do not add `unsafe-inline` for this feature.
 
----
+## Verification
 
-⚡ PikaKit v3.9.223
+Run the repository typecheck and a production browser test with JavaScript enabled, disabled, and storage unavailable. Verify the initial DOM has the intended theme, hydration emits no warning, and the production CSP reports no violation.

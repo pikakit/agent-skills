@@ -1,9 +1,28 @@
 ---
-title: CSS content-visibility for Long Lists
-impact: HIGH
-impactDescription: faster initial render
-tags: rendering, css, content-visibility, long-lists
+"title": "CSS content-visibility for Long Lists"
+"kind": "reference"
+"impact": "high"
+"tags":
+  - "rendering"
+  - "css"
+  - "content-visibility"
+  - "long-lists"
+"applies_to":
+  - "node"
+  - "web"
+"last_reviewed": "2026-09-28"
+"sources":
+  - "url": "https://nextjs.org/docs"
+    "title": "Official documentation"
 ---
+
+# CSS content-visibility for Long Lists
+
+## Scope
+
+Apply this guidance only to the declared platforms and repository-confirmed versions.
+
+## Guidance
 
 ## CSS content-visibility for Long Lists
 
@@ -37,6 +56,6 @@ function MessageList({ messages }: { messages: Message[] }) {
 
 For 1000 messages, browser skips layout/paint for ~990 off-screen items (10× faster initial render).
 
----
+## Verification
 
-⚡ PikaKit v3.9.223
+Cross-check version-sensitive details with the cited official source and verify the resulting behavior in the target environment.

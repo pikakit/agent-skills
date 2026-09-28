@@ -1,9 +1,28 @@
 ---
-title: "Zustand & React Query State Management"
-impact: HIGH
-impactDescription: "Proper state management prevents prop drilling and ensures data consistency"
-tags: zustand, react-query, tanstack, state, global
+"title": "Zustand & React Query State Management"
+"kind": "reference"
+"impact": "high"
+"tags":
+  - "zustand"
+  - "react-query"
+  - "tanstack"
+  - "state"
+  - "global"
+"applies_to":
+  - "web"
+"last_reviewed": "2026-09-28"
+"sources":
+  - "url": "https://react.dev/reference/react"
+    "title": "Official documentation"
 ---
+
+# Zustand & React Query State Management
+
+## Scope
+
+Apply this guidance only to the declared platforms and repository-confirmed versions.
+
+## Guidance
 
 # State Management Patterns
 
@@ -85,6 +104,6 @@ function UserList() {
 }
 ```
 
----
+## Verification
 
-⚡ PikaKit v3.9.223
+Cross-check version-sensitive details with the cited official source and verify the resulting behavior in the target environment.

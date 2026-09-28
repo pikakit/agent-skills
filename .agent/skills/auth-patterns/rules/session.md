@@ -1,15 +1,24 @@
 ---
-name: session
-description: Cookie sessions, Redis store, stateless vs stateful, session lifecycle and security
-title: "Session Management"
-impact: MEDIUM
-impactDescription: "Moderate improvement to quality or maintainability"
-tags: session
+title: Session Management
+kind: reference
+impact: critical
+tags: [sessions, cookies, revocation]
+applies_to: [web, backend]
+last_reviewed: "2026-09-28"
+sources:
+  - title: OWASP Session Management Cheat Sheet
+    url: https://cheatsheetseries.owasp.org/cheatsheets/Session_Management_Cheat_Sheet.html
 ---
 
 # Session Management
 
 > Cookie-based sessions, Redis store, stateless vs stateful trade-offs.
+
+## Scope
+
+Apply to session identifiers, cookies, fixation prevention, renewal, idle/absolute expiry, revocation, storage, and concurrent sessions.
+
+## Guidance
 
 ---
 
@@ -169,7 +178,11 @@ async function invalidateAllSessions(userId: string) {
 
 ---
 
-## 🔗 Related
+## Verification
+
+Test fixation prevention, cookie attributes, renewal, idle and absolute expiry, logout, credential-change revocation, concurrent sessions, CSRF defenses, store outage, and key rotation. Confirm logs never contain session identifiers.
+
+## Related
 
 | File | When to Read |
 |------|-------------|
@@ -180,4 +193,4 @@ async function invalidateAllSessions(userId: string) {
 
 ---
 
-⚡ PikaKit v3.9.223
+⚡ PikaKit v3.9.224

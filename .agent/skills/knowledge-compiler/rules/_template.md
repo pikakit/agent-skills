@@ -25,4 +25,4 @@ Brief explanation of the rule and why it matters.
 
 ---
 
-⚡ PikaKit v3.9.223
+⚡ PikaKit v3.9.224

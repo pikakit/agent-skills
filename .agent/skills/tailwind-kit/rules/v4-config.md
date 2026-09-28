@@ -1,8 +1,24 @@
 ---
-title: Tailwind v4 Configuration
-impact: MEDIUM
-tags: tailwind-kit
+"title": "Tailwind v4 Configuration"
+"kind": "reference"
+"impact": "standard"
+"tags":
+  - "tailwind-kit"
+"applies_to":
+  - "web"
+"last_reviewed": "2026-09-28"
+"sources":
+  - "url": "https://tailwindcss.com/docs"
+    "title": "Official documentation"
 ---
+
+# Tailwind v4 Configuration
+
+## Scope
+
+Apply this guidance only to the declared platforms and repository-confirmed versions.
+
+## Guidance
 
 # Tailwind v4 Configuration
 
@@ -67,6 +83,6 @@ oklch(lightness chroma hue)
 - **Chroma:** 0 = gray, higher = more colorful
 - **Hue:** 0 = red, 120 = green, 240 = blue
 
----
+## Verification
 
-? PikaKit v3.9.223
+Cross-check version-sensitive details with the cited official source and verify the resulting behavior in the target environment.

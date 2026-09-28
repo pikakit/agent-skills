@@ -1,10 +1,13 @@
 ---
-name: graphql
-description: GraphQL schema design, resolver patterns, N+1 prevention, security
 title: "GraphQL Principles"
-impact: MEDIUM
-impactDescription: "Moderate improvement to quality or maintainability"
-tags: graphql
+kind: decision
+impact: high
+tags: [api, graphql, security]
+applies_to: [api-architect]
+last_reviewed: "2026-09-28"
+sources:
+  - title: OWASP GraphQL Cheat Sheet
+    url: https://cheatsheetseries.owasp.org/cheatsheets/GraphQL_Cheat_Sheet.html
 ---
 
 # GraphQL Principles
@@ -149,6 +152,22 @@ const server = new ApolloServer({
 | [security-testing.md](security-testing.md) | GraphQL security testing |
 | [SKILL.md](../SKILL.md) | Full decision framework |
 
----
+## Decision
 
-⚡ PikaKit v3.9.223
+Adopt GraphQL when consumers need controlled graph-shaped projections and the team can operate schema evolution, field-level authorization, batching, cost controls, and observability.
+
+## Use When
+
+Use it for multiple consumers with materially different but related data needs and a governed schema owned independently from persistence.
+
+## Avoid When
+
+Avoid it for simple resource APIs, uncontrolled public query execution, bulk file transfer, or teams without resolver and query-cost operations.
+
+## Trade-offs
+
+Client flexibility can reduce endpoint proliferation, but shifts complexity to schema governance, cache strategy, resolver performance, authorization, and abuse prevention.
+
+## Verification
+
+Test field and object authorization, depth/complexity limits, batching, pagination, nullability, schema compatibility, introspection policy, and sensitive error redaction.

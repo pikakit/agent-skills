@@ -1,16 +1,28 @@
 ---
-title: Initialize App Once, Not Per Mount
-impact: LOW-MEDIUM
-impactDescription: avoids duplicate init in development
-tags: initialization, useEffect, app-startup, side-effects
+"title": "Initialize App Once, Not Per Mount"
+"kind": "code"
+"impact": "standard"
+"tags":
+  - "initialization"
+  - "useEffect"
+  - "app-startup"
+  - "side-effects"
+"applies_to":
+  - "node"
+  - "web"
+"last_reviewed": "2026-09-28"
+"sources":
+  - "url": "https://nextjs.org/docs"
+    "title": "Official documentation"
 ---
+
+# Initialize App Once, Not Per Mount
 
 ## Initialize App Once, Not Per Mount
 
 Do not put app-wide initialization that must run once per app load inside `useEffect([])` of a component. Components can remount and effects will re-run. Use a module-level guard or top-level init in the entry module instead.
 
-**Incorrect (runs twice in dev, re-runs on remount):**
-
+## Incorrect
 ```tsx
 function Comp() {
   useEffect(() => {
@@ -22,8 +34,7 @@ function Comp() {
 }
 ```
 
-**Correct (once per app load):**
-
+## Correct
 ```tsx
 let didInit = false
 
@@ -41,6 +52,6 @@ function Comp() {
 
 Reference: [Initializing the application](https://react.dev/learn/you-might-not-need-an-effect#initializing-the-application)
 
----
+## Verification
 
-⚡ PikaKit v3.9.223
+Run the repository typecheck and the narrowest behavioral tests that exercise this rule. Confirm error paths and observable output, not only successful compilation.

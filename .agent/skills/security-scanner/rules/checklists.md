@@ -1,20 +1,33 @@
 ---
-name: security-checklists
-description: Security audit checklists — OWASP 2025, API security, auth, data protection, headers with implementation code
+title: Application Security Review Checklist
+kind: reference
+impact: critical
+tags: [owasp, checklist, release-gate]
+applies_to: [repository, web, api]
+last_reviewed: "2026-09-28"
+sources:
+  - title: OWASP Application Security Verification Standard
+    url: https://owasp.org/www-project-application-security-verification-standard/
 ---
 
 # Security Checklists
 
-> Copy relevant checklists into PLAN.md or security report. Use alongside security_scan.ts.
+> Copy relevant checklists into PLAN.md or a security report. Use the bundled knowledge/source secret scanner for automated secret detection.
+
+## Scope
+
+Use this checklist to select applicable controls and record evidence. It does not replace threat modeling or platform-specific verification.
+
+## Guidance
 
 ---
 
-## OWASP Top 10:2025 Checklist
+## OWASP Application Risk Checklist
 
 ### A01: Broken Access Control
 - [ ] Authorization on all protected routes
 - [ ] Deny by default (fail closed)
-- [ ] Rate limiting on all endpoints
+- [ ] Abuse controls on threat-modeled endpoints
 - [ ] CORS properly configured (no wildcard + credentials)
 - [ ] IDOR protection (validate resource ownership)
 
@@ -33,8 +46,8 @@ description: Security audit checklists — OWASP 2025, API security, auth, data 
 - [ ] Dependency integrity verified (checksums)
 
 ### A04: Cryptographic Failures
-- [ ] Passwords hashed (bcrypt cost ≥ 12 or argon2)
-- [ ] Sensitive data encrypted at rest (AES-256)
+- [ ] Passwords protected with the current OWASP password-storage guidance
+- [ ] Sensitive data protected with an approved, authenticated encryption scheme
 - [ ] TLS 1.2+ enforced for all connections
 - [ ] No secrets in code, logs, or version control
 - [ ] Key rotation policy in place
@@ -150,8 +163,8 @@ git log --all -p | grep -i "password\|api_key\|secret"  # Git history
 npx eslint --rule 'no-eval: error' .  # Detect eval()
 grep -rn "dangerouslySetInnerHTML" src/  # XSS vectors
 
-# Full scan (this skill)
-node .agent/skills/security-scanner/scripts/security_scan.ts . --output=summary
+# Repository secret scan
+npx tsx .agent/skills/knowledge-compiler/scripts/secret-scanner.ts .
 
 # HTTPS/TLS
 openssl s_client -connect example.com:443  # Check TLS version
@@ -173,14 +186,18 @@ curl -I https://example.com | grep -i "strict\|content-security\|x-frame"  # Hea
 
 ---
 
-## 🔗 Related
+## Verification
+
+Record each applicable control as pass, finding, or incomplete with evidence. Fail the release when a required check cannot execute, a finding remains unowned, or a scanner reports timeout, read failure, or parse failure.
+
+## Related
 
 | File | When to Read |
 |------|-------------|
 | [auth-patterns.md](auth-patterns.md) | Auth implementation |
-| [scripts/security_scan.ts](scripts/security_scan.ts) | Automated scanning |
-| [SKILL.md](SKILL.md) | OWASP 2025 mapping, risk prioritization |
+| [secret-scanner.ts](../../knowledge-compiler/scripts/secret-scanner.ts) | Automated secret scanning |
+| [SKILL.md](../SKILL.md) | Security review workflow and risk prioritization |
 
 ---
 
-⚡ PikaKit v3.9.223
+⚡ PikaKit v3.9.224

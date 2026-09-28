@@ -1,8 +1,13 @@
 ---
 title: Rule Title Here
-impact: MEDIUM
-impactDescription: Optional description of impact (e.g., "20-50% improvement")
-tags: tag1, tag2
+kind: code
+impact: standard
+tags: [tag1, tag2]
+applies_to: [platform]
+last_reviewed: "2026-09-28"
+sources:
+  - title: PikaKit Production Skill Rubric
+    internal_ref: ../../../standards/PRODUCTION_RUBRIC.md
 ---
 
 ## Rule Title Here
@@ -11,22 +16,24 @@ tags: tag1, tag2
 
 Brief explanation of the rule and why it matters. This should be clear and concise, explaining the performance implications.
 
-**Incorrect (description of what's wrong):**
+## Incorrect
 
 ```typescript
 // Bad code example here
 const bad = example()
 ```
 
-**Correct (description of what's right):**
+## Correct
 
 ```typescript
 // Good code example here
 const good = example()
 ```
 
-Reference: [Link to documentation or resource](https://example.com)
+## Verification
+
+State the deterministic command or observation that proves the rule.
 
 ---
 
-? PikaKit v3.9.223
+? PikaKit v3.9.224
